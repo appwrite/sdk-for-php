@@ -12,19 +12,6 @@ To install via [Composer](http://getcomposer.org/):
 composer require appwrite/appwrite
 ```
 
-## Getting Started
-
-To get started with using the SDK you need to setup a client with your API credentials.
-
-```php
-use Appwrite\Client;
-use Appwrite\Api;
-
-$client = new Client();
-$api    = new Api($client)
-
-```
-
 ## License
 
 Please see the [MIT license]() file for more information.
