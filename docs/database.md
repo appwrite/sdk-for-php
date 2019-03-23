@@ -3,7 +3,7 @@
 ## List Documents
 
 ```http request
-GET https://appwrite.test/v1/database/{collectionId}
+GET https://appwrite.io/v1/database/{collectionId}
 ```
 
 ** Get a list of all the user documents. You can use the query params to filter your results. On managed mode, this endpoint will return a list of all of the project documents. [Learn more about different API modes](/docs/modes). **
@@ -26,7 +26,7 @@ GET https://appwrite.test/v1/database/{collectionId}
 ## Create Document
 
 ```http request
-POST https://appwrite.test/v1/database/{collectionId}
+POST https://appwrite.io/v1/database/{collectionId}
 ```
 
 ** Create a new Document. **
@@ -44,7 +44,7 @@ POST https://appwrite.test/v1/database/{collectionId}
 ## Get Document
 
 ```http request
-GET https://appwrite.test/v1/database/{collectionId}/{documentId}
+GET https://appwrite.io/v1/database/{collectionId}/{documentId}
 ```
 
 ** Get document by its unique ID. This endpoint response returns a JSON object with the document data. **
@@ -59,7 +59,7 @@ GET https://appwrite.test/v1/database/{collectionId}/{documentId}
 ## Update Document
 
 ```http request
-PATCH https://appwrite.test/v1/database/{collectionId}/{documentId}
+PATCH https://appwrite.io/v1/database/{collectionId}/{documentId}
 ```
 
 ### Parameters
@@ -73,7 +73,7 @@ PATCH https://appwrite.test/v1/database/{collectionId}/{documentId}
 ## Delete Document
 
 ```http request
-DELETE https://appwrite.test/v1/database/{collectionId}/{documentId}
+DELETE https://appwrite.io/v1/database/{collectionId}/{documentId}
 ```
 
 ** Delete document by its unique ID. This endpoint deletes only the parent documents, his attributes and relations to other documents. Child documents **will not** be deleted. **

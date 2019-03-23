@@ -3,7 +3,7 @@
 ## List Files
 
 ```http request
-GET https://appwrite.test/v1/storage/files
+GET https://appwrite.io/v1/storage/files
 ```
 
 ** Get a list of all the user files. You can use the query params to filter your results. On managed mode, this endpoint will return a list of all of the project files. [Learn more about different API modes](/docs/modes). **
@@ -20,7 +20,7 @@ GET https://appwrite.test/v1/storage/files
 ## Create File
 
 ```http request
-POST https://appwrite.test/v1/storage/files
+POST https://appwrite.io/v1/storage/files
 ```
 
 ** Create a new file. The user who creates the file will automatically be assigned to read and write access unless he has passed custom values for read and write arguments. **
@@ -37,7 +37,7 @@ POST https://appwrite.test/v1/storage/files
 ## Get File
 
 ```http request
-GET https://appwrite.test/v1/storage/files/{id}
+GET https://appwrite.io/v1/storage/files/{id}
 ```
 
 ** Get file by its unique ID. This endpoint response returns a JSON object with the file metadata. **
@@ -51,7 +51,7 @@ GET https://appwrite.test/v1/storage/files/{id}
 ## Delete File
 
 ```http request
-DELETE https://appwrite.test/v1/storage/files/{id}
+DELETE https://appwrite.io/v1/storage/files/{id}
 ```
 
 ** Delete a file by its unique ID. Only users with write permissions have access for deleting this resource. **
@@ -65,7 +65,7 @@ DELETE https://appwrite.test/v1/storage/files/{id}
 ## Download File
 
 ```http request
-GET https://appwrite.test/v1/storage/files/{id}/download
+GET https://appwrite.io/v1/storage/files/{id}/download
 ```
 
 ** Get file content by its unique ID. The endpoint response return with a &#039;Content-Disposition: attachment&#039; header that tells the browser to start downloading the file to user downloads directory. **
@@ -79,7 +79,7 @@ GET https://appwrite.test/v1/storage/files/{id}/download
 ## Preview File
 
 ```http request
-GET https://appwrite.test/v1/storage/files/{id}/preview
+GET https://appwrite.io/v1/storage/files/{id}/preview
 ```
 
 ** Get file preview image. Currently, this method supports preview for image files (jpg, png, and gif), other supported formats, like pdf, docs, slides, and spreadsheets will return file icon image. You can also pass query string arguments for cutting and resizing your preview image. **
@@ -98,7 +98,7 @@ GET https://appwrite.test/v1/storage/files/{id}/preview
 ## View File
 
 ```http request
-GET https://appwrite.test/v1/storage/files/{id}/view
+GET https://appwrite.io/v1/storage/files/{id}/view
 ```
 
 ** Get file content by its unique ID. This endpoint is similar to the download method but returns with no  &#039;Content-Disposition: attachment&#039; header. **
