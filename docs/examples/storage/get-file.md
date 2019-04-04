@@ -12,4 +12,4 @@ $client
 
 $storage = new Storage($client);
 
-$result = $storage->getFile('[ID]');
+$result = $storage->getFile('[FILE_ID]');

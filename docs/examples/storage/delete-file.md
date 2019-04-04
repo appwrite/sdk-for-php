@@ -12,4 +12,4 @@ $client
 
 $storage = new Storage($client);
 
-$result = $storage->deleteFile('[ID]');
+$result = $storage->deleteFile('[FILE_ID]');

@@ -6,7 +6,7 @@
 GET https://appwrite.io/v1/storage/files
 ```
 
-** Get a list of all the user files. You can use the query params to filter your results. On managed mode, this endpoint will return a list of all of the project files. [Learn more about different API modes](/docs/modes). **
+** Get a list of all the user files. You can use the query params to filter your results. On admin mode, this endpoint will return a list of all of the project files. [Learn more about different API modes](/docs/modes). **
 
 ### Parameters
 
@@ -37,7 +37,7 @@ POST https://appwrite.io/v1/storage/files
 ## Get File
 
 ```http request
-GET https://appwrite.io/v1/storage/files/{id}
+GET https://appwrite.io/v1/storage/files/{fileId}
 ```
 
 ** Get file by its unique ID. This endpoint response returns a JSON object with the file metadata. **
@@ -46,26 +46,26 @@ GET https://appwrite.io/v1/storage/files/{id}
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| id | string | **Required** File unique ID. |  |
+| fileId | string | **Required** File unique ID. |  |
 
 ## Delete File
 
 ```http request
-DELETE https://appwrite.io/v1/storage/files/{id}
+DELETE https://appwrite.io/v1/storage/files/{fileId}
 ```
 
-** Delete a file by its unique ID. Only users with write permissions have access for deleting this resource. **
+** Delete a file by its unique ID. Only users with write permissions have access to delete this resource. **
 
 ### Parameters
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| id | string | **Required** File unique ID. |  |
+| fileId | string | **Required** File unique ID. |  |
 
 ## Download File
 
 ```http request
-GET https://appwrite.io/v1/storage/files/{id}/download
+GET https://appwrite.io/v1/storage/files/{fileId}/download
 ```
 
 ** Get file content by its unique ID. The endpoint response return with a &#039;Content-Disposition: attachment&#039; header that tells the browser to start downloading the file to user downloads directory. **
@@ -74,12 +74,12 @@ GET https://appwrite.io/v1/storage/files/{id}/download
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| id | string | **Required** File unique ID. |  |
+| fileId | string | **Required** File unique ID. |  |
 
 ## Preview File
 
 ```http request
-GET https://appwrite.io/v1/storage/files/{id}/preview
+GET https://appwrite.io/v1/storage/files/{fileId}/preview
 ```
 
 ** Get file preview image. Currently, this method supports preview for image files (jpg, png, and gif), other supported formats, like pdf, docs, slides, and spreadsheets will return file icon image. You can also pass query string arguments for cutting and resizing your preview image. **
@@ -88,7 +88,7 @@ GET https://appwrite.io/v1/storage/files/{id}/preview
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| id | string | **Required** File unique ID |  |
+| fileId | string | **Required** File unique ID |  |
 | width | integer | Resize preview image width, Pass an integer between 0 to 4000 | 0 |
 | height | integer | Resize preview image height, Pass an integer between 0 to 4000 | 0 |
 | quality | integer | Preview image quality. Pass an integer between 0 to 100. Defaults to 100 | 100 |
@@ -98,7 +98,7 @@ GET https://appwrite.io/v1/storage/files/{id}/preview
 ## View File
 
 ```http request
-GET https://appwrite.io/v1/storage/files/{id}/view
+GET https://appwrite.io/v1/storage/files/{fileId}/view
 ```
 
 ** Get file content by its unique ID. This endpoint is similar to the download method but returns with no  &#039;Content-Disposition: attachment&#039; header. **
@@ -107,6 +107,6 @@ GET https://appwrite.io/v1/storage/files/{id}/view
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| id | string | **Required** File unique ID. |  |
+| fileId | string | **Required** File unique ID. |  |
 | as | string | Choose a file format to convert your file to. Currently you can only convert word and pdf files to pdf or txt. This option is currently experimental only, use at your own risk. |  |
 

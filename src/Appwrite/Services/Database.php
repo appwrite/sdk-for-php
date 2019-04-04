@@ -9,9 +9,61 @@ use Appwrite\Service;
 class Database extends Service
 {
     /**
+     * List Collections
+     *
+     * Get a list of all the user collections. You can use the query params to filter your results. On admin mode, this endpoint will return a list of all of the project collections. [Learn more about different API modes](/docs/modes).
+     *
+     * @param string $search
+     * @param integer $limit
+     * @param integer $offset
+     * @param string $orderType
+     * @throws Exception
+     * @return array
+     */
+    public function listCollections($search = '', $limit = 25, $offset = 0, $orderType = 'ASC')
+    {
+        $path   = str_replace([], [], '/database');
+        $params = [];
+
+        $params['search'] = $search;
+        $params['limit'] = $limit;
+        $params['offset'] = $offset;
+        $params['orderType'] = $orderType;
+
+        return $this->client->call(Client::METHOD_GET, $path, [
+        ], $params);
+    }
+
+    /**
+     * Create Collection
+     *
+     * Create a new Collection.
+     *
+     * @param string $name
+     * @param array $read
+     * @param array $write
+     * @param array $rules
+     * @throws Exception
+     * @return array
+     */
+    public function createCollection($name, $read = [], $write = [], $rules = [])
+    {
+        $path   = str_replace([], [], '/database');
+        $params = [];
+
+        $params['name'] = $name;
+        $params['read'] = $read;
+        $params['write'] = $write;
+        $params['rules'] = $rules;
+
+        return $this->client->call(Client::METHOD_POST, $path, [
+        ], $params);
+    }
+
+    /**
      * List Documents
      *
-     * Get a list of all the user documents. You can use the query params to filter your results. On managed mode, this endpoint will return a list of all of the project documents. [Learn more about different API modes](/docs/modes).
+     * Get a list of all the user documents. You can use the query params to filter your results. On admin mode, this endpoint will return a list of all of the project documents. [Learn more about different API modes](/docs/modes).
      *
      * @param string $collectionId
      * @param array $filters
@@ -69,6 +121,25 @@ class Database extends Service
         $params['parentPropertyType'] = $parentPropertyType;
 
         return $this->client->call(Client::METHOD_POST, $path, [
+        ], $params);
+    }
+
+    /**
+     * Delete Collection
+     *
+     * Delete a collection by its unique ID. Only users with write permissions have access to delete this resource.
+     *
+     * @param string $collectionId
+     * @throws Exception
+     * @return array
+     */
+    public function deleteCollection($collectionId)
+    {
+        $path   = str_replace(['{collectionId}'], [$collectionId], '/database/{collectionId}');
+        $params = [];
+
+
+        return $this->client->call(Client::METHOD_DELETE, $path, [
         ], $params);
     }
 

@@ -11,7 +11,7 @@ class Storage extends Service
     /**
      * List Files
      *
-     * Get a list of all the user files. You can use the query params to filter your results. On managed mode, this endpoint will return a list of all of the project files. [Learn more about different API modes](/docs/modes).
+     * Get a list of all the user files. You can use the query params to filter your results. On admin mode, this endpoint will return a list of all of the project files. [Learn more about different API modes](/docs/modes).
      *
      * @param string $search
      * @param integer $limit
@@ -66,13 +66,13 @@ class Storage extends Service
      *
      * Get file by its unique ID. This endpoint response returns a JSON object with the file metadata.
      *
-     * @param string $id
+     * @param string $fileId
      * @throws Exception
      * @return array
      */
-    public function getFile($id)
+    public function getFile($fileId)
     {
-        $path   = str_replace(['{id}'], [$id], '/storage/files/{id}');
+        $path   = str_replace(['{fileId}'], [$fileId], '/storage/files/{fileId}');
         $params = [];
 
 
@@ -83,15 +83,15 @@ class Storage extends Service
     /**
      * Delete File
      *
-     * Delete a file by its unique ID. Only users with write permissions have access for deleting this resource.
+     * Delete a file by its unique ID. Only users with write permissions have access to delete this resource.
      *
-     * @param string $id
+     * @param string $fileId
      * @throws Exception
      * @return array
      */
-    public function deleteFile($id)
+    public function deleteFile($fileId)
     {
-        $path   = str_replace(['{id}'], [$id], '/storage/files/{id}');
+        $path   = str_replace(['{fileId}'], [$fileId], '/storage/files/{fileId}');
         $params = [];
 
 
@@ -104,13 +104,13 @@ class Storage extends Service
      *
      * Get file content by its unique ID. The endpoint response return with a &#039;Content-Disposition: attachment&#039; header that tells the browser to start downloading the file to user downloads directory.
      *
-     * @param string $id
+     * @param string $fileId
      * @throws Exception
      * @return array
      */
-    public function getFileDownload($id)
+    public function getFileDownload($fileId)
     {
-        $path   = str_replace(['{id}'], [$id], '/storage/files/{id}/download');
+        $path   = str_replace(['{fileId}'], [$fileId], '/storage/files/{fileId}/download');
         $params = [];
 
 
@@ -123,7 +123,7 @@ class Storage extends Service
      *
      * Get file preview image. Currently, this method supports preview for image files (jpg, png, and gif), other supported formats, like pdf, docs, slides, and spreadsheets will return file icon image. You can also pass query string arguments for cutting and resizing your preview image.
      *
-     * @param string $id
+     * @param string $fileId
      * @param integer $width
      * @param integer $height
      * @param integer $quality
@@ -132,9 +132,9 @@ class Storage extends Service
      * @throws Exception
      * @return array
      */
-    public function getFilePreview($id, $width = 0, $height = 0, $quality = 100, $background = '', $output = '')
+    public function getFilePreview($fileId, $width = 0, $height = 0, $quality = 100, $background = '', $output = '')
     {
-        $path   = str_replace(['{id}'], [$id], '/storage/files/{id}/preview');
+        $path   = str_replace(['{fileId}'], [$fileId], '/storage/files/{fileId}/preview');
         $params = [];
 
         $params['width'] = $width;
@@ -152,14 +152,14 @@ class Storage extends Service
      *
      * Get file content by its unique ID. This endpoint is similar to the download method but returns with no  &#039;Content-Disposition: attachment&#039; header.
      *
-     * @param string $id
+     * @param string $fileId
      * @param string $as
      * @throws Exception
      * @return array
      */
-    public function getFileView($id, $as = '')
+    public function getFileView($fileId, $as = '')
     {
-        $path   = str_replace(['{id}'], [$id], '/storage/files/{id}/view');
+        $path   = str_replace(['{fileId}'], [$fileId], '/storage/files/{fileId}/view');
         $params = [];
 
         $params['as'] = $as;

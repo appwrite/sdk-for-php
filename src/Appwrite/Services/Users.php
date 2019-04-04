@@ -63,13 +63,13 @@ class Users extends Service
      *
      * Get user by its unique ID.
      *
-     * @param string $id
+     * @param string $userId
      * @throws Exception
      * @return array
      */
-    public function getUser($id)
+    public function getUser($userId)
     {
-        $path   = str_replace(['{id}'], [$id], '/users/{id}');
+        $path   = str_replace(['{userId}'], [$userId], '/users/{userId}');
         $params = [];
 
 
@@ -82,13 +82,13 @@ class Users extends Service
      *
      * Get user activity logs list by its unique ID.
      *
-     * @param string $id
+     * @param string $userId
      * @throws Exception
      * @return array
      */
-    public function getUserLogs($id)
+    public function getUserLogs($userId)
     {
-        $path   = str_replace(['{id}'], [$id], '/users/{id}/logs');
+        $path   = str_replace(['{userId}'], [$userId], '/users/{userId}/logs');
         $params = [];
 
 
@@ -101,13 +101,13 @@ class Users extends Service
      *
      * Get user preferences by its unique ID.
      *
-     * @param string $id
+     * @param string $userId
      * @throws Exception
      * @return array
      */
-    public function getUserPrefs($id)
+    public function getUserPrefs($userId)
     {
-        $path   = str_replace(['{id}'], [$id], '/users/{id}/prefs');
+        $path   = str_replace(['{userId}'], [$userId], '/users/{userId}/prefs');
         $params = [];
 
 
@@ -120,13 +120,13 @@ class Users extends Service
      *
      * Get user sessions list by its unique ID.
      *
-     * @param string $id
+     * @param string $userId
      * @throws Exception
      * @return array
      */
-    public function getUserSessions($id)
+    public function getUserSessions($userId)
     {
-        $path   = str_replace(['{id}'], [$id], '/users/{id}/sessions');
+        $path   = str_replace(['{userId}'], [$userId], '/users/{userId}/sessions');
         $params = [];
 
 
@@ -139,13 +139,13 @@ class Users extends Service
      *
      * Delete all user sessions by its unique ID.
      *
-     * @param string $id
+     * @param string $userId
      * @throws Exception
      * @return array
      */
-    public function deleteUserSessions($id)
+    public function deleteUserSessions($userId)
     {
-        $path   = str_replace(['{id}'], [$id], '/users/{id}/sessions');
+        $path   = str_replace(['{userId}'], [$userId], '/users/{userId}/sessions');
         $params = [];
 
 
@@ -158,16 +158,17 @@ class Users extends Service
      *
      * Delete user sessions by its unique ID.
      *
-     * @param string $id
-     * @param string $session
+     * @param string $userId
+     * @param string $sessionId
      * @throws Exception
      * @return array
      */
-    public function deleteUsersSession($id, $session)
+    public function deleteUsersSession($userId, $sessionId)
     {
-        $path   = str_replace(['{id}', '{session}'], [$id, $session], '/users/{id}/sessions/{session}');
+        $path   = str_replace(['{userId}'], [$userId], '/users/{userId}/sessions/:session');
         $params = [];
 
+        $params['sessionId'] = $sessionId;
 
         return $this->client->call(Client::METHOD_DELETE, $path, [
         ], $params);
@@ -178,14 +179,14 @@ class Users extends Service
      *
      * Update user status by its unique ID.
      *
-     * @param string $id
+     * @param string $userId
      * @param string $status
      * @throws Exception
      * @return array
      */
-    public function updateUserStatus($id, $status)
+    public function updateUserStatus($userId, $status)
     {
-        $path   = str_replace(['{id}'], [$id], '/users/{id}/status');
+        $path   = str_replace(['{userId}'], [$userId], '/users/{userId}/status');
         $params = [];
 
         $params['status'] = $status;

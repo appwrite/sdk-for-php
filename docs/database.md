@@ -1,12 +1,46 @@
 # Database Service
 
+## List Collections
+
+```http request
+GET https://appwrite.io/v1/database
+```
+
+** Get a list of all the user collections. You can use the query params to filter your results. On admin mode, this endpoint will return a list of all of the project collections. [Learn more about different API modes](/docs/modes). **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| search | string | Search term to filter your list results. |  |
+| limit | integer | Results limit value. By default will return maximum 25 results. Maximum of 100 results allowed per request. | 25 |
+| offset | integer | Results offset. The default value is 0. Use this param to manage pagination. | 0 |
+| orderType | string | Order result by ASC or DESC order. | ASC |
+
+## Create Collection
+
+```http request
+POST https://appwrite.io/v1/database
+```
+
+** Create a new Collection. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| name | string | Collection name. |  |
+| read | array | An array of read permissions. [Learn more about permissions and roles](/docs/permissions). | [] |
+| write | array | An array of write permissions. [Learn more about permissions and roles](/docs/permissions). | [] |
+| rules | array | Array of collection structure rules. Each rule define a collection field name, data type and validation | [] |
+
 ## List Documents
 
 ```http request
 GET https://appwrite.io/v1/database/{collectionId}
 ```
 
-** Get a list of all the user documents. You can use the query params to filter your results. On managed mode, this endpoint will return a list of all of the project documents. [Learn more about different API modes](/docs/modes). **
+** Get a list of all the user documents. You can use the query params to filter your results. On admin mode, this endpoint will return a list of all of the project documents. [Learn more about different API modes](/docs/modes). **
 
 ### Parameters
 
@@ -40,6 +74,20 @@ POST https://appwrite.io/v1/database/{collectionId}
 | parentDocument | string | Parent document unique ID. Use when you want your new document to be a child of a parent document. |  |
 | parentProperty | string | Parent document property name. Use when you want your new document to be a child of a parent document. |  |
 | parentPropertyType | string | Parent document property connection type. You can set this value to **assign**, **append** or **prepend**, default value is assign. Use when you want your new document to be a child of a parent document. | assign |
+
+## Delete Collection
+
+```http request
+DELETE https://appwrite.io/v1/database/{collectionId}
+```
+
+** Delete a collection by its unique ID. Only users with write permissions have access to delete this resource. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| collectionId | string | **Required** Collection unique ID. |  |
 
 ## Get Document
 

@@ -12,4 +12,4 @@ $client
 
 $users = new Users($client);
 
-$result = $users->getUserLogs('[ID]');
+$result = $users->getUserLogs('[USER_ID]');

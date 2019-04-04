@@ -12,4 +12,4 @@ $client
 
 $users = new Users($client);
 
-$result = $users->getUser('[ID]');
+$result = $users->getUser('[USER_ID]');

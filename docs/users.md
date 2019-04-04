@@ -36,7 +36,7 @@ POST https://appwrite.io/v1/users
 ## Get User
 
 ```http request
-GET https://appwrite.io/v1/users/{id}
+GET https://appwrite.io/v1/users/{userId}
 ```
 
 ** Get user by its unique ID. **
@@ -45,12 +45,12 @@ GET https://appwrite.io/v1/users/{id}
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| id | string | **Required** User unique ID. |  |
+| userId | string | **Required** User unique ID. |  |
 
 ## Get User Logs
 
 ```http request
-GET https://appwrite.io/v1/users/{id}/logs
+GET https://appwrite.io/v1/users/{userId}/logs
 ```
 
 ** Get user activity logs list by its unique ID. **
@@ -59,12 +59,12 @@ GET https://appwrite.io/v1/users/{id}/logs
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| id | string | **Required** User unique ID. |  |
+| userId | string | **Required** User unique ID. |  |
 
 ## Get User Prefs
 
 ```http request
-GET https://appwrite.io/v1/users/{id}/prefs
+GET https://appwrite.io/v1/users/{userId}/prefs
 ```
 
 ** Get user preferences by its unique ID. **
@@ -73,12 +73,12 @@ GET https://appwrite.io/v1/users/{id}/prefs
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| id | string | **Required** User unique ID. |  |
+| userId | string | **Required** User unique ID. |  |
 
 ## Get User Sessions
 
 ```http request
-GET https://appwrite.io/v1/users/{id}/sessions
+GET https://appwrite.io/v1/users/{userId}/sessions
 ```
 
 ** Get user sessions list by its unique ID. **
@@ -87,12 +87,12 @@ GET https://appwrite.io/v1/users/{id}/sessions
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| id | string | **Required** User unique ID. |  |
+| userId | string | **Required** User unique ID. |  |
 
 ## Delete User Sessions
 
 ```http request
-DELETE https://appwrite.io/v1/users/{id}/sessions
+DELETE https://appwrite.io/v1/users/{userId}/sessions
 ```
 
 ** Delete all user sessions by its unique ID. **
@@ -101,12 +101,12 @@ DELETE https://appwrite.io/v1/users/{id}/sessions
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| id | string | **Required** User unique ID. |  |
+| userId | string | **Required** User unique ID. |  |
 
 ## Delete User Session
 
 ```http request
-DELETE https://appwrite.io/v1/users/{id}/sessions/{session}
+DELETE https://appwrite.io/v1/users/{userId}/sessions/:session
 ```
 
 ** Delete user sessions by its unique ID. **
@@ -115,13 +115,13 @@ DELETE https://appwrite.io/v1/users/{id}/sessions/{session}
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| id | string | **Required** User unique ID. |  |
-| session | string | **Required** User unique session ID. |  |
+| userId | string | **Required** User unique ID. |  |
+| sessionId | string | User unique session ID. |  |
 
 ## Block User
 
 ```http request
-PATCH https://appwrite.io/v1/users/{id}/status
+PATCH https://appwrite.io/v1/users/{userId}/status
 ```
 
 ** Update user status by its unique ID. **
@@ -130,6 +130,6 @@ PATCH https://appwrite.io/v1/users/{id}/status
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| id | string | **Required** User unique ID. |  |
+| userId | string | **Required** User unique ID. |  |
 | status | string | User Status code. To activate the user pass 1, to blocking the user pass 2 and for disabling the user pass 0 |  |
 

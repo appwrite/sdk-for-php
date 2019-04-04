@@ -12,4 +12,4 @@ $client
 
 $users = new Users($client);
 
-$result = $users->deleteUsersSession('[ID]', '[SESSION]');
+$result = $users->deleteUsersSession('[USER_ID]', '[SESSION_ID]');

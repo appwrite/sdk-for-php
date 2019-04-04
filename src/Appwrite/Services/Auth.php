@@ -61,13 +61,13 @@ When not using the success or failure redirect arguments this endpoint will resu
      *
      * Use this endpoint to log out the currently logged in user from all his account sessions across all his different devices. When using the option id argument, only the session unique ID provider will be deleted.
      *
-     * @param string $id
+     * @param string $userId
      * @throws Exception
      * @return array
      */
-    public function logoutBySession($id)
+    public function logoutBySession($userId)
     {
-        $path   = str_replace(['{id}'], [$id], '/auth/logout/{id}');
+        $path   = str_replace(['{userId}'], [$userId], '/auth/logout/{userId}');
         $params = [];
 
 

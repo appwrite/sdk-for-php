@@ -12,4 +12,4 @@ $client
 
 $users = new Users($client);
 
-$result = $users->getUserSessions('[ID]');
+$result = $users->getUserSessions('[USER_ID]');

@@ -12,4 +12,4 @@ $client
 
 $storage = new Storage($client);
 
-$result = $storage->getFilePreview('[ID]');
+$result = $storage->getFilePreview('[FILE_ID]');

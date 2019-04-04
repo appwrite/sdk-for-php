@@ -1,12 +1,30 @@
 # Teams Service
 
+## Update Team
+
+```http request
+PUT https://appwrite.io/v1/database/{collectionId}
+```
+
+** Update team by its unique ID. Only team owners have write access for this resource. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| collectionId | string | **Required** Collection unique ID. |  |
+| name | string | Collection name. |  |
+| read | array | An array of read permissions. [Learn more about permissions and roles](/docs/permissions). | [] |
+| write | array | An array of write permissions. [Learn more about permissions and roles](/docs/permissions). | [] |
+| rules | array | Array of collection structure rules. Each rule define a collection field name, data type and validation | [] |
+
 ## List Teams
 
 ```http request
 GET https://appwrite.io/v1/teams
 ```
 
-** Get a list of all the current user teams. You can use the query params to filter your results. On managed mode, this endpoint will return a list of all of the project teams. [Learn more about different API modes](/docs/modes). **
+** Get a list of all the current user teams. You can use the query params to filter your results. On admin mode, this endpoint will return a list of all of the project teams. [Learn more about different API modes](/docs/modes). **
 
 ### Parameters
 
