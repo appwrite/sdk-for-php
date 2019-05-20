@@ -104,18 +104,22 @@ class Database extends Service
      *
      * @param string $collectionId
      * @param string $data
+     * @param array $read
+     * @param array $write
      * @param string $parentDocument
      * @param string $parentProperty
      * @param string $parentPropertyType
      * @throws Exception
      * @return array
      */
-    public function createDocument($collectionId, $data, $parentDocument = '', $parentProperty = '', $parentPropertyType = 'assign')
+    public function createDocument($collectionId, $data, $read = [], $write = [], $parentDocument = '', $parentProperty = '', $parentPropertyType = 'assign')
     {
         $path   = str_replace(['{collectionId}'], [$collectionId], '/database/{collectionId}');
         $params = [];
 
         $params['data'] = $data;
+        $params['read'] = $read;
+        $params['write'] = $write;
         $params['parentDocument'] = $parentDocument;
         $params['parentProperty'] = $parentProperty;
         $params['parentPropertyType'] = $parentPropertyType;
@@ -169,15 +173,19 @@ class Database extends Service
      * @param string $collectionId
      * @param string $documentId
      * @param string $data
+     * @param array $read
+     * @param array $write
      * @throws Exception
      * @return array
      */
-    public function updateDocument($collectionId, $documentId, $data)
+    public function updateDocument($collectionId, $documentId, $data, $read = [], $write = [])
     {
         $path   = str_replace(['{collectionId}', '{documentId}'], [$collectionId, $documentId], '/database/{collectionId}/{documentId}');
         $params = [];
 
         $params['data'] = $data;
+        $params['read'] = $read;
+        $params['write'] = $write;
 
         return $this->client->call(Client::METHOD_PATCH, $path, [
         ], $params);
