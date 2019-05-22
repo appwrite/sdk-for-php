@@ -11,7 +11,7 @@ class Database extends Service
     /**
      * List Collections
      *
-	 * Get a list of all the user collections. You can use the query params to
+     * Get a list of all the user collections. You can use the query params to
 	 * filter your results. On admin mode, this endpoint will return a list of all
 	 * of the project collections. [Learn more about different API
 	 * modes](/docs/modes).
@@ -40,7 +40,7 @@ class Database extends Service
     /**
      * Create Collection
      *
-	 * Create a new Collection.
+     * Create a new Collection.
      *
      * @param string $name
      * @param array $read
@@ -66,7 +66,7 @@ class Database extends Service
     /**
      * List Documents
      *
-	 * Get a list of all the user documents. You can use the query params to
+     * Get a list of all the user documents. You can use the query params to
 	 * filter your results. On admin mode, this endpoint will return a list of all
 	 * of the project documents. [Learn more about different API
 	 * modes](/docs/modes).
@@ -106,7 +106,7 @@ class Database extends Service
     /**
      * Create Document
      *
-	 * Create a new Document.
+     * Create a new Document.
      *
      * @param string $collectionId
      * @param string $data
@@ -137,7 +137,7 @@ class Database extends Service
     /**
      * Delete Collection
      *
-	 * Delete a collection by its unique ID. Only users with write permissions
+     * Delete a collection by its unique ID. Only users with write permissions
 	 * have access to delete this resource.
      *
      * @param string $collectionId
@@ -157,7 +157,7 @@ class Database extends Service
     /**
      * Get Document
      *
-	 * Get document by its unique ID. This endpoint response returns a JSON object
+     * Get document by its unique ID. This endpoint response returns a JSON object
 	 * with the document data.
      *
      * @param string $collectionId
@@ -202,7 +202,7 @@ class Database extends Service
     /**
      * Delete Document
      *
-	 * Delete document by its unique ID. This endpoint deletes only the parent
+     * Delete document by its unique ID. This endpoint deletes only the parent
 	 * documents, his attributes and relations to other documents. Child documents
 	 * **will not** be deleted.
      *

@@ -11,7 +11,7 @@ class Locale extends Service
     /**
      * Get User Locale
      *
-	 * Get the current user location based on IP. Returns an object with user
+     * Get the current user location based on IP. Returns an object with user
 	 * country code, country name, continent name, continent code, ip address and
 	 * suggested currency. You can use the locale header to get the data in
 	 * supported language.
@@ -32,7 +32,7 @@ class Locale extends Service
     /**
      * List Countries
      *
-	 * List of all countries. You can use the locale header to get the data in
+     * List of all countries. You can use the locale header to get the data in
 	 * supported language.
      *
      * @throws Exception
@@ -51,7 +51,7 @@ class Locale extends Service
     /**
      * List EU Countries
      *
-	 * List of all countries that are currently members of the EU. You can use the
+     * List of all countries that are currently members of the EU. You can use the
 	 * locale header to get the data in supported language.
      *
      * @throws Exception
@@ -70,7 +70,7 @@ class Locale extends Service
     /**
      * List Countries Phone Codes
      *
-	 * List of all countries phone codes. You can use the locale header to get the
+     * List of all countries phone codes. You can use the locale header to get the
 	 * data in supported language.
      *
      * @throws Exception

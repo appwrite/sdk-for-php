@@ -11,7 +11,7 @@ class Teams extends Service
     /**
      * Update Team
      *
-	 * Update team by its unique ID. Only team owners have write access for this
+     * Update team by its unique ID. Only team owners have write access for this
 	 * resource.
      *
      * @param string $collectionId
@@ -39,7 +39,7 @@ class Teams extends Service
     /**
      * List Teams
      *
-	 * Get a list of all the current user teams. You can use the query params to
+     * Get a list of all the current user teams. You can use the query params to
 	 * filter your results. On admin mode, this endpoint will return a list of all
 	 * of the project teams. [Learn more about different API modes](/docs/modes).
      *
@@ -67,7 +67,7 @@ class Teams extends Service
     /**
      * Create Team
      *
-	 * Create a new team. The user who creates the team will automatically be
+     * Create a new team. The user who creates the team will automatically be
 	 * assigned as the owner of the team. The team owner can invite new members,
 	 * who will be able add new owners and update or delete the team from your
 	 * project.
@@ -92,7 +92,7 @@ class Teams extends Service
     /**
      * Get Team
      *
-	 * Get team by its unique ID. All team members have read access for this
+     * Get team by its unique ID. All team members have read access for this
 	 * resource.
      *
      * @param string $teamId
@@ -112,7 +112,7 @@ class Teams extends Service
     /**
      * Update Team
      *
-	 * Update team by its unique ID. Only team owners have write access for this
+     * Update team by its unique ID. Only team owners have write access for this
 	 * resource.
      *
      * @param string $teamId
@@ -134,7 +134,7 @@ class Teams extends Service
     /**
      * Delete Team
      *
-	 * Delete team by its unique ID. Only team owners have write access for this
+     * Delete team by its unique ID. Only team owners have write access for this
 	 * resource.
      *
      * @param string $teamId
@@ -154,7 +154,7 @@ class Teams extends Service
     /**
      * Get Team Members
      *
-	 * Get team members by the team unique ID. All team members have read access
+     * Get team members by the team unique ID. All team members have read access
 	 * for this list of resources.
      *
      * @param string $teamId
@@ -174,16 +174,16 @@ class Teams extends Service
     /**
      * Create Team Membership
      *
-	 * Use this endpoint to invite a new member to your team. An email with a link
+     * Use this endpoint to invite a new member to your team. An email with a link
 	 * to join the team will be sent to the new member email address. If member
 	 * doesn't exists in the project it will be automatically created.
-	 * 
-	 * Use the redirect parameter to redirect the user from the invitation email
+     * 
+     * Use the redirect parameter to redirect the user from the invitation email
 	 * back to your app. When the user is redirected, use the
 	 * /teams/{teamId}/memberships/{inviteId}/status endpoint to finally join the
 	 * user to the team.
-	 * 
-	 * Please notice that in order to avoid a [Redirect
+     * 
+     * Please notice that in order to avoid a [Redirect
 	 * Attacks](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.md)
 	 * the only valid redirect URL's are the once from domains you have set when
 	 * added your platforms in the console interface.
@@ -213,7 +213,7 @@ class Teams extends Service
     /**
      * Delete Team Membership
      *
-	 * This endpoint allows a user to leave a team or for a team owner to delete
+     * This endpoint allows a user to leave a team or for a team owner to delete
 	 * the membership of any other team member.
      *
      * @param string $teamId
@@ -234,7 +234,7 @@ class Teams extends Service
     /**
      * Create Team Membership (Resend Invitation Email)
      *
-	 * Use this endpoint to resend your invitation email for a user to join a
+     * Use this endpoint to resend your invitation email for a user to join a
 	 * team.
      *
      * @param string $teamId
@@ -257,17 +257,17 @@ class Teams extends Service
     /**
      * Update Team Membership Status
      *
-	 * Use this endpoint to let user accept an invitation to join a team after he
+     * Use this endpoint to let user accept an invitation to join a team after he
 	 * is being redirect back to your app from the invitation email. Use the
 	 * success and failure URL's to redirect users back to your application after
 	 * the request completes.
-	 * 
-	 * Please notice that in order to avoid a [Redirect
+     * 
+     * Please notice that in order to avoid a [Redirect
 	 * Attacks](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.md)
 	 * the only valid redirect URL's are the once from domains you have set when
 	 * added your platforms in the console interface.
-	 * 
-	 * When not using the success or failure redirect arguments this endpoint will
+     * 
+     * When not using the success or failure redirect arguments this endpoint will
 	 * result with a 200 status code on success and with 401 status error on
 	 * failure. This behavior was applied to help the web clients deal with
 	 * browsers who don't allow to set 3rd party HTTP cookies needed for saving

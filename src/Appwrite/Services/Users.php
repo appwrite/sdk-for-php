@@ -11,7 +11,7 @@ class Users extends Service
     /**
      * List Users
      *
-	 * Get a list of all the project users. You can use the query params to filter
+     * Get a list of all the project users. You can use the query params to filter
 	 * your results.
      *
      * @param string $search
@@ -38,7 +38,7 @@ class Users extends Service
     /**
      * Create User
      *
-	 * Create a new user.
+     * Create a new user.
      *
      * @param string $email
      * @param string $password
@@ -62,7 +62,7 @@ class Users extends Service
     /**
      * Get User
      *
-	 * Get user by its unique ID.
+     * Get user by its unique ID.
      *
      * @param string $userId
      * @throws Exception
@@ -81,7 +81,7 @@ class Users extends Service
     /**
      * Get User Logs
      *
-	 * Get user activity logs list by its unique ID.
+     * Get user activity logs list by its unique ID.
      *
      * @param string $userId
      * @throws Exception
@@ -100,7 +100,7 @@ class Users extends Service
     /**
      * Get User Prefs
      *
-	 * Get user preferences by its unique ID.
+     * Get user preferences by its unique ID.
      *
      * @param string $userId
      * @throws Exception
@@ -119,7 +119,7 @@ class Users extends Service
     /**
      * Get User Sessions
      *
-	 * Get user sessions list by its unique ID.
+     * Get user sessions list by its unique ID.
      *
      * @param string $userId
      * @throws Exception
@@ -138,7 +138,7 @@ class Users extends Service
     /**
      * Delete User Sessions
      *
-	 * Delete all user sessions by its unique ID.
+     * Delete all user sessions by its unique ID.
      *
      * @param string $userId
      * @throws Exception
@@ -157,7 +157,7 @@ class Users extends Service
     /**
      * Delete User Session
      *
-	 * Delete user sessions by its unique ID.
+     * Delete user sessions by its unique ID.
      *
      * @param string $userId
      * @param string $sessionId
@@ -178,7 +178,7 @@ class Users extends Service
     /**
      * Block User
      *
-	 * Update user status by its unique ID.
+     * Update user status by its unique ID.
      *
      * @param string $userId
      * @param string $status
