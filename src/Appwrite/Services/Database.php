@@ -12,9 +12,9 @@ class Database extends Service
      * List Collections
      *
      * Get a list of all the user collections. You can use the query params to
-	 * filter your results. On admin mode, this endpoint will return a list of all
-	 * of the project collections. [Learn more about different API
-	 * modes](/docs/modes).
+     * filter your results. On admin mode, this endpoint will return a list of all
+     * of the project collections. [Learn more about different API
+     * modes](/docs/modes).
      *
      * @param string $search
      * @param integer $limit
@@ -67,9 +67,9 @@ class Database extends Service
      * List Documents
      *
      * Get a list of all the user documents. You can use the query params to
-	 * filter your results. On admin mode, this endpoint will return a list of all
-	 * of the project documents. [Learn more about different API
-	 * modes](/docs/modes).
+     * filter your results. On admin mode, this endpoint will return a list of all
+     * of the project documents. [Learn more about different API
+     * modes](/docs/modes).
      *
      * @param string $collectionId
      * @param array $filters
@@ -138,7 +138,7 @@ class Database extends Service
      * Delete Collection
      *
      * Delete a collection by its unique ID. Only users with write permissions
-	 * have access to delete this resource.
+     * have access to delete this resource.
      *
      * @param string $collectionId
      * @throws Exception
@@ -158,7 +158,7 @@ class Database extends Service
      * Get Document
      *
      * Get document by its unique ID. This endpoint response returns a JSON object
-	 * with the document data.
+     * with the document data.
      *
      * @param string $collectionId
      * @param string $documentId
@@ -203,8 +203,8 @@ class Database extends Service
      * Delete Document
      *
      * Delete document by its unique ID. This endpoint deletes only the parent
-	 * documents, his attributes and relations to other documents. Child documents
-	 * **will not** be deleted.
+     * documents, his attributes and relations to other documents. Child documents
+     * **will not** be deleted.
      *
      * @param string $collectionId
      * @param string $documentId

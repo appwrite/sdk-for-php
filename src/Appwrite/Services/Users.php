@@ -12,7 +12,7 @@ class Users extends Service
      * List Users
      *
      * Get a list of all the project users. You can use the query params to filter
-	 * your results.
+     * your results.
      *
      * @param string $search
      * @param integer $limit
