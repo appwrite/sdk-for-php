@@ -77,6 +77,24 @@ POST https://appwrite.test/v1/database/{collectionId}
 | parentProperty | string | Parent document property name. Use when you want your new document to be a child of a parent document. |  |
 | parentPropertyType | string | Parent document property connection type. You can set this value to **assign**, **append** or **prepend**, default value is assign. Use when you want your new document to be a child of a parent document. | assign |
 
+## Update Team
+
+```http request
+PUT https://appwrite.test/v1/database/{collectionId}
+```
+
+** Update collection by its unique ID. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| collectionId | string | **Required** Collection unique ID. |  |
+| name | string | Collection name. |  |
+| read | array | An array of read permissions. [Learn more about permissions and roles](/docs/permissions). | [] |
+| write | array | An array of write permissions. [Learn more about permissions and roles](/docs/permissions). | [] |
+| rules | array | Array of collection structure rules. Each rule define a collection field name, data type and validation | [] |
+
 ## Delete Collection
 
 ```http request

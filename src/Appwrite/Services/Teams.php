@@ -9,33 +9,6 @@ use Appwrite\Service;
 class Teams extends Service
 {
     /**
-     * Update Team
-     *
-     * Update collection by its unique ID.
-     *
-     * @param string $collectionId
-     * @param string $name
-     * @param array $read
-     * @param array $write
-     * @param array $rules
-     * @throws Exception
-     * @return array
-     */
-    public function updateCollection($collectionId, $name, $read = [], $write = [], $rules = [])
-    {
-        $path   = str_replace(['{collectionId}'], [$collectionId], '/database/{collectionId}');
-        $params = [];
-
-        $params['name'] = $name;
-        $params['read'] = $read;
-        $params['write'] = $write;
-        $params['rules'] = $rules;
-
-        return $this->client->call(Client::METHOD_PUT, $path, [
-        ], $params);
-    }
-
-    /**
      * List Teams
      *
      * Get a list of all the current user teams. You can use the query params to
