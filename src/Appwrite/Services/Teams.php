@@ -11,8 +11,7 @@ class Teams extends Service
     /**
      * Update Team
      *
-     * Update team by its unique ID. Only team owners have write access for this
-     * resource.
+     * Update collection by its unique ID.
      *
      * @param string $collectionId
      * @param string $name
@@ -22,7 +21,7 @@ class Teams extends Service
      * @throws Exception
      * @return array
      */
-    public function updateTeam($collectionId, $name, $read = [], $write = [], $rules = [])
+    public function updateCollection($collectionId, $name, $read = [], $write = [], $rules = [])
     {
         $path   = str_replace(['{collectionId}'], [$collectionId], '/database/{collectionId}');
         $params = [];
