@@ -1,7 +1,7 @@
 <?php
 
 use Appwrite\Client;
-use Appwrite\Services\Database;
+use Appwrite\Services\Locale;
 
 $client = new Client();
 
@@ -10,6 +10,6 @@ $client
     ->setKey('919c2d18fb5d4...a2ae413da83346ad2') // Your secret API key
 ;
 
-$database = new Database($client);
+$locale = new Locale($client);
 
-$result = $database->getDocument('[COLLECTION_ID]', '[DOCUMENT_ID]');
+$result = $locale->get();
