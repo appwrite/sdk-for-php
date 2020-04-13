@@ -6,7 +6,7 @@ use Exception;
 use Appwrite\Client;
 use Appwrite\Service;
 
-class Avatars extends Service
+class Avatars extends Service implements ServiceInterface
 {
     /**
      * Get Browser Icon
