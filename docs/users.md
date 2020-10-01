@@ -2,9 +2,9 @@
 
 ## List Users
 
-```http request
+````http request
 GET https://appwrite.io/v1/users
-```
+````
 
 ** Get a list of all the project users. You can use the query params to filter your results. **
 
