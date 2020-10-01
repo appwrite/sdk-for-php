@@ -14,7 +14,7 @@ GET https://appwrite.io/v1/health
 GET https://appwrite.io/v1/health/anti-virus
 ```
 
-** Check the Appwrite Anti Virus server is up and connection is successful. **
+** Check the Appwrite Anti Virus server is up and connection is successfully right. **
 
 ## Get Cache
 
