@@ -48,5 +48,13 @@ GET https://appwrite.io/v1/locale/countries/phones
 GET https://appwrite.io/v1/locale/currencies
 ```
 
-** List of all currencies, including currency symol, name, plural, and decimal digits for all major and minor currencies. You can use the locale header to get the data in a supported language. **
+** List of all currencies, including currency symbol, name, plural, and decimal digits for all major and minor currencies. You can use the locale header to get the data in a supported language. **
+
+## List Languages
+
+```http request
+GET https://appwrite.io/v1/locale/languages
+```
+
+** List of all languages classified by ISO 639-1 including 2-letter code, name in English, and name in the respective language. **
 

@@ -1,11 +1,11 @@
 {
     "name": "appwrite/appwrite",
-    "description": "Appwrite is an open-source backend as a service server that abstract and simplify complex and repetitive development tasks",
+    "description": "Appwrite is an open-source self-hosted backend server that abstract and simplify complex and repetitive development tasks behind a very simple REST API",
     "type": "library",
     "license": "BSD-3-Clause",
     "support": {
         "url": "https://appwrite.io/support",
-        "email": "team@localhost.test"
+        "email": "team@appwrite.io"
     },
     "autoload": {
         "psr-4": {

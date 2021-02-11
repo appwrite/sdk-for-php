@@ -13,12 +13,12 @@ class Storage extends Service
      *
      * Get a list of all the user files. You can use the query params to filter
      * your results. On admin mode, this endpoint will return a list of all of the
-     * project files. [Learn more about different API modes](/docs/admin).
+     * project's files. [Learn more about different API modes](/docs/admin).
      *
-     * @param string  $search
-     * @param int  $limit
-     * @param int  $offset
-     * @param string  $orderType
+     * @param string $search
+     * @param int $limit
+     * @param int $offset
+     * @param string $orderType
      * @throws Exception
      * @return array
      */
@@ -44,9 +44,9 @@ class Storage extends Service
      * assigned to read and write access unless he has passed custom values for
      * read and write arguments.
      *
-     * @param \CurlFile  $file
-     * @param array  $read
-     * @param array  $write
+     * @param \CurlFile $file
+     * @param array $read
+     * @param array $write
      * @throws Exception
      * @return array
      */
@@ -67,10 +67,10 @@ class Storage extends Service
     /**
      * Get File
      *
-     * Get file by its unique ID. This endpoint response returns a JSON object
+     * Get a file by its unique ID. This endpoint response returns a JSON object
      * with the file metadata.
      *
-     * @param string  $fileId
+     * @param string $fileId
      * @throws Exception
      * @return array
      */
@@ -88,12 +88,12 @@ class Storage extends Service
     /**
      * Update File
      *
-     * Update file by its unique ID. Only users with write permissions have access
-     * to update this resource.
+     * Update a file by its unique ID. Only users with write permissions have
+     * access to update this resource.
      *
-     * @param string  $fileId
-     * @param array  $read
-     * @param array  $write
+     * @param string $fileId
+     * @param array $read
+     * @param array $write
      * @throws Exception
      * @return array
      */
@@ -116,7 +116,7 @@ class Storage extends Service
      * Delete a file by its unique ID. Only users with write permissions have
      * access to delete this resource.
      *
-     * @param string  $fileId
+     * @param string $fileId
      * @throws Exception
      * @return array
      */
@@ -134,11 +134,11 @@ class Storage extends Service
     /**
      * Get File for Download
      *
-     * Get file content by its unique ID. The endpoint response return with a
+     * Get a file content by its unique ID. The endpoint response return with a
      * 'Content-Disposition: attachment' header that tells the browser to start
      * downloading the file to user downloads directory.
      *
-     * @param string  $fileId
+     * @param string $fileId
      * @throws Exception
      * @return array
      */
@@ -161,12 +161,12 @@ class Storage extends Service
      * and spreadsheets, will return the file icon image. You can also pass query
      * string arguments for cutting and resizing your preview image.
      *
-     * @param string  $fileId
-     * @param int  $width
-     * @param int  $height
-     * @param int  $quality
-     * @param string  $background
-     * @param string  $output
+     * @param string $fileId
+     * @param int $width
+     * @param int $height
+     * @param int $quality
+     * @param string $background
+     * @param string $output
      * @throws Exception
      * @return array
      */
@@ -189,24 +189,22 @@ class Storage extends Service
     /**
      * Get File for View
      *
-     * Get file content by its unique ID. This endpoint is similar to the download
-     * method but returns with no  'Content-Disposition: attachment' header.
+     * Get a file content by its unique ID. This endpoint is similar to the
+     * download method but returns with no  'Content-Disposition: attachment'
+     * header.
      *
-     * @param string  $fileId
-     * @param string  $as
+     * @param string $fileId
      * @throws Exception
      * @return array
      */
-    public function getFileView(string $fileId, string $as = ''):array
+    public function getFileView(string $fileId):array
     {
         $path   = str_replace(['{fileId}'], [$fileId], '/storage/files/{fileId}/view');
         $params = [];
 
-        $params['as'] = $as;
 
         return $this->client->call(Client::METHOD_GET, $path, [
             'content-type' => 'application/json',
         ], $params);
     }
-
 }

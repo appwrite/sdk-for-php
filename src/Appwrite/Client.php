@@ -37,7 +37,7 @@ class Client
      */
     protected $headers = [
         'content-type' => '',
-        'x-sdk-version' => 'appwrite:php:1.1.0',
+        'x-sdk-version' => 'appwrite:php:2.0.0',
     ];
 
     /**
@@ -45,6 +45,7 @@ class Client
      */
     public function __construct()
     {
+ 
     }
 
     /**
@@ -196,7 +197,7 @@ class Client
         }
 
         $responseBody   = curl_exec($ch);
-        $responseType   = (isset($responseHeaders['content-type'])) ? $responseHeaders['content-type'] : '';
+        $responseType   = $responseHeaders['content-type'] ?? '';
         $responseStatus = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         
         switch(substr($responseType, 0, strpos($responseType, ';'))) {

@@ -13,12 +13,13 @@ class Teams extends Service
      *
      * Get a list of all the current user teams. You can use the query params to
      * filter your results. On admin mode, this endpoint will return a list of all
-     * of the project teams. [Learn more about different API modes](/docs/admin).
+     * of the project's teams. [Learn more about different API
+     * modes](/docs/admin).
      *
-     * @param string  $search
-     * @param int  $limit
-     * @param int  $offset
-     * @param string  $orderType
+     * @param string $search
+     * @param int $limit
+     * @param int $offset
+     * @param string $orderType
      * @throws Exception
      * @return array
      */
@@ -45,8 +46,8 @@ class Teams extends Service
      * who will be able add new owners and update or delete the team from your
      * project.
      *
-     * @param string  $name
-     * @param array  $roles
+     * @param string $name
+     * @param array $roles
      * @throws Exception
      * @return array
      */
@@ -66,10 +67,10 @@ class Teams extends Service
     /**
      * Get Team
      *
-     * Get team by its unique ID. All team members have read access for this
+     * Get a team by its unique ID. All team members have read access for this
      * resource.
      *
-     * @param string  $teamId
+     * @param string $teamId
      * @throws Exception
      * @return array
      */
@@ -87,11 +88,11 @@ class Teams extends Service
     /**
      * Update Team
      *
-     * Update team by its unique ID. Only team owners have write access for this
+     * Update a team by its unique ID. Only team owners have write access for this
      * resource.
      *
-     * @param string  $teamId
-     * @param string  $name
+     * @param string $teamId
+     * @param string $name
      * @throws Exception
      * @return array
      */
@@ -110,10 +111,10 @@ class Teams extends Service
     /**
      * Delete Team
      *
-     * Delete team by its unique ID. Only team owners have write access for this
+     * Delete a team by its unique ID. Only team owners have write access for this
      * resource.
      *
-     * @param string  $teamId
+     * @param string $teamId
      * @throws Exception
      * @return array
      */
@@ -131,18 +132,26 @@ class Teams extends Service
     /**
      * Get Team Memberships
      *
-     * Get team members by the team unique ID. All team members have read access
+     * Get a team members by the team unique ID. All team members have read access
      * for this list of resources.
      *
-     * @param string  $teamId
+     * @param string $teamId
+     * @param string $search
+     * @param int $limit
+     * @param int $offset
+     * @param string $orderType
      * @throws Exception
      * @return array
      */
-    public function getMemberships(string $teamId):array
+    public function getMemberships(string $teamId, string $search = '', int $limit = 25, int $offset = 0, string $orderType = 'ASC'):array
     {
         $path   = str_replace(['{teamId}'], [$teamId], '/teams/{teamId}/memberships');
         $params = [];
 
+        $params['search'] = $search;
+        $params['limit'] = $limit;
+        $params['offset'] = $offset;
+        $params['orderType'] = $orderType;
 
         return $this->client->call(Client::METHOD_GET, $path, [
             'content-type' => 'application/json',
@@ -158,19 +167,19 @@ class Teams extends Service
      * 
      * Use the 'URL' parameter to redirect the user from the invitation email back
      * to your app. When the user is redirected, use the [Update Team Membership
-     * Status](/docs/teams#updateMembershipStatus) endpoint to allow the user to
-     * accept the invitation to the team.
+     * Status](/docs/client/teams#teamsUpdateMembershipStatus) endpoint to allow
+     * the user to accept the invitation to the team.
      * 
      * Please note that in order to avoid a [Redirect
      * Attacks](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.md)
      * the only valid redirect URL's are the once from domains you have set when
      * added your platforms in the console interface.
      *
-     * @param string  $teamId
-     * @param string  $email
-     * @param array  $roles
-     * @param string  $url
-     * @param string  $name
+     * @param string $teamId
+     * @param string $email
+     * @param array $roles
+     * @param string $url
+     * @param string $name
      * @throws Exception
      * @return array
      */
@@ -194,10 +203,10 @@ class Teams extends Service
      *
      * This endpoint allows a user to leave a team or for a team owner to delete
      * the membership of any other team member. You can also use this endpoint to
-     * delete a user membership even if he didn't accept it.
+     * delete a user membership even if it is not accepted.
      *
-     * @param string  $teamId
-     * @param string  $inviteId
+     * @param string $teamId
+     * @param string $inviteId
      * @throws Exception
      * @return array
      */
@@ -211,5 +220,4 @@ class Teams extends Service
             'content-type' => 'application/json',
         ], $params);
     }
-
 }

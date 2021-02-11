@@ -11,13 +11,13 @@ class Users extends Service
     /**
      * List Users
      *
-     * Get a list of all the project users. You can use the query params to filter
-     * your results.
+     * Get a list of all the project's users. You can use the query params to
+     * filter your results.
      *
-     * @param string  $search
-     * @param int  $limit
-     * @param int  $offset
-     * @param string  $orderType
+     * @param string $search
+     * @param int $limit
+     * @param int $offset
+     * @param string $orderType
      * @throws Exception
      * @return array
      */
@@ -41,9 +41,9 @@ class Users extends Service
      *
      * Create a new user.
      *
-     * @param string  $email
-     * @param string  $password
-     * @param string  $name
+     * @param string $email
+     * @param string $password
+     * @param string $name
      * @throws Exception
      * @return array
      */
@@ -64,9 +64,9 @@ class Users extends Service
     /**
      * Get User
      *
-     * Get user by its unique ID.
+     * Get a user by its unique ID.
      *
-     * @param string  $userId
+     * @param string $userId
      * @throws Exception
      * @return array
      */
@@ -82,11 +82,31 @@ class Users extends Service
     }
 
     /**
+     * Delete User
+     *
+     * Delete a user by its unique ID.
+     *
+     * @param string $userId
+     * @throws Exception
+     * @return array
+     */
+    public function deleteUser(string $userId):array
+    {
+        $path   = str_replace(['{userId}'], [$userId], '/users/{userId}');
+        $params = [];
+
+
+        return $this->client->call(Client::METHOD_DELETE, $path, [
+            'content-type' => 'application/json',
+        ], $params);
+    }
+
+    /**
      * Get User Logs
      *
-     * Get user activity logs list by its unique ID.
+     * Get a user activity logs list by its unique ID.
      *
-     * @param string  $userId
+     * @param string $userId
      * @throws Exception
      * @return array
      */
@@ -104,9 +124,9 @@ class Users extends Service
     /**
      * Get User Preferences
      *
-     * Get user preferences by its unique ID.
+     * Get the user preferences by its unique ID.
      *
-     * @param string  $userId
+     * @param string $userId
      * @throws Exception
      * @return array
      */
@@ -124,11 +144,11 @@ class Users extends Service
     /**
      * Update User Preferences
      *
-     * Update user preferences by its unique ID. You can pass only the specific
-     * settings you wish to update.
+     * Update the user preferences by its unique ID. You can pass only the
+     * specific settings you wish to update.
      *
-     * @param string  $userId
-     * @param array  $prefs
+     * @param string $userId
+     * @param array $prefs
      * @throws Exception
      * @return array
      */
@@ -147,9 +167,9 @@ class Users extends Service
     /**
      * Get User Sessions
      *
-     * Get user sessions list by its unique ID.
+     * Get the user sessions list by its unique ID.
      *
-     * @param string  $userId
+     * @param string $userId
      * @throws Exception
      * @return array
      */
@@ -167,9 +187,9 @@ class Users extends Service
     /**
      * Delete User Sessions
      *
-     * Delete all user sessions by its unique ID.
+     * Delete all user's sessions by using the user's unique ID.
      *
-     * @param string  $userId
+     * @param string $userId
      * @throws Exception
      * @return array
      */
@@ -187,10 +207,10 @@ class Users extends Service
     /**
      * Delete User Session
      *
-     * Delete user sessions by its unique ID.
+     * Delete a user sessions by its unique ID.
      *
-     * @param string  $userId
-     * @param string  $sessionId
+     * @param string $userId
+     * @param string $sessionId
      * @throws Exception
      * @return array
      */
@@ -208,10 +228,10 @@ class Users extends Service
     /**
      * Update User Status
      *
-     * Update user status by its unique ID.
+     * Update the user status by its unique ID.
      *
-     * @param string  $userId
-     * @param string  $status
+     * @param string $userId
+     * @param string $status
      * @throws Exception
      * @return array
      */
@@ -226,5 +246,4 @@ class Users extends Service
             'content-type' => 'application/json',
         ], $params);
     }
-
 }

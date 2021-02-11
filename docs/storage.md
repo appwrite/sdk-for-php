@@ -6,13 +6,13 @@
 GET https://appwrite.io/v1/storage/files
 ```
 
-** Get a list of all the user files. You can use the query params to filter your results. On admin mode, this endpoint will return a list of all of the project files. [Learn more about different API modes](/docs/admin). **
+** Get a list of all the user files. You can use the query params to filter your results. On admin mode, this endpoint will return a list of all of the project&#039;s files. [Learn more about different API modes](/docs/admin). **
 
 ### Parameters
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| search | string | Search term to filter your list results. |  |
+| search | string | Search term to filter your list results. Max length: 256 chars. |  |
 | limit | integer | Results limit value. By default will return maximum 25 results. Maximum of 100 results allowed per request. | 25 |
 | offset | integer | Results offset. The default value is 0. Use this param to manage pagination. | 0 |
 | orderType | string | Order result by ASC or DESC order. | ASC |
@@ -29,7 +29,7 @@ POST https://appwrite.io/v1/storage/files
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| file | file | Binary File. |  |
+| file | file | Binary file. |  |
 | read | array | An array of strings with read permissions. By default no user is granted with any read permissions. [learn more about permissions](/docs/permissions) and get a full list of available permissions. |  |
 | write | array | An array of strings with write permissions. By default no user is granted with any write permissions. [learn more about permissions](/docs/permissions) and get a full list of available permissions. |  |
 
@@ -39,7 +39,7 @@ POST https://appwrite.io/v1/storage/files
 GET https://appwrite.io/v1/storage/files/{fileId}
 ```
 
-** Get file by its unique ID. This endpoint response returns a JSON object with the file metadata. **
+** Get a file by its unique ID. This endpoint response returns a JSON object with the file metadata. **
 
 ### Parameters
 
@@ -53,7 +53,7 @@ GET https://appwrite.io/v1/storage/files/{fileId}
 PUT https://appwrite.io/v1/storage/files/{fileId}
 ```
 
-** Update file by its unique ID. Only users with write permissions have access to update this resource. **
+** Update a file by its unique ID. Only users with write permissions have access to update this resource. **
 
 ### Parameters
 
@@ -83,7 +83,7 @@ DELETE https://appwrite.io/v1/storage/files/{fileId}
 GET https://appwrite.io/v1/storage/files/{fileId}/download
 ```
 
-** Get file content by its unique ID. The endpoint response return with a &#039;Content-Disposition: attachment&#039; header that tells the browser to start downloading the file to user downloads directory. **
+** Get a file content by its unique ID. The endpoint response return with a &#039;Content-Disposition: attachment&#039; header that tells the browser to start downloading the file to user downloads directory. **
 
 ### Parameters
 
@@ -116,12 +116,11 @@ GET https://appwrite.io/v1/storage/files/{fileId}/preview
 GET https://appwrite.io/v1/storage/files/{fileId}/view
 ```
 
-** Get file content by its unique ID. This endpoint is similar to the download method but returns with no  &#039;Content-Disposition: attachment&#039; header. **
+** Get a file content by its unique ID. This endpoint is similar to the download method but returns with no  &#039;Content-Disposition: attachment&#039; header. **
 
 ### Parameters
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | fileId | string | **Required** File unique ID. |  |
-| as | string | Choose a file format to convert your file to. Currently you can only convert word and pdf files to pdf or txt. This option is currently experimental only, use at your own risk. |  |
 

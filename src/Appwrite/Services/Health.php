@@ -246,5 +246,4 @@ class Health extends Service
             'content-type' => 'application/json',
         ], $params);
     }
-
 }

@@ -13,13 +13,13 @@ class Database extends Service
      *
      * Get a list of all the user collections. You can use the query params to
      * filter your results. On admin mode, this endpoint will return a list of all
-     * of the project collections. [Learn more about different API
+     * of the project's collections. [Learn more about different API
      * modes](/docs/admin).
      *
-     * @param string  $search
-     * @param int  $limit
-     * @param int  $offset
-     * @param string  $orderType
+     * @param string $search
+     * @param int $limit
+     * @param int $offset
+     * @param string $orderType
      * @throws Exception
      * @return array
      */
@@ -43,10 +43,10 @@ class Database extends Service
      *
      * Create a new Collection.
      *
-     * @param string  $name
-     * @param array  $read
-     * @param array  $write
-     * @param array  $rules
+     * @param string $name
+     * @param array $read
+     * @param array $write
+     * @param array $rules
      * @throws Exception
      * @return array
      */
@@ -68,10 +68,10 @@ class Database extends Service
     /**
      * Get Collection
      *
-     * Get collection by its unique ID. This endpoint response returns a JSON
+     * Get a collection by its unique ID. This endpoint response returns a JSON
      * object with the collection metadata.
      *
-     * @param string  $collectionId
+     * @param string $collectionId
      * @throws Exception
      * @return array
      */
@@ -89,13 +89,13 @@ class Database extends Service
     /**
      * Update Collection
      *
-     * Update collection by its unique ID.
+     * Update a collection by its unique ID.
      *
-     * @param string  $collectionId
-     * @param string  $name
-     * @param array  $read
-     * @param array  $write
-     * @param array  $rules
+     * @param string $collectionId
+     * @param string $name
+     * @param array $read
+     * @param array $write
+     * @param array $rules
      * @throws Exception
      * @return array
      */
@@ -120,7 +120,7 @@ class Database extends Service
      * Delete a collection by its unique ID. Only users with write permissions
      * have access to delete this resource.
      *
-     * @param string  $collectionId
+     * @param string $collectionId
      * @throws Exception
      * @return array
      */
@@ -140,36 +140,32 @@ class Database extends Service
      *
      * Get a list of all the user documents. You can use the query params to
      * filter your results. On admin mode, this endpoint will return a list of all
-     * of the project documents. [Learn more about different API
+     * of the project's documents. [Learn more about different API
      * modes](/docs/admin).
      *
-     * @param string  $collectionId
-     * @param array  $filters
-     * @param int  $offset
-     * @param int  $limit
-     * @param string  $orderField
-     * @param string  $orderType
-     * @param string  $orderCast
-     * @param string  $search
-     * @param int  $first
-     * @param int  $last
+     * @param string $collectionId
+     * @param array $filters
+     * @param int $limit
+     * @param int $offset
+     * @param string $orderField
+     * @param string $orderType
+     * @param string $orderCast
+     * @param string $search
      * @throws Exception
      * @return array
      */
-    public function listDocuments(string $collectionId, array $filters = [], int $offset = 0, int $limit = 50, string $orderField = '$id', string $orderType = 'ASC', string $orderCast = 'string', string $search = '', int $first = 0, int $last = 0):array
+    public function listDocuments(string $collectionId, array $filters = [], int $limit = 25, int $offset = 0, string $orderField = '', string $orderType = 'ASC', string $orderCast = 'string', string $search = ''):array
     {
         $path   = str_replace(['{collectionId}'], [$collectionId], '/database/collections/{collectionId}/documents');
         $params = [];
 
         $params['filters'] = $filters;
-        $params['offset'] = $offset;
         $params['limit'] = $limit;
+        $params['offset'] = $offset;
         $params['orderField'] = $orderField;
         $params['orderType'] = $orderType;
         $params['orderCast'] = $orderCast;
         $params['search'] = $search;
-        $params['first'] = $first;
-        $params['last'] = $last;
 
         return $this->client->call(Client::METHOD_GET, $path, [
             'content-type' => 'application/json',
@@ -179,15 +175,18 @@ class Database extends Service
     /**
      * Create Document
      *
-     * Create a new Document.
+     * Create a new Document. Before using this route, you should create a new
+     * collection resource using either a [server
+     * integration](/docs/server/database#databaseCreateCollection) API or
+     * directly from your database console.
      *
-     * @param string  $collectionId
-     * @param array  $data
-     * @param array  $read
-     * @param array  $write
-     * @param string  $parentDocument
-     * @param string  $parentProperty
-     * @param string  $parentPropertyType
+     * @param string $collectionId
+     * @param array $data
+     * @param array $read
+     * @param array $write
+     * @param string $parentDocument
+     * @param string $parentProperty
+     * @param string $parentPropertyType
      * @throws Exception
      * @return array
      */
@@ -211,11 +210,11 @@ class Database extends Service
     /**
      * Get Document
      *
-     * Get document by its unique ID. This endpoint response returns a JSON object
-     * with the document data.
+     * Get a document by its unique ID. This endpoint response returns a JSON
+     * object with the document data.
      *
-     * @param string  $collectionId
-     * @param string  $documentId
+     * @param string $collectionId
+     * @param string $documentId
      * @throws Exception
      * @return array
      */
@@ -233,11 +232,14 @@ class Database extends Service
     /**
      * Update Document
      *
-     * @param string  $collectionId
-     * @param string  $documentId
-     * @param array  $data
-     * @param array  $read
-     * @param array  $write
+     * Update a document by its unique ID. Using the patch method you can pass
+     * only specific fields that will get updated.
+     *
+     * @param string $collectionId
+     * @param string $documentId
+     * @param array $data
+     * @param array $read
+     * @param array $write
      * @throws Exception
      * @return array
      */
@@ -258,12 +260,12 @@ class Database extends Service
     /**
      * Delete Document
      *
-     * Delete document by its unique ID. This endpoint deletes only the parent
-     * documents, his attributes and relations to other documents. Child documents
+     * Delete a document by its unique ID. This endpoint deletes only the parent
+     * documents, its attributes and relations to other documents. Child documents
      * **will not** be deleted.
      *
-     * @param string  $collectionId
-     * @param string  $documentId
+     * @param string $collectionId
+     * @param string $documentId
      * @throws Exception
      * @return array
      */
@@ -277,23 +279,4 @@ class Database extends Service
             'content-type' => 'application/json',
         ], $params);
     }
-
-    /**
-     * Get Collection Logs
-     *
-     * @param string  $collectionId
-     * @throws Exception
-     * @return array
-     */
-    public function getCollectionLogs(string $collectionId):array
-    {
-        $path   = str_replace(['{collectionId}'], [$collectionId], '/database/collections/{collectionId}/logs');
-        $params = [];
-
-
-        return $this->client->call(Client::METHOD_GET, $path, [
-            'content-type' => 'application/json',
-        ], $params);
-    }
-
 }
