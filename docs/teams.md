@@ -115,10 +115,24 @@ Please note that in order to avoid a [Redirect Attacks](https://github.com/OWASP
 | roles | array | Array of strings. Use this param to set the user roles in the team. A role can be any string. Learn more about [roles and permissions](/docs/permissions). Max length for each role is 32 chars. |  |
 | url | string | URL to redirect the user back to your app from the invitation email.  Only URLs from hostnames in your project platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API. |  |
 
+## Update Membership Roles
+
+```http request
+PATCH https://appwrite.io/v1/teams/{teamId}/memberships/{membershipId}
+```
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| teamId | string | **Required** Team unique ID. |  |
+| membershipId | string | **Required** Membership ID. |  |
+| roles | array | Array of strings. Use this param to set the user roles in the team. A role can be any string. Learn more about [roles and permissions](/docs/permissions). Max length for each role is 32 chars. |  |
+
 ## Delete Team Membership
 
 ```http request
-DELETE https://appwrite.io/v1/teams/{teamId}/memberships/{inviteId}
+DELETE https://appwrite.io/v1/teams/{teamId}/memberships/{membershipId}
 ```
 
 ** This endpoint allows a user to leave a team or for a team owner to delete the membership of any other team member. You can also use this endpoint to delete a user membership even if it is not accepted. **
@@ -128,5 +142,22 @@ DELETE https://appwrite.io/v1/teams/{teamId}/memberships/{inviteId}
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | teamId | string | **Required** Team unique ID. |  |
-| inviteId | string | **Required** Invite unique ID. |  |
+| membershipId | string | **Required** Membership ID. |  |
+
+## Update Team Membership Status
+
+```http request
+PATCH https://appwrite.io/v1/teams/{teamId}/memberships/{membershipId}/status
+```
+
+** Use this endpoint to allow a user to accept an invitation to join a team after being redirected back to your app from the invitation email recieved by the user. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| teamId | string | **Required** Team unique ID. |  |
+| membershipId | string | **Required** Membership ID. |  |
+| userId | string | User unique ID. |  |
+| secret | string | Secret key. |  |
 

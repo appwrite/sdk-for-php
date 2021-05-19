@@ -1,7 +1,7 @@
 <?php
 
 use Appwrite\Client;
-use Appwrite\Services\Users;
+use Appwrite\Services\Teams;
 
 $client = new Client();
 
@@ -11,6 +11,6 @@ $client
     ->setKey('919c2d18fb5d4...a2ae413da83346ad2') // Your secret API key
 ;
 
-$users = new Users($client);
+$teams = new Teams($client);
 
-$result = $users->updateStatus('[USER_ID]', 1);
+$result = $teams->updateMembershipRoles('[TEAM_ID]', '[MEMBERSHIP_ID]', []);

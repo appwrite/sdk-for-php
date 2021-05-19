@@ -148,8 +148,8 @@ class Functions extends Service
      *
      * Get a list of all the current user function execution logs. You can use the
      * query params to filter your results. On admin mode, this endpoint will
-     * return a list of all of the project's teams. [Learn more about different
-     * API modes](/docs/admin).
+     * return a list of all of the project's executions. [Learn more about
+     * different API modes](/docs/admin).
      *
      * @param string $functionId
      * @param string $search
@@ -183,14 +183,16 @@ class Functions extends Service
      * function execution process will start asynchronously.
      *
      * @param string $functionId
+     * @param string $data
      * @throws Exception
      * @return array
      */
-    public function createExecution(string $functionId):array
+    public function createExecution(string $functionId, string $data = ''):array
     {
         $path   = str_replace(['{functionId}'], [$functionId], '/functions/{functionId}/executions');
         $params = [];
 
+        $params['data'] = $data;
 
         return $this->client->call(Client::METHOD_POST, $path, [
             'content-type' => 'application/json',

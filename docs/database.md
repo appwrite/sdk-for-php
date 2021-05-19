@@ -62,8 +62,8 @@ PUT https://appwrite.io/v1/database/collections/{collectionId}
 | --- | --- | --- | --- |
 | collectionId | string | **Required** Collection unique ID. |  |
 | name | string | Collection name. Max length: 128 chars. |  |
-| read | array | An array of strings with read permissions. By default no user is granted with any read permissions. [learn more about permissions(/docs/permissions) and get a full list of available permissions. |  |
-| write | array | An array of strings with write permissions. By default no user is granted with any write permissions. [learn more about permissions](/docs/permissions) and get a full list of available permissions. |  |
+| read | array | An array of strings with read permissions. By default inherits the existing read permissions. [learn more about permissions](/docs/permissions) and get a full list of available permissions. |  |
+| write | array | An array of strings with write permissions. By default inherits the existing write permissions. [learn more about permissions](/docs/permissions) and get a full list of available permissions. |  |
 | rules | array | Array of [rule objects](/docs/rules). Each rule define a collection field name, data type and validation. | [] |
 
 ## Delete Collection
@@ -115,8 +115,8 @@ POST https://appwrite.io/v1/database/collections/{collectionId}/documents
 | --- | --- | --- | --- |
 | collectionId | string | **Required** Collection unique ID. You can create a new collection with validation rules using the Database service [server integration](/docs/server/database#createCollection). |  |
 | data | object | Document data as JSON object. |  |
-| read | array | An array of strings with read permissions. By default no user is granted with any read permissions. [learn more about permissions](/docs/permissions) and get a full list of available permissions. |  |
-| write | array | An array of strings with write permissions. By default no user is granted with any write permissions. [learn more about permissions](/docs/permissions) and get a full list of available permissions. |  |
+| read | array | An array of strings with read permissions. By default only the current user is granted with read permissions. [learn more about permissions](/docs/permissions) and get a full list of available permissions. |  |
+| write | array | An array of strings with write permissions. By default only the current user is granted with write permissions. [learn more about permissions](/docs/permissions) and get a full list of available permissions. |  |
 | parentDocument | string | Parent document unique ID. Use when you want your new document to be a child of a parent document. |  |
 | parentProperty | string | Parent document property name. Use when you want your new document to be a child of a parent document. |  |
 | parentPropertyType | string | Parent document property connection type. You can set this value to **assign**, **append** or **prepend**, default value is assign. Use when you want your new document to be a child of a parent document. | assign |
@@ -151,8 +151,8 @@ PATCH https://appwrite.io/v1/database/collections/{collectionId}/documents/{docu
 | collectionId | string | **Required** Collection unique ID. You can create a new collection with validation rules using the Database service [server integration](/docs/server/database#createCollection). |  |
 | documentId | string | **Required** Document unique ID. |  |
 | data | object | Document data as JSON object. |  |
-| read | array | An array of strings with read permissions. By default no user is granted with any read permissions. [learn more about permissions](/docs/permissions) and get a full list of available permissions. |  |
-| write | array | An array of strings with write permissions. By default no user is granted with any write permissions. [learn more about permissions](/docs/permissions) and get a full list of available permissions. |  |
+| read | array | An array of strings with read permissions. By default inherits the existing read permissions. [learn more about permissions](/docs/permissions) and get a full list of available permissions. |  |
+| write | array | An array of strings with write permissions. By default inherits the existing write permissions. [learn more about permissions](/docs/permissions) and get a full list of available permissions. |  |
 
 ## Delete Document
 

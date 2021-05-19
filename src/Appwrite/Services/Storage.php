@@ -50,7 +50,7 @@ class Storage extends Service
      * @throws Exception
      * @return array
      */
-    public function createFile(\CurlFile $file, array $read, array $write):array
+    public function createFile(\CurlFile $file, array $read = [], array $write = []):array
     {
         $path   = str_replace([], [], '/storage/files');
         $params = [];
@@ -165,12 +165,17 @@ class Storage extends Service
      * @param int $width
      * @param int $height
      * @param int $quality
+     * @param int $borderWidth
+     * @param string $borderColor
+     * @param int $borderRadius
+     * @param int $opacity
+     * @param int $rotation
      * @param string $background
      * @param string $output
      * @throws Exception
      * @return array
      */
-    public function getFilePreview(string $fileId, int $width = 0, int $height = 0, int $quality = 100, string $background = '', string $output = ''):array
+    public function getFilePreview(string $fileId, int $width = 0, int $height = 0, int $quality = 100, int $borderWidth = 0, string $borderColor = '', int $borderRadius = 0, int $opacity = 1, int $rotation = 0, string $background = '', string $output = ''):array
     {
         $path   = str_replace(['{fileId}'], [$fileId], '/storage/files/{fileId}/preview');
         $params = [];
@@ -178,6 +183,11 @@ class Storage extends Service
         $params['width'] = $width;
         $params['height'] = $height;
         $params['quality'] = $quality;
+        $params['borderWidth'] = $borderWidth;
+        $params['borderColor'] = $borderColor;
+        $params['borderRadius'] = $borderRadius;
+        $params['opacity'] = $opacity;
+        $params['rotation'] = $rotation;
         $params['background'] = $background;
         $params['output'] = $output;
 

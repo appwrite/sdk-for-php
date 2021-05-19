@@ -90,7 +90,7 @@ class Users extends Service
      * @throws Exception
      * @return array
      */
-    public function deleteUser(string $userId):array
+    public function delete(string $userId):array
     {
         $path   = str_replace(['{userId}'], [$userId], '/users/{userId}');
         $params = [];
@@ -231,11 +231,11 @@ class Users extends Service
      * Update the user status by its unique ID.
      *
      * @param string $userId
-     * @param string $status
+     * @param int $status
      * @throws Exception
      * @return array
      */
-    public function updateStatus(string $userId, string $status):array
+    public function updateStatus(string $userId, int $status):array
     {
         $path   = str_replace(['{userId}'], [$userId], '/users/{userId}/status');
         $params = [];

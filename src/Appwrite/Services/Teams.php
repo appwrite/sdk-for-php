@@ -199,6 +199,27 @@ class Teams extends Service
     }
 
     /**
+     * Update Membership Roles
+     *
+     * @param string $teamId
+     * @param string $membershipId
+     * @param array $roles
+     * @throws Exception
+     * @return array
+     */
+    public function updateMembershipRoles(string $teamId, string $membershipId, array $roles):array
+    {
+        $path   = str_replace(['{teamId}', '{membershipId}'], [$teamId, $membershipId], '/teams/{teamId}/memberships/{membershipId}');
+        $params = [];
+
+        $params['roles'] = $roles;
+
+        return $this->client->call(Client::METHOD_PATCH, $path, [
+            'content-type' => 'application/json',
+        ], $params);
+    }
+
+    /**
      * Delete Team Membership
      *
      * This endpoint allows a user to leave a team or for a team owner to delete
@@ -206,17 +227,44 @@ class Teams extends Service
      * delete a user membership even if it is not accepted.
      *
      * @param string $teamId
-     * @param string $inviteId
+     * @param string $membershipId
      * @throws Exception
      * @return array
      */
-    public function deleteMembership(string $teamId, string $inviteId):array
+    public function deleteMembership(string $teamId, string $membershipId):array
     {
-        $path   = str_replace(['{teamId}', '{inviteId}'], [$teamId, $inviteId], '/teams/{teamId}/memberships/{inviteId}');
+        $path   = str_replace(['{teamId}', '{membershipId}'], [$teamId, $membershipId], '/teams/{teamId}/memberships/{membershipId}');
         $params = [];
 
 
         return $this->client->call(Client::METHOD_DELETE, $path, [
+            'content-type' => 'application/json',
+        ], $params);
+    }
+
+    /**
+     * Update Team Membership Status
+     *
+     * Use this endpoint to allow a user to accept an invitation to join a team
+     * after being redirected back to your app from the invitation email recieved
+     * by the user.
+     *
+     * @param string $teamId
+     * @param string $membershipId
+     * @param string $userId
+     * @param string $secret
+     * @throws Exception
+     * @return array
+     */
+    public function updateMembershipStatus(string $teamId, string $membershipId, string $userId, string $secret):array
+    {
+        $path   = str_replace(['{teamId}', '{membershipId}'], [$teamId, $membershipId], '/teams/{teamId}/memberships/{membershipId}/status');
+        $params = [];
+
+        $params['userId'] = $userId;
+        $params['secret'] = $secret;
+
+        return $this->client->call(Client::METHOD_PATCH, $path, [
             'content-type' => 'application/json',
         ], $params);
     }

@@ -30,8 +30,8 @@ POST https://appwrite.io/v1/storage/files
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | file | file | Binary file. |  |
-| read | array | An array of strings with read permissions. By default no user is granted with any read permissions. [learn more about permissions](/docs/permissions) and get a full list of available permissions. |  |
-| write | array | An array of strings with write permissions. By default no user is granted with any write permissions. [learn more about permissions](/docs/permissions) and get a full list of available permissions. |  |
+| read | array | An array of strings with read permissions. By default only the current user is granted with read permissions. [learn more about permissions](/docs/permissions) and get a full list of available permissions. |  |
+| write | array | An array of strings with write permissions. By default only the current user is granted with write permissions. [learn more about permissions](/docs/permissions) and get a full list of available permissions. |  |
 
 ## Get File
 
@@ -107,6 +107,11 @@ GET https://appwrite.io/v1/storage/files/{fileId}/preview
 | width | integer | Resize preview image width, Pass an integer between 0 to 4000. | 0 |
 | height | integer | Resize preview image height, Pass an integer between 0 to 4000. | 0 |
 | quality | integer | Preview image quality. Pass an integer between 0 to 100. Defaults to 100. | 100 |
+| borderWidth | integer | Preview image border in pixels. Pass an integer between 0 to 100. Defaults to 0. | 0 |
+| borderColor | string | Preview image border color. Use a valid HEX color, no # is needed for prefix. |  |
+| borderRadius | integer | Preview image border radius in pixels. Pass an integer between 0 to 4000. | 0 |
+| opacity | integer | Preview image opacity. Only works with images having an alpha channel (like png). Pass a number between 0 to 1. | 1 |
+| rotation | integer | Preview image rotation in degrees. Pass an integer between 0 and 360. | 0 |
 | background | string | Preview image background color. Only works with transparent images (png). Use a valid HEX color, no # is needed for prefix. |  |
 | output | string | Output format type (jpeg, jpg, png, gif and webp). |  |
 

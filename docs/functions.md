@@ -91,7 +91,7 @@ DELETE https://appwrite.io/v1/functions/{functionId}
 GET https://appwrite.io/v1/functions/{functionId}/executions
 ```
 
-** Get a list of all the current user function execution logs. You can use the query params to filter your results. On admin mode, this endpoint will return a list of all of the project&#039;s teams. [Learn more about different API modes](/docs/admin). **
+** Get a list of all the current user function execution logs. You can use the query params to filter your results. On admin mode, this endpoint will return a list of all of the project&#039;s executions. [Learn more about different API modes](/docs/admin). **
 
 ### Parameters
 
@@ -116,6 +116,7 @@ POST https://appwrite.io/v1/functions/{functionId}/executions
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | functionId | string | **Required** Function unique ID. |  |
+| data | string | String of custom data to send to function. |  |
 
 ## Get Execution
 
