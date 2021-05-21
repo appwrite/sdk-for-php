@@ -289,11 +289,11 @@ class Functions extends Service
      *
      * @param string $functionId
      * @param string $command
-     * @param \CurlFile $code
+     * @param string $code
      * @throws Exception
      * @return array
      */
-    public function createTag(string $functionId, string $command, \CurlFile $code):array
+    public function createTag(string $functionId, string $command, string $code):array
     {
         $path   = str_replace(['{functionId}'], [$functionId], '/functions/{functionId}/tags');
         $params = [];

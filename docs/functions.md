@@ -184,7 +184,7 @@ Use the &quot;command&quot; param to set the entry point used to execute your co
 | --- | --- | --- | --- |
 | functionId | string | **Required** Function unique ID. |  |
 | command | string | Code execution command. |  |
-| code | file | Gzip file with your code package. When used with the Appwrite CLI, pass the path to your code directory, and the CLI will automatically package your code. Use a path that is within the current directory. |  |
+| code | string | Gzip file with your code package. When used with the Appwrite CLI, pass the path to your code directory, and the CLI will automatically package your code. Use a path that is within the current directory. |  |
 
 ## Get Tag
 
