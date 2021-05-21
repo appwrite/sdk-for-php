@@ -29,7 +29,7 @@ POST https://appwrite.io/v1/storage/files
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| file | string | Binary file. |  |
+| file | file | Binary file. |  |
 | read | array | An array of strings with read permissions. By default only the current user is granted with read permissions. [learn more about permissions](/docs/permissions) and get a full list of available permissions. |  |
 | write | array | An array of strings with write permissions. By default only the current user is granted with write permissions. [learn more about permissions](/docs/permissions) and get a full list of available permissions. |  |
 

@@ -44,13 +44,13 @@ class Storage extends Service
      * assigned to read and write access unless he has passed custom values for
      * read and write arguments.
      *
-     * @param string $file
+     * @param \CurlFile $file
      * @param array $read
      * @param array $write
      * @throws Exception
      * @return array
      */
-    public function createFile(string $file, array $read = [], array $write = []):array
+    public function createFile(\CurlFile $file, array $read = [], array $write = []):array
     {
         $path   = str_replace([], [], '/storage/files');
         $params = [];
