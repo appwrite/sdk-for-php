@@ -2,7 +2,7 @@
 
 namespace Appwrite\Services;
 
-use Exception;
+use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
 
@@ -20,18 +20,29 @@ class Teams extends Service
      * @param int $limit
      * @param int $offset
      * @param string $orderType
-     * @throws Exception
+     * @throws AppwriteException
      * @return array
      */
-    public function list(string $search = '', int $limit = 25, int $offset = 0, string $orderType = 'ASC'):array
+    public function list(string $search = null, int $limit = null, int $offset = null, string $orderType = null): array
     {
         $path   = str_replace([], [], '/teams');
         $params = [];
 
-        $params['search'] = $search;
-        $params['limit'] = $limit;
-        $params['offset'] = $offset;
-        $params['orderType'] = $orderType;
+        if (!is_null($search)) {
+            $params['search'] = $search;
+        }
+
+        if (!is_null($limit)) {
+            $params['limit'] = $limit;
+        }
+
+        if (!is_null($offset)) {
+            $params['offset'] = $offset;
+        }
+
+        if (!is_null($orderType)) {
+            $params['orderType'] = $orderType;
+        }
 
         return $this->client->call(Client::METHOD_GET, $path, [
             'content-type' => 'application/json',
@@ -48,16 +59,25 @@ class Teams extends Service
      *
      * @param string $name
      * @param array $roles
-     * @throws Exception
+     * @throws AppwriteException
      * @return array
      */
-    public function create(string $name, array $roles = ["owner"]):array
+    public function create(string $name, array $roles = null): array
     {
+        if (empty($name)) {
+            throw new AppwriteException('Missing required parameter: "name"');
+        }
+
         $path   = str_replace([], [], '/teams');
         $params = [];
 
-        $params['name'] = $name;
-        $params['roles'] = $roles;
+        if (!is_null($name)) {
+            $params['name'] = $name;
+        }
+
+        if (!is_null($roles)) {
+            $params['roles'] = $roles;
+        }
 
         return $this->client->call(Client::METHOD_POST, $path, [
             'content-type' => 'application/json',
@@ -71,14 +91,17 @@ class Teams extends Service
      * resource.
      *
      * @param string $teamId
-     * @throws Exception
+     * @throws AppwriteException
      * @return array
      */
-    public function get(string $teamId):array
+    public function get(string $teamId): array
     {
+        if (empty($teamId)) {
+            throw new AppwriteException('Missing required parameter: "teamId"');
+        }
+
         $path   = str_replace(['{teamId}'], [$teamId], '/teams/{teamId}');
         $params = [];
-
 
         return $this->client->call(Client::METHOD_GET, $path, [
             'content-type' => 'application/json',
@@ -93,15 +116,25 @@ class Teams extends Service
      *
      * @param string $teamId
      * @param string $name
-     * @throws Exception
+     * @throws AppwriteException
      * @return array
      */
-    public function update(string $teamId, string $name):array
+    public function update(string $teamId, string $name): array
     {
+        if (empty($teamId)) {
+            throw new AppwriteException('Missing required parameter: "teamId"');
+        }
+
+        if (empty($name)) {
+            throw new AppwriteException('Missing required parameter: "name"');
+        }
+
         $path   = str_replace(['{teamId}'], [$teamId], '/teams/{teamId}');
         $params = [];
 
-        $params['name'] = $name;
+        if (!is_null($name)) {
+            $params['name'] = $name;
+        }
 
         return $this->client->call(Client::METHOD_PUT, $path, [
             'content-type' => 'application/json',
@@ -115,14 +148,17 @@ class Teams extends Service
      * resource.
      *
      * @param string $teamId
-     * @throws Exception
+     * @throws AppwriteException
      * @return array
      */
-    public function delete(string $teamId):array
+    public function delete(string $teamId): array
     {
+        if (empty($teamId)) {
+            throw new AppwriteException('Missing required parameter: "teamId"');
+        }
+
         $path   = str_replace(['{teamId}'], [$teamId], '/teams/{teamId}');
         $params = [];
-
 
         return $this->client->call(Client::METHOD_DELETE, $path, [
             'content-type' => 'application/json',
@@ -140,18 +176,33 @@ class Teams extends Service
      * @param int $limit
      * @param int $offset
      * @param string $orderType
-     * @throws Exception
+     * @throws AppwriteException
      * @return array
      */
-    public function getMemberships(string $teamId, string $search = '', int $limit = 25, int $offset = 0, string $orderType = 'ASC'):array
+    public function getMemberships(string $teamId, string $search = null, int $limit = null, int $offset = null, string $orderType = null): array
     {
+        if (empty($teamId)) {
+            throw new AppwriteException('Missing required parameter: "teamId"');
+        }
+
         $path   = str_replace(['{teamId}'], [$teamId], '/teams/{teamId}/memberships');
         $params = [];
 
-        $params['search'] = $search;
-        $params['limit'] = $limit;
-        $params['offset'] = $offset;
-        $params['orderType'] = $orderType;
+        if (!is_null($search)) {
+            $params['search'] = $search;
+        }
+
+        if (!is_null($limit)) {
+            $params['limit'] = $limit;
+        }
+
+        if (!is_null($offset)) {
+            $params['offset'] = $offset;
+        }
+
+        if (!is_null($orderType)) {
+            $params['orderType'] = $orderType;
+        }
 
         return $this->client->call(Client::METHOD_GET, $path, [
             'content-type' => 'application/json',
@@ -180,18 +231,45 @@ class Teams extends Service
      * @param array $roles
      * @param string $url
      * @param string $name
-     * @throws Exception
+     * @throws AppwriteException
      * @return array
      */
-    public function createMembership(string $teamId, string $email, array $roles, string $url, string $name = ''):array
+    public function createMembership(string $teamId, string $email, array $roles, string $url, string $name = null): array
     {
+        if (empty($teamId)) {
+            throw new AppwriteException('Missing required parameter: "teamId"');
+        }
+
+        if (empty($email)) {
+            throw new AppwriteException('Missing required parameter: "email"');
+        }
+
+        if (empty($roles)) {
+            throw new AppwriteException('Missing required parameter: "roles"');
+        }
+
+        if (empty($url)) {
+            throw new AppwriteException('Missing required parameter: "url"');
+        }
+
         $path   = str_replace(['{teamId}'], [$teamId], '/teams/{teamId}/memberships');
         $params = [];
 
-        $params['email'] = $email;
-        $params['name'] = $name;
-        $params['roles'] = $roles;
-        $params['url'] = $url;
+        if (!is_null($email)) {
+            $params['email'] = $email;
+        }
+
+        if (!is_null($name)) {
+            $params['name'] = $name;
+        }
+
+        if (!is_null($roles)) {
+            $params['roles'] = $roles;
+        }
+
+        if (!is_null($url)) {
+            $params['url'] = $url;
+        }
 
         return $this->client->call(Client::METHOD_POST, $path, [
             'content-type' => 'application/json',
@@ -204,15 +282,29 @@ class Teams extends Service
      * @param string $teamId
      * @param string $membershipId
      * @param array $roles
-     * @throws Exception
+     * @throws AppwriteException
      * @return array
      */
-    public function updateMembershipRoles(string $teamId, string $membershipId, array $roles):array
+    public function updateMembershipRoles(string $teamId, string $membershipId, array $roles): array
     {
+        if (empty($teamId)) {
+            throw new AppwriteException('Missing required parameter: "teamId"');
+        }
+
+        if (empty($membershipId)) {
+            throw new AppwriteException('Missing required parameter: "membershipId"');
+        }
+
+        if (empty($roles)) {
+            throw new AppwriteException('Missing required parameter: "roles"');
+        }
+
         $path   = str_replace(['{teamId}', '{membershipId}'], [$teamId, $membershipId], '/teams/{teamId}/memberships/{membershipId}');
         $params = [];
 
-        $params['roles'] = $roles;
+        if (!is_null($roles)) {
+            $params['roles'] = $roles;
+        }
 
         return $this->client->call(Client::METHOD_PATCH, $path, [
             'content-type' => 'application/json',
@@ -228,14 +320,21 @@ class Teams extends Service
      *
      * @param string $teamId
      * @param string $membershipId
-     * @throws Exception
+     * @throws AppwriteException
      * @return array
      */
-    public function deleteMembership(string $teamId, string $membershipId):array
+    public function deleteMembership(string $teamId, string $membershipId): array
     {
+        if (empty($teamId)) {
+            throw new AppwriteException('Missing required parameter: "teamId"');
+        }
+
+        if (empty($membershipId)) {
+            throw new AppwriteException('Missing required parameter: "membershipId"');
+        }
+
         $path   = str_replace(['{teamId}', '{membershipId}'], [$teamId, $membershipId], '/teams/{teamId}/memberships/{membershipId}');
         $params = [];
-
 
         return $this->client->call(Client::METHOD_DELETE, $path, [
             'content-type' => 'application/json',
@@ -253,16 +352,37 @@ class Teams extends Service
      * @param string $membershipId
      * @param string $userId
      * @param string $secret
-     * @throws Exception
+     * @throws AppwriteException
      * @return array
      */
-    public function updateMembershipStatus(string $teamId, string $membershipId, string $userId, string $secret):array
+    public function updateMembershipStatus(string $teamId, string $membershipId, string $userId, string $secret): array
     {
+        if (empty($teamId)) {
+            throw new AppwriteException('Missing required parameter: "teamId"');
+        }
+
+        if (empty($membershipId)) {
+            throw new AppwriteException('Missing required parameter: "membershipId"');
+        }
+
+        if (empty($userId)) {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
+        if (empty($secret)) {
+            throw new AppwriteException('Missing required parameter: "secret"');
+        }
+
         $path   = str_replace(['{teamId}', '{membershipId}'], [$teamId, $membershipId], '/teams/{teamId}/memberships/{membershipId}/status');
         $params = [];
 
-        $params['userId'] = $userId;
-        $params['secret'] = $secret;
+        if (!is_null($userId)) {
+            $params['userId'] = $userId;
+        }
+
+        if (!is_null($secret)) {
+            $params['secret'] = $secret;
+        }
 
         return $this->client->call(Client::METHOD_PATCH, $path, [
             'content-type' => 'application/json',

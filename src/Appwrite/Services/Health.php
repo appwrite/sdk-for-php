@@ -2,7 +2,7 @@
 
 namespace Appwrite\Services;
 
-use Exception;
+use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
 
@@ -13,14 +13,13 @@ class Health extends Service
      *
      * Check the Appwrite HTTP server is up and responsive.
      *
-     * @throws Exception
+     * @throws AppwriteException
      * @return array
      */
-    public function get():array
+    public function get(): array
     {
         $path   = str_replace([], [], '/health');
         $params = [];
-
 
         return $this->client->call(Client::METHOD_GET, $path, [
             'content-type' => 'application/json',
@@ -32,14 +31,13 @@ class Health extends Service
      *
      * Check the Appwrite Anti Virus server is up and connection is successful.
      *
-     * @throws Exception
+     * @throws AppwriteException
      * @return array
      */
-    public function getAntiVirus():array
+    public function getAntiVirus(): array
     {
         $path   = str_replace([], [], '/health/anti-virus');
         $params = [];
-
 
         return $this->client->call(Client::METHOD_GET, $path, [
             'content-type' => 'application/json',
@@ -52,14 +50,13 @@ class Health extends Service
      * Check the Appwrite in-memory cache server is up and connection is
      * successful.
      *
-     * @throws Exception
+     * @throws AppwriteException
      * @return array
      */
-    public function getCache():array
+    public function getCache(): array
     {
         $path   = str_replace([], [], '/health/cache');
         $params = [];
-
 
         return $this->client->call(Client::METHOD_GET, $path, [
             'content-type' => 'application/json',
@@ -71,14 +68,13 @@ class Health extends Service
      *
      * Check the Appwrite database server is up and connection is successful.
      *
-     * @throws Exception
+     * @throws AppwriteException
      * @return array
      */
-    public function getDB():array
+    public function getDB(): array
     {
         $path   = str_replace([], [], '/health/db');
         $params = [];
-
 
         return $this->client->call(Client::METHOD_GET, $path, [
             'content-type' => 'application/json',
@@ -92,14 +88,13 @@ class Health extends Service
      * [Letsencrypt](https://letsencrypt.org/) in the Appwrite internal queue
      * server.
      *
-     * @throws Exception
+     * @throws AppwriteException
      * @return array
      */
-    public function getQueueCertificates():array
+    public function getQueueCertificates(): array
     {
         $path   = str_replace([], [], '/health/queue/certificates');
         $params = [];
-
 
         return $this->client->call(Client::METHOD_GET, $path, [
             'content-type' => 'application/json',
@@ -109,14 +104,13 @@ class Health extends Service
     /**
      * Get Functions Queue
      *
-     * @throws Exception
+     * @throws AppwriteException
      * @return array
      */
-    public function getQueueFunctions():array
+    public function getQueueFunctions(): array
     {
         $path   = str_replace([], [], '/health/queue/functions');
         $params = [];
-
 
         return $this->client->call(Client::METHOD_GET, $path, [
             'content-type' => 'application/json',
@@ -129,14 +123,13 @@ class Health extends Service
      * Get the number of logs that are waiting to be processed in the Appwrite
      * internal queue server.
      *
-     * @throws Exception
+     * @throws AppwriteException
      * @return array
      */
-    public function getQueueLogs():array
+    public function getQueueLogs(): array
     {
         $path   = str_replace([], [], '/health/queue/logs');
         $params = [];
-
 
         return $this->client->call(Client::METHOD_GET, $path, [
             'content-type' => 'application/json',
@@ -149,14 +142,13 @@ class Health extends Service
      * Get the number of tasks that are waiting to be processed in the Appwrite
      * internal queue server.
      *
-     * @throws Exception
+     * @throws AppwriteException
      * @return array
      */
-    public function getQueueTasks():array
+    public function getQueueTasks(): array
     {
         $path   = str_replace([], [], '/health/queue/tasks');
         $params = [];
-
 
         return $this->client->call(Client::METHOD_GET, $path, [
             'content-type' => 'application/json',
@@ -169,14 +161,13 @@ class Health extends Service
      * Get the number of usage stats that are waiting to be processed in the
      * Appwrite internal queue server.
      *
-     * @throws Exception
+     * @throws AppwriteException
      * @return array
      */
-    public function getQueueUsage():array
+    public function getQueueUsage(): array
     {
         $path   = str_replace([], [], '/health/queue/usage');
         $params = [];
-
 
         return $this->client->call(Client::METHOD_GET, $path, [
             'content-type' => 'application/json',
@@ -189,14 +180,13 @@ class Health extends Service
      * Get the number of webhooks that are waiting to be processed in the Appwrite
      * internal queue server.
      *
-     * @throws Exception
+     * @throws AppwriteException
      * @return array
      */
-    public function getQueueWebhooks():array
+    public function getQueueWebhooks(): array
     {
         $path   = str_replace([], [], '/health/queue/webhooks');
         $params = [];
-
 
         return $this->client->call(Client::METHOD_GET, $path, [
             'content-type' => 'application/json',
@@ -208,14 +198,13 @@ class Health extends Service
      *
      * Check the Appwrite local storage device is up and connection is successful.
      *
-     * @throws Exception
+     * @throws AppwriteException
      * @return array
      */
-    public function getStorageLocal():array
+    public function getStorageLocal(): array
     {
         $path   = str_replace([], [], '/health/storage/local');
         $params = [];
-
 
         return $this->client->call(Client::METHOD_GET, $path, [
             'content-type' => 'application/json',
@@ -233,14 +222,13 @@ class Health extends Service
      * clocks over the Internet. If your computer sets its own clock, it likely
      * uses NTP.
      *
-     * @throws Exception
+     * @throws AppwriteException
      * @return array
      */
-    public function getTime():array
+    public function getTime(): array
     {
         $path   = str_replace([], [], '/health/time');
         $params = [];
-
 
         return $this->client->call(Client::METHOD_GET, $path, [
             'content-type' => 'application/json',

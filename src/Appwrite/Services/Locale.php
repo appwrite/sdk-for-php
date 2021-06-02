@@ -2,7 +2,7 @@
 
 namespace Appwrite\Services;
 
-use Exception;
+use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
 
@@ -18,14 +18,13 @@ class Locale extends Service
      * 
      * ([IP Geolocation by DB-IP](https://db-ip.com))
      *
-     * @throws Exception
+     * @throws AppwriteException
      * @return array
      */
-    public function get():array
+    public function get(): array
     {
         $path   = str_replace([], [], '/locale');
         $params = [];
-
 
         return $this->client->call(Client::METHOD_GET, $path, [
             'content-type' => 'application/json',
@@ -38,14 +37,13 @@ class Locale extends Service
      * List of all continents. You can use the locale header to get the data in a
      * supported language.
      *
-     * @throws Exception
+     * @throws AppwriteException
      * @return array
      */
-    public function getContinents():array
+    public function getContinents(): array
     {
         $path   = str_replace([], [], '/locale/continents');
         $params = [];
-
 
         return $this->client->call(Client::METHOD_GET, $path, [
             'content-type' => 'application/json',
@@ -58,14 +56,13 @@ class Locale extends Service
      * List of all countries. You can use the locale header to get the data in a
      * supported language.
      *
-     * @throws Exception
+     * @throws AppwriteException
      * @return array
      */
-    public function getCountries():array
+    public function getCountries(): array
     {
         $path   = str_replace([], [], '/locale/countries');
         $params = [];
-
 
         return $this->client->call(Client::METHOD_GET, $path, [
             'content-type' => 'application/json',
@@ -78,14 +75,13 @@ class Locale extends Service
      * List of all countries that are currently members of the EU. You can use the
      * locale header to get the data in a supported language.
      *
-     * @throws Exception
+     * @throws AppwriteException
      * @return array
      */
-    public function getCountriesEU():array
+    public function getCountriesEU(): array
     {
         $path   = str_replace([], [], '/locale/countries/eu');
         $params = [];
-
 
         return $this->client->call(Client::METHOD_GET, $path, [
             'content-type' => 'application/json',
@@ -98,14 +94,13 @@ class Locale extends Service
      * List of all countries phone codes. You can use the locale header to get the
      * data in a supported language.
      *
-     * @throws Exception
+     * @throws AppwriteException
      * @return array
      */
-    public function getCountriesPhones():array
+    public function getCountriesPhones(): array
     {
         $path   = str_replace([], [], '/locale/countries/phones');
         $params = [];
-
 
         return $this->client->call(Client::METHOD_GET, $path, [
             'content-type' => 'application/json',
@@ -119,14 +114,13 @@ class Locale extends Service
      * decimal digits for all major and minor currencies. You can use the locale
      * header to get the data in a supported language.
      *
-     * @throws Exception
+     * @throws AppwriteException
      * @return array
      */
-    public function getCurrencies():array
+    public function getCurrencies(): array
     {
         $path   = str_replace([], [], '/locale/currencies');
         $params = [];
-
 
         return $this->client->call(Client::METHOD_GET, $path, [
             'content-type' => 'application/json',
@@ -139,14 +133,13 @@ class Locale extends Service
      * List of all languages classified by ISO 639-1 including 2-letter code, name
      * in English, and name in the respective language.
      *
-     * @throws Exception
+     * @throws AppwriteException
      * @return array
      */
-    public function getLanguages():array
+    public function getLanguages(): array
     {
         $path   = str_replace([], [], '/locale/languages');
         $params = [];
-
 
         return $this->client->call(Client::METHOD_GET, $path, [
             'content-type' => 'application/json',

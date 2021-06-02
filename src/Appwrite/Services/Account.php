@@ -2,7 +2,7 @@
 
 namespace Appwrite\Services;
 
-use Exception;
+use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
 
@@ -13,14 +13,13 @@ class Account extends Service
      *
      * Get currently logged in user data as JSON object.
      *
-     * @throws Exception
+     * @throws AppwriteException
      * @return array
      */
-    public function get():array
+    public function get(): array
     {
         $path   = str_replace([], [], '/account');
         $params = [];
-
 
         return $this->client->call(Client::METHOD_GET, $path, [
             'content-type' => 'application/json',
@@ -36,14 +35,13 @@ class Account extends Service
      * address. Any user-related resources like documents or storage files should
      * be deleted separately.
      *
-     * @throws Exception
+     * @throws AppwriteException
      * @return array
      */
-    public function delete():array
+    public function delete(): array
     {
         $path   = str_replace([], [], '/account');
         $params = [];
-
 
         return $this->client->call(Client::METHOD_DELETE, $path, [
             'content-type' => 'application/json',
@@ -62,16 +60,29 @@ class Account extends Service
      *
      * @param string $email
      * @param string $password
-     * @throws Exception
+     * @throws AppwriteException
      * @return array
      */
-    public function updateEmail(string $email, string $password):array
+    public function updateEmail(string $email, string $password): array
     {
+        if (empty($email)) {
+            throw new AppwriteException('Missing required parameter: "email"');
+        }
+
+        if (empty($password)) {
+            throw new AppwriteException('Missing required parameter: "password"');
+        }
+
         $path   = str_replace([], [], '/account/email');
         $params = [];
 
-        $params['email'] = $email;
-        $params['password'] = $password;
+        if (!is_null($email)) {
+            $params['email'] = $email;
+        }
+
+        if (!is_null($password)) {
+            $params['password'] = $password;
+        }
 
         return $this->client->call(Client::METHOD_PATCH, $path, [
             'content-type' => 'application/json',
@@ -84,14 +95,13 @@ class Account extends Service
      * Get currently logged in user list of latest security activity logs. Each
      * log returns user IP address, location and date and time of log.
      *
-     * @throws Exception
+     * @throws AppwriteException
      * @return array
      */
-    public function getLogs():array
+    public function getLogs(): array
     {
         $path   = str_replace([], [], '/account/logs');
         $params = [];
-
 
         return $this->client->call(Client::METHOD_GET, $path, [
             'content-type' => 'application/json',
@@ -104,15 +114,21 @@ class Account extends Service
      * Update currently logged in user account name.
      *
      * @param string $name
-     * @throws Exception
+     * @throws AppwriteException
      * @return array
      */
-    public function updateName(string $name):array
+    public function updateName(string $name): array
     {
+        if (empty($name)) {
+            throw new AppwriteException('Missing required parameter: "name"');
+        }
+
         $path   = str_replace([], [], '/account/name');
         $params = [];
 
-        $params['name'] = $name;
+        if (!is_null($name)) {
+            $params['name'] = $name;
+        }
 
         return $this->client->call(Client::METHOD_PATCH, $path, [
             'content-type' => 'application/json',
@@ -128,16 +144,25 @@ class Account extends Service
      *
      * @param string $password
      * @param string $oldPassword
-     * @throws Exception
+     * @throws AppwriteException
      * @return array
      */
-    public function updatePassword(string $password, string $oldPassword = ''):array
+    public function updatePassword(string $password, string $oldPassword = null): array
     {
+        if (empty($password)) {
+            throw new AppwriteException('Missing required parameter: "password"');
+        }
+
         $path   = str_replace([], [], '/account/password');
         $params = [];
 
-        $params['password'] = $password;
-        $params['oldPassword'] = $oldPassword;
+        if (!is_null($password)) {
+            $params['password'] = $password;
+        }
+
+        if (!is_null($oldPassword)) {
+            $params['oldPassword'] = $oldPassword;
+        }
 
         return $this->client->call(Client::METHOD_PATCH, $path, [
             'content-type' => 'application/json',
@@ -149,14 +174,13 @@ class Account extends Service
      *
      * Get currently logged in user preferences as a key-value object.
      *
-     * @throws Exception
+     * @throws AppwriteException
      * @return array
      */
-    public function getPrefs():array
+    public function getPrefs(): array
     {
         $path   = str_replace([], [], '/account/prefs');
         $params = [];
-
 
         return $this->client->call(Client::METHOD_GET, $path, [
             'content-type' => 'application/json',
@@ -170,15 +194,21 @@ class Account extends Service
      * specific settings you wish to update.
      *
      * @param array $prefs
-     * @throws Exception
+     * @throws AppwriteException
      * @return array
      */
-    public function updatePrefs(array $prefs):array
+    public function updatePrefs(array $prefs): array
     {
+        if (empty($prefs)) {
+            throw new AppwriteException('Missing required parameter: "prefs"');
+        }
+
         $path   = str_replace([], [], '/account/prefs');
         $params = [];
 
-        $params['prefs'] = $prefs;
+        if (!is_null($prefs)) {
+            $params['prefs'] = $prefs;
+        }
 
         return $this->client->call(Client::METHOD_PATCH, $path, [
             'content-type' => 'application/json',
@@ -199,16 +229,29 @@ class Account extends Service
      *
      * @param string $email
      * @param string $url
-     * @throws Exception
+     * @throws AppwriteException
      * @return array
      */
-    public function createRecovery(string $email, string $url):array
+    public function createRecovery(string $email, string $url): array
     {
+        if (empty($email)) {
+            throw new AppwriteException('Missing required parameter: "email"');
+        }
+
+        if (empty($url)) {
+            throw new AppwriteException('Missing required parameter: "url"');
+        }
+
         $path   = str_replace([], [], '/account/recovery');
         $params = [];
 
-        $params['email'] = $email;
-        $params['url'] = $url;
+        if (!is_null($email)) {
+            $params['email'] = $email;
+        }
+
+        if (!is_null($url)) {
+            $params['url'] = $url;
+        }
 
         return $this->client->call(Client::METHOD_POST, $path, [
             'content-type' => 'application/json',
@@ -232,18 +275,45 @@ class Account extends Service
      * @param string $secret
      * @param string $password
      * @param string $passwordAgain
-     * @throws Exception
+     * @throws AppwriteException
      * @return array
      */
-    public function updateRecovery(string $userId, string $secret, string $password, string $passwordAgain):array
+    public function updateRecovery(string $userId, string $secret, string $password, string $passwordAgain): array
     {
+        if (empty($userId)) {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
+        if (empty($secret)) {
+            throw new AppwriteException('Missing required parameter: "secret"');
+        }
+
+        if (empty($password)) {
+            throw new AppwriteException('Missing required parameter: "password"');
+        }
+
+        if (empty($passwordAgain)) {
+            throw new AppwriteException('Missing required parameter: "passwordAgain"');
+        }
+
         $path   = str_replace([], [], '/account/recovery');
         $params = [];
 
-        $params['userId'] = $userId;
-        $params['secret'] = $secret;
-        $params['password'] = $password;
-        $params['passwordAgain'] = $passwordAgain;
+        if (!is_null($userId)) {
+            $params['userId'] = $userId;
+        }
+
+        if (!is_null($secret)) {
+            $params['secret'] = $secret;
+        }
+
+        if (!is_null($password)) {
+            $params['password'] = $password;
+        }
+
+        if (!is_null($passwordAgain)) {
+            $params['passwordAgain'] = $passwordAgain;
+        }
 
         return $this->client->call(Client::METHOD_PUT, $path, [
             'content-type' => 'application/json',
@@ -256,14 +326,13 @@ class Account extends Service
      * Get currently logged in user list of active sessions across different
      * devices.
      *
-     * @throws Exception
+     * @throws AppwriteException
      * @return array
      */
-    public function getSessions():array
+    public function getSessions(): array
     {
         $path   = str_replace([], [], '/account/sessions');
         $params = [];
-
 
         return $this->client->call(Client::METHOD_GET, $path, [
             'content-type' => 'application/json',
@@ -276,14 +345,13 @@ class Account extends Service
      * Delete all sessions from the user account and remove any sessions cookies
      * from the end client.
      *
-     * @throws Exception
+     * @throws AppwriteException
      * @return array
      */
-    public function deleteSessions():array
+    public function deleteSessions(): array
     {
         $path   = str_replace([], [], '/account/sessions');
         $params = [];
-
 
         return $this->client->call(Client::METHOD_DELETE, $path, [
             'content-type' => 'application/json',
@@ -298,14 +366,17 @@ class Account extends Service
      * option id argument, only the session unique ID provider will be deleted.
      *
      * @param string $sessionId
-     * @throws Exception
+     * @throws AppwriteException
      * @return array
      */
-    public function deleteSession(string $sessionId):array
+    public function deleteSession(string $sessionId): array
     {
+        if (empty($sessionId)) {
+            throw new AppwriteException('Missing required parameter: "sessionId"');
+        }
+
         $path   = str_replace(['{sessionId}'], [$sessionId], '/account/sessions/{sessionId}');
         $params = [];
-
 
         return $this->client->call(Client::METHOD_DELETE, $path, [
             'content-type' => 'application/json',
@@ -332,15 +403,21 @@ class Account extends Service
      * 
      *
      * @param string $url
-     * @throws Exception
+     * @throws AppwriteException
      * @return array
      */
-    public function createVerification(string $url):array
+    public function createVerification(string $url): array
     {
+        if (empty($url)) {
+            throw new AppwriteException('Missing required parameter: "url"');
+        }
+
         $path   = str_replace([], [], '/account/verification');
         $params = [];
 
-        $params['url'] = $url;
+        if (!is_null($url)) {
+            $params['url'] = $url;
+        }
 
         return $this->client->call(Client::METHOD_POST, $path, [
             'content-type' => 'application/json',
@@ -357,16 +434,29 @@ class Account extends Service
      *
      * @param string $userId
      * @param string $secret
-     * @throws Exception
+     * @throws AppwriteException
      * @return array
      */
-    public function updateVerification(string $userId, string $secret):array
+    public function updateVerification(string $userId, string $secret): array
     {
+        if (empty($userId)) {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
+        if (empty($secret)) {
+            throw new AppwriteException('Missing required parameter: "secret"');
+        }
+
         $path   = str_replace([], [], '/account/verification');
         $params = [];
 
-        $params['userId'] = $userId;
-        $params['secret'] = $secret;
+        if (!is_null($userId)) {
+            $params['userId'] = $userId;
+        }
+
+        if (!is_null($secret)) {
+            $params['secret'] = $secret;
+        }
 
         return $this->client->call(Client::METHOD_PUT, $path, [
             'content-type' => 'application/json',
