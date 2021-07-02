@@ -56,7 +56,7 @@ class Functions extends Service
      *
      * @param string $name
      * @param array $execute
-     * @param string $env
+     * @param string $runtime
      * @param array $vars
      * @param array $events
      * @param string $schedule
@@ -64,7 +64,7 @@ class Functions extends Service
      * @throws AppwriteException
      * @return array
      */
-    public function create(string $name, array $execute, string $env, array $vars = null, array $events = null, string $schedule = null, int $timeout = null): array
+    public function create(string $name, array $execute, string $runtime, array $vars = null, array $events = null, string $schedule = null, int $timeout = null): array
     {
         if (empty($name)) {
             throw new AppwriteException('Missing required parameter: "name"');
@@ -74,8 +74,8 @@ class Functions extends Service
             throw new AppwriteException('Missing required parameter: "execute"');
         }
 
-        if (empty($env)) {
-            throw new AppwriteException('Missing required parameter: "env"');
+        if (empty($runtime)) {
+            throw new AppwriteException('Missing required parameter: "runtime"');
         }
 
         $path   = str_replace([], [], '/functions');
@@ -89,8 +89,8 @@ class Functions extends Service
             $params['execute'] = $execute;
         }
 
-        if (!is_null($env)) {
-            $params['env'] = $env;
+        if (!is_null($runtime)) {
+            $params['runtime'] = $runtime;
         }
 
         if (!is_null($vars)) {

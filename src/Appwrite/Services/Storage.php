@@ -213,6 +213,7 @@ class Storage extends Service
      * @param string $fileId
      * @param int $width
      * @param int $height
+     * @param string $gravity
      * @param int $quality
      * @param int $borderWidth
      * @param string $borderColor
@@ -224,7 +225,7 @@ class Storage extends Service
      * @throws AppwriteException
      * @return string
      */
-    public function getFilePreview(string $fileId, int $width = null, int $height = null, int $quality = null, int $borderWidth = null, string $borderColor = null, int $borderRadius = null, int $opacity = null, int $rotation = null, string $background = null, string $output = null): string
+    public function getFilePreview(string $fileId, int $width = null, int $height = null, string $gravity = null, int $quality = null, int $borderWidth = null, string $borderColor = null, int $borderRadius = null, int $opacity = null, int $rotation = null, string $background = null, string $output = null): string
     {
         if (empty($fileId)) {
             throw new AppwriteException('Missing required parameter: "fileId"');
@@ -239,6 +240,10 @@ class Storage extends Service
 
         if (!is_null($height)) {
             $params['height'] = $height;
+        }
+
+        if (!is_null($gravity)) {
+            $params['gravity'] = $gravity;
         }
 
         if (!is_null($quality)) {

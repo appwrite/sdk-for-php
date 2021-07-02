@@ -106,11 +106,12 @@ GET https://appwrite.io/v1/storage/files/{fileId}/preview
 | fileId | string | **Required** File unique ID |  |
 | width | integer | Resize preview image width, Pass an integer between 0 to 4000. | 0 |
 | height | integer | Resize preview image height, Pass an integer between 0 to 4000. | 0 |
+| gravity | string | Image crop gravity. Can be one of center,top-left,top,top-right,left,right,bottom-left,bottom,bottom-right | center |
 | quality | integer | Preview image quality. Pass an integer between 0 to 100. Defaults to 100. | 100 |
 | borderWidth | integer | Preview image border in pixels. Pass an integer between 0 to 100. Defaults to 0. | 0 |
 | borderColor | string | Preview image border color. Use a valid HEX color, no # is needed for prefix. |  |
 | borderRadius | integer | Preview image border radius in pixels. Pass an integer between 0 to 4000. | 0 |
-| opacity | integer | Preview image opacity. Only works with images having an alpha channel (like png). Pass a number between 0 to 1. | 1 |
+| opacity | number | Preview image opacity. Only works with images having an alpha channel (like png). Pass a number between 0 to 1. | 1 |
 | rotation | integer | Preview image rotation in degrees. Pass an integer between 0 and 360. | 0 |
 | background | string | Preview image background color. Only works with transparent images (png). Use a valid HEX color, no # is needed for prefix. |  |
 | output | string | Output format type (jpeg, jpg, png, gif and webp). |  |

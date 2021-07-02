@@ -162,3 +162,18 @@ PATCH https://appwrite.io/v1/users/{userId}/status
 | userId | string | **Required** User unique ID. |  |
 | status | integer | User Status code. To activate the user pass 1, to block the user pass 2 and for disabling the user pass 0 |  |
 
+## Update Email Verification
+
+```http request
+PATCH https://appwrite.io/v1/users/{userId}/verification
+```
+
+** Update the user email verification status by its unique ID. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| userId | string | **Required** User unique ID. |  |
+| emailVerification | boolean | User Email Verification Status. |  |
+

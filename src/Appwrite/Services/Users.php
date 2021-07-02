@@ -318,4 +318,36 @@ class Users extends Service
             'content-type' => 'application/json',
         ], $params);
     }
+
+    /**
+     * Update Email Verification
+     *
+     * Update the user email verification status by its unique ID.
+     *
+     * @param string $userId
+     * @param bool $emailVerification
+     * @throws AppwriteException
+     * @return array
+     */
+    public function updateVerification(string $userId, bool $emailVerification): array
+    {
+        if (empty($userId)) {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
+        if (empty($emailVerification)) {
+            throw new AppwriteException('Missing required parameter: "emailVerification"');
+        }
+
+        $path   = str_replace(['{userId}'], [$userId], '/users/{userId}/verification');
+        $params = [];
+
+        if (!is_null($emailVerification)) {
+            $params['emailVerification'] = $emailVerification;
+        }
+
+        return $this->client->call(Client::METHOD_PATCH, $path, [
+            'content-type' => 'application/json',
+        ], $params);
+    }
 }

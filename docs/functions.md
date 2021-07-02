@@ -31,7 +31,7 @@ POST https://appwrite.io/v1/functions
 | --- | --- | --- | --- |
 | name | string | Function name. Max length: 128 chars. |  |
 | execute | array | An array of strings with execution permissions. By default no user is granted with any execute permissions. [learn more about permissions](/docs/permissions) and get a full list of available permissions. |  |
-| env | string | Execution enviornment. |  |
+| runtime | string | Execution runtime. |  |
 | vars | object | Key-value JSON object. | {} |
 | events | array | Events list. | [] |
 | schedule | string | Schedule CRON syntax. |  |

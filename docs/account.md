@@ -141,6 +141,20 @@ DELETE https://appwrite.io/v1/account/sessions
 
 ** Delete all sessions from the user account and remove any sessions cookies from the end client. **
 
+## Get Session By ID
+
+```http request
+GET https://appwrite.io/v1/account/sessions/{sessionId}
+```
+
+** Use this endpoint to get a logged in user&#039;s session using a Session ID. Inputting &#039;current&#039; will return the current session being used. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| sessionId | string | **Required** Session unique ID. Use the string &#039;current&#039; to get the current device session. |  |
+
 ## Delete Account Session
 
 ```http request
