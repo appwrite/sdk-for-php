@@ -359,6 +359,30 @@ class Account extends Service
     }
 
     /**
+     * Get Session By ID
+     *
+     * Use this endpoint to get a logged in user's session using a Session ID.
+     * Inputting 'current' will return the current session being used.
+     *
+     * @param string $sessionId
+     * @throws AppwriteException
+     * @return array
+     */
+    public function getSession(string $sessionId): array
+    {
+        if (empty($sessionId)) {
+            throw new AppwriteException('Missing required parameter: "sessionId"');
+        }
+
+        $path   = str_replace(['{sessionId}'], [$sessionId], '/account/sessions/{sessionId}');
+        $params = [];
+
+        return $this->client->call(Client::METHOD_GET, $path, [
+            'content-type' => 'application/json',
+        ], $params);
+    }
+
+    /**
      * Delete Account Session
      *
      * Use this endpoint to log out the currently logged in user from all their
