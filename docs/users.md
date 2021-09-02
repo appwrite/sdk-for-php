@@ -61,6 +61,21 @@ DELETE https://appwrite.io/v1/users/{userId}
 | --- | --- | --- | --- |
 | userId | string | **Required** User unique ID. |  |
 
+## Update Email
+
+```http request
+PATCH https://appwrite.io/v1/users/{userId}/email
+```
+
+** Update the user email by its unique ID. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| userId | string | **Required** User unique ID. |  |
+| email | string | User email. |  |
+
 ## Get User Logs
 
 ```http request
@@ -74,6 +89,36 @@ GET https://appwrite.io/v1/users/{userId}/logs
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | userId | string | **Required** User unique ID. |  |
+
+## Update Name
+
+```http request
+PATCH https://appwrite.io/v1/users/{userId}/name
+```
+
+** Update the user name by its unique ID. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| userId | string | **Required** User unique ID. |  |
+| name | string | User name. Max length: 128 chars. |  |
+
+## Update Password
+
+```http request
+PATCH https://appwrite.io/v1/users/{userId}/password
+```
+
+** Update the user password by its unique ID. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| userId | string | **Required** User unique ID. |  |
+| password | string | New user password. Must be between 6 to 32 chars. |  |
 
 ## Get User Preferences
 

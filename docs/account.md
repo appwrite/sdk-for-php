@@ -106,7 +106,7 @@ POST https://appwrite.io/v1/account/recovery
 | email | string | User email. |  |
 | url | string | URL to redirect the user back to your app from the recovery email. Only URLs from hostnames in your project platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API. |  |
 
-## Complete Password Recovery
+## Create Password Recovery (confirmation)
 
 ```http request
 PUT https://appwrite.io/v1/account/recovery
@@ -186,7 +186,7 @@ Please note that in order to avoid a [Redirect Attack](https://github.com/OWASP/
 | --- | --- | --- | --- |
 | url | string | URL to redirect the user back to your app from the verification email. Only URLs from hostnames in your project platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API. |  |
 
-## Complete Email Verification
+## Create Email Verification (confirmation)
 
 ```http request
 PUT https://appwrite.io/v1/account/verification

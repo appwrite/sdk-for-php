@@ -99,9 +99,9 @@ GET https://appwrite.io/v1/teams/{teamId}/memberships
 POST https://appwrite.io/v1/teams/{teamId}/memberships
 ```
 
-** Use this endpoint to invite a new member to join your team. An email with a link to join the team will be sent to the new member email address if the member doesn&#039;t exist in the project it will be created automatically.
+** Use this endpoint to invite a new member to join your team. If initiated from Client SDK, an email with a link to join the team will be sent to the new member&#039;s email address if the member doesn&#039;t exist in the project it will be created automatically. If initiated from server side SDKs, new member will automatically be added to the team.
 
-Use the &#039;URL&#039; parameter to redirect the user from the invitation email back to your app. When the user is redirected, use the [Update Team Membership Status](/docs/client/teams#teamsUpdateMembershipStatus) endpoint to allow the user to accept the invitation to the team.
+Use the &#039;URL&#039; parameter to redirect the user from the invitation email back to your app. When the user is redirected, use the [Update Team Membership Status](/docs/client/teams#teamsUpdateMembershipStatus) endpoint to allow the user to accept the invitation to the team.  While calling from side SDKs the redirect url can be empty string.
 
 Please note that in order to avoid a [Redirect Attacks](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.md) the only valid redirect URL&#039;s are the once from domains you have set when added your platforms in the console interface. **
 
