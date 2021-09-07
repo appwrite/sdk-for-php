@@ -66,15 +66,15 @@ class Functions extends Service
      */
     public function create(string $name, array $execute, string $runtime, array $vars = null, array $events = null, string $schedule = null, int $timeout = null): array
     {
-        if (empty($name)) {
+        if (!isset($name)) {
             throw new AppwriteException('Missing required parameter: "name"');
         }
 
-        if (empty($execute)) {
+        if (!isset($execute)) {
             throw new AppwriteException('Missing required parameter: "execute"');
         }
 
-        if (empty($runtime)) {
+        if (!isset($runtime)) {
             throw new AppwriteException('Missing required parameter: "runtime"');
         }
 
@@ -125,7 +125,7 @@ class Functions extends Service
      */
     public function get(string $functionId): array
     {
-        if (empty($functionId)) {
+        if (!isset($functionId)) {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
 
@@ -154,15 +154,15 @@ class Functions extends Service
      */
     public function update(string $functionId, string $name, array $execute, array $vars = null, array $events = null, string $schedule = null, int $timeout = null): array
     {
-        if (empty($functionId)) {
+        if (!isset($functionId)) {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
 
-        if (empty($name)) {
+        if (!isset($name)) {
             throw new AppwriteException('Missing required parameter: "name"');
         }
 
-        if (empty($execute)) {
+        if (!isset($execute)) {
             throw new AppwriteException('Missing required parameter: "execute"');
         }
 
@@ -209,7 +209,7 @@ class Functions extends Service
      */
     public function delete(string $functionId): array
     {
-        if (empty($functionId)) {
+        if (!isset($functionId)) {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
 
@@ -239,7 +239,7 @@ class Functions extends Service
      */
     public function listExecutions(string $functionId, string $search = null, int $limit = null, int $offset = null, string $orderType = null): array
     {
-        if (empty($functionId)) {
+        if (!isset($functionId)) {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
 
@@ -282,7 +282,7 @@ class Functions extends Service
      */
     public function createExecution(string $functionId, string $data = null): array
     {
-        if (empty($functionId)) {
+        if (!isset($functionId)) {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
 
@@ -310,11 +310,11 @@ class Functions extends Service
      */
     public function getExecution(string $functionId, string $executionId): array
     {
-        if (empty($functionId)) {
+        if (!isset($functionId)) {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
 
-        if (empty($executionId)) {
+        if (!isset($executionId)) {
             throw new AppwriteException('Missing required parameter: "executionId"');
         }
 
@@ -340,11 +340,11 @@ class Functions extends Service
      */
     public function updateTag(string $functionId, string $tag): array
     {
-        if (empty($functionId)) {
+        if (!isset($functionId)) {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
 
-        if (empty($tag)) {
+        if (!isset($tag)) {
             throw new AppwriteException('Missing required parameter: "tag"');
         }
 
@@ -376,7 +376,7 @@ class Functions extends Service
      */
     public function listTags(string $functionId, string $search = null, int $limit = null, int $offset = null, string $orderType = null): array
     {
-        if (empty($functionId)) {
+        if (!isset($functionId)) {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
 
@@ -426,15 +426,15 @@ class Functions extends Service
      */
     public function createTag(string $functionId, string $command, \CurlFile $code): array
     {
-        if (empty($functionId)) {
+        if (!isset($functionId)) {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
 
-        if (empty($command)) {
+        if (!isset($command)) {
             throw new AppwriteException('Missing required parameter: "command"');
         }
 
-        if (empty($code)) {
+        if (!isset($code)) {
             throw new AppwriteException('Missing required parameter: "code"');
         }
 
@@ -466,11 +466,11 @@ class Functions extends Service
      */
     public function getTag(string $functionId, string $tagId): array
     {
-        if (empty($functionId)) {
+        if (!isset($functionId)) {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
 
-        if (empty($tagId)) {
+        if (!isset($tagId)) {
             throw new AppwriteException('Missing required parameter: "tagId"');
         }
 
@@ -494,11 +494,11 @@ class Functions extends Service
      */
     public function deleteTag(string $functionId, string $tagId): array
     {
-        if (empty($functionId)) {
+        if (!isset($functionId)) {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
 
-        if (empty($tagId)) {
+        if (!isset($tagId)) {
             throw new AppwriteException('Missing required parameter: "tagId"');
         }
 

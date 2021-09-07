@@ -25,7 +25,7 @@ class Avatars extends Service
      */
     public function getBrowser(string $code, int $width = null, int $height = null, int $quality = null): string
     {
-        if (empty($code)) {
+        if (!isset($code)) {
             throw new AppwriteException('Missing required parameter: "code"');
         }
 
@@ -65,7 +65,7 @@ class Avatars extends Service
      */
     public function getCreditCard(string $code, int $width = null, int $height = null, int $quality = null): string
     {
-        if (empty($code)) {
+        if (!isset($code)) {
             throw new AppwriteException('Missing required parameter: "code"');
         }
 
@@ -102,7 +102,7 @@ class Avatars extends Service
      */
     public function getFavicon(string $url): string
     {
-        if (empty($url)) {
+        if (!isset($url)) {
             throw new AppwriteException('Missing required parameter: "url"');
         }
 
@@ -134,7 +134,7 @@ class Avatars extends Service
      */
     public function getFlag(string $code, int $width = null, int $height = null, int $quality = null): string
     {
-        if (empty($code)) {
+        if (!isset($code)) {
             throw new AppwriteException('Missing required parameter: "code"');
         }
 
@@ -174,7 +174,7 @@ class Avatars extends Service
      */
     public function getImage(string $url, int $width = null, int $height = null): string
     {
-        if (empty($url)) {
+        if (!isset($url)) {
             throw new AppwriteException('Missing required parameter: "url"');
         }
 
@@ -265,7 +265,7 @@ class Avatars extends Service
      */
     public function getQR(string $text, int $size = null, int $margin = null, bool $download = null): string
     {
-        if (empty($text)) {
+        if (!isset($text)) {
             throw new AppwriteException('Missing required parameter: "text"');
         }
 

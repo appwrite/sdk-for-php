@@ -64,7 +64,7 @@ class Teams extends Service
      */
     public function create(string $name, array $roles = null): array
     {
-        if (empty($name)) {
+        if (!isset($name)) {
             throw new AppwriteException('Missing required parameter: "name"');
         }
 
@@ -96,7 +96,7 @@ class Teams extends Service
      */
     public function get(string $teamId): array
     {
-        if (empty($teamId)) {
+        if (!isset($teamId)) {
             throw new AppwriteException('Missing required parameter: "teamId"');
         }
 
@@ -121,11 +121,11 @@ class Teams extends Service
      */
     public function update(string $teamId, string $name): array
     {
-        if (empty($teamId)) {
+        if (!isset($teamId)) {
             throw new AppwriteException('Missing required parameter: "teamId"');
         }
 
-        if (empty($name)) {
+        if (!isset($name)) {
             throw new AppwriteException('Missing required parameter: "name"');
         }
 
@@ -153,7 +153,7 @@ class Teams extends Service
      */
     public function delete(string $teamId): array
     {
-        if (empty($teamId)) {
+        if (!isset($teamId)) {
             throw new AppwriteException('Missing required parameter: "teamId"');
         }
 
@@ -181,7 +181,7 @@ class Teams extends Service
      */
     public function getMemberships(string $teamId, string $search = null, int $limit = null, int $offset = null, string $orderType = null): array
     {
-        if (empty($teamId)) {
+        if (!isset($teamId)) {
             throw new AppwriteException('Missing required parameter: "teamId"');
         }
 
@@ -239,19 +239,19 @@ class Teams extends Service
      */
     public function createMembership(string $teamId, string $email, array $roles, string $url, string $name = null): array
     {
-        if (empty($teamId)) {
+        if (!isset($teamId)) {
             throw new AppwriteException('Missing required parameter: "teamId"');
         }
 
-        if (empty($email)) {
+        if (!isset($email)) {
             throw new AppwriteException('Missing required parameter: "email"');
         }
 
-        if (empty($roles)) {
+        if (!isset($roles)) {
             throw new AppwriteException('Missing required parameter: "roles"');
         }
 
-        if (empty($url)) {
+        if (!isset($url)) {
             throw new AppwriteException('Missing required parameter: "url"');
         }
 
@@ -290,15 +290,15 @@ class Teams extends Service
      */
     public function updateMembershipRoles(string $teamId, string $membershipId, array $roles): array
     {
-        if (empty($teamId)) {
+        if (!isset($teamId)) {
             throw new AppwriteException('Missing required parameter: "teamId"');
         }
 
-        if (empty($membershipId)) {
+        if (!isset($membershipId)) {
             throw new AppwriteException('Missing required parameter: "membershipId"');
         }
 
-        if (empty($roles)) {
+        if (!isset($roles)) {
             throw new AppwriteException('Missing required parameter: "roles"');
         }
 
@@ -328,11 +328,11 @@ class Teams extends Service
      */
     public function deleteMembership(string $teamId, string $membershipId): array
     {
-        if (empty($teamId)) {
+        if (!isset($teamId)) {
             throw new AppwriteException('Missing required parameter: "teamId"');
         }
 
-        if (empty($membershipId)) {
+        if (!isset($membershipId)) {
             throw new AppwriteException('Missing required parameter: "membershipId"');
         }
 
@@ -360,19 +360,19 @@ class Teams extends Service
      */
     public function updateMembershipStatus(string $teamId, string $membershipId, string $userId, string $secret): array
     {
-        if (empty($teamId)) {
+        if (!isset($teamId)) {
             throw new AppwriteException('Missing required parameter: "teamId"');
         }
 
-        if (empty($membershipId)) {
+        if (!isset($membershipId)) {
             throw new AppwriteException('Missing required parameter: "membershipId"');
         }
 
-        if (empty($userId)) {
+        if (!isset($userId)) {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
 
-        if (empty($secret)) {
+        if (!isset($secret)) {
             throw new AppwriteException('Missing required parameter: "secret"');
         }
 

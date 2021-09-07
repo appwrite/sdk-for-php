@@ -63,7 +63,7 @@ class Storage extends Service
      */
     public function createFile(\CurlFile $file, array $read = null, array $write = null): array
     {
-        if (empty($file)) {
+        if (!isset($file)) {
             throw new AppwriteException('Missing required parameter: "file"');
         }
 
@@ -99,7 +99,7 @@ class Storage extends Service
      */
     public function getFile(string $fileId): array
     {
-        if (empty($fileId)) {
+        if (!isset($fileId)) {
             throw new AppwriteException('Missing required parameter: "fileId"');
         }
 
@@ -125,15 +125,15 @@ class Storage extends Service
      */
     public function updateFile(string $fileId, array $read, array $write): array
     {
-        if (empty($fileId)) {
+        if (!isset($fileId)) {
             throw new AppwriteException('Missing required parameter: "fileId"');
         }
 
-        if (empty($read)) {
+        if (!isset($read)) {
             throw new AppwriteException('Missing required parameter: "read"');
         }
 
-        if (empty($write)) {
+        if (!isset($write)) {
             throw new AppwriteException('Missing required parameter: "write"');
         }
 
@@ -165,7 +165,7 @@ class Storage extends Service
      */
     public function deleteFile(string $fileId): array
     {
-        if (empty($fileId)) {
+        if (!isset($fileId)) {
             throw new AppwriteException('Missing required parameter: "fileId"');
         }
 
@@ -190,7 +190,7 @@ class Storage extends Service
      */
     public function getFileDownload(string $fileId): string
     {
-        if (empty($fileId)) {
+        if (!isset($fileId)) {
             throw new AppwriteException('Missing required parameter: "fileId"');
         }
 
@@ -227,7 +227,7 @@ class Storage extends Service
      */
     public function getFilePreview(string $fileId, int $width = null, int $height = null, string $gravity = null, int $quality = null, int $borderWidth = null, string $borderColor = null, int $borderRadius = null, int $opacity = null, int $rotation = null, string $background = null, string $output = null): string
     {
-        if (empty($fileId)) {
+        if (!isset($fileId)) {
             throw new AppwriteException('Missing required parameter: "fileId"');
         }
 
@@ -296,7 +296,7 @@ class Storage extends Service
      */
     public function getFileView(string $fileId): string
     {
-        if (empty($fileId)) {
+        if (!isset($fileId)) {
             throw new AppwriteException('Missing required parameter: "fileId"');
         }
 

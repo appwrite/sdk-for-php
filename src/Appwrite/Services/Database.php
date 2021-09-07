@@ -63,19 +63,19 @@ class Database extends Service
      */
     public function createCollection(string $name, array $read, array $write, array $rules): array
     {
-        if (empty($name)) {
+        if (!isset($name)) {
             throw new AppwriteException('Missing required parameter: "name"');
         }
 
-        if (empty($read)) {
+        if (!isset($read)) {
             throw new AppwriteException('Missing required parameter: "read"');
         }
 
-        if (empty($write)) {
+        if (!isset($write)) {
             throw new AppwriteException('Missing required parameter: "write"');
         }
 
-        if (empty($rules)) {
+        if (!isset($rules)) {
             throw new AppwriteException('Missing required parameter: "rules"');
         }
 
@@ -115,7 +115,7 @@ class Database extends Service
      */
     public function getCollection(string $collectionId): array
     {
-        if (empty($collectionId)) {
+        if (!isset($collectionId)) {
             throw new AppwriteException('Missing required parameter: "collectionId"');
         }
 
@@ -142,11 +142,11 @@ class Database extends Service
      */
     public function updateCollection(string $collectionId, string $name, array $read = null, array $write = null, array $rules = null): array
     {
-        if (empty($collectionId)) {
+        if (!isset($collectionId)) {
             throw new AppwriteException('Missing required parameter: "collectionId"');
         }
 
-        if (empty($name)) {
+        if (!isset($name)) {
             throw new AppwriteException('Missing required parameter: "name"');
         }
 
@@ -186,7 +186,7 @@ class Database extends Service
      */
     public function deleteCollection(string $collectionId): array
     {
-        if (empty($collectionId)) {
+        if (!isset($collectionId)) {
             throw new AppwriteException('Missing required parameter: "collectionId"');
         }
 
@@ -219,7 +219,7 @@ class Database extends Service
      */
     public function listDocuments(string $collectionId, array $filters = null, int $limit = null, int $offset = null, string $orderField = null, string $orderType = null, string $orderCast = null, string $search = null): array
     {
-        if (empty($collectionId)) {
+        if (!isset($collectionId)) {
             throw new AppwriteException('Missing required parameter: "collectionId"');
         }
 
@@ -279,11 +279,11 @@ class Database extends Service
      */
     public function createDocument(string $collectionId, array $data, array $read = null, array $write = null, string $parentDocument = null, string $parentProperty = null, string $parentPropertyType = null): array
     {
-        if (empty($collectionId)) {
+        if (!isset($collectionId)) {
             throw new AppwriteException('Missing required parameter: "collectionId"');
         }
 
-        if (empty($data)) {
+        if (!isset($data)) {
             throw new AppwriteException('Missing required parameter: "data"');
         }
 
@@ -332,11 +332,11 @@ class Database extends Service
      */
     public function getDocument(string $collectionId, string $documentId): array
     {
-        if (empty($collectionId)) {
+        if (!isset($collectionId)) {
             throw new AppwriteException('Missing required parameter: "collectionId"');
         }
 
-        if (empty($documentId)) {
+        if (!isset($documentId)) {
             throw new AppwriteException('Missing required parameter: "documentId"');
         }
 
@@ -364,15 +364,15 @@ class Database extends Service
      */
     public function updateDocument(string $collectionId, string $documentId, array $data, array $read = null, array $write = null): array
     {
-        if (empty($collectionId)) {
+        if (!isset($collectionId)) {
             throw new AppwriteException('Missing required parameter: "collectionId"');
         }
 
-        if (empty($documentId)) {
+        if (!isset($documentId)) {
             throw new AppwriteException('Missing required parameter: "documentId"');
         }
 
-        if (empty($data)) {
+        if (!isset($data)) {
             throw new AppwriteException('Missing required parameter: "data"');
         }
 
@@ -410,11 +410,11 @@ class Database extends Service
      */
     public function deleteDocument(string $collectionId, string $documentId): array
     {
-        if (empty($collectionId)) {
+        if (!isset($collectionId)) {
             throw new AppwriteException('Missing required parameter: "collectionId"');
         }
 
-        if (empty($documentId)) {
+        if (!isset($documentId)) {
             throw new AppwriteException('Missing required parameter: "documentId"');
         }
 

@@ -65,11 +65,11 @@ class Account extends Service
      */
     public function updateEmail(string $email, string $password): array
     {
-        if (empty($email)) {
+        if (!isset($email)) {
             throw new AppwriteException('Missing required parameter: "email"');
         }
 
-        if (empty($password)) {
+        if (!isset($password)) {
             throw new AppwriteException('Missing required parameter: "password"');
         }
 
@@ -119,7 +119,7 @@ class Account extends Service
      */
     public function updateName(string $name): array
     {
-        if (empty($name)) {
+        if (!isset($name)) {
             throw new AppwriteException('Missing required parameter: "name"');
         }
 
@@ -149,7 +149,7 @@ class Account extends Service
      */
     public function updatePassword(string $password, string $oldPassword = null): array
     {
-        if (empty($password)) {
+        if (!isset($password)) {
             throw new AppwriteException('Missing required parameter: "password"');
         }
 
@@ -199,7 +199,7 @@ class Account extends Service
      */
     public function updatePrefs(array $prefs): array
     {
-        if (empty($prefs)) {
+        if (!isset($prefs)) {
             throw new AppwriteException('Missing required parameter: "prefs"');
         }
 
@@ -234,11 +234,11 @@ class Account extends Service
      */
     public function createRecovery(string $email, string $url): array
     {
-        if (empty($email)) {
+        if (!isset($email)) {
             throw new AppwriteException('Missing required parameter: "email"');
         }
 
-        if (empty($url)) {
+        if (!isset($url)) {
             throw new AppwriteException('Missing required parameter: "url"');
         }
 
@@ -280,19 +280,19 @@ class Account extends Service
      */
     public function updateRecovery(string $userId, string $secret, string $password, string $passwordAgain): array
     {
-        if (empty($userId)) {
+        if (!isset($userId)) {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
 
-        if (empty($secret)) {
+        if (!isset($secret)) {
             throw new AppwriteException('Missing required parameter: "secret"');
         }
 
-        if (empty($password)) {
+        if (!isset($password)) {
             throw new AppwriteException('Missing required parameter: "password"');
         }
 
-        if (empty($passwordAgain)) {
+        if (!isset($passwordAgain)) {
             throw new AppwriteException('Missing required parameter: "passwordAgain"');
         }
 
@@ -370,7 +370,7 @@ class Account extends Service
      */
     public function getSession(string $sessionId): array
     {
-        if (empty($sessionId)) {
+        if (!isset($sessionId)) {
             throw new AppwriteException('Missing required parameter: "sessionId"');
         }
 
@@ -395,7 +395,7 @@ class Account extends Service
      */
     public function deleteSession(string $sessionId): array
     {
-        if (empty($sessionId)) {
+        if (!isset($sessionId)) {
             throw new AppwriteException('Missing required parameter: "sessionId"');
         }
 
@@ -432,7 +432,7 @@ class Account extends Service
      */
     public function createVerification(string $url): array
     {
-        if (empty($url)) {
+        if (!isset($url)) {
             throw new AppwriteException('Missing required parameter: "url"');
         }
 
@@ -463,11 +463,11 @@ class Account extends Service
      */
     public function updateVerification(string $userId, string $secret): array
     {
-        if (empty($userId)) {
+        if (!isset($userId)) {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
 
-        if (empty($secret)) {
+        if (!isset($secret)) {
             throw new AppwriteException('Missing required parameter: "secret"');
         }
 
