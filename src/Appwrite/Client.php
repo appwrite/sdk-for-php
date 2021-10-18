@@ -35,7 +35,7 @@ class Client
      */
     protected $headers = [
         'content-type' => '',
-        'x-sdk-version' => 'appwrite:php:2.3.1',
+        'x-sdk-version' => 'appwrite:php:2.3.2',
     ];
 
     /**

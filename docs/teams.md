@@ -111,9 +111,9 @@ Please note that in order to avoid a [Redirect Attacks](https://github.com/OWASP
 | --- | --- | --- | --- |
 | teamId | string | **Required** Team unique ID. |  |
 | email | string | New team member email. |  |
-| name | string | New team member name. Max length: 128 chars. |  |
 | roles | array | Array of strings. Use this param to set the user roles in the team. A role can be any string. Learn more about [roles and permissions](/docs/permissions). Max length for each role is 32 chars. |  |
 | url | string | URL to redirect the user back to your app from the invitation email.  Only URLs from hostnames in your project platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API. |  |
+| name | string | New team member name. Max length: 128 chars. |  |
 
 ## Update Membership Roles
 

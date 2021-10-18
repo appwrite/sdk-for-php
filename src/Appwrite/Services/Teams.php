@@ -262,16 +262,16 @@ class Teams extends Service
             $params['email'] = $email;
         }
 
-        if (!is_null($name)) {
-            $params['name'] = $name;
-        }
-
         if (!is_null($roles)) {
             $params['roles'] = $roles;
         }
 
         if (!is_null($url)) {
             $params['url'] = $url;
+        }
+
+        if (!is_null($name)) {
+            $params['name'] = $name;
         }
 
         return $this->client->call(Client::METHOD_POST, $path, [
