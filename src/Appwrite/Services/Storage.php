@@ -18,11 +18,13 @@ class Storage extends Service
      * @param string $search
      * @param int $limit
      * @param int $offset
+     * @param string $cursor
+     * @param string $cursorDirection
      * @param string $orderType
      * @throws AppwriteException
      * @return array
      */
-    public function listFiles(string $search = null, int $limit = null, int $offset = null, string $orderType = null): array
+    public function listFiles(string $search = null, int $limit = null, int $offset = null, string $cursor = null, string $cursorDirection = null, string $orderType = null): array
     {
         $path   = str_replace([], [], '/storage/files');
         $params = [];
@@ -37,6 +39,14 @@ class Storage extends Service
 
         if (!is_null($offset)) {
             $params['offset'] = $offset;
+        }
+
+        if (!is_null($cursor)) {
+            $params['cursor'] = $cursor;
+        }
+
+        if (!is_null($cursorDirection)) {
+            $params['cursorDirection'] = $cursorDirection;
         }
 
         if (!is_null($orderType)) {
@@ -55,20 +65,29 @@ class Storage extends Service
      * assigned to read and write access unless he has passed custom values for
      * read and write arguments.
      *
+     * @param string $fileId
      * @param \CurlFile $file
      * @param array $read
      * @param array $write
      * @throws AppwriteException
      * @return array
      */
-    public function createFile(\CurlFile $file, array $read = null, array $write = null): array
+    public function createFile(string $fileId, \CurlFile $file, array $read = null, array $write = null): array
     {
+        if (!isset($fileId)) {
+            throw new AppwriteException('Missing required parameter: "fileId"');
+        }
+
         if (!isset($file)) {
             throw new AppwriteException('Missing required parameter: "file"');
         }
 
         $path   = str_replace([], [], '/storage/files');
         $params = [];
+
+        if (!is_null($fileId)) {
+            $params['fileId'] = $fileId;
+        }
 
         if (!is_null($file)) {
             $params['file'] = $file;

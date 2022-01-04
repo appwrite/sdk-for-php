@@ -17,11 +17,13 @@ class Users extends Service
      * @param string $search
      * @param int $limit
      * @param int $offset
+     * @param string $cursor
+     * @param string $cursorDirection
      * @param string $orderType
      * @throws AppwriteException
      * @return array
      */
-    public function list(string $search = null, int $limit = null, int $offset = null, string $orderType = null): array
+    public function list(string $search = null, int $limit = null, int $offset = null, string $cursor = null, string $cursorDirection = null, string $orderType = null): array
     {
         $path   = str_replace([], [], '/users');
         $params = [];
@@ -38,6 +40,14 @@ class Users extends Service
             $params['offset'] = $offset;
         }
 
+        if (!is_null($cursor)) {
+            $params['cursor'] = $cursor;
+        }
+
+        if (!is_null($cursorDirection)) {
+            $params['cursorDirection'] = $cursorDirection;
+        }
+
         if (!is_null($orderType)) {
             $params['orderType'] = $orderType;
         }
@@ -52,14 +62,19 @@ class Users extends Service
      *
      * Create a new user.
      *
+     * @param string $userId
      * @param string $email
      * @param string $password
      * @param string $name
      * @throws AppwriteException
      * @return array
      */
-    public function create(string $email, string $password, string $name = null): array
+    public function create(string $userId, string $email, string $password, string $name = null): array
     {
+        if (!isset($userId)) {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
         if (!isset($email)) {
             throw new AppwriteException('Missing required parameter: "email"');
         }
@@ -70,6 +85,10 @@ class Users extends Service
 
         $path   = str_replace([], [], '/users');
         $params = [];
+
+        if (!is_null($userId)) {
+            $params['userId'] = $userId;
+        }
 
         if (!is_null($email)) {
             $params['email'] = $email;
@@ -169,13 +188,15 @@ class Users extends Service
     /**
      * Get User Logs
      *
-     * Get a user activity logs list by its unique ID.
+     * Get the user activity logs list by its unique ID.
      *
      * @param string $userId
+     * @param int $limit
+     * @param int $offset
      * @throws AppwriteException
      * @return array
      */
-    public function getLogs(string $userId): array
+    public function getLogs(string $userId, int $limit = null, int $offset = null): array
     {
         if (!isset($userId)) {
             throw new AppwriteException('Missing required parameter: "userId"');
@@ -183,6 +204,14 @@ class Users extends Service
 
         $path   = str_replace(['{userId}'], [$userId], '/users/{userId}/logs');
         $params = [];
+
+        if (!is_null($limit)) {
+            $params['limit'] = $limit;
+        }
+
+        if (!is_null($offset)) {
+            $params['offset'] = $offset;
+        }
 
         return $this->client->call(Client::METHOD_GET, $path, [
             'content-type' => 'application/json',
@@ -389,11 +418,11 @@ class Users extends Service
      * Update the user status by its unique ID.
      *
      * @param string $userId
-     * @param int $status
+     * @param bool $status
      * @throws AppwriteException
      * @return array
      */
-    public function updateStatus(string $userId, int $status): array
+    public function updateStatus(string $userId, bool $status): array
     {
         if (!isset($userId)) {
             throw new AppwriteException('Missing required parameter: "userId"');

@@ -26,7 +26,7 @@ class Client
      *
      * @var string
      */
-    protected $endpoint = 'https://appwrite.io/v1';
+    protected $endpoint = 'https://HOSTNAME/v1';
 
     /**
      * Global Headers
@@ -43,7 +43,7 @@ class Client
      */
     public function __construct()
     {
-        $this->headers['X-Appwrite-Response-Format'] = '0.11.0';
+        $this->headers['X-Appwrite-Response-Format'] = '0.12.0';
  
     }
 

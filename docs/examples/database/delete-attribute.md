@@ -1,7 +1,7 @@
 <?php
 
 use Appwrite\Client;
-use Appwrite\Services\Health;
+use Appwrite\Services\Database;
 
 $client = new Client();
 
@@ -11,6 +11,6 @@ $client
     ->setKey('919c2d18fb5d4...a2ae413da83346ad2') // Your secret API key
 ;
 
-$health = new Health($client);
+$database = new Database($client);
 
-$result = $health->getQueueTasks();
+$result = $database->deleteAttribute('[COLLECTION_ID]', '');

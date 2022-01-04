@@ -27,14 +27,14 @@ class Health extends Service
     }
 
     /**
-     * Get Anti virus
+     * Get Antivirus
      *
-     * Check the Appwrite Anti Virus server is up and connection is successful.
+     * Check the Appwrite Antivirus server is up and connection is successful.
      *
      * @throws AppwriteException
      * @return array
      */
-    public function getAntiVirus(): array
+    public function getAntivirus(): array
     {
         $path   = str_replace([], [], '/health/anti-virus');
         $params = [];
@@ -82,7 +82,7 @@ class Health extends Service
     }
 
     /**
-     * Get Certificate Queue
+     * Get Certificates Queue
      *
      * Get the number of certificates that are waiting to be issued against
      * [Letsencrypt](https://letsencrypt.org/) in the Appwrite internal queue
@@ -129,25 +129,6 @@ class Health extends Service
     public function getQueueLogs(): array
     {
         $path   = str_replace([], [], '/health/queue/logs');
-        $params = [];
-
-        return $this->client->call(Client::METHOD_GET, $path, [
-            'content-type' => 'application/json',
-        ], $params);
-    }
-
-    /**
-     * Get Tasks Queue
-     *
-     * Get the number of tasks that are waiting to be processed in the Appwrite
-     * internal queue server.
-     *
-     * @throws AppwriteException
-     * @return array
-     */
-    public function getQueueTasks(): array
-    {
-        $path   = str_replace([], [], '/health/queue/tasks');
         $params = [];
 
         return $this->client->call(Client::METHOD_GET, $path, [

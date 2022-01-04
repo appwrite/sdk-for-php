@@ -13,4 +13,4 @@ $client
 
 $functions = new Functions($client);
 
-$result = $functions->create('', '[NAME]', [], 'node-14.5');
+$result = $functions->listRuntimes();

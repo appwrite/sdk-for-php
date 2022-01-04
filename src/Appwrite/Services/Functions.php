@@ -17,11 +17,13 @@ class Functions extends Service
      * @param string $search
      * @param int $limit
      * @param int $offset
+     * @param string $cursor
+     * @param string $cursorDirection
      * @param string $orderType
      * @throws AppwriteException
      * @return array
      */
-    public function list(string $search = null, int $limit = null, int $offset = null, string $orderType = null): array
+    public function list(string $search = null, int $limit = null, int $offset = null, string $cursor = null, string $cursorDirection = null, string $orderType = null): array
     {
         $path   = str_replace([], [], '/functions');
         $params = [];
@@ -36,6 +38,14 @@ class Functions extends Service
 
         if (!is_null($offset)) {
             $params['offset'] = $offset;
+        }
+
+        if (!is_null($cursor)) {
+            $params['cursor'] = $cursor;
+        }
+
+        if (!is_null($cursorDirection)) {
+            $params['cursorDirection'] = $cursorDirection;
         }
 
         if (!is_null($orderType)) {
@@ -54,6 +64,7 @@ class Functions extends Service
      * [permissions](/docs/permissions) to allow different project users or team
      * with access to execute the function using the client API.
      *
+     * @param string $functionId
      * @param string $name
      * @param array $execute
      * @param string $runtime
@@ -64,8 +75,12 @@ class Functions extends Service
      * @throws AppwriteException
      * @return array
      */
-    public function create(string $name, array $execute, string $runtime, array $vars = null, array $events = null, string $schedule = null, int $timeout = null): array
+    public function create(string $functionId, string $name, array $execute, string $runtime, array $vars = null, array $events = null, string $schedule = null, int $timeout = null): array
     {
+        if (!isset($functionId)) {
+            throw new AppwriteException('Missing required parameter: "functionId"');
+        }
+
         if (!isset($name)) {
             throw new AppwriteException('Missing required parameter: "name"');
         }
@@ -80,6 +95,10 @@ class Functions extends Service
 
         $path   = str_replace([], [], '/functions');
         $params = [];
+
+        if (!is_null($functionId)) {
+            $params['functionId'] = $functionId;
+        }
 
         if (!is_null($name)) {
             $params['name'] = $name;
@@ -110,6 +129,24 @@ class Functions extends Service
         }
 
         return $this->client->call(Client::METHOD_POST, $path, [
+            'content-type' => 'application/json',
+        ], $params);
+    }
+
+    /**
+     * List the currently active function runtimes.
+     *
+     * Get a list of all runtimes that are currently active in your project.
+     *
+     * @throws AppwriteException
+     * @return array
+     */
+    public function listRuntimes(): array
+    {
+        $path   = str_replace([], [], '/functions/runtimes');
+        $params = [];
+
+        return $this->client->call(Client::METHOD_GET, $path, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -230,14 +267,15 @@ class Functions extends Service
      * different API modes](/docs/admin).
      *
      * @param string $functionId
-     * @param string $search
      * @param int $limit
      * @param int $offset
-     * @param string $orderType
+     * @param string $search
+     * @param string $cursor
+     * @param string $cursorDirection
      * @throws AppwriteException
      * @return array
      */
-    public function listExecutions(string $functionId, string $search = null, int $limit = null, int $offset = null, string $orderType = null): array
+    public function listExecutions(string $functionId, int $limit = null, int $offset = null, string $search = null, string $cursor = null, string $cursorDirection = null): array
     {
         if (!isset($functionId)) {
             throw new AppwriteException('Missing required parameter: "functionId"');
@@ -245,10 +283,6 @@ class Functions extends Service
 
         $path   = str_replace(['{functionId}'], [$functionId], '/functions/{functionId}/executions');
         $params = [];
-
-        if (!is_null($search)) {
-            $params['search'] = $search;
-        }
 
         if (!is_null($limit)) {
             $params['limit'] = $limit;
@@ -258,8 +292,16 @@ class Functions extends Service
             $params['offset'] = $offset;
         }
 
-        if (!is_null($orderType)) {
-            $params['orderType'] = $orderType;
+        if (!is_null($search)) {
+            $params['search'] = $search;
+        }
+
+        if (!is_null($cursor)) {
+            $params['cursor'] = $cursor;
+        }
+
+        if (!is_null($cursorDirection)) {
+            $params['cursorDirection'] = $cursorDirection;
         }
 
         return $this->client->call(Client::METHOD_GET, $path, [
@@ -370,11 +412,13 @@ class Functions extends Service
      * @param string $search
      * @param int $limit
      * @param int $offset
+     * @param string $cursor
+     * @param string $cursorDirection
      * @param string $orderType
      * @throws AppwriteException
      * @return array
      */
-    public function listTags(string $functionId, string $search = null, int $limit = null, int $offset = null, string $orderType = null): array
+    public function listTags(string $functionId, string $search = null, int $limit = null, int $offset = null, string $cursor = null, string $cursorDirection = null, string $orderType = null): array
     {
         if (!isset($functionId)) {
             throw new AppwriteException('Missing required parameter: "functionId"');
@@ -393,6 +437,14 @@ class Functions extends Service
 
         if (!is_null($offset)) {
             $params['offset'] = $offset;
+        }
+
+        if (!is_null($cursor)) {
+            $params['cursor'] = $cursor;
+        }
+
+        if (!is_null($cursorDirection)) {
+            $params['cursorDirection'] = $cursorDirection;
         }
 
         if (!is_null($orderType)) {
