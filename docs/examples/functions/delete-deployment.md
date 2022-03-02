@@ -13,4 +13,4 @@ $client
 
 $functions = new Functions($client);
 
-$result = $functions->deleteTag('[FUNCTION_ID]', '[TAG_ID]');
+$result = $functions->deleteDeployment('[FUNCTION_ID]', '[DEPLOYMENT_ID]');

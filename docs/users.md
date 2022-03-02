@@ -31,7 +31,7 @@ POST https://HOSTNAME/v1/users
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| userId | string | User ID. Choose your own unique ID or pass the string `unique()` to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars. |  |
+| userId | string | User ID. Choose your own unique ID or pass the string &quot;unique()&quot; to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars. |  |
 | email | string | User email. |  |
 | password | string | User password. Must be at least 8 chars. |  |
 | name | string | User name. Max length: 128 chars. |  |
@@ -145,7 +145,7 @@ GET https://HOSTNAME/v1/users/{userId}/prefs
 PATCH https://HOSTNAME/v1/users/{userId}/prefs
 ```
 
-** Update the user preferences by its unique ID. You can pass only the specific settings you wish to update. **
+** Update the user preferences by its unique ID. The object you pass is stored as is, and replaces any previous value. The maximum allowed prefs size is 64kB and throws error if exceeded. **
 
 ### Parameters
 

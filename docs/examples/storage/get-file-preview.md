@@ -13,4 +13,4 @@ $client
 
 $storage = new Storage($client);
 
-$result = $storage->getFilePreview('[FILE_ID]');
+$result = $storage->getFilePreview('[BUCKET_ID]', '[FILE_ID]');

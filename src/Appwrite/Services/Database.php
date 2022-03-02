@@ -419,14 +419,14 @@ class Database extends Service
      * @param string $collectionId
      * @param string $key
      * @param bool $required
-     * @param string $min
-     * @param string $max
-     * @param string $xdefault
+     * @param int $min
+     * @param int $max
+     * @param int $xdefault
      * @param bool $xarray
      * @throws AppwriteException
      * @return array
      */
-    public function createFloatAttribute(string $collectionId, string $key, bool $required, string $min = null, string $max = null, string $xdefault = null, bool $xarray = null): array
+    public function createFloatAttribute(string $collectionId, string $key, bool $required, int $min = null, int $max = null, int $xdefault = null, bool $xarray = null): array
     {
         if (!isset($collectionId)) {
             throw new AppwriteException('Missing required parameter: "collectionId"');

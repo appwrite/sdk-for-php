@@ -33,7 +33,7 @@ POST https://HOSTNAME/v1/teams
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| teamId | string | Team ID. Choose your own unique ID or pass the string `unique()` to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars. |  |
+| teamId | string | Team ID. Choose your own unique ID or pass the string &quot;unique()&quot; to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars. |  |
 | name | string | Team name. Max length: 128 chars. |  |
 | roles | array | Array of strings. Use this param to set the roles in the team for the user who created it. The default role is **owner**. A role can be any string. Learn more about [roles and permissions](/docs/permissions). Max length for each role is 32 chars. | [&quot;owner&quot;] |
 
@@ -174,7 +174,10 @@ DELETE https://HOSTNAME/v1/teams/{teamId}/memberships/{membershipId}
 PATCH https://HOSTNAME/v1/teams/{teamId}/memberships/{membershipId}/status
 ```
 
-** Use this endpoint to allow a user to accept an invitation to join a team after being redirected back to your app from the invitation email received by the user. **
+** Use this endpoint to allow a user to accept an invitation to join a team after being redirected back to your app from the invitation email received by the user.
+
+If the request is successful, a session for the user is automatically created.
+ **
 
 ### Parameters
 

@@ -13,4 +13,4 @@ $client
 
 $storage = new Storage($client);
 
-$result = $storage->deleteFile('[FILE_ID]');
+$result = $storage->deleteFile('[BUCKET_ID]', '[FILE_ID]');

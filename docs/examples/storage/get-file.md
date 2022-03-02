@@ -13,4 +13,4 @@ $client
 
 $storage = new Storage($client);
 
-$result = $storage->getFile('[FILE_ID]');
+$result = $storage->getFile('[BUCKET_ID]', '[FILE_ID]');

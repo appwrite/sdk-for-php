@@ -202,8 +202,9 @@ class Account extends Service
     /**
      * Update Account Preferences
      *
-     * Update currently logged in user account preferences. You can pass only the
-     * specific settings you wish to update.
+     * Update currently logged in user account preferences. The object you pass is
+     * stored as is, and replaces any previous value. The maximum allowed prefs
+     * size is 64kB and throws error if exceeded.
      *
      * @param array $prefs
      * @throws AppwriteException
@@ -395,11 +396,33 @@ class Account extends Service
     }
 
     /**
+     * Update Session (Refresh Tokens)
+     *
+     * @param string $sessionId
+     * @throws AppwriteException
+     * @return array
+     */
+    public function updateSession(string $sessionId): array
+    {
+        if (!isset($sessionId)) {
+            throw new AppwriteException('Missing required parameter: "sessionId"');
+        }
+
+        $path   = str_replace(['{sessionId}'], [$sessionId], '/account/sessions/{sessionId}');
+        $params = [];
+
+        return $this->client->call(Client::METHOD_PATCH, $path, [
+            'content-type' => 'application/json',
+        ], $params);
+    }
+
+    /**
      * Delete Account Session
      *
      * Use this endpoint to log out the currently logged in user from all their
      * account sessions across all of their different devices. When using the
-     * option id argument, only the session unique ID provider will be deleted.
+     * Session ID argument, only the unique session ID provided is deleted.
+     * 
      *
      * @param string $sessionId
      * @throws AppwriteException

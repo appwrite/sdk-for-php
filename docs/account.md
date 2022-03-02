@@ -91,7 +91,7 @@ GET https://HOSTNAME/v1/account/prefs
 PATCH https://HOSTNAME/v1/account/prefs
 ```
 
-** Update currently logged in user account preferences. You can pass only the specific settings you wish to update. **
+** Update currently logged in user account preferences. The object you pass is stored as is, and replaces any previous value. The maximum allowed prefs size is 64kB and throws error if exceeded. **
 
 ### Parameters
 
@@ -163,13 +163,26 @@ GET https://HOSTNAME/v1/account/sessions/{sessionId}
 | --- | --- | --- | --- |
 | sessionId | string | **Required** Session ID. Use the string &#039;current&#039; to get the current device session. |  |
 
+## Update Session (Refresh Tokens)
+
+```http request
+PATCH https://HOSTNAME/v1/account/sessions/{sessionId}
+```
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| sessionId | string | **Required** Session ID. Use the string &#039;current&#039; to update the current device session. |  |
+
 ## Delete Account Session
 
 ```http request
 DELETE https://HOSTNAME/v1/account/sessions/{sessionId}
 ```
 
-** Use this endpoint to log out the currently logged in user from all their account sessions across all of their different devices. When using the option id argument, only the session unique ID provider will be deleted. **
+** Use this endpoint to log out the currently logged in user from all their account sessions across all of their different devices. When using the Session ID argument, only the unique session ID provided is deleted.
+ **
 
 ### Parameters
 

@@ -13,4 +13,4 @@ $client
 
 $storage = new Storage($client);
 
-$result = $storage->getFileDownload('[FILE_ID]');
+$result = $storage->getFileDownload('[BUCKET_ID]', '[FILE_ID]');

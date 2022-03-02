@@ -1,7 +1,7 @@
 <?php
 
 use Appwrite\Client;
-use Appwrite\Services\Storage;
+use Appwrite\Services\Functions;
 
 $client = new Client();
 
@@ -11,6 +11,6 @@ $client
     ->setKey('919c2d18fb5d4...a2ae413da83346ad2') // Your secret API key
 ;
 
-$storage = new Storage($client);
+$functions = new Functions($client);
 
-$result = $storage->listFiles('[BUCKET_ID]');
+$result = $functions->listDeployments('[FUNCTION_ID]');

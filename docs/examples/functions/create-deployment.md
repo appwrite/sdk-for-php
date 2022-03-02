@@ -13,4 +13,4 @@ $client
 
 $functions = new Functions($client);
 
-$result = $functions->updateTag('[FUNCTION_ID]', '[TAG]');
+$result = $functions->createDeployment('[FUNCTION_ID]', '[ENTRYPOINT]', new \CURLFile('/path/to/file.png', 'image/png', 'file.png'), false);

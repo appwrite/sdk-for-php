@@ -31,7 +31,7 @@ POST https://HOSTNAME/v1/database/collections
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| collectionId | string | Unique Id. Choose your own unique ID or pass the string `unique()` to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars. |  |
+| collectionId | string | Unique Id. Choose your own unique ID or pass the string &quot;unique()&quot; to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars. |  |
 | name | string | Collection name. Max length: 128 chars. |  |
 | permission | string | Permissions type model to use for reading documents in this collection. You can use collection-level permission set once on the collection using the `read` and `write` params, or you can set document-level permission where each document read and write params will decide who has access to read and write to each document individually. [learn more about permissions](https://appwrite.io/docs/permissions) and get a full list of available permissions. |  |
 | read | array | An array of strings with read permissions. By default no user is granted with any read permissions. [learn more about permissions](https://appwrite.io/docs/permissions) and get a full list of available permissions. |  |
@@ -167,9 +167,9 @@ POST https://HOSTNAME/v1/database/collections/{collectionId}/attributes/float
 | collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/database#createCollection). |  |
 | key | string | Attribute Key. |  |
 | required | boolean | Is attribute required? |  |
-| min | string | Minimum value to enforce on new documents |  |
-| max | string | Maximum value to enforce on new documents |  |
-| default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
+| min | number | Minimum value to enforce on new documents |  |
+| max | number | Maximum value to enforce on new documents |  |
+| default | number | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | array | boolean | Is attribute an array? |  |
 
 ## Create Integer Attribute
@@ -310,8 +310,8 @@ POST https://HOSTNAME/v1/database/collections/{collectionId}/documents
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| collectionId | string | **Required** Collection ID. You can create a new collection with validation rules using the Database service [server integration](https://appwrite.io/docs/server/database#createCollection). |  |
-| documentId | string | Document ID. Choose your own unique ID or pass the string `unique()` to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars. |  |
+| collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/database#createCollection). Make sure to define attributes before creating documents. |  |
+| documentId | string | Document ID. Choose your own unique ID or pass the string &quot;unique()&quot; to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars. |  |
 | data | object | Document data as JSON object. | {} |
 | read | array | An array of strings with read permissions. By default only the current user is granted with read permissions. [learn more about permissions](https://appwrite.io/docs/permissions) and get a full list of available permissions. |  |
 | write | array | An array of strings with write permissions. By default only the current user is granted with write permissions. [learn more about permissions](https://appwrite.io/docs/permissions) and get a full list of available permissions. |  |
@@ -343,7 +343,7 @@ PATCH https://HOSTNAME/v1/database/collections/{collectionId}/documents/{documen
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| collectionId | string | **Required** Collection ID. You can create a new collection with validation rules using the Database service [server integration](https://appwrite.io/docs/server/database#createCollection). |  |
+| collectionId | string | **Required** Collection ID. |  |
 | documentId | string | **Required** Document ID. |  |
 | data | object | Document data as JSON object. | {} |
 | read | array | An array of strings with read permissions. By default inherits the existing read permissions. [learn more about permissions](https://appwrite.io/docs/permissions) and get a full list of available permissions. |  |
