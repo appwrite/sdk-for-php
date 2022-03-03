@@ -244,9 +244,9 @@ class Storage extends Service
      *
      * @param string $bucketId
      * @throws AppwriteException
-     * @return array
+     * @return string
      */
-    public function deleteBucket(string $bucketId): array
+    public function deleteBucket(string $bucketId): string
     {
         if (!isset($bucketId)) {
             throw new AppwriteException('Missing required parameter: "bucketId"');
@@ -496,9 +496,9 @@ class Storage extends Service
      * @param string $bucketId
      * @param string $fileId
      * @throws AppwriteException
-     * @return array
+     * @return string
      */
-    public function deleteFile(string $bucketId, string $fileId): array
+    public function deleteFile(string $bucketId, string $fileId): string
     {
         if (!isset($bucketId)) {
             throw new AppwriteException('Missing required parameter: "bucketId"');

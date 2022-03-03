@@ -136,7 +136,7 @@ class Functions extends Service
     /**
      * List the currently active function runtimes.
      *
-     * Get a list of all runtimes that are currently active in your project.
+     * Get a list of all runtimes that are currently active on your instance.
      *
      * @throws AppwriteException
      * @return array
@@ -242,9 +242,9 @@ class Functions extends Service
      *
      * @param string $functionId
      * @throws AppwriteException
-     * @return array
+     * @return string
      */
-    public function delete(string $functionId): array
+    public function delete(string $functionId): string
     {
         if (!isset($functionId)) {
             throw new AppwriteException('Missing required parameter: "functionId"');
@@ -473,9 +473,9 @@ class Functions extends Service
      * @param string $functionId
      * @param string $deploymentId
      * @throws AppwriteException
-     * @return array
+     * @return string
      */
-    public function deleteDeployment(string $functionId, string $deploymentId): array
+    public function deleteDeployment(string $functionId, string $deploymentId): string
     {
         if (!isset($functionId)) {
             throw new AppwriteException('Missing required parameter: "functionId"');

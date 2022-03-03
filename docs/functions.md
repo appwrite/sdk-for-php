@@ -46,7 +46,7 @@ POST https://HOSTNAME/v1/functions
 GET https://HOSTNAME/v1/functions/runtimes
 ```
 
-** Get a list of all runtimes that are currently active in your project. **
+** Get a list of all runtimes that are currently active on your instance. **
 
 ## Get Function
 

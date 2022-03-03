@@ -137,9 +137,9 @@ class Users extends Service
      *
      * @param string $userId
      * @throws AppwriteException
-     * @return array
+     * @return string
      */
-    public function delete(string $userId): array
+    public function delete(string $userId): string
     {
         if (!isset($userId)) {
             throw new AppwriteException('Missing required parameter: "userId"');
@@ -369,9 +369,9 @@ class Users extends Service
      *
      * @param string $userId
      * @throws AppwriteException
-     * @return array
+     * @return string
      */
-    public function deleteSessions(string $userId): array
+    public function deleteSessions(string $userId): string
     {
         if (!isset($userId)) {
             throw new AppwriteException('Missing required parameter: "userId"');
@@ -393,9 +393,9 @@ class Users extends Service
      * @param string $userId
      * @param string $sessionId
      * @throws AppwriteException
-     * @return array
+     * @return string
      */
-    public function deleteSession(string $userId, string $sessionId): array
+    public function deleteSession(string $userId, string $sessionId): string
     {
         if (!isset($userId)) {
             throw new AppwriteException('Missing required parameter: "userId"');
