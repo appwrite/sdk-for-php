@@ -167,9 +167,9 @@ class Teams extends Service
      *
      * @param string $teamId
      * @throws AppwriteException
-     * @return string
+     * @return array
      */
-    public function delete(string $teamId): string
+    public function delete(string $teamId): array
     {
         if (!isset($teamId)) {
             throw new AppwriteException('Missing required parameter: "teamId"');
@@ -384,9 +384,9 @@ class Teams extends Service
      * @param string $teamId
      * @param string $membershipId
      * @throws AppwriteException
-     * @return string
+     * @return array
      */
-    public function deleteMembership(string $teamId, string $membershipId): string
+    public function deleteMembership(string $teamId, string $membershipId): array
     {
         if (!isset($teamId)) {
             throw new AppwriteException('Missing required parameter: "teamId"');

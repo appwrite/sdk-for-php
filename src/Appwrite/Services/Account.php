@@ -36,9 +36,9 @@ class Account extends Service
      * be deleted separately.
      *
      * @throws AppwriteException
-     * @return string
+     * @return array
      */
-    public function delete(): string
+    public function delete(): array
     {
         $path   = str_replace([], [], '/account');
         $params = [];
@@ -359,9 +359,9 @@ class Account extends Service
      * from the end client.
      *
      * @throws AppwriteException
-     * @return string
+     * @return array
      */
-    public function deleteSessions(): string
+    public function deleteSessions(): array
     {
         $path   = str_replace([], [], '/account/sessions');
         $params = [];
@@ -426,9 +426,9 @@ class Account extends Service
      *
      * @param string $sessionId
      * @throws AppwriteException
-     * @return string
+     * @return array
      */
-    public function deleteSession(string $sessionId): string
+    public function deleteSession(string $sessionId): array
     {
         if (!isset($sessionId)) {
             throw new AppwriteException('Missing required parameter: "sessionId"');

@@ -242,9 +242,9 @@ class Functions extends Service
      *
      * @param string $functionId
      * @throws AppwriteException
-     * @return string
+     * @return array
      */
-    public function delete(string $functionId): string
+    public function delete(string $functionId): array
     {
         if (!isset($functionId)) {
             throw new AppwriteException('Missing required parameter: "functionId"');
@@ -375,36 +375,40 @@ class Functions extends Service
             return $this->client->call(Client::METHOD_POST, $path, [
                 'content-type' => 'multipart/form-data',
                 ], $params);
-        } else {
-            $id = '';
-            $handle = @fopen($code, "rb");
-            $counter = 0;
-            $headers = ['content-type' => 'multipart/form-data'];
-            while (!feof($handle)) {
-                $params['code'] = new \CURLFile('data://' . $mimeType . ';base64,' . base64_encode(@fread($handle, Client::CHUNK_SIZE)), $mimeType, $postedName);
-                $headers['content-range'] = 'bytes ' . ($counter * Client::CHUNK_SIZE) . '-' . min(((($counter * Client::CHUNK_SIZE) + Client::CHUNK_SIZE) - 1), $size) . '/' . $size;
-                if(!empty($id)) {
-                    $headers['x-appwrite-id'] = $id;
-                }
-                $response = $this->client->call(Client::METHOD_POST, $path, $headers, $params);
-                $counter++;
-                if(empty($id)) {
-                    $id = $response['$id'];
-                }
-                if($onProgress !== null) {
-                    $end = min(((($counter * Client::CHUNK_SIZE) + Client::CHUNK_SIZE) - 1), $size);
-                    $onProgress([
-                        '$id' => $response['$id'],
-                        'progress' => min(($counter+1) * Client::CHUNK_SIZE, $size) / $size * 100,
-                        'sizeUploaded' => $end + 1,
-                        'chunksTotal' => $response['chunksTotal'],
-                        'chunksUploaded' => $response['chunksUploaded']
-                    ]);
-                }
-            }
-            @fclose($handle);
-            return $response;
         }
+
+        $id = '';
+        $counter = 0;
+
+
+        $headers = ['content-type' => 'multipart/form-data'];
+        $handle = @fopen($code, "rb");
+        $start = $counter * Client::CHUNK_SIZE;
+        while ($start < $size) {
+            fseek($handle, $start);
+            $params['code'] = new \CURLFile('data://' . $mimeType . ';base64,' . base64_encode(@fread($handle, Client::CHUNK_SIZE)), $mimeType, $postedName);
+            $headers['content-range'] = 'bytes ' . ($counter * Client::CHUNK_SIZE) . '-' . min(((($counter * Client::CHUNK_SIZE) + Client::CHUNK_SIZE) - 1), $size) . '/' . $size;
+            if(!empty($id)) {
+                $headers['x-appwrite-id'] = $id;
+            }
+            $response = $this->client->call(Client::METHOD_POST, $path, $headers, $params);
+            $counter++;
+            $start += Client::CHUNK_SIZE;
+            if(empty($id)) {
+                $id = $response['$id'];
+            }
+            if($onProgress !== null) {
+                $onProgress([
+                    '$id' => $response['$id'],
+                    'progress' => min(((($counter * Client::CHUNK_SIZE) + Client::CHUNK_SIZE) - 1), $size) / $size * 100,
+                    'sizeUploaded' => min($counter * Client::CHUNK_SIZE),
+                    'chunksTotal' => $response['chunksTotal'],
+                    'chunksUploaded' => $response['chunksUploaded'], 
+                ]);
+            }
+        }
+        @fclose($handle);
+        return $response;
     }
 
     /**
@@ -473,9 +477,9 @@ class Functions extends Service
      * @param string $functionId
      * @param string $deploymentId
      * @throws AppwriteException
-     * @return string
+     * @return array
      */
-    public function deleteDeployment(string $functionId, string $deploymentId): string
+    public function deleteDeployment(string $functionId, string $deploymentId): array
     {
         if (!isset($functionId)) {
             throw new AppwriteException('Missing required parameter: "functionId"');

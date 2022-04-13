@@ -210,9 +210,9 @@ class Database extends Service
      *
      * @param string $collectionId
      * @throws AppwriteException
-     * @return string
+     * @return array
      */
-    public function deleteCollection(string $collectionId): string
+    public function deleteCollection(string $collectionId): array
     {
         if (!isset($collectionId)) {
             throw new AppwriteException('Missing required parameter: "collectionId"');
@@ -732,9 +732,9 @@ class Database extends Service
      * @param string $collectionId
      * @param string $key
      * @throws AppwriteException
-     * @return string
+     * @return array
      */
-    public function deleteAttribute(string $collectionId, string $key): string
+    public function deleteAttribute(string $collectionId, string $key): array
     {
         if (!isset($collectionId)) {
             throw new AppwriteException('Missing required parameter: "collectionId"');
@@ -954,9 +954,9 @@ class Database extends Service
      * @param string $collectionId
      * @param string $documentId
      * @throws AppwriteException
-     * @return string
+     * @return array
      */
-    public function deleteDocument(string $collectionId, string $documentId): string
+    public function deleteDocument(string $collectionId, string $documentId): array
     {
         if (!isset($collectionId)) {
             throw new AppwriteException('Missing required parameter: "collectionId"');
@@ -1080,9 +1080,9 @@ class Database extends Service
      * @param string $collectionId
      * @param string $key
      * @throws AppwriteException
-     * @return string
+     * @return array
      */
-    public function deleteIndex(string $collectionId, string $key): string
+    public function deleteIndex(string $collectionId, string $key): array
     {
         if (!isset($collectionId)) {
             throw new AppwriteException('Missing required parameter: "collectionId"');

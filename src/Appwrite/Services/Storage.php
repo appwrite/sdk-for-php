@@ -244,9 +244,9 @@ class Storage extends Service
      *
      * @param string $bucketId
      * @throws AppwriteException
-     * @return string
+     * @return array
      */
-    public function deleteBucket(string $bucketId): string
+    public function deleteBucket(string $bucketId): array
     {
         if (!isset($bucketId)) {
             throw new AppwriteException('Missing required parameter: "bucketId"');
@@ -387,36 +387,47 @@ class Storage extends Service
             return $this->client->call(Client::METHOD_POST, $path, [
                 'content-type' => 'multipart/form-data',
                 ], $params);
-        } else {
-            $id = '';
-            $handle = @fopen($file, "rb");
-            $counter = 0;
-            $headers = ['content-type' => 'multipart/form-data'];
-            while (!feof($handle)) {
-                $params['file'] = new \CURLFile('data://' . $mimeType . ';base64,' . base64_encode(@fread($handle, Client::CHUNK_SIZE)), $mimeType, $postedName);
-                $headers['content-range'] = 'bytes ' . ($counter * Client::CHUNK_SIZE) . '-' . min(((($counter * Client::CHUNK_SIZE) + Client::CHUNK_SIZE) - 1), $size) . '/' . $size;
-                if(!empty($id)) {
-                    $headers['x-appwrite-id'] = $id;
-                }
-                $response = $this->client->call(Client::METHOD_POST, $path, $headers, $params);
-                $counter++;
-                if(empty($id)) {
-                    $id = $response['$id'];
-                }
-                if($onProgress !== null) {
-                    $end = min(((($counter * Client::CHUNK_SIZE) + Client::CHUNK_SIZE) - 1), $size);
-                    $onProgress([
-                        '$id' => $response['$id'],
-                        'progress' => min(($counter+1) * Client::CHUNK_SIZE, $size) / $size * 100,
-                        'sizeUploaded' => $end + 1,
-                        'chunksTotal' => $response['chunksTotal'],
-                        'chunksUploaded' => $response['chunksUploaded']
-                    ]);
+        }
+
+        $id = '';
+        $counter = 0;
+
+            if($fileId != 'unique()') {
+                try {
+                    $response = $this->client->call(Client::METHOD_GET, new URL($path . '/' . fileId), headers);
+                    $counter = $response['chunksUploaded'] ?? 0;
+                } catch(\Exception $e) {
                 }
             }
-            @fclose($handle);
-            return $response;
+
+        $headers = ['content-type' => 'multipart/form-data'];
+        $handle = @fopen($file, "rb");
+        $start = $counter * Client::CHUNK_SIZE;
+        while ($start < $size) {
+            fseek($handle, $start);
+            $params['file'] = new \CURLFile('data://' . $mimeType . ';base64,' . base64_encode(@fread($handle, Client::CHUNK_SIZE)), $mimeType, $postedName);
+            $headers['content-range'] = 'bytes ' . ($counter * Client::CHUNK_SIZE) . '-' . min(((($counter * Client::CHUNK_SIZE) + Client::CHUNK_SIZE) - 1), $size) . '/' . $size;
+            if(!empty($id)) {
+                $headers['x-appwrite-id'] = $id;
+            }
+            $response = $this->client->call(Client::METHOD_POST, $path, $headers, $params);
+            $counter++;
+            $start += Client::CHUNK_SIZE;
+            if(empty($id)) {
+                $id = $response['$id'];
+            }
+            if($onProgress !== null) {
+                $onProgress([
+                    '$id' => $response['$id'],
+                    'progress' => min(((($counter * Client::CHUNK_SIZE) + Client::CHUNK_SIZE) - 1), $size) / $size * 100,
+                    'sizeUploaded' => min($counter * Client::CHUNK_SIZE),
+                    'chunksTotal' => $response['chunksTotal'],
+                    'chunksUploaded' => $response['chunksUploaded'], 
+                ]);
+            }
         }
+        @fclose($handle);
+        return $response;
     }
 
     /**
@@ -496,9 +507,9 @@ class Storage extends Service
      * @param string $bucketId
      * @param string $fileId
      * @throws AppwriteException
-     * @return string
+     * @return array
      */
-    public function deleteFile(string $bucketId, string $fileId): string
+    public function deleteFile(string $bucketId, string $fileId): array
     {
         if (!isset($bucketId)) {
             throw new AppwriteException('Missing required parameter: "bucketId"');
