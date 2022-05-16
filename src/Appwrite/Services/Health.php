@@ -137,25 +137,6 @@ class Health extends Service
     }
 
     /**
-     * Get Usage Queue
-     *
-     * Get the number of usage stats that are waiting to be processed in the
-     * Appwrite internal queue server.
-     *
-     * @throws AppwriteException
-     * @return array
-     */
-    public function getQueueUsage(): array
-    {
-        $path   = str_replace([], [], '/health/queue/usage');
-        $params = [];
-
-        return $this->client->call(Client::METHOD_GET, $path, [
-            'content-type' => 'application/json',
-        ], $params);
-    }
-
-    /**
      * Get Webhooks Queue
      *
      * Get the number of webhooks that are waiting to be processed in the Appwrite

@@ -54,14 +54,6 @@ GET https://HOSTNAME/v1/health/queue/logs
 
 ** Get the number of logs that are waiting to be processed in the Appwrite internal queue server. **
 
-## Get Usage Queue
-
-```http request
-GET https://HOSTNAME/v1/health/queue/usage
-```
-
-** Get the number of usage stats that are waiting to be processed in the Appwrite internal queue server. **
-
 ## Get Webhooks Queue
 
 ```http request

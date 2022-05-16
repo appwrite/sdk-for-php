@@ -134,7 +134,7 @@ class Functions extends Service
     }
 
     /**
-     * List the currently active function runtimes.
+     * List runtimes
      *
      * Get a list of all runtimes that are currently active on your instance.
      *

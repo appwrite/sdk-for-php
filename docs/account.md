@@ -8,14 +8,6 @@ GET https://HOSTNAME/v1/account
 
 ** Get currently logged in user data as JSON object. **
 
-## Delete Account
-
-```http request
-DELETE https://HOSTNAME/v1/account
-```
-
-** Delete a currently logged in user account. Behind the scene, the user record is not deleted but permanently blocked from any access. This is done to avoid deleted accounts being overtaken by new users with the same email address. Any user-related resources like documents or storage files should be deleted separately. **
-
 ## Update Account Email
 
 ```http request
@@ -68,7 +60,7 @@ PATCH https://HOSTNAME/v1/account/name
 PATCH https://HOSTNAME/v1/account/password
 ```
 
-** Update currently logged in user password. For validation, user is required to pass in the new password, and the old password. For users created with OAuth and Team Invites, oldPassword is optional. **
+** Update currently logged in user password. For validation, user is required to pass in the new password, and the old password. For users created with OAuth, Team Invites and Magic URL, oldPassword is optional. **
 
 ### Parameters
 
@@ -169,6 +161,8 @@ GET https://HOSTNAME/v1/account/sessions/{sessionId}
 PATCH https://HOSTNAME/v1/account/sessions/{sessionId}
 ```
 
+** Access tokens have limited lifespan and expire to mitigate security risks. If session was created using an OAuth provider, this route can be used to &quot;refresh&quot; the access token. **
+
 ### Parameters
 
 | Field Name | Type | Description | Default |
@@ -189,6 +183,14 @@ DELETE https://HOSTNAME/v1/account/sessions/{sessionId}
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | sessionId | string | **Required** Session ID. Use the string &#039;current&#039; to delete the current device session. |  |
+
+## Update Account Status
+
+```http request
+PATCH https://HOSTNAME/v1/account/status
+```
+
+** Block the currently logged in user account. Behind the scene, the user record is not deleted but permanently blocked from any access. To completely delete a user, use the Users API instead. **
 
 ## Create Email Verification
 

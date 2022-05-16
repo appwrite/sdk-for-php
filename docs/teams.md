@@ -35,7 +35,7 @@ POST https://HOSTNAME/v1/teams
 | --- | --- | --- | --- |
 | teamId | string | Team ID. Choose your own unique ID or pass the string &quot;unique()&quot; to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars. |  |
 | name | string | Team name. Max length: 128 chars. |  |
-| roles | array | Array of strings. Use this param to set the roles in the team for the user who created it. The default role is **owner**. A role can be any string. Learn more about [roles and permissions](/docs/permissions). Max length for each role is 32 chars. | [&quot;owner&quot;] |
+| roles | array | Array of strings. Use this param to set the roles in the team for the user who created it. The default role is **owner**. A role can be any string. Learn more about [roles and permissions](/docs/permissions). Maximum of 100 roles are allowed, each 32 characters long. | [&quot;owner&quot;] |
 
 ## Get Team
 
@@ -118,7 +118,7 @@ Please note that to avoid a [Redirect Attack](https://github.com/OWASP/CheatShee
 | --- | --- | --- | --- |
 | teamId | string | **Required** Team ID. |  |
 | email | string | Email of the new team member. |  |
-| roles | array | Array of strings. Use this param to set the user roles in the team. A role can be any string. Learn more about [roles and permissions](/docs/permissions). Max length for each role is 32 chars. |  |
+| roles | array | Array of strings. Use this param to set the user roles in the team. A role can be any string. Learn more about [roles and permissions](/docs/permissions). Maximum of 100 roles are allowed, each 32 characters long. |  |
 | url | string | URL to redirect the user back to your app from the invitation email.  Only URLs from hostnames in your project platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API. |  |
 | name | string | Name of the new team member. Max length: 128 chars. |  |
 
@@ -151,7 +151,7 @@ PATCH https://HOSTNAME/v1/teams/{teamId}/memberships/{membershipId}
 | --- | --- | --- | --- |
 | teamId | string | **Required** Team ID. |  |
 | membershipId | string | **Required** Membership ID. |  |
-| roles | array | An array of strings. Use this param to set the user&#039;s roles in the team. A role can be any string. Learn more about [roles and permissions](https://appwrite.io/docs/permissions). Max length for each role is 32 chars. |  |
+| roles | array | An array of strings. Use this param to set the user&#039;s roles in the team. A role can be any string. Learn more about [roles and permissions](https://appwrite.io/docs/permissions). Maximum of 100 roles are allowed, each 32 characters long. |  |
 
 ## Delete Team Membership
 

@@ -33,14 +33,14 @@ POST https://HOSTNAME/v1/functions
 | --- | --- | --- | --- |
 | functionId | string | Function ID. Choose your own unique ID or pass the string &quot;unique()&quot; to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars. |  |
 | name | string | Function name. Max length: 128 chars. |  |
-| execute | array | An array of strings with execution permissions. By default no user is granted with any execute permissions. [learn more about permissions](https://appwrite.io/docs/permissions) and get a full list of available permissions. |  |
+| execute | array | An array of strings with execution permissions. By default no user is granted with any execute permissions. [learn more about permissions](https://appwrite.io/docs/permissions) and get a full list of available permissions. Maximum of 100 scopes are allowed, each 64 characters long. |  |
 | runtime | string | Execution runtime. |  |
 | vars | object | Key-value JSON object that will be passed to the function as environment variables. | {} |
-| events | array | Events list. | [] |
+| events | array | Events list. Maximum of 100 events are allowed. | [] |
 | schedule | string | Schedule CRON syntax. |  |
 | timeout | integer | Function maximum execution time in seconds. | 15 |
 
-## List the currently active function runtimes.
+## List runtimes
 
 ```http request
 GET https://HOSTNAME/v1/functions/runtimes
@@ -76,9 +76,9 @@ PUT https://HOSTNAME/v1/functions/{functionId}
 | --- | --- | --- | --- |
 | functionId | string | **Required** Function ID. |  |
 | name | string | Function name. Max length: 128 chars. |  |
-| execute | array | An array of strings with execution permissions. By default no user is granted with any execute permissions. [learn more about permissions](https://appwrite.io/docs/permissions) and get a full list of available permissions. |  |
+| execute | array | An array of strings with execution permissions. By default no user is granted with any execute permissions. [learn more about permissions](https://appwrite.io/docs/permissions) and get a full list of available permissions. Maximum of 100 scopes are allowed, each 64 characters long. |  |
 | vars | object | Key-value JSON object that will be passed to the function as environment variables. | {} |
-| events | array | Events list. | [] |
+| events | array | Events list. Maximum of 100 events are allowed. | [] |
 | schedule | string | Schedule CRON syntax. |  |
 | timeout | integer | Maximum execution time in seconds. | 15 |
 

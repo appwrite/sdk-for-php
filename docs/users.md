@@ -56,7 +56,7 @@ GET https://HOSTNAME/v1/users/{userId}
 DELETE https://HOSTNAME/v1/users/{userId}
 ```
 
-** Delete a user by its unique ID. **
+** Delete a user by its unique ID, thereby releasing it&#039;s ID. Since ID is released and can be reused, all user-related resources like documents or storage files should be deleted before user deletion. If you want to keep ID reserved, use the [updateStatus](/docs/server/users#usersUpdateStatus) endpoint instead. **
 
 ### Parameters
 
@@ -94,6 +94,20 @@ GET https://HOSTNAME/v1/users/{userId}/logs
 | userId | string | **Required** User ID. |  |
 | limit | integer | Maximum number of logs to return in response. By default will return maximum 25 results. Maximum of 100 results allowed per request. | 25 |
 | offset | integer | Offset value. The default value is 0. Use this value to manage pagination. [learn more about pagination](https://appwrite.io/docs/pagination) | 0 |
+
+## Get User Memberships
+
+```http request
+GET https://HOSTNAME/v1/users/{userId}/memberships
+```
+
+** Get the user membership list by its unique ID. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| userId | string | **Required** User ID. |  |
 
 ## Update Name
 
@@ -203,7 +217,7 @@ DELETE https://HOSTNAME/v1/users/{userId}/sessions/{sessionId}
 PATCH https://HOSTNAME/v1/users/{userId}/status
 ```
 
-** Update the user status by its unique ID. **
+** Update the user status by its unique ID. Use this endpoint as an alternative to deleting a user if you want to keep user&#039;s ID reserved. **
 
 ### Parameters
 

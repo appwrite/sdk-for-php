@@ -38,7 +38,7 @@ POST https://HOSTNAME/v1/storage/buckets
 | write | array | An array of strings with write permissions. By default no user is granted with any write permissions. [learn more about permissions](/docs/permissions) and get a full list of available permissions. |  |
 | enabled | boolean | Is bucket enabled? | 1 |
 | maximumFileSize | integer | Maximum file size allowed in bytes. Maximum allowed value is 30MB. For self-hosted setups you can change the max limit by changing the `_APP_STORAGE_LIMIT` environment variable. [Learn more about storage environment variables](docs/environment-variables#storage) | 30000000 |
-| allowedFileExtensions | array | Allowed file extensions | [] |
+| allowedFileExtensions | array | Allowed file extensions. Maximum of 100 extensions are allowed, each 64 characters long. | [] |
 | encryption | boolean | Is encryption enabled? For file size above 20MB encryption is skipped even if it&#039;s enabled | 1 |
 | antivirus | boolean | Is virus scanning enabled? For file size above 20MB AntiVirus scanning is skipped even if it&#039;s enabled | 1 |
 
@@ -75,7 +75,7 @@ PUT https://HOSTNAME/v1/storage/buckets/{bucketId}
 | write | array | An array of strings with write permissions. By default inherits the existing write permissions. [learn more about permissions](/docs/permissions) and get a full list of available permissions. |  |
 | enabled | boolean | Is bucket enabled? | 1 |
 | maximumFileSize | integer | Maximum file size allowed in bytes. Maximum allowed value is 30MB. For self hosted version you can change the limit by changing _APP_STORAGE_LIMIT environment variable. [Learn more about storage environment variables](docs/environment-variables#storage) |  |
-| allowedFileExtensions | array | Allowed file extensions | [] |
+| allowedFileExtensions | array | Allowed file extensions. Maximum of 100 extensions are allowed, each 64 characters long. | [] |
 | encryption | boolean | Is encryption enabled? For file size above 20MB encryption is skipped even if it&#039;s enabled | 1 |
 | antivirus | boolean | Is virus scanning enabled? For file size above 20MB AntiVirus scanning is skipped even if it&#039;s enabled | 1 |
 
