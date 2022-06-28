@@ -5,6 +5,7 @@ namespace Appwrite\Services;
 use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
+use Appwrite\InputFile;
 
 class Account extends Service
 {
@@ -15,10 +16,12 @@ class Account extends Service
      *
      * @throws AppwriteException
      * @return array
+
      */
     public function get(): array
     {
         $path   = str_replace([], [], '/account');
+
         $params = [];
 
         return $this->client->call(Client::METHOD_GET, $path, [
@@ -42,20 +45,19 @@ class Account extends Service
      * @param string $password
      * @throws AppwriteException
      * @return array
+
      */
     public function updateEmail(string $email, string $password): array
     {
+        $path   = str_replace([], [], '/account/email');
+
+        $params = [];
         if (!isset($email)) {
             throw new AppwriteException('Missing required parameter: "email"');
         }
-
         if (!isset($password)) {
             throw new AppwriteException('Missing required parameter: "password"');
         }
-
-        $path   = str_replace([], [], '/account/email');
-        $params = [];
-
         if (!is_null($email)) {
             $params['email'] = $email;
         }
@@ -63,6 +65,7 @@ class Account extends Service
         if (!is_null($password)) {
             $params['password'] = $password;
         }
+
 
         return $this->client->call(Client::METHOD_PATCH, $path, [
             'content-type' => 'application/json',
@@ -79,12 +82,13 @@ class Account extends Service
      * @param int $offset
      * @throws AppwriteException
      * @return array
+
      */
     public function getLogs(int $limit = null, int $offset = null): array
     {
         $path   = str_replace([], [], '/account/logs');
-        $params = [];
 
+        $params = [];
         if (!is_null($limit)) {
             $params['limit'] = $limit;
         }
@@ -92,6 +96,7 @@ class Account extends Service
         if (!is_null($offset)) {
             $params['offset'] = $offset;
         }
+
 
         return $this->client->call(Client::METHOD_GET, $path, [
             'content-type' => 'application/json',
@@ -106,19 +111,20 @@ class Account extends Service
      * @param string $name
      * @throws AppwriteException
      * @return array
+
      */
     public function updateName(string $name): array
     {
+        $path   = str_replace([], [], '/account/name');
+
+        $params = [];
         if (!isset($name)) {
             throw new AppwriteException('Missing required parameter: "name"');
         }
-
-        $path   = str_replace([], [], '/account/name');
-        $params = [];
-
         if (!is_null($name)) {
             $params['name'] = $name;
         }
+
 
         return $this->client->call(Client::METHOD_PATCH, $path, [
             'content-type' => 'application/json',
@@ -136,16 +142,16 @@ class Account extends Service
      * @param string $oldPassword
      * @throws AppwriteException
      * @return array
+
      */
     public function updatePassword(string $password, string $oldPassword = null): array
     {
+        $path   = str_replace([], [], '/account/password');
+
+        $params = [];
         if (!isset($password)) {
             throw new AppwriteException('Missing required parameter: "password"');
         }
-
-        $path   = str_replace([], [], '/account/password');
-        $params = [];
-
         if (!is_null($password)) {
             $params['password'] = $password;
         }
@@ -153,6 +159,46 @@ class Account extends Service
         if (!is_null($oldPassword)) {
             $params['oldPassword'] = $oldPassword;
         }
+
+
+        return $this->client->call(Client::METHOD_PATCH, $path, [
+            'content-type' => 'application/json',
+        ], $params);
+    }
+
+    /**
+     * Update Account Phone
+     *
+     * Update currently logged in user account phone number. After changing phone
+     * number, the user confirmation status will get reset. A new confirmation SMS
+     * is not sent automatically however you can use the phone confirmation
+     * endpoint again to send the confirmation SMS.
+     *
+     * @param string $number
+     * @param string $password
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function updatePhone(string $number, string $password): array
+    {
+        $path   = str_replace([], [], '/account/phone');
+
+        $params = [];
+        if (!isset($number)) {
+            throw new AppwriteException('Missing required parameter: "number"');
+        }
+        if (!isset($password)) {
+            throw new AppwriteException('Missing required parameter: "password"');
+        }
+        if (!is_null($number)) {
+            $params['number'] = $number;
+        }
+
+        if (!is_null($password)) {
+            $params['password'] = $password;
+        }
+
 
         return $this->client->call(Client::METHOD_PATCH, $path, [
             'content-type' => 'application/json',
@@ -166,10 +212,12 @@ class Account extends Service
      *
      * @throws AppwriteException
      * @return array
+
      */
     public function getPrefs(): array
     {
         $path   = str_replace([], [], '/account/prefs');
+
         $params = [];
 
         return $this->client->call(Client::METHOD_GET, $path, [
@@ -187,19 +235,20 @@ class Account extends Service
      * @param array $prefs
      * @throws AppwriteException
      * @return array
+
      */
     public function updatePrefs(array $prefs): array
     {
+        $path   = str_replace([], [], '/account/prefs');
+
+        $params = [];
         if (!isset($prefs)) {
             throw new AppwriteException('Missing required parameter: "prefs"');
         }
-
-        $path   = str_replace([], [], '/account/prefs');
-        $params = [];
-
         if (!is_null($prefs)) {
             $params['prefs'] = $prefs;
         }
+
 
         return $this->client->call(Client::METHOD_PATCH, $path, [
             'content-type' => 'application/json',
@@ -222,20 +271,19 @@ class Account extends Service
      * @param string $url
      * @throws AppwriteException
      * @return array
+
      */
     public function createRecovery(string $email, string $url): array
     {
+        $path   = str_replace([], [], '/account/recovery');
+
+        $params = [];
         if (!isset($email)) {
             throw new AppwriteException('Missing required parameter: "email"');
         }
-
         if (!isset($url)) {
             throw new AppwriteException('Missing required parameter: "url"');
         }
-
-        $path   = str_replace([], [], '/account/recovery');
-        $params = [];
-
         if (!is_null($email)) {
             $params['email'] = $email;
         }
@@ -243,6 +291,7 @@ class Account extends Service
         if (!is_null($url)) {
             $params['url'] = $url;
         }
+
 
         return $this->client->call(Client::METHOD_POST, $path, [
             'content-type' => 'application/json',
@@ -268,28 +317,25 @@ class Account extends Service
      * @param string $passwordAgain
      * @throws AppwriteException
      * @return array
+
      */
     public function updateRecovery(string $userId, string $secret, string $password, string $passwordAgain): array
     {
+        $path   = str_replace([], [], '/account/recovery');
+
+        $params = [];
         if (!isset($userId)) {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
-
         if (!isset($secret)) {
             throw new AppwriteException('Missing required parameter: "secret"');
         }
-
         if (!isset($password)) {
             throw new AppwriteException('Missing required parameter: "password"');
         }
-
         if (!isset($passwordAgain)) {
             throw new AppwriteException('Missing required parameter: "passwordAgain"');
         }
-
-        $path   = str_replace([], [], '/account/recovery');
-        $params = [];
-
         if (!is_null($userId)) {
             $params['userId'] = $userId;
         }
@@ -306,6 +352,7 @@ class Account extends Service
             $params['passwordAgain'] = $passwordAgain;
         }
 
+
         return $this->client->call(Client::METHOD_PUT, $path, [
             'content-type' => 'application/json',
         ], $params);
@@ -319,10 +366,12 @@ class Account extends Service
      *
      * @throws AppwriteException
      * @return array
+
      */
     public function getSessions(): array
     {
         $path   = str_replace([], [], '/account/sessions');
+
         $params = [];
 
         return $this->client->call(Client::METHOD_GET, $path, [
@@ -337,11 +386,13 @@ class Account extends Service
      * from the end client.
      *
      * @throws AppwriteException
-     * @return array
+     * @return string
+
      */
-    public function deleteSessions(): array
+    public function deleteSessions(): string
     {
         $path   = str_replace([], [], '/account/sessions');
+
         $params = [];
 
         return $this->client->call(Client::METHOD_DELETE, $path, [
@@ -358,15 +409,16 @@ class Account extends Service
      * @param string $sessionId
      * @throws AppwriteException
      * @return array
+
      */
     public function getSession(string $sessionId): array
     {
+        $path   = str_replace(['{sessionId}'], [$sessionId], '/account/sessions/{sessionId}');
+
+        $params = [];
         if (!isset($sessionId)) {
             throw new AppwriteException('Missing required parameter: "sessionId"');
         }
-
-        $path   = str_replace(['{sessionId}'], [$sessionId], '/account/sessions/{sessionId}');
-        $params = [];
 
         return $this->client->call(Client::METHOD_GET, $path, [
             'content-type' => 'application/json',
@@ -383,15 +435,16 @@ class Account extends Service
      * @param string $sessionId
      * @throws AppwriteException
      * @return array
+
      */
     public function updateSession(string $sessionId): array
     {
+        $path   = str_replace(['{sessionId}'], [$sessionId], '/account/sessions/{sessionId}');
+
+        $params = [];
         if (!isset($sessionId)) {
             throw new AppwriteException('Missing required parameter: "sessionId"');
         }
-
-        $path   = str_replace(['{sessionId}'], [$sessionId], '/account/sessions/{sessionId}');
-        $params = [];
 
         return $this->client->call(Client::METHOD_PATCH, $path, [
             'content-type' => 'application/json',
@@ -408,16 +461,17 @@ class Account extends Service
      *
      * @param string $sessionId
      * @throws AppwriteException
-     * @return array
+     * @return string
+
      */
-    public function deleteSession(string $sessionId): array
+    public function deleteSession(string $sessionId): string
     {
+        $path   = str_replace(['{sessionId}'], [$sessionId], '/account/sessions/{sessionId}');
+
+        $params = [];
         if (!isset($sessionId)) {
             throw new AppwriteException('Missing required parameter: "sessionId"');
         }
-
-        $path   = str_replace(['{sessionId}'], [$sessionId], '/account/sessions/{sessionId}');
-        $params = [];
 
         return $this->client->call(Client::METHOD_DELETE, $path, [
             'content-type' => 'application/json',
@@ -433,10 +487,12 @@ class Account extends Service
      *
      * @throws AppwriteException
      * @return array
+
      */
     public function updateStatus(): array
     {
         $path   = str_replace([], [], '/account/status');
+
         $params = [];
 
         return $this->client->call(Client::METHOD_PATCH, $path, [
@@ -454,8 +510,8 @@ class Account extends Service
      * should redirect the user back to your app and allow you to complete the
      * verification process by verifying both the **userId** and **secret**
      * parameters. Learn more about how to [complete the verification
-     * process](/docs/client/account#accountUpdateVerification). The verification
-     * link sent to the user's email address is valid for 7 days.
+     * process](/docs/client/account#accountUpdateEmailVerification). The
+     * verification link sent to the user's email address is valid for 7 days.
      * 
      * Please note that in order to avoid a [Redirect
      * Attack](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.md),
@@ -466,19 +522,20 @@ class Account extends Service
      * @param string $url
      * @throws AppwriteException
      * @return array
+
      */
     public function createVerification(string $url): array
     {
+        $path   = str_replace([], [], '/account/verification');
+
+        $params = [];
         if (!isset($url)) {
             throw new AppwriteException('Missing required parameter: "url"');
         }
-
-        $path   = str_replace([], [], '/account/verification');
-        $params = [];
-
         if (!is_null($url)) {
             $params['url'] = $url;
         }
+
 
         return $this->client->call(Client::METHOD_POST, $path, [
             'content-type' => 'application/json',
@@ -497,20 +554,19 @@ class Account extends Service
      * @param string $secret
      * @throws AppwriteException
      * @return array
+
      */
     public function updateVerification(string $userId, string $secret): array
     {
+        $path   = str_replace([], [], '/account/verification');
+
+        $params = [];
         if (!isset($userId)) {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
-
         if (!isset($secret)) {
             throw new AppwriteException('Missing required parameter: "secret"');
         }
-
-        $path   = str_replace([], [], '/account/verification');
-        $params = [];
-
         if (!is_null($userId)) {
             $params['userId'] = $userId;
         }
@@ -518,6 +574,72 @@ class Account extends Service
         if (!is_null($secret)) {
             $params['secret'] = $secret;
         }
+
+
+        return $this->client->call(Client::METHOD_PUT, $path, [
+            'content-type' => 'application/json',
+        ], $params);
+    }
+
+    /**
+     * Create Phone Verification
+     *
+     * Use this endpoint to send a verification message to your user's phone
+     * number to confirm they are the valid owners of that address. The provided
+     * secret should allow you to complete the verification process by verifying
+     * both the **userId** and **secret** parameters. Learn more about how to
+     * [complete the verification
+     * process](/docs/client/account#accountUpdatePhoneVerification). The
+     * verification link sent to the user's phone number is valid for 15 minutes.
+     *
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function createPhoneVerification(): array
+    {
+        $path   = str_replace([], [], '/account/verification/phone');
+
+        $params = [];
+
+        return $this->client->call(Client::METHOD_POST, $path, [
+            'content-type' => 'application/json',
+        ], $params);
+    }
+
+    /**
+     * Create Phone Verification (confirmation)
+     *
+     * Use this endpoint to complete the user phone verification process. Use the
+     * **userId** and **secret** that were sent to your user's phone number to
+     * verify the user email ownership. If confirmed this route will return a 200
+     * status code.
+     *
+     * @param string $userId
+     * @param string $secret
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function updatePhoneVerification(string $userId, string $secret): array
+    {
+        $path   = str_replace([], [], '/account/verification/phone');
+
+        $params = [];
+        if (!isset($userId)) {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+        if (!isset($secret)) {
+            throw new AppwriteException('Missing required parameter: "secret"');
+        }
+        if (!is_null($userId)) {
+            $params['userId'] = $userId;
+        }
+
+        if (!is_null($secret)) {
+            $params['secret'] = $secret;
+        }
+
 
         return $this->client->call(Client::METHOD_PUT, $path, [
             'content-type' => 'application/json',

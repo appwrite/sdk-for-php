@@ -16,7 +16,7 @@ GET https://HOSTNAME/v1/functions
 | limit | integer | Maximum number of functions to return in response. By default will return maximum 25 results. Maximum of 100 results allowed per request. | 25 |
 | offset | integer | Offset value. The default value is 0. Use this value to manage pagination. [learn more about pagination](https://appwrite.io/docs/pagination) | 0 |
 | cursor | string | ID of the function used as the starting point for the query, excluding the function itself. Should be used for efficient pagination when working with large sets of data. [learn more about pagination](https://appwrite.io/docs/pagination) |  |
-| cursorDirection | string | Direction of the cursor. | after |
+| cursorDirection | string | Direction of the cursor, can be either &#039;before&#039; or &#039;after&#039;. | after |
 | orderType | string | Order result by ASC or DESC order. | ASC |
 
 ## Create Function
@@ -113,7 +113,7 @@ GET https://HOSTNAME/v1/functions/{functionId}/deployments
 | limit | integer | Maximum number of deployments to return in response. By default will return maximum 25 results. Maximum of 100 results allowed per request. | 25 |
 | offset | integer | Offset value. The default value is 0. Use this value to manage pagination. [learn more about pagination](https://appwrite.io/docs/pagination) | 0 |
 | cursor | string | ID of the deployment used as the starting point for the query, excluding the deployment itself. Should be used for efficient pagination when working with large sets of data. [learn more about pagination](https://appwrite.io/docs/pagination) |  |
-| cursorDirection | string | Direction of the cursor. | after |
+| cursorDirection | string | Direction of the cursor, can be either &#039;before&#039; or &#039;after&#039;. | after |
 | orderType | string | Order result by ASC or DESC order. | ASC |
 
 ## Create Deployment
@@ -213,7 +213,7 @@ GET https://HOSTNAME/v1/functions/{functionId}/executions
 | offset | integer | Offset value. The default value is 0. Use this value to manage pagination. [learn more about pagination](https://appwrite.io/docs/pagination) | 0 |
 | search | string | Search term to filter your list results. Max length: 256 chars. |  |
 | cursor | string | ID of the execution used as the starting point for the query, excluding the execution itself. Should be used for efficient pagination when working with large sets of data. [learn more about pagination](https://appwrite.io/docs/pagination) |  |
-| cursorDirection | string | Direction of the cursor. | after |
+| cursorDirection | string | Direction of the cursor, can be either &#039;before&#039; or &#039;after&#039;. | after |
 
 ## Create Execution
 

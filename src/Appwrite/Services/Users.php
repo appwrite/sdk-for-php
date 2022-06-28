@@ -5,6 +5,7 @@ namespace Appwrite\Services;
 use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
+use Appwrite\InputFile;
 
 class Users extends Service
 {
@@ -22,12 +23,13 @@ class Users extends Service
      * @param string $orderType
      * @throws AppwriteException
      * @return array
+
      */
     public function list(string $search = null, int $limit = null, int $offset = null, string $cursor = null, string $cursorDirection = null, string $orderType = null): array
     {
         $path   = str_replace([], [], '/users');
-        $params = [];
 
+        $params = [];
         if (!is_null($search)) {
             $params['search'] = $search;
         }
@@ -52,6 +54,7 @@ class Users extends Service
             $params['orderType'] = $orderType;
         }
 
+
         return $this->client->call(Client::METHOD_GET, $path, [
             'content-type' => 'application/json',
         ], $params);
@@ -68,24 +71,22 @@ class Users extends Service
      * @param string $name
      * @throws AppwriteException
      * @return array
+
      */
     public function create(string $userId, string $email, string $password, string $name = null): array
     {
+        $path   = str_replace([], [], '/users');
+
+        $params = [];
         if (!isset($userId)) {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
-
         if (!isset($email)) {
             throw new AppwriteException('Missing required parameter: "email"');
         }
-
         if (!isset($password)) {
             throw new AppwriteException('Missing required parameter: "password"');
         }
-
-        $path   = str_replace([], [], '/users');
-        $params = [];
-
         if (!is_null($userId)) {
             $params['userId'] = $userId;
         }
@@ -102,6 +103,7 @@ class Users extends Service
             $params['name'] = $name;
         }
 
+
         return $this->client->call(Client::METHOD_POST, $path, [
             'content-type' => 'application/json',
         ], $params);
@@ -115,15 +117,16 @@ class Users extends Service
      * @param string $userId
      * @throws AppwriteException
      * @return array
+
      */
     public function get(string $userId): array
     {
+        $path   = str_replace(['{userId}'], [$userId], '/users/{userId}');
+
+        $params = [];
         if (!isset($userId)) {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
-
-        $path   = str_replace(['{userId}'], [$userId], '/users/{userId}');
-        $params = [];
 
         return $this->client->call(Client::METHOD_GET, $path, [
             'content-type' => 'application/json',
@@ -141,16 +144,17 @@ class Users extends Service
      *
      * @param string $userId
      * @throws AppwriteException
-     * @return array
+     * @return string
+
      */
-    public function delete(string $userId): array
+    public function delete(string $userId): string
     {
+        $path   = str_replace(['{userId}'], [$userId], '/users/{userId}');
+
+        $params = [];
         if (!isset($userId)) {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
-
-        $path   = str_replace(['{userId}'], [$userId], '/users/{userId}');
-        $params = [];
 
         return $this->client->call(Client::METHOD_DELETE, $path, [
             'content-type' => 'application/json',
@@ -166,23 +170,23 @@ class Users extends Service
      * @param string $email
      * @throws AppwriteException
      * @return array
+
      */
     public function updateEmail(string $userId, string $email): array
     {
+        $path   = str_replace(['{userId}'], [$userId], '/users/{userId}/email');
+
+        $params = [];
         if (!isset($userId)) {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
-
         if (!isset($email)) {
             throw new AppwriteException('Missing required parameter: "email"');
         }
-
-        $path   = str_replace(['{userId}'], [$userId], '/users/{userId}/email');
-        $params = [];
-
         if (!is_null($email)) {
             $params['email'] = $email;
         }
+
 
         return $this->client->call(Client::METHOD_PATCH, $path, [
             'content-type' => 'application/json',
@@ -199,16 +203,16 @@ class Users extends Service
      * @param int $offset
      * @throws AppwriteException
      * @return array
+
      */
     public function getLogs(string $userId, int $limit = null, int $offset = null): array
     {
+        $path   = str_replace(['{userId}'], [$userId], '/users/{userId}/logs');
+
+        $params = [];
         if (!isset($userId)) {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
-
-        $path   = str_replace(['{userId}'], [$userId], '/users/{userId}/logs');
-        $params = [];
-
         if (!is_null($limit)) {
             $params['limit'] = $limit;
         }
@@ -216,6 +220,7 @@ class Users extends Service
         if (!is_null($offset)) {
             $params['offset'] = $offset;
         }
+
 
         return $this->client->call(Client::METHOD_GET, $path, [
             'content-type' => 'application/json',
@@ -230,15 +235,16 @@ class Users extends Service
      * @param string $userId
      * @throws AppwriteException
      * @return array
+
      */
     public function getMemberships(string $userId): array
     {
+        $path   = str_replace(['{userId}'], [$userId], '/users/{userId}/memberships');
+
+        $params = [];
         if (!isset($userId)) {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
-
-        $path   = str_replace(['{userId}'], [$userId], '/users/{userId}/memberships');
-        $params = [];
 
         return $this->client->call(Client::METHOD_GET, $path, [
             'content-type' => 'application/json',
@@ -254,23 +260,23 @@ class Users extends Service
      * @param string $name
      * @throws AppwriteException
      * @return array
+
      */
     public function updateName(string $userId, string $name): array
     {
+        $path   = str_replace(['{userId}'], [$userId], '/users/{userId}/name');
+
+        $params = [];
         if (!isset($userId)) {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
-
         if (!isset($name)) {
             throw new AppwriteException('Missing required parameter: "name"');
         }
-
-        $path   = str_replace(['{userId}'], [$userId], '/users/{userId}/name');
-        $params = [];
-
         if (!is_null($name)) {
             $params['name'] = $name;
         }
+
 
         return $this->client->call(Client::METHOD_PATCH, $path, [
             'content-type' => 'application/json',
@@ -286,23 +292,55 @@ class Users extends Service
      * @param string $password
      * @throws AppwriteException
      * @return array
+
      */
     public function updatePassword(string $userId, string $password): array
     {
+        $path   = str_replace(['{userId}'], [$userId], '/users/{userId}/password');
+
+        $params = [];
         if (!isset($userId)) {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
-
         if (!isset($password)) {
             throw new AppwriteException('Missing required parameter: "password"');
         }
-
-        $path   = str_replace(['{userId}'], [$userId], '/users/{userId}/password');
-        $params = [];
-
         if (!is_null($password)) {
             $params['password'] = $password;
         }
+
+
+        return $this->client->call(Client::METHOD_PATCH, $path, [
+            'content-type' => 'application/json',
+        ], $params);
+    }
+
+    /**
+     * Update Phone
+     *
+     * Update the user phone by its unique ID.
+     *
+     * @param string $userId
+     * @param string $number
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function updatePhone(string $userId, string $number): array
+    {
+        $path   = str_replace(['{userId}'], [$userId], '/users/{userId}/phone');
+
+        $params = [];
+        if (!isset($userId)) {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+        if (!isset($number)) {
+            throw new AppwriteException('Missing required parameter: "number"');
+        }
+        if (!is_null($number)) {
+            $params['number'] = $number;
+        }
+
 
         return $this->client->call(Client::METHOD_PATCH, $path, [
             'content-type' => 'application/json',
@@ -317,15 +355,16 @@ class Users extends Service
      * @param string $userId
      * @throws AppwriteException
      * @return array
+
      */
     public function getPrefs(string $userId): array
     {
+        $path   = str_replace(['{userId}'], [$userId], '/users/{userId}/prefs');
+
+        $params = [];
         if (!isset($userId)) {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
-
-        $path   = str_replace(['{userId}'], [$userId], '/users/{userId}/prefs');
-        $params = [];
 
         return $this->client->call(Client::METHOD_GET, $path, [
             'content-type' => 'application/json',
@@ -343,23 +382,23 @@ class Users extends Service
      * @param array $prefs
      * @throws AppwriteException
      * @return array
+
      */
     public function updatePrefs(string $userId, array $prefs): array
     {
+        $path   = str_replace(['{userId}'], [$userId], '/users/{userId}/prefs');
+
+        $params = [];
         if (!isset($userId)) {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
-
         if (!isset($prefs)) {
             throw new AppwriteException('Missing required parameter: "prefs"');
         }
-
-        $path   = str_replace(['{userId}'], [$userId], '/users/{userId}/prefs');
-        $params = [];
-
         if (!is_null($prefs)) {
             $params['prefs'] = $prefs;
         }
+
 
         return $this->client->call(Client::METHOD_PATCH, $path, [
             'content-type' => 'application/json',
@@ -374,15 +413,16 @@ class Users extends Service
      * @param string $userId
      * @throws AppwriteException
      * @return array
+
      */
     public function getSessions(string $userId): array
     {
+        $path   = str_replace(['{userId}'], [$userId], '/users/{userId}/sessions');
+
+        $params = [];
         if (!isset($userId)) {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
-
-        $path   = str_replace(['{userId}'], [$userId], '/users/{userId}/sessions');
-        $params = [];
 
         return $this->client->call(Client::METHOD_GET, $path, [
             'content-type' => 'application/json',
@@ -396,16 +436,17 @@ class Users extends Service
      *
      * @param string $userId
      * @throws AppwriteException
-     * @return array
+     * @return string
+
      */
-    public function deleteSessions(string $userId): array
+    public function deleteSessions(string $userId): string
     {
+        $path   = str_replace(['{userId}'], [$userId], '/users/{userId}/sessions');
+
+        $params = [];
         if (!isset($userId)) {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
-
-        $path   = str_replace(['{userId}'], [$userId], '/users/{userId}/sessions');
-        $params = [];
 
         return $this->client->call(Client::METHOD_DELETE, $path, [
             'content-type' => 'application/json',
@@ -420,20 +461,20 @@ class Users extends Service
      * @param string $userId
      * @param string $sessionId
      * @throws AppwriteException
-     * @return array
+     * @return string
+
      */
-    public function deleteSession(string $userId, string $sessionId): array
+    public function deleteSession(string $userId, string $sessionId): string
     {
+        $path   = str_replace(['{userId}', '{sessionId}'], [$userId, $sessionId], '/users/{userId}/sessions/{sessionId}');
+
+        $params = [];
         if (!isset($userId)) {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
-
         if (!isset($sessionId)) {
             throw new AppwriteException('Missing required parameter: "sessionId"');
         }
-
-        $path   = str_replace(['{userId}', '{sessionId}'], [$userId, $sessionId], '/users/{userId}/sessions/{sessionId}');
-        $params = [];
 
         return $this->client->call(Client::METHOD_DELETE, $path, [
             'content-type' => 'application/json',
@@ -450,23 +491,23 @@ class Users extends Service
      * @param bool $status
      * @throws AppwriteException
      * @return array
+
      */
     public function updateStatus(string $userId, bool $status): array
     {
+        $path   = str_replace(['{userId}'], [$userId], '/users/{userId}/status');
+
+        $params = [];
         if (!isset($userId)) {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
-
         if (!isset($status)) {
             throw new AppwriteException('Missing required parameter: "status"');
         }
-
-        $path   = str_replace(['{userId}'], [$userId], '/users/{userId}/status');
-        $params = [];
-
         if (!is_null($status)) {
             $params['status'] = $status;
         }
+
 
         return $this->client->call(Client::METHOD_PATCH, $path, [
             'content-type' => 'application/json',
@@ -482,23 +523,55 @@ class Users extends Service
      * @param bool $emailVerification
      * @throws AppwriteException
      * @return array
+
      */
-    public function updateVerification(string $userId, bool $emailVerification): array
+    public function updateEmailVerification(string $userId, bool $emailVerification): array
     {
+        $path   = str_replace(['{userId}'], [$userId], '/users/{userId}/verification');
+
+        $params = [];
         if (!isset($userId)) {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
-
         if (!isset($emailVerification)) {
             throw new AppwriteException('Missing required parameter: "emailVerification"');
         }
-
-        $path   = str_replace(['{userId}'], [$userId], '/users/{userId}/verification');
-        $params = [];
-
         if (!is_null($emailVerification)) {
             $params['emailVerification'] = $emailVerification;
         }
+
+
+        return $this->client->call(Client::METHOD_PATCH, $path, [
+            'content-type' => 'application/json',
+        ], $params);
+    }
+
+    /**
+     * Update Phone Verification
+     *
+     * Update the user phone verification status by its unique ID.
+     *
+     * @param string $userId
+     * @param bool $phoneVerification
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function updatePhoneVerification(string $userId, bool $phoneVerification): array
+    {
+        $path   = str_replace(['{userId}'], [$userId], '/users/{userId}/verification/phone');
+
+        $params = [];
+        if (!isset($userId)) {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+        if (!isset($phoneVerification)) {
+            throw new AppwriteException('Missing required parameter: "phoneVerification"');
+        }
+        if (!is_null($phoneVerification)) {
+            $params['phoneVerification'] = $phoneVerification;
+        }
+
 
         return $this->client->call(Client::METHOD_PATCH, $path, [
             'content-type' => 'application/json',

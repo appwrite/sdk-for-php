@@ -18,7 +18,7 @@ In admin mode, this endpoint returns a list of all the teams in the current proj
 | limit | integer | Maximum number of teams to return in response. By default will return maximum 25 results. Maximum of 100 results allowed per request. | 25 |
 | offset | integer | Offset value. The default value is 0. Use this param to manage pagination. [learn more about pagination](https://appwrite.io/docs/pagination) | 0 |
 | cursor | string | ID of the team used as the starting point for the query, excluding the team itself. Should be used for efficient pagination when working with large sets of data. [learn more about pagination](https://appwrite.io/docs/pagination) |  |
-| cursorDirection | string | Direction of the cursor. | after |
+| cursorDirection | string | Direction of the cursor, can be either &#039;before&#039; or &#039;after&#039;. | after |
 | orderType | string | Order result by ASC or DESC order. | ASC |
 
 ## Create Team
@@ -97,7 +97,7 @@ GET https://HOSTNAME/v1/teams/{teamId}/memberships
 | limit | integer | Maximum number of memberships to return in response. By default will return maximum 25 results. Maximum of 100 results allowed per request. | 25 |
 | offset | integer | Offset value. The default value is 0. Use this value to manage pagination. [learn more about pagination](https://appwrite.io/docs/pagination) | 0 |
 | cursor | string | ID of the membership used as the starting point for the query, excluding the membership itself. Should be used for efficient pagination when working with large sets of data. [learn more about pagination](https://appwrite.io/docs/pagination) |  |
-| cursorDirection | string | Direction of the cursor. | after |
+| cursorDirection | string | Direction of the cursor, can be either &#039;before&#039; or &#039;after&#039;. | after |
 | orderType | string | Order result by ASC or DESC order. | ASC |
 
 ## Create Team Membership

@@ -16,7 +16,7 @@ GET https://HOSTNAME/v1/users
 | limit | integer | Maximum number of users to return in response. By default will return maximum 25 results. Maximum of 100 results allowed per request. | 25 |
 | offset | integer | Offset value. The default value is 0. Use this param to manage pagination. [learn more about pagination](https://appwrite.io/docs/pagination) | 0 |
 | cursor | string | ID of the user used as the starting point for the query, excluding the user itself. Should be used for efficient pagination when working with large sets of data. [learn more about pagination](https://appwrite.io/docs/pagination) |  |
-| cursorDirection | string | Direction of the cursor. | after |
+| cursorDirection | string | Direction of the cursor, can be either &#039;before&#039; or &#039;after&#039;. | after |
 | orderType | string | Order result by ASC or DESC order. | ASC |
 
 ## Create User
@@ -139,6 +139,21 @@ PATCH https://HOSTNAME/v1/users/{userId}/password
 | userId | string | **Required** User ID. |  |
 | password | string | New user password. Must be at least 8 chars. |  |
 
+## Update Phone
+
+```http request
+PATCH https://HOSTNAME/v1/users/{userId}/phone
+```
+
+** Update the user phone by its unique ID. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| userId | string | **Required** User ID. |  |
+| number | string | User phone number. |  |
+
 ## Get User Preferences
 
 ```http request
@@ -240,4 +255,19 @@ PATCH https://HOSTNAME/v1/users/{userId}/verification
 | --- | --- | --- | --- |
 | userId | string | **Required** User ID. |  |
 | emailVerification | boolean | User email verification status. |  |
+
+## Update Phone Verification
+
+```http request
+PATCH https://HOSTNAME/v1/users/{userId}/verification/phone
+```
+
+** Update the user phone verification status by its unique ID. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| userId | string | **Required** User ID. |  |
+| phoneVerification | boolean | User phone verification status. |  |
 

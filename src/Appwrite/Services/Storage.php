@@ -5,6 +5,7 @@ namespace Appwrite\Services;
 use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
+use Appwrite\InputFile;
 
 class Storage extends Service
 {
@@ -22,12 +23,13 @@ class Storage extends Service
      * @param string $orderType
      * @throws AppwriteException
      * @return array
+
      */
     public function listBuckets(string $search = null, int $limit = null, int $offset = null, string $cursor = null, string $cursorDirection = null, string $orderType = null): array
     {
         $path   = str_replace([], [], '/storage/buckets');
-        $params = [];
 
+        $params = [];
         if (!is_null($search)) {
             $params['search'] = $search;
         }
@@ -52,6 +54,7 @@ class Storage extends Service
             $params['orderType'] = $orderType;
         }
 
+
         return $this->client->call(Client::METHOD_GET, $path, [
             'content-type' => 'application/json',
         ], $params);
@@ -74,24 +77,22 @@ class Storage extends Service
      * @param bool $antivirus
      * @throws AppwriteException
      * @return array
+
      */
     public function createBucket(string $bucketId, string $name, string $permission, array $read = null, array $write = null, bool $enabled = null, int $maximumFileSize = null, array $allowedFileExtensions = null, bool $encryption = null, bool $antivirus = null): array
     {
+        $path   = str_replace([], [], '/storage/buckets');
+
+        $params = [];
         if (!isset($bucketId)) {
             throw new AppwriteException('Missing required parameter: "bucketId"');
         }
-
         if (!isset($name)) {
             throw new AppwriteException('Missing required parameter: "name"');
         }
-
         if (!isset($permission)) {
             throw new AppwriteException('Missing required parameter: "permission"');
         }
-
-        $path   = str_replace([], [], '/storage/buckets');
-        $params = [];
-
         if (!is_null($bucketId)) {
             $params['bucketId'] = $bucketId;
         }
@@ -132,6 +133,7 @@ class Storage extends Service
             $params['antivirus'] = $antivirus;
         }
 
+
         return $this->client->call(Client::METHOD_POST, $path, [
             'content-type' => 'application/json',
         ], $params);
@@ -146,15 +148,16 @@ class Storage extends Service
      * @param string $bucketId
      * @throws AppwriteException
      * @return array
+
      */
     public function getBucket(string $bucketId): array
     {
+        $path   = str_replace(['{bucketId}'], [$bucketId], '/storage/buckets/{bucketId}');
+
+        $params = [];
         if (!isset($bucketId)) {
             throw new AppwriteException('Missing required parameter: "bucketId"');
         }
-
-        $path   = str_replace(['{bucketId}'], [$bucketId], '/storage/buckets/{bucketId}');
-        $params = [];
 
         return $this->client->call(Client::METHOD_GET, $path, [
             'content-type' => 'application/json',
@@ -178,24 +181,22 @@ class Storage extends Service
      * @param bool $antivirus
      * @throws AppwriteException
      * @return array
+
      */
     public function updateBucket(string $bucketId, string $name, string $permission, array $read = null, array $write = null, bool $enabled = null, int $maximumFileSize = null, array $allowedFileExtensions = null, bool $encryption = null, bool $antivirus = null): array
     {
+        $path   = str_replace(['{bucketId}'], [$bucketId], '/storage/buckets/{bucketId}');
+
+        $params = [];
         if (!isset($bucketId)) {
             throw new AppwriteException('Missing required parameter: "bucketId"');
         }
-
         if (!isset($name)) {
             throw new AppwriteException('Missing required parameter: "name"');
         }
-
         if (!isset($permission)) {
             throw new AppwriteException('Missing required parameter: "permission"');
         }
-
-        $path   = str_replace(['{bucketId}'], [$bucketId], '/storage/buckets/{bucketId}');
-        $params = [];
-
         if (!is_null($name)) {
             $params['name'] = $name;
         }
@@ -232,6 +233,7 @@ class Storage extends Service
             $params['antivirus'] = $antivirus;
         }
 
+
         return $this->client->call(Client::METHOD_PUT, $path, [
             'content-type' => 'application/json',
         ], $params);
@@ -244,16 +246,17 @@ class Storage extends Service
      *
      * @param string $bucketId
      * @throws AppwriteException
-     * @return array
+     * @return string
+
      */
-    public function deleteBucket(string $bucketId): array
+    public function deleteBucket(string $bucketId): string
     {
+        $path   = str_replace(['{bucketId}'], [$bucketId], '/storage/buckets/{bucketId}');
+
+        $params = [];
         if (!isset($bucketId)) {
             throw new AppwriteException('Missing required parameter: "bucketId"');
         }
-
-        $path   = str_replace(['{bucketId}'], [$bucketId], '/storage/buckets/{bucketId}');
-        $params = [];
 
         return $this->client->call(Client::METHOD_DELETE, $path, [
             'content-type' => 'application/json',
@@ -276,16 +279,16 @@ class Storage extends Service
      * @param string $orderType
      * @throws AppwriteException
      * @return array
+
      */
     public function listFiles(string $bucketId, string $search = null, int $limit = null, int $offset = null, string $cursor = null, string $cursorDirection = null, string $orderType = null): array
     {
+        $path   = str_replace(['{bucketId}'], [$bucketId], '/storage/buckets/{bucketId}/files');
+
+        $params = [];
         if (!isset($bucketId)) {
             throw new AppwriteException('Missing required parameter: "bucketId"');
         }
-
-        $path   = str_replace(['{bucketId}'], [$bucketId], '/storage/buckets/{bucketId}/files');
-        $params = [];
-
         if (!is_null($search)) {
             $params['search'] = $search;
         }
@@ -309,6 +312,7 @@ class Storage extends Service
         if (!is_null($orderType)) {
             $params['orderType'] = $orderType;
         }
+
 
         return $this->client->call(Client::METHOD_GET, $path, [
             'content-type' => 'application/json',
@@ -339,29 +343,27 @@ class Storage extends Service
      *
      * @param string $bucketId
      * @param string $fileId
-     * @param string $file
+     * @param InputFile $file
      * @param array $read
      * @param array $write
      * @throws AppwriteException
      * @return array
+
      */
-    public function createFile(string $bucketId, string $fileId, string $file, array $read = null, array $write = null, callable $onProgress = null): array
+    public function createFile(string $bucketId, string $fileId, InputFile $file, array $read = null, array $write = null, callable $onProgress = null): array
     {
+        $path   = str_replace(['{bucketId}'], [$bucketId], '/storage/buckets/{bucketId}/files');
+
+        $params = [];
         if (!isset($bucketId)) {
             throw new AppwriteException('Missing required parameter: "bucketId"');
         }
-
         if (!isset($fileId)) {
             throw new AppwriteException('Missing required parameter: "fileId"');
         }
-
         if (!isset($file)) {
             throw new AppwriteException('Missing required parameter: "file"');
         }
-
-        $path   = str_replace(['{bucketId}'], [$bucketId], '/storage/buckets/{bucketId}/files');
-        $params = [];
-
         if (!is_null($fileId)) {
             $params['fileId'] = $fileId;
         }
@@ -378,34 +380,61 @@ class Storage extends Service
             $params['write'] = $write;
         }
 
-        $size = filesize($file);
-        $mimeType = mime_content_type($file);
-        $postedName = basename($file);
-        //send single file if size is less than or equal to 5MB
-        if ($size <= Client::CHUNK_SIZE) {
-            $params['file'] = new \CURLFile($file, $mimeType, $postedName);
-            return $this->client->call(Client::METHOD_POST, $path, [
-                'content-type' => 'multipart/form-data',
-                ], $params);
+
+        $size = 0;
+        $mimeType = null;
+        $postedName = null;
+        if(empty($file->getPath() ?? null)) {
+            $size = strlen($file->getData());
+            $mimeType = $file->getMimeType();
+            $postedName = $file->getFilename();
+            if ($size <= Client::CHUNK_SIZE) {
+                $params['file'] = new \CURLFile('data://' . $mimeType . ';base64,' . base64_encode($file->getData()), $mimeType, $postedName);
+                return $this->client->call(Client::METHOD_POST, $path, [
+                            'content-type' => 'multipart/form-data',
+                        ], $params);
+            }
+        } else {
+            $size = filesize($file->getPath());
+            $mimeType = $file->getMimeType() ?? mime_content_type($file->getPath());
+            $postedName = $file->getFilename() ?? basename($file->getPath());
+            //send single file if size is less than or equal to 5MB
+            if ($size <= Client::CHUNK_SIZE) {
+                $params['file'] = new \CURLFile($file->getPath(), $mimeType, $postedName);
+                return $this->client->call(Client::METHOD_POST, $path, [
+                            'content-type' => 'multipart/form-data',
+                        ], $params);
+            }
         }
 
         $id = '';
         $counter = 0;
 
-            if($fileId != 'unique()') {
-                try {
-                    $response = $this->client->call(Client::METHOD_GET, new URL($path . '/' . fileId), headers);
-                    $counter = $response['chunksUploaded'] ?? 0;
-                } catch(\Exception $e) {
-                }
+        if($fileId != 'unique()') {
+            try {
+                $response = $this->client->call(Client::METHOD_GET, $path . '/' . $fileId);
+                $counter = $response['chunksUploaded'] ?? 0;
+            } catch(\Exception $e) {
             }
+        }
 
         $headers = ['content-type' => 'multipart/form-data'];
-        $handle = @fopen($file, "rb");
+        $handle = null;
+
+        if(!empty($file->getPath())) {
+            $handle = @fopen($file->getPath(), "rb");
+        }
+
         $start = $counter * Client::CHUNK_SIZE;
         while ($start < $size) {
-            fseek($handle, $start);
-            $params['file'] = new \CURLFile('data://' . $mimeType . ';base64,' . base64_encode(@fread($handle, Client::CHUNK_SIZE)), $mimeType, $postedName);
+            $chunk = '';
+            if(!empty($handle)) {
+                fseek($handle, $start);
+                $chunk = @fread($handle, Client::CHUNK_SIZE);
+            } else {
+                $chunk = substr($file->getData(), $start, Client::CHUNK_SIZE);
+            }
+            $params['file'] = new \CURLFile('data://' . $mimeType . ';base64,' . base64_encode($chunk), $mimeType, $postedName);
             $headers['content-range'] = 'bytes ' . ($counter * Client::CHUNK_SIZE) . '-' . min(((($counter * Client::CHUNK_SIZE) + Client::CHUNK_SIZE) - 1), $size) . '/' . $size;
             if(!empty($id)) {
                 $headers['x-appwrite-id'] = $id;
@@ -426,8 +455,11 @@ class Storage extends Service
                 ]);
             }
         }
-        @fclose($handle);
+        if(!empty($handle)) {
+            @fclose($handle);
+        }
         return $response;
+
     }
 
     /**
@@ -440,19 +472,19 @@ class Storage extends Service
      * @param string $fileId
      * @throws AppwriteException
      * @return array
+
      */
     public function getFile(string $bucketId, string $fileId): array
     {
+        $path   = str_replace(['{bucketId}', '{fileId}'], [$bucketId, $fileId], '/storage/buckets/{bucketId}/files/{fileId}');
+
+        $params = [];
         if (!isset($bucketId)) {
             throw new AppwriteException('Missing required parameter: "bucketId"');
         }
-
         if (!isset($fileId)) {
             throw new AppwriteException('Missing required parameter: "fileId"');
         }
-
-        $path   = str_replace(['{bucketId}', '{fileId}'], [$bucketId, $fileId], '/storage/buckets/{bucketId}/files/{fileId}');
-        $params = [];
 
         return $this->client->call(Client::METHOD_GET, $path, [
             'content-type' => 'application/json',
@@ -471,20 +503,19 @@ class Storage extends Service
      * @param array $write
      * @throws AppwriteException
      * @return array
+
      */
     public function updateFile(string $bucketId, string $fileId, array $read = null, array $write = null): array
     {
+        $path   = str_replace(['{bucketId}', '{fileId}'], [$bucketId, $fileId], '/storage/buckets/{bucketId}/files/{fileId}');
+
+        $params = [];
         if (!isset($bucketId)) {
             throw new AppwriteException('Missing required parameter: "bucketId"');
         }
-
         if (!isset($fileId)) {
             throw new AppwriteException('Missing required parameter: "fileId"');
         }
-
-        $path   = str_replace(['{bucketId}', '{fileId}'], [$bucketId, $fileId], '/storage/buckets/{bucketId}/files/{fileId}');
-        $params = [];
-
         if (!is_null($read)) {
             $params['read'] = $read;
         }
@@ -492,6 +523,7 @@ class Storage extends Service
         if (!is_null($write)) {
             $params['write'] = $write;
         }
+
 
         return $this->client->call(Client::METHOD_PUT, $path, [
             'content-type' => 'application/json',
@@ -507,20 +539,20 @@ class Storage extends Service
      * @param string $bucketId
      * @param string $fileId
      * @throws AppwriteException
-     * @return array
+     * @return string
+
      */
-    public function deleteFile(string $bucketId, string $fileId): array
+    public function deleteFile(string $bucketId, string $fileId): string
     {
+        $path   = str_replace(['{bucketId}', '{fileId}'], [$bucketId, $fileId], '/storage/buckets/{bucketId}/files/{fileId}');
+
+        $params = [];
         if (!isset($bucketId)) {
             throw new AppwriteException('Missing required parameter: "bucketId"');
         }
-
         if (!isset($fileId)) {
             throw new AppwriteException('Missing required parameter: "fileId"');
         }
-
-        $path   = str_replace(['{bucketId}', '{fileId}'], [$bucketId, $fileId], '/storage/buckets/{bucketId}/files/{fileId}');
-        $params = [];
 
         return $this->client->call(Client::METHOD_DELETE, $path, [
             'content-type' => 'application/json',
@@ -538,19 +570,19 @@ class Storage extends Service
      * @param string $fileId
      * @throws AppwriteException
      * @return string
+
      */
     public function getFileDownload(string $bucketId, string $fileId): string
     {
+        $path   = str_replace(['{bucketId}', '{fileId}'], [$bucketId, $fileId], '/storage/buckets/{bucketId}/files/{fileId}/download');
+
+        $params = [];
         if (!isset($bucketId)) {
             throw new AppwriteException('Missing required parameter: "bucketId"');
         }
-
         if (!isset($fileId)) {
             throw new AppwriteException('Missing required parameter: "fileId"');
         }
-
-        $path   = str_replace(['{bucketId}', '{fileId}'], [$bucketId, $fileId], '/storage/buckets/{bucketId}/files/{fileId}/download');
-        $params = [];
 
         return $this->client->call(Client::METHOD_GET, $path, [
             'content-type' => 'application/json',
@@ -581,20 +613,19 @@ class Storage extends Service
      * @param string $output
      * @throws AppwriteException
      * @return string
+
      */
     public function getFilePreview(string $bucketId, string $fileId, int $width = null, int $height = null, string $gravity = null, int $quality = null, int $borderWidth = null, string $borderColor = null, int $borderRadius = null, int $opacity = null, int $rotation = null, string $background = null, string $output = null): string
     {
+        $path   = str_replace(['{bucketId}', '{fileId}'], [$bucketId, $fileId], '/storage/buckets/{bucketId}/files/{fileId}/preview');
+
+        $params = [];
         if (!isset($bucketId)) {
             throw new AppwriteException('Missing required parameter: "bucketId"');
         }
-
         if (!isset($fileId)) {
             throw new AppwriteException('Missing required parameter: "fileId"');
         }
-
-        $path   = str_replace(['{bucketId}', '{fileId}'], [$bucketId, $fileId], '/storage/buckets/{bucketId}/files/{fileId}/preview');
-        $params = [];
-
         if (!is_null($width)) {
             $params['width'] = $width;
         }
@@ -639,6 +670,7 @@ class Storage extends Service
             $params['output'] = $output;
         }
 
+
         return $this->client->call(Client::METHOD_GET, $path, [
             'content-type' => 'application/json',
         ], $params);
@@ -655,19 +687,19 @@ class Storage extends Service
      * @param string $fileId
      * @throws AppwriteException
      * @return string
+
      */
     public function getFileView(string $bucketId, string $fileId): string
     {
+        $path   = str_replace(['{bucketId}', '{fileId}'], [$bucketId, $fileId], '/storage/buckets/{bucketId}/files/{fileId}/view');
+
+        $params = [];
         if (!isset($bucketId)) {
             throw new AppwriteException('Missing required parameter: "bucketId"');
         }
-
         if (!isset($fileId)) {
             throw new AppwriteException('Missing required parameter: "fileId"');
         }
-
-        $path   = str_replace(['{bucketId}', '{fileId}'], [$bucketId, $fileId], '/storage/buckets/{bucketId}/files/{fileId}/view');
-        $params = [];
 
         return $this->client->call(Client::METHOD_GET, $path, [
             'content-type' => 'application/json',

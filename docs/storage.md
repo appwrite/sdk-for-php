@@ -16,7 +16,7 @@ GET https://HOSTNAME/v1/storage/buckets
 | limit | integer | Results limit value. By default will return maximum 25 results. Maximum of 100 results allowed per request. | 25 |
 | offset | integer | Results offset. The default value is 0. Use this param to manage pagination. | 0 |
 | cursor | string | ID of the bucket used as the starting point for the query, excluding the bucket itself. Should be used for efficient pagination when working with large sets of data. |  |
-| cursorDirection | string | Direction of the cursor. | after |
+| cursorDirection | string | Direction of the cursor, can be either &#039;before&#039; or &#039;after&#039;. | after |
 | orderType | string | Order result by ASC or DESC order. | ASC |
 
 ## Create bucket
@@ -110,7 +110,7 @@ GET https://HOSTNAME/v1/storage/buckets/{bucketId}/files
 | limit | integer | Maximum number of files to return in response. By default will return maximum 25 results. Maximum of 100 results allowed per request. | 25 |
 | offset | integer | Offset value. The default value is 0. Use this param to manage pagination. [learn more about pagination](https://appwrite.io/docs/pagination) | 0 |
 | cursor | string | ID of the file used as the starting point for the query, excluding the file itself. Should be used for efficient pagination when working with large sets of data. [learn more about pagination](https://appwrite.io/docs/pagination) |  |
-| cursorDirection | string | Direction of the cursor. | after |
+| cursorDirection | string | Direction of the cursor, can be either &#039;before&#039; or &#039;after&#039;. | after |
 | orderType | string | Order result by ASC or DESC order. | ASC |
 
 ## Create File

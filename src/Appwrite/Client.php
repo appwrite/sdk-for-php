@@ -37,7 +37,7 @@ class Client
      */
     protected $headers = [
         'content-type' => '',
-        'x-sdk-version' => 'appwrite:php:5.0.0',
+        'x-sdk-version' => 'appwrite:php:6.0.0',
     ];
 
     /**
@@ -45,7 +45,7 @@ class Client
      */
     public function __construct()
     {
-        $this->headers['X-Appwrite-Response-Format'] = '0.14.0';
+        $this->headers['X-Appwrite-Response-Format'] = '0.15.0';
  
     }
 

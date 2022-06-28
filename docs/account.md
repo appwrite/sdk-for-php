@@ -69,6 +69,21 @@ PATCH https://HOSTNAME/v1/account/password
 | password | string | New user password. Must be at least 8 chars. |  |
 | oldPassword | string | Current user password. Must be at least 8 chars. |  |
 
+## Update Account Phone
+
+```http request
+PATCH https://HOSTNAME/v1/account/phone
+```
+
+** Update currently logged in user account phone number. After changing phone number, the user confirmation status will get reset. A new confirmation SMS is not sent automatically however you can use the phone confirmation endpoint again to send the confirmation SMS. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| number | string | Phone number. Format this number with a leading &#039;+&#039; and a country code, e.g., +16175551212. |  |
+| password | string | User password. Must be at least 8 chars. |  |
+
 ## Get Account Preferences
 
 ```http request
@@ -198,7 +213,7 @@ PATCH https://HOSTNAME/v1/account/status
 POST https://HOSTNAME/v1/account/verification
 ```
 
-** Use this endpoint to send a verification message to your user email address to confirm they are the valid owners of that address. Both the **userId** and **secret** arguments will be passed as query parameters to the URL you have provided to be attached to the verification email. The provided URL should redirect the user back to your app and allow you to complete the verification process by verifying both the **userId** and **secret** parameters. Learn more about how to [complete the verification process](/docs/client/account#accountUpdateVerification). The verification link sent to the user&#039;s email address is valid for 7 days.
+** Use this endpoint to send a verification message to your user email address to confirm they are the valid owners of that address. Both the **userId** and **secret** arguments will be passed as query parameters to the URL you have provided to be attached to the verification email. The provided URL should redirect the user back to your app and allow you to complete the verification process by verifying both the **userId** and **secret** parameters. Learn more about how to [complete the verification process](/docs/client/account#accountUpdateEmailVerification). The verification link sent to the user&#039;s email address is valid for 7 days.
 
 Please note that in order to avoid a [Redirect Attack](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.md), the only valid redirect URLs are the ones from domains you have set when adding your platforms in the console interface.
  **
@@ -216,6 +231,29 @@ PUT https://HOSTNAME/v1/account/verification
 ```
 
 ** Use this endpoint to complete the user email verification process. Use both the **userId** and **secret** parameters that were attached to your app URL to verify the user email ownership. If confirmed this route will return a 200 status code. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| userId | string | User ID. |  |
+| secret | string | Valid verification token. |  |
+
+## Create Phone Verification
+
+```http request
+POST https://HOSTNAME/v1/account/verification/phone
+```
+
+** Use this endpoint to send a verification message to your user&#039;s phone number to confirm they are the valid owners of that address. The provided secret should allow you to complete the verification process by verifying both the **userId** and **secret** parameters. Learn more about how to [complete the verification process](/docs/client/account#accountUpdatePhoneVerification). The verification link sent to the user&#039;s phone number is valid for 15 minutes. **
+
+## Create Phone Verification (confirmation)
+
+```http request
+PUT https://HOSTNAME/v1/account/verification/phone
+```
+
+** Use this endpoint to complete the user phone verification process. Use the **userId** and **secret** that were sent to your user&#039;s phone number to verify the user email ownership. If confirmed this route will return a 200 status code. **
 
 ### Parameters
 

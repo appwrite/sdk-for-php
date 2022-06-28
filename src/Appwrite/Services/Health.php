@@ -5,6 +5,7 @@ namespace Appwrite\Services;
 use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
+use Appwrite\InputFile;
 
 class Health extends Service
 {
@@ -15,10 +16,12 @@ class Health extends Service
      *
      * @throws AppwriteException
      * @return array
+
      */
     public function get(): array
     {
         $path   = str_replace([], [], '/health');
+
         $params = [];
 
         return $this->client->call(Client::METHOD_GET, $path, [
@@ -33,10 +36,12 @@ class Health extends Service
      *
      * @throws AppwriteException
      * @return array
+
      */
     public function getAntivirus(): array
     {
         $path   = str_replace([], [], '/health/anti-virus');
+
         $params = [];
 
         return $this->client->call(Client::METHOD_GET, $path, [
@@ -52,10 +57,12 @@ class Health extends Service
      *
      * @throws AppwriteException
      * @return array
+
      */
     public function getCache(): array
     {
         $path   = str_replace([], [], '/health/cache');
+
         $params = [];
 
         return $this->client->call(Client::METHOD_GET, $path, [
@@ -70,10 +77,12 @@ class Health extends Service
      *
      * @throws AppwriteException
      * @return array
+
      */
     public function getDB(): array
     {
         $path   = str_replace([], [], '/health/db');
+
         $params = [];
 
         return $this->client->call(Client::METHOD_GET, $path, [
@@ -90,10 +99,12 @@ class Health extends Service
      *
      * @throws AppwriteException
      * @return array
+
      */
     public function getQueueCertificates(): array
     {
         $path   = str_replace([], [], '/health/queue/certificates');
+
         $params = [];
 
         return $this->client->call(Client::METHOD_GET, $path, [
@@ -106,10 +117,12 @@ class Health extends Service
      *
      * @throws AppwriteException
      * @return array
+
      */
     public function getQueueFunctions(): array
     {
         $path   = str_replace([], [], '/health/queue/functions');
+
         $params = [];
 
         return $this->client->call(Client::METHOD_GET, $path, [
@@ -125,10 +138,12 @@ class Health extends Service
      *
      * @throws AppwriteException
      * @return array
+
      */
     public function getQueueLogs(): array
     {
         $path   = str_replace([], [], '/health/queue/logs');
+
         $params = [];
 
         return $this->client->call(Client::METHOD_GET, $path, [
@@ -144,10 +159,12 @@ class Health extends Service
      *
      * @throws AppwriteException
      * @return array
+
      */
     public function getQueueWebhooks(): array
     {
         $path   = str_replace([], [], '/health/queue/webhooks');
+
         $params = [];
 
         return $this->client->call(Client::METHOD_GET, $path, [
@@ -162,10 +179,12 @@ class Health extends Service
      *
      * @throws AppwriteException
      * @return array
+
      */
     public function getStorageLocal(): array
     {
         $path   = str_replace([], [], '/health/storage/local');
+
         $params = [];
 
         return $this->client->call(Client::METHOD_GET, $path, [
@@ -186,10 +205,12 @@ class Health extends Service
      *
      * @throws AppwriteException
      * @return array
+
      */
     public function getTime(): array
     {
         $path   = str_replace([], [], '/health/time');
+
         $params = [];
 
         return $this->client->call(Client::METHOD_GET, $path, [

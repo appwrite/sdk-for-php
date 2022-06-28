@@ -5,6 +5,7 @@ namespace Appwrite\Services;
 use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
+use Appwrite\InputFile;
 
 class Avatars extends Service
 {
@@ -27,16 +28,16 @@ class Avatars extends Service
      * @param int $quality
      * @throws AppwriteException
      * @return string
+
      */
     public function getBrowser(string $code, int $width = null, int $height = null, int $quality = null): string
     {
+        $path   = str_replace(['{code}'], [$code], '/avatars/browsers/{code}');
+
+        $params = [];
         if (!isset($code)) {
             throw new AppwriteException('Missing required parameter: "code"');
         }
-
-        $path   = str_replace(['{code}'], [$code], '/avatars/browsers/{code}');
-        $params = [];
-
         if (!is_null($width)) {
             $params['width'] = $width;
         }
@@ -48,6 +49,7 @@ class Avatars extends Service
         if (!is_null($quality)) {
             $params['quality'] = $quality;
         }
+
 
         return $this->client->call(Client::METHOD_GET, $path, [
             'content-type' => 'application/json',
@@ -73,16 +75,16 @@ class Avatars extends Service
      * @param int $quality
      * @throws AppwriteException
      * @return string
+
      */
     public function getCreditCard(string $code, int $width = null, int $height = null, int $quality = null): string
     {
+        $path   = str_replace(['{code}'], [$code], '/avatars/credit-cards/{code}');
+
+        $params = [];
         if (!isset($code)) {
             throw new AppwriteException('Missing required parameter: "code"');
         }
-
-        $path   = str_replace(['{code}'], [$code], '/avatars/credit-cards/{code}');
-        $params = [];
-
         if (!is_null($width)) {
             $params['width'] = $width;
         }
@@ -94,6 +96,7 @@ class Avatars extends Service
         if (!is_null($quality)) {
             $params['quality'] = $quality;
         }
+
 
         return $this->client->call(Client::METHOD_GET, $path, [
             'content-type' => 'application/json',
@@ -110,19 +113,20 @@ class Avatars extends Service
      * @param string $url
      * @throws AppwriteException
      * @return string
+
      */
     public function getFavicon(string $url): string
     {
+        $path   = str_replace([], [], '/avatars/favicon');
+
+        $params = [];
         if (!isset($url)) {
             throw new AppwriteException('Missing required parameter: "url"');
         }
-
-        $path   = str_replace([], [], '/avatars/favicon');
-        $params = [];
-
         if (!is_null($url)) {
             $params['url'] = $url;
         }
+
 
         return $this->client->call(Client::METHOD_GET, $path, [
             'content-type' => 'application/json',
@@ -148,16 +152,16 @@ class Avatars extends Service
      * @param int $quality
      * @throws AppwriteException
      * @return string
+
      */
     public function getFlag(string $code, int $width = null, int $height = null, int $quality = null): string
     {
+        $path   = str_replace(['{code}'], [$code], '/avatars/flags/{code}');
+
+        $params = [];
         if (!isset($code)) {
             throw new AppwriteException('Missing required parameter: "code"');
         }
-
-        $path   = str_replace(['{code}'], [$code], '/avatars/flags/{code}');
-        $params = [];
-
         if (!is_null($width)) {
             $params['width'] = $width;
         }
@@ -169,6 +173,7 @@ class Avatars extends Service
         if (!is_null($quality)) {
             $params['quality'] = $quality;
         }
+
 
         return $this->client->call(Client::METHOD_GET, $path, [
             'content-type' => 'application/json',
@@ -194,16 +199,16 @@ class Avatars extends Service
      * @param int $height
      * @throws AppwriteException
      * @return string
+
      */
     public function getImage(string $url, int $width = null, int $height = null): string
     {
+        $path   = str_replace([], [], '/avatars/image');
+
+        $params = [];
         if (!isset($url)) {
             throw new AppwriteException('Missing required parameter: "url"');
         }
-
-        $path   = str_replace([], [], '/avatars/image');
-        $params = [];
-
         if (!is_null($url)) {
             $params['url'] = $url;
         }
@@ -215,6 +220,7 @@ class Avatars extends Service
         if (!is_null($height)) {
             $params['height'] = $height;
         }
+
 
         return $this->client->call(Client::METHOD_GET, $path, [
             'content-type' => 'application/json',
@@ -248,12 +254,13 @@ class Avatars extends Service
      * @param string $background
      * @throws AppwriteException
      * @return string
+
      */
     public function getInitials(string $name = null, int $width = null, int $height = null, string $color = null, string $background = null): string
     {
         $path   = str_replace([], [], '/avatars/initials');
-        $params = [];
 
+        $params = [];
         if (!is_null($name)) {
             $params['name'] = $name;
         }
@@ -274,6 +281,7 @@ class Avatars extends Service
             $params['background'] = $background;
         }
 
+
         return $this->client->call(Client::METHOD_GET, $path, [
             'content-type' => 'application/json',
         ], $params);
@@ -292,16 +300,16 @@ class Avatars extends Service
      * @param bool $download
      * @throws AppwriteException
      * @return string
+
      */
     public function getQR(string $text, int $size = null, int $margin = null, bool $download = null): string
     {
+        $path   = str_replace([], [], '/avatars/qr');
+
+        $params = [];
         if (!isset($text)) {
             throw new AppwriteException('Missing required parameter: "text"');
         }
-
-        $path   = str_replace([], [], '/avatars/qr');
-        $params = [];
-
         if (!is_null($text)) {
             $params['text'] = $text;
         }
@@ -317,6 +325,7 @@ class Avatars extends Service
         if (!is_null($download)) {
             $params['download'] = $download;
         }
+
 
         return $this->client->call(Client::METHOD_GET, $path, [
             'content-type' => 'application/json',

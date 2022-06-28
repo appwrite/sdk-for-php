@@ -5,6 +5,7 @@ namespace Appwrite\Services;
 use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
+use Appwrite\InputFile;
 
 class Locale extends Service
 {
@@ -20,10 +21,12 @@ class Locale extends Service
      *
      * @throws AppwriteException
      * @return array
+
      */
     public function get(): array
     {
         $path   = str_replace([], [], '/locale');
+
         $params = [];
 
         return $this->client->call(Client::METHOD_GET, $path, [
@@ -39,10 +42,12 @@ class Locale extends Service
      *
      * @throws AppwriteException
      * @return array
+
      */
     public function getContinents(): array
     {
         $path   = str_replace([], [], '/locale/continents');
+
         $params = [];
 
         return $this->client->call(Client::METHOD_GET, $path, [
@@ -58,10 +63,12 @@ class Locale extends Service
      *
      * @throws AppwriteException
      * @return array
+
      */
     public function getCountries(): array
     {
         $path   = str_replace([], [], '/locale/countries');
+
         $params = [];
 
         return $this->client->call(Client::METHOD_GET, $path, [
@@ -77,10 +84,12 @@ class Locale extends Service
      *
      * @throws AppwriteException
      * @return array
+
      */
     public function getCountriesEU(): array
     {
         $path   = str_replace([], [], '/locale/countries/eu');
+
         $params = [];
 
         return $this->client->call(Client::METHOD_GET, $path, [
@@ -96,10 +105,12 @@ class Locale extends Service
      *
      * @throws AppwriteException
      * @return array
+
      */
     public function getCountriesPhones(): array
     {
         $path   = str_replace([], [], '/locale/countries/phones');
+
         $params = [];
 
         return $this->client->call(Client::METHOD_GET, $path, [
@@ -116,10 +127,12 @@ class Locale extends Service
      *
      * @throws AppwriteException
      * @return array
+
      */
     public function getCurrencies(): array
     {
         $path   = str_replace([], [], '/locale/currencies');
+
         $params = [];
 
         return $this->client->call(Client::METHOD_GET, $path, [
@@ -135,10 +148,12 @@ class Locale extends Service
      *
      * @throws AppwriteException
      * @return array
+
      */
     public function getLanguages(): array
     {
         $path   = str_replace([], [], '/locale/languages');
+
         $params = [];
 
         return $this->client->call(Client::METHOD_GET, $path, [
