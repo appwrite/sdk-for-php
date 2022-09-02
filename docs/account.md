@@ -37,8 +37,7 @@ GET https://HOSTNAME/v1/account/logs
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| limit | integer | Maximum number of logs to return in response. By default will return maximum 25 results. Maximum of 100 results allowed per request. | 25 |
-| offset | integer | Offset value. The default value is 0. Use this value to manage pagination. [learn more about pagination](https://appwrite.io/docs/pagination) | 0 |
+| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/databases#querying-documents). Only supported methods are limit and offset | [] |
 
 ## Update Account Name
 
@@ -75,13 +74,13 @@ PATCH https://HOSTNAME/v1/account/password
 PATCH https://HOSTNAME/v1/account/phone
 ```
 
-** Update currently logged in user account phone number. After changing phone number, the user confirmation status will get reset. A new confirmation SMS is not sent automatically however you can use the phone confirmation endpoint again to send the confirmation SMS. **
+** Update the currently logged in user&#039;s phone number. After updating the phone number, the phone verification status will be reset. A confirmation SMS is not sent automatically, however you can use the [POST /account/verification/phone](/docs/client/account#accountCreatePhoneVerification) endpoint to send a confirmation SMS. **
 
 ### Parameters
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| number | string | Phone number. Format this number with a leading &#039;+&#039; and a country code, e.g., +16175551212. |  |
+| phone | string | Phone number. Format this number with a leading &#039;+&#039; and a country code, e.g., +16175551212. |  |
 | password | string | User password. Must be at least 8 chars. |  |
 
 ## Get Account Preferences
@@ -245,7 +244,7 @@ PUT https://HOSTNAME/v1/account/verification
 POST https://HOSTNAME/v1/account/verification/phone
 ```
 
-** Use this endpoint to send a verification message to your user&#039;s phone number to confirm they are the valid owners of that address. The provided secret should allow you to complete the verification process by verifying both the **userId** and **secret** parameters. Learn more about how to [complete the verification process](/docs/client/account#accountUpdatePhoneVerification). The verification link sent to the user&#039;s phone number is valid for 15 minutes. **
+** Use this endpoint to send a verification SMS to the currently logged in user. This endpoint is meant for use after updating a user&#039;s phone number using the [accountUpdatePhone](/docs/client/account#accountUpdatePhone) endpoint. Learn more about how to [complete the verification process](/docs/client/account#accountUpdatePhoneVerification). The verification code sent to the user&#039;s phone number is valid for 15 minutes. **
 
 ## Create Phone Verification (confirmation)
 

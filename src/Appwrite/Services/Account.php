@@ -9,6 +9,11 @@ use Appwrite\InputFile;
 
 class Account extends Service
 {
+     public function __construct(Client $client)
+     {
+          $this->client = $client;
+     }
+
     /**
      * Get Account
      *
@@ -41,13 +46,13 @@ class Account extends Service
      * one, by passing an email address and a new password.
      * 
      *
-     * @param string $email
-     * @param string $password
+     * @param string$email
+     * @param string$password
      * @throws AppwriteException
      * @return array
 
      */
-    public function updateEmail(string $email, string $password): array
+    public function updateEmail(string$email, string$password): array
     {
         $path   = str_replace([], [], '/account/email');
 
@@ -78,23 +83,18 @@ class Account extends Service
      * Get currently logged in user list of latest security activity logs. Each
      * log returns user IP address, location and date and time of log.
      *
-     * @param int $limit
-     * @param int $offset
+     * @param array $queries
      * @throws AppwriteException
      * @return array
 
      */
-    public function getLogs(int $limit = null, int $offset = null): array
+    public function getLogs(array $queries = null): array
     {
         $path   = str_replace([], [], '/account/logs');
 
         $params = [];
-        if (!is_null($limit)) {
-            $params['limit'] = $limit;
-        }
-
-        if (!is_null($offset)) {
-            $params['offset'] = $offset;
+        if (!is_null($queries)) {
+            $params['queries'] = $queries;
         }
 
 
@@ -108,12 +108,12 @@ class Account extends Service
      *
      * Update currently logged in user account name.
      *
-     * @param string $name
+     * @param string$name
      * @throws AppwriteException
      * @return array
 
      */
-    public function updateName(string $name): array
+    public function updateName(string$name): array
     {
         $path   = str_replace([], [], '/account/name');
 
@@ -138,13 +138,13 @@ class Account extends Service
      * to pass in the new password, and the old password. For users created with
      * OAuth, Team Invites and Magic URL, oldPassword is optional.
      *
-     * @param string $password
-     * @param string $oldPassword
+     * @param string$password
+     * @param string$oldPassword
      * @throws AppwriteException
      * @return array
 
      */
-    public function updatePassword(string $password, string $oldPassword = null): array
+    public function updatePassword(string$password, string$oldPassword = null): array
     {
         $path   = str_replace([], [], '/account/password');
 
@@ -169,30 +169,31 @@ class Account extends Service
     /**
      * Update Account Phone
      *
-     * Update currently logged in user account phone number. After changing phone
-     * number, the user confirmation status will get reset. A new confirmation SMS
-     * is not sent automatically however you can use the phone confirmation
-     * endpoint again to send the confirmation SMS.
+     * Update the currently logged in user's phone number. After updating the
+     * phone number, the phone verification status will be reset. A confirmation
+     * SMS is not sent automatically, however you can use the [POST
+     * /account/verification/phone](/docs/client/account#accountCreatePhoneVerification)
+     * endpoint to send a confirmation SMS.
      *
-     * @param string $number
-     * @param string $password
+     * @param string$phone
+     * @param string$password
      * @throws AppwriteException
      * @return array
 
      */
-    public function updatePhone(string $number, string $password): array
+    public function updatePhone(string$phone, string$password): array
     {
         $path   = str_replace([], [], '/account/phone');
 
         $params = [];
-        if (!isset($number)) {
-            throw new AppwriteException('Missing required parameter: "number"');
+        if (!isset($phone)) {
+            throw new AppwriteException('Missing required parameter: "phone"');
         }
         if (!isset($password)) {
             throw new AppwriteException('Missing required parameter: "password"');
         }
-        if (!is_null($number)) {
-            $params['number'] = $number;
+        if (!is_null($phone)) {
+            $params['phone'] = $phone;
         }
 
         if (!is_null($password)) {
@@ -267,13 +268,13 @@ class Account extends Service
      * complete the process. The verification link sent to the user's email
      * address is valid for 1 hour.
      *
-     * @param string $email
-     * @param string $url
+     * @param string$email
+     * @param string$url
      * @throws AppwriteException
      * @return array
 
      */
-    public function createRecovery(string $email, string $url): array
+    public function createRecovery(string$email, string$url): array
     {
         $path   = str_replace([], [], '/account/recovery');
 
@@ -311,15 +312,15 @@ class Account extends Service
      * the only valid redirect URLs are the ones from domains you have set when
      * adding your platforms in the console interface.
      *
-     * @param string $userId
-     * @param string $secret
-     * @param string $password
-     * @param string $passwordAgain
+     * @param string$userId
+     * @param string$secret
+     * @param string$password
+     * @param string$passwordAgain
      * @throws AppwriteException
      * @return array
 
      */
-    public function updateRecovery(string $userId, string $secret, string $password, string $passwordAgain): array
+    public function updateRecovery(string$userId, string$secret, string$password, string$passwordAgain): array
     {
         $path   = str_replace([], [], '/account/recovery');
 
@@ -406,12 +407,12 @@ class Account extends Service
      * Use this endpoint to get a logged in user's session using a Session ID.
      * Inputting 'current' will return the current session being used.
      *
-     * @param string $sessionId
+     * @param string$sessionId
      * @throws AppwriteException
      * @return array
 
      */
-    public function getSession(string $sessionId): array
+    public function getSession(string$sessionId): array
     {
         $path   = str_replace(['{sessionId}'], [$sessionId], '/account/sessions/{sessionId}');
 
@@ -432,12 +433,12 @@ class Account extends Service
      * If session was created using an OAuth provider, this route can be used to
      * "refresh" the access token.
      *
-     * @param string $sessionId
+     * @param string$sessionId
      * @throws AppwriteException
      * @return array
 
      */
-    public function updateSession(string $sessionId): array
+    public function updateSession(string$sessionId): array
     {
         $path   = str_replace(['{sessionId}'], [$sessionId], '/account/sessions/{sessionId}');
 
@@ -459,12 +460,12 @@ class Account extends Service
      * Session ID argument, only the unique session ID provided is deleted.
      * 
      *
-     * @param string $sessionId
+     * @param string$sessionId
      * @throws AppwriteException
      * @return string
 
      */
-    public function deleteSession(string $sessionId): string
+    public function deleteSession(string$sessionId): string
     {
         $path   = str_replace(['{sessionId}'], [$sessionId], '/account/sessions/{sessionId}');
 
@@ -519,12 +520,12 @@ class Account extends Service
      * adding your platforms in the console interface.
      * 
      *
-     * @param string $url
+     * @param string$url
      * @throws AppwriteException
      * @return array
 
      */
-    public function createVerification(string $url): array
+    public function createVerification(string$url): array
     {
         $path   = str_replace([], [], '/account/verification');
 
@@ -550,13 +551,13 @@ class Account extends Service
      * to verify the user email ownership. If confirmed this route will return a
      * 200 status code.
      *
-     * @param string $userId
-     * @param string $secret
+     * @param string$userId
+     * @param string$secret
      * @throws AppwriteException
      * @return array
 
      */
-    public function updateVerification(string $userId, string $secret): array
+    public function updateVerification(string$userId, string$secret): array
     {
         $path   = str_replace([], [], '/account/verification');
 
@@ -584,13 +585,12 @@ class Account extends Service
     /**
      * Create Phone Verification
      *
-     * Use this endpoint to send a verification message to your user's phone
-     * number to confirm they are the valid owners of that address. The provided
-     * secret should allow you to complete the verification process by verifying
-     * both the **userId** and **secret** parameters. Learn more about how to
-     * [complete the verification
+     * Use this endpoint to send a verification SMS to the currently logged in
+     * user. This endpoint is meant for use after updating a user's phone number
+     * using the [accountUpdatePhone](/docs/client/account#accountUpdatePhone)
+     * endpoint. Learn more about how to [complete the verification
      * process](/docs/client/account#accountUpdatePhoneVerification). The
-     * verification link sent to the user's phone number is valid for 15 minutes.
+     * verification code sent to the user's phone number is valid for 15 minutes.
      *
      * @throws AppwriteException
      * @return array
@@ -615,13 +615,13 @@ class Account extends Service
      * verify the user email ownership. If confirmed this route will return a 200
      * status code.
      *
-     * @param string $userId
-     * @param string $secret
+     * @param string$userId
+     * @param string$secret
      * @throws AppwriteException
      * @return array
 
      */
-    public function updatePhoneVerification(string $userId, string $secret): array
+    public function updatePhoneVerification(string$userId, string$secret): array
     {
         $path   = str_replace([], [], '/account/verification/phone');
 

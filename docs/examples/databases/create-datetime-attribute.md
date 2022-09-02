@@ -13,4 +13,4 @@ $client
 
 $databases = new Databases($client);
 
-$result = $databases->listAttributes('[DATABASE_ID]', '[COLLECTION_ID]');
+$result = $databases->createDatetimeAttribute('[DATABASE_ID]', '[COLLECTION_ID]', '', false);
