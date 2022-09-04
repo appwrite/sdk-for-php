@@ -27,7 +27,7 @@ class Avatars extends Service
      * image at source quality. If dimensions are not specified, the default size
      * of image returned is 100x100px.
      *
-     * @param string$code
+     * @param string $code
      * @param int $width
      * @param int $height
      * @param int $quality
@@ -35,7 +35,7 @@ class Avatars extends Service
      * @return string
 
      */
-    public function getBrowser(string$code, int $width = null, int $height = null, int $quality = null): string
+    public function getBrowser(string $code, int $width = null, int $height = null, int $quality = null): string
     {
         $path   = str_replace(['{code}'], [$code], '/avatars/browsers/{code}');
 
@@ -74,7 +74,7 @@ class Avatars extends Service
      * of image returned is 100x100px.
      * 
      *
-     * @param string$code
+     * @param string $code
      * @param int $width
      * @param int $height
      * @param int $quality
@@ -82,7 +82,7 @@ class Avatars extends Service
      * @return string
 
      */
-    public function getCreditCard(string$code, int $width = null, int $height = null, int $quality = null): string
+    public function getCreditCard(string $code, int $width = null, int $height = null, int $quality = null): string
     {
         $path   = str_replace(['{code}'], [$code], '/avatars/credit-cards/{code}');
 
@@ -115,12 +115,12 @@ class Avatars extends Service
      * website URL.
      * 
      *
-     * @param string$url
+     * @param string $url
      * @throws AppwriteException
      * @return string
 
      */
-    public function getFavicon(string$url): string
+    public function getFavicon(string $url): string
     {
         $path   = str_replace([], [], '/avatars/favicon');
 
@@ -152,7 +152,7 @@ class Avatars extends Service
      * of image returned is 100x100px.
      * 
      *
-     * @param string$code
+     * @param string $code
      * @param int $width
      * @param int $height
      * @param int $quality
@@ -160,7 +160,7 @@ class Avatars extends Service
      * @return string
 
      */
-    public function getFlag(string$code, int $width = null, int $height = null, int $quality = null): string
+    public function getFlag(string $code, int $width = null, int $height = null, int $quality = null): string
     {
         $path   = str_replace(['{code}'], [$code], '/avatars/flags/{code}');
 
@@ -200,14 +200,14 @@ class Avatars extends Service
      * of image returned is 400x400px.
      * 
      *
-     * @param string$url
+     * @param string $url
      * @param int $width
      * @param int $height
      * @throws AppwriteException
      * @return string
 
      */
-    public function getImage(string$url, int $width = null, int $height = null): string
+    public function getImage(string $url, int $width = null, int $height = null): string
     {
         $path   = str_replace([], [], '/avatars/image');
 
@@ -253,16 +253,16 @@ class Avatars extends Service
      * of image returned is 100x100px.
      * 
      *
-     * @param string$name
+     * @param string $name
      * @param int $width
      * @param int $height
-     * @param string$color
-     * @param string$background
+     * @param string $color
+     * @param string $background
      * @throws AppwriteException
      * @return string
 
      */
-    public function getInitials(string$name = null, int $width = null, int $height = null, string$color = null, string$background = null): string
+    public function getInitials(string $name = null, int $width = null, int $height = null, string $color = null, string $background = null): string
     {
         $path   = str_replace([], [], '/avatars/initials');
 
@@ -300,7 +300,7 @@ class Avatars extends Service
      * parameters to change the size and style of the resulting image.
      * 
      *
-     * @param string$text
+     * @param string $text
      * @param int $size
      * @param int $margin
      * @param bool $download
@@ -308,7 +308,7 @@ class Avatars extends Service
      * @return string
 
      */
-    public function getQR(string$text, int $size = null, int $margin = null, bool $download = null): string
+    public function getQR(string $text, int $size = null, int $margin = null, bool $download = null): string
     {
         $path   = str_replace([], [], '/avatars/qr');
 

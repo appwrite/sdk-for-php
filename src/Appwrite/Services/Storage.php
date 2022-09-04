@@ -21,12 +21,12 @@ class Storage extends Service
      * filter your results.
      *
      * @param array $queries
-     * @param string$search
+     * @param string $search
      * @throws AppwriteException
      * @return array
 
      */
-    public function listBuckets(array $queries = null, string$search = null): array
+    public function listBuckets(array $queries = null, string $search = null): array
     {
         $path   = str_replace([], [], '/storage/buckets');
 
@@ -50,21 +50,21 @@ class Storage extends Service
      *
      * Create a new storage bucket.
      *
-     * @param string$bucketId
-     * @param string$name
-     * @param bool $fileSecurity
+     * @param string $bucketId
+     * @param string $name
      * @param array $permissions
+     * @param bool $fileSecurity
      * @param bool $enabled
      * @param int $maximumFileSize
      * @param array $allowedFileExtensions
-     * @param string$compression
+     * @param string $compression
      * @param bool $encryption
      * @param bool $antivirus
      * @throws AppwriteException
      * @return array
 
      */
-    public function createBucket(string$bucketId, string$name, bool $fileSecurity, array $permissions = null, bool $enabled = null, int $maximumFileSize = null, array $allowedFileExtensions = null, string$compression = null, bool $encryption = null, bool $antivirus = null): array
+    public function createBucket(string $bucketId, string $name, array $permissions = null, bool $fileSecurity = null, bool $enabled = null, int $maximumFileSize = null, array $allowedFileExtensions = null, string $compression = null, bool $encryption = null, bool $antivirus = null): array
     {
         $path   = str_replace([], [], '/storage/buckets');
 
@@ -74,9 +74,6 @@ class Storage extends Service
         }
         if (!isset($name)) {
             throw new AppwriteException('Missing required parameter: "name"');
-        }
-        if (!isset($fileSecurity)) {
-            throw new AppwriteException('Missing required parameter: "fileSecurity"');
         }
         if (!is_null($bucketId)) {
             $params['bucketId'] = $bucketId;
@@ -130,12 +127,12 @@ class Storage extends Service
      * Get a storage bucket by its unique ID. This endpoint response returns a
      * JSON object with the storage bucket metadata.
      *
-     * @param string$bucketId
+     * @param string $bucketId
      * @throws AppwriteException
      * @return array
 
      */
-    public function getBucket(string$bucketId): array
+    public function getBucket(string $bucketId): array
     {
         $path   = str_replace(['{bucketId}'], [$bucketId], '/storage/buckets/{bucketId}');
 
@@ -154,21 +151,21 @@ class Storage extends Service
      *
      * Update a storage bucket by its unique ID.
      *
-     * @param string$bucketId
-     * @param string$name
-     * @param bool $fileSecurity
+     * @param string $bucketId
+     * @param string $name
      * @param array $permissions
+     * @param bool $fileSecurity
      * @param bool $enabled
      * @param int $maximumFileSize
      * @param array $allowedFileExtensions
-     * @param string$compression
+     * @param string $compression
      * @param bool $encryption
      * @param bool $antivirus
      * @throws AppwriteException
      * @return array
 
      */
-    public function updateBucket(string$bucketId, string$name, bool $fileSecurity, array $permissions = null, bool $enabled = null, int $maximumFileSize = null, array $allowedFileExtensions = null, string$compression = null, bool $encryption = null, bool $antivirus = null): array
+    public function updateBucket(string $bucketId, string $name, array $permissions = null, bool $fileSecurity = null, bool $enabled = null, int $maximumFileSize = null, array $allowedFileExtensions = null, string $compression = null, bool $encryption = null, bool $antivirus = null): array
     {
         $path   = str_replace(['{bucketId}'], [$bucketId], '/storage/buckets/{bucketId}');
 
@@ -178,9 +175,6 @@ class Storage extends Service
         }
         if (!isset($name)) {
             throw new AppwriteException('Missing required parameter: "name"');
-        }
-        if (!isset($fileSecurity)) {
-            throw new AppwriteException('Missing required parameter: "fileSecurity"');
         }
         if (!is_null($name)) {
             $params['name'] = $name;
@@ -229,12 +223,12 @@ class Storage extends Service
      *
      * Delete a storage bucket by its unique ID.
      *
-     * @param string$bucketId
+     * @param string $bucketId
      * @throws AppwriteException
      * @return string
 
      */
-    public function deleteBucket(string$bucketId): string
+    public function deleteBucket(string $bucketId): string
     {
         $path   = str_replace(['{bucketId}'], [$bucketId], '/storage/buckets/{bucketId}');
 
@@ -255,14 +249,14 @@ class Storage extends Service
      * your results. On admin mode, this endpoint will return a list of all of the
      * project's files. [Learn more about different API modes](/docs/admin).
      *
-     * @param string$bucketId
+     * @param string $bucketId
      * @param array $queries
-     * @param string$search
+     * @param string $search
      * @throws AppwriteException
      * @return array
 
      */
-    public function listFiles(string$bucketId, array $queries = null, string$search = null): array
+    public function listFiles(string $bucketId, array $queries = null, string $search = null): array
     {
         $path   = str_replace(['{bucketId}'], [$bucketId], '/storage/buckets/{bucketId}/files');
 
@@ -306,15 +300,15 @@ class Storage extends Service
      * chunking logic will be managed by the SDK internally.
      * 
      *
-     * @param string$bucketId
-     * @param string$fileId
+     * @param string $bucketId
+     * @param string $fileId
      * @param InputFile $file
      * @param array $permissions
      * @throws AppwriteException
      * @return array
 
      */
-    public function createFile(string$bucketId, string$fileId, InputFile $file, array $permissions = null, callable $onProgress = null): array
+    public function createFile(string $bucketId, string $fileId, InputFile $file, array $permissions = null, callable $onProgress = null): array
     {
         $path   = str_replace(['{bucketId}'], [$bucketId], '/storage/buckets/{bucketId}/files');
 
@@ -428,13 +422,13 @@ class Storage extends Service
      * Get a file by its unique ID. This endpoint response returns a JSON object
      * with the file metadata.
      *
-     * @param string$bucketId
-     * @param string$fileId
+     * @param string $bucketId
+     * @param string $fileId
      * @throws AppwriteException
      * @return array
 
      */
-    public function getFile(string$bucketId, string$fileId): array
+    public function getFile(string $bucketId, string $fileId): array
     {
         $path   = str_replace(['{bucketId}', '{fileId}'], [$bucketId, $fileId], '/storage/buckets/{bucketId}/files/{fileId}');
 
@@ -457,14 +451,14 @@ class Storage extends Service
      * Update a file by its unique ID. Only users with write permissions have
      * access to update this resource.
      *
-     * @param string$bucketId
-     * @param string$fileId
+     * @param string $bucketId
+     * @param string $fileId
      * @param array $permissions
      * @throws AppwriteException
      * @return array
 
      */
-    public function updateFile(string$bucketId, string$fileId, array $permissions = null): array
+    public function updateFile(string $bucketId, string $fileId, array $permissions = null): array
     {
         $path   = str_replace(['{bucketId}', '{fileId}'], [$bucketId, $fileId], '/storage/buckets/{bucketId}/files/{fileId}');
 
@@ -491,13 +485,13 @@ class Storage extends Service
      * Delete a file by its unique ID. Only users with write permissions have
      * access to delete this resource.
      *
-     * @param string$bucketId
-     * @param string$fileId
+     * @param string $bucketId
+     * @param string $fileId
      * @throws AppwriteException
      * @return string
 
      */
-    public function deleteFile(string$bucketId, string$fileId): string
+    public function deleteFile(string $bucketId, string $fileId): string
     {
         $path   = str_replace(['{bucketId}', '{fileId}'], [$bucketId, $fileId], '/storage/buckets/{bucketId}/files/{fileId}');
 
@@ -521,13 +515,13 @@ class Storage extends Service
      * 'Content-Disposition: attachment' header that tells the browser to start
      * downloading the file to user downloads directory.
      *
-     * @param string$bucketId
-     * @param string$fileId
+     * @param string $bucketId
+     * @param string $fileId
      * @throws AppwriteException
      * @return string
 
      */
-    public function getFileDownload(string$bucketId, string$fileId): string
+    public function getFileDownload(string $bucketId, string $fileId): string
     {
         $path   = str_replace(['{bucketId}', '{fileId}'], [$bucketId, $fileId], '/storage/buckets/{bucketId}/files/{fileId}/download');
 
@@ -553,24 +547,24 @@ class Storage extends Service
      * string arguments for cutting and resizing your preview image. Preview is
      * supported only for image files smaller than 10MB.
      *
-     * @param string$bucketId
-     * @param string$fileId
+     * @param string $bucketId
+     * @param string $fileId
      * @param int $width
      * @param int $height
-     * @param string$gravity
+     * @param string $gravity
      * @param int $quality
      * @param int $borderWidth
-     * @param string$borderColor
+     * @param string $borderColor
      * @param int $borderRadius
      * @param int $opacity
      * @param int $rotation
-     * @param string$background
-     * @param string$output
+     * @param string $background
+     * @param string $output
      * @throws AppwriteException
      * @return string
 
      */
-    public function getFilePreview(string$bucketId, string$fileId, int $width = null, int $height = null, string$gravity = null, int $quality = null, int $borderWidth = null, string$borderColor = null, int $borderRadius = null, int $opacity = null, int $rotation = null, string$background = null, string$output = null): string
+    public function getFilePreview(string $bucketId, string $fileId, int $width = null, int $height = null, string $gravity = null, int $quality = null, int $borderWidth = null, string $borderColor = null, int $borderRadius = null, int $opacity = null, int $rotation = null, string $background = null, string $output = null): string
     {
         $path   = str_replace(['{bucketId}', '{fileId}'], [$bucketId, $fileId], '/storage/buckets/{bucketId}/files/{fileId}/preview');
 
@@ -638,13 +632,13 @@ class Storage extends Service
      * download method but returns with no  'Content-Disposition: attachment'
      * header.
      *
-     * @param string$bucketId
-     * @param string$fileId
+     * @param string $bucketId
+     * @param string $fileId
      * @throws AppwriteException
      * @return string
 
      */
-    public function getFileView(string$bucketId, string$fileId): string
+    public function getFileView(string $bucketId, string $fileId): string
     {
         $path   = str_replace(['{bucketId}', '{fileId}'], [$bucketId, $fileId], '/storage/buckets/{bucketId}/files/{fileId}/view');
 

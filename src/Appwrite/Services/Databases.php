@@ -21,12 +21,12 @@ class Databases extends Service
      * the search parameter to filter your results.
      *
      * @param array $queries
-     * @param string$search
+     * @param string $search
      * @throws AppwriteException
      * @return array
 
      */
-    public function list(array $queries = null, string$search = null): array
+    public function list(array $queries = null, string $search = null): array
     {
         $path   = str_replace([], [], '/databases');
 
@@ -51,13 +51,13 @@ class Databases extends Service
      * Create a new Database.
      * 
      *
-     * @param string$databaseId
-     * @param string$name
+     * @param string $databaseId
+     * @param string $name
      * @throws AppwriteException
      * @return array
 
      */
-    public function create(string$databaseId, string$name): array
+    public function create(string $databaseId, string $name): array
     {
         $path   = str_replace([], [], '/databases');
 
@@ -88,12 +88,12 @@ class Databases extends Service
      * Get a database by its unique ID. This endpoint response returns a JSON
      * object with the database metadata.
      *
-     * @param string$databaseId
+     * @param string $databaseId
      * @throws AppwriteException
      * @return array
 
      */
-    public function get(string$databaseId): array
+    public function get(string $databaseId): array
     {
         $path   = str_replace(['{databaseId}'], [$databaseId], '/databases/{databaseId}');
 
@@ -112,13 +112,13 @@ class Databases extends Service
      *
      * Update a database by its unique ID.
      *
-     * @param string$databaseId
-     * @param string$name
+     * @param string $databaseId
+     * @param string $name
      * @throws AppwriteException
      * @return array
 
      */
-    public function update(string$databaseId, string$name): array
+    public function update(string $databaseId, string $name): array
     {
         $path   = str_replace(['{databaseId}'], [$databaseId], '/databases/{databaseId}');
 
@@ -145,12 +145,12 @@ class Databases extends Service
      * Delete a database by its unique ID. Only API keys with with databases.write
      * scope can delete a database.
      *
-     * @param string$databaseId
+     * @param string $databaseId
      * @throws AppwriteException
      * @return string
 
      */
-    public function delete(string$databaseId): string
+    public function delete(string $databaseId): string
     {
         $path   = str_replace(['{databaseId}'], [$databaseId], '/databases/{databaseId}');
 
@@ -170,14 +170,14 @@ class Databases extends Service
      * Get a list of all collections that belong to the provided databaseId. You
      * can use the search parameter to filter your results.
      *
-     * @param string$databaseId
+     * @param string $databaseId
      * @param array $queries
-     * @param string$search
+     * @param string $search
      * @throws AppwriteException
      * @return array
 
      */
-    public function listCollections(string$databaseId, array $queries = null, string$search = null): array
+    public function listCollections(string $databaseId, array $queries = null, string $search = null): array
     {
         $path   = str_replace(['{databaseId}'], [$databaseId], '/databases/{databaseId}/collections');
 
@@ -207,16 +207,16 @@ class Databases extends Service
      * integration](/docs/server/databases#databasesCreateCollection) API or
      * directly from your database console.
      *
-     * @param string$databaseId
-     * @param string$collectionId
-     * @param string$name
+     * @param string $databaseId
+     * @param string $collectionId
+     * @param string $name
      * @param array $permissions
      * @param bool $documentSecurity
      * @throws AppwriteException
      * @return array
 
      */
-    public function createCollection(string$databaseId, string$collectionId, string$name, array $permissions, bool $documentSecurity): array
+    public function createCollection(string $databaseId, string $collectionId, string $name, array $permissions = null, bool $documentSecurity = null): array
     {
         $path   = str_replace(['{databaseId}'], [$databaseId], '/databases/{databaseId}/collections');
 
@@ -229,12 +229,6 @@ class Databases extends Service
         }
         if (!isset($name)) {
             throw new AppwriteException('Missing required parameter: "name"');
-        }
-        if (!isset($permissions)) {
-            throw new AppwriteException('Missing required parameter: "permissions"');
-        }
-        if (!isset($documentSecurity)) {
-            throw new AppwriteException('Missing required parameter: "documentSecurity"');
         }
         if (!is_null($collectionId)) {
             $params['collectionId'] = $collectionId;
@@ -264,13 +258,13 @@ class Databases extends Service
      * Get a collection by its unique ID. This endpoint response returns a JSON
      * object with the collection metadata.
      *
-     * @param string$databaseId
-     * @param string$collectionId
+     * @param string $databaseId
+     * @param string $collectionId
      * @throws AppwriteException
      * @return array
 
      */
-    public function getCollection(string$databaseId, string$collectionId): array
+    public function getCollection(string $databaseId, string $collectionId): array
     {
         $path   = str_replace(['{databaseId}', '{collectionId}'], [$databaseId, $collectionId], '/databases/{databaseId}/collections/{collectionId}');
 
@@ -292,17 +286,17 @@ class Databases extends Service
      *
      * Update a collection by its unique ID.
      *
-     * @param string$databaseId
-     * @param string$collectionId
-     * @param string$name
-     * @param bool $documentSecurity
+     * @param string $databaseId
+     * @param string $collectionId
+     * @param string $name
      * @param array $permissions
+     * @param bool $documentSecurity
      * @param bool $enabled
      * @throws AppwriteException
      * @return array
 
      */
-    public function updateCollection(string$databaseId, string$collectionId, string$name, bool $documentSecurity, array $permissions = null, bool $enabled = null): array
+    public function updateCollection(string $databaseId, string $collectionId, string $name, array $permissions = null, bool $documentSecurity = null, bool $enabled = null): array
     {
         $path   = str_replace(['{databaseId}', '{collectionId}'], [$databaseId, $collectionId], '/databases/{databaseId}/collections/{collectionId}');
 
@@ -315,9 +309,6 @@ class Databases extends Service
         }
         if (!isset($name)) {
             throw new AppwriteException('Missing required parameter: "name"');
-        }
-        if (!isset($documentSecurity)) {
-            throw new AppwriteException('Missing required parameter: "documentSecurity"');
         }
         if (!is_null($name)) {
             $params['name'] = $name;
@@ -347,13 +338,13 @@ class Databases extends Service
      * Delete a collection by its unique ID. Only users with write permissions
      * have access to delete this resource.
      *
-     * @param string$databaseId
-     * @param string$collectionId
+     * @param string $databaseId
+     * @param string $collectionId
      * @throws AppwriteException
      * @return string
 
      */
-    public function deleteCollection(string$databaseId, string$collectionId): string
+    public function deleteCollection(string $databaseId, string $collectionId): string
     {
         $path   = str_replace(['{databaseId}', '{collectionId}'], [$databaseId, $collectionId], '/databases/{databaseId}/collections/{collectionId}');
 
@@ -373,13 +364,13 @@ class Databases extends Service
     /**
      * List Attributes
      *
-     * @param string$databaseId
-     * @param string$collectionId
+     * @param string $databaseId
+     * @param string $collectionId
      * @throws AppwriteException
      * @return array
 
      */
-    public function listAttributes(string$databaseId, string$collectionId): array
+    public function listAttributes(string $databaseId, string $collectionId): array
     {
         $path   = str_replace(['{databaseId}', '{collectionId}'], [$databaseId, $collectionId], '/databases/{databaseId}/collections/{collectionId}/attributes');
 
@@ -402,9 +393,9 @@ class Databases extends Service
      * Create a boolean attribute.
      * 
      *
-     * @param string$databaseId
-     * @param string$collectionId
-     * @param string$key
+     * @param string $databaseId
+     * @param string $collectionId
+     * @param string $key
      * @param bool $required
      * @param bool $xdefault
      * @param bool $xarray
@@ -412,7 +403,7 @@ class Databases extends Service
      * @return array
 
      */
-    public function createBooleanAttribute(string$databaseId, string$collectionId, string$key, bool $required, bool $xdefault = null, bool $xarray = null): array
+    public function createBooleanAttribute(string $databaseId, string $collectionId, string $key, bool $required, bool $xdefault = null, bool $xarray = null): array
     {
         $path   = str_replace(['{databaseId}', '{collectionId}'], [$databaseId, $collectionId], '/databases/{databaseId}/collections/{collectionId}/attributes/boolean');
 
@@ -454,17 +445,17 @@ class Databases extends Service
     /**
      * Create DateTime Attribute
      *
-     * @param string$databaseId
-     * @param string$collectionId
-     * @param string$key
+     * @param string $databaseId
+     * @param string $collectionId
+     * @param string $key
      * @param bool $required
-     * @param string$xdefault
+     * @param string $xdefault
      * @param bool $xarray
      * @throws AppwriteException
      * @return array
 
      */
-    public function createDatetimeAttribute(string$databaseId, string$collectionId, string$key, bool $required, string$xdefault = null, bool $xarray = null): array
+    public function createDatetimeAttribute(string $databaseId, string $collectionId, string $key, bool $required, string $xdefault = null, bool $xarray = null): array
     {
         $path   = str_replace(['{databaseId}', '{collectionId}'], [$databaseId, $collectionId], '/databases/{databaseId}/collections/{collectionId}/attributes/datetime');
 
@@ -509,17 +500,17 @@ class Databases extends Service
      * Create an email attribute.
      * 
      *
-     * @param string$databaseId
-     * @param string$collectionId
-     * @param string$key
+     * @param string $databaseId
+     * @param string $collectionId
+     * @param string $key
      * @param bool $required
-     * @param string$xdefault
+     * @param string $xdefault
      * @param bool $xarray
      * @throws AppwriteException
      * @return array
 
      */
-    public function createEmailAttribute(string$databaseId, string$collectionId, string$key, bool $required, string$xdefault = null, bool $xarray = null): array
+    public function createEmailAttribute(string $databaseId, string $collectionId, string $key, bool $required, string $xdefault = null, bool $xarray = null): array
     {
         $path   = str_replace(['{databaseId}', '{collectionId}'], [$databaseId, $collectionId], '/databases/{databaseId}/collections/{collectionId}/attributes/email');
 
@@ -561,18 +552,18 @@ class Databases extends Service
     /**
      * Create Enum Attribute
      *
-     * @param string$databaseId
-     * @param string$collectionId
-     * @param string$key
+     * @param string $databaseId
+     * @param string $collectionId
+     * @param string $key
      * @param array $elements
      * @param bool $required
-     * @param string$xdefault
+     * @param string $xdefault
      * @param bool $xarray
      * @throws AppwriteException
      * @return array
 
      */
-    public function createEnumAttribute(string$databaseId, string$collectionId, string$key, array $elements, bool $required, string$xdefault = null, bool $xarray = null): array
+    public function createEnumAttribute(string $databaseId, string $collectionId, string $key, array $elements, bool $required, string $xdefault = null, bool $xarray = null): array
     {
         $path   = str_replace(['{databaseId}', '{collectionId}'], [$databaseId, $collectionId], '/databases/{databaseId}/collections/{collectionId}/attributes/enum');
 
@@ -625,9 +616,9 @@ class Databases extends Service
      * provided.
      * 
      *
-     * @param string$databaseId
-     * @param string$collectionId
-     * @param string$key
+     * @param string $databaseId
+     * @param string $collectionId
+     * @param string $key
      * @param bool $required
      * @param int $min
      * @param int $max
@@ -637,7 +628,7 @@ class Databases extends Service
      * @return array
 
      */
-    public function createFloatAttribute(string$databaseId, string$collectionId, string$key, bool $required, int $min = null, int $max = null, int $xdefault = null, bool $xarray = null): array
+    public function createFloatAttribute(string $databaseId, string $collectionId, string $key, bool $required, int $min = null, int $max = null, int $xdefault = null, bool $xarray = null): array
     {
         $path   = str_replace(['{databaseId}', '{collectionId}'], [$databaseId, $collectionId], '/databases/{databaseId}/collections/{collectionId}/attributes/float');
 
@@ -691,9 +682,9 @@ class Databases extends Service
      * provided.
      * 
      *
-     * @param string$databaseId
-     * @param string$collectionId
-     * @param string$key
+     * @param string $databaseId
+     * @param string $collectionId
+     * @param string $key
      * @param bool $required
      * @param int $min
      * @param int $max
@@ -703,7 +694,7 @@ class Databases extends Service
      * @return array
 
      */
-    public function createIntegerAttribute(string$databaseId, string$collectionId, string$key, bool $required, int $min = null, int $max = null, int $xdefault = null, bool $xarray = null): array
+    public function createIntegerAttribute(string $databaseId, string $collectionId, string $key, bool $required, int $min = null, int $max = null, int $xdefault = null, bool $xarray = null): array
     {
         $path   = str_replace(['{databaseId}', '{collectionId}'], [$databaseId, $collectionId], '/databases/{databaseId}/collections/{collectionId}/attributes/integer');
 
@@ -756,17 +747,17 @@ class Databases extends Service
      * Create IP address attribute.
      * 
      *
-     * @param string$databaseId
-     * @param string$collectionId
-     * @param string$key
+     * @param string $databaseId
+     * @param string $collectionId
+     * @param string $key
      * @param bool $required
-     * @param string$xdefault
+     * @param string $xdefault
      * @param bool $xarray
      * @throws AppwriteException
      * @return array
 
      */
-    public function createIpAttribute(string$databaseId, string$collectionId, string$key, bool $required, string$xdefault = null, bool $xarray = null): array
+    public function createIpAttribute(string $databaseId, string $collectionId, string $key, bool $required, string $xdefault = null, bool $xarray = null): array
     {
         $path   = str_replace(['{databaseId}', '{collectionId}'], [$databaseId, $collectionId], '/databases/{databaseId}/collections/{collectionId}/attributes/ip');
 
@@ -811,18 +802,18 @@ class Databases extends Service
      * Create a string attribute.
      * 
      *
-     * @param string$databaseId
-     * @param string$collectionId
-     * @param string$key
+     * @param string $databaseId
+     * @param string $collectionId
+     * @param string $key
      * @param int $size
      * @param bool $required
-     * @param string$xdefault
+     * @param string $xdefault
      * @param bool $xarray
      * @throws AppwriteException
      * @return array
 
      */
-    public function createStringAttribute(string$databaseId, string$collectionId, string$key, int $size, bool $required, string$xdefault = null, bool $xarray = null): array
+    public function createStringAttribute(string $databaseId, string $collectionId, string $key, int $size, bool $required, string $xdefault = null, bool $xarray = null): array
     {
         $path   = str_replace(['{databaseId}', '{collectionId}'], [$databaseId, $collectionId], '/databases/{databaseId}/collections/{collectionId}/attributes/string');
 
@@ -874,17 +865,17 @@ class Databases extends Service
      * Create a URL attribute.
      * 
      *
-     * @param string$databaseId
-     * @param string$collectionId
-     * @param string$key
+     * @param string $databaseId
+     * @param string $collectionId
+     * @param string $key
      * @param bool $required
-     * @param string$xdefault
+     * @param string $xdefault
      * @param bool $xarray
      * @throws AppwriteException
      * @return array
 
      */
-    public function createUrlAttribute(string$databaseId, string$collectionId, string$key, bool $required, string$xdefault = null, bool $xarray = null): array
+    public function createUrlAttribute(string $databaseId, string $collectionId, string $key, bool $required, string $xdefault = null, bool $xarray = null): array
     {
         $path   = str_replace(['{databaseId}', '{collectionId}'], [$databaseId, $collectionId], '/databases/{databaseId}/collections/{collectionId}/attributes/url');
 
@@ -926,14 +917,14 @@ class Databases extends Service
     /**
      * Get Attribute
      *
-     * @param string$databaseId
-     * @param string$collectionId
-     * @param string$key
+     * @param string $databaseId
+     * @param string $collectionId
+     * @param string $key
      * @throws AppwriteException
      * @return array
 
      */
-    public function getAttribute(string$databaseId, string$collectionId, string$key): array
+    public function getAttribute(string $databaseId, string $collectionId, string $key): array
     {
         $path   = str_replace(['{databaseId}', '{collectionId}', '{key}'], [$databaseId, $collectionId, $key], '/databases/{databaseId}/collections/{collectionId}/attributes/{key}');
 
@@ -956,14 +947,14 @@ class Databases extends Service
     /**
      * Delete Attribute
      *
-     * @param string$databaseId
-     * @param string$collectionId
-     * @param string$key
+     * @param string $databaseId
+     * @param string $collectionId
+     * @param string $key
      * @throws AppwriteException
      * @return string
 
      */
-    public function deleteAttribute(string$databaseId, string$collectionId, string$key): string
+    public function deleteAttribute(string $databaseId, string $collectionId, string $key): string
     {
         $path   = str_replace(['{databaseId}', '{collectionId}', '{key}'], [$databaseId, $collectionId, $key], '/databases/{databaseId}/collections/{collectionId}/attributes/{key}');
 
@@ -991,14 +982,14 @@ class Databases extends Service
      * return a list of all of documents belonging to the provided collectionId.
      * [Learn more about different API modes](/docs/admin).
      *
-     * @param string$databaseId
-     * @param string$collectionId
+     * @param string $databaseId
+     * @param string $collectionId
      * @param array $queries
      * @throws AppwriteException
      * @return array
 
      */
-    public function listDocuments(string$databaseId, string$collectionId, array $queries = null): array
+    public function listDocuments(string $databaseId, string $collectionId, array $queries = null): array
     {
         $path   = str_replace(['{databaseId}', '{collectionId}'], [$databaseId, $collectionId], '/databases/{databaseId}/collections/{collectionId}/documents');
 
@@ -1027,16 +1018,16 @@ class Databases extends Service
      * integration](/docs/server/databases#databasesCreateCollection) API or
      * directly from your database console.
      *
-     * @param string$databaseId
-     * @param string$collectionId
-     * @param string$documentId
+     * @param string $databaseId
+     * @param string $collectionId
+     * @param string $documentId
      * @param array $data
      * @param array $permissions
      * @throws AppwriteException
      * @return array
 
      */
-    public function createDocument(string$databaseId, string$collectionId, string$documentId, array $data, array $permissions = null): array
+    public function createDocument(string $databaseId, string $collectionId, string $documentId, array $data, array $permissions = null): array
     {
         $path   = str_replace(['{databaseId}', '{collectionId}'], [$databaseId, $collectionId], '/databases/{databaseId}/collections/{collectionId}/documents');
 
@@ -1077,14 +1068,14 @@ class Databases extends Service
      * Get a document by its unique ID. This endpoint response returns a JSON
      * object with the document data.
      *
-     * @param string$databaseId
-     * @param string$collectionId
-     * @param string$documentId
+     * @param string $databaseId
+     * @param string $collectionId
+     * @param string $documentId
      * @throws AppwriteException
      * @return array
 
      */
-    public function getDocument(string$databaseId, string$collectionId, string$documentId): array
+    public function getDocument(string $databaseId, string $collectionId, string $documentId): array
     {
         $path   = str_replace(['{databaseId}', '{collectionId}', '{documentId}'], [$databaseId, $collectionId, $documentId], '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}');
 
@@ -1110,16 +1101,16 @@ class Databases extends Service
      * Update a document by its unique ID. Using the patch method you can pass
      * only specific fields that will get updated.
      *
-     * @param string$databaseId
-     * @param string$collectionId
-     * @param string$documentId
+     * @param string $databaseId
+     * @param string $collectionId
+     * @param string $documentId
      * @param array $data
      * @param array $permissions
      * @throws AppwriteException
      * @return array
 
      */
-    public function updateDocument(string$databaseId, string$collectionId, string$documentId, array $data = null, array $permissions = null): array
+    public function updateDocument(string $databaseId, string $collectionId, string $documentId, array $data = null, array $permissions = null): array
     {
         $path   = str_replace(['{databaseId}', '{collectionId}', '{documentId}'], [$databaseId, $collectionId, $documentId], '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}');
 
@@ -1152,14 +1143,14 @@ class Databases extends Service
      *
      * Delete a document by its unique ID.
      *
-     * @param string$databaseId
-     * @param string$collectionId
-     * @param string$documentId
+     * @param string $databaseId
+     * @param string $collectionId
+     * @param string $documentId
      * @throws AppwriteException
      * @return string
 
      */
-    public function deleteDocument(string$databaseId, string$collectionId, string$documentId): string
+    public function deleteDocument(string $databaseId, string $collectionId, string $documentId): string
     {
         $path   = str_replace(['{databaseId}', '{collectionId}', '{documentId}'], [$databaseId, $collectionId, $documentId], '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}');
 
@@ -1182,13 +1173,13 @@ class Databases extends Service
     /**
      * List Indexes
      *
-     * @param string$databaseId
-     * @param string$collectionId
+     * @param string $databaseId
+     * @param string $collectionId
      * @throws AppwriteException
      * @return array
 
      */
-    public function listIndexes(string$databaseId, string$collectionId): array
+    public function listIndexes(string $databaseId, string $collectionId): array
     {
         $path   = str_replace(['{databaseId}', '{collectionId}'], [$databaseId, $collectionId], '/databases/{databaseId}/collections/{collectionId}/indexes');
 
@@ -1208,17 +1199,17 @@ class Databases extends Service
     /**
      * Create Index
      *
-     * @param string$databaseId
-     * @param string$collectionId
-     * @param string$key
-     * @param string$type
+     * @param string $databaseId
+     * @param string $collectionId
+     * @param string $key
+     * @param string $type
      * @param array $attributes
      * @param array $orders
      * @throws AppwriteException
      * @return array
 
      */
-    public function createIndex(string$databaseId, string$collectionId, string$key, string$type, array $attributes, array $orders = null): array
+    public function createIndex(string $databaseId, string $collectionId, string $key, string $type, array $attributes, array $orders = null): array
     {
         $path   = str_replace(['{databaseId}', '{collectionId}'], [$databaseId, $collectionId], '/databases/{databaseId}/collections/{collectionId}/indexes');
 
@@ -1263,14 +1254,14 @@ class Databases extends Service
     /**
      * Get Index
      *
-     * @param string$databaseId
-     * @param string$collectionId
-     * @param string$key
+     * @param string $databaseId
+     * @param string $collectionId
+     * @param string $key
      * @throws AppwriteException
      * @return array
 
      */
-    public function getIndex(string$databaseId, string$collectionId, string$key): array
+    public function getIndex(string $databaseId, string $collectionId, string $key): array
     {
         $path   = str_replace(['{databaseId}', '{collectionId}', '{key}'], [$databaseId, $collectionId, $key], '/databases/{databaseId}/collections/{collectionId}/indexes/{key}');
 
@@ -1293,14 +1284,14 @@ class Databases extends Service
     /**
      * Delete Index
      *
-     * @param string$databaseId
-     * @param string$collectionId
-     * @param string$key
+     * @param string $databaseId
+     * @param string $collectionId
+     * @param string $key
      * @throws AppwriteException
      * @return string
 
      */
-    public function deleteIndex(string$databaseId, string$collectionId, string$key): string
+    public function deleteIndex(string $databaseId, string $collectionId, string $key): string
     {
         $path   = str_replace(['{databaseId}', '{collectionId}', '{key}'], [$databaseId, $collectionId, $key], '/databases/{databaseId}/collections/{collectionId}/indexes/{key}');
 
