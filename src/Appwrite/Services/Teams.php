@@ -24,12 +24,12 @@ class Teams extends Service
      * project. [Learn more about different API modes](/docs/admin).
      *
      * @param array $queries
-     * @param string$search
+     * @param string $search
      * @throws AppwriteException
      * @return array
 
      */
-    public function list(array $queries = null, string$search = null): array
+    public function list(array $queries = null, string $search = null): array
     {
         $path   = str_replace([], [], '/teams');
 
@@ -55,14 +55,14 @@ class Teams extends Service
      * assigned as the owner of the team. Only the users with the owner role can
      * invite new members, add new owners and delete or update the team.
      *
-     * @param string$teamId
-     * @param string$name
+     * @param string $teamId
+     * @param string $name
      * @param array $roles
      * @throws AppwriteException
      * @return array
 
      */
-    public function create(string$teamId, string$name, array $roles = null): array
+    public function create(string $teamId, string $name, array $roles = null): array
     {
         $path   = str_replace([], [], '/teams');
 
@@ -96,12 +96,12 @@ class Teams extends Service
      *
      * Get a team by its ID. All team members have read access for this resource.
      *
-     * @param string$teamId
+     * @param string $teamId
      * @throws AppwriteException
      * @return array
 
      */
-    public function get(string$teamId): array
+    public function get(string $teamId): array
     {
         $path   = str_replace(['{teamId}'], [$teamId], '/teams/{teamId}');
 
@@ -121,13 +121,13 @@ class Teams extends Service
      * Update a team using its ID. Only members with the owner role can update the
      * team.
      *
-     * @param string$teamId
-     * @param string$name
+     * @param string $teamId
+     * @param string $name
      * @throws AppwriteException
      * @return array
 
      */
-    public function update(string$teamId, string$name): array
+    public function update(string $teamId, string $name): array
     {
         $path   = str_replace(['{teamId}'], [$teamId], '/teams/{teamId}');
 
@@ -154,12 +154,12 @@ class Teams extends Service
      * Delete a team using its ID. Only team members with the owner role can
      * delete the team.
      *
-     * @param string$teamId
+     * @param string $teamId
      * @throws AppwriteException
      * @return string
 
      */
-    public function delete(string$teamId): string
+    public function delete(string $teamId): string
     {
         $path   = str_replace(['{teamId}'], [$teamId], '/teams/{teamId}');
 
@@ -179,14 +179,14 @@ class Teams extends Service
      * Use this endpoint to list a team's members using the team's ID. All team
      * members have read access to this endpoint.
      *
-     * @param string$teamId
+     * @param string $teamId
      * @param array $queries
-     * @param string$search
+     * @param string $search
      * @throws AppwriteException
      * @return array
 
      */
-    public function getMemberships(string$teamId, array $queries = null, string$search = null): array
+    public function getMemberships(string $teamId, array $queries = null, string $search = null): array
     {
         $path   = str_replace(['{teamId}'], [$teamId], '/teams/{teamId}/memberships');
 
@@ -227,16 +227,16 @@ class Teams extends Service
      * the only valid redirect URL's are the once from domains you have set when
      * adding your platforms in the console interface.
      *
-     * @param string$teamId
-     * @param string$email
+     * @param string $teamId
+     * @param string $email
      * @param array $roles
-     * @param string$url
-     * @param string$name
+     * @param string $url
+     * @param string $name
      * @throws AppwriteException
      * @return array
 
      */
-    public function createMembership(string$teamId, string$email, array $roles, string$url, string$name = null): array
+    public function createMembership(string $teamId, string $email, array $roles, string $url, string $name = null): array
     {
         $path   = str_replace(['{teamId}'], [$teamId], '/teams/{teamId}/memberships');
 
@@ -281,13 +281,13 @@ class Teams extends Service
      * Get a team member by the membership unique id. All team members have read
      * access for this resource.
      *
-     * @param string$teamId
-     * @param string$membershipId
+     * @param string $teamId
+     * @param string $membershipId
      * @throws AppwriteException
      * @return array
 
      */
-    public function getMembership(string$teamId, string$membershipId): array
+    public function getMembership(string $teamId, string $membershipId): array
     {
         $path   = str_replace(['{teamId}', '{membershipId}'], [$teamId, $membershipId], '/teams/{teamId}/memberships/{membershipId}');
 
@@ -311,14 +311,14 @@ class Teams extends Service
      * have access to this endpoint. Learn more about [roles and
      * permissions](/docs/permissions).
      *
-     * @param string$teamId
-     * @param string$membershipId
+     * @param string $teamId
+     * @param string $membershipId
      * @param array $roles
      * @throws AppwriteException
      * @return array
 
      */
-    public function updateMembershipRoles(string$teamId, string$membershipId, array $roles): array
+    public function updateMembershipRoles(string $teamId, string $membershipId, array $roles): array
     {
         $path   = str_replace(['{teamId}', '{membershipId}'], [$teamId, $membershipId], '/teams/{teamId}/memberships/{membershipId}');
 
@@ -349,13 +349,13 @@ class Teams extends Service
      * the membership of any other team member. You can also use this endpoint to
      * delete a user membership even if it is not accepted.
      *
-     * @param string$teamId
-     * @param string$membershipId
+     * @param string $teamId
+     * @param string $membershipId
      * @throws AppwriteException
      * @return string
 
      */
-    public function deleteMembership(string$teamId, string$membershipId): string
+    public function deleteMembership(string $teamId, string $membershipId): string
     {
         $path   = str_replace(['{teamId}', '{membershipId}'], [$teamId, $membershipId], '/teams/{teamId}/memberships/{membershipId}');
 
@@ -383,15 +383,15 @@ class Teams extends Service
      * created.
      * 
      *
-     * @param string$teamId
-     * @param string$membershipId
-     * @param string$userId
-     * @param string$secret
+     * @param string $teamId
+     * @param string $membershipId
+     * @param string $userId
+     * @param string $secret
      * @throws AppwriteException
      * @return array
 
      */
-    public function updateMembershipStatus(string$teamId, string$membershipId, string$userId, string$secret): array
+    public function updateMembershipStatus(string $teamId, string $membershipId, string $userId, string $secret): array
     {
         $path   = str_replace(['{teamId}', '{membershipId}'], [$teamId, $membershipId], '/teams/{teamId}/memberships/{membershipId}/status');
 

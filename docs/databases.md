@@ -204,7 +204,7 @@ POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attri
 | collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
 | key | string | Attribute Key. |  |
 | required | boolean | Is attribute required? |  |
-| default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
+| default | string | Default value for the attribute in ISO 8601 format. Cannot be set when attribute is required. |  |
 | array | boolean | Is attribute an array? |  |
 
 ## Create Email Attribute
