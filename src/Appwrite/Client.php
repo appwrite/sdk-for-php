@@ -40,7 +40,7 @@ class Client
         'x-sdk-name'=> 'PHP',
         'x-sdk-platform'=> 'server',
         'x-sdk-language'=> 'php',
-        'x-sdk-version'=> '6.1.0-RC1',
+        'x-sdk-version'=> '7.0.0-RC1',
     ];
 
     /**
