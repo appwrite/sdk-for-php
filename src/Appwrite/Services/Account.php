@@ -9,6 +9,11 @@ use Appwrite\InputFile;
 
 class Account extends Service
 {
+     public function __construct(Client $client)
+     {
+          $this->client = $client;
+     }
+
     /**
      * Get Account
      *
@@ -78,23 +83,18 @@ class Account extends Service
      * Get currently logged in user list of latest security activity logs. Each
      * log returns user IP address, location and date and time of log.
      *
-     * @param int $limit
-     * @param int $offset
+     * @param array $queries
      * @throws AppwriteException
      * @return array
 
      */
-    public function getLogs(int $limit = null, int $offset = null): array
+    public function getLogs(array $queries = null): array
     {
         $path   = str_replace([], [], '/account/logs');
 
         $params = [];
-        if (!is_null($limit)) {
-            $params['limit'] = $limit;
-        }
-
-        if (!is_null($offset)) {
-            $params['offset'] = $offset;
+        if (!is_null($queries)) {
+            $params['queries'] = $queries;
         }
 
 
@@ -169,30 +169,31 @@ class Account extends Service
     /**
      * Update Account Phone
      *
-     * Update currently logged in user account phone number. After changing phone
-     * number, the user confirmation status will get reset. A new confirmation SMS
-     * is not sent automatically however you can use the phone confirmation
-     * endpoint again to send the confirmation SMS.
+     * Update the currently logged in user's phone number. After updating the
+     * phone number, the phone verification status will be reset. A confirmation
+     * SMS is not sent automatically, however you can use the [POST
+     * /account/verification/phone](/docs/client/account#accountCreatePhoneVerification)
+     * endpoint to send a confirmation SMS.
      *
-     * @param string $number
+     * @param string $phone
      * @param string $password
      * @throws AppwriteException
      * @return array
 
      */
-    public function updatePhone(string $number, string $password): array
+    public function updatePhone(string $phone, string $password): array
     {
         $path   = str_replace([], [], '/account/phone');
 
         $params = [];
-        if (!isset($number)) {
-            throw new AppwriteException('Missing required parameter: "number"');
+        if (!isset($phone)) {
+            throw new AppwriteException('Missing required parameter: "phone"');
         }
         if (!isset($password)) {
             throw new AppwriteException('Missing required parameter: "password"');
         }
-        if (!is_null($number)) {
-            $params['number'] = $number;
+        if (!is_null($phone)) {
+            $params['phone'] = $phone;
         }
 
         if (!is_null($password)) {
@@ -584,13 +585,12 @@ class Account extends Service
     /**
      * Create Phone Verification
      *
-     * Use this endpoint to send a verification message to your user's phone
-     * number to confirm they are the valid owners of that address. The provided
-     * secret should allow you to complete the verification process by verifying
-     * both the **userId** and **secret** parameters. Learn more about how to
-     * [complete the verification
+     * Use this endpoint to send a verification SMS to the currently logged in
+     * user. This endpoint is meant for use after updating a user's phone number
+     * using the [accountUpdatePhone](/docs/client/account#accountUpdatePhone)
+     * endpoint. Learn more about how to [complete the verification
      * process](/docs/client/account#accountUpdatePhoneVerification). The
-     * verification link sent to the user's phone number is valid for 15 minutes.
+     * verification code sent to the user's phone number is valid for 15 minutes.
      *
      * @throws AppwriteException
      * @return array

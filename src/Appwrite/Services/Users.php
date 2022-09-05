@@ -9,49 +9,34 @@ use Appwrite\InputFile;
 
 class Users extends Service
 {
+     public function __construct(Client $client)
+     {
+          $this->client = $client;
+     }
+
     /**
      * List Users
      *
      * Get a list of all the project's users. You can use the query params to
      * filter your results.
      *
+     * @param array $queries
      * @param string $search
-     * @param int $limit
-     * @param int $offset
-     * @param string $cursor
-     * @param string $cursorDirection
-     * @param string $orderType
      * @throws AppwriteException
      * @return array
 
      */
-    public function list(string $search = null, int $limit = null, int $offset = null, string $cursor = null, string $cursorDirection = null, string $orderType = null): array
+    public function list(array $queries = null, string $search = null): array
     {
         $path   = str_replace([], [], '/users');
 
         $params = [];
+        if (!is_null($queries)) {
+            $params['queries'] = $queries;
+        }
+
         if (!is_null($search)) {
             $params['search'] = $search;
-        }
-
-        if (!is_null($limit)) {
-            $params['limit'] = $limit;
-        }
-
-        if (!is_null($offset)) {
-            $params['offset'] = $offset;
-        }
-
-        if (!is_null($cursor)) {
-            $params['cursor'] = $cursor;
-        }
-
-        if (!is_null($cursorDirection)) {
-            $params['cursorDirection'] = $cursorDirection;
-        }
-
-        if (!is_null($orderType)) {
-            $params['orderType'] = $orderType;
         }
 
 
@@ -67,15 +52,66 @@ class Users extends Service
      *
      * @param string $userId
      * @param string $email
+     * @param string $phone
      * @param string $password
      * @param string $name
      * @throws AppwriteException
      * @return array
 
      */
-    public function create(string $userId, string $email, string $password, string $name = null): array
+    public function create(string $userId, string $email = null, string $phone = null, string $password = null, string $name = null): array
     {
         $path   = str_replace([], [], '/users');
+
+        $params = [];
+        if (!isset($userId)) {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+        if (!is_null($userId)) {
+            $params['userId'] = $userId;
+        }
+
+        if (!is_null($email)) {
+            $params['email'] = $email;
+        }
+
+        if (!is_null($phone)) {
+            $params['phone'] = $phone;
+        }
+
+        if (!is_null($password)) {
+            $params['password'] = $password;
+        }
+
+        if (!is_null($name)) {
+            $params['name'] = $name;
+        }
+
+
+        return $this->client->call(Client::METHOD_POST, $path, [
+            'content-type' => 'application/json',
+        ], $params);
+    }
+
+    /**
+     * Create User with Argon2 Password
+     *
+     * Create a new user. Password provided must be hashed with the
+     * [Argon2](https://en.wikipedia.org/wiki/Argon2) algorithm. Use the [POST
+     * /users](/docs/server/users#usersCreate) endpoint to create users with a
+     * plain text password.
+     *
+     * @param string $userId
+     * @param string $email
+     * @param string $password
+     * @param string $name
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function createArgon2User(string $userId, string $email, string $password, string $name = null): array
+    {
+        $path   = str_replace([], [], '/users/argon2');
 
         $params = [];
         if (!isset($userId)) {
@@ -97,6 +133,387 @@ class Users extends Service
 
         if (!is_null($password)) {
             $params['password'] = $password;
+        }
+
+        if (!is_null($name)) {
+            $params['name'] = $name;
+        }
+
+
+        return $this->client->call(Client::METHOD_POST, $path, [
+            'content-type' => 'application/json',
+        ], $params);
+    }
+
+    /**
+     * Create User with Bcrypt Password
+     *
+     * Create a new user. Password provided must be hashed with the
+     * [Bcrypt](https://en.wikipedia.org/wiki/Bcrypt) algorithm. Use the [POST
+     * /users](/docs/server/users#usersCreate) endpoint to create users with a
+     * plain text password.
+     *
+     * @param string $userId
+     * @param string $email
+     * @param string $password
+     * @param string $name
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function createBcryptUser(string $userId, string $email, string $password, string $name = null): array
+    {
+        $path   = str_replace([], [], '/users/bcrypt');
+
+        $params = [];
+        if (!isset($userId)) {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+        if (!isset($email)) {
+            throw new AppwriteException('Missing required parameter: "email"');
+        }
+        if (!isset($password)) {
+            throw new AppwriteException('Missing required parameter: "password"');
+        }
+        if (!is_null($userId)) {
+            $params['userId'] = $userId;
+        }
+
+        if (!is_null($email)) {
+            $params['email'] = $email;
+        }
+
+        if (!is_null($password)) {
+            $params['password'] = $password;
+        }
+
+        if (!is_null($name)) {
+            $params['name'] = $name;
+        }
+
+
+        return $this->client->call(Client::METHOD_POST, $path, [
+            'content-type' => 'application/json',
+        ], $params);
+    }
+
+    /**
+     * Create User with MD5 Password
+     *
+     * Create a new user. Password provided must be hashed with the
+     * [MD5](https://en.wikipedia.org/wiki/MD5) algorithm. Use the [POST
+     * /users](/docs/server/users#usersCreate) endpoint to create users with a
+     * plain text password.
+     *
+     * @param string $userId
+     * @param string $email
+     * @param string $password
+     * @param string $name
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function createMD5User(string $userId, string $email, string $password, string $name = null): array
+    {
+        $path   = str_replace([], [], '/users/md5');
+
+        $params = [];
+        if (!isset($userId)) {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+        if (!isset($email)) {
+            throw new AppwriteException('Missing required parameter: "email"');
+        }
+        if (!isset($password)) {
+            throw new AppwriteException('Missing required parameter: "password"');
+        }
+        if (!is_null($userId)) {
+            $params['userId'] = $userId;
+        }
+
+        if (!is_null($email)) {
+            $params['email'] = $email;
+        }
+
+        if (!is_null($password)) {
+            $params['password'] = $password;
+        }
+
+        if (!is_null($name)) {
+            $params['name'] = $name;
+        }
+
+
+        return $this->client->call(Client::METHOD_POST, $path, [
+            'content-type' => 'application/json',
+        ], $params);
+    }
+
+    /**
+     * Create User with PHPass Password
+     *
+     * Create a new user. Password provided must be hashed with the
+     * [PHPass](https://www.openwall.com/phpass/) algorithm. Use the [POST
+     * /users](/docs/server/users#usersCreate) endpoint to create users with a
+     * plain text password.
+     *
+     * @param string $userId
+     * @param string $email
+     * @param string $password
+     * @param string $name
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function createPHPassUser(string $userId, string $email, string $password, string $name = null): array
+    {
+        $path   = str_replace([], [], '/users/phpass');
+
+        $params = [];
+        if (!isset($userId)) {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+        if (!isset($email)) {
+            throw new AppwriteException('Missing required parameter: "email"');
+        }
+        if (!isset($password)) {
+            throw new AppwriteException('Missing required parameter: "password"');
+        }
+        if (!is_null($userId)) {
+            $params['userId'] = $userId;
+        }
+
+        if (!is_null($email)) {
+            $params['email'] = $email;
+        }
+
+        if (!is_null($password)) {
+            $params['password'] = $password;
+        }
+
+        if (!is_null($name)) {
+            $params['name'] = $name;
+        }
+
+
+        return $this->client->call(Client::METHOD_POST, $path, [
+            'content-type' => 'application/json',
+        ], $params);
+    }
+
+    /**
+     * Create User with Scrypt Password
+     *
+     * Create a new user. Password provided must be hashed with the
+     * [Scrypt](https://github.com/Tarsnap/scrypt) algorithm. Use the [POST
+     * /users](/docs/server/users#usersCreate) endpoint to create users with a
+     * plain text password.
+     *
+     * @param string $userId
+     * @param string $email
+     * @param string $password
+     * @param string $passwordSalt
+     * @param int $passwordCpu
+     * @param int $passwordMemory
+     * @param int $passwordParallel
+     * @param int $passwordLength
+     * @param string $name
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function createScryptUser(string $userId, string $email, string $password, string $passwordSalt, int $passwordCpu, int $passwordMemory, int $passwordParallel, int $passwordLength, string $name = null): array
+    {
+        $path   = str_replace([], [], '/users/scrypt');
+
+        $params = [];
+        if (!isset($userId)) {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+        if (!isset($email)) {
+            throw new AppwriteException('Missing required parameter: "email"');
+        }
+        if (!isset($password)) {
+            throw new AppwriteException('Missing required parameter: "password"');
+        }
+        if (!isset($passwordSalt)) {
+            throw new AppwriteException('Missing required parameter: "passwordSalt"');
+        }
+        if (!isset($passwordCpu)) {
+            throw new AppwriteException('Missing required parameter: "passwordCpu"');
+        }
+        if (!isset($passwordMemory)) {
+            throw new AppwriteException('Missing required parameter: "passwordMemory"');
+        }
+        if (!isset($passwordParallel)) {
+            throw new AppwriteException('Missing required parameter: "passwordParallel"');
+        }
+        if (!isset($passwordLength)) {
+            throw new AppwriteException('Missing required parameter: "passwordLength"');
+        }
+        if (!is_null($userId)) {
+            $params['userId'] = $userId;
+        }
+
+        if (!is_null($email)) {
+            $params['email'] = $email;
+        }
+
+        if (!is_null($password)) {
+            $params['password'] = $password;
+        }
+
+        if (!is_null($passwordSalt)) {
+            $params['passwordSalt'] = $passwordSalt;
+        }
+
+        if (!is_null($passwordCpu)) {
+            $params['passwordCpu'] = $passwordCpu;
+        }
+
+        if (!is_null($passwordMemory)) {
+            $params['passwordMemory'] = $passwordMemory;
+        }
+
+        if (!is_null($passwordParallel)) {
+            $params['passwordParallel'] = $passwordParallel;
+        }
+
+        if (!is_null($passwordLength)) {
+            $params['passwordLength'] = $passwordLength;
+        }
+
+        if (!is_null($name)) {
+            $params['name'] = $name;
+        }
+
+
+        return $this->client->call(Client::METHOD_POST, $path, [
+            'content-type' => 'application/json',
+        ], $params);
+    }
+
+    /**
+     * Create User with Scrypt Modified Password
+     *
+     * Create a new user. Password provided must be hashed with the [Scrypt
+     * Modified](https://gist.github.com/Meldiron/eecf84a0225eccb5a378d45bb27462cc)
+     * algorithm. Use the [POST /users](/docs/server/users#usersCreate) endpoint
+     * to create users with a plain text password.
+     *
+     * @param string $userId
+     * @param string $email
+     * @param string $password
+     * @param string $passwordSalt
+     * @param string $passwordSaltSeparator
+     * @param string $passwordSignerKey
+     * @param string $name
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function createScryptModifiedUser(string $userId, string $email, string $password, string $passwordSalt, string $passwordSaltSeparator, string $passwordSignerKey, string $name = null): array
+    {
+        $path   = str_replace([], [], '/users/scrypt-modified');
+
+        $params = [];
+        if (!isset($userId)) {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+        if (!isset($email)) {
+            throw new AppwriteException('Missing required parameter: "email"');
+        }
+        if (!isset($password)) {
+            throw new AppwriteException('Missing required parameter: "password"');
+        }
+        if (!isset($passwordSalt)) {
+            throw new AppwriteException('Missing required parameter: "passwordSalt"');
+        }
+        if (!isset($passwordSaltSeparator)) {
+            throw new AppwriteException('Missing required parameter: "passwordSaltSeparator"');
+        }
+        if (!isset($passwordSignerKey)) {
+            throw new AppwriteException('Missing required parameter: "passwordSignerKey"');
+        }
+        if (!is_null($userId)) {
+            $params['userId'] = $userId;
+        }
+
+        if (!is_null($email)) {
+            $params['email'] = $email;
+        }
+
+        if (!is_null($password)) {
+            $params['password'] = $password;
+        }
+
+        if (!is_null($passwordSalt)) {
+            $params['passwordSalt'] = $passwordSalt;
+        }
+
+        if (!is_null($passwordSaltSeparator)) {
+            $params['passwordSaltSeparator'] = $passwordSaltSeparator;
+        }
+
+        if (!is_null($passwordSignerKey)) {
+            $params['passwordSignerKey'] = $passwordSignerKey;
+        }
+
+        if (!is_null($name)) {
+            $params['name'] = $name;
+        }
+
+
+        return $this->client->call(Client::METHOD_POST, $path, [
+            'content-type' => 'application/json',
+        ], $params);
+    }
+
+    /**
+     * Create User with SHA Password
+     *
+     * Create a new user. Password provided must be hashed with the
+     * [SHA](https://en.wikipedia.org/wiki/Secure_Hash_Algorithm) algorithm. Use
+     * the [POST /users](/docs/server/users#usersCreate) endpoint to create users
+     * with a plain text password.
+     *
+     * @param string $userId
+     * @param string $email
+     * @param string $password
+     * @param string $passwordVersion
+     * @param string $name
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function createSHAUser(string $userId, string $email, string $password, string $passwordVersion = null, string $name = null): array
+    {
+        $path   = str_replace([], [], '/users/sha');
+
+        $params = [];
+        if (!isset($userId)) {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+        if (!isset($email)) {
+            throw new AppwriteException('Missing required parameter: "email"');
+        }
+        if (!isset($password)) {
+            throw new AppwriteException('Missing required parameter: "password"');
+        }
+        if (!is_null($userId)) {
+            $params['userId'] = $userId;
+        }
+
+        if (!is_null($email)) {
+            $params['email'] = $email;
+        }
+
+        if (!is_null($password)) {
+            $params['password'] = $password;
+        }
+
+        if (!is_null($passwordVersion)) {
+            $params['passwordVersion'] = $passwordVersion;
         }
 
         if (!is_null($name)) {
@@ -199,13 +616,12 @@ class Users extends Service
      * Get the user activity logs list by its unique ID.
      *
      * @param string $userId
-     * @param int $limit
-     * @param int $offset
+     * @param array $queries
      * @throws AppwriteException
      * @return array
 
      */
-    public function getLogs(string $userId, int $limit = null, int $offset = null): array
+    public function getLogs(string $userId, array $queries = null): array
     {
         $path   = str_replace(['{userId}'], [$userId], '/users/{userId}/logs');
 
@@ -213,12 +629,8 @@ class Users extends Service
         if (!isset($userId)) {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
-        if (!is_null($limit)) {
-            $params['limit'] = $limit;
-        }
-
-        if (!is_null($offset)) {
-            $params['offset'] = $offset;
+        if (!is_null($queries)) {
+            $params['queries'] = $queries;
         }
 
 

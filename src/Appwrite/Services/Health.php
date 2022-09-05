@@ -9,6 +9,11 @@ use Appwrite\InputFile;
 
 class Health extends Service
 {
+     public function __construct(Client $client)
+     {
+          $this->client = $client;
+     }
+
     /**
      * Get HTTP
      *

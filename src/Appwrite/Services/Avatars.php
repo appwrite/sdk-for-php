@@ -9,6 +9,11 @@ use Appwrite\InputFile;
 
 class Avatars extends Service
 {
+     public function __construct(Client $client)
+     {
+          $this->client = $client;
+     }
+
     /**
      * Get Browser Icon
      *
@@ -138,7 +143,8 @@ class Avatars extends Service
      *
      * You can use this endpoint to show different country flags icons to your
      * users. The code argument receives the 2 letter country code. Use width,
-     * height and quality arguments to change the output settings.
+     * height and quality arguments to change the output settings. Country codes
+     * follow the [ISO 3166-1](http://en.wikipedia.org/wiki/ISO_3166-1) standard.
      * 
      * When one dimension is specified and the other is 0, the image is scaled
      * with preserved aspect ratio. If both dimensions are 0, the API provides an
@@ -250,13 +256,12 @@ class Avatars extends Service
      * @param string $name
      * @param int $width
      * @param int $height
-     * @param string $color
      * @param string $background
      * @throws AppwriteException
      * @return string
 
      */
-    public function getInitials(string $name = null, int $width = null, int $height = null, string $color = null, string $background = null): string
+    public function getInitials(string $name = null, int $width = null, int $height = null, string $background = null): string
     {
         $path   = str_replace([], [], '/avatars/initials');
 
@@ -271,10 +276,6 @@ class Avatars extends Service
 
         if (!is_null($height)) {
             $params['height'] = $height;
-        }
-
-        if (!is_null($color)) {
-            $params['color'] = $color;
         }
 
         if (!is_null($background)) {

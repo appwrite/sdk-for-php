@@ -1,7 +1,7 @@
 <?php
 
 use Appwrite\Client;
-use Appwrite\Services\Databases;
+use Appwrite\Services\Functions;
 
 $client = new Client();
 
@@ -11,6 +11,6 @@ $client
     ->setKey('919c2d18fb5d4...a2ae413da83346ad2') // Your secret API key
 ;
 
-$databases = new Databases($client);
+$functions = new Functions($client);
 
-$result = $databases->listAttributes('[DATABASE_ID]', '[COLLECTION_ID]');
+$result = $functions->createVariable('[FUNCTION_ID]', '[KEY]', '[VALUE]');

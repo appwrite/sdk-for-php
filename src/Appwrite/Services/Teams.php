@@ -9,6 +9,11 @@ use Appwrite\InputFile;
 
 class Teams extends Service
 {
+     public function __construct(Client $client)
+     {
+          $this->client = $client;
+     }
+
     /**
      * List Teams
      *
@@ -18,43 +23,23 @@ class Teams extends Service
      * In admin mode, this endpoint returns a list of all the teams in the current
      * project. [Learn more about different API modes](/docs/admin).
      *
+     * @param array $queries
      * @param string $search
-     * @param int $limit
-     * @param int $offset
-     * @param string $cursor
-     * @param string $cursorDirection
-     * @param string $orderType
      * @throws AppwriteException
      * @return array
 
      */
-    public function list(string $search = null, int $limit = null, int $offset = null, string $cursor = null, string $cursorDirection = null, string $orderType = null): array
+    public function list(array $queries = null, string $search = null): array
     {
         $path   = str_replace([], [], '/teams');
 
         $params = [];
+        if (!is_null($queries)) {
+            $params['queries'] = $queries;
+        }
+
         if (!is_null($search)) {
             $params['search'] = $search;
-        }
-
-        if (!is_null($limit)) {
-            $params['limit'] = $limit;
-        }
-
-        if (!is_null($offset)) {
-            $params['offset'] = $offset;
-        }
-
-        if (!is_null($cursor)) {
-            $params['cursor'] = $cursor;
-        }
-
-        if (!is_null($cursorDirection)) {
-            $params['cursorDirection'] = $cursorDirection;
-        }
-
-        if (!is_null($orderType)) {
-            $params['orderType'] = $orderType;
         }
 
 
@@ -195,17 +180,13 @@ class Teams extends Service
      * members have read access to this endpoint.
      *
      * @param string $teamId
+     * @param array $queries
      * @param string $search
-     * @param int $limit
-     * @param int $offset
-     * @param string $cursor
-     * @param string $cursorDirection
-     * @param string $orderType
      * @throws AppwriteException
      * @return array
 
      */
-    public function getMemberships(string $teamId, string $search = null, int $limit = null, int $offset = null, string $cursor = null, string $cursorDirection = null, string $orderType = null): array
+    public function getMemberships(string $teamId, array $queries = null, string $search = null): array
     {
         $path   = str_replace(['{teamId}'], [$teamId], '/teams/{teamId}/memberships');
 
@@ -213,28 +194,12 @@ class Teams extends Service
         if (!isset($teamId)) {
             throw new AppwriteException('Missing required parameter: "teamId"');
         }
+        if (!is_null($queries)) {
+            $params['queries'] = $queries;
+        }
+
         if (!is_null($search)) {
             $params['search'] = $search;
-        }
-
-        if (!is_null($limit)) {
-            $params['limit'] = $limit;
-        }
-
-        if (!is_null($offset)) {
-            $params['offset'] = $offset;
-        }
-
-        if (!is_null($cursor)) {
-            $params['cursor'] = $cursor;
-        }
-
-        if (!is_null($cursorDirection)) {
-            $params['cursorDirection'] = $cursorDirection;
-        }
-
-        if (!is_null($orderType)) {
-            $params['orderType'] = $orderType;
         }
 
 

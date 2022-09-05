@@ -12,12 +12,8 @@ GET https://HOSTNAME/v1/users
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
+| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/databases#querying-documents). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, email, phone, status, passwordUpdate, registration, emailVerification, phoneVerification | [] |
 | search | string | Search term to filter your list results. Max length: 256 chars. |  |
-| limit | integer | Maximum number of users to return in response. By default will return maximum 25 results. Maximum of 100 results allowed per request. | 25 |
-| offset | integer | Offset value. The default value is 0. Use this param to manage pagination. [learn more about pagination](https://appwrite.io/docs/pagination) | 0 |
-| cursor | string | ID of the user used as the starting point for the query, excluding the user itself. Should be used for efficient pagination when working with large sets of data. [learn more about pagination](https://appwrite.io/docs/pagination) |  |
-| cursorDirection | string | Direction of the cursor, can be either &#039;before&#039; or &#039;after&#039;. | after |
-| orderType | string | Order result by ASC or DESC order. | ASC |
 
 ## Create User
 
@@ -33,7 +29,136 @@ POST https://HOSTNAME/v1/users
 | --- | --- | --- | --- |
 | userId | string | User ID. Choose your own unique ID or pass the string &quot;unique()&quot; to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars. |  |
 | email | string | User email. |  |
-| password | string | User password. Must be at least 8 chars. |  |
+| phone | string | Phone number. Format this number with a leading &#039;+&#039; and a country code, e.g., +16175551212. |  |
+| password | string | Plain text user password. Must be at least 8 chars. |  |
+| name | string | User name. Max length: 128 chars. |  |
+
+## Create User with Argon2 Password
+
+```http request
+POST https://HOSTNAME/v1/users/argon2
+```
+
+** Create a new user. Password provided must be hashed with the [Argon2](https://en.wikipedia.org/wiki/Argon2) algorithm. Use the [POST /users](/docs/server/users#usersCreate) endpoint to create users with a plain text password. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| userId | string | User ID. Choose your own unique ID or pass the string &quot;unique()&quot; to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars. |  |
+| email | string | User email. |  |
+| password | string | User password hashed using Argon2. |  |
+| name | string | User name. Max length: 128 chars. |  |
+
+## Create User with Bcrypt Password
+
+```http request
+POST https://HOSTNAME/v1/users/bcrypt
+```
+
+** Create a new user. Password provided must be hashed with the [Bcrypt](https://en.wikipedia.org/wiki/Bcrypt) algorithm. Use the [POST /users](/docs/server/users#usersCreate) endpoint to create users with a plain text password. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| userId | string | User ID. Choose your own unique ID or pass the string &quot;unique()&quot; to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars. |  |
+| email | string | User email. |  |
+| password | string | User password hashed using Bcrypt. |  |
+| name | string | User name. Max length: 128 chars. |  |
+
+## Create User with MD5 Password
+
+```http request
+POST https://HOSTNAME/v1/users/md5
+```
+
+** Create a new user. Password provided must be hashed with the [MD5](https://en.wikipedia.org/wiki/MD5) algorithm. Use the [POST /users](/docs/server/users#usersCreate) endpoint to create users with a plain text password. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| userId | string | User ID. Choose your own unique ID or pass the string &quot;unique()&quot; to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars. |  |
+| email | string | User email. |  |
+| password | string | User password hashed using MD5. |  |
+| name | string | User name. Max length: 128 chars. |  |
+
+## Create User with PHPass Password
+
+```http request
+POST https://HOSTNAME/v1/users/phpass
+```
+
+** Create a new user. Password provided must be hashed with the [PHPass](https://www.openwall.com/phpass/) algorithm. Use the [POST /users](/docs/server/users#usersCreate) endpoint to create users with a plain text password. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| userId | string | User ID. Choose your own unique ID or pass the string &quot;unique()&quot; to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars. |  |
+| email | string | User email. |  |
+| password | string | User password hashed using PHPass. |  |
+| name | string | User name. Max length: 128 chars. |  |
+
+## Create User with Scrypt Password
+
+```http request
+POST https://HOSTNAME/v1/users/scrypt
+```
+
+** Create a new user. Password provided must be hashed with the [Scrypt](https://github.com/Tarsnap/scrypt) algorithm. Use the [POST /users](/docs/server/users#usersCreate) endpoint to create users with a plain text password. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| userId | string | User ID. Choose your own unique ID or pass the string &quot;unique()&quot; to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars. |  |
+| email | string | User email. |  |
+| password | string | User password hashed using Scrypt. |  |
+| passwordSalt | string | Optional salt used to hash password. |  |
+| passwordCpu | integer | Optional CPU cost used to hash password. |  |
+| passwordMemory | integer | Optional memory cost used to hash password. |  |
+| passwordParallel | integer | Optional parallelization cost used to hash password. |  |
+| passwordLength | integer | Optional hash length used to hash password. |  |
+| name | string | User name. Max length: 128 chars. |  |
+
+## Create User with Scrypt Modified Password
+
+```http request
+POST https://HOSTNAME/v1/users/scrypt-modified
+```
+
+** Create a new user. Password provided must be hashed with the [Scrypt Modified](https://gist.github.com/Meldiron/eecf84a0225eccb5a378d45bb27462cc) algorithm. Use the [POST /users](/docs/server/users#usersCreate) endpoint to create users with a plain text password. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| userId | string | User ID. Choose your own unique ID or pass the string &quot;unique()&quot; to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars. |  |
+| email | string | User email. |  |
+| password | string | User password hashed using Scrypt Modified. |  |
+| passwordSalt | string | Salt used to hash password. |  |
+| passwordSaltSeparator | string | Salt separator used to hash password. |  |
+| passwordSignerKey | string | Signer key used to hash password. |  |
+| name | string | User name. Max length: 128 chars. |  |
+
+## Create User with SHA Password
+
+```http request
+POST https://HOSTNAME/v1/users/sha
+```
+
+** Create a new user. Password provided must be hashed with the [SHA](https://en.wikipedia.org/wiki/Secure_Hash_Algorithm) algorithm. Use the [POST /users](/docs/server/users#usersCreate) endpoint to create users with a plain text password. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| userId | string | User ID. Choose your own unique ID or pass the string &quot;unique()&quot; to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars. |  |
+| email | string | User email. |  |
+| password | string | User password hashed using SHA. |  |
+| passwordVersion | string | Optional SHA version used to hash password. Allowed values are: &#039;sha1&#039;, &#039;sha224&#039;, &#039;sha256&#039;, &#039;sha384&#039;, &#039;sha512/224&#039;, &#039;sha512/256&#039;, &#039;sha512&#039;, &#039;sha3-224&#039;, &#039;sha3-256&#039;, &#039;sha3-384&#039;, &#039;sha3-512&#039; |  |
 | name | string | User name. Max length: 128 chars. |  |
 
 ## Get User
@@ -92,8 +217,7 @@ GET https://HOSTNAME/v1/users/{userId}/logs
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | userId | string | **Required** User ID. |  |
-| limit | integer | Maximum number of logs to return in response. By default will return maximum 25 results. Maximum of 100 results allowed per request. | 25 |
-| offset | integer | Offset value. The default value is 0. Use this value to manage pagination. [learn more about pagination](https://appwrite.io/docs/pagination) | 0 |
+| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/databases#querying-documents). Only supported methods are limit and offset | [] |
 
 ## Get User Memberships
 

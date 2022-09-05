@@ -11,6 +11,6 @@ $client
     ->setKey('919c2d18fb5d4...a2ae413da83346ad2') // Your secret API key
 ;
 
-$databases = new Databases($client, '[DATABASE_ID]');
+$databases = new Databases($client);
 
-$result = $databases->createIndex('[COLLECTION_ID]', '', 'key', []);
+$result = $databases->createIndex('[DATABASE_ID]', '[COLLECTION_ID]', '', 'key', []);

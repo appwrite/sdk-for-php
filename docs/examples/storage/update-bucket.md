@@ -13,4 +13,4 @@ $client
 
 $storage = new Storage($client);
 
-$result = $storage->updateBucket('[BUCKET_ID]', '[NAME]', 'file');
+$result = $storage->updateBucket('[BUCKET_ID]', '[NAME]');

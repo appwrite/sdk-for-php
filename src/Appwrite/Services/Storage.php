@@ -9,49 +9,34 @@ use Appwrite\InputFile;
 
 class Storage extends Service
 {
+     public function __construct(Client $client)
+     {
+          $this->client = $client;
+     }
+
     /**
      * List buckets
      *
      * Get a list of all the storage buckets. You can use the query params to
      * filter your results.
      *
+     * @param array $queries
      * @param string $search
-     * @param int $limit
-     * @param int $offset
-     * @param string $cursor
-     * @param string $cursorDirection
-     * @param string $orderType
      * @throws AppwriteException
      * @return array
 
      */
-    public function listBuckets(string $search = null, int $limit = null, int $offset = null, string $cursor = null, string $cursorDirection = null, string $orderType = null): array
+    public function listBuckets(array $queries = null, string $search = null): array
     {
         $path   = str_replace([], [], '/storage/buckets');
 
         $params = [];
+        if (!is_null($queries)) {
+            $params['queries'] = $queries;
+        }
+
         if (!is_null($search)) {
             $params['search'] = $search;
-        }
-
-        if (!is_null($limit)) {
-            $params['limit'] = $limit;
-        }
-
-        if (!is_null($offset)) {
-            $params['offset'] = $offset;
-        }
-
-        if (!is_null($cursor)) {
-            $params['cursor'] = $cursor;
-        }
-
-        if (!is_null($cursorDirection)) {
-            $params['cursorDirection'] = $cursorDirection;
-        }
-
-        if (!is_null($orderType)) {
-            $params['orderType'] = $orderType;
         }
 
 
@@ -67,19 +52,19 @@ class Storage extends Service
      *
      * @param string $bucketId
      * @param string $name
-     * @param string $permission
-     * @param array $read
-     * @param array $write
+     * @param array $permissions
+     * @param bool $fileSecurity
      * @param bool $enabled
      * @param int $maximumFileSize
      * @param array $allowedFileExtensions
+     * @param string $compression
      * @param bool $encryption
      * @param bool $antivirus
      * @throws AppwriteException
      * @return array
 
      */
-    public function createBucket(string $bucketId, string $name, string $permission, array $read = null, array $write = null, bool $enabled = null, int $maximumFileSize = null, array $allowedFileExtensions = null, bool $encryption = null, bool $antivirus = null): array
+    public function createBucket(string $bucketId, string $name, array $permissions = null, bool $fileSecurity = null, bool $enabled = null, int $maximumFileSize = null, array $allowedFileExtensions = null, string $compression = null, bool $encryption = null, bool $antivirus = null): array
     {
         $path   = str_replace([], [], '/storage/buckets');
 
@@ -90,9 +75,6 @@ class Storage extends Service
         if (!isset($name)) {
             throw new AppwriteException('Missing required parameter: "name"');
         }
-        if (!isset($permission)) {
-            throw new AppwriteException('Missing required parameter: "permission"');
-        }
         if (!is_null($bucketId)) {
             $params['bucketId'] = $bucketId;
         }
@@ -101,16 +83,12 @@ class Storage extends Service
             $params['name'] = $name;
         }
 
-        if (!is_null($permission)) {
-            $params['permission'] = $permission;
+        if (!is_null($permissions)) {
+            $params['permissions'] = $permissions;
         }
 
-        if (!is_null($read)) {
-            $params['read'] = $read;
-        }
-
-        if (!is_null($write)) {
-            $params['write'] = $write;
+        if (!is_null($fileSecurity)) {
+            $params['fileSecurity'] = $fileSecurity;
         }
 
         if (!is_null($enabled)) {
@@ -123,6 +101,10 @@ class Storage extends Service
 
         if (!is_null($allowedFileExtensions)) {
             $params['allowedFileExtensions'] = $allowedFileExtensions;
+        }
+
+        if (!is_null($compression)) {
+            $params['compression'] = $compression;
         }
 
         if (!is_null($encryption)) {
@@ -171,19 +153,19 @@ class Storage extends Service
      *
      * @param string $bucketId
      * @param string $name
-     * @param string $permission
-     * @param array $read
-     * @param array $write
+     * @param array $permissions
+     * @param bool $fileSecurity
      * @param bool $enabled
      * @param int $maximumFileSize
      * @param array $allowedFileExtensions
+     * @param string $compression
      * @param bool $encryption
      * @param bool $antivirus
      * @throws AppwriteException
      * @return array
 
      */
-    public function updateBucket(string $bucketId, string $name, string $permission, array $read = null, array $write = null, bool $enabled = null, int $maximumFileSize = null, array $allowedFileExtensions = null, bool $encryption = null, bool $antivirus = null): array
+    public function updateBucket(string $bucketId, string $name, array $permissions = null, bool $fileSecurity = null, bool $enabled = null, int $maximumFileSize = null, array $allowedFileExtensions = null, string $compression = null, bool $encryption = null, bool $antivirus = null): array
     {
         $path   = str_replace(['{bucketId}'], [$bucketId], '/storage/buckets/{bucketId}');
 
@@ -194,23 +176,16 @@ class Storage extends Service
         if (!isset($name)) {
             throw new AppwriteException('Missing required parameter: "name"');
         }
-        if (!isset($permission)) {
-            throw new AppwriteException('Missing required parameter: "permission"');
-        }
         if (!is_null($name)) {
             $params['name'] = $name;
         }
 
-        if (!is_null($permission)) {
-            $params['permission'] = $permission;
+        if (!is_null($permissions)) {
+            $params['permissions'] = $permissions;
         }
 
-        if (!is_null($read)) {
-            $params['read'] = $read;
-        }
-
-        if (!is_null($write)) {
-            $params['write'] = $write;
+        if (!is_null($fileSecurity)) {
+            $params['fileSecurity'] = $fileSecurity;
         }
 
         if (!is_null($enabled)) {
@@ -223,6 +198,10 @@ class Storage extends Service
 
         if (!is_null($allowedFileExtensions)) {
             $params['allowedFileExtensions'] = $allowedFileExtensions;
+        }
+
+        if (!is_null($compression)) {
+            $params['compression'] = $compression;
         }
 
         if (!is_null($encryption)) {
@@ -271,17 +250,13 @@ class Storage extends Service
      * project's files. [Learn more about different API modes](/docs/admin).
      *
      * @param string $bucketId
+     * @param array $queries
      * @param string $search
-     * @param int $limit
-     * @param int $offset
-     * @param string $cursor
-     * @param string $cursorDirection
-     * @param string $orderType
      * @throws AppwriteException
      * @return array
 
      */
-    public function listFiles(string $bucketId, string $search = null, int $limit = null, int $offset = null, string $cursor = null, string $cursorDirection = null, string $orderType = null): array
+    public function listFiles(string $bucketId, array $queries = null, string $search = null): array
     {
         $path   = str_replace(['{bucketId}'], [$bucketId], '/storage/buckets/{bucketId}/files');
 
@@ -289,28 +264,12 @@ class Storage extends Service
         if (!isset($bucketId)) {
             throw new AppwriteException('Missing required parameter: "bucketId"');
         }
+        if (!is_null($queries)) {
+            $params['queries'] = $queries;
+        }
+
         if (!is_null($search)) {
             $params['search'] = $search;
-        }
-
-        if (!is_null($limit)) {
-            $params['limit'] = $limit;
-        }
-
-        if (!is_null($offset)) {
-            $params['offset'] = $offset;
-        }
-
-        if (!is_null($cursor)) {
-            $params['cursor'] = $cursor;
-        }
-
-        if (!is_null($cursorDirection)) {
-            $params['cursorDirection'] = $cursorDirection;
-        }
-
-        if (!is_null($orderType)) {
-            $params['orderType'] = $orderType;
         }
 
 
@@ -324,8 +283,8 @@ class Storage extends Service
      *
      * Create a new file. Before using this route, you should create a new bucket
      * resource using either a [server
-     * integration](/docs/server/database#storageCreateBucket) API or directly
-     * from your Appwrite console.
+     * integration](/docs/server/storage#storageCreateBucket) API or directly from
+     * your Appwrite console.
      * 
      * Larger files should be uploaded using multiple requests with the
      * [content-range](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Range)
@@ -344,13 +303,12 @@ class Storage extends Service
      * @param string $bucketId
      * @param string $fileId
      * @param InputFile $file
-     * @param array $read
-     * @param array $write
+     * @param array $permissions
      * @throws AppwriteException
      * @return array
 
      */
-    public function createFile(string $bucketId, string $fileId, InputFile $file, array $read = null, array $write = null, callable $onProgress = null): array
+    public function createFile(string $bucketId, string $fileId, InputFile $file, array $permissions = null, callable $onProgress = null): array
     {
         $path   = str_replace(['{bucketId}'], [$bucketId], '/storage/buckets/{bucketId}/files');
 
@@ -372,12 +330,8 @@ class Storage extends Service
             $params['file'] = $file;
         }
 
-        if (!is_null($read)) {
-            $params['read'] = $read;
-        }
-
-        if (!is_null($write)) {
-            $params['write'] = $write;
+        if (!is_null($permissions)) {
+            $params['permissions'] = $permissions;
         }
 
 
@@ -499,13 +453,12 @@ class Storage extends Service
      *
      * @param string $bucketId
      * @param string $fileId
-     * @param array $read
-     * @param array $write
+     * @param array $permissions
      * @throws AppwriteException
      * @return array
 
      */
-    public function updateFile(string $bucketId, string $fileId, array $read = null, array $write = null): array
+    public function updateFile(string $bucketId, string $fileId, array $permissions = null): array
     {
         $path   = str_replace(['{bucketId}', '{fileId}'], [$bucketId, $fileId], '/storage/buckets/{bucketId}/files/{fileId}');
 
@@ -516,12 +469,8 @@ class Storage extends Service
         if (!isset($fileId)) {
             throw new AppwriteException('Missing required parameter: "fileId"');
         }
-        if (!is_null($read)) {
-            $params['read'] = $read;
-        }
-
-        if (!is_null($write)) {
-            $params['write'] = $write;
+        if (!is_null($permissions)) {
+            $params['permissions'] = $permissions;
         }
 
 

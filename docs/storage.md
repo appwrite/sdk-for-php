@@ -12,12 +12,8 @@ GET https://HOSTNAME/v1/storage/buckets
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
+| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/databases#querying-documents). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: enabled, name, fileSecurity, maximumFileSize, encryption, antivirus | [] |
 | search | string | Search term to filter your list results. Max length: 256 chars. |  |
-| limit | integer | Results limit value. By default will return maximum 25 results. Maximum of 100 results allowed per request. | 25 |
-| offset | integer | Results offset. The default value is 0. Use this param to manage pagination. | 0 |
-| cursor | string | ID of the bucket used as the starting point for the query, excluding the bucket itself. Should be used for efficient pagination when working with large sets of data. |  |
-| cursorDirection | string | Direction of the cursor, can be either &#039;before&#039; or &#039;after&#039;. | after |
-| orderType | string | Order result by ASC or DESC order. | ASC |
 
 ## Create bucket
 
@@ -33,12 +29,12 @@ POST https://HOSTNAME/v1/storage/buckets
 | --- | --- | --- | --- |
 | bucketId | string | Unique Id. Choose your own unique ID or pass the string `unique()` to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars. |  |
 | name | string | Bucket name |  |
-| permission | string | Permissions type model to use for reading files in this bucket. You can use bucket-level permission set once on the bucket using the `read` and `write` params, or you can set file-level permission where each file read and write params will decide who has access to read and write to each file individually. [learn more about permissions](/docs/permissions) and get a full list of available permissions. |  |
-| read | array | An array of strings with read permissions. By default no user is granted with any read permissions. [learn more about permissions](/docs/permissions) and get a full list of available permissions. |  |
-| write | array | An array of strings with write permissions. By default no user is granted with any write permissions. [learn more about permissions](/docs/permissions) and get a full list of available permissions. |  |
+| permissions | array | An array of permission strings. By default no user is granted with any permissions. [Learn more about permissions](/docs/permissions). |  |
+| fileSecurity | boolean | Enables configuring permissions for individual file. A user needs one of file or bucket level permissions to access a file. [Learn more about permissions](/docs/permissions). |  |
 | enabled | boolean | Is bucket enabled? | 1 |
 | maximumFileSize | integer | Maximum file size allowed in bytes. Maximum allowed value is 30MB. For self-hosted setups you can change the max limit by changing the `_APP_STORAGE_LIMIT` environment variable. [Learn more about storage environment variables](docs/environment-variables#storage) | 30000000 |
 | allowedFileExtensions | array | Allowed file extensions. Maximum of 100 extensions are allowed, each 64 characters long. | [] |
+| compression | string | Compression algorithm choosen for compression. Can be one of none,  [gzip](https://en.wikipedia.org/wiki/Gzip), or [zstd](https://en.wikipedia.org/wiki/Zstd), For file size above 20MB compression is skipped even if it&#039;s enabled | none |
 | encryption | boolean | Is encryption enabled? For file size above 20MB encryption is skipped even if it&#039;s enabled | 1 |
 | antivirus | boolean | Is virus scanning enabled? For file size above 20MB AntiVirus scanning is skipped even if it&#039;s enabled | 1 |
 
@@ -70,12 +66,12 @@ PUT https://HOSTNAME/v1/storage/buckets/{bucketId}
 | --- | --- | --- | --- |
 | bucketId | string | **Required** Bucket unique ID. |  |
 | name | string | Bucket name |  |
-| permission | string | Permissions type model to use for reading files in this bucket. You can use bucket-level permission set once on the bucket using the `read` and `write` params, or you can set file-level permission where each file read and write params will decide who has access to read and write to each file individually. [learn more about permissions](/docs/permissions) and get a full list of available permissions. |  |
-| read | array | An array of strings with read permissions. By default inherits the existing read permissions. [learn more about permissions](/docs/permissions) and get a full list of available permissions. |  |
-| write | array | An array of strings with write permissions. By default inherits the existing write permissions. [learn more about permissions](/docs/permissions) and get a full list of available permissions. |  |
+| permissions | array | An array of permission strings. By default the current permissions are inherited. [Learn more about permissions](/docs/permissions). |  |
+| fileSecurity | boolean | Enables configuring permissions for individual file. A user needs one of file or bucket level permissions to access a file. [Learn more about permissions](/docs/permissions). |  |
 | enabled | boolean | Is bucket enabled? | 1 |
 | maximumFileSize | integer | Maximum file size allowed in bytes. Maximum allowed value is 30MB. For self hosted version you can change the limit by changing _APP_STORAGE_LIMIT environment variable. [Learn more about storage environment variables](docs/environment-variables#storage) |  |
 | allowedFileExtensions | array | Allowed file extensions. Maximum of 100 extensions are allowed, each 64 characters long. | [] |
+| compression | string | Compression algorithm choosen for compression. Can be one of none, [gzip](https://en.wikipedia.org/wiki/Gzip), or [zstd](https://en.wikipedia.org/wiki/Zstd), For file size above 20MB compression is skipped even if it&#039;s enabled | none |
 | encryption | boolean | Is encryption enabled? For file size above 20MB encryption is skipped even if it&#039;s enabled | 1 |
 | antivirus | boolean | Is virus scanning enabled? For file size above 20MB AntiVirus scanning is skipped even if it&#039;s enabled | 1 |
 
@@ -106,12 +102,8 @@ GET https://HOSTNAME/v1/storage/buckets/{bucketId}/files
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | bucketId | string | **Required** Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](/docs/server/storage#createBucket). |  |
+| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/databases#querying-documents). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, signature, mimeType, sizeOriginal, chunksTotal, chunksUploaded | [] |
 | search | string | Search term to filter your list results. Max length: 256 chars. |  |
-| limit | integer | Maximum number of files to return in response. By default will return maximum 25 results. Maximum of 100 results allowed per request. | 25 |
-| offset | integer | Offset value. The default value is 0. Use this param to manage pagination. [learn more about pagination](https://appwrite.io/docs/pagination) | 0 |
-| cursor | string | ID of the file used as the starting point for the query, excluding the file itself. Should be used for efficient pagination when working with large sets of data. [learn more about pagination](https://appwrite.io/docs/pagination) |  |
-| cursorDirection | string | Direction of the cursor, can be either &#039;before&#039; or &#039;after&#039;. | after |
-| orderType | string | Order result by ASC or DESC order. | ASC |
 
 ## Create File
 
@@ -119,7 +111,7 @@ GET https://HOSTNAME/v1/storage/buckets/{bucketId}/files
 POST https://HOSTNAME/v1/storage/buckets/{bucketId}/files
 ```
 
-** Create a new file. Before using this route, you should create a new bucket resource using either a [server integration](/docs/server/database#storageCreateBucket) API or directly from your Appwrite console.
+** Create a new file. Before using this route, you should create a new bucket resource using either a [server integration](/docs/server/storage#storageCreateBucket) API or directly from your Appwrite console.
 
 Larger files should be uploaded using multiple requests with the [content-range](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Range) header to send a partial request with a maximum supported chunk of `5MB`. The `content-range` header values should always be in bytes.
 
@@ -135,8 +127,7 @@ If you&#039;re creating a new file using one of the Appwrite SDKs, all the chunk
 | bucketId | string | **Required** Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](/docs/server/storage#createBucket). |  |
 | fileId | string | File ID. Choose your own unique ID or pass the string &quot;unique()&quot; to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars. |  |
 | file | file | Binary file. |  |
-| read | array | An array of strings with read permissions. By default only the current user is granted with read permissions. [learn more about permissions](https://appwrite.io/docs/permissions) and get a full list of available permissions. |  |
-| write | array | An array of strings with write permissions. By default only the current user is granted with write permissions. [learn more about permissions](https://appwrite.io/docs/permissions) and get a full list of available permissions. |  |
+| permissions | array | An array of permission strings. By default the current user is granted with all permissions. [Learn more about permissions](/docs/permissions). |  |
 
 ## Get File
 
@@ -167,8 +158,7 @@ PUT https://HOSTNAME/v1/storage/buckets/{bucketId}/files/{fileId}
 | --- | --- | --- | --- |
 | bucketId | string | **Required** Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](/docs/server/storage#createBucket). |  |
 | fileId | string | **Required** File unique ID. |  |
-| read | array | An array of strings with read permissions. By default no user is granted with any read permissions. [learn more about permissions](https://appwrite.io/docs/permissions) and get a full list of available permissions. |  |
-| write | array | An array of strings with write permissions. By default no user is granted with any write permissions. [learn more about permissions](https://appwrite.io/docs/permissions) and get a full list of available permissions. |  |
+| permissions | array | An array of permission string. By default the current permissions are inherited. [Learn more about permissions](/docs/permissions). |  |
 
 ## Delete File
 
