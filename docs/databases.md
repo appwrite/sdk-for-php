@@ -28,7 +28,7 @@ POST https://HOSTNAME/v1/databases
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| databaseId | string | Unique Id. Choose your own unique ID or pass the string &quot;unique()&quot; to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars. |  |
+| databaseId | string | Unique Id. Choose your own unique ID or pass the string "unique()" to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
 | name | string | Collection name. Max length: 128 chars. |  |
 
 ## Get Database
@@ -103,7 +103,7 @@ POST https://HOSTNAME/v1/databases/{databaseId}/collections
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | databaseId | string | **Required** Database ID. |  |
-| collectionId | string | Unique Id. Choose your own unique ID or pass the string &quot;unique()&quot; to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars. |  |
+| collectionId | string | Unique Id. Choose your own unique ID or pass the string "unique()" to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
 | name | string | Collection name. Max length: 128 chars. |  |
 | permissions | array | An array of permissions strings. By default no user is granted with any permissions. [Learn more about permissions](/docs/permissions). |  |
 | documentSecurity | boolean | Enables configuring permissions for individual documents. A user needs one of document or collection level permissions to access a document. [Learn more about permissions](/docs/permissions). |  |
@@ -408,7 +408,7 @@ POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/docum
 | --- | --- | --- | --- |
 | databaseId | string | **Required** Database ID. |  |
 | collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). Make sure to define attributes before creating documents. |  |
-| documentId | string | Document ID. Choose your own unique ID or pass the string &quot;unique()&quot; to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars. |  |
+| documentId | string | Document ID. Choose your own unique ID or pass the string "unique()" to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
 | data | object | Document data as JSON object. | {} |
 | permissions | array | An array of permissions strings. By default the current user is granted with all permissions. [Learn more about permissions](/docs/permissions). |  |
 

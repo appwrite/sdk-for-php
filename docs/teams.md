@@ -29,7 +29,7 @@ POST https://HOSTNAME/v1/teams
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| teamId | string | Team ID. Choose your own unique ID or pass the string &quot;unique()&quot; to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars. |  |
+| teamId | string | Team ID. Choose your own unique ID or pass the string "unique()" to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
 | name | string | Team name. Max length: 128 chars. |  |
 | roles | array | Array of strings. Use this param to set the roles in the team for the user who created it. The default role is **owner**. A role can be any string. Learn more about [roles and permissions](/docs/permissions). Maximum of 100 roles are allowed, each 32 characters long. | [&quot;owner&quot;] |
 
@@ -143,7 +143,7 @@ PATCH https://HOSTNAME/v1/teams/{teamId}/memberships/{membershipId}
 | --- | --- | --- | --- |
 | teamId | string | **Required** Team ID. |  |
 | membershipId | string | **Required** Membership ID. |  |
-| roles | array | An array of strings. Use this param to set the user&#039;s roles in the team. A role can be any string. Learn more about [roles and permissions](https://appwrite.io/docs/permissions). Maximum of 100 roles are allowed, each 32 characters long. |  |
+| roles | array | An array of strings. Use this param to set the user's roles in the team. A role can be any string. Learn more about [roles and permissions](https://appwrite.io/docs/permissions). Maximum of 100 roles are allowed, each 32 characters long. |  |
 
 ## Delete Team Membership
 

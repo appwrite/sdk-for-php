@@ -80,7 +80,7 @@ PATCH https://HOSTNAME/v1/account/phone
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| phone | string | Phone number. Format this number with a leading &#039;+&#039; and a country code, e.g., +16175551212. |  |
+| phone | string | Phone number. Format this number with a leading '+' and a country code, e.g., +16175551212. |  |
 | password | string | User password. Must be at least 8 chars. |  |
 
 ## Get Account Preferences
@@ -167,7 +167,7 @@ GET https://HOSTNAME/v1/account/sessions/{sessionId}
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| sessionId | string | **Required** Session ID. Use the string &#039;current&#039; to get the current device session. |  |
+| sessionId | string | **Required** Session ID. Use the string 'current' to get the current device session. |  |
 
 ## Update Session (Refresh Tokens)
 
@@ -181,7 +181,7 @@ PATCH https://HOSTNAME/v1/account/sessions/{sessionId}
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| sessionId | string | **Required** Session ID. Use the string &#039;current&#039; to update the current device session. |  |
+| sessionId | string | **Required** Session ID. Use the string 'current' to update the current device session. |  |
 
 ## Delete Account Session
 
@@ -196,7 +196,7 @@ DELETE https://HOSTNAME/v1/account/sessions/{sessionId}
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| sessionId | string | **Required** Session ID. Use the string &#039;current&#039; to delete the current device session. |  |
+| sessionId | string | **Required** Session ID. Use the string 'current' to delete the current device session. |  |
 
 ## Update Account Status
 
