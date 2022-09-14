@@ -40,7 +40,7 @@ class Client
         'x-sdk-name'=> 'PHP',
         'x-sdk-platform'=> 'server',
         'x-sdk-language'=> 'php',
-        'x-sdk-version'=> '7.0.0-RC2',
+        'x-sdk-version'=> '7.0.0',
     ];
 
     /**
@@ -48,7 +48,7 @@ class Client
      */
     public function __construct()
     {
-        $this->headers['X-Appwrite-Response-Format'] = '1.0.0-RC1';
+        $this->headers['X-Appwrite-Response-Format'] = '1.0.0';
  
     }
 

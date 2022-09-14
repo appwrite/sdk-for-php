@@ -78,7 +78,7 @@ class Account extends Service
     }
 
     /**
-     * Get Account Logs
+     * List Account Logs
      *
      * Get currently logged in user list of latest security activity logs. Each
      * log returns user IP address, location and date and time of log.
@@ -88,7 +88,7 @@ class Account extends Service
      * @return array
 
      */
-    public function getLogs(array $queries = null): array
+    public function listLogs(array $queries = null): array
     {
         $path   = str_replace([], [], '/account/logs');
 
@@ -360,7 +360,7 @@ class Account extends Service
     }
 
     /**
-     * Get Account Sessions
+     * List Account Sessions
      *
      * Get currently logged in user list of active sessions across different
      * devices.
@@ -369,7 +369,7 @@ class Account extends Service
      * @return array
 
      */
-    public function getSessions(): array
+    public function listSessions(): array
     {
         $path   = str_replace([], [], '/account/sessions');
 

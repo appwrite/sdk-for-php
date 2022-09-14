@@ -76,7 +76,7 @@ DELETE https://HOSTNAME/v1/teams/{teamId}
 | --- | --- | --- | --- |
 | teamId | string | **Required** Team ID. |  |
 
-## Get Team Memberships
+## List Team Memberships
 
 ```http request
 GET https://HOSTNAME/v1/teams/{teamId}/memberships

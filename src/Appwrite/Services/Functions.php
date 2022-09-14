@@ -59,11 +59,12 @@ class Functions extends Service
      * @param array $events
      * @param string $schedule
      * @param int $timeout
+     * @param bool $enabled
      * @throws AppwriteException
      * @return array
 
      */
-    public function create(string $functionId, string $name, array $execute, string $runtime, array $events = null, string $schedule = null, int $timeout = null): array
+    public function create(string $functionId, string $name, array $execute, string $runtime, array $events = null, string $schedule = null, int $timeout = null, bool $enabled = null): array
     {
         $path   = str_replace([], [], '/functions');
 
@@ -106,6 +107,10 @@ class Functions extends Service
 
         if (!is_null($timeout)) {
             $params['timeout'] = $timeout;
+        }
+
+        if (!is_null($enabled)) {
+            $params['enabled'] = $enabled;
         }
 
 
@@ -169,11 +174,12 @@ class Functions extends Service
      * @param array $events
      * @param string $schedule
      * @param int $timeout
+     * @param bool $enabled
      * @throws AppwriteException
      * @return array
 
      */
-    public function update(string $functionId, string $name, array $execute, array $events = null, string $schedule = null, int $timeout = null): array
+    public function update(string $functionId, string $name, array $execute, array $events = null, string $schedule = null, int $timeout = null, bool $enabled = null): array
     {
         $path   = str_replace(['{functionId}'], [$functionId], '/functions/{functionId}');
 
@@ -205,6 +211,10 @@ class Functions extends Service
 
         if (!is_null($timeout)) {
             $params['timeout'] = $timeout;
+        }
+
+        if (!is_null($enabled)) {
+            $params['enabled'] = $enabled;
         }
 
 
@@ -622,13 +632,11 @@ class Functions extends Service
      * Get a list of all variables of a specific function.
      *
      * @param string $functionId
-     * @param array $queries
-     * @param string $search
      * @throws AppwriteException
      * @return array
 
      */
-    public function listVariables(string $functionId, array $queries = null, string $search = null): array
+    public function listVariables(string $functionId): array
     {
         $path   = str_replace(['{functionId}'], [$functionId], '/functions/{functionId}/variables');
 
@@ -636,14 +644,6 @@ class Functions extends Service
         if (!isset($functionId)) {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
-        if (!is_null($queries)) {
-            $params['queries'] = $queries;
-        }
-
-        if (!is_null($search)) {
-            $params['search'] = $search;
-        }
-
 
         return $this->client->call(Client::METHOD_GET, $path, [
             'content-type' => 'application/json',

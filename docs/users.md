@@ -204,7 +204,7 @@ PATCH https://HOSTNAME/v1/users/{userId}/email
 | userId | string | **Required** User ID. |  |
 | email | string | User email. |  |
 
-## Get User Logs
+## List User Logs
 
 ```http request
 GET https://HOSTNAME/v1/users/{userId}/logs
@@ -219,7 +219,7 @@ GET https://HOSTNAME/v1/users/{userId}/logs
 | userId | string | **Required** User ID. |  |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/databases#querying-documents). Only supported methods are limit and offset | [] |
 
-## Get User Memberships
+## List User Memberships
 
 ```http request
 GET https://HOSTNAME/v1/users/{userId}/memberships
@@ -307,7 +307,7 @@ PATCH https://HOSTNAME/v1/users/{userId}/prefs
 | userId | string | **Required** User ID. |  |
 | prefs | object | Prefs key-value JSON object. | {} |
 
-## Get User Sessions
+## List User Sessions
 
 ```http request
 GET https://HOSTNAME/v1/users/{userId}/sessions

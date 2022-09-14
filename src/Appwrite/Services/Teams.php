@@ -174,7 +174,7 @@ class Teams extends Service
     }
 
     /**
-     * Get Team Memberships
+     * List Team Memberships
      *
      * Use this endpoint to list a team's members using the team's ID. All team
      * members have read access to this endpoint.
@@ -186,7 +186,7 @@ class Teams extends Service
      * @return array
 
      */
-    public function getMemberships(string $teamId, array $queries = null, string $search = null): array
+    public function listMemberships(string $teamId, array $queries = null, string $search = null): array
     {
         $path   = str_replace(['{teamId}'], [$teamId], '/teams/{teamId}/memberships');
 

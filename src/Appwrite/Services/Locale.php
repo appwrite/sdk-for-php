@@ -49,7 +49,7 @@ class Locale extends Service
      * @return array
 
      */
-    public function getContinents(): array
+    public function listContinents(): array
     {
         $path   = str_replace([], [], '/locale/continents');
 
@@ -70,7 +70,7 @@ class Locale extends Service
      * @return array
 
      */
-    public function getCountries(): array
+    public function listCountries(): array
     {
         $path   = str_replace([], [], '/locale/countries');
 
@@ -91,7 +91,7 @@ class Locale extends Service
      * @return array
 
      */
-    public function getCountriesEU(): array
+    public function listCountriesEU(): array
     {
         $path   = str_replace([], [], '/locale/countries/eu');
 
@@ -112,7 +112,7 @@ class Locale extends Service
      * @return array
 
      */
-    public function getCountriesPhones(): array
+    public function listCountriesPhones(): array
     {
         $path   = str_replace([], [], '/locale/countries/phones');
 
@@ -134,7 +134,7 @@ class Locale extends Service
      * @return array
 
      */
-    public function getCurrencies(): array
+    public function listCurrencies(): array
     {
         $path   = str_replace([], [], '/locale/currencies');
 
@@ -155,7 +155,7 @@ class Locale extends Service
      * @return array
 
      */
-    public function getLanguages(): array
+    public function listLanguages(): array
     {
         $path   = str_replace([], [], '/locale/languages');
 

@@ -611,7 +611,7 @@ class Users extends Service
     }
 
     /**
-     * Get User Logs
+     * List User Logs
      *
      * Get the user activity logs list by its unique ID.
      *
@@ -621,7 +621,7 @@ class Users extends Service
      * @return array
 
      */
-    public function getLogs(string $userId, array $queries = null): array
+    public function listLogs(string $userId, array $queries = null): array
     {
         $path   = str_replace(['{userId}'], [$userId], '/users/{userId}/logs');
 
@@ -640,7 +640,7 @@ class Users extends Service
     }
 
     /**
-     * Get User Memberships
+     * List User Memberships
      *
      * Get the user membership list by its unique ID.
      *
@@ -649,7 +649,7 @@ class Users extends Service
      * @return array
 
      */
-    public function getMemberships(string $userId): array
+    public function listMemberships(string $userId): array
     {
         $path   = str_replace(['{userId}'], [$userId], '/users/{userId}/memberships');
 
@@ -818,7 +818,7 @@ class Users extends Service
     }
 
     /**
-     * Get User Sessions
+     * List User Sessions
      *
      * Get the user sessions list by its unique ID.
      *
@@ -827,7 +827,7 @@ class Users extends Service
      * @return array
 
      */
-    public function getSessions(string $userId): array
+    public function listSessions(string $userId): array
     {
         $path   = str_replace(['{userId}'], [$userId], '/users/{userId}/sessions');
 

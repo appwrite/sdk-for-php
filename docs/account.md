@@ -25,7 +25,7 @@ This endpoint can also be used to convert an anonymous account to a normal one, 
 | email | string | User email. |  |
 | password | string | User password. Must be at least 8 chars. |  |
 
-## Get Account Logs
+## List Account Logs
 
 ```http request
 GET https://HOSTNAME/v1/account/logs
@@ -139,7 +139,7 @@ Please note that in order to avoid a [Redirect Attack](https://github.com/OWASP/
 | password | string | New user password. Must be at least 8 chars. |  |
 | passwordAgain | string | Repeat new user password. Must be at least 8 chars. |  |
 
-## Get Account Sessions
+## List Account Sessions
 
 ```http request
 GET https://HOSTNAME/v1/account/sessions
