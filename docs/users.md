@@ -27,7 +27,7 @@ POST https://HOSTNAME/v1/users
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| userId | string | User ID. Choose your own unique ID or pass the string "unique()" to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
+| userId | string | User ID. Choose your own unique ID or pass the string `ID.unique()` to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
 | email | string | User email. |  |
 | phone | string | Phone number. Format this number with a leading '+' and a country code, e.g., +16175551212. |  |
 | password | string | Plain text user password. Must be at least 8 chars. |  |
@@ -45,7 +45,7 @@ POST https://HOSTNAME/v1/users/argon2
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| userId | string | User ID. Choose your own unique ID or pass the string "unique()" to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
+| userId | string | User ID. Choose your own unique ID or pass the string `ID.unique()` to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
 | email | string | User email. |  |
 | password | string | User password hashed using Argon2. |  |
 | name | string | User name. Max length: 128 chars. |  |
@@ -62,7 +62,7 @@ POST https://HOSTNAME/v1/users/bcrypt
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| userId | string | User ID. Choose your own unique ID or pass the string "unique()" to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
+| userId | string | User ID. Choose your own unique ID or pass the string `ID.unique()` to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
 | email | string | User email. |  |
 | password | string | User password hashed using Bcrypt. |  |
 | name | string | User name. Max length: 128 chars. |  |
@@ -79,7 +79,7 @@ POST https://HOSTNAME/v1/users/md5
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| userId | string | User ID. Choose your own unique ID or pass the string "unique()" to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
+| userId | string | User ID. Choose your own unique ID or pass the string `ID.unique()` to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
 | email | string | User email. |  |
 | password | string | User password hashed using MD5. |  |
 | name | string | User name. Max length: 128 chars. |  |
@@ -96,7 +96,7 @@ POST https://HOSTNAME/v1/users/phpass
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| userId | string | User ID. Choose your own unique ID or pass the string "unique()" to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
+| userId | string | User ID. Choose your own unique ID or pass the string `ID.unique()`to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
 | email | string | User email. |  |
 | password | string | User password hashed using PHPass. |  |
 | name | string | User name. Max length: 128 chars. |  |
@@ -113,7 +113,7 @@ POST https://HOSTNAME/v1/users/scrypt
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| userId | string | User ID. Choose your own unique ID or pass the string "unique()" to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
+| userId | string | User ID. Choose your own unique ID or pass the string `ID.unique()` to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
 | email | string | User email. |  |
 | password | string | User password hashed using Scrypt. |  |
 | passwordSalt | string | Optional salt used to hash password. |  |
@@ -135,7 +135,7 @@ POST https://HOSTNAME/v1/users/scrypt-modified
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| userId | string | User ID. Choose your own unique ID or pass the string "unique()" to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
+| userId | string | User ID. Choose your own unique ID or pass the string `ID.unique()` to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
 | email | string | User email. |  |
 | password | string | User password hashed using Scrypt Modified. |  |
 | passwordSalt | string | Salt used to hash password. |  |
@@ -155,7 +155,7 @@ POST https://HOSTNAME/v1/users/sha
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| userId | string | User ID. Choose your own unique ID or pass the string "unique()" to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
+| userId | string | User ID. Choose your own unique ID or pass the string `ID.unique()` to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
 | email | string | User email. |  |
 | password | string | User password hashed using SHA. |  |
 | passwordVersion | string | Optional SHA version used to hash password. Allowed values are: 'sha1', 'sha224', 'sha256', 'sha384', 'sha512/224', 'sha512/256', 'sha512', 'sha3-224', 'sha3-256', 'sha3-384', 'sha3-512' |  |

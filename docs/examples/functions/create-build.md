@@ -1,7 +1,7 @@
 <?php
 
 use Appwrite\Client;
-use Appwrite\Services\Locale;
+use Appwrite\Services\Functions;
 
 $client = new Client();
 
@@ -11,6 +11,6 @@ $client
     ->setKey('919c2d18fb5d4...a2ae413da83346ad2') // Your secret API key
 ;
 
-$locale = new Locale($client);
+$functions = new Functions($client);
 
-$result = $locale->getCountries();
+$result = $functions->createBuild('[FUNCTION_ID]', '[DEPLOYMENT_ID]', '[BUILD_ID]');

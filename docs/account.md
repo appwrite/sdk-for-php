@@ -8,7 +8,7 @@ GET https://HOSTNAME/v1/account
 
 ** Get currently logged in user data as JSON object. **
 
-## Update Account Email
+## Update Email
 
 ```http request
 PATCH https://HOSTNAME/v1/account/email
@@ -25,7 +25,7 @@ This endpoint can also be used to convert an anonymous account to a normal one, 
 | email | string | User email. |  |
 | password | string | User password. Must be at least 8 chars. |  |
 
-## List Account Logs
+## List Logs
 
 ```http request
 GET https://HOSTNAME/v1/account/logs
@@ -39,7 +39,7 @@ GET https://HOSTNAME/v1/account/logs
 | --- | --- | --- | --- |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/databases#querying-documents). Only supported methods are limit and offset | [] |
 
-## Update Account Name
+## Update Name
 
 ```http request
 PATCH https://HOSTNAME/v1/account/name
@@ -53,7 +53,7 @@ PATCH https://HOSTNAME/v1/account/name
 | --- | --- | --- | --- |
 | name | string | User name. Max length: 128 chars. |  |
 
-## Update Account Password
+## Update Password
 
 ```http request
 PATCH https://HOSTNAME/v1/account/password
@@ -68,7 +68,7 @@ PATCH https://HOSTNAME/v1/account/password
 | password | string | New user password. Must be at least 8 chars. |  |
 | oldPassword | string | Current user password. Must be at least 8 chars. |  |
 
-## Update Account Phone
+## Update Phone
 
 ```http request
 PATCH https://HOSTNAME/v1/account/phone
@@ -91,7 +91,7 @@ GET https://HOSTNAME/v1/account/prefs
 
 ** Get currently logged in user preferences as a key-value object. **
 
-## Update Account Preferences
+## Update Preferences
 
 ```http request
 PATCH https://HOSTNAME/v1/account/prefs
@@ -139,7 +139,7 @@ Please note that in order to avoid a [Redirect Attack](https://github.com/OWASP/
 | password | string | New user password. Must be at least 8 chars. |  |
 | passwordAgain | string | Repeat new user password. Must be at least 8 chars. |  |
 
-## List Account Sessions
+## List Sessions
 
 ```http request
 GET https://HOSTNAME/v1/account/sessions
@@ -147,7 +147,7 @@ GET https://HOSTNAME/v1/account/sessions
 
 ** Get currently logged in user list of active sessions across different devices. **
 
-## Delete All Account Sessions
+## Delete Sessions
 
 ```http request
 DELETE https://HOSTNAME/v1/account/sessions
@@ -155,7 +155,7 @@ DELETE https://HOSTNAME/v1/account/sessions
 
 ** Delete all sessions from the user account and remove any sessions cookies from the end client. **
 
-## Get Session By ID
+## Get Session
 
 ```http request
 GET https://HOSTNAME/v1/account/sessions/{sessionId}
@@ -169,7 +169,7 @@ GET https://HOSTNAME/v1/account/sessions/{sessionId}
 | --- | --- | --- | --- |
 | sessionId | string | **Required** Session ID. Use the string 'current' to get the current device session. |  |
 
-## Update Session (Refresh Tokens)
+## Update OAuth Session (Refresh Tokens)
 
 ```http request
 PATCH https://HOSTNAME/v1/account/sessions/{sessionId}
@@ -183,7 +183,7 @@ PATCH https://HOSTNAME/v1/account/sessions/{sessionId}
 | --- | --- | --- | --- |
 | sessionId | string | **Required** Session ID. Use the string 'current' to update the current device session. |  |
 
-## Delete Account Session
+## Delete Session
 
 ```http request
 DELETE https://HOSTNAME/v1/account/sessions/{sessionId}
@@ -198,7 +198,7 @@ DELETE https://HOSTNAME/v1/account/sessions/{sessionId}
 | --- | --- | --- | --- |
 | sessionId | string | **Required** Session ID. Use the string 'current' to delete the current device session. |  |
 
-## Update Account Status
+## Update Status
 
 ```http request
 PATCH https://HOSTNAME/v1/account/status

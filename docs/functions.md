@@ -27,7 +27,7 @@ POST https://HOSTNAME/v1/functions
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| functionId | string | Function ID. Choose your own unique ID or pass the string "unique()" to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
+| functionId | string | Function ID. Choose your own unique ID or pass the string `ID.unique()` to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
 | name | string | Function name. Max length: 128 chars. |  |
 | execute | array | An array of strings with execution roles. By default no user is granted with any execute permissions. [learn more about permissions](https://appwrite.io/docs/permissions). Maximum of 100 roles are allowed, each 64 characters long. |  |
 | runtime | string | Execution runtime. |  |
@@ -174,7 +174,7 @@ DELETE https://HOSTNAME/v1/functions/{functionId}/deployments/{deploymentId}
 | functionId | string | **Required** Function ID. |  |
 | deploymentId | string | **Required** Deployment ID. |  |
 
-## Retry Build
+## Create Build
 
 ```http request
 POST https://HOSTNAME/v1/functions/{functionId}/deployments/{deploymentId}/builds/{buildId}
@@ -194,7 +194,7 @@ POST https://HOSTNAME/v1/functions/{functionId}/deployments/{deploymentId}/build
 GET https://HOSTNAME/v1/functions/{functionId}/executions
 ```
 
-** Get a list of all the current user function execution logs. You can use the query params to filter your results. On admin mode, this endpoint will return a list of all of the project&#039;s executions. [Learn more about different API modes](/docs/admin). **
+** Get a list of all the current user function execution logs. You can use the query params to filter your results. **
 
 ### Parameters
 
