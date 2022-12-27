@@ -27,7 +27,7 @@ POST https://HOSTNAME/v1/storage/buckets
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| bucketId | string | Unique Id. Choose your own unique ID or pass the string `unique()` to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
+| bucketId | string | Unique Id. Choose your own unique ID or pass the string `ID.unique()` to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
 | name | string | Bucket name |  |
 | permissions | array | An array of permission strings. By default no user is granted with any permissions. [Learn more about permissions](/docs/permissions). |  |
 | fileSecurity | boolean | Enables configuring permissions for individual file. A user needs one of file or bucket level permissions to access a file. [Learn more about permissions](/docs/permissions). |  |
@@ -95,7 +95,7 @@ DELETE https://HOSTNAME/v1/storage/buckets/{bucketId}
 GET https://HOSTNAME/v1/storage/buckets/{bucketId}/files
 ```
 
-** Get a list of all the user files. You can use the query params to filter your results. On admin mode, this endpoint will return a list of all of the project&#039;s files. [Learn more about different API modes](/docs/admin). **
+** Get a list of all the user files. You can use the query params to filter your results. **
 
 ### Parameters
 
@@ -125,7 +125,7 @@ If you&#039;re creating a new file using one of the Appwrite SDKs, all the chunk
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | bucketId | string | **Required** Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](/docs/server/storage#createBucket). |  |
-| fileId | string | File ID. Choose your own unique ID or pass the string "unique()" to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
+| fileId | string | File ID. Choose your own unique ID or pass the string `ID.unique()` to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
 | file | file | Binary file. |  |
 | permissions | array | An array of permission strings. By default the current user is granted with all permissions. [Learn more about permissions](/docs/permissions). |  |
 

@@ -35,7 +35,7 @@ class Account extends Service
     }
 
     /**
-     * Update Account Email
+     * Update Email
      *
      * Update currently logged in user account email address. After changing user
      * address, the user confirmation status will get reset. A new confirmation
@@ -78,7 +78,7 @@ class Account extends Service
     }
 
     /**
-     * List Account Logs
+     * List Logs
      *
      * Get currently logged in user list of latest security activity logs. Each
      * log returns user IP address, location and date and time of log.
@@ -104,7 +104,7 @@ class Account extends Service
     }
 
     /**
-     * Update Account Name
+     * Update Name
      *
      * Update currently logged in user account name.
      *
@@ -132,7 +132,7 @@ class Account extends Service
     }
 
     /**
-     * Update Account Password
+     * Update Password
      *
      * Update currently logged in user password. For validation, user is required
      * to pass in the new password, and the old password. For users created with
@@ -167,7 +167,7 @@ class Account extends Service
     }
 
     /**
-     * Update Account Phone
+     * Update Phone
      *
      * Update the currently logged in user's phone number. After updating the
      * phone number, the phone verification status will be reset. A confirmation
@@ -227,7 +227,7 @@ class Account extends Service
     }
 
     /**
-     * Update Account Preferences
+     * Update Preferences
      *
      * Update currently logged in user account preferences. The object you pass is
      * stored as is, and replaces any previous value. The maximum allowed prefs
@@ -360,7 +360,7 @@ class Account extends Service
     }
 
     /**
-     * List Account Sessions
+     * List Sessions
      *
      * Get currently logged in user list of active sessions across different
      * devices.
@@ -381,7 +381,7 @@ class Account extends Service
     }
 
     /**
-     * Delete All Account Sessions
+     * Delete Sessions
      *
      * Delete all sessions from the user account and remove any sessions cookies
      * from the end client.
@@ -402,7 +402,7 @@ class Account extends Service
     }
 
     /**
-     * Get Session By ID
+     * Get Session
      *
      * Use this endpoint to get a logged in user's session using a Session ID.
      * Inputting 'current' will return the current session being used.
@@ -427,7 +427,7 @@ class Account extends Service
     }
 
     /**
-     * Update Session (Refresh Tokens)
+     * Update OAuth Session (Refresh Tokens)
      *
      * Access tokens have limited lifespan and expire to mitigate security risks.
      * If session was created using an OAuth provider, this route can be used to
@@ -453,7 +453,7 @@ class Account extends Service
     }
 
     /**
-     * Delete Account Session
+     * Delete Session
      *
      * Use this endpoint to log out the currently logged in user from all their
      * account sessions across all of their different devices. When using the
@@ -480,7 +480,7 @@ class Account extends Service
     }
 
     /**
-     * Update Account Status
+     * Update Status
      *
      * Block the currently logged in user account. Behind the scene, the user
      * record is not deleted but permanently blocked from any access. To

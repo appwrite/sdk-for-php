@@ -495,7 +495,7 @@ class Functions extends Service
     }
 
     /**
-     * Retry Build
+     * Create Build
      *
      * @param string $functionId
      * @param string $deploymentId
@@ -504,7 +504,7 @@ class Functions extends Service
      * @return string
 
      */
-    public function retryBuild(string $functionId, string $deploymentId, string $buildId): string
+    public function createBuild(string $functionId, string $deploymentId, string $buildId): string
     {
         $path   = str_replace(['{functionId}', '{deploymentId}', '{buildId}'], [$functionId, $deploymentId, $buildId], '/functions/{functionId}/deployments/{deploymentId}/builds/{buildId}');
 
@@ -528,9 +528,7 @@ class Functions extends Service
      * List Executions
      *
      * Get a list of all the current user function execution logs. You can use the
-     * query params to filter your results. On admin mode, this endpoint will
-     * return a list of all of the project's executions. [Learn more about
-     * different API modes](/docs/admin).
+     * query params to filter your results.
      *
      * @param string $functionId
      * @param array $queries

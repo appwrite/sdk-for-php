@@ -13,4 +13,4 @@ $client
 
 $account = new Account($client);
 
-$result = $account->updatePhone('', 'password');
+$result = $account->updatePhone('+12065550100', 'password');
