@@ -113,10 +113,9 @@ class Teams extends Service
     }
 
     /**
-     * Update Team
+     * Update Name
      *
-     * Update a team using its ID. Only members with the owner role can update the
-     * team.
+     * Update the team's name by its unique ID.
      *
      * @param string $teamId
      * @param string $name
@@ -124,7 +123,7 @@ class Teams extends Service
      * @return array
 
      */
-    public function update(string $teamId, string $name): array
+    public function updateName(string $teamId, string $name): array
     {
         $path   = str_replace(['{teamId}'], [$teamId], '/teams/{teamId}');
 
@@ -208,41 +207,46 @@ class Teams extends Service
     /**
      * Create Team Membership
      *
-     * Invite a new member to join your team. If initiated from the client SDK, an
-     * email with a link to join the team will be sent to the member's email
-     * address and an account will be created for them should they not be signed
-     * up already. If initiated from server-side SDKs, the new member will
-     * automatically be added to the team.
+     * Invite a new member to join your team. Provide an ID for existing users, or
+     * invite unregistered users using an email or phone number. If initiated from
+     * a Client SDK, Appwrite will send an email or sms with a link to join the
+     * team to the invited user, and an account will be created for them if one
+     * doesn't exist. If initiated from a Server SDK, the new member will be added
+     * automatically to the team.
      * 
-     * Use the 'url' parameter to redirect the user from the invitation email back
-     * to your app. When the user is redirected, use the [Update Team Membership
+     * You only need to provide one of a user ID, email, or phone number. Appwrite
+     * will prioritize accepting the user ID > email > phone number if you provide
+     * more than one of these parameters.
+     * 
+     * Use the `url` parameter to redirect the user from the invitation email to
+     * your app. After the user is redirected, use the [Update Team Membership
      * Status](/docs/client/teams#teamsUpdateMembershipStatus) endpoint to allow
      * the user to accept the invitation to the team. 
      * 
      * Please note that to avoid a [Redirect
      * Attack](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.md)
-     * the only valid redirect URL's are the once from domains you have set when
-     * adding your platforms in the console interface.
+     * Appwrite will accept the only redirect URLs under the domains you have
+     * added as a platform on the Appwrite Console.
+     * 
      *
      * @param string $teamId
-     * @param string $email
      * @param array $roles
      * @param string $url
+     * @param string $email
+     * @param string $userId
+     * @param string $phone
      * @param string $name
      * @throws AppwriteException
      * @return array
 
      */
-    public function createMembership(string $teamId, string $email, array $roles, string $url, string $name = null): array
+    public function createMembership(string $teamId, array $roles, string $url, string $email = null, string $userId = null, string $phone = null, string $name = null): array
     {
         $path   = str_replace(['{teamId}'], [$teamId], '/teams/{teamId}/memberships');
 
         $params = [];
         if (!isset($teamId)) {
             throw new AppwriteException('Missing required parameter: "teamId"');
-        }
-        if (!isset($email)) {
-            throw new AppwriteException('Missing required parameter: "email"');
         }
         if (!isset($roles)) {
             throw new AppwriteException('Missing required parameter: "roles"');
@@ -252,6 +256,14 @@ class Teams extends Service
         }
         if (!is_null($email)) {
             $params['email'] = $email;
+        }
+
+        if (!is_null($userId)) {
+            $params['userId'] = $userId;
+        }
+
+        if (!is_null($phone)) {
+            $params['phone'] = $phone;
         }
 
         if (!is_null($roles)) {
@@ -415,6 +427,66 @@ class Teams extends Service
 
 
         return $this->client->call(Client::METHOD_PATCH, $path, [
+            'content-type' => 'application/json',
+        ], $params);
+    }
+
+    /**
+     * Get Team Preferences
+     *
+     * Get the team's shared preferences by its unique ID. If a preference doesn't
+     * need to be shared by all team members, prefer storing them in [user
+     * preferences](/docs/client/account#accountGetPrefs).
+     *
+     * @param string $teamId
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function getPrefs(string $teamId): array
+    {
+        $path   = str_replace(['{teamId}'], [$teamId], '/teams/{teamId}/prefs');
+
+        $params = [];
+        if (!isset($teamId)) {
+            throw new AppwriteException('Missing required parameter: "teamId"');
+        }
+
+        return $this->client->call(Client::METHOD_GET, $path, [
+            'content-type' => 'application/json',
+        ], $params);
+    }
+
+    /**
+     * Update Preferences
+     *
+     * Update the team's preferences by its unique ID. The object you pass is
+     * stored as is and replaces any previous value. The maximum allowed prefs
+     * size is 64kB and throws an error if exceeded.
+     *
+     * @param string $teamId
+     * @param array $prefs
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function updatePrefs(string $teamId, array $prefs): array
+    {
+        $path   = str_replace(['{teamId}'], [$teamId], '/teams/{teamId}/prefs');
+
+        $params = [];
+        if (!isset($teamId)) {
+            throw new AppwriteException('Missing required parameter: "teamId"');
+        }
+        if (!isset($prefs)) {
+            throw new AppwriteException('Missing required parameter: "prefs"');
+        }
+        if (!is_null($prefs)) {
+            $params['prefs'] = $prefs;
+        }
+
+
+        return $this->client->call(Client::METHOD_PUT, $path, [
             'content-type' => 'application/json',
         ], $params);
     }

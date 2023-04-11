@@ -12,7 +12,7 @@ GET https://HOSTNAME/v1/databases
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/databases#querying-documents). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name | [] |
+| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name | [] |
 | search | string | Search term to filter your list results. Max length: 256 chars. |  |
 
 ## Create Database
@@ -28,7 +28,7 @@ POST https://HOSTNAME/v1/databases
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| databaseId | string | Unique Id. Choose your own unique ID or pass the string `ID.unique()` to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
+| databaseId | string | Unique Id. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
 | name | string | Collection name. Max length: 128 chars. |  |
 
 ## Get Database
@@ -87,7 +87,7 @@ GET https://HOSTNAME/v1/databases/{databaseId}/collections
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | databaseId | string | **Required** Database ID. |  |
-| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/databases#querying-documents). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, enabled, documentSecurity | [] |
+| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, enabled, documentSecurity | [] |
 | search | string | Search term to filter your list results. Max length: 256 chars. |  |
 
 ## Create Collection
@@ -103,9 +103,9 @@ POST https://HOSTNAME/v1/databases/{databaseId}/collections
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | databaseId | string | **Required** Database ID. |  |
-| collectionId | string | Unique Id. Choose your own unique ID or pass the string `ID.unique()` to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
+| collectionId | string | Unique Id. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
 | name | string | Collection name. Max length: 128 chars. |  |
-| permissions | array | An array of permissions strings. By default no user is granted with any permissions. [Learn more about permissions](/docs/permissions). |  |
+| permissions | array | An array of permissions strings. By default, no user is granted with any permissions. [Learn more about permissions](/docs/permissions). |  |
 | documentSecurity | boolean | Enables configuring permissions for individual documents. A user needs one of document or collection level permissions to access a document. [Learn more about permissions](/docs/permissions). |  |
 
 ## Get Collection
@@ -138,7 +138,7 @@ PUT https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}
 | databaseId | string | **Required** Database ID. |  |
 | collectionId | string | **Required** Collection ID. |  |
 | name | string | Collection name. Max length: 128 chars. |  |
-| permissions | array | An array of permission strings. By default the current permission are inherited. [Learn more about permissions](/docs/permissions). |  |
+| permissions | array | An array of permission strings. By default, the current permissions are inherited. [Learn more about permissions](/docs/permissions). |  |
 | documentSecurity | boolean | Enables configuring permissions for individual documents. A user needs one of document or collection level permissions to access a document. [Learn more about permissions](/docs/permissions). |  |
 | enabled | boolean | Is collection enabled? | 1 |
 
@@ -190,6 +190,22 @@ POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attri
 | default | boolean | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | array | boolean | Is attribute an array? |  |
 
+## Update Boolean Attribute
+
+```http request
+PATCH https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes/boolean/{key}
+```
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| databaseId | string | **Required** Database ID. |  |
+| collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
+| key | string | **Required** Attribute Key. |  |
+| required | boolean | Is attribute required? |  |
+| default | boolean | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
+
 ## Create DateTime Attribute
 
 ```http request
@@ -206,6 +222,22 @@ POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attri
 | required | boolean | Is attribute required? |  |
 | default | string | Default value for the attribute in ISO 8601 format. Cannot be set when attribute is required. |  |
 | array | boolean | Is attribute an array? |  |
+
+## Update DateTime Attribute
+
+```http request
+PATCH https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes/datetime/{key}
+```
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| databaseId | string | **Required** Database ID. |  |
+| collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
+| key | string | **Required** Attribute Key. |  |
+| required | boolean | Is attribute required? |  |
+| default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 
 ## Create Email Attribute
 
@@ -227,6 +259,25 @@ POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attri
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | array | boolean | Is attribute an array? |  |
 
+## Update Email Attribute
+
+```http request
+PATCH https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes/email/{key}
+```
+
+** Update an email attribute. Changing the `default` value will not update already existing documents.
+ **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| databaseId | string | **Required** Database ID. |  |
+| collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
+| key | string | **Required** Attribute Key. |  |
+| required | boolean | Is attribute required? |  |
+| default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
+
 ## Create Enum Attribute
 
 ```http request
@@ -244,6 +295,26 @@ POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attri
 | required | boolean | Is attribute required? |  |
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | array | boolean | Is attribute an array? |  |
+
+## Update Enum Attribute
+
+```http request
+PATCH https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes/enum/{key}
+```
+
+** Update an enum attribute. Changing the `default` value will not update already existing documents.
+ **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| databaseId | string | **Required** Database ID. |  |
+| collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
+| key | string | **Required** Attribute Key. |  |
+| elements | array | Array of elements in enumerated type. Uses length of longest element to determine size. Maximum of 100 elements are allowed, each 4096 characters long. |  |
+| required | boolean | Is attribute required? |  |
+| default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 
 ## Create Float Attribute
 
@@ -267,6 +338,27 @@ POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attri
 | default | number | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | array | boolean | Is attribute an array? |  |
 
+## Update Float Attribute
+
+```http request
+PATCH https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes/float/{key}
+```
+
+** Update a float attribute. Changing the `default` value will not update already existing documents.
+ **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| databaseId | string | **Required** Database ID. |  |
+| collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
+| key | string | **Required** Attribute Key. |  |
+| required | boolean | Is attribute required? |  |
+| min | number | Minimum value to enforce on new documents |  |
+| max | number | Maximum value to enforce on new documents |  |
+| default | number | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
+
 ## Create Integer Attribute
 
 ```http request
@@ -289,6 +381,27 @@ POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attri
 | default | integer | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | array | boolean | Is attribute an array? |  |
 
+## Update Integer Attribute
+
+```http request
+PATCH https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes/integer/{key}
+```
+
+** Update an integer attribute. Changing the `default` value will not update already existing documents.
+ **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| databaseId | string | **Required** Database ID. |  |
+| collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
+| key | string | **Required** Attribute Key. |  |
+| required | boolean | Is attribute required? |  |
+| min | integer | Minimum value to enforce on new documents |  |
+| max | integer | Maximum value to enforce on new documents |  |
+| default | integer | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
+
 ## Create IP Address Attribute
 
 ```http request
@@ -308,6 +421,47 @@ POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attri
 | required | boolean | Is attribute required? |  |
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | array | boolean | Is attribute an array? |  |
+
+## Update IP Address Attribute
+
+```http request
+PATCH https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes/ip/{key}
+```
+
+** Update an ip attribute. Changing the `default` value will not update already existing documents.
+ **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| databaseId | string | **Required** Database ID. |  |
+| collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
+| key | string | **Required** Attribute Key. |  |
+| required | boolean | Is attribute required? |  |
+| default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
+
+## Create Relationship Attribute
+
+```http request
+POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes/relationship
+```
+
+** Create relationship attribute. [Learn more about relationship attributes](docs/databases-relationships#relationship-attributes).
+ **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| databaseId | string | **Required** Database ID. |  |
+| collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
+| relatedCollectionId | string | Related Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
+| type | string | Relation type |  |
+| twoWay | boolean | Is Two Way? |  |
+| key | string | Attribute Key. |  |
+| twoWayKey | string | Two Way Attribute Key. |  |
+| onDelete | string | Constraints option | restrict |
 
 ## Create String Attribute
 
@@ -330,6 +484,25 @@ POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attri
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | array | boolean | Is attribute an array? |  |
 
+## Update String Attribute
+
+```http request
+PATCH https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes/string/{key}
+```
+
+** Update a string attribute. Changing the `default` value will not update already existing documents.
+ **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| databaseId | string | **Required** Database ID. |  |
+| collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
+| key | string | **Required** Attribute Key. |  |
+| required | boolean | Is attribute required? |  |
+| default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
+
 ## Create URL Attribute
 
 ```http request
@@ -349,6 +522,25 @@ POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attri
 | required | boolean | Is attribute required? |  |
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | array | boolean | Is attribute an array? |  |
+
+## Update URL Attribute
+
+```http request
+PATCH https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes/url/{key}
+```
+
+** Update an url attribute. Changing the `default` value will not update already existing documents.
+ **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| databaseId | string | **Required** Database ID. |  |
+| collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
+| key | string | **Required** Attribute Key. |  |
+| required | boolean | Is attribute required? |  |
+| default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 
 ## Get Attribute
 
@@ -378,6 +570,24 @@ DELETE https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/att
 | collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
 | key | string | **Required** Attribute Key. |  |
 
+## Update Relationship Attribute
+
+```http request
+PATCH https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes/{key}/relationship
+```
+
+** Update relationship attribute. [Learn more about relationship attributes](docs/databases-relationships#relationship-attributes).
+ **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| databaseId | string | **Required** Database ID. |  |
+| collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
+| key | string | **Required** Attribute Key. |  |
+| onDelete | string | Constraints option |  |
+
 ## List Documents
 
 ```http request
@@ -392,7 +602,7 @@ GET https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/docume
 | --- | --- | --- | --- |
 | databaseId | string | **Required** Database ID. |  |
 | collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
-| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/databases#querying-documents). Maximum of 100 queries are allowed, each 4096 characters long. | [] |
+| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. | [] |
 
 ## Create Document
 
@@ -408,9 +618,9 @@ POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/docum
 | --- | --- | --- | --- |
 | databaseId | string | **Required** Database ID. |  |
 | collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). Make sure to define attributes before creating documents. |  |
-| documentId | string | Document ID. Choose your own unique ID or pass the string `ID.unique()` to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
+| documentId | string | Document ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
 | data | object | Document data as JSON object. | {} |
-| permissions | array | An array of permissions strings. By default the current user is granted with all permissions. [Learn more about permissions](/docs/permissions). |  |
+| permissions | array | An array of permissions strings. By default, only the current user is granted all permissions. [Learn more about permissions](/docs/permissions). |  |
 
 ## Get Document
 
@@ -427,6 +637,7 @@ GET https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/docume
 | databaseId | string | **Required** Database ID. |  |
 | collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
 | documentId | string | **Required** Document ID. |  |
+| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/databases#querying-documents). Only method allowed is select. | [] |
 
 ## Update Document
 
@@ -444,7 +655,7 @@ PATCH https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/docu
 | collectionId | string | **Required** Collection ID. |  |
 | documentId | string | **Required** Document ID. |  |
 | data | object | Document data as JSON object. Include only attribute and value pairs to be updated. | {} |
-| permissions | array | An array of permissions strings. By default the current permissions are inherited. [Learn more about permissions](/docs/permissions). |  |
+| permissions | array | An array of permissions strings. By default, the current permissions are inherited. [Learn more about permissions](/docs/permissions). |  |
 
 ## Delete Document
 

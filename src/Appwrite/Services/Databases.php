@@ -443,6 +443,49 @@ class Databases extends Service
     }
 
     /**
+     * Update Boolean Attribute
+     *
+     * @param string $databaseId
+     * @param string $collectionId
+     * @param string $key
+     * @param bool $required
+     * @param bool $xdefault
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function updateBooleanAttribute(string $databaseId, string $collectionId, string $key, bool $required, bool $xdefault): array
+    {
+        $path   = str_replace(['{databaseId}', '{collectionId}', '{key}'], [$databaseId, $collectionId, $key], '/databases/{databaseId}/collections/{collectionId}/attributes/boolean/{key}');
+
+        $params = [];
+        if (!isset($databaseId)) {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+        if (!isset($collectionId)) {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+        if (!isset($key)) {
+            throw new AppwriteException('Missing required parameter: "key"');
+        }
+        if (!isset($required)) {
+            throw new AppwriteException('Missing required parameter: "required"');
+        }
+        if (!is_null($required)) {
+            $params['required'] = $required;
+        }
+
+        if (!is_null($xdefault)) {
+            $params['default'] = $xdefault;
+        }
+
+
+        return $this->client->call(Client::METHOD_PATCH, $path, [
+            'content-type' => 'application/json',
+        ], $params);
+    }
+
+    /**
      * Create DateTime Attribute
      *
      * @param string $databaseId
@@ -490,6 +533,49 @@ class Databases extends Service
 
 
         return $this->client->call(Client::METHOD_POST, $path, [
+            'content-type' => 'application/json',
+        ], $params);
+    }
+
+    /**
+     * Update DateTime Attribute
+     *
+     * @param string $databaseId
+     * @param string $collectionId
+     * @param string $key
+     * @param bool $required
+     * @param string $xdefault
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function updateDatetimeAttribute(string $databaseId, string $collectionId, string $key, bool $required, string $xdefault): array
+    {
+        $path   = str_replace(['{databaseId}', '{collectionId}', '{key}'], [$databaseId, $collectionId, $key], '/databases/{databaseId}/collections/{collectionId}/attributes/datetime/{key}');
+
+        $params = [];
+        if (!isset($databaseId)) {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+        if (!isset($collectionId)) {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+        if (!isset($key)) {
+            throw new AppwriteException('Missing required parameter: "key"');
+        }
+        if (!isset($required)) {
+            throw new AppwriteException('Missing required parameter: "required"');
+        }
+        if (!is_null($required)) {
+            $params['required'] = $required;
+        }
+
+        if (!is_null($xdefault)) {
+            $params['default'] = $xdefault;
+        }
+
+
+        return $this->client->call(Client::METHOD_PATCH, $path, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -550,6 +636,53 @@ class Databases extends Service
     }
 
     /**
+     * Update Email Attribute
+     *
+     * Update an email attribute. Changing the `default` value will not update
+     * already existing documents.
+     * 
+     *
+     * @param string $databaseId
+     * @param string $collectionId
+     * @param string $key
+     * @param bool $required
+     * @param string $xdefault
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function updateEmailAttribute(string $databaseId, string $collectionId, string $key, bool $required, string $xdefault): array
+    {
+        $path   = str_replace(['{databaseId}', '{collectionId}', '{key}'], [$databaseId, $collectionId, $key], '/databases/{databaseId}/collections/{collectionId}/attributes/email/{key}');
+
+        $params = [];
+        if (!isset($databaseId)) {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+        if (!isset($collectionId)) {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+        if (!isset($key)) {
+            throw new AppwriteException('Missing required parameter: "key"');
+        }
+        if (!isset($required)) {
+            throw new AppwriteException('Missing required parameter: "required"');
+        }
+        if (!is_null($required)) {
+            $params['required'] = $required;
+        }
+
+        if (!is_null($xdefault)) {
+            $params['default'] = $xdefault;
+        }
+
+
+        return $this->client->call(Client::METHOD_PATCH, $path, [
+            'content-type' => 'application/json',
+        ], $params);
+    }
+
+    /**
      * Create Enum Attribute
      *
      * @param string $databaseId
@@ -605,6 +738,61 @@ class Databases extends Service
 
 
         return $this->client->call(Client::METHOD_POST, $path, [
+            'content-type' => 'application/json',
+        ], $params);
+    }
+
+    /**
+     * Update Enum Attribute
+     *
+     * Update an enum attribute. Changing the `default` value will not update
+     * already existing documents.
+     * 
+     *
+     * @param string $databaseId
+     * @param string $collectionId
+     * @param string $key
+     * @param array $elements
+     * @param bool $required
+     * @param string $xdefault
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function updateEnumAttribute(string $databaseId, string $collectionId, string $key, array $elements, bool $required, string $xdefault): array
+    {
+        $path   = str_replace(['{databaseId}', '{collectionId}', '{key}'], [$databaseId, $collectionId, $key], '/databases/{databaseId}/collections/{collectionId}/attributes/enum/{key}');
+
+        $params = [];
+        if (!isset($databaseId)) {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+        if (!isset($collectionId)) {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+        if (!isset($key)) {
+            throw new AppwriteException('Missing required parameter: "key"');
+        }
+        if (!isset($elements)) {
+            throw new AppwriteException('Missing required parameter: "elements"');
+        }
+        if (!isset($required)) {
+            throw new AppwriteException('Missing required parameter: "required"');
+        }
+        if (!is_null($elements)) {
+            $params['elements'] = $elements;
+        }
+
+        if (!is_null($required)) {
+            $params['required'] = $required;
+        }
+
+        if (!is_null($xdefault)) {
+            $params['default'] = $xdefault;
+        }
+
+
+        return $this->client->call(Client::METHOD_PATCH, $path, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -676,6 +864,69 @@ class Databases extends Service
     }
 
     /**
+     * Update Float Attribute
+     *
+     * Update a float attribute. Changing the `default` value will not update
+     * already existing documents.
+     * 
+     *
+     * @param string $databaseId
+     * @param string $collectionId
+     * @param string $key
+     * @param bool $required
+     * @param int $min
+     * @param int $max
+     * @param int $xdefault
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function updateFloatAttribute(string $databaseId, string $collectionId, string $key, bool $required, int $min, int $max, int $xdefault): array
+    {
+        $path   = str_replace(['{databaseId}', '{collectionId}', '{key}'], [$databaseId, $collectionId, $key], '/databases/{databaseId}/collections/{collectionId}/attributes/float/{key}');
+
+        $params = [];
+        if (!isset($databaseId)) {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+        if (!isset($collectionId)) {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+        if (!isset($key)) {
+            throw new AppwriteException('Missing required parameter: "key"');
+        }
+        if (!isset($required)) {
+            throw new AppwriteException('Missing required parameter: "required"');
+        }
+        if (!isset($min)) {
+            throw new AppwriteException('Missing required parameter: "min"');
+        }
+        if (!isset($max)) {
+            throw new AppwriteException('Missing required parameter: "max"');
+        }
+        if (!is_null($required)) {
+            $params['required'] = $required;
+        }
+
+        if (!is_null($min)) {
+            $params['min'] = $min;
+        }
+
+        if (!is_null($max)) {
+            $params['max'] = $max;
+        }
+
+        if (!is_null($xdefault)) {
+            $params['default'] = $xdefault;
+        }
+
+
+        return $this->client->call(Client::METHOD_PATCH, $path, [
+            'content-type' => 'application/json',
+        ], $params);
+    }
+
+    /**
      * Create Integer Attribute
      *
      * Create an integer attribute. Optionally, minimum and maximum values can be
@@ -742,6 +993,69 @@ class Databases extends Service
     }
 
     /**
+     * Update Integer Attribute
+     *
+     * Update an integer attribute. Changing the `default` value will not update
+     * already existing documents.
+     * 
+     *
+     * @param string $databaseId
+     * @param string $collectionId
+     * @param string $key
+     * @param bool $required
+     * @param int $min
+     * @param int $max
+     * @param int $xdefault
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function updateIntegerAttribute(string $databaseId, string $collectionId, string $key, bool $required, int $min, int $max, int $xdefault): array
+    {
+        $path   = str_replace(['{databaseId}', '{collectionId}', '{key}'], [$databaseId, $collectionId, $key], '/databases/{databaseId}/collections/{collectionId}/attributes/integer/{key}');
+
+        $params = [];
+        if (!isset($databaseId)) {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+        if (!isset($collectionId)) {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+        if (!isset($key)) {
+            throw new AppwriteException('Missing required parameter: "key"');
+        }
+        if (!isset($required)) {
+            throw new AppwriteException('Missing required parameter: "required"');
+        }
+        if (!isset($min)) {
+            throw new AppwriteException('Missing required parameter: "min"');
+        }
+        if (!isset($max)) {
+            throw new AppwriteException('Missing required parameter: "max"');
+        }
+        if (!is_null($required)) {
+            $params['required'] = $required;
+        }
+
+        if (!is_null($min)) {
+            $params['min'] = $min;
+        }
+
+        if (!is_null($max)) {
+            $params['max'] = $max;
+        }
+
+        if (!is_null($xdefault)) {
+            $params['default'] = $xdefault;
+        }
+
+
+        return $this->client->call(Client::METHOD_PATCH, $path, [
+            'content-type' => 'application/json',
+        ], $params);
+    }
+
+    /**
      * Create IP Address Attribute
      *
      * Create IP address attribute.
@@ -788,6 +1102,119 @@ class Databases extends Service
 
         if (!is_null($xarray)) {
             $params['array'] = $xarray;
+        }
+
+
+        return $this->client->call(Client::METHOD_POST, $path, [
+            'content-type' => 'application/json',
+        ], $params);
+    }
+
+    /**
+     * Update IP Address Attribute
+     *
+     * Update an ip attribute. Changing the `default` value will not update
+     * already existing documents.
+     * 
+     *
+     * @param string $databaseId
+     * @param string $collectionId
+     * @param string $key
+     * @param bool $required
+     * @param string $xdefault
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function updateIpAttribute(string $databaseId, string $collectionId, string $key, bool $required, string $xdefault): array
+    {
+        $path   = str_replace(['{databaseId}', '{collectionId}', '{key}'], [$databaseId, $collectionId, $key], '/databases/{databaseId}/collections/{collectionId}/attributes/ip/{key}');
+
+        $params = [];
+        if (!isset($databaseId)) {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+        if (!isset($collectionId)) {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+        if (!isset($key)) {
+            throw new AppwriteException('Missing required parameter: "key"');
+        }
+        if (!isset($required)) {
+            throw new AppwriteException('Missing required parameter: "required"');
+        }
+        if (!is_null($required)) {
+            $params['required'] = $required;
+        }
+
+        if (!is_null($xdefault)) {
+            $params['default'] = $xdefault;
+        }
+
+
+        return $this->client->call(Client::METHOD_PATCH, $path, [
+            'content-type' => 'application/json',
+        ], $params);
+    }
+
+    /**
+     * Create Relationship Attribute
+     *
+     * Create relationship attribute. [Learn more about relationship
+     * attributes](docs/databases-relationships#relationship-attributes).
+     * 
+     *
+     * @param string $databaseId
+     * @param string $collectionId
+     * @param string $relatedCollectionId
+     * @param string $type
+     * @param bool $twoWay
+     * @param string $key
+     * @param string $twoWayKey
+     * @param string $onDelete
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function createRelationshipAttribute(string $databaseId, string $collectionId, string $relatedCollectionId, string $type, bool $twoWay = null, string $key = null, string $twoWayKey = null, string $onDelete = null): array
+    {
+        $path   = str_replace(['{databaseId}', '{collectionId}'], [$databaseId, $collectionId], '/databases/{databaseId}/collections/{collectionId}/attributes/relationship');
+
+        $params = [];
+        if (!isset($databaseId)) {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+        if (!isset($collectionId)) {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+        if (!isset($relatedCollectionId)) {
+            throw new AppwriteException('Missing required parameter: "relatedCollectionId"');
+        }
+        if (!isset($type)) {
+            throw new AppwriteException('Missing required parameter: "type"');
+        }
+        if (!is_null($relatedCollectionId)) {
+            $params['relatedCollectionId'] = $relatedCollectionId;
+        }
+
+        if (!is_null($type)) {
+            $params['type'] = $type;
+        }
+
+        if (!is_null($twoWay)) {
+            $params['twoWay'] = $twoWay;
+        }
+
+        if (!is_null($key)) {
+            $params['key'] = $key;
+        }
+
+        if (!is_null($twoWayKey)) {
+            $params['twoWayKey'] = $twoWayKey;
+        }
+
+        if (!is_null($onDelete)) {
+            $params['onDelete'] = $onDelete;
         }
 
 
@@ -860,6 +1287,53 @@ class Databases extends Service
     }
 
     /**
+     * Update String Attribute
+     *
+     * Update a string attribute. Changing the `default` value will not update
+     * already existing documents.
+     * 
+     *
+     * @param string $databaseId
+     * @param string $collectionId
+     * @param string $key
+     * @param bool $required
+     * @param string $xdefault
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function updateStringAttribute(string $databaseId, string $collectionId, string $key, bool $required, string $xdefault): array
+    {
+        $path   = str_replace(['{databaseId}', '{collectionId}', '{key}'], [$databaseId, $collectionId, $key], '/databases/{databaseId}/collections/{collectionId}/attributes/string/{key}');
+
+        $params = [];
+        if (!isset($databaseId)) {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+        if (!isset($collectionId)) {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+        if (!isset($key)) {
+            throw new AppwriteException('Missing required parameter: "key"');
+        }
+        if (!isset($required)) {
+            throw new AppwriteException('Missing required parameter: "required"');
+        }
+        if (!is_null($required)) {
+            $params['required'] = $required;
+        }
+
+        if (!is_null($xdefault)) {
+            $params['default'] = $xdefault;
+        }
+
+
+        return $this->client->call(Client::METHOD_PATCH, $path, [
+            'content-type' => 'application/json',
+        ], $params);
+    }
+
+    /**
      * Create URL Attribute
      *
      * Create a URL attribute.
@@ -910,6 +1384,53 @@ class Databases extends Service
 
 
         return $this->client->call(Client::METHOD_POST, $path, [
+            'content-type' => 'application/json',
+        ], $params);
+    }
+
+    /**
+     * Update URL Attribute
+     *
+     * Update an url attribute. Changing the `default` value will not update
+     * already existing documents.
+     * 
+     *
+     * @param string $databaseId
+     * @param string $collectionId
+     * @param string $key
+     * @param bool $required
+     * @param string $xdefault
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function updateUrlAttribute(string $databaseId, string $collectionId, string $key, bool $required, string $xdefault): array
+    {
+        $path   = str_replace(['{databaseId}', '{collectionId}', '{key}'], [$databaseId, $collectionId, $key], '/databases/{databaseId}/collections/{collectionId}/attributes/url/{key}');
+
+        $params = [];
+        if (!isset($databaseId)) {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+        if (!isset($collectionId)) {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+        if (!isset($key)) {
+            throw new AppwriteException('Missing required parameter: "key"');
+        }
+        if (!isset($required)) {
+            throw new AppwriteException('Missing required parameter: "required"');
+        }
+        if (!is_null($required)) {
+            $params['required'] = $required;
+        }
+
+        if (!is_null($xdefault)) {
+            $params['default'] = $xdefault;
+        }
+
+
+        return $this->client->call(Client::METHOD_PATCH, $path, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -970,6 +1491,45 @@ class Databases extends Service
         }
 
         return $this->client->call(Client::METHOD_DELETE, $path, [
+            'content-type' => 'application/json',
+        ], $params);
+    }
+
+    /**
+     * Update Relationship Attribute
+     *
+     * Update relationship attribute. [Learn more about relationship
+     * attributes](docs/databases-relationships#relationship-attributes).
+     * 
+     *
+     * @param string $databaseId
+     * @param string $collectionId
+     * @param string $key
+     * @param string $onDelete
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function updateRelationshipAttribute(string $databaseId, string $collectionId, string $key, string $onDelete = null): array
+    {
+        $path   = str_replace(['{databaseId}', '{collectionId}', '{key}'], [$databaseId, $collectionId, $key], '/databases/{databaseId}/collections/{collectionId}/attributes/{key}/relationship');
+
+        $params = [];
+        if (!isset($databaseId)) {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+        if (!isset($collectionId)) {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+        if (!isset($key)) {
+            throw new AppwriteException('Missing required parameter: "key"');
+        }
+        if (!is_null($onDelete)) {
+            $params['onDelete'] = $onDelete;
+        }
+
+
+        return $this->client->call(Client::METHOD_PATCH, $path, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -1069,11 +1629,12 @@ class Databases extends Service
      * @param string $databaseId
      * @param string $collectionId
      * @param string $documentId
+     * @param array $queries
      * @throws AppwriteException
      * @return array
 
      */
-    public function getDocument(string $databaseId, string $collectionId, string $documentId): array
+    public function getDocument(string $databaseId, string $collectionId, string $documentId, array $queries = null): array
     {
         $path   = str_replace(['{databaseId}', '{collectionId}', '{documentId}'], [$databaseId, $collectionId, $documentId], '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}');
 
@@ -1087,6 +1648,10 @@ class Databases extends Service
         if (!isset($documentId)) {
             throw new AppwriteException('Missing required parameter: "documentId"');
         }
+        if (!is_null($queries)) {
+            $params['queries'] = $queries;
+        }
+
 
         return $this->client->call(Client::METHOD_GET, $path, [
             'content-type' => 'application/json',

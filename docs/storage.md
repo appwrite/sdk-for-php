@@ -12,7 +12,7 @@ GET https://HOSTNAME/v1/storage/buckets
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/databases#querying-documents). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: enabled, name, fileSecurity, maximumFileSize, encryption, antivirus | [] |
+| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: enabled, name, fileSecurity, maximumFileSize, encryption, antivirus | [] |
 | search | string | Search term to filter your list results. Max length: 256 chars. |  |
 
 ## Create bucket
@@ -27,9 +27,9 @@ POST https://HOSTNAME/v1/storage/buckets
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| bucketId | string | Unique Id. Choose your own unique ID or pass the string `ID.unique()` to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
+| bucketId | string | Unique Id. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
 | name | string | Bucket name |  |
-| permissions | array | An array of permission strings. By default no user is granted with any permissions. [Learn more about permissions](/docs/permissions). |  |
+| permissions | array | An array of permission strings. By default, no user is granted with any permissions. [Learn more about permissions](/docs/permissions). |  |
 | fileSecurity | boolean | Enables configuring permissions for individual file. A user needs one of file or bucket level permissions to access a file. [Learn more about permissions](/docs/permissions). |  |
 | enabled | boolean | Is bucket enabled? | 1 |
 | maximumFileSize | integer | Maximum file size allowed in bytes. Maximum allowed value is 30MB. For self-hosted setups you can change the max limit by changing the `_APP_STORAGE_LIMIT` environment variable. [Learn more about storage environment variables](docs/environment-variables#storage) | 30000000 |
@@ -66,7 +66,7 @@ PUT https://HOSTNAME/v1/storage/buckets/{bucketId}
 | --- | --- | --- | --- |
 | bucketId | string | **Required** Bucket unique ID. |  |
 | name | string | Bucket name |  |
-| permissions | array | An array of permission strings. By default the current permissions are inherited. [Learn more about permissions](/docs/permissions). |  |
+| permissions | array | An array of permission strings. By default, the current permissions are inherited. [Learn more about permissions](/docs/permissions). |  |
 | fileSecurity | boolean | Enables configuring permissions for individual file. A user needs one of file or bucket level permissions to access a file. [Learn more about permissions](/docs/permissions). |  |
 | enabled | boolean | Is bucket enabled? | 1 |
 | maximumFileSize | integer | Maximum file size allowed in bytes. Maximum allowed value is 30MB. For self hosted version you can change the limit by changing _APP_STORAGE_LIMIT environment variable. [Learn more about storage environment variables](docs/environment-variables#storage) |  |
@@ -102,7 +102,7 @@ GET https://HOSTNAME/v1/storage/buckets/{bucketId}/files
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | bucketId | string | **Required** Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](/docs/server/storage#createBucket). |  |
-| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/databases#querying-documents). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, signature, mimeType, sizeOriginal, chunksTotal, chunksUploaded | [] |
+| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, signature, mimeType, sizeOriginal, chunksTotal, chunksUploaded | [] |
 | search | string | Search term to filter your list results. Max length: 256 chars. |  |
 
 ## Create File
@@ -125,9 +125,9 @@ If you&#039;re creating a new file using one of the Appwrite SDKs, all the chunk
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | bucketId | string | **Required** Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](/docs/server/storage#createBucket). |  |
-| fileId | string | File ID. Choose your own unique ID or pass the string `ID.unique()` to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
+| fileId | string | File ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
 | file | file | Binary file. |  |
-| permissions | array | An array of permission strings. By default the current user is granted with all permissions. [Learn more about permissions](/docs/permissions). |  |
+| permissions | array | An array of permission strings. By default, only the current user is granted all permissions. [Learn more about permissions](/docs/permissions). |  |
 
 ## Get File
 
@@ -158,7 +158,7 @@ PUT https://HOSTNAME/v1/storage/buckets/{bucketId}/files/{fileId}
 | --- | --- | --- | --- |
 | bucketId | string | **Required** Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](/docs/server/storage#createBucket). |  |
 | fileId | string | **Required** File unique ID. |  |
-| permissions | array | An array of permission string. By default the current permissions are inherited. [Learn more about permissions](/docs/permissions). |  |
+| permissions | array | An array of permission string. By default, the current permissions are inherited. [Learn more about permissions](/docs/permissions). |  |
 
 ## Delete File
 

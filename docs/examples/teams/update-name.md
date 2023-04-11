@@ -1,7 +1,7 @@
 <?php
 
 use Appwrite\Client;
-use Appwrite\Services\Functions;
+use Appwrite\Services\Teams;
 
 $client = new Client();
 
@@ -11,6 +11,6 @@ $client
     ->setKey('919c2d18fb5d4...a2ae413da83346ad2') // Your secret API key
 ;
 
-$functions = new Functions($client);
+$teams = new Teams($client);
 
-$result = $functions->create('[FUNCTION_ID]', '[NAME]', 'node-14.5');
+$result = $teams->updateName('[TEAM_ID]', '[NAME]');
