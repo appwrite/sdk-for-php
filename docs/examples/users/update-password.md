@@ -13,4 +13,4 @@ $client
 
 $users = new Users($client);
 
-$result = $users->updatePassword('[USER_ID]', 'password');
+$result = $users->updatePassword('[USER_ID]', '');

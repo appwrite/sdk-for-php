@@ -13,4 +13,4 @@ $client
 
 $functions = new Functions($client);
 
-$result = $functions->update('[FUNCTION_ID]', '[NAME]', ["any"]);
+$result = $functions->update('[FUNCTION_ID]', '[NAME]');

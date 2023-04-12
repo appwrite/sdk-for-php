@@ -54,8 +54,8 @@ class Functions extends Service
      *
      * @param string $functionId
      * @param string $name
-     * @param array $execute
      * @param string $runtime
+     * @param array $execute
      * @param array $events
      * @param string $schedule
      * @param int $timeout
@@ -64,7 +64,7 @@ class Functions extends Service
      * @return array
 
      */
-    public function create(string $functionId, string $name, array $execute, string $runtime, array $events = null, string $schedule = null, int $timeout = null, bool $enabled = null): array
+    public function create(string $functionId, string $name, string $runtime, array $execute = null, array $events = null, string $schedule = null, int $timeout = null, bool $enabled = null): array
     {
         $path   = str_replace([], [], '/functions');
 
@@ -74,9 +74,6 @@ class Functions extends Service
         }
         if (!isset($name)) {
             throw new AppwriteException('Missing required parameter: "name"');
-        }
-        if (!isset($execute)) {
-            throw new AppwriteException('Missing required parameter: "execute"');
         }
         if (!isset($runtime)) {
             throw new AppwriteException('Missing required parameter: "runtime"');
@@ -179,7 +176,7 @@ class Functions extends Service
      * @return array
 
      */
-    public function update(string $functionId, string $name, array $execute, array $events = null, string $schedule = null, int $timeout = null, bool $enabled = null): array
+    public function update(string $functionId, string $name, array $execute = null, array $events = null, string $schedule = null, int $timeout = null, bool $enabled = null): array
     {
         $path   = str_replace(['{functionId}'], [$functionId], '/functions/{functionId}');
 
@@ -189,9 +186,6 @@ class Functions extends Service
         }
         if (!isset($name)) {
             throw new AppwriteException('Missing required parameter: "name"');
-        }
-        if (!isset($execute)) {
-            throw new AppwriteException('Missing required parameter: "execute"');
         }
         if (!is_null($name)) {
             $params['name'] = $name;

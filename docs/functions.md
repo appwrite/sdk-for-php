@@ -12,7 +12,7 @@ GET https://HOSTNAME/v1/functions
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/databases#querying-documents). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, enabled, runtime, deployment, schedule, scheduleNext, schedulePrevious, timeout | [] |
+| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, enabled, runtime, deployment, schedule, scheduleNext, schedulePrevious, timeout | [] |
 | search | string | Search term to filter your list results. Max length: 256 chars. |  |
 
 ## Create Function
@@ -27,9 +27,9 @@ POST https://HOSTNAME/v1/functions
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| functionId | string | Function ID. Choose your own unique ID or pass the string `ID.unique()` to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
+| functionId | string | Function ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
 | name | string | Function name. Max length: 128 chars. |  |
-| execute | array | An array of strings with execution roles. By default no user is granted with any execute permissions. [learn more about permissions](https://appwrite.io/docs/permissions). Maximum of 100 roles are allowed, each 64 characters long. |  |
+| execute | array | An array of strings with execution roles. By default no user is granted with any execute permissions. [learn more about permissions](https://appwrite.io/docs/permissions). Maximum of 100 roles are allowed, each 64 characters long. | [] |
 | runtime | string | Execution runtime. |  |
 | events | array | Events list. Maximum of 100 events are allowed. | [] |
 | schedule | string | Schedule CRON syntax. |  |
@@ -72,7 +72,7 @@ PUT https://HOSTNAME/v1/functions/{functionId}
 | --- | --- | --- | --- |
 | functionId | string | **Required** Function ID. |  |
 | name | string | Function name. Max length: 128 chars. |  |
-| execute | array | An array of strings with execution roles. By default no user is granted with any execute permissions. [learn more about permissions](https://appwrite.io/docs/permissions). Maximum of 100 roles are allowed, each 64 characters long. |  |
+| execute | array | An array of strings with execution roles. By default no user is granted with any execute permissions. [learn more about permissions](https://appwrite.io/docs/permissions). Maximum of 100 roles are allowed, each 64 characters long. | [] |
 | events | array | Events list. Maximum of 100 events are allowed. | [] |
 | schedule | string | Schedule CRON syntax. |  |
 | timeout | integer | Maximum execution time in seconds. | 15 |
@@ -105,7 +105,7 @@ GET https://HOSTNAME/v1/functions/{functionId}/deployments
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | functionId | string | **Required** Function ID. |  |
-| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/databases#querying-documents). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: entrypoint, size, buildId, activate | [] |
+| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: entrypoint, size, buildId, activate | [] |
 | search | string | Search term to filter your list results. Max length: 256 chars. |  |
 
 ## Create Deployment
@@ -201,7 +201,7 @@ GET https://HOSTNAME/v1/functions/{functionId}/executions
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | functionId | string | **Required** Function ID. |  |
-| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/databases#querying-documents). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: trigger, status, statusCode, duration | [] |
+| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: trigger, status, statusCode, duration | [] |
 | search | string | Search term to filter your list results. Max length: 256 chars. |  |
 
 ## Create Execution

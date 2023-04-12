@@ -1,7 +1,7 @@
 <?php
 
 use Appwrite\Client;
-use Appwrite\Services\Teams;
+use Appwrite\Services\Databases;
 
 $client = new Client();
 
@@ -11,6 +11,6 @@ $client
     ->setKey('919c2d18fb5d4...a2ae413da83346ad2') // Your secret API key
 ;
 
-$teams = new Teams($client);
+$databases = new Databases($client);
 
-$result = $teams->update('[TEAM_ID]', '[NAME]');
+$result = $databases->updateFloatAttribute('[DATABASE_ID]', '[COLLECTION_ID]', '', false, null, null, null);

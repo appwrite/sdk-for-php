@@ -1,7 +1,7 @@
 <?php
 
 use Appwrite\Client;
-use Appwrite\Services\Account;
+use Appwrite\Services\Teams;
 
 $client = new Client();
 
@@ -11,6 +11,6 @@ $client
     ->setJWT('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ...') // Your secret JSON Web Token
 ;
 
-$account = new Account($client);
+$teams = new Teams($client);
 
-$result = $account->updatePassword('');
+$result = $teams->updatePrefs('[TEAM_ID]', []);
