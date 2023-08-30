@@ -67,6 +67,35 @@ POST https://HOSTNAME/v1/users/bcrypt
 | password | string | User password hashed using Bcrypt. |  |
 | name | string | User name. Max length: 128 chars. |  |
 
+## List Identities
+
+```http request
+GET https://HOSTNAME/v1/users/identities
+```
+
+** Get identities for all users. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| queries | string | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: userId, provider, providerUid, providerEmail, providerAccessTokenExpiry | [] |
+| search | string | Search term to filter your list results. Max length: 256 chars. |  |
+
+## Delete Identity
+
+```http request
+DELETE https://HOSTNAME/v1/users/identities/{identityId}
+```
+
+** Delete an identity by its unique ID. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| identityId | string | **Required** Identity ID. |  |
+
 ## Create User with MD5 Password
 
 ```http request
@@ -203,6 +232,23 @@ PATCH https://HOSTNAME/v1/users/{userId}/email
 | --- | --- | --- | --- |
 | userId | string | **Required** User ID. |  |
 | email | string | User email. |  |
+
+## Update User Labels
+
+```http request
+PUT https://HOSTNAME/v1/users/{userId}/labels
+```
+
+** Update the user labels by its unique ID. 
+
+Labels can be used to grant access to resources. While teams are a way for user&#039;s to share access to a resource, labels can be defined by the developer to grant access without an invitation. See the [Permissions docs](/docs/permissions) for more info. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| userId | string | **Required** User ID. |  |
+| labels | array | Array of user labels. Replaces the previous labels. Maximum of 5 labels are allowed, each up to 36 alphanumeric characters long. |  |
 
 ## List User Logs
 

@@ -28,7 +28,7 @@ class Databases extends Service
      */
     public function list(array $queries = null, string $search = null): array
     {
-        $path   = str_replace([], [], '/databases');
+        $apiPath = str_replace([], [], '/databases');
 
         $params = [];
         if (!is_null($queries)) {
@@ -40,7 +40,7 @@ class Databases extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_GET, $path, [
+        return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -53,13 +53,14 @@ class Databases extends Service
      *
      * @param string $databaseId
      * @param string $name
+     * @param bool $enabled
      * @throws AppwriteException
      * @return array
 
      */
-    public function create(string $databaseId, string $name): array
+    public function create(string $databaseId, string $name, bool $enabled = null): array
     {
-        $path   = str_replace([], [], '/databases');
+        $apiPath = str_replace([], [], '/databases');
 
         $params = [];
         if (!isset($databaseId)) {
@@ -76,8 +77,12 @@ class Databases extends Service
             $params['name'] = $name;
         }
 
+        if (!is_null($enabled)) {
+            $params['enabled'] = $enabled;
+        }
 
-        return $this->client->call(Client::METHOD_POST, $path, [
+
+        return $this->client->call(Client::METHOD_POST, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -95,14 +100,14 @@ class Databases extends Service
      */
     public function get(string $databaseId): array
     {
-        $path   = str_replace(['{databaseId}'], [$databaseId], '/databases/{databaseId}');
+        $apiPath = str_replace(['{databaseId}'], [$databaseId], '/databases/{databaseId}');
 
         $params = [];
         if (!isset($databaseId)) {
             throw new AppwriteException('Missing required parameter: "databaseId"');
         }
 
-        return $this->client->call(Client::METHOD_GET, $path, [
+        return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -114,13 +119,14 @@ class Databases extends Service
      *
      * @param string $databaseId
      * @param string $name
+     * @param bool $enabled
      * @throws AppwriteException
      * @return array
 
      */
-    public function update(string $databaseId, string $name): array
+    public function update(string $databaseId, string $name, bool $enabled = null): array
     {
-        $path   = str_replace(['{databaseId}'], [$databaseId], '/databases/{databaseId}');
+        $apiPath = str_replace(['{databaseId}'], [$databaseId], '/databases/{databaseId}');
 
         $params = [];
         if (!isset($databaseId)) {
@@ -133,8 +139,12 @@ class Databases extends Service
             $params['name'] = $name;
         }
 
+        if (!is_null($enabled)) {
+            $params['enabled'] = $enabled;
+        }
 
-        return $this->client->call(Client::METHOD_PUT, $path, [
+
+        return $this->client->call(Client::METHOD_PUT, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -152,14 +162,14 @@ class Databases extends Service
      */
     public function delete(string $databaseId): string
     {
-        $path   = str_replace(['{databaseId}'], [$databaseId], '/databases/{databaseId}');
+        $apiPath = str_replace(['{databaseId}'], [$databaseId], '/databases/{databaseId}');
 
         $params = [];
         if (!isset($databaseId)) {
             throw new AppwriteException('Missing required parameter: "databaseId"');
         }
 
-        return $this->client->call(Client::METHOD_DELETE, $path, [
+        return $this->client->call(Client::METHOD_DELETE, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -179,7 +189,7 @@ class Databases extends Service
      */
     public function listCollections(string $databaseId, array $queries = null, string $search = null): array
     {
-        $path   = str_replace(['{databaseId}'], [$databaseId], '/databases/{databaseId}/collections');
+        $apiPath = str_replace(['{databaseId}'], [$databaseId], '/databases/{databaseId}/collections');
 
         $params = [];
         if (!isset($databaseId)) {
@@ -194,7 +204,7 @@ class Databases extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_GET, $path, [
+        return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -212,13 +222,14 @@ class Databases extends Service
      * @param string $name
      * @param array $permissions
      * @param bool $documentSecurity
+     * @param bool $enabled
      * @throws AppwriteException
      * @return array
 
      */
-    public function createCollection(string $databaseId, string $collectionId, string $name, array $permissions = null, bool $documentSecurity = null): array
+    public function createCollection(string $databaseId, string $collectionId, string $name, array $permissions = null, bool $documentSecurity = null, bool $enabled = null): array
     {
-        $path   = str_replace(['{databaseId}'], [$databaseId], '/databases/{databaseId}/collections');
+        $apiPath = str_replace(['{databaseId}'], [$databaseId], '/databases/{databaseId}/collections');
 
         $params = [];
         if (!isset($databaseId)) {
@@ -246,8 +257,12 @@ class Databases extends Service
             $params['documentSecurity'] = $documentSecurity;
         }
 
+        if (!is_null($enabled)) {
+            $params['enabled'] = $enabled;
+        }
 
-        return $this->client->call(Client::METHOD_POST, $path, [
+
+        return $this->client->call(Client::METHOD_POST, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -266,7 +281,7 @@ class Databases extends Service
      */
     public function getCollection(string $databaseId, string $collectionId): array
     {
-        $path   = str_replace(['{databaseId}', '{collectionId}'], [$databaseId, $collectionId], '/databases/{databaseId}/collections/{collectionId}');
+        $apiPath = str_replace(['{databaseId}', '{collectionId}'], [$databaseId, $collectionId], '/databases/{databaseId}/collections/{collectionId}');
 
         $params = [];
         if (!isset($databaseId)) {
@@ -276,7 +291,7 @@ class Databases extends Service
             throw new AppwriteException('Missing required parameter: "collectionId"');
         }
 
-        return $this->client->call(Client::METHOD_GET, $path, [
+        return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -298,7 +313,7 @@ class Databases extends Service
      */
     public function updateCollection(string $databaseId, string $collectionId, string $name, array $permissions = null, bool $documentSecurity = null, bool $enabled = null): array
     {
-        $path   = str_replace(['{databaseId}', '{collectionId}'], [$databaseId, $collectionId], '/databases/{databaseId}/collections/{collectionId}');
+        $apiPath = str_replace(['{databaseId}', '{collectionId}'], [$databaseId, $collectionId], '/databases/{databaseId}/collections/{collectionId}');
 
         $params = [];
         if (!isset($databaseId)) {
@@ -327,7 +342,7 @@ class Databases extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_PUT, $path, [
+        return $this->client->call(Client::METHOD_PUT, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -346,7 +361,7 @@ class Databases extends Service
      */
     public function deleteCollection(string $databaseId, string $collectionId): string
     {
-        $path   = str_replace(['{databaseId}', '{collectionId}'], [$databaseId, $collectionId], '/databases/{databaseId}/collections/{collectionId}');
+        $apiPath = str_replace(['{databaseId}', '{collectionId}'], [$databaseId, $collectionId], '/databases/{databaseId}/collections/{collectionId}');
 
         $params = [];
         if (!isset($databaseId)) {
@@ -356,7 +371,7 @@ class Databases extends Service
             throw new AppwriteException('Missing required parameter: "collectionId"');
         }
 
-        return $this->client->call(Client::METHOD_DELETE, $path, [
+        return $this->client->call(Client::METHOD_DELETE, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -366,13 +381,14 @@ class Databases extends Service
      *
      * @param string $databaseId
      * @param string $collectionId
+     * @param array $queries
      * @throws AppwriteException
      * @return array
 
      */
-    public function listAttributes(string $databaseId, string $collectionId): array
+    public function listAttributes(string $databaseId, string $collectionId, array $queries = null): array
     {
-        $path   = str_replace(['{databaseId}', '{collectionId}'], [$databaseId, $collectionId], '/databases/{databaseId}/collections/{collectionId}/attributes');
+        $apiPath = str_replace(['{databaseId}', '{collectionId}'], [$databaseId, $collectionId], '/databases/{databaseId}/collections/{collectionId}/attributes');
 
         $params = [];
         if (!isset($databaseId)) {
@@ -381,8 +397,12 @@ class Databases extends Service
         if (!isset($collectionId)) {
             throw new AppwriteException('Missing required parameter: "collectionId"');
         }
+        if (!is_null($queries)) {
+            $params['queries'] = $queries;
+        }
 
-        return $this->client->call(Client::METHOD_GET, $path, [
+
+        return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -405,7 +425,7 @@ class Databases extends Service
      */
     public function createBooleanAttribute(string $databaseId, string $collectionId, string $key, bool $required, bool $xdefault = null, bool $xarray = null): array
     {
-        $path   = str_replace(['{databaseId}', '{collectionId}'], [$databaseId, $collectionId], '/databases/{databaseId}/collections/{collectionId}/attributes/boolean');
+        $apiPath = str_replace(['{databaseId}', '{collectionId}'], [$databaseId, $collectionId], '/databases/{databaseId}/collections/{collectionId}/attributes/boolean');
 
         $params = [];
         if (!isset($databaseId)) {
@@ -437,7 +457,7 @@ class Databases extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_POST, $path, [
+        return $this->client->call(Client::METHOD_POST, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -456,7 +476,7 @@ class Databases extends Service
      */
     public function updateBooleanAttribute(string $databaseId, string $collectionId, string $key, bool $required, bool $xdefault): array
     {
-        $path   = str_replace(['{databaseId}', '{collectionId}', '{key}'], [$databaseId, $collectionId, $key], '/databases/{databaseId}/collections/{collectionId}/attributes/boolean/{key}');
+        $apiPath = str_replace(['{databaseId}', '{collectionId}', '{key}'], [$databaseId, $collectionId, $key], '/databases/{databaseId}/collections/{collectionId}/attributes/boolean/{key}');
 
         $params = [];
         if (!isset($databaseId)) {
@@ -480,7 +500,7 @@ class Databases extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_PATCH, $path, [
+        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -500,7 +520,7 @@ class Databases extends Service
      */
     public function createDatetimeAttribute(string $databaseId, string $collectionId, string $key, bool $required, string $xdefault = null, bool $xarray = null): array
     {
-        $path   = str_replace(['{databaseId}', '{collectionId}'], [$databaseId, $collectionId], '/databases/{databaseId}/collections/{collectionId}/attributes/datetime');
+        $apiPath = str_replace(['{databaseId}', '{collectionId}'], [$databaseId, $collectionId], '/databases/{databaseId}/collections/{collectionId}/attributes/datetime');
 
         $params = [];
         if (!isset($databaseId)) {
@@ -532,7 +552,7 @@ class Databases extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_POST, $path, [
+        return $this->client->call(Client::METHOD_POST, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -551,7 +571,7 @@ class Databases extends Service
      */
     public function updateDatetimeAttribute(string $databaseId, string $collectionId, string $key, bool $required, string $xdefault): array
     {
-        $path   = str_replace(['{databaseId}', '{collectionId}', '{key}'], [$databaseId, $collectionId, $key], '/databases/{databaseId}/collections/{collectionId}/attributes/datetime/{key}');
+        $apiPath = str_replace(['{databaseId}', '{collectionId}', '{key}'], [$databaseId, $collectionId, $key], '/databases/{databaseId}/collections/{collectionId}/attributes/datetime/{key}');
 
         $params = [];
         if (!isset($databaseId)) {
@@ -575,7 +595,7 @@ class Databases extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_PATCH, $path, [
+        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -598,7 +618,7 @@ class Databases extends Service
      */
     public function createEmailAttribute(string $databaseId, string $collectionId, string $key, bool $required, string $xdefault = null, bool $xarray = null): array
     {
-        $path   = str_replace(['{databaseId}', '{collectionId}'], [$databaseId, $collectionId], '/databases/{databaseId}/collections/{collectionId}/attributes/email');
+        $apiPath = str_replace(['{databaseId}', '{collectionId}'], [$databaseId, $collectionId], '/databases/{databaseId}/collections/{collectionId}/attributes/email');
 
         $params = [];
         if (!isset($databaseId)) {
@@ -630,7 +650,7 @@ class Databases extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_POST, $path, [
+        return $this->client->call(Client::METHOD_POST, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -653,7 +673,7 @@ class Databases extends Service
      */
     public function updateEmailAttribute(string $databaseId, string $collectionId, string $key, bool $required, string $xdefault): array
     {
-        $path   = str_replace(['{databaseId}', '{collectionId}', '{key}'], [$databaseId, $collectionId, $key], '/databases/{databaseId}/collections/{collectionId}/attributes/email/{key}');
+        $apiPath = str_replace(['{databaseId}', '{collectionId}', '{key}'], [$databaseId, $collectionId, $key], '/databases/{databaseId}/collections/{collectionId}/attributes/email/{key}');
 
         $params = [];
         if (!isset($databaseId)) {
@@ -677,7 +697,7 @@ class Databases extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_PATCH, $path, [
+        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -698,7 +718,7 @@ class Databases extends Service
      */
     public function createEnumAttribute(string $databaseId, string $collectionId, string $key, array $elements, bool $required, string $xdefault = null, bool $xarray = null): array
     {
-        $path   = str_replace(['{databaseId}', '{collectionId}'], [$databaseId, $collectionId], '/databases/{databaseId}/collections/{collectionId}/attributes/enum');
+        $apiPath = str_replace(['{databaseId}', '{collectionId}'], [$databaseId, $collectionId], '/databases/{databaseId}/collections/{collectionId}/attributes/enum');
 
         $params = [];
         if (!isset($databaseId)) {
@@ -737,7 +757,7 @@ class Databases extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_POST, $path, [
+        return $this->client->call(Client::METHOD_POST, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -761,7 +781,7 @@ class Databases extends Service
      */
     public function updateEnumAttribute(string $databaseId, string $collectionId, string $key, array $elements, bool $required, string $xdefault): array
     {
-        $path   = str_replace(['{databaseId}', '{collectionId}', '{key}'], [$databaseId, $collectionId, $key], '/databases/{databaseId}/collections/{collectionId}/attributes/enum/{key}');
+        $apiPath = str_replace(['{databaseId}', '{collectionId}', '{key}'], [$databaseId, $collectionId, $key], '/databases/{databaseId}/collections/{collectionId}/attributes/enum/{key}');
 
         $params = [];
         if (!isset($databaseId)) {
@@ -792,7 +812,7 @@ class Databases extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_PATCH, $path, [
+        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -818,7 +838,7 @@ class Databases extends Service
      */
     public function createFloatAttribute(string $databaseId, string $collectionId, string $key, bool $required, int $min = null, int $max = null, int $xdefault = null, bool $xarray = null): array
     {
-        $path   = str_replace(['{databaseId}', '{collectionId}'], [$databaseId, $collectionId], '/databases/{databaseId}/collections/{collectionId}/attributes/float');
+        $apiPath = str_replace(['{databaseId}', '{collectionId}'], [$databaseId, $collectionId], '/databases/{databaseId}/collections/{collectionId}/attributes/float');
 
         $params = [];
         if (!isset($databaseId)) {
@@ -858,7 +878,7 @@ class Databases extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_POST, $path, [
+        return $this->client->call(Client::METHOD_POST, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -883,7 +903,7 @@ class Databases extends Service
      */
     public function updateFloatAttribute(string $databaseId, string $collectionId, string $key, bool $required, int $min, int $max, int $xdefault): array
     {
-        $path   = str_replace(['{databaseId}', '{collectionId}', '{key}'], [$databaseId, $collectionId, $key], '/databases/{databaseId}/collections/{collectionId}/attributes/float/{key}');
+        $apiPath = str_replace(['{databaseId}', '{collectionId}', '{key}'], [$databaseId, $collectionId, $key], '/databases/{databaseId}/collections/{collectionId}/attributes/float/{key}');
 
         $params = [];
         if (!isset($databaseId)) {
@@ -921,7 +941,7 @@ class Databases extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_PATCH, $path, [
+        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -947,7 +967,7 @@ class Databases extends Service
      */
     public function createIntegerAttribute(string $databaseId, string $collectionId, string $key, bool $required, int $min = null, int $max = null, int $xdefault = null, bool $xarray = null): array
     {
-        $path   = str_replace(['{databaseId}', '{collectionId}'], [$databaseId, $collectionId], '/databases/{databaseId}/collections/{collectionId}/attributes/integer');
+        $apiPath = str_replace(['{databaseId}', '{collectionId}'], [$databaseId, $collectionId], '/databases/{databaseId}/collections/{collectionId}/attributes/integer');
 
         $params = [];
         if (!isset($databaseId)) {
@@ -987,7 +1007,7 @@ class Databases extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_POST, $path, [
+        return $this->client->call(Client::METHOD_POST, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -1012,7 +1032,7 @@ class Databases extends Service
      */
     public function updateIntegerAttribute(string $databaseId, string $collectionId, string $key, bool $required, int $min, int $max, int $xdefault): array
     {
-        $path   = str_replace(['{databaseId}', '{collectionId}', '{key}'], [$databaseId, $collectionId, $key], '/databases/{databaseId}/collections/{collectionId}/attributes/integer/{key}');
+        $apiPath = str_replace(['{databaseId}', '{collectionId}', '{key}'], [$databaseId, $collectionId, $key], '/databases/{databaseId}/collections/{collectionId}/attributes/integer/{key}');
 
         $params = [];
         if (!isset($databaseId)) {
@@ -1050,7 +1070,7 @@ class Databases extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_PATCH, $path, [
+        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -1073,7 +1093,7 @@ class Databases extends Service
      */
     public function createIpAttribute(string $databaseId, string $collectionId, string $key, bool $required, string $xdefault = null, bool $xarray = null): array
     {
-        $path   = str_replace(['{databaseId}', '{collectionId}'], [$databaseId, $collectionId], '/databases/{databaseId}/collections/{collectionId}/attributes/ip');
+        $apiPath = str_replace(['{databaseId}', '{collectionId}'], [$databaseId, $collectionId], '/databases/{databaseId}/collections/{collectionId}/attributes/ip');
 
         $params = [];
         if (!isset($databaseId)) {
@@ -1105,7 +1125,7 @@ class Databases extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_POST, $path, [
+        return $this->client->call(Client::METHOD_POST, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -1128,7 +1148,7 @@ class Databases extends Service
      */
     public function updateIpAttribute(string $databaseId, string $collectionId, string $key, bool $required, string $xdefault): array
     {
-        $path   = str_replace(['{databaseId}', '{collectionId}', '{key}'], [$databaseId, $collectionId, $key], '/databases/{databaseId}/collections/{collectionId}/attributes/ip/{key}');
+        $apiPath = str_replace(['{databaseId}', '{collectionId}', '{key}'], [$databaseId, $collectionId, $key], '/databases/{databaseId}/collections/{collectionId}/attributes/ip/{key}');
 
         $params = [];
         if (!isset($databaseId)) {
@@ -1152,7 +1172,7 @@ class Databases extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_PATCH, $path, [
+        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -1161,7 +1181,7 @@ class Databases extends Service
      * Create Relationship Attribute
      *
      * Create relationship attribute. [Learn more about relationship
-     * attributes](docs/databases-relationships#relationship-attributes).
+     * attributes](/docs/databases-relationships#relationship-attributes).
      * 
      *
      * @param string $databaseId
@@ -1178,7 +1198,7 @@ class Databases extends Service
      */
     public function createRelationshipAttribute(string $databaseId, string $collectionId, string $relatedCollectionId, string $type, bool $twoWay = null, string $key = null, string $twoWayKey = null, string $onDelete = null): array
     {
-        $path   = str_replace(['{databaseId}', '{collectionId}'], [$databaseId, $collectionId], '/databases/{databaseId}/collections/{collectionId}/attributes/relationship');
+        $apiPath = str_replace(['{databaseId}', '{collectionId}'], [$databaseId, $collectionId], '/databases/{databaseId}/collections/{collectionId}/attributes/relationship');
 
         $params = [];
         if (!isset($databaseId)) {
@@ -1218,7 +1238,7 @@ class Databases extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_POST, $path, [
+        return $this->client->call(Client::METHOD_POST, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -1236,13 +1256,14 @@ class Databases extends Service
      * @param bool $required
      * @param string $xdefault
      * @param bool $xarray
+     * @param bool $encrypt
      * @throws AppwriteException
      * @return array
 
      */
-    public function createStringAttribute(string $databaseId, string $collectionId, string $key, int $size, bool $required, string $xdefault = null, bool $xarray = null): array
+    public function createStringAttribute(string $databaseId, string $collectionId, string $key, int $size, bool $required, string $xdefault = null, bool $xarray = null, bool $encrypt = null): array
     {
-        $path   = str_replace(['{databaseId}', '{collectionId}'], [$databaseId, $collectionId], '/databases/{databaseId}/collections/{collectionId}/attributes/string');
+        $apiPath = str_replace(['{databaseId}', '{collectionId}'], [$databaseId, $collectionId], '/databases/{databaseId}/collections/{collectionId}/attributes/string');
 
         $params = [];
         if (!isset($databaseId)) {
@@ -1280,8 +1301,12 @@ class Databases extends Service
             $params['array'] = $xarray;
         }
 
+        if (!is_null($encrypt)) {
+            $params['encrypt'] = $encrypt;
+        }
 
-        return $this->client->call(Client::METHOD_POST, $path, [
+
+        return $this->client->call(Client::METHOD_POST, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -1304,7 +1329,7 @@ class Databases extends Service
      */
     public function updateStringAttribute(string $databaseId, string $collectionId, string $key, bool $required, string $xdefault): array
     {
-        $path   = str_replace(['{databaseId}', '{collectionId}', '{key}'], [$databaseId, $collectionId, $key], '/databases/{databaseId}/collections/{collectionId}/attributes/string/{key}');
+        $apiPath = str_replace(['{databaseId}', '{collectionId}', '{key}'], [$databaseId, $collectionId, $key], '/databases/{databaseId}/collections/{collectionId}/attributes/string/{key}');
 
         $params = [];
         if (!isset($databaseId)) {
@@ -1328,7 +1353,7 @@ class Databases extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_PATCH, $path, [
+        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -1351,7 +1376,7 @@ class Databases extends Service
      */
     public function createUrlAttribute(string $databaseId, string $collectionId, string $key, bool $required, string $xdefault = null, bool $xarray = null): array
     {
-        $path   = str_replace(['{databaseId}', '{collectionId}'], [$databaseId, $collectionId], '/databases/{databaseId}/collections/{collectionId}/attributes/url');
+        $apiPath = str_replace(['{databaseId}', '{collectionId}'], [$databaseId, $collectionId], '/databases/{databaseId}/collections/{collectionId}/attributes/url');
 
         $params = [];
         if (!isset($databaseId)) {
@@ -1383,7 +1408,7 @@ class Databases extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_POST, $path, [
+        return $this->client->call(Client::METHOD_POST, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -1406,7 +1431,7 @@ class Databases extends Service
      */
     public function updateUrlAttribute(string $databaseId, string $collectionId, string $key, bool $required, string $xdefault): array
     {
-        $path   = str_replace(['{databaseId}', '{collectionId}', '{key}'], [$databaseId, $collectionId, $key], '/databases/{databaseId}/collections/{collectionId}/attributes/url/{key}');
+        $apiPath = str_replace(['{databaseId}', '{collectionId}', '{key}'], [$databaseId, $collectionId, $key], '/databases/{databaseId}/collections/{collectionId}/attributes/url/{key}');
 
         $params = [];
         if (!isset($databaseId)) {
@@ -1430,7 +1455,7 @@ class Databases extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_PATCH, $path, [
+        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -1447,7 +1472,7 @@ class Databases extends Service
      */
     public function getAttribute(string $databaseId, string $collectionId, string $key): array
     {
-        $path   = str_replace(['{databaseId}', '{collectionId}', '{key}'], [$databaseId, $collectionId, $key], '/databases/{databaseId}/collections/{collectionId}/attributes/{key}');
+        $apiPath = str_replace(['{databaseId}', '{collectionId}', '{key}'], [$databaseId, $collectionId, $key], '/databases/{databaseId}/collections/{collectionId}/attributes/{key}');
 
         $params = [];
         if (!isset($databaseId)) {
@@ -1460,7 +1485,7 @@ class Databases extends Service
             throw new AppwriteException('Missing required parameter: "key"');
         }
 
-        return $this->client->call(Client::METHOD_GET, $path, [
+        return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -1477,7 +1502,7 @@ class Databases extends Service
      */
     public function deleteAttribute(string $databaseId, string $collectionId, string $key): string
     {
-        $path   = str_replace(['{databaseId}', '{collectionId}', '{key}'], [$databaseId, $collectionId, $key], '/databases/{databaseId}/collections/{collectionId}/attributes/{key}');
+        $apiPath = str_replace(['{databaseId}', '{collectionId}', '{key}'], [$databaseId, $collectionId, $key], '/databases/{databaseId}/collections/{collectionId}/attributes/{key}');
 
         $params = [];
         if (!isset($databaseId)) {
@@ -1490,7 +1515,7 @@ class Databases extends Service
             throw new AppwriteException('Missing required parameter: "key"');
         }
 
-        return $this->client->call(Client::METHOD_DELETE, $path, [
+        return $this->client->call(Client::METHOD_DELETE, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -1499,7 +1524,7 @@ class Databases extends Service
      * Update Relationship Attribute
      *
      * Update relationship attribute. [Learn more about relationship
-     * attributes](docs/databases-relationships#relationship-attributes).
+     * attributes](/docs/databases-relationships#relationship-attributes).
      * 
      *
      * @param string $databaseId
@@ -1512,7 +1537,7 @@ class Databases extends Service
      */
     public function updateRelationshipAttribute(string $databaseId, string $collectionId, string $key, string $onDelete = null): array
     {
-        $path   = str_replace(['{databaseId}', '{collectionId}', '{key}'], [$databaseId, $collectionId, $key], '/databases/{databaseId}/collections/{collectionId}/attributes/{key}/relationship');
+        $apiPath = str_replace(['{databaseId}', '{collectionId}', '{key}'], [$databaseId, $collectionId, $key], '/databases/{databaseId}/collections/{collectionId}/attributes/{key}/relationship');
 
         $params = [];
         if (!isset($databaseId)) {
@@ -1529,7 +1554,7 @@ class Databases extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_PATCH, $path, [
+        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -1549,7 +1574,7 @@ class Databases extends Service
      */
     public function listDocuments(string $databaseId, string $collectionId, array $queries = null): array
     {
-        $path   = str_replace(['{databaseId}', '{collectionId}'], [$databaseId, $collectionId], '/databases/{databaseId}/collections/{collectionId}/documents');
+        $apiPath = str_replace(['{databaseId}', '{collectionId}'], [$databaseId, $collectionId], '/databases/{databaseId}/collections/{collectionId}/documents');
 
         $params = [];
         if (!isset($databaseId)) {
@@ -1563,7 +1588,7 @@ class Databases extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_GET, $path, [
+        return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -1587,7 +1612,7 @@ class Databases extends Service
      */
     public function createDocument(string $databaseId, string $collectionId, string $documentId, array $data, array $permissions = null): array
     {
-        $path   = str_replace(['{databaseId}', '{collectionId}'], [$databaseId, $collectionId], '/databases/{databaseId}/collections/{collectionId}/documents');
+        $apiPath = str_replace(['{databaseId}', '{collectionId}'], [$databaseId, $collectionId], '/databases/{databaseId}/collections/{collectionId}/documents');
 
         $params = [];
         if (!isset($databaseId)) {
@@ -1615,7 +1640,7 @@ class Databases extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_POST, $path, [
+        return $this->client->call(Client::METHOD_POST, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -1636,7 +1661,7 @@ class Databases extends Service
      */
     public function getDocument(string $databaseId, string $collectionId, string $documentId, array $queries = null): array
     {
-        $path   = str_replace(['{databaseId}', '{collectionId}', '{documentId}'], [$databaseId, $collectionId, $documentId], '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}');
+        $apiPath = str_replace(['{databaseId}', '{collectionId}', '{documentId}'], [$databaseId, $collectionId, $documentId], '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}');
 
         $params = [];
         if (!isset($databaseId)) {
@@ -1653,7 +1678,7 @@ class Databases extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_GET, $path, [
+        return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -1675,7 +1700,7 @@ class Databases extends Service
      */
     public function updateDocument(string $databaseId, string $collectionId, string $documentId, array $data = null, array $permissions = null): array
     {
-        $path   = str_replace(['{databaseId}', '{collectionId}', '{documentId}'], [$databaseId, $collectionId, $documentId], '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}');
+        $apiPath = str_replace(['{databaseId}', '{collectionId}', '{documentId}'], [$databaseId, $collectionId, $documentId], '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}');
 
         $params = [];
         if (!isset($databaseId)) {
@@ -1696,7 +1721,7 @@ class Databases extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_PATCH, $path, [
+        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -1715,7 +1740,7 @@ class Databases extends Service
      */
     public function deleteDocument(string $databaseId, string $collectionId, string $documentId): string
     {
-        $path   = str_replace(['{databaseId}', '{collectionId}', '{documentId}'], [$databaseId, $collectionId, $documentId], '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}');
+        $apiPath = str_replace(['{databaseId}', '{collectionId}', '{documentId}'], [$databaseId, $collectionId, $documentId], '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}');
 
         $params = [];
         if (!isset($databaseId)) {
@@ -1728,7 +1753,7 @@ class Databases extends Service
             throw new AppwriteException('Missing required parameter: "documentId"');
         }
 
-        return $this->client->call(Client::METHOD_DELETE, $path, [
+        return $this->client->call(Client::METHOD_DELETE, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -1738,13 +1763,14 @@ class Databases extends Service
      *
      * @param string $databaseId
      * @param string $collectionId
+     * @param array $queries
      * @throws AppwriteException
      * @return array
 
      */
-    public function listIndexes(string $databaseId, string $collectionId): array
+    public function listIndexes(string $databaseId, string $collectionId, array $queries = null): array
     {
-        $path   = str_replace(['{databaseId}', '{collectionId}'], [$databaseId, $collectionId], '/databases/{databaseId}/collections/{collectionId}/indexes');
+        $apiPath = str_replace(['{databaseId}', '{collectionId}'], [$databaseId, $collectionId], '/databases/{databaseId}/collections/{collectionId}/indexes');
 
         $params = [];
         if (!isset($databaseId)) {
@@ -1753,8 +1779,12 @@ class Databases extends Service
         if (!isset($collectionId)) {
             throw new AppwriteException('Missing required parameter: "collectionId"');
         }
+        if (!is_null($queries)) {
+            $params['queries'] = $queries;
+        }
 
-        return $this->client->call(Client::METHOD_GET, $path, [
+
+        return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -1774,7 +1804,7 @@ class Databases extends Service
      */
     public function createIndex(string $databaseId, string $collectionId, string $key, string $type, array $attributes, array $orders = null): array
     {
-        $path   = str_replace(['{databaseId}', '{collectionId}'], [$databaseId, $collectionId], '/databases/{databaseId}/collections/{collectionId}/indexes');
+        $apiPath = str_replace(['{databaseId}', '{collectionId}'], [$databaseId, $collectionId], '/databases/{databaseId}/collections/{collectionId}/indexes');
 
         $params = [];
         if (!isset($databaseId)) {
@@ -1809,7 +1839,7 @@ class Databases extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_POST, $path, [
+        return $this->client->call(Client::METHOD_POST, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -1826,7 +1856,7 @@ class Databases extends Service
      */
     public function getIndex(string $databaseId, string $collectionId, string $key): array
     {
-        $path   = str_replace(['{databaseId}', '{collectionId}', '{key}'], [$databaseId, $collectionId, $key], '/databases/{databaseId}/collections/{collectionId}/indexes/{key}');
+        $apiPath = str_replace(['{databaseId}', '{collectionId}', '{key}'], [$databaseId, $collectionId, $key], '/databases/{databaseId}/collections/{collectionId}/indexes/{key}');
 
         $params = [];
         if (!isset($databaseId)) {
@@ -1839,7 +1869,7 @@ class Databases extends Service
             throw new AppwriteException('Missing required parameter: "key"');
         }
 
-        return $this->client->call(Client::METHOD_GET, $path, [
+        return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -1856,7 +1886,7 @@ class Databases extends Service
      */
     public function deleteIndex(string $databaseId, string $collectionId, string $key): string
     {
-        $path   = str_replace(['{databaseId}', '{collectionId}', '{key}'], [$databaseId, $collectionId, $key], '/databases/{databaseId}/collections/{collectionId}/indexes/{key}');
+        $apiPath = str_replace(['{databaseId}', '{collectionId}', '{key}'], [$databaseId, $collectionId, $key], '/databases/{databaseId}/collections/{collectionId}/indexes/{key}');
 
         $params = [];
         if (!isset($databaseId)) {
@@ -1869,7 +1899,7 @@ class Databases extends Service
             throw new AppwriteException('Missing required parameter: "key"');
         }
 
-        return $this->client->call(Client::METHOD_DELETE, $path, [
+        return $this->client->call(Client::METHOD_DELETE, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }

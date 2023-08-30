@@ -17,7 +17,7 @@ class Account extends Service
     /**
      * Get Account
      *
-     * Get currently logged in user data as JSON object.
+     * Get the currently logged in user.
      *
      * @throws AppwriteException
      * @return array
@@ -25,11 +25,11 @@ class Account extends Service
      */
     public function get(): array
     {
-        $path   = str_replace([], [], '/account');
+        $apiPath = str_replace([], [], '/account');
 
         $params = [];
 
-        return $this->client->call(Client::METHOD_GET, $path, [
+        return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -54,7 +54,7 @@ class Account extends Service
      */
     public function updateEmail(string $email, string $password): array
     {
-        $path   = str_replace([], [], '/account/email');
+        $apiPath = str_replace([], [], '/account/email');
 
         $params = [];
         if (!isset($email)) {
@@ -72,7 +72,56 @@ class Account extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_PATCH, $path, [
+        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
+            'content-type' => 'application/json',
+        ], $params);
+    }
+
+    /**
+     * List Identities
+     *
+     * Get the list of identities for the currently logged in user.
+     *
+     * @param string $queries
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function listIdentities(string $queries = null): array
+    {
+        $apiPath = str_replace([], [], '/account/identities');
+
+        $params = [];
+        if (!is_null($queries)) {
+            $params['queries'] = $queries;
+        }
+
+
+        return $this->client->call(Client::METHOD_GET, $apiPath, [
+            'content-type' => 'application/json',
+        ], $params);
+    }
+
+    /**
+     * Delete Identity
+     *
+     * Delete an identity by its unique ID.
+     *
+     * @param string $identityId
+     * @throws AppwriteException
+     * @return string
+
+     */
+    public function deleteIdentity(string $identityId): string
+    {
+        $apiPath = str_replace(['{identityId}'], [$identityId], '/account/identities/{identityId}');
+
+        $params = [];
+        if (!isset($identityId)) {
+            throw new AppwriteException('Missing required parameter: "identityId"');
+        }
+
+        return $this->client->call(Client::METHOD_DELETE, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -80,8 +129,8 @@ class Account extends Service
     /**
      * List Logs
      *
-     * Get currently logged in user list of latest security activity logs. Each
-     * log returns user IP address, location and date and time of log.
+     * Get the list of latest security activity logs for the currently logged in
+     * user. Each log returns user IP address, location and date and time of log.
      *
      * @param array $queries
      * @throws AppwriteException
@@ -90,7 +139,7 @@ class Account extends Service
      */
     public function listLogs(array $queries = null): array
     {
-        $path   = str_replace([], [], '/account/logs');
+        $apiPath = str_replace([], [], '/account/logs');
 
         $params = [];
         if (!is_null($queries)) {
@@ -98,7 +147,7 @@ class Account extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_GET, $path, [
+        return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -115,7 +164,7 @@ class Account extends Service
      */
     public function updateName(string $name): array
     {
-        $path   = str_replace([], [], '/account/name');
+        $apiPath = str_replace([], [], '/account/name');
 
         $params = [];
         if (!isset($name)) {
@@ -126,7 +175,7 @@ class Account extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_PATCH, $path, [
+        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -146,7 +195,7 @@ class Account extends Service
      */
     public function updatePassword(string $password, string $oldPassword = null): array
     {
-        $path   = str_replace([], [], '/account/password');
+        $apiPath = str_replace([], [], '/account/password');
 
         $params = [];
         if (!isset($password)) {
@@ -161,7 +210,7 @@ class Account extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_PATCH, $path, [
+        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -183,7 +232,7 @@ class Account extends Service
      */
     public function updatePhone(string $phone, string $password): array
     {
-        $path   = str_replace([], [], '/account/phone');
+        $apiPath = str_replace([], [], '/account/phone');
 
         $params = [];
         if (!isset($phone)) {
@@ -201,7 +250,7 @@ class Account extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_PATCH, $path, [
+        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -209,7 +258,7 @@ class Account extends Service
     /**
      * Get Account Preferences
      *
-     * Get currently logged in user preferences as a key-value object.
+     * Get the preferences as a key-value object for the currently logged in user.
      *
      * @throws AppwriteException
      * @return array
@@ -217,11 +266,11 @@ class Account extends Service
      */
     public function getPrefs(): array
     {
-        $path   = str_replace([], [], '/account/prefs');
+        $apiPath = str_replace([], [], '/account/prefs');
 
         $params = [];
 
-        return $this->client->call(Client::METHOD_GET, $path, [
+        return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -240,7 +289,7 @@ class Account extends Service
      */
     public function updatePrefs(array $prefs): array
     {
-        $path   = str_replace([], [], '/account/prefs');
+        $apiPath = str_replace([], [], '/account/prefs');
 
         $params = [];
         if (!isset($prefs)) {
@@ -251,7 +300,7 @@ class Account extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_PATCH, $path, [
+        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -276,7 +325,7 @@ class Account extends Service
      */
     public function createRecovery(string $email, string $url): array
     {
-        $path   = str_replace([], [], '/account/recovery');
+        $apiPath = str_replace([], [], '/account/recovery');
 
         $params = [];
         if (!isset($email)) {
@@ -294,7 +343,7 @@ class Account extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_POST, $path, [
+        return $this->client->call(Client::METHOD_POST, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -322,7 +371,7 @@ class Account extends Service
      */
     public function updateRecovery(string $userId, string $secret, string $password, string $passwordAgain): array
     {
-        $path   = str_replace([], [], '/account/recovery');
+        $apiPath = str_replace([], [], '/account/recovery');
 
         $params = [];
         if (!isset($userId)) {
@@ -354,7 +403,7 @@ class Account extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_PUT, $path, [
+        return $this->client->call(Client::METHOD_PUT, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -362,8 +411,8 @@ class Account extends Service
     /**
      * List Sessions
      *
-     * Get currently logged in user list of active sessions across different
-     * devices.
+     * Get the list of active sessions across different devices for the currently
+     * logged in user.
      *
      * @throws AppwriteException
      * @return array
@@ -371,11 +420,11 @@ class Account extends Service
      */
     public function listSessions(): array
     {
-        $path   = str_replace([], [], '/account/sessions');
+        $apiPath = str_replace([], [], '/account/sessions');
 
         $params = [];
 
-        return $this->client->call(Client::METHOD_GET, $path, [
+        return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -392,11 +441,11 @@ class Account extends Service
      */
     public function deleteSessions(): string
     {
-        $path   = str_replace([], [], '/account/sessions');
+        $apiPath = str_replace([], [], '/account/sessions');
 
         $params = [];
 
-        return $this->client->call(Client::METHOD_DELETE, $path, [
+        return $this->client->call(Client::METHOD_DELETE, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -414,14 +463,14 @@ class Account extends Service
      */
     public function getSession(string $sessionId): array
     {
-        $path   = str_replace(['{sessionId}'], [$sessionId], '/account/sessions/{sessionId}');
+        $apiPath = str_replace(['{sessionId}'], [$sessionId], '/account/sessions/{sessionId}');
 
         $params = [];
         if (!isset($sessionId)) {
             throw new AppwriteException('Missing required parameter: "sessionId"');
         }
 
-        return $this->client->call(Client::METHOD_GET, $path, [
+        return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -440,14 +489,14 @@ class Account extends Service
      */
     public function updateSession(string $sessionId): array
     {
-        $path   = str_replace(['{sessionId}'], [$sessionId], '/account/sessions/{sessionId}');
+        $apiPath = str_replace(['{sessionId}'], [$sessionId], '/account/sessions/{sessionId}');
 
         $params = [];
         if (!isset($sessionId)) {
             throw new AppwriteException('Missing required parameter: "sessionId"');
         }
 
-        return $this->client->call(Client::METHOD_PATCH, $path, [
+        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -455,10 +504,10 @@ class Account extends Service
     /**
      * Delete Session
      *
-     * Use this endpoint to log out the currently logged in user from all their
-     * account sessions across all of their different devices. When using the
-     * Session ID argument, only the unique session ID provided is deleted.
-     * 
+     * Logout the user. Use 'current' as the session ID to logout on this device,
+     * use a session ID to logout on another device. If you're looking to logout
+     * the user on all devices, use [Delete
+     * Sessions](/docs/client/account#accountDeleteSessions) instead.
      *
      * @param string $sessionId
      * @throws AppwriteException
@@ -467,14 +516,14 @@ class Account extends Service
      */
     public function deleteSession(string $sessionId): string
     {
-        $path   = str_replace(['{sessionId}'], [$sessionId], '/account/sessions/{sessionId}');
+        $apiPath = str_replace(['{sessionId}'], [$sessionId], '/account/sessions/{sessionId}');
 
         $params = [];
         if (!isset($sessionId)) {
             throw new AppwriteException('Missing required parameter: "sessionId"');
         }
 
-        return $this->client->call(Client::METHOD_DELETE, $path, [
+        return $this->client->call(Client::METHOD_DELETE, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -492,11 +541,11 @@ class Account extends Service
      */
     public function updateStatus(): array
     {
-        $path   = str_replace([], [], '/account/status');
+        $apiPath = str_replace([], [], '/account/status');
 
         $params = [];
 
-        return $this->client->call(Client::METHOD_PATCH, $path, [
+        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -527,7 +576,7 @@ class Account extends Service
      */
     public function createVerification(string $url): array
     {
-        $path   = str_replace([], [], '/account/verification');
+        $apiPath = str_replace([], [], '/account/verification');
 
         $params = [];
         if (!isset($url)) {
@@ -538,7 +587,7 @@ class Account extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_POST, $path, [
+        return $this->client->call(Client::METHOD_POST, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -559,7 +608,7 @@ class Account extends Service
      */
     public function updateVerification(string $userId, string $secret): array
     {
-        $path   = str_replace([], [], '/account/verification');
+        $apiPath = str_replace([], [], '/account/verification');
 
         $params = [];
         if (!isset($userId)) {
@@ -577,7 +626,7 @@ class Account extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_PUT, $path, [
+        return $this->client->call(Client::METHOD_PUT, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -598,11 +647,11 @@ class Account extends Service
      */
     public function createPhoneVerification(): array
     {
-        $path   = str_replace([], [], '/account/verification/phone');
+        $apiPath = str_replace([], [], '/account/verification/phone');
 
         $params = [];
 
-        return $this->client->call(Client::METHOD_POST, $path, [
+        return $this->client->call(Client::METHOD_POST, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -623,7 +672,7 @@ class Account extends Service
      */
     public function updatePhoneVerification(string $userId, string $secret): array
     {
-        $path   = str_replace([], [], '/account/verification/phone');
+        $apiPath = str_replace([], [], '/account/verification/phone');
 
         $params = [];
         if (!isset($userId)) {
@@ -641,7 +690,7 @@ class Account extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_PUT, $path, [
+        return $this->client->call(Client::METHOD_PUT, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }

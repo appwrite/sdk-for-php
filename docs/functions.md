@@ -12,7 +12,7 @@ GET https://HOSTNAME/v1/functions
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, enabled, runtime, deployment, schedule, scheduleNext, schedulePrevious, timeout | [] |
+| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, enabled, runtime, deployment, schedule, scheduleNext, schedulePrevious, timeout, entrypoint, commands, installationId | [] |
 | search | string | Search term to filter your list results. Max length: 256 chars. |  |
 
 ## Create Function
@@ -29,12 +29,24 @@ POST https://HOSTNAME/v1/functions
 | --- | --- | --- | --- |
 | functionId | string | Function ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
 | name | string | Function name. Max length: 128 chars. |  |
-| execute | array | An array of strings with execution roles. By default no user is granted with any execute permissions. [learn more about permissions](https://appwrite.io/docs/permissions). Maximum of 100 roles are allowed, each 64 characters long. | [] |
 | runtime | string | Execution runtime. |  |
+| execute | array | An array of role strings with execution permissions. By default no user is granted with any execute permissions. [learn more about roles](https://appwrite.io/docs/permissions#permission-roles). Maximum of 100 roles are allowed, each 64 characters long. | [] |
 | events | array | Events list. Maximum of 100 events are allowed. | [] |
 | schedule | string | Schedule CRON syntax. |  |
 | timeout | integer | Function maximum execution time in seconds. | 15 |
-| enabled | boolean | Is function enabled? | 1 |
+| enabled | boolean | Is function enabled? When set to 'disabled', users cannot access the function but Server SDKs with and API key can still access the function. No data is lost when this is toggled. | 1 |
+| logging | boolean | Whether executions will be logged. When set to false, executions will not be logged, but will reduce resource used by your Appwrite project. | 1 |
+| entrypoint | string | Entrypoint File. This path is relative to the "providerRootDirectory". |  |
+| commands | string | Build Commands. |  |
+| installationId | string | Appwrite Installation ID for VCS (Version Control System) deployment. |  |
+| providerRepositoryId | string | Repository ID of the repo linked to the function. |  |
+| providerBranch | string | Production branch for the repo linked to the function. |  |
+| providerSilentMode | boolean | Is the VCS (Version Control System) connection in silent mode for the repo linked to the function? In silent mode, comments will not be made on commits and pull requests. |  |
+| providerRootDirectory | string | Path to function code in the linked repo. |  |
+| templateRepository | string | Repository name of the template. |  |
+| templateOwner | string | The name of the owner of the template. |  |
+| templateRootDirectory | string | Path to function code in the template repo. |  |
+| templateBranch | string | Production branch for the repo linked to the function template. |  |
 
 ## List runtimes
 
@@ -72,11 +84,20 @@ PUT https://HOSTNAME/v1/functions/{functionId}
 | --- | --- | --- | --- |
 | functionId | string | **Required** Function ID. |  |
 | name | string | Function name. Max length: 128 chars. |  |
-| execute | array | An array of strings with execution roles. By default no user is granted with any execute permissions. [learn more about permissions](https://appwrite.io/docs/permissions). Maximum of 100 roles are allowed, each 64 characters long. | [] |
+| runtime | string | Execution runtime. |  |
+| execute | array | An array of role strings with execution permissions. By default no user is granted with any execute permissions. [learn more about roles](https://appwrite.io/docs/permissions#permission-roles). Maximum of 100 roles are allowed, each 64 characters long. | [] |
 | events | array | Events list. Maximum of 100 events are allowed. | [] |
 | schedule | string | Schedule CRON syntax. |  |
 | timeout | integer | Maximum execution time in seconds. | 15 |
-| enabled | boolean | Is function enabled? | 1 |
+| enabled | boolean | Is function enabled? When set to 'disabled', users cannot access the function but Server SDKs with and API key can still access the function. No data is lost when this is toggled. | 1 |
+| logging | boolean | Whether executions will be logged. When set to false, executions will not be logged, but will reduce resource used by your Appwrite project. | 1 |
+| entrypoint | string | Entrypoint File. This path is relative to the "providerRootDirectory". |  |
+| commands | string | Build Commands. |  |
+| installationId | string | Appwrite Installation ID for VCS (Version Controle System) deployment. |  |
+| providerRepositoryId | string | Repository ID of the repo linked to the function |  |
+| providerBranch | string | Production branch for the repo linked to the function |  |
+| providerSilentMode | boolean | Is the VCS (Version Control System) connection in silent mode for the repo linked to the function? In silent mode, comments will not be made on commits and pull requests. |  |
+| providerRootDirectory | string | Path to function code in the linked repo. |  |
 
 ## Delete Function
 
@@ -105,7 +126,7 @@ GET https://HOSTNAME/v1/functions/{functionId}/deployments
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | functionId | string | **Required** Function ID. |  |
-| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: entrypoint, size, buildId, activate | [] |
+| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: size, buildId, activate, entrypoint, commands | [] |
 | search | string | Search term to filter your list results. Max length: 256 chars. |  |
 
 ## Create Deployment
@@ -118,7 +139,7 @@ POST https://HOSTNAME/v1/functions/{functionId}/deployments
 
 This endpoint accepts a tar.gz file compressed with your code. Make sure to include any dependencies your code has within the compressed file. You can learn more about code packaging in the [Appwrite Cloud Functions tutorial](/docs/functions).
 
-Use the &quot;command&quot; param to set the entry point used to execute your code. **
+Use the &quot;command&quot; param to set the entrypoint used to execute your code. **
 
 ### Parameters
 
@@ -126,6 +147,7 @@ Use the &quot;command&quot; param to set the entry point used to execute your co
 | --- | --- | --- | --- |
 | functionId | string | **Required** Function ID. |  |
 | entrypoint | string | Entrypoint File. |  |
+| commands | string | Build Commands. |  |
 | code | file | Gzip file with your code package. When used with the Appwrite CLI, pass the path to your code directory, and the CLI will automatically package your code. Use a path that is within the current directory. |  |
 | activate | boolean | Automatically activate the deployment when it is finished building. |  |
 
@@ -180,6 +202,8 @@ DELETE https://HOSTNAME/v1/functions/{functionId}/deployments/{deploymentId}
 POST https://HOSTNAME/v1/functions/{functionId}/deployments/{deploymentId}/builds/{buildId}
 ```
 
+** Create a new build for an Appwrite Function deployment. This endpoint can be used to retry a failed build. **
+
 ### Parameters
 
 | Field Name | Type | Description | Default |
@@ -187,6 +211,19 @@ POST https://HOSTNAME/v1/functions/{functionId}/deployments/{deploymentId}/build
 | functionId | string | **Required** Function ID. |  |
 | deploymentId | string | **Required** Deployment ID. |  |
 | buildId | string | **Required** Build unique ID. |  |
+
+## Download Deployment
+
+```http request
+GET https://HOSTNAME/v1/functions/{functionId}/deployments/{deploymentId}/download
+```
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| functionId | string | **Required** Function ID. |  |
+| deploymentId | string | **Required** Deployment ID. |  |
 
 ## List Executions
 
@@ -201,7 +238,7 @@ GET https://HOSTNAME/v1/functions/{functionId}/executions
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | functionId | string | **Required** Function ID. |  |
-| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: trigger, status, statusCode, duration | [] |
+| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: trigger, status, responseStatusCode, duration | [] |
 | search | string | Search term to filter your list results. Max length: 256 chars. |  |
 
 ## Create Execution
@@ -217,8 +254,11 @@ POST https://HOSTNAME/v1/functions/{functionId}/executions
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | functionId | string | **Required** Function ID. |  |
-| data | string | String of custom data to send to function. |  |
+| body | string | HTTP body of execution. Default value is empty string. |  |
 | async | boolean | Execute code in the background. Default value is false. |  |
+| path | string | HTTP path of execution. Path can include query params. Default value is / | / |
+| method | string | HTTP method of execution. Default value is GET. | POST |
+| headers | object | HTTP headers of execution. Defaults to empty. | {} |
 
 ## Get Execution
 
@@ -255,7 +295,7 @@ GET https://HOSTNAME/v1/functions/{functionId}/variables
 POST https://HOSTNAME/v1/functions/{functionId}/variables
 ```
 
-** Create a new function variable. These variables can be accessed within function in the `env` object under the request variable. **
+** Create a new function environment variable. These variables can be accessed in the function at runtime as environment variables. **
 
 ### Parameters
 

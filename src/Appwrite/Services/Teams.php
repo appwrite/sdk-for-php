@@ -28,7 +28,7 @@ class Teams extends Service
      */
     public function list(array $queries = null, string $search = null): array
     {
-        $path   = str_replace([], [], '/teams');
+        $apiPath = str_replace([], [], '/teams');
 
         $params = [];
         if (!is_null($queries)) {
@@ -40,7 +40,7 @@ class Teams extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_GET, $path, [
+        return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -61,7 +61,7 @@ class Teams extends Service
      */
     public function create(string $teamId, string $name, array $roles = null): array
     {
-        $path   = str_replace([], [], '/teams');
+        $apiPath = str_replace([], [], '/teams');
 
         $params = [];
         if (!isset($teamId)) {
@@ -83,7 +83,7 @@ class Teams extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_POST, $path, [
+        return $this->client->call(Client::METHOD_POST, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -100,14 +100,14 @@ class Teams extends Service
      */
     public function get(string $teamId): array
     {
-        $path   = str_replace(['{teamId}'], [$teamId], '/teams/{teamId}');
+        $apiPath = str_replace(['{teamId}'], [$teamId], '/teams/{teamId}');
 
         $params = [];
         if (!isset($teamId)) {
             throw new AppwriteException('Missing required parameter: "teamId"');
         }
 
-        return $this->client->call(Client::METHOD_GET, $path, [
+        return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -125,7 +125,7 @@ class Teams extends Service
      */
     public function updateName(string $teamId, string $name): array
     {
-        $path   = str_replace(['{teamId}'], [$teamId], '/teams/{teamId}');
+        $apiPath = str_replace(['{teamId}'], [$teamId], '/teams/{teamId}');
 
         $params = [];
         if (!isset($teamId)) {
@@ -139,7 +139,7 @@ class Teams extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_PUT, $path, [
+        return $this->client->call(Client::METHOD_PUT, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -157,14 +157,14 @@ class Teams extends Service
      */
     public function delete(string $teamId): string
     {
-        $path   = str_replace(['{teamId}'], [$teamId], '/teams/{teamId}');
+        $apiPath = str_replace(['{teamId}'], [$teamId], '/teams/{teamId}');
 
         $params = [];
         if (!isset($teamId)) {
             throw new AppwriteException('Missing required parameter: "teamId"');
         }
 
-        return $this->client->call(Client::METHOD_DELETE, $path, [
+        return $this->client->call(Client::METHOD_DELETE, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -184,7 +184,7 @@ class Teams extends Service
      */
     public function listMemberships(string $teamId, array $queries = null, string $search = null): array
     {
-        $path   = str_replace(['{teamId}'], [$teamId], '/teams/{teamId}/memberships');
+        $apiPath = str_replace(['{teamId}'], [$teamId], '/teams/{teamId}/memberships');
 
         $params = [];
         if (!isset($teamId)) {
@@ -199,7 +199,7 @@ class Teams extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_GET, $path, [
+        return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -242,7 +242,7 @@ class Teams extends Service
      */
     public function createMembership(string $teamId, array $roles, string $url, string $email = null, string $userId = null, string $phone = null, string $name = null): array
     {
-        $path   = str_replace(['{teamId}'], [$teamId], '/teams/{teamId}/memberships');
+        $apiPath = str_replace(['{teamId}'], [$teamId], '/teams/{teamId}/memberships');
 
         $params = [];
         if (!isset($teamId)) {
@@ -279,7 +279,7 @@ class Teams extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_POST, $path, [
+        return $this->client->call(Client::METHOD_POST, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -298,7 +298,7 @@ class Teams extends Service
      */
     public function getMembership(string $teamId, string $membershipId): array
     {
-        $path   = str_replace(['{teamId}', '{membershipId}'], [$teamId, $membershipId], '/teams/{teamId}/memberships/{membershipId}');
+        $apiPath = str_replace(['{teamId}', '{membershipId}'], [$teamId, $membershipId], '/teams/{teamId}/memberships/{membershipId}');
 
         $params = [];
         if (!isset($teamId)) {
@@ -308,17 +308,18 @@ class Teams extends Service
             throw new AppwriteException('Missing required parameter: "membershipId"');
         }
 
-        return $this->client->call(Client::METHOD_GET, $path, [
+        return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
 
     /**
-     * Update Membership Roles
+     * Update Membership
      *
      * Modify the roles of a team member. Only team members with the owner role
      * have access to this endpoint. Learn more about [roles and
      * permissions](/docs/permissions).
+     * 
      *
      * @param string $teamId
      * @param string $membershipId
@@ -327,9 +328,9 @@ class Teams extends Service
      * @return array
 
      */
-    public function updateMembershipRoles(string $teamId, string $membershipId, array $roles): array
+    public function updateMembership(string $teamId, string $membershipId, array $roles): array
     {
-        $path   = str_replace(['{teamId}', '{membershipId}'], [$teamId, $membershipId], '/teams/{teamId}/memberships/{membershipId}');
+        $apiPath = str_replace(['{teamId}', '{membershipId}'], [$teamId, $membershipId], '/teams/{teamId}/memberships/{membershipId}');
 
         $params = [];
         if (!isset($teamId)) {
@@ -346,7 +347,7 @@ class Teams extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_PATCH, $path, [
+        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -366,7 +367,7 @@ class Teams extends Service
      */
     public function deleteMembership(string $teamId, string $membershipId): string
     {
-        $path   = str_replace(['{teamId}', '{membershipId}'], [$teamId, $membershipId], '/teams/{teamId}/memberships/{membershipId}');
+        $apiPath = str_replace(['{teamId}', '{membershipId}'], [$teamId, $membershipId], '/teams/{teamId}/memberships/{membershipId}');
 
         $params = [];
         if (!isset($teamId)) {
@@ -376,7 +377,7 @@ class Teams extends Service
             throw new AppwriteException('Missing required parameter: "membershipId"');
         }
 
-        return $this->client->call(Client::METHOD_DELETE, $path, [
+        return $this->client->call(Client::METHOD_DELETE, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -402,7 +403,7 @@ class Teams extends Service
      */
     public function updateMembershipStatus(string $teamId, string $membershipId, string $userId, string $secret): array
     {
-        $path   = str_replace(['{teamId}', '{membershipId}'], [$teamId, $membershipId], '/teams/{teamId}/memberships/{membershipId}/status');
+        $apiPath = str_replace(['{teamId}', '{membershipId}'], [$teamId, $membershipId], '/teams/{teamId}/memberships/{membershipId}/status');
 
         $params = [];
         if (!isset($teamId)) {
@@ -426,7 +427,7 @@ class Teams extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_PATCH, $path, [
+        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -445,14 +446,14 @@ class Teams extends Service
      */
     public function getPrefs(string $teamId): array
     {
-        $path   = str_replace(['{teamId}'], [$teamId], '/teams/{teamId}/prefs');
+        $apiPath = str_replace(['{teamId}'], [$teamId], '/teams/{teamId}/prefs');
 
         $params = [];
         if (!isset($teamId)) {
             throw new AppwriteException('Missing required parameter: "teamId"');
         }
 
-        return $this->client->call(Client::METHOD_GET, $path, [
+        return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -472,7 +473,7 @@ class Teams extends Service
      */
     public function updatePrefs(string $teamId, array $prefs): array
     {
-        $path   = str_replace(['{teamId}'], [$teamId], '/teams/{teamId}/prefs');
+        $apiPath = str_replace(['{teamId}'], [$teamId], '/teams/{teamId}/prefs');
 
         $params = [];
         if (!isset($teamId)) {
@@ -486,7 +487,7 @@ class Teams extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_PUT, $path, [
+        return $this->client->call(Client::METHOD_PUT, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }

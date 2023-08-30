@@ -28,7 +28,7 @@ class Functions extends Service
      */
     public function list(array $queries = null, string $search = null): array
     {
-        $path   = str_replace([], [], '/functions');
+        $apiPath = str_replace([], [], '/functions');
 
         $params = [];
         if (!is_null($queries)) {
@@ -40,7 +40,7 @@ class Functions extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_GET, $path, [
+        return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -60,13 +60,25 @@ class Functions extends Service
      * @param string $schedule
      * @param int $timeout
      * @param bool $enabled
+     * @param bool $logging
+     * @param string $entrypoint
+     * @param string $commands
+     * @param string $installationId
+     * @param string $providerRepositoryId
+     * @param string $providerBranch
+     * @param bool $providerSilentMode
+     * @param string $providerRootDirectory
+     * @param string $templateRepository
+     * @param string $templateOwner
+     * @param string $templateRootDirectory
+     * @param string $templateBranch
      * @throws AppwriteException
      * @return array
 
      */
-    public function create(string $functionId, string $name, string $runtime, array $execute = null, array $events = null, string $schedule = null, int $timeout = null, bool $enabled = null): array
+    public function create(string $functionId, string $name, string $runtime, array $execute = null, array $events = null, string $schedule = null, int $timeout = null, bool $enabled = null, bool $logging = null, string $entrypoint = null, string $commands = null, string $installationId = null, string $providerRepositoryId = null, string $providerBranch = null, bool $providerSilentMode = null, string $providerRootDirectory = null, string $templateRepository = null, string $templateOwner = null, string $templateRootDirectory = null, string $templateBranch = null): array
     {
-        $path   = str_replace([], [], '/functions');
+        $apiPath = str_replace([], [], '/functions');
 
         $params = [];
         if (!isset($functionId)) {
@@ -86,12 +98,12 @@ class Functions extends Service
             $params['name'] = $name;
         }
 
-        if (!is_null($execute)) {
-            $params['execute'] = $execute;
-        }
-
         if (!is_null($runtime)) {
             $params['runtime'] = $runtime;
+        }
+
+        if (!is_null($execute)) {
+            $params['execute'] = $execute;
         }
 
         if (!is_null($events)) {
@@ -110,8 +122,56 @@ class Functions extends Service
             $params['enabled'] = $enabled;
         }
 
+        if (!is_null($logging)) {
+            $params['logging'] = $logging;
+        }
 
-        return $this->client->call(Client::METHOD_POST, $path, [
+        if (!is_null($entrypoint)) {
+            $params['entrypoint'] = $entrypoint;
+        }
+
+        if (!is_null($commands)) {
+            $params['commands'] = $commands;
+        }
+
+        if (!is_null($installationId)) {
+            $params['installationId'] = $installationId;
+        }
+
+        if (!is_null($providerRepositoryId)) {
+            $params['providerRepositoryId'] = $providerRepositoryId;
+        }
+
+        if (!is_null($providerBranch)) {
+            $params['providerBranch'] = $providerBranch;
+        }
+
+        if (!is_null($providerSilentMode)) {
+            $params['providerSilentMode'] = $providerSilentMode;
+        }
+
+        if (!is_null($providerRootDirectory)) {
+            $params['providerRootDirectory'] = $providerRootDirectory;
+        }
+
+        if (!is_null($templateRepository)) {
+            $params['templateRepository'] = $templateRepository;
+        }
+
+        if (!is_null($templateOwner)) {
+            $params['templateOwner'] = $templateOwner;
+        }
+
+        if (!is_null($templateRootDirectory)) {
+            $params['templateRootDirectory'] = $templateRootDirectory;
+        }
+
+        if (!is_null($templateBranch)) {
+            $params['templateBranch'] = $templateBranch;
+        }
+
+
+        return $this->client->call(Client::METHOD_POST, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -127,11 +187,11 @@ class Functions extends Service
      */
     public function listRuntimes(): array
     {
-        $path   = str_replace([], [], '/functions/runtimes');
+        $apiPath = str_replace([], [], '/functions/runtimes');
 
         $params = [];
 
-        return $this->client->call(Client::METHOD_GET, $path, [
+        return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -148,14 +208,14 @@ class Functions extends Service
      */
     public function get(string $functionId): array
     {
-        $path   = str_replace(['{functionId}'], [$functionId], '/functions/{functionId}');
+        $apiPath = str_replace(['{functionId}'], [$functionId], '/functions/{functionId}');
 
         $params = [];
         if (!isset($functionId)) {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
 
-        return $this->client->call(Client::METHOD_GET, $path, [
+        return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -167,18 +227,27 @@ class Functions extends Service
      *
      * @param string $functionId
      * @param string $name
+     * @param string $runtime
      * @param array $execute
      * @param array $events
      * @param string $schedule
      * @param int $timeout
      * @param bool $enabled
+     * @param bool $logging
+     * @param string $entrypoint
+     * @param string $commands
+     * @param string $installationId
+     * @param string $providerRepositoryId
+     * @param string $providerBranch
+     * @param bool $providerSilentMode
+     * @param string $providerRootDirectory
      * @throws AppwriteException
      * @return array
 
      */
-    public function update(string $functionId, string $name, array $execute = null, array $events = null, string $schedule = null, int $timeout = null, bool $enabled = null): array
+    public function update(string $functionId, string $name, string $runtime, array $execute = null, array $events = null, string $schedule = null, int $timeout = null, bool $enabled = null, bool $logging = null, string $entrypoint = null, string $commands = null, string $installationId = null, string $providerRepositoryId = null, string $providerBranch = null, bool $providerSilentMode = null, string $providerRootDirectory = null): array
     {
-        $path   = str_replace(['{functionId}'], [$functionId], '/functions/{functionId}');
+        $apiPath = str_replace(['{functionId}'], [$functionId], '/functions/{functionId}');
 
         $params = [];
         if (!isset($functionId)) {
@@ -187,8 +256,15 @@ class Functions extends Service
         if (!isset($name)) {
             throw new AppwriteException('Missing required parameter: "name"');
         }
+        if (!isset($runtime)) {
+            throw new AppwriteException('Missing required parameter: "runtime"');
+        }
         if (!is_null($name)) {
             $params['name'] = $name;
+        }
+
+        if (!is_null($runtime)) {
+            $params['runtime'] = $runtime;
         }
 
         if (!is_null($execute)) {
@@ -211,8 +287,40 @@ class Functions extends Service
             $params['enabled'] = $enabled;
         }
 
+        if (!is_null($logging)) {
+            $params['logging'] = $logging;
+        }
 
-        return $this->client->call(Client::METHOD_PUT, $path, [
+        if (!is_null($entrypoint)) {
+            $params['entrypoint'] = $entrypoint;
+        }
+
+        if (!is_null($commands)) {
+            $params['commands'] = $commands;
+        }
+
+        if (!is_null($installationId)) {
+            $params['installationId'] = $installationId;
+        }
+
+        if (!is_null($providerRepositoryId)) {
+            $params['providerRepositoryId'] = $providerRepositoryId;
+        }
+
+        if (!is_null($providerBranch)) {
+            $params['providerBranch'] = $providerBranch;
+        }
+
+        if (!is_null($providerSilentMode)) {
+            $params['providerSilentMode'] = $providerSilentMode;
+        }
+
+        if (!is_null($providerRootDirectory)) {
+            $params['providerRootDirectory'] = $providerRootDirectory;
+        }
+
+
+        return $this->client->call(Client::METHOD_PUT, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -229,14 +337,14 @@ class Functions extends Service
      */
     public function delete(string $functionId): string
     {
-        $path   = str_replace(['{functionId}'], [$functionId], '/functions/{functionId}');
+        $apiPath = str_replace(['{functionId}'], [$functionId], '/functions/{functionId}');
 
         $params = [];
         if (!isset($functionId)) {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
 
-        return $this->client->call(Client::METHOD_DELETE, $path, [
+        return $this->client->call(Client::METHOD_DELETE, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -256,7 +364,7 @@ class Functions extends Service
      */
     public function listDeployments(string $functionId, array $queries = null, string $search = null): array
     {
-        $path   = str_replace(['{functionId}'], [$functionId], '/functions/{functionId}/deployments');
+        $apiPath = str_replace(['{functionId}'], [$functionId], '/functions/{functionId}/deployments');
 
         $params = [];
         if (!isset($functionId)) {
@@ -271,7 +379,7 @@ class Functions extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_GET, $path, [
+        return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -288,26 +396,24 @@ class Functions extends Service
      * learn more about code packaging in the [Appwrite Cloud Functions
      * tutorial](/docs/functions).
      * 
-     * Use the "command" param to set the entry point used to execute your code.
+     * Use the "command" param to set the entrypoint used to execute your code.
      *
      * @param string $functionId
-     * @param string $entrypoint
      * @param InputFile $code
      * @param bool $activate
+     * @param string $entrypoint
+     * @param string $commands
      * @throws AppwriteException
      * @return array
 
      */
-    public function createDeployment(string $functionId, string $entrypoint, InputFile $code, bool $activate, callable $onProgress = null): array
+    public function createDeployment(string $functionId, InputFile $code, bool $activate, string $entrypoint = null, string $commands = null, callable $onProgress = null): array
     {
-        $path   = str_replace(['{functionId}'], [$functionId], '/functions/{functionId}/deployments');
+        $apiPath = str_replace(['{functionId}'], [$functionId], '/functions/{functionId}/deployments');
 
         $params = [];
         if (!isset($functionId)) {
             throw new AppwriteException('Missing required parameter: "functionId"');
-        }
-        if (!isset($entrypoint)) {
-            throw new AppwriteException('Missing required parameter: "entrypoint"');
         }
         if (!isset($code)) {
             throw new AppwriteException('Missing required parameter: "code"');
@@ -317,6 +423,10 @@ class Functions extends Service
         }
         if (!is_null($entrypoint)) {
             $params['entrypoint'] = $entrypoint;
+        }
+
+        if (!is_null($commands)) {
+            $params['commands'] = $commands;
         }
 
         if (!is_null($code)) {
@@ -337,7 +447,7 @@ class Functions extends Service
             $postedName = $code->getFilename();
             if ($size <= Client::CHUNK_SIZE) {
                 $params['code'] = new \CURLFile('data://' . $mimeType . ';base64,' . base64_encode($code->getData()), $mimeType, $postedName);
-                return $this->client->call(Client::METHOD_POST, $path, [
+                return $this->client->call(Client::METHOD_POST, $apiPath, [
                             'content-type' => 'multipart/form-data',
                         ], $params);
             }
@@ -348,7 +458,7 @@ class Functions extends Service
             //send single file if size is less than or equal to 5MB
             if ($size <= Client::CHUNK_SIZE) {
                 $params['code'] = new \CURLFile($code->getPath(), $mimeType, $postedName);
-                return $this->client->call(Client::METHOD_POST, $path, [
+                return $this->client->call(Client::METHOD_POST, $apiPath, [
                             'content-type' => 'multipart/form-data',
                         ], $params);
             }
@@ -379,7 +489,7 @@ class Functions extends Service
             if(!empty($id)) {
                 $headers['x-appwrite-id'] = $id;
             }
-            $response = $this->client->call(Client::METHOD_POST, $path, $headers, $params);
+            $response = $this->client->call(Client::METHOD_POST, $apiPath, $headers, $params);
             $counter++;
             $start += Client::CHUNK_SIZE;
             if(empty($id)) {
@@ -415,7 +525,7 @@ class Functions extends Service
      */
     public function getDeployment(string $functionId, string $deploymentId): array
     {
-        $path   = str_replace(['{functionId}', '{deploymentId}'], [$functionId, $deploymentId], '/functions/{functionId}/deployments/{deploymentId}');
+        $apiPath = str_replace(['{functionId}', '{deploymentId}'], [$functionId, $deploymentId], '/functions/{functionId}/deployments/{deploymentId}');
 
         $params = [];
         if (!isset($functionId)) {
@@ -425,7 +535,7 @@ class Functions extends Service
             throw new AppwriteException('Missing required parameter: "deploymentId"');
         }
 
-        return $this->client->call(Client::METHOD_GET, $path, [
+        return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -445,7 +555,7 @@ class Functions extends Service
      */
     public function updateDeployment(string $functionId, string $deploymentId): array
     {
-        $path   = str_replace(['{functionId}', '{deploymentId}'], [$functionId, $deploymentId], '/functions/{functionId}/deployments/{deploymentId}');
+        $apiPath = str_replace(['{functionId}', '{deploymentId}'], [$functionId, $deploymentId], '/functions/{functionId}/deployments/{deploymentId}');
 
         $params = [];
         if (!isset($functionId)) {
@@ -455,7 +565,7 @@ class Functions extends Service
             throw new AppwriteException('Missing required parameter: "deploymentId"');
         }
 
-        return $this->client->call(Client::METHOD_PATCH, $path, [
+        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -473,7 +583,7 @@ class Functions extends Service
      */
     public function deleteDeployment(string $functionId, string $deploymentId): string
     {
-        $path   = str_replace(['{functionId}', '{deploymentId}'], [$functionId, $deploymentId], '/functions/{functionId}/deployments/{deploymentId}');
+        $apiPath = str_replace(['{functionId}', '{deploymentId}'], [$functionId, $deploymentId], '/functions/{functionId}/deployments/{deploymentId}');
 
         $params = [];
         if (!isset($functionId)) {
@@ -483,13 +593,16 @@ class Functions extends Service
             throw new AppwriteException('Missing required parameter: "deploymentId"');
         }
 
-        return $this->client->call(Client::METHOD_DELETE, $path, [
+        return $this->client->call(Client::METHOD_DELETE, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
 
     /**
      * Create Build
+     *
+     * Create a new build for an Appwrite Function deployment. This endpoint can
+     * be used to retry a failed build.
      *
      * @param string $functionId
      * @param string $deploymentId
@@ -500,7 +613,7 @@ class Functions extends Service
      */
     public function createBuild(string $functionId, string $deploymentId, string $buildId): string
     {
-        $path   = str_replace(['{functionId}', '{deploymentId}', '{buildId}'], [$functionId, $deploymentId, $buildId], '/functions/{functionId}/deployments/{deploymentId}/builds/{buildId}');
+        $apiPath = str_replace(['{functionId}', '{deploymentId}', '{buildId}'], [$functionId, $deploymentId, $buildId], '/functions/{functionId}/deployments/{deploymentId}/builds/{buildId}');
 
         $params = [];
         if (!isset($functionId)) {
@@ -513,7 +626,33 @@ class Functions extends Service
             throw new AppwriteException('Missing required parameter: "buildId"');
         }
 
-        return $this->client->call(Client::METHOD_POST, $path, [
+        return $this->client->call(Client::METHOD_POST, $apiPath, [
+            'content-type' => 'application/json',
+        ], $params);
+    }
+
+    /**
+     * Download Deployment
+     *
+     * @param string $functionId
+     * @param string $deploymentId
+     * @throws AppwriteException
+     * @return string
+
+     */
+    public function downloadDeployment(string $functionId, string $deploymentId): string
+    {
+        $apiPath = str_replace(['{functionId}', '{deploymentId}'], [$functionId, $deploymentId], '/functions/{functionId}/deployments/{deploymentId}/download');
+
+        $params = [];
+        if (!isset($functionId)) {
+            throw new AppwriteException('Missing required parameter: "functionId"');
+        }
+        if (!isset($deploymentId)) {
+            throw new AppwriteException('Missing required parameter: "deploymentId"');
+        }
+
+        return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -533,7 +672,7 @@ class Functions extends Service
      */
     public function listExecutions(string $functionId, array $queries = null, string $search = null): array
     {
-        $path   = str_replace(['{functionId}'], [$functionId], '/functions/{functionId}/executions');
+        $apiPath = str_replace(['{functionId}'], [$functionId], '/functions/{functionId}/executions');
 
         $params = [];
         if (!isset($functionId)) {
@@ -548,7 +687,7 @@ class Functions extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_GET, $path, [
+        return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -562,30 +701,45 @@ class Functions extends Service
      * function execution process will start asynchronously.
      *
      * @param string $functionId
-     * @param string $data
+     * @param string $body
      * @param bool $async
+     * @param string $xpath
+     * @param string $method
+     * @param array $headers
      * @throws AppwriteException
      * @return array
 
      */
-    public function createExecution(string $functionId, string $data = null, bool $async = null): array
+    public function createExecution(string $functionId, string $body = null, bool $async = null, string $xpath = null, string $method = null, array $headers = null): array
     {
-        $path   = str_replace(['{functionId}'], [$functionId], '/functions/{functionId}/executions');
+        $apiPath = str_replace(['{functionId}'], [$functionId], '/functions/{functionId}/executions');
 
         $params = [];
         if (!isset($functionId)) {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
-        if (!is_null($data)) {
-            $params['data'] = $data;
+        if (!is_null($body)) {
+            $params['body'] = $body;
         }
 
         if (!is_null($async)) {
             $params['async'] = $async;
         }
 
+        if (!is_null($xpath)) {
+            $params['path'] = $xpath;
+        }
 
-        return $this->client->call(Client::METHOD_POST, $path, [
+        if (!is_null($method)) {
+            $params['method'] = $method;
+        }
+
+        if (!is_null($headers)) {
+            $params['headers'] = $headers;
+        }
+
+
+        return $this->client->call(Client::METHOD_POST, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -603,7 +757,7 @@ class Functions extends Service
      */
     public function getExecution(string $functionId, string $executionId): array
     {
-        $path   = str_replace(['{functionId}', '{executionId}'], [$functionId, $executionId], '/functions/{functionId}/executions/{executionId}');
+        $apiPath = str_replace(['{functionId}', '{executionId}'], [$functionId, $executionId], '/functions/{functionId}/executions/{executionId}');
 
         $params = [];
         if (!isset($functionId)) {
@@ -613,7 +767,7 @@ class Functions extends Service
             throw new AppwriteException('Missing required parameter: "executionId"');
         }
 
-        return $this->client->call(Client::METHOD_GET, $path, [
+        return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -630,14 +784,14 @@ class Functions extends Service
      */
     public function listVariables(string $functionId): array
     {
-        $path   = str_replace(['{functionId}'], [$functionId], '/functions/{functionId}/variables');
+        $apiPath = str_replace(['{functionId}'], [$functionId], '/functions/{functionId}/variables');
 
         $params = [];
         if (!isset($functionId)) {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
 
-        return $this->client->call(Client::METHOD_GET, $path, [
+        return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -645,8 +799,8 @@ class Functions extends Service
     /**
      * Create Variable
      *
-     * Create a new function variable. These variables can be accessed within
-     * function in the `env` object under the request variable.
+     * Create a new function environment variable. These variables can be accessed
+     * in the function at runtime as environment variables.
      *
      * @param string $functionId
      * @param string $key
@@ -657,7 +811,7 @@ class Functions extends Service
      */
     public function createVariable(string $functionId, string $key, string $value): array
     {
-        $path   = str_replace(['{functionId}'], [$functionId], '/functions/{functionId}/variables');
+        $apiPath = str_replace(['{functionId}'], [$functionId], '/functions/{functionId}/variables');
 
         $params = [];
         if (!isset($functionId)) {
@@ -678,7 +832,7 @@ class Functions extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_POST, $path, [
+        return $this->client->call(Client::METHOD_POST, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -696,7 +850,7 @@ class Functions extends Service
      */
     public function getVariable(string $functionId, string $variableId): array
     {
-        $path   = str_replace(['{functionId}', '{variableId}'], [$functionId, $variableId], '/functions/{functionId}/variables/{variableId}');
+        $apiPath = str_replace(['{functionId}', '{variableId}'], [$functionId, $variableId], '/functions/{functionId}/variables/{variableId}');
 
         $params = [];
         if (!isset($functionId)) {
@@ -706,7 +860,7 @@ class Functions extends Service
             throw new AppwriteException('Missing required parameter: "variableId"');
         }
 
-        return $this->client->call(Client::METHOD_GET, $path, [
+        return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -726,7 +880,7 @@ class Functions extends Service
      */
     public function updateVariable(string $functionId, string $variableId, string $key, string $value = null): array
     {
-        $path   = str_replace(['{functionId}', '{variableId}'], [$functionId, $variableId], '/functions/{functionId}/variables/{variableId}');
+        $apiPath = str_replace(['{functionId}', '{variableId}'], [$functionId, $variableId], '/functions/{functionId}/variables/{variableId}');
 
         $params = [];
         if (!isset($functionId)) {
@@ -747,7 +901,7 @@ class Functions extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_PUT, $path, [
+        return $this->client->call(Client::METHOD_PUT, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -765,7 +919,7 @@ class Functions extends Service
      */
     public function deleteVariable(string $functionId, string $variableId): string
     {
-        $path   = str_replace(['{functionId}', '{variableId}'], [$functionId, $variableId], '/functions/{functionId}/variables/{variableId}');
+        $apiPath = str_replace(['{functionId}', '{variableId}'], [$functionId, $variableId], '/functions/{functionId}/variables/{variableId}');
 
         $params = [];
         if (!isset($functionId)) {
@@ -775,7 +929,7 @@ class Functions extends Service
             throw new AppwriteException('Missing required parameter: "variableId"');
         }
 
-        return $this->client->call(Client::METHOD_DELETE, $path, [
+        return $this->client->call(Client::METHOD_DELETE, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }

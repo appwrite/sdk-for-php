@@ -37,7 +37,7 @@ class Avatars extends Service
      */
     public function getBrowser(string $code, int $width = null, int $height = null, int $quality = null): string
     {
-        $path   = str_replace(['{code}'], [$code], '/avatars/browsers/{code}');
+        $apiPath = str_replace(['{code}'], [$code], '/avatars/browsers/{code}');
 
         $params = [];
         if (!isset($code)) {
@@ -56,7 +56,7 @@ class Avatars extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_GET, $path, [
+        return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -84,7 +84,7 @@ class Avatars extends Service
      */
     public function getCreditCard(string $code, int $width = null, int $height = null, int $quality = null): string
     {
-        $path   = str_replace(['{code}'], [$code], '/avatars/credit-cards/{code}');
+        $apiPath = str_replace(['{code}'], [$code], '/avatars/credit-cards/{code}');
 
         $params = [];
         if (!isset($code)) {
@@ -103,7 +103,7 @@ class Avatars extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_GET, $path, [
+        return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -122,7 +122,7 @@ class Avatars extends Service
      */
     public function getFavicon(string $url): string
     {
-        $path   = str_replace([], [], '/avatars/favicon');
+        $apiPath = str_replace([], [], '/avatars/favicon');
 
         $params = [];
         if (!isset($url)) {
@@ -133,7 +133,7 @@ class Avatars extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_GET, $path, [
+        return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -162,7 +162,7 @@ class Avatars extends Service
      */
     public function getFlag(string $code, int $width = null, int $height = null, int $quality = null): string
     {
-        $path   = str_replace(['{code}'], [$code], '/avatars/flags/{code}');
+        $apiPath = str_replace(['{code}'], [$code], '/avatars/flags/{code}');
 
         $params = [];
         if (!isset($code)) {
@@ -181,7 +181,7 @@ class Avatars extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_GET, $path, [
+        return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -209,7 +209,7 @@ class Avatars extends Service
      */
     public function getImage(string $url, int $width = null, int $height = null): string
     {
-        $path   = str_replace([], [], '/avatars/image');
+        $apiPath = str_replace([], [], '/avatars/image');
 
         $params = [];
         if (!isset($url)) {
@@ -228,7 +228,7 @@ class Avatars extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_GET, $path, [
+        return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -263,7 +263,7 @@ class Avatars extends Service
      */
     public function getInitials(string $name = null, int $width = null, int $height = null, string $background = null): string
     {
-        $path   = str_replace([], [], '/avatars/initials');
+        $apiPath = str_replace([], [], '/avatars/initials');
 
         $params = [];
         if (!is_null($name)) {
@@ -283,7 +283,7 @@ class Avatars extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_GET, $path, [
+        return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -305,7 +305,7 @@ class Avatars extends Service
      */
     public function getQR(string $text, int $size = null, int $margin = null, bool $download = null): string
     {
-        $path   = str_replace([], [], '/avatars/qr');
+        $apiPath = str_replace([], [], '/avatars/qr');
 
         $params = [];
         if (!isset($text)) {
@@ -328,7 +328,7 @@ class Avatars extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_GET, $path, [
+        return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }

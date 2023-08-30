@@ -29,7 +29,8 @@ POST https://HOSTNAME/v1/databases
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | databaseId | string | Unique Id. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
-| name | string | Collection name. Max length: 128 chars. |  |
+| name | string | Database name. Max length: 128 chars. |  |
+| enabled | boolean | Is the database enabled? When set to 'disabled', users cannot access the database but Server SDKs with an API key can still read and write to the database. No data is lost when this is toggled. | 1 |
 
 ## Get Database
 
@@ -59,6 +60,7 @@ PUT https://HOSTNAME/v1/databases/{databaseId}
 | --- | --- | --- | --- |
 | databaseId | string | **Required** Database ID. |  |
 | name | string | Database name. Max length: 128 chars. |  |
+| enabled | boolean | Is database enabled? When set to 'disabled', users cannot access the database but Server SDKs with an API key can still read and write to the database. No data is lost when this is toggled. | 1 |
 
 ## Delete Database
 
@@ -107,6 +109,7 @@ POST https://HOSTNAME/v1/databases/{databaseId}/collections
 | name | string | Collection name. Max length: 128 chars. |  |
 | permissions | array | An array of permissions strings. By default, no user is granted with any permissions. [Learn more about permissions](/docs/permissions). |  |
 | documentSecurity | boolean | Enables configuring permissions for individual documents. A user needs one of document or collection level permissions to access a document. [Learn more about permissions](/docs/permissions). |  |
+| enabled | boolean | Is collection enabled? When set to 'disabled', users cannot access the collection but Server SDKs with and API key can still read and write to the collection. No data is lost when this is toggled. | 1 |
 
 ## Get Collection
 
@@ -140,7 +143,7 @@ PUT https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}
 | name | string | Collection name. Max length: 128 chars. |  |
 | permissions | array | An array of permission strings. By default, the current permissions are inherited. [Learn more about permissions](/docs/permissions). |  |
 | documentSecurity | boolean | Enables configuring permissions for individual documents. A user needs one of document or collection level permissions to access a document. [Learn more about permissions](/docs/permissions). |  |
-| enabled | boolean | Is collection enabled? | 1 |
+| enabled | boolean | Is collection enabled? When set to 'disabled', users cannot access the collection but Server SDKs with and API key can still read and write to the collection. No data is lost when this is toggled. | 1 |
 
 ## Delete Collection
 
@@ -169,6 +172,7 @@ GET https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attrib
 | --- | --- | --- | --- |
 | databaseId | string | **Required** Database ID. |  |
 | collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
+| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: key, type, size, required, array, status, error | [] |
 
 ## Create Boolean Attribute
 
@@ -447,7 +451,7 @@ PATCH https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attr
 POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes/relationship
 ```
 
-** Create relationship attribute. [Learn more about relationship attributes](docs/databases-relationships#relationship-attributes).
+** Create relationship attribute. [Learn more about relationship attributes](/docs/databases-relationships#relationship-attributes).
  **
 
 ### Parameters
@@ -483,6 +487,7 @@ POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attri
 | required | boolean | Is attribute required? |  |
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | array | boolean | Is attribute an array? |  |
+| encrypt | boolean | Toggle encryption for the attribute. Encryption enhances security by not storing any plain text values in the database. However, encrypted attributes cannot be queried. |  |
 
 ## Update String Attribute
 
@@ -576,7 +581,7 @@ DELETE https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/att
 PATCH https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes/{key}/relationship
 ```
 
-** Update relationship attribute. [Learn more about relationship attributes](docs/databases-relationships#relationship-attributes).
+** Update relationship attribute. [Learn more about relationship attributes](/docs/databases-relationships#relationship-attributes).
  **
 
 ### Parameters
@@ -685,6 +690,7 @@ GET https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/indexe
 | --- | --- | --- | --- |
 | databaseId | string | **Required** Database ID. |  |
 | collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
+| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: key, type, status, attributes, error | [] |
 
 ## Create Index
 

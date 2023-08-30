@@ -26,7 +26,7 @@ class Graphql extends Service
      */
     public function query(array $query): array
     {
-        $path   = str_replace([], [], '/graphql');
+        $apiPath = str_replace([], [], '/graphql');
 
         $params = [];
         if (!isset($query)) {
@@ -37,7 +37,7 @@ class Graphql extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_POST, $path, [
+        return $this->client->call(Client::METHOD_POST, $apiPath, [
             'x-sdk-graphql' => 'true',
             'content-type' => 'application/json',
         ], $params);
@@ -55,7 +55,7 @@ class Graphql extends Service
      */
     public function mutation(array $query): array
     {
-        $path   = str_replace([], [], '/graphql/mutation');
+        $apiPath = str_replace([], [], '/graphql/mutation');
 
         $params = [];
         if (!isset($query)) {
@@ -66,7 +66,7 @@ class Graphql extends Service
         }
 
 
-        return $this->client->call(Client::METHOD_POST, $path, [
+        return $this->client->call(Client::METHOD_POST, $apiPath, [
             'x-sdk-graphql' => 'true',
             'content-type' => 'application/json',
         ], $params);
