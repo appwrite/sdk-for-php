@@ -22,7 +22,7 @@ GET https://HOSTNAME/v1/health/anti-virus
 GET https://HOSTNAME/v1/health/cache
 ```
 
-** Check the Appwrite in-memory cache server is up and connection is successful. **
+** Check the Appwrite in-memory cache servers are up and connection is successful. **
 
 ## Get DB
 
@@ -30,7 +30,23 @@ GET https://HOSTNAME/v1/health/cache
 GET https://HOSTNAME/v1/health/db
 ```
 
-** Check the Appwrite database server is up and connection is successful. **
+** Check the Appwrite database servers are up and connection is successful. **
+
+## Get PubSub
+
+```http request
+GET https://HOSTNAME/v1/health/pubsub
+```
+
+** Check the Appwrite pub-sub servers are up and connection is successful. **
+
+## Get Queue
+
+```http request
+GET https://HOSTNAME/v1/health/queue
+```
+
+** Check the Appwrite queue messaging servers are up and connection is successful. **
 
 ## Get Certificates Queue
 

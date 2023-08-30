@@ -132,13 +132,14 @@ GET https://HOSTNAME/v1/teams/{teamId}/memberships/{membershipId}
 | teamId | string | **Required** Team ID. |  |
 | membershipId | string | **Required** Membership ID. |  |
 
-## Update Membership Roles
+## Update Membership
 
 ```http request
 PATCH https://HOSTNAME/v1/teams/{teamId}/memberships/{membershipId}
 ```
 
-** Modify the roles of a team member. Only team members with the owner role have access to this endpoint. Learn more about [roles and permissions](/docs/permissions). **
+** Modify the roles of a team member. Only team members with the owner role have access to this endpoint. Learn more about [roles and permissions](/docs/permissions).
+ **
 
 ### Parameters
 

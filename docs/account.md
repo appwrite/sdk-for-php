@@ -6,7 +6,7 @@
 GET https://HOSTNAME/v1/account
 ```
 
-** Get currently logged in user data as JSON object. **
+** Get the currently logged in user. **
 
 ## Update Email
 
@@ -25,13 +25,41 @@ This endpoint can also be used to convert an anonymous account to a normal one, 
 | email | string | User email. |  |
 | password | string | User password. Must be at least 8 chars. |  |
 
+## List Identities
+
+```http request
+GET https://HOSTNAME/v1/account/identities
+```
+
+** Get the list of identities for the currently logged in user. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| queries | string | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: userId, provider, providerUid, providerEmail, providerAccessTokenExpiry | [] |
+
+## Delete Identity
+
+```http request
+DELETE https://HOSTNAME/v1/account/identities/{identityId}
+```
+
+** Delete an identity by its unique ID. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| identityId | string | **Required** Identity ID. |  |
+
 ## List Logs
 
 ```http request
 GET https://HOSTNAME/v1/account/logs
 ```
 
-** Get currently logged in user list of latest security activity logs. Each log returns user IP address, location and date and time of log. **
+** Get the list of latest security activity logs for the currently logged in user. Each log returns user IP address, location and date and time of log. **
 
 ### Parameters
 
@@ -89,7 +117,7 @@ PATCH https://HOSTNAME/v1/account/phone
 GET https://HOSTNAME/v1/account/prefs
 ```
 
-** Get currently logged in user preferences as a key-value object. **
+** Get the preferences as a key-value object for the currently logged in user. **
 
 ## Update Preferences
 
@@ -145,7 +173,7 @@ Please note that in order to avoid a [Redirect Attack](https://github.com/OWASP/
 GET https://HOSTNAME/v1/account/sessions
 ```
 
-** Get currently logged in user list of active sessions across different devices. **
+** Get the list of active sessions across different devices for the currently logged in user. **
 
 ## Delete Sessions
 
@@ -189,8 +217,7 @@ PATCH https://HOSTNAME/v1/account/sessions/{sessionId}
 DELETE https://HOSTNAME/v1/account/sessions/{sessionId}
 ```
 
-** Use this endpoint to log out the currently logged in user from all their account sessions across all of their different devices. When using the Session ID argument, only the unique session ID provided is deleted.
- **
+** Logout the user. Use &#039;current&#039; as the session ID to logout on this device, use a session ID to logout on another device. If you&#039;re looking to logout the user on all devices, use [Delete Sessions](/docs/client/account#accountDeleteSessions) instead. **
 
 ### Parameters
 

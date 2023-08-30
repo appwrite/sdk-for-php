@@ -7,11 +7,11 @@ use Appwrite\Services\Functions;
 $client = new Client();
 
 $client
-    ->setEndpoint('https://[HOSTNAME_OR_IP]/v1') // Your API Endpoint
+    ->setEndpoint('https://cloud.appwrite.io/v1') // Your API Endpoint
     ->setProject('5df5acd0d48c2') // Your project ID
     ->setKey('919c2d18fb5d4...a2ae413da83346ad2') // Your secret API key
 ;
 
 $functions = new Functions($client);
 
-$result = $functions->createDeployment('[FUNCTION_ID]', '[ENTRYPOINT]', InputFile::withPath('file.png'), false);
+$result = $functions->createDeployment('[FUNCTION_ID]', InputFile::withPath('file.png'), false);

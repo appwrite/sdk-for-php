@@ -10,6 +10,14 @@ GET https://HOSTNAME/v1/locale
 
 ([IP Geolocation by DB-IP](https://db-ip.com)) **
 
+## List Locale Codes
+
+```http request
+GET https://HOSTNAME/v1/locale/codes
+```
+
+** List of all locale codes in [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes). **
+
 ## List Continents
 
 ```http request

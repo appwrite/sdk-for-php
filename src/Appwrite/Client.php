@@ -37,10 +37,11 @@ class Client
      */
     protected $headers = [
         'content-type' => '',
+        'user-agent' => 'AppwritePHPSDK/9.0.0 ()',
         'x-sdk-name'=> 'PHP',
         'x-sdk-platform'=> 'server',
         'x-sdk-language'=> 'php',
-        'x-sdk-version'=> '8.0.0',
+        'x-sdk-version'=> '9.0.0',
     ];
 
     /**
@@ -48,7 +49,7 @@ class Client
      */
     public function __construct()
     {
-        $this->headers['X-Appwrite-Response-Format'] = '1.0.0';
+        $this->headers['X-Appwrite-Response-Format'] = '1.4.0';
  
     }
 

@@ -30,11 +30,32 @@ class Locale extends Service
      */
     public function get(): array
     {
-        $path   = str_replace([], [], '/locale');
+        $apiPath = str_replace([], [], '/locale');
 
         $params = [];
 
-        return $this->client->call(Client::METHOD_GET, $path, [
+        return $this->client->call(Client::METHOD_GET, $apiPath, [
+            'content-type' => 'application/json',
+        ], $params);
+    }
+
+    /**
+     * List Locale Codes
+     *
+     * List of all locale codes in [ISO
+     * 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).
+     *
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function listCodes(): array
+    {
+        $apiPath = str_replace([], [], '/locale/codes');
+
+        $params = [];
+
+        return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -51,11 +72,11 @@ class Locale extends Service
      */
     public function listContinents(): array
     {
-        $path   = str_replace([], [], '/locale/continents');
+        $apiPath = str_replace([], [], '/locale/continents');
 
         $params = [];
 
-        return $this->client->call(Client::METHOD_GET, $path, [
+        return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -72,11 +93,11 @@ class Locale extends Service
      */
     public function listCountries(): array
     {
-        $path   = str_replace([], [], '/locale/countries');
+        $apiPath = str_replace([], [], '/locale/countries');
 
         $params = [];
 
-        return $this->client->call(Client::METHOD_GET, $path, [
+        return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -93,11 +114,11 @@ class Locale extends Service
      */
     public function listCountriesEU(): array
     {
-        $path   = str_replace([], [], '/locale/countries/eu');
+        $apiPath = str_replace([], [], '/locale/countries/eu');
 
         $params = [];
 
-        return $this->client->call(Client::METHOD_GET, $path, [
+        return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -114,11 +135,11 @@ class Locale extends Service
      */
     public function listCountriesPhones(): array
     {
-        $path   = str_replace([], [], '/locale/countries/phones');
+        $apiPath = str_replace([], [], '/locale/countries/phones');
 
         $params = [];
 
-        return $this->client->call(Client::METHOD_GET, $path, [
+        return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -136,11 +157,11 @@ class Locale extends Service
      */
     public function listCurrencies(): array
     {
-        $path   = str_replace([], [], '/locale/currencies');
+        $apiPath = str_replace([], [], '/locale/currencies');
 
         $params = [];
 
-        return $this->client->call(Client::METHOD_GET, $path, [
+        return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
@@ -157,11 +178,11 @@ class Locale extends Service
      */
     public function listLanguages(): array
     {
-        $path   = str_replace([], [], '/locale/languages');
+        $apiPath = str_replace([], [], '/locale/languages');
 
         $params = [];
 
-        return $this->client->call(Client::METHOD_GET, $path, [
+        return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
         ], $params);
     }
