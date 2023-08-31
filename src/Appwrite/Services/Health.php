@@ -27,11 +27,11 @@ class Health extends Service
     {
         $apiPath = str_replace([], [], '/health');
 
-        $params = [];
+        $apiParams = [];
 
         return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -47,11 +47,11 @@ class Health extends Service
     {
         $apiPath = str_replace([], [], '/health/anti-virus');
 
-        $params = [];
+        $apiParams = [];
 
         return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -68,11 +68,11 @@ class Health extends Service
     {
         $apiPath = str_replace([], [], '/health/cache');
 
-        $params = [];
+        $apiParams = [];
 
         return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -88,11 +88,11 @@ class Health extends Service
     {
         $apiPath = str_replace([], [], '/health/db');
 
-        $params = [];
+        $apiParams = [];
 
         return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -108,11 +108,11 @@ class Health extends Service
     {
         $apiPath = str_replace([], [], '/health/pubsub');
 
-        $params = [];
+        $apiParams = [];
 
         return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -129,11 +129,11 @@ class Health extends Service
     {
         $apiPath = str_replace([], [], '/health/queue');
 
-        $params = [];
+        $apiParams = [];
 
         return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -151,11 +151,11 @@ class Health extends Service
     {
         $apiPath = str_replace([], [], '/health/queue/certificates');
 
-        $params = [];
+        $apiParams = [];
 
         return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -169,11 +169,11 @@ class Health extends Service
     {
         $apiPath = str_replace([], [], '/health/queue/functions');
 
-        $params = [];
+        $apiParams = [];
 
         return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -190,11 +190,11 @@ class Health extends Service
     {
         $apiPath = str_replace([], [], '/health/queue/logs');
 
-        $params = [];
+        $apiParams = [];
 
         return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -211,11 +211,11 @@ class Health extends Service
     {
         $apiPath = str_replace([], [], '/health/queue/webhooks');
 
-        $params = [];
+        $apiParams = [];
 
         return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -231,11 +231,11 @@ class Health extends Service
     {
         $apiPath = str_replace([], [], '/health/storage/local');
 
-        $params = [];
+        $apiParams = [];
 
         return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -257,10 +257,10 @@ class Health extends Service
     {
         $apiPath = str_replace([], [], '/health/time');
 
-        $params = [];
+        $apiParams = [];
 
         return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 }

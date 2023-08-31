@@ -32,11 +32,11 @@ class Locale extends Service
     {
         $apiPath = str_replace([], [], '/locale');
 
-        $params = [];
+        $apiParams = [];
 
         return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -53,11 +53,11 @@ class Locale extends Service
     {
         $apiPath = str_replace([], [], '/locale/codes');
 
-        $params = [];
+        $apiParams = [];
 
         return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -74,11 +74,11 @@ class Locale extends Service
     {
         $apiPath = str_replace([], [], '/locale/continents');
 
-        $params = [];
+        $apiParams = [];
 
         return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -95,11 +95,11 @@ class Locale extends Service
     {
         $apiPath = str_replace([], [], '/locale/countries');
 
-        $params = [];
+        $apiParams = [];
 
         return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -116,11 +116,11 @@ class Locale extends Service
     {
         $apiPath = str_replace([], [], '/locale/countries/eu');
 
-        $params = [];
+        $apiParams = [];
 
         return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -137,11 +137,11 @@ class Locale extends Service
     {
         $apiPath = str_replace([], [], '/locale/countries/phones');
 
-        $params = [];
+        $apiParams = [];
 
         return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -159,11 +159,11 @@ class Locale extends Service
     {
         $apiPath = str_replace([], [], '/locale/currencies');
 
-        $params = [];
+        $apiParams = [];
 
         return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -180,10 +180,10 @@ class Locale extends Service
     {
         $apiPath = str_replace([], [], '/locale/languages');
 
-        $params = [];
+        $apiParams = [];
 
         return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 }

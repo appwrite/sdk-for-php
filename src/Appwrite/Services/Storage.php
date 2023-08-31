@@ -30,19 +30,19 @@ class Storage extends Service
     {
         $apiPath = str_replace([], [], '/storage/buckets');
 
-        $params = [];
+        $apiParams = [];
         if (!is_null($queries)) {
-            $params['queries'] = $queries;
+            $apiParams['queries'] = $queries;
         }
 
         if (!is_null($search)) {
-            $params['search'] = $search;
+            $apiParams['search'] = $search;
         }
 
 
         return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -68,7 +68,7 @@ class Storage extends Service
     {
         $apiPath = str_replace([], [], '/storage/buckets');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($bucketId)) {
             throw new AppwriteException('Missing required parameter: "bucketId"');
         }
@@ -76,49 +76,49 @@ class Storage extends Service
             throw new AppwriteException('Missing required parameter: "name"');
         }
         if (!is_null($bucketId)) {
-            $params['bucketId'] = $bucketId;
+            $apiParams['bucketId'] = $bucketId;
         }
 
         if (!is_null($name)) {
-            $params['name'] = $name;
+            $apiParams['name'] = $name;
         }
 
         if (!is_null($permissions)) {
-            $params['permissions'] = $permissions;
+            $apiParams['permissions'] = $permissions;
         }
 
         if (!is_null($fileSecurity)) {
-            $params['fileSecurity'] = $fileSecurity;
+            $apiParams['fileSecurity'] = $fileSecurity;
         }
 
         if (!is_null($enabled)) {
-            $params['enabled'] = $enabled;
+            $apiParams['enabled'] = $enabled;
         }
 
         if (!is_null($maximumFileSize)) {
-            $params['maximumFileSize'] = $maximumFileSize;
+            $apiParams['maximumFileSize'] = $maximumFileSize;
         }
 
         if (!is_null($allowedFileExtensions)) {
-            $params['allowedFileExtensions'] = $allowedFileExtensions;
+            $apiParams['allowedFileExtensions'] = $allowedFileExtensions;
         }
 
         if (!is_null($compression)) {
-            $params['compression'] = $compression;
+            $apiParams['compression'] = $compression;
         }
 
         if (!is_null($encryption)) {
-            $params['encryption'] = $encryption;
+            $apiParams['encryption'] = $encryption;
         }
 
         if (!is_null($antivirus)) {
-            $params['antivirus'] = $antivirus;
+            $apiParams['antivirus'] = $antivirus;
         }
 
 
         return $this->client->call(Client::METHOD_POST, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -136,14 +136,14 @@ class Storage extends Service
     {
         $apiPath = str_replace(['{bucketId}'], [$bucketId], '/storage/buckets/{bucketId}');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($bucketId)) {
             throw new AppwriteException('Missing required parameter: "bucketId"');
         }
 
         return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -169,7 +169,7 @@ class Storage extends Service
     {
         $apiPath = str_replace(['{bucketId}'], [$bucketId], '/storage/buckets/{bucketId}');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($bucketId)) {
             throw new AppwriteException('Missing required parameter: "bucketId"');
         }
@@ -177,45 +177,45 @@ class Storage extends Service
             throw new AppwriteException('Missing required parameter: "name"');
         }
         if (!is_null($name)) {
-            $params['name'] = $name;
+            $apiParams['name'] = $name;
         }
 
         if (!is_null($permissions)) {
-            $params['permissions'] = $permissions;
+            $apiParams['permissions'] = $permissions;
         }
 
         if (!is_null($fileSecurity)) {
-            $params['fileSecurity'] = $fileSecurity;
+            $apiParams['fileSecurity'] = $fileSecurity;
         }
 
         if (!is_null($enabled)) {
-            $params['enabled'] = $enabled;
+            $apiParams['enabled'] = $enabled;
         }
 
         if (!is_null($maximumFileSize)) {
-            $params['maximumFileSize'] = $maximumFileSize;
+            $apiParams['maximumFileSize'] = $maximumFileSize;
         }
 
         if (!is_null($allowedFileExtensions)) {
-            $params['allowedFileExtensions'] = $allowedFileExtensions;
+            $apiParams['allowedFileExtensions'] = $allowedFileExtensions;
         }
 
         if (!is_null($compression)) {
-            $params['compression'] = $compression;
+            $apiParams['compression'] = $compression;
         }
 
         if (!is_null($encryption)) {
-            $params['encryption'] = $encryption;
+            $apiParams['encryption'] = $encryption;
         }
 
         if (!is_null($antivirus)) {
-            $params['antivirus'] = $antivirus;
+            $apiParams['antivirus'] = $antivirus;
         }
 
 
         return $this->client->call(Client::METHOD_PUT, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -232,14 +232,14 @@ class Storage extends Service
     {
         $apiPath = str_replace(['{bucketId}'], [$bucketId], '/storage/buckets/{bucketId}');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($bucketId)) {
             throw new AppwriteException('Missing required parameter: "bucketId"');
         }
 
         return $this->client->call(Client::METHOD_DELETE, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -259,22 +259,22 @@ class Storage extends Service
     {
         $apiPath = str_replace(['{bucketId}'], [$bucketId], '/storage/buckets/{bucketId}/files');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($bucketId)) {
             throw new AppwriteException('Missing required parameter: "bucketId"');
         }
         if (!is_null($queries)) {
-            $params['queries'] = $queries;
+            $apiParams['queries'] = $queries;
         }
 
         if (!is_null($search)) {
-            $params['search'] = $search;
+            $apiParams['search'] = $search;
         }
 
 
         return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -311,7 +311,7 @@ class Storage extends Service
     {
         $apiPath = str_replace(['{bucketId}'], [$bucketId], '/storage/buckets/{bucketId}/files');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($bucketId)) {
             throw new AppwriteException('Missing required parameter: "bucketId"');
         }
@@ -322,15 +322,15 @@ class Storage extends Service
             throw new AppwriteException('Missing required parameter: "file"');
         }
         if (!is_null($fileId)) {
-            $params['fileId'] = $fileId;
+            $apiParams['fileId'] = $fileId;
         }
 
         if (!is_null($file)) {
-            $params['file'] = $file;
+            $apiParams['file'] = $file;
         }
 
         if (!is_null($permissions)) {
-            $params['permissions'] = $permissions;
+            $apiParams['permissions'] = $permissions;
         }
 
 
@@ -342,10 +342,10 @@ class Storage extends Service
             $mimeType = $file->getMimeType();
             $postedName = $file->getFilename();
             if ($size <= Client::CHUNK_SIZE) {
-                $params['file'] = new \CURLFile('data://' . $mimeType . ';base64,' . base64_encode($file->getData()), $mimeType, $postedName);
+                $apiParams['file'] = new \CURLFile('data://' . $mimeType . ';base64,' . base64_encode($file->getData()), $mimeType, $postedName);
                 return $this->client->call(Client::METHOD_POST, $apiPath, [
                             'content-type' => 'multipart/form-data',
-                        ], $params);
+                        ], $apiParams);
             }
         } else {
             $size = filesize($file->getPath());
@@ -353,10 +353,10 @@ class Storage extends Service
             $postedName = $file->getFilename() ?? basename($file->getPath());
             //send single file if size is less than or equal to 5MB
             if ($size <= Client::CHUNK_SIZE) {
-                $params['file'] = new \CURLFile($file->getPath(), $mimeType, $postedName);
+                $apiParams['file'] = new \CURLFile($file->getPath(), $mimeType, $postedName);
                 return $this->client->call(Client::METHOD_POST, $apiPath, [
                             'content-type' => 'multipart/form-data',
-                        ], $params);
+                        ], $apiParams);
             }
         }
 
@@ -371,7 +371,7 @@ class Storage extends Service
             }
         }
 
-        $headers = ['content-type' => 'multipart/form-data'];
+        $apiHeaders = ['content-type' => 'multipart/form-data'];
         $handle = null;
 
         if(!empty($file->getPath())) {
@@ -387,12 +387,12 @@ class Storage extends Service
             } else {
                 $chunk = substr($file->getData(), $start, Client::CHUNK_SIZE);
             }
-            $params['file'] = new \CURLFile('data://' . $mimeType . ';base64,' . base64_encode($chunk), $mimeType, $postedName);
-            $headers['content-range'] = 'bytes ' . ($counter * Client::CHUNK_SIZE) . '-' . min(((($counter * Client::CHUNK_SIZE) + Client::CHUNK_SIZE) - 1), $size) . '/' . $size;
+            $apiParams['file'] = new \CURLFile('data://' . $mimeType . ';base64,' . base64_encode($chunk), $mimeType, $postedName);
+            $apiHeaders['content-range'] = 'bytes ' . ($counter * Client::CHUNK_SIZE) . '-' . min(((($counter * Client::CHUNK_SIZE) + Client::CHUNK_SIZE) - 1), $size - 1) . '/' . $size;
             if(!empty($id)) {
-                $headers['x-appwrite-id'] = $id;
+                $apiHeaders['x-appwrite-id'] = $id;
             }
-            $response = $this->client->call(Client::METHOD_POST, $apiPath, $headers, $params);
+            $response = $this->client->call(Client::METHOD_POST, $apiPath, $apiHeaders, $apiParams);
             $counter++;
             $start += Client::CHUNK_SIZE;
             if(empty($id)) {
@@ -401,7 +401,7 @@ class Storage extends Service
             if($onProgress !== null) {
                 $onProgress([
                     '$id' => $response['$id'],
-                    'progress' => min(((($counter * Client::CHUNK_SIZE) + Client::CHUNK_SIZE) - 1), $size) / $size * 100,
+                    'progress' => min(((($counter * Client::CHUNK_SIZE) + Client::CHUNK_SIZE)), $size) / $size * 100,
                     'sizeUploaded' => min($counter * Client::CHUNK_SIZE),
                     'chunksTotal' => $response['chunksTotal'],
                     'chunksUploaded' => $response['chunksUploaded'], 
@@ -431,7 +431,7 @@ class Storage extends Service
     {
         $apiPath = str_replace(['{bucketId}', '{fileId}'], [$bucketId, $fileId], '/storage/buckets/{bucketId}/files/{fileId}');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($bucketId)) {
             throw new AppwriteException('Missing required parameter: "bucketId"');
         }
@@ -441,7 +441,7 @@ class Storage extends Service
 
         return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -462,7 +462,7 @@ class Storage extends Service
     {
         $apiPath = str_replace(['{bucketId}', '{fileId}'], [$bucketId, $fileId], '/storage/buckets/{bucketId}/files/{fileId}');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($bucketId)) {
             throw new AppwriteException('Missing required parameter: "bucketId"');
         }
@@ -470,17 +470,17 @@ class Storage extends Service
             throw new AppwriteException('Missing required parameter: "fileId"');
         }
         if (!is_null($name)) {
-            $params['name'] = $name;
+            $apiParams['name'] = $name;
         }
 
         if (!is_null($permissions)) {
-            $params['permissions'] = $permissions;
+            $apiParams['permissions'] = $permissions;
         }
 
 
         return $this->client->call(Client::METHOD_PUT, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -499,7 +499,7 @@ class Storage extends Service
     {
         $apiPath = str_replace(['{bucketId}', '{fileId}'], [$bucketId, $fileId], '/storage/buckets/{bucketId}/files/{fileId}');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($bucketId)) {
             throw new AppwriteException('Missing required parameter: "bucketId"');
         }
@@ -509,7 +509,7 @@ class Storage extends Service
 
         return $this->client->call(Client::METHOD_DELETE, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -529,7 +529,7 @@ class Storage extends Service
     {
         $apiPath = str_replace(['{bucketId}', '{fileId}'], [$bucketId, $fileId], '/storage/buckets/{bucketId}/files/{fileId}/download');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($bucketId)) {
             throw new AppwriteException('Missing required parameter: "bucketId"');
         }
@@ -539,7 +539,7 @@ class Storage extends Service
 
         return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -572,7 +572,7 @@ class Storage extends Service
     {
         $apiPath = str_replace(['{bucketId}', '{fileId}'], [$bucketId, $fileId], '/storage/buckets/{bucketId}/files/{fileId}/preview');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($bucketId)) {
             throw new AppwriteException('Missing required parameter: "bucketId"');
         }
@@ -580,53 +580,53 @@ class Storage extends Service
             throw new AppwriteException('Missing required parameter: "fileId"');
         }
         if (!is_null($width)) {
-            $params['width'] = $width;
+            $apiParams['width'] = $width;
         }
 
         if (!is_null($height)) {
-            $params['height'] = $height;
+            $apiParams['height'] = $height;
         }
 
         if (!is_null($gravity)) {
-            $params['gravity'] = $gravity;
+            $apiParams['gravity'] = $gravity;
         }
 
         if (!is_null($quality)) {
-            $params['quality'] = $quality;
+            $apiParams['quality'] = $quality;
         }
 
         if (!is_null($borderWidth)) {
-            $params['borderWidth'] = $borderWidth;
+            $apiParams['borderWidth'] = $borderWidth;
         }
 
         if (!is_null($borderColor)) {
-            $params['borderColor'] = $borderColor;
+            $apiParams['borderColor'] = $borderColor;
         }
 
         if (!is_null($borderRadius)) {
-            $params['borderRadius'] = $borderRadius;
+            $apiParams['borderRadius'] = $borderRadius;
         }
 
         if (!is_null($opacity)) {
-            $params['opacity'] = $opacity;
+            $apiParams['opacity'] = $opacity;
         }
 
         if (!is_null($rotation)) {
-            $params['rotation'] = $rotation;
+            $apiParams['rotation'] = $rotation;
         }
 
         if (!is_null($background)) {
-            $params['background'] = $background;
+            $apiParams['background'] = $background;
         }
 
         if (!is_null($output)) {
-            $params['output'] = $output;
+            $apiParams['output'] = $output;
         }
 
 
         return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -646,7 +646,7 @@ class Storage extends Service
     {
         $apiPath = str_replace(['{bucketId}', '{fileId}'], [$bucketId, $fileId], '/storage/buckets/{bucketId}/files/{fileId}/view');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($bucketId)) {
             throw new AppwriteException('Missing required parameter: "bucketId"');
         }
@@ -656,6 +656,6 @@ class Storage extends Service
 
         return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 }

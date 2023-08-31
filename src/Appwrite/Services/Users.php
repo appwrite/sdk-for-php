@@ -30,19 +30,19 @@ class Users extends Service
     {
         $apiPath = str_replace([], [], '/users');
 
-        $params = [];
+        $apiParams = [];
         if (!is_null($queries)) {
-            $params['queries'] = $queries;
+            $apiParams['queries'] = $queries;
         }
 
         if (!is_null($search)) {
-            $params['search'] = $search;
+            $apiParams['search'] = $search;
         }
 
 
         return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -63,34 +63,34 @@ class Users extends Service
     {
         $apiPath = str_replace([], [], '/users');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($userId)) {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
         if (!is_null($userId)) {
-            $params['userId'] = $userId;
+            $apiParams['userId'] = $userId;
         }
 
         if (!is_null($email)) {
-            $params['email'] = $email;
+            $apiParams['email'] = $email;
         }
 
         if (!is_null($phone)) {
-            $params['phone'] = $phone;
+            $apiParams['phone'] = $phone;
         }
 
         if (!is_null($password)) {
-            $params['password'] = $password;
+            $apiParams['password'] = $password;
         }
 
         if (!is_null($name)) {
-            $params['name'] = $name;
+            $apiParams['name'] = $name;
         }
 
 
         return $this->client->call(Client::METHOD_POST, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -113,7 +113,7 @@ class Users extends Service
     {
         $apiPath = str_replace([], [], '/users/argon2');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($userId)) {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
@@ -124,25 +124,25 @@ class Users extends Service
             throw new AppwriteException('Missing required parameter: "password"');
         }
         if (!is_null($userId)) {
-            $params['userId'] = $userId;
+            $apiParams['userId'] = $userId;
         }
 
         if (!is_null($email)) {
-            $params['email'] = $email;
+            $apiParams['email'] = $email;
         }
 
         if (!is_null($password)) {
-            $params['password'] = $password;
+            $apiParams['password'] = $password;
         }
 
         if (!is_null($name)) {
-            $params['name'] = $name;
+            $apiParams['name'] = $name;
         }
 
 
         return $this->client->call(Client::METHOD_POST, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -165,7 +165,7 @@ class Users extends Service
     {
         $apiPath = str_replace([], [], '/users/bcrypt');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($userId)) {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
@@ -176,25 +176,25 @@ class Users extends Service
             throw new AppwriteException('Missing required parameter: "password"');
         }
         if (!is_null($userId)) {
-            $params['userId'] = $userId;
+            $apiParams['userId'] = $userId;
         }
 
         if (!is_null($email)) {
-            $params['email'] = $email;
+            $apiParams['email'] = $email;
         }
 
         if (!is_null($password)) {
-            $params['password'] = $password;
+            $apiParams['password'] = $password;
         }
 
         if (!is_null($name)) {
-            $params['name'] = $name;
+            $apiParams['name'] = $name;
         }
 
 
         return $this->client->call(Client::METHOD_POST, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -212,19 +212,19 @@ class Users extends Service
     {
         $apiPath = str_replace([], [], '/users/identities');
 
-        $params = [];
+        $apiParams = [];
         if (!is_null($queries)) {
-            $params['queries'] = $queries;
+            $apiParams['queries'] = $queries;
         }
 
         if (!is_null($search)) {
-            $params['search'] = $search;
+            $apiParams['search'] = $search;
         }
 
 
         return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -241,14 +241,14 @@ class Users extends Service
     {
         $apiPath = str_replace(['{identityId}'], [$identityId], '/users/identities/{identityId}');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($identityId)) {
             throw new AppwriteException('Missing required parameter: "identityId"');
         }
 
         return $this->client->call(Client::METHOD_DELETE, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -271,7 +271,7 @@ class Users extends Service
     {
         $apiPath = str_replace([], [], '/users/md5');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($userId)) {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
@@ -282,25 +282,25 @@ class Users extends Service
             throw new AppwriteException('Missing required parameter: "password"');
         }
         if (!is_null($userId)) {
-            $params['userId'] = $userId;
+            $apiParams['userId'] = $userId;
         }
 
         if (!is_null($email)) {
-            $params['email'] = $email;
+            $apiParams['email'] = $email;
         }
 
         if (!is_null($password)) {
-            $params['password'] = $password;
+            $apiParams['password'] = $password;
         }
 
         if (!is_null($name)) {
-            $params['name'] = $name;
+            $apiParams['name'] = $name;
         }
 
 
         return $this->client->call(Client::METHOD_POST, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -323,7 +323,7 @@ class Users extends Service
     {
         $apiPath = str_replace([], [], '/users/phpass');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($userId)) {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
@@ -334,25 +334,25 @@ class Users extends Service
             throw new AppwriteException('Missing required parameter: "password"');
         }
         if (!is_null($userId)) {
-            $params['userId'] = $userId;
+            $apiParams['userId'] = $userId;
         }
 
         if (!is_null($email)) {
-            $params['email'] = $email;
+            $apiParams['email'] = $email;
         }
 
         if (!is_null($password)) {
-            $params['password'] = $password;
+            $apiParams['password'] = $password;
         }
 
         if (!is_null($name)) {
-            $params['name'] = $name;
+            $apiParams['name'] = $name;
         }
 
 
         return $this->client->call(Client::METHOD_POST, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -380,7 +380,7 @@ class Users extends Service
     {
         $apiPath = str_replace([], [], '/users/scrypt');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($userId)) {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
@@ -406,45 +406,45 @@ class Users extends Service
             throw new AppwriteException('Missing required parameter: "passwordLength"');
         }
         if (!is_null($userId)) {
-            $params['userId'] = $userId;
+            $apiParams['userId'] = $userId;
         }
 
         if (!is_null($email)) {
-            $params['email'] = $email;
+            $apiParams['email'] = $email;
         }
 
         if (!is_null($password)) {
-            $params['password'] = $password;
+            $apiParams['password'] = $password;
         }
 
         if (!is_null($passwordSalt)) {
-            $params['passwordSalt'] = $passwordSalt;
+            $apiParams['passwordSalt'] = $passwordSalt;
         }
 
         if (!is_null($passwordCpu)) {
-            $params['passwordCpu'] = $passwordCpu;
+            $apiParams['passwordCpu'] = $passwordCpu;
         }
 
         if (!is_null($passwordMemory)) {
-            $params['passwordMemory'] = $passwordMemory;
+            $apiParams['passwordMemory'] = $passwordMemory;
         }
 
         if (!is_null($passwordParallel)) {
-            $params['passwordParallel'] = $passwordParallel;
+            $apiParams['passwordParallel'] = $passwordParallel;
         }
 
         if (!is_null($passwordLength)) {
-            $params['passwordLength'] = $passwordLength;
+            $apiParams['passwordLength'] = $passwordLength;
         }
 
         if (!is_null($name)) {
-            $params['name'] = $name;
+            $apiParams['name'] = $name;
         }
 
 
         return $this->client->call(Client::METHOD_POST, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -470,7 +470,7 @@ class Users extends Service
     {
         $apiPath = str_replace([], [], '/users/scrypt-modified');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($userId)) {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
@@ -490,37 +490,37 @@ class Users extends Service
             throw new AppwriteException('Missing required parameter: "passwordSignerKey"');
         }
         if (!is_null($userId)) {
-            $params['userId'] = $userId;
+            $apiParams['userId'] = $userId;
         }
 
         if (!is_null($email)) {
-            $params['email'] = $email;
+            $apiParams['email'] = $email;
         }
 
         if (!is_null($password)) {
-            $params['password'] = $password;
+            $apiParams['password'] = $password;
         }
 
         if (!is_null($passwordSalt)) {
-            $params['passwordSalt'] = $passwordSalt;
+            $apiParams['passwordSalt'] = $passwordSalt;
         }
 
         if (!is_null($passwordSaltSeparator)) {
-            $params['passwordSaltSeparator'] = $passwordSaltSeparator;
+            $apiParams['passwordSaltSeparator'] = $passwordSaltSeparator;
         }
 
         if (!is_null($passwordSignerKey)) {
-            $params['passwordSignerKey'] = $passwordSignerKey;
+            $apiParams['passwordSignerKey'] = $passwordSignerKey;
         }
 
         if (!is_null($name)) {
-            $params['name'] = $name;
+            $apiParams['name'] = $name;
         }
 
 
         return $this->client->call(Client::METHOD_POST, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -544,7 +544,7 @@ class Users extends Service
     {
         $apiPath = str_replace([], [], '/users/sha');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($userId)) {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
@@ -555,29 +555,29 @@ class Users extends Service
             throw new AppwriteException('Missing required parameter: "password"');
         }
         if (!is_null($userId)) {
-            $params['userId'] = $userId;
+            $apiParams['userId'] = $userId;
         }
 
         if (!is_null($email)) {
-            $params['email'] = $email;
+            $apiParams['email'] = $email;
         }
 
         if (!is_null($password)) {
-            $params['password'] = $password;
+            $apiParams['password'] = $password;
         }
 
         if (!is_null($passwordVersion)) {
-            $params['passwordVersion'] = $passwordVersion;
+            $apiParams['passwordVersion'] = $passwordVersion;
         }
 
         if (!is_null($name)) {
-            $params['name'] = $name;
+            $apiParams['name'] = $name;
         }
 
 
         return $this->client->call(Client::METHOD_POST, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -594,14 +594,14 @@ class Users extends Service
     {
         $apiPath = str_replace(['{userId}'], [$userId], '/users/{userId}');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($userId)) {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
 
         return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -622,14 +622,14 @@ class Users extends Service
     {
         $apiPath = str_replace(['{userId}'], [$userId], '/users/{userId}');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($userId)) {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
 
         return $this->client->call(Client::METHOD_DELETE, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -647,7 +647,7 @@ class Users extends Service
     {
         $apiPath = str_replace(['{userId}'], [$userId], '/users/{userId}/email');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($userId)) {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
@@ -655,13 +655,13 @@ class Users extends Service
             throw new AppwriteException('Missing required parameter: "email"');
         }
         if (!is_null($email)) {
-            $params['email'] = $email;
+            $apiParams['email'] = $email;
         }
 
 
         return $this->client->call(Client::METHOD_PATCH, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -684,7 +684,7 @@ class Users extends Service
     {
         $apiPath = str_replace(['{userId}'], [$userId], '/users/{userId}/labels');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($userId)) {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
@@ -692,13 +692,13 @@ class Users extends Service
             throw new AppwriteException('Missing required parameter: "labels"');
         }
         if (!is_null($labels)) {
-            $params['labels'] = $labels;
+            $apiParams['labels'] = $labels;
         }
 
 
         return $this->client->call(Client::METHOD_PUT, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -716,18 +716,18 @@ class Users extends Service
     {
         $apiPath = str_replace(['{userId}'], [$userId], '/users/{userId}/logs');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($userId)) {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
         if (!is_null($queries)) {
-            $params['queries'] = $queries;
+            $apiParams['queries'] = $queries;
         }
 
 
         return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -744,14 +744,14 @@ class Users extends Service
     {
         $apiPath = str_replace(['{userId}'], [$userId], '/users/{userId}/memberships');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($userId)) {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
 
         return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -769,7 +769,7 @@ class Users extends Service
     {
         $apiPath = str_replace(['{userId}'], [$userId], '/users/{userId}/name');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($userId)) {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
@@ -777,13 +777,13 @@ class Users extends Service
             throw new AppwriteException('Missing required parameter: "name"');
         }
         if (!is_null($name)) {
-            $params['name'] = $name;
+            $apiParams['name'] = $name;
         }
 
 
         return $this->client->call(Client::METHOD_PATCH, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -801,7 +801,7 @@ class Users extends Service
     {
         $apiPath = str_replace(['{userId}'], [$userId], '/users/{userId}/password');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($userId)) {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
@@ -809,13 +809,13 @@ class Users extends Service
             throw new AppwriteException('Missing required parameter: "password"');
         }
         if (!is_null($password)) {
-            $params['password'] = $password;
+            $apiParams['password'] = $password;
         }
 
 
         return $this->client->call(Client::METHOD_PATCH, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -833,7 +833,7 @@ class Users extends Service
     {
         $apiPath = str_replace(['{userId}'], [$userId], '/users/{userId}/phone');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($userId)) {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
@@ -841,13 +841,13 @@ class Users extends Service
             throw new AppwriteException('Missing required parameter: "number"');
         }
         if (!is_null($number)) {
-            $params['number'] = $number;
+            $apiParams['number'] = $number;
         }
 
 
         return $this->client->call(Client::METHOD_PATCH, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -864,14 +864,14 @@ class Users extends Service
     {
         $apiPath = str_replace(['{userId}'], [$userId], '/users/{userId}/prefs');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($userId)) {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
 
         return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -891,7 +891,7 @@ class Users extends Service
     {
         $apiPath = str_replace(['{userId}'], [$userId], '/users/{userId}/prefs');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($userId)) {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
@@ -899,13 +899,13 @@ class Users extends Service
             throw new AppwriteException('Missing required parameter: "prefs"');
         }
         if (!is_null($prefs)) {
-            $params['prefs'] = $prefs;
+            $apiParams['prefs'] = $prefs;
         }
 
 
         return $this->client->call(Client::METHOD_PATCH, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -922,14 +922,14 @@ class Users extends Service
     {
         $apiPath = str_replace(['{userId}'], [$userId], '/users/{userId}/sessions');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($userId)) {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
 
         return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -946,14 +946,14 @@ class Users extends Service
     {
         $apiPath = str_replace(['{userId}'], [$userId], '/users/{userId}/sessions');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($userId)) {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
 
         return $this->client->call(Client::METHOD_DELETE, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -971,7 +971,7 @@ class Users extends Service
     {
         $apiPath = str_replace(['{userId}', '{sessionId}'], [$userId, $sessionId], '/users/{userId}/sessions/{sessionId}');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($userId)) {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
@@ -981,7 +981,7 @@ class Users extends Service
 
         return $this->client->call(Client::METHOD_DELETE, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -1000,7 +1000,7 @@ class Users extends Service
     {
         $apiPath = str_replace(['{userId}'], [$userId], '/users/{userId}/status');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($userId)) {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
@@ -1008,13 +1008,13 @@ class Users extends Service
             throw new AppwriteException('Missing required parameter: "status"');
         }
         if (!is_null($status)) {
-            $params['status'] = $status;
+            $apiParams['status'] = $status;
         }
 
 
         return $this->client->call(Client::METHOD_PATCH, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -1032,7 +1032,7 @@ class Users extends Service
     {
         $apiPath = str_replace(['{userId}'], [$userId], '/users/{userId}/verification');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($userId)) {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
@@ -1040,13 +1040,13 @@ class Users extends Service
             throw new AppwriteException('Missing required parameter: "emailVerification"');
         }
         if (!is_null($emailVerification)) {
-            $params['emailVerification'] = $emailVerification;
+            $apiParams['emailVerification'] = $emailVerification;
         }
 
 
         return $this->client->call(Client::METHOD_PATCH, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -1064,7 +1064,7 @@ class Users extends Service
     {
         $apiPath = str_replace(['{userId}'], [$userId], '/users/{userId}/verification/phone');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($userId)) {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
@@ -1072,12 +1072,12 @@ class Users extends Service
             throw new AppwriteException('Missing required parameter: "phoneVerification"');
         }
         if (!is_null($phoneVerification)) {
-            $params['phoneVerification'] = $phoneVerification;
+            $apiParams['phoneVerification'] = $phoneVerification;
         }
 
 
         return $this->client->call(Client::METHOD_PATCH, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 }
