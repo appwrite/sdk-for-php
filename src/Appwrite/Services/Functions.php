@@ -30,19 +30,19 @@ class Functions extends Service
     {
         $apiPath = str_replace([], [], '/functions');
 
-        $params = [];
+        $apiParams = [];
         if (!is_null($queries)) {
-            $params['queries'] = $queries;
+            $apiParams['queries'] = $queries;
         }
 
         if (!is_null($search)) {
-            $params['search'] = $search;
+            $apiParams['search'] = $search;
         }
 
 
         return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -80,7 +80,7 @@ class Functions extends Service
     {
         $apiPath = str_replace([], [], '/functions');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($functionId)) {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
@@ -91,89 +91,89 @@ class Functions extends Service
             throw new AppwriteException('Missing required parameter: "runtime"');
         }
         if (!is_null($functionId)) {
-            $params['functionId'] = $functionId;
+            $apiParams['functionId'] = $functionId;
         }
 
         if (!is_null($name)) {
-            $params['name'] = $name;
+            $apiParams['name'] = $name;
         }
 
         if (!is_null($runtime)) {
-            $params['runtime'] = $runtime;
+            $apiParams['runtime'] = $runtime;
         }
 
         if (!is_null($execute)) {
-            $params['execute'] = $execute;
+            $apiParams['execute'] = $execute;
         }
 
         if (!is_null($events)) {
-            $params['events'] = $events;
+            $apiParams['events'] = $events;
         }
 
         if (!is_null($schedule)) {
-            $params['schedule'] = $schedule;
+            $apiParams['schedule'] = $schedule;
         }
 
         if (!is_null($timeout)) {
-            $params['timeout'] = $timeout;
+            $apiParams['timeout'] = $timeout;
         }
 
         if (!is_null($enabled)) {
-            $params['enabled'] = $enabled;
+            $apiParams['enabled'] = $enabled;
         }
 
         if (!is_null($logging)) {
-            $params['logging'] = $logging;
+            $apiParams['logging'] = $logging;
         }
 
         if (!is_null($entrypoint)) {
-            $params['entrypoint'] = $entrypoint;
+            $apiParams['entrypoint'] = $entrypoint;
         }
 
         if (!is_null($commands)) {
-            $params['commands'] = $commands;
+            $apiParams['commands'] = $commands;
         }
 
         if (!is_null($installationId)) {
-            $params['installationId'] = $installationId;
+            $apiParams['installationId'] = $installationId;
         }
 
         if (!is_null($providerRepositoryId)) {
-            $params['providerRepositoryId'] = $providerRepositoryId;
+            $apiParams['providerRepositoryId'] = $providerRepositoryId;
         }
 
         if (!is_null($providerBranch)) {
-            $params['providerBranch'] = $providerBranch;
+            $apiParams['providerBranch'] = $providerBranch;
         }
 
         if (!is_null($providerSilentMode)) {
-            $params['providerSilentMode'] = $providerSilentMode;
+            $apiParams['providerSilentMode'] = $providerSilentMode;
         }
 
         if (!is_null($providerRootDirectory)) {
-            $params['providerRootDirectory'] = $providerRootDirectory;
+            $apiParams['providerRootDirectory'] = $providerRootDirectory;
         }
 
         if (!is_null($templateRepository)) {
-            $params['templateRepository'] = $templateRepository;
+            $apiParams['templateRepository'] = $templateRepository;
         }
 
         if (!is_null($templateOwner)) {
-            $params['templateOwner'] = $templateOwner;
+            $apiParams['templateOwner'] = $templateOwner;
         }
 
         if (!is_null($templateRootDirectory)) {
-            $params['templateRootDirectory'] = $templateRootDirectory;
+            $apiParams['templateRootDirectory'] = $templateRootDirectory;
         }
 
         if (!is_null($templateBranch)) {
-            $params['templateBranch'] = $templateBranch;
+            $apiParams['templateBranch'] = $templateBranch;
         }
 
 
         return $this->client->call(Client::METHOD_POST, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -189,11 +189,11 @@ class Functions extends Service
     {
         $apiPath = str_replace([], [], '/functions/runtimes');
 
-        $params = [];
+        $apiParams = [];
 
         return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -210,14 +210,14 @@ class Functions extends Service
     {
         $apiPath = str_replace(['{functionId}'], [$functionId], '/functions/{functionId}');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($functionId)) {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
 
         return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -249,7 +249,7 @@ class Functions extends Service
     {
         $apiPath = str_replace(['{functionId}'], [$functionId], '/functions/{functionId}');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($functionId)) {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
@@ -260,69 +260,69 @@ class Functions extends Service
             throw new AppwriteException('Missing required parameter: "runtime"');
         }
         if (!is_null($name)) {
-            $params['name'] = $name;
+            $apiParams['name'] = $name;
         }
 
         if (!is_null($runtime)) {
-            $params['runtime'] = $runtime;
+            $apiParams['runtime'] = $runtime;
         }
 
         if (!is_null($execute)) {
-            $params['execute'] = $execute;
+            $apiParams['execute'] = $execute;
         }
 
         if (!is_null($events)) {
-            $params['events'] = $events;
+            $apiParams['events'] = $events;
         }
 
         if (!is_null($schedule)) {
-            $params['schedule'] = $schedule;
+            $apiParams['schedule'] = $schedule;
         }
 
         if (!is_null($timeout)) {
-            $params['timeout'] = $timeout;
+            $apiParams['timeout'] = $timeout;
         }
 
         if (!is_null($enabled)) {
-            $params['enabled'] = $enabled;
+            $apiParams['enabled'] = $enabled;
         }
 
         if (!is_null($logging)) {
-            $params['logging'] = $logging;
+            $apiParams['logging'] = $logging;
         }
 
         if (!is_null($entrypoint)) {
-            $params['entrypoint'] = $entrypoint;
+            $apiParams['entrypoint'] = $entrypoint;
         }
 
         if (!is_null($commands)) {
-            $params['commands'] = $commands;
+            $apiParams['commands'] = $commands;
         }
 
         if (!is_null($installationId)) {
-            $params['installationId'] = $installationId;
+            $apiParams['installationId'] = $installationId;
         }
 
         if (!is_null($providerRepositoryId)) {
-            $params['providerRepositoryId'] = $providerRepositoryId;
+            $apiParams['providerRepositoryId'] = $providerRepositoryId;
         }
 
         if (!is_null($providerBranch)) {
-            $params['providerBranch'] = $providerBranch;
+            $apiParams['providerBranch'] = $providerBranch;
         }
 
         if (!is_null($providerSilentMode)) {
-            $params['providerSilentMode'] = $providerSilentMode;
+            $apiParams['providerSilentMode'] = $providerSilentMode;
         }
 
         if (!is_null($providerRootDirectory)) {
-            $params['providerRootDirectory'] = $providerRootDirectory;
+            $apiParams['providerRootDirectory'] = $providerRootDirectory;
         }
 
 
         return $this->client->call(Client::METHOD_PUT, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -339,14 +339,14 @@ class Functions extends Service
     {
         $apiPath = str_replace(['{functionId}'], [$functionId], '/functions/{functionId}');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($functionId)) {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
 
         return $this->client->call(Client::METHOD_DELETE, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -366,22 +366,22 @@ class Functions extends Service
     {
         $apiPath = str_replace(['{functionId}'], [$functionId], '/functions/{functionId}/deployments');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($functionId)) {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
         if (!is_null($queries)) {
-            $params['queries'] = $queries;
+            $apiParams['queries'] = $queries;
         }
 
         if (!is_null($search)) {
-            $params['search'] = $search;
+            $apiParams['search'] = $search;
         }
 
 
         return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -411,7 +411,7 @@ class Functions extends Service
     {
         $apiPath = str_replace(['{functionId}'], [$functionId], '/functions/{functionId}/deployments');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($functionId)) {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
@@ -422,19 +422,19 @@ class Functions extends Service
             throw new AppwriteException('Missing required parameter: "activate"');
         }
         if (!is_null($entrypoint)) {
-            $params['entrypoint'] = $entrypoint;
+            $apiParams['entrypoint'] = $entrypoint;
         }
 
         if (!is_null($commands)) {
-            $params['commands'] = $commands;
+            $apiParams['commands'] = $commands;
         }
 
         if (!is_null($code)) {
-            $params['code'] = $code;
+            $apiParams['code'] = $code;
         }
 
         if (!is_null($activate)) {
-            $params['activate'] = $activate;
+            $apiParams['activate'] = $activate;
         }
 
 
@@ -446,10 +446,10 @@ class Functions extends Service
             $mimeType = $code->getMimeType();
             $postedName = $code->getFilename();
             if ($size <= Client::CHUNK_SIZE) {
-                $params['code'] = new \CURLFile('data://' . $mimeType . ';base64,' . base64_encode($code->getData()), $mimeType, $postedName);
+                $apiParams['code'] = new \CURLFile('data://' . $mimeType . ';base64,' . base64_encode($code->getData()), $mimeType, $postedName);
                 return $this->client->call(Client::METHOD_POST, $apiPath, [
                             'content-type' => 'multipart/form-data',
-                        ], $params);
+                        ], $apiParams);
             }
         } else {
             $size = filesize($code->getPath());
@@ -457,10 +457,10 @@ class Functions extends Service
             $postedName = $code->getFilename() ?? basename($code->getPath());
             //send single file if size is less than or equal to 5MB
             if ($size <= Client::CHUNK_SIZE) {
-                $params['code'] = new \CURLFile($code->getPath(), $mimeType, $postedName);
+                $apiParams['code'] = new \CURLFile($code->getPath(), $mimeType, $postedName);
                 return $this->client->call(Client::METHOD_POST, $apiPath, [
                             'content-type' => 'multipart/form-data',
-                        ], $params);
+                        ], $apiParams);
             }
         }
 
@@ -468,7 +468,7 @@ class Functions extends Service
         $counter = 0;
 
 
-        $headers = ['content-type' => 'multipart/form-data'];
+        $apiHeaders = ['content-type' => 'multipart/form-data'];
         $handle = null;
 
         if(!empty($code->getPath())) {
@@ -484,12 +484,12 @@ class Functions extends Service
             } else {
                 $chunk = substr($file->getData(), $start, Client::CHUNK_SIZE);
             }
-            $params['code'] = new \CURLFile('data://' . $mimeType . ';base64,' . base64_encode($chunk), $mimeType, $postedName);
-            $headers['content-range'] = 'bytes ' . ($counter * Client::CHUNK_SIZE) . '-' . min(((($counter * Client::CHUNK_SIZE) + Client::CHUNK_SIZE) - 1), $size) . '/' . $size;
+            $apiParams['code'] = new \CURLFile('data://' . $mimeType . ';base64,' . base64_encode($chunk), $mimeType, $postedName);
+            $apiHeaders['content-range'] = 'bytes ' . ($counter * Client::CHUNK_SIZE) . '-' . min(((($counter * Client::CHUNK_SIZE) + Client::CHUNK_SIZE) - 1), $size - 1) . '/' . $size;
             if(!empty($id)) {
-                $headers['x-appwrite-id'] = $id;
+                $apiHeaders['x-appwrite-id'] = $id;
             }
-            $response = $this->client->call(Client::METHOD_POST, $apiPath, $headers, $params);
+            $response = $this->client->call(Client::METHOD_POST, $apiPath, $apiHeaders, $apiParams);
             $counter++;
             $start += Client::CHUNK_SIZE;
             if(empty($id)) {
@@ -498,7 +498,7 @@ class Functions extends Service
             if($onProgress !== null) {
                 $onProgress([
                     '$id' => $response['$id'],
-                    'progress' => min(((($counter * Client::CHUNK_SIZE) + Client::CHUNK_SIZE) - 1), $size) / $size * 100,
+                    'progress' => min(((($counter * Client::CHUNK_SIZE) + Client::CHUNK_SIZE)), $size) / $size * 100,
                     'sizeUploaded' => min($counter * Client::CHUNK_SIZE),
                     'chunksTotal' => $response['chunksTotal'],
                     'chunksUploaded' => $response['chunksUploaded'], 
@@ -527,7 +527,7 @@ class Functions extends Service
     {
         $apiPath = str_replace(['{functionId}', '{deploymentId}'], [$functionId, $deploymentId], '/functions/{functionId}/deployments/{deploymentId}');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($functionId)) {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
@@ -537,7 +537,7 @@ class Functions extends Service
 
         return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -557,7 +557,7 @@ class Functions extends Service
     {
         $apiPath = str_replace(['{functionId}', '{deploymentId}'], [$functionId, $deploymentId], '/functions/{functionId}/deployments/{deploymentId}');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($functionId)) {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
@@ -567,7 +567,7 @@ class Functions extends Service
 
         return $this->client->call(Client::METHOD_PATCH, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -585,7 +585,7 @@ class Functions extends Service
     {
         $apiPath = str_replace(['{functionId}', '{deploymentId}'], [$functionId, $deploymentId], '/functions/{functionId}/deployments/{deploymentId}');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($functionId)) {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
@@ -595,7 +595,7 @@ class Functions extends Service
 
         return $this->client->call(Client::METHOD_DELETE, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -615,7 +615,7 @@ class Functions extends Service
     {
         $apiPath = str_replace(['{functionId}', '{deploymentId}', '{buildId}'], [$functionId, $deploymentId, $buildId], '/functions/{functionId}/deployments/{deploymentId}/builds/{buildId}');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($functionId)) {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
@@ -628,7 +628,7 @@ class Functions extends Service
 
         return $this->client->call(Client::METHOD_POST, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -644,7 +644,7 @@ class Functions extends Service
     {
         $apiPath = str_replace(['{functionId}', '{deploymentId}'], [$functionId, $deploymentId], '/functions/{functionId}/deployments/{deploymentId}/download');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($functionId)) {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
@@ -654,7 +654,7 @@ class Functions extends Service
 
         return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -674,22 +674,22 @@ class Functions extends Service
     {
         $apiPath = str_replace(['{functionId}'], [$functionId], '/functions/{functionId}/executions');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($functionId)) {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
         if (!is_null($queries)) {
-            $params['queries'] = $queries;
+            $apiParams['queries'] = $queries;
         }
 
         if (!is_null($search)) {
-            $params['search'] = $search;
+            $apiParams['search'] = $search;
         }
 
 
         return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -714,34 +714,34 @@ class Functions extends Service
     {
         $apiPath = str_replace(['{functionId}'], [$functionId], '/functions/{functionId}/executions');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($functionId)) {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
         if (!is_null($body)) {
-            $params['body'] = $body;
+            $apiParams['body'] = $body;
         }
 
         if (!is_null($async)) {
-            $params['async'] = $async;
+            $apiParams['async'] = $async;
         }
 
         if (!is_null($xpath)) {
-            $params['path'] = $xpath;
+            $apiParams['path'] = $xpath;
         }
 
         if (!is_null($method)) {
-            $params['method'] = $method;
+            $apiParams['method'] = $method;
         }
 
         if (!is_null($headers)) {
-            $params['headers'] = $headers;
+            $apiParams['headers'] = $headers;
         }
 
 
         return $this->client->call(Client::METHOD_POST, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -759,7 +759,7 @@ class Functions extends Service
     {
         $apiPath = str_replace(['{functionId}', '{executionId}'], [$functionId, $executionId], '/functions/{functionId}/executions/{executionId}');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($functionId)) {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
@@ -769,7 +769,7 @@ class Functions extends Service
 
         return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -786,14 +786,14 @@ class Functions extends Service
     {
         $apiPath = str_replace(['{functionId}'], [$functionId], '/functions/{functionId}/variables');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($functionId)) {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
 
         return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -813,7 +813,7 @@ class Functions extends Service
     {
         $apiPath = str_replace(['{functionId}'], [$functionId], '/functions/{functionId}/variables');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($functionId)) {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
@@ -824,17 +824,17 @@ class Functions extends Service
             throw new AppwriteException('Missing required parameter: "value"');
         }
         if (!is_null($key)) {
-            $params['key'] = $key;
+            $apiParams['key'] = $key;
         }
 
         if (!is_null($value)) {
-            $params['value'] = $value;
+            $apiParams['value'] = $value;
         }
 
 
         return $this->client->call(Client::METHOD_POST, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -852,7 +852,7 @@ class Functions extends Service
     {
         $apiPath = str_replace(['{functionId}', '{variableId}'], [$functionId, $variableId], '/functions/{functionId}/variables/{variableId}');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($functionId)) {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
@@ -862,7 +862,7 @@ class Functions extends Service
 
         return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -882,7 +882,7 @@ class Functions extends Service
     {
         $apiPath = str_replace(['{functionId}', '{variableId}'], [$functionId, $variableId], '/functions/{functionId}/variables/{variableId}');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($functionId)) {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
@@ -893,17 +893,17 @@ class Functions extends Service
             throw new AppwriteException('Missing required parameter: "key"');
         }
         if (!is_null($key)) {
-            $params['key'] = $key;
+            $apiParams['key'] = $key;
         }
 
         if (!is_null($value)) {
-            $params['value'] = $value;
+            $apiParams['value'] = $value;
         }
 
 
         return $this->client->call(Client::METHOD_PUT, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -921,7 +921,7 @@ class Functions extends Service
     {
         $apiPath = str_replace(['{functionId}', '{variableId}'], [$functionId, $variableId], '/functions/{functionId}/variables/{variableId}');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($functionId)) {
             throw new AppwriteException('Missing required parameter: "functionId"');
         }
@@ -931,6 +931,6 @@ class Functions extends Service
 
         return $this->client->call(Client::METHOD_DELETE, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 }

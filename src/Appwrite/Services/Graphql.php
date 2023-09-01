@@ -28,19 +28,19 @@ class Graphql extends Service
     {
         $apiPath = str_replace([], [], '/graphql');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($query)) {
             throw new AppwriteException('Missing required parameter: "query"');
         }
         if (!is_null($query)) {
-            $params['query'] = $query;
+            $apiParams['query'] = $query;
         }
 
 
         return $this->client->call(Client::METHOD_POST, $apiPath, [
             'x-sdk-graphql' => 'true',
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -57,18 +57,18 @@ class Graphql extends Service
     {
         $apiPath = str_replace([], [], '/graphql/mutation');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($query)) {
             throw new AppwriteException('Missing required parameter: "query"');
         }
         if (!is_null($query)) {
-            $params['query'] = $query;
+            $apiParams['query'] = $query;
         }
 
 
         return $this->client->call(Client::METHOD_POST, $apiPath, [
             'x-sdk-graphql' => 'true',
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 }

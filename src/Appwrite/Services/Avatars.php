@@ -39,26 +39,26 @@ class Avatars extends Service
     {
         $apiPath = str_replace(['{code}'], [$code], '/avatars/browsers/{code}');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($code)) {
             throw new AppwriteException('Missing required parameter: "code"');
         }
         if (!is_null($width)) {
-            $params['width'] = $width;
+            $apiParams['width'] = $width;
         }
 
         if (!is_null($height)) {
-            $params['height'] = $height;
+            $apiParams['height'] = $height;
         }
 
         if (!is_null($quality)) {
-            $params['quality'] = $quality;
+            $apiParams['quality'] = $quality;
         }
 
 
         return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -86,26 +86,26 @@ class Avatars extends Service
     {
         $apiPath = str_replace(['{code}'], [$code], '/avatars/credit-cards/{code}');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($code)) {
             throw new AppwriteException('Missing required parameter: "code"');
         }
         if (!is_null($width)) {
-            $params['width'] = $width;
+            $apiParams['width'] = $width;
         }
 
         if (!is_null($height)) {
-            $params['height'] = $height;
+            $apiParams['height'] = $height;
         }
 
         if (!is_null($quality)) {
-            $params['quality'] = $quality;
+            $apiParams['quality'] = $quality;
         }
 
 
         return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -124,18 +124,18 @@ class Avatars extends Service
     {
         $apiPath = str_replace([], [], '/avatars/favicon');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($url)) {
             throw new AppwriteException('Missing required parameter: "url"');
         }
         if (!is_null($url)) {
-            $params['url'] = $url;
+            $apiParams['url'] = $url;
         }
 
 
         return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -164,26 +164,26 @@ class Avatars extends Service
     {
         $apiPath = str_replace(['{code}'], [$code], '/avatars/flags/{code}');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($code)) {
             throw new AppwriteException('Missing required parameter: "code"');
         }
         if (!is_null($width)) {
-            $params['width'] = $width;
+            $apiParams['width'] = $width;
         }
 
         if (!is_null($height)) {
-            $params['height'] = $height;
+            $apiParams['height'] = $height;
         }
 
         if (!is_null($quality)) {
-            $params['quality'] = $quality;
+            $apiParams['quality'] = $quality;
         }
 
 
         return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -211,26 +211,26 @@ class Avatars extends Service
     {
         $apiPath = str_replace([], [], '/avatars/image');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($url)) {
             throw new AppwriteException('Missing required parameter: "url"');
         }
         if (!is_null($url)) {
-            $params['url'] = $url;
+            $apiParams['url'] = $url;
         }
 
         if (!is_null($width)) {
-            $params['width'] = $width;
+            $apiParams['width'] = $width;
         }
 
         if (!is_null($height)) {
-            $params['height'] = $height;
+            $apiParams['height'] = $height;
         }
 
 
         return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -265,27 +265,27 @@ class Avatars extends Service
     {
         $apiPath = str_replace([], [], '/avatars/initials');
 
-        $params = [];
+        $apiParams = [];
         if (!is_null($name)) {
-            $params['name'] = $name;
+            $apiParams['name'] = $name;
         }
 
         if (!is_null($width)) {
-            $params['width'] = $width;
+            $apiParams['width'] = $width;
         }
 
         if (!is_null($height)) {
-            $params['height'] = $height;
+            $apiParams['height'] = $height;
         }
 
         if (!is_null($background)) {
-            $params['background'] = $background;
+            $apiParams['background'] = $background;
         }
 
 
         return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 
     /**
@@ -307,29 +307,29 @@ class Avatars extends Service
     {
         $apiPath = str_replace([], [], '/avatars/qr');
 
-        $params = [];
+        $apiParams = [];
         if (!isset($text)) {
             throw new AppwriteException('Missing required parameter: "text"');
         }
         if (!is_null($text)) {
-            $params['text'] = $text;
+            $apiParams['text'] = $text;
         }
 
         if (!is_null($size)) {
-            $params['size'] = $size;
+            $apiParams['size'] = $size;
         }
 
         if (!is_null($margin)) {
-            $params['margin'] = $margin;
+            $apiParams['margin'] = $margin;
         }
 
         if (!is_null($download)) {
-            $params['download'] = $download;
+            $apiParams['download'] = $download;
         }
 
 
         return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
-        ], $params);
+        ], $apiParams);
     }
 }
