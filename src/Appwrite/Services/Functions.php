@@ -245,7 +245,7 @@ class Functions extends Service
      * @return array
 
      */
-    public function update(string $functionId, string $name, string $runtime, array $execute = null, array $events = null, string $schedule = null, int $timeout = null, bool $enabled = null, bool $logging = null, string $entrypoint = null, string $commands = null, string $installationId = null, string $providerRepositoryId = null, string $providerBranch = null, bool $providerSilentMode = null, string $providerRootDirectory = null): array
+    public function update(string $functionId, string $name, string $runtime = null, array $execute = null, array $events = null, string $schedule = null, int $timeout = null, bool $enabled = null, bool $logging = null, string $entrypoint = null, string $commands = null, string $installationId = null, string $providerRepositoryId = null, string $providerBranch = null, bool $providerSilentMode = null, string $providerRootDirectory = null): array
     {
         $apiPath = str_replace(['{functionId}'], [$functionId], '/functions/{functionId}');
 
@@ -255,9 +255,6 @@ class Functions extends Service
         }
         if (!isset($name)) {
             throw new AppwriteException('Missing required parameter: "name"');
-        }
-        if (!isset($runtime)) {
-            throw new AppwriteException('Missing required parameter: "runtime"');
         }
         if (!is_null($name)) {
             $apiParams['name'] = $name;
