@@ -231,16 +231,16 @@ class Teams extends Service
      *
      * @param string $teamId
      * @param array $roles
-     * @param string $url
      * @param string $email
      * @param string $userId
      * @param string $phone
+     * @param string $url
      * @param string $name
      * @throws AppwriteException
      * @return array
 
      */
-    public function createMembership(string $teamId, array $roles, string $url, string $email = null, string $userId = null, string $phone = null, string $name = null): array
+    public function createMembership(string $teamId, array $roles, string $email = null, string $userId = null, string $phone = null, string $url = null, string $name = null): array
     {
         $apiPath = str_replace(['{teamId}'], [$teamId], '/teams/{teamId}/memberships');
 
@@ -250,9 +250,6 @@ class Teams extends Service
         }
         if (!isset($roles)) {
             throw new AppwriteException('Missing required parameter: "roles"');
-        }
-        if (!isset($url)) {
-            throw new AppwriteException('Missing required parameter: "url"');
         }
         if (!is_null($email)) {
             $apiParams['email'] = $email;

@@ -248,7 +248,7 @@ Labels can be used to grant access to resources. While teams are a way for user&
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | userId | string | **Required** User ID. |  |
-| labels | array | Array of user labels. Replaces the previous labels. Maximum of 5 labels are allowed, each up to 36 alphanumeric characters long. |  |
+| labels | array | Array of user labels. Replaces the previous labels. Maximum of 100 labels are allowed, each up to 36 alphanumeric characters long. |  |
 
 ## List User Logs
 
