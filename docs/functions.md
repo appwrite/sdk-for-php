@@ -1,6 +1,6 @@
 # Functions Service
 
-## List Functions
+## List functions
 
 ```http request
 GET https://HOSTNAME/v1/functions
@@ -15,13 +15,13 @@ GET https://HOSTNAME/v1/functions
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, enabled, runtime, deployment, schedule, scheduleNext, schedulePrevious, timeout, entrypoint, commands, installationId | [] |
 | search | string | Search term to filter your list results. Max length: 256 chars. |  |
 
-## Create Function
+## Create function
 
 ```http request
 POST https://HOSTNAME/v1/functions
 ```
 
-** Create a new function. You can pass a list of [permissions](/docs/permissions) to allow different project users or team with access to execute the function using the client API. **
+** Create a new function. You can pass a list of [permissions](https://appwrite.io/docs/permissions) to allow different project users or team with access to execute the function using the client API. **
 
 ### Parameters
 
@@ -56,7 +56,7 @@ GET https://HOSTNAME/v1/functions/runtimes
 
 ** Get a list of all runtimes that are currently active on your instance. **
 
-## Get Function
+## Get function
 
 ```http request
 GET https://HOSTNAME/v1/functions/{functionId}
@@ -70,7 +70,7 @@ GET https://HOSTNAME/v1/functions/{functionId}
 | --- | --- | --- | --- |
 | functionId | string | **Required** Function ID. |  |
 
-## Update Function
+## Update function
 
 ```http request
 PUT https://HOSTNAME/v1/functions/{functionId}
@@ -99,7 +99,7 @@ PUT https://HOSTNAME/v1/functions/{functionId}
 | providerSilentMode | boolean | Is the VCS (Version Control System) connection in silent mode for the repo linked to the function? In silent mode, comments will not be made on commits and pull requests. |  |
 | providerRootDirectory | string | Path to function code in the linked repo. |  |
 
-## Delete Function
+## Delete function
 
 ```http request
 DELETE https://HOSTNAME/v1/functions/{functionId}
@@ -113,7 +113,7 @@ DELETE https://HOSTNAME/v1/functions/{functionId}
 | --- | --- | --- | --- |
 | functionId | string | **Required** Function ID. |  |
 
-## List Deployments
+## List deployments
 
 ```http request
 GET https://HOSTNAME/v1/functions/{functionId}/deployments
@@ -129,7 +129,7 @@ GET https://HOSTNAME/v1/functions/{functionId}/deployments
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: size, buildId, activate, entrypoint, commands | [] |
 | search | string | Search term to filter your list results. Max length: 256 chars. |  |
 
-## Create Deployment
+## Create deployment
 
 ```http request
 POST https://HOSTNAME/v1/functions/{functionId}/deployments
@@ -137,7 +137,7 @@ POST https://HOSTNAME/v1/functions/{functionId}/deployments
 
 ** Create a new function code deployment. Use this endpoint to upload a new version of your code function. To execute your newly uploaded code, you&#039;ll need to update the function&#039;s deployment to use your new deployment UID.
 
-This endpoint accepts a tar.gz file compressed with your code. Make sure to include any dependencies your code has within the compressed file. You can learn more about code packaging in the [Appwrite Cloud Functions tutorial](/docs/functions).
+This endpoint accepts a tar.gz file compressed with your code. Make sure to include any dependencies your code has within the compressed file. You can learn more about code packaging in the [Appwrite Cloud Functions tutorial](https://appwrite.io/docs/functions).
 
 Use the &quot;command&quot; param to set the entrypoint used to execute your code. **
 
@@ -151,7 +151,7 @@ Use the &quot;command&quot; param to set the entrypoint used to execute your cod
 | code | file | Gzip file with your code package. When used with the Appwrite CLI, pass the path to your code directory, and the CLI will automatically package your code. Use a path that is within the current directory. |  |
 | activate | boolean | Automatically activate the deployment when it is finished building. |  |
 
-## Get Deployment
+## Get deployment
 
 ```http request
 GET https://HOSTNAME/v1/functions/{functionId}/deployments/{deploymentId}
@@ -166,7 +166,7 @@ GET https://HOSTNAME/v1/functions/{functionId}/deployments/{deploymentId}
 | functionId | string | **Required** Function ID. |  |
 | deploymentId | string | **Required** Deployment ID. |  |
 
-## Update Function Deployment
+## Update function deployment
 
 ```http request
 PATCH https://HOSTNAME/v1/functions/{functionId}/deployments/{deploymentId}
@@ -181,7 +181,7 @@ PATCH https://HOSTNAME/v1/functions/{functionId}/deployments/{deploymentId}
 | functionId | string | **Required** Function ID. |  |
 | deploymentId | string | **Required** Deployment ID. |  |
 
-## Delete Deployment
+## Delete deployment
 
 ```http request
 DELETE https://HOSTNAME/v1/functions/{functionId}/deployments/{deploymentId}
@@ -196,7 +196,7 @@ DELETE https://HOSTNAME/v1/functions/{functionId}/deployments/{deploymentId}
 | functionId | string | **Required** Function ID. |  |
 | deploymentId | string | **Required** Deployment ID. |  |
 
-## Create Build
+## Create build
 
 ```http request
 POST https://HOSTNAME/v1/functions/{functionId}/deployments/{deploymentId}/builds/{buildId}
@@ -218,6 +218,8 @@ POST https://HOSTNAME/v1/functions/{functionId}/deployments/{deploymentId}/build
 GET https://HOSTNAME/v1/functions/{functionId}/deployments/{deploymentId}/download
 ```
 
+** Get a Deployment&#039;s contents by its unique ID. This endpoint supports range requests for partial or streaming file download. **
+
 ### Parameters
 
 | Field Name | Type | Description | Default |
@@ -225,7 +227,7 @@ GET https://HOSTNAME/v1/functions/{functionId}/deployments/{deploymentId}/downlo
 | functionId | string | **Required** Function ID. |  |
 | deploymentId | string | **Required** Deployment ID. |  |
 
-## List Executions
+## List executions
 
 ```http request
 GET https://HOSTNAME/v1/functions/{functionId}/executions
@@ -241,7 +243,7 @@ GET https://HOSTNAME/v1/functions/{functionId}/executions
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: trigger, status, responseStatusCode, duration | [] |
 | search | string | Search term to filter your list results. Max length: 256 chars. |  |
 
-## Create Execution
+## Create execution
 
 ```http request
 POST https://HOSTNAME/v1/functions/{functionId}/executions
@@ -260,7 +262,7 @@ POST https://HOSTNAME/v1/functions/{functionId}/executions
 | method | string | HTTP method of execution. Default value is GET. | POST |
 | headers | object | HTTP headers of execution. Defaults to empty. | {} |
 
-## Get Execution
+## Get execution
 
 ```http request
 GET https://HOSTNAME/v1/functions/{functionId}/executions/{executionId}
@@ -275,7 +277,7 @@ GET https://HOSTNAME/v1/functions/{functionId}/executions/{executionId}
 | functionId | string | **Required** Function ID. |  |
 | executionId | string | **Required** Execution ID. |  |
 
-## List Variables
+## List variables
 
 ```http request
 GET https://HOSTNAME/v1/functions/{functionId}/variables
@@ -289,7 +291,7 @@ GET https://HOSTNAME/v1/functions/{functionId}/variables
 | --- | --- | --- | --- |
 | functionId | string | **Required** Function unique ID. |  |
 
-## Create Variable
+## Create variable
 
 ```http request
 POST https://HOSTNAME/v1/functions/{functionId}/variables
@@ -305,7 +307,7 @@ POST https://HOSTNAME/v1/functions/{functionId}/variables
 | key | string | Variable key. Max length: 255 chars. |  |
 | value | string | Variable value. Max length: 8192 chars. |  |
 
-## Get Variable
+## Get variable
 
 ```http request
 GET https://HOSTNAME/v1/functions/{functionId}/variables/{variableId}
@@ -320,7 +322,7 @@ GET https://HOSTNAME/v1/functions/{functionId}/variables/{variableId}
 | functionId | string | **Required** Function unique ID. |  |
 | variableId | string | **Required** Variable unique ID. |  |
 
-## Update Variable
+## Update variable
 
 ```http request
 PUT https://HOSTNAME/v1/functions/{functionId}/variables/{variableId}
@@ -337,7 +339,7 @@ PUT https://HOSTNAME/v1/functions/{functionId}/variables/{variableId}
 | key | string | Variable key. Max length: 255 chars. |  |
 | value | string | Variable value. Max length: 8192 chars. |  |
 
-## Delete Variable
+## Delete variable
 
 ```http request
 DELETE https://HOSTNAME/v1/functions/{functionId}/variables/{variableId}

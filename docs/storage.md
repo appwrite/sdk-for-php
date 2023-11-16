@@ -29,8 +29,8 @@ POST https://HOSTNAME/v1/storage/buckets
 | --- | --- | --- | --- |
 | bucketId | string | Unique Id. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
 | name | string | Bucket name |  |
-| permissions | array | An array of permission strings. By default, no user is granted with any permissions. [Learn more about permissions](/docs/permissions). |  |
-| fileSecurity | boolean | Enables configuring permissions for individual file. A user needs one of file or bucket level permissions to access a file. [Learn more about permissions](/docs/permissions). |  |
+| permissions | array | An array of permission strings. By default, no user is granted with any permissions. [Learn more about permissions](https://appwrite.io/docs/permissions). |  |
+| fileSecurity | boolean | Enables configuring permissions for individual file. A user needs one of file or bucket level permissions to access a file. [Learn more about permissions](https://appwrite.io/docs/permissions). |  |
 | enabled | boolean | Is bucket enabled? When set to 'disabled', users cannot access the files in this bucket but Server SDKs with and API key can still access the bucket. No files are lost when this is toggled. | 1 |
 | maximumFileSize | integer | Maximum file size allowed in bytes. Maximum allowed value is 30MB. | 30000000 |
 | allowedFileExtensions | array | Allowed file extensions. Maximum of 100 extensions are allowed, each 64 characters long. | [] |
@@ -38,7 +38,7 @@ POST https://HOSTNAME/v1/storage/buckets
 | encryption | boolean | Is encryption enabled? For file size above 20MB encryption is skipped even if it's enabled | 1 |
 | antivirus | boolean | Is virus scanning enabled? For file size above 20MB AntiVirus scanning is skipped even if it's enabled | 1 |
 
-## Get Bucket
+## Get bucket
 
 ```http request
 GET https://HOSTNAME/v1/storage/buckets/{bucketId}
@@ -52,7 +52,7 @@ GET https://HOSTNAME/v1/storage/buckets/{bucketId}
 | --- | --- | --- | --- |
 | bucketId | string | **Required** Bucket unique ID. |  |
 
-## Update Bucket
+## Update bucket
 
 ```http request
 PUT https://HOSTNAME/v1/storage/buckets/{bucketId}
@@ -66,8 +66,8 @@ PUT https://HOSTNAME/v1/storage/buckets/{bucketId}
 | --- | --- | --- | --- |
 | bucketId | string | **Required** Bucket unique ID. |  |
 | name | string | Bucket name |  |
-| permissions | array | An array of permission strings. By default, the current permissions are inherited. [Learn more about permissions](/docs/permissions). |  |
-| fileSecurity | boolean | Enables configuring permissions for individual file. A user needs one of file or bucket level permissions to access a file. [Learn more about permissions](/docs/permissions). |  |
+| permissions | array | An array of permission strings. By default, the current permissions are inherited. [Learn more about permissions](https://appwrite.io/docs/permissions). |  |
+| fileSecurity | boolean | Enables configuring permissions for individual file. A user needs one of file or bucket level permissions to access a file. [Learn more about permissions](https://appwrite.io/docs/permissions). |  |
 | enabled | boolean | Is bucket enabled? When set to 'disabled', users cannot access the files in this bucket but Server SDKs with and API key can still access the bucket. No files are lost when this is toggled. | 1 |
 | maximumFileSize | integer | Maximum file size allowed in bytes. Maximum allowed value is 30MB. |  |
 | allowedFileExtensions | array | Allowed file extensions. Maximum of 100 extensions are allowed, each 64 characters long. | [] |
@@ -75,7 +75,7 @@ PUT https://HOSTNAME/v1/storage/buckets/{bucketId}
 | encryption | boolean | Is encryption enabled? For file size above 20MB encryption is skipped even if it's enabled | 1 |
 | antivirus | boolean | Is virus scanning enabled? For file size above 20MB AntiVirus scanning is skipped even if it's enabled | 1 |
 
-## Delete Bucket
+## Delete bucket
 
 ```http request
 DELETE https://HOSTNAME/v1/storage/buckets/{bucketId}
@@ -89,7 +89,7 @@ DELETE https://HOSTNAME/v1/storage/buckets/{bucketId}
 | --- | --- | --- | --- |
 | bucketId | string | **Required** Bucket unique ID. |  |
 
-## List Files
+## List files
 
 ```http request
 GET https://HOSTNAME/v1/storage/buckets/{bucketId}/files
@@ -101,17 +101,17 @@ GET https://HOSTNAME/v1/storage/buckets/{bucketId}/files
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| bucketId | string | **Required** Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](/docs/server/storage#createBucket). |  |
+| bucketId | string | **Required** Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](https://appwrite.io/docs/server/storage#createBucket). |  |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, signature, mimeType, sizeOriginal, chunksTotal, chunksUploaded | [] |
 | search | string | Search term to filter your list results. Max length: 256 chars. |  |
 
-## Create File
+## Create file
 
 ```http request
 POST https://HOSTNAME/v1/storage/buckets/{bucketId}/files
 ```
 
-** Create a new file. Before using this route, you should create a new bucket resource using either a [server integration](/docs/server/storage#storageCreateBucket) API or directly from your Appwrite console.
+** Create a new file. Before using this route, you should create a new bucket resource using either a [server integration](https://appwrite.io/docs/server/storage#storageCreateBucket) API or directly from your Appwrite console.
 
 Larger files should be uploaded using multiple requests with the [content-range](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Range) header to send a partial request with a maximum supported chunk of `5MB`. The `content-range` header values should always be in bytes.
 
@@ -124,12 +124,12 @@ If you&#039;re creating a new file using one of the Appwrite SDKs, all the chunk
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| bucketId | string | **Required** Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](/docs/server/storage#createBucket). |  |
+| bucketId | string | **Required** Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](https://appwrite.io/docs/server/storage#createBucket). |  |
 | fileId | string | File ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
-| file | file | Binary file. Appwrite SDKs provide helpers to handle file input. [Learn about file input](/docs/storage#file-input). |  |
-| permissions | array | An array of permission strings. By default, only the current user is granted all permissions. [Learn more about permissions](/docs/permissions). |  |
+| file | file | Binary file. Appwrite SDKs provide helpers to handle file input. [Learn about file input](https://appwrite.io/docs/storage#file-input). |  |
+| permissions | array | An array of permission strings. By default, only the current user is granted all permissions. [Learn more about permissions](https://appwrite.io/docs/permissions). |  |
 
-## Get File
+## Get file
 
 ```http request
 GET https://HOSTNAME/v1/storage/buckets/{bucketId}/files/{fileId}
@@ -141,10 +141,10 @@ GET https://HOSTNAME/v1/storage/buckets/{bucketId}/files/{fileId}
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| bucketId | string | **Required** Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](/docs/server/storage#createBucket). |  |
+| bucketId | string | **Required** Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](https://appwrite.io/docs/server/storage#createBucket). |  |
 | fileId | string | **Required** File ID. |  |
 
-## Update File
+## Update file
 
 ```http request
 PUT https://HOSTNAME/v1/storage/buckets/{bucketId}/files/{fileId}
@@ -156,10 +156,10 @@ PUT https://HOSTNAME/v1/storage/buckets/{bucketId}/files/{fileId}
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| bucketId | string | **Required** Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](/docs/server/storage#createBucket). |  |
+| bucketId | string | **Required** Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](https://appwrite.io/docs/server/storage#createBucket). |  |
 | fileId | string | **Required** File unique ID. |  |
 | name | string | Name of the file |  |
-| permissions | array | An array of permission string. By default, the current permissions are inherited. [Learn more about permissions](/docs/permissions). |  |
+| permissions | array | An array of permission string. By default, the current permissions are inherited. [Learn more about permissions](https://appwrite.io/docs/permissions). |  |
 
 ## Delete File
 
@@ -173,10 +173,10 @@ DELETE https://HOSTNAME/v1/storage/buckets/{bucketId}/files/{fileId}
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| bucketId | string | **Required** Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](/docs/server/storage#createBucket). |  |
+| bucketId | string | **Required** Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](https://appwrite.io/docs/server/storage#createBucket). |  |
 | fileId | string | **Required** File ID. |  |
 
-## Get File for Download
+## Get file for download
 
 ```http request
 GET https://HOSTNAME/v1/storage/buckets/{bucketId}/files/{fileId}/download
@@ -188,10 +188,10 @@ GET https://HOSTNAME/v1/storage/buckets/{bucketId}/files/{fileId}/download
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| bucketId | string | **Required** Storage bucket ID. You can create a new storage bucket using the Storage service [server integration](/docs/server/storage#createBucket). |  |
+| bucketId | string | **Required** Storage bucket ID. You can create a new storage bucket using the Storage service [server integration](https://appwrite.io/docs/server/storage#createBucket). |  |
 | fileId | string | **Required** File ID. |  |
 
-## Get File Preview
+## Get file preview
 
 ```http request
 GET https://HOSTNAME/v1/storage/buckets/{bucketId}/files/{fileId}/preview
@@ -203,7 +203,7 @@ GET https://HOSTNAME/v1/storage/buckets/{bucketId}/files/{fileId}/preview
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| bucketId | string | **Required** Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](/docs/server/storage#createBucket). |  |
+| bucketId | string | **Required** Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](https://appwrite.io/docs/server/storage#createBucket). |  |
 | fileId | string | **Required** File ID |  |
 | width | integer | Resize preview image width, Pass an integer between 0 to 4000. | 0 |
 | height | integer | Resize preview image height, Pass an integer between 0 to 4000. | 0 |
@@ -217,7 +217,7 @@ GET https://HOSTNAME/v1/storage/buckets/{bucketId}/files/{fileId}/preview
 | background | string | Preview image background color. Only works with transparent images (png). Use a valid HEX color, no # is needed for prefix. |  |
 | output | string | Output format type (jpeg, jpg, png, gif and webp). |  |
 
-## Get File for View
+## Get file for view
 
 ```http request
 GET https://HOSTNAME/v1/storage/buckets/{bucketId}/files/{fileId}/view
@@ -229,6 +229,6 @@ GET https://HOSTNAME/v1/storage/buckets/{bucketId}/files/{fileId}/view
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| bucketId | string | **Required** Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](/docs/server/storage#createBucket). |  |
+| bucketId | string | **Required** Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](https://appwrite.io/docs/server/storage#createBucket). |  |
 | fileId | string | **Required** File ID. |  |
 

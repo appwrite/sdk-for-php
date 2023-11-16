@@ -15,7 +15,7 @@ class Graphql extends Service
      }
 
     /**
-     * GraphQL Endpoint
+     * GraphQL endpoint
      *
      * Execute a GraphQL mutation.
      *
@@ -44,7 +44,7 @@ class Graphql extends Service
     }
 
     /**
-     * GraphQL Endpoint
+     * GraphQL endpoint
      *
      * Execute a GraphQL mutation.
      *

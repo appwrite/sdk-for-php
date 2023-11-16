@@ -1,6 +1,6 @@
 # Users Service
 
-## List Users
+## List users
 
 ```http request
 GET https://HOSTNAME/v1/users
@@ -15,7 +15,7 @@ GET https://HOSTNAME/v1/users
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, email, phone, status, passwordUpdate, registration, emailVerification, phoneVerification | [] |
 | search | string | Search term to filter your list results. Max length: 256 chars. |  |
 
-## Create User
+## Create user
 
 ```http request
 POST https://HOSTNAME/v1/users
@@ -33,13 +33,13 @@ POST https://HOSTNAME/v1/users
 | password | string | Plain text user password. Must be at least 8 chars. |  |
 | name | string | User name. Max length: 128 chars. |  |
 
-## Create User with Argon2 Password
+## Create user with Argon2 password
 
 ```http request
 POST https://HOSTNAME/v1/users/argon2
 ```
 
-** Create a new user. Password provided must be hashed with the [Argon2](https://en.wikipedia.org/wiki/Argon2) algorithm. Use the [POST /users](/docs/server/users#usersCreate) endpoint to create users with a plain text password. **
+** Create a new user. Password provided must be hashed with the [Argon2](https://en.wikipedia.org/wiki/Argon2) algorithm. Use the [POST /users](https://appwrite.io/docs/server/users#usersCreate) endpoint to create users with a plain text password. **
 
 ### Parameters
 
@@ -50,13 +50,13 @@ POST https://HOSTNAME/v1/users/argon2
 | password | string | User password hashed using Argon2. |  |
 | name | string | User name. Max length: 128 chars. |  |
 
-## Create User with Bcrypt Password
+## Create user with bcrypt password
 
 ```http request
 POST https://HOSTNAME/v1/users/bcrypt
 ```
 
-** Create a new user. Password provided must be hashed with the [Bcrypt](https://en.wikipedia.org/wiki/Bcrypt) algorithm. Use the [POST /users](/docs/server/users#usersCreate) endpoint to create users with a plain text password. **
+** Create a new user. Password provided must be hashed with the [Bcrypt](https://en.wikipedia.org/wiki/Bcrypt) algorithm. Use the [POST /users](https://appwrite.io/docs/server/users#usersCreate) endpoint to create users with a plain text password. **
 
 ### Parameters
 
@@ -96,13 +96,13 @@ DELETE https://HOSTNAME/v1/users/identities/{identityId}
 | --- | --- | --- | --- |
 | identityId | string | **Required** Identity ID. |  |
 
-## Create User with MD5 Password
+## Create user with MD5 password
 
 ```http request
 POST https://HOSTNAME/v1/users/md5
 ```
 
-** Create a new user. Password provided must be hashed with the [MD5](https://en.wikipedia.org/wiki/MD5) algorithm. Use the [POST /users](/docs/server/users#usersCreate) endpoint to create users with a plain text password. **
+** Create a new user. Password provided must be hashed with the [MD5](https://en.wikipedia.org/wiki/MD5) algorithm. Use the [POST /users](https://appwrite.io/docs/server/users#usersCreate) endpoint to create users with a plain text password. **
 
 ### Parameters
 
@@ -113,13 +113,13 @@ POST https://HOSTNAME/v1/users/md5
 | password | string | User password hashed using MD5. |  |
 | name | string | User name. Max length: 128 chars. |  |
 
-## Create User with PHPass Password
+## Create user with PHPass password
 
 ```http request
 POST https://HOSTNAME/v1/users/phpass
 ```
 
-** Create a new user. Password provided must be hashed with the [PHPass](https://www.openwall.com/phpass/) algorithm. Use the [POST /users](/docs/server/users#usersCreate) endpoint to create users with a plain text password. **
+** Create a new user. Password provided must be hashed with the [PHPass](https://www.openwall.com/phpass/) algorithm. Use the [POST /users](https://appwrite.io/docs/server/users#usersCreate) endpoint to create users with a plain text password. **
 
 ### Parameters
 
@@ -130,13 +130,13 @@ POST https://HOSTNAME/v1/users/phpass
 | password | string | User password hashed using PHPass. |  |
 | name | string | User name. Max length: 128 chars. |  |
 
-## Create User with Scrypt Password
+## Create user with Scrypt password
 
 ```http request
 POST https://HOSTNAME/v1/users/scrypt
 ```
 
-** Create a new user. Password provided must be hashed with the [Scrypt](https://github.com/Tarsnap/scrypt) algorithm. Use the [POST /users](/docs/server/users#usersCreate) endpoint to create users with a plain text password. **
+** Create a new user. Password provided must be hashed with the [Scrypt](https://github.com/Tarsnap/scrypt) algorithm. Use the [POST /users](https://appwrite.io/docs/server/users#usersCreate) endpoint to create users with a plain text password. **
 
 ### Parameters
 
@@ -152,13 +152,13 @@ POST https://HOSTNAME/v1/users/scrypt
 | passwordLength | integer | Optional hash length used to hash password. |  |
 | name | string | User name. Max length: 128 chars. |  |
 
-## Create User with Scrypt Modified Password
+## Create user with Scrypt modified password
 
 ```http request
 POST https://HOSTNAME/v1/users/scrypt-modified
 ```
 
-** Create a new user. Password provided must be hashed with the [Scrypt Modified](https://gist.github.com/Meldiron/eecf84a0225eccb5a378d45bb27462cc) algorithm. Use the [POST /users](/docs/server/users#usersCreate) endpoint to create users with a plain text password. **
+** Create a new user. Password provided must be hashed with the [Scrypt Modified](https://gist.github.com/Meldiron/eecf84a0225eccb5a378d45bb27462cc) algorithm. Use the [POST /users](https://appwrite.io/docs/server/users#usersCreate) endpoint to create users with a plain text password. **
 
 ### Parameters
 
@@ -172,13 +172,13 @@ POST https://HOSTNAME/v1/users/scrypt-modified
 | passwordSignerKey | string | Signer key used to hash password. |  |
 | name | string | User name. Max length: 128 chars. |  |
 
-## Create User with SHA Password
+## Create user with SHA password
 
 ```http request
 POST https://HOSTNAME/v1/users/sha
 ```
 
-** Create a new user. Password provided must be hashed with the [SHA](https://en.wikipedia.org/wiki/Secure_Hash_Algorithm) algorithm. Use the [POST /users](/docs/server/users#usersCreate) endpoint to create users with a plain text password. **
+** Create a new user. Password provided must be hashed with the [SHA](https://en.wikipedia.org/wiki/Secure_Hash_Algorithm) algorithm. Use the [POST /users](https://appwrite.io/docs/server/users#usersCreate) endpoint to create users with a plain text password. **
 
 ### Parameters
 
@@ -190,7 +190,7 @@ POST https://HOSTNAME/v1/users/sha
 | passwordVersion | string | Optional SHA version used to hash password. Allowed values are: 'sha1', 'sha224', 'sha256', 'sha384', 'sha512/224', 'sha512/256', 'sha512', 'sha3-224', 'sha3-256', 'sha3-384', 'sha3-512' |  |
 | name | string | User name. Max length: 128 chars. |  |
 
-## Get User
+## Get user
 
 ```http request
 GET https://HOSTNAME/v1/users/{userId}
@@ -204,13 +204,13 @@ GET https://HOSTNAME/v1/users/{userId}
 | --- | --- | --- | --- |
 | userId | string | **Required** User ID. |  |
 
-## Delete User
+## Delete user
 
 ```http request
 DELETE https://HOSTNAME/v1/users/{userId}
 ```
 
-** Delete a user by its unique ID, thereby releasing it&#039;s ID. Since ID is released and can be reused, all user-related resources like documents or storage files should be deleted before user deletion. If you want to keep ID reserved, use the [updateStatus](/docs/server/users#usersUpdateStatus) endpoint instead. **
+** Delete a user by its unique ID, thereby releasing it&#039;s ID. Since ID is released and can be reused, all user-related resources like documents or storage files should be deleted before user deletion. If you want to keep ID reserved, use the [updateStatus](https://appwrite.io/docs/server/users#usersUpdateStatus) endpoint instead. **
 
 ### Parameters
 
@@ -218,7 +218,7 @@ DELETE https://HOSTNAME/v1/users/{userId}
 | --- | --- | --- | --- |
 | userId | string | **Required** User ID. |  |
 
-## Update Email
+## Update email
 
 ```http request
 PATCH https://HOSTNAME/v1/users/{userId}/email
@@ -233,7 +233,7 @@ PATCH https://HOSTNAME/v1/users/{userId}/email
 | userId | string | **Required** User ID. |  |
 | email | string | User email. |  |
 
-## Update User Labels
+## Update user labels
 
 ```http request
 PUT https://HOSTNAME/v1/users/{userId}/labels
@@ -241,7 +241,7 @@ PUT https://HOSTNAME/v1/users/{userId}/labels
 
 ** Update the user labels by its unique ID. 
 
-Labels can be used to grant access to resources. While teams are a way for user&#039;s to share access to a resource, labels can be defined by the developer to grant access without an invitation. See the [Permissions docs](/docs/permissions) for more info. **
+Labels can be used to grant access to resources. While teams are a way for user&#039;s to share access to a resource, labels can be defined by the developer to grant access without an invitation. See the [Permissions docs](https://appwrite.io/docs/permissions) for more info. **
 
 ### Parameters
 
@@ -250,7 +250,7 @@ Labels can be used to grant access to resources. While teams are a way for user&
 | userId | string | **Required** User ID. |  |
 | labels | array | Array of user labels. Replaces the previous labels. Maximum of 100 labels are allowed, each up to 36 alphanumeric characters long. |  |
 
-## List User Logs
+## List user logs
 
 ```http request
 GET https://HOSTNAME/v1/users/{userId}/logs
@@ -265,7 +265,7 @@ GET https://HOSTNAME/v1/users/{userId}/logs
 | userId | string | **Required** User ID. |  |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Only supported methods are limit and offset | [] |
 
-## List User Memberships
+## List user memberships
 
 ```http request
 GET https://HOSTNAME/v1/users/{userId}/memberships
@@ -279,7 +279,7 @@ GET https://HOSTNAME/v1/users/{userId}/memberships
 | --- | --- | --- | --- |
 | userId | string | **Required** User ID. |  |
 
-## Update Name
+## Update name
 
 ```http request
 PATCH https://HOSTNAME/v1/users/{userId}/name
@@ -294,7 +294,7 @@ PATCH https://HOSTNAME/v1/users/{userId}/name
 | userId | string | **Required** User ID. |  |
 | name | string | User name. Max length: 128 chars. |  |
 
-## Update Password
+## Update password
 
 ```http request
 PATCH https://HOSTNAME/v1/users/{userId}/password
@@ -309,7 +309,7 @@ PATCH https://HOSTNAME/v1/users/{userId}/password
 | userId | string | **Required** User ID. |  |
 | password | string | New user password. Must be at least 8 chars. |  |
 
-## Update Phone
+## Update phone
 
 ```http request
 PATCH https://HOSTNAME/v1/users/{userId}/phone
@@ -324,7 +324,7 @@ PATCH https://HOSTNAME/v1/users/{userId}/phone
 | userId | string | **Required** User ID. |  |
 | number | string | User phone number. |  |
 
-## Get User Preferences
+## Get user preferences
 
 ```http request
 GET https://HOSTNAME/v1/users/{userId}/prefs
@@ -338,7 +338,7 @@ GET https://HOSTNAME/v1/users/{userId}/prefs
 | --- | --- | --- | --- |
 | userId | string | **Required** User ID. |  |
 
-## Update User Preferences
+## Update user preferences
 
 ```http request
 PATCH https://HOSTNAME/v1/users/{userId}/prefs
@@ -353,7 +353,7 @@ PATCH https://HOSTNAME/v1/users/{userId}/prefs
 | userId | string | **Required** User ID. |  |
 | prefs | object | Prefs key-value JSON object. | {} |
 
-## List User Sessions
+## List user sessions
 
 ```http request
 GET https://HOSTNAME/v1/users/{userId}/sessions
@@ -367,7 +367,7 @@ GET https://HOSTNAME/v1/users/{userId}/sessions
 | --- | --- | --- | --- |
 | userId | string | **Required** User ID. |  |
 
-## Delete User Sessions
+## Delete user sessions
 
 ```http request
 DELETE https://HOSTNAME/v1/users/{userId}/sessions
@@ -381,7 +381,7 @@ DELETE https://HOSTNAME/v1/users/{userId}/sessions
 | --- | --- | --- | --- |
 | userId | string | **Required** User ID. |  |
 
-## Delete User Session
+## Delete user session
 
 ```http request
 DELETE https://HOSTNAME/v1/users/{userId}/sessions/{sessionId}
@@ -396,7 +396,7 @@ DELETE https://HOSTNAME/v1/users/{userId}/sessions/{sessionId}
 | userId | string | **Required** User ID. |  |
 | sessionId | string | **Required** Session ID. |  |
 
-## Update User Status
+## Update user status
 
 ```http request
 PATCH https://HOSTNAME/v1/users/{userId}/status
@@ -411,7 +411,7 @@ PATCH https://HOSTNAME/v1/users/{userId}/status
 | userId | string | **Required** User ID. |  |
 | status | boolean | User Status. To activate the user pass `true` and to block the user pass `false`. |  |
 
-## Update Email Verification
+## Update email verification
 
 ```http request
 PATCH https://HOSTNAME/v1/users/{userId}/verification
@@ -426,7 +426,7 @@ PATCH https://HOSTNAME/v1/users/{userId}/verification
 | userId | string | **Required** User ID. |  |
 | emailVerification | boolean | User email verification status. |  |
 
-## Update Phone Verification
+## Update phone verification
 
 ```http request
 PATCH https://HOSTNAME/v1/users/{userId}/verification/phone
