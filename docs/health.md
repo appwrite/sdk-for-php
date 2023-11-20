@@ -8,7 +8,7 @@ GET https://HOSTNAME/v1/health
 
 ** Check the Appwrite HTTP server is up and responsive. **
 
-## Get Antivirus
+## Get antivirus
 
 ```http request
 GET https://HOSTNAME/v1/health/anti-virus
@@ -16,7 +16,7 @@ GET https://HOSTNAME/v1/health/anti-virus
 
 ** Check the Appwrite Antivirus server is up and connection is successful. **
 
-## Get Cache
+## Get cache
 
 ```http request
 GET https://HOSTNAME/v1/health/cache
@@ -32,7 +32,7 @@ GET https://HOSTNAME/v1/health/db
 
 ** Check the Appwrite database servers are up and connection is successful. **
 
-## Get PubSub
+## Get pubsub
 
 ```http request
 GET https://HOSTNAME/v1/health/pubsub
@@ -40,7 +40,7 @@ GET https://HOSTNAME/v1/health/pubsub
 
 ** Check the Appwrite pub-sub servers are up and connection is successful. **
 
-## Get Queue
+## Get queue
 
 ```http request
 GET https://HOSTNAME/v1/health/queue
@@ -48,7 +48,21 @@ GET https://HOSTNAME/v1/health/queue
 
 ** Check the Appwrite queue messaging servers are up and connection is successful. **
 
-## Get Certificates Queue
+## Get builds queue
+
+```http request
+GET https://HOSTNAME/v1/health/queue/builds
+```
+
+** Get the number of builds that are waiting to be processed in the Appwrite internal queue server. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| threshold | integer | Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000. | 5000 |
+
+## Get certificates queue
 
 ```http request
 GET https://HOSTNAME/v1/health/queue/certificates
@@ -56,13 +70,54 @@ GET https://HOSTNAME/v1/health/queue/certificates
 
 ** Get the number of certificates that are waiting to be issued against [Letsencrypt](https://letsencrypt.org/) in the Appwrite internal queue server. **
 
-## Get Functions Queue
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| threshold | integer | Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000. | 5000 |
+
+## Get databases queue
+
+```http request
+GET https://HOSTNAME/v1/health/queue/databases
+```
+
+** Get the number of database changes that are waiting to be processed in the Appwrite internal queue server. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| name | string | Queue name for which to check the queue size | database_db_main |
+| threshold | integer | Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000. | 5000 |
+
+## Get deletes queue
+
+```http request
+GET https://HOSTNAME/v1/health/queue/deletes
+```
+
+** Get the number of background destructive changes that are waiting to be processed in the Appwrite internal queue server. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| threshold | integer | Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000. | 5000 |
+
+## Get functions queue
 
 ```http request
 GET https://HOSTNAME/v1/health/queue/functions
 ```
 
-## Get Logs Queue
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| threshold | integer | Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000. | 5000 |
+
+## Get logs queue
 
 ```http request
 GET https://HOSTNAME/v1/health/queue/logs
@@ -70,7 +125,55 @@ GET https://HOSTNAME/v1/health/queue/logs
 
 ** Get the number of logs that are waiting to be processed in the Appwrite internal queue server. **
 
-## Get Webhooks Queue
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| threshold | integer | Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000. | 5000 |
+
+## Get mails queue
+
+```http request
+GET https://HOSTNAME/v1/health/queue/mails
+```
+
+** Get the number of mails that are waiting to be processed in the Appwrite internal queue server. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| threshold | integer | Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000. | 5000 |
+
+## Get messaging queue
+
+```http request
+GET https://HOSTNAME/v1/health/queue/messaging
+```
+
+** Get the number of messages that are waiting to be processed in the Appwrite internal queue server. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| threshold | integer | Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000. | 5000 |
+
+## Get migrations queue
+
+```http request
+GET https://HOSTNAME/v1/health/queue/migrations
+```
+
+** Get the number of migrations that are waiting to be processed in the Appwrite internal queue server. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| threshold | integer | Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000. | 5000 |
+
+## Get webhooks queue
 
 ```http request
 GET https://HOSTNAME/v1/health/queue/webhooks
@@ -78,7 +181,13 @@ GET https://HOSTNAME/v1/health/queue/webhooks
 
 ** Get the number of webhooks that are waiting to be processed in the Appwrite internal queue server. **
 
-## Get Local Storage
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| threshold | integer | Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000. | 5000 |
+
+## Get local storage
 
 ```http request
 GET https://HOSTNAME/v1/health/storage/local
@@ -86,7 +195,7 @@ GET https://HOSTNAME/v1/health/storage/local
 
 ** Check the Appwrite local storage device is up and connection is successful. **
 
-## Get Time
+## Get time
 
 ```http request
 GET https://HOSTNAME/v1/health/time

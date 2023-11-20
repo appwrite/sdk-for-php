@@ -1,12 +1,12 @@
 # Avatars Service
 
-## Get Browser Icon
+## Get browser icon
 
 ```http request
 GET https://HOSTNAME/v1/avatars/browsers/{code}
 ```
 
-** You can use this endpoint to show different browser icons to your users. The code argument receives the browser code as it appears in your user [GET /account/sessions](/docs/client/account#accountGetSessions) endpoint. Use width, height and quality arguments to change the output settings.
+** You can use this endpoint to show different browser icons to your users. The code argument receives the browser code as it appears in your user [GET /account/sessions](https://appwrite.io/docs/references/cloud/client-web/account#getSessions) endpoint. Use width, height and quality arguments to change the output settings.
 
 When one dimension is specified and the other is 0, the image is scaled with preserved aspect ratio. If both dimensions are 0, the API provides an image at source quality. If dimensions are not specified, the default size of image returned is 100x100px. **
 
@@ -19,7 +19,7 @@ When one dimension is specified and the other is 0, the image is scaled with pre
 | height | integer | Image height. Pass an integer between 0 to 2000. Defaults to 100. | 100 |
 | quality | integer | Image quality. Pass an integer between 0 to 100. Defaults to 100. | 100 |
 
-## Get Credit Card Icon
+## Get credit card icon
 
 ```http request
 GET https://HOSTNAME/v1/avatars/credit-cards/{code}
@@ -39,7 +39,7 @@ When one dimension is specified and the other is 0, the image is scaled with pre
 | height | integer | Image height. Pass an integer between 0 to 2000. Defaults to 100. | 100 |
 | quality | integer | Image quality. Pass an integer between 0 to 100. Defaults to 100. | 100 |
 
-## Get Favicon
+## Get favicon
 
 ```http request
 GET https://HOSTNAME/v1/avatars/favicon
@@ -54,13 +54,13 @@ GET https://HOSTNAME/v1/avatars/favicon
 | --- | --- | --- | --- |
 | url | string | **Required** Website URL which you want to fetch the favicon from. |  |
 
-## Get Country Flag
+## Get country flag
 
 ```http request
 GET https://HOSTNAME/v1/avatars/flags/{code}
 ```
 
-** You can use this endpoint to show different country flags icons to your users. The code argument receives the 2 letter country code. Use width, height and quality arguments to change the output settings. Country codes follow the [ISO 3166-1](http://en.wikipedia.org/wiki/ISO_3166-1) standard.
+** You can use this endpoint to show different country flags icons to your users. The code argument receives the 2 letter country code. Use width, height and quality arguments to change the output settings. Country codes follow the [ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1) standard.
 
 When one dimension is specified and the other is 0, the image is scaled with preserved aspect ratio. If both dimensions are 0, the API provides an image at source quality. If dimensions are not specified, the default size of image returned is 100x100px.
  **
@@ -74,7 +74,7 @@ When one dimension is specified and the other is 0, the image is scaled with pre
 | height | integer | Image height. Pass an integer between 0 to 2000. Defaults to 100. | 100 |
 | quality | integer | Image quality. Pass an integer between 0 to 100. Defaults to 100. | 100 |
 
-## Get Image from URL
+## Get image from URL
 
 ```http request
 GET https://HOSTNAME/v1/avatars/image
@@ -93,7 +93,7 @@ When one dimension is specified and the other is 0, the image is scaled with pre
 | width | integer | Resize preview image width, Pass an integer between 0 to 2000. Defaults to 400. | 400 |
 | height | integer | Resize preview image height, Pass an integer between 0 to 2000. Defaults to 400. | 400 |
 
-## Get User Initials
+## Get user initials
 
 ```http request
 GET https://HOSTNAME/v1/avatars/initials
@@ -115,7 +115,7 @@ When one dimension is specified and the other is 0, the image is scaled with pre
 | height | integer | Image height. Pass an integer between 0 to 2000. Defaults to 100. | 500 |
 | background | string | Changes background color. By default a random color will be picked and stay will persistent to the given name. |  |
 
-## Get QR Code
+## Get QR code
 
 ```http request
 GET https://HOSTNAME/v1/avatars/qr

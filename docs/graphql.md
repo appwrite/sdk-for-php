@@ -1,6 +1,6 @@
 # Graphql Service
 
-## GraphQL Endpoint
+## GraphQL endpoint
 
 ```http request
 POST https://HOSTNAME/v1/graphql
@@ -14,7 +14,7 @@ POST https://HOSTNAME/v1/graphql
 | --- | --- | --- | --- |
 | query | object | The query or queries to execute. | {} |
 
-## GraphQL Endpoint
+## GraphQL endpoint
 
 ```http request
 POST https://HOSTNAME/v1/graphql/mutation

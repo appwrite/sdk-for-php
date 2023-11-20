@@ -1,6 +1,6 @@
 # Account Service
 
-## Get Account
+## Get account
 
 ```http request
 GET https://HOSTNAME/v1/account
@@ -8,7 +8,7 @@ GET https://HOSTNAME/v1/account
 
 ** Get the currently logged in user. **
 
-## Update Email
+## Update email
 
 ```http request
 PATCH https://HOSTNAME/v1/account/email
@@ -53,7 +53,7 @@ DELETE https://HOSTNAME/v1/account/identities/{identityId}
 | --- | --- | --- | --- |
 | identityId | string | **Required** Identity ID. |  |
 
-## List Logs
+## List logs
 
 ```http request
 GET https://HOSTNAME/v1/account/logs
@@ -67,7 +67,7 @@ GET https://HOSTNAME/v1/account/logs
 | --- | --- | --- | --- |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Only supported methods are limit and offset | [] |
 
-## Update Name
+## Update name
 
 ```http request
 PATCH https://HOSTNAME/v1/account/name
@@ -81,7 +81,7 @@ PATCH https://HOSTNAME/v1/account/name
 | --- | --- | --- | --- |
 | name | string | User name. Max length: 128 chars. |  |
 
-## Update Password
+## Update password
 
 ```http request
 PATCH https://HOSTNAME/v1/account/password
@@ -96,13 +96,13 @@ PATCH https://HOSTNAME/v1/account/password
 | password | string | New user password. Must be at least 8 chars. |  |
 | oldPassword | string | Current user password. Must be at least 8 chars. |  |
 
-## Update Phone
+## Update phone
 
 ```http request
 PATCH https://HOSTNAME/v1/account/phone
 ```
 
-** Update the currently logged in user&#039;s phone number. After updating the phone number, the phone verification status will be reset. A confirmation SMS is not sent automatically, however you can use the [POST /account/verification/phone](/docs/client/account#accountCreatePhoneVerification) endpoint to send a confirmation SMS. **
+** Update the currently logged in user&#039;s phone number. After updating the phone number, the phone verification status will be reset. A confirmation SMS is not sent automatically, however you can use the [POST /account/verification/phone](https://appwrite.io/docs/references/cloud/client-web/account#createPhoneVerification) endpoint to send a confirmation SMS. **
 
 ### Parameters
 
@@ -111,7 +111,7 @@ PATCH https://HOSTNAME/v1/account/phone
 | phone | string | Phone number. Format this number with a leading '+' and a country code, e.g., +16175551212. |  |
 | password | string | User password. Must be at least 8 chars. |  |
 
-## Get Account Preferences
+## Get account preferences
 
 ```http request
 GET https://HOSTNAME/v1/account/prefs
@@ -119,7 +119,7 @@ GET https://HOSTNAME/v1/account/prefs
 
 ** Get the preferences as a key-value object for the currently logged in user. **
 
-## Update Preferences
+## Update preferences
 
 ```http request
 PATCH https://HOSTNAME/v1/account/prefs
@@ -133,13 +133,13 @@ PATCH https://HOSTNAME/v1/account/prefs
 | --- | --- | --- | --- |
 | prefs | object | Prefs key-value JSON object. | {} |
 
-## Create Password Recovery
+## Create password recovery
 
 ```http request
 POST https://HOSTNAME/v1/account/recovery
 ```
 
-** Sends the user an email with a temporary secret key for password reset. When the user clicks the confirmation link he is redirected back to your app password reset URL with the secret key and email address values attached to the URL query string. Use the query string params to submit a request to the [PUT /account/recovery](/docs/client/account#accountUpdateRecovery) endpoint to complete the process. The verification link sent to the user&#039;s email address is valid for 1 hour. **
+** Sends the user an email with a temporary secret key for password reset. When the user clicks the confirmation link he is redirected back to your app password reset URL with the secret key and email address values attached to the URL query string. Use the query string params to submit a request to the [PUT /account/recovery](https://appwrite.io/docs/references/cloud/client-web/account#updateRecovery) endpoint to complete the process. The verification link sent to the user&#039;s email address is valid for 1 hour. **
 
 ### Parameters
 
@@ -148,13 +148,13 @@ POST https://HOSTNAME/v1/account/recovery
 | email | string | User email. |  |
 | url | string | URL to redirect the user back to your app from the recovery email. Only URLs from hostnames in your project platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API. |  |
 
-## Create Password Recovery (confirmation)
+## Create password recovery (confirmation)
 
 ```http request
 PUT https://HOSTNAME/v1/account/recovery
 ```
 
-** Use this endpoint to complete the user account password reset. Both the **userId** and **secret** arguments will be passed as query parameters to the redirect URL you have provided when sending your request to the [POST /account/recovery](/docs/client/account#accountCreateRecovery) endpoint.
+** Use this endpoint to complete the user account password reset. Both the **userId** and **secret** arguments will be passed as query parameters to the redirect URL you have provided when sending your request to the [POST /account/recovery](https://appwrite.io/docs/references/cloud/client-web/account#createRecovery) endpoint.
 
 Please note that in order to avoid a [Redirect Attack](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.md) the only valid redirect URLs are the ones from domains you have set when adding your platforms in the console interface. **
 
@@ -167,7 +167,7 @@ Please note that in order to avoid a [Redirect Attack](https://github.com/OWASP/
 | password | string | New user password. Must be at least 8 chars. |  |
 | passwordAgain | string | Repeat new user password. Must be at least 8 chars. |  |
 
-## List Sessions
+## List sessions
 
 ```http request
 GET https://HOSTNAME/v1/account/sessions
@@ -175,7 +175,7 @@ GET https://HOSTNAME/v1/account/sessions
 
 ** Get the list of active sessions across different devices for the currently logged in user. **
 
-## Delete Sessions
+## Delete sessions
 
 ```http request
 DELETE https://HOSTNAME/v1/account/sessions
@@ -183,7 +183,7 @@ DELETE https://HOSTNAME/v1/account/sessions
 
 ** Delete all sessions from the user account and remove any sessions cookies from the end client. **
 
-## Get Session
+## Get session
 
 ```http request
 GET https://HOSTNAME/v1/account/sessions/{sessionId}
@@ -197,7 +197,7 @@ GET https://HOSTNAME/v1/account/sessions/{sessionId}
 | --- | --- | --- | --- |
 | sessionId | string | **Required** Session ID. Use the string 'current' to get the current device session. |  |
 
-## Update OAuth Session (Refresh Tokens)
+## Update OAuth session (refresh tokens)
 
 ```http request
 PATCH https://HOSTNAME/v1/account/sessions/{sessionId}
@@ -211,13 +211,13 @@ PATCH https://HOSTNAME/v1/account/sessions/{sessionId}
 | --- | --- | --- | --- |
 | sessionId | string | **Required** Session ID. Use the string 'current' to update the current device session. |  |
 
-## Delete Session
+## Delete session
 
 ```http request
 DELETE https://HOSTNAME/v1/account/sessions/{sessionId}
 ```
 
-** Logout the user. Use &#039;current&#039; as the session ID to logout on this device, use a session ID to logout on another device. If you&#039;re looking to logout the user on all devices, use [Delete Sessions](/docs/client/account#accountDeleteSessions) instead. **
+** Logout the user. Use &#039;current&#039; as the session ID to logout on this device, use a session ID to logout on another device. If you&#039;re looking to logout the user on all devices, use [Delete Sessions](https://appwrite.io/docs/references/cloud/client-web/account#deleteSessions) instead. **
 
 ### Parameters
 
@@ -225,7 +225,7 @@ DELETE https://HOSTNAME/v1/account/sessions/{sessionId}
 | --- | --- | --- | --- |
 | sessionId | string | **Required** Session ID. Use the string 'current' to delete the current device session. |  |
 
-## Update Status
+## Update status
 
 ```http request
 PATCH https://HOSTNAME/v1/account/status
@@ -233,13 +233,13 @@ PATCH https://HOSTNAME/v1/account/status
 
 ** Block the currently logged in user account. Behind the scene, the user record is not deleted but permanently blocked from any access. To completely delete a user, use the Users API instead. **
 
-## Create Email Verification
+## Create email verification
 
 ```http request
 POST https://HOSTNAME/v1/account/verification
 ```
 
-** Use this endpoint to send a verification message to your user email address to confirm they are the valid owners of that address. Both the **userId** and **secret** arguments will be passed as query parameters to the URL you have provided to be attached to the verification email. The provided URL should redirect the user back to your app and allow you to complete the verification process by verifying both the **userId** and **secret** parameters. Learn more about how to [complete the verification process](/docs/client/account#accountUpdateEmailVerification). The verification link sent to the user&#039;s email address is valid for 7 days.
+** Use this endpoint to send a verification message to your user email address to confirm they are the valid owners of that address. Both the **userId** and **secret** arguments will be passed as query parameters to the URL you have provided to be attached to the verification email. The provided URL should redirect the user back to your app and allow you to complete the verification process by verifying both the **userId** and **secret** parameters. Learn more about how to [complete the verification process](https://appwrite.io/docs/references/cloud/client-web/account#updateVerification). The verification link sent to the user&#039;s email address is valid for 7 days.
 
 Please note that in order to avoid a [Redirect Attack](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.md), the only valid redirect URLs are the ones from domains you have set when adding your platforms in the console interface.
  **
@@ -250,7 +250,7 @@ Please note that in order to avoid a [Redirect Attack](https://github.com/OWASP/
 | --- | --- | --- | --- |
 | url | string | URL to redirect the user back to your app from the verification email. Only URLs from hostnames in your project platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API. |  |
 
-## Create Email Verification (confirmation)
+## Create email verification (confirmation)
 
 ```http request
 PUT https://HOSTNAME/v1/account/verification
@@ -265,15 +265,15 @@ PUT https://HOSTNAME/v1/account/verification
 | userId | string | User ID. |  |
 | secret | string | Valid verification token. |  |
 
-## Create Phone Verification
+## Create phone verification
 
 ```http request
 POST https://HOSTNAME/v1/account/verification/phone
 ```
 
-** Use this endpoint to send a verification SMS to the currently logged in user. This endpoint is meant for use after updating a user&#039;s phone number using the [accountUpdatePhone](/docs/client/account#accountUpdatePhone) endpoint. Learn more about how to [complete the verification process](/docs/client/account#accountUpdatePhoneVerification). The verification code sent to the user&#039;s phone number is valid for 15 minutes. **
+** Use this endpoint to send a verification SMS to the currently logged in user. This endpoint is meant for use after updating a user&#039;s phone number using the [accountUpdatePhone](https://appwrite.io/docs/references/cloud/client-web/account#updatePhone) endpoint. Learn more about how to [complete the verification process](https://appwrite.io/docs/references/cloud/client-web/account#updatePhoneVerification). The verification code sent to the user&#039;s phone number is valid for 15 minutes. **
 
-## Create Phone Verification (confirmation)
+## Create phone verification (confirmation)
 
 ```http request
 PUT https://HOSTNAME/v1/account/verification/phone

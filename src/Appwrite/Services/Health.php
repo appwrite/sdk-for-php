@@ -35,7 +35,7 @@ class Health extends Service
     }
 
     /**
-     * Get Antivirus
+     * Get antivirus
      *
      * Check the Appwrite Antivirus server is up and connection is successful.
      *
@@ -55,7 +55,7 @@ class Health extends Service
     }
 
     /**
-     * Get Cache
+     * Get cache
      *
      * Check the Appwrite in-memory cache servers are up and connection is
      * successful.
@@ -96,7 +96,7 @@ class Health extends Service
     }
 
     /**
-     * Get PubSub
+     * Get pubsub
      *
      * Check the Appwrite pub-sub servers are up and connection is successful.
      *
@@ -116,7 +116,7 @@ class Health extends Service
     }
 
     /**
-     * Get Queue
+     * Get queue
      *
      * Check the Appwrite queue messaging servers are up and connection is
      * successful.
@@ -137,21 +137,52 @@ class Health extends Service
     }
 
     /**
-     * Get Certificates Queue
+     * Get builds queue
+     *
+     * Get the number of builds that are waiting to be processed in the Appwrite
+     * internal queue server.
+     *
+     * @param int $threshold
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function getQueueBuilds(int $threshold = null): array
+    {
+        $apiPath = str_replace([], [], '/health/queue/builds');
+
+        $apiParams = [];
+        if (!is_null($threshold)) {
+            $apiParams['threshold'] = $threshold;
+        }
+
+
+        return $this->client->call(Client::METHOD_GET, $apiPath, [
+            'content-type' => 'application/json',
+        ], $apiParams);
+    }
+
+    /**
+     * Get certificates queue
      *
      * Get the number of certificates that are waiting to be issued against
      * [Letsencrypt](https://letsencrypt.org/) in the Appwrite internal queue
      * server.
      *
+     * @param int $threshold
      * @throws AppwriteException
      * @return array
 
      */
-    public function getQueueCertificates(): array
+    public function getQueueCertificates(int $threshold = null): array
     {
         $apiPath = str_replace([], [], '/health/queue/certificates');
 
         $apiParams = [];
+        if (!is_null($threshold)) {
+            $apiParams['threshold'] = $threshold;
+        }
+
 
         return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
@@ -159,17 +190,79 @@ class Health extends Service
     }
 
     /**
-     * Get Functions Queue
+     * Get databases queue
      *
+     * Get the number of database changes that are waiting to be processed in the
+     * Appwrite internal queue server.
+     *
+     * @param string $name
+     * @param int $threshold
      * @throws AppwriteException
      * @return array
 
      */
-    public function getQueueFunctions(): array
+    public function getQueueDatabases(string $name = null, int $threshold = null): array
+    {
+        $apiPath = str_replace([], [], '/health/queue/databases');
+
+        $apiParams = [];
+        if (!is_null($name)) {
+            $apiParams['name'] = $name;
+        }
+
+        if (!is_null($threshold)) {
+            $apiParams['threshold'] = $threshold;
+        }
+
+
+        return $this->client->call(Client::METHOD_GET, $apiPath, [
+            'content-type' => 'application/json',
+        ], $apiParams);
+    }
+
+    /**
+     * Get deletes queue
+     *
+     * Get the number of background destructive changes that are waiting to be
+     * processed in the Appwrite internal queue server.
+     *
+     * @param int $threshold
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function getQueueDeletes(int $threshold = null): array
+    {
+        $apiPath = str_replace([], [], '/health/queue/deletes');
+
+        $apiParams = [];
+        if (!is_null($threshold)) {
+            $apiParams['threshold'] = $threshold;
+        }
+
+
+        return $this->client->call(Client::METHOD_GET, $apiPath, [
+            'content-type' => 'application/json',
+        ], $apiParams);
+    }
+
+    /**
+     * Get functions queue
+     *
+     * @param int $threshold
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function getQueueFunctions(int $threshold = null): array
     {
         $apiPath = str_replace([], [], '/health/queue/functions');
 
         $apiParams = [];
+        if (!is_null($threshold)) {
+            $apiParams['threshold'] = $threshold;
+        }
+
 
         return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
@@ -177,20 +270,25 @@ class Health extends Service
     }
 
     /**
-     * Get Logs Queue
+     * Get logs queue
      *
      * Get the number of logs that are waiting to be processed in the Appwrite
      * internal queue server.
      *
+     * @param int $threshold
      * @throws AppwriteException
      * @return array
 
      */
-    public function getQueueLogs(): array
+    public function getQueueLogs(int $threshold = null): array
     {
         $apiPath = str_replace([], [], '/health/queue/logs');
 
         $apiParams = [];
+        if (!is_null($threshold)) {
+            $apiParams['threshold'] = $threshold;
+        }
+
 
         return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
@@ -198,20 +296,25 @@ class Health extends Service
     }
 
     /**
-     * Get Webhooks Queue
+     * Get mails queue
      *
-     * Get the number of webhooks that are waiting to be processed in the Appwrite
+     * Get the number of mails that are waiting to be processed in the Appwrite
      * internal queue server.
      *
+     * @param int $threshold
      * @throws AppwriteException
      * @return array
 
      */
-    public function getQueueWebhooks(): array
+    public function getQueueMails(int $threshold = null): array
     {
-        $apiPath = str_replace([], [], '/health/queue/webhooks');
+        $apiPath = str_replace([], [], '/health/queue/mails');
 
         $apiParams = [];
+        if (!is_null($threshold)) {
+            $apiParams['threshold'] = $threshold;
+        }
+
 
         return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
@@ -219,7 +322,85 @@ class Health extends Service
     }
 
     /**
-     * Get Local Storage
+     * Get messaging queue
+     *
+     * Get the number of messages that are waiting to be processed in the Appwrite
+     * internal queue server.
+     *
+     * @param int $threshold
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function getQueueMessaging(int $threshold = null): array
+    {
+        $apiPath = str_replace([], [], '/health/queue/messaging');
+
+        $apiParams = [];
+        if (!is_null($threshold)) {
+            $apiParams['threshold'] = $threshold;
+        }
+
+
+        return $this->client->call(Client::METHOD_GET, $apiPath, [
+            'content-type' => 'application/json',
+        ], $apiParams);
+    }
+
+    /**
+     * Get migrations queue
+     *
+     * Get the number of migrations that are waiting to be processed in the
+     * Appwrite internal queue server.
+     *
+     * @param int $threshold
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function getQueueMigrations(int $threshold = null): array
+    {
+        $apiPath = str_replace([], [], '/health/queue/migrations');
+
+        $apiParams = [];
+        if (!is_null($threshold)) {
+            $apiParams['threshold'] = $threshold;
+        }
+
+
+        return $this->client->call(Client::METHOD_GET, $apiPath, [
+            'content-type' => 'application/json',
+        ], $apiParams);
+    }
+
+    /**
+     * Get webhooks queue
+     *
+     * Get the number of webhooks that are waiting to be processed in the Appwrite
+     * internal queue server.
+     *
+     * @param int $threshold
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function getQueueWebhooks(int $threshold = null): array
+    {
+        $apiPath = str_replace([], [], '/health/queue/webhooks');
+
+        $apiParams = [];
+        if (!is_null($threshold)) {
+            $apiParams['threshold'] = $threshold;
+        }
+
+
+        return $this->client->call(Client::METHOD_GET, $apiPath, [
+            'content-type' => 'application/json',
+        ], $apiParams);
+    }
+
+    /**
+     * Get local storage
      *
      * Check the Appwrite local storage device is up and connection is successful.
      *
@@ -239,7 +420,7 @@ class Health extends Service
     }
 
     /**
-     * Get Time
+     * Get time
      *
      * Check the Appwrite server time is synced with Google remote NTP server. We
      * use this technology to smoothly handle leap seconds with no disruptive

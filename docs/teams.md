@@ -1,6 +1,6 @@
 # Teams Service
 
-## List Teams
+## List teams
 
 ```http request
 GET https://HOSTNAME/v1/teams
@@ -15,7 +15,7 @@ GET https://HOSTNAME/v1/teams
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, total | [] |
 | search | string | Search term to filter your list results. Max length: 256 chars. |  |
 
-## Create Team
+## Create team
 
 ```http request
 POST https://HOSTNAME/v1/teams
@@ -29,9 +29,9 @@ POST https://HOSTNAME/v1/teams
 | --- | --- | --- | --- |
 | teamId | string | Team ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
 | name | string | Team name. Max length: 128 chars. |  |
-| roles | array | Array of strings. Use this param to set the roles in the team for the user who created it. The default role is **owner**. A role can be any string. Learn more about [roles and permissions](/docs/permissions). Maximum of 100 roles are allowed, each 32 characters long. | [&quot;owner&quot;] |
+| roles | array | Array of strings. Use this param to set the roles in the team for the user who created it. The default role is **owner**. A role can be any string. Learn more about [roles and permissions](https://appwrite.io/docs/permissions). Maximum of 100 roles are allowed, each 32 characters long. | [&quot;owner&quot;] |
 
-## Get Team
+## Get team
 
 ```http request
 GET https://HOSTNAME/v1/teams/{teamId}
@@ -45,7 +45,7 @@ GET https://HOSTNAME/v1/teams/{teamId}
 | --- | --- | --- | --- |
 | teamId | string | **Required** Team ID. |  |
 
-## Update Name
+## Update name
 
 ```http request
 PUT https://HOSTNAME/v1/teams/{teamId}
@@ -60,7 +60,7 @@ PUT https://HOSTNAME/v1/teams/{teamId}
 | teamId | string | **Required** Team ID. |  |
 | name | string | New team name. Max length: 128 chars. |  |
 
-## Delete Team
+## Delete team
 
 ```http request
 DELETE https://HOSTNAME/v1/teams/{teamId}
@@ -74,7 +74,7 @@ DELETE https://HOSTNAME/v1/teams/{teamId}
 | --- | --- | --- | --- |
 | teamId | string | **Required** Team ID. |  |
 
-## List Team Memberships
+## List team memberships
 
 ```http request
 GET https://HOSTNAME/v1/teams/{teamId}/memberships
@@ -90,7 +90,7 @@ GET https://HOSTNAME/v1/teams/{teamId}/memberships
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: userId, teamId, invited, joined, confirm | [] |
 | search | string | Search term to filter your list results. Max length: 256 chars. |  |
 
-## Create Team Membership
+## Create team membership
 
 ```http request
 POST https://HOSTNAME/v1/teams/{teamId}/memberships
@@ -100,7 +100,7 @@ POST https://HOSTNAME/v1/teams/{teamId}/memberships
 
 You only need to provide one of a user ID, email, or phone number. Appwrite will prioritize accepting the user ID &gt; email &gt; phone number if you provide more than one of these parameters.
 
-Use the `url` parameter to redirect the user from the invitation email to your app. After the user is redirected, use the [Update Team Membership Status](/docs/client/teams#teamsUpdateMembershipStatus) endpoint to allow the user to accept the invitation to the team. 
+Use the `url` parameter to redirect the user from the invitation email to your app. After the user is redirected, use the [Update Team Membership Status](https://appwrite.io/docs/references/cloud/client-web/teams#updateMembershipStatus) endpoint to allow the user to accept the invitation to the team. 
 
 Please note that to avoid a [Redirect Attack](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.md) Appwrite will accept the only redirect URLs under the domains you have added as a platform on the Appwrite Console.
  **
@@ -113,11 +113,11 @@ Please note that to avoid a [Redirect Attack](https://github.com/OWASP/CheatShee
 | email | string | Email of the new team member. |  |
 | userId | string | ID of the user to be added to a team. |  |
 | phone | string | Phone number. Format this number with a leading '+' and a country code, e.g., +16175551212. |  |
-| roles | array | Array of strings. Use this param to set the user roles in the team. A role can be any string. Learn more about [roles and permissions](/docs/permissions). Maximum of 100 roles are allowed, each 32 characters long. |  |
+| roles | array | Array of strings. Use this param to set the user roles in the team. A role can be any string. Learn more about [roles and permissions](https://appwrite.io/docs/permissions). Maximum of 100 roles are allowed, each 32 characters long. |  |
 | url | string | URL to redirect the user back to your app from the invitation email.  Only URLs from hostnames in your project platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API. |  |
 | name | string | Name of the new team member. Max length: 128 chars. |  |
 
-## Get Team Membership
+## Get team membership
 
 ```http request
 GET https://HOSTNAME/v1/teams/{teamId}/memberships/{membershipId}
@@ -132,13 +132,13 @@ GET https://HOSTNAME/v1/teams/{teamId}/memberships/{membershipId}
 | teamId | string | **Required** Team ID. |  |
 | membershipId | string | **Required** Membership ID. |  |
 
-## Update Membership
+## Update membership
 
 ```http request
 PATCH https://HOSTNAME/v1/teams/{teamId}/memberships/{membershipId}
 ```
 
-** Modify the roles of a team member. Only team members with the owner role have access to this endpoint. Learn more about [roles and permissions](/docs/permissions).
+** Modify the roles of a team member. Only team members with the owner role have access to this endpoint. Learn more about [roles and permissions](https://appwrite.io/docs/permissions).
  **
 
 ### Parameters
@@ -149,7 +149,7 @@ PATCH https://HOSTNAME/v1/teams/{teamId}/memberships/{membershipId}
 | membershipId | string | **Required** Membership ID. |  |
 | roles | array | An array of strings. Use this param to set the user's roles in the team. A role can be any string. Learn more about [roles and permissions](https://appwrite.io/docs/permissions). Maximum of 100 roles are allowed, each 32 characters long. |  |
 
-## Delete Team Membership
+## Delete team membership
 
 ```http request
 DELETE https://HOSTNAME/v1/teams/{teamId}/memberships/{membershipId}
@@ -164,7 +164,7 @@ DELETE https://HOSTNAME/v1/teams/{teamId}/memberships/{membershipId}
 | teamId | string | **Required** Team ID. |  |
 | membershipId | string | **Required** Membership ID. |  |
 
-## Update Team Membership Status
+## Update team membership status
 
 ```http request
 PATCH https://HOSTNAME/v1/teams/{teamId}/memberships/{membershipId}/status
@@ -184,13 +184,13 @@ If the request is successful, a session for the user is automatically created.
 | userId | string | User ID. |  |
 | secret | string | Secret key. |  |
 
-## Get Team Preferences
+## Get team preferences
 
 ```http request
 GET https://HOSTNAME/v1/teams/{teamId}/prefs
 ```
 
-** Get the team&#039;s shared preferences by its unique ID. If a preference doesn&#039;t need to be shared by all team members, prefer storing them in [user preferences](/docs/client/account#accountGetPrefs). **
+** Get the team&#039;s shared preferences by its unique ID. If a preference doesn&#039;t need to be shared by all team members, prefer storing them in [user preferences](https://appwrite.io/docs/references/cloud/client-web/account#getPrefs). **
 
 ### Parameters
 
@@ -198,7 +198,7 @@ GET https://HOSTNAME/v1/teams/{teamId}/prefs
 | --- | --- | --- | --- |
 | teamId | string | **Required** Team ID. |  |
 
-## Update Preferences
+## Update preferences
 
 ```http request
 PUT https://HOSTNAME/v1/teams/{teamId}/prefs

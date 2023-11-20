@@ -15,7 +15,7 @@ class Databases extends Service
      }
 
     /**
-     * List Databases
+     * List databases
      *
      * Get a list of all databases from the current Appwrite project. You can use
      * the search parameter to filter your results.
@@ -46,7 +46,7 @@ class Databases extends Service
     }
 
     /**
-     * Create Database
+     * Create database
      *
      * Create a new Database.
      * 
@@ -88,7 +88,7 @@ class Databases extends Service
     }
 
     /**
-     * Get Database
+     * Get database
      *
      * Get a database by its unique ID. This endpoint response returns a JSON
      * object with the database metadata.
@@ -113,7 +113,7 @@ class Databases extends Service
     }
 
     /**
-     * Update Database
+     * Update database
      *
      * Update a database by its unique ID.
      *
@@ -150,7 +150,7 @@ class Databases extends Service
     }
 
     /**
-     * Delete Database
+     * Delete database
      *
      * Delete a database by its unique ID. Only API keys with with databases.write
      * scope can delete a database.
@@ -175,7 +175,7 @@ class Databases extends Service
     }
 
     /**
-     * List Collections
+     * List collections
      *
      * Get a list of all collections that belong to the provided databaseId. You
      * can use the search parameter to filter your results.
@@ -210,12 +210,12 @@ class Databases extends Service
     }
 
     /**
-     * Create Collection
+     * Create collection
      *
      * Create a new Collection. Before using this route, you should create a new
      * database resource using either a [server
-     * integration](/docs/server/databases#databasesCreateCollection) API or
-     * directly from your database console.
+     * integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
+     * API or directly from your database console.
      *
      * @param string $databaseId
      * @param string $collectionId
@@ -268,7 +268,7 @@ class Databases extends Service
     }
 
     /**
-     * Get Collection
+     * Get collection
      *
      * Get a collection by its unique ID. This endpoint response returns a JSON
      * object with the collection metadata.
@@ -297,7 +297,7 @@ class Databases extends Service
     }
 
     /**
-     * Update Collection
+     * Update collection
      *
      * Update a collection by its unique ID.
      *
@@ -348,7 +348,7 @@ class Databases extends Service
     }
 
     /**
-     * Delete Collection
+     * Delete collection
      *
      * Delete a collection by its unique ID. Only users with write permissions
      * have access to delete this resource.
@@ -377,7 +377,7 @@ class Databases extends Service
     }
 
     /**
-     * List Attributes
+     * List attributes
      *
      * @param string $databaseId
      * @param string $collectionId
@@ -408,7 +408,7 @@ class Databases extends Service
     }
 
     /**
-     * Create Boolean Attribute
+     * Create boolean attribute
      *
      * Create a boolean attribute.
      * 
@@ -463,7 +463,7 @@ class Databases extends Service
     }
 
     /**
-     * Update Boolean Attribute
+     * Update boolean attribute
      *
      * @param string $databaseId
      * @param string $collectionId
@@ -506,7 +506,7 @@ class Databases extends Service
     }
 
     /**
-     * Create DateTime Attribute
+     * Create datetime attribute
      *
      * @param string $databaseId
      * @param string $collectionId
@@ -558,7 +558,7 @@ class Databases extends Service
     }
 
     /**
-     * Update DateTime Attribute
+     * Update dateTime attribute
      *
      * @param string $databaseId
      * @param string $collectionId
@@ -601,7 +601,7 @@ class Databases extends Service
     }
 
     /**
-     * Create Email Attribute
+     * Create email attribute
      *
      * Create an email attribute.
      * 
@@ -656,7 +656,7 @@ class Databases extends Service
     }
 
     /**
-     * Update Email Attribute
+     * Update email attribute
      *
      * Update an email attribute. Changing the `default` value will not update
      * already existing documents.
@@ -703,7 +703,7 @@ class Databases extends Service
     }
 
     /**
-     * Create Enum Attribute
+     * Create enum attribute
      *
      * @param string $databaseId
      * @param string $collectionId
@@ -763,7 +763,7 @@ class Databases extends Service
     }
 
     /**
-     * Update Enum Attribute
+     * Update enum attribute
      *
      * Update an enum attribute. Changing the `default` value will not update
      * already existing documents.
@@ -818,7 +818,7 @@ class Databases extends Service
     }
 
     /**
-     * Create Float Attribute
+     * Create float attribute
      *
      * Create a float attribute. Optionally, minimum and maximum values can be
      * provided.
@@ -884,7 +884,7 @@ class Databases extends Service
     }
 
     /**
-     * Update Float Attribute
+     * Update float attribute
      *
      * Update a float attribute. Changing the `default` value will not update
      * already existing documents.
@@ -947,7 +947,7 @@ class Databases extends Service
     }
 
     /**
-     * Create Integer Attribute
+     * Create integer attribute
      *
      * Create an integer attribute. Optionally, minimum and maximum values can be
      * provided.
@@ -1013,7 +1013,7 @@ class Databases extends Service
     }
 
     /**
-     * Update Integer Attribute
+     * Update integer attribute
      *
      * Update an integer attribute. Changing the `default` value will not update
      * already existing documents.
@@ -1076,7 +1076,7 @@ class Databases extends Service
     }
 
     /**
-     * Create IP Address Attribute
+     * Create IP address attribute
      *
      * Create IP address attribute.
      * 
@@ -1131,7 +1131,7 @@ class Databases extends Service
     }
 
     /**
-     * Update IP Address Attribute
+     * Update IP address attribute
      *
      * Update an ip attribute. Changing the `default` value will not update
      * already existing documents.
@@ -1178,10 +1178,10 @@ class Databases extends Service
     }
 
     /**
-     * Create Relationship Attribute
+     * Create relationship attribute
      *
      * Create relationship attribute. [Learn more about relationship
-     * attributes](/docs/databases-relationships#relationship-attributes).
+     * attributes](https://appwrite.io/docs/databases-relationships#relationship-attributes).
      * 
      *
      * @param string $databaseId
@@ -1244,7 +1244,7 @@ class Databases extends Service
     }
 
     /**
-     * Create String Attribute
+     * Create string attribute
      *
      * Create a string attribute.
      * 
@@ -1312,7 +1312,7 @@ class Databases extends Service
     }
 
     /**
-     * Update String Attribute
+     * Update string attribute
      *
      * Update a string attribute. Changing the `default` value will not update
      * already existing documents.
@@ -1359,7 +1359,7 @@ class Databases extends Service
     }
 
     /**
-     * Create URL Attribute
+     * Create URL attribute
      *
      * Create a URL attribute.
      * 
@@ -1414,7 +1414,7 @@ class Databases extends Service
     }
 
     /**
-     * Update URL Attribute
+     * Update URL attribute
      *
      * Update an url attribute. Changing the `default` value will not update
      * already existing documents.
@@ -1461,7 +1461,7 @@ class Databases extends Service
     }
 
     /**
-     * Get Attribute
+     * Get attribute
      *
      * @param string $databaseId
      * @param string $collectionId
@@ -1491,7 +1491,7 @@ class Databases extends Service
     }
 
     /**
-     * Delete Attribute
+     * Delete attribute
      *
      * @param string $databaseId
      * @param string $collectionId
@@ -1521,10 +1521,10 @@ class Databases extends Service
     }
 
     /**
-     * Update Relationship Attribute
+     * Update relationship attribute
      *
      * Update relationship attribute. [Learn more about relationship
-     * attributes](/docs/databases-relationships#relationship-attributes).
+     * attributes](https://appwrite.io/docs/databases-relationships#relationship-attributes).
      * 
      *
      * @param string $databaseId
@@ -1560,7 +1560,7 @@ class Databases extends Service
     }
 
     /**
-     * List Documents
+     * List documents
      *
      * Get a list of all the user's documents in a given collection. You can use
      * the query params to filter your results.
@@ -1594,12 +1594,12 @@ class Databases extends Service
     }
 
     /**
-     * Create Document
+     * Create document
      *
      * Create a new Document. Before using this route, you should create a new
      * collection resource using either a [server
-     * integration](/docs/server/databases#databasesCreateCollection) API or
-     * directly from your database console.
+     * integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
+     * API or directly from your database console.
      *
      * @param string $databaseId
      * @param string $collectionId
@@ -1646,7 +1646,7 @@ class Databases extends Service
     }
 
     /**
-     * Get Document
+     * Get document
      *
      * Get a document by its unique ID. This endpoint response returns a JSON
      * object with the document data.
@@ -1684,7 +1684,7 @@ class Databases extends Service
     }
 
     /**
-     * Update Document
+     * Update document
      *
      * Update a document by its unique ID. Using the patch method you can pass
      * only specific fields that will get updated.
@@ -1727,7 +1727,7 @@ class Databases extends Service
     }
 
     /**
-     * Delete Document
+     * Delete document
      *
      * Delete a document by its unique ID.
      *
@@ -1759,7 +1759,7 @@ class Databases extends Service
     }
 
     /**
-     * List Indexes
+     * List indexes
      *
      * @param string $databaseId
      * @param string $collectionId
@@ -1790,7 +1790,7 @@ class Databases extends Service
     }
 
     /**
-     * Create Index
+     * Create index
      *
      * @param string $databaseId
      * @param string $collectionId
@@ -1845,7 +1845,7 @@ class Databases extends Service
     }
 
     /**
-     * Get Index
+     * Get index
      *
      * @param string $databaseId
      * @param string $collectionId
@@ -1875,7 +1875,7 @@ class Databases extends Service
     }
 
     /**
-     * Delete Index
+     * Delete index
      *
      * @param string $databaseId
      * @param string $collectionId

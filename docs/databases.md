@@ -1,6 +1,6 @@
 # Databases Service
 
-## List Databases
+## List databases
 
 ```http request
 GET https://HOSTNAME/v1/databases
@@ -15,7 +15,7 @@ GET https://HOSTNAME/v1/databases
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name | [] |
 | search | string | Search term to filter your list results. Max length: 256 chars. |  |
 
-## Create Database
+## Create database
 
 ```http request
 POST https://HOSTNAME/v1/databases
@@ -32,7 +32,7 @@ POST https://HOSTNAME/v1/databases
 | name | string | Database name. Max length: 128 chars. |  |
 | enabled | boolean | Is the database enabled? When set to 'disabled', users cannot access the database but Server SDKs with an API key can still read and write to the database. No data is lost when this is toggled. | 1 |
 
-## Get Database
+## Get database
 
 ```http request
 GET https://HOSTNAME/v1/databases/{databaseId}
@@ -46,7 +46,7 @@ GET https://HOSTNAME/v1/databases/{databaseId}
 | --- | --- | --- | --- |
 | databaseId | string | **Required** Database ID. |  |
 
-## Update Database
+## Update database
 
 ```http request
 PUT https://HOSTNAME/v1/databases/{databaseId}
@@ -62,7 +62,7 @@ PUT https://HOSTNAME/v1/databases/{databaseId}
 | name | string | Database name. Max length: 128 chars. |  |
 | enabled | boolean | Is database enabled? When set to 'disabled', users cannot access the database but Server SDKs with an API key can still read and write to the database. No data is lost when this is toggled. | 1 |
 
-## Delete Database
+## Delete database
 
 ```http request
 DELETE https://HOSTNAME/v1/databases/{databaseId}
@@ -76,7 +76,7 @@ DELETE https://HOSTNAME/v1/databases/{databaseId}
 | --- | --- | --- | --- |
 | databaseId | string | **Required** Database ID. |  |
 
-## List Collections
+## List collections
 
 ```http request
 GET https://HOSTNAME/v1/databases/{databaseId}/collections
@@ -92,13 +92,13 @@ GET https://HOSTNAME/v1/databases/{databaseId}/collections
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, enabled, documentSecurity | [] |
 | search | string | Search term to filter your list results. Max length: 256 chars. |  |
 
-## Create Collection
+## Create collection
 
 ```http request
 POST https://HOSTNAME/v1/databases/{databaseId}/collections
 ```
 
-** Create a new Collection. Before using this route, you should create a new database resource using either a [server integration](/docs/server/databases#databasesCreateCollection) API or directly from your database console. **
+** Create a new Collection. Before using this route, you should create a new database resource using either a [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection) API or directly from your database console. **
 
 ### Parameters
 
@@ -107,11 +107,11 @@ POST https://HOSTNAME/v1/databases/{databaseId}/collections
 | databaseId | string | **Required** Database ID. |  |
 | collectionId | string | Unique Id. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
 | name | string | Collection name. Max length: 128 chars. |  |
-| permissions | array | An array of permissions strings. By default, no user is granted with any permissions. [Learn more about permissions](/docs/permissions). |  |
-| documentSecurity | boolean | Enables configuring permissions for individual documents. A user needs one of document or collection level permissions to access a document. [Learn more about permissions](/docs/permissions). |  |
+| permissions | array | An array of permissions strings. By default, no user is granted with any permissions. [Learn more about permissions](https://appwrite.io/docs/permissions). |  |
+| documentSecurity | boolean | Enables configuring permissions for individual documents. A user needs one of document or collection level permissions to access a document. [Learn more about permissions](https://appwrite.io/docs/permissions). |  |
 | enabled | boolean | Is collection enabled? When set to 'disabled', users cannot access the collection but Server SDKs with and API key can still read and write to the collection. No data is lost when this is toggled. | 1 |
 
-## Get Collection
+## Get collection
 
 ```http request
 GET https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}
@@ -126,7 +126,7 @@ GET https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}
 | databaseId | string | **Required** Database ID. |  |
 | collectionId | string | **Required** Collection ID. |  |
 
-## Update Collection
+## Update collection
 
 ```http request
 PUT https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}
@@ -141,11 +141,11 @@ PUT https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}
 | databaseId | string | **Required** Database ID. |  |
 | collectionId | string | **Required** Collection ID. |  |
 | name | string | Collection name. Max length: 128 chars. |  |
-| permissions | array | An array of permission strings. By default, the current permissions are inherited. [Learn more about permissions](/docs/permissions). |  |
-| documentSecurity | boolean | Enables configuring permissions for individual documents. A user needs one of document or collection level permissions to access a document. [Learn more about permissions](/docs/permissions). |  |
+| permissions | array | An array of permission strings. By default, the current permissions are inherited. [Learn more about permissions](https://appwrite.io/docs/permissions). |  |
+| documentSecurity | boolean | Enables configuring permissions for individual documents. A user needs one of document or collection level permissions to access a document. [Learn more about permissions](https://appwrite.io/docs/permissions). |  |
 | enabled | boolean | Is collection enabled? When set to 'disabled', users cannot access the collection but Server SDKs with and API key can still read and write to the collection. No data is lost when this is toggled. | 1 |
 
-## Delete Collection
+## Delete collection
 
 ```http request
 DELETE https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}
@@ -160,7 +160,7 @@ DELETE https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}
 | databaseId | string | **Required** Database ID. |  |
 | collectionId | string | **Required** Collection ID. |  |
 
-## List Attributes
+## List attributes
 
 ```http request
 GET https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes
@@ -174,7 +174,7 @@ GET https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attrib
 | collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: key, type, size, required, array, status, error | [] |
 
-## Create Boolean Attribute
+## Create boolean attribute
 
 ```http request
 POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes/boolean
@@ -194,7 +194,7 @@ POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attri
 | default | boolean | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | array | boolean | Is attribute an array? |  |
 
-## Update Boolean Attribute
+## Update boolean attribute
 
 ```http request
 PATCH https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes/boolean/{key}
@@ -210,7 +210,7 @@ PATCH https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attr
 | required | boolean | Is attribute required? |  |
 | default | boolean | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 
-## Create DateTime Attribute
+## Create datetime attribute
 
 ```http request
 POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes/datetime
@@ -227,7 +227,7 @@ POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attri
 | default | string | Default value for the attribute in ISO 8601 format. Cannot be set when attribute is required. |  |
 | array | boolean | Is attribute an array? |  |
 
-## Update DateTime Attribute
+## Update dateTime attribute
 
 ```http request
 PATCH https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes/datetime/{key}
@@ -243,7 +243,7 @@ PATCH https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attr
 | required | boolean | Is attribute required? |  |
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 
-## Create Email Attribute
+## Create email attribute
 
 ```http request
 POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes/email
@@ -263,7 +263,7 @@ POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attri
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | array | boolean | Is attribute an array? |  |
 
-## Update Email Attribute
+## Update email attribute
 
 ```http request
 PATCH https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes/email/{key}
@@ -282,7 +282,7 @@ PATCH https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attr
 | required | boolean | Is attribute required? |  |
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 
-## Create Enum Attribute
+## Create enum attribute
 
 ```http request
 POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes/enum
@@ -300,7 +300,7 @@ POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attri
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | array | boolean | Is attribute an array? |  |
 
-## Update Enum Attribute
+## Update enum attribute
 
 ```http request
 PATCH https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes/enum/{key}
@@ -320,7 +320,7 @@ PATCH https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attr
 | required | boolean | Is attribute required? |  |
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 
-## Create Float Attribute
+## Create float attribute
 
 ```http request
 POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes/float
@@ -342,7 +342,7 @@ POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attri
 | default | number | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | array | boolean | Is attribute an array? |  |
 
-## Update Float Attribute
+## Update float attribute
 
 ```http request
 PATCH https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes/float/{key}
@@ -363,7 +363,7 @@ PATCH https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attr
 | max | number | Maximum value to enforce on new documents |  |
 | default | number | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 
-## Create Integer Attribute
+## Create integer attribute
 
 ```http request
 POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes/integer
@@ -385,7 +385,7 @@ POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attri
 | default | integer | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | array | boolean | Is attribute an array? |  |
 
-## Update Integer Attribute
+## Update integer attribute
 
 ```http request
 PATCH https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes/integer/{key}
@@ -406,7 +406,7 @@ PATCH https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attr
 | max | integer | Maximum value to enforce on new documents |  |
 | default | integer | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 
-## Create IP Address Attribute
+## Create IP address attribute
 
 ```http request
 POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes/ip
@@ -426,7 +426,7 @@ POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attri
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | array | boolean | Is attribute an array? |  |
 
-## Update IP Address Attribute
+## Update IP address attribute
 
 ```http request
 PATCH https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes/ip/{key}
@@ -445,13 +445,13 @@ PATCH https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attr
 | required | boolean | Is attribute required? |  |
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 
-## Create Relationship Attribute
+## Create relationship attribute
 
 ```http request
 POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes/relationship
 ```
 
-** Create relationship attribute. [Learn more about relationship attributes](/docs/databases-relationships#relationship-attributes).
+** Create relationship attribute. [Learn more about relationship attributes](https://appwrite.io/docs/databases-relationships#relationship-attributes).
  **
 
 ### Parameters
@@ -467,7 +467,7 @@ POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attri
 | twoWayKey | string | Two Way Attribute Key. |  |
 | onDelete | string | Constraints option | restrict |
 
-## Create String Attribute
+## Create string attribute
 
 ```http request
 POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes/string
@@ -489,7 +489,7 @@ POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attri
 | array | boolean | Is attribute an array? |  |
 | encrypt | boolean | Toggle encryption for the attribute. Encryption enhances security by not storing any plain text values in the database. However, encrypted attributes cannot be queried. |  |
 
-## Update String Attribute
+## Update string attribute
 
 ```http request
 PATCH https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes/string/{key}
@@ -508,7 +508,7 @@ PATCH https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attr
 | required | boolean | Is attribute required? |  |
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 
-## Create URL Attribute
+## Create URL attribute
 
 ```http request
 POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes/url
@@ -528,7 +528,7 @@ POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attri
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | array | boolean | Is attribute an array? |  |
 
-## Update URL Attribute
+## Update URL attribute
 
 ```http request
 PATCH https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes/url/{key}
@@ -547,7 +547,7 @@ PATCH https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attr
 | required | boolean | Is attribute required? |  |
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 
-## Get Attribute
+## Get attribute
 
 ```http request
 GET https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes/{key}
@@ -561,7 +561,7 @@ GET https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attrib
 | collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
 | key | string | **Required** Attribute Key. |  |
 
-## Delete Attribute
+## Delete attribute
 
 ```http request
 DELETE https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes/{key}
@@ -575,13 +575,13 @@ DELETE https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/att
 | collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
 | key | string | **Required** Attribute Key. |  |
 
-## Update Relationship Attribute
+## Update relationship attribute
 
 ```http request
 PATCH https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes/{key}/relationship
 ```
 
-** Update relationship attribute. [Learn more about relationship attributes](/docs/databases-relationships#relationship-attributes).
+** Update relationship attribute. [Learn more about relationship attributes](https://appwrite.io/docs/databases-relationships#relationship-attributes).
  **
 
 ### Parameters
@@ -593,7 +593,7 @@ PATCH https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attr
 | key | string | **Required** Attribute Key. |  |
 | onDelete | string | Constraints option |  |
 
-## List Documents
+## List documents
 
 ```http request
 GET https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/documents
@@ -609,13 +609,13 @@ GET https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/docume
 | collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. | [] |
 
-## Create Document
+## Create document
 
 ```http request
 POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/documents
 ```
 
-** Create a new Document. Before using this route, you should create a new collection resource using either a [server integration](/docs/server/databases#databasesCreateCollection) API or directly from your database console. **
+** Create a new Document. Before using this route, you should create a new collection resource using either a [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection) API or directly from your database console. **
 
 ### Parameters
 
@@ -625,9 +625,9 @@ POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/docum
 | collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). Make sure to define attributes before creating documents. |  |
 | documentId | string | Document ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
 | data | object | Document data as JSON object. | {} |
-| permissions | array | An array of permissions strings. By default, only the current user is granted all permissions. [Learn more about permissions](/docs/permissions). |  |
+| permissions | array | An array of permissions strings. By default, only the current user is granted all permissions. [Learn more about permissions](https://appwrite.io/docs/permissions). |  |
 
-## Get Document
+## Get document
 
 ```http request
 GET https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/documents/{documentId}
@@ -644,7 +644,7 @@ GET https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/docume
 | documentId | string | **Required** Document ID. |  |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/databases#querying-documents). Only method allowed is select. | [] |
 
-## Update Document
+## Update document
 
 ```http request
 PATCH https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/documents/{documentId}
@@ -660,9 +660,9 @@ PATCH https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/docu
 | collectionId | string | **Required** Collection ID. |  |
 | documentId | string | **Required** Document ID. |  |
 | data | object | Document data as JSON object. Include only attribute and value pairs to be updated. | {} |
-| permissions | array | An array of permissions strings. By default, the current permissions are inherited. [Learn more about permissions](/docs/permissions). |  |
+| permissions | array | An array of permissions strings. By default, the current permissions are inherited. [Learn more about permissions](https://appwrite.io/docs/permissions). |  |
 
-## Delete Document
+## Delete document
 
 ```http request
 DELETE https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/documents/{documentId}
@@ -678,7 +678,7 @@ DELETE https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/doc
 | collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
 | documentId | string | **Required** Document ID. |  |
 
-## List Indexes
+## List indexes
 
 ```http request
 GET https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/indexes
@@ -692,7 +692,7 @@ GET https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/indexe
 | collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: key, type, status, attributes, error | [] |
 
-## Create Index
+## Create index
 
 ```http request
 POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/indexes
@@ -709,7 +709,7 @@ POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/index
 | attributes | array | Array of attributes to index. Maximum of 100 attributes are allowed, each 32 characters long. |  |
 | orders | array | Array of index orders. Maximum of 100 orders are allowed. | [] |
 
-## Get Index
+## Get index
 
 ```http request
 GET https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/indexes/{key}
@@ -723,7 +723,7 @@ GET https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/indexe
 | collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
 | key | string | **Required** Index Key. |  |
 
-## Delete Index
+## Delete index
 
 ```http request
 DELETE https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/indexes/{key}
