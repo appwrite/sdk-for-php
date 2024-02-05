@@ -2,6 +2,7 @@
 
 use Appwrite\Client;
 use Appwrite\Services\Databases;
+use Appwrite\Enums\RelationshipType;
 
 $client = new Client();
 
@@ -13,4 +14,4 @@ $client
 
 $databases = new Databases($client);
 
-$result = $databases->createRelationshipAttribute('[DATABASE_ID]', '[COLLECTION_ID]', '[RELATED_COLLECTION_ID]', 'oneToOne');
+$result = $databases->createRelationshipAttribute('[DATABASE_ID]', '[COLLECTION_ID]', '[RELATED_COLLECTION_ID]', RelationshipType::ONE_TO_ONE());

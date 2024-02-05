@@ -37,11 +37,11 @@ class Client
      */
     protected $headers = [
         'content-type' => '',
-        'user-agent' => 'AppwritePHPSDK/10.1.0 ()',
+        'user-agent' => 'AppwritePHPSDK/11.0.0-rc.1 ()',
         'x-sdk-name'=> 'PHP',
         'x-sdk-platform'=> 'server',
         'x-sdk-language'=> 'php',
-        'x-sdk-version'=> '10.1.0',
+        'x-sdk-version'=> '11.0.0-rc.1',
     ];
 
     /**
@@ -111,6 +111,54 @@ class Client
     public function setLocale($value)
     {
         $this->addHeader('X-Appwrite-Locale', $value);
+
+        return $this;
+    }
+
+    /**
+     * Set Session
+     *
+     * The user session to authenticate with
+     *
+     * @param string $value
+     *
+     * @return Client
+     */
+    public function setSession($value)
+    {
+        $this->addHeader('X-Appwrite-Session', $value);
+
+        return $this;
+    }
+
+    /**
+     * Set ForwardedFor
+     *
+     * The IP address of the client that made the request
+     *
+     * @param string $value
+     *
+     * @return Client
+     */
+    public function setForwardedFor($value)
+    {
+        $this->addHeader('X-Forwarded-For', $value);
+
+        return $this;
+    }
+
+    /**
+     * Set ForwardedUserAgent
+     *
+     * The user agent string of the client that made the request
+     *
+     * @param string $value
+     *
+     * @return Client
+     */
+    public function setForwardedUserAgent($value)
+    {
+        $this->addHeader('X-Forwarded-User-Agent', $value);
 
         return $this;
     }

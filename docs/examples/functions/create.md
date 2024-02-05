@@ -2,6 +2,7 @@
 
 use Appwrite\Client;
 use Appwrite\Services\Functions;
+use Appwrite\Enums\;
 
 $client = new Client();
 
@@ -13,4 +14,4 @@ $client
 
 $functions = new Functions($client);
 
-$result = $functions->create('[FUNCTION_ID]', '[NAME]', 'node-18.0');
+$result = $functions->create('[FUNCTION_ID]', '[NAME]', ::NODE180());

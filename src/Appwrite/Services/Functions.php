@@ -6,6 +6,8 @@ use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
 use Appwrite\InputFile;
+use Appwrite\Enums\Runtime;
+use Appwrite\Enums\ExecutionMethod;
 
 class Functions extends Service
 {
@@ -55,7 +57,7 @@ class Functions extends Service
      *
      * @param string $functionId
      * @param string $name
-     * @param string $runtime
+     * @param Runtime $runtime
      * @param array $execute
      * @param array $events
      * @param string $schedule
@@ -77,7 +79,7 @@ class Functions extends Service
      * @return array
 
      */
-    public function create(string $functionId, string $name, string $runtime, array $execute = null, array $events = null, string $schedule = null, int $timeout = null, bool $enabled = null, bool $logging = null, string $entrypoint = null, string $commands = null, string $installationId = null, string $providerRepositoryId = null, string $providerBranch = null, bool $providerSilentMode = null, string $providerRootDirectory = null, string $templateRepository = null, string $templateOwner = null, string $templateRootDirectory = null, string $templateBranch = null): array
+    public function create(string $functionId, string $name, Runtime $runtime, array $execute = null, array $events = null, string $schedule = null, int $timeout = null, bool $enabled = null, bool $logging = null, string $entrypoint = null, string $commands = null, string $installationId = null, string $providerRepositoryId = null, string $providerBranch = null, bool $providerSilentMode = null, string $providerRootDirectory = null, string $templateRepository = null, string $templateOwner = null, string $templateRootDirectory = null, string $templateBranch = null): array
     {
         $apiPath = str_replace([], [], '/functions');
 
@@ -228,7 +230,7 @@ class Functions extends Service
      *
      * @param string $functionId
      * @param string $name
-     * @param string $runtime
+     * @param Runtime $runtime
      * @param array $execute
      * @param array $events
      * @param string $schedule
@@ -246,7 +248,7 @@ class Functions extends Service
      * @return array
 
      */
-    public function update(string $functionId, string $name, string $runtime = null, array $execute = null, array $events = null, string $schedule = null, int $timeout = null, bool $enabled = null, bool $logging = null, string $entrypoint = null, string $commands = null, string $installationId = null, string $providerRepositoryId = null, string $providerBranch = null, bool $providerSilentMode = null, string $providerRootDirectory = null): array
+    public function update(string $functionId, string $name, Runtime $runtime = null, array $execute = null, array $events = null, string $schedule = null, int $timeout = null, bool $enabled = null, bool $logging = null, string $entrypoint = null, string $commands = null, string $installationId = null, string $providerRepositoryId = null, string $providerBranch = null, bool $providerSilentMode = null, string $providerRootDirectory = null): array
     {
         $apiPath = str_replace(['{functionId}'], [$functionId], '/functions/{functionId}');
 
@@ -705,13 +707,13 @@ class Functions extends Service
      * @param string $body
      * @param bool $async
      * @param string $xpath
-     * @param string $method
+     * @param ExecutionMethod $method
      * @param array $headers
      * @throws AppwriteException
      * @return array
 
      */
-    public function createExecution(string $functionId, string $body = null, bool $async = null, string $xpath = null, string $method = null, array $headers = null): array
+    public function createExecution(string $functionId, string $body = null, bool $async = null, string $xpath = null, ExecutionMethod $method = null, array $headers = null): array
     {
         $apiPath = str_replace(['{functionId}'], [$functionId], '/functions/{functionId}/executions');
 

@@ -8,6 +8,23 @@ GET https://HOSTNAME/v1/account
 
 ** Get the currently logged in user. **
 
+## Create account
+
+```http request
+POST https://HOSTNAME/v1/account
+```
+
+** Use this endpoint to allow a new user to register a new account in your project. After the user registration completes successfully, you can use the [/account/verfication](https://appwrite.io/docs/references/cloud/client-web/account#createVerification) route to start verifying the user email address. To allow the new user to login to their new account, you need to create a new [account session](https://appwrite.io/docs/references/cloud/client-web/account#createEmailSession). **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| userId | string | User ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
+| email | string | User email. |  |
+| password | string | New user password. Must be between 8 and 256 chars. |  |
+| name | string | User name. Max length: 128 chars. |  |
+
 ## Update email
 
 ```http request
@@ -37,9 +54,9 @@ GET https://HOSTNAME/v1/account/identities
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| queries | string | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: userId, provider, providerUid, providerEmail, providerAccessTokenExpiry | [] |
+| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: userId, provider, providerUid, providerEmail, providerAccessTokenExpiry | [] |
 
-## Delete Identity
+## Delete identity
 
 ```http request
 DELETE https://HOSTNAME/v1/account/identities/{identityId}
@@ -52,6 +69,14 @@ DELETE https://HOSTNAME/v1/account/identities/{identityId}
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | identityId | string | **Required** Identity ID. |  |
+
+## Create JWT
+
+```http request
+POST https://HOSTNAME/v1/account/jwt
+```
+
+** Use this endpoint to create a JSON Web Token. You can use the resulting JWT to authenticate on behalf of the current user when working with the Appwrite server-side API and SDKs. The JWT secret is valid for 15 minutes from its creation and will be invalid if the user will logout in that time frame. **
 
 ## List logs
 
@@ -66,6 +91,89 @@ GET https://HOSTNAME/v1/account/logs
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Only supported methods are limit and offset | [] |
+
+## Update MFA
+
+```http request
+PATCH https://HOSTNAME/v1/account/mfa
+```
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| mfa | boolean | Enable or disable MFA. |  |
+
+## Create MFA Challenge
+
+```http request
+POST https://HOSTNAME/v1/account/mfa/challenge
+```
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| provider | string | provider. |  |
+
+## Create MFA Challenge (confirmation)
+
+```http request
+PUT https://HOSTNAME/v1/account/mfa/challenge
+```
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| challengeId | string | Valid verification token. |  |
+| otp | string | Valid verification token. |  |
+
+## List Factors
+
+```http request
+GET https://HOSTNAME/v1/account/mfa/factors
+```
+
+** Get the currently logged in user. **
+
+## Add Authenticator
+
+```http request
+POST https://HOSTNAME/v1/account/mfa/{factor}
+```
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| factor | string | **Required** Factor. |  |
+
+## Verify Authenticator
+
+```http request
+PUT https://HOSTNAME/v1/account/mfa/{factor}
+```
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| factor | string | **Required** Factor. |  |
+| otp | string | Valid verification token. |  |
+
+## Delete Authenticator
+
+```http request
+DELETE https://HOSTNAME/v1/account/mfa/{provider}
+```
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| provider | string | **Required** Provider. |  |
+| otp | string | Valid verification token. |  |
 
 ## Update name
 
@@ -164,8 +272,7 @@ Please note that in order to avoid a [Redirect Attack](https://github.com/OWASP/
 | --- | --- | --- | --- |
 | userId | string | User ID. |  |
 | secret | string | Valid reset token. |  |
-| password | string | New user password. Must be at least 8 chars. |  |
-| passwordAgain | string | Repeat new user password. Must be at least 8 chars. |  |
+| password | string | New user password. Must be between 8 and 256 chars. |  |
 
 ## List sessions
 
@@ -183,6 +290,84 @@ DELETE https://HOSTNAME/v1/account/sessions
 
 ** Delete all sessions from the user account and remove any sessions cookies from the end client. **
 
+## Create anonymous session
+
+```http request
+POST https://HOSTNAME/v1/account/sessions/anonymous
+```
+
+** Use this endpoint to allow a new user to register an anonymous account in your project. This route will also create a new session for the user. To allow the new user to convert an anonymous account to a normal account, you need to update its [email and password](https://appwrite.io/docs/references/cloud/client-web/account#updateEmail) or create an [OAuth2 session](https://appwrite.io/docs/references/cloud/client-web/account#CreateOAuth2Session). **
+
+## Create email password session
+
+```http request
+POST https://HOSTNAME/v1/account/sessions/email
+```
+
+** Allow the user to login into their account by providing a valid email and password combination. This route will create a new session for the user.
+
+A user is limited to 10 active sessions at a time by default. [Learn more about session limits](https://appwrite.io/docs/authentication-security#limits). **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| email | string | User email. |  |
+| password | string | User password. Must be at least 8 chars. |  |
+
+## Create session (deprecated)
+
+```http request
+PUT https://HOSTNAME/v1/account/sessions/magic-url
+```
+
+** Use this endpoint to create a session from token. Provide the **userId** and **secret** parameters from the successful response of authentication flows initiated by token creation. For example, magic URL and phone login. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| userId | string | User ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
+| secret | string | Valid verification token. |  |
+
+## Create OAuth2 session
+
+```http request
+GET https://HOSTNAME/v1/account/sessions/oauth2/{provider}
+```
+
+** Allow the user to login to their account using the OAuth2 provider of their choice. Each OAuth2 provider should be enabled from the Appwrite console first. Use the success and failure arguments to provide a redirect URL&#039;s back to your app when login is completed.
+
+If there is already an active session, the new session will be attached to the logged-in account. If there are no active sessions, the server will attempt to look for a user with the same email address as the email received from the OAuth2 provider and attach the new session to the existing user. If no matching user is found - the server will create a new user.
+
+A user is limited to 10 active sessions at a time by default. [Learn more about session limits](https://appwrite.io/docs/authentication-security#limits).
+ **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| provider | string | **Required** OAuth2 Provider. Currently, supported providers are: amazon, apple, auth0, authentik, autodesk, bitbucket, bitly, box, dailymotion, discord, disqus, dropbox, etsy, facebook, github, gitlab, google, linkedin, microsoft, notion, oidc, okta, paypal, paypalSandbox, podio, salesforce, slack, spotify, stripe, tradeshift, tradeshiftBox, twitch, wordpress, yahoo, yammer, yandex, zoho, zoom. |  |
+| success | string | URL to redirect back to your app after a successful login attempt.  Only URLs from hostnames in your project's platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API. |  |
+| failure | string | URL to redirect back to your app after a failed login attempt.  Only URLs from hostnames in your project's platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API. |  |
+| token | boolean | Include token credentials in the final redirect, useful for server-side integrations, or when cookies are not available. |  |
+| scopes | array | A list of custom OAuth2 scopes. Check each provider internal docs for a list of supported scopes. Maximum of 100 scopes are allowed, each 4096 characters long. | [] |
+
+## Create session
+
+```http request
+POST https://HOSTNAME/v1/account/sessions/token
+```
+
+** Use this endpoint to create a session from token. Provide the **userId** and **secret** parameters from the successful response of authentication flows initiated by token creation. For example, magic URL and phone login. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| userId | string | User ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
+| secret | string | Secret of a token generated by login methods. For example, the `createMagicURLToken` or `createPhoneToken` methods. |  |
+
 ## Get session
 
 ```http request
@@ -197,13 +382,13 @@ GET https://HOSTNAME/v1/account/sessions/{sessionId}
 | --- | --- | --- | --- |
 | sessionId | string | **Required** Session ID. Use the string 'current' to get the current device session. |  |
 
-## Update OAuth session (refresh tokens)
+## Update (or renew) a session
 
 ```http request
 PATCH https://HOSTNAME/v1/account/sessions/{sessionId}
 ```
 
-** Access tokens have limited lifespan and expire to mitigate security risks. If session was created using an OAuth provider, this route can be used to &quot;refresh&quot; the access token. **
+** Extend session&#039;s expiry to increase it&#039;s lifespan. Extending a session is useful when session length is short such as 5 minutes. **
 
 ### Parameters
 
@@ -232,6 +417,61 @@ PATCH https://HOSTNAME/v1/account/status
 ```
 
 ** Block the currently logged in user account. Behind the scene, the user record is not deleted but permanently blocked from any access. To completely delete a user, use the Users API instead. **
+
+## Create email token (OTP)
+
+```http request
+POST https://HOSTNAME/v1/account/tokens/email
+```
+
+** Sends the user an email with a secret key for creating a session. If the provided user ID has not be registered, a new user will be created. Use the returned user ID and secret and submit a request to the [POST /v1/account/sessions/token](https://appwrite.io/docs/references/cloud/client-web/account#createSession) endpoint to complete the login process. The secret sent to the user&#039;s email is valid for 15 minutes.
+
+A user is limited to 10 active sessions at a time by default. [Learn more about session limits](https://appwrite.io/docs/authentication-security#limits). **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| userId | string | User ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
+| email | string | User email. |  |
+| phrase | boolean | Toggle for security phrase. If enabled, email will be send with a randomly generated phrase and the phrase will also be included in the response. Confirming phrases match increases the security of your authentication flow. |  |
+
+## Create magic URL token
+
+```http request
+POST https://HOSTNAME/v1/account/tokens/magic-url
+```
+
+** Sends the user an email with a secret key for creating a session. If the provided user ID has not been registered, a new user will be created. When the user clicks the link in the email, the user is redirected back to the URL you provided with the secret key and userId values attached to the URL query string. Use the query string parameters to submit a request to the [POST /v1/account/sessions/token](https://appwrite.io/docs/references/cloud/client-web/account#createSession) endpoint to complete the login process. The link sent to the user&#039;s email address is valid for 1 hour. If you are on a mobile device you can leave the URL parameter empty, so that the login completion will be handled by your Appwrite instance by default.
+
+A user is limited to 10 active sessions at a time by default. [Learn more about session limits](https://appwrite.io/docs/authentication-security#limits).
+ **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| userId | string | User ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
+| email | string | User email. |  |
+| url | string | URL to redirect the user back to your app from the magic URL login. Only URLs from hostnames in your project platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API. |  |
+| phrase | boolean | Toggle for security phrase. If enabled, email will be send with a randomly generated phrase and the phrase will also be included in the response. Confirming phrases match increases the security of your authentication flow. |  |
+
+## Create phone token
+
+```http request
+POST https://HOSTNAME/v1/account/tokens/phone
+```
+
+** Sends the user an SMS with a secret key for creating a session. If the provided user ID has not be registered, a new user will be created. Use the returned user ID and secret and submit a request to the [POST /v1/account/sessions/token](https://appwrite.io/docs/references/cloud/client-web/account#createSession) endpoint to complete the login process. The secret sent to the user&#039;s phone is valid for 15 minutes.
+
+A user is limited to 10 active sessions at a time by default. [Learn more about session limits](https://appwrite.io/docs/authentication-security#limits). **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| userId | string | Unique Id. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
+| phone | string | Phone number. Format this number with a leading '+' and a country code, e.g., +16175551212. |  |
 
 ## Create email verification
 

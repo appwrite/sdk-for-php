@@ -6,6 +6,9 @@ use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
 use Appwrite\InputFile;
+use Appwrite\Enums\Browser;
+use Appwrite\Enums\CreditCard;
+use Appwrite\Enums\Flag;
 
 class Avatars extends Service
 {
@@ -28,7 +31,7 @@ class Avatars extends Service
      * image at source quality. If dimensions are not specified, the default size
      * of image returned is 100x100px.
      *
-     * @param string $code
+     * @param Browser $code
      * @param int $width
      * @param int $height
      * @param int $quality
@@ -36,7 +39,7 @@ class Avatars extends Service
      * @return string
 
      */
-    public function getBrowser(string $code, int $width = null, int $height = null, int $quality = null): string
+    public function getBrowser(Browser $code, int $width = null, int $height = null, int $quality = null): string
     {
         $apiPath = str_replace(['{code}'], [$code], '/avatars/browsers/{code}');
 
@@ -75,7 +78,7 @@ class Avatars extends Service
      * of image returned is 100x100px.
      * 
      *
-     * @param string $code
+     * @param CreditCard $code
      * @param int $width
      * @param int $height
      * @param int $quality
@@ -83,7 +86,7 @@ class Avatars extends Service
      * @return string
 
      */
-    public function getCreditCard(string $code, int $width = null, int $height = null, int $quality = null): string
+    public function getCreditCard(CreditCard $code, int $width = null, int $height = null, int $quality = null): string
     {
         $apiPath = str_replace(['{code}'], [$code], '/avatars/credit-cards/{code}');
 
@@ -153,7 +156,7 @@ class Avatars extends Service
      * of image returned is 100x100px.
      * 
      *
-     * @param string $code
+     * @param Flag $code
      * @param int $width
      * @param int $height
      * @param int $quality
@@ -161,7 +164,7 @@ class Avatars extends Service
      * @return string
 
      */
-    public function getFlag(string $code, int $width = null, int $height = null, int $quality = null): string
+    public function getFlag(Flag $code, int $width = null, int $height = null, int $quality = null): string
     {
         $apiPath = str_replace(['{code}'], [$code], '/avatars/flags/{code}');
 

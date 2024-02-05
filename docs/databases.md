@@ -224,7 +224,7 @@ POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attri
 | collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
 | key | string | Attribute Key. |  |
 | required | boolean | Is attribute required? |  |
-| default | string | Default value for the attribute in ISO 8601 format. Cannot be set when attribute is required. |  |
+| default | string | Default value for the attribute in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. Cannot be set when attribute is required. |  |
 | array | boolean | Is attribute an array? |  |
 
 ## Update dateTime attribute
@@ -295,7 +295,7 @@ POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attri
 | databaseId | string | **Required** Database ID. |  |
 | collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
 | key | string | Attribute Key. |  |
-| elements | array | Array of elements in enumerated type. Uses length of longest element to determine size. Maximum of 100 elements are allowed, each 4096 characters long. |  |
+| elements | array | Array of elements in enumerated type. Uses length of longest element to determine size. Maximum of 100 elements are allowed, each 255 characters long. |  |
 | required | boolean | Is attribute required? |  |
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | array | boolean | Is attribute an array? |  |
@@ -316,7 +316,7 @@ PATCH https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attr
 | databaseId | string | **Required** Database ID. |  |
 | collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
 | key | string | **Required** Attribute Key. |  |
-| elements | array | Array of elements in enumerated type. Uses length of longest element to determine size. Maximum of 100 elements are allowed, each 4096 characters long. |  |
+| elements | array | Array of elements in enumerated type. Uses length of longest element to determine size. Maximum of 100 elements are allowed, each 255 characters long. |  |
 | required | boolean | Is attribute required? |  |
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 
@@ -642,7 +642,7 @@ GET https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/docume
 | databaseId | string | **Required** Database ID. |  |
 | collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
 | documentId | string | **Required** Document ID. |  |
-| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/databases#querying-documents). Only method allowed is select. | [] |
+| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. | [] |
 
 ## Update document
 
