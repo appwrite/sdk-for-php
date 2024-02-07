@@ -613,7 +613,7 @@ final class AccountTest extends TestCase {
             "countryCode" => "US",
             "countryName" => "United States",
             "current" => true,
-            "factors" => 1,
+            "factors" => array(),
             "secret" => "5e5bb8c16897e",);
 
 
@@ -655,7 +655,7 @@ final class AccountTest extends TestCase {
             "countryCode" => "US",
             "countryName" => "United States",
             "current" => true,
-            "factors" => 1,
+            "factors" => array(),
             "secret" => "5e5bb8c16897e",);
 
 
@@ -699,7 +699,7 @@ final class AccountTest extends TestCase {
             "countryCode" => "US",
             "countryName" => "United States",
             "current" => true,
-            "factors" => 1,
+            "factors" => array(),
             "secret" => "5e5bb8c16897e",);
 
 
@@ -759,7 +759,7 @@ final class AccountTest extends TestCase {
             "countryCode" => "US",
             "countryName" => "United States",
             "current" => true,
-            "factors" => 1,
+            "factors" => array(),
             "secret" => "5e5bb8c16897e",);
 
 
@@ -803,7 +803,7 @@ final class AccountTest extends TestCase {
             "countryCode" => "US",
             "countryName" => "United States",
             "current" => true,
-            "factors" => 1,
+            "factors" => array(),
             "secret" => "5e5bb8c16897e",);
 
 
@@ -846,7 +846,7 @@ final class AccountTest extends TestCase {
             "countryCode" => "US",
             "countryName" => "United States",
             "current" => true,
-            "factors" => 1,
+            "factors" => array(),
             "secret" => "5e5bb8c16897e",);
 
 
