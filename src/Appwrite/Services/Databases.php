@@ -6,9 +6,6 @@ use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
 use Appwrite\InputFile;
-use Appwrite\Enums\RelationshipType;
-use Appwrite\Enums\RelationMutate;
-use Appwrite\Enums\IndexType;
 
 class Databases extends Service
 {
@@ -1190,16 +1187,16 @@ class Databases extends Service
      * @param string $databaseId
      * @param string $collectionId
      * @param string $relatedCollectionId
-     * @param RelationshipType $type
+     * @param string $type
      * @param bool $twoWay
      * @param string $key
      * @param string $twoWayKey
-     * @param RelationMutate $onDelete
+     * @param string $onDelete
      * @throws AppwriteException
      * @return array
 
      */
-    public function createRelationshipAttribute(string $databaseId, string $collectionId, string $relatedCollectionId, RelationshipType $type, bool $twoWay = null, string $key = null, string $twoWayKey = null, RelationMutate $onDelete = null): array
+    public function createRelationshipAttribute(string $databaseId, string $collectionId, string $relatedCollectionId, string $type, bool $twoWay = null, string $key = null, string $twoWayKey = null, string $onDelete = null): array
     {
         $apiPath = str_replace(['{databaseId}', '{collectionId}'], [$databaseId, $collectionId], '/databases/{databaseId}/collections/{collectionId}/attributes/relationship');
 
@@ -1533,12 +1530,12 @@ class Databases extends Service
      * @param string $databaseId
      * @param string $collectionId
      * @param string $key
-     * @param RelationMutate $onDelete
+     * @param string $onDelete
      * @throws AppwriteException
      * @return array
 
      */
-    public function updateRelationshipAttribute(string $databaseId, string $collectionId, string $key, RelationMutate $onDelete = null): array
+    public function updateRelationshipAttribute(string $databaseId, string $collectionId, string $key, string $onDelete = null): array
     {
         $apiPath = str_replace(['{databaseId}', '{collectionId}', '{key}'], [$databaseId, $collectionId, $key], '/databases/{databaseId}/collections/{collectionId}/attributes/{key}/relationship');
 
@@ -1798,14 +1795,14 @@ class Databases extends Service
      * @param string $databaseId
      * @param string $collectionId
      * @param string $key
-     * @param IndexType $type
+     * @param string $type
      * @param array $attributes
      * @param array $orders
      * @throws AppwriteException
      * @return array
 
      */
-    public function createIndex(string $databaseId, string $collectionId, string $key, IndexType $type, array $attributes, array $orders = null): array
+    public function createIndex(string $databaseId, string $collectionId, string $key, string $type, array $attributes, array $orders = null): array
     {
         $apiPath = str_replace(['{databaseId}', '{collectionId}'], [$databaseId, $collectionId], '/databases/{databaseId}/collections/{collectionId}/indexes');
 

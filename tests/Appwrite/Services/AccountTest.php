@@ -31,10 +31,7 @@ final class AccountTest extends TestCase {
             "phone" => "+4930901820",
             "emailVerification" => true,
             "phoneVerification" => true,
-            "mfa" => true,
-            "totp" => true,
             "prefs" => array(),
-            "targets" => array(),
             "accessedAt" => "2020-10-15T06:38:00.000+00:00",);
 
 
@@ -43,41 +40,6 @@ final class AccountTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->account->get(
-        );
-
-        $this->assertSame($data, $response);
-    }
-
-    public function testMethodCreate(): void {
-
-        $data = array(
-            "\$id" => "5e5ea5c16897e",
-            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "name" => "John Doe",
-            "registration" => "2020-10-15T06:38:00.000+00:00",
-            "status" => true,
-            "labels" => array(),
-            "passwordUpdate" => "2020-10-15T06:38:00.000+00:00",
-            "email" => "john@appwrite.io",
-            "phone" => "+4930901820",
-            "emailVerification" => true,
-            "phoneVerification" => true,
-            "mfa" => true,
-            "totp" => true,
-            "prefs" => array(),
-            "targets" => array(),
-            "accessedAt" => "2020-10-15T06:38:00.000+00:00",);
-
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-
-        $response = $this->account->create(
-            "[USER_ID]",
-            "email@example.com",
-            ""
         );
 
         $this->assertSame($data, $response);
@@ -98,10 +60,7 @@ final class AccountTest extends TestCase {
             "phone" => "+4930901820",
             "emailVerification" => true,
             "phoneVerification" => true,
-            "mfa" => true,
-            "totp" => true,
             "prefs" => array(),
-            "targets" => array(),
             "accessedAt" => "2020-10-15T06:38:00.000+00:00",);
 
 
@@ -150,22 +109,6 @@ final class AccountTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
-    public function testMethodCreateJWT(): void {
-
-        $data = array(
-            "jwt" => "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",);
-
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-
-        $response = $this->account->createJWT(
-        );
-
-        $this->assertSame($data, $response);
-    }
-
     public function testMethodListLogs(): void {
 
         $data = array(
@@ -178,181 +121,6 @@ final class AccountTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->account->listLogs(
-        );
-
-        $this->assertSame($data, $response);
-    }
-
-    public function testMethodUpdateMFA(): void {
-
-        $data = array(
-            "\$id" => "5e5ea5c16897e",
-            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "name" => "John Doe",
-            "registration" => "2020-10-15T06:38:00.000+00:00",
-            "status" => true,
-            "labels" => array(),
-            "passwordUpdate" => "2020-10-15T06:38:00.000+00:00",
-            "email" => "john@appwrite.io",
-            "phone" => "+4930901820",
-            "emailVerification" => true,
-            "phoneVerification" => true,
-            "mfa" => true,
-            "totp" => true,
-            "prefs" => array(),
-            "targets" => array(),
-            "accessedAt" => "2020-10-15T06:38:00.000+00:00",);
-
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-
-        $response = $this->account->updateMFA(
-            true
-        );
-
-        $this->assertSame($data, $response);
-    }
-
-    public function testMethodCreateChallenge(): void {
-
-        $data = array(
-            "\$id" => "bb8ea5c16897e",
-            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "userId" => "5e5ea5c168bb8",
-            "expire" => "2020-10-15T06:38:00.000+00:00",);
-
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-
-        $response = $this->account->createChallenge(
-            "totp"
-        );
-
-        $this->assertSame($data, $response);
-    }
-
-    public function testMethodUpdateChallenge(): void {
-
-        $data = '';
-
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-
-        $response = $this->account->updateChallenge(
-            "[CHALLENGE_ID]",
-            "[OTP]"
-        );
-
-        $this->assertSame($data, $response);
-    }
-
-    public function testMethodListFactors(): void {
-
-        $data = array(
-            "totp" => true,
-            "phone" => true,
-            "email" => true,);
-
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-
-        $response = $this->account->listFactors(
-        );
-
-        $this->assertSame($data, $response);
-    }
-
-    public function testMethodAddAuthenticator(): void {
-
-        $data = array(
-            "backups" => array(),
-            "secret" => "1",
-            "uri" => "1",);
-
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-
-        $response = $this->account->addAuthenticator(
-            "totp"
-        );
-
-        $this->assertSame($data, $response);
-    }
-
-    public function testMethodVerifyAuthenticator(): void {
-
-        $data = array(
-            "\$id" => "5e5ea5c16897e",
-            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "name" => "John Doe",
-            "registration" => "2020-10-15T06:38:00.000+00:00",
-            "status" => true,
-            "labels" => array(),
-            "passwordUpdate" => "2020-10-15T06:38:00.000+00:00",
-            "email" => "john@appwrite.io",
-            "phone" => "+4930901820",
-            "emailVerification" => true,
-            "phoneVerification" => true,
-            "mfa" => true,
-            "totp" => true,
-            "prefs" => array(),
-            "targets" => array(),
-            "accessedAt" => "2020-10-15T06:38:00.000+00:00",);
-
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-
-        $response = $this->account->verifyAuthenticator(
-            "totp",
-            "[OTP]"
-        );
-
-        $this->assertSame($data, $response);
-    }
-
-    public function testMethodDeleteAuthenticator(): void {
-
-        $data = array(
-            "\$id" => "5e5ea5c16897e",
-            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "name" => "John Doe",
-            "registration" => "2020-10-15T06:38:00.000+00:00",
-            "status" => true,
-            "labels" => array(),
-            "passwordUpdate" => "2020-10-15T06:38:00.000+00:00",
-            "email" => "john@appwrite.io",
-            "phone" => "+4930901820",
-            "emailVerification" => true,
-            "phoneVerification" => true,
-            "mfa" => true,
-            "totp" => true,
-            "prefs" => array(),
-            "targets" => array(),
-            "accessedAt" => "2020-10-15T06:38:00.000+00:00",);
-
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-
-        $response = $this->account->deleteAuthenticator(
-            "totp",
-            "[OTP]"
         );
 
         $this->assertSame($data, $response);
@@ -373,10 +141,7 @@ final class AccountTest extends TestCase {
             "phone" => "+4930901820",
             "emailVerification" => true,
             "phoneVerification" => true,
-            "mfa" => true,
-            "totp" => true,
             "prefs" => array(),
-            "targets" => array(),
             "accessedAt" => "2020-10-15T06:38:00.000+00:00",);
 
 
@@ -406,10 +171,7 @@ final class AccountTest extends TestCase {
             "phone" => "+4930901820",
             "emailVerification" => true,
             "phoneVerification" => true,
-            "mfa" => true,
-            "totp" => true,
             "prefs" => array(),
-            "targets" => array(),
             "accessedAt" => "2020-10-15T06:38:00.000+00:00",);
 
 
@@ -439,10 +201,7 @@ final class AccountTest extends TestCase {
             "phone" => "+4930901820",
             "emailVerification" => true,
             "phoneVerification" => true,
-            "mfa" => true,
-            "totp" => true,
             "prefs" => array(),
-            "targets" => array(),
             "accessedAt" => "2020-10-15T06:38:00.000+00:00",);
 
 
@@ -488,10 +247,7 @@ final class AccountTest extends TestCase {
             "phone" => "+4930901820",
             "emailVerification" => true,
             "phoneVerification" => true,
-            "mfa" => true,
-            "totp" => true,
             "prefs" => array(),
-            "targets" => array(),
             "accessedAt" => "2020-10-15T06:38:00.000+00:00",);
 
 
@@ -513,8 +269,7 @@ final class AccountTest extends TestCase {
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "userId" => "5e5ea5c168bb8",
             "secret" => "",
-            "expire" => "2020-10-15T06:38:00.000+00:00",
-            "phrase" => "Golden Fox",);
+            "expire" => "2020-10-15T06:38:00.000+00:00",);
 
 
         $this->client
@@ -536,8 +291,7 @@ final class AccountTest extends TestCase {
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "userId" => "5e5ea5c168bb8",
             "secret" => "",
-            "expire" => "2020-10-15T06:38:00.000+00:00",
-            "phrase" => "Golden Fox",);
+            "expire" => "2020-10-15T06:38:00.000+00:00",);
 
 
         $this->client
@@ -547,7 +301,8 @@ final class AccountTest extends TestCase {
         $response = $this->account->updateRecovery(
             "[USER_ID]",
             "[SECRET]",
-            ""
+            "password",
+            "password"
         );
 
         $this->assertSame($data, $response);
@@ -585,196 +340,6 @@ final class AccountTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
-    public function testMethodCreateAnonymousSession(): void {
-
-        $data = array(
-            "\$id" => "5e5ea5c16897e",
-            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "userId" => "5e5bb8c16897e",
-            "expire" => "2020-10-15T06:38:00.000+00:00",
-            "provider" => "email",
-            "providerUid" => "user@example.com",
-            "providerAccessToken" => "MTQ0NjJkZmQ5OTM2NDE1ZTZjNGZmZjI3",
-            "providerAccessTokenExpiry" => "2020-10-15T06:38:00.000+00:00",
-            "providerRefreshToken" => "MTQ0NjJkZmQ5OTM2NDE1ZTZjNGZmZjI3",
-            "ip" => "127.0.0.1",
-            "osCode" => "Mac",
-            "osName" => "Mac",
-            "osVersion" => "Mac",
-            "clientType" => "browser",
-            "clientCode" => "CM",
-            "clientName" => "Chrome Mobile iOS",
-            "clientVersion" => "84.0",
-            "clientEngine" => "WebKit",
-            "clientEngineVersion" => "605.1.15",
-            "deviceName" => "smartphone",
-            "deviceBrand" => "Google",
-            "deviceModel" => "Nexus 5",
-            "countryCode" => "US",
-            "countryName" => "United States",
-            "current" => true,
-            "factors" => array(),
-            "secret" => "5e5bb8c16897e",);
-
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-
-        $response = $this->account->createAnonymousSession(
-        );
-
-        $this->assertSame($data, $response);
-    }
-
-    public function testMethodCreateEmailPasswordSession(): void {
-
-        $data = array(
-            "\$id" => "5e5ea5c16897e",
-            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "userId" => "5e5bb8c16897e",
-            "expire" => "2020-10-15T06:38:00.000+00:00",
-            "provider" => "email",
-            "providerUid" => "user@example.com",
-            "providerAccessToken" => "MTQ0NjJkZmQ5OTM2NDE1ZTZjNGZmZjI3",
-            "providerAccessTokenExpiry" => "2020-10-15T06:38:00.000+00:00",
-            "providerRefreshToken" => "MTQ0NjJkZmQ5OTM2NDE1ZTZjNGZmZjI3",
-            "ip" => "127.0.0.1",
-            "osCode" => "Mac",
-            "osName" => "Mac",
-            "osVersion" => "Mac",
-            "clientType" => "browser",
-            "clientCode" => "CM",
-            "clientName" => "Chrome Mobile iOS",
-            "clientVersion" => "84.0",
-            "clientEngine" => "WebKit",
-            "clientEngineVersion" => "605.1.15",
-            "deviceName" => "smartphone",
-            "deviceBrand" => "Google",
-            "deviceModel" => "Nexus 5",
-            "countryCode" => "US",
-            "countryName" => "United States",
-            "current" => true,
-            "factors" => array(),
-            "secret" => "5e5bb8c16897e",);
-
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-
-        $response = $this->account->createEmailPasswordSession(
-            "email@example.com",
-            "password"
-        );
-
-        $this->assertSame($data, $response);
-    }
-
-    public function testMethodUpdateMagicURLSession(): void {
-
-        $data = array(
-            "\$id" => "5e5ea5c16897e",
-            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "userId" => "5e5bb8c16897e",
-            "expire" => "2020-10-15T06:38:00.000+00:00",
-            "provider" => "email",
-            "providerUid" => "user@example.com",
-            "providerAccessToken" => "MTQ0NjJkZmQ5OTM2NDE1ZTZjNGZmZjI3",
-            "providerAccessTokenExpiry" => "2020-10-15T06:38:00.000+00:00",
-            "providerRefreshToken" => "MTQ0NjJkZmQ5OTM2NDE1ZTZjNGZmZjI3",
-            "ip" => "127.0.0.1",
-            "osCode" => "Mac",
-            "osName" => "Mac",
-            "osVersion" => "Mac",
-            "clientType" => "browser",
-            "clientCode" => "CM",
-            "clientName" => "Chrome Mobile iOS",
-            "clientVersion" => "84.0",
-            "clientEngine" => "WebKit",
-            "clientEngineVersion" => "605.1.15",
-            "deviceName" => "smartphone",
-            "deviceBrand" => "Google",
-            "deviceModel" => "Nexus 5",
-            "countryCode" => "US",
-            "countryName" => "United States",
-            "current" => true,
-            "factors" => array(),
-            "secret" => "5e5bb8c16897e",);
-
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-
-        $response = $this->account->updateMagicURLSession(
-            "[USER_ID]",
-            "[SECRET]"
-        );
-
-        $this->assertSame($data, $response);
-    }
-
-    public function testMethodCreateOAuth2Session(): void {
-
-        $data = array();
-
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-
-        $response = $this->account->createOAuth2Session(
-            "amazon"
-        );
-
-        $this->assertSame($data, $response);
-    }
-
-    public function testMethodCreateSession(): void {
-
-        $data = array(
-            "\$id" => "5e5ea5c16897e",
-            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "userId" => "5e5bb8c16897e",
-            "expire" => "2020-10-15T06:38:00.000+00:00",
-            "provider" => "email",
-            "providerUid" => "user@example.com",
-            "providerAccessToken" => "MTQ0NjJkZmQ5OTM2NDE1ZTZjNGZmZjI3",
-            "providerAccessTokenExpiry" => "2020-10-15T06:38:00.000+00:00",
-            "providerRefreshToken" => "MTQ0NjJkZmQ5OTM2NDE1ZTZjNGZmZjI3",
-            "ip" => "127.0.0.1",
-            "osCode" => "Mac",
-            "osName" => "Mac",
-            "osVersion" => "Mac",
-            "clientType" => "browser",
-            "clientCode" => "CM",
-            "clientName" => "Chrome Mobile iOS",
-            "clientVersion" => "84.0",
-            "clientEngine" => "WebKit",
-            "clientEngineVersion" => "605.1.15",
-            "deviceName" => "smartphone",
-            "deviceBrand" => "Google",
-            "deviceModel" => "Nexus 5",
-            "countryCode" => "US",
-            "countryName" => "United States",
-            "current" => true,
-            "factors" => array(),
-            "secret" => "5e5bb8c16897e",);
-
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-
-        $response = $this->account->createSession(
-            "[USER_ID]",
-            "[SECRET]"
-        );
-
-        $this->assertSame($data, $response);
-    }
-
     public function testMethodGetSession(): void {
 
         $data = array(
@@ -802,9 +367,7 @@ final class AccountTest extends TestCase {
             "deviceModel" => "Nexus 5",
             "countryCode" => "US",
             "countryName" => "United States",
-            "current" => true,
-            "factors" => array(),
-            "secret" => "5e5bb8c16897e",);
+            "current" => true,);
 
 
         $this->client
@@ -845,9 +408,7 @@ final class AccountTest extends TestCase {
             "deviceModel" => "Nexus 5",
             "countryCode" => "US",
             "countryName" => "United States",
-            "current" => true,
-            "factors" => array(),
-            "secret" => "5e5bb8c16897e",);
+            "current" => true,);
 
 
         $this->client
@@ -892,10 +453,7 @@ final class AccountTest extends TestCase {
             "phone" => "+4930901820",
             "emailVerification" => true,
             "phoneVerification" => true,
-            "mfa" => true,
-            "totp" => true,
             "prefs" => array(),
-            "targets" => array(),
             "accessedAt" => "2020-10-15T06:38:00.000+00:00",);
 
 
@@ -909,75 +467,6 @@ final class AccountTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
-    public function testMethodCreateEmailToken(): void {
-
-        $data = array(
-            "\$id" => "bb8ea5c16897e",
-            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "userId" => "5e5ea5c168bb8",
-            "secret" => "",
-            "expire" => "2020-10-15T06:38:00.000+00:00",
-            "phrase" => "Golden Fox",);
-
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-
-        $response = $this->account->createEmailToken(
-            "[USER_ID]",
-            "email@example.com"
-        );
-
-        $this->assertSame($data, $response);
-    }
-
-    public function testMethodCreateMagicURLToken(): void {
-
-        $data = array(
-            "\$id" => "bb8ea5c16897e",
-            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "userId" => "5e5ea5c168bb8",
-            "secret" => "",
-            "expire" => "2020-10-15T06:38:00.000+00:00",
-            "phrase" => "Golden Fox",);
-
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-
-        $response = $this->account->createMagicURLToken(
-            "[USER_ID]",
-            "email@example.com"
-        );
-
-        $this->assertSame($data, $response);
-    }
-
-    public function testMethodCreatePhoneToken(): void {
-
-        $data = array(
-            "\$id" => "bb8ea5c16897e",
-            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "userId" => "5e5ea5c168bb8",
-            "secret" => "",
-            "expire" => "2020-10-15T06:38:00.000+00:00",
-            "phrase" => "Golden Fox",);
-
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-
-        $response = $this->account->createPhoneToken(
-            "[USER_ID]",
-            "+12065550100"
-        );
-
-        $this->assertSame($data, $response);
-    }
-
     public function testMethodCreateVerification(): void {
 
         $data = array(
@@ -985,8 +474,7 @@ final class AccountTest extends TestCase {
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "userId" => "5e5ea5c168bb8",
             "secret" => "",
-            "expire" => "2020-10-15T06:38:00.000+00:00",
-            "phrase" => "Golden Fox",);
+            "expire" => "2020-10-15T06:38:00.000+00:00",);
 
 
         $this->client
@@ -1007,8 +495,7 @@ final class AccountTest extends TestCase {
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "userId" => "5e5ea5c168bb8",
             "secret" => "",
-            "expire" => "2020-10-15T06:38:00.000+00:00",
-            "phrase" => "Golden Fox",);
+            "expire" => "2020-10-15T06:38:00.000+00:00",);
 
 
         $this->client
@@ -1030,8 +517,7 @@ final class AccountTest extends TestCase {
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "userId" => "5e5ea5c168bb8",
             "secret" => "",
-            "expire" => "2020-10-15T06:38:00.000+00:00",
-            "phrase" => "Golden Fox",);
+            "expire" => "2020-10-15T06:38:00.000+00:00",);
 
 
         $this->client
@@ -1051,8 +537,7 @@ final class AccountTest extends TestCase {
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "userId" => "5e5ea5c168bb8",
             "secret" => "",
-            "expire" => "2020-10-15T06:38:00.000+00:00",
-            "phrase" => "Golden Fox",);
+            "expire" => "2020-10-15T06:38:00.000+00:00",);
 
 
         $this->client

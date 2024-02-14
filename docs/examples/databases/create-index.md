@@ -2,7 +2,6 @@
 
 use Appwrite\Client;
 use Appwrite\Services\Databases;
-use Appwrite\Enums\IndexType;
 
 $client = new Client();
 
@@ -14,4 +13,4 @@ $client
 
 $databases = new Databases($client);
 
-$result = $databases->createIndex('[DATABASE_ID]', '[COLLECTION_ID]', '', IndexType::KEY(), []);
+$result = $databases->createIndex('[DATABASE_ID]', '[COLLECTION_ID]', '', 'key', []);

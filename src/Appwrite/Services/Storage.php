@@ -6,9 +6,6 @@ use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
 use Appwrite\InputFile;
-use Appwrite\Enums\Compression;
-use Appwrite\Enums\ImageGravity;
-use Appwrite\Enums\ImageFormat;
 
 class Storage extends Service
 {
@@ -60,14 +57,14 @@ class Storage extends Service
      * @param bool $enabled
      * @param int $maximumFileSize
      * @param array $allowedFileExtensions
-     * @param Compression $compression
+     * @param string $compression
      * @param bool $encryption
      * @param bool $antivirus
      * @throws AppwriteException
      * @return array
 
      */
-    public function createBucket(string $bucketId, string $name, array $permissions = null, bool $fileSecurity = null, bool $enabled = null, int $maximumFileSize = null, array $allowedFileExtensions = null, Compression $compression = null, bool $encryption = null, bool $antivirus = null): array
+    public function createBucket(string $bucketId, string $name, array $permissions = null, bool $fileSecurity = null, bool $enabled = null, int $maximumFileSize = null, array $allowedFileExtensions = null, string $compression = null, bool $encryption = null, bool $antivirus = null): array
     {
         $apiPath = str_replace([], [], '/storage/buckets');
 
@@ -161,14 +158,14 @@ class Storage extends Service
      * @param bool $enabled
      * @param int $maximumFileSize
      * @param array $allowedFileExtensions
-     * @param Compression $compression
+     * @param string $compression
      * @param bool $encryption
      * @param bool $antivirus
      * @throws AppwriteException
      * @return array
 
      */
-    public function updateBucket(string $bucketId, string $name, array $permissions = null, bool $fileSecurity = null, bool $enabled = null, int $maximumFileSize = null, array $allowedFileExtensions = null, Compression $compression = null, bool $encryption = null, bool $antivirus = null): array
+    public function updateBucket(string $bucketId, string $name, array $permissions = null, bool $fileSecurity = null, bool $enabled = null, int $maximumFileSize = null, array $allowedFileExtensions = null, string $compression = null, bool $encryption = null, bool $antivirus = null): array
     {
         $apiPath = str_replace(['{bucketId}'], [$bucketId], '/storage/buckets/{bucketId}');
 
@@ -558,7 +555,7 @@ class Storage extends Service
      * @param string $fileId
      * @param int $width
      * @param int $height
-     * @param ImageGravity $gravity
+     * @param string $gravity
      * @param int $quality
      * @param int $borderWidth
      * @param string $borderColor
@@ -566,12 +563,12 @@ class Storage extends Service
      * @param int $opacity
      * @param int $rotation
      * @param string $background
-     * @param ImageFormat $output
+     * @param string $output
      * @throws AppwriteException
      * @return string
 
      */
-    public function getFilePreview(string $bucketId, string $fileId, int $width = null, int $height = null, ImageGravity $gravity = null, int $quality = null, int $borderWidth = null, string $borderColor = null, int $borderRadius = null, int $opacity = null, int $rotation = null, string $background = null, ImageFormat $output = null): string
+    public function getFilePreview(string $bucketId, string $fileId, int $width = null, int $height = null, string $gravity = null, int $quality = null, int $borderWidth = null, string $borderColor = null, int $borderRadius = null, int $opacity = null, int $rotation = null, string $background = null, string $output = null): string
     {
         $apiPath = str_replace(['{bucketId}', '{fileId}'], [$bucketId, $fileId], '/storage/buckets/{bucketId}/files/{fileId}/preview');
 
