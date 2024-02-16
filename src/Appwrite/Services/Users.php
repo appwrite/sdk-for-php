@@ -6,6 +6,9 @@ use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
 use Appwrite\InputFile;
+use Appwrite\Enums\PasswordHash;
+use Appwrite\Enums\Type;
+use Appwrite\Enums\MessagingProviderType;
 
 class Users extends Service
 {
@@ -202,13 +205,13 @@ class Users extends Service
      *
      * Get identities for all users.
      *
-     * @param string $queries
+     * @param array $queries
      * @param string $search
      * @throws AppwriteException
      * @return array
 
      */
-    public function listIdentities(string $queries = null, string $search = null): array
+    public function listIdentities(array $queries = null, string $search = null): array
     {
         $apiPath = str_replace([], [], '/users/identities');
 
@@ -228,7 +231,7 @@ class Users extends Service
     }
 
     /**
-     * Delete Identity
+     * Delete identity
      *
      * Delete an identity by its unique ID.
      *
@@ -535,13 +538,13 @@ class Users extends Service
      * @param string $userId
      * @param string $email
      * @param string $password
-     * @param string $passwordVersion
+     * @param PasswordHash $passwordVersion
      * @param string $name
      * @throws AppwriteException
      * @return array
 
      */
-    public function createSHAUser(string $userId, string $email, string $password, string $passwordVersion = null, string $name = null): array
+    public function createSHAUser(string $userId, string $email, string $password, PasswordHash $passwordVersion = null, string $name = null): array
     {
         $apiPath = str_replace([], [], '/users/sha');
 
@@ -757,6 +760,92 @@ class Users extends Service
     }
 
     /**
+     * Update MFA
+     *
+     * @param string $userId
+     * @param bool $mfa
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function updateMfa(string $userId, bool $mfa): array
+    {
+        $apiPath = str_replace(['{userId}'], [$userId], '/users/{userId}/mfa');
+
+        $apiParams = [];
+        if (!isset($userId)) {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+        if (!isset($mfa)) {
+            throw new AppwriteException('Missing required parameter: "mfa"');
+        }
+        if (!is_null($mfa)) {
+            $apiParams['mfa'] = $mfa;
+        }
+
+
+        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
+            'content-type' => 'application/json',
+        ], $apiParams);
+    }
+
+    /**
+     * List Factors
+     *
+     * @param string $userId
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function listFactors(string $userId): array
+    {
+        $apiPath = str_replace(['{userId}'], [$userId], '/users/{userId}/mfa/factors');
+
+        $apiParams = [];
+        if (!isset($userId)) {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
+        return $this->client->call(Client::METHOD_GET, $apiPath, [
+            'content-type' => 'application/json',
+        ], $apiParams);
+    }
+
+    /**
+     * Delete Authenticator
+     *
+     * @param string $userId
+     * @param Type $type
+     * @param string $otp
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function deleteAuthenticator(string $userId, Type $type, string $otp): array
+    {
+        $apiPath = str_replace(['{userId}', '{type}'], [$userId, $type], '/users/{userId}/mfa/{type}');
+
+        $apiParams = [];
+        if (!isset($userId)) {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+        if (!isset($type)) {
+            throw new AppwriteException('Missing required parameter: "type"');
+        }
+        if (!isset($otp)) {
+            throw new AppwriteException('Missing required parameter: "otp"');
+        }
+        if (!is_null($otp)) {
+            $apiParams['otp'] = $otp;
+        }
+
+
+        return $this->client->call(Client::METHOD_DELETE, $apiPath, [
+            'content-type' => 'application/json',
+        ], $apiParams);
+    }
+
+    /**
      * Update name
      *
      * Update the user name by its unique ID.
@@ -935,6 +1024,35 @@ class Users extends Service
     }
 
     /**
+     * Create session
+     *
+     * Creates a session for a user. Returns an immediately usable session object.
+     * 
+     * If you want to generate a token for a custom authentication flow, use the
+     * [POST
+     * /users/{userId}/tokens](https://appwrite.io/docs/server/users#createToken)
+     * endpoint.
+     *
+     * @param string $userId
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function createSession(string $userId): array
+    {
+        $apiPath = str_replace(['{userId}'], [$userId], '/users/{userId}/sessions');
+
+        $apiParams = [];
+        if (!isset($userId)) {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
+        return $this->client->call(Client::METHOD_POST, $apiPath, [
+            'content-type' => 'application/json',
+        ], $apiParams);
+    }
+
+    /**
      * Delete user sessions
      *
      * Delete all user's sessions by using the user's unique ID.
@@ -1015,6 +1133,220 @@ class Users extends Service
 
 
         return $this->client->call(Client::METHOD_PATCH, $apiPath, [
+            'content-type' => 'application/json',
+        ], $apiParams);
+    }
+
+    /**
+     * List User Targets
+     *
+     * @param string $userId
+     * @param array $queries
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function listTargets(string $userId, array $queries = null): array
+    {
+        $apiPath = str_replace(['{userId}'], [$userId], '/users/{userId}/targets');
+
+        $apiParams = [];
+        if (!isset($userId)) {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+        if (!is_null($queries)) {
+            $apiParams['queries'] = $queries;
+        }
+
+
+        return $this->client->call(Client::METHOD_GET, $apiPath, [
+            'content-type' => 'application/json',
+        ], $apiParams);
+    }
+
+    /**
+     * Create User Target
+     *
+     * @param string $userId
+     * @param string $targetId
+     * @param MessagingProviderType $providerType
+     * @param string $identifier
+     * @param string $providerId
+     * @param string $name
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function createTarget(string $userId, string $targetId, MessagingProviderType $providerType, string $identifier, string $providerId = null, string $name = null): array
+    {
+        $apiPath = str_replace(['{userId}'], [$userId], '/users/{userId}/targets');
+
+        $apiParams = [];
+        if (!isset($userId)) {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+        if (!isset($targetId)) {
+            throw new AppwriteException('Missing required parameter: "targetId"');
+        }
+        if (!isset($providerType)) {
+            throw new AppwriteException('Missing required parameter: "providerType"');
+        }
+        if (!isset($identifier)) {
+            throw new AppwriteException('Missing required parameter: "identifier"');
+        }
+        if (!is_null($targetId)) {
+            $apiParams['targetId'] = $targetId;
+        }
+
+        if (!is_null($providerType)) {
+            $apiParams['providerType'] = $providerType;
+        }
+
+        if (!is_null($identifier)) {
+            $apiParams['identifier'] = $identifier;
+        }
+
+        if (!is_null($providerId)) {
+            $apiParams['providerId'] = $providerId;
+        }
+
+        if (!is_null($name)) {
+            $apiParams['name'] = $name;
+        }
+
+
+        return $this->client->call(Client::METHOD_POST, $apiPath, [
+            'content-type' => 'application/json',
+        ], $apiParams);
+    }
+
+    /**
+     * Get User Target
+     *
+     * @param string $userId
+     * @param string $targetId
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function getTarget(string $userId, string $targetId): array
+    {
+        $apiPath = str_replace(['{userId}', '{targetId}'], [$userId, $targetId], '/users/{userId}/targets/{targetId}');
+
+        $apiParams = [];
+        if (!isset($userId)) {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+        if (!isset($targetId)) {
+            throw new AppwriteException('Missing required parameter: "targetId"');
+        }
+
+        return $this->client->call(Client::METHOD_GET, $apiPath, [
+            'content-type' => 'application/json',
+        ], $apiParams);
+    }
+
+    /**
+     * Update User target
+     *
+     * @param string $userId
+     * @param string $targetId
+     * @param string $identifier
+     * @param string $providerId
+     * @param string $name
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function updateTarget(string $userId, string $targetId, string $identifier = null, string $providerId = null, string $name = null): array
+    {
+        $apiPath = str_replace(['{userId}', '{targetId}'], [$userId, $targetId], '/users/{userId}/targets/{targetId}');
+
+        $apiParams = [];
+        if (!isset($userId)) {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+        if (!isset($targetId)) {
+            throw new AppwriteException('Missing required parameter: "targetId"');
+        }
+        if (!is_null($identifier)) {
+            $apiParams['identifier'] = $identifier;
+        }
+
+        if (!is_null($providerId)) {
+            $apiParams['providerId'] = $providerId;
+        }
+
+        if (!is_null($name)) {
+            $apiParams['name'] = $name;
+        }
+
+
+        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
+            'content-type' => 'application/json',
+        ], $apiParams);
+    }
+
+    /**
+     * Delete user target
+     *
+     * @param string $userId
+     * @param string $targetId
+     * @throws AppwriteException
+     * @return string
+
+     */
+    public function deleteTarget(string $userId, string $targetId): string
+    {
+        $apiPath = str_replace(['{userId}', '{targetId}'], [$userId, $targetId], '/users/{userId}/targets/{targetId}');
+
+        $apiParams = [];
+        if (!isset($userId)) {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+        if (!isset($targetId)) {
+            throw new AppwriteException('Missing required parameter: "targetId"');
+        }
+
+        return $this->client->call(Client::METHOD_DELETE, $apiPath, [
+            'content-type' => 'application/json',
+        ], $apiParams);
+    }
+
+    /**
+     * Create token
+     *
+     * Returns a token with a secret key for creating a session. If the provided
+     * user ID has not be registered, a new user will be created. Use the returned
+     * user ID and secret and submit a request to the [PUT
+     * /account/sessions/custom](https://appwrite.io/docs/references/cloud/client-web/account#updateCustomSession)
+     * endpoint to complete the login process.
+     *
+     * @param string $userId
+     * @param int $length
+     * @param int $expire
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function createToken(string $userId, int $length = null, int $expire = null): array
+    {
+        $apiPath = str_replace(['{userId}'], [$userId], '/users/{userId}/tokens');
+
+        $apiParams = [];
+        if (!isset($userId)) {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+        if (!is_null($length)) {
+            $apiParams['length'] = $length;
+        }
+
+        if (!is_null($expire)) {
+            $apiParams['expire'] = $expire;
+        }
+
+
+        return $this->client->call(Client::METHOD_POST, $apiPath, [
             'content-type' => 'application/json',
         ], $apiParams);
     }

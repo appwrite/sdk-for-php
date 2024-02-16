@@ -149,6 +149,7 @@ final class TeamsTest extends TestCase {
             "invited" => "2020-10-15T06:38:00.000+00:00",
             "joined" => "2020-10-15T06:38:00.000+00:00",
             "confirm" => true,
+            "mfa" => true,
             "roles" => array(),);
 
 
@@ -178,6 +179,7 @@ final class TeamsTest extends TestCase {
             "invited" => "2020-10-15T06:38:00.000+00:00",
             "joined" => "2020-10-15T06:38:00.000+00:00",
             "confirm" => true,
+            "mfa" => true,
             "roles" => array(),);
 
 
@@ -207,6 +209,7 @@ final class TeamsTest extends TestCase {
             "invited" => "2020-10-15T06:38:00.000+00:00",
             "joined" => "2020-10-15T06:38:00.000+00:00",
             "confirm" => true,
+            "mfa" => true,
             "roles" => array(),);
 
 
@@ -254,6 +257,7 @@ final class TeamsTest extends TestCase {
             "invited" => "2020-10-15T06:38:00.000+00:00",
             "joined" => "2020-10-15T06:38:00.000+00:00",
             "confirm" => true,
+            "mfa" => true,
             "roles" => array(),);
 
 

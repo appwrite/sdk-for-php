@@ -69,6 +69,27 @@ final class HealthTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
+    public function testMethodGetCertificate(): void {
+
+        $data = array(
+            "name" => "/CN=www.google.com",
+            "subjectSN" => "",
+            "issuerOrganisation" => "",
+            "validFrom" => "1704200998",
+            "validTo" => "1711458597",
+            "signatureTypeSN" => "RSA-SHA256",);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->health->getCertificate(
+        );
+
+        $this->assertSame($data, $response);
+    }
+
     public function testMethodGetDB(): void {
 
         $data = array(
@@ -182,6 +203,23 @@ final class HealthTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->health->getQueueDeletes(
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodGetFailedJobs(): void {
+
+        $data = array(
+            "size" => 8,);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->health->getFailedJobs(
+            "v1-database"
         );
 
         $this->assertSame($data, $response);

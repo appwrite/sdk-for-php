@@ -3,7 +3,7 @@
 ## List functions
 
 ```http request
-GET https://HOSTNAME/v1/functions
+GET https://cloud.appwrite.io/v1/functions
 ```
 
 ** Get a list of all the project&#039;s functions. You can use the query params to filter your results. **
@@ -18,7 +18,7 @@ GET https://HOSTNAME/v1/functions
 ## Create function
 
 ```http request
-POST https://HOSTNAME/v1/functions
+POST https://cloud.appwrite.io/v1/functions
 ```
 
 ** Create a new function. You can pass a list of [permissions](https://appwrite.io/docs/permissions) to allow different project users or team with access to execute the function using the client API. **
@@ -51,7 +51,7 @@ POST https://HOSTNAME/v1/functions
 ## List runtimes
 
 ```http request
-GET https://HOSTNAME/v1/functions/runtimes
+GET https://cloud.appwrite.io/v1/functions/runtimes
 ```
 
 ** Get a list of all runtimes that are currently active on your instance. **
@@ -59,7 +59,7 @@ GET https://HOSTNAME/v1/functions/runtimes
 ## Get function
 
 ```http request
-GET https://HOSTNAME/v1/functions/{functionId}
+GET https://cloud.appwrite.io/v1/functions/{functionId}
 ```
 
 ** Get a function by its unique ID. **
@@ -73,7 +73,7 @@ GET https://HOSTNAME/v1/functions/{functionId}
 ## Update function
 
 ```http request
-PUT https://HOSTNAME/v1/functions/{functionId}
+PUT https://cloud.appwrite.io/v1/functions/{functionId}
 ```
 
 ** Update function by its unique ID. **
@@ -102,7 +102,7 @@ PUT https://HOSTNAME/v1/functions/{functionId}
 ## Delete function
 
 ```http request
-DELETE https://HOSTNAME/v1/functions/{functionId}
+DELETE https://cloud.appwrite.io/v1/functions/{functionId}
 ```
 
 ** Delete a function by its unique ID. **
@@ -116,7 +116,7 @@ DELETE https://HOSTNAME/v1/functions/{functionId}
 ## List deployments
 
 ```http request
-GET https://HOSTNAME/v1/functions/{functionId}/deployments
+GET https://cloud.appwrite.io/v1/functions/{functionId}/deployments
 ```
 
 ** Get a list of all the project&#039;s code deployments. You can use the query params to filter your results. **
@@ -132,7 +132,7 @@ GET https://HOSTNAME/v1/functions/{functionId}/deployments
 ## Create deployment
 
 ```http request
-POST https://HOSTNAME/v1/functions/{functionId}/deployments
+POST https://cloud.appwrite.io/v1/functions/{functionId}/deployments
 ```
 
 ** Create a new function code deployment. Use this endpoint to upload a new version of your code function. To execute your newly uploaded code, you&#039;ll need to update the function&#039;s deployment to use your new deployment UID.
@@ -154,7 +154,7 @@ Use the &quot;command&quot; param to set the entrypoint used to execute your cod
 ## Get deployment
 
 ```http request
-GET https://HOSTNAME/v1/functions/{functionId}/deployments/{deploymentId}
+GET https://cloud.appwrite.io/v1/functions/{functionId}/deployments/{deploymentId}
 ```
 
 ** Get a code deployment by its unique ID. **
@@ -169,7 +169,7 @@ GET https://HOSTNAME/v1/functions/{functionId}/deployments/{deploymentId}
 ## Update function deployment
 
 ```http request
-PATCH https://HOSTNAME/v1/functions/{functionId}/deployments/{deploymentId}
+PATCH https://cloud.appwrite.io/v1/functions/{functionId}/deployments/{deploymentId}
 ```
 
 ** Update the function code deployment ID using the unique function ID. Use this endpoint to switch the code deployment that should be executed by the execution endpoint. **
@@ -184,7 +184,7 @@ PATCH https://HOSTNAME/v1/functions/{functionId}/deployments/{deploymentId}
 ## Delete deployment
 
 ```http request
-DELETE https://HOSTNAME/v1/functions/{functionId}/deployments/{deploymentId}
+DELETE https://cloud.appwrite.io/v1/functions/{functionId}/deployments/{deploymentId}
 ```
 
 ** Delete a code deployment by its unique ID. **
@@ -199,7 +199,7 @@ DELETE https://HOSTNAME/v1/functions/{functionId}/deployments/{deploymentId}
 ## Create build
 
 ```http request
-POST https://HOSTNAME/v1/functions/{functionId}/deployments/{deploymentId}/builds/{buildId}
+POST https://cloud.appwrite.io/v1/functions/{functionId}/deployments/{deploymentId}/builds/{buildId}
 ```
 
 ** Create a new build for an Appwrite Function deployment. This endpoint can be used to retry a failed build. **
@@ -215,7 +215,7 @@ POST https://HOSTNAME/v1/functions/{functionId}/deployments/{deploymentId}/build
 ## Download Deployment
 
 ```http request
-GET https://HOSTNAME/v1/functions/{functionId}/deployments/{deploymentId}/download
+GET https://cloud.appwrite.io/v1/functions/{functionId}/deployments/{deploymentId}/download
 ```
 
 ** Get a Deployment&#039;s contents by its unique ID. This endpoint supports range requests for partial or streaming file download. **
@@ -230,7 +230,7 @@ GET https://HOSTNAME/v1/functions/{functionId}/deployments/{deploymentId}/downlo
 ## List executions
 
 ```http request
-GET https://HOSTNAME/v1/functions/{functionId}/executions
+GET https://cloud.appwrite.io/v1/functions/{functionId}/executions
 ```
 
 ** Get a list of all the current user function execution logs. You can use the query params to filter your results. **
@@ -246,7 +246,7 @@ GET https://HOSTNAME/v1/functions/{functionId}/executions
 ## Create execution
 
 ```http request
-POST https://HOSTNAME/v1/functions/{functionId}/executions
+POST https://cloud.appwrite.io/v1/functions/{functionId}/executions
 ```
 
 ** Trigger a function execution. The returned object will return you the current execution status. You can ping the `Get Execution` endpoint to get updates on the current execution status. Once this endpoint is called, your function execution process will start asynchronously. **
@@ -265,7 +265,7 @@ POST https://HOSTNAME/v1/functions/{functionId}/executions
 ## Get execution
 
 ```http request
-GET https://HOSTNAME/v1/functions/{functionId}/executions/{executionId}
+GET https://cloud.appwrite.io/v1/functions/{functionId}/executions/{executionId}
 ```
 
 ** Get a function execution log by its unique ID. **
@@ -280,7 +280,7 @@ GET https://HOSTNAME/v1/functions/{functionId}/executions/{executionId}
 ## List variables
 
 ```http request
-GET https://HOSTNAME/v1/functions/{functionId}/variables
+GET https://cloud.appwrite.io/v1/functions/{functionId}/variables
 ```
 
 ** Get a list of all variables of a specific function. **
@@ -294,7 +294,7 @@ GET https://HOSTNAME/v1/functions/{functionId}/variables
 ## Create variable
 
 ```http request
-POST https://HOSTNAME/v1/functions/{functionId}/variables
+POST https://cloud.appwrite.io/v1/functions/{functionId}/variables
 ```
 
 ** Create a new function environment variable. These variables can be accessed in the function at runtime as environment variables. **
@@ -310,7 +310,7 @@ POST https://HOSTNAME/v1/functions/{functionId}/variables
 ## Get variable
 
 ```http request
-GET https://HOSTNAME/v1/functions/{functionId}/variables/{variableId}
+GET https://cloud.appwrite.io/v1/functions/{functionId}/variables/{variableId}
 ```
 
 ** Get a variable by its unique ID. **
@@ -325,7 +325,7 @@ GET https://HOSTNAME/v1/functions/{functionId}/variables/{variableId}
 ## Update variable
 
 ```http request
-PUT https://HOSTNAME/v1/functions/{functionId}/variables/{variableId}
+PUT https://cloud.appwrite.io/v1/functions/{functionId}/variables/{variableId}
 ```
 
 ** Update variable by its unique ID. **
@@ -342,7 +342,7 @@ PUT https://HOSTNAME/v1/functions/{functionId}/variables/{variableId}
 ## Delete variable
 
 ```http request
-DELETE https://HOSTNAME/v1/functions/{functionId}/variables/{variableId}
+DELETE https://cloud.appwrite.io/v1/functions/{functionId}/variables/{variableId}
 ```
 
 ** Delete a variable by its unique ID. **

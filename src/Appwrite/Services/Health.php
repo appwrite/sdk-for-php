@@ -6,6 +6,7 @@ use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
 use Appwrite\InputFile;
+use Appwrite\Enums\Name;
 
 class Health extends Service
 {
@@ -69,6 +70,31 @@ class Health extends Service
         $apiPath = str_replace([], [], '/health/cache');
 
         $apiParams = [];
+
+        return $this->client->call(Client::METHOD_GET, $apiPath, [
+            'content-type' => 'application/json',
+        ], $apiParams);
+    }
+
+    /**
+     * Get the SSL certificate for a domain
+     *
+     * Get the SSL certificate for a domain
+     *
+     * @param string $domain
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function getCertificate(string $domain = null): array
+    {
+        $apiPath = str_replace([], [], '/health/certificate');
+
+        $apiParams = [];
+        if (!is_null($domain)) {
+            $apiParams['domain'] = $domain;
+        }
+
 
         return $this->client->call(Client::METHOD_GET, $apiPath, [
             'content-type' => 'application/json',
@@ -236,6 +262,36 @@ class Health extends Service
         $apiPath = str_replace([], [], '/health/queue/deletes');
 
         $apiParams = [];
+        if (!is_null($threshold)) {
+            $apiParams['threshold'] = $threshold;
+        }
+
+
+        return $this->client->call(Client::METHOD_GET, $apiPath, [
+            'content-type' => 'application/json',
+        ], $apiParams);
+    }
+
+    /**
+     * Get number of failed queue jobs
+     *
+     * Returns the amount of failed jobs in a given queue.
+     * 
+     *
+     * @param Name $name
+     * @param int $threshold
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function getFailedJobs(Name $name, int $threshold = null): array
+    {
+        $apiPath = str_replace(['{name}'], [$name], '/health/queue/failed/{name}');
+
+        $apiParams = [];
+        if (!isset($name)) {
+            throw new AppwriteException('Missing required parameter: "name"');
+        }
         if (!is_null($threshold)) {
             $apiParams['threshold'] = $threshold;
         }

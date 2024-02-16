@@ -3,7 +3,7 @@
 ## GraphQL endpoint
 
 ```http request
-POST https://HOSTNAME/v1/graphql
+POST https://cloud.appwrite.io/v1/graphql
 ```
 
 ** Execute a GraphQL mutation. **
@@ -17,7 +17,7 @@ POST https://HOSTNAME/v1/graphql
 ## GraphQL endpoint
 
 ```http request
-POST https://HOSTNAME/v1/graphql/mutation
+POST https://cloud.appwrite.io/v1/graphql/mutation
 ```
 
 ** Execute a GraphQL mutation. **
