@@ -6,8 +6,8 @@ use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
 use Appwrite\InputFile;
-use Appwrite\Enums\Factor;
-use Appwrite\Enums\Type;
+use Appwrite\Enums\AuthenticationFactor;
+use Appwrite\Enums\AuthenticatorType;
 use Appwrite\Enums\OAuthProvider;
 
 class Account extends Service
@@ -263,12 +263,12 @@ class Account extends Service
     /**
      * Create 2FA Challenge
      *
-     * @param Factor $factor
+     * @param AuthenticationFactor $factor
      * @throws AppwriteException
      * @return array
 
      */
-    public function create2FAChallenge(Factor $factor): array
+    public function create2FAChallenge(AuthenticationFactor $factor): array
     {
         $apiPath = str_replace([], [], '/account/mfa/challenge');
 
@@ -341,12 +341,12 @@ class Account extends Service
     /**
      * Add Authenticator
      *
-     * @param Type $type
+     * @param AuthenticatorType $type
      * @throws AppwriteException
      * @return array
 
      */
-    public function addAuthenticator(Type $type): array
+    public function addAuthenticator(AuthenticatorType $type): array
     {
         $apiPath = str_replace(['{type}'], [$type], '/account/mfa/{type}');
 
@@ -363,13 +363,13 @@ class Account extends Service
     /**
      * Verify Authenticator
      *
-     * @param Type $type
+     * @param AuthenticatorType $type
      * @param string $otp
      * @throws AppwriteException
      * @return array
 
      */
-    public function verifyAuthenticator(Type $type, string $otp): array
+    public function verifyAuthenticator(AuthenticatorType $type, string $otp): array
     {
         $apiPath = str_replace(['{type}'], [$type], '/account/mfa/{type}');
 
@@ -393,13 +393,13 @@ class Account extends Service
     /**
      * Delete Authenticator
      *
-     * @param Type $type
+     * @param AuthenticatorType $type
      * @param string $otp
      * @throws AppwriteException
      * @return array
 
      */
-    public function deleteAuthenticator(Type $type, string $otp): array
+    public function deleteAuthenticator(AuthenticatorType $type, string $otp): array
     {
         $apiPath = str_replace(['{type}'], [$type], '/account/mfa/{type}');
 

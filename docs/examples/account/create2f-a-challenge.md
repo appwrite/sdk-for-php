@@ -2,7 +2,7 @@
 
 use Appwrite\Client;
 use Appwrite\Services\Account;
-use Appwrite\Enums\;
+use Appwrite\Enums\AuthenticationFactor;
 
 $client = new Client();
 
@@ -13,4 +13,4 @@ $client
 
 $account = new Account($client);
 
-$result = $account->create2FAChallenge(::TOTP());
+$result = $account->create2FAChallenge(AuthenticationFactor::TOTP());

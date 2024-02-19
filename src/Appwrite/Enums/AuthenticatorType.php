@@ -4,9 +4,9 @@ namespace Appwrite\Enums;
 
 use JsonSerializable;
 
-class Type implements JsonSerializable
+class AuthenticatorType implements JsonSerializable
 {
-    private static Type $TOTP;
+    private static AuthenticatorType $TOTP;
 
     private string $value;
 
@@ -25,10 +25,10 @@ class Type implements JsonSerializable
         return $this->value;
     }
 
-    public static function TOTP(): Type
+    public static function TOTP(): AuthenticatorType
     {
         if (!isset(self::$TOTP)) {
-            self::$TOTP = new Type('totp');
+            self::$TOTP = new AuthenticatorType('totp');
         }
         return self::$TOTP;
     }

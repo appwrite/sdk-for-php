@@ -4,11 +4,11 @@ namespace Appwrite\Enums;
 
 use JsonSerializable;
 
-class Factor implements JsonSerializable
+class AuthenticationFactor implements JsonSerializable
 {
-    private static Factor $TOTP;
-    private static Factor $PHONE;
-    private static Factor $EMAIL;
+    private static AuthenticationFactor $TOTP;
+    private static AuthenticationFactor $PHONE;
+    private static AuthenticationFactor $EMAIL;
 
     private string $value;
 
@@ -27,24 +27,24 @@ class Factor implements JsonSerializable
         return $this->value;
     }
 
-    public static function TOTP(): Factor
+    public static function TOTP(): AuthenticationFactor
     {
         if (!isset(self::$TOTP)) {
-            self::$TOTP = new Factor('totp');
+            self::$TOTP = new AuthenticationFactor('totp');
         }
         return self::$TOTP;
     }
-    public static function PHONE(): Factor
+    public static function PHONE(): AuthenticationFactor
     {
         if (!isset(self::$PHONE)) {
-            self::$PHONE = new Factor('phone');
+            self::$PHONE = new AuthenticationFactor('phone');
         }
         return self::$PHONE;
     }
-    public static function EMAIL(): Factor
+    public static function EMAIL(): AuthenticationFactor
     {
         if (!isset(self::$EMAIL)) {
-            self::$EMAIL = new Factor('email');
+            self::$EMAIL = new AuthenticationFactor('email');
         }
         return self::$EMAIL;
     }

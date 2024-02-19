@@ -7,7 +7,7 @@ use Appwrite\Client;
 use Appwrite\Service;
 use Appwrite\InputFile;
 use Appwrite\Enums\PasswordHash;
-use Appwrite\Enums\Type;
+use Appwrite\Enums\AuthenticatorType;
 use Appwrite\Enums\MessagingProviderType;
 
 class Users extends Service
@@ -815,13 +815,13 @@ class Users extends Service
      * Delete Authenticator
      *
      * @param string $userId
-     * @param Type $type
+     * @param AuthenticatorType $type
      * @param string $otp
      * @throws AppwriteException
      * @return array
 
      */
-    public function deleteAuthenticator(string $userId, Type $type, string $otp): array
+    public function deleteAuthenticator(string $userId, AuthenticatorType $type, string $otp): array
     {
         $apiPath = str_replace(['{userId}', '{type}'], [$userId, $type], '/users/{userId}/mfa/{type}');
 
