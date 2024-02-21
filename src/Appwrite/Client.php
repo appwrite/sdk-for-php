@@ -37,11 +37,11 @@ class Client
      */
     protected $headers = [
         'content-type' => '',
-        'user-agent' => 'AppwritePHPSDK/11.0.0-rc.3 ()',
+        'user-agent' => 'AppwritePHPSDK/11.0.0-rc.4 ()',
         'x-sdk-name'=> 'PHP',
         'x-sdk-platform'=> 'server',
         'x-sdk-language'=> 'php',
-        'x-sdk-version'=> '11.0.0-rc.3',
+        'x-sdk-version'=> '11.0.0-rc.4',
     ];
 
     /**

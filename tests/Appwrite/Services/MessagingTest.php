@@ -141,7 +141,7 @@ final class MessagingTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
-    public function testMethodCreateSMS(): void {
+    public function testMethodCreateSms(): void {
 
         $data = array(
             "\$id" => "5e5ea5c16897e",
@@ -160,7 +160,7 @@ final class MessagingTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->messaging->createSMS(
+        $response = $this->messaging->createSms(
             "[MESSAGE_ID]",
             "[CONTENT]"
         );
@@ -168,7 +168,7 @@ final class MessagingTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
-    public function testMethodUpdateSMS(): void {
+    public function testMethodUpdateSms(): void {
 
         $data = array(
             "\$id" => "5e5ea5c16897e",
@@ -187,7 +187,7 @@ final class MessagingTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->messaging->updateSMS(
+        $response = $this->messaging->updateSms(
             "[MESSAGE_ID]"
         );
 
@@ -289,7 +289,7 @@ final class MessagingTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
-    public function testMethodCreateAPNSProvider(): void {
+    public function testMethodCreateApnsProvider(): void {
 
         $data = array(
             "\$id" => "5e5ea5c16897e",
@@ -306,7 +306,7 @@ final class MessagingTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->messaging->createAPNSProvider(
+        $response = $this->messaging->createApnsProvider(
             "[PROVIDER_ID]",
             "[NAME]"
         );
@@ -338,7 +338,7 @@ final class MessagingTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
-    public function testMethodCreateFCMProvider(): void {
+    public function testMethodCreateFcmProvider(): void {
 
         $data = array(
             "\$id" => "5e5ea5c16897e",
@@ -355,7 +355,7 @@ final class MessagingTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->messaging->createFCMProvider(
+        $response = $this->messaging->createFcmProvider(
             "[PROVIDER_ID]",
             "[NAME]"
         );
@@ -534,7 +534,7 @@ final class MessagingTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
-    public function testMethodCreateSMTPProvider(): void {
+    public function testMethodCreateSmtpProvider(): void {
 
         $data = array(
             "\$id" => "5e5ea5c16897e",
@@ -551,7 +551,7 @@ final class MessagingTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->messaging->createSMTPProvider(
+        $response = $this->messaging->createSmtpProvider(
             "[PROVIDER_ID]",
             "[NAME]",
             "[HOST]"
@@ -560,7 +560,7 @@ final class MessagingTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
-    public function testMethodUpdateSMTPProvider(): void {
+    public function testMethodUpdateSmtpProvider(): void {
 
         $data = array(
             "\$id" => "5e5ea5c16897e",
@@ -577,7 +577,7 @@ final class MessagingTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->messaging->updateSMTPProvider(
+        $response = $this->messaging->updateSmtpProvider(
             "[PROVIDER_ID]"
         );
 

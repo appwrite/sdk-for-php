@@ -7,7 +7,7 @@ use Appwrite\Client;
 use Appwrite\Service;
 use Appwrite\InputFile;
 use Appwrite\Enums\MessageStatus;
-use Appwrite\Enums\SMTPEncryption;
+use Appwrite\Enums\Encryption;
 
 class Messaging extends Service
 {
@@ -18,6 +18,8 @@ class Messaging extends Service
 
     /**
      * List messages
+     *
+     * Get a list of all messages from the current Appwrite project.
      *
      * @param array $queries
      * @param string $search
@@ -45,7 +47,9 @@ class Messaging extends Service
     }
 
     /**
-     * Create an email.
+     * Create an email
+     *
+     * Create a new email message.
      *
      * @param string $messageId
      * @param string $subject
@@ -55,6 +59,7 @@ class Messaging extends Service
      * @param array $targets
      * @param array $cc
      * @param array $bcc
+     * @param array $attachments
      * @param MessageStatus $status
      * @param bool $html
      * @param string $scheduledAt
@@ -62,7 +67,7 @@ class Messaging extends Service
      * @return array
 
      */
-    public function createEmail(string $messageId, string $subject, string $content, array $topics = null, array $users = null, array $targets = null, array $cc = null, array $bcc = null, MessageStatus $status = null, bool $html = null, string $scheduledAt = null): array
+    public function createEmail(string $messageId, string $subject, string $content, array $topics = null, array $users = null, array $targets = null, array $cc = null, array $bcc = null, array $attachments = null, MessageStatus $status = null, bool $html = null, string $scheduledAt = null): array
     {
         $apiPath = str_replace([], [], '/messaging/messages/email');
 
@@ -108,6 +113,10 @@ class Messaging extends Service
             $apiParams['bcc'] = $bcc;
         }
 
+        if (!is_null($attachments)) {
+            $apiParams['attachments'] = $attachments;
+        }
+
         if (!is_null($status)) {
             $apiParams['status'] = $status;
         }
@@ -127,7 +136,10 @@ class Messaging extends Service
     }
 
     /**
-     * Update an email.
+     * Update an email
+     *
+     * Update an email message by its unique ID.
+     * 
      *
      * @param string $messageId
      * @param array $topics
@@ -199,7 +211,9 @@ class Messaging extends Service
     }
 
     /**
-     * Create a push notification.
+     * Create a push notification
+     *
+     * Create a new push notification.
      *
      * @param string $messageId
      * @param string $title
@@ -209,6 +223,7 @@ class Messaging extends Service
      * @param array $targets
      * @param array $data
      * @param string $action
+     * @param string $image
      * @param string $icon
      * @param string $sound
      * @param string $color
@@ -220,7 +235,7 @@ class Messaging extends Service
      * @return array
 
      */
-    public function createPush(string $messageId, string $title, string $body, array $topics = null, array $users = null, array $targets = null, array $data = null, string $action = null, string $icon = null, string $sound = null, string $color = null, string $tag = null, string $badge = null, MessageStatus $status = null, string $scheduledAt = null): array
+    public function createPush(string $messageId, string $title, string $body, array $topics = null, array $users = null, array $targets = null, array $data = null, string $action = null, string $image = null, string $icon = null, string $sound = null, string $color = null, string $tag = null, string $badge = null, MessageStatus $status = null, string $scheduledAt = null): array
     {
         $apiPath = str_replace([], [], '/messaging/messages/push');
 
@@ -266,6 +281,10 @@ class Messaging extends Service
             $apiParams['action'] = $action;
         }
 
+        if (!is_null($image)) {
+            $apiParams['image'] = $image;
+        }
+
         if (!is_null($icon)) {
             $apiParams['icon'] = $icon;
         }
@@ -301,7 +320,10 @@ class Messaging extends Service
     }
 
     /**
-     * Update a push notification.
+     * Update a push notification
+     *
+     * Update a push notification by its unique ID.
+     * 
      *
      * @param string $messageId
      * @param array $topics
@@ -311,6 +333,7 @@ class Messaging extends Service
      * @param string $body
      * @param array $data
      * @param string $action
+     * @param string $image
      * @param string $icon
      * @param string $sound
      * @param string $color
@@ -322,7 +345,7 @@ class Messaging extends Service
      * @return array
 
      */
-    public function updatePush(string $messageId, array $topics = null, array $users = null, array $targets = null, string $title = null, string $body = null, array $data = null, string $action = null, string $icon = null, string $sound = null, string $color = null, string $tag = null, int $badge = null, MessageStatus $status = null, string $scheduledAt = null): array
+    public function updatePush(string $messageId, array $topics = null, array $users = null, array $targets = null, string $title = null, string $body = null, array $data = null, string $action = null, string $image = null, string $icon = null, string $sound = null, string $color = null, string $tag = null, int $badge = null, MessageStatus $status = null, string $scheduledAt = null): array
     {
         $apiPath = str_replace(['{messageId}'], [$messageId], '/messaging/messages/push/{messageId}');
 
@@ -356,6 +379,10 @@ class Messaging extends Service
 
         if (!is_null($action)) {
             $apiParams['action'] = $action;
+        }
+
+        if (!is_null($image)) {
+            $apiParams['image'] = $image;
         }
 
         if (!is_null($icon)) {
@@ -393,7 +420,9 @@ class Messaging extends Service
     }
 
     /**
-     * Create an SMS.
+     * Create an SMS
+     *
+     * Create a new SMS message.
      *
      * @param string $messageId
      * @param string $content
@@ -406,7 +435,7 @@ class Messaging extends Service
      * @return array
 
      */
-    public function createSMS(string $messageId, string $content, array $topics = null, array $users = null, array $targets = null, MessageStatus $status = null, string $scheduledAt = null): array
+    public function createSms(string $messageId, string $content, array $topics = null, array $users = null, array $targets = null, MessageStatus $status = null, string $scheduledAt = null): array
     {
         $apiPath = str_replace([], [], '/messaging/messages/sms');
 
@@ -452,7 +481,10 @@ class Messaging extends Service
     }
 
     /**
-     * Update an SMS.
+     * Update an SMS
+     *
+     * Update an email message by its unique ID.
+     * 
      *
      * @param string $messageId
      * @param array $topics
@@ -465,7 +497,7 @@ class Messaging extends Service
      * @return array
 
      */
-    public function updateSMS(string $messageId, array $topics = null, array $users = null, array $targets = null, string $content = null, MessageStatus $status = null, string $scheduledAt = null): array
+    public function updateSms(string $messageId, array $topics = null, array $users = null, array $targets = null, string $content = null, MessageStatus $status = null, string $scheduledAt = null): array
     {
         $apiPath = str_replace(['{messageId}'], [$messageId], '/messaging/messages/sms/{messageId}');
 
@@ -505,6 +537,9 @@ class Messaging extends Service
 
     /**
      * Get a message
+     *
+     * Get a message by its unique ID.
+     * 
      *
      * @param string $messageId
      * @throws AppwriteException
@@ -550,6 +585,8 @@ class Messaging extends Service
     /**
      * List message logs
      *
+     * Get the message activity logs listed by its unique ID.
+     *
      * @param string $messageId
      * @param array $queries
      * @throws AppwriteException
@@ -577,8 +614,7 @@ class Messaging extends Service
     /**
      * List message targets
      *
-     * List the targets associated with a message as set via the targets
-     * attribute.
+     * Get a list of the targets associated with a message.
      *
      * @param string $messageId
      * @param array $queries
@@ -606,6 +642,8 @@ class Messaging extends Service
 
     /**
      * List providers
+     *
+     * Get a list of all providers from the current Appwrite project.
      *
      * @param array $queries
      * @param string $search
@@ -635,6 +673,8 @@ class Messaging extends Service
     /**
      * Create APNS provider
      *
+     * Create a new Apple Push Notification service provider.
+     *
      * @param string $providerId
      * @param string $name
      * @param string $authKey
@@ -646,7 +686,7 @@ class Messaging extends Service
      * @return array
 
      */
-    public function createAPNSProvider(string $providerId, string $name, string $authKey = null, string $authKeyId = null, string $teamId = null, string $bundleId = null, bool $enabled = null): array
+    public function createApnsProvider(string $providerId, string $name, string $authKey = null, string $authKeyId = null, string $teamId = null, string $bundleId = null, bool $enabled = null): array
     {
         $apiPath = str_replace([], [], '/messaging/providers/apns');
 
@@ -693,6 +733,8 @@ class Messaging extends Service
 
     /**
      * Update APNS provider
+     *
+     * Update a Apple Push Notification service provider by its unique ID.
      *
      * @param string $providerId
      * @param string $name
@@ -746,6 +788,8 @@ class Messaging extends Service
     /**
      * Create FCM provider
      *
+     * Create a new Firebase Cloud Messaging provider.
+     *
      * @param string $providerId
      * @param string $name
      * @param array $serviceAccountJSON
@@ -754,7 +798,7 @@ class Messaging extends Service
      * @return array
 
      */
-    public function createFCMProvider(string $providerId, string $name, array $serviceAccountJSON = null, bool $enabled = null): array
+    public function createFcmProvider(string $providerId, string $name, array $serviceAccountJSON = null, bool $enabled = null): array
     {
         $apiPath = str_replace([], [], '/messaging/providers/fcm');
 
@@ -789,6 +833,8 @@ class Messaging extends Service
 
     /**
      * Update FCM provider
+     *
+     * Update a Firebase Cloud Messaging provider by its unique ID.
      *
      * @param string $providerId
      * @param string $name
@@ -826,6 +872,8 @@ class Messaging extends Service
 
     /**
      * Create Mailgun provider
+     *
+     * Create a new Mailgun provider.
      *
      * @param string $providerId
      * @param string $name
@@ -901,6 +949,8 @@ class Messaging extends Service
     /**
      * Update Mailgun provider
      *
+     * Update a Mailgun provider by its unique ID.
+     *
      * @param string $providerId
      * @param string $name
      * @param string $apiKey
@@ -968,6 +1018,8 @@ class Messaging extends Service
     /**
      * Create Msg91 provider
      *
+     * Create a new MSG91 provider.
+     *
      * @param string $providerId
      * @param string $name
      * @param string $from
@@ -1021,6 +1073,8 @@ class Messaging extends Service
 
     /**
      * Update Msg91 provider
+     *
+     * Update a MSG91 provider by its unique ID.
      *
      * @param string $providerId
      * @param string $name
@@ -1133,6 +1187,8 @@ class Messaging extends Service
     /**
      * Update Sendgrid provider
      *
+     * Update a Sendgrid provider by its unique ID.
+     *
      * @param string $providerId
      * @param string $name
      * @param bool $enabled
@@ -1190,13 +1246,15 @@ class Messaging extends Service
     /**
      * Create SMTP provider
      *
+     * Create a new SMTP provider.
+     *
      * @param string $providerId
      * @param string $name
      * @param string $host
      * @param int $port
      * @param string $username
      * @param string $password
-     * @param SMTPEncryption $encryption
+     * @param Encryption $encryption
      * @param bool $autoTLS
      * @param string $mailer
      * @param string $fromName
@@ -1208,7 +1266,7 @@ class Messaging extends Service
      * @return array
 
      */
-    public function createSMTPProvider(string $providerId, string $name, string $host, int $port = null, string $username = null, string $password = null, SMTPEncryption $encryption = null, bool $autoTLS = null, string $mailer = null, string $fromName = null, string $fromEmail = null, string $replyToName = null, string $replyToEmail = null, bool $enabled = null): array
+    public function createSmtpProvider(string $providerId, string $name, string $host, int $port = null, string $username = null, string $password = null, Encryption $encryption = null, bool $autoTLS = null, string $mailer = null, string $fromName = null, string $fromEmail = null, string $replyToName = null, string $replyToEmail = null, bool $enabled = null): array
     {
         $apiPath = str_replace([], [], '/messaging/providers/smtp');
 
@@ -1287,13 +1345,15 @@ class Messaging extends Service
     /**
      * Update SMTP provider
      *
+     * Update a SMTP provider by its unique ID.
+     *
      * @param string $providerId
      * @param string $name
      * @param string $host
      * @param int $port
      * @param string $username
      * @param string $password
-     * @param SMTPEncryption $encryption
+     * @param Encryption $encryption
      * @param bool $autoTLS
      * @param string $mailer
      * @param string $fromName
@@ -1305,7 +1365,7 @@ class Messaging extends Service
      * @return array
 
      */
-    public function updateSMTPProvider(string $providerId, string $name = null, string $host = null, int $port = null, string $username = null, string $password = null, SMTPEncryption $encryption = null, bool $autoTLS = null, string $mailer = null, string $fromName = null, string $fromEmail = null, string $replyToName = null, string $replyToEmail = null, bool $enabled = null): array
+    public function updateSmtpProvider(string $providerId, string $name = null, string $host = null, int $port = null, string $username = null, string $password = null, Encryption $encryption = null, bool $autoTLS = null, string $mailer = null, string $fromName = null, string $fromEmail = null, string $replyToName = null, string $replyToEmail = null, bool $enabled = null): array
     {
         $apiPath = str_replace(['{providerId}'], [$providerId], '/messaging/providers/smtp/{providerId}');
 
@@ -1374,6 +1434,8 @@ class Messaging extends Service
     /**
      * Create Telesign provider
      *
+     * Create a new Telesign provider.
+     *
      * @param string $providerId
      * @param string $name
      * @param string $from
@@ -1428,6 +1490,8 @@ class Messaging extends Service
     /**
      * Update Telesign provider
      *
+     * Update a Telesign provider by its unique ID.
+     *
      * @param string $providerId
      * @param string $name
      * @param bool $enabled
@@ -1474,6 +1538,8 @@ class Messaging extends Service
 
     /**
      * Create Textmagic provider
+     *
+     * Create a new Textmagic provider.
      *
      * @param string $providerId
      * @param string $name
@@ -1529,6 +1595,8 @@ class Messaging extends Service
     /**
      * Update Textmagic provider
      *
+     * Update a Textmagic provider by its unique ID.
+     *
      * @param string $providerId
      * @param string $name
      * @param bool $enabled
@@ -1575,6 +1643,8 @@ class Messaging extends Service
 
     /**
      * Create Twilio provider
+     *
+     * Create a new Twilio provider.
      *
      * @param string $providerId
      * @param string $name
@@ -1630,6 +1700,8 @@ class Messaging extends Service
     /**
      * Update Twilio provider
      *
+     * Update a Twilio provider by its unique ID.
+     *
      * @param string $providerId
      * @param string $name
      * @param bool $enabled
@@ -1676,6 +1748,8 @@ class Messaging extends Service
 
     /**
      * Create Vonage provider
+     *
+     * Create a new Vonage provider.
      *
      * @param string $providerId
      * @param string $name
@@ -1731,6 +1805,8 @@ class Messaging extends Service
     /**
      * Update Vonage provider
      *
+     * Update a Vonage provider by its unique ID.
+     *
      * @param string $providerId
      * @param string $name
      * @param bool $enabled
@@ -1778,6 +1854,9 @@ class Messaging extends Service
     /**
      * Get provider
      *
+     * Get a provider by its unique ID.
+     * 
+     *
      * @param string $providerId
      * @throws AppwriteException
      * @return array
@@ -1800,6 +1879,8 @@ class Messaging extends Service
     /**
      * Delete provider
      *
+     * Delete a provider by its unique ID.
+     *
      * @param string $providerId
      * @throws AppwriteException
      * @return string
@@ -1821,6 +1902,8 @@ class Messaging extends Service
 
     /**
      * List provider logs
+     *
+     * Get the provider activity logs listed by its unique ID.
      *
      * @param string $providerId
      * @param array $queries
@@ -1849,6 +1932,8 @@ class Messaging extends Service
     /**
      * List subscriber logs
      *
+     * Get the subscriber activity logs listed by its unique ID.
+     *
      * @param string $subscriberId
      * @param array $queries
      * @throws AppwriteException
@@ -1874,7 +1959,9 @@ class Messaging extends Service
     }
 
     /**
-     * List topics.
+     * List topics
+     *
+     * Get a list of all topics from the current Appwrite project.
      *
      * @param array $queries
      * @param string $search
@@ -1902,7 +1989,9 @@ class Messaging extends Service
     }
 
     /**
-     * Create a topic.
+     * Create a topic
+     *
+     * Create a new topic.
      *
      * @param string $topicId
      * @param string $name
@@ -1941,7 +2030,10 @@ class Messaging extends Service
     }
 
     /**
-     * Get a topic.
+     * Get a topic
+     *
+     * Get a topic by its unique ID.
+     * 
      *
      * @param string $topicId
      * @throws AppwriteException
@@ -1963,7 +2055,10 @@ class Messaging extends Service
     }
 
     /**
-     * Update a topic.
+     * Update a topic
+     *
+     * Update a topic by its unique ID.
+     * 
      *
      * @param string $topicId
      * @param string $name
@@ -1990,7 +2085,9 @@ class Messaging extends Service
     }
 
     /**
-     * Delete a topic.
+     * Delete a topic
+     *
+     * Delete a topic by its unique ID.
      *
      * @param string $topicId
      * @throws AppwriteException
@@ -2013,6 +2110,8 @@ class Messaging extends Service
 
     /**
      * List topic logs
+     *
+     * Get the topic activity logs listed by its unique ID.
      *
      * @param string $topicId
      * @param array $queries
@@ -2039,7 +2138,9 @@ class Messaging extends Service
     }
 
     /**
-     * List subscribers.
+     * List subscribers
+     *
+     * Get a list of all subscribers from the current Appwrite project.
      *
      * @param string $topicId
      * @param array $queries
@@ -2071,7 +2172,9 @@ class Messaging extends Service
     }
 
     /**
-     * Create a subscriber.
+     * Create a subscriber
+     *
+     * Create a new subscriber.
      *
      * @param string $topicId
      * @param string $subscriberId
@@ -2109,7 +2212,10 @@ class Messaging extends Service
     }
 
     /**
-     * Get a subscriber.
+     * Get a subscriber
+     *
+     * Get a subscriber by its unique ID.
+     * 
      *
      * @param string $topicId
      * @param string $subscriberId
@@ -2135,7 +2241,9 @@ class Messaging extends Service
     }
 
     /**
-     * Delete a subscriber.
+     * Delete a subscriber
+     *
+     * Delete a subscriber by its unique ID.
      *
      * @param string $topicId
      * @param string $subscriberId

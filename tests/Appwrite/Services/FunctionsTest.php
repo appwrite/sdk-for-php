@@ -67,7 +67,7 @@ final class FunctionsTest extends TestCase {
         $response = $this->functions->create(
             "[FUNCTION_ID]",
             "[NAME]",
-            "node-18.0"
+            "node-14.5"
         );
 
         $this->assertSame($data, $response);
