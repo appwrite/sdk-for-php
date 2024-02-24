@@ -49,8 +49,8 @@ final class TeamsTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->teams->create(
-            "[TEAM_ID]",
-            "[NAME]"
+            "<TEAM_ID>",
+            "<NAME>"
         );
 
         $this->assertSame($data, $response);
@@ -72,7 +72,7 @@ final class TeamsTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->teams->get(
-            "[TEAM_ID]"
+            "<TEAM_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -94,8 +94,8 @@ final class TeamsTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->teams->updateName(
-            "[TEAM_ID]",
-            "[NAME]"
+            "<TEAM_ID>",
+            "<NAME>"
         );
 
         $this->assertSame($data, $response);
@@ -111,7 +111,7 @@ final class TeamsTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->teams->delete(
-            "[TEAM_ID]"
+            "<TEAM_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -129,7 +129,7 @@ final class TeamsTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->teams->listMemberships(
-            "[TEAM_ID]"
+            "<TEAM_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -158,7 +158,7 @@ final class TeamsTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->teams->createMembership(
-            "[TEAM_ID]",
+            "<TEAM_ID>",
             array()
         );
 
@@ -188,8 +188,8 @@ final class TeamsTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->teams->getMembership(
-            "[TEAM_ID]",
-            "[MEMBERSHIP_ID]"
+            "<TEAM_ID>",
+            "<MEMBERSHIP_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -218,8 +218,8 @@ final class TeamsTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->teams->updateMembership(
-            "[TEAM_ID]",
-            "[MEMBERSHIP_ID]",
+            "<TEAM_ID>",
+            "<MEMBERSHIP_ID>",
             array()
         );
 
@@ -236,8 +236,8 @@ final class TeamsTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->teams->deleteMembership(
-            "[TEAM_ID]",
-            "[MEMBERSHIP_ID]"
+            "<TEAM_ID>",
+            "<MEMBERSHIP_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -266,10 +266,10 @@ final class TeamsTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->teams->updateMembershipStatus(
-            "[TEAM_ID]",
-            "[MEMBERSHIP_ID]",
-            "[USER_ID]",
-            "[SECRET]"
+            "<TEAM_ID>",
+            "<MEMBERSHIP_ID>",
+            "<USER_ID>",
+            "<SECRET>"
         );
 
         $this->assertSame($data, $response);
@@ -285,7 +285,7 @@ final class TeamsTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->teams->getPrefs(
-            "[TEAM_ID]"
+            "<TEAM_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -301,7 +301,7 @@ final class TeamsTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->teams->updatePrefs(
-            "[TEAM_ID]",
+            "<TEAM_ID>",
             array()
         );
 

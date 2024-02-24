@@ -10,7 +10,7 @@ $client = (new Client())
 
 $account = new Account($client);
 
-$result = $account->createOAuth2Session(
+$result = $account->createOAuth2Token(
     provider: OAuthProvider::AMAZON(),
     success: 'https://example.com', // optional
     failure: 'https://example.com', // optional

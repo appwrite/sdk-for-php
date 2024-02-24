@@ -121,7 +121,7 @@ final class AvatarsTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->avatars->getQR(
-            "[TEXT]"
+            "<TEXT>"
         );
 
         $this->assertSame($data, $response);

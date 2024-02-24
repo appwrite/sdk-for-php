@@ -4,11 +4,11 @@ namespace Appwrite\Enums;
 
 use JsonSerializable;
 
-class Encryption implements JsonSerializable
+class SmtpEncryption implements JsonSerializable
 {
-    private static Encryption $NONE;
-    private static Encryption $SSL;
-    private static Encryption $TLS;
+    private static SmtpEncryption $NONE;
+    private static SmtpEncryption $SSL;
+    private static SmtpEncryption $TLS;
 
     private string $value;
 
@@ -27,24 +27,24 @@ class Encryption implements JsonSerializable
         return $this->value;
     }
 
-    public static function NONE(): Encryption
+    public static function NONE(): SmtpEncryption
     {
         if (!isset(self::$NONE)) {
-            self::$NONE = new Encryption('none');
+            self::$NONE = new SmtpEncryption('none');
         }
         return self::$NONE;
     }
-    public static function SSL(): Encryption
+    public static function SSL(): SmtpEncryption
     {
         if (!isset(self::$SSL)) {
-            self::$SSL = new Encryption('ssl');
+            self::$SSL = new SmtpEncryption('ssl');
         }
         return self::$SSL;
     }
-    public static function TLS(): Encryption
+    public static function TLS(): SmtpEncryption
     {
         if (!isset(self::$TLS)) {
-            self::$TLS = new Encryption('tls');
+            self::$TLS = new SmtpEncryption('tls');
         }
         return self::$TLS;
     }

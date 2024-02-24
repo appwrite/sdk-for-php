@@ -255,6 +255,7 @@ POST https://cloud.appwrite.io/v1/messaging/providers/apns
 | authKeyId | string | APNS authentication key ID. |  |
 | teamId | string | APNS team ID. |  |
 | bundleId | string | APNS bundle ID. |  |
+| sandbox | boolean | Use APNS sandbox environment. |  |
 | enabled | boolean | Set as enabled. |  |
 
 ## Update APNS provider
@@ -276,6 +277,7 @@ PATCH https://cloud.appwrite.io/v1/messaging/providers/apns/{providerId}
 | authKeyId | string | APNS authentication key ID. |  |
 | teamId | string | APNS team ID. |  |
 | bundleId | string | APNS bundle ID. |  |
+| sandbox | boolean | Use APNS sandbox environment. |  |
 
 ## Create FCM provider
 
@@ -761,6 +763,7 @@ PATCH https://cloud.appwrite.io/v1/messaging/topics/{topicId}
 | --- | --- | --- | --- |
 | topicId | string | **Required** Topic ID. |  |
 | name | string | Topic Name. |  |
+| subscribe | array | An array of role strings with subscribe permission. By default all users are granted with any subscribe permission. [learn more about roles](https://appwrite.io/docs/permissions#permission-roles). Maximum of 100 roles are allowed, each 64 characters long. |  |
 
 ## Delete a topic
 

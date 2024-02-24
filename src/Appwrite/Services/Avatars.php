@@ -50,19 +50,20 @@ class Avatars extends Service
         if (!is_null($width)) {
             $apiParams['width'] = $width;
         }
-
         if (!is_null($height)) {
             $apiParams['height'] = $height;
         }
-
         if (!is_null($quality)) {
             $apiParams['quality'] = $quality;
         }
-
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -97,19 +98,20 @@ class Avatars extends Service
         if (!is_null($width)) {
             $apiParams['width'] = $width;
         }
-
         if (!is_null($height)) {
             $apiParams['height'] = $height;
         }
-
         if (!is_null($quality)) {
             $apiParams['quality'] = $quality;
         }
-
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -135,11 +137,14 @@ class Avatars extends Service
         if (!is_null($url)) {
             $apiParams['url'] = $url;
         }
-
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -175,19 +180,20 @@ class Avatars extends Service
         if (!is_null($width)) {
             $apiParams['width'] = $width;
         }
-
         if (!is_null($height)) {
             $apiParams['height'] = $height;
         }
-
         if (!is_null($quality)) {
             $apiParams['quality'] = $quality;
         }
-
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -222,19 +228,20 @@ class Avatars extends Service
         if (!is_null($url)) {
             $apiParams['url'] = $url;
         }
-
         if (!is_null($width)) {
             $apiParams['width'] = $width;
         }
-
         if (!is_null($height)) {
             $apiParams['height'] = $height;
         }
-
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -273,23 +280,23 @@ class Avatars extends Service
         if (!is_null($name)) {
             $apiParams['name'] = $name;
         }
-
         if (!is_null($width)) {
             $apiParams['width'] = $width;
         }
-
         if (!is_null($height)) {
             $apiParams['height'] = $height;
         }
-
         if (!is_null($background)) {
             $apiParams['background'] = $background;
         }
-
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -318,22 +325,22 @@ class Avatars extends Service
         if (!is_null($text)) {
             $apiParams['text'] = $text;
         }
-
         if (!is_null($size)) {
             $apiParams['size'] = $size;
         }
-
         if (!is_null($margin)) {
             $apiParams['margin'] = $margin;
         }
-
         if (!is_null($download)) {
             $apiParams['download'] = $download;
         }
-
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 }

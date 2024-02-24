@@ -34,15 +34,17 @@ class Teams extends Service
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
         }
-
         if (!is_null($search)) {
             $apiParams['search'] = $search;
         }
-
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -73,19 +75,20 @@ class Teams extends Service
         if (!is_null($teamId)) {
             $apiParams['teamId'] = $teamId;
         }
-
         if (!is_null($name)) {
             $apiParams['name'] = $name;
         }
-
         if (!is_null($roles)) {
             $apiParams['roles'] = $roles;
         }
-
-
-        return $this->client->call(Client::METHOD_POST, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -106,10 +109,14 @@ class Teams extends Service
         if (!isset($teamId)) {
             throw new AppwriteException('Missing required parameter: "teamId"');
         }
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -137,11 +144,14 @@ class Teams extends Service
         if (!is_null($name)) {
             $apiParams['name'] = $name;
         }
-
-
-        return $this->client->call(Client::METHOD_PUT, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_PUT,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -163,10 +173,14 @@ class Teams extends Service
         if (!isset($teamId)) {
             throw new AppwriteException('Missing required parameter: "teamId"');
         }
-
-        return $this->client->call(Client::METHOD_DELETE, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_DELETE,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -193,15 +207,17 @@ class Teams extends Service
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
         }
-
         if (!is_null($search)) {
             $apiParams['search'] = $search;
         }
-
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -254,31 +270,29 @@ class Teams extends Service
         if (!is_null($email)) {
             $apiParams['email'] = $email;
         }
-
         if (!is_null($userId)) {
             $apiParams['userId'] = $userId;
         }
-
         if (!is_null($phone)) {
             $apiParams['phone'] = $phone;
         }
-
         if (!is_null($roles)) {
             $apiParams['roles'] = $roles;
         }
-
         if (!is_null($url)) {
             $apiParams['url'] = $url;
         }
-
         if (!is_null($name)) {
             $apiParams['name'] = $name;
         }
-
-
-        return $this->client->call(Client::METHOD_POST, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -304,10 +318,14 @@ class Teams extends Service
         if (!isset($membershipId)) {
             throw new AppwriteException('Missing required parameter: "membershipId"');
         }
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -342,11 +360,14 @@ class Teams extends Service
         if (!is_null($roles)) {
             $apiParams['roles'] = $roles;
         }
-
-
-        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -373,10 +394,14 @@ class Teams extends Service
         if (!isset($membershipId)) {
             throw new AppwriteException('Missing required parameter: "membershipId"');
         }
-
-        return $this->client->call(Client::METHOD_DELETE, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_DELETE,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -418,15 +443,17 @@ class Teams extends Service
         if (!is_null($userId)) {
             $apiParams['userId'] = $userId;
         }
-
         if (!is_null($secret)) {
             $apiParams['secret'] = $secret;
         }
-
-
-        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -449,10 +476,14 @@ class Teams extends Service
         if (!isset($teamId)) {
             throw new AppwriteException('Missing required parameter: "teamId"');
         }
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -482,10 +513,13 @@ class Teams extends Service
         if (!is_null($prefs)) {
             $apiParams['prefs'] = $prefs;
         }
-
-
-        return $this->client->call(Client::METHOD_PUT, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_PUT,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 }

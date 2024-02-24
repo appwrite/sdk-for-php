@@ -60,7 +60,7 @@ final class UsersTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->users->create(
-            "[USER_ID]"
+            "<USER_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -93,7 +93,7 @@ final class UsersTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->users->createArgon2User(
-            "[USER_ID]",
+            "<USER_ID>",
             "email@example.com",
             "password"
         );
@@ -128,7 +128,7 @@ final class UsersTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->users->createBcryptUser(
-            "[USER_ID]",
+            "<USER_ID>",
             "email@example.com",
             "password"
         );
@@ -163,7 +163,7 @@ final class UsersTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->users->deleteIdentity(
-            "[IDENTITY_ID]"
+            "<IDENTITY_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -196,7 +196,7 @@ final class UsersTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->users->createMD5User(
-            "[USER_ID]",
+            "<USER_ID>",
             "email@example.com",
             "password"
         );
@@ -231,7 +231,7 @@ final class UsersTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->users->createPHPassUser(
-            "[USER_ID]",
+            "<USER_ID>",
             "email@example.com",
             "password"
         );
@@ -266,10 +266,10 @@ final class UsersTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->users->createScryptUser(
-            "[USER_ID]",
+            "<USER_ID>",
             "email@example.com",
             "password",
-            "[PASSWORD_SALT]",
+            "<PASSWORD_SALT>",
             1,
             1,
             1,
@@ -306,12 +306,12 @@ final class UsersTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->users->createScryptModifiedUser(
-            "[USER_ID]",
+            "<USER_ID>",
             "email@example.com",
             "password",
-            "[PASSWORD_SALT]",
-            "[PASSWORD_SALT_SEPARATOR]",
-            "[PASSWORD_SIGNER_KEY]"
+            "<PASSWORD_SALT>",
+            "<PASSWORD_SALT_SEPARATOR>",
+            "<PASSWORD_SIGNER_KEY>"
         );
 
         $this->assertSame($data, $response);
@@ -344,7 +344,7 @@ final class UsersTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->users->createSHAUser(
-            "[USER_ID]",
+            "<USER_ID>",
             "email@example.com",
             "password"
         );
@@ -379,7 +379,7 @@ final class UsersTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->users->get(
-            "[USER_ID]"
+            "<USER_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -395,7 +395,7 @@ final class UsersTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->users->delete(
-            "[USER_ID]"
+            "<USER_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -428,7 +428,7 @@ final class UsersTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->users->updateEmail(
-            "[USER_ID]",
+            "<USER_ID>",
             "email@example.com"
         );
 
@@ -462,7 +462,7 @@ final class UsersTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->users->updateLabels(
-            "[USER_ID]",
+            "<USER_ID>",
             array()
         );
 
@@ -481,7 +481,7 @@ final class UsersTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->users->listLogs(
-            "[USER_ID]"
+            "<USER_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -499,7 +499,7 @@ final class UsersTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->users->listMemberships(
-            "[USER_ID]"
+            "<USER_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -532,7 +532,7 @@ final class UsersTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->users->updateMfa(
-            "[USER_ID]",
+            "<USER_ID>",
             true
         );
 
@@ -552,7 +552,7 @@ final class UsersTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->users->listFactors(
-            "[USER_ID]"
+            "<USER_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -585,9 +585,9 @@ final class UsersTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->users->deleteAuthenticator(
-            "[USER_ID]",
+            "<USER_ID>",
             "totp",
-            "[OTP]"
+            "<OTP>"
         );
 
         $this->assertSame($data, $response);
@@ -620,8 +620,8 @@ final class UsersTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->users->updateName(
-            "[USER_ID]",
-            "[NAME]"
+            "<USER_ID>",
+            "<NAME>"
         );
 
         $this->assertSame($data, $response);
@@ -654,7 +654,7 @@ final class UsersTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->users->updatePassword(
-            "[USER_ID]",
+            "<USER_ID>",
             ""
         );
 
@@ -688,7 +688,7 @@ final class UsersTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->users->updatePhone(
-            "[USER_ID]",
+            "<USER_ID>",
             "+12065550100"
         );
 
@@ -705,7 +705,7 @@ final class UsersTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->users->getPrefs(
-            "[USER_ID]"
+            "<USER_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -721,7 +721,7 @@ final class UsersTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->users->updatePrefs(
-            "[USER_ID]",
+            "<USER_ID>",
             array()
         );
 
@@ -740,7 +740,7 @@ final class UsersTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->users->listSessions(
-            "[USER_ID]"
+            "<USER_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -783,7 +783,7 @@ final class UsersTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->users->createSession(
-            "[USER_ID]"
+            "<USER_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -799,7 +799,7 @@ final class UsersTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->users->deleteSessions(
-            "[USER_ID]"
+            "<USER_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -815,8 +815,8 @@ final class UsersTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->users->deleteSession(
-            "[USER_ID]",
-            "[SESSION_ID]"
+            "<USER_ID>",
+            "<SESSION_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -849,7 +849,7 @@ final class UsersTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->users->updateStatus(
-            "[USER_ID]",
+            "<USER_ID>",
             true
         );
 
@@ -868,7 +868,7 @@ final class UsersTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->users->listTargets(
-            "[USER_ID]"
+            "<USER_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -891,10 +891,10 @@ final class UsersTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->users->createTarget(
-            "[USER_ID]",
-            "[TARGET_ID]",
+            "<USER_ID>",
+            "<TARGET_ID>",
             "email",
-            "[IDENTIFIER]"
+            "<IDENTIFIER>"
         );
 
         $this->assertSame($data, $response);
@@ -917,8 +917,8 @@ final class UsersTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->users->getTarget(
-            "[USER_ID]",
-            "[TARGET_ID]"
+            "<USER_ID>",
+            "<TARGET_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -941,8 +941,8 @@ final class UsersTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->users->updateTarget(
-            "[USER_ID]",
-            "[TARGET_ID]"
+            "<USER_ID>",
+            "<TARGET_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -958,8 +958,8 @@ final class UsersTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->users->deleteTarget(
-            "[USER_ID]",
-            "[TARGET_ID]"
+            "<USER_ID>",
+            "<TARGET_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -981,7 +981,7 @@ final class UsersTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->users->createToken(
-            "[USER_ID]"
+            "<USER_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -1014,7 +1014,7 @@ final class UsersTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->users->updateEmailVerification(
-            "[USER_ID]",
+            "<USER_ID>",
             true
         );
 
@@ -1048,7 +1048,7 @@ final class UsersTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->users->updatePhoneVerification(
-            "[USER_ID]",
+            "<USER_ID>",
             true
         );
 

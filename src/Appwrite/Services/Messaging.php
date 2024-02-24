@@ -7,7 +7,7 @@ use Appwrite\Client;
 use Appwrite\Service;
 use Appwrite\InputFile;
 use Appwrite\Enums\MessageStatus;
-use Appwrite\Enums\Encryption;
+use Appwrite\Enums\SmtpEncryption;
 
 class Messaging extends Service
 {
@@ -35,15 +35,17 @@ class Messaging extends Service
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
         }
-
         if (!is_null($search)) {
             $apiParams['search'] = $search;
         }
-
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -84,55 +86,47 @@ class Messaging extends Service
         if (!is_null($messageId)) {
             $apiParams['messageId'] = $messageId;
         }
-
         if (!is_null($subject)) {
             $apiParams['subject'] = $subject;
         }
-
         if (!is_null($content)) {
             $apiParams['content'] = $content;
         }
-
         if (!is_null($topics)) {
             $apiParams['topics'] = $topics;
         }
-
         if (!is_null($users)) {
             $apiParams['users'] = $users;
         }
-
         if (!is_null($targets)) {
             $apiParams['targets'] = $targets;
         }
-
         if (!is_null($cc)) {
             $apiParams['cc'] = $cc;
         }
-
         if (!is_null($bcc)) {
             $apiParams['bcc'] = $bcc;
         }
-
         if (!is_null($attachments)) {
             $apiParams['attachments'] = $attachments;
         }
-
         if (!is_null($status)) {
             $apiParams['status'] = $status;
         }
-
         if (!is_null($html)) {
             $apiParams['html'] = $html;
         }
-
         if (!is_null($scheduledAt)) {
             $apiParams['scheduledAt'] = $scheduledAt;
         }
-
-
-        return $this->client->call(Client::METHOD_POST, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -167,47 +161,41 @@ class Messaging extends Service
         if (!is_null($topics)) {
             $apiParams['topics'] = $topics;
         }
-
         if (!is_null($users)) {
             $apiParams['users'] = $users;
         }
-
         if (!is_null($targets)) {
             $apiParams['targets'] = $targets;
         }
-
         if (!is_null($subject)) {
             $apiParams['subject'] = $subject;
         }
-
         if (!is_null($content)) {
             $apiParams['content'] = $content;
         }
-
         if (!is_null($status)) {
             $apiParams['status'] = $status;
         }
-
         if (!is_null($html)) {
             $apiParams['html'] = $html;
         }
-
         if (!is_null($cc)) {
             $apiParams['cc'] = $cc;
         }
-
         if (!is_null($bcc)) {
             $apiParams['bcc'] = $bcc;
         }
-
         if (!is_null($scheduledAt)) {
             $apiParams['scheduledAt'] = $scheduledAt;
         }
-
-
-        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -252,71 +240,59 @@ class Messaging extends Service
         if (!is_null($messageId)) {
             $apiParams['messageId'] = $messageId;
         }
-
         if (!is_null($title)) {
             $apiParams['title'] = $title;
         }
-
         if (!is_null($body)) {
             $apiParams['body'] = $body;
         }
-
         if (!is_null($topics)) {
             $apiParams['topics'] = $topics;
         }
-
         if (!is_null($users)) {
             $apiParams['users'] = $users;
         }
-
         if (!is_null($targets)) {
             $apiParams['targets'] = $targets;
         }
-
         if (!is_null($data)) {
             $apiParams['data'] = $data;
         }
-
         if (!is_null($action)) {
             $apiParams['action'] = $action;
         }
-
         if (!is_null($image)) {
             $apiParams['image'] = $image;
         }
-
         if (!is_null($icon)) {
             $apiParams['icon'] = $icon;
         }
-
         if (!is_null($sound)) {
             $apiParams['sound'] = $sound;
         }
-
         if (!is_null($color)) {
             $apiParams['color'] = $color;
         }
-
         if (!is_null($tag)) {
             $apiParams['tag'] = $tag;
         }
-
         if (!is_null($badge)) {
             $apiParams['badge'] = $badge;
         }
-
         if (!is_null($status)) {
             $apiParams['status'] = $status;
         }
-
         if (!is_null($scheduledAt)) {
             $apiParams['scheduledAt'] = $scheduledAt;
         }
-
-
-        return $this->client->call(Client::METHOD_POST, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -356,67 +332,56 @@ class Messaging extends Service
         if (!is_null($topics)) {
             $apiParams['topics'] = $topics;
         }
-
         if (!is_null($users)) {
             $apiParams['users'] = $users;
         }
-
         if (!is_null($targets)) {
             $apiParams['targets'] = $targets;
         }
-
         if (!is_null($title)) {
             $apiParams['title'] = $title;
         }
-
         if (!is_null($body)) {
             $apiParams['body'] = $body;
         }
-
         if (!is_null($data)) {
             $apiParams['data'] = $data;
         }
-
         if (!is_null($action)) {
             $apiParams['action'] = $action;
         }
-
         if (!is_null($image)) {
             $apiParams['image'] = $image;
         }
-
         if (!is_null($icon)) {
             $apiParams['icon'] = $icon;
         }
-
         if (!is_null($sound)) {
             $apiParams['sound'] = $sound;
         }
-
         if (!is_null($color)) {
             $apiParams['color'] = $color;
         }
-
         if (!is_null($tag)) {
             $apiParams['tag'] = $tag;
         }
-
         if (!is_null($badge)) {
             $apiParams['badge'] = $badge;
         }
-
         if (!is_null($status)) {
             $apiParams['status'] = $status;
         }
-
         if (!is_null($scheduledAt)) {
             $apiParams['scheduledAt'] = $scheduledAt;
         }
-
-
-        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -449,35 +414,32 @@ class Messaging extends Service
         if (!is_null($messageId)) {
             $apiParams['messageId'] = $messageId;
         }
-
         if (!is_null($content)) {
             $apiParams['content'] = $content;
         }
-
         if (!is_null($topics)) {
             $apiParams['topics'] = $topics;
         }
-
         if (!is_null($users)) {
             $apiParams['users'] = $users;
         }
-
         if (!is_null($targets)) {
             $apiParams['targets'] = $targets;
         }
-
         if (!is_null($status)) {
             $apiParams['status'] = $status;
         }
-
         if (!is_null($scheduledAt)) {
             $apiParams['scheduledAt'] = $scheduledAt;
         }
-
-
-        return $this->client->call(Client::METHOD_POST, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -508,31 +470,29 @@ class Messaging extends Service
         if (!is_null($topics)) {
             $apiParams['topics'] = $topics;
         }
-
         if (!is_null($users)) {
             $apiParams['users'] = $users;
         }
-
         if (!is_null($targets)) {
             $apiParams['targets'] = $targets;
         }
-
         if (!is_null($content)) {
             $apiParams['content'] = $content;
         }
-
         if (!is_null($status)) {
             $apiParams['status'] = $status;
         }
-
         if (!is_null($scheduledAt)) {
             $apiParams['scheduledAt'] = $scheduledAt;
         }
-
-
-        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -554,10 +514,14 @@ class Messaging extends Service
         if (!isset($messageId)) {
             throw new AppwriteException('Missing required parameter: "messageId"');
         }
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -576,10 +540,14 @@ class Messaging extends Service
         if (!isset($messageId)) {
             throw new AppwriteException('Missing required parameter: "messageId"');
         }
-
-        return $this->client->call(Client::METHOD_DELETE, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_DELETE,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -604,11 +572,14 @@ class Messaging extends Service
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
         }
-
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -633,11 +604,14 @@ class Messaging extends Service
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
         }
-
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -659,15 +633,17 @@ class Messaging extends Service
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
         }
-
         if (!is_null($search)) {
             $apiParams['search'] = $search;
         }
-
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -681,12 +657,13 @@ class Messaging extends Service
      * @param string $authKeyId
      * @param string $teamId
      * @param string $bundleId
+     * @param bool $sandbox
      * @param bool $enabled
      * @throws AppwriteException
      * @return array
 
      */
-    public function createApnsProvider(string $providerId, string $name, string $authKey = null, string $authKeyId = null, string $teamId = null, string $bundleId = null, bool $enabled = null): array
+    public function createApnsProvider(string $providerId, string $name, string $authKey = null, string $authKeyId = null, string $teamId = null, string $bundleId = null, bool $sandbox = null, bool $enabled = null): array
     {
         $apiPath = str_replace([], [], '/messaging/providers/apns');
 
@@ -700,35 +677,35 @@ class Messaging extends Service
         if (!is_null($providerId)) {
             $apiParams['providerId'] = $providerId;
         }
-
         if (!is_null($name)) {
             $apiParams['name'] = $name;
         }
-
         if (!is_null($authKey)) {
             $apiParams['authKey'] = $authKey;
         }
-
         if (!is_null($authKeyId)) {
             $apiParams['authKeyId'] = $authKeyId;
         }
-
         if (!is_null($teamId)) {
             $apiParams['teamId'] = $teamId;
         }
-
         if (!is_null($bundleId)) {
             $apiParams['bundleId'] = $bundleId;
         }
-
+        if (!is_null($sandbox)) {
+            $apiParams['sandbox'] = $sandbox;
+        }
         if (!is_null($enabled)) {
             $apiParams['enabled'] = $enabled;
         }
-
-
-        return $this->client->call(Client::METHOD_POST, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -743,11 +720,12 @@ class Messaging extends Service
      * @param string $authKeyId
      * @param string $teamId
      * @param string $bundleId
+     * @param bool $sandbox
      * @throws AppwriteException
      * @return array
 
      */
-    public function updateAPNSProvider(string $providerId, string $name = null, bool $enabled = null, string $authKey = null, string $authKeyId = null, string $teamId = null, string $bundleId = null): array
+    public function updateApnsProvider(string $providerId, string $name = null, bool $enabled = null, string $authKey = null, string $authKeyId = null, string $teamId = null, string $bundleId = null, bool $sandbox = null): array
     {
         $apiPath = str_replace(['{providerId}'], [$providerId], '/messaging/providers/apns/{providerId}');
 
@@ -758,31 +736,32 @@ class Messaging extends Service
         if (!is_null($name)) {
             $apiParams['name'] = $name;
         }
-
         if (!is_null($enabled)) {
             $apiParams['enabled'] = $enabled;
         }
-
         if (!is_null($authKey)) {
             $apiParams['authKey'] = $authKey;
         }
-
         if (!is_null($authKeyId)) {
             $apiParams['authKeyId'] = $authKeyId;
         }
-
         if (!is_null($teamId)) {
             $apiParams['teamId'] = $teamId;
         }
-
         if (!is_null($bundleId)) {
             $apiParams['bundleId'] = $bundleId;
         }
-
-
-        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        if (!is_null($sandbox)) {
+            $apiParams['sandbox'] = $sandbox;
+        }
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -812,23 +791,23 @@ class Messaging extends Service
         if (!is_null($providerId)) {
             $apiParams['providerId'] = $providerId;
         }
-
         if (!is_null($name)) {
             $apiParams['name'] = $name;
         }
-
         if (!is_null($serviceAccountJSON)) {
             $apiParams['serviceAccountJSON'] = $serviceAccountJSON;
         }
-
         if (!is_null($enabled)) {
             $apiParams['enabled'] = $enabled;
         }
-
-
-        return $this->client->call(Client::METHOD_POST, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -844,7 +823,7 @@ class Messaging extends Service
      * @return array
 
      */
-    public function updateFCMProvider(string $providerId, string $name = null, bool $enabled = null, array $serviceAccountJSON = null): array
+    public function updateFcmProvider(string $providerId, string $name = null, bool $enabled = null, array $serviceAccountJSON = null): array
     {
         $apiPath = str_replace(['{providerId}'], [$providerId], '/messaging/providers/fcm/{providerId}');
 
@@ -855,19 +834,20 @@ class Messaging extends Service
         if (!is_null($name)) {
             $apiParams['name'] = $name;
         }
-
         if (!is_null($enabled)) {
             $apiParams['enabled'] = $enabled;
         }
-
         if (!is_null($serviceAccountJSON)) {
             $apiParams['serviceAccountJSON'] = $serviceAccountJSON;
         }
-
-
-        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -903,47 +883,41 @@ class Messaging extends Service
         if (!is_null($providerId)) {
             $apiParams['providerId'] = $providerId;
         }
-
         if (!is_null($name)) {
             $apiParams['name'] = $name;
         }
-
         if (!is_null($apiKey)) {
             $apiParams['apiKey'] = $apiKey;
         }
-
         if (!is_null($domain)) {
             $apiParams['domain'] = $domain;
         }
-
         if (!is_null($isEuRegion)) {
             $apiParams['isEuRegion'] = $isEuRegion;
         }
-
         if (!is_null($fromName)) {
             $apiParams['fromName'] = $fromName;
         }
-
         if (!is_null($fromEmail)) {
             $apiParams['fromEmail'] = $fromEmail;
         }
-
         if (!is_null($replyToName)) {
             $apiParams['replyToName'] = $replyToName;
         }
-
         if (!is_null($replyToEmail)) {
             $apiParams['replyToEmail'] = $replyToEmail;
         }
-
         if (!is_null($enabled)) {
             $apiParams['enabled'] = $enabled;
         }
-
-
-        return $this->client->call(Client::METHOD_POST, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -976,43 +950,38 @@ class Messaging extends Service
         if (!is_null($name)) {
             $apiParams['name'] = $name;
         }
-
         if (!is_null($apiKey)) {
             $apiParams['apiKey'] = $apiKey;
         }
-
         if (!is_null($domain)) {
             $apiParams['domain'] = $domain;
         }
-
         if (!is_null($isEuRegion)) {
             $apiParams['isEuRegion'] = $isEuRegion;
         }
-
         if (!is_null($enabled)) {
             $apiParams['enabled'] = $enabled;
         }
-
         if (!is_null($fromName)) {
             $apiParams['fromName'] = $fromName;
         }
-
         if (!is_null($fromEmail)) {
             $apiParams['fromEmail'] = $fromEmail;
         }
-
         if (!is_null($replyToName)) {
             $apiParams['replyToName'] = $replyToName;
         }
-
         if (!is_null($replyToEmail)) {
             $apiParams['replyToEmail'] = $replyToEmail;
         }
-
-
-        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -1044,31 +1013,29 @@ class Messaging extends Service
         if (!is_null($providerId)) {
             $apiParams['providerId'] = $providerId;
         }
-
         if (!is_null($name)) {
             $apiParams['name'] = $name;
         }
-
         if (!is_null($from)) {
             $apiParams['from'] = $from;
         }
-
         if (!is_null($senderId)) {
             $apiParams['senderId'] = $senderId;
         }
-
         if (!is_null($authKey)) {
             $apiParams['authKey'] = $authKey;
         }
-
         if (!is_null($enabled)) {
             $apiParams['enabled'] = $enabled;
         }
-
-
-        return $this->client->call(Client::METHOD_POST, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -1097,27 +1064,26 @@ class Messaging extends Service
         if (!is_null($name)) {
             $apiParams['name'] = $name;
         }
-
         if (!is_null($enabled)) {
             $apiParams['enabled'] = $enabled;
         }
-
         if (!is_null($senderId)) {
             $apiParams['senderId'] = $senderId;
         }
-
         if (!is_null($authKey)) {
             $apiParams['authKey'] = $authKey;
         }
-
         if (!is_null($from)) {
             $apiParams['from'] = $from;
         }
-
-
-        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -1149,39 +1115,35 @@ class Messaging extends Service
         if (!is_null($providerId)) {
             $apiParams['providerId'] = $providerId;
         }
-
         if (!is_null($name)) {
             $apiParams['name'] = $name;
         }
-
         if (!is_null($apiKey)) {
             $apiParams['apiKey'] = $apiKey;
         }
-
         if (!is_null($fromName)) {
             $apiParams['fromName'] = $fromName;
         }
-
         if (!is_null($fromEmail)) {
             $apiParams['fromEmail'] = $fromEmail;
         }
-
         if (!is_null($replyToName)) {
             $apiParams['replyToName'] = $replyToName;
         }
-
         if (!is_null($replyToEmail)) {
             $apiParams['replyToEmail'] = $replyToEmail;
         }
-
         if (!is_null($enabled)) {
             $apiParams['enabled'] = $enabled;
         }
-
-
-        return $this->client->call(Client::METHOD_POST, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -1212,35 +1174,32 @@ class Messaging extends Service
         if (!is_null($name)) {
             $apiParams['name'] = $name;
         }
-
         if (!is_null($enabled)) {
             $apiParams['enabled'] = $enabled;
         }
-
         if (!is_null($apiKey)) {
             $apiParams['apiKey'] = $apiKey;
         }
-
         if (!is_null($fromName)) {
             $apiParams['fromName'] = $fromName;
         }
-
         if (!is_null($fromEmail)) {
             $apiParams['fromEmail'] = $fromEmail;
         }
-
         if (!is_null($replyToName)) {
             $apiParams['replyToName'] = $replyToName;
         }
-
         if (!is_null($replyToEmail)) {
             $apiParams['replyToEmail'] = $replyToEmail;
         }
-
-
-        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -1254,7 +1213,7 @@ class Messaging extends Service
      * @param int $port
      * @param string $username
      * @param string $password
-     * @param Encryption $encryption
+     * @param SmtpEncryption $encryption
      * @param bool $autoTLS
      * @param string $mailer
      * @param string $fromName
@@ -1266,7 +1225,7 @@ class Messaging extends Service
      * @return array
 
      */
-    public function createSmtpProvider(string $providerId, string $name, string $host, int $port = null, string $username = null, string $password = null, Encryption $encryption = null, bool $autoTLS = null, string $mailer = null, string $fromName = null, string $fromEmail = null, string $replyToName = null, string $replyToEmail = null, bool $enabled = null): array
+    public function createSmtpProvider(string $providerId, string $name, string $host, int $port = null, string $username = null, string $password = null, SmtpEncryption $encryption = null, bool $autoTLS = null, string $mailer = null, string $fromName = null, string $fromEmail = null, string $replyToName = null, string $replyToEmail = null, bool $enabled = null): array
     {
         $apiPath = str_replace([], [], '/messaging/providers/smtp');
 
@@ -1283,63 +1242,53 @@ class Messaging extends Service
         if (!is_null($providerId)) {
             $apiParams['providerId'] = $providerId;
         }
-
         if (!is_null($name)) {
             $apiParams['name'] = $name;
         }
-
         if (!is_null($host)) {
             $apiParams['host'] = $host;
         }
-
         if (!is_null($port)) {
             $apiParams['port'] = $port;
         }
-
         if (!is_null($username)) {
             $apiParams['username'] = $username;
         }
-
         if (!is_null($password)) {
             $apiParams['password'] = $password;
         }
-
         if (!is_null($encryption)) {
             $apiParams['encryption'] = $encryption;
         }
-
         if (!is_null($autoTLS)) {
             $apiParams['autoTLS'] = $autoTLS;
         }
-
         if (!is_null($mailer)) {
             $apiParams['mailer'] = $mailer;
         }
-
         if (!is_null($fromName)) {
             $apiParams['fromName'] = $fromName;
         }
-
         if (!is_null($fromEmail)) {
             $apiParams['fromEmail'] = $fromEmail;
         }
-
         if (!is_null($replyToName)) {
             $apiParams['replyToName'] = $replyToName;
         }
-
         if (!is_null($replyToEmail)) {
             $apiParams['replyToEmail'] = $replyToEmail;
         }
-
         if (!is_null($enabled)) {
             $apiParams['enabled'] = $enabled;
         }
-
-
-        return $this->client->call(Client::METHOD_POST, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -1353,7 +1302,7 @@ class Messaging extends Service
      * @param int $port
      * @param string $username
      * @param string $password
-     * @param Encryption $encryption
+     * @param SmtpEncryption $encryption
      * @param bool $autoTLS
      * @param string $mailer
      * @param string $fromName
@@ -1365,7 +1314,7 @@ class Messaging extends Service
      * @return array
 
      */
-    public function updateSmtpProvider(string $providerId, string $name = null, string $host = null, int $port = null, string $username = null, string $password = null, Encryption $encryption = null, bool $autoTLS = null, string $mailer = null, string $fromName = null, string $fromEmail = null, string $replyToName = null, string $replyToEmail = null, bool $enabled = null): array
+    public function updateSmtpProvider(string $providerId, string $name = null, string $host = null, int $port = null, string $username = null, string $password = null, SmtpEncryption $encryption = null, bool $autoTLS = null, string $mailer = null, string $fromName = null, string $fromEmail = null, string $replyToName = null, string $replyToEmail = null, bool $enabled = null): array
     {
         $apiPath = str_replace(['{providerId}'], [$providerId], '/messaging/providers/smtp/{providerId}');
 
@@ -1376,59 +1325,50 @@ class Messaging extends Service
         if (!is_null($name)) {
             $apiParams['name'] = $name;
         }
-
         if (!is_null($host)) {
             $apiParams['host'] = $host;
         }
-
         if (!is_null($port)) {
             $apiParams['port'] = $port;
         }
-
         if (!is_null($username)) {
             $apiParams['username'] = $username;
         }
-
         if (!is_null($password)) {
             $apiParams['password'] = $password;
         }
-
         if (!is_null($encryption)) {
             $apiParams['encryption'] = $encryption;
         }
-
         if (!is_null($autoTLS)) {
             $apiParams['autoTLS'] = $autoTLS;
         }
-
         if (!is_null($mailer)) {
             $apiParams['mailer'] = $mailer;
         }
-
         if (!is_null($fromName)) {
             $apiParams['fromName'] = $fromName;
         }
-
         if (!is_null($fromEmail)) {
             $apiParams['fromEmail'] = $fromEmail;
         }
-
         if (!is_null($replyToName)) {
             $apiParams['replyToName'] = $replyToName;
         }
-
         if (!is_null($replyToEmail)) {
             $apiParams['replyToEmail'] = $replyToEmail;
         }
-
         if (!is_null($enabled)) {
             $apiParams['enabled'] = $enabled;
         }
-
-
-        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -1460,31 +1400,29 @@ class Messaging extends Service
         if (!is_null($providerId)) {
             $apiParams['providerId'] = $providerId;
         }
-
         if (!is_null($name)) {
             $apiParams['name'] = $name;
         }
-
         if (!is_null($from)) {
             $apiParams['from'] = $from;
         }
-
         if (!is_null($customerId)) {
             $apiParams['customerId'] = $customerId;
         }
-
         if (!is_null($apiKey)) {
             $apiParams['apiKey'] = $apiKey;
         }
-
         if (!is_null($enabled)) {
             $apiParams['enabled'] = $enabled;
         }
-
-
-        return $this->client->call(Client::METHOD_POST, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -1513,27 +1451,26 @@ class Messaging extends Service
         if (!is_null($name)) {
             $apiParams['name'] = $name;
         }
-
         if (!is_null($enabled)) {
             $apiParams['enabled'] = $enabled;
         }
-
         if (!is_null($customerId)) {
             $apiParams['customerId'] = $customerId;
         }
-
         if (!is_null($apiKey)) {
             $apiParams['apiKey'] = $apiKey;
         }
-
         if (!is_null($from)) {
             $apiParams['from'] = $from;
         }
-
-
-        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -1565,31 +1502,29 @@ class Messaging extends Service
         if (!is_null($providerId)) {
             $apiParams['providerId'] = $providerId;
         }
-
         if (!is_null($name)) {
             $apiParams['name'] = $name;
         }
-
         if (!is_null($from)) {
             $apiParams['from'] = $from;
         }
-
         if (!is_null($username)) {
             $apiParams['username'] = $username;
         }
-
         if (!is_null($apiKey)) {
             $apiParams['apiKey'] = $apiKey;
         }
-
         if (!is_null($enabled)) {
             $apiParams['enabled'] = $enabled;
         }
-
-
-        return $this->client->call(Client::METHOD_POST, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -1618,27 +1553,26 @@ class Messaging extends Service
         if (!is_null($name)) {
             $apiParams['name'] = $name;
         }
-
         if (!is_null($enabled)) {
             $apiParams['enabled'] = $enabled;
         }
-
         if (!is_null($username)) {
             $apiParams['username'] = $username;
         }
-
         if (!is_null($apiKey)) {
             $apiParams['apiKey'] = $apiKey;
         }
-
         if (!is_null($from)) {
             $apiParams['from'] = $from;
         }
-
-
-        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -1670,31 +1604,29 @@ class Messaging extends Service
         if (!is_null($providerId)) {
             $apiParams['providerId'] = $providerId;
         }
-
         if (!is_null($name)) {
             $apiParams['name'] = $name;
         }
-
         if (!is_null($from)) {
             $apiParams['from'] = $from;
         }
-
         if (!is_null($accountSid)) {
             $apiParams['accountSid'] = $accountSid;
         }
-
         if (!is_null($authToken)) {
             $apiParams['authToken'] = $authToken;
         }
-
         if (!is_null($enabled)) {
             $apiParams['enabled'] = $enabled;
         }
-
-
-        return $this->client->call(Client::METHOD_POST, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -1723,27 +1655,26 @@ class Messaging extends Service
         if (!is_null($name)) {
             $apiParams['name'] = $name;
         }
-
         if (!is_null($enabled)) {
             $apiParams['enabled'] = $enabled;
         }
-
         if (!is_null($accountSid)) {
             $apiParams['accountSid'] = $accountSid;
         }
-
         if (!is_null($authToken)) {
             $apiParams['authToken'] = $authToken;
         }
-
         if (!is_null($from)) {
             $apiParams['from'] = $from;
         }
-
-
-        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -1775,31 +1706,29 @@ class Messaging extends Service
         if (!is_null($providerId)) {
             $apiParams['providerId'] = $providerId;
         }
-
         if (!is_null($name)) {
             $apiParams['name'] = $name;
         }
-
         if (!is_null($from)) {
             $apiParams['from'] = $from;
         }
-
         if (!is_null($apiKey)) {
             $apiParams['apiKey'] = $apiKey;
         }
-
         if (!is_null($apiSecret)) {
             $apiParams['apiSecret'] = $apiSecret;
         }
-
         if (!is_null($enabled)) {
             $apiParams['enabled'] = $enabled;
         }
-
-
-        return $this->client->call(Client::METHOD_POST, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -1828,27 +1757,26 @@ class Messaging extends Service
         if (!is_null($name)) {
             $apiParams['name'] = $name;
         }
-
         if (!is_null($enabled)) {
             $apiParams['enabled'] = $enabled;
         }
-
         if (!is_null($apiKey)) {
             $apiParams['apiKey'] = $apiKey;
         }
-
         if (!is_null($apiSecret)) {
             $apiParams['apiSecret'] = $apiSecret;
         }
-
         if (!is_null($from)) {
             $apiParams['from'] = $from;
         }
-
-
-        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -1870,10 +1798,14 @@ class Messaging extends Service
         if (!isset($providerId)) {
             throw new AppwriteException('Missing required parameter: "providerId"');
         }
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -1894,10 +1826,14 @@ class Messaging extends Service
         if (!isset($providerId)) {
             throw new AppwriteException('Missing required parameter: "providerId"');
         }
-
-        return $this->client->call(Client::METHOD_DELETE, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_DELETE,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -1922,11 +1858,14 @@ class Messaging extends Service
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
         }
-
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -1951,11 +1890,14 @@ class Messaging extends Service
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
         }
-
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -1977,15 +1919,17 @@ class Messaging extends Service
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
         }
-
         if (!is_null($search)) {
             $apiParams['search'] = $search;
         }
-
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -2014,19 +1958,20 @@ class Messaging extends Service
         if (!is_null($topicId)) {
             $apiParams['topicId'] = $topicId;
         }
-
         if (!is_null($name)) {
             $apiParams['name'] = $name;
         }
-
         if (!is_null($subscribe)) {
             $apiParams['subscribe'] = $subscribe;
         }
-
-
-        return $this->client->call(Client::METHOD_POST, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -2048,10 +1993,14 @@ class Messaging extends Service
         if (!isset($topicId)) {
             throw new AppwriteException('Missing required parameter: "topicId"');
         }
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -2062,11 +2011,12 @@ class Messaging extends Service
      *
      * @param string $topicId
      * @param string $name
+     * @param array $subscribe
      * @throws AppwriteException
      * @return array
 
      */
-    public function updateTopic(string $topicId, string $name = null): array
+    public function updateTopic(string $topicId, string $name = null, array $subscribe = null): array
     {
         $apiPath = str_replace(['{topicId}'], [$topicId], '/messaging/topics/{topicId}');
 
@@ -2077,11 +2027,17 @@ class Messaging extends Service
         if (!is_null($name)) {
             $apiParams['name'] = $name;
         }
-
-
-        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        if (!is_null($subscribe)) {
+            $apiParams['subscribe'] = $subscribe;
+        }
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -2102,10 +2058,14 @@ class Messaging extends Service
         if (!isset($topicId)) {
             throw new AppwriteException('Missing required parameter: "topicId"');
         }
-
-        return $this->client->call(Client::METHOD_DELETE, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_DELETE,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -2130,11 +2090,14 @@ class Messaging extends Service
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
         }
-
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -2160,15 +2123,17 @@ class Messaging extends Service
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
         }
-
         if (!is_null($search)) {
             $apiParams['search'] = $search;
         }
-
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -2200,15 +2165,17 @@ class Messaging extends Service
         if (!is_null($subscriberId)) {
             $apiParams['subscriberId'] = $subscriberId;
         }
-
         if (!is_null($targetId)) {
             $apiParams['targetId'] = $targetId;
         }
-
-
-        return $this->client->call(Client::METHOD_POST, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -2234,10 +2201,14 @@ class Messaging extends Service
         if (!isset($subscriberId)) {
             throw new AppwriteException('Missing required parameter: "subscriberId"');
         }
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -2262,9 +2233,13 @@ class Messaging extends Service
         if (!isset($subscriberId)) {
             throw new AppwriteException('Missing required parameter: "subscriberId"');
         }
-
-        return $this->client->call(Client::METHOD_DELETE, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_DELETE,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 }

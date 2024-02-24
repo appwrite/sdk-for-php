@@ -31,10 +31,14 @@ class Account extends Service
         $apiPath = str_replace([], [], '/account');
 
         $apiParams = [];
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -73,23 +77,23 @@ class Account extends Service
         if (!is_null($userId)) {
             $apiParams['userId'] = $userId;
         }
-
         if (!is_null($email)) {
             $apiParams['email'] = $email;
         }
-
         if (!is_null($password)) {
             $apiParams['password'] = $password;
         }
-
         if (!is_null($name)) {
             $apiParams['name'] = $name;
         }
-
-
-        return $this->client->call(Client::METHOD_POST, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -124,15 +128,17 @@ class Account extends Service
         if (!is_null($email)) {
             $apiParams['email'] = $email;
         }
-
         if (!is_null($password)) {
             $apiParams['password'] = $password;
         }
-
-
-        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -153,11 +159,14 @@ class Account extends Service
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
         }
-
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -178,10 +187,14 @@ class Account extends Service
         if (!isset($identityId)) {
             throw new AppwriteException('Missing required parameter: "identityId"');
         }
-
-        return $this->client->call(Client::METHOD_DELETE, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_DELETE,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -202,10 +215,14 @@ class Account extends Service
         $apiPath = str_replace([], [], '/account/jwt');
 
         $apiParams = [];
-
-        return $this->client->call(Client::METHOD_POST, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -227,11 +244,14 @@ class Account extends Service
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
         }
-
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -253,11 +273,14 @@ class Account extends Service
         if (!is_null($mfa)) {
             $apiParams['mfa'] = $mfa;
         }
-
-
-        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -268,7 +291,7 @@ class Account extends Service
      * @return array
 
      */
-    public function create2FAChallenge(AuthenticationFactor $factor): array
+    public function createChallenge(AuthenticationFactor $factor): array
     {
         $apiPath = str_replace([], [], '/account/mfa/challenge');
 
@@ -279,11 +302,14 @@ class Account extends Service
         if (!is_null($factor)) {
             $apiParams['factor'] = $factor;
         }
-
-
-        return $this->client->call(Client::METHOD_POST, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -309,15 +335,17 @@ class Account extends Service
         if (!is_null($challengeId)) {
             $apiParams['challengeId'] = $challengeId;
         }
-
         if (!is_null($otp)) {
             $apiParams['otp'] = $otp;
         }
-
-
-        return $this->client->call(Client::METHOD_PUT, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_PUT,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -332,10 +360,14 @@ class Account extends Service
         $apiPath = str_replace([], [], '/account/mfa/factors');
 
         $apiParams = [];
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -354,10 +386,14 @@ class Account extends Service
         if (!isset($type)) {
             throw new AppwriteException('Missing required parameter: "type"');
         }
-
-        return $this->client->call(Client::METHOD_POST, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -383,11 +419,14 @@ class Account extends Service
         if (!is_null($otp)) {
             $apiParams['otp'] = $otp;
         }
-
-
-        return $this->client->call(Client::METHOD_PUT, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_PUT,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -413,11 +452,14 @@ class Account extends Service
         if (!is_null($otp)) {
             $apiParams['otp'] = $otp;
         }
-
-
-        return $this->client->call(Client::METHOD_DELETE, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_DELETE,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -441,11 +483,14 @@ class Account extends Service
         if (!is_null($name)) {
             $apiParams['name'] = $name;
         }
-
-
-        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -472,15 +517,17 @@ class Account extends Service
         if (!is_null($password)) {
             $apiParams['password'] = $password;
         }
-
         if (!is_null($oldPassword)) {
             $apiParams['oldPassword'] = $oldPassword;
         }
-
-
-        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -512,15 +559,17 @@ class Account extends Service
         if (!is_null($phone)) {
             $apiParams['phone'] = $phone;
         }
-
         if (!is_null($password)) {
             $apiParams['password'] = $password;
         }
-
-
-        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -537,10 +586,14 @@ class Account extends Service
         $apiPath = str_replace([], [], '/account/prefs');
 
         $apiParams = [];
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -566,11 +619,14 @@ class Account extends Service
         if (!is_null($prefs)) {
             $apiParams['prefs'] = $prefs;
         }
-
-
-        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -605,15 +661,17 @@ class Account extends Service
         if (!is_null($email)) {
             $apiParams['email'] = $email;
         }
-
         if (!is_null($url)) {
             $apiParams['url'] = $url;
         }
-
-
-        return $this->client->call(Client::METHOD_POST, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -654,19 +712,20 @@ class Account extends Service
         if (!is_null($userId)) {
             $apiParams['userId'] = $userId;
         }
-
         if (!is_null($secret)) {
             $apiParams['secret'] = $secret;
         }
-
         if (!is_null($password)) {
             $apiParams['password'] = $password;
         }
-
-
-        return $this->client->call(Client::METHOD_PUT, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_PUT,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -684,10 +743,14 @@ class Account extends Service
         $apiPath = str_replace([], [], '/account/sessions');
 
         $apiParams = [];
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -705,10 +768,14 @@ class Account extends Service
         $apiPath = str_replace([], [], '/account/sessions');
 
         $apiParams = [];
-
-        return $this->client->call(Client::METHOD_DELETE, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_DELETE,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -731,10 +798,14 @@ class Account extends Service
         $apiPath = str_replace([], [], '/account/sessions/anonymous');
 
         $apiParams = [];
-
-        return $this->client->call(Client::METHOD_POST, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -767,15 +838,17 @@ class Account extends Service
         if (!is_null($email)) {
             $apiParams['email'] = $email;
         }
-
         if (!is_null($password)) {
             $apiParams['password'] = $password;
         }
-
-
-        return $this->client->call(Client::METHOD_POST, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -805,15 +878,17 @@ class Account extends Service
         if (!is_null($userId)) {
             $apiParams['userId'] = $userId;
         }
-
         if (!is_null($secret)) {
             $apiParams['secret'] = $secret;
         }
-
-
-        return $this->client->call(Client::METHOD_PUT, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_PUT,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -839,13 +914,12 @@ class Account extends Service
      * @param OAuthProvider $provider
      * @param string $success
      * @param string $failure
-     * @param bool $token
      * @param array $scopes
      * @throws AppwriteException
-     * @return array
+     * @return string
 
      */
-    public function createOAuth2Session(OAuthProvider $provider, string $success = null, string $failure = null, bool $token = null, array $scopes = null): array
+    public function createOAuth2Session(OAuthProvider $provider, string $success = null, string $failure = null, array $scopes = null): string
     {
         $apiPath = str_replace(['{provider}'], [$provider], '/account/sessions/oauth2/{provider}');
 
@@ -856,23 +930,20 @@ class Account extends Service
         if (!is_null($success)) {
             $apiParams['success'] = $success;
         }
-
         if (!is_null($failure)) {
             $apiParams['failure'] = $failure;
         }
-
-        if (!is_null($token)) {
-            $apiParams['token'] = $token;
-        }
-
         if (!is_null($scopes)) {
             $apiParams['scopes'] = $scopes;
         }
-
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams, 'location'
+        );
     }
 
     /**
@@ -902,15 +973,17 @@ class Account extends Service
         if (!is_null($userId)) {
             $apiParams['userId'] = $userId;
         }
-
         if (!is_null($secret)) {
             $apiParams['secret'] = $secret;
         }
-
-
-        return $this->client->call(Client::METHOD_POST, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -932,10 +1005,14 @@ class Account extends Service
         if (!isset($sessionId)) {
             throw new AppwriteException('Missing required parameter: "sessionId"');
         }
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -957,10 +1034,14 @@ class Account extends Service
         if (!isset($sessionId)) {
             throw new AppwriteException('Missing required parameter: "sessionId"');
         }
-
-        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -985,10 +1066,14 @@ class Account extends Service
         if (!isset($sessionId)) {
             throw new AppwriteException('Missing required parameter: "sessionId"');
         }
-
-        return $this->client->call(Client::METHOD_DELETE, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_DELETE,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -1007,10 +1092,14 @@ class Account extends Service
         $apiPath = str_replace([], [], '/account/status');
 
         $apiParams = [];
-
-        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -1048,19 +1137,20 @@ class Account extends Service
         if (!is_null($userId)) {
             $apiParams['userId'] = $userId;
         }
-
         if (!is_null($email)) {
             $apiParams['email'] = $email;
         }
-
         if (!is_null($phrase)) {
             $apiParams['phrase'] = $phrase;
         }
-
-
-        return $this->client->call(Client::METHOD_POST, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -1105,23 +1195,76 @@ class Account extends Service
         if (!is_null($userId)) {
             $apiParams['userId'] = $userId;
         }
-
         if (!is_null($email)) {
             $apiParams['email'] = $email;
         }
-
         if (!is_null($url)) {
             $apiParams['url'] = $url;
         }
-
         if (!is_null($phrase)) {
             $apiParams['phrase'] = $phrase;
         }
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
+    }
 
+    /**
+     * Create OAuth2 token
+     *
+     * Allow the user to login to their account using the OAuth2 provider of their
+     * choice. Each OAuth2 provider should be enabled from the Appwrite console
+     * first. Use the success and failure arguments to provide a redirect URL's
+     * back to your app when login is completed. 
+     * 
+     * If authentication succeeds, `userId` and `secret` of a token will be
+     * appended to the success URL as query parameters. These can be used to
+     * create a new session using the [Create
+     * session](https://appwrite.io/docs/references/cloud/client-web/account#createSession)
+     * endpoint.
+     * 
+     * A user is limited to 10 active sessions at a time by default. [Learn more
+     * about session
+     * limits](https://appwrite.io/docs/authentication-security#limits).
+     *
+     * @param OAuthProvider $provider
+     * @param string $success
+     * @param string $failure
+     * @param array $scopes
+     * @throws AppwriteException
+     * @return string
 
-        return $this->client->call(Client::METHOD_POST, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+     */
+    public function createOAuth2Token(OAuthProvider $provider, string $success = null, string $failure = null, array $scopes = null): string
+    {
+        $apiPath = str_replace(['{provider}'], [$provider], '/account/tokens/oauth2/{provider}');
+
+        $apiParams = [];
+        if (!isset($provider)) {
+            throw new AppwriteException('Missing required parameter: "provider"');
+        }
+        if (!is_null($success)) {
+            $apiParams['success'] = $success;
+        }
+        if (!is_null($failure)) {
+            $apiParams['failure'] = $failure;
+        }
+        if (!is_null($scopes)) {
+            $apiParams['scopes'] = $scopes;
+        }
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams, 'location'
+        );
     }
 
     /**
@@ -1158,15 +1301,17 @@ class Account extends Service
         if (!is_null($userId)) {
             $apiParams['userId'] = $userId;
         }
-
         if (!is_null($phone)) {
             $apiParams['phone'] = $phone;
         }
-
-
-        return $this->client->call(Client::METHOD_POST, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -1204,11 +1349,14 @@ class Account extends Service
         if (!is_null($url)) {
             $apiParams['url'] = $url;
         }
-
-
-        return $this->client->call(Client::METHOD_POST, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -1239,15 +1387,17 @@ class Account extends Service
         if (!is_null($userId)) {
             $apiParams['userId'] = $userId;
         }
-
         if (!is_null($secret)) {
             $apiParams['secret'] = $secret;
         }
-
-
-        return $this->client->call(Client::METHOD_PUT, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_PUT,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -1271,10 +1421,14 @@ class Account extends Service
         $apiPath = str_replace([], [], '/account/verification/phone');
 
         $apiParams = [];
-
-        return $this->client->call(Client::METHOD_POST, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -1305,14 +1459,16 @@ class Account extends Service
         if (!is_null($userId)) {
             $apiParams['userId'] = $userId;
         }
-
         if (!is_null($secret)) {
             $apiParams['secret'] = $secret;
         }
-
-
-        return $this->client->call(Client::METHOD_PUT, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_PUT,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 }

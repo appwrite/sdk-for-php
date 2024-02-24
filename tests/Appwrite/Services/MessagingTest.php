@@ -53,9 +53,9 @@ final class MessagingTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->messaging->createEmail(
-            "[MESSAGE_ID]",
-            "[SUBJECT]",
-            "[CONTENT]"
+            "<MESSAGE_ID>",
+            "<SUBJECT>",
+            "<CONTENT>"
         );
 
         $this->assertSame($data, $response);
@@ -81,7 +81,7 @@ final class MessagingTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->messaging->updateEmail(
-            "[MESSAGE_ID]"
+            "<MESSAGE_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -107,9 +107,9 @@ final class MessagingTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->messaging->createPush(
-            "[MESSAGE_ID]",
-            "[TITLE]",
-            "[BODY]"
+            "<MESSAGE_ID>",
+            "<TITLE>",
+            "<BODY>"
         );
 
         $this->assertSame($data, $response);
@@ -135,7 +135,7 @@ final class MessagingTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->messaging->updatePush(
-            "[MESSAGE_ID]"
+            "<MESSAGE_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -161,8 +161,8 @@ final class MessagingTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->messaging->createSms(
-            "[MESSAGE_ID]",
-            "[CONTENT]"
+            "<MESSAGE_ID>",
+            "<CONTENT>"
         );
 
         $this->assertSame($data, $response);
@@ -188,7 +188,7 @@ final class MessagingTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->messaging->updateSms(
-            "[MESSAGE_ID]"
+            "<MESSAGE_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -214,7 +214,7 @@ final class MessagingTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->messaging->getMessage(
-            "[MESSAGE_ID]"
+            "<MESSAGE_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -230,7 +230,7 @@ final class MessagingTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->messaging->delete(
-            "[MESSAGE_ID]"
+            "<MESSAGE_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -248,7 +248,7 @@ final class MessagingTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->messaging->listMessageLogs(
-            "[MESSAGE_ID]"
+            "<MESSAGE_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -266,7 +266,7 @@ final class MessagingTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->messaging->listTargets(
-            "[MESSAGE_ID]"
+            "<MESSAGE_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -307,14 +307,14 @@ final class MessagingTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->messaging->createApnsProvider(
-            "[PROVIDER_ID]",
-            "[NAME]"
+            "<PROVIDER_ID>",
+            "<NAME>"
         );
 
         $this->assertSame($data, $response);
     }
 
-    public function testMethodUpdateAPNSProvider(): void {
+    public function testMethodUpdateApnsProvider(): void {
 
         $data = array(
             "\$id" => "5e5ea5c16897e",
@@ -331,8 +331,8 @@ final class MessagingTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->messaging->updateAPNSProvider(
-            "[PROVIDER_ID]"
+        $response = $this->messaging->updateApnsProvider(
+            "<PROVIDER_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -356,14 +356,14 @@ final class MessagingTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->messaging->createFcmProvider(
-            "[PROVIDER_ID]",
-            "[NAME]"
+            "<PROVIDER_ID>",
+            "<NAME>"
         );
 
         $this->assertSame($data, $response);
     }
 
-    public function testMethodUpdateFCMProvider(): void {
+    public function testMethodUpdateFcmProvider(): void {
 
         $data = array(
             "\$id" => "5e5ea5c16897e",
@@ -380,8 +380,8 @@ final class MessagingTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->messaging->updateFCMProvider(
-            "[PROVIDER_ID]"
+        $response = $this->messaging->updateFcmProvider(
+            "<PROVIDER_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -405,8 +405,8 @@ final class MessagingTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->messaging->createMailgunProvider(
-            "[PROVIDER_ID]",
-            "[NAME]"
+            "<PROVIDER_ID>",
+            "<NAME>"
         );
 
         $this->assertSame($data, $response);
@@ -430,7 +430,7 @@ final class MessagingTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->messaging->updateMailgunProvider(
-            "[PROVIDER_ID]"
+            "<PROVIDER_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -454,8 +454,8 @@ final class MessagingTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->messaging->createMsg91Provider(
-            "[PROVIDER_ID]",
-            "[NAME]"
+            "<PROVIDER_ID>",
+            "<NAME>"
         );
 
         $this->assertSame($data, $response);
@@ -479,7 +479,7 @@ final class MessagingTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->messaging->updateMsg91Provider(
-            "[PROVIDER_ID]"
+            "<PROVIDER_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -503,8 +503,8 @@ final class MessagingTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->messaging->createSendgridProvider(
-            "[PROVIDER_ID]",
-            "[NAME]"
+            "<PROVIDER_ID>",
+            "<NAME>"
         );
 
         $this->assertSame($data, $response);
@@ -528,7 +528,7 @@ final class MessagingTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->messaging->updateSendgridProvider(
-            "[PROVIDER_ID]"
+            "<PROVIDER_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -552,9 +552,9 @@ final class MessagingTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->messaging->createSmtpProvider(
-            "[PROVIDER_ID]",
-            "[NAME]",
-            "[HOST]"
+            "<PROVIDER_ID>",
+            "<NAME>",
+            "<HOST>"
         );
 
         $this->assertSame($data, $response);
@@ -578,7 +578,7 @@ final class MessagingTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->messaging->updateSmtpProvider(
-            "[PROVIDER_ID]"
+            "<PROVIDER_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -602,8 +602,8 @@ final class MessagingTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->messaging->createTelesignProvider(
-            "[PROVIDER_ID]",
-            "[NAME]"
+            "<PROVIDER_ID>",
+            "<NAME>"
         );
 
         $this->assertSame($data, $response);
@@ -627,7 +627,7 @@ final class MessagingTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->messaging->updateTelesignProvider(
-            "[PROVIDER_ID]"
+            "<PROVIDER_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -651,8 +651,8 @@ final class MessagingTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->messaging->createTextmagicProvider(
-            "[PROVIDER_ID]",
-            "[NAME]"
+            "<PROVIDER_ID>",
+            "<NAME>"
         );
 
         $this->assertSame($data, $response);
@@ -676,7 +676,7 @@ final class MessagingTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->messaging->updateTextmagicProvider(
-            "[PROVIDER_ID]"
+            "<PROVIDER_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -700,8 +700,8 @@ final class MessagingTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->messaging->createTwilioProvider(
-            "[PROVIDER_ID]",
-            "[NAME]"
+            "<PROVIDER_ID>",
+            "<NAME>"
         );
 
         $this->assertSame($data, $response);
@@ -725,7 +725,7 @@ final class MessagingTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->messaging->updateTwilioProvider(
-            "[PROVIDER_ID]"
+            "<PROVIDER_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -749,8 +749,8 @@ final class MessagingTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->messaging->createVonageProvider(
-            "[PROVIDER_ID]",
-            "[NAME]"
+            "<PROVIDER_ID>",
+            "<NAME>"
         );
 
         $this->assertSame($data, $response);
@@ -774,7 +774,7 @@ final class MessagingTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->messaging->updateVonageProvider(
-            "[PROVIDER_ID]"
+            "<PROVIDER_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -798,7 +798,7 @@ final class MessagingTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->messaging->getProvider(
-            "[PROVIDER_ID]"
+            "<PROVIDER_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -814,7 +814,7 @@ final class MessagingTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->messaging->deleteProvider(
-            "[PROVIDER_ID]"
+            "<PROVIDER_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -832,7 +832,7 @@ final class MessagingTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->messaging->listProviderLogs(
-            "[PROVIDER_ID]"
+            "<PROVIDER_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -850,7 +850,7 @@ final class MessagingTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->messaging->listSubscriberLogs(
-            "[SUBSCRIBER_ID]"
+            "<SUBSCRIBER_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -891,8 +891,8 @@ final class MessagingTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->messaging->createTopic(
-            "[TOPIC_ID]",
-            "[NAME]"
+            "<TOPIC_ID>",
+            "<NAME>"
         );
 
         $this->assertSame($data, $response);
@@ -916,7 +916,7 @@ final class MessagingTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->messaging->getTopic(
-            "[TOPIC_ID]"
+            "<TOPIC_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -940,7 +940,7 @@ final class MessagingTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->messaging->updateTopic(
-            "[TOPIC_ID]"
+            "<TOPIC_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -956,7 +956,7 @@ final class MessagingTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->messaging->deleteTopic(
-            "[TOPIC_ID]"
+            "<TOPIC_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -974,7 +974,7 @@ final class MessagingTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->messaging->listTopicLogs(
-            "[TOPIC_ID]"
+            "<TOPIC_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -992,7 +992,7 @@ final class MessagingTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->messaging->listSubscribers(
-            "[TOPIC_ID]"
+            "<TOPIC_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -1017,9 +1017,9 @@ final class MessagingTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->messaging->createSubscriber(
-            "[TOPIC_ID]",
-            "[SUBSCRIBER_ID]",
-            "[TARGET_ID]"
+            "<TOPIC_ID>",
+            "<SUBSCRIBER_ID>",
+            "<TARGET_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -1044,8 +1044,8 @@ final class MessagingTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->messaging->getSubscriber(
-            "[TOPIC_ID]",
-            "[SUBSCRIBER_ID]"
+            "<TOPIC_ID>",
+            "<SUBSCRIBER_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -1061,8 +1061,8 @@ final class MessagingTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->messaging->deleteSubscriber(
-            "[TOPIC_ID]",
-            "[SUBSCRIBER_ID]"
+            "<TOPIC_ID>",
+            "<SUBSCRIBER_ID>"
         );
 
         $this->assertSame($data, $response);

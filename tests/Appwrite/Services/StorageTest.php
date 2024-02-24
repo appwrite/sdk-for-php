@@ -55,8 +55,8 @@ final class StorageTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->storage->createBucket(
-            "[BUCKET_ID]",
-            "[NAME]"
+            "<BUCKET_ID>",
+            "<NAME>"
         );
 
         $this->assertSame($data, $response);
@@ -84,7 +84,7 @@ final class StorageTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->storage->getBucket(
-            "[BUCKET_ID]"
+            "<BUCKET_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -112,8 +112,8 @@ final class StorageTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->storage->updateBucket(
-            "[BUCKET_ID]",
-            "[NAME]"
+            "<BUCKET_ID>",
+            "<NAME>"
         );
 
         $this->assertSame($data, $response);
@@ -129,7 +129,7 @@ final class StorageTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->storage->deleteBucket(
-            "[BUCKET_ID]"
+            "<BUCKET_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -147,7 +147,7 @@ final class StorageTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->storage->listFiles(
-            "[BUCKET_ID]"
+            "<BUCKET_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -174,8 +174,8 @@ final class StorageTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->storage->createFile(
-            "[BUCKET_ID]",
-            "[FILE_ID]",
+            "<BUCKET_ID>",
+            "<FILE_ID>",
             InputFile::withData('', "image/png")
         );
 
@@ -203,8 +203,8 @@ final class StorageTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->storage->getFile(
-            "[BUCKET_ID]",
-            "[FILE_ID]"
+            "<BUCKET_ID>",
+            "<FILE_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -231,8 +231,8 @@ final class StorageTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->storage->updateFile(
-            "[BUCKET_ID]",
-            "[FILE_ID]"
+            "<BUCKET_ID>",
+            "<FILE_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -248,8 +248,8 @@ final class StorageTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->storage->deleteFile(
-            "[BUCKET_ID]",
-            "[FILE_ID]"
+            "<BUCKET_ID>",
+            "<FILE_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -265,8 +265,8 @@ final class StorageTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->storage->getFileDownload(
-            "[BUCKET_ID]",
-            "[FILE_ID]"
+            "<BUCKET_ID>",
+            "<FILE_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -282,8 +282,8 @@ final class StorageTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->storage->getFilePreview(
-            "[BUCKET_ID]",
-            "[FILE_ID]"
+            "<BUCKET_ID>",
+            "<FILE_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -299,8 +299,8 @@ final class StorageTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->storage->getFileView(
-            "[BUCKET_ID]",
-            "[FILE_ID]"
+            "<BUCKET_ID>",
+            "<FILE_ID>"
         );
 
         $this->assertSame($data, $response);

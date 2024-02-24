@@ -65,8 +65,8 @@ final class FunctionsTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->functions->create(
-            "[FUNCTION_ID]",
-            "[NAME]",
+            "<FUNCTION_ID>",
+            "<NAME>",
             "node-14.5"
         );
 
@@ -122,7 +122,7 @@ final class FunctionsTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->functions->get(
-            "[FUNCTION_ID]"
+            "<FUNCTION_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -160,8 +160,8 @@ final class FunctionsTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->functions->update(
-            "[FUNCTION_ID]",
-            "[NAME]"
+            "<FUNCTION_ID>",
+            "<NAME>"
         );
 
         $this->assertSame($data, $response);
@@ -177,7 +177,7 @@ final class FunctionsTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->functions->delete(
-            "[FUNCTION_ID]"
+            "<FUNCTION_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -195,7 +195,7 @@ final class FunctionsTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->functions->listDeployments(
-            "[FUNCTION_ID]"
+            "<FUNCTION_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -234,7 +234,7 @@ final class FunctionsTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->functions->createDeployment(
-            "[FUNCTION_ID]",
+            "<FUNCTION_ID>",
             InputFile::withData('', "image/png"),
             true
         );
@@ -275,8 +275,8 @@ final class FunctionsTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->functions->getDeployment(
-            "[FUNCTION_ID]",
-            "[DEPLOYMENT_ID]"
+            "<FUNCTION_ID>",
+            "<DEPLOYMENT_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -314,8 +314,8 @@ final class FunctionsTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->functions->updateDeployment(
-            "[FUNCTION_ID]",
-            "[DEPLOYMENT_ID]"
+            "<FUNCTION_ID>",
+            "<DEPLOYMENT_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -331,8 +331,8 @@ final class FunctionsTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->functions->deleteDeployment(
-            "[FUNCTION_ID]",
-            "[DEPLOYMENT_ID]"
+            "<FUNCTION_ID>",
+            "<DEPLOYMENT_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -348,9 +348,9 @@ final class FunctionsTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->functions->createBuild(
-            "[FUNCTION_ID]",
-            "[DEPLOYMENT_ID]",
-            "[BUILD_ID]"
+            "<FUNCTION_ID>",
+            "<DEPLOYMENT_ID>",
+            "<BUILD_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -366,8 +366,8 @@ final class FunctionsTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->functions->downloadDeployment(
-            "[FUNCTION_ID]",
-            "[DEPLOYMENT_ID]"
+            "<FUNCTION_ID>",
+            "<DEPLOYMENT_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -385,7 +385,7 @@ final class FunctionsTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->functions->listExecutions(
-            "[FUNCTION_ID]"
+            "<FUNCTION_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -417,7 +417,7 @@ final class FunctionsTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->functions->createExecution(
-            "[FUNCTION_ID]"
+            "<FUNCTION_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -449,8 +449,8 @@ final class FunctionsTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->functions->getExecution(
-            "[FUNCTION_ID]",
-            "[EXECUTION_ID]"
+            "<FUNCTION_ID>",
+            "<EXECUTION_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -468,7 +468,7 @@ final class FunctionsTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->functions->listVariables(
-            "[FUNCTION_ID]"
+            "<FUNCTION_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -491,9 +491,9 @@ final class FunctionsTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->functions->createVariable(
-            "[FUNCTION_ID]",
-            "[KEY]",
-            "[VALUE]"
+            "<FUNCTION_ID>",
+            "<KEY>",
+            "<VALUE>"
         );
 
         $this->assertSame($data, $response);
@@ -516,8 +516,8 @@ final class FunctionsTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->functions->getVariable(
-            "[FUNCTION_ID]",
-            "[VARIABLE_ID]"
+            "<FUNCTION_ID>",
+            "<VARIABLE_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -540,9 +540,9 @@ final class FunctionsTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->functions->updateVariable(
-            "[FUNCTION_ID]",
-            "[VARIABLE_ID]",
-            "[KEY]"
+            "<FUNCTION_ID>",
+            "<VARIABLE_ID>",
+            "<KEY>"
         );
 
         $this->assertSame($data, $response);
@@ -558,8 +558,8 @@ final class FunctionsTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->functions->deleteVariable(
-            "[FUNCTION_ID]",
-            "[VARIABLE_ID]"
+            "<FUNCTION_ID>",
+            "<VARIABLE_ID>"
         );
 
         $this->assertSame($data, $response);

@@ -75,7 +75,7 @@ final class AccountTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->account->create(
-            "[USER_ID]",
+            "<USER_ID>",
             "email@example.com",
             ""
         );
@@ -144,7 +144,7 @@ final class AccountTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->account->deleteIdentity(
-            "[IDENTITY_ID]"
+            "<IDENTITY_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -216,7 +216,7 @@ final class AccountTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
-    public function testMethodCreate2FAChallenge(): void {
+    public function testMethodCreateChallenge(): void {
 
         $data = array(
             "\$id" => "bb8ea5c16897e",
@@ -229,7 +229,7 @@ final class AccountTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->account->create2FAChallenge(
+        $response = $this->account->createChallenge(
             "totp"
         );
 
@@ -246,8 +246,8 @@ final class AccountTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->account->updateChallenge(
-            "[CHALLENGE_ID]",
-            "[OTP]"
+            "<CHALLENGE_ID>",
+            "<OTP>"
         );
 
         $this->assertSame($data, $response);
@@ -318,7 +318,7 @@ final class AccountTest extends TestCase {
 
         $response = $this->account->verifyAuthenticator(
             "totp",
-            "[OTP]"
+            "<OTP>"
         );
 
         $this->assertSame($data, $response);
@@ -352,7 +352,7 @@ final class AccountTest extends TestCase {
 
         $response = $this->account->deleteAuthenticator(
             "totp",
-            "[OTP]"
+            "<OTP>"
         );
 
         $this->assertSame($data, $response);
@@ -385,7 +385,7 @@ final class AccountTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->account->updateName(
-            "[NAME]"
+            "<NAME>"
         );
 
         $this->assertSame($data, $response);
@@ -545,8 +545,8 @@ final class AccountTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->account->updateRecovery(
-            "[USER_ID]",
-            "[SECRET]",
+            "<USER_ID>",
+            "<SECRET>",
             ""
         );
 
@@ -708,8 +708,8 @@ final class AccountTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->account->updateMagicURLSession(
-            "[USER_ID]",
-            "[SECRET]"
+            "<USER_ID>",
+            "<SECRET>"
         );
 
         $this->assertSame($data, $response);
@@ -768,8 +768,8 @@ final class AccountTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->account->createSession(
-            "[USER_ID]",
-            "[SECRET]"
+            "<USER_ID>",
+            "<SECRET>"
         );
 
         $this->assertSame($data, $response);
@@ -812,7 +812,7 @@ final class AccountTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->account->getSession(
-            "[SESSION_ID]"
+            "<SESSION_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -855,7 +855,7 @@ final class AccountTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->account->updateSession(
-            "[SESSION_ID]"
+            "<SESSION_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -871,7 +871,7 @@ final class AccountTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->account->deleteSession(
-            "[SESSION_ID]"
+            "<SESSION_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -925,7 +925,7 @@ final class AccountTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->account->createEmailToken(
-            "[USER_ID]",
+            "<USER_ID>",
             "email@example.com"
         );
 
@@ -948,8 +948,24 @@ final class AccountTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->account->createMagicURLToken(
-            "[USER_ID]",
+            "<USER_ID>",
             "email@example.com"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodCreateOAuth2Token(): void {
+
+        $data = array();
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->account->createOAuth2Token(
+            "amazon"
         );
 
         $this->assertSame($data, $response);
@@ -971,7 +987,7 @@ final class AccountTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->account->createPhoneToken(
-            "[USER_ID]",
+            "<USER_ID>",
             "+12065550100"
         );
 
@@ -1016,8 +1032,8 @@ final class AccountTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->account->updateVerification(
-            "[USER_ID]",
-            "[SECRET]"
+            "<USER_ID>",
+            "<SECRET>"
         );
 
         $this->assertSame($data, $response);
@@ -1060,8 +1076,8 @@ final class AccountTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->account->updatePhoneVerification(
-            "[USER_ID]",
-            "[SECRET]"
+            "<USER_ID>",
+            "<SECRET>"
         );
 
         $this->assertSame($data, $response);

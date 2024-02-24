@@ -37,15 +37,17 @@ class Databases extends Service
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
         }
-
         if (!is_null($search)) {
             $apiParams['search'] = $search;
         }
-
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -75,19 +77,20 @@ class Databases extends Service
         if (!is_null($databaseId)) {
             $apiParams['databaseId'] = $databaseId;
         }
-
         if (!is_null($name)) {
             $apiParams['name'] = $name;
         }
-
         if (!is_null($enabled)) {
             $apiParams['enabled'] = $enabled;
         }
-
-
-        return $this->client->call(Client::METHOD_POST, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -109,10 +112,14 @@ class Databases extends Service
         if (!isset($databaseId)) {
             throw new AppwriteException('Missing required parameter: "databaseId"');
         }
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -141,15 +148,17 @@ class Databases extends Service
         if (!is_null($name)) {
             $apiParams['name'] = $name;
         }
-
         if (!is_null($enabled)) {
             $apiParams['enabled'] = $enabled;
         }
-
-
-        return $this->client->call(Client::METHOD_PUT, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_PUT,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -171,10 +180,14 @@ class Databases extends Service
         if (!isset($databaseId)) {
             throw new AppwriteException('Missing required parameter: "databaseId"');
         }
-
-        return $this->client->call(Client::METHOD_DELETE, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_DELETE,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -201,15 +214,17 @@ class Databases extends Service
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
         }
-
         if (!is_null($search)) {
             $apiParams['search'] = $search;
         }
-
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -247,27 +262,26 @@ class Databases extends Service
         if (!is_null($collectionId)) {
             $apiParams['collectionId'] = $collectionId;
         }
-
         if (!is_null($name)) {
             $apiParams['name'] = $name;
         }
-
         if (!is_null($permissions)) {
             $apiParams['permissions'] = $permissions;
         }
-
         if (!is_null($documentSecurity)) {
             $apiParams['documentSecurity'] = $documentSecurity;
         }
-
         if (!is_null($enabled)) {
             $apiParams['enabled'] = $enabled;
         }
-
-
-        return $this->client->call(Client::METHOD_POST, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -293,10 +307,14 @@ class Databases extends Service
         if (!isset($collectionId)) {
             throw new AppwriteException('Missing required parameter: "collectionId"');
         }
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -331,23 +349,23 @@ class Databases extends Service
         if (!is_null($name)) {
             $apiParams['name'] = $name;
         }
-
         if (!is_null($permissions)) {
             $apiParams['permissions'] = $permissions;
         }
-
         if (!is_null($documentSecurity)) {
             $apiParams['documentSecurity'] = $documentSecurity;
         }
-
         if (!is_null($enabled)) {
             $apiParams['enabled'] = $enabled;
         }
-
-
-        return $this->client->call(Client::METHOD_PUT, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_PUT,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -373,10 +391,14 @@ class Databases extends Service
         if (!isset($collectionId)) {
             throw new AppwriteException('Missing required parameter: "collectionId"');
         }
-
-        return $this->client->call(Client::METHOD_DELETE, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_DELETE,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -403,11 +425,14 @@ class Databases extends Service
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
         }
-
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -446,23 +471,23 @@ class Databases extends Service
         if (!is_null($key)) {
             $apiParams['key'] = $key;
         }
-
         if (!is_null($required)) {
             $apiParams['required'] = $required;
         }
-
         if (!is_null($xdefault)) {
             $apiParams['default'] = $xdefault;
         }
-
         if (!is_null($xarray)) {
             $apiParams['array'] = $xarray;
         }
-
-
-        return $this->client->call(Client::METHOD_POST, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -497,15 +522,17 @@ class Databases extends Service
         if (!is_null($required)) {
             $apiParams['required'] = $required;
         }
-
         if (!is_null($xdefault)) {
             $apiParams['default'] = $xdefault;
         }
-
-
-        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -541,23 +568,23 @@ class Databases extends Service
         if (!is_null($key)) {
             $apiParams['key'] = $key;
         }
-
         if (!is_null($required)) {
             $apiParams['required'] = $required;
         }
-
         if (!is_null($xdefault)) {
             $apiParams['default'] = $xdefault;
         }
-
         if (!is_null($xarray)) {
             $apiParams['array'] = $xarray;
         }
-
-
-        return $this->client->call(Client::METHOD_POST, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -592,15 +619,17 @@ class Databases extends Service
         if (!is_null($required)) {
             $apiParams['required'] = $required;
         }
-
         if (!is_null($xdefault)) {
             $apiParams['default'] = $xdefault;
         }
-
-
-        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -639,23 +668,23 @@ class Databases extends Service
         if (!is_null($key)) {
             $apiParams['key'] = $key;
         }
-
         if (!is_null($required)) {
             $apiParams['required'] = $required;
         }
-
         if (!is_null($xdefault)) {
             $apiParams['default'] = $xdefault;
         }
-
         if (!is_null($xarray)) {
             $apiParams['array'] = $xarray;
         }
-
-
-        return $this->client->call(Client::METHOD_POST, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -694,15 +723,17 @@ class Databases extends Service
         if (!is_null($required)) {
             $apiParams['required'] = $required;
         }
-
         if (!is_null($xdefault)) {
             $apiParams['default'] = $xdefault;
         }
-
-
-        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -742,27 +773,26 @@ class Databases extends Service
         if (!is_null($key)) {
             $apiParams['key'] = $key;
         }
-
         if (!is_null($elements)) {
             $apiParams['elements'] = $elements;
         }
-
         if (!is_null($required)) {
             $apiParams['required'] = $required;
         }
-
         if (!is_null($xdefault)) {
             $apiParams['default'] = $xdefault;
         }
-
         if (!is_null($xarray)) {
             $apiParams['array'] = $xarray;
         }
-
-
-        return $this->client->call(Client::METHOD_POST, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -805,19 +835,20 @@ class Databases extends Service
         if (!is_null($elements)) {
             $apiParams['elements'] = $elements;
         }
-
         if (!is_null($required)) {
             $apiParams['required'] = $required;
         }
-
         if (!is_null($xdefault)) {
             $apiParams['default'] = $xdefault;
         }
-
-
-        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -859,31 +890,29 @@ class Databases extends Service
         if (!is_null($key)) {
             $apiParams['key'] = $key;
         }
-
         if (!is_null($required)) {
             $apiParams['required'] = $required;
         }
-
         if (!is_null($min)) {
             $apiParams['min'] = $min;
         }
-
         if (!is_null($max)) {
             $apiParams['max'] = $max;
         }
-
         if (!is_null($xdefault)) {
             $apiParams['default'] = $xdefault;
         }
-
         if (!is_null($xarray)) {
             $apiParams['array'] = $xarray;
         }
-
-
-        return $this->client->call(Client::METHOD_POST, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -930,23 +959,23 @@ class Databases extends Service
         if (!is_null($required)) {
             $apiParams['required'] = $required;
         }
-
         if (!is_null($min)) {
             $apiParams['min'] = $min;
         }
-
         if (!is_null($max)) {
             $apiParams['max'] = $max;
         }
-
         if (!is_null($xdefault)) {
             $apiParams['default'] = $xdefault;
         }
-
-
-        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -988,31 +1017,29 @@ class Databases extends Service
         if (!is_null($key)) {
             $apiParams['key'] = $key;
         }
-
         if (!is_null($required)) {
             $apiParams['required'] = $required;
         }
-
         if (!is_null($min)) {
             $apiParams['min'] = $min;
         }
-
         if (!is_null($max)) {
             $apiParams['max'] = $max;
         }
-
         if (!is_null($xdefault)) {
             $apiParams['default'] = $xdefault;
         }
-
         if (!is_null($xarray)) {
             $apiParams['array'] = $xarray;
         }
-
-
-        return $this->client->call(Client::METHOD_POST, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -1059,23 +1086,23 @@ class Databases extends Service
         if (!is_null($required)) {
             $apiParams['required'] = $required;
         }
-
         if (!is_null($min)) {
             $apiParams['min'] = $min;
         }
-
         if (!is_null($max)) {
             $apiParams['max'] = $max;
         }
-
         if (!is_null($xdefault)) {
             $apiParams['default'] = $xdefault;
         }
-
-
-        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -1114,23 +1141,23 @@ class Databases extends Service
         if (!is_null($key)) {
             $apiParams['key'] = $key;
         }
-
         if (!is_null($required)) {
             $apiParams['required'] = $required;
         }
-
         if (!is_null($xdefault)) {
             $apiParams['default'] = $xdefault;
         }
-
         if (!is_null($xarray)) {
             $apiParams['array'] = $xarray;
         }
-
-
-        return $this->client->call(Client::METHOD_POST, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -1169,15 +1196,17 @@ class Databases extends Service
         if (!is_null($required)) {
             $apiParams['required'] = $required;
         }
-
         if (!is_null($xdefault)) {
             $apiParams['default'] = $xdefault;
         }
-
-
-        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -1219,31 +1248,29 @@ class Databases extends Service
         if (!is_null($relatedCollectionId)) {
             $apiParams['relatedCollectionId'] = $relatedCollectionId;
         }
-
         if (!is_null($type)) {
             $apiParams['type'] = $type;
         }
-
         if (!is_null($twoWay)) {
             $apiParams['twoWay'] = $twoWay;
         }
-
         if (!is_null($key)) {
             $apiParams['key'] = $key;
         }
-
         if (!is_null($twoWayKey)) {
             $apiParams['twoWayKey'] = $twoWayKey;
         }
-
         if (!is_null($onDelete)) {
             $apiParams['onDelete'] = $onDelete;
         }
-
-
-        return $this->client->call(Client::METHOD_POST, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -1287,31 +1314,29 @@ class Databases extends Service
         if (!is_null($key)) {
             $apiParams['key'] = $key;
         }
-
         if (!is_null($size)) {
             $apiParams['size'] = $size;
         }
-
         if (!is_null($required)) {
             $apiParams['required'] = $required;
         }
-
         if (!is_null($xdefault)) {
             $apiParams['default'] = $xdefault;
         }
-
         if (!is_null($xarray)) {
             $apiParams['array'] = $xarray;
         }
-
         if (!is_null($encrypt)) {
             $apiParams['encrypt'] = $encrypt;
         }
-
-
-        return $this->client->call(Client::METHOD_POST, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -1350,15 +1375,17 @@ class Databases extends Service
         if (!is_null($required)) {
             $apiParams['required'] = $required;
         }
-
         if (!is_null($xdefault)) {
             $apiParams['default'] = $xdefault;
         }
-
-
-        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -1397,23 +1424,23 @@ class Databases extends Service
         if (!is_null($key)) {
             $apiParams['key'] = $key;
         }
-
         if (!is_null($required)) {
             $apiParams['required'] = $required;
         }
-
         if (!is_null($xdefault)) {
             $apiParams['default'] = $xdefault;
         }
-
         if (!is_null($xarray)) {
             $apiParams['array'] = $xarray;
         }
-
-
-        return $this->client->call(Client::METHOD_POST, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -1452,15 +1479,17 @@ class Databases extends Service
         if (!is_null($required)) {
             $apiParams['required'] = $required;
         }
-
         if (!is_null($xdefault)) {
             $apiParams['default'] = $xdefault;
         }
-
-
-        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -1487,10 +1516,14 @@ class Databases extends Service
         if (!isset($key)) {
             throw new AppwriteException('Missing required parameter: "key"');
         }
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -1517,10 +1550,14 @@ class Databases extends Service
         if (!isset($key)) {
             throw new AppwriteException('Missing required parameter: "key"');
         }
-
-        return $this->client->call(Client::METHOD_DELETE, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_DELETE,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -1555,11 +1592,14 @@ class Databases extends Service
         if (!is_null($onDelete)) {
             $apiParams['onDelete'] = $onDelete;
         }
-
-
-        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -1589,11 +1629,14 @@ class Databases extends Service
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
         }
-
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -1633,19 +1676,20 @@ class Databases extends Service
         if (!is_null($documentId)) {
             $apiParams['documentId'] = $documentId;
         }
-
         if (!is_null($data)) {
             $apiParams['data'] = $data;
         }
-
         if (!is_null($permissions)) {
             $apiParams['permissions'] = $permissions;
         }
-
-
-        return $this->client->call(Client::METHOD_POST, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -1679,11 +1723,14 @@ class Databases extends Service
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
         }
-
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -1718,15 +1765,17 @@ class Databases extends Service
         if (!is_null($data)) {
             $apiParams['data'] = $data;
         }
-
         if (!is_null($permissions)) {
             $apiParams['permissions'] = $permissions;
         }
-
-
-        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -1755,10 +1804,14 @@ class Databases extends Service
         if (!isset($documentId)) {
             throw new AppwriteException('Missing required parameter: "documentId"');
         }
-
-        return $this->client->call(Client::METHOD_DELETE, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_DELETE,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -1785,11 +1838,14 @@ class Databases extends Service
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
         }
-
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -1828,23 +1884,23 @@ class Databases extends Service
         if (!is_null($key)) {
             $apiParams['key'] = $key;
         }
-
         if (!is_null($type)) {
             $apiParams['type'] = $type;
         }
-
         if (!is_null($attributes)) {
             $apiParams['attributes'] = $attributes;
         }
-
         if (!is_null($orders)) {
             $apiParams['orders'] = $orders;
         }
-
-
-        return $this->client->call(Client::METHOD_POST, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -1871,10 +1927,14 @@ class Databases extends Service
         if (!isset($key)) {
             throw new AppwriteException('Missing required parameter: "key"');
         }
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -1901,9 +1961,13 @@ class Databases extends Service
         if (!isset($key)) {
             throw new AppwriteException('Missing required parameter: "key"');
         }
-
-        return $this->client->call(Client::METHOD_DELETE, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_DELETE,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 }

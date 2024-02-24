@@ -48,8 +48,8 @@ final class DatabasesTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->databases->create(
-            "[DATABASE_ID]",
-            "[NAME]"
+            "<DATABASE_ID>",
+            "<NAME>"
         );
 
         $this->assertSame($data, $response);
@@ -70,7 +70,7 @@ final class DatabasesTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->databases->get(
-            "[DATABASE_ID]"
+            "<DATABASE_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -91,8 +91,8 @@ final class DatabasesTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->databases->update(
-            "[DATABASE_ID]",
-            "[NAME]"
+            "<DATABASE_ID>",
+            "<NAME>"
         );
 
         $this->assertSame($data, $response);
@@ -108,7 +108,7 @@ final class DatabasesTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->databases->delete(
-            "[DATABASE_ID]"
+            "<DATABASE_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -126,7 +126,7 @@ final class DatabasesTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->databases->listCollections(
-            "[DATABASE_ID]"
+            "<DATABASE_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -152,9 +152,9 @@ final class DatabasesTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->databases->createCollection(
-            "[DATABASE_ID]",
-            "[COLLECTION_ID]",
-            "[NAME]"
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
+            "<NAME>"
         );
 
         $this->assertSame($data, $response);
@@ -180,8 +180,8 @@ final class DatabasesTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->databases->getCollection(
-            "[DATABASE_ID]",
-            "[COLLECTION_ID]"
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -207,9 +207,9 @@ final class DatabasesTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->databases->updateCollection(
-            "[DATABASE_ID]",
-            "[COLLECTION_ID]",
-            "[NAME]"
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
+            "<NAME>"
         );
 
         $this->assertSame($data, $response);
@@ -225,8 +225,8 @@ final class DatabasesTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->databases->deleteCollection(
-            "[DATABASE_ID]",
-            "[COLLECTION_ID]"
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -244,8 +244,8 @@ final class DatabasesTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->databases->listAttributes(
-            "[DATABASE_ID]",
-            "[COLLECTION_ID]"
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -266,8 +266,8 @@ final class DatabasesTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->databases->createBooleanAttribute(
-            "[DATABASE_ID]",
-            "[COLLECTION_ID]",
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
             "",
             true
         );
@@ -290,8 +290,8 @@ final class DatabasesTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->databases->updateBooleanAttribute(
-            "[DATABASE_ID]",
-            "[COLLECTION_ID]",
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
             "",
             true,
             true
@@ -316,8 +316,8 @@ final class DatabasesTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->databases->createDatetimeAttribute(
-            "[DATABASE_ID]",
-            "[COLLECTION_ID]",
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
             "",
             true
         );
@@ -341,8 +341,8 @@ final class DatabasesTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->databases->updateDatetimeAttribute(
-            "[DATABASE_ID]",
-            "[COLLECTION_ID]",
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
             "",
             true,
             ""
@@ -367,8 +367,8 @@ final class DatabasesTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->databases->createEmailAttribute(
-            "[DATABASE_ID]",
-            "[COLLECTION_ID]",
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
             "",
             true
         );
@@ -392,8 +392,8 @@ final class DatabasesTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->databases->updateEmailAttribute(
-            "[DATABASE_ID]",
-            "[COLLECTION_ID]",
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
             "",
             true,
             "email@example.com"
@@ -419,8 +419,8 @@ final class DatabasesTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->databases->createEnumAttribute(
-            "[DATABASE_ID]",
-            "[COLLECTION_ID]",
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
             "",
             array(),
             true
@@ -446,12 +446,12 @@ final class DatabasesTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->databases->updateEnumAttribute(
-            "[DATABASE_ID]",
-            "[COLLECTION_ID]",
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
             "",
             array(),
             true,
-            "[DEFAULT]"
+            "<DEFAULT>"
         );
 
         $this->assertSame($data, $response);
@@ -472,8 +472,8 @@ final class DatabasesTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->databases->createFloatAttribute(
-            "[DATABASE_ID]",
-            "[COLLECTION_ID]",
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
             "",
             true
         );
@@ -496,8 +496,8 @@ final class DatabasesTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->databases->updateFloatAttribute(
-            "[DATABASE_ID]",
-            "[COLLECTION_ID]",
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
             "",
             true,
             1.0,
@@ -523,8 +523,8 @@ final class DatabasesTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->databases->createIntegerAttribute(
-            "[DATABASE_ID]",
-            "[COLLECTION_ID]",
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
             "",
             true
         );
@@ -547,8 +547,8 @@ final class DatabasesTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->databases->updateIntegerAttribute(
-            "[DATABASE_ID]",
-            "[COLLECTION_ID]",
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
             "",
             true,
             1,
@@ -575,8 +575,8 @@ final class DatabasesTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->databases->createIpAttribute(
-            "[DATABASE_ID]",
-            "[COLLECTION_ID]",
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
             "",
             true
         );
@@ -600,8 +600,8 @@ final class DatabasesTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->databases->updateIpAttribute(
-            "[DATABASE_ID]",
-            "[COLLECTION_ID]",
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
             "",
             true,
             ""
@@ -631,9 +631,9 @@ final class DatabasesTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->databases->createRelationshipAttribute(
-            "[DATABASE_ID]",
-            "[COLLECTION_ID]",
-            "[RELATED_COLLECTION_ID]",
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
+            "<RELATED_COLLECTION_ID>",
             "oneToOne"
         );
 
@@ -656,8 +656,8 @@ final class DatabasesTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->databases->createStringAttribute(
-            "[DATABASE_ID]",
-            "[COLLECTION_ID]",
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
             "",
             1,
             true
@@ -682,11 +682,11 @@ final class DatabasesTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->databases->updateStringAttribute(
-            "[DATABASE_ID]",
-            "[COLLECTION_ID]",
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
             "",
             true,
-            "[DEFAULT]"
+            "<DEFAULT>"
         );
 
         $this->assertSame($data, $response);
@@ -708,8 +708,8 @@ final class DatabasesTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->databases->createUrlAttribute(
-            "[DATABASE_ID]",
-            "[COLLECTION_ID]",
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
             "",
             true
         );
@@ -733,8 +733,8 @@ final class DatabasesTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->databases->updateUrlAttribute(
-            "[DATABASE_ID]",
-            "[COLLECTION_ID]",
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
             "",
             true,
             "https://example.com"
@@ -753,8 +753,8 @@ final class DatabasesTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->databases->getAttribute(
-            "[DATABASE_ID]",
-            "[COLLECTION_ID]",
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
             ""
         );
 
@@ -771,8 +771,8 @@ final class DatabasesTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->databases->deleteAttribute(
-            "[DATABASE_ID]",
-            "[COLLECTION_ID]",
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
             ""
         );
 
@@ -800,8 +800,8 @@ final class DatabasesTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->databases->updateRelationshipAttribute(
-            "[DATABASE_ID]",
-            "[COLLECTION_ID]",
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
             ""
         );
 
@@ -820,8 +820,8 @@ final class DatabasesTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->databases->listDocuments(
-            "[DATABASE_ID]",
-            "[COLLECTION_ID]"
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -843,9 +843,9 @@ final class DatabasesTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->databases->createDocument(
-            "[DATABASE_ID]",
-            "[COLLECTION_ID]",
-            "[DOCUMENT_ID]",
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
+            "<DOCUMENT_ID>",
             array()
         );
 
@@ -868,9 +868,9 @@ final class DatabasesTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->databases->getDocument(
-            "[DATABASE_ID]",
-            "[COLLECTION_ID]",
-            "[DOCUMENT_ID]"
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
+            "<DOCUMENT_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -892,9 +892,9 @@ final class DatabasesTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->databases->updateDocument(
-            "[DATABASE_ID]",
-            "[COLLECTION_ID]",
-            "[DOCUMENT_ID]"
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
+            "<DOCUMENT_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -910,9 +910,9 @@ final class DatabasesTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->databases->deleteDocument(
-            "[DATABASE_ID]",
-            "[COLLECTION_ID]",
-            "[DOCUMENT_ID]"
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
+            "<DOCUMENT_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -930,8 +930,8 @@ final class DatabasesTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->databases->listIndexes(
-            "[DATABASE_ID]",
-            "[COLLECTION_ID]"
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -952,8 +952,8 @@ final class DatabasesTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->databases->createIndex(
-            "[DATABASE_ID]",
-            "[COLLECTION_ID]",
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
             "",
             "key",
             array()
@@ -977,8 +977,8 @@ final class DatabasesTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->databases->getIndex(
-            "[DATABASE_ID]",
-            "[COLLECTION_ID]",
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
             ""
         );
 
@@ -995,8 +995,8 @@ final class DatabasesTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->databases->deleteIndex(
-            "[DATABASE_ID]",
-            "[COLLECTION_ID]",
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
             ""
         );
 

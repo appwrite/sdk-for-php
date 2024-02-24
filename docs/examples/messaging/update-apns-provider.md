@@ -10,9 +10,13 @@ $client = (new Client())
 
 $messaging = new Messaging($client);
 
-$result = $messaging->updateFCMProvider(
-    providerId: '[PROVIDER_ID]',
-    name: '[NAME]', // optional
+$result = $messaging->updateApnsProvider(
+    providerId: '<PROVIDER_ID>',
+    name: '<NAME>', // optional
     enabled: false, // optional
-    serviceAccountJSON: [] // optional
+    authKey: '<AUTH_KEY>', // optional
+    authKeyId: '<AUTH_KEY_ID>', // optional
+    teamId: '<TEAM_ID>', // optional
+    bundleId: '<BUNDLE_ID>', // optional
+    sandbox: false // optional
 );
