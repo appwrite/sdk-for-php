@@ -166,6 +166,8 @@ DELETE https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collecti
 GET https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes
 ```
 
+** List attributes in the collection. **
+
 ### Parameters
 
 | Field Name | Type | Description | Default |
@@ -200,6 +202,8 @@ POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collection
 PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/boolean/{key}
 ```
 
+** Update a boolean attribute. Changing the `default` value will not update already existing documents. **
+
 ### Parameters
 
 | Field Name | Type | Description | Default |
@@ -215,6 +219,8 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 ```http request
 POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/datetime
 ```
+
+** Create a date time attribute according to the ISO 8601 standard. **
 
 ### Parameters
 
@@ -232,6 +238,8 @@ POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collection
 ```http request
 PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/datetime/{key}
 ```
+
+** Update a date time attribute. Changing the `default` value will not update already existing documents. **
 
 ### Parameters
 
@@ -287,6 +295,9 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 ```http request
 POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/enum
 ```
+
+** Create an enumeration attribute. The `elements` param acts as a white-list of accepted values for this attribute. 
+ **
 
 ### Parameters
 
@@ -553,6 +564,8 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 GET https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/{key}
 ```
 
+** Get attribute by ID. **
+
 ### Parameters
 
 | Field Name | Type | Description | Default |
@@ -566,6 +579,8 @@ GET https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionI
 ```http request
 DELETE https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/{key}
 ```
+
+** Deletes an attribute. **
 
 ### Parameters
 
@@ -684,6 +699,8 @@ DELETE https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collecti
 GET https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/indexes
 ```
 
+** List indexes in the collection. **
+
 ### Parameters
 
 | Field Name | Type | Description | Default |
@@ -697,6 +714,9 @@ GET https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionI
 ```http request
 POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/indexes
 ```
+
+** Creates an index on the attributes listed. Your index should include all the attributes you will query in a single request.
+Attributes can be `key`, `fulltext`, and `unique`. **
 
 ### Parameters
 
@@ -715,6 +735,8 @@ POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collection
 GET https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/indexes/{key}
 ```
 
+** Get index by ID. **
+
 ### Parameters
 
 | Field Name | Type | Description | Default |
@@ -728,6 +750,8 @@ GET https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionI
 ```http request
 DELETE https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/indexes/{key}
 ```
+
+** Delete an index. **
 
 ### Parameters
 

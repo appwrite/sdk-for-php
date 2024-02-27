@@ -2,7 +2,6 @@
 
 use Appwrite\Client;
 use Appwrite\Services\Account;
-use Appwrite\Enums\OAuthProvider;
 
 $client = (new Client())
     ->setEndpoint('https://cloud.appwrite.io/v1') // Your API Endpoint
@@ -10,9 +9,7 @@ $client = (new Client())
 
 $account = new Account($client);
 
-$result = $account->createOAuth2Session(
-    provider: OAuthProvider::AMAZON(),
-    success: 'https://example.com', // optional
-    failure: 'https://example.com', // optional
-    scopes: [] // optional
+$result = $account->updatePhoneSession(
+    userId: '<USER_ID>',
+    secret: '<SECRET>'
 );

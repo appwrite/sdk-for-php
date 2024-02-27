@@ -346,6 +346,9 @@ class Health extends Service
     /**
      * Get functions queue
      *
+     * Get the number of function executions that are waiting to be processed in
+     * the Appwrite internal queue server.
+     *
      * @param int $threshold
      * @throws AppwriteException
      * @return array

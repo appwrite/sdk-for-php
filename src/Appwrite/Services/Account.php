@@ -257,6 +257,8 @@ class Account extends Service
     /**
      * Update MFA
      *
+     * Enable or disable MFA on an account.
+     *
      * @param bool $mfa
      * @throws AppwriteException
      * @return array
@@ -315,6 +317,8 @@ class Account extends Service
     /**
      * Create MFA Challenge (confirmation)
      *
+     * Complete the MFA challenge by providing the one-time password.
+     *
      * @param string $challengeId
      * @param string $otp
      * @throws AppwriteException
@@ -351,6 +355,8 @@ class Account extends Service
     /**
      * List Factors
      *
+     * List the factors available on the account to be used as a MFA challange.
+     *
      * @throws AppwriteException
      * @return array
 
@@ -372,6 +378,11 @@ class Account extends Service
 
     /**
      * Add Authenticator
+     *
+     * Add an authenticator app to be used as an MFA factor. Verify the
+     * authenticator using the [verify
+     * authenticator](/docs/references/cloud/client-web/account#verifyAuthenticator)
+     * method.
      *
      * @param AuthenticatorType $type
      * @throws AppwriteException
@@ -398,6 +409,10 @@ class Account extends Service
 
     /**
      * Verify Authenticator
+     *
+     * Verify an authenticator app after adding it using the [add
+     * authenticator](/docs/references/cloud/client-web/account#addAuthenticator)
+     * method.
      *
      * @param AuthenticatorType $type
      * @param string $otp
@@ -431,6 +446,8 @@ class Account extends Service
 
     /**
      * Delete Authenticator
+     *
+     * Delete an authenticator for a user by ID.
      *
      * @param AuthenticatorType $type
      * @param string $otp
@@ -852,7 +869,7 @@ class Account extends Service
     }
 
     /**
-     * Create session (deprecated)
+     * Update magic URL session
      *
      * Use this endpoint to create a session from token. Provide the **userId**
      * and **secret** parameters from the successful response of authentication
@@ -892,57 +909,42 @@ class Account extends Service
     }
 
     /**
-     * Create OAuth2 session
+     * Update phone session
      *
-     * Allow the user to login to their account using the OAuth2 provider of their
-     * choice. Each OAuth2 provider should be enabled from the Appwrite console
-     * first. Use the success and failure arguments to provide a redirect URL's
-     * back to your app when login is completed.
-     * 
-     * If there is already an active session, the new session will be attached to
-     * the logged-in account. If there are no active sessions, the server will
-     * attempt to look for a user with the same email address as the email
-     * received from the OAuth2 provider and attach the new session to the
-     * existing user. If no matching user is found - the server will create a new
-     * user.
-     * 
-     * A user is limited to 10 active sessions at a time by default. [Learn more
-     * about session
-     * limits](https://appwrite.io/docs/authentication-security#limits).
-     * 
+     * Use this endpoint to create a session from token. Provide the **userId**
+     * and **secret** parameters from the successful response of authentication
+     * flows initiated by token creation. For example, magic URL and phone login.
      *
-     * @param OAuthProvider $provider
-     * @param string $success
-     * @param string $failure
-     * @param array $scopes
+     * @param string $userId
+     * @param string $secret
      * @throws AppwriteException
-     * @return string
+     * @return array
 
      */
-    public function createOAuth2Session(OAuthProvider $provider, string $success = null, string $failure = null, array $scopes = null): string
+    public function updatePhoneSession(string $userId, string $secret): array
     {
-        $apiPath = str_replace(['{provider}'], [$provider], '/account/sessions/oauth2/{provider}');
+        $apiPath = str_replace([], [], '/account/sessions/phone');
 
         $apiParams = [];
-        if (!isset($provider)) {
-            throw new AppwriteException('Missing required parameter: "provider"');
+        if (!isset($userId)) {
+            throw new AppwriteException('Missing required parameter: "userId"');
         }
-        if (!is_null($success)) {
-            $apiParams['success'] = $success;
+        if (!isset($secret)) {
+            throw new AppwriteException('Missing required parameter: "secret"');
         }
-        if (!is_null($failure)) {
-            $apiParams['failure'] = $failure;
+        if (!is_null($userId)) {
+            $apiParams['userId'] = $userId;
         }
-        if (!is_null($scopes)) {
-            $apiParams['scopes'] = $scopes;
+        if (!is_null($secret)) {
+            $apiParams['secret'] = $secret;
         }
         return $this->client->call(
-            Client::METHOD_GET,
+            Client::METHOD_PUT,
             $apiPath,
             [
                 'content-type' => 'application/json',
             ],
-            $apiParams, 'location'
+            $apiParams
         );
     }
 
@@ -1016,7 +1018,7 @@ class Account extends Service
     }
 
     /**
-     * Update (or renew) a session
+     * Update (or renew) session
      *
      * Extend session's expiry to increase it's lifespan. Extending a session is
      * useful when session length is short such as 5 minutes.

@@ -141,6 +141,8 @@ GET https://cloud.appwrite.io/v1/health/queue/failed/{name}
 GET https://cloud.appwrite.io/v1/health/queue/functions
 ```
 
+** Get the number of function executions that are waiting to be processed in the Appwrite internal queue server. **
+
 ### Parameters
 
 | Field Name | Type | Description | Default |

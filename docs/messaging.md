@@ -15,7 +15,7 @@ GET https://cloud.appwrite.io/v1/messaging/messages
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: scheduledAt, deliveredAt, deliveredTotal, status, description, providerType | [] |
 | search | string | Search term to filter your list results. Max length: 256 chars. |  |
 
-## Create an email
+## Create email
 
 ```http request
 POST https://cloud.appwrite.io/v1/messaging/messages/email
@@ -36,11 +36,11 @@ POST https://cloud.appwrite.io/v1/messaging/messages/email
 | cc | array | Array of target IDs to be added as CC. | [] |
 | bcc | array | Array of target IDs to be added as BCC. | [] |
 | attachments | array | Array of compound bucket IDs to file IDs to be attached to the email. | [] |
-| status | string | Message Status. Value must be one of: draft, scheduled, processing. | draft |
+| draft | boolean | Is message a draft |  |
 | html | boolean | Is content of type HTML |  |
 | scheduledAt | string | Scheduled delivery time for message in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. DateTime value must be in future. |  |
 
-## Update an email
+## Update email
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/messaging/messages/email/{messageId}
@@ -59,13 +59,13 @@ PATCH https://cloud.appwrite.io/v1/messaging/messages/email/{messageId}
 | targets | array | List of Targets IDs. |  |
 | subject | string | Email Subject. |  |
 | content | string | Email Content. |  |
-| status | string | Message Status. Value must be one of: draft, scheduled, processing. |  |
+| draft | boolean | Is message a draft |  |
 | html | boolean | Is content of type HTML |  |
 | cc | array | Array of target IDs to be added as CC. |  |
 | bcc | array | Array of target IDs to be added as BCC. |  |
 | scheduledAt | string | Scheduled delivery time for message in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. DateTime value must be in future. |  |
 
-## Create a push notification
+## Create push notification
 
 ```http request
 POST https://cloud.appwrite.io/v1/messaging/messages/push
@@ -91,10 +91,10 @@ POST https://cloud.appwrite.io/v1/messaging/messages/push
 | color | string | Color for push notification. Available only for Android Platform. |  |
 | tag | string | Tag for push notification. Available only for Android Platform. |  |
 | badge | string | Badge for push notification. Available only for IOS Platform. |  |
-| status | string | Message Status. Value must be one of: draft, scheduled, processing. | draft |
+| draft | boolean | Is message a draft |  |
 | scheduledAt | string | Scheduled delivery time for message in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. DateTime value must be in future. |  |
 
-## Update a push notification
+## Update push notification
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/messaging/messages/push/{messageId}
@@ -121,10 +121,10 @@ PATCH https://cloud.appwrite.io/v1/messaging/messages/push/{messageId}
 | color | string | Color for push notification. Available only for Android platforms. |  |
 | tag | string | Tag for push notification. Available only for Android platforms. |  |
 | badge | integer | Badge for push notification. Available only for iOS platforms. |  |
-| status | string | Message Status. Value must be one of: draft, scheduled, processing. |  |
+| draft | boolean | Is message a draft |  |
 | scheduledAt | string | Scheduled delivery time for message in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. DateTime value must be in future. |  |
 
-## Create an SMS
+## Create SMS
 
 ```http request
 POST https://cloud.appwrite.io/v1/messaging/messages/sms
@@ -141,10 +141,10 @@ POST https://cloud.appwrite.io/v1/messaging/messages/sms
 | topics | array | List of Topic IDs. | [] |
 | users | array | List of User IDs. | [] |
 | targets | array | List of Targets IDs. | [] |
-| status | string | Message Status. Value must be one of: draft, scheduled, processing. | draft |
+| draft | boolean | Is message a draft |  |
 | scheduledAt | string | Scheduled delivery time for message in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. DateTime value must be in future. |  |
 
-## Update an SMS
+## Update SMS
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/messaging/messages/sms/{messageId}
@@ -162,10 +162,10 @@ PATCH https://cloud.appwrite.io/v1/messaging/messages/sms/{messageId}
 | users | array | List of User IDs. |  |
 | targets | array | List of Targets IDs. |  |
 | content | string | Email Content. |  |
-| status | string | Message Status. Value must be one of: draft, scheduled, processing. |  |
+| draft | boolean | Is message a draft |  |
 | scheduledAt | string | Scheduled delivery time for message in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. DateTime value must be in future. |  |
 
-## Get a message
+## Get message
 
 ```http request
 GET https://cloud.appwrite.io/v1/messaging/messages/{messageId}
@@ -180,11 +180,13 @@ GET https://cloud.appwrite.io/v1/messaging/messages/{messageId}
 | --- | --- | --- | --- |
 | messageId | string | **Required** Message ID. |  |
 
-## Delete a message
+## Delete message
 
 ```http request
 DELETE https://cloud.appwrite.io/v1/messaging/messages/{messageId}
 ```
+
+** Delete a message. If the message is not a draft or scheduled, but has been sent, this will not recall the message. **
 
 ### Parameters
 
@@ -402,6 +404,8 @@ PATCH https://cloud.appwrite.io/v1/messaging/providers/msg91/{providerId}
 ```http request
 POST https://cloud.appwrite.io/v1/messaging/providers/sendgrid
 ```
+
+** Create a new Sendgrid provider. **
 
 ### Parameters
 
@@ -717,7 +721,7 @@ GET https://cloud.appwrite.io/v1/messaging/topics
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, description, emailTotal, smsTotal, pushTotal | [] |
 | search | string | Search term to filter your list results. Max length: 256 chars. |  |
 
-## Create a topic
+## Create topic
 
 ```http request
 POST https://cloud.appwrite.io/v1/messaging/topics
@@ -733,7 +737,7 @@ POST https://cloud.appwrite.io/v1/messaging/topics
 | name | string | Topic Name. |  |
 | subscribe | array | An array of role strings with subscribe permission. By default all users are granted with any subscribe permission. [learn more about roles](https://appwrite.io/docs/permissions#permission-roles). Maximum of 100 roles are allowed, each 64 characters long. | [&quot;users&quot;] |
 
-## Get a topic
+## Get topic
 
 ```http request
 GET https://cloud.appwrite.io/v1/messaging/topics/{topicId}
@@ -748,7 +752,7 @@ GET https://cloud.appwrite.io/v1/messaging/topics/{topicId}
 | --- | --- | --- | --- |
 | topicId | string | **Required** Topic ID. |  |
 
-## Update a topic
+## Update topic
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/messaging/topics/{topicId}
@@ -765,7 +769,7 @@ PATCH https://cloud.appwrite.io/v1/messaging/topics/{topicId}
 | name | string | Topic Name. |  |
 | subscribe | array | An array of role strings with subscribe permission. By default all users are granted with any subscribe permission. [learn more about roles](https://appwrite.io/docs/permissions#permission-roles). Maximum of 100 roles are allowed, each 64 characters long. |  |
 
-## Delete a topic
+## Delete topic
 
 ```http request
 DELETE https://cloud.appwrite.io/v1/messaging/topics/{topicId}
@@ -810,7 +814,7 @@ GET https://cloud.appwrite.io/v1/messaging/topics/{topicId}/subscribers
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, provider, type, enabled | [] |
 | search | string | Search term to filter your list results. Max length: 256 chars. |  |
 
-## Create a subscriber
+## Create subscriber
 
 ```http request
 POST https://cloud.appwrite.io/v1/messaging/topics/{topicId}/subscribers
@@ -826,7 +830,7 @@ POST https://cloud.appwrite.io/v1/messaging/topics/{topicId}/subscribers
 | subscriberId | string | Subscriber ID. Choose a custom Subscriber ID or a new Subscriber ID. |  |
 | targetId | string | Target ID. The target ID to link to the specified Topic ID. |  |
 
-## Get a subscriber
+## Get subscriber
 
 ```http request
 GET https://cloud.appwrite.io/v1/messaging/topics/{topicId}/subscribers/{subscriberId}
@@ -842,7 +846,7 @@ GET https://cloud.appwrite.io/v1/messaging/topics/{topicId}/subscribers/{subscri
 | topicId | string | **Required** Topic ID. The topic ID subscribed to. |  |
 | subscriberId | string | **Required** Subscriber ID. |  |
 
-## Delete a subscriber
+## Delete subscriber
 
 ```http request
 DELETE https://cloud.appwrite.io/v1/messaging/topics/{topicId}/subscribers/{subscriberId}

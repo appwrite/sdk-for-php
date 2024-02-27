@@ -586,8 +586,7 @@ final class UsersTest extends TestCase {
 
         $response = $this->users->deleteAuthenticator(
             "<USER_ID>",
-            "totp",
-            "<OTP>"
+            "totp"
         );
 
         $this->assertSame($data, $response);

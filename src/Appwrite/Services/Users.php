@@ -781,6 +781,8 @@ class Users extends Service
     /**
      * Update MFA
      *
+     * Enable or disable MFA on a user account.
+     *
      * @param string $userId
      * @param bool $mfa
      * @throws AppwriteException
@@ -814,6 +816,8 @@ class Users extends Service
     /**
      * List Factors
      *
+     * List the factors available on the account to be used as a MFA challange.
+     *
      * @param string $userId
      * @throws AppwriteException
      * @return array
@@ -840,14 +844,15 @@ class Users extends Service
     /**
      * Delete Authenticator
      *
+     * Delete an authenticator app.
+     *
      * @param string $userId
      * @param AuthenticatorType $type
-     * @param string $otp
      * @throws AppwriteException
      * @return array
 
      */
-    public function deleteAuthenticator(string $userId, AuthenticatorType $type, string $otp): array
+    public function deleteAuthenticator(string $userId, AuthenticatorType $type): array
     {
         $apiPath = str_replace(['{userId}', '{type}'], [$userId, $type], '/users/{userId}/mfa/{type}');
 
@@ -857,12 +862,6 @@ class Users extends Service
         }
         if (!isset($type)) {
             throw new AppwriteException('Missing required parameter: "type"');
-        }
-        if (!isset($otp)) {
-            throw new AppwriteException('Missing required parameter: "otp"');
-        }
-        if (!is_null($otp)) {
-            $apiParams['otp'] = $otp;
         }
         return $this->client->call(
             Client::METHOD_DELETE,
@@ -1204,6 +1203,8 @@ class Users extends Service
     /**
      * List User Targets
      *
+     * List the messaging targets that are associated with a user.
+     *
      * @param string $userId
      * @param array $queries
      * @throws AppwriteException
@@ -1233,6 +1234,8 @@ class Users extends Service
 
     /**
      * Create User Target
+     *
+     * Create a messaging target.
      *
      * @param string $userId
      * @param string $targetId
@@ -1289,6 +1292,8 @@ class Users extends Service
     /**
      * Get User Target
      *
+     * Get a user's push notification target by ID.
+     *
      * @param string $userId
      * @param string $targetId
      * @throws AppwriteException
@@ -1318,6 +1323,8 @@ class Users extends Service
 
     /**
      * Update User target
+     *
+     * Update a messaging target.
      *
      * @param string $userId
      * @param string $targetId
@@ -1360,6 +1367,8 @@ class Users extends Service
 
     /**
      * Delete user target
+     *
+     * Delete a messaging target.
      *
      * @param string $userId
      * @param string $targetId

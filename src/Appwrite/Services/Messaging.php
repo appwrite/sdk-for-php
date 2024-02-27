@@ -6,7 +6,6 @@ use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
 use Appwrite\InputFile;
-use Appwrite\Enums\MessageStatus;
 use Appwrite\Enums\SmtpEncryption;
 
 class Messaging extends Service
@@ -49,7 +48,7 @@ class Messaging extends Service
     }
 
     /**
-     * Create an email
+     * Create email
      *
      * Create a new email message.
      *
@@ -62,14 +61,14 @@ class Messaging extends Service
      * @param array $cc
      * @param array $bcc
      * @param array $attachments
-     * @param MessageStatus $status
+     * @param bool $draft
      * @param bool $html
      * @param string $scheduledAt
      * @throws AppwriteException
      * @return array
 
      */
-    public function createEmail(string $messageId, string $subject, string $content, array $topics = null, array $users = null, array $targets = null, array $cc = null, array $bcc = null, array $attachments = null, MessageStatus $status = null, bool $html = null, string $scheduledAt = null): array
+    public function createEmail(string $messageId, string $subject, string $content, array $topics = null, array $users = null, array $targets = null, array $cc = null, array $bcc = null, array $attachments = null, bool $draft = null, bool $html = null, string $scheduledAt = null): array
     {
         $apiPath = str_replace([], [], '/messaging/messages/email');
 
@@ -110,8 +109,8 @@ class Messaging extends Service
         if (!is_null($attachments)) {
             $apiParams['attachments'] = $attachments;
         }
-        if (!is_null($status)) {
-            $apiParams['status'] = $status;
+        if (!is_null($draft)) {
+            $apiParams['draft'] = $draft;
         }
         if (!is_null($html)) {
             $apiParams['html'] = $html;
@@ -130,7 +129,7 @@ class Messaging extends Service
     }
 
     /**
-     * Update an email
+     * Update email
      *
      * Update an email message by its unique ID.
      * 
@@ -141,7 +140,7 @@ class Messaging extends Service
      * @param array $targets
      * @param string $subject
      * @param string $content
-     * @param MessageStatus $status
+     * @param bool $draft
      * @param bool $html
      * @param array $cc
      * @param array $bcc
@@ -150,7 +149,7 @@ class Messaging extends Service
      * @return array
 
      */
-    public function updateEmail(string $messageId, array $topics = null, array $users = null, array $targets = null, string $subject = null, string $content = null, MessageStatus $status = null, bool $html = null, array $cc = null, array $bcc = null, string $scheduledAt = null): array
+    public function updateEmail(string $messageId, array $topics = null, array $users = null, array $targets = null, string $subject = null, string $content = null, bool $draft = null, bool $html = null, array $cc = null, array $bcc = null, string $scheduledAt = null): array
     {
         $apiPath = str_replace(['{messageId}'], [$messageId], '/messaging/messages/email/{messageId}');
 
@@ -173,8 +172,8 @@ class Messaging extends Service
         if (!is_null($content)) {
             $apiParams['content'] = $content;
         }
-        if (!is_null($status)) {
-            $apiParams['status'] = $status;
+        if (!is_null($draft)) {
+            $apiParams['draft'] = $draft;
         }
         if (!is_null($html)) {
             $apiParams['html'] = $html;
@@ -199,7 +198,7 @@ class Messaging extends Service
     }
 
     /**
-     * Create a push notification
+     * Create push notification
      *
      * Create a new push notification.
      *
@@ -217,13 +216,13 @@ class Messaging extends Service
      * @param string $color
      * @param string $tag
      * @param string $badge
-     * @param MessageStatus $status
+     * @param bool $draft
      * @param string $scheduledAt
      * @throws AppwriteException
      * @return array
 
      */
-    public function createPush(string $messageId, string $title, string $body, array $topics = null, array $users = null, array $targets = null, array $data = null, string $action = null, string $image = null, string $icon = null, string $sound = null, string $color = null, string $tag = null, string $badge = null, MessageStatus $status = null, string $scheduledAt = null): array
+    public function createPush(string $messageId, string $title, string $body, array $topics = null, array $users = null, array $targets = null, array $data = null, string $action = null, string $image = null, string $icon = null, string $sound = null, string $color = null, string $tag = null, string $badge = null, bool $draft = null, string $scheduledAt = null): array
     {
         $apiPath = str_replace([], [], '/messaging/messages/push');
 
@@ -279,8 +278,8 @@ class Messaging extends Service
         if (!is_null($badge)) {
             $apiParams['badge'] = $badge;
         }
-        if (!is_null($status)) {
-            $apiParams['status'] = $status;
+        if (!is_null($draft)) {
+            $apiParams['draft'] = $draft;
         }
         if (!is_null($scheduledAt)) {
             $apiParams['scheduledAt'] = $scheduledAt;
@@ -296,7 +295,7 @@ class Messaging extends Service
     }
 
     /**
-     * Update a push notification
+     * Update push notification
      *
      * Update a push notification by its unique ID.
      * 
@@ -315,13 +314,13 @@ class Messaging extends Service
      * @param string $color
      * @param string $tag
      * @param int $badge
-     * @param MessageStatus $status
+     * @param bool $draft
      * @param string $scheduledAt
      * @throws AppwriteException
      * @return array
 
      */
-    public function updatePush(string $messageId, array $topics = null, array $users = null, array $targets = null, string $title = null, string $body = null, array $data = null, string $action = null, string $image = null, string $icon = null, string $sound = null, string $color = null, string $tag = null, int $badge = null, MessageStatus $status = null, string $scheduledAt = null): array
+    public function updatePush(string $messageId, array $topics = null, array $users = null, array $targets = null, string $title = null, string $body = null, array $data = null, string $action = null, string $image = null, string $icon = null, string $sound = null, string $color = null, string $tag = null, int $badge = null, bool $draft = null, string $scheduledAt = null): array
     {
         $apiPath = str_replace(['{messageId}'], [$messageId], '/messaging/messages/push/{messageId}');
 
@@ -368,8 +367,8 @@ class Messaging extends Service
         if (!is_null($badge)) {
             $apiParams['badge'] = $badge;
         }
-        if (!is_null($status)) {
-            $apiParams['status'] = $status;
+        if (!is_null($draft)) {
+            $apiParams['draft'] = $draft;
         }
         if (!is_null($scheduledAt)) {
             $apiParams['scheduledAt'] = $scheduledAt;
@@ -385,7 +384,7 @@ class Messaging extends Service
     }
 
     /**
-     * Create an SMS
+     * Create SMS
      *
      * Create a new SMS message.
      *
@@ -394,13 +393,13 @@ class Messaging extends Service
      * @param array $topics
      * @param array $users
      * @param array $targets
-     * @param MessageStatus $status
+     * @param bool $draft
      * @param string $scheduledAt
      * @throws AppwriteException
      * @return array
 
      */
-    public function createSms(string $messageId, string $content, array $topics = null, array $users = null, array $targets = null, MessageStatus $status = null, string $scheduledAt = null): array
+    public function createSms(string $messageId, string $content, array $topics = null, array $users = null, array $targets = null, bool $draft = null, string $scheduledAt = null): array
     {
         $apiPath = str_replace([], [], '/messaging/messages/sms');
 
@@ -426,8 +425,8 @@ class Messaging extends Service
         if (!is_null($targets)) {
             $apiParams['targets'] = $targets;
         }
-        if (!is_null($status)) {
-            $apiParams['status'] = $status;
+        if (!is_null($draft)) {
+            $apiParams['draft'] = $draft;
         }
         if (!is_null($scheduledAt)) {
             $apiParams['scheduledAt'] = $scheduledAt;
@@ -443,7 +442,7 @@ class Messaging extends Service
     }
 
     /**
-     * Update an SMS
+     * Update SMS
      *
      * Update an email message by its unique ID.
      * 
@@ -453,13 +452,13 @@ class Messaging extends Service
      * @param array $users
      * @param array $targets
      * @param string $content
-     * @param MessageStatus $status
+     * @param bool $draft
      * @param string $scheduledAt
      * @throws AppwriteException
      * @return array
 
      */
-    public function updateSms(string $messageId, array $topics = null, array $users = null, array $targets = null, string $content = null, MessageStatus $status = null, string $scheduledAt = null): array
+    public function updateSms(string $messageId, array $topics = null, array $users = null, array $targets = null, string $content = null, bool $draft = null, string $scheduledAt = null): array
     {
         $apiPath = str_replace(['{messageId}'], [$messageId], '/messaging/messages/sms/{messageId}');
 
@@ -479,8 +478,8 @@ class Messaging extends Service
         if (!is_null($content)) {
             $apiParams['content'] = $content;
         }
-        if (!is_null($status)) {
-            $apiParams['status'] = $status;
+        if (!is_null($draft)) {
+            $apiParams['draft'] = $draft;
         }
         if (!is_null($scheduledAt)) {
             $apiParams['scheduledAt'] = $scheduledAt;
@@ -496,7 +495,7 @@ class Messaging extends Service
     }
 
     /**
-     * Get a message
+     * Get message
      *
      * Get a message by its unique ID.
      * 
@@ -525,7 +524,10 @@ class Messaging extends Service
     }
 
     /**
-     * Delete a message
+     * Delete message
+     *
+     * Delete a message. If the message is not a draft or scheduled, but has been
+     * sent, this will not recall the message.
      *
      * @param string $messageId
      * @throws AppwriteException
@@ -1088,6 +1090,8 @@ class Messaging extends Service
 
     /**
      * Create Sendgrid provider
+     *
+     * Create a new Sendgrid provider.
      *
      * @param string $providerId
      * @param string $name
@@ -1933,7 +1937,7 @@ class Messaging extends Service
     }
 
     /**
-     * Create a topic
+     * Create topic
      *
      * Create a new topic.
      *
@@ -1975,7 +1979,7 @@ class Messaging extends Service
     }
 
     /**
-     * Get a topic
+     * Get topic
      *
      * Get a topic by its unique ID.
      * 
@@ -2004,7 +2008,7 @@ class Messaging extends Service
     }
 
     /**
-     * Update a topic
+     * Update topic
      *
      * Update a topic by its unique ID.
      * 
@@ -2041,7 +2045,7 @@ class Messaging extends Service
     }
 
     /**
-     * Delete a topic
+     * Delete topic
      *
      * Delete a topic by its unique ID.
      *
@@ -2137,7 +2141,7 @@ class Messaging extends Service
     }
 
     /**
-     * Create a subscriber
+     * Create subscriber
      *
      * Create a new subscriber.
      *
@@ -2179,7 +2183,7 @@ class Messaging extends Service
     }
 
     /**
-     * Get a subscriber
+     * Get subscriber
      *
      * Get a subscriber by its unique ID.
      * 
@@ -2212,7 +2216,7 @@ class Messaging extends Service
     }
 
     /**
-     * Delete a subscriber
+     * Delete subscriber
      *
      * Delete a subscriber by its unique ID.
      *

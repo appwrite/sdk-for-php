@@ -285,6 +285,8 @@ GET https://cloud.appwrite.io/v1/users/{userId}/memberships
 PATCH https://cloud.appwrite.io/v1/users/{userId}/mfa
 ```
 
+** Enable or disable MFA on a user account. **
+
 ### Parameters
 
 | Field Name | Type | Description | Default |
@@ -298,6 +300,8 @@ PATCH https://cloud.appwrite.io/v1/users/{userId}/mfa
 GET https://cloud.appwrite.io/v1/users/{userId}/mfa/factors
 ```
 
+** List the factors available on the account to be used as a MFA challange. **
+
 ### Parameters
 
 | Field Name | Type | Description | Default |
@@ -310,13 +314,14 @@ GET https://cloud.appwrite.io/v1/users/{userId}/mfa/factors
 DELETE https://cloud.appwrite.io/v1/users/{userId}/mfa/{type}
 ```
 
+** Delete an authenticator app. **
+
 ### Parameters
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | userId | string | **Required** User ID. |  |
 | type | string | **Required** Type of authenticator. |  |
-| otp | string | Valid verification token. |  |
 
 ## Update name
 
@@ -472,6 +477,8 @@ PATCH https://cloud.appwrite.io/v1/users/{userId}/status
 GET https://cloud.appwrite.io/v1/users/{userId}/targets
 ```
 
+** List the messaging targets that are associated with a user. **
+
 ### Parameters
 
 | Field Name | Type | Description | Default |
@@ -484,6 +491,8 @@ GET https://cloud.appwrite.io/v1/users/{userId}/targets
 ```http request
 POST https://cloud.appwrite.io/v1/users/{userId}/targets
 ```
+
+** Create a messaging target. **
 
 ### Parameters
 
@@ -502,6 +511,8 @@ POST https://cloud.appwrite.io/v1/users/{userId}/targets
 GET https://cloud.appwrite.io/v1/users/{userId}/targets/{targetId}
 ```
 
+** Get a user&#039;s push notification target by ID. **
+
 ### Parameters
 
 | Field Name | Type | Description | Default |
@@ -514,6 +525,8 @@ GET https://cloud.appwrite.io/v1/users/{userId}/targets/{targetId}
 ```http request
 PATCH https://cloud.appwrite.io/v1/users/{userId}/targets/{targetId}
 ```
+
+** Update a messaging target. **
 
 ### Parameters
 
@@ -530,6 +543,8 @@ PATCH https://cloud.appwrite.io/v1/users/{userId}/targets/{targetId}
 ```http request
 DELETE https://cloud.appwrite.io/v1/users/{userId}/targets/{targetId}
 ```
+
+** Delete a messaging target. **
 
 ### Parameters
 
