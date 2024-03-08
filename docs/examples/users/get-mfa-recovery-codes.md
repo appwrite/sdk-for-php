@@ -2,7 +2,6 @@
 
 use Appwrite\Client;
 use Appwrite\Services\Users;
-use Appwrite\Enums\AuthenticatorType;
 
 $client = (new Client())
     ->setEndpoint('https://cloud.appwrite.io/v1') // Your API Endpoint
@@ -11,7 +10,6 @@ $client = (new Client())
 
 $users = new Users($client);
 
-$result = $users->deleteAuthenticator(
-    userId: '<USER_ID>',
-    type: AuthenticatorType::TOTP()
+$result = $users->getMfaRecoveryCodes(
+    userId: '<USER_ID>'
 );

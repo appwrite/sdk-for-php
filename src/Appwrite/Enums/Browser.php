@@ -6,20 +6,20 @@ use JsonSerializable;
 
 class Browser implements JsonSerializable
 {
-    private static Browser $AVANT_BROWSER;
-    private static Browser $ANDROID_WEB_VIEW_BETA;
-    private static Browser $GOOGLE_CHROME;
-    private static Browser $GOOGLE_CHROMEI_OS;
-    private static Browser $GOOGLE_CHROME_MOBILE;
+    private static Browser $AVANTBROWSER;
+    private static Browser $ANDROIDWEBVIEWBETA;
+    private static Browser $GOOGLECHROME;
+    private static Browser $GOOGLECHROMEIOS;
+    private static Browser $GOOGLECHROMEMOBILE;
     private static Browser $CHROMIUM;
-    private static Browser $MOZILLA_FIREFOX;
+    private static Browser $MOZILLAFIREFOX;
     private static Browser $SAFARI;
-    private static Browser $MOBILE_SAFARI;
-    private static Browser $MICROSOFT_EDGE;
-    private static Browser $MICROSOFT_EDGEI_OS;
-    private static Browser $OPERA_MINI;
+    private static Browser $MOBILESAFARI;
+    private static Browser $MICROSOFTEDGE;
+    private static Browser $MICROSOFTEDGEIOS;
+    private static Browser $OPERAMINI;
     private static Browser $OPERA;
-    private static Browser $OPERA_NEXT;
+    private static Browser $OPERANEXT;
 
     private string $value;
 
@@ -38,40 +38,40 @@ class Browser implements JsonSerializable
         return $this->value;
     }
 
-    public static function AVANT_BROWSER(): Browser
+    public static function AVANTBROWSER(): Browser
     {
-        if (!isset(self::$AVANT_BROWSER)) {
-            self::$AVANT_BROWSER = new Browser('aa');
+        if (!isset(self::$AVANTBROWSER)) {
+            self::$AVANTBROWSER = new Browser('aa');
         }
-        return self::$AVANT_BROWSER;
+        return self::$AVANTBROWSER;
     }
-    public static function ANDROID_WEB_VIEW_BETA(): Browser
+    public static function ANDROIDWEBVIEWBETA(): Browser
     {
-        if (!isset(self::$ANDROID_WEB_VIEW_BETA)) {
-            self::$ANDROID_WEB_VIEW_BETA = new Browser('an');
+        if (!isset(self::$ANDROIDWEBVIEWBETA)) {
+            self::$ANDROIDWEBVIEWBETA = new Browser('an');
         }
-        return self::$ANDROID_WEB_VIEW_BETA;
+        return self::$ANDROIDWEBVIEWBETA;
     }
-    public static function GOOGLE_CHROME(): Browser
+    public static function GOOGLECHROME(): Browser
     {
-        if (!isset(self::$GOOGLE_CHROME)) {
-            self::$GOOGLE_CHROME = new Browser('ch');
+        if (!isset(self::$GOOGLECHROME)) {
+            self::$GOOGLECHROME = new Browser('ch');
         }
-        return self::$GOOGLE_CHROME;
+        return self::$GOOGLECHROME;
     }
-    public static function GOOGLE_CHROMEI_OS(): Browser
+    public static function GOOGLECHROMEIOS(): Browser
     {
-        if (!isset(self::$GOOGLE_CHROMEI_OS)) {
-            self::$GOOGLE_CHROMEI_OS = new Browser('ci');
+        if (!isset(self::$GOOGLECHROMEIOS)) {
+            self::$GOOGLECHROMEIOS = new Browser('ci');
         }
-        return self::$GOOGLE_CHROMEI_OS;
+        return self::$GOOGLECHROMEIOS;
     }
-    public static function GOOGLE_CHROME_MOBILE(): Browser
+    public static function GOOGLECHROMEMOBILE(): Browser
     {
-        if (!isset(self::$GOOGLE_CHROME_MOBILE)) {
-            self::$GOOGLE_CHROME_MOBILE = new Browser('cm');
+        if (!isset(self::$GOOGLECHROMEMOBILE)) {
+            self::$GOOGLECHROMEMOBILE = new Browser('cm');
         }
-        return self::$GOOGLE_CHROME_MOBILE;
+        return self::$GOOGLECHROMEMOBILE;
     }
     public static function CHROMIUM(): Browser
     {
@@ -80,12 +80,12 @@ class Browser implements JsonSerializable
         }
         return self::$CHROMIUM;
     }
-    public static function MOZILLA_FIREFOX(): Browser
+    public static function MOZILLAFIREFOX(): Browser
     {
-        if (!isset(self::$MOZILLA_FIREFOX)) {
-            self::$MOZILLA_FIREFOX = new Browser('ff');
+        if (!isset(self::$MOZILLAFIREFOX)) {
+            self::$MOZILLAFIREFOX = new Browser('ff');
         }
-        return self::$MOZILLA_FIREFOX;
+        return self::$MOZILLAFIREFOX;
     }
     public static function SAFARI(): Browser
     {
@@ -94,33 +94,33 @@ class Browser implements JsonSerializable
         }
         return self::$SAFARI;
     }
-    public static function MOBILE_SAFARI(): Browser
+    public static function MOBILESAFARI(): Browser
     {
-        if (!isset(self::$MOBILE_SAFARI)) {
-            self::$MOBILE_SAFARI = new Browser('mf');
+        if (!isset(self::$MOBILESAFARI)) {
+            self::$MOBILESAFARI = new Browser('mf');
         }
-        return self::$MOBILE_SAFARI;
+        return self::$MOBILESAFARI;
     }
-    public static function MICROSOFT_EDGE(): Browser
+    public static function MICROSOFTEDGE(): Browser
     {
-        if (!isset(self::$MICROSOFT_EDGE)) {
-            self::$MICROSOFT_EDGE = new Browser('ps');
+        if (!isset(self::$MICROSOFTEDGE)) {
+            self::$MICROSOFTEDGE = new Browser('ps');
         }
-        return self::$MICROSOFT_EDGE;
+        return self::$MICROSOFTEDGE;
     }
-    public static function MICROSOFT_EDGEI_OS(): Browser
+    public static function MICROSOFTEDGEIOS(): Browser
     {
-        if (!isset(self::$MICROSOFT_EDGEI_OS)) {
-            self::$MICROSOFT_EDGEI_OS = new Browser('oi');
+        if (!isset(self::$MICROSOFTEDGEIOS)) {
+            self::$MICROSOFTEDGEIOS = new Browser('oi');
         }
-        return self::$MICROSOFT_EDGEI_OS;
+        return self::$MICROSOFTEDGEIOS;
     }
-    public static function OPERA_MINI(): Browser
+    public static function OPERAMINI(): Browser
     {
-        if (!isset(self::$OPERA_MINI)) {
-            self::$OPERA_MINI = new Browser('om');
+        if (!isset(self::$OPERAMINI)) {
+            self::$OPERAMINI = new Browser('om');
         }
-        return self::$OPERA_MINI;
+        return self::$OPERAMINI;
     }
     public static function OPERA(): Browser
     {
@@ -129,11 +129,11 @@ class Browser implements JsonSerializable
         }
         return self::$OPERA;
     }
-    public static function OPERA_NEXT(): Browser
+    public static function OPERANEXT(): Browser
     {
-        if (!isset(self::$OPERA_NEXT)) {
-            self::$OPERA_NEXT = new Browser('on');
+        if (!isset(self::$OPERANEXT)) {
+            self::$OPERANEXT = new Browser('on');
         }
-        return self::$OPERA_NEXT;
+        return self::$OPERANEXT;
     }
 }

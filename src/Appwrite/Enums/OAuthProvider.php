@@ -29,14 +29,14 @@ class OAuthProvider implements JsonSerializable
     private static OAuthProvider $OIDC;
     private static OAuthProvider $OKTA;
     private static OAuthProvider $PAYPAL;
-    private static OAuthProvider $PAYPAL_SANDBOX;
+    private static OAuthProvider $PAYPALSANDBOX;
     private static OAuthProvider $PODIO;
     private static OAuthProvider $SALESFORCE;
     private static OAuthProvider $SLACK;
     private static OAuthProvider $SPOTIFY;
     private static OAuthProvider $STRIPE;
     private static OAuthProvider $TRADESHIFT;
-    private static OAuthProvider $TRADESHIFT_BOX;
+    private static OAuthProvider $TRADESHIFTBOX;
     private static OAuthProvider $TWITCH;
     private static OAuthProvider $WORDPRESS;
     private static OAuthProvider $YAHOO;
@@ -224,12 +224,12 @@ class OAuthProvider implements JsonSerializable
         }
         return self::$PAYPAL;
     }
-    public static function PAYPAL_SANDBOX(): OAuthProvider
+    public static function PAYPALSANDBOX(): OAuthProvider
     {
-        if (!isset(self::$PAYPAL_SANDBOX)) {
-            self::$PAYPAL_SANDBOX = new OAuthProvider('paypalSandbox');
+        if (!isset(self::$PAYPALSANDBOX)) {
+            self::$PAYPALSANDBOX = new OAuthProvider('paypalSandbox');
         }
-        return self::$PAYPAL_SANDBOX;
+        return self::$PAYPALSANDBOX;
     }
     public static function PODIO(): OAuthProvider
     {
@@ -273,12 +273,12 @@ class OAuthProvider implements JsonSerializable
         }
         return self::$TRADESHIFT;
     }
-    public static function TRADESHIFT_BOX(): OAuthProvider
+    public static function TRADESHIFTBOX(): OAuthProvider
     {
-        if (!isset(self::$TRADESHIFT_BOX)) {
-            self::$TRADESHIFT_BOX = new OAuthProvider('tradeshiftBox');
+        if (!isset(self::$TRADESHIFTBOX)) {
+            self::$TRADESHIFTBOX = new OAuthProvider('tradeshiftBox');
         }
-        return self::$TRADESHIFT_BOX;
+        return self::$TRADESHIFTBOX;
     }
     public static function TWITCH(): OAuthProvider
     {

@@ -489,6 +489,64 @@ class Health extends Service
     }
 
     /**
+     * Get usage queue
+     *
+     * Get the number of metrics that are waiting to be processed in the Appwrite
+     * internal queue server.
+     *
+     * @param int $threshold
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function getQueueUsage(int $threshold = null): array
+    {
+        $apiPath = str_replace([], [], '/health/queue/usage');
+
+        $apiParams = [];
+        if (!is_null($threshold)) {
+            $apiParams['threshold'] = $threshold;
+        }
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
+    }
+
+    /**
+     * Get usage dump queue
+     *
+     * Get the number of projects containing metrics that are waiting to be
+     * processed in the Appwrite internal queue server.
+     *
+     * @param int $threshold
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function getQueueUsage(int $threshold = null): array
+    {
+        $apiPath = str_replace([], [], '/health/queue/usage-dump');
+
+        $apiParams = [];
+        if (!is_null($threshold)) {
+            $apiParams['threshold'] = $threshold;
+        }
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
+    }
+
+    /**
      * Get webhooks queue
      *
      * Get the number of webhooks that are waiting to be processed in the Appwrite
@@ -507,6 +565,30 @@ class Health extends Service
         if (!is_null($threshold)) {
             $apiParams['threshold'] = $threshold;
         }
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
+    }
+
+    /**
+     * Get storage
+     *
+     * Check the Appwrite storage device is up and connection is successful.
+     *
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function getStorage(): array
+    {
+        $apiPath = str_replace([], [], '/health/storage');
+
+        $apiParams = [];
         return $this->client->call(
             Client::METHOD_GET,
             $apiPath,

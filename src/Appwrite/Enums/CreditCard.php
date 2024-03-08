@@ -6,19 +6,19 @@ use JsonSerializable;
 
 class CreditCard implements JsonSerializable
 {
-    private static CreditCard $AMERICAN_EXPRESS;
+    private static CreditCard $AMERICANEXPRESS;
     private static CreditCard $ARGENCARD;
     private static CreditCard $CABAL;
     private static CreditCard $CONSOSUD;
-    private static CreditCard $DINERS_CLUB;
+    private static CreditCard $DINERSCLUB;
     private static CreditCard $DISCOVER;
     private static CreditCard $ELO;
     private static CreditCard $HIPERCARD;
     private static CreditCard $JCB;
     private static CreditCard $MASTERCARD;
     private static CreditCard $NARANJA;
-    private static CreditCard $TARJETA_SHOPPING;
-    private static CreditCard $UNION_CHINA_PAY;
+    private static CreditCard $TARJETASHOPPING;
+    private static CreditCard $UNIONCHINAPAY;
     private static CreditCard $VISA;
     private static CreditCard $MIR;
     private static CreditCard $MAESTRO;
@@ -40,12 +40,12 @@ class CreditCard implements JsonSerializable
         return $this->value;
     }
 
-    public static function AMERICAN_EXPRESS(): CreditCard
+    public static function AMERICANEXPRESS(): CreditCard
     {
-        if (!isset(self::$AMERICAN_EXPRESS)) {
-            self::$AMERICAN_EXPRESS = new CreditCard('amex');
+        if (!isset(self::$AMERICANEXPRESS)) {
+            self::$AMERICANEXPRESS = new CreditCard('amex');
         }
-        return self::$AMERICAN_EXPRESS;
+        return self::$AMERICANEXPRESS;
     }
     public static function ARGENCARD(): CreditCard
     {
@@ -68,12 +68,12 @@ class CreditCard implements JsonSerializable
         }
         return self::$CONSOSUD;
     }
-    public static function DINERS_CLUB(): CreditCard
+    public static function DINERSCLUB(): CreditCard
     {
-        if (!isset(self::$DINERS_CLUB)) {
-            self::$DINERS_CLUB = new CreditCard('diners');
+        if (!isset(self::$DINERSCLUB)) {
+            self::$DINERSCLUB = new CreditCard('diners');
         }
-        return self::$DINERS_CLUB;
+        return self::$DINERSCLUB;
     }
     public static function DISCOVER(): CreditCard
     {
@@ -117,19 +117,19 @@ class CreditCard implements JsonSerializable
         }
         return self::$NARANJA;
     }
-    public static function TARJETA_SHOPPING(): CreditCard
+    public static function TARJETASHOPPING(): CreditCard
     {
-        if (!isset(self::$TARJETA_SHOPPING)) {
-            self::$TARJETA_SHOPPING = new CreditCard('targeta-shopping');
+        if (!isset(self::$TARJETASHOPPING)) {
+            self::$TARJETASHOPPING = new CreditCard('targeta-shopping');
         }
-        return self::$TARJETA_SHOPPING;
+        return self::$TARJETASHOPPING;
     }
-    public static function UNION_CHINA_PAY(): CreditCard
+    public static function UNIONCHINAPAY(): CreditCard
     {
-        if (!isset(self::$UNION_CHINA_PAY)) {
-            self::$UNION_CHINA_PAY = new CreditCard('union-china-pay');
+        if (!isset(self::$UNIONCHINAPAY)) {
+            self::$UNIONCHINAPAY = new CreditCard('union-china-pay');
         }
-        return self::$UNION_CHINA_PAY;
+        return self::$UNIONCHINAPAY;
     }
     public static function VISA(): CreditCard
     {

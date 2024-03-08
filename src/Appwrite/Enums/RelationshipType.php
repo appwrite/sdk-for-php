@@ -6,10 +6,10 @@ use JsonSerializable;
 
 class RelationshipType implements JsonSerializable
 {
-    private static RelationshipType $ONE_TO_ONE;
-    private static RelationshipType $MANY_TO_ONE;
-    private static RelationshipType $MANY_TO_MANY;
-    private static RelationshipType $ONE_TO_MANY;
+    private static RelationshipType $ONETOONE;
+    private static RelationshipType $MANYTOONE;
+    private static RelationshipType $MANYTOMANY;
+    private static RelationshipType $ONETOMANY;
 
     private string $value;
 
@@ -28,32 +28,32 @@ class RelationshipType implements JsonSerializable
         return $this->value;
     }
 
-    public static function ONE_TO_ONE(): RelationshipType
+    public static function ONETOONE(): RelationshipType
     {
-        if (!isset(self::$ONE_TO_ONE)) {
-            self::$ONE_TO_ONE = new RelationshipType('oneToOne');
+        if (!isset(self::$ONETOONE)) {
+            self::$ONETOONE = new RelationshipType('oneToOne');
         }
-        return self::$ONE_TO_ONE;
+        return self::$ONETOONE;
     }
-    public static function MANY_TO_ONE(): RelationshipType
+    public static function MANYTOONE(): RelationshipType
     {
-        if (!isset(self::$MANY_TO_ONE)) {
-            self::$MANY_TO_ONE = new RelationshipType('manyToOne');
+        if (!isset(self::$MANYTOONE)) {
+            self::$MANYTOONE = new RelationshipType('manyToOne');
         }
-        return self::$MANY_TO_ONE;
+        return self::$MANYTOONE;
     }
-    public static function MANY_TO_MANY(): RelationshipType
+    public static function MANYTOMANY(): RelationshipType
     {
-        if (!isset(self::$MANY_TO_MANY)) {
-            self::$MANY_TO_MANY = new RelationshipType('manyToMany');
+        if (!isset(self::$MANYTOMANY)) {
+            self::$MANYTOMANY = new RelationshipType('manyToMany');
         }
-        return self::$MANY_TO_MANY;
+        return self::$MANYTOMANY;
     }
-    public static function ONE_TO_MANY(): RelationshipType
+    public static function ONETOMANY(): RelationshipType
     {
-        if (!isset(self::$ONE_TO_MANY)) {
-            self::$ONE_TO_MANY = new RelationshipType('oneToMany');
+        if (!isset(self::$ONETOMANY)) {
+            self::$ONETOMANY = new RelationshipType('oneToMany');
         }
-        return self::$ONE_TO_MANY;
+        return self::$ONETOMANY;
     }
 }

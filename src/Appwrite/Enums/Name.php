@@ -12,6 +12,7 @@ class Name implements JsonSerializable
     private static Name $V1MAILS;
     private static Name $V1FUNCTIONS;
     private static Name $V1USAGE;
+    private static Name $V1USAGEDUMP;
     private static Name $WEBHOOKSV1;
     private static Name $V1CERTIFICATES;
     private static Name $V1BUILDS;
@@ -77,6 +78,13 @@ class Name implements JsonSerializable
             self::$V1USAGE = new Name('v1-usage');
         }
         return self::$V1USAGE;
+    }
+    public static function V1USAGEDUMP(): Name
+    {
+        if (!isset(self::$V1USAGEDUMP)) {
+            self::$V1USAGEDUMP = new Name('v1-usage-dump');
+        }
+        return self::$V1USAGEDUMP;
     }
     public static function WEBHOOKSV1(): Name
     {

@@ -814,6 +814,38 @@ class Users extends Service
     }
 
     /**
+     * Delete Authenticator
+     *
+     * Delete an authenticator app.
+     *
+     * @param string $userId
+     * @param AuthenticatorType $type
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function deleteMfaAuthenticator(string $userId, AuthenticatorType $type): array
+    {
+        $apiPath = str_replace(['{userId}', '{type}'], [$userId, $type], '/users/{userId}/mfa/authenticators/{type}');
+
+        $apiParams = [];
+        if (!isset($userId)) {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+        if (!isset($type)) {
+            throw new AppwriteException('Missing required parameter: "type"');
+        }
+        return $this->client->call(
+            Client::METHOD_DELETE,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
+    }
+
+    /**
      * List Factors
      *
      * List the factors available on the account to be used as a MFA challange.
@@ -823,7 +855,7 @@ class Users extends Service
      * @return array
 
      */
-    public function listFactors(string $userId): array
+    public function listMfaFactors(string $userId): array
     {
         $apiPath = str_replace(['{userId}'], [$userId], '/users/{userId}/mfa/factors');
 
@@ -842,29 +874,90 @@ class Users extends Service
     }
 
     /**
-     * Delete Authenticator
+     * Get MFA Recovery Codes
      *
-     * Delete an authenticator app.
+     * Get recovery codes that can be used as backup for MFA flow by User ID.
+     * Before getting codes, they must be generated using
+     * [createMfaRecoveryCodes](/docs/references/cloud/client-web/account#createMfaRecoveryCodes)
+     * method.
      *
      * @param string $userId
-     * @param AuthenticatorType $type
      * @throws AppwriteException
      * @return array
 
      */
-    public function deleteAuthenticator(string $userId, AuthenticatorType $type): array
+    public function getMfaRecoveryCodes(string $userId): array
     {
-        $apiPath = str_replace(['{userId}', '{type}'], [$userId, $type], '/users/{userId}/mfa/{type}');
+        $apiPath = str_replace(['{userId}'], [$userId], '/users/{userId}/mfa/recovery-codes');
 
         $apiParams = [];
         if (!isset($userId)) {
             throw new AppwriteException('Missing required parameter: "userId"');
         }
-        if (!isset($type)) {
-            throw new AppwriteException('Missing required parameter: "type"');
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
+    }
+
+    /**
+     * Regenerate MFA Recovery Codes
+     *
+     * Regenerate recovery codes that can be used as backup for MFA flow by User
+     * ID. Before regenerating codes, they must be first generated using
+     * [createMfaRecoveryCodes](/docs/references/cloud/client-web/account#createMfaRecoveryCodes)
+     * method.
+     *
+     * @param string $userId
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function updateMfaRecoveryCodes(string $userId): array
+    {
+        $apiPath = str_replace(['{userId}'], [$userId], '/users/{userId}/mfa/recovery-codes');
+
+        $apiParams = [];
+        if (!isset($userId)) {
+            throw new AppwriteException('Missing required parameter: "userId"');
         }
         return $this->client->call(
-            Client::METHOD_DELETE,
+            Client::METHOD_PUT,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
+    }
+
+    /**
+     * Create MFA Recovery Codes
+     *
+     * Generate recovery codes used as backup for MFA flow for User ID. Recovery
+     * codes can be used as a MFA verification type in
+     * [createMfaChallenge](/docs/references/cloud/client-web/account#createMfaChallenge)
+     * method by client SDK.
+     *
+     * @param string $userId
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function createMfaRecoveryCodes(string $userId): array
+    {
+        $apiPath = str_replace(['{userId}'], [$userId], '/users/{userId}/mfa/recovery-codes');
+
+        $apiParams = [];
+        if (!isset($userId)) {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+        return $this->client->call(
+            Client::METHOD_PATCH,
             $apiPath,
             [
                 'content-type' => 'application/json',

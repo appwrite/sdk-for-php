@@ -2,7 +2,6 @@
 
 use Appwrite\Client;
 use Appwrite\Services\Account;
-use Appwrite\Enums\AuthenticatorType;
 
 $client = (new Client())
     ->setEndpoint('https://cloud.appwrite.io/v1') // Your API Endpoint
@@ -11,7 +10,4 @@ $client = (new Client())
 
 $account = new Account($client);
 
-$result = $account->verifyAuthenticator(
-    type: AuthenticatorType::TOTP(),
-    otp: '<OTP>'
-);
+$result = $account->getMfaRecoveryCodes();

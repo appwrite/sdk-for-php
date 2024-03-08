@@ -305,6 +305,38 @@ final class HealthTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
+    public function testMethodGetQueueUsage(): void {
+
+        $data = array(
+            "size" => 8,);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->health->getQueueUsage(
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodGetQueueUsage(): void {
+
+        $data = array(
+            "size" => 8,);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->health->getQueueUsage(
+        );
+
+        $this->assertSame($data, $response);
+    }
+
     public function testMethodGetQueueWebhooks(): void {
 
         $data = array(
@@ -316,6 +348,24 @@ final class HealthTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->health->getQueueWebhooks(
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodGetStorage(): void {
+
+        $data = array(
+            "name" => "database",
+            "ping" => 128,
+            "status" => "pass",);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->health->getStorage(
         );
 
         $this->assertSame($data, $response);

@@ -6,9 +6,10 @@ use JsonSerializable;
 
 class AuthenticationFactor implements JsonSerializable
 {
-    private static AuthenticationFactor $TOTP;
-    private static AuthenticationFactor $PHONE;
     private static AuthenticationFactor $EMAIL;
+    private static AuthenticationFactor $PHONE;
+    private static AuthenticationFactor $TOTP;
+    private static AuthenticationFactor $RECOVERYCODE;
 
     private string $value;
 
@@ -27,12 +28,12 @@ class AuthenticationFactor implements JsonSerializable
         return $this->value;
     }
 
-    public static function TOTP(): AuthenticationFactor
+    public static function EMAIL(): AuthenticationFactor
     {
-        if (!isset(self::$TOTP)) {
-            self::$TOTP = new AuthenticationFactor('totp');
+        if (!isset(self::$EMAIL)) {
+            self::$EMAIL = new AuthenticationFactor('email');
         }
-        return self::$TOTP;
+        return self::$EMAIL;
     }
     public static function PHONE(): AuthenticationFactor
     {
@@ -41,11 +42,18 @@ class AuthenticationFactor implements JsonSerializable
         }
         return self::$PHONE;
     }
-    public static function EMAIL(): AuthenticationFactor
+    public static function TOTP(): AuthenticationFactor
     {
-        if (!isset(self::$EMAIL)) {
-            self::$EMAIL = new AuthenticationFactor('email');
+        if (!isset(self::$TOTP)) {
+            self::$TOTP = new AuthenticationFactor('totp');
         }
-        return self::$EMAIL;
+        return self::$TOTP;
+    }
+    public static function RECOVERYCODE(): AuthenticationFactor
+    {
+        if (!isset(self::$RECOVERYCODE)) {
+            self::$RECOVERYCODE = new AuthenticationFactor('recoverycode');
+        }
+        return self::$RECOVERYCODE;
     }
 }

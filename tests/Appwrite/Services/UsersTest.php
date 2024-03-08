@@ -49,7 +49,6 @@ final class UsersTest extends TestCase {
             "emailVerification" => true,
             "phoneVerification" => true,
             "mfa" => true,
-            "totp" => true,
             "prefs" => array(),
             "targets" => array(),
             "accessedAt" => "2020-10-15T06:38:00.000+00:00",);
@@ -82,7 +81,6 @@ final class UsersTest extends TestCase {
             "emailVerification" => true,
             "phoneVerification" => true,
             "mfa" => true,
-            "totp" => true,
             "prefs" => array(),
             "targets" => array(),
             "accessedAt" => "2020-10-15T06:38:00.000+00:00",);
@@ -117,7 +115,6 @@ final class UsersTest extends TestCase {
             "emailVerification" => true,
             "phoneVerification" => true,
             "mfa" => true,
-            "totp" => true,
             "prefs" => array(),
             "targets" => array(),
             "accessedAt" => "2020-10-15T06:38:00.000+00:00",);
@@ -185,7 +182,6 @@ final class UsersTest extends TestCase {
             "emailVerification" => true,
             "phoneVerification" => true,
             "mfa" => true,
-            "totp" => true,
             "prefs" => array(),
             "targets" => array(),
             "accessedAt" => "2020-10-15T06:38:00.000+00:00",);
@@ -220,7 +216,6 @@ final class UsersTest extends TestCase {
             "emailVerification" => true,
             "phoneVerification" => true,
             "mfa" => true,
-            "totp" => true,
             "prefs" => array(),
             "targets" => array(),
             "accessedAt" => "2020-10-15T06:38:00.000+00:00",);
@@ -255,7 +250,6 @@ final class UsersTest extends TestCase {
             "emailVerification" => true,
             "phoneVerification" => true,
             "mfa" => true,
-            "totp" => true,
             "prefs" => array(),
             "targets" => array(),
             "accessedAt" => "2020-10-15T06:38:00.000+00:00",);
@@ -295,7 +289,6 @@ final class UsersTest extends TestCase {
             "emailVerification" => true,
             "phoneVerification" => true,
             "mfa" => true,
-            "totp" => true,
             "prefs" => array(),
             "targets" => array(),
             "accessedAt" => "2020-10-15T06:38:00.000+00:00",);
@@ -333,7 +326,6 @@ final class UsersTest extends TestCase {
             "emailVerification" => true,
             "phoneVerification" => true,
             "mfa" => true,
-            "totp" => true,
             "prefs" => array(),
             "targets" => array(),
             "accessedAt" => "2020-10-15T06:38:00.000+00:00",);
@@ -368,7 +360,6 @@ final class UsersTest extends TestCase {
             "emailVerification" => true,
             "phoneVerification" => true,
             "mfa" => true,
-            "totp" => true,
             "prefs" => array(),
             "targets" => array(),
             "accessedAt" => "2020-10-15T06:38:00.000+00:00",);
@@ -417,7 +408,6 @@ final class UsersTest extends TestCase {
             "emailVerification" => true,
             "phoneVerification" => true,
             "mfa" => true,
-            "totp" => true,
             "prefs" => array(),
             "targets" => array(),
             "accessedAt" => "2020-10-15T06:38:00.000+00:00",);
@@ -451,7 +441,6 @@ final class UsersTest extends TestCase {
             "emailVerification" => true,
             "phoneVerification" => true,
             "mfa" => true,
-            "totp" => true,
             "prefs" => array(),
             "targets" => array(),
             "accessedAt" => "2020-10-15T06:38:00.000+00:00",);
@@ -521,7 +510,6 @@ final class UsersTest extends TestCase {
             "emailVerification" => true,
             "phoneVerification" => true,
             "mfa" => true,
-            "totp" => true,
             "prefs" => array(),
             "targets" => array(),
             "accessedAt" => "2020-10-15T06:38:00.000+00:00",);
@@ -539,26 +527,7 @@ final class UsersTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
-    public function testMethodListFactors(): void {
-
-        $data = array(
-            "totp" => true,
-            "phone" => true,
-            "email" => true,);
-
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-
-        $response = $this->users->listFactors(
-            "<USER_ID>"
-        );
-
-        $this->assertSame($data, $response);
-    }
-
-    public function testMethodDeleteAuthenticator(): void {
+    public function testMethodDeleteMfaAuthenticator(): void {
 
         $data = array(
             "\$id" => "5e5ea5c16897e",
@@ -574,7 +543,6 @@ final class UsersTest extends TestCase {
             "emailVerification" => true,
             "phoneVerification" => true,
             "mfa" => true,
-            "totp" => true,
             "prefs" => array(),
             "targets" => array(),
             "accessedAt" => "2020-10-15T06:38:00.000+00:00",);
@@ -584,9 +552,79 @@ final class UsersTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->users->deleteAuthenticator(
+        $response = $this->users->deleteMfaAuthenticator(
             "<USER_ID>",
             "totp"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodListMfaFactors(): void {
+
+        $data = array(
+            "totp" => true,
+            "phone" => true,
+            "email" => true,);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->users->listMfaFactors(
+            "<USER_ID>"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodGetMfaRecoveryCodes(): void {
+
+        $data = array(
+            "recoveryCodes" => array(),);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->users->getMfaRecoveryCodes(
+            "<USER_ID>"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodUpdateMfaRecoveryCodes(): void {
+
+        $data = array(
+            "recoveryCodes" => array(),);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->users->updateMfaRecoveryCodes(
+            "<USER_ID>"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodCreateMfaRecoveryCodes(): void {
+
+        $data = array(
+            "recoveryCodes" => array(),);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->users->createMfaRecoveryCodes(
+            "<USER_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -608,7 +646,6 @@ final class UsersTest extends TestCase {
             "emailVerification" => true,
             "phoneVerification" => true,
             "mfa" => true,
-            "totp" => true,
             "prefs" => array(),
             "targets" => array(),
             "accessedAt" => "2020-10-15T06:38:00.000+00:00",);
@@ -642,7 +679,6 @@ final class UsersTest extends TestCase {
             "emailVerification" => true,
             "phoneVerification" => true,
             "mfa" => true,
-            "totp" => true,
             "prefs" => array(),
             "targets" => array(),
             "accessedAt" => "2020-10-15T06:38:00.000+00:00",);
@@ -676,7 +712,6 @@ final class UsersTest extends TestCase {
             "emailVerification" => true,
             "phoneVerification" => true,
             "mfa" => true,
-            "totp" => true,
             "prefs" => array(),
             "targets" => array(),
             "accessedAt" => "2020-10-15T06:38:00.000+00:00",);
@@ -774,7 +809,8 @@ final class UsersTest extends TestCase {
             "countryName" => "United States",
             "current" => true,
             "factors" => array(),
-            "secret" => "5e5bb8c16897e",);
+            "secret" => "5e5bb8c16897e",
+            "mfaUpdatedAt" => "2020-10-15T06:38:00.000+00:00",);
 
 
         $this->client
@@ -837,7 +873,6 @@ final class UsersTest extends TestCase {
             "emailVerification" => true,
             "phoneVerification" => true,
             "mfa" => true,
-            "totp" => true,
             "prefs" => array(),
             "targets" => array(),
             "accessedAt" => "2020-10-15T06:38:00.000+00:00",);
@@ -1002,7 +1037,6 @@ final class UsersTest extends TestCase {
             "emailVerification" => true,
             "phoneVerification" => true,
             "mfa" => true,
-            "totp" => true,
             "prefs" => array(),
             "targets" => array(),
             "accessedAt" => "2020-10-15T06:38:00.000+00:00",);
@@ -1036,7 +1070,6 @@ final class UsersTest extends TestCase {
             "emailVerification" => true,
             "phoneVerification" => true,
             "mfa" => true,
-            "totp" => true,
             "prefs" => array(),
             "targets" => array(),
             "accessedAt" => "2020-10-15T06:38:00.000+00:00",);

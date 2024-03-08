@@ -6,8 +6,8 @@ use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
 use Appwrite\InputFile;
-use Appwrite\Enums\AuthenticationFactor;
 use Appwrite\Enums\AuthenticatorType;
+use Appwrite\Enums\AuthenticationFactor;
 use Appwrite\Enums\OAuthProvider;
 
 class Account extends Service
@@ -286,14 +286,121 @@ class Account extends Service
     }
 
     /**
+     * Add Authenticator
+     *
+     * Add an authenticator app to be used as an MFA factor. Verify the
+     * authenticator using the [verify
+     * authenticator](/docs/references/cloud/client-web/account#verifyAuthenticator)
+     * method.
+     *
+     * @param AuthenticatorType $type
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function createMfaAuthenticator(AuthenticatorType $type): array
+    {
+        $apiPath = str_replace(['{type}'], [$type], '/account/mfa/authenticators/{type}');
+
+        $apiParams = [];
+        if (!isset($type)) {
+            throw new AppwriteException('Missing required parameter: "type"');
+        }
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
+    }
+
+    /**
+     * Verify Authenticator
+     *
+     * Verify an authenticator app after adding it using the [add
+     * authenticator](/docs/references/cloud/client-web/account#addAuthenticator)
+     * method.
+     *
+     * @param AuthenticatorType $type
+     * @param string $otp
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function updateMfaAuthenticator(AuthenticatorType $type, string $otp): array
+    {
+        $apiPath = str_replace(['{type}'], [$type], '/account/mfa/authenticators/{type}');
+
+        $apiParams = [];
+        if (!isset($type)) {
+            throw new AppwriteException('Missing required parameter: "type"');
+        }
+        if (!isset($otp)) {
+            throw new AppwriteException('Missing required parameter: "otp"');
+        }
+        if (!is_null($otp)) {
+            $apiParams['otp'] = $otp;
+        }
+        return $this->client->call(
+            Client::METHOD_PUT,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
+    }
+
+    /**
+     * Delete Authenticator
+     *
+     * Delete an authenticator for a user by ID.
+     *
+     * @param AuthenticatorType $type
+     * @param string $otp
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function deleteMfaAuthenticator(AuthenticatorType $type, string $otp): array
+    {
+        $apiPath = str_replace(['{type}'], [$type], '/account/mfa/authenticators/{type}');
+
+        $apiParams = [];
+        if (!isset($type)) {
+            throw new AppwriteException('Missing required parameter: "type"');
+        }
+        if (!isset($otp)) {
+            throw new AppwriteException('Missing required parameter: "otp"');
+        }
+        if (!is_null($otp)) {
+            $apiParams['otp'] = $otp;
+        }
+        return $this->client->call(
+            Client::METHOD_DELETE,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
+    }
+
+    /**
      * Create 2FA Challenge
+     *
+     * Begin the process of MFA verification after sign-in. Finish the flow with
+     * [updateMfaChallenge](/docs/references/cloud/client-web/account#updateMfaChallenge)
+     * method.
      *
      * @param AuthenticationFactor $factor
      * @throws AppwriteException
      * @return array
 
      */
-    public function createChallenge(AuthenticationFactor $factor): array
+    public function createMfaChallenge(AuthenticationFactor $factor): array
     {
         $apiPath = str_replace([], [], '/account/mfa/challenge');
 
@@ -317,7 +424,11 @@ class Account extends Service
     /**
      * Create MFA Challenge (confirmation)
      *
-     * Complete the MFA challenge by providing the one-time password.
+     * Complete the MFA challenge by providing the one-time password. Finish the
+     * process of MFA verification by providing the one-time password. To begin
+     * the flow, use
+     * [createMfaChallenge](/docs/references/cloud/client-web/account#createMfaChallenge)
+     * method.
      *
      * @param string $challengeId
      * @param string $otp
@@ -325,7 +436,7 @@ class Account extends Service
      * @return string
 
      */
-    public function updateChallenge(string $challengeId, string $otp): string
+    public function updateMfaChallenge(string $challengeId, string $otp): string
     {
         $apiPath = str_replace([], [], '/account/mfa/challenge');
 
@@ -361,7 +472,7 @@ class Account extends Service
      * @return array
 
      */
-    public function listFactors(): array
+    public function listMfaFactors(): array
     {
         $apiPath = str_replace([], [], '/account/mfa/factors');
 
@@ -377,26 +488,50 @@ class Account extends Service
     }
 
     /**
-     * Add Authenticator
+     * Get MFA Recovery Codes
      *
-     * Add an authenticator app to be used as an MFA factor. Verify the
-     * authenticator using the [verify
-     * authenticator](/docs/references/cloud/client-web/account#verifyAuthenticator)
-     * method.
+     * Get recovery codes that can be used as backup for MFA flow. Before getting
+     * codes, they must be generated using
+     * [createMfaRecoveryCodes](/docs/references/cloud/client-web/account#createMfaRecoveryCodes)
+     * method. An OTP challenge is required to read recovery codes.
      *
-     * @param AuthenticatorType $type
      * @throws AppwriteException
      * @return array
 
      */
-    public function addAuthenticator(AuthenticatorType $type): array
+    public function getMfaRecoveryCodes(): array
     {
-        $apiPath = str_replace(['{type}'], [$type], '/account/mfa/{type}');
+        $apiPath = str_replace([], [], '/account/mfa/recovery-codes');
 
         $apiParams = [];
-        if (!isset($type)) {
-            throw new AppwriteException('Missing required parameter: "type"');
-        }
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
+    }
+
+    /**
+     * Create MFA Recovery Codes
+     *
+     * Generate recovery codes as backup for MFA flow. It's recommended to
+     * generate and show then immediately after user successfully adds their
+     * authehticator. Recovery codes can be used as a MFA verification type in
+     * [createMfaChallenge](/docs/references/cloud/client-web/account#createMfaChallenge)
+     * method.
+     *
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function createMfaRecoveryCodes(): array
+    {
+        $apiPath = str_replace([], [], '/account/mfa/recovery-codes');
+
+        $apiParams = [];
         return $this->client->call(
             Client::METHOD_POST,
             $apiPath,
@@ -408,69 +543,24 @@ class Account extends Service
     }
 
     /**
-     * Verify Authenticator
+     * Regenerate MFA Recovery Codes
      *
-     * Verify an authenticator app after adding it using the [add
-     * authenticator](/docs/references/cloud/client-web/account#addAuthenticator)
-     * method.
+     * Regenerate recovery codes that can be used as backup for MFA flow. Before
+     * regenerating codes, they must be first generated using
+     * [createMfaRecoveryCodes](/docs/references/cloud/client-web/account#createMfaRecoveryCodes)
+     * method. An OTP challenge is required to regenreate recovery codes.
      *
-     * @param AuthenticatorType $type
-     * @param string $otp
      * @throws AppwriteException
      * @return array
 
      */
-    public function verifyAuthenticator(AuthenticatorType $type, string $otp): array
+    public function updateMfaRecoveryCodes(): array
     {
-        $apiPath = str_replace(['{type}'], [$type], '/account/mfa/{type}');
+        $apiPath = str_replace([], [], '/account/mfa/recovery-codes');
 
         $apiParams = [];
-        if (!isset($type)) {
-            throw new AppwriteException('Missing required parameter: "type"');
-        }
-        if (!isset($otp)) {
-            throw new AppwriteException('Missing required parameter: "otp"');
-        }
-        if (!is_null($otp)) {
-            $apiParams['otp'] = $otp;
-        }
         return $this->client->call(
-            Client::METHOD_PUT,
-            $apiPath,
-            [
-                'content-type' => 'application/json',
-            ],
-            $apiParams
-        );
-    }
-
-    /**
-     * Delete Authenticator
-     *
-     * Delete an authenticator for a user by ID.
-     *
-     * @param AuthenticatorType $type
-     * @param string $otp
-     * @throws AppwriteException
-     * @return array
-
-     */
-    public function deleteAuthenticator(AuthenticatorType $type, string $otp): array
-    {
-        $apiPath = str_replace(['{type}'], [$type], '/account/mfa/{type}');
-
-        $apiParams = [];
-        if (!isset($type)) {
-            throw new AppwriteException('Missing required parameter: "type"');
-        }
-        if (!isset($otp)) {
-            throw new AppwriteException('Missing required parameter: "otp"');
-        }
-        if (!is_null($otp)) {
-            $apiParams['otp'] = $otp;
-        }
-        return $this->client->call(
-            Client::METHOD_DELETE,
+            Client::METHOD_PATCH,
             $apiPath,
             [
                 'content-type' => 'application/json',
@@ -1018,10 +1108,11 @@ class Account extends Service
     }
 
     /**
-     * Update (or renew) session
+     * Update session
      *
-     * Extend session's expiry to increase it's lifespan. Extending a session is
-     * useful when session length is short such as 5 minutes.
+     * Use this endpoint to extend a session's length. Extending a session is
+     * useful when session expiry is short. If the session was created using an
+     * OAuth provider, this endpoint refreshes the access token from the provider.
      *
      * @param string $sessionId
      * @throws AppwriteException

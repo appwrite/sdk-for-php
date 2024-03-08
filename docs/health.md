@@ -205,6 +205,34 @@ GET https://cloud.appwrite.io/v1/health/queue/migrations
 | --- | --- | --- | --- |
 | threshold | integer | Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000. | 5000 |
 
+## Get usage queue
+
+```http request
+GET https://cloud.appwrite.io/v1/health/queue/usage
+```
+
+** Get the number of metrics that are waiting to be processed in the Appwrite internal queue server. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| threshold | integer | Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000. | 5000 |
+
+## Get usage dump queue
+
+```http request
+GET https://cloud.appwrite.io/v1/health/queue/usage-dump
+```
+
+** Get the number of projects containing metrics that are waiting to be processed in the Appwrite internal queue server. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| threshold | integer | Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000. | 5000 |
+
 ## Get webhooks queue
 
 ```http request
@@ -218,6 +246,14 @@ GET https://cloud.appwrite.io/v1/health/queue/webhooks
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | threshold | integer | Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000. | 5000 |
+
+## Get storage
+
+```http request
+GET https://cloud.appwrite.io/v1/health/storage
+```
+
+** Check the Appwrite storage device is up and connection is successful. **
 
 ## Get local storage
 

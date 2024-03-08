@@ -10,51 +10,51 @@ class Flag implements JsonSerializable
     private static Flag $ANGOLA;
     private static Flag $ALBANIA;
     private static Flag $ANDORRA;
-    private static Flag $UNITED_ARAB_EMIRATES;
+    private static Flag $UNITEDARABEMIRATES;
     private static Flag $ARGENTINA;
     private static Flag $ARMENIA;
-    private static Flag $ANTIGUAAND_BARBUDA;
+    private static Flag $ANTIGUAANDBARBUDA;
     private static Flag $AUSTRALIA;
     private static Flag $AUSTRIA;
     private static Flag $AZERBAIJAN;
     private static Flag $BURUNDI;
     private static Flag $BELGIUM;
     private static Flag $BENIN;
-    private static Flag $BURKINA_FASO;
+    private static Flag $BURKINAFASO;
     private static Flag $BANGLADESH;
     private static Flag $BULGARIA;
     private static Flag $BAHRAIN;
     private static Flag $BAHAMAS;
-    private static Flag $BOSNIAAND_HERZEGOVINA;
+    private static Flag $BOSNIAANDHERZEGOVINA;
     private static Flag $BELARUS;
     private static Flag $BELIZE;
     private static Flag $BOLIVIA;
     private static Flag $BRAZIL;
     private static Flag $BARBADOS;
-    private static Flag $BRUNEI_DARUSSALAM;
+    private static Flag $BRUNEIDARUSSALAM;
     private static Flag $BHUTAN;
     private static Flag $BOTSWANA;
-    private static Flag $CENTRAL_AFRICAN_REPUBLIC;
+    private static Flag $CENTRALAFRICANREPUBLIC;
     private static Flag $CANADA;
     private static Flag $SWITZERLAND;
     private static Flag $CHILE;
     private static Flag $CHINA;
-    private static Flag $CTED_IVOIRE;
+    private static Flag $CTEDIVOIRE;
     private static Flag $CAMEROON;
-    private static Flag $DEMOCRATIC_REPUBLICOFTHE_CONGO;
-    private static Flag $REPUBLICOFTHE_CONGO;
+    private static Flag $DEMOCRATICREPUBLICOFTHECONGO;
+    private static Flag $REPUBLICOFTHECONGO;
     private static Flag $COLOMBIA;
     private static Flag $COMOROS;
-    private static Flag $CAPE_VERDE;
-    private static Flag $COSTA_RICA;
+    private static Flag $CAPEVERDE;
+    private static Flag $COSTARICA;
     private static Flag $CUBA;
     private static Flag $CYPRUS;
-    private static Flag $CZECH_REPUBLIC;
+    private static Flag $CZECHREPUBLIC;
     private static Flag $GERMANY;
     private static Flag $DJIBOUTI;
     private static Flag $DOMINICA;
     private static Flag $DENMARK;
-    private static Flag $DOMINICAN_REPUBLIC;
+    private static Flag $DOMINICANREPUBLIC;
     private static Flag $ALGERIA;
     private static Flag $ECUADOR;
     private static Flag $EGYPT;
@@ -65,15 +65,15 @@ class Flag implements JsonSerializable
     private static Flag $FINLAND;
     private static Flag $FIJI;
     private static Flag $FRANCE;
-    private static Flag $MICRONESIA_FEDERATED_STATESOF;
+    private static Flag $MICRONESIAFEDERATEDSTATESOF;
     private static Flag $GABON;
-    private static Flag $UNITED_KINGDOM;
+    private static Flag $UNITEDKINGDOM;
     private static Flag $GEORGIA;
     private static Flag $GHANA;
     private static Flag $GUINEA;
     private static Flag $GAMBIA;
-    private static Flag $GUINEA_BISSAU;
-    private static Flag $EQUATORIAL_GUINEA;
+    private static Flag $GUINEABISSAU;
+    private static Flag $EQUATORIALGUINEA;
     private static Flag $GREECE;
     private static Flag $GRENADA;
     private static Flag $GUATEMALA;
@@ -85,7 +85,7 @@ class Flag implements JsonSerializable
     private static Flag $INDONESIA;
     private static Flag $INDIA;
     private static Flag $IRELAND;
-    private static Flag $IRAN_ISLAMIC_REPUBLICOF;
+    private static Flag $IRANISLAMICREPUBLICOF;
     private static Flag $IRAQ;
     private static Flag $ICELAND;
     private static Flag $ISRAEL;
@@ -98,16 +98,16 @@ class Flag implements JsonSerializable
     private static Flag $KYRGYZSTAN;
     private static Flag $CAMBODIA;
     private static Flag $KIRIBATI;
-    private static Flag $SAINT_KITTSAND_NEVIS;
-    private static Flag $SOUTH_KOREA;
+    private static Flag $SAINTKITTSANDNEVIS;
+    private static Flag $SOUTHKOREA;
     private static Flag $KUWAIT;
-    private static Flag $LAO_PEOPLES_DEMOCRATIC_REPUBLIC;
+    private static Flag $LAOPEOPLESDEMOCRATICREPUBLIC;
     private static Flag $LEBANON;
     private static Flag $LIBERIA;
     private static Flag $LIBYA;
-    private static Flag $SAINT_LUCIA;
+    private static Flag $SAINTLUCIA;
     private static Flag $LIECHTENSTEIN;
-    private static Flag $SRI_LANKA;
+    private static Flag $SRILANKA;
     private static Flag $LESOTHO;
     private static Flag $LITHUANIA;
     private static Flag $LUXEMBOURG;
@@ -118,8 +118,8 @@ class Flag implements JsonSerializable
     private static Flag $MADAGASCAR;
     private static Flag $MALDIVES;
     private static Flag $MEXICO;
-    private static Flag $MARSHALL_ISLANDS;
-    private static Flag $NORTH_MACEDONIA;
+    private static Flag $MARSHALLISLANDS;
+    private static Flag $NORTHMACEDONIA;
     private static Flag $MALI;
     private static Flag $MALTA;
     private static Flag $MYANMAR;
@@ -138,34 +138,34 @@ class Flag implements JsonSerializable
     private static Flag $NORWAY;
     private static Flag $NEPAL;
     private static Flag $NAURU;
-    private static Flag $NEW_ZEALAND;
+    private static Flag $NEWZEALAND;
     private static Flag $OMAN;
     private static Flag $PAKISTAN;
     private static Flag $PANAMA;
     private static Flag $PERU;
     private static Flag $PHILIPPINES;
     private static Flag $PALAU;
-    private static Flag $PAPUA_NEW_GUINEA;
+    private static Flag $PAPUANEWGUINEA;
     private static Flag $POLAND;
-    private static Flag $NORTH_KOREA;
+    private static Flag $NORTHKOREA;
     private static Flag $PORTUGAL;
     private static Flag $PARAGUAY;
     private static Flag $QATAR;
     private static Flag $ROMANIA;
     private static Flag $RUSSIA;
     private static Flag $RWANDA;
-    private static Flag $SAUDI_ARABIA;
+    private static Flag $SAUDIARABIA;
     private static Flag $SUDAN;
     private static Flag $SENEGAL;
     private static Flag $SINGAPORE;
-    private static Flag $SOLOMON_ISLANDS;
-    private static Flag $SIERRA_LEONE;
-    private static Flag $EL_SALVADOR;
-    private static Flag $SAN_MARINO;
+    private static Flag $SOLOMONISLANDS;
+    private static Flag $SIERRALEONE;
+    private static Flag $ELSALVADOR;
+    private static Flag $SANMARINO;
     private static Flag $SOMALIA;
     private static Flag $SERBIA;
-    private static Flag $SOUTH_SUDAN;
-    private static Flag $SAO_TOMEAND_PRINCIPE;
+    private static Flag $SOUTHSUDAN;
+    private static Flag $SAOTOMEANDPRINCIPE;
     private static Flag $SURINAME;
     private static Flag $SLOVAKIA;
     private static Flag $SLOVENIA;
@@ -178,9 +178,9 @@ class Flag implements JsonSerializable
     private static Flag $THAILAND;
     private static Flag $TAJIKISTAN;
     private static Flag $TURKMENISTAN;
-    private static Flag $TIMOR_LESTE;
+    private static Flag $TIMORLESTE;
     private static Flag $TONGA;
-    private static Flag $TRINIDADAND_TOBAGO;
+    private static Flag $TRINIDADANDTOBAGO;
     private static Flag $TUNISIA;
     private static Flag $TURKEY;
     private static Flag $TUVALU;
@@ -188,16 +188,16 @@ class Flag implements JsonSerializable
     private static Flag $UGANDA;
     private static Flag $UKRAINE;
     private static Flag $URUGUAY;
-    private static Flag $UNITED_STATES;
+    private static Flag $UNITEDSTATES;
     private static Flag $UZBEKISTAN;
-    private static Flag $VATICAN_CITY;
-    private static Flag $SAINT_VINCENTANDTHE_GRENADINES;
+    private static Flag $VATICANCITY;
+    private static Flag $SAINTVINCENTANDTHEGRENADINES;
     private static Flag $VENEZUELA;
     private static Flag $VIETNAM;
     private static Flag $VANUATU;
     private static Flag $SAMOA;
     private static Flag $YEMEN;
-    private static Flag $SOUTH_AFRICA;
+    private static Flag $SOUTHAFRICA;
     private static Flag $ZAMBIA;
     private static Flag $ZIMBABWE;
 
@@ -246,12 +246,12 @@ class Flag implements JsonSerializable
         }
         return self::$ANDORRA;
     }
-    public static function UNITED_ARAB_EMIRATES(): Flag
+    public static function UNITEDARABEMIRATES(): Flag
     {
-        if (!isset(self::$UNITED_ARAB_EMIRATES)) {
-            self::$UNITED_ARAB_EMIRATES = new Flag('ae');
+        if (!isset(self::$UNITEDARABEMIRATES)) {
+            self::$UNITEDARABEMIRATES = new Flag('ae');
         }
-        return self::$UNITED_ARAB_EMIRATES;
+        return self::$UNITEDARABEMIRATES;
     }
     public static function ARGENTINA(): Flag
     {
@@ -267,12 +267,12 @@ class Flag implements JsonSerializable
         }
         return self::$ARMENIA;
     }
-    public static function ANTIGUAAND_BARBUDA(): Flag
+    public static function ANTIGUAANDBARBUDA(): Flag
     {
-        if (!isset(self::$ANTIGUAAND_BARBUDA)) {
-            self::$ANTIGUAAND_BARBUDA = new Flag('ag');
+        if (!isset(self::$ANTIGUAANDBARBUDA)) {
+            self::$ANTIGUAANDBARBUDA = new Flag('ag');
         }
-        return self::$ANTIGUAAND_BARBUDA;
+        return self::$ANTIGUAANDBARBUDA;
     }
     public static function AUSTRALIA(): Flag
     {
@@ -316,12 +316,12 @@ class Flag implements JsonSerializable
         }
         return self::$BENIN;
     }
-    public static function BURKINA_FASO(): Flag
+    public static function BURKINAFASO(): Flag
     {
-        if (!isset(self::$BURKINA_FASO)) {
-            self::$BURKINA_FASO = new Flag('bf');
+        if (!isset(self::$BURKINAFASO)) {
+            self::$BURKINAFASO = new Flag('bf');
         }
-        return self::$BURKINA_FASO;
+        return self::$BURKINAFASO;
     }
     public static function BANGLADESH(): Flag
     {
@@ -351,12 +351,12 @@ class Flag implements JsonSerializable
         }
         return self::$BAHAMAS;
     }
-    public static function BOSNIAAND_HERZEGOVINA(): Flag
+    public static function BOSNIAANDHERZEGOVINA(): Flag
     {
-        if (!isset(self::$BOSNIAAND_HERZEGOVINA)) {
-            self::$BOSNIAAND_HERZEGOVINA = new Flag('ba');
+        if (!isset(self::$BOSNIAANDHERZEGOVINA)) {
+            self::$BOSNIAANDHERZEGOVINA = new Flag('ba');
         }
-        return self::$BOSNIAAND_HERZEGOVINA;
+        return self::$BOSNIAANDHERZEGOVINA;
     }
     public static function BELARUS(): Flag
     {
@@ -393,12 +393,12 @@ class Flag implements JsonSerializable
         }
         return self::$BARBADOS;
     }
-    public static function BRUNEI_DARUSSALAM(): Flag
+    public static function BRUNEIDARUSSALAM(): Flag
     {
-        if (!isset(self::$BRUNEI_DARUSSALAM)) {
-            self::$BRUNEI_DARUSSALAM = new Flag('bn');
+        if (!isset(self::$BRUNEIDARUSSALAM)) {
+            self::$BRUNEIDARUSSALAM = new Flag('bn');
         }
-        return self::$BRUNEI_DARUSSALAM;
+        return self::$BRUNEIDARUSSALAM;
     }
     public static function BHUTAN(): Flag
     {
@@ -414,12 +414,12 @@ class Flag implements JsonSerializable
         }
         return self::$BOTSWANA;
     }
-    public static function CENTRAL_AFRICAN_REPUBLIC(): Flag
+    public static function CENTRALAFRICANREPUBLIC(): Flag
     {
-        if (!isset(self::$CENTRAL_AFRICAN_REPUBLIC)) {
-            self::$CENTRAL_AFRICAN_REPUBLIC = new Flag('cf');
+        if (!isset(self::$CENTRALAFRICANREPUBLIC)) {
+            self::$CENTRALAFRICANREPUBLIC = new Flag('cf');
         }
-        return self::$CENTRAL_AFRICAN_REPUBLIC;
+        return self::$CENTRALAFRICANREPUBLIC;
     }
     public static function CANADA(): Flag
     {
@@ -449,12 +449,12 @@ class Flag implements JsonSerializable
         }
         return self::$CHINA;
     }
-    public static function CTED_IVOIRE(): Flag
+    public static function CTEDIVOIRE(): Flag
     {
-        if (!isset(self::$CTED_IVOIRE)) {
-            self::$CTED_IVOIRE = new Flag('ci');
+        if (!isset(self::$CTEDIVOIRE)) {
+            self::$CTEDIVOIRE = new Flag('ci');
         }
-        return self::$CTED_IVOIRE;
+        return self::$CTEDIVOIRE;
     }
     public static function CAMEROON(): Flag
     {
@@ -463,19 +463,19 @@ class Flag implements JsonSerializable
         }
         return self::$CAMEROON;
     }
-    public static function DEMOCRATIC_REPUBLICOFTHE_CONGO(): Flag
+    public static function DEMOCRATICREPUBLICOFTHECONGO(): Flag
     {
-        if (!isset(self::$DEMOCRATIC_REPUBLICOFTHE_CONGO)) {
-            self::$DEMOCRATIC_REPUBLICOFTHE_CONGO = new Flag('cd');
+        if (!isset(self::$DEMOCRATICREPUBLICOFTHECONGO)) {
+            self::$DEMOCRATICREPUBLICOFTHECONGO = new Flag('cd');
         }
-        return self::$DEMOCRATIC_REPUBLICOFTHE_CONGO;
+        return self::$DEMOCRATICREPUBLICOFTHECONGO;
     }
-    public static function REPUBLICOFTHE_CONGO(): Flag
+    public static function REPUBLICOFTHECONGO(): Flag
     {
-        if (!isset(self::$REPUBLICOFTHE_CONGO)) {
-            self::$REPUBLICOFTHE_CONGO = new Flag('cg');
+        if (!isset(self::$REPUBLICOFTHECONGO)) {
+            self::$REPUBLICOFTHECONGO = new Flag('cg');
         }
-        return self::$REPUBLICOFTHE_CONGO;
+        return self::$REPUBLICOFTHECONGO;
     }
     public static function COLOMBIA(): Flag
     {
@@ -491,19 +491,19 @@ class Flag implements JsonSerializable
         }
         return self::$COMOROS;
     }
-    public static function CAPE_VERDE(): Flag
+    public static function CAPEVERDE(): Flag
     {
-        if (!isset(self::$CAPE_VERDE)) {
-            self::$CAPE_VERDE = new Flag('cv');
+        if (!isset(self::$CAPEVERDE)) {
+            self::$CAPEVERDE = new Flag('cv');
         }
-        return self::$CAPE_VERDE;
+        return self::$CAPEVERDE;
     }
-    public static function COSTA_RICA(): Flag
+    public static function COSTARICA(): Flag
     {
-        if (!isset(self::$COSTA_RICA)) {
-            self::$COSTA_RICA = new Flag('cr');
+        if (!isset(self::$COSTARICA)) {
+            self::$COSTARICA = new Flag('cr');
         }
-        return self::$COSTA_RICA;
+        return self::$COSTARICA;
     }
     public static function CUBA(): Flag
     {
@@ -519,12 +519,12 @@ class Flag implements JsonSerializable
         }
         return self::$CYPRUS;
     }
-    public static function CZECH_REPUBLIC(): Flag
+    public static function CZECHREPUBLIC(): Flag
     {
-        if (!isset(self::$CZECH_REPUBLIC)) {
-            self::$CZECH_REPUBLIC = new Flag('cz');
+        if (!isset(self::$CZECHREPUBLIC)) {
+            self::$CZECHREPUBLIC = new Flag('cz');
         }
-        return self::$CZECH_REPUBLIC;
+        return self::$CZECHREPUBLIC;
     }
     public static function GERMANY(): Flag
     {
@@ -554,12 +554,12 @@ class Flag implements JsonSerializable
         }
         return self::$DENMARK;
     }
-    public static function DOMINICAN_REPUBLIC(): Flag
+    public static function DOMINICANREPUBLIC(): Flag
     {
-        if (!isset(self::$DOMINICAN_REPUBLIC)) {
-            self::$DOMINICAN_REPUBLIC = new Flag('do');
+        if (!isset(self::$DOMINICANREPUBLIC)) {
+            self::$DOMINICANREPUBLIC = new Flag('do');
         }
-        return self::$DOMINICAN_REPUBLIC;
+        return self::$DOMINICANREPUBLIC;
     }
     public static function ALGERIA(): Flag
     {
@@ -631,12 +631,12 @@ class Flag implements JsonSerializable
         }
         return self::$FRANCE;
     }
-    public static function MICRONESIA_FEDERATED_STATESOF(): Flag
+    public static function MICRONESIAFEDERATEDSTATESOF(): Flag
     {
-        if (!isset(self::$MICRONESIA_FEDERATED_STATESOF)) {
-            self::$MICRONESIA_FEDERATED_STATESOF = new Flag('fm');
+        if (!isset(self::$MICRONESIAFEDERATEDSTATESOF)) {
+            self::$MICRONESIAFEDERATEDSTATESOF = new Flag('fm');
         }
-        return self::$MICRONESIA_FEDERATED_STATESOF;
+        return self::$MICRONESIAFEDERATEDSTATESOF;
     }
     public static function GABON(): Flag
     {
@@ -645,12 +645,12 @@ class Flag implements JsonSerializable
         }
         return self::$GABON;
     }
-    public static function UNITED_KINGDOM(): Flag
+    public static function UNITEDKINGDOM(): Flag
     {
-        if (!isset(self::$UNITED_KINGDOM)) {
-            self::$UNITED_KINGDOM = new Flag('gb');
+        if (!isset(self::$UNITEDKINGDOM)) {
+            self::$UNITEDKINGDOM = new Flag('gb');
         }
-        return self::$UNITED_KINGDOM;
+        return self::$UNITEDKINGDOM;
     }
     public static function GEORGIA(): Flag
     {
@@ -680,19 +680,19 @@ class Flag implements JsonSerializable
         }
         return self::$GAMBIA;
     }
-    public static function GUINEA_BISSAU(): Flag
+    public static function GUINEABISSAU(): Flag
     {
-        if (!isset(self::$GUINEA_BISSAU)) {
-            self::$GUINEA_BISSAU = new Flag('gw');
+        if (!isset(self::$GUINEABISSAU)) {
+            self::$GUINEABISSAU = new Flag('gw');
         }
-        return self::$GUINEA_BISSAU;
+        return self::$GUINEABISSAU;
     }
-    public static function EQUATORIAL_GUINEA(): Flag
+    public static function EQUATORIALGUINEA(): Flag
     {
-        if (!isset(self::$EQUATORIAL_GUINEA)) {
-            self::$EQUATORIAL_GUINEA = new Flag('gq');
+        if (!isset(self::$EQUATORIALGUINEA)) {
+            self::$EQUATORIALGUINEA = new Flag('gq');
         }
-        return self::$EQUATORIAL_GUINEA;
+        return self::$EQUATORIALGUINEA;
     }
     public static function GREECE(): Flag
     {
@@ -771,12 +771,12 @@ class Flag implements JsonSerializable
         }
         return self::$IRELAND;
     }
-    public static function IRAN_ISLAMIC_REPUBLICOF(): Flag
+    public static function IRANISLAMICREPUBLICOF(): Flag
     {
-        if (!isset(self::$IRAN_ISLAMIC_REPUBLICOF)) {
-            self::$IRAN_ISLAMIC_REPUBLICOF = new Flag('ir');
+        if (!isset(self::$IRANISLAMICREPUBLICOF)) {
+            self::$IRANISLAMICREPUBLICOF = new Flag('ir');
         }
-        return self::$IRAN_ISLAMIC_REPUBLICOF;
+        return self::$IRANISLAMICREPUBLICOF;
     }
     public static function IRAQ(): Flag
     {
@@ -862,19 +862,19 @@ class Flag implements JsonSerializable
         }
         return self::$KIRIBATI;
     }
-    public static function SAINT_KITTSAND_NEVIS(): Flag
+    public static function SAINTKITTSANDNEVIS(): Flag
     {
-        if (!isset(self::$SAINT_KITTSAND_NEVIS)) {
-            self::$SAINT_KITTSAND_NEVIS = new Flag('kn');
+        if (!isset(self::$SAINTKITTSANDNEVIS)) {
+            self::$SAINTKITTSANDNEVIS = new Flag('kn');
         }
-        return self::$SAINT_KITTSAND_NEVIS;
+        return self::$SAINTKITTSANDNEVIS;
     }
-    public static function SOUTH_KOREA(): Flag
+    public static function SOUTHKOREA(): Flag
     {
-        if (!isset(self::$SOUTH_KOREA)) {
-            self::$SOUTH_KOREA = new Flag('kr');
+        if (!isset(self::$SOUTHKOREA)) {
+            self::$SOUTHKOREA = new Flag('kr');
         }
-        return self::$SOUTH_KOREA;
+        return self::$SOUTHKOREA;
     }
     public static function KUWAIT(): Flag
     {
@@ -883,12 +883,12 @@ class Flag implements JsonSerializable
         }
         return self::$KUWAIT;
     }
-    public static function LAO_PEOPLES_DEMOCRATIC_REPUBLIC(): Flag
+    public static function LAOPEOPLESDEMOCRATICREPUBLIC(): Flag
     {
-        if (!isset(self::$LAO_PEOPLES_DEMOCRATIC_REPUBLIC)) {
-            self::$LAO_PEOPLES_DEMOCRATIC_REPUBLIC = new Flag('la');
+        if (!isset(self::$LAOPEOPLESDEMOCRATICREPUBLIC)) {
+            self::$LAOPEOPLESDEMOCRATICREPUBLIC = new Flag('la');
         }
-        return self::$LAO_PEOPLES_DEMOCRATIC_REPUBLIC;
+        return self::$LAOPEOPLESDEMOCRATICREPUBLIC;
     }
     public static function LEBANON(): Flag
     {
@@ -911,12 +911,12 @@ class Flag implements JsonSerializable
         }
         return self::$LIBYA;
     }
-    public static function SAINT_LUCIA(): Flag
+    public static function SAINTLUCIA(): Flag
     {
-        if (!isset(self::$SAINT_LUCIA)) {
-            self::$SAINT_LUCIA = new Flag('lc');
+        if (!isset(self::$SAINTLUCIA)) {
+            self::$SAINTLUCIA = new Flag('lc');
         }
-        return self::$SAINT_LUCIA;
+        return self::$SAINTLUCIA;
     }
     public static function LIECHTENSTEIN(): Flag
     {
@@ -925,12 +925,12 @@ class Flag implements JsonSerializable
         }
         return self::$LIECHTENSTEIN;
     }
-    public static function SRI_LANKA(): Flag
+    public static function SRILANKA(): Flag
     {
-        if (!isset(self::$SRI_LANKA)) {
-            self::$SRI_LANKA = new Flag('lk');
+        if (!isset(self::$SRILANKA)) {
+            self::$SRILANKA = new Flag('lk');
         }
-        return self::$SRI_LANKA;
+        return self::$SRILANKA;
     }
     public static function LESOTHO(): Flag
     {
@@ -1002,19 +1002,19 @@ class Flag implements JsonSerializable
         }
         return self::$MEXICO;
     }
-    public static function MARSHALL_ISLANDS(): Flag
+    public static function MARSHALLISLANDS(): Flag
     {
-        if (!isset(self::$MARSHALL_ISLANDS)) {
-            self::$MARSHALL_ISLANDS = new Flag('mh');
+        if (!isset(self::$MARSHALLISLANDS)) {
+            self::$MARSHALLISLANDS = new Flag('mh');
         }
-        return self::$MARSHALL_ISLANDS;
+        return self::$MARSHALLISLANDS;
     }
-    public static function NORTH_MACEDONIA(): Flag
+    public static function NORTHMACEDONIA(): Flag
     {
-        if (!isset(self::$NORTH_MACEDONIA)) {
-            self::$NORTH_MACEDONIA = new Flag('mk');
+        if (!isset(self::$NORTHMACEDONIA)) {
+            self::$NORTHMACEDONIA = new Flag('mk');
         }
-        return self::$NORTH_MACEDONIA;
+        return self::$NORTHMACEDONIA;
     }
     public static function MALI(): Flag
     {
@@ -1142,12 +1142,12 @@ class Flag implements JsonSerializable
         }
         return self::$NAURU;
     }
-    public static function NEW_ZEALAND(): Flag
+    public static function NEWZEALAND(): Flag
     {
-        if (!isset(self::$NEW_ZEALAND)) {
-            self::$NEW_ZEALAND = new Flag('nz');
+        if (!isset(self::$NEWZEALAND)) {
+            self::$NEWZEALAND = new Flag('nz');
         }
-        return self::$NEW_ZEALAND;
+        return self::$NEWZEALAND;
     }
     public static function OMAN(): Flag
     {
@@ -1191,12 +1191,12 @@ class Flag implements JsonSerializable
         }
         return self::$PALAU;
     }
-    public static function PAPUA_NEW_GUINEA(): Flag
+    public static function PAPUANEWGUINEA(): Flag
     {
-        if (!isset(self::$PAPUA_NEW_GUINEA)) {
-            self::$PAPUA_NEW_GUINEA = new Flag('pg');
+        if (!isset(self::$PAPUANEWGUINEA)) {
+            self::$PAPUANEWGUINEA = new Flag('pg');
         }
-        return self::$PAPUA_NEW_GUINEA;
+        return self::$PAPUANEWGUINEA;
     }
     public static function POLAND(): Flag
     {
@@ -1205,12 +1205,12 @@ class Flag implements JsonSerializable
         }
         return self::$POLAND;
     }
-    public static function NORTH_KOREA(): Flag
+    public static function NORTHKOREA(): Flag
     {
-        if (!isset(self::$NORTH_KOREA)) {
-            self::$NORTH_KOREA = new Flag('kp');
+        if (!isset(self::$NORTHKOREA)) {
+            self::$NORTHKOREA = new Flag('kp');
         }
-        return self::$NORTH_KOREA;
+        return self::$NORTHKOREA;
     }
     public static function PORTUGAL(): Flag
     {
@@ -1254,12 +1254,12 @@ class Flag implements JsonSerializable
         }
         return self::$RWANDA;
     }
-    public static function SAUDI_ARABIA(): Flag
+    public static function SAUDIARABIA(): Flag
     {
-        if (!isset(self::$SAUDI_ARABIA)) {
-            self::$SAUDI_ARABIA = new Flag('sa');
+        if (!isset(self::$SAUDIARABIA)) {
+            self::$SAUDIARABIA = new Flag('sa');
         }
-        return self::$SAUDI_ARABIA;
+        return self::$SAUDIARABIA;
     }
     public static function SUDAN(): Flag
     {
@@ -1282,33 +1282,33 @@ class Flag implements JsonSerializable
         }
         return self::$SINGAPORE;
     }
-    public static function SOLOMON_ISLANDS(): Flag
+    public static function SOLOMONISLANDS(): Flag
     {
-        if (!isset(self::$SOLOMON_ISLANDS)) {
-            self::$SOLOMON_ISLANDS = new Flag('sb');
+        if (!isset(self::$SOLOMONISLANDS)) {
+            self::$SOLOMONISLANDS = new Flag('sb');
         }
-        return self::$SOLOMON_ISLANDS;
+        return self::$SOLOMONISLANDS;
     }
-    public static function SIERRA_LEONE(): Flag
+    public static function SIERRALEONE(): Flag
     {
-        if (!isset(self::$SIERRA_LEONE)) {
-            self::$SIERRA_LEONE = new Flag('sl');
+        if (!isset(self::$SIERRALEONE)) {
+            self::$SIERRALEONE = new Flag('sl');
         }
-        return self::$SIERRA_LEONE;
+        return self::$SIERRALEONE;
     }
-    public static function EL_SALVADOR(): Flag
+    public static function ELSALVADOR(): Flag
     {
-        if (!isset(self::$EL_SALVADOR)) {
-            self::$EL_SALVADOR = new Flag('sv');
+        if (!isset(self::$ELSALVADOR)) {
+            self::$ELSALVADOR = new Flag('sv');
         }
-        return self::$EL_SALVADOR;
+        return self::$ELSALVADOR;
     }
-    public static function SAN_MARINO(): Flag
+    public static function SANMARINO(): Flag
     {
-        if (!isset(self::$SAN_MARINO)) {
-            self::$SAN_MARINO = new Flag('sm');
+        if (!isset(self::$SANMARINO)) {
+            self::$SANMARINO = new Flag('sm');
         }
-        return self::$SAN_MARINO;
+        return self::$SANMARINO;
     }
     public static function SOMALIA(): Flag
     {
@@ -1324,19 +1324,19 @@ class Flag implements JsonSerializable
         }
         return self::$SERBIA;
     }
-    public static function SOUTH_SUDAN(): Flag
+    public static function SOUTHSUDAN(): Flag
     {
-        if (!isset(self::$SOUTH_SUDAN)) {
-            self::$SOUTH_SUDAN = new Flag('ss');
+        if (!isset(self::$SOUTHSUDAN)) {
+            self::$SOUTHSUDAN = new Flag('ss');
         }
-        return self::$SOUTH_SUDAN;
+        return self::$SOUTHSUDAN;
     }
-    public static function SAO_TOMEAND_PRINCIPE(): Flag
+    public static function SAOTOMEANDPRINCIPE(): Flag
     {
-        if (!isset(self::$SAO_TOMEAND_PRINCIPE)) {
-            self::$SAO_TOMEAND_PRINCIPE = new Flag('st');
+        if (!isset(self::$SAOTOMEANDPRINCIPE)) {
+            self::$SAOTOMEANDPRINCIPE = new Flag('st');
         }
-        return self::$SAO_TOMEAND_PRINCIPE;
+        return self::$SAOTOMEANDPRINCIPE;
     }
     public static function SURINAME(): Flag
     {
@@ -1422,12 +1422,12 @@ class Flag implements JsonSerializable
         }
         return self::$TURKMENISTAN;
     }
-    public static function TIMOR_LESTE(): Flag
+    public static function TIMORLESTE(): Flag
     {
-        if (!isset(self::$TIMOR_LESTE)) {
-            self::$TIMOR_LESTE = new Flag('tl');
+        if (!isset(self::$TIMORLESTE)) {
+            self::$TIMORLESTE = new Flag('tl');
         }
-        return self::$TIMOR_LESTE;
+        return self::$TIMORLESTE;
     }
     public static function TONGA(): Flag
     {
@@ -1436,12 +1436,12 @@ class Flag implements JsonSerializable
         }
         return self::$TONGA;
     }
-    public static function TRINIDADAND_TOBAGO(): Flag
+    public static function TRINIDADANDTOBAGO(): Flag
     {
-        if (!isset(self::$TRINIDADAND_TOBAGO)) {
-            self::$TRINIDADAND_TOBAGO = new Flag('tt');
+        if (!isset(self::$TRINIDADANDTOBAGO)) {
+            self::$TRINIDADANDTOBAGO = new Flag('tt');
         }
-        return self::$TRINIDADAND_TOBAGO;
+        return self::$TRINIDADANDTOBAGO;
     }
     public static function TUNISIA(): Flag
     {
@@ -1492,12 +1492,12 @@ class Flag implements JsonSerializable
         }
         return self::$URUGUAY;
     }
-    public static function UNITED_STATES(): Flag
+    public static function UNITEDSTATES(): Flag
     {
-        if (!isset(self::$UNITED_STATES)) {
-            self::$UNITED_STATES = new Flag('us');
+        if (!isset(self::$UNITEDSTATES)) {
+            self::$UNITEDSTATES = new Flag('us');
         }
-        return self::$UNITED_STATES;
+        return self::$UNITEDSTATES;
     }
     public static function UZBEKISTAN(): Flag
     {
@@ -1506,19 +1506,19 @@ class Flag implements JsonSerializable
         }
         return self::$UZBEKISTAN;
     }
-    public static function VATICAN_CITY(): Flag
+    public static function VATICANCITY(): Flag
     {
-        if (!isset(self::$VATICAN_CITY)) {
-            self::$VATICAN_CITY = new Flag('va');
+        if (!isset(self::$VATICANCITY)) {
+            self::$VATICANCITY = new Flag('va');
         }
-        return self::$VATICAN_CITY;
+        return self::$VATICANCITY;
     }
-    public static function SAINT_VINCENTANDTHE_GRENADINES(): Flag
+    public static function SAINTVINCENTANDTHEGRENADINES(): Flag
     {
-        if (!isset(self::$SAINT_VINCENTANDTHE_GRENADINES)) {
-            self::$SAINT_VINCENTANDTHE_GRENADINES = new Flag('vc');
+        if (!isset(self::$SAINTVINCENTANDTHEGRENADINES)) {
+            self::$SAINTVINCENTANDTHEGRENADINES = new Flag('vc');
         }
-        return self::$SAINT_VINCENTANDTHE_GRENADINES;
+        return self::$SAINTVINCENTANDTHEGRENADINES;
     }
     public static function VENEZUELA(): Flag
     {
@@ -1555,12 +1555,12 @@ class Flag implements JsonSerializable
         }
         return self::$YEMEN;
     }
-    public static function SOUTH_AFRICA(): Flag
+    public static function SOUTHAFRICA(): Flag
     {
-        if (!isset(self::$SOUTH_AFRICA)) {
-            self::$SOUTH_AFRICA = new Flag('za');
+        if (!isset(self::$SOUTHAFRICA)) {
+            self::$SOUTHAFRICA = new Flag('za');
         }
-        return self::$SOUTH_AFRICA;
+        return self::$SOUTHAFRICA;
     }
     public static function ZAMBIA(): Flag
     {
