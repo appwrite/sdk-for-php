@@ -321,7 +321,7 @@ final class HealthTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
-    public function testMethodGetQueueUsage(): void {
+    public function testMethodGetQueueUsageDump(): void {
 
         $data = array(
             "size" => 8,);
@@ -331,7 +331,7 @@ final class HealthTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->health->getQueueUsage(
+        $response = $this->health->getQueueUsageDump(
         );
 
         $this->assertSame($data, $response);

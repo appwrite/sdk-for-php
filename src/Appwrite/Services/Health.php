@@ -528,7 +528,7 @@ class Health extends Service
      * @return array
 
      */
-    public function getQueueUsage(int $threshold = null): array
+    public function getQueueUsageDump(int $threshold = null): array
     {
         $apiPath = str_replace([], [], '/health/queue/usage-dump');
 
