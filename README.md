@@ -1,16 +1,16 @@
 # Appwrite PHP SDK
 
 ![License](https://img.shields.io/github/license/appwrite/sdk-for-php.svg?style=flat-square&v=1)
-![Version](https://img.shields.io/badge/api%20version-1.4.12-blue.svg?style=flat-square&v=1)
+![Version](https://img.shields.io/badge/api%20version-1.5.0-blue.svg?style=flat-square&v=1)
 [![Build Status](https://img.shields.io/travis/com/appwrite/sdk-generator?style=flat-square)](https://travis-ci.com/appwrite/sdk-generator)
 [![Twitter Account](https://img.shields.io/twitter/follow/appwrite?color=00acee&label=twitter&style=flat-square)](https://twitter.com/appwrite)
 [![Discord](https://img.shields.io/discord/564160730845151244?label=discord&style=flat-square)](https://appwrite.io/discord)
 
-**This SDK is compatible with Appwrite server version 1.4.x. For older versions, please check [previous releases](https://github.com/appwrite/sdk-for-php/releases).**
+**This SDK is compatible with Appwrite server version 1.5.x. For older versions, please check [previous releases](https://github.com/appwrite/sdk-for-php/releases).**
 
 Appwrite is an open-source backend as a service server that abstract and simplify complex and repetitive development tasks behind a very simple to use REST API. Appwrite aims to help you develop your apps faster and in a more secure way. Use the PHP SDK to integrate your app with the Appwrite server to easily start interacting with all of Appwrite backend APIs and tools. For full API documentation and tutorials go to [https://appwrite.io/docs](https://appwrite.io/docs)
 
-![Appwrite](https://appwrite.io/images/github.png)
+![Appwrite](https://github.com/appwrite/appwrite/raw/main/public/images/github.png)
 
 ## Installation
 
@@ -43,7 +43,7 @@ Once your SDK object is set, create any of the Appwrite service objects and choo
 ```php
 $users = new Users($client);
 
-$user = $users->create(ID::unique(), 'email@example.com', 'password');
+$user = $users->create(ID::unique(), "email@example.com", "+123456789", "password", "Walter O'Brien");
 ```
 
 ### Full Example
@@ -63,7 +63,7 @@ $client
 
 $users = new Users($client);
 
-$user = $users->create(ID::unique(), 'email@example.com', 'password');
+$user = $users->create(ID::unique(), "email@example.com", "+123456789", "password", "Walter O'Brien");
 ```
 
 ### Error Handling
@@ -72,7 +72,7 @@ The Appwrite PHP SDK raises `AppwriteException` object with `message`, `code` an
 ```php
 $users = new Users($client);
 try {
-    $user = $users->create(ID::unique(), 'email@example.com', 'password');
+    $user = $users->create(ID::unique(), "email@example.com", "+123456789", "password", "Walter O'Brien");
 } catch(AppwriteException $error) {
     echo $error->message;
 }

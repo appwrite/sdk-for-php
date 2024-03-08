@@ -3,7 +3,7 @@
 ## List teams
 
 ```http request
-GET https://HOSTNAME/v1/teams
+GET https://cloud.appwrite.io/v1/teams
 ```
 
 ** Get a list of all the teams in which the current user is a member. You can use the parameters to filter your results. **
@@ -12,13 +12,13 @@ GET https://HOSTNAME/v1/teams
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, total | [] |
+| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, total, billingPlan | [] |
 | search | string | Search term to filter your list results. Max length: 256 chars. |  |
 
 ## Create team
 
 ```http request
-POST https://HOSTNAME/v1/teams
+POST https://cloud.appwrite.io/v1/teams
 ```
 
 ** Create a new team. The user who creates the team will automatically be assigned as the owner of the team. Only the users with the owner role can invite new members, add new owners and delete or update the team. **
@@ -34,7 +34,7 @@ POST https://HOSTNAME/v1/teams
 ## Get team
 
 ```http request
-GET https://HOSTNAME/v1/teams/{teamId}
+GET https://cloud.appwrite.io/v1/teams/{teamId}
 ```
 
 ** Get a team by its ID. All team members have read access for this resource. **
@@ -48,7 +48,7 @@ GET https://HOSTNAME/v1/teams/{teamId}
 ## Update name
 
 ```http request
-PUT https://HOSTNAME/v1/teams/{teamId}
+PUT https://cloud.appwrite.io/v1/teams/{teamId}
 ```
 
 ** Update the team&#039;s name by its unique ID. **
@@ -63,7 +63,7 @@ PUT https://HOSTNAME/v1/teams/{teamId}
 ## Delete team
 
 ```http request
-DELETE https://HOSTNAME/v1/teams/{teamId}
+DELETE https://cloud.appwrite.io/v1/teams/{teamId}
 ```
 
 ** Delete a team using its ID. Only team members with the owner role can delete the team. **
@@ -77,7 +77,7 @@ DELETE https://HOSTNAME/v1/teams/{teamId}
 ## List team memberships
 
 ```http request
-GET https://HOSTNAME/v1/teams/{teamId}/memberships
+GET https://cloud.appwrite.io/v1/teams/{teamId}/memberships
 ```
 
 ** Use this endpoint to list a team&#039;s members using the team&#039;s ID. All team members have read access to this endpoint. **
@@ -93,7 +93,7 @@ GET https://HOSTNAME/v1/teams/{teamId}/memberships
 ## Create team membership
 
 ```http request
-POST https://HOSTNAME/v1/teams/{teamId}/memberships
+POST https://cloud.appwrite.io/v1/teams/{teamId}/memberships
 ```
 
 ** Invite a new member to join your team. Provide an ID for existing users, or invite unregistered users using an email or phone number. If initiated from a Client SDK, Appwrite will send an email or sms with a link to join the team to the invited user, and an account will be created for them if one doesn&#039;t exist. If initiated from a Server SDK, the new member will be added automatically to the team.
@@ -120,7 +120,7 @@ Please note that to avoid a [Redirect Attack](https://github.com/OWASP/CheatShee
 ## Get team membership
 
 ```http request
-GET https://HOSTNAME/v1/teams/{teamId}/memberships/{membershipId}
+GET https://cloud.appwrite.io/v1/teams/{teamId}/memberships/{membershipId}
 ```
 
 ** Get a team member by the membership unique id. All team members have read access for this resource. **
@@ -135,7 +135,7 @@ GET https://HOSTNAME/v1/teams/{teamId}/memberships/{membershipId}
 ## Update membership
 
 ```http request
-PATCH https://HOSTNAME/v1/teams/{teamId}/memberships/{membershipId}
+PATCH https://cloud.appwrite.io/v1/teams/{teamId}/memberships/{membershipId}
 ```
 
 ** Modify the roles of a team member. Only team members with the owner role have access to this endpoint. Learn more about [roles and permissions](https://appwrite.io/docs/permissions).
@@ -152,7 +152,7 @@ PATCH https://HOSTNAME/v1/teams/{teamId}/memberships/{membershipId}
 ## Delete team membership
 
 ```http request
-DELETE https://HOSTNAME/v1/teams/{teamId}/memberships/{membershipId}
+DELETE https://cloud.appwrite.io/v1/teams/{teamId}/memberships/{membershipId}
 ```
 
 ** This endpoint allows a user to leave a team or for a team owner to delete the membership of any other team member. You can also use this endpoint to delete a user membership even if it is not accepted. **
@@ -167,7 +167,7 @@ DELETE https://HOSTNAME/v1/teams/{teamId}/memberships/{membershipId}
 ## Update team membership status
 
 ```http request
-PATCH https://HOSTNAME/v1/teams/{teamId}/memberships/{membershipId}/status
+PATCH https://cloud.appwrite.io/v1/teams/{teamId}/memberships/{membershipId}/status
 ```
 
 ** Use this endpoint to allow a user to accept an invitation to join a team after being redirected back to your app from the invitation email received by the user.
@@ -187,7 +187,7 @@ If the request is successful, a session for the user is automatically created.
 ## Get team preferences
 
 ```http request
-GET https://HOSTNAME/v1/teams/{teamId}/prefs
+GET https://cloud.appwrite.io/v1/teams/{teamId}/prefs
 ```
 
 ** Get the team&#039;s shared preferences by its unique ID. If a preference doesn&#039;t need to be shared by all team members, prefer storing them in [user preferences](https://appwrite.io/docs/references/cloud/client-web/account#getPrefs). **
@@ -201,7 +201,7 @@ GET https://HOSTNAME/v1/teams/{teamId}/prefs
 ## Update preferences
 
 ```http request
-PUT https://HOSTNAME/v1/teams/{teamId}/prefs
+PUT https://cloud.appwrite.io/v1/teams/{teamId}/prefs
 ```
 
 ** Update the team&#039;s preferences by its unique ID. The object you pass is stored as is and replaces any previous value. The maximum allowed prefs size is 64kB and throws an error if exceeded. **

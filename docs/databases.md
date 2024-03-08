@@ -3,7 +3,7 @@
 ## List databases
 
 ```http request
-GET https://HOSTNAME/v1/databases
+GET https://cloud.appwrite.io/v1/databases
 ```
 
 ** Get a list of all databases from the current Appwrite project. You can use the search parameter to filter your results. **
@@ -18,7 +18,7 @@ GET https://HOSTNAME/v1/databases
 ## Create database
 
 ```http request
-POST https://HOSTNAME/v1/databases
+POST https://cloud.appwrite.io/v1/databases
 ```
 
 ** Create a new Database.
@@ -35,7 +35,7 @@ POST https://HOSTNAME/v1/databases
 ## Get database
 
 ```http request
-GET https://HOSTNAME/v1/databases/{databaseId}
+GET https://cloud.appwrite.io/v1/databases/{databaseId}
 ```
 
 ** Get a database by its unique ID. This endpoint response returns a JSON object with the database metadata. **
@@ -49,7 +49,7 @@ GET https://HOSTNAME/v1/databases/{databaseId}
 ## Update database
 
 ```http request
-PUT https://HOSTNAME/v1/databases/{databaseId}
+PUT https://cloud.appwrite.io/v1/databases/{databaseId}
 ```
 
 ** Update a database by its unique ID. **
@@ -65,7 +65,7 @@ PUT https://HOSTNAME/v1/databases/{databaseId}
 ## Delete database
 
 ```http request
-DELETE https://HOSTNAME/v1/databases/{databaseId}
+DELETE https://cloud.appwrite.io/v1/databases/{databaseId}
 ```
 
 ** Delete a database by its unique ID. Only API keys with with databases.write scope can delete a database. **
@@ -79,7 +79,7 @@ DELETE https://HOSTNAME/v1/databases/{databaseId}
 ## List collections
 
 ```http request
-GET https://HOSTNAME/v1/databases/{databaseId}/collections
+GET https://cloud.appwrite.io/v1/databases/{databaseId}/collections
 ```
 
 ** Get a list of all collections that belong to the provided databaseId. You can use the search parameter to filter your results. **
@@ -95,7 +95,7 @@ GET https://HOSTNAME/v1/databases/{databaseId}/collections
 ## Create collection
 
 ```http request
-POST https://HOSTNAME/v1/databases/{databaseId}/collections
+POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections
 ```
 
 ** Create a new Collection. Before using this route, you should create a new database resource using either a [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection) API or directly from your database console. **
@@ -114,7 +114,7 @@ POST https://HOSTNAME/v1/databases/{databaseId}/collections
 ## Get collection
 
 ```http request
-GET https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}
+GET https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}
 ```
 
 ** Get a collection by its unique ID. This endpoint response returns a JSON object with the collection metadata. **
@@ -129,7 +129,7 @@ GET https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}
 ## Update collection
 
 ```http request
-PUT https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}
+PUT https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}
 ```
 
 ** Update a collection by its unique ID. **
@@ -148,7 +148,7 @@ PUT https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}
 ## Delete collection
 
 ```http request
-DELETE https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}
+DELETE https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}
 ```
 
 ** Delete a collection by its unique ID. Only users with write permissions have access to delete this resource. **
@@ -163,8 +163,10 @@ DELETE https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}
 ## List attributes
 
 ```http request
-GET https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes
+GET https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes
 ```
+
+** List attributes in the collection. **
 
 ### Parameters
 
@@ -177,7 +179,7 @@ GET https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attrib
 ## Create boolean attribute
 
 ```http request
-POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes/boolean
+POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/boolean
 ```
 
 ** Create a boolean attribute.
@@ -197,8 +199,10 @@ POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attri
 ## Update boolean attribute
 
 ```http request
-PATCH https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes/boolean/{key}
+PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/boolean/{key}
 ```
+
+** Update a boolean attribute. Changing the `default` value will not update already existing documents. **
 
 ### Parameters
 
@@ -213,8 +217,10 @@ PATCH https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attr
 ## Create datetime attribute
 
 ```http request
-POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes/datetime
+POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/datetime
 ```
+
+** Create a date time attribute according to the ISO 8601 standard. **
 
 ### Parameters
 
@@ -224,14 +230,16 @@ POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attri
 | collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
 | key | string | Attribute Key. |  |
 | required | boolean | Is attribute required? |  |
-| default | string | Default value for the attribute in ISO 8601 format. Cannot be set when attribute is required. |  |
+| default | string | Default value for the attribute in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. Cannot be set when attribute is required. |  |
 | array | boolean | Is attribute an array? |  |
 
 ## Update dateTime attribute
 
 ```http request
-PATCH https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes/datetime/{key}
+PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/datetime/{key}
 ```
+
+** Update a date time attribute. Changing the `default` value will not update already existing documents. **
 
 ### Parameters
 
@@ -246,7 +254,7 @@ PATCH https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attr
 ## Create email attribute
 
 ```http request
-POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes/email
+POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/email
 ```
 
 ** Create an email attribute.
@@ -266,7 +274,7 @@ POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attri
 ## Update email attribute
 
 ```http request
-PATCH https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes/email/{key}
+PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/email/{key}
 ```
 
 ** Update an email attribute. Changing the `default` value will not update already existing documents.
@@ -285,8 +293,11 @@ PATCH https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attr
 ## Create enum attribute
 
 ```http request
-POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes/enum
+POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/enum
 ```
+
+** Create an enumeration attribute. The `elements` param acts as a white-list of accepted values for this attribute. 
+ **
 
 ### Parameters
 
@@ -295,7 +306,7 @@ POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attri
 | databaseId | string | **Required** Database ID. |  |
 | collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
 | key | string | Attribute Key. |  |
-| elements | array | Array of elements in enumerated type. Uses length of longest element to determine size. Maximum of 100 elements are allowed, each 4096 characters long. |  |
+| elements | array | Array of elements in enumerated type. Uses length of longest element to determine size. Maximum of 100 elements are allowed, each 255 characters long. |  |
 | required | boolean | Is attribute required? |  |
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | array | boolean | Is attribute an array? |  |
@@ -303,7 +314,7 @@ POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attri
 ## Update enum attribute
 
 ```http request
-PATCH https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes/enum/{key}
+PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/enum/{key}
 ```
 
 ** Update an enum attribute. Changing the `default` value will not update already existing documents.
@@ -316,14 +327,14 @@ PATCH https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attr
 | databaseId | string | **Required** Database ID. |  |
 | collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
 | key | string | **Required** Attribute Key. |  |
-| elements | array | Array of elements in enumerated type. Uses length of longest element to determine size. Maximum of 100 elements are allowed, each 4096 characters long. |  |
+| elements | array | Array of elements in enumerated type. Uses length of longest element to determine size. Maximum of 100 elements are allowed, each 255 characters long. |  |
 | required | boolean | Is attribute required? |  |
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 
 ## Create float attribute
 
 ```http request
-POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes/float
+POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/float
 ```
 
 ** Create a float attribute. Optionally, minimum and maximum values can be provided.
@@ -345,7 +356,7 @@ POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attri
 ## Update float attribute
 
 ```http request
-PATCH https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes/float/{key}
+PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/float/{key}
 ```
 
 ** Update a float attribute. Changing the `default` value will not update already existing documents.
@@ -366,7 +377,7 @@ PATCH https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attr
 ## Create integer attribute
 
 ```http request
-POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes/integer
+POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/integer
 ```
 
 ** Create an integer attribute. Optionally, minimum and maximum values can be provided.
@@ -388,7 +399,7 @@ POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attri
 ## Update integer attribute
 
 ```http request
-PATCH https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes/integer/{key}
+PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/integer/{key}
 ```
 
 ** Update an integer attribute. Changing the `default` value will not update already existing documents.
@@ -409,7 +420,7 @@ PATCH https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attr
 ## Create IP address attribute
 
 ```http request
-POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes/ip
+POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/ip
 ```
 
 ** Create IP address attribute.
@@ -429,7 +440,7 @@ POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attri
 ## Update IP address attribute
 
 ```http request
-PATCH https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes/ip/{key}
+PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/ip/{key}
 ```
 
 ** Update an ip attribute. Changing the `default` value will not update already existing documents.
@@ -448,7 +459,7 @@ PATCH https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attr
 ## Create relationship attribute
 
 ```http request
-POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes/relationship
+POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/relationship
 ```
 
 ** Create relationship attribute. [Learn more about relationship attributes](https://appwrite.io/docs/databases-relationships#relationship-attributes).
@@ -470,7 +481,7 @@ POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attri
 ## Create string attribute
 
 ```http request
-POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes/string
+POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/string
 ```
 
 ** Create a string attribute.
@@ -492,7 +503,7 @@ POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attri
 ## Update string attribute
 
 ```http request
-PATCH https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes/string/{key}
+PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/string/{key}
 ```
 
 ** Update a string attribute. Changing the `default` value will not update already existing documents.
@@ -511,7 +522,7 @@ PATCH https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attr
 ## Create URL attribute
 
 ```http request
-POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes/url
+POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/url
 ```
 
 ** Create a URL attribute.
@@ -531,7 +542,7 @@ POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attri
 ## Update URL attribute
 
 ```http request
-PATCH https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes/url/{key}
+PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/url/{key}
 ```
 
 ** Update an url attribute. Changing the `default` value will not update already existing documents.
@@ -550,8 +561,10 @@ PATCH https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attr
 ## Get attribute
 
 ```http request
-GET https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes/{key}
+GET https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/{key}
 ```
+
+** Get attribute by ID. **
 
 ### Parameters
 
@@ -564,8 +577,10 @@ GET https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attrib
 ## Delete attribute
 
 ```http request
-DELETE https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes/{key}
+DELETE https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/{key}
 ```
+
+** Deletes an attribute. **
 
 ### Parameters
 
@@ -578,7 +593,7 @@ DELETE https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/att
 ## Update relationship attribute
 
 ```http request
-PATCH https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attributes/{key}/relationship
+PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/{key}/relationship
 ```
 
 ** Update relationship attribute. [Learn more about relationship attributes](https://appwrite.io/docs/databases-relationships#relationship-attributes).
@@ -596,7 +611,7 @@ PATCH https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/attr
 ## List documents
 
 ```http request
-GET https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/documents
+GET https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/documents
 ```
 
 ** Get a list of all the user&#039;s documents in a given collection. You can use the query params to filter your results. **
@@ -612,7 +627,7 @@ GET https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/docume
 ## Create document
 
 ```http request
-POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/documents
+POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/documents
 ```
 
 ** Create a new Document. Before using this route, you should create a new collection resource using either a [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection) API or directly from your database console. **
@@ -630,7 +645,7 @@ POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/docum
 ## Get document
 
 ```http request
-GET https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/documents/{documentId}
+GET https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/documents/{documentId}
 ```
 
 ** Get a document by its unique ID. This endpoint response returns a JSON object with the document data. **
@@ -642,12 +657,12 @@ GET https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/docume
 | databaseId | string | **Required** Database ID. |  |
 | collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
 | documentId | string | **Required** Document ID. |  |
-| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/databases#querying-documents). Only method allowed is select. | [] |
+| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. | [] |
 
 ## Update document
 
 ```http request
-PATCH https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/documents/{documentId}
+PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/documents/{documentId}
 ```
 
 ** Update a document by its unique ID. Using the patch method you can pass only specific fields that will get updated. **
@@ -665,7 +680,7 @@ PATCH https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/docu
 ## Delete document
 
 ```http request
-DELETE https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/documents/{documentId}
+DELETE https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/documents/{documentId}
 ```
 
 ** Delete a document by its unique ID. **
@@ -681,8 +696,10 @@ DELETE https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/doc
 ## List indexes
 
 ```http request
-GET https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/indexes
+GET https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/indexes
 ```
+
+** List indexes in the collection. **
 
 ### Parameters
 
@@ -695,8 +712,11 @@ GET https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/indexe
 ## Create index
 
 ```http request
-POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/indexes
+POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/indexes
 ```
+
+** Creates an index on the attributes listed. Your index should include all the attributes you will query in a single request.
+Attributes can be `key`, `fulltext`, and `unique`. **
 
 ### Parameters
 
@@ -712,8 +732,10 @@ POST https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/index
 ## Get index
 
 ```http request
-GET https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/indexes/{key}
+GET https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/indexes/{key}
 ```
+
+** Get index by ID. **
 
 ### Parameters
 
@@ -726,8 +748,10 @@ GET https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/indexe
 ## Delete index
 
 ```http request
-DELETE https://HOSTNAME/v1/databases/{databaseId}/collections/{collectionId}/indexes/{key}
+DELETE https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/indexes/{key}
 ```
+
+** Delete an index. **
 
 ### Parameters
 

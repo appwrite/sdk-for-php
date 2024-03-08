@@ -33,10 +33,14 @@ class Locale extends Service
         $apiPath = str_replace([], [], '/locale');
 
         $apiParams = [];
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -54,10 +58,14 @@ class Locale extends Service
         $apiPath = str_replace([], [], '/locale/codes');
 
         $apiParams = [];
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -75,10 +83,14 @@ class Locale extends Service
         $apiPath = str_replace([], [], '/locale/continents');
 
         $apiParams = [];
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -96,10 +108,14 @@ class Locale extends Service
         $apiPath = str_replace([], [], '/locale/countries');
 
         $apiParams = [];
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -117,10 +133,14 @@ class Locale extends Service
         $apiPath = str_replace([], [], '/locale/countries/eu');
 
         $apiParams = [];
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -138,10 +158,14 @@ class Locale extends Service
         $apiPath = str_replace([], [], '/locale/countries/phones');
 
         $apiParams = [];
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -160,10 +184,14 @@ class Locale extends Service
         $apiPath = str_replace([], [], '/locale/currencies');
 
         $apiParams = [];
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -181,9 +209,13 @@ class Locale extends Service
         $apiPath = str_replace([], [], '/locale/languages');
 
         $apiParams = [];
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 }

@@ -6,6 +6,9 @@ use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
 use Appwrite\InputFile;
+use Appwrite\Enums\AuthenticatorType;
+use Appwrite\Enums\AuthenticationFactor;
+use Appwrite\Enums\OAuthProvider;
 
 class Account extends Service
 {
@@ -28,10 +31,69 @@ class Account extends Service
         $apiPath = str_replace([], [], '/account');
 
         $apiParams = [];
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
+    }
 
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+    /**
+     * Create account
+     *
+     * Use this endpoint to allow a new user to register a new account in your
+     * project. After the user registration completes successfully, you can use
+     * the
+     * [/account/verfication](https://appwrite.io/docs/references/cloud/client-web/account#createVerification)
+     * route to start verifying the user email address. To allow the new user to
+     * login to their new account, you need to create a new [account
+     * session](https://appwrite.io/docs/references/cloud/client-web/account#createEmailSession).
+     *
+     * @param string $userId
+     * @param string $email
+     * @param string $password
+     * @param string $name
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function create(string $userId, string $email, string $password, string $name = null): array
+    {
+        $apiPath = str_replace([], [], '/account');
+
+        $apiParams = [];
+        if (!isset($userId)) {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+        if (!isset($email)) {
+            throw new AppwriteException('Missing required parameter: "email"');
+        }
+        if (!isset($password)) {
+            throw new AppwriteException('Missing required parameter: "password"');
+        }
+        if (!is_null($userId)) {
+            $apiParams['userId'] = $userId;
+        }
+        if (!is_null($email)) {
+            $apiParams['email'] = $email;
+        }
+        if (!is_null($password)) {
+            $apiParams['password'] = $password;
+        }
+        if (!is_null($name)) {
+            $apiParams['name'] = $name;
+        }
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -66,15 +128,17 @@ class Account extends Service
         if (!is_null($email)) {
             $apiParams['email'] = $email;
         }
-
         if (!is_null($password)) {
             $apiParams['password'] = $password;
         }
-
-
-        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -82,12 +146,12 @@ class Account extends Service
      *
      * Get the list of identities for the currently logged in user.
      *
-     * @param string $queries
+     * @param array $queries
      * @throws AppwriteException
      * @return array
 
      */
-    public function listIdentities(string $queries = null): array
+    public function listIdentities(array $queries = null): array
     {
         $apiPath = str_replace([], [], '/account/identities');
 
@@ -95,15 +159,18 @@ class Account extends Service
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
         }
-
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
-     * Delete Identity
+     * Delete identity
      *
      * Delete an identity by its unique ID.
      *
@@ -120,10 +187,42 @@ class Account extends Service
         if (!isset($identityId)) {
             throw new AppwriteException('Missing required parameter: "identityId"');
         }
+        return $this->client->call(
+            Client::METHOD_DELETE,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
+    }
 
-        return $this->client->call(Client::METHOD_DELETE, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+    /**
+     * Create JWT
+     *
+     * Use this endpoint to create a JSON Web Token. You can use the resulting JWT
+     * to authenticate on behalf of the current user when working with the
+     * Appwrite server-side API and SDKs. The JWT secret is valid for 15 minutes
+     * from its creation and will be invalid if the user will logout in that time
+     * frame.
+     *
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function createJWT(): array
+    {
+        $apiPath = str_replace([], [], '/account/jwt');
+
+        $apiParams = [];
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -145,11 +244,329 @@ class Account extends Service
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
         }
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
+    }
 
+    /**
+     * Update MFA
+     *
+     * Enable or disable MFA on an account.
+     *
+     * @param bool $mfa
+     * @throws AppwriteException
+     * @return array
 
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+     */
+    public function updateMFA(bool $mfa): array
+    {
+        $apiPath = str_replace([], [], '/account/mfa');
+
+        $apiParams = [];
+        if (!isset($mfa)) {
+            throw new AppwriteException('Missing required parameter: "mfa"');
+        }
+        if (!is_null($mfa)) {
+            $apiParams['mfa'] = $mfa;
+        }
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
+    }
+
+    /**
+     * Add Authenticator
+     *
+     * Add an authenticator app to be used as an MFA factor. Verify the
+     * authenticator using the [verify
+     * authenticator](/docs/references/cloud/client-web/account#verifyAuthenticator)
+     * method.
+     *
+     * @param AuthenticatorType $type
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function createMfaAuthenticator(AuthenticatorType $type): array
+    {
+        $apiPath = str_replace(['{type}'], [$type], '/account/mfa/authenticators/{type}');
+
+        $apiParams = [];
+        if (!isset($type)) {
+            throw new AppwriteException('Missing required parameter: "type"');
+        }
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
+    }
+
+    /**
+     * Verify Authenticator
+     *
+     * Verify an authenticator app after adding it using the [add
+     * authenticator](/docs/references/cloud/client-web/account#addAuthenticator)
+     * method.
+     *
+     * @param AuthenticatorType $type
+     * @param string $otp
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function updateMfaAuthenticator(AuthenticatorType $type, string $otp): array
+    {
+        $apiPath = str_replace(['{type}'], [$type], '/account/mfa/authenticators/{type}');
+
+        $apiParams = [];
+        if (!isset($type)) {
+            throw new AppwriteException('Missing required parameter: "type"');
+        }
+        if (!isset($otp)) {
+            throw new AppwriteException('Missing required parameter: "otp"');
+        }
+        if (!is_null($otp)) {
+            $apiParams['otp'] = $otp;
+        }
+        return $this->client->call(
+            Client::METHOD_PUT,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
+    }
+
+    /**
+     * Delete Authenticator
+     *
+     * Delete an authenticator for a user by ID.
+     *
+     * @param AuthenticatorType $type
+     * @param string $otp
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function deleteMfaAuthenticator(AuthenticatorType $type, string $otp): array
+    {
+        $apiPath = str_replace(['{type}'], [$type], '/account/mfa/authenticators/{type}');
+
+        $apiParams = [];
+        if (!isset($type)) {
+            throw new AppwriteException('Missing required parameter: "type"');
+        }
+        if (!isset($otp)) {
+            throw new AppwriteException('Missing required parameter: "otp"');
+        }
+        if (!is_null($otp)) {
+            $apiParams['otp'] = $otp;
+        }
+        return $this->client->call(
+            Client::METHOD_DELETE,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
+    }
+
+    /**
+     * Create 2FA Challenge
+     *
+     * Begin the process of MFA verification after sign-in. Finish the flow with
+     * [updateMfaChallenge](/docs/references/cloud/client-web/account#updateMfaChallenge)
+     * method.
+     *
+     * @param AuthenticationFactor $factor
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function createMfaChallenge(AuthenticationFactor $factor): array
+    {
+        $apiPath = str_replace([], [], '/account/mfa/challenge');
+
+        $apiParams = [];
+        if (!isset($factor)) {
+            throw new AppwriteException('Missing required parameter: "factor"');
+        }
+        if (!is_null($factor)) {
+            $apiParams['factor'] = $factor;
+        }
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
+    }
+
+    /**
+     * Create MFA Challenge (confirmation)
+     *
+     * Complete the MFA challenge by providing the one-time password. Finish the
+     * process of MFA verification by providing the one-time password. To begin
+     * the flow, use
+     * [createMfaChallenge](/docs/references/cloud/client-web/account#createMfaChallenge)
+     * method.
+     *
+     * @param string $challengeId
+     * @param string $otp
+     * @throws AppwriteException
+     * @return string
+
+     */
+    public function updateMfaChallenge(string $challengeId, string $otp): string
+    {
+        $apiPath = str_replace([], [], '/account/mfa/challenge');
+
+        $apiParams = [];
+        if (!isset($challengeId)) {
+            throw new AppwriteException('Missing required parameter: "challengeId"');
+        }
+        if (!isset($otp)) {
+            throw new AppwriteException('Missing required parameter: "otp"');
+        }
+        if (!is_null($challengeId)) {
+            $apiParams['challengeId'] = $challengeId;
+        }
+        if (!is_null($otp)) {
+            $apiParams['otp'] = $otp;
+        }
+        return $this->client->call(
+            Client::METHOD_PUT,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
+    }
+
+    /**
+     * List Factors
+     *
+     * List the factors available on the account to be used as a MFA challange.
+     *
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function listMfaFactors(): array
+    {
+        $apiPath = str_replace([], [], '/account/mfa/factors');
+
+        $apiParams = [];
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
+    }
+
+    /**
+     * Get MFA Recovery Codes
+     *
+     * Get recovery codes that can be used as backup for MFA flow. Before getting
+     * codes, they must be generated using
+     * [createMfaRecoveryCodes](/docs/references/cloud/client-web/account#createMfaRecoveryCodes)
+     * method. An OTP challenge is required to read recovery codes.
+     *
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function getMfaRecoveryCodes(): array
+    {
+        $apiPath = str_replace([], [], '/account/mfa/recovery-codes');
+
+        $apiParams = [];
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
+    }
+
+    /**
+     * Create MFA Recovery Codes
+     *
+     * Generate recovery codes as backup for MFA flow. It's recommended to
+     * generate and show then immediately after user successfully adds their
+     * authehticator. Recovery codes can be used as a MFA verification type in
+     * [createMfaChallenge](/docs/references/cloud/client-web/account#createMfaChallenge)
+     * method.
+     *
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function createMfaRecoveryCodes(): array
+    {
+        $apiPath = str_replace([], [], '/account/mfa/recovery-codes');
+
+        $apiParams = [];
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
+    }
+
+    /**
+     * Regenerate MFA Recovery Codes
+     *
+     * Regenerate recovery codes that can be used as backup for MFA flow. Before
+     * regenerating codes, they must be first generated using
+     * [createMfaRecoveryCodes](/docs/references/cloud/client-web/account#createMfaRecoveryCodes)
+     * method. An OTP challenge is required to regenreate recovery codes.
+     *
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function updateMfaRecoveryCodes(): array
+    {
+        $apiPath = str_replace([], [], '/account/mfa/recovery-codes');
+
+        $apiParams = [];
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -173,11 +590,14 @@ class Account extends Service
         if (!is_null($name)) {
             $apiParams['name'] = $name;
         }
-
-
-        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -204,15 +624,17 @@ class Account extends Service
         if (!is_null($password)) {
             $apiParams['password'] = $password;
         }
-
         if (!is_null($oldPassword)) {
             $apiParams['oldPassword'] = $oldPassword;
         }
-
-
-        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -244,15 +666,17 @@ class Account extends Service
         if (!is_null($phone)) {
             $apiParams['phone'] = $phone;
         }
-
         if (!is_null($password)) {
             $apiParams['password'] = $password;
         }
-
-
-        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -269,10 +693,14 @@ class Account extends Service
         $apiPath = str_replace([], [], '/account/prefs');
 
         $apiParams = [];
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -298,11 +726,14 @@ class Account extends Service
         if (!is_null($prefs)) {
             $apiParams['prefs'] = $prefs;
         }
-
-
-        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -337,15 +768,17 @@ class Account extends Service
         if (!is_null($email)) {
             $apiParams['email'] = $email;
         }
-
         if (!is_null($url)) {
             $apiParams['url'] = $url;
         }
-
-
-        return $this->client->call(Client::METHOD_POST, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -365,12 +798,11 @@ class Account extends Service
      * @param string $userId
      * @param string $secret
      * @param string $password
-     * @param string $passwordAgain
      * @throws AppwriteException
      * @return array
 
      */
-    public function updateRecovery(string $userId, string $secret, string $password, string $passwordAgain): array
+    public function updateRecovery(string $userId, string $secret, string $password): array
     {
         $apiPath = str_replace([], [], '/account/recovery');
 
@@ -384,29 +816,23 @@ class Account extends Service
         if (!isset($password)) {
             throw new AppwriteException('Missing required parameter: "password"');
         }
-        if (!isset($passwordAgain)) {
-            throw new AppwriteException('Missing required parameter: "passwordAgain"');
-        }
         if (!is_null($userId)) {
             $apiParams['userId'] = $userId;
         }
-
         if (!is_null($secret)) {
             $apiParams['secret'] = $secret;
         }
-
         if (!is_null($password)) {
             $apiParams['password'] = $password;
         }
-
-        if (!is_null($passwordAgain)) {
-            $apiParams['passwordAgain'] = $passwordAgain;
-        }
-
-
-        return $this->client->call(Client::METHOD_PUT, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_PUT,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -424,10 +850,14 @@ class Account extends Service
         $apiPath = str_replace([], [], '/account/sessions');
 
         $apiParams = [];
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -445,10 +875,207 @@ class Account extends Service
         $apiPath = str_replace([], [], '/account/sessions');
 
         $apiParams = [];
+        return $this->client->call(
+            Client::METHOD_DELETE,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
+    }
 
-        return $this->client->call(Client::METHOD_DELETE, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+    /**
+     * Create anonymous session
+     *
+     * Use this endpoint to allow a new user to register an anonymous account in
+     * your project. This route will also create a new session for the user. To
+     * allow the new user to convert an anonymous account to a normal account, you
+     * need to update its [email and
+     * password](https://appwrite.io/docs/references/cloud/client-web/account#updateEmail)
+     * or create an [OAuth2
+     * session](https://appwrite.io/docs/references/cloud/client-web/account#CreateOAuth2Session).
+     *
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function createAnonymousSession(): array
+    {
+        $apiPath = str_replace([], [], '/account/sessions/anonymous');
+
+        $apiParams = [];
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
+    }
+
+    /**
+     * Create email password session
+     *
+     * Allow the user to login into their account by providing a valid email and
+     * password combination. This route will create a new session for the user.
+     * 
+     * A user is limited to 10 active sessions at a time by default. [Learn more
+     * about session
+     * limits](https://appwrite.io/docs/authentication-security#limits).
+     *
+     * @param string $email
+     * @param string $password
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function createEmailPasswordSession(string $email, string $password): array
+    {
+        $apiPath = str_replace([], [], '/account/sessions/email');
+
+        $apiParams = [];
+        if (!isset($email)) {
+            throw new AppwriteException('Missing required parameter: "email"');
+        }
+        if (!isset($password)) {
+            throw new AppwriteException('Missing required parameter: "password"');
+        }
+        if (!is_null($email)) {
+            $apiParams['email'] = $email;
+        }
+        if (!is_null($password)) {
+            $apiParams['password'] = $password;
+        }
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
+    }
+
+    /**
+     * Update magic URL session
+     *
+     * Use this endpoint to create a session from token. Provide the **userId**
+     * and **secret** parameters from the successful response of authentication
+     * flows initiated by token creation. For example, magic URL and phone login.
+     *
+     * @param string $userId
+     * @param string $secret
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function updateMagicURLSession(string $userId, string $secret): array
+    {
+        $apiPath = str_replace([], [], '/account/sessions/magic-url');
+
+        $apiParams = [];
+        if (!isset($userId)) {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+        if (!isset($secret)) {
+            throw new AppwriteException('Missing required parameter: "secret"');
+        }
+        if (!is_null($userId)) {
+            $apiParams['userId'] = $userId;
+        }
+        if (!is_null($secret)) {
+            $apiParams['secret'] = $secret;
+        }
+        return $this->client->call(
+            Client::METHOD_PUT,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
+    }
+
+    /**
+     * Update phone session
+     *
+     * Use this endpoint to create a session from token. Provide the **userId**
+     * and **secret** parameters from the successful response of authentication
+     * flows initiated by token creation. For example, magic URL and phone login.
+     *
+     * @param string $userId
+     * @param string $secret
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function updatePhoneSession(string $userId, string $secret): array
+    {
+        $apiPath = str_replace([], [], '/account/sessions/phone');
+
+        $apiParams = [];
+        if (!isset($userId)) {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+        if (!isset($secret)) {
+            throw new AppwriteException('Missing required parameter: "secret"');
+        }
+        if (!is_null($userId)) {
+            $apiParams['userId'] = $userId;
+        }
+        if (!is_null($secret)) {
+            $apiParams['secret'] = $secret;
+        }
+        return $this->client->call(
+            Client::METHOD_PUT,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
+    }
+
+    /**
+     * Create session
+     *
+     * Use this endpoint to create a session from token. Provide the **userId**
+     * and **secret** parameters from the successful response of authentication
+     * flows initiated by token creation. For example, magic URL and phone login.
+     *
+     * @param string $userId
+     * @param string $secret
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function createSession(string $userId, string $secret): array
+    {
+        $apiPath = str_replace([], [], '/account/sessions/token');
+
+        $apiParams = [];
+        if (!isset($userId)) {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+        if (!isset($secret)) {
+            throw new AppwriteException('Missing required parameter: "secret"');
+        }
+        if (!is_null($userId)) {
+            $apiParams['userId'] = $userId;
+        }
+        if (!is_null($secret)) {
+            $apiParams['secret'] = $secret;
+        }
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -470,18 +1097,22 @@ class Account extends Service
         if (!isset($sessionId)) {
             throw new AppwriteException('Missing required parameter: "sessionId"');
         }
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
-     * Update OAuth session (refresh tokens)
+     * Update session
      *
-     * Access tokens have limited lifespan and expire to mitigate security risks.
-     * If session was created using an OAuth provider, this route can be used to
-     * "refresh" the access token.
+     * Use this endpoint to extend a session's length. Extending a session is
+     * useful when session expiry is short. If the session was created using an
+     * OAuth provider, this endpoint refreshes the access token from the provider.
      *
      * @param string $sessionId
      * @throws AppwriteException
@@ -496,10 +1127,14 @@ class Account extends Service
         if (!isset($sessionId)) {
             throw new AppwriteException('Missing required parameter: "sessionId"');
         }
-
-        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -524,10 +1159,14 @@ class Account extends Service
         if (!isset($sessionId)) {
             throw new AppwriteException('Missing required parameter: "sessionId"');
         }
-
-        return $this->client->call(Client::METHOD_DELETE, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_DELETE,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -546,10 +1185,226 @@ class Account extends Service
         $apiPath = str_replace([], [], '/account/status');
 
         $apiParams = [];
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
+    }
 
-        return $this->client->call(Client::METHOD_PATCH, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+    /**
+     * Create email token (OTP)
+     *
+     * Sends the user an email with a secret key for creating a session. If the
+     * provided user ID has not be registered, a new user will be created. Use the
+     * returned user ID and secret and submit a request to the [POST
+     * /v1/account/sessions/token](https://appwrite.io/docs/references/cloud/client-web/account#createSession)
+     * endpoint to complete the login process. The secret sent to the user's email
+     * is valid for 15 minutes.
+     * 
+     * A user is limited to 10 active sessions at a time by default. [Learn more
+     * about session
+     * limits](https://appwrite.io/docs/authentication-security#limits).
+     *
+     * @param string $userId
+     * @param string $email
+     * @param bool $phrase
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function createEmailToken(string $userId, string $email, bool $phrase = null): array
+    {
+        $apiPath = str_replace([], [], '/account/tokens/email');
+
+        $apiParams = [];
+        if (!isset($userId)) {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+        if (!isset($email)) {
+            throw new AppwriteException('Missing required parameter: "email"');
+        }
+        if (!is_null($userId)) {
+            $apiParams['userId'] = $userId;
+        }
+        if (!is_null($email)) {
+            $apiParams['email'] = $email;
+        }
+        if (!is_null($phrase)) {
+            $apiParams['phrase'] = $phrase;
+        }
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
+    }
+
+    /**
+     * Create magic URL token
+     *
+     * Sends the user an email with a secret key for creating a session. If the
+     * provided user ID has not been registered, a new user will be created. When
+     * the user clicks the link in the email, the user is redirected back to the
+     * URL you provided with the secret key and userId values attached to the URL
+     * query string. Use the query string parameters to submit a request to the
+     * [POST
+     * /v1/account/sessions/token](https://appwrite.io/docs/references/cloud/client-web/account#createSession)
+     * endpoint to complete the login process. The link sent to the user's email
+     * address is valid for 1 hour. If you are on a mobile device you can leave
+     * the URL parameter empty, so that the login completion will be handled by
+     * your Appwrite instance by default.
+     * 
+     * A user is limited to 10 active sessions at a time by default. [Learn more
+     * about session
+     * limits](https://appwrite.io/docs/authentication-security#limits).
+     * 
+     *
+     * @param string $userId
+     * @param string $email
+     * @param string $url
+     * @param bool $phrase
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function createMagicURLToken(string $userId, string $email, string $url = null, bool $phrase = null): array
+    {
+        $apiPath = str_replace([], [], '/account/tokens/magic-url');
+
+        $apiParams = [];
+        if (!isset($userId)) {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+        if (!isset($email)) {
+            throw new AppwriteException('Missing required parameter: "email"');
+        }
+        if (!is_null($userId)) {
+            $apiParams['userId'] = $userId;
+        }
+        if (!is_null($email)) {
+            $apiParams['email'] = $email;
+        }
+        if (!is_null($url)) {
+            $apiParams['url'] = $url;
+        }
+        if (!is_null($phrase)) {
+            $apiParams['phrase'] = $phrase;
+        }
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
+    }
+
+    /**
+     * Create OAuth2 token
+     *
+     * Allow the user to login to their account using the OAuth2 provider of their
+     * choice. Each OAuth2 provider should be enabled from the Appwrite console
+     * first. Use the success and failure arguments to provide a redirect URL's
+     * back to your app when login is completed. 
+     * 
+     * If authentication succeeds, `userId` and `secret` of a token will be
+     * appended to the success URL as query parameters. These can be used to
+     * create a new session using the [Create
+     * session](https://appwrite.io/docs/references/cloud/client-web/account#createSession)
+     * endpoint.
+     * 
+     * A user is limited to 10 active sessions at a time by default. [Learn more
+     * about session
+     * limits](https://appwrite.io/docs/authentication-security#limits).
+     *
+     * @param OAuthProvider $provider
+     * @param string $success
+     * @param string $failure
+     * @param array $scopes
+     * @throws AppwriteException
+     * @return string
+
+     */
+    public function createOAuth2Token(OAuthProvider $provider, string $success = null, string $failure = null, array $scopes = null): string
+    {
+        $apiPath = str_replace(['{provider}'], [$provider], '/account/tokens/oauth2/{provider}');
+
+        $apiParams = [];
+        if (!isset($provider)) {
+            throw new AppwriteException('Missing required parameter: "provider"');
+        }
+        if (!is_null($success)) {
+            $apiParams['success'] = $success;
+        }
+        if (!is_null($failure)) {
+            $apiParams['failure'] = $failure;
+        }
+        if (!is_null($scopes)) {
+            $apiParams['scopes'] = $scopes;
+        }
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams, 'location'
+        );
+    }
+
+    /**
+     * Create phone token
+     *
+     * Sends the user an SMS with a secret key for creating a session. If the
+     * provided user ID has not be registered, a new user will be created. Use the
+     * returned user ID and secret and submit a request to the [POST
+     * /v1/account/sessions/token](https://appwrite.io/docs/references/cloud/client-web/account#createSession)
+     * endpoint to complete the login process. The secret sent to the user's phone
+     * is valid for 15 minutes.
+     * 
+     * A user is limited to 10 active sessions at a time by default. [Learn more
+     * about session
+     * limits](https://appwrite.io/docs/authentication-security#limits).
+     *
+     * @param string $userId
+     * @param string $phone
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function createPhoneToken(string $userId, string $phone): array
+    {
+        $apiPath = str_replace([], [], '/account/tokens/phone');
+
+        $apiParams = [];
+        if (!isset($userId)) {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+        if (!isset($phone)) {
+            throw new AppwriteException('Missing required parameter: "phone"');
+        }
+        if (!is_null($userId)) {
+            $apiParams['userId'] = $userId;
+        }
+        if (!is_null($phone)) {
+            $apiParams['phone'] = $phone;
+        }
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -587,11 +1442,14 @@ class Account extends Service
         if (!is_null($url)) {
             $apiParams['url'] = $url;
         }
-
-
-        return $this->client->call(Client::METHOD_POST, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -622,15 +1480,17 @@ class Account extends Service
         if (!is_null($userId)) {
             $apiParams['userId'] = $userId;
         }
-
         if (!is_null($secret)) {
             $apiParams['secret'] = $secret;
         }
-
-
-        return $this->client->call(Client::METHOD_PUT, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_PUT,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -654,10 +1514,14 @@ class Account extends Service
         $apiPath = str_replace([], [], '/account/verification/phone');
 
         $apiParams = [];
-
-        return $this->client->call(Client::METHOD_POST, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -688,14 +1552,16 @@ class Account extends Service
         if (!is_null($userId)) {
             $apiParams['userId'] = $userId;
         }
-
         if (!is_null($secret)) {
             $apiParams['secret'] = $secret;
         }
-
-
-        return $this->client->call(Client::METHOD_PUT, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_PUT,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 }

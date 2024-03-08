@@ -3,7 +3,7 @@
 ## Get browser icon
 
 ```http request
-GET https://HOSTNAME/v1/avatars/browsers/{code}
+GET https://cloud.appwrite.io/v1/avatars/browsers/{code}
 ```
 
 ** You can use this endpoint to show different browser icons to your users. The code argument receives the browser code as it appears in your user [GET /account/sessions](https://appwrite.io/docs/references/cloud/client-web/account#getSessions) endpoint. Use width, height and quality arguments to change the output settings.
@@ -22,7 +22,7 @@ When one dimension is specified and the other is 0, the image is scaled with pre
 ## Get credit card icon
 
 ```http request
-GET https://HOSTNAME/v1/avatars/credit-cards/{code}
+GET https://cloud.appwrite.io/v1/avatars/credit-cards/{code}
 ```
 
 ** The credit card endpoint will return you the icon of the credit card provider you need. Use width, height and quality arguments to change the output settings.
@@ -42,7 +42,7 @@ When one dimension is specified and the other is 0, the image is scaled with pre
 ## Get favicon
 
 ```http request
-GET https://HOSTNAME/v1/avatars/favicon
+GET https://cloud.appwrite.io/v1/avatars/favicon
 ```
 
 ** Use this endpoint to fetch the favorite icon (AKA favicon) of any remote website URL.
@@ -57,7 +57,7 @@ GET https://HOSTNAME/v1/avatars/favicon
 ## Get country flag
 
 ```http request
-GET https://HOSTNAME/v1/avatars/flags/{code}
+GET https://cloud.appwrite.io/v1/avatars/flags/{code}
 ```
 
 ** You can use this endpoint to show different country flags icons to your users. The code argument receives the 2 letter country code. Use width, height and quality arguments to change the output settings. Country codes follow the [ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1) standard.
@@ -77,7 +77,7 @@ When one dimension is specified and the other is 0, the image is scaled with pre
 ## Get image from URL
 
 ```http request
-GET https://HOSTNAME/v1/avatars/image
+GET https://cloud.appwrite.io/v1/avatars/image
 ```
 
 ** Use this endpoint to fetch a remote image URL and crop it to any image size you want. This endpoint is very useful if you need to crop and display remote images in your app or in case you want to make sure a 3rd party image is properly served using a TLS protocol.
@@ -96,7 +96,7 @@ When one dimension is specified and the other is 0, the image is scaled with pre
 ## Get user initials
 
 ```http request
-GET https://HOSTNAME/v1/avatars/initials
+GET https://cloud.appwrite.io/v1/avatars/initials
 ```
 
 ** Use this endpoint to show your user initials avatar icon on your website or app. By default, this route will try to print your logged-in user name or email initials. You can also overwrite the user name if you pass the &#039;name&#039; parameter. If no name is given and no user is logged, an empty avatar will be returned.
@@ -118,7 +118,7 @@ When one dimension is specified and the other is 0, the image is scaled with pre
 ## Get QR code
 
 ```http request
-GET https://HOSTNAME/v1/avatars/qr
+GET https://cloud.appwrite.io/v1/avatars/qr
 ```
 
 ** Converts a given plain text to a QR code image. You can use the query parameters to change the size and style of the resulting image.

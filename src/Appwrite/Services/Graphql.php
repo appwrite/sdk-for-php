@@ -35,12 +35,15 @@ class Graphql extends Service
         if (!is_null($query)) {
             $apiParams['query'] = $query;
         }
-
-
-        return $this->client->call(Client::METHOD_POST, $apiPath, [
-            'x-sdk-graphql' => 'true',
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'x-sdk-graphql' => 'true',
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -64,11 +67,14 @@ class Graphql extends Service
         if (!is_null($query)) {
             $apiParams['query'] = $query;
         }
-
-
-        return $this->client->call(Client::METHOD_POST, $apiPath, [
-            'x-sdk-graphql' => 'true',
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'x-sdk-graphql' => 'true',
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 }

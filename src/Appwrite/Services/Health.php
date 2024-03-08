@@ -6,6 +6,7 @@ use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
 use Appwrite\InputFile;
+use Appwrite\Enums\Name;
 
 class Health extends Service
 {
@@ -28,10 +29,14 @@ class Health extends Service
         $apiPath = str_replace([], [], '/health');
 
         $apiParams = [];
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -48,10 +53,14 @@ class Health extends Service
         $apiPath = str_replace([], [], '/health/anti-virus');
 
         $apiParams = [];
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -69,10 +78,42 @@ class Health extends Service
         $apiPath = str_replace([], [], '/health/cache');
 
         $apiParams = [];
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
+    }
 
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+    /**
+     * Get the SSL certificate for a domain
+     *
+     * Get the SSL certificate for a domain
+     *
+     * @param string $domain
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function getCertificate(string $domain = null): array
+    {
+        $apiPath = str_replace([], [], '/health/certificate');
+
+        $apiParams = [];
+        if (!is_null($domain)) {
+            $apiParams['domain'] = $domain;
+        }
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -89,10 +130,14 @@ class Health extends Service
         $apiPath = str_replace([], [], '/health/db');
 
         $apiParams = [];
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -109,10 +154,14 @@ class Health extends Service
         $apiPath = str_replace([], [], '/health/pubsub');
 
         $apiParams = [];
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -130,10 +179,14 @@ class Health extends Service
         $apiPath = str_replace([], [], '/health/queue');
 
         $apiParams = [];
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -155,11 +208,14 @@ class Health extends Service
         if (!is_null($threshold)) {
             $apiParams['threshold'] = $threshold;
         }
-
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -182,11 +238,14 @@ class Health extends Service
         if (!is_null($threshold)) {
             $apiParams['threshold'] = $threshold;
         }
-
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -209,15 +268,17 @@ class Health extends Service
         if (!is_null($name)) {
             $apiParams['name'] = $name;
         }
-
         if (!is_null($threshold)) {
             $apiParams['threshold'] = $threshold;
         }
-
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -239,15 +300,54 @@ class Health extends Service
         if (!is_null($threshold)) {
             $apiParams['threshold'] = $threshold;
         }
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
+    }
 
+    /**
+     * Get number of failed queue jobs
+     *
+     * Returns the amount of failed jobs in a given queue.
+     * 
+     *
+     * @param Name $name
+     * @param int $threshold
+     * @throws AppwriteException
+     * @return array
 
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+     */
+    public function getFailedJobs(Name $name, int $threshold = null): array
+    {
+        $apiPath = str_replace(['{name}'], [$name], '/health/queue/failed/{name}');
+
+        $apiParams = [];
+        if (!isset($name)) {
+            throw new AppwriteException('Missing required parameter: "name"');
+        }
+        if (!is_null($threshold)) {
+            $apiParams['threshold'] = $threshold;
+        }
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
      * Get functions queue
+     *
+     * Get the number of function executions that are waiting to be processed in
+     * the Appwrite internal queue server.
      *
      * @param int $threshold
      * @throws AppwriteException
@@ -262,11 +362,14 @@ class Health extends Service
         if (!is_null($threshold)) {
             $apiParams['threshold'] = $threshold;
         }
-
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -288,11 +391,14 @@ class Health extends Service
         if (!is_null($threshold)) {
             $apiParams['threshold'] = $threshold;
         }
-
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -314,11 +420,14 @@ class Health extends Service
         if (!is_null($threshold)) {
             $apiParams['threshold'] = $threshold;
         }
-
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -340,11 +449,14 @@ class Health extends Service
         if (!is_null($threshold)) {
             $apiParams['threshold'] = $threshold;
         }
-
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -366,11 +478,72 @@ class Health extends Service
         if (!is_null($threshold)) {
             $apiParams['threshold'] = $threshold;
         }
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
+    }
 
+    /**
+     * Get usage queue
+     *
+     * Get the number of metrics that are waiting to be processed in the Appwrite
+     * internal queue server.
+     *
+     * @param int $threshold
+     * @throws AppwriteException
+     * @return array
 
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+     */
+    public function getQueueUsage(int $threshold = null): array
+    {
+        $apiPath = str_replace([], [], '/health/queue/usage');
+
+        $apiParams = [];
+        if (!is_null($threshold)) {
+            $apiParams['threshold'] = $threshold;
+        }
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
+    }
+
+    /**
+     * Get usage dump queue
+     *
+     * Get the number of projects containing metrics that are waiting to be
+     * processed in the Appwrite internal queue server.
+     *
+     * @param int $threshold
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function getQueueUsageDump(int $threshold = null): array
+    {
+        $apiPath = str_replace([], [], '/health/queue/usage-dump');
+
+        $apiParams = [];
+        if (!is_null($threshold)) {
+            $apiParams['threshold'] = $threshold;
+        }
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -392,11 +565,38 @@ class Health extends Service
         if (!is_null($threshold)) {
             $apiParams['threshold'] = $threshold;
         }
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
+    }
 
+    /**
+     * Get storage
+     *
+     * Check the Appwrite storage device is up and connection is successful.
+     *
+     * @throws AppwriteException
+     * @return array
 
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+     */
+    public function getStorage(): array
+    {
+        $apiPath = str_replace([], [], '/health/storage');
+
+        $apiParams = [];
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -413,10 +613,14 @@ class Health extends Service
         $apiPath = str_replace([], [], '/health/storage/local');
 
         $apiParams = [];
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 
     /**
@@ -439,9 +643,13 @@ class Health extends Service
         $apiPath = str_replace([], [], '/health/time');
 
         $apiParams = [];
-
-        return $this->client->call(Client::METHOD_GET, $apiPath, [
-            'content-type' => 'application/json',
-        ], $apiParams);
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
     }
 }

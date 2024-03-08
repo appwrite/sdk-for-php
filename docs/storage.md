@@ -3,7 +3,7 @@
 ## List buckets
 
 ```http request
-GET https://HOSTNAME/v1/storage/buckets
+GET https://cloud.appwrite.io/v1/storage/buckets
 ```
 
 ** Get a list of all the storage buckets. You can use the query params to filter your results. **
@@ -18,7 +18,7 @@ GET https://HOSTNAME/v1/storage/buckets
 ## Create bucket
 
 ```http request
-POST https://HOSTNAME/v1/storage/buckets
+POST https://cloud.appwrite.io/v1/storage/buckets
 ```
 
 ** Create a new storage bucket. **
@@ -41,7 +41,7 @@ POST https://HOSTNAME/v1/storage/buckets
 ## Get bucket
 
 ```http request
-GET https://HOSTNAME/v1/storage/buckets/{bucketId}
+GET https://cloud.appwrite.io/v1/storage/buckets/{bucketId}
 ```
 
 ** Get a storage bucket by its unique ID. This endpoint response returns a JSON object with the storage bucket metadata. **
@@ -55,7 +55,7 @@ GET https://HOSTNAME/v1/storage/buckets/{bucketId}
 ## Update bucket
 
 ```http request
-PUT https://HOSTNAME/v1/storage/buckets/{bucketId}
+PUT https://cloud.appwrite.io/v1/storage/buckets/{bucketId}
 ```
 
 ** Update a storage bucket by its unique ID. **
@@ -78,7 +78,7 @@ PUT https://HOSTNAME/v1/storage/buckets/{bucketId}
 ## Delete bucket
 
 ```http request
-DELETE https://HOSTNAME/v1/storage/buckets/{bucketId}
+DELETE https://cloud.appwrite.io/v1/storage/buckets/{bucketId}
 ```
 
 ** Delete a storage bucket by its unique ID. **
@@ -92,7 +92,7 @@ DELETE https://HOSTNAME/v1/storage/buckets/{bucketId}
 ## List files
 
 ```http request
-GET https://HOSTNAME/v1/storage/buckets/{bucketId}/files
+GET https://cloud.appwrite.io/v1/storage/buckets/{bucketId}/files
 ```
 
 ** Get a list of all the user files. You can use the query params to filter your results. **
@@ -108,7 +108,7 @@ GET https://HOSTNAME/v1/storage/buckets/{bucketId}/files
 ## Create file
 
 ```http request
-POST https://HOSTNAME/v1/storage/buckets/{bucketId}/files
+POST https://cloud.appwrite.io/v1/storage/buckets/{bucketId}/files
 ```
 
 ** Create a new file. Before using this route, you should create a new bucket resource using either a [server integration](https://appwrite.io/docs/server/storage#storageCreateBucket) API or directly from your Appwrite console.
@@ -132,7 +132,7 @@ If you&#039;re creating a new file using one of the Appwrite SDKs, all the chunk
 ## Get file
 
 ```http request
-GET https://HOSTNAME/v1/storage/buckets/{bucketId}/files/{fileId}
+GET https://cloud.appwrite.io/v1/storage/buckets/{bucketId}/files/{fileId}
 ```
 
 ** Get a file by its unique ID. This endpoint response returns a JSON object with the file metadata. **
@@ -147,7 +147,7 @@ GET https://HOSTNAME/v1/storage/buckets/{bucketId}/files/{fileId}
 ## Update file
 
 ```http request
-PUT https://HOSTNAME/v1/storage/buckets/{bucketId}/files/{fileId}
+PUT https://cloud.appwrite.io/v1/storage/buckets/{bucketId}/files/{fileId}
 ```
 
 ** Update a file by its unique ID. Only users with write permissions have access to update this resource. **
@@ -164,7 +164,7 @@ PUT https://HOSTNAME/v1/storage/buckets/{bucketId}/files/{fileId}
 ## Delete File
 
 ```http request
-DELETE https://HOSTNAME/v1/storage/buckets/{bucketId}/files/{fileId}
+DELETE https://cloud.appwrite.io/v1/storage/buckets/{bucketId}/files/{fileId}
 ```
 
 ** Delete a file by its unique ID. Only users with write permissions have access to delete this resource. **
@@ -179,7 +179,7 @@ DELETE https://HOSTNAME/v1/storage/buckets/{bucketId}/files/{fileId}
 ## Get file for download
 
 ```http request
-GET https://HOSTNAME/v1/storage/buckets/{bucketId}/files/{fileId}/download
+GET https://cloud.appwrite.io/v1/storage/buckets/{bucketId}/files/{fileId}/download
 ```
 
 ** Get a file content by its unique ID. The endpoint response return with a &#039;Content-Disposition: attachment&#039; header that tells the browser to start downloading the file to user downloads directory. **
@@ -194,7 +194,7 @@ GET https://HOSTNAME/v1/storage/buckets/{bucketId}/files/{fileId}/download
 ## Get file preview
 
 ```http request
-GET https://HOSTNAME/v1/storage/buckets/{bucketId}/files/{fileId}/preview
+GET https://cloud.appwrite.io/v1/storage/buckets/{bucketId}/files/{fileId}/preview
 ```
 
 ** Get a file preview image. Currently, this method supports preview for image files (jpg, png, and gif), other supported formats, like pdf, docs, slides, and spreadsheets, will return the file icon image. You can also pass query string arguments for cutting and resizing your preview image. Preview is supported only for image files smaller than 10MB. **
@@ -220,7 +220,7 @@ GET https://HOSTNAME/v1/storage/buckets/{bucketId}/files/{fileId}/preview
 ## Get file for view
 
 ```http request
-GET https://HOSTNAME/v1/storage/buckets/{bucketId}/files/{fileId}/view
+GET https://cloud.appwrite.io/v1/storage/buckets/{bucketId}/files/{fileId}/view
 ```
 
 ** Get a file content by its unique ID. This endpoint is similar to the download method but returns with no  &#039;Content-Disposition: attachment&#039; header. **

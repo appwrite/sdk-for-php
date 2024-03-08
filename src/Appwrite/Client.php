@@ -28,7 +28,7 @@ class Client
      *
      * @var string
      */
-    protected $endpoint = 'https://HOSTNAME/v1';
+    protected $endpoint = 'https://cloud.appwrite.io/v1';
 
     /**
      * Global Headers
@@ -37,11 +37,11 @@ class Client
      */
     protected $headers = [
         'content-type' => '',
-        'user-agent' => 'AppwritePHPSDK/10.1.0 ()',
+        'user-agent' => 'AppwritePHPSDK/11.0.0 ()',
         'x-sdk-name'=> 'PHP',
         'x-sdk-platform'=> 'server',
         'x-sdk-language'=> 'php',
-        'x-sdk-version'=> '10.1.0',
+        'x-sdk-version'=> '11.0.0',
     ];
 
     /**
@@ -49,7 +49,7 @@ class Client
      */
     public function __construct()
     {
-        $this->headers['X-Appwrite-Response-Format'] = '1.4.0';
+        $this->headers['X-Appwrite-Response-Format'] = '1.5.0';
  
     }
 
@@ -115,6 +115,38 @@ class Client
         return $this;
     }
 
+    /**
+     * Set Session
+     *
+     * The user session to authenticate with
+     *
+     * @param string $value
+     *
+     * @return Client
+     */
+    public function setSession($value)
+    {
+        $this->addHeader('X-Appwrite-Session', $value);
+
+        return $this;
+    }
+
+    /**
+     * Set ForwardedUserAgent
+     *
+     * The user agent string of the client that made the request
+     *
+     * @param string $value
+     *
+     * @return Client
+     */
+    public function setForwardedUserAgent($value)
+    {
+        $this->addHeader('X-Forwarded-User-Agent', $value);
+
+        return $this;
+    }
+
 
     /***
      * @param bool $status
@@ -161,14 +193,11 @@ class Client
      * @return array|string
      * @throws AppwriteException
      */
-    public function call($method, $path = '', $headers = array(), array $params = array())
+    public function call($method, $path = '', $headers = array(), array $params = array(), ?string $responseType = null)
     {
-        $headers            = array_merge($this->headers, $headers);
-        $ch                 = curl_init($this->endpoint . $path . (($method == self::METHOD_GET && !empty($params)) ? '?' . http_build_query($params) : ''));
-        $responseHeaders    = [];
-        $responseStatus     = -1;
-        $responseType       = '';
-        $responseBody       = '';
+        $headers = array_merge($this->headers, $headers);
+        $ch = curl_init($this->endpoint . $path . (($method == self::METHOD_GET && !empty($params)) ? '?' . http_build_query($params) : ''));
+        $responseHeaders = [];
 
         switch ($headers['content-type']) {
             case 'application/json':
@@ -193,7 +222,7 @@ class Client
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_USERAGENT, php_uname('s') . '-' . php_uname('r') . ':php-' . phpversion());
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, $responseType !== 'location');
         curl_setopt($ch, CURLOPT_HEADERFUNCTION, function($curl, $header) use (&$responseHeaders) {
             $len = strlen($header);
             $header = explode(':', strtolower($header), 2);
@@ -218,10 +247,10 @@ class Client
         }
 
         $responseBody   = curl_exec($ch);
-        $responseType   = $responseHeaders['content-type'] ?? '';
+        $contentType    = $responseHeaders['content-type'] ?? '';
         $responseStatus = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         
-        switch(substr($responseType, 0, strpos($responseType, ';'))) {
+        switch(substr($contentType, 0, strpos($contentType, ';'))) {
             case 'application/json':
                 $responseBody = json_decode($responseBody, true);
             break;
@@ -241,6 +270,9 @@ class Client
             }
         }
 
+        if ($responseType === 'location') {
+            return $responseHeaders['location'];
+        }
 
         return $responseBody;
     }
