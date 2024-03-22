@@ -375,9 +375,9 @@ POST https://cloud.appwrite.io/v1/messaging/providers/msg91
 | --- | --- | --- | --- |
 | providerId | string | Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
 | name | string | Provider name. |  |
-| from | string | Sender Phone number. Format this number with a leading '+' and a country code, e.g., +16175551212. |  |
-| senderId | string | Msg91 Sender ID. |  |
-| authKey | string | Msg91 Auth Key. |  |
+| templateId | string | Msg91 template ID |  |
+| senderId | string | Msg91 sender ID. |  |
+| authKey | string | Msg91 auth key. |  |
 | enabled | boolean | Set as enabled. |  |
 
 ## Update Msg91 provider
@@ -395,9 +395,9 @@ PATCH https://cloud.appwrite.io/v1/messaging/providers/msg91/{providerId}
 | providerId | string | **Required** Provider ID. |  |
 | name | string | Provider name. |  |
 | enabled | boolean | Set as enabled. |  |
-| senderId | string | Msg91 Sender ID. |  |
-| authKey | string | Msg91 Auth Key. |  |
-| from | string | Sender number. |  |
+| templateId | string | Msg91 template ID. |  |
+| senderId | string | Msg91 sender ID. |  |
+| authKey | string | Msg91 auth key. |  |
 
 ## Create Sendgrid provider
 
