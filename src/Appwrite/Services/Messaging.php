@@ -993,7 +993,7 @@ class Messaging extends Service
      *
      * @param string $providerId
      * @param string $name
-     * @param string $from
+     * @param string $templateId
      * @param string $senderId
      * @param string $authKey
      * @param bool $enabled
@@ -1001,7 +1001,7 @@ class Messaging extends Service
      * @return array
 
      */
-    public function createMsg91Provider(string $providerId, string $name, string $from = null, string $senderId = null, string $authKey = null, bool $enabled = null): array
+    public function createMsg91Provider(string $providerId, string $name, string $templateId = null, string $senderId = null, string $authKey = null, bool $enabled = null): array
     {
         $apiPath = str_replace([], [], '/messaging/providers/msg91');
 
@@ -1018,8 +1018,8 @@ class Messaging extends Service
         if (!is_null($name)) {
             $apiParams['name'] = $name;
         }
-        if (!is_null($from)) {
-            $apiParams['from'] = $from;
+        if (!is_null($templateId)) {
+            $apiParams['templateId'] = $templateId;
         }
         if (!is_null($senderId)) {
             $apiParams['senderId'] = $senderId;
@@ -1048,14 +1048,14 @@ class Messaging extends Service
      * @param string $providerId
      * @param string $name
      * @param bool $enabled
+     * @param string $templateId
      * @param string $senderId
      * @param string $authKey
-     * @param string $from
      * @throws AppwriteException
      * @return array
 
      */
-    public function updateMsg91Provider(string $providerId, string $name = null, bool $enabled = null, string $senderId = null, string $authKey = null, string $from = null): array
+    public function updateMsg91Provider(string $providerId, string $name = null, bool $enabled = null, string $templateId = null, string $senderId = null, string $authKey = null): array
     {
         $apiPath = str_replace(['{providerId}'], [$providerId], '/messaging/providers/msg91/{providerId}');
 
@@ -1069,14 +1069,14 @@ class Messaging extends Service
         if (!is_null($enabled)) {
             $apiParams['enabled'] = $enabled;
         }
+        if (!is_null($templateId)) {
+            $apiParams['templateId'] = $templateId;
+        }
         if (!is_null($senderId)) {
             $apiParams['senderId'] = $senderId;
         }
         if (!is_null($authKey)) {
             $apiParams['authKey'] = $authKey;
-        }
-        if (!is_null($from)) {
-            $apiParams['from'] = $from;
         }
         return $this->client->call(
             Client::METHOD_PATCH,
