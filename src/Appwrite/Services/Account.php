@@ -290,7 +290,7 @@ class Account extends Service
      *
      * Add an authenticator app to be used as an MFA factor. Verify the
      * authenticator using the [verify
-     * authenticator](/docs/references/cloud/client-web/account#verifyAuthenticator)
+     * authenticator](/docs/references/cloud/client-web/account#updateMfaAuthenticator)
      * method.
      *
      * @param AuthenticatorType $type
@@ -320,8 +320,8 @@ class Account extends Service
      * Verify Authenticator
      *
      * Verify an authenticator app after adding it using the [add
-     * authenticator](/docs/references/cloud/client-web/account#addAuthenticator)
-     * method.
+     * authenticator](/docs/references/cloud/client-web/account#createMfaAuthenticator)
+     * method. add 
      *
      * @param AuthenticatorType $type
      * @param string $otp
@@ -361,10 +361,10 @@ class Account extends Service
      * @param AuthenticatorType $type
      * @param string $otp
      * @throws AppwriteException
-     * @return array
+     * @return string
 
      */
-    public function deleteMfaAuthenticator(AuthenticatorType $type, string $otp): array
+    public function deleteMfaAuthenticator(AuthenticatorType $type, string $otp): string
     {
         $apiPath = str_replace(['{type}'], [$type], '/account/mfa/authenticators/{type}');
 

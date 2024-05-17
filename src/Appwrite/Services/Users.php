@@ -1493,11 +1493,11 @@ class Users extends Service
     /**
      * Create token
      *
-     * Returns a token with a secret key for creating a session. If the provided
-     * user ID has not be registered, a new user will be created. Use the returned
-     * user ID and secret and submit a request to the [PUT
-     * /account/sessions/custom](https://appwrite.io/docs/references/cloud/client-web/account#updateCustomSession)
+     * Returns a token with a secret key for creating a session. Use the user ID
+     * and secret and submit a request to the [PUT
+     * /account/sessions/token](https://appwrite.io/docs/references/cloud/client-web/account#createSession)
      * endpoint to complete the login process.
+     * 
      *
      * @param string $userId
      * @param int $length

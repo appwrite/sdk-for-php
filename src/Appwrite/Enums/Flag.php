@@ -147,6 +147,7 @@ class Flag implements JsonSerializable
     private static Flag $PALAU;
     private static Flag $PAPUANEWGUINEA;
     private static Flag $POLAND;
+    private static Flag $FRENCHPOLYNESIA;
     private static Flag $NORTHKOREA;
     private static Flag $PORTUGAL;
     private static Flag $PARAGUAY;
@@ -1204,6 +1205,13 @@ class Flag implements JsonSerializable
             self::$POLAND = new Flag('pl');
         }
         return self::$POLAND;
+    }
+    public static function FRENCHPOLYNESIA(): Flag
+    {
+        if (!isset(self::$FRENCHPOLYNESIA)) {
+            self::$FRENCHPOLYNESIA = new Flag('pf');
+        }
+        return self::$FRENCHPOLYNESIA;
     }
     public static function NORTHKOREA(): Flag
     {

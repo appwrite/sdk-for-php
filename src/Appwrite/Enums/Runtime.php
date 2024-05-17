@@ -25,6 +25,7 @@ class Runtime implements JsonSerializable
     private static Runtime $PYTHON310;
     private static Runtime $PYTHON311;
     private static Runtime $PYTHON312;
+    private static Runtime $PYTHONML311;
     private static Runtime $DENO140;
     private static Runtime $DART215;
     private static Runtime $DART216;
@@ -200,6 +201,13 @@ class Runtime implements JsonSerializable
             self::$PYTHON312 = new Runtime('python-3.12');
         }
         return self::$PYTHON312;
+    }
+    public static function PYTHONML311(): Runtime
+    {
+        if (!isset(self::$PYTHONML311)) {
+            self::$PYTHONML311 = new Runtime('python-ml-3.11');
+        }
+        return self::$PYTHONML311;
     }
     public static function DENO140(): Runtime
     {

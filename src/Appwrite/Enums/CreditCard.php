@@ -9,7 +9,7 @@ class CreditCard implements JsonSerializable
     private static CreditCard $AMERICANEXPRESS;
     private static CreditCard $ARGENCARD;
     private static CreditCard $CABAL;
-    private static CreditCard $CONSOSUD;
+    private static CreditCard $CENCOSUD;
     private static CreditCard $DINERSCLUB;
     private static CreditCard $DISCOVER;
     private static CreditCard $ELO;
@@ -61,12 +61,12 @@ class CreditCard implements JsonSerializable
         }
         return self::$CABAL;
     }
-    public static function CONSOSUD(): CreditCard
+    public static function CENCOSUD(): CreditCard
     {
-        if (!isset(self::$CONSOSUD)) {
-            self::$CONSOSUD = new CreditCard('censosud');
+        if (!isset(self::$CENCOSUD)) {
+            self::$CENCOSUD = new CreditCard('cencosud');
         }
-        return self::$CONSOSUD;
+        return self::$CENCOSUD;
     }
     public static function DINERSCLUB(): CreditCard
     {
