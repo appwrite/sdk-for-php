@@ -34,7 +34,7 @@ When one dimension is specified and the other is 0, the image is scaled with pre
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| code | string | **Required** Credit Card Code. Possible values: amex, argencard, cabal, censosud, diners, discover, elo, hipercard, jcb, mastercard, naranja, targeta-shopping, union-china-pay, visa, mir, maestro. |  |
+| code | string | **Required** Credit Card Code. Possible values: amex, argencard, cabal, cencosud, diners, discover, elo, hipercard, jcb, mastercard, naranja, targeta-shopping, union-china-pay, visa, mir, maestro. |  |
 | width | integer | Image width. Pass an integer between 0 to 2000. Defaults to 100. | 100 |
 | height | integer | Image height. Pass an integer between 0 to 2000. Defaults to 100. | 100 |
 | quality | integer | Image quality. Pass an integer between 0 to 100. Defaults to 100. | 100 |

@@ -145,11 +145,12 @@ class Messaging extends Service
      * @param array $cc
      * @param array $bcc
      * @param string $scheduledAt
+     * @param array $attachments
      * @throws AppwriteException
      * @return array
 
      */
-    public function updateEmail(string $messageId, array $topics = null, array $users = null, array $targets = null, string $subject = null, string $content = null, bool $draft = null, bool $html = null, array $cc = null, array $bcc = null, string $scheduledAt = null): array
+    public function updateEmail(string $messageId, array $topics = null, array $users = null, array $targets = null, string $subject = null, string $content = null, bool $draft = null, bool $html = null, array $cc = null, array $bcc = null, string $scheduledAt = null, array $attachments = null): array
     {
         $apiPath = str_replace(['{messageId}'], [$messageId], '/messaging/messages/email/{messageId}');
 
@@ -186,6 +187,9 @@ class Messaging extends Service
         }
         if (!is_null($scheduledAt)) {
             $apiParams['scheduledAt'] = $scheduledAt;
+        }
+        if (!is_null($attachments)) {
+            $apiParams['attachments'] = $attachments;
         }
         return $this->client->call(
             Client::METHOD_PATCH,

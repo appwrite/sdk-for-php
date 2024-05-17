@@ -265,23 +265,7 @@ final class AccountTest extends TestCase {
 
     public function testMethodDeleteMfaAuthenticator(): void {
 
-        $data = array(
-            "\$id" => "5e5ea5c16897e",
-            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "name" => "John Doe",
-            "registration" => "2020-10-15T06:38:00.000+00:00",
-            "status" => true,
-            "labels" => array(),
-            "passwordUpdate" => "2020-10-15T06:38:00.000+00:00",
-            "email" => "john@appwrite.io",
-            "phone" => "+4930901820",
-            "emailVerification" => true,
-            "phoneVerification" => true,
-            "mfa" => true,
-            "prefs" => array(),
-            "targets" => array(),
-            "accessedAt" => "2020-10-15T06:38:00.000+00:00",);
+        $data = '';
 
 
         $this->client
@@ -338,7 +322,8 @@ final class AccountTest extends TestCase {
         $data = array(
             "totp" => true,
             "phone" => true,
-            "email" => true,);
+            "email" => true,
+            "recoveryCode" => true,);
 
 
         $this->client
@@ -627,6 +612,7 @@ final class AccountTest extends TestCase {
         $data = array(
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "userId" => "5e5bb8c16897e",
             "expire" => "2020-10-15T06:38:00.000+00:00",
             "provider" => "email",
@@ -670,6 +656,7 @@ final class AccountTest extends TestCase {
         $data = array(
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "userId" => "5e5bb8c16897e",
             "expire" => "2020-10-15T06:38:00.000+00:00",
             "provider" => "email",
@@ -715,6 +702,7 @@ final class AccountTest extends TestCase {
         $data = array(
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "userId" => "5e5bb8c16897e",
             "expire" => "2020-10-15T06:38:00.000+00:00",
             "provider" => "email",
@@ -760,6 +748,7 @@ final class AccountTest extends TestCase {
         $data = array(
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "userId" => "5e5bb8c16897e",
             "expire" => "2020-10-15T06:38:00.000+00:00",
             "provider" => "email",
@@ -805,6 +794,7 @@ final class AccountTest extends TestCase {
         $data = array(
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "userId" => "5e5bb8c16897e",
             "expire" => "2020-10-15T06:38:00.000+00:00",
             "provider" => "email",
@@ -850,6 +840,7 @@ final class AccountTest extends TestCase {
         $data = array(
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "userId" => "5e5bb8c16897e",
             "expire" => "2020-10-15T06:38:00.000+00:00",
             "provider" => "email",
@@ -894,6 +885,7 @@ final class AccountTest extends TestCase {
         $data = array(
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "userId" => "5e5bb8c16897e",
             "expire" => "2020-10-15T06:38:00.000+00:00",
             "provider" => "email",

@@ -112,7 +112,7 @@ PATCH https://cloud.appwrite.io/v1/account/mfa
 POST https://cloud.appwrite.io/v1/account/mfa/authenticators/{type}
 ```
 
-** Add an authenticator app to be used as an MFA factor. Verify the authenticator using the [verify authenticator](/docs/references/cloud/client-web/account#verifyAuthenticator) method. **
+** Add an authenticator app to be used as an MFA factor. Verify the authenticator using the [verify authenticator](/docs/references/cloud/client-web/account#updateMfaAuthenticator) method. **
 
 ### Parameters
 
@@ -126,7 +126,7 @@ POST https://cloud.appwrite.io/v1/account/mfa/authenticators/{type}
 PUT https://cloud.appwrite.io/v1/account/mfa/authenticators/{type}
 ```
 
-** Verify an authenticator app after adding it using the [add authenticator](/docs/references/cloud/client-web/account#addAuthenticator) method. **
+** Verify an authenticator app after adding it using the [add authenticator](/docs/references/cloud/client-web/account#createMfaAuthenticator) method. add  **
 
 ### Parameters
 

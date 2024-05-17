@@ -35,7 +35,7 @@ POST https://cloud.appwrite.io/v1/messaging/messages/email
 | targets | array | List of Targets IDs. | [] |
 | cc | array | Array of target IDs to be added as CC. | [] |
 | bcc | array | Array of target IDs to be added as BCC. | [] |
-| attachments | array | Array of compound bucket IDs to file IDs to be attached to the email. | [] |
+| attachments | array | Array of compound ID strings of bucket IDs and file IDs to be attached to the email. They should be formatted as <BUCKET_ID>:<FILE_ID>. | [] |
 | draft | boolean | Is message a draft |  |
 | html | boolean | Is content of type HTML |  |
 | scheduledAt | string | Scheduled delivery time for message in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. DateTime value must be in future. |  |
@@ -64,6 +64,7 @@ PATCH https://cloud.appwrite.io/v1/messaging/messages/email/{messageId}
 | cc | array | Array of target IDs to be added as CC. |  |
 | bcc | array | Array of target IDs to be added as BCC. |  |
 | scheduledAt | string | Scheduled delivery time for message in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. DateTime value must be in future. |  |
+| attachments | array | Array of compound ID strings of bucket IDs and file IDs to be attached to the email. They should be formatted as <BUCKET_ID>:<FILE_ID>. |  |
 
 ## Create push notification
 
@@ -85,7 +86,7 @@ POST https://cloud.appwrite.io/v1/messaging/messages/push
 | targets | array | List of Targets IDs. | [] |
 | data | object | Additional Data for push notification. | {} |
 | action | string | Action for push notification. |  |
-| image | string | Image for push notification. Must be a compound bucket ID to file ID of a jpeg, png, or bmp image in Appwrite Storage. |  |
+| image | string | Image for push notification. Must be a compound bucket ID to file ID of a jpeg, png, or bmp image in Appwrite Storage. It should be formatted as <BUCKET_ID>:<FILE_ID>. |  |
 | icon | string | Icon for push notification. Available only for Android and Web Platform. |  |
 | sound | string | Sound for push notification. Available only for Android and IOS Platform. |  |
 | color | string | Color for push notification. Available only for Android Platform. |  |
@@ -115,7 +116,7 @@ PATCH https://cloud.appwrite.io/v1/messaging/messages/push/{messageId}
 | body | string | Body for push notification. |  |
 | data | object | Additional Data for push notification. | {} |
 | action | string | Action for push notification. |  |
-| image | string | Image for push notification. Must be a compound bucket ID to file ID of a jpeg, png, or bmp image in Appwrite Storage. |  |
+| image | string | Image for push notification. Must be a compound bucket ID to file ID of a jpeg, png, or bmp image in Appwrite Storage. It should be formatted as <BUCKET_ID>:<FILE_ID>. |  |
 | icon | string | Icon for push notification. Available only for Android and Web platforms. |  |
 | sound | string | Sound for push notification. Available only for Android and iOS platforms. |  |
 | color | string | Color for push notification. Available only for Android platforms. |  |
