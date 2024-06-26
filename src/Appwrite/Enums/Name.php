@@ -18,7 +18,6 @@ class Name implements JsonSerializable
     private static Name $V1BUILDS;
     private static Name $V1MESSAGING;
     private static Name $V1MIGRATIONS;
-    private static Name $HAMSTERV1;
 
     private string $value;
 
@@ -120,12 +119,5 @@ class Name implements JsonSerializable
             self::$V1MIGRATIONS = new Name('v1-migrations');
         }
         return self::$V1MIGRATIONS;
-    }
-    public static function HAMSTERV1(): Name
-    {
-        if (!isset(self::$HAMSTERV1)) {
-            self::$HAMSTERV1 = new Name('hamsterv1');
-        }
-        return self::$HAMSTERV1;
     }
 }

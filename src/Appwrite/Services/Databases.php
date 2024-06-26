@@ -876,15 +876,15 @@ class Databases extends Service
      * @param string $collectionId
      * @param string $key
      * @param bool $required
-     * @param int $min
-     * @param int $max
-     * @param int $xdefault
+     * @param float $min
+     * @param float $max
+     * @param float $xdefault
      * @param bool $xarray
      * @throws AppwriteException
      * @return array
 
      */
-    public function createFloatAttribute(string $databaseId, string $collectionId, string $key, bool $required, int $min = null, int $max = null, int $xdefault = null, bool $xarray = null): array
+    public function createFloatAttribute(string $databaseId, string $collectionId, string $key, bool $required, float $min = null, float $max = null, float $xdefault = null, bool $xarray = null): array
     {
         $apiPath = str_replace(['{databaseId}', '{collectionId}'], [$databaseId, $collectionId], '/databases/{databaseId}/collections/{collectionId}/attributes/float');
 
@@ -940,14 +940,14 @@ class Databases extends Service
      * @param string $collectionId
      * @param string $key
      * @param bool $required
-     * @param int $min
-     * @param int $max
-     * @param int $xdefault
+     * @param float $min
+     * @param float $max
+     * @param float $xdefault
      * @throws AppwriteException
      * @return array
 
      */
-    public function updateFloatAttribute(string $databaseId, string $collectionId, string $key, bool $required, int $min, int $max, int $xdefault): array
+    public function updateFloatAttribute(string $databaseId, string $collectionId, string $key, bool $required, float $min, float $max, float $xdefault): array
     {
         $apiPath = str_replace(['{databaseId}', '{collectionId}', '{key}'], [$databaseId, $collectionId, $key], '/databases/{databaseId}/collections/{collectionId}/attributes/float/{key}');
 
