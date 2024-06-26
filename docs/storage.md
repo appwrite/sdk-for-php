@@ -32,7 +32,7 @@ POST https://cloud.appwrite.io/v1/storage/buckets
 | permissions | array | An array of permission strings. By default, no user is granted with any permissions. [Learn more about permissions](https://appwrite.io/docs/permissions). |  |
 | fileSecurity | boolean | Enables configuring permissions for individual file. A user needs one of file or bucket level permissions to access a file. [Learn more about permissions](https://appwrite.io/docs/permissions). |  |
 | enabled | boolean | Is bucket enabled? When set to 'disabled', users cannot access the files in this bucket but Server SDKs with and API key can still access the bucket. No files are lost when this is toggled. | 1 |
-| maximumFileSize | integer | Maximum file size allowed in bytes. Maximum allowed value is 30MB. | [] |
+| maximumFileSize | integer | Maximum file size allowed in bytes. Maximum allowed value is 30MB. | 30000000 |
 | allowedFileExtensions | array | Allowed file extensions. Maximum of 100 extensions are allowed, each 64 characters long. | [] |
 | compression | string | Compression algorithm choosen for compression. Can be one of none,  [gzip](https://en.wikipedia.org/wiki/Gzip), or [zstd](https://en.wikipedia.org/wiki/Zstd), For file size above 20MB compression is skipped even if it's enabled | none |
 | encryption | boolean | Is encryption enabled? For file size above 20MB encryption is skipped even if it's enabled | 1 |
@@ -69,7 +69,7 @@ PUT https://cloud.appwrite.io/v1/storage/buckets/{bucketId}
 | permissions | array | An array of permission strings. By default, the current permissions are inherited. [Learn more about permissions](https://appwrite.io/docs/permissions). |  |
 | fileSecurity | boolean | Enables configuring permissions for individual file. A user needs one of file or bucket level permissions to access a file. [Learn more about permissions](https://appwrite.io/docs/permissions). |  |
 | enabled | boolean | Is bucket enabled? When set to 'disabled', users cannot access the files in this bucket but Server SDKs with and API key can still access the bucket. No files are lost when this is toggled. | 1 |
-| maximumFileSize | integer | Maximum file size allowed in bytes. Maximum allowed value is 30MB. | [] |
+| maximumFileSize | integer | Maximum file size allowed in bytes. Maximum allowed value is 30MB. |  |
 | allowedFileExtensions | array | Allowed file extensions. Maximum of 100 extensions are allowed, each 64 characters long. | [] |
 | compression | string | Compression algorithm choosen for compression. Can be one of none, [gzip](https://en.wikipedia.org/wiki/Gzip), or [zstd](https://en.wikipedia.org/wiki/Zstd), For file size above 20MB compression is skipped even if it's enabled | none |
 | encryption | boolean | Is encryption enabled? For file size above 20MB encryption is skipped even if it's enabled | 1 |
@@ -126,7 +126,7 @@ If you&#039;re creating a new file using one of the Appwrite SDKs, all the chunk
 | --- | --- | --- | --- |
 | bucketId | string | **Required** Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](https://appwrite.io/docs/server/storage#createBucket). |  |
 | fileId | string | File ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
-| file | file | Binary file. Appwrite SDKs provide helpers to handle file input. [Learn about file input](https://appwrite.io/docs/products/storage/upload-download#input-file). |  |
+| file | file | Binary file. Appwrite SDKs provide helpers to handle file input. [Learn about file input](https://appwrite.io/docs/storage#file-input). |  |
 | permissions | array | An array of permission strings. By default, only the current user is granted all permissions. [Learn more about permissions](https://appwrite.io/docs/permissions). |  |
 
 ## Get file
