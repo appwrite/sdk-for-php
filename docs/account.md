@@ -126,7 +126,7 @@ POST https://cloud.appwrite.io/v1/account/mfa/authenticators/{type}
 PUT https://cloud.appwrite.io/v1/account/mfa/authenticators/{type}
 ```
 
-** Verify an authenticator app after adding it using the [add authenticator](/docs/references/cloud/client-web/account#createMfaAuthenticator) method. add  **
+** Verify an authenticator app after adding it using the [add authenticator](/docs/references/cloud/client-web/account#createMfaAuthenticator) method. **
 
 ### Parameters
 

@@ -321,7 +321,7 @@ class Account extends Service
      *
      * Verify an authenticator app after adding it using the [add
      * authenticator](/docs/references/cloud/client-web/account#createMfaAuthenticator)
-     * method. add 
+     * method.
      *
      * @param AuthenticatorType $type
      * @param string $otp

@@ -13,12 +13,11 @@ class Name implements JsonSerializable
     private static Name $V1FUNCTIONS;
     private static Name $V1USAGE;
     private static Name $V1USAGEDUMP;
-    private static Name $WEBHOOKSV1;
+    private static Name $V1WEBHOOKS;
     private static Name $V1CERTIFICATES;
     private static Name $V1BUILDS;
     private static Name $V1MESSAGING;
     private static Name $V1MIGRATIONS;
-    private static Name $HAMSTERV1;
 
     private string $value;
 
@@ -86,12 +85,12 @@ class Name implements JsonSerializable
         }
         return self::$V1USAGEDUMP;
     }
-    public static function WEBHOOKSV1(): Name
+    public static function V1WEBHOOKS(): Name
     {
-        if (!isset(self::$WEBHOOKSV1)) {
-            self::$WEBHOOKSV1 = new Name('webhooksv1');
+        if (!isset(self::$V1WEBHOOKS)) {
+            self::$V1WEBHOOKS = new Name('v1-webhooks');
         }
-        return self::$WEBHOOKSV1;
+        return self::$V1WEBHOOKS;
     }
     public static function V1CERTIFICATES(): Name
     {
@@ -120,12 +119,5 @@ class Name implements JsonSerializable
             self::$V1MIGRATIONS = new Name('v1-migrations');
         }
         return self::$V1MIGRATIONS;
-    }
-    public static function HAMSTERV1(): Name
-    {
-        if (!isset(self::$HAMSTERV1)) {
-            self::$HAMSTERV1 = new Name('hamsterv1');
-        }
-        return self::$HAMSTERV1;
     }
 }

@@ -574,7 +574,7 @@ class Storage extends Service
      * @param int $borderWidth
      * @param string $borderColor
      * @param int $borderRadius
-     * @param int $opacity
+     * @param float $opacity
      * @param int $rotation
      * @param string $background
      * @param ImageFormat $output
@@ -582,7 +582,7 @@ class Storage extends Service
      * @return string
 
      */
-    public function getFilePreview(string $bucketId, string $fileId, int $width = null, int $height = null, ImageGravity $gravity = null, int $quality = null, int $borderWidth = null, string $borderColor = null, int $borderRadius = null, int $opacity = null, int $rotation = null, string $background = null, ImageFormat $output = null): string
+    public function getFilePreview(string $bucketId, string $fileId, int $width = null, int $height = null, ImageGravity $gravity = null, int $quality = null, int $borderWidth = null, string $borderColor = null, int $borderRadius = null, float $opacity = null, int $rotation = null, string $background = null, ImageFormat $output = null): string
     {
         $apiPath = str_replace(['{bucketId}', '{fileId}'], [$bucketId, $fileId], '/storage/buckets/{bucketId}/files/{fileId}/preview');
 

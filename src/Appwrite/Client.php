@@ -37,11 +37,11 @@ class Client
      */
     protected $headers = [
         'content-type' => '',
-        'user-agent' => 'AppwritePHPSDK/11.0.2 ()',
+        'user-agent' => 'AppwritePHPSDK/11.0.3 ()',
         'x-sdk-name'=> 'PHP',
         'x-sdk-platform'=> 'server',
         'x-sdk-language'=> 'php',
-        'x-sdk-version'=> '11.0.2',
+        'x-sdk-version'=> '11.0.3',
     ];
 
     /**
@@ -249,6 +249,13 @@ class Client
         $responseBody   = curl_exec($ch);
         $contentType    = $responseHeaders['content-type'] ?? '';
         $responseStatus = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+        $warnings = $responseHeaders['x-appwrite-warning'] ?? '';
+        if ($warnings) {
+            foreach(explode(';', $warnings) as $warning) {
+                echo 'Warning: ' . $warning . PHP_EOL;
+            }
+        }
         
         switch(substr($contentType, 0, strpos($contentType, ';'))) {
             case 'application/json':
