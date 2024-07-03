@@ -73,7 +73,7 @@ DELETE https://cloud.appwrite.io/v1/account/identities/{identityId}
 ## Create JWT
 
 ```http request
-POST https://cloud.appwrite.io/v1/account/jwt
+POST https://cloud.appwrite.io/v1/account/jwts
 ```
 
 ** Use this endpoint to create a JSON Web Token. You can use the resulting JWT to authenticate on behalf of the current user when working with the Appwrite server-side API and SDKs. The JWT secret is valid for 15 minutes from its creation and will be invalid if the user will logout in that time frame. **
@@ -126,7 +126,7 @@ POST https://cloud.appwrite.io/v1/account/mfa/authenticators/{type}
 PUT https://cloud.appwrite.io/v1/account/mfa/authenticators/{type}
 ```
 
-** Verify an authenticator app after adding it using the [add authenticator](/docs/references/cloud/client-web/account#createMfaAuthenticator) method. add  **
+** Verify an authenticator app after adding it using the [add authenticator](/docs/references/cloud/client-web/account#createMfaAuthenticator) method. **
 
 ### Parameters
 

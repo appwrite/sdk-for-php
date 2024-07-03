@@ -679,6 +679,44 @@ class Users extends Service
     }
 
     /**
+     * Create user JWT
+     *
+     * Use this endpoint to create a JSON Web Token for user by its unique ID. You
+     * can use the resulting JWT to authenticate on behalf of the user. The JWT
+     * secret will become invalid if the session it uses gets deleted.
+     *
+     * @param string $userId
+     * @param string $sessionId
+     * @param int $duration
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function createJWT(string $userId, string $sessionId = null, int $duration = null): array
+    {
+        $apiPath = str_replace(['{userId}'], [$userId], '/users/{userId}/jwts');
+
+        $apiParams = [];
+        if (!isset($userId)) {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+        if (!is_null($sessionId)) {
+            $apiParams['sessionId'] = $sessionId;
+        }
+        if (!is_null($duration)) {
+            $apiParams['duration'] = $duration;
+        }
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
+    }
+
+    /**
      * Update user labels
      *
      * Update the user labels by its unique ID. 

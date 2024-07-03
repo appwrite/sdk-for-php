@@ -68,6 +68,7 @@ class Functions extends Service
      * @param bool $logging
      * @param string $entrypoint
      * @param string $commands
+     * @param array $scopes
      * @param string $installationId
      * @param string $providerRepositoryId
      * @param string $providerBranch
@@ -81,7 +82,7 @@ class Functions extends Service
      * @return array
 
      */
-    public function create(string $functionId, string $name, Runtime $runtime, array $execute = null, array $events = null, string $schedule = null, int $timeout = null, bool $enabled = null, bool $logging = null, string $entrypoint = null, string $commands = null, string $installationId = null, string $providerRepositoryId = null, string $providerBranch = null, bool $providerSilentMode = null, string $providerRootDirectory = null, string $templateRepository = null, string $templateOwner = null, string $templateRootDirectory = null, string $templateBranch = null): array
+    public function create(string $functionId, string $name, Runtime $runtime, array $execute = null, array $events = null, string $schedule = null, int $timeout = null, bool $enabled = null, bool $logging = null, string $entrypoint = null, string $commands = null, array $scopes = null, string $installationId = null, string $providerRepositoryId = null, string $providerBranch = null, bool $providerSilentMode = null, string $providerRootDirectory = null, string $templateRepository = null, string $templateOwner = null, string $templateRootDirectory = null, string $templateBranch = null): array
     {
         $apiPath = str_replace([], [], '/functions');
 
@@ -127,6 +128,9 @@ class Functions extends Service
         }
         if (!is_null($commands)) {
             $apiParams['commands'] = $commands;
+        }
+        if (!is_null($scopes)) {
+            $apiParams['scopes'] = $scopes;
         }
         if (!is_null($installationId)) {
             $apiParams['installationId'] = $installationId;
@@ -233,6 +237,7 @@ class Functions extends Service
      * @param bool $logging
      * @param string $entrypoint
      * @param string $commands
+     * @param array $scopes
      * @param string $installationId
      * @param string $providerRepositoryId
      * @param string $providerBranch
@@ -242,7 +247,7 @@ class Functions extends Service
      * @return array
 
      */
-    public function update(string $functionId, string $name, Runtime $runtime = null, array $execute = null, array $events = null, string $schedule = null, int $timeout = null, bool $enabled = null, bool $logging = null, string $entrypoint = null, string $commands = null, string $installationId = null, string $providerRepositoryId = null, string $providerBranch = null, bool $providerSilentMode = null, string $providerRootDirectory = null): array
+    public function update(string $functionId, string $name, Runtime $runtime = null, array $execute = null, array $events = null, string $schedule = null, int $timeout = null, bool $enabled = null, bool $logging = null, string $entrypoint = null, string $commands = null, array $scopes = null, string $installationId = null, string $providerRepositoryId = null, string $providerBranch = null, bool $providerSilentMode = null, string $providerRootDirectory = null): array
     {
         $apiPath = str_replace(['{functionId}'], [$functionId], '/functions/{functionId}');
 
@@ -282,6 +287,9 @@ class Functions extends Service
         }
         if (!is_null($commands)) {
             $apiParams['commands'] = $commands;
+        }
+        if (!is_null($scopes)) {
+            $apiParams['scopes'] = $scopes;
         }
         if (!is_null($installationId)) {
             $apiParams['installationId'] = $installationId;
@@ -595,10 +603,7 @@ class Functions extends Service
     }
 
     /**
-     * Create build
-     *
-     * Create a new build for an Appwrite Function deployment. This endpoint can
-     * be used to retry a failed build.
+     * Rebuild deployment
      *
      * @param string $functionId
      * @param string $deploymentId
@@ -607,9 +612,9 @@ class Functions extends Service
      * @return string
 
      */
-    public function createBuild(string $functionId, string $deploymentId, string $buildId): string
+    public function createBuild(string $functionId, string $deploymentId, string $buildId = null): string
     {
-        $apiPath = str_replace(['{functionId}', '{deploymentId}', '{buildId}'], [$functionId, $deploymentId, $buildId], '/functions/{functionId}/deployments/{deploymentId}/builds/{buildId}');
+        $apiPath = str_replace(['{functionId}', '{deploymentId}'], [$functionId, $deploymentId], '/functions/{functionId}/deployments/{deploymentId}/build');
 
         $apiParams = [];
         if (!isset($functionId)) {
@@ -618,11 +623,41 @@ class Functions extends Service
         if (!isset($deploymentId)) {
             throw new AppwriteException('Missing required parameter: "deploymentId"');
         }
-        if (!isset($buildId)) {
-            throw new AppwriteException('Missing required parameter: "buildId"');
+        if (!is_null($buildId)) {
+            $apiParams['buildId'] = $buildId;
         }
         return $this->client->call(
             Client::METHOD_POST,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
+    }
+
+    /**
+     * Cancel deployment
+     *
+     * @param string $functionId
+     * @param string $deploymentId
+     * @throws AppwriteException
+     * @return array
+
+     */
+    public function updateDeploymentBuild(string $functionId, string $deploymentId): array
+    {
+        $apiPath = str_replace(['{functionId}', '{deploymentId}'], [$functionId, $deploymentId], '/functions/{functionId}/deployments/{deploymentId}/build');
+
+        $apiParams = [];
+        if (!isset($functionId)) {
+            throw new AppwriteException('Missing required parameter: "functionId"');
+        }
+        if (!isset($deploymentId)) {
+            throw new AppwriteException('Missing required parameter: "deploymentId"');
+        }
+        return $this->client->call(
+            Client::METHOD_PATCH,
             $apiPath,
             [
                 'content-type' => 'application/json',
@@ -715,11 +750,12 @@ class Functions extends Service
      * @param string $xpath
      * @param ExecutionMethod $method
      * @param array $headers
+     * @param string $scheduledAt
      * @throws AppwriteException
      * @return array
 
      */
-    public function createExecution(string $functionId, string $body = null, bool $async = null, string $xpath = null, ExecutionMethod $method = null, array $headers = null): array
+    public function createExecution(string $functionId, string $body = null, bool $async = null, string $xpath = null, ExecutionMethod $method = null, array $headers = null, string $scheduledAt = null): array
     {
         $apiPath = str_replace(['{functionId}'], [$functionId], '/functions/{functionId}/executions');
 
@@ -741,6 +777,9 @@ class Functions extends Service
         }
         if (!is_null($headers)) {
             $apiParams['headers'] = $headers;
+        }
+        if (!is_null($scheduledAt)) {
+            $apiParams['scheduledAt'] = $scheduledAt;
         }
         return $this->client->call(
             Client::METHOD_POST,
@@ -776,6 +815,39 @@ class Functions extends Service
         }
         return $this->client->call(
             Client::METHOD_GET,
+            $apiPath,
+            [
+                'content-type' => 'application/json',
+            ],
+            $apiParams
+        );
+    }
+
+    /**
+     * Delete execution
+     *
+     * Delete a function execution by its unique ID.
+     * 
+     *
+     * @param string $functionId
+     * @param string $executionId
+     * @throws AppwriteException
+     * @return string
+
+     */
+    public function deleteExecution(string $functionId, string $executionId): string
+    {
+        $apiPath = str_replace(['{functionId}', '{executionId}'], [$functionId, $executionId], '/functions/{functionId}/executions/{executionId}');
+
+        $apiParams = [];
+        if (!isset($functionId)) {
+            throw new AppwriteException('Missing required parameter: "functionId"');
+        }
+        if (!isset($executionId)) {
+            throw new AppwriteException('Missing required parameter: "executionId"');
+        }
+        return $this->client->call(
+            Client::METHOD_DELETE,
             $apiPath,
             [
                 'content-type' => 'application/json',

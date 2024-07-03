@@ -212,7 +212,7 @@ class Account extends Service
      */
     public function createJWT(): array
     {
-        $apiPath = str_replace([], [], '/account/jwt');
+        $apiPath = str_replace([], [], '/account/jwts');
 
         $apiParams = [];
         return $this->client->call(
@@ -321,7 +321,7 @@ class Account extends Service
      *
      * Verify an authenticator app after adding it using the [add
      * authenticator](/docs/references/cloud/client-web/account#createMfaAuthenticator)
-     * method. add 
+     * method.
      *
      * @param AuthenticatorType $type
      * @param string $otp

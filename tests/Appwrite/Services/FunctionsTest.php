@@ -46,6 +46,7 @@ final class FunctionsTest extends TestCase {
             "logging" => true,
             "runtime" => "python-3.8",
             "deployment" => "5e5ea5c16897e",
+            "scopes" => array(),
             "vars" => array(),
             "events" => array(),
             "schedule" => "5 4 * * *",
@@ -103,6 +104,7 @@ final class FunctionsTest extends TestCase {
             "logging" => true,
             "runtime" => "python-3.8",
             "deployment" => "5e5ea5c16897e",
+            "scopes" => array(),
             "vars" => array(),
             "events" => array(),
             "schedule" => "5 4 * * *",
@@ -141,6 +143,7 @@ final class FunctionsTest extends TestCase {
             "logging" => true,
             "runtime" => "python-3.8",
             "deployment" => "5e5ea5c16897e",
+            "scopes" => array(),
             "vars" => array(),
             "events" => array(),
             "schedule" => "5 4 * * *",
@@ -295,6 +298,7 @@ final class FunctionsTest extends TestCase {
             "logging" => true,
             "runtime" => "python-3.8",
             "deployment" => "5e5ea5c16897e",
+            "scopes" => array(),
             "vars" => array(),
             "events" => array(),
             "schedule" => "5 4 * * *",
@@ -349,8 +353,33 @@ final class FunctionsTest extends TestCase {
 
         $response = $this->functions->createBuild(
             "<FUNCTION_ID>",
-            "<DEPLOYMENT_ID>",
-            "<BUILD_ID>"
+            "<DEPLOYMENT_ID>"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodUpdateDeploymentBuild(): void {
+
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "deploymentId" => "5e5ea5c16897e",
+            "status" => "ready",
+            "stdout" => "",
+            "stderr" => "",
+            "startTime" => "2020-10-15T06:38:00.000+00:00",
+            "endTime" => "2020-10-15T06:38:00.000+00:00",
+            "duration" => 0,
+            "size" => 128,);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->functions->updateDeploymentBuild(
+            "<FUNCTION_ID>",
+            "<DEPLOYMENT_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -449,6 +478,23 @@ final class FunctionsTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->functions->getExecution(
+            "<FUNCTION_ID>",
+            "<EXECUTION_ID>"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodDeleteExecution(): void {
+
+        $data = '';
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->functions->deleteExecution(
             "<FUNCTION_ID>",
             "<EXECUTION_ID>"
         );
