@@ -106,7 +106,7 @@ PATCH https://cloud.appwrite.io/v1/account/mfa
 | --- | --- | --- | --- |
 | mfa | boolean | Enable or disable MFA. |  |
 
-## Add Authenticator
+## Create Authenticator
 
 ```http request
 POST https://cloud.appwrite.io/v1/account/mfa/authenticators/{type}
@@ -148,9 +148,8 @@ DELETE https://cloud.appwrite.io/v1/account/mfa/authenticators/{type}
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | type | string | **Required** Type of authenticator. |  |
-| otp | string | Valid verification token. |  |
 
-## Create 2FA Challenge
+## Create MFA Challenge
 
 ```http request
 POST https://cloud.appwrite.io/v1/account/mfa/challenge
@@ -562,7 +561,7 @@ POST https://cloud.appwrite.io/v1/account/verification/phone
 
 ** Use this endpoint to send a verification SMS to the currently logged in user. This endpoint is meant for use after updating a user&#039;s phone number using the [accountUpdatePhone](https://appwrite.io/docs/references/cloud/client-web/account#updatePhone) endpoint. Learn more about how to [complete the verification process](https://appwrite.io/docs/references/cloud/client-web/account#updatePhoneVerification). The verification code sent to the user&#039;s phone number is valid for 15 minutes. **
 
-## Create phone verification (confirmation)
+## Update phone verification (confirmation)
 
 ```http request
 PUT https://cloud.appwrite.io/v1/account/verification/phone
