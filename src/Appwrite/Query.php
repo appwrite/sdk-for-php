@@ -1,0 +1,297 @@
+<?php
+
+namespace Appwrite;
+
+class Query implements \JsonSerializable
+{
+    protected string $method;
+    protected ?string $attribute;
+    protected ?array $values;
+
+    public function __construct(string $method, ?string $attribute = null, $values = null)
+    {
+        $this->method = $method;
+        $this->attribute = $attribute;
+        
+        if (is_null($values) || is_array($values)) {
+            $this->values = $values;
+        } else {
+            $this->values = [$values];
+        }
+
+    }
+
+    public function __toString(): string
+    {
+        return json_encode($this);
+    }
+
+    public function jsonSerialize(): mixed
+    {
+        return array_filter([
+            'method' => $this->method,
+            'attribute' => $this->attribute,
+            'values' => $this->values,
+        ]);
+    }
+
+    /**
+     * Equal
+     *
+     * @param string $attribute
+     * @param mixed $value
+     * @return string
+     */
+    public static function equal(string $attribute, mixed $value): string
+    {
+        return (new Query('equal', $attribute, $value))->__toString();
+    }
+
+    /**
+     * Not Equal
+     *
+     * @param string $attribute
+     * @param mixed $value
+     * @return string
+     */
+    public static function notEqual(string $attribute, mixed $value): string
+    {
+        return (new Query('notEqual', $attribute, $value))->__toString();
+    }
+
+    /**
+     * Less Than
+     *
+     * @param string $attribute
+     * @param mixed $value
+     * @return string
+     */
+    public static function lessThan(string $attribute, mixed $value): string
+    {
+        return (new Query('lessThan', $attribute, $value))->__toString();
+    }
+
+    /**
+     * Less Than or Equal
+     *
+     * @param string $attribute
+     * @param mixed $value
+     * @return string
+     */
+    public static function lessThanEqual(string $attribute, mixed $value): string
+    {
+        return (new Query('lessThanEqual', $attribute, $value))->__toString();
+    }
+
+    /**
+     * Greater Than
+     *
+     * @param string $attribute
+     * @param mixed $value
+     * @return string
+     */
+    public static function greaterThan(string $attribute, mixed $value): string
+    {
+        return (new Query('greaterThan', $attribute, $value))->__toString();
+    }
+
+    /**
+     * Greater Than or Equal
+     *
+     * @param string $attribute
+     * @param mixed $value
+     * @return string
+     */
+    public static function greaterThanEqual(string $attribute, mixed $value): string
+    {
+        return (new Query('greaterThanEqual', $attribute, $value))->__toString();
+    }
+
+    /**
+     * Search
+     *
+     * @param string $attribute
+     * @param string $value
+     * @return string
+     */
+    public static function search(string $attribute, string $value): string
+    {
+        return (new Query('search', $attribute, $value))->__toString();
+    }
+
+    /**
+     * Is Null
+     *
+     * @param string $attribute
+     * @return string
+     */
+    public static function isNull(string $attribute): string
+    {
+        return (new Query('isNull', $attribute, null))->__toString();
+    }
+
+    /**
+     * Is Not Null
+     *
+     * @param string $attribute
+     * @return string
+     */
+    public static function isNotNull(string $attribute): string
+    {
+        return (new Query('isNotNull', $attribute, null))->__toString();
+    }
+
+    /**
+     * Between
+     *
+     * @param string $attribute
+     * @param string|int|float $start
+     * @param string|int|float $end
+     * @return string
+     */
+    public static function between(string $attribute, mixed $start, mixed $end): string
+    {
+        return (new Query('between', $attribute, [$start, $end]))->__toString();
+    }
+
+    /**
+     * Starts With
+     *
+     * @param string $attribute
+     * @param string $value
+     * @return string
+     */
+    public static function startsWith(string $attribute, string $value): string
+    {
+        return (new Query('startsWith', $attribute, $value))->__toString();
+    }
+
+    /**
+     * Ends With
+     *
+     * @param string $attribute
+     * @param string $value
+     * @return string
+     */
+    public static function endsWith(string $attribute, string $value): string
+    {
+        return (new Query('endsWith', $attribute, $value))->__toString();
+    }
+
+    /**
+     * Select
+     *
+     * @param array<string> $attributes
+     * @return string
+     */
+    public static function select(array $attributes): string
+    {
+        return (new Query('select', null, $attributes))->__toString();
+    }
+
+    /**
+     * Cursor After
+     *
+     * @param string $documentId
+     * @return string
+     */
+    public static function cursorAfter(string $documentId): string
+    {
+        return (new Query('cursorAfter', null, $documentId))->__toString();
+    }
+
+    /**
+     * Cursor Before
+     *
+     * @param string $documentId
+     * @return string
+     */
+    public static function cursorBefore(string $documentId): string
+    {
+        return (new Query('cursorBefore', null, $documentId))->__toString();
+    }
+
+    /**
+     * Order Asc
+     *
+     * @param string $attribute
+     * @return string
+     */
+    public static function orderAsc(string $attribute): string
+    {
+        return (new Query('orderAsc', $attribute, null))->__toString();
+    }
+
+    /**
+     * Order Desc
+     *
+     * @param string $attribute
+     * @return string
+     */
+    public static function orderDesc(string $attribute): string
+    {
+        return (new Query('orderDesc', $attribute, null))->__toString();
+    }
+
+    /**
+     * Limit
+     *
+     * @param int $limit
+     * @return string
+     */
+    public static function limit(int $limit): string
+    {
+        return (new Query('limit', null, $limit))->__toString();
+    }
+
+    /**
+     * Offset
+     *
+     * @param int $offset
+     * @return string
+     */
+    public static function offset(int $offset): string
+    {
+        return (new Query('offset', null, $offset))->__toString();
+    }
+
+    /**
+     * Contains
+     *
+     * @param string $attribute
+     * @param mixed $value
+     * @return string
+     */
+    public static function contains(string $attribute, $value): string
+    {
+        return (new Query('contains', $attribute, $value))->__toString();
+    }
+
+    /**
+     * Or
+     *
+     * @param array<string> $queries
+     * @return string
+     */
+    public static function or(array $queries): string
+    {
+        foreach ($queries as &$query) {
+            $query = \json_decode($query, true);
+        }
+        return (new Query('or', null, $queries))->__toString();
+    }
+
+    /**
+     * And
+     *
+     * @param array<string> $queries
+     * @return string
+     */
+    public static function and(array $queries): string
+    {
+        foreach ($queries as &$query) {
+            $query = \json_decode($query, true);
+        }
+        return (new Query('and', null, $queries))->__toString();
+    }
+}
