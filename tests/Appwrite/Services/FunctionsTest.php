@@ -58,7 +58,8 @@ final class FunctionsTest extends TestCase {
             "providerRepositoryId" => "appwrite",
             "providerBranch" => "main",
             "providerRootDirectory" => "functions/helloWorld",
-            "providerSilentMode" => true,);
+            "providerSilentMode" => true,
+            "specification" => "s-0.5vcpu-512mb",);
 
 
         $this->client
@@ -86,6 +87,23 @@ final class FunctionsTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->functions->listRuntimes(
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodListSpecifications(): void {
+
+        $data = array(
+            "total" => 5,
+            "specifications" => array(),);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->functions->listSpecifications(
         );
 
         $this->assertSame($data, $response);
@@ -166,7 +184,8 @@ final class FunctionsTest extends TestCase {
             "providerRepositoryId" => "appwrite",
             "providerBranch" => "main",
             "providerRootDirectory" => "functions/helloWorld",
-            "providerSilentMode" => true,);
+            "providerSilentMode" => true,
+            "specification" => "s-0.5vcpu-512mb",);
 
 
         $this->client
@@ -205,7 +224,8 @@ final class FunctionsTest extends TestCase {
             "providerRepositoryId" => "appwrite",
             "providerBranch" => "main",
             "providerRootDirectory" => "functions/helloWorld",
-            "providerSilentMode" => true,);
+            "providerSilentMode" => true,
+            "specification" => "s-0.5vcpu-512mb",);
 
 
         $this->client
@@ -360,7 +380,8 @@ final class FunctionsTest extends TestCase {
             "providerRepositoryId" => "appwrite",
             "providerBranch" => "main",
             "providerRootDirectory" => "functions/helloWorld",
-            "providerSilentMode" => true,);
+            "providerSilentMode" => true,
+            "specification" => "s-0.5vcpu-512mb",);
 
 
         $this->client

@@ -85,10 +85,11 @@ class Functions extends Service
      * @param ?string $templateOwner
      * @param ?string $templateRootDirectory
      * @param ?string $templateVersion
+     * @param ?string $specification
      * @throws AppwriteException
      * @return array
      */
-    public function create(string $functionId, string $name, Runtime $runtime, ?array $execute = null, ?array $events = null, ?string $schedule = null, ?int $timeout = null, ?bool $enabled = null, ?bool $logging = null, ?string $entrypoint = null, ?string $commands = null, ?array $scopes = null, ?string $installationId = null, ?string $providerRepositoryId = null, ?string $providerBranch = null, ?bool $providerSilentMode = null, ?string $providerRootDirectory = null, ?string $templateRepository = null, ?string $templateOwner = null, ?string $templateRootDirectory = null, ?string $templateVersion = null): array
+    public function create(string $functionId, string $name, Runtime $runtime, ?array $execute = null, ?array $events = null, ?string $schedule = null, ?int $timeout = null, ?bool $enabled = null, ?bool $logging = null, ?string $entrypoint = null, ?string $commands = null, ?array $scopes = null, ?string $installationId = null, ?string $providerRepositoryId = null, ?string $providerBranch = null, ?bool $providerSilentMode = null, ?string $providerRootDirectory = null, ?string $templateRepository = null, ?string $templateOwner = null, ?string $templateRootDirectory = null, ?string $templateVersion = null, ?string $specification = null): array
     {
         $apiPath = str_replace(
             [],
@@ -173,6 +174,10 @@ class Functions extends Service
             $apiParams['templateVersion'] = $templateVersion;
         }
 
+        if (!is_null($specification)) {
+            $apiParams['specification'] = $specification;
+        }
+
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
@@ -198,6 +203,36 @@ class Functions extends Service
             [],
             [],
             '/functions/runtimes'
+        );
+
+        $apiParams = [];
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * List available function runtime specifications
+     *
+     * List allowed function specifications for this instance.
+     * 
+     *
+     * @throws AppwriteException
+     * @return array
+     */
+    public function listSpecifications(): array
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/functions/specifications'
         );
 
         $apiParams = [];
@@ -350,10 +385,11 @@ class Functions extends Service
      * @param ?string $providerBranch
      * @param ?bool $providerSilentMode
      * @param ?string $providerRootDirectory
+     * @param ?string $specification
      * @throws AppwriteException
      * @return array
      */
-    public function update(string $functionId, string $name, ?Runtime $runtime = null, ?array $execute = null, ?array $events = null, ?string $schedule = null, ?int $timeout = null, ?bool $enabled = null, ?bool $logging = null, ?string $entrypoint = null, ?string $commands = null, ?array $scopes = null, ?string $installationId = null, ?string $providerRepositoryId = null, ?string $providerBranch = null, ?bool $providerSilentMode = null, ?string $providerRootDirectory = null): array
+    public function update(string $functionId, string $name, ?Runtime $runtime = null, ?array $execute = null, ?array $events = null, ?string $schedule = null, ?int $timeout = null, ?bool $enabled = null, ?bool $logging = null, ?string $entrypoint = null, ?string $commands = null, ?array $scopes = null, ?string $installationId = null, ?string $providerRepositoryId = null, ?string $providerBranch = null, ?bool $providerSilentMode = null, ?string $providerRootDirectory = null, ?string $specification = null): array
     {
         $apiPath = str_replace(
             ['{functionId}'],
@@ -420,6 +456,10 @@ class Functions extends Service
 
         if (!is_null($providerRootDirectory)) {
             $apiParams['providerRootDirectory'] = $providerRootDirectory;
+        }
+
+        if (!is_null($specification)) {
+            $apiParams['specification'] = $specification;
         }
 
         $apiHeaders = [];
@@ -887,7 +927,7 @@ class Functions extends Service
      * @throws AppwriteException
      * @return array
      */
-    public function createExecution(string $functionId, ?string $body = null, ?bool $async = null, ?string $xpath = null, ?ExecutionMethod $method = null, ?array $headers = null, ?string $scheduledAt = null, callable $onProgress = null): array
+    public function createExecution(string $functionId, ?string $body = null, ?bool $async = null, ?string $xpath = null, ?ExecutionMethod $method = null, ?array $headers = null, ?string $scheduledAt = null): array
     {
         $apiPath = str_replace(
             ['{functionId}'],
@@ -923,8 +963,14 @@ class Functions extends Service
         }
 
         $apiHeaders = [];
-        $apiHeaders['content-type'] = 'multipart/form-data';
+        $apiHeaders['content-type'] = 'application/json';
 
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
     }
 
     /**

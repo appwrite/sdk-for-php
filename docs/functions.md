@@ -48,6 +48,7 @@ POST https://cloud.appwrite.io/v1/functions
 | templateOwner | string | The name of the owner of the template. |  |
 | templateRootDirectory | string | Path to function code in the template repo. |  |
 | templateVersion | string | Version (tag) for the repo linked to the function template. |  |
+| specification | string | Runtime specification for the function and builds. | s-0.5vcpu-512mb |
 
 ## List runtimes
 
@@ -56,6 +57,15 @@ GET https://cloud.appwrite.io/v1/functions/runtimes
 ```
 
 ** Get a list of all runtimes that are currently active on your instance. **
+
+## List available function runtime specifications
+
+```http request
+GET https://cloud.appwrite.io/v1/functions/specifications
+```
+
+** List allowed function specifications for this instance.
+ **
 
 ## List function templates
 
@@ -131,6 +141,7 @@ PUT https://cloud.appwrite.io/v1/functions/{functionId}
 | providerBranch | string | Production branch for the repo linked to the function |  |
 | providerSilentMode | boolean | Is the VCS (Version Control System) connection in silent mode for the repo linked to the function? In silent mode, comments will not be made on commits and pull requests. |  |
 | providerRootDirectory | string | Path to function code in the linked repo. |  |
+| specification | string | Runtime specification for the function and builds. | s-0.5vcpu-512mb |
 
 ## Delete function
 
