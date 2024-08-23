@@ -51,7 +51,7 @@ class Runtime implements JsonSerializable
     private static Runtime $CPP17;
     private static Runtime $CPP20;
     private static Runtime $BUN10;
-    private static Runtime $GO122;
+    private static Runtime $GO123;
 
     private string $value;
 
@@ -385,11 +385,11 @@ class Runtime implements JsonSerializable
         }
         return self::$BUN10;
     }
-    public static function GO122(): Runtime
+    public static function GO123(): Runtime
     {
-        if (!isset(self::$GO122)) {
-            self::$GO122 = new Runtime('go-1.22');
+        if (!isset(self::$GO123)) {
+            self::$GO123 = new Runtime('go-1.23');
         }
-        return self::$GO122;
+        return self::$GO123;
     }
 }
