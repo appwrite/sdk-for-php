@@ -46,6 +46,7 @@ final class FunctionsTest extends TestCase {
             "logging" => true,
             "runtime" => "python-3.8",
             "deployment" => "5e5ea5c16897e",
+            "scopes" => array(),
             "vars" => array(),
             "events" => array(),
             "schedule" => "5 4 * * *",
@@ -57,7 +58,8 @@ final class FunctionsTest extends TestCase {
             "providerRepositoryId" => "appwrite",
             "providerBranch" => "main",
             "providerRootDirectory" => "functions/helloWorld",
-            "providerSilentMode" => true,);
+            "providerSilentMode" => true,
+            "specification" => "s-0.5vcpu-512mb",);
 
 
         $this->client
@@ -90,6 +92,23 @@ final class FunctionsTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
+    public function testMethodListSpecifications(): void {
+
+        $data = array(
+            "total" => 5,
+            "specifications" => array(),);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->functions->listSpecifications(
+        );
+
+        $this->assertSame($data, $response);
+    }
+
     public function testMethodGet(): void {
 
         $data = array(
@@ -103,6 +122,7 @@ final class FunctionsTest extends TestCase {
             "logging" => true,
             "runtime" => "python-3.8",
             "deployment" => "5e5ea5c16897e",
+            "scopes" => array(),
             "vars" => array(),
             "events" => array(),
             "schedule" => "5 4 * * *",
@@ -114,7 +134,8 @@ final class FunctionsTest extends TestCase {
             "providerRepositoryId" => "appwrite",
             "providerBranch" => "main",
             "providerRootDirectory" => "functions/helloWorld",
-            "providerSilentMode" => true,);
+            "providerSilentMode" => true,
+            "specification" => "s-0.5vcpu-512mb",);
 
 
         $this->client
@@ -141,6 +162,7 @@ final class FunctionsTest extends TestCase {
             "logging" => true,
             "runtime" => "python-3.8",
             "deployment" => "5e5ea5c16897e",
+            "scopes" => array(),
             "vars" => array(),
             "events" => array(),
             "schedule" => "5 4 * * *",
@@ -152,7 +174,8 @@ final class FunctionsTest extends TestCase {
             "providerRepositoryId" => "appwrite",
             "providerBranch" => "main",
             "providerRootDirectory" => "functions/helloWorld",
-            "providerSilentMode" => true,);
+            "providerSilentMode" => true,
+            "specification" => "s-0.5vcpu-512mb",);
 
 
         $this->client
@@ -212,6 +235,7 @@ final class FunctionsTest extends TestCase {
             "resourceType" => "functions",
             "entrypoint" => "index.js",
             "size" => 128,
+            "buildSize" => 128,
             "buildId" => "5e5ea5c16897e",
             "activate" => true,
             "status" => "ready",
@@ -253,6 +277,7 @@ final class FunctionsTest extends TestCase {
             "resourceType" => "functions",
             "entrypoint" => "index.js",
             "size" => 128,
+            "buildSize" => 128,
             "buildId" => "5e5ea5c16897e",
             "activate" => true,
             "status" => "ready",
@@ -295,6 +320,7 @@ final class FunctionsTest extends TestCase {
             "logging" => true,
             "runtime" => "python-3.8",
             "deployment" => "5e5ea5c16897e",
+            "scopes" => array(),
             "vars" => array(),
             "events" => array(),
             "schedule" => "5 4 * * *",
@@ -306,7 +332,8 @@ final class FunctionsTest extends TestCase {
             "providerRepositoryId" => "appwrite",
             "providerBranch" => "main",
             "providerRootDirectory" => "functions/helloWorld",
-            "providerSilentMode" => true,);
+            "providerSilentMode" => true,
+            "specification" => "s-0.5vcpu-512mb",);
 
 
         $this->client
@@ -349,14 +376,39 @@ final class FunctionsTest extends TestCase {
 
         $response = $this->functions->createBuild(
             "<FUNCTION_ID>",
-            "<DEPLOYMENT_ID>",
-            "<BUILD_ID>"
+            "<DEPLOYMENT_ID>"
         );
 
         $this->assertSame($data, $response);
     }
 
-    public function testMethodDownloadDeployment(): void {
+    public function testMethodUpdateDeploymentBuild(): void {
+
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "deploymentId" => "5e5ea5c16897e",
+            "status" => "ready",
+            "stdout" => "",
+            "stderr" => "",
+            "startTime" => "2020-10-15T06:38:00.000+00:00",
+            "endTime" => "2020-10-15T06:38:00.000+00:00",
+            "duration" => 0,
+            "size" => 128,);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->functions->updateDeploymentBuild(
+            "<FUNCTION_ID>",
+            "<DEPLOYMENT_ID>"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodGetDeploymentDownload(): void {
 
         $data = '';
 
@@ -365,7 +417,7 @@ final class FunctionsTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->functions->downloadDeployment(
+        $response = $this->functions->getDeploymentDownload(
             "<FUNCTION_ID>",
             "<DEPLOYMENT_ID>"
         );
@@ -449,6 +501,23 @@ final class FunctionsTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->functions->getExecution(
+            "<FUNCTION_ID>",
+            "<EXECUTION_ID>"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodDeleteExecution(): void {
+
+        $data = '';
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->functions->deleteExecution(
             "<FUNCTION_ID>",
             "<EXECUTION_ID>"
         );

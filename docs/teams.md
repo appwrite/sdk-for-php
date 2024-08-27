@@ -114,7 +114,7 @@ Please note that to avoid a [Redirect Attack](https://github.com/OWASP/CheatShee
 | userId | string | ID of the user to be added to a team. |  |
 | phone | string | Phone number. Format this number with a leading '+' and a country code, e.g., +16175551212. |  |
 | roles | array | Array of strings. Use this param to set the user roles in the team. A role can be any string. Learn more about [roles and permissions](https://appwrite.io/docs/permissions). Maximum of 100 roles are allowed, each 32 characters long. |  |
-| url | string | URL to redirect the user back to your app from the invitation email.  Only URLs from hostnames in your project platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API. |  |
+| url | string | URL to redirect the user back to your app from the invitation email. This parameter is not required when an API key is supplied. Only URLs from hostnames in your project platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API. |  |
 | name | string | Name of the new team member. Max length: 128 chars. |  |
 
 ## Get team membership

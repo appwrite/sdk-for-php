@@ -273,8 +273,7 @@ final class AccountTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->account->deleteMfaAuthenticator(
-            "totp",
-            "<OTP>"
+            "totp"
         );
 
         $this->assertSame($data, $response);

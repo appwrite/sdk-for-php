@@ -14,42 +14,42 @@ class Client
     const METHOD_CONNECT = 'CONNECT';
     const METHOD_TRACE = 'TRACE';
 
-    const CHUNK_SIZE = 5*1024*1024;
+    const CHUNK_SIZE = 5 * 1024 * 1024;
 
     /**
      * Is Self Signed Certificates Allowed?
      *
      * @var bool
      */
-    protected $selfSigned = false;
+    protected bool $selfSigned = false;
 
     /**
      * Service host name
      *
      * @var string
      */
-    protected $endpoint = 'https://cloud.appwrite.io/v1';
+    protected string $endpoint = 'https://cloud.appwrite.io/v1';
 
     /**
      * Global Headers
      *
      * @var array
      */
-    protected $headers = [
+    protected array $headers = [
         'content-type' => '',
-        'user-agent' => 'AppwritePHPSDK/11.1.0 ()',
+        'user-agent' => 'AppwritePHPSDK/12.0.0 ()',
         'x-sdk-name'=> 'PHP',
         'x-sdk-platform'=> 'server',
         'x-sdk-language'=> 'php',
-        'x-sdk-version'=> '11.1.0',
+        'x-sdk-version'=> '12.0.0',
     ];
 
     /**
-     * SDK constructor.
+     * Client constructor.
      */
     public function __construct()
     {
-        $this->headers['X-Appwrite-Response-Format'] = '1.5.0';
+        $this->headers['X-Appwrite-Response-Format'] = '1.6.0';
  
     }
 
@@ -62,7 +62,7 @@ class Client
      *
      * @return Client
      */
-    public function setProject($value)
+    public function setProject(string $value): Client
     {
         $this->addHeader('X-Appwrite-Project', $value);
 
@@ -78,7 +78,7 @@ class Client
      *
      * @return Client
      */
-    public function setKey($value)
+    public function setKey(string $value): Client
     {
         $this->addHeader('X-Appwrite-Key', $value);
 
@@ -94,7 +94,7 @@ class Client
      *
      * @return Client
      */
-    public function setJWT($value)
+    public function setJWT(string $value): Client
     {
         $this->addHeader('X-Appwrite-JWT', $value);
 
@@ -108,7 +108,7 @@ class Client
      *
      * @return Client
      */
-    public function setLocale($value)
+    public function setLocale(string $value): Client
     {
         $this->addHeader('X-Appwrite-Locale', $value);
 
@@ -124,7 +124,7 @@ class Client
      *
      * @return Client
      */
-    public function setSession($value)
+    public function setSession(string $value): Client
     {
         $this->addHeader('X-Appwrite-Session', $value);
 
@@ -140,7 +140,7 @@ class Client
      *
      * @return Client
      */
-    public function setForwardedUserAgent($value)
+    public function setForwardedUserAgent(string $value): Client
     {
         $this->addHeader('X-Forwarded-User-Agent', $value);
 
@@ -152,7 +152,7 @@ class Client
      * @param bool $status
      * @return $this
      */
-    public function setSelfSigned($status = true)
+    public function setSelfSigned(bool $status = true): Client
     {
         $this->selfSigned = $status;
 
@@ -163,7 +163,7 @@ class Client
      * @param $endpoint
      * @return $this
      */
-    public function setEndpoint($endpoint)
+    public function setEndpoint(string $endpoint): Client
     {
         $this->endpoint = $endpoint;
 
@@ -174,7 +174,7 @@ class Client
      * @param $key
      * @param $value
      */
-    public function addHeader($key, $value)
+    public function addHeader(string $key, string $value): Client
     {
         $this->headers[strtolower($key)] = $value;
         
@@ -193,7 +193,13 @@ class Client
      * @return array|string
      * @throws AppwriteException
      */
-    public function call($method, $path = '', $headers = array(), array $params = array(), ?string $responseType = null)
+    public function call(
+        string $method,
+        string $path = '',
+        array $headers = [],
+        array $params = [],
+        ?string $responseType = null
+    )
     {
         $headers = array_merge($this->headers, $headers);
         $ch = curl_init($this->endpoint . $path . (($method == self::METHOD_GET && !empty($params)) ? '?' . http_build_query($params) : ''));
@@ -264,14 +270,14 @@ class Client
         }
 
         if (curl_errno($ch)) {
-            throw new AppwriteException(curl_error($ch), $responseStatus, $responseBody);
+            throw new AppwriteException(curl_error($ch), $responseStatus, $responseBody['type'] ?? '', $responseBody);
         }
         
         curl_close($ch);
 
         if($responseStatus >= 400) {
             if(is_array($responseBody)) {
-                throw new AppwriteException($responseBody['message'], $responseStatus, $responseBody['type'] ?? '', $responseBody);
+                throw new AppwriteException($responseBody['message'], $responseStatus, $responseBody['type'] ?? '', json_encode($responseBody));
             } else {
                 throw new AppwriteException($responseBody, $responseStatus);
             }
@@ -291,7 +297,7 @@ class Client
      * @param string $prefix
      * @return array
      */
-    protected function flatten(array $data, $prefix = '') {
+    protected function flatten(array $data, string $prefix = ''): array {
         $output = [];
 
         foreach($data as $key => $value) {
