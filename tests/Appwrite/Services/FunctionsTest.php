@@ -109,39 +109,6 @@ final class FunctionsTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
-    public function testMethodGetTemplate(): void {
-
-        $data = array(
-            "icon" => "icon-lightning-bolt",
-            "id" => "starter",
-            "name" => "Starter function",
-            "tagline" => "A simple function to get started.",
-            "permissions" => array(),
-            "events" => array(),
-            "cron" => "0 0 * * *",
-            "timeout" => 300,
-            "useCases" => array(),
-            "runtimes" => array(),
-            "instructions" => "For documentation and instructions check out <link>.",
-            "vcsProvider" => "github",
-            "providerRepositoryId" => "templates",
-            "providerOwner" => "appwrite",
-            "providerVersion" => "main",
-            "variables" => array(),
-            "scopes" => array(),);
-
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-
-        $response = $this->functions->getTemplate(
-            "<TEMPLATE_ID>"
-        );
-
-        $this->assertSame($data, $response);
-    }
-
     public function testMethodGet(): void {
 
         $data = array(

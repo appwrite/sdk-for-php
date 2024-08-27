@@ -67,20 +67,6 @@ GET https://cloud.appwrite.io/v1/functions/specifications
 ** List allowed function specifications for this instance.
  **
 
-## Get function template
-
-```http request
-GET https://cloud.appwrite.io/v1/functions/templates/{templateId}
-```
-
-** Get a function template using ID. You can use template details in [createFunction](/docs/references/cloud/server-nodejs/functions#create) method. **
-
-### Parameters
-
-| Field Name | Type | Description | Default |
-| --- | --- | --- | --- |
-| templateId | string | **Required** Template ID. |  |
-
 ## Get function
 
 ```http request

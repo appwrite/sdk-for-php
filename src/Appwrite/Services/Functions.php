@@ -249,39 +249,6 @@ class Functions extends Service
     }
 
     /**
-     * Get function template
-     *
-     * Get a function template using ID. You can use template details in
-     * [createFunction](/docs/references/cloud/server-nodejs/functions#create)
-     * method.
-     *
-     * @param string $templateId
-     * @throws AppwriteException
-     * @return array
-     */
-    public function getTemplate(string $templateId): array
-    {
-        $apiPath = str_replace(
-            ['{templateId}'],
-            [$templateId],
-            '/functions/templates/{templateId}'
-        );
-
-        $apiParams = [];
-        $apiParams['templateId'] = $templateId;
-
-        $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
-
-        return $this->client->call(
-            Client::METHOD_GET,
-            $apiPath,
-            $apiHeaders,
-            $apiParams
-        );
-    }
-
-    /**
      * Get function
      *
      * Get a function by its unique ID.
