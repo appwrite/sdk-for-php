@@ -249,57 +249,6 @@ class Functions extends Service
     }
 
     /**
-     * List function templates
-     *
-     * List available function templates. You can use template details in
-     * [createFunction](/docs/references/cloud/server-nodejs/functions#create)
-     * method.
-     *
-     * @param ?array $runtimes
-     * @param ?array $useCases
-     * @param ?int $limit
-     * @param ?int $offset
-     * @throws AppwriteException
-     * @return array
-     */
-    public function listTemplates(?array $runtimes = null, ?array $useCases = null, ?int $limit = null, ?int $offset = null): array
-    {
-        $apiPath = str_replace(
-            [],
-            [],
-            '/functions/templates'
-        );
-
-        $apiParams = [];
-
-        if (!is_null($runtimes)) {
-            $apiParams['runtimes'] = $runtimes;
-        }
-
-        if (!is_null($useCases)) {
-            $apiParams['useCases'] = $useCases;
-        }
-
-        if (!is_null($limit)) {
-            $apiParams['limit'] = $limit;
-        }
-
-        if (!is_null($offset)) {
-            $apiParams['offset'] = $offset;
-        }
-
-        $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
-
-        return $this->client->call(
-            Client::METHOD_GET,
-            $apiPath,
-            $apiHeaders,
-            $apiParams
-        );
-    }
-
-    /**
      * Get function template
      *
      * Get a function template using ID. You can use template details in

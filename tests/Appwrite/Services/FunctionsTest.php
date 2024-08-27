@@ -109,23 +109,6 @@ final class FunctionsTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
-    public function testMethodListTemplates(): void {
-
-        $data = array(
-            "total" => 5,
-            "templates" => array(),);
-
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-
-        $response = $this->functions->listTemplates(
-        );
-
-        $this->assertSame($data, $response);
-    }
-
     public function testMethodGetTemplate(): void {
 
         $data = array(
