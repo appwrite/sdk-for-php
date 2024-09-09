@@ -11,7 +11,7 @@ class Locale extends Service
 {
      public function __construct(Client $client)
      {
-          $this->client = $client;
+         parent::__construct($client);
      }
 
     /**
@@ -26,19 +26,24 @@ class Locale extends Service
      *
      * @throws AppwriteException
      * @return array
-
      */
     public function get(): array
     {
-        $apiPath = str_replace([], [], '/locale');
+        $apiPath = str_replace(
+            [],
+            [],
+            '/locale'
+        );
 
         $apiParams = [];
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
         return $this->client->call(
             Client::METHOD_GET,
             $apiPath,
-            [
-                'content-type' => 'application/json',
-            ],
+            $apiHeaders,
             $apiParams
         );
     }
@@ -51,19 +56,24 @@ class Locale extends Service
      *
      * @throws AppwriteException
      * @return array
-
      */
     public function listCodes(): array
     {
-        $apiPath = str_replace([], [], '/locale/codes');
+        $apiPath = str_replace(
+            [],
+            [],
+            '/locale/codes'
+        );
 
         $apiParams = [];
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
         return $this->client->call(
             Client::METHOD_GET,
             $apiPath,
-            [
-                'content-type' => 'application/json',
-            ],
+            $apiHeaders,
             $apiParams
         );
     }
@@ -76,19 +86,24 @@ class Locale extends Service
      *
      * @throws AppwriteException
      * @return array
-
      */
     public function listContinents(): array
     {
-        $apiPath = str_replace([], [], '/locale/continents');
+        $apiPath = str_replace(
+            [],
+            [],
+            '/locale/continents'
+        );
 
         $apiParams = [];
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
         return $this->client->call(
             Client::METHOD_GET,
             $apiPath,
-            [
-                'content-type' => 'application/json',
-            ],
+            $apiHeaders,
             $apiParams
         );
     }
@@ -101,19 +116,24 @@ class Locale extends Service
      *
      * @throws AppwriteException
      * @return array
-
      */
     public function listCountries(): array
     {
-        $apiPath = str_replace([], [], '/locale/countries');
+        $apiPath = str_replace(
+            [],
+            [],
+            '/locale/countries'
+        );
 
         $apiParams = [];
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
         return $this->client->call(
             Client::METHOD_GET,
             $apiPath,
-            [
-                'content-type' => 'application/json',
-            ],
+            $apiHeaders,
             $apiParams
         );
     }
@@ -126,19 +146,24 @@ class Locale extends Service
      *
      * @throws AppwriteException
      * @return array
-
      */
     public function listCountriesEU(): array
     {
-        $apiPath = str_replace([], [], '/locale/countries/eu');
+        $apiPath = str_replace(
+            [],
+            [],
+            '/locale/countries/eu'
+        );
 
         $apiParams = [];
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
         return $this->client->call(
             Client::METHOD_GET,
             $apiPath,
-            [
-                'content-type' => 'application/json',
-            ],
+            $apiHeaders,
             $apiParams
         );
     }
@@ -151,19 +176,24 @@ class Locale extends Service
      *
      * @throws AppwriteException
      * @return array
-
      */
     public function listCountriesPhones(): array
     {
-        $apiPath = str_replace([], [], '/locale/countries/phones');
+        $apiPath = str_replace(
+            [],
+            [],
+            '/locale/countries/phones'
+        );
 
         $apiParams = [];
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
         return $this->client->call(
             Client::METHOD_GET,
             $apiPath,
-            [
-                'content-type' => 'application/json',
-            ],
+            $apiHeaders,
             $apiParams
         );
     }
@@ -177,19 +207,24 @@ class Locale extends Service
      *
      * @throws AppwriteException
      * @return array
-
      */
     public function listCurrencies(): array
     {
-        $apiPath = str_replace([], [], '/locale/currencies');
+        $apiPath = str_replace(
+            [],
+            [],
+            '/locale/currencies'
+        );
 
         $apiParams = [];
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
         return $this->client->call(
             Client::METHOD_GET,
             $apiPath,
-            [
-                'content-type' => 'application/json',
-            ],
+            $apiHeaders,
             $apiParams
         );
     }
@@ -202,19 +237,24 @@ class Locale extends Service
      *
      * @throws AppwriteException
      * @return array
-
      */
     public function listLanguages(): array
     {
-        $apiPath = str_replace([], [], '/locale/languages');
+        $apiPath = str_replace(
+            [],
+            [],
+            '/locale/languages'
+        );
 
         $apiParams = [];
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
         return $this->client->call(
             Client::METHOD_GET,
             $apiPath,
-            [
-                'content-type' => 'application/json',
-            ],
+            $apiHeaders,
             $apiParams
         );
     }

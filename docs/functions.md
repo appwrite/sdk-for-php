@@ -38,6 +38,7 @@ POST https://cloud.appwrite.io/v1/functions
 | logging | boolean | Whether executions will be logged. When set to false, executions will not be logged, but will reduce resource used by your Appwrite project. | 1 |
 | entrypoint | string | Entrypoint File. This path is relative to the "providerRootDirectory". |  |
 | commands | string | Build Commands. |  |
+| scopes | array | List of scopes allowed for API key auto-generated for every execution. Maximum of 100 scopes are allowed. | [] |
 | installationId | string | Appwrite Installation ID for VCS (Version Control System) deployment. |  |
 | providerRepositoryId | string | Repository ID of the repo linked to the function. |  |
 | providerBranch | string | Production branch for the repo linked to the function. |  |
@@ -46,7 +47,8 @@ POST https://cloud.appwrite.io/v1/functions
 | templateRepository | string | Repository name of the template. |  |
 | templateOwner | string | The name of the owner of the template. |  |
 | templateRootDirectory | string | Path to function code in the template repo. |  |
-| templateBranch | string | Production branch for the repo linked to the function template. |  |
+| templateVersion | string | Version (tag) for the repo linked to the function template. |  |
+| specification | string | Runtime specification for the function and builds. | s-0.5vcpu-512mb |
 
 ## List runtimes
 
@@ -55,6 +57,15 @@ GET https://cloud.appwrite.io/v1/functions/runtimes
 ```
 
 ** Get a list of all runtimes that are currently active on your instance. **
+
+## List available function runtime specifications
+
+```http request
+GET https://cloud.appwrite.io/v1/functions/specifications
+```
+
+** List allowed function specifications for this instance.
+ **
 
 ## Get function
 
@@ -93,11 +104,13 @@ PUT https://cloud.appwrite.io/v1/functions/{functionId}
 | logging | boolean | Whether executions will be logged. When set to false, executions will not be logged, but will reduce resource used by your Appwrite project. | 1 |
 | entrypoint | string | Entrypoint File. This path is relative to the "providerRootDirectory". |  |
 | commands | string | Build Commands. |  |
+| scopes | array | List of scopes allowed for API Key auto-generated for every execution. Maximum of 100 scopes are allowed. | [] |
 | installationId | string | Appwrite Installation ID for VCS (Version Controle System) deployment. |  |
 | providerRepositoryId | string | Repository ID of the repo linked to the function |  |
 | providerBranch | string | Production branch for the repo linked to the function |  |
 | providerSilentMode | boolean | Is the VCS (Version Control System) connection in silent mode for the repo linked to the function? In silent mode, comments will not be made on commits and pull requests. |  |
 | providerRootDirectory | string | Path to function code in the linked repo. |  |
+| specification | string | Runtime specification for the function and builds. | s-0.5vcpu-512mb |
 
 ## Delete function
 
@@ -126,7 +139,7 @@ GET https://cloud.appwrite.io/v1/functions/{functionId}/deployments
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | functionId | string | **Required** Function ID. |  |
-| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: size, buildId, activate, entrypoint, commands | [] |
+| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: size, buildId, activate, entrypoint, commands, type, size | [] |
 | search | string | Search term to filter your list results. Max length: 256 chars. |  |
 
 ## Create deployment
@@ -166,7 +179,7 @@ GET https://cloud.appwrite.io/v1/functions/{functionId}/deployments/{deploymentI
 | functionId | string | **Required** Function ID. |  |
 | deploymentId | string | **Required** Deployment ID. |  |
 
-## Update function deployment
+## Update deployment
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/functions/{functionId}/deployments/{deploymentId}
@@ -196,13 +209,11 @@ DELETE https://cloud.appwrite.io/v1/functions/{functionId}/deployments/{deployme
 | functionId | string | **Required** Function ID. |  |
 | deploymentId | string | **Required** Deployment ID. |  |
 
-## Create build
+## Rebuild deployment
 
 ```http request
-POST https://cloud.appwrite.io/v1/functions/{functionId}/deployments/{deploymentId}/builds/{buildId}
+POST https://cloud.appwrite.io/v1/functions/{functionId}/deployments/{deploymentId}/build
 ```
-
-** Create a new build for an Appwrite Function deployment. This endpoint can be used to retry a failed build. **
 
 ### Parameters
 
@@ -210,9 +221,22 @@ POST https://cloud.appwrite.io/v1/functions/{functionId}/deployments/{deployment
 | --- | --- | --- | --- |
 | functionId | string | **Required** Function ID. |  |
 | deploymentId | string | **Required** Deployment ID. |  |
-| buildId | string | **Required** Build unique ID. |  |
+| buildId | string | Build unique ID. |  |
 
-## Download Deployment
+## Cancel deployment
+
+```http request
+PATCH https://cloud.appwrite.io/v1/functions/{functionId}/deployments/{deploymentId}/build
+```
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| functionId | string | **Required** Function ID. |  |
+| deploymentId | string | **Required** Deployment ID. |  |
+
+## Download deployment
 
 ```http request
 GET https://cloud.appwrite.io/v1/functions/{functionId}/deployments/{deploymentId}/download
@@ -240,7 +264,7 @@ GET https://cloud.appwrite.io/v1/functions/{functionId}/executions
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | functionId | string | **Required** Function ID. |  |
-| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: trigger, status, responseStatusCode, duration | [] |
+| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: trigger, status, responseStatusCode, duration, requestMethod, requestPath, deploymentId | [] |
 | search | string | Search term to filter your list results. Max length: 256 chars. |  |
 
 ## Create execution
@@ -261,6 +285,7 @@ POST https://cloud.appwrite.io/v1/functions/{functionId}/executions
 | path | string | HTTP path of execution. Path can include query params. Default value is / | / |
 | method | string | HTTP method of execution. Default value is GET. | POST |
 | headers | object | HTTP headers of execution. Defaults to empty. | {} |
+| scheduledAt | string | Scheduled execution time in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. DateTime value must be in future with precision in minutes. |  |
 
 ## Get execution
 
@@ -269,6 +294,22 @@ GET https://cloud.appwrite.io/v1/functions/{functionId}/executions/{executionId}
 ```
 
 ** Get a function execution log by its unique ID. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| functionId | string | **Required** Function ID. |  |
+| executionId | string | **Required** Execution ID. |  |
+
+## Delete execution
+
+```http request
+DELETE https://cloud.appwrite.io/v1/functions/{functionId}/executions/{executionId}
+```
+
+** Delete a function execution by its unique ID.
+ **
 
 ### Parameters
 

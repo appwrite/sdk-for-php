@@ -11,7 +11,7 @@ class Graphql extends Service
 {
      public function __construct(Client $client)
      {
-          $this->client = $client;
+         parent::__construct($client);
      }
 
     /**
@@ -22,26 +22,26 @@ class Graphql extends Service
      * @param array $query
      * @throws AppwriteException
      * @return array
-
      */
     public function query(array $query): array
     {
-        $apiPath = str_replace([], [], '/graphql');
+        $apiPath = str_replace(
+            [],
+            [],
+            '/graphql'
+        );
 
         $apiParams = [];
-        if (!isset($query)) {
-            throw new AppwriteException('Missing required parameter: "query"');
-        }
-        if (!is_null($query)) {
-            $apiParams['query'] = $query;
-        }
+        $apiParams['query'] = $query;
+
+        $apiHeaders = [];
+        $apiHeaders['x-sdk-graphql'] = 'true';
+        $apiHeaders['content-type'] = 'application/json';
+
         return $this->client->call(
             Client::METHOD_POST,
             $apiPath,
-            [
-                'x-sdk-graphql' => 'true',
-                'content-type' => 'application/json',
-            ],
+            $apiHeaders,
             $apiParams
         );
     }
@@ -54,26 +54,26 @@ class Graphql extends Service
      * @param array $query
      * @throws AppwriteException
      * @return array
-
      */
     public function mutation(array $query): array
     {
-        $apiPath = str_replace([], [], '/graphql/mutation');
+        $apiPath = str_replace(
+            [],
+            [],
+            '/graphql/mutation'
+        );
 
         $apiParams = [];
-        if (!isset($query)) {
-            throw new AppwriteException('Missing required parameter: "query"');
-        }
-        if (!is_null($query)) {
-            $apiParams['query'] = $query;
-        }
+        $apiParams['query'] = $query;
+
+        $apiHeaders = [];
+        $apiHeaders['x-sdk-graphql'] = 'true';
+        $apiHeaders['content-type'] = 'application/json';
+
         return $this->client->call(
             Client::METHOD_POST,
             $apiPath,
-            [
-                'x-sdk-graphql' => 'true',
-                'content-type' => 'application/json',
-            ],
+            $apiHeaders,
             $apiParams
         );
     }

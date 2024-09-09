@@ -233,6 +233,22 @@ PATCH https://cloud.appwrite.io/v1/users/{userId}/email
 | userId | string | **Required** User ID. |  |
 | email | string | User email. |  |
 
+## Create user JWT
+
+```http request
+POST https://cloud.appwrite.io/v1/users/{userId}/jwts
+```
+
+** Use this endpoint to create a JSON Web Token for user by its unique ID. You can use the resulting JWT to authenticate on behalf of the user. The JWT secret will become invalid if the session it uses gets deleted. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| userId | string | **Required** User ID. |  |
+| sessionId | string | Session ID. Use the string 'recent' to use the most recent session. Defaults to the most recent session. |  |
+| duration | integer | Time in seconds before JWT expires. Default duration is 900 seconds, and maximum is 3600 seconds. | 900 |
+
 ## Update user labels
 
 ```http request

@@ -213,6 +213,7 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 | key | string | **Required** Attribute Key. |  |
 | required | boolean | Is attribute required? |  |
 | default | boolean | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
+| newKey | string | New attribute key. |  |
 
 ## Create datetime attribute
 
@@ -250,6 +251,7 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 | key | string | **Required** Attribute Key. |  |
 | required | boolean | Is attribute required? |  |
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
+| newKey | string | New attribute key. |  |
 
 ## Create email attribute
 
@@ -289,6 +291,7 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 | key | string | **Required** Attribute Key. |  |
 | required | boolean | Is attribute required? |  |
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
+| newKey | string | New attribute key. |  |
 
 ## Create enum attribute
 
@@ -330,6 +333,7 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 | elements | array | Array of elements in enumerated type. Uses length of longest element to determine size. Maximum of 100 elements are allowed, each 255 characters long. |  |
 | required | boolean | Is attribute required? |  |
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
+| newKey | string | New attribute key. |  |
 
 ## Create float attribute
 
@@ -373,6 +377,7 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 | min | number | Minimum value to enforce on new documents |  |
 | max | number | Maximum value to enforce on new documents |  |
 | default | number | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
+| newKey | string | New attribute key. |  |
 
 ## Create integer attribute
 
@@ -416,6 +421,7 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 | min | integer | Minimum value to enforce on new documents |  |
 | max | integer | Maximum value to enforce on new documents |  |
 | default | integer | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
+| newKey | string | New attribute key. |  |
 
 ## Create IP address attribute
 
@@ -455,6 +461,7 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 | key | string | **Required** Attribute Key. |  |
 | required | boolean | Is attribute required? |  |
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
+| newKey | string | New attribute key. |  |
 
 ## Create relationship attribute
 
@@ -518,6 +525,8 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 | key | string | **Required** Attribute Key. |  |
 | required | boolean | Is attribute required? |  |
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
+| size | integer | Maximum size of the string attribute. |  |
+| newKey | string | New attribute key. |  |
 
 ## Create URL attribute
 
@@ -557,6 +566,7 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 | key | string | **Required** Attribute Key. |  |
 | required | boolean | Is attribute required? |  |
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
+| newKey | string | New attribute key. |  |
 
 ## Get attribute
 
@@ -607,6 +617,7 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 | collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
 | key | string | **Required** Attribute Key. |  |
 | onDelete | string | Constraints option |  |
+| newKey | string | New attribute key. |  |
 
 ## List documents
 
