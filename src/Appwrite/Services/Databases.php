@@ -508,10 +508,11 @@ class Databases extends Service
      * @param string $key
      * @param bool $required
      * @param ?bool $xdefault
+     * @param ?string $newKey
      * @throws AppwriteException
      * @return array
      */
-    public function updateBooleanAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?bool $xdefault): array
+    public function updateBooleanAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?bool $xdefault, ?string $newKey = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{key}'],
@@ -525,6 +526,10 @@ class Databases extends Service
         $apiParams['key'] = $key;
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
+
+        if (!is_null($newKey)) {
+            $apiParams['newKey'] = $newKey;
+        }
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -595,10 +600,11 @@ class Databases extends Service
      * @param string $key
      * @param bool $required
      * @param ?string $xdefault
+     * @param ?string $newKey
      * @throws AppwriteException
      * @return array
      */
-    public function updateDatetimeAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault): array
+    public function updateDatetimeAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{key}'],
@@ -612,6 +618,10 @@ class Databases extends Service
         $apiParams['key'] = $key;
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
+
+        if (!is_null($newKey)) {
+            $apiParams['newKey'] = $newKey;
+        }
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -684,10 +694,11 @@ class Databases extends Service
      * @param string $key
      * @param bool $required
      * @param ?string $xdefault
+     * @param ?string $newKey
      * @throws AppwriteException
      * @return array
      */
-    public function updateEmailAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault): array
+    public function updateEmailAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{key}'],
@@ -701,6 +712,10 @@ class Databases extends Service
         $apiParams['key'] = $key;
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
+
+        if (!is_null($newKey)) {
+            $apiParams['newKey'] = $newKey;
+        }
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -777,10 +792,11 @@ class Databases extends Service
      * @param array $elements
      * @param bool $required
      * @param ?string $xdefault
+     * @param ?string $newKey
      * @throws AppwriteException
      * @return array
      */
-    public function updateEnumAttribute(string $databaseId, string $collectionId, string $key, array $elements, bool $required, ?string $xdefault): array
+    public function updateEnumAttribute(string $databaseId, string $collectionId, string $key, array $elements, bool $required, ?string $xdefault, ?string $newKey = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{key}'],
@@ -795,6 +811,10 @@ class Databases extends Service
         $apiParams['elements'] = $elements;
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
+
+        if (!is_null($newKey)) {
+            $apiParams['newKey'] = $newKey;
+        }
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -880,10 +900,11 @@ class Databases extends Service
      * @param float $min
      * @param float $max
      * @param ?float $xdefault
+     * @param ?string $newKey
      * @throws AppwriteException
      * @return array
      */
-    public function updateFloatAttribute(string $databaseId, string $collectionId, string $key, bool $required, float $min, float $max, ?float $xdefault): array
+    public function updateFloatAttribute(string $databaseId, string $collectionId, string $key, bool $required, float $min, float $max, ?float $xdefault, ?string $newKey = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{key}'],
@@ -899,6 +920,10 @@ class Databases extends Service
         $apiParams['min'] = $min;
         $apiParams['max'] = $max;
         $apiParams['default'] = $xdefault;
+
+        if (!is_null($newKey)) {
+            $apiParams['newKey'] = $newKey;
+        }
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -984,10 +1009,11 @@ class Databases extends Service
      * @param int $min
      * @param int $max
      * @param ?int $xdefault
+     * @param ?string $newKey
      * @throws AppwriteException
      * @return array
      */
-    public function updateIntegerAttribute(string $databaseId, string $collectionId, string $key, bool $required, int $min, int $max, ?int $xdefault): array
+    public function updateIntegerAttribute(string $databaseId, string $collectionId, string $key, bool $required, int $min, int $max, ?int $xdefault, ?string $newKey = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{key}'],
@@ -1003,6 +1029,10 @@ class Databases extends Service
         $apiParams['min'] = $min;
         $apiParams['max'] = $max;
         $apiParams['default'] = $xdefault;
+
+        if (!is_null($newKey)) {
+            $apiParams['newKey'] = $newKey;
+        }
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -1075,10 +1105,11 @@ class Databases extends Service
      * @param string $key
      * @param bool $required
      * @param ?string $xdefault
+     * @param ?string $newKey
      * @throws AppwriteException
      * @return array
      */
-    public function updateIpAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault): array
+    public function updateIpAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{key}'],
@@ -1092,6 +1123,10 @@ class Databases extends Service
         $apiParams['key'] = $key;
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
+
+        if (!is_null($newKey)) {
+            $apiParams['newKey'] = $newKey;
+        }
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -1230,10 +1265,12 @@ class Databases extends Service
      * @param string $key
      * @param bool $required
      * @param ?string $xdefault
+     * @param ?int $size
+     * @param ?string $newKey
      * @throws AppwriteException
      * @return array
      */
-    public function updateStringAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault): array
+    public function updateStringAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?int $size = null, ?string $newKey = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{key}'],
@@ -1247,6 +1284,14 @@ class Databases extends Service
         $apiParams['key'] = $key;
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
+
+        if (!is_null($size)) {
+            $apiParams['size'] = $size;
+        }
+
+        if (!is_null($newKey)) {
+            $apiParams['newKey'] = $newKey;
+        }
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -1319,10 +1364,11 @@ class Databases extends Service
      * @param string $key
      * @param bool $required
      * @param ?string $xdefault
+     * @param ?string $newKey
      * @throws AppwriteException
      * @return array
      */
-    public function updateUrlAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault): array
+    public function updateUrlAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{key}'],
@@ -1336,6 +1382,10 @@ class Databases extends Service
         $apiParams['key'] = $key;
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
+
+        if (!is_null($newKey)) {
+            $apiParams['newKey'] = $newKey;
+        }
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -1429,10 +1479,11 @@ class Databases extends Service
      * @param string $collectionId
      * @param string $key
      * @param ?RelationMutate $onDelete
+     * @param ?string $newKey
      * @throws AppwriteException
      * @return array
      */
-    public function updateRelationshipAttribute(string $databaseId, string $collectionId, string $key, ?RelationMutate $onDelete = null): array
+    public function updateRelationshipAttribute(string $databaseId, string $collectionId, string $key, ?RelationMutate $onDelete = null, ?string $newKey = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{key}'],
@@ -1447,6 +1498,10 @@ class Databases extends Service
 
         if (!is_null($onDelete)) {
             $apiParams['onDelete'] = $onDelete;
+        }
+
+        if (!is_null($newKey)) {
+            $apiParams['newKey'] = $newKey;
         }
 
         $apiHeaders = [];
