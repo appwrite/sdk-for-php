@@ -3,7 +3,7 @@
 namespace Appwrite\Services;
 
 use Appwrite\Client;
-use Appwrite\InputFile;
+use Appwrite\Payload;
 use Mockery;
 use PHPUnit\Framework\TestCase;
 

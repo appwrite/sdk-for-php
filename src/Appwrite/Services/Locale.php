@@ -5,7 +5,7 @@ namespace Appwrite\Services;
 use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
-use Appwrite\InputFile;
+use Appwrite\Payload;
 
 class Locale extends Service
 {
@@ -46,10 +46,11 @@ class Locale extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
-     * List Locale Codes
+     * List locale codes
      *
      * List of all locale codes in [ISO
      * 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).
@@ -76,6 +77,7 @@ class Locale extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -106,6 +108,7 @@ class Locale extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -136,6 +139,7 @@ class Locale extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -166,6 +170,7 @@ class Locale extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -196,6 +201,7 @@ class Locale extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -227,6 +233,7 @@ class Locale extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -257,5 +264,6 @@ class Locale extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 }

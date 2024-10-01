@@ -5,7 +5,7 @@ namespace Appwrite\Services;
 use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
-use Appwrite\InputFile;
+use Appwrite\Payload;
 use Appwrite\Enums\Name;
 
 class Health extends Service
@@ -42,6 +42,7 @@ class Health extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -71,6 +72,7 @@ class Health extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -101,6 +103,7 @@ class Health extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -123,7 +126,7 @@ class Health extends Service
         $apiParams = [];
 
         if (!is_null($domain)) {
-            $apiParams['domain'] = $domain;
+                $apiParams['domain'] = $domain;
         }
 
         $apiHeaders = [];
@@ -135,6 +138,7 @@ class Health extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -164,6 +168,7 @@ class Health extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -193,6 +198,7 @@ class Health extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -223,6 +229,7 @@ class Health extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -246,7 +253,7 @@ class Health extends Service
         $apiParams = [];
 
         if (!is_null($threshold)) {
-            $apiParams['threshold'] = $threshold;
+                $apiParams['threshold'] = $threshold;
         }
 
         $apiHeaders = [];
@@ -258,6 +265,7 @@ class Health extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -282,7 +290,7 @@ class Health extends Service
         $apiParams = [];
 
         if (!is_null($threshold)) {
-            $apiParams['threshold'] = $threshold;
+                $apiParams['threshold'] = $threshold;
         }
 
         $apiHeaders = [];
@@ -294,6 +302,7 @@ class Health extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -318,11 +327,11 @@ class Health extends Service
         $apiParams = [];
 
         if (!is_null($name)) {
-            $apiParams['name'] = $name;
+                $apiParams['name'] = $name;
         }
 
         if (!is_null($threshold)) {
-            $apiParams['threshold'] = $threshold;
+                $apiParams['threshold'] = $threshold;
         }
 
         $apiHeaders = [];
@@ -334,6 +343,7 @@ class Health extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -357,7 +367,7 @@ class Health extends Service
         $apiParams = [];
 
         if (!is_null($threshold)) {
-            $apiParams['threshold'] = $threshold;
+                $apiParams['threshold'] = $threshold;
         }
 
         $apiHeaders = [];
@@ -369,6 +379,7 @@ class Health extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -394,7 +405,7 @@ class Health extends Service
         $apiParams['name'] = $name;
 
         if (!is_null($threshold)) {
-            $apiParams['threshold'] = $threshold;
+                $apiParams['threshold'] = $threshold;
         }
 
         $apiHeaders = [];
@@ -406,6 +417,7 @@ class Health extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -429,7 +441,7 @@ class Health extends Service
         $apiParams = [];
 
         if (!is_null($threshold)) {
-            $apiParams['threshold'] = $threshold;
+                $apiParams['threshold'] = $threshold;
         }
 
         $apiHeaders = [];
@@ -441,6 +453,7 @@ class Health extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -464,7 +477,7 @@ class Health extends Service
         $apiParams = [];
 
         if (!is_null($threshold)) {
-            $apiParams['threshold'] = $threshold;
+                $apiParams['threshold'] = $threshold;
         }
 
         $apiHeaders = [];
@@ -476,6 +489,7 @@ class Health extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -499,7 +513,7 @@ class Health extends Service
         $apiParams = [];
 
         if (!is_null($threshold)) {
-            $apiParams['threshold'] = $threshold;
+                $apiParams['threshold'] = $threshold;
         }
 
         $apiHeaders = [];
@@ -511,6 +525,7 @@ class Health extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -534,7 +549,7 @@ class Health extends Service
         $apiParams = [];
 
         if (!is_null($threshold)) {
-            $apiParams['threshold'] = $threshold;
+                $apiParams['threshold'] = $threshold;
         }
 
         $apiHeaders = [];
@@ -546,6 +561,7 @@ class Health extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -569,7 +585,7 @@ class Health extends Service
         $apiParams = [];
 
         if (!is_null($threshold)) {
-            $apiParams['threshold'] = $threshold;
+                $apiParams['threshold'] = $threshold;
         }
 
         $apiHeaders = [];
@@ -581,6 +597,7 @@ class Health extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -604,7 +621,7 @@ class Health extends Service
         $apiParams = [];
 
         if (!is_null($threshold)) {
-            $apiParams['threshold'] = $threshold;
+                $apiParams['threshold'] = $threshold;
         }
 
         $apiHeaders = [];
@@ -616,6 +633,7 @@ class Health extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -639,7 +657,7 @@ class Health extends Service
         $apiParams = [];
 
         if (!is_null($threshold)) {
-            $apiParams['threshold'] = $threshold;
+                $apiParams['threshold'] = $threshold;
         }
 
         $apiHeaders = [];
@@ -651,6 +669,7 @@ class Health extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -674,7 +693,7 @@ class Health extends Service
         $apiParams = [];
 
         if (!is_null($threshold)) {
-            $apiParams['threshold'] = $threshold;
+                $apiParams['threshold'] = $threshold;
         }
 
         $apiHeaders = [];
@@ -686,6 +705,7 @@ class Health extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -715,6 +735,7 @@ class Health extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -744,6 +765,7 @@ class Health extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -779,5 +801,6 @@ class Health extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 }

@@ -3,7 +3,7 @@
 namespace Appwrite\Services;
 
 use Appwrite\Client;
-use Appwrite\InputFile;
+use Appwrite\Payload;
 use Mockery;
 use PHPUnit\Framework\TestCase;
 
@@ -259,7 +259,7 @@ final class FunctionsTest extends TestCase {
 
         $response = $this->functions->createDeployment(
             "<FUNCTION_ID>",
-            InputFile::withData('', "image/png"),
+            Payload::fromBinary('', "image/png"),
             true
         );
 
@@ -457,7 +457,7 @@ final class FunctionsTest extends TestCase {
             "requestPath" => "/articles?id=5",
             "requestHeaders" => array(),
             "responseStatusCode" => 200,
-            "responseBody" => "Developers are awesome.",
+            "responseBody" => ,
             "responseHeaders" => array(),
             "logs" => "",
             "errors" => "",
@@ -489,7 +489,7 @@ final class FunctionsTest extends TestCase {
             "requestPath" => "/articles?id=5",
             "requestHeaders" => array(),
             "responseStatusCode" => 200,
-            "responseBody" => "Developers are awesome.",
+            "responseBody" => ,
             "responseHeaders" => array(),
             "logs" => "",
             "errors" => "",

@@ -42,7 +42,7 @@ This endpoint can also be used to convert an anonymous account to a normal one, 
 | email | string | User email. |  |
 | password | string | User password. Must be at least 8 chars. |  |
 
-## List Identities
+## List identities
 
 ```http request
 GET https://cloud.appwrite.io/v1/account/identities
@@ -106,7 +106,7 @@ PATCH https://cloud.appwrite.io/v1/account/mfa
 | --- | --- | --- | --- |
 | mfa | boolean | Enable or disable MFA. |  |
 
-## Create Authenticator
+## Create authenticator
 
 ```http request
 POST https://cloud.appwrite.io/v1/account/mfa/authenticators/{type}
@@ -120,7 +120,7 @@ POST https://cloud.appwrite.io/v1/account/mfa/authenticators/{type}
 | --- | --- | --- | --- |
 | type | string | **Required** Type of authenticator. Must be `totp` |  |
 
-## Verify Authenticator
+## Verify authenticator
 
 ```http request
 PUT https://cloud.appwrite.io/v1/account/mfa/authenticators/{type}
@@ -135,7 +135,7 @@ PUT https://cloud.appwrite.io/v1/account/mfa/authenticators/{type}
 | type | string | **Required** Type of authenticator. |  |
 | otp | string | Valid verification token. |  |
 
-## Delete Authenticator
+## Delete authenticator
 
 ```http request
 DELETE https://cloud.appwrite.io/v1/account/mfa/authenticators/{type}
@@ -149,7 +149,7 @@ DELETE https://cloud.appwrite.io/v1/account/mfa/authenticators/{type}
 | --- | --- | --- | --- |
 | type | string | **Required** Type of authenticator. |  |
 
-## Create MFA Challenge
+## Create MFA challenge
 
 ```http request
 POST https://cloud.appwrite.io/v1/account/mfa/challenge
@@ -163,7 +163,7 @@ POST https://cloud.appwrite.io/v1/account/mfa/challenge
 | --- | --- | --- | --- |
 | factor | string | Factor used for verification. Must be one of following: `email`, `phone`, `totp`, `recoveryCode`. |  |
 
-## Create MFA Challenge (confirmation)
+## Create MFA challenge (confirmation)
 
 ```http request
 PUT https://cloud.appwrite.io/v1/account/mfa/challenge
@@ -178,7 +178,7 @@ PUT https://cloud.appwrite.io/v1/account/mfa/challenge
 | challengeId | string | ID of the challenge. |  |
 | otp | string | Valid verification token. |  |
 
-## List Factors
+## List factors
 
 ```http request
 GET https://cloud.appwrite.io/v1/account/mfa/factors
@@ -186,7 +186,7 @@ GET https://cloud.appwrite.io/v1/account/mfa/factors
 
 ** List the factors available on the account to be used as a MFA challange. **
 
-## Get MFA Recovery Codes
+## Get MFA recovery codes
 
 ```http request
 GET https://cloud.appwrite.io/v1/account/mfa/recovery-codes
@@ -194,7 +194,7 @@ GET https://cloud.appwrite.io/v1/account/mfa/recovery-codes
 
 ** Get recovery codes that can be used as backup for MFA flow. Before getting codes, they must be generated using [createMfaRecoveryCodes](/docs/references/cloud/client-web/account#createMfaRecoveryCodes) method. An OTP challenge is required to read recovery codes. **
 
-## Create MFA Recovery Codes
+## Create MFA recovery codes
 
 ```http request
 POST https://cloud.appwrite.io/v1/account/mfa/recovery-codes
@@ -202,7 +202,7 @@ POST https://cloud.appwrite.io/v1/account/mfa/recovery-codes
 
 ** Generate recovery codes as backup for MFA flow. It&#039;s recommended to generate and show then immediately after user successfully adds their authehticator. Recovery codes can be used as a MFA verification type in [createMfaChallenge](/docs/references/cloud/client-web/account#createMfaChallenge) method. **
 
-## Regenerate MFA Recovery Codes
+## Regenerate MFA recovery codes
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/account/mfa/recovery-codes

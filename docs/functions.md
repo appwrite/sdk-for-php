@@ -280,7 +280,7 @@ POST https://cloud.appwrite.io/v1/functions/{functionId}/executions
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | functionId | string | **Required** Function ID. |  |
-| body | string | HTTP body of execution. Default value is empty string. |  |
+| body | payload | HTTP body of execution. Default value is empty string. |  |
 | async | boolean | Execute code in the background. Default value is false. |  |
 | path | string | HTTP path of execution. Path can include query params. Default value is / | / |
 | method | string | HTTP method of execution. Default value is GET. | POST |

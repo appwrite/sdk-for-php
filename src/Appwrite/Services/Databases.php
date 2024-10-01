@@ -5,7 +5,7 @@ namespace Appwrite\Services;
 use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
-use Appwrite\InputFile;
+use Appwrite\Payload;
 use Appwrite\Enums\RelationshipType;
 use Appwrite\Enums\RelationMutate;
 use Appwrite\Enums\IndexType;
@@ -39,11 +39,11 @@ class Databases extends Service
         $apiParams = [];
 
         if (!is_null($queries)) {
-            $apiParams['queries'] = $queries;
+                $apiParams['queries'] = $queries;
         }
 
         if (!is_null($search)) {
-            $apiParams['search'] = $search;
+                $apiParams['search'] = $search;
         }
 
         $apiHeaders = [];
@@ -55,6 +55,7 @@ class Databases extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -82,7 +83,7 @@ class Databases extends Service
         $apiParams['name'] = $name;
 
         if (!is_null($enabled)) {
-            $apiParams['enabled'] = $enabled;
+                $apiParams['enabled'] = $enabled;
         }
 
         $apiHeaders = [];
@@ -94,6 +95,7 @@ class Databases extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -126,6 +128,7 @@ class Databases extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -152,7 +155,7 @@ class Databases extends Service
         $apiParams['name'] = $name;
 
         if (!is_null($enabled)) {
-            $apiParams['enabled'] = $enabled;
+                $apiParams['enabled'] = $enabled;
         }
 
         $apiHeaders = [];
@@ -164,6 +167,7 @@ class Databases extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -196,6 +200,7 @@ class Databases extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -222,11 +227,11 @@ class Databases extends Service
         $apiParams['databaseId'] = $databaseId;
 
         if (!is_null($queries)) {
-            $apiParams['queries'] = $queries;
+                $apiParams['queries'] = $queries;
         }
 
         if (!is_null($search)) {
-            $apiParams['search'] = $search;
+                $apiParams['search'] = $search;
         }
 
         $apiHeaders = [];
@@ -238,6 +243,7 @@ class Databases extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -271,15 +277,15 @@ class Databases extends Service
         $apiParams['name'] = $name;
 
         if (!is_null($permissions)) {
-            $apiParams['permissions'] = $permissions;
+                $apiParams['permissions'] = $permissions;
         }
 
         if (!is_null($documentSecurity)) {
-            $apiParams['documentSecurity'] = $documentSecurity;
+                $apiParams['documentSecurity'] = $documentSecurity;
         }
 
         if (!is_null($enabled)) {
-            $apiParams['enabled'] = $enabled;
+                $apiParams['enabled'] = $enabled;
         }
 
         $apiHeaders = [];
@@ -291,6 +297,7 @@ class Databases extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -325,6 +332,7 @@ class Databases extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -355,15 +363,15 @@ class Databases extends Service
         $apiParams['name'] = $name;
 
         if (!is_null($permissions)) {
-            $apiParams['permissions'] = $permissions;
+                $apiParams['permissions'] = $permissions;
         }
 
         if (!is_null($documentSecurity)) {
-            $apiParams['documentSecurity'] = $documentSecurity;
+                $apiParams['documentSecurity'] = $documentSecurity;
         }
 
         if (!is_null($enabled)) {
-            $apiParams['enabled'] = $enabled;
+                $apiParams['enabled'] = $enabled;
         }
 
         $apiHeaders = [];
@@ -375,6 +383,7 @@ class Databases extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -409,6 +418,7 @@ class Databases extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -435,7 +445,7 @@ class Databases extends Service
         $apiParams['collectionId'] = $collectionId;
 
         if (!is_null($queries)) {
-            $apiParams['queries'] = $queries;
+                $apiParams['queries'] = $queries;
         }
 
         $apiHeaders = [];
@@ -447,6 +457,7 @@ class Databases extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -479,11 +490,11 @@ class Databases extends Service
         $apiParams['required'] = $required;
 
         if (!is_null($xdefault)) {
-            $apiParams['default'] = $xdefault;
+                $apiParams['default'] = $xdefault;
         }
 
         if (!is_null($xarray)) {
-            $apiParams['array'] = $xarray;
+                $apiParams['array'] = $xarray;
         }
 
         $apiHeaders = [];
@@ -495,6 +506,7 @@ class Databases extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -528,7 +540,7 @@ class Databases extends Service
         $apiParams['default'] = $xdefault;
 
         if (!is_null($newKey)) {
-            $apiParams['newKey'] = $newKey;
+                $apiParams['newKey'] = $newKey;
         }
 
         $apiHeaders = [];
@@ -540,6 +552,7 @@ class Databases extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -571,11 +584,11 @@ class Databases extends Service
         $apiParams['required'] = $required;
 
         if (!is_null($xdefault)) {
-            $apiParams['default'] = $xdefault;
+                $apiParams['default'] = $xdefault;
         }
 
         if (!is_null($xarray)) {
-            $apiParams['array'] = $xarray;
+                $apiParams['array'] = $xarray;
         }
 
         $apiHeaders = [];
@@ -587,6 +600,7 @@ class Databases extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -620,7 +634,7 @@ class Databases extends Service
         $apiParams['default'] = $xdefault;
 
         if (!is_null($newKey)) {
-            $apiParams['newKey'] = $newKey;
+                $apiParams['newKey'] = $newKey;
         }
 
         $apiHeaders = [];
@@ -632,6 +646,7 @@ class Databases extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -664,11 +679,11 @@ class Databases extends Service
         $apiParams['required'] = $required;
 
         if (!is_null($xdefault)) {
-            $apiParams['default'] = $xdefault;
+                $apiParams['default'] = $xdefault;
         }
 
         if (!is_null($xarray)) {
-            $apiParams['array'] = $xarray;
+                $apiParams['array'] = $xarray;
         }
 
         $apiHeaders = [];
@@ -680,6 +695,7 @@ class Databases extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -714,7 +730,7 @@ class Databases extends Service
         $apiParams['default'] = $xdefault;
 
         if (!is_null($newKey)) {
-            $apiParams['newKey'] = $newKey;
+                $apiParams['newKey'] = $newKey;
         }
 
         $apiHeaders = [];
@@ -726,6 +742,7 @@ class Databases extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -761,11 +778,11 @@ class Databases extends Service
         $apiParams['required'] = $required;
 
         if (!is_null($xdefault)) {
-            $apiParams['default'] = $xdefault;
+                $apiParams['default'] = $xdefault;
         }
 
         if (!is_null($xarray)) {
-            $apiParams['array'] = $xarray;
+                $apiParams['array'] = $xarray;
         }
 
         $apiHeaders = [];
@@ -777,6 +794,7 @@ class Databases extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -813,7 +831,7 @@ class Databases extends Service
         $apiParams['default'] = $xdefault;
 
         if (!is_null($newKey)) {
-            $apiParams['newKey'] = $newKey;
+                $apiParams['newKey'] = $newKey;
         }
 
         $apiHeaders = [];
@@ -825,6 +843,7 @@ class Databases extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -860,19 +879,19 @@ class Databases extends Service
         $apiParams['required'] = $required;
 
         if (!is_null($min)) {
-            $apiParams['min'] = $min;
+                $apiParams['min'] = $min;
         }
 
         if (!is_null($max)) {
-            $apiParams['max'] = $max;
+                $apiParams['max'] = $max;
         }
 
         if (!is_null($xdefault)) {
-            $apiParams['default'] = $xdefault;
+                $apiParams['default'] = $xdefault;
         }
 
         if (!is_null($xarray)) {
-            $apiParams['array'] = $xarray;
+                $apiParams['array'] = $xarray;
         }
 
         $apiHeaders = [];
@@ -884,6 +903,7 @@ class Databases extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -922,7 +942,7 @@ class Databases extends Service
         $apiParams['default'] = $xdefault;
 
         if (!is_null($newKey)) {
-            $apiParams['newKey'] = $newKey;
+                $apiParams['newKey'] = $newKey;
         }
 
         $apiHeaders = [];
@@ -934,6 +954,7 @@ class Databases extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -969,19 +990,19 @@ class Databases extends Service
         $apiParams['required'] = $required;
 
         if (!is_null($min)) {
-            $apiParams['min'] = $min;
+                $apiParams['min'] = $min;
         }
 
         if (!is_null($max)) {
-            $apiParams['max'] = $max;
+                $apiParams['max'] = $max;
         }
 
         if (!is_null($xdefault)) {
-            $apiParams['default'] = $xdefault;
+                $apiParams['default'] = $xdefault;
         }
 
         if (!is_null($xarray)) {
-            $apiParams['array'] = $xarray;
+                $apiParams['array'] = $xarray;
         }
 
         $apiHeaders = [];
@@ -993,6 +1014,7 @@ class Databases extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -1031,7 +1053,7 @@ class Databases extends Service
         $apiParams['default'] = $xdefault;
 
         if (!is_null($newKey)) {
-            $apiParams['newKey'] = $newKey;
+                $apiParams['newKey'] = $newKey;
         }
 
         $apiHeaders = [];
@@ -1043,6 +1065,7 @@ class Databases extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -1075,11 +1098,11 @@ class Databases extends Service
         $apiParams['required'] = $required;
 
         if (!is_null($xdefault)) {
-            $apiParams['default'] = $xdefault;
+                $apiParams['default'] = $xdefault;
         }
 
         if (!is_null($xarray)) {
-            $apiParams['array'] = $xarray;
+                $apiParams['array'] = $xarray;
         }
 
         $apiHeaders = [];
@@ -1091,6 +1114,7 @@ class Databases extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -1125,7 +1149,7 @@ class Databases extends Service
         $apiParams['default'] = $xdefault;
 
         if (!is_null($newKey)) {
-            $apiParams['newKey'] = $newKey;
+                $apiParams['newKey'] = $newKey;
         }
 
         $apiHeaders = [];
@@ -1137,6 +1161,7 @@ class Databases extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -1172,19 +1197,19 @@ class Databases extends Service
         $apiParams['type'] = $type;
 
         if (!is_null($twoWay)) {
-            $apiParams['twoWay'] = $twoWay;
+                $apiParams['twoWay'] = $twoWay;
         }
 
         if (!is_null($key)) {
-            $apiParams['key'] = $key;
+                $apiParams['key'] = $key;
         }
 
         if (!is_null($twoWayKey)) {
-            $apiParams['twoWayKey'] = $twoWayKey;
+                $apiParams['twoWayKey'] = $twoWayKey;
         }
 
         if (!is_null($onDelete)) {
-            $apiParams['onDelete'] = $onDelete;
+                $apiParams['onDelete'] = $onDelete;
         }
 
         $apiHeaders = [];
@@ -1196,6 +1221,7 @@ class Databases extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -1231,15 +1257,15 @@ class Databases extends Service
         $apiParams['required'] = $required;
 
         if (!is_null($xdefault)) {
-            $apiParams['default'] = $xdefault;
+                $apiParams['default'] = $xdefault;
         }
 
         if (!is_null($xarray)) {
-            $apiParams['array'] = $xarray;
+                $apiParams['array'] = $xarray;
         }
 
         if (!is_null($encrypt)) {
-            $apiParams['encrypt'] = $encrypt;
+                $apiParams['encrypt'] = $encrypt;
         }
 
         $apiHeaders = [];
@@ -1251,6 +1277,7 @@ class Databases extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -1286,11 +1313,11 @@ class Databases extends Service
         $apiParams['default'] = $xdefault;
 
         if (!is_null($size)) {
-            $apiParams['size'] = $size;
+                $apiParams['size'] = $size;
         }
 
         if (!is_null($newKey)) {
-            $apiParams['newKey'] = $newKey;
+                $apiParams['newKey'] = $newKey;
         }
 
         $apiHeaders = [];
@@ -1302,6 +1329,7 @@ class Databases extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -1334,11 +1362,11 @@ class Databases extends Service
         $apiParams['required'] = $required;
 
         if (!is_null($xdefault)) {
-            $apiParams['default'] = $xdefault;
+                $apiParams['default'] = $xdefault;
         }
 
         if (!is_null($xarray)) {
-            $apiParams['array'] = $xarray;
+                $apiParams['array'] = $xarray;
         }
 
         $apiHeaders = [];
@@ -1350,6 +1378,7 @@ class Databases extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -1384,7 +1413,7 @@ class Databases extends Service
         $apiParams['default'] = $xdefault;
 
         if (!is_null($newKey)) {
-            $apiParams['newKey'] = $newKey;
+                $apiParams['newKey'] = $newKey;
         }
 
         $apiHeaders = [];
@@ -1396,6 +1425,7 @@ class Databases extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -1431,6 +1461,7 @@ class Databases extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -1466,6 +1497,7 @@ class Databases extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -1497,11 +1529,11 @@ class Databases extends Service
         $apiParams['key'] = $key;
 
         if (!is_null($onDelete)) {
-            $apiParams['onDelete'] = $onDelete;
+                $apiParams['onDelete'] = $onDelete;
         }
 
         if (!is_null($newKey)) {
-            $apiParams['newKey'] = $newKey;
+                $apiParams['newKey'] = $newKey;
         }
 
         $apiHeaders = [];
@@ -1513,6 +1545,7 @@ class Databases extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -1540,7 +1573,7 @@ class Databases extends Service
         $apiParams['collectionId'] = $collectionId;
 
         if (!is_null($queries)) {
-            $apiParams['queries'] = $queries;
+                $apiParams['queries'] = $queries;
         }
 
         $apiHeaders = [];
@@ -1552,6 +1585,7 @@ class Databases extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -1585,7 +1619,7 @@ class Databases extends Service
         $apiParams['data'] = $data;
 
         if (!is_null($permissions)) {
-            $apiParams['permissions'] = $permissions;
+                $apiParams['permissions'] = $permissions;
         }
 
         $apiHeaders = [];
@@ -1597,6 +1631,7 @@ class Databases extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -1626,7 +1661,7 @@ class Databases extends Service
         $apiParams['documentId'] = $documentId;
 
         if (!is_null($queries)) {
-            $apiParams['queries'] = $queries;
+                $apiParams['queries'] = $queries;
         }
 
         $apiHeaders = [];
@@ -1638,6 +1673,7 @@ class Databases extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -1668,11 +1704,11 @@ class Databases extends Service
         $apiParams['documentId'] = $documentId;
 
         if (!is_null($data)) {
-            $apiParams['data'] = $data;
+                $apiParams['data'] = $data;
         }
 
         if (!is_null($permissions)) {
-            $apiParams['permissions'] = $permissions;
+                $apiParams['permissions'] = $permissions;
         }
 
         $apiHeaders = [];
@@ -1684,6 +1720,7 @@ class Databases extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -1719,6 +1756,7 @@ class Databases extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -1745,7 +1783,7 @@ class Databases extends Service
         $apiParams['collectionId'] = $collectionId;
 
         if (!is_null($queries)) {
-            $apiParams['queries'] = $queries;
+                $apiParams['queries'] = $queries;
         }
 
         $apiHeaders = [];
@@ -1757,6 +1795,7 @@ class Databases extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -1791,7 +1830,7 @@ class Databases extends Service
         $apiParams['attributes'] = $attributes;
 
         if (!is_null($orders)) {
-            $apiParams['orders'] = $orders;
+                $apiParams['orders'] = $orders;
         }
 
         $apiHeaders = [];
@@ -1803,6 +1842,7 @@ class Databases extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -1838,6 +1878,7 @@ class Databases extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -1873,5 +1914,6 @@ class Databases extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 }
