@@ -67,7 +67,7 @@ POST https://cloud.appwrite.io/v1/users/bcrypt
 | password | string | User password hashed using Bcrypt. |  |
 | name | string | User name. Max length: 128 chars. |  |
 
-## List Identities
+## List identities
 
 ```http request
 GET https://cloud.appwrite.io/v1/users/identities
@@ -310,7 +310,7 @@ PATCH https://cloud.appwrite.io/v1/users/{userId}/mfa
 | userId | string | **Required** User ID. |  |
 | mfa | boolean | Enable or disable MFA. |  |
 
-## Delete Authenticator
+## Delete authenticator
 
 ```http request
 DELETE https://cloud.appwrite.io/v1/users/{userId}/mfa/authenticators/{type}
@@ -325,7 +325,7 @@ DELETE https://cloud.appwrite.io/v1/users/{userId}/mfa/authenticators/{type}
 | userId | string | **Required** User ID. |  |
 | type | string | **Required** Type of authenticator. |  |
 
-## List Factors
+## List factors
 
 ```http request
 GET https://cloud.appwrite.io/v1/users/{userId}/mfa/factors
@@ -339,7 +339,7 @@ GET https://cloud.appwrite.io/v1/users/{userId}/mfa/factors
 | --- | --- | --- | --- |
 | userId | string | **Required** User ID. |  |
 
-## Get MFA Recovery Codes
+## Get MFA recovery codes
 
 ```http request
 GET https://cloud.appwrite.io/v1/users/{userId}/mfa/recovery-codes
@@ -353,7 +353,7 @@ GET https://cloud.appwrite.io/v1/users/{userId}/mfa/recovery-codes
 | --- | --- | --- | --- |
 | userId | string | **Required** User ID. |  |
 
-## Regenerate MFA Recovery Codes
+## Regenerate MFA recovery codes
 
 ```http request
 PUT https://cloud.appwrite.io/v1/users/{userId}/mfa/recovery-codes
@@ -367,7 +367,7 @@ PUT https://cloud.appwrite.io/v1/users/{userId}/mfa/recovery-codes
 | --- | --- | --- | --- |
 | userId | string | **Required** User ID. |  |
 
-## Create MFA Recovery Codes
+## Create MFA recovery codes
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/users/{userId}/mfa/recovery-codes
@@ -529,7 +529,7 @@ PATCH https://cloud.appwrite.io/v1/users/{userId}/status
 | userId | string | **Required** User ID. |  |
 | status | boolean | User Status. To activate the user pass `true` and to block the user pass `false`. |  |
 
-## List User Targets
+## List user targets
 
 ```http request
 GET https://cloud.appwrite.io/v1/users/{userId}/targets
@@ -544,7 +544,7 @@ GET https://cloud.appwrite.io/v1/users/{userId}/targets
 | userId | string | **Required** User ID. |  |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, email, phone, status, passwordUpdate, registration, emailVerification, phoneVerification, labels | [] |
 
-## Create User Target
+## Create user target
 
 ```http request
 POST https://cloud.appwrite.io/v1/users/{userId}/targets
@@ -563,7 +563,7 @@ POST https://cloud.appwrite.io/v1/users/{userId}/targets
 | providerId | string | Provider ID. Message will be sent to this target from the specified provider ID. If no provider ID is set the first setup provider will be used. |  |
 | name | string | Target name. Max length: 128 chars. For example: My Awesome App Galaxy S23. |  |
 
-## Get User Target
+## Get user target
 
 ```http request
 GET https://cloud.appwrite.io/v1/users/{userId}/targets/{targetId}
@@ -578,7 +578,7 @@ GET https://cloud.appwrite.io/v1/users/{userId}/targets/{targetId}
 | userId | string | **Required** User ID. |  |
 | targetId | string | **Required** Target ID. |  |
 
-## Update User target
+## Update user target
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/users/{userId}/targets/{targetId}

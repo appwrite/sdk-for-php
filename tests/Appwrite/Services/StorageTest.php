@@ -3,7 +3,7 @@
 namespace Appwrite\Services;
 
 use Appwrite\Client;
-use Appwrite\InputFile;
+use Appwrite\Payload;
 use Mockery;
 use PHPUnit\Framework\TestCase;
 
@@ -176,7 +176,7 @@ final class StorageTest extends TestCase {
         $response = $this->storage->createFile(
             "<BUCKET_ID>",
             "<FILE_ID>",
-            InputFile::withData('', "image/png")
+            Payload::fromBinary('', "image/png")
         );
 
         $this->assertSame($data, $response);

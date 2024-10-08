@@ -1,7 +1,7 @@
 <?php
 
 use Appwrite\Client;
-use Appwrite\InputFile;
+use Appwrite\Payload;
 use Appwrite\Services\Functions;
 
 $client = (new Client())
@@ -13,7 +13,7 @@ $functions = new Functions($client);
 
 $result = $functions->createDeployment(
     functionId: '<FUNCTION_ID>',
-    code: InputFile::withPath('file.png'),
+    code: Payload::fromFile('file.png'),
     activate: false,
     entrypoint: '<ENTRYPOINT>', // optional
     commands: '<COMMANDS>' // optional

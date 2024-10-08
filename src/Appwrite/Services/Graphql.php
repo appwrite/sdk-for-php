@@ -5,7 +5,7 @@ namespace Appwrite\Services;
 use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
-use Appwrite\InputFile;
+use Appwrite\Payload;
 
 class Graphql extends Service
 {
@@ -44,6 +44,7 @@ class Graphql extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 
     /**
@@ -76,5 +77,6 @@ class Graphql extends Service
             $apiHeaders,
             $apiParams
         );
+
     }
 }

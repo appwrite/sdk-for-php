@@ -50,7 +50,6 @@ class Client
     public function __construct()
     {
         $this->headers['X-Appwrite-Response-Format'] = '1.6.0';
- 
     }
 
     /**
@@ -177,7 +176,7 @@ class Client
     public function addHeader(string $key, string $value): Client
     {
         $this->headers[strtolower($key)] = $value;
-        
+
         return $this;
     }
 
@@ -211,6 +210,7 @@ class Client
                 break;
 
             case 'multipart/form-data':
+                $headers['accept'] = 'multipart/form-data';
                 $query = $this->flatten($params);
                 break;
 
@@ -262,17 +262,23 @@ class Client
                 echo 'Warning: ' . $warning . PHP_EOL;
             }
         }
-        
+
         switch(substr($contentType, 0, strpos($contentType, ';'))) {
             case 'application/json':
                 $responseBody = json_decode($responseBody, true);
             break;
         }
-
+        if (str_contains($contentType, 'multipart/form-data')) {
+            $matches = [];
+            preg_match('/(?<boundary>[-]+[\w]+)--/m', $responseBody, $matches);
+            if (isset($matches['boundary'])) {
+                $responseBody = self::handleFormData($matches['boundary'], $responseBody);
+            }
+        }
         if (curl_errno($ch)) {
             throw new AppwriteException(curl_error($ch), $responseStatus, $responseBody['type'] ?? '', $responseBody);
         }
-        
+
         curl_close($ch);
 
         if($responseStatus >= 400) {
@@ -303,14 +309,76 @@ class Client
         foreach($data as $key => $value) {
             $finalKey = $prefix ? "{$prefix}[{$key}]" : $key;
 
-            if (is_array($value)) {
-                $output += $this->flatten($value, $finalKey); // @todo: handle name collision here if needed
-            }
-            else {
+            if ($value instanceof Payload) {
+                if ($value->filename) {
+                    if (class_exists('\CURLStringFile')) {
+                        // Use CURLStringFile for in-memory data (PHP 8.1+)
+                        $output[$finalKey] = new \CURLStringFile(
+                            $value->toBinary(),
+                            $value->filename,
+                            $value->mimeType
+                        );
+                    } else {
+                        // For PHP versions < 8.1, write data to a temporary file
+                        $tmpfname = tempnam(sys_get_temp_dir(), 'upload');
+                        file_put_contents($tmpfname, $value->toBinary());
+                        $output[$finalKey] = new \CURLFile(
+                            $tmpfname,
+                            $value->mimeType,
+                            $value->filename
+                        );
+                    }
+                } else {
+                    $output[$finalKey] = $value->toBinary();
+                }
+            } else if (is_array($value)) {
+                $output += $this->flatten($value, $finalKey);
+            } else {
                 $output[$finalKey] = $value;
             }
         }
 
         return $output;
+    }
+
+    public static function handleFormData(string $boundary, mixed $responseBody)
+    {
+        $parts = explode($boundary, $responseBody);
+        $data = [];
+        foreach ($parts as $part) {
+            $lines = array_values(array_filter(explode("\r\n", $part)));
+            $matches = [];
+            $matched = preg_match('/name="?(?<name>\w+)/s', $part, $matches);
+            if ($matched) {
+                array_shift($lines);
+                if(isset($lines[0]) && $lines[0] === 'Content-Type: application/json'){
+                    array_shift($lines);
+                    $json = json_decode(implode($lines), true);
+
+                    if (count($json) > 0 && isset($json[0]['name']) && isset($json[0]['value'])) {
+                        $json = array_combine(
+                            array_map(fn($header) => $header['name'], $json),
+                            array_map(fn($header) => $header['value'], $json)
+                        );
+                    }
+
+                    $data[$matches['name']] = $json;
+                    continue;
+                }
+                $data[$matches['name']] = implode("\r\n",$lines) ?? '';;
+            }
+        }
+
+        if(isset($data['responseStatusCode'])) {
+            $data['responseStatusCode'] = (int) ($data['responseStatusCode'] ?? '');
+        }
+        if(isset($data['duration'])) {
+            $data['duration'] = ((float) ($data['duration'] ?? ''));
+        }
+        if(isset($data['responseBody'])) {
+            $data['responseBody'] = Payload::fromBinary($data['responseBody'] ?? '');
+        }
+
+        return $data;
     }
 }

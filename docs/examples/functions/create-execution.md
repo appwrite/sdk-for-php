@@ -1,6 +1,7 @@
 <?php
 
 use Appwrite\Client;
+use Appwrite\Payload;
 use Appwrite\Services\Functions;
 
 $client = (new Client())
@@ -12,7 +13,7 @@ $functions = new Functions($client);
 
 $result = $functions->createExecution(
     functionId: '<FUNCTION_ID>',
-    body: '<BODY>', // optional
+    body: Payload::fromJson([ 'x' => 'y' ]), // optional
     async: false, // optional
     path: '<PATH>', // optional
     method: ExecutionMethod::GET(), // optional
