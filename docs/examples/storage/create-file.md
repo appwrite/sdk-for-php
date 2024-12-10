@@ -1,7 +1,7 @@
 <?php
 
 use Appwrite\Client;
-use Appwrite\Payload;
+use Appwrite\InputFile;
 use Appwrite\Services\Storage;
 
 $client = (new Client())
@@ -14,6 +14,6 @@ $storage = new Storage($client);
 $result = $storage->createFile(
     bucketId: '<BUCKET_ID>',
     fileId: '<FILE_ID>',
-    file: Payload::fromFile('file.png'),
+    file: InputFile::withPath('file.png'),
     permissions: ["read("any")"] // optional
 );

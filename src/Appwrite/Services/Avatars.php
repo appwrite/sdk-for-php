@@ -5,7 +5,7 @@ namespace Appwrite\Services;
 use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
-use Appwrite\Payload;
+use Appwrite\InputFile;
 use Appwrite\Enums\Browser;
 use Appwrite\Enums\CreditCard;
 use Appwrite\Enums\Flag;
@@ -50,15 +50,15 @@ class Avatars extends Service
         $apiParams['code'] = $code;
 
         if (!is_null($width)) {
-                $apiParams['width'] = $width;
+            $apiParams['width'] = $width;
         }
 
         if (!is_null($height)) {
-                $apiParams['height'] = $height;
+            $apiParams['height'] = $height;
         }
 
         if (!is_null($quality)) {
-                $apiParams['quality'] = $quality;
+            $apiParams['quality'] = $quality;
         }
 
         $apiHeaders = [];
@@ -70,7 +70,6 @@ class Avatars extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -105,15 +104,15 @@ class Avatars extends Service
         $apiParams['code'] = $code;
 
         if (!is_null($width)) {
-                $apiParams['width'] = $width;
+            $apiParams['width'] = $width;
         }
 
         if (!is_null($height)) {
-                $apiParams['height'] = $height;
+            $apiParams['height'] = $height;
         }
 
         if (!is_null($quality)) {
-                $apiParams['quality'] = $quality;
+            $apiParams['quality'] = $quality;
         }
 
         $apiHeaders = [];
@@ -125,7 +124,6 @@ class Avatars extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -160,7 +158,6 @@ class Avatars extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -196,15 +193,15 @@ class Avatars extends Service
         $apiParams['code'] = $code;
 
         if (!is_null($width)) {
-                $apiParams['width'] = $width;
+            $apiParams['width'] = $width;
         }
 
         if (!is_null($height)) {
-                $apiParams['height'] = $height;
+            $apiParams['height'] = $height;
         }
 
         if (!is_null($quality)) {
-                $apiParams['quality'] = $quality;
+            $apiParams['quality'] = $quality;
         }
 
         $apiHeaders = [];
@@ -216,7 +213,6 @@ class Avatars extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -252,11 +248,11 @@ class Avatars extends Service
         $apiParams['url'] = $url;
 
         if (!is_null($width)) {
-                $apiParams['width'] = $width;
+            $apiParams['width'] = $width;
         }
 
         if (!is_null($height)) {
-                $apiParams['height'] = $height;
+            $apiParams['height'] = $height;
         }
 
         $apiHeaders = [];
@@ -268,7 +264,6 @@ class Avatars extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -309,19 +304,19 @@ class Avatars extends Service
         $apiParams = [];
 
         if (!is_null($name)) {
-                $apiParams['name'] = $name;
+            $apiParams['name'] = $name;
         }
 
         if (!is_null($width)) {
-                $apiParams['width'] = $width;
+            $apiParams['width'] = $width;
         }
 
         if (!is_null($height)) {
-                $apiParams['height'] = $height;
+            $apiParams['height'] = $height;
         }
 
         if (!is_null($background)) {
-                $apiParams['background'] = $background;
+            $apiParams['background'] = $background;
         }
 
         $apiHeaders = [];
@@ -333,7 +328,6 @@ class Avatars extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -362,15 +356,15 @@ class Avatars extends Service
         $apiParams['text'] = $text;
 
         if (!is_null($size)) {
-                $apiParams['size'] = $size;
+            $apiParams['size'] = $size;
         }
 
         if (!is_null($margin)) {
-                $apiParams['margin'] = $margin;
+            $apiParams['margin'] = $margin;
         }
 
         if (!is_null($download)) {
-                $apiParams['download'] = $download;
+            $apiParams['download'] = $download;
         }
 
         $apiHeaders = [];
@@ -382,6 +376,5 @@ class Avatars extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 }

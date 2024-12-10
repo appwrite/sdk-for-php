@@ -5,7 +5,7 @@ namespace Appwrite\Services;
 use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
-use Appwrite\Payload;
+use Appwrite\InputFile;
 use Appwrite\Enums\Compression;
 use Appwrite\Enums\ImageGravity;
 use Appwrite\Enums\ImageFormat;
@@ -39,11 +39,11 @@ class Storage extends Service
         $apiParams = [];
 
         if (!is_null($queries)) {
-                $apiParams['queries'] = $queries;
+            $apiParams['queries'] = $queries;
         }
 
         if (!is_null($search)) {
-                $apiParams['search'] = $search;
+            $apiParams['search'] = $search;
         }
 
         $apiHeaders = [];
@@ -55,7 +55,6 @@ class Storage extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -89,35 +88,35 @@ class Storage extends Service
         $apiParams['name'] = $name;
 
         if (!is_null($permissions)) {
-                $apiParams['permissions'] = $permissions;
+            $apiParams['permissions'] = $permissions;
         }
 
         if (!is_null($fileSecurity)) {
-                $apiParams['fileSecurity'] = $fileSecurity;
+            $apiParams['fileSecurity'] = $fileSecurity;
         }
 
         if (!is_null($enabled)) {
-                $apiParams['enabled'] = $enabled;
+            $apiParams['enabled'] = $enabled;
         }
 
         if (!is_null($maximumFileSize)) {
-                $apiParams['maximumFileSize'] = $maximumFileSize;
+            $apiParams['maximumFileSize'] = $maximumFileSize;
         }
 
         if (!is_null($allowedFileExtensions)) {
-                $apiParams['allowedFileExtensions'] = $allowedFileExtensions;
+            $apiParams['allowedFileExtensions'] = $allowedFileExtensions;
         }
 
         if (!is_null($compression)) {
-                $apiParams['compression'] = $compression;
+            $apiParams['compression'] = $compression;
         }
 
         if (!is_null($encryption)) {
-                $apiParams['encryption'] = $encryption;
+            $apiParams['encryption'] = $encryption;
         }
 
         if (!is_null($antivirus)) {
-                $apiParams['antivirus'] = $antivirus;
+            $apiParams['antivirus'] = $antivirus;
         }
 
         $apiHeaders = [];
@@ -129,7 +128,6 @@ class Storage extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -162,7 +160,6 @@ class Storage extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -196,35 +193,35 @@ class Storage extends Service
         $apiParams['name'] = $name;
 
         if (!is_null($permissions)) {
-                $apiParams['permissions'] = $permissions;
+            $apiParams['permissions'] = $permissions;
         }
 
         if (!is_null($fileSecurity)) {
-                $apiParams['fileSecurity'] = $fileSecurity;
+            $apiParams['fileSecurity'] = $fileSecurity;
         }
 
         if (!is_null($enabled)) {
-                $apiParams['enabled'] = $enabled;
+            $apiParams['enabled'] = $enabled;
         }
 
         if (!is_null($maximumFileSize)) {
-                $apiParams['maximumFileSize'] = $maximumFileSize;
+            $apiParams['maximumFileSize'] = $maximumFileSize;
         }
 
         if (!is_null($allowedFileExtensions)) {
-                $apiParams['allowedFileExtensions'] = $allowedFileExtensions;
+            $apiParams['allowedFileExtensions'] = $allowedFileExtensions;
         }
 
         if (!is_null($compression)) {
-                $apiParams['compression'] = $compression;
+            $apiParams['compression'] = $compression;
         }
 
         if (!is_null($encryption)) {
-                $apiParams['encryption'] = $encryption;
+            $apiParams['encryption'] = $encryption;
         }
 
         if (!is_null($antivirus)) {
-                $apiParams['antivirus'] = $antivirus;
+            $apiParams['antivirus'] = $antivirus;
         }
 
         $apiHeaders = [];
@@ -236,7 +233,6 @@ class Storage extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -268,7 +264,6 @@ class Storage extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -295,11 +290,11 @@ class Storage extends Service
         $apiParams['bucketId'] = $bucketId;
 
         if (!is_null($queries)) {
-                $apiParams['queries'] = $queries;
+            $apiParams['queries'] = $queries;
         }
 
         if (!is_null($search)) {
-                $apiParams['search'] = $search;
+            $apiParams['search'] = $search;
         }
 
         $apiHeaders = [];
@@ -311,7 +306,6 @@ class Storage extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -338,12 +332,12 @@ class Storage extends Service
      *
      * @param string $bucketId
      * @param string $fileId
-     * @param Payload $file
+     * @param InputFile $file
      * @param ?array $permissions
      * @throws AppwriteException
      * @return array
      */
-    public function createFile(string $bucketId, string $fileId, Payload $file, ?array $permissions = null, callable $onProgress = null): array
+    public function createFile(string $bucketId, string $fileId, InputFile $file, ?array $permissions = null, callable $onProgress = null): array
     {
         $apiPath = str_replace(
             ['{bucketId}'],
@@ -357,17 +351,35 @@ class Storage extends Service
         $apiParams['file'] = $file;
 
         if (!is_null($permissions)) {
-                $apiParams['permissions'] = $permissions;
+            $apiParams['permissions'] = $permissions;
         }
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'multipart/form-data';
-        $size = $file->size;
-
-        if ($size <= Client::CHUNK_SIZE) {
-            return $this->client->call(Client::METHOD_POST, $apiPath, [
-                'content-type' => 'multipart/form-data',
-            ], $apiParams);
+        $size = 0;
+        $mimeType = null;
+        $postedName = null;
+        if(empty($file->getPath() ?? null)) {
+            $size = strlen($file->getData());
+            $mimeType = $file->getMimeType();
+            $postedName = $file->getFilename();
+            if ($size <= Client::CHUNK_SIZE) {
+                $apiParams['file'] = new \CURLFile('data://' . $mimeType . ';base64,' . base64_encode($file->getData()), $mimeType, $postedName);
+                return $this->client->call(Client::METHOD_POST, $apiPath, [
+                            'content-type' => 'multipart/form-data',
+                        ], $apiParams);
+            }
+        } else {
+            $size = filesize($file->getPath());
+            $mimeType = $file->getMimeType() ?? mime_content_type($file->getPath());
+            $postedName = $file->getFilename() ?? basename($file->getPath());
+            //send single file if size is less than or equal to 5MB
+            if ($size <= Client::CHUNK_SIZE) {
+                $apiParams['file'] = new \CURLFile($file->getPath(), $mimeType, $postedName);
+                return $this->client->call(Client::METHOD_POST, $apiPath, [
+                            'content-type' => 'multipart/form-data',
+                        ], $apiParams);
+            }
         }
 
         $id = '';
@@ -382,16 +394,22 @@ class Storage extends Service
         }
 
         $apiHeaders = ['content-type' => 'multipart/form-data'];
+        $handle = null;
+
+        if(!empty($file->getPath())) {
+            $handle = @fopen($file->getPath(), "rb");
+        }
 
         $start = $counter * Client::CHUNK_SIZE;
         while ($start < $size) {
-            
-            $apiParams['file'] = Payload::fromBinary(
-                $file->toBinary($start, Client::CHUNK_SIZE),
-                $file->filename,
-                $file->mimeType
-            );
-
+            $chunk = '';
+            if(!empty($handle)) {
+                fseek($handle, $start);
+                $chunk = @fread($handle, Client::CHUNK_SIZE);
+            } else {
+                $chunk = substr($file->getData(), $start, Client::CHUNK_SIZE);
+            }
+            $apiParams['file'] = new \CURLFile('data://' . $mimeType . ';base64,' . base64_encode($chunk), $mimeType, $postedName);
             $apiHeaders['content-range'] = 'bytes ' . ($counter * Client::CHUNK_SIZE) . '-' . min(((($counter * Client::CHUNK_SIZE) + Client::CHUNK_SIZE) - 1), $size - 1) . '/' . $size;
             if(!empty($id)) {
                 $apiHeaders['x-appwrite-id'] = $id;
@@ -408,9 +426,12 @@ class Storage extends Service
                     'progress' => min(((($counter * Client::CHUNK_SIZE) + Client::CHUNK_SIZE)), $size) / $size * 100,
                     'sizeUploaded' => min($counter * Client::CHUNK_SIZE),
                     'chunksTotal' => $response['chunksTotal'],
-                    'chunksUploaded' => $response['chunksUploaded'],
+                    'chunksUploaded' => $response['chunksUploaded'], 
                 ]);
             }
+        }
+        if(!empty($handle)) {
+            @fclose($handle);
         }
         return $response;
 
@@ -448,7 +469,6 @@ class Storage extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -477,11 +497,11 @@ class Storage extends Service
         $apiParams['fileId'] = $fileId;
 
         if (!is_null($name)) {
-                $apiParams['name'] = $name;
+            $apiParams['name'] = $name;
         }
 
         if (!is_null($permissions)) {
-                $apiParams['permissions'] = $permissions;
+            $apiParams['permissions'] = $permissions;
         }
 
         $apiHeaders = [];
@@ -493,7 +513,6 @@ class Storage extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -528,7 +547,6 @@ class Storage extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -564,7 +582,6 @@ class Storage extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -605,47 +622,47 @@ class Storage extends Service
         $apiParams['fileId'] = $fileId;
 
         if (!is_null($width)) {
-                $apiParams['width'] = $width;
+            $apiParams['width'] = $width;
         }
 
         if (!is_null($height)) {
-                $apiParams['height'] = $height;
+            $apiParams['height'] = $height;
         }
 
         if (!is_null($gravity)) {
-                $apiParams['gravity'] = $gravity;
+            $apiParams['gravity'] = $gravity;
         }
 
         if (!is_null($quality)) {
-                $apiParams['quality'] = $quality;
+            $apiParams['quality'] = $quality;
         }
 
         if (!is_null($borderWidth)) {
-                $apiParams['borderWidth'] = $borderWidth;
+            $apiParams['borderWidth'] = $borderWidth;
         }
 
         if (!is_null($borderColor)) {
-                $apiParams['borderColor'] = $borderColor;
+            $apiParams['borderColor'] = $borderColor;
         }
 
         if (!is_null($borderRadius)) {
-                $apiParams['borderRadius'] = $borderRadius;
+            $apiParams['borderRadius'] = $borderRadius;
         }
 
         if (!is_null($opacity)) {
-                $apiParams['opacity'] = $opacity;
+            $apiParams['opacity'] = $opacity;
         }
 
         if (!is_null($rotation)) {
-                $apiParams['rotation'] = $rotation;
+            $apiParams['rotation'] = $rotation;
         }
 
         if (!is_null($background)) {
-                $apiParams['background'] = $background;
+            $apiParams['background'] = $background;
         }
 
         if (!is_null($output)) {
-                $apiParams['output'] = $output;
+            $apiParams['output'] = $output;
         }
 
         $apiHeaders = [];
@@ -657,7 +674,6 @@ class Storage extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -693,6 +709,5 @@ class Storage extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 }

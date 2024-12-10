@@ -5,7 +5,7 @@ namespace Appwrite\Services;
 use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
-use Appwrite\Payload;
+use Appwrite\InputFile;
 use Appwrite\Enums\AuthenticatorType;
 use Appwrite\Enums\AuthenticationFactor;
 use Appwrite\Enums\OAuthProvider;
@@ -44,7 +44,6 @@ class Account extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -79,7 +78,7 @@ class Account extends Service
         $apiParams['password'] = $password;
 
         if (!is_null($name)) {
-                $apiParams['name'] = $name;
+            $apiParams['name'] = $name;
         }
 
         $apiHeaders = [];
@@ -91,7 +90,6 @@ class Account extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -132,7 +130,6 @@ class Account extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -155,7 +152,7 @@ class Account extends Service
         $apiParams = [];
 
         if (!is_null($queries)) {
-                $apiParams['queries'] = $queries;
+            $apiParams['queries'] = $queries;
         }
 
         $apiHeaders = [];
@@ -167,7 +164,6 @@ class Account extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -199,7 +195,6 @@ class Account extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -233,7 +228,6 @@ class Account extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -257,7 +251,7 @@ class Account extends Service
         $apiParams = [];
 
         if (!is_null($queries)) {
-                $apiParams['queries'] = $queries;
+            $apiParams['queries'] = $queries;
         }
 
         $apiHeaders = [];
@@ -269,7 +263,6 @@ class Account extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -301,7 +294,6 @@ class Account extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -336,7 +328,6 @@ class Account extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -372,7 +363,6 @@ class Account extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -404,7 +394,6 @@ class Account extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -438,7 +427,6 @@ class Account extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -476,7 +464,6 @@ class Account extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -506,7 +493,6 @@ class Account extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -539,7 +525,6 @@ class Account extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -573,7 +558,6 @@ class Account extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -606,7 +590,6 @@ class Account extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -638,7 +621,6 @@ class Account extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -665,7 +647,7 @@ class Account extends Service
         $apiParams['password'] = $password;
 
         if (!is_null($oldPassword)) {
-                $apiParams['oldPassword'] = $oldPassword;
+            $apiParams['oldPassword'] = $oldPassword;
         }
 
         $apiHeaders = [];
@@ -677,7 +659,6 @@ class Account extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -715,7 +696,6 @@ class Account extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -745,7 +725,6 @@ class Account extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -779,7 +758,6 @@ class Account extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -820,7 +798,6 @@ class Account extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -865,7 +842,6 @@ class Account extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -896,7 +872,6 @@ class Account extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -927,7 +902,6 @@ class Account extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -963,7 +937,6 @@ class Account extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -1002,7 +975,6 @@ class Account extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -1038,7 +1010,6 @@ class Account extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -1074,7 +1045,6 @@ class Account extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -1110,7 +1080,6 @@ class Account extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -1143,7 +1112,6 @@ class Account extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -1177,7 +1145,6 @@ class Account extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -1213,7 +1180,6 @@ class Account extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -1245,7 +1211,6 @@ class Account extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -1281,7 +1246,7 @@ class Account extends Service
         $apiParams['email'] = $email;
 
         if (!is_null($phrase)) {
-                $apiParams['phrase'] = $phrase;
+            $apiParams['phrase'] = $phrase;
         }
 
         $apiHeaders = [];
@@ -1293,7 +1258,6 @@ class Account extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -1307,9 +1271,7 @@ class Account extends Service
      * [POST
      * /v1/account/sessions/token](https://appwrite.io/docs/references/cloud/client-web/account#createSession)
      * endpoint to complete the login process. The link sent to the user's email
-     * address is valid for 1 hour. If you are on a mobile device you can leave
-     * the URL parameter empty, so that the login completion will be handled by
-     * your Appwrite instance by default.
+     * address is valid for 1 hour.
      * 
      * A user is limited to 10 active sessions at a time by default. [Learn more
      * about session
@@ -1336,11 +1298,11 @@ class Account extends Service
         $apiParams['email'] = $email;
 
         if (!is_null($url)) {
-                $apiParams['url'] = $url;
+            $apiParams['url'] = $url;
         }
 
         if (!is_null($phrase)) {
-                $apiParams['phrase'] = $phrase;
+            $apiParams['phrase'] = $phrase;
         }
 
         $apiHeaders = [];
@@ -1352,7 +1314,6 @@ class Account extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -1392,15 +1353,15 @@ class Account extends Service
         $apiParams['provider'] = $provider;
 
         if (!is_null($success)) {
-                $apiParams['success'] = $success;
+            $apiParams['success'] = $success;
         }
 
         if (!is_null($failure)) {
-                $apiParams['failure'] = $failure;
+            $apiParams['failure'] = $failure;
         }
 
         if (!is_null($scopes)) {
-                $apiParams['scopes'] = $scopes;
+            $apiParams['scopes'] = $scopes;
         }
 
         $apiHeaders = [];
@@ -1412,7 +1373,6 @@ class Account extends Service
             $apiHeaders,
             $apiParams, 'location'
         );
-
     }
 
     /**
@@ -1455,7 +1415,6 @@ class Account extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -1501,7 +1460,6 @@ class Account extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -1538,7 +1496,6 @@ class Account extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -1575,7 +1532,6 @@ class Account extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -1612,6 +1568,5 @@ class Account extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 }

@@ -5,7 +5,7 @@ namespace Appwrite\Services;
 use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
-use Appwrite\Payload;
+use Appwrite\InputFile;
 
 class Teams extends Service
 {
@@ -36,11 +36,11 @@ class Teams extends Service
         $apiParams = [];
 
         if (!is_null($queries)) {
-                $apiParams['queries'] = $queries;
+            $apiParams['queries'] = $queries;
         }
 
         if (!is_null($search)) {
-                $apiParams['search'] = $search;
+            $apiParams['search'] = $search;
         }
 
         $apiHeaders = [];
@@ -52,7 +52,6 @@ class Teams extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -81,7 +80,7 @@ class Teams extends Service
         $apiParams['name'] = $name;
 
         if (!is_null($roles)) {
-                $apiParams['roles'] = $roles;
+            $apiParams['roles'] = $roles;
         }
 
         $apiHeaders = [];
@@ -93,7 +92,6 @@ class Teams extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -125,7 +123,6 @@ class Teams extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -159,7 +156,6 @@ class Teams extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -192,14 +188,14 @@ class Teams extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
      * List team memberships
      *
      * Use this endpoint to list a team's members using the team's ID. All team
-     * members have read access to this endpoint.
+     * members have read access to this endpoint. Hide sensitive attributes from
+     * the response by toggling membership privacy in the Console.
      *
      * @param string $teamId
      * @param ?array $queries
@@ -219,11 +215,11 @@ class Teams extends Service
         $apiParams['teamId'] = $teamId;
 
         if (!is_null($queries)) {
-                $apiParams['queries'] = $queries;
+            $apiParams['queries'] = $queries;
         }
 
         if (!is_null($search)) {
-                $apiParams['search'] = $search;
+            $apiParams['search'] = $search;
         }
 
         $apiHeaders = [];
@@ -235,7 +231,6 @@ class Teams extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -286,23 +281,23 @@ class Teams extends Service
         $apiParams['roles'] = $roles;
 
         if (!is_null($email)) {
-                $apiParams['email'] = $email;
+            $apiParams['email'] = $email;
         }
 
         if (!is_null($userId)) {
-                $apiParams['userId'] = $userId;
+            $apiParams['userId'] = $userId;
         }
 
         if (!is_null($phone)) {
-                $apiParams['phone'] = $phone;
+            $apiParams['phone'] = $phone;
         }
 
         if (!is_null($url)) {
-                $apiParams['url'] = $url;
+            $apiParams['url'] = $url;
         }
 
         if (!is_null($name)) {
-                $apiParams['name'] = $name;
+            $apiParams['name'] = $name;
         }
 
         $apiHeaders = [];
@@ -314,14 +309,14 @@ class Teams extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
      * Get team membership
      *
      * Get a team member by the membership unique id. All team members have read
-     * access for this resource.
+     * access for this resource. Hide sensitive attributes from the response by
+     * toggling membership privacy in the Console.
      *
      * @param string $teamId
      * @param string $membershipId
@@ -349,7 +344,6 @@ class Teams extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -388,7 +382,6 @@ class Teams extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -424,7 +417,6 @@ class Teams extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -468,7 +460,6 @@ class Teams extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -502,7 +493,6 @@ class Teams extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -538,6 +528,5 @@ class Teams extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 }

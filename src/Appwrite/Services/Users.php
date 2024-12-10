@@ -5,7 +5,7 @@ namespace Appwrite\Services;
 use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
-use Appwrite\Payload;
+use Appwrite\InputFile;
 use Appwrite\Enums\PasswordHash;
 use Appwrite\Enums\AuthenticatorType;
 use Appwrite\Enums\MessagingProviderType;
@@ -39,11 +39,11 @@ class Users extends Service
         $apiParams = [];
 
         if (!is_null($queries)) {
-                $apiParams['queries'] = $queries;
+            $apiParams['queries'] = $queries;
         }
 
         if (!is_null($search)) {
-                $apiParams['search'] = $search;
+            $apiParams['search'] = $search;
         }
 
         $apiHeaders = [];
@@ -55,7 +55,6 @@ class Users extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -83,19 +82,19 @@ class Users extends Service
         $apiParams['userId'] = $userId;
 
         if (!is_null($email)) {
-                $apiParams['email'] = $email;
+            $apiParams['email'] = $email;
         }
 
         if (!is_null($phone)) {
-                $apiParams['phone'] = $phone;
+            $apiParams['phone'] = $phone;
         }
 
         if (!is_null($password)) {
-                $apiParams['password'] = $password;
+            $apiParams['password'] = $password;
         }
 
         if (!is_null($name)) {
-                $apiParams['name'] = $name;
+            $apiParams['name'] = $name;
         }
 
         $apiHeaders = [];
@@ -107,7 +106,6 @@ class Users extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -139,7 +137,7 @@ class Users extends Service
         $apiParams['password'] = $password;
 
         if (!is_null($name)) {
-                $apiParams['name'] = $name;
+            $apiParams['name'] = $name;
         }
 
         $apiHeaders = [];
@@ -151,7 +149,6 @@ class Users extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -183,7 +180,7 @@ class Users extends Service
         $apiParams['password'] = $password;
 
         if (!is_null($name)) {
-                $apiParams['name'] = $name;
+            $apiParams['name'] = $name;
         }
 
         $apiHeaders = [];
@@ -195,7 +192,6 @@ class Users extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -219,11 +215,11 @@ class Users extends Service
         $apiParams = [];
 
         if (!is_null($queries)) {
-                $apiParams['queries'] = $queries;
+            $apiParams['queries'] = $queries;
         }
 
         if (!is_null($search)) {
-                $apiParams['search'] = $search;
+            $apiParams['search'] = $search;
         }
 
         $apiHeaders = [];
@@ -235,7 +231,6 @@ class Users extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -267,7 +262,6 @@ class Users extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -299,7 +293,7 @@ class Users extends Service
         $apiParams['password'] = $password;
 
         if (!is_null($name)) {
-                $apiParams['name'] = $name;
+            $apiParams['name'] = $name;
         }
 
         $apiHeaders = [];
@@ -311,7 +305,6 @@ class Users extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -343,7 +336,7 @@ class Users extends Service
         $apiParams['password'] = $password;
 
         if (!is_null($name)) {
-                $apiParams['name'] = $name;
+            $apiParams['name'] = $name;
         }
 
         $apiHeaders = [];
@@ -355,7 +348,6 @@ class Users extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -397,7 +389,7 @@ class Users extends Service
         $apiParams['passwordLength'] = $passwordLength;
 
         if (!is_null($name)) {
-                $apiParams['name'] = $name;
+            $apiParams['name'] = $name;
         }
 
         $apiHeaders = [];
@@ -409,7 +401,6 @@ class Users extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -448,7 +439,7 @@ class Users extends Service
         $apiParams['passwordSignerKey'] = $passwordSignerKey;
 
         if (!is_null($name)) {
-                $apiParams['name'] = $name;
+            $apiParams['name'] = $name;
         }
 
         $apiHeaders = [];
@@ -460,7 +451,6 @@ class Users extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -493,11 +483,11 @@ class Users extends Service
         $apiParams['password'] = $password;
 
         if (!is_null($passwordVersion)) {
-                $apiParams['passwordVersion'] = $passwordVersion;
+            $apiParams['passwordVersion'] = $passwordVersion;
         }
 
         if (!is_null($name)) {
-                $apiParams['name'] = $name;
+            $apiParams['name'] = $name;
         }
 
         $apiHeaders = [];
@@ -509,7 +499,6 @@ class Users extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -541,7 +530,6 @@ class Users extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -578,7 +566,6 @@ class Users extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -612,7 +599,6 @@ class Users extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -640,11 +626,11 @@ class Users extends Service
         $apiParams['userId'] = $userId;
 
         if (!is_null($sessionId)) {
-                $apiParams['sessionId'] = $sessionId;
+            $apiParams['sessionId'] = $sessionId;
         }
 
         if (!is_null($duration)) {
-                $apiParams['duration'] = $duration;
+            $apiParams['duration'] = $duration;
         }
 
         $apiHeaders = [];
@@ -656,7 +642,6 @@ class Users extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -695,7 +680,6 @@ class Users extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -720,7 +704,7 @@ class Users extends Service
         $apiParams['userId'] = $userId;
 
         if (!is_null($queries)) {
-                $apiParams['queries'] = $queries;
+            $apiParams['queries'] = $queries;
         }
 
         $apiHeaders = [];
@@ -732,7 +716,6 @@ class Users extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -764,7 +747,6 @@ class Users extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -798,7 +780,6 @@ class Users extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -832,7 +813,6 @@ class Users extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -864,7 +844,6 @@ class Users extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -899,7 +878,6 @@ class Users extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -934,7 +912,6 @@ class Users extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -969,7 +946,6 @@ class Users extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -1003,7 +979,6 @@ class Users extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -1037,7 +1012,6 @@ class Users extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -1071,7 +1045,6 @@ class Users extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -1103,7 +1076,6 @@ class Users extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -1139,7 +1111,6 @@ class Users extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -1171,7 +1142,6 @@ class Users extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -1208,7 +1178,6 @@ class Users extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -1240,7 +1209,6 @@ class Users extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -1274,7 +1242,6 @@ class Users extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -1309,7 +1276,6 @@ class Users extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -1334,7 +1300,7 @@ class Users extends Service
         $apiParams['userId'] = $userId;
 
         if (!is_null($queries)) {
-                $apiParams['queries'] = $queries;
+            $apiParams['queries'] = $queries;
         }
 
         $apiHeaders = [];
@@ -1346,7 +1312,6 @@ class Users extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -1378,11 +1343,11 @@ class Users extends Service
         $apiParams['identifier'] = $identifier;
 
         if (!is_null($providerId)) {
-                $apiParams['providerId'] = $providerId;
+            $apiParams['providerId'] = $providerId;
         }
 
         if (!is_null($name)) {
-                $apiParams['name'] = $name;
+            $apiParams['name'] = $name;
         }
 
         $apiHeaders = [];
@@ -1394,7 +1359,6 @@ class Users extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -1428,7 +1392,6 @@ class Users extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -1457,15 +1420,15 @@ class Users extends Service
         $apiParams['targetId'] = $targetId;
 
         if (!is_null($identifier)) {
-                $apiParams['identifier'] = $identifier;
+            $apiParams['identifier'] = $identifier;
         }
 
         if (!is_null($providerId)) {
-                $apiParams['providerId'] = $providerId;
+            $apiParams['providerId'] = $providerId;
         }
 
         if (!is_null($name)) {
-                $apiParams['name'] = $name;
+            $apiParams['name'] = $name;
         }
 
         $apiHeaders = [];
@@ -1477,7 +1440,6 @@ class Users extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -1511,7 +1473,6 @@ class Users extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -1541,11 +1502,11 @@ class Users extends Service
         $apiParams['userId'] = $userId;
 
         if (!is_null($length)) {
-                $apiParams['length'] = $length;
+            $apiParams['length'] = $length;
         }
 
         if (!is_null($expire)) {
-                $apiParams['expire'] = $expire;
+            $apiParams['expire'] = $expire;
         }
 
         $apiHeaders = [];
@@ -1557,7 +1518,6 @@ class Users extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -1591,7 +1551,6 @@ class Users extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -1625,6 +1584,5 @@ class Users extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 }

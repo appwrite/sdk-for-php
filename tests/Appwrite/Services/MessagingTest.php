@@ -3,7 +3,7 @@
 namespace Appwrite\Services;
 
 use Appwrite\Client;
-use Appwrite\Payload;
+use Appwrite\InputFile;
 use Mockery;
 use PHPUnit\Framework\TestCase;
 
@@ -107,9 +107,7 @@ final class MessagingTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->messaging->createPush(
-            "<MESSAGE_ID>",
-            "<TITLE>",
-            "<BODY>"
+            "<MESSAGE_ID>"
         );
 
         $this->assertSame($data, $response);

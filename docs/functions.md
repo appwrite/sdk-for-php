@@ -48,7 +48,7 @@ POST https://cloud.appwrite.io/v1/functions
 | templateOwner | string | The name of the owner of the template. |  |
 | templateRootDirectory | string | Path to function code in the template repo. |  |
 | templateVersion | string | Version (tag) for the repo linked to the function template. |  |
-| specification | string | Runtime specification for the function and builds. | s-0.5vcpu-512mb |
+| specification | string | Runtime specification for the function and builds. | s-1vcpu-512mb |
 
 ## List runtimes
 
@@ -110,7 +110,7 @@ PUT https://cloud.appwrite.io/v1/functions/{functionId}
 | providerBranch | string | Production branch for the repo linked to the function |  |
 | providerSilentMode | boolean | Is the VCS (Version Control System) connection in silent mode for the repo linked to the function? In silent mode, comments will not be made on commits and pull requests. |  |
 | providerRootDirectory | string | Path to function code in the linked repo. |  |
-| specification | string | Runtime specification for the function and builds. | s-0.5vcpu-512mb |
+| specification | string | Runtime specification for the function and builds. | s-1vcpu-512mb |
 
 ## Delete function
 
@@ -280,7 +280,7 @@ POST https://cloud.appwrite.io/v1/functions/{functionId}/executions
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | functionId | string | **Required** Function ID. |  |
-| body | payload | HTTP body of execution. Default value is empty string. |  |
+| body | string | HTTP body of execution. Default value is empty string. |  |
 | async | boolean | Execute code in the background. Default value is false. |  |
 | path | string | HTTP path of execution. Path can include query params. Default value is / | / |
 | method | string | HTTP method of execution. Default value is GET. | POST |

@@ -5,7 +5,7 @@ namespace Appwrite\Services;
 use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
-use Appwrite\Payload;
+use Appwrite\InputFile;
 use Appwrite\Enums\Runtime;
 use Appwrite\Enums\ExecutionMethod;
 
@@ -38,11 +38,11 @@ class Functions extends Service
         $apiParams = [];
 
         if (!is_null($queries)) {
-                $apiParams['queries'] = $queries;
+            $apiParams['queries'] = $queries;
         }
 
         if (!is_null($search)) {
-                $apiParams['search'] = $search;
+            $apiParams['search'] = $search;
         }
 
         $apiHeaders = [];
@@ -54,7 +54,6 @@ class Functions extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -104,79 +103,79 @@ class Functions extends Service
         $apiParams['runtime'] = $runtime;
 
         if (!is_null($execute)) {
-                $apiParams['execute'] = $execute;
+            $apiParams['execute'] = $execute;
         }
 
         if (!is_null($events)) {
-                $apiParams['events'] = $events;
+            $apiParams['events'] = $events;
         }
 
         if (!is_null($schedule)) {
-                $apiParams['schedule'] = $schedule;
+            $apiParams['schedule'] = $schedule;
         }
 
         if (!is_null($timeout)) {
-                $apiParams['timeout'] = $timeout;
+            $apiParams['timeout'] = $timeout;
         }
 
         if (!is_null($enabled)) {
-                $apiParams['enabled'] = $enabled;
+            $apiParams['enabled'] = $enabled;
         }
 
         if (!is_null($logging)) {
-                $apiParams['logging'] = $logging;
+            $apiParams['logging'] = $logging;
         }
 
         if (!is_null($entrypoint)) {
-                $apiParams['entrypoint'] = $entrypoint;
+            $apiParams['entrypoint'] = $entrypoint;
         }
 
         if (!is_null($commands)) {
-                $apiParams['commands'] = $commands;
+            $apiParams['commands'] = $commands;
         }
 
         if (!is_null($scopes)) {
-                $apiParams['scopes'] = $scopes;
+            $apiParams['scopes'] = $scopes;
         }
 
         if (!is_null($installationId)) {
-                $apiParams['installationId'] = $installationId;
+            $apiParams['installationId'] = $installationId;
         }
 
         if (!is_null($providerRepositoryId)) {
-                $apiParams['providerRepositoryId'] = $providerRepositoryId;
+            $apiParams['providerRepositoryId'] = $providerRepositoryId;
         }
 
         if (!is_null($providerBranch)) {
-                $apiParams['providerBranch'] = $providerBranch;
+            $apiParams['providerBranch'] = $providerBranch;
         }
 
         if (!is_null($providerSilentMode)) {
-                $apiParams['providerSilentMode'] = $providerSilentMode;
+            $apiParams['providerSilentMode'] = $providerSilentMode;
         }
 
         if (!is_null($providerRootDirectory)) {
-                $apiParams['providerRootDirectory'] = $providerRootDirectory;
+            $apiParams['providerRootDirectory'] = $providerRootDirectory;
         }
 
         if (!is_null($templateRepository)) {
-                $apiParams['templateRepository'] = $templateRepository;
+            $apiParams['templateRepository'] = $templateRepository;
         }
 
         if (!is_null($templateOwner)) {
-                $apiParams['templateOwner'] = $templateOwner;
+            $apiParams['templateOwner'] = $templateOwner;
         }
 
         if (!is_null($templateRootDirectory)) {
-                $apiParams['templateRootDirectory'] = $templateRootDirectory;
+            $apiParams['templateRootDirectory'] = $templateRootDirectory;
         }
 
         if (!is_null($templateVersion)) {
-                $apiParams['templateVersion'] = $templateVersion;
+            $apiParams['templateVersion'] = $templateVersion;
         }
 
         if (!is_null($specification)) {
-                $apiParams['specification'] = $specification;
+            $apiParams['specification'] = $specification;
         }
 
         $apiHeaders = [];
@@ -188,7 +187,6 @@ class Functions extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -218,7 +216,6 @@ class Functions extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -249,7 +246,6 @@ class Functions extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -281,7 +277,6 @@ class Functions extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -323,64 +318,64 @@ class Functions extends Service
         $apiParams['name'] = $name;
 
         if (!is_null($runtime)) {
-                $apiParams['runtime'] = $runtime;
+            $apiParams['runtime'] = $runtime;
         }
 
         if (!is_null($execute)) {
-                $apiParams['execute'] = $execute;
+            $apiParams['execute'] = $execute;
         }
 
         if (!is_null($events)) {
-                $apiParams['events'] = $events;
+            $apiParams['events'] = $events;
         }
 
         if (!is_null($schedule)) {
-                $apiParams['schedule'] = $schedule;
+            $apiParams['schedule'] = $schedule;
         }
 
         if (!is_null($timeout)) {
-                $apiParams['timeout'] = $timeout;
+            $apiParams['timeout'] = $timeout;
         }
 
         if (!is_null($enabled)) {
-                $apiParams['enabled'] = $enabled;
+            $apiParams['enabled'] = $enabled;
         }
 
         if (!is_null($logging)) {
-                $apiParams['logging'] = $logging;
+            $apiParams['logging'] = $logging;
         }
 
         if (!is_null($entrypoint)) {
-                $apiParams['entrypoint'] = $entrypoint;
+            $apiParams['entrypoint'] = $entrypoint;
         }
 
         if (!is_null($commands)) {
-                $apiParams['commands'] = $commands;
+            $apiParams['commands'] = $commands;
         }
 
         if (!is_null($scopes)) {
-                $apiParams['scopes'] = $scopes;
+            $apiParams['scopes'] = $scopes;
         }
 
         if (!is_null($installationId)) {
-                $apiParams['installationId'] = $installationId;
+            $apiParams['installationId'] = $installationId;
         }
         $apiParams['providerRepositoryId'] = $providerRepositoryId;
 
         if (!is_null($providerBranch)) {
-                $apiParams['providerBranch'] = $providerBranch;
+            $apiParams['providerBranch'] = $providerBranch;
         }
 
         if (!is_null($providerSilentMode)) {
-                $apiParams['providerSilentMode'] = $providerSilentMode;
+            $apiParams['providerSilentMode'] = $providerSilentMode;
         }
 
         if (!is_null($providerRootDirectory)) {
-                $apiParams['providerRootDirectory'] = $providerRootDirectory;
+            $apiParams['providerRootDirectory'] = $providerRootDirectory;
         }
 
         if (!is_null($specification)) {
-                $apiParams['specification'] = $specification;
+            $apiParams['specification'] = $specification;
         }
 
         $apiHeaders = [];
@@ -392,7 +387,6 @@ class Functions extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -424,7 +418,6 @@ class Functions extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -451,11 +444,11 @@ class Functions extends Service
         $apiParams['functionId'] = $functionId;
 
         if (!is_null($queries)) {
-                $apiParams['queries'] = $queries;
+            $apiParams['queries'] = $queries;
         }
 
         if (!is_null($search)) {
-                $apiParams['search'] = $search;
+            $apiParams['search'] = $search;
         }
 
         $apiHeaders = [];
@@ -467,7 +460,6 @@ class Functions extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -485,14 +477,14 @@ class Functions extends Service
      * Use the "command" param to set the entrypoint used to execute your code.
      *
      * @param string $functionId
-     * @param Payload $code
+     * @param InputFile $code
      * @param bool $activate
      * @param ?string $entrypoint
      * @param ?string $commands
      * @throws AppwriteException
      * @return array
      */
-    public function createDeployment(string $functionId, Payload $code, bool $activate, ?string $entrypoint = null, ?string $commands = null, callable $onProgress = null): array
+    public function createDeployment(string $functionId, InputFile $code, bool $activate, ?string $entrypoint = null, ?string $commands = null, callable $onProgress = null): array
     {
         $apiPath = str_replace(
             ['{functionId}'],
@@ -506,21 +498,39 @@ class Functions extends Service
         $apiParams['activate'] = $activate;
 
         if (!is_null($entrypoint)) {
-                $apiParams['entrypoint'] = $entrypoint;
+            $apiParams['entrypoint'] = $entrypoint;
         }
 
         if (!is_null($commands)) {
-                $apiParams['commands'] = $commands;
+            $apiParams['commands'] = $commands;
         }
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'multipart/form-data';
-        $size = $code->size;
-
-        if ($size <= Client::CHUNK_SIZE) {
-            return $this->client->call(Client::METHOD_POST, $apiPath, [
-                'content-type' => 'multipart/form-data',
-            ], $apiParams);
+        $size = 0;
+        $mimeType = null;
+        $postedName = null;
+        if(empty($code->getPath() ?? null)) {
+            $size = strlen($code->getData());
+            $mimeType = $code->getMimeType();
+            $postedName = $code->getFilename();
+            if ($size <= Client::CHUNK_SIZE) {
+                $apiParams['code'] = new \CURLFile('data://' . $mimeType . ';base64,' . base64_encode($code->getData()), $mimeType, $postedName);
+                return $this->client->call(Client::METHOD_POST, $apiPath, [
+                            'content-type' => 'multipart/form-data',
+                        ], $apiParams);
+            }
+        } else {
+            $size = filesize($code->getPath());
+            $mimeType = $code->getMimeType() ?? mime_content_type($code->getPath());
+            $postedName = $code->getFilename() ?? basename($code->getPath());
+            //send single file if size is less than or equal to 5MB
+            if ($size <= Client::CHUNK_SIZE) {
+                $apiParams['code'] = new \CURLFile($code->getPath(), $mimeType, $postedName);
+                return $this->client->call(Client::METHOD_POST, $apiPath, [
+                            'content-type' => 'multipart/form-data',
+                        ], $apiParams);
+            }
         }
 
         $id = '';
@@ -528,16 +538,22 @@ class Functions extends Service
 
 
         $apiHeaders = ['content-type' => 'multipart/form-data'];
+        $handle = null;
+
+        if(!empty($code->getPath())) {
+            $handle = @fopen($code->getPath(), "rb");
+        }
 
         $start = $counter * Client::CHUNK_SIZE;
         while ($start < $size) {
-            
-            $apiParams['code'] = Payload::fromBinary(
-                $code->toBinary($start, Client::CHUNK_SIZE),
-                $code->filename,
-                $code->mimeType
-            );
-
+            $chunk = '';
+            if(!empty($handle)) {
+                fseek($handle, $start);
+                $chunk = @fread($handle, Client::CHUNK_SIZE);
+            } else {
+                $chunk = substr($file->getData(), $start, Client::CHUNK_SIZE);
+            }
+            $apiParams['code'] = new \CURLFile('data://' . $mimeType . ';base64,' . base64_encode($chunk), $mimeType, $postedName);
             $apiHeaders['content-range'] = 'bytes ' . ($counter * Client::CHUNK_SIZE) . '-' . min(((($counter * Client::CHUNK_SIZE) + Client::CHUNK_SIZE) - 1), $size - 1) . '/' . $size;
             if(!empty($id)) {
                 $apiHeaders['x-appwrite-id'] = $id;
@@ -554,9 +570,12 @@ class Functions extends Service
                     'progress' => min(((($counter * Client::CHUNK_SIZE) + Client::CHUNK_SIZE)), $size) / $size * 100,
                     'sizeUploaded' => min($counter * Client::CHUNK_SIZE),
                     'chunksTotal' => $response['chunksTotal'],
-                    'chunksUploaded' => $response['chunksUploaded'],
+                    'chunksUploaded' => $response['chunksUploaded'], 
                 ]);
             }
+        }
+        if(!empty($handle)) {
+            @fclose($handle);
         }
         return $response;
 
@@ -593,7 +612,6 @@ class Functions extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -629,7 +647,6 @@ class Functions extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -663,7 +680,6 @@ class Functions extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -688,7 +704,7 @@ class Functions extends Service
         $apiParams['deploymentId'] = $deploymentId;
 
         if (!is_null($buildId)) {
-                $apiParams['buildId'] = $buildId;
+            $apiParams['buildId'] = $buildId;
         }
 
         $apiHeaders = [];
@@ -700,7 +716,6 @@ class Functions extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -732,7 +747,6 @@ class Functions extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -767,7 +781,6 @@ class Functions extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -794,11 +807,11 @@ class Functions extends Service
         $apiParams['functionId'] = $functionId;
 
         if (!is_null($queries)) {
-                $apiParams['queries'] = $queries;
+            $apiParams['queries'] = $queries;
         }
 
         if (!is_null($search)) {
-                $apiParams['search'] = $search;
+            $apiParams['search'] = $search;
         }
 
         $apiHeaders = [];
@@ -810,7 +823,6 @@ class Functions extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -822,7 +834,7 @@ class Functions extends Service
      * function execution process will start asynchronously.
      *
      * @param string $functionId
-     * @param ?Payload $body
+     * @param ?string $body
      * @param ?bool $async
      * @param ?string $xpath
      * @param ?ExecutionMethod $method
@@ -831,7 +843,7 @@ class Functions extends Service
      * @throws AppwriteException
      * @return array
      */
-    public function createExecution(string $functionId, ?Payload $body = null, ?bool $async = null, ?string $xpath = null, ?ExecutionMethod $method = null, ?array $headers = null, ?string $scheduledAt = null, callable $onProgress = null): array
+    public function createExecution(string $functionId, ?string $body = null, ?bool $async = null, ?string $xpath = null, ?ExecutionMethod $method = null, ?array $headers = null, ?string $scheduledAt = null): array
     {
         $apiPath = str_replace(
             ['{functionId}'],
@@ -843,31 +855,31 @@ class Functions extends Service
         $apiParams['functionId'] = $functionId;
 
         if (!is_null($body)) {
-                $apiParams['body'] = $body;
+            $apiParams['body'] = $body;
         }
 
         if (!is_null($async)) {
-                $apiParams['async'] = $async;
+            $apiParams['async'] = $async;
         }
 
         if (!is_null($xpath)) {
-                $apiParams['path'] = $xpath;
+            $apiParams['path'] = $xpath;
         }
 
         if (!is_null($method)) {
-                $apiParams['method'] = $method;
+            $apiParams['method'] = $method;
         }
 
         if (!is_null($headers)) {
-                $apiParams['headers'] = $headers;
+            $apiParams['headers'] = $headers;
         }
 
         if (!is_null($scheduledAt)) {
-                $apiParams['scheduledAt'] = $scheduledAt;
+            $apiParams['scheduledAt'] = $scheduledAt;
         }
 
         $apiHeaders = [];
-        $apiHeaders['content-type'] = 'multipart/form-data';
+        $apiHeaders['content-type'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_POST,
@@ -875,7 +887,6 @@ class Functions extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -909,7 +920,6 @@ class Functions extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -944,7 +954,6 @@ class Functions extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -976,7 +985,6 @@ class Functions extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -1013,7 +1021,6 @@ class Functions extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -1047,7 +1054,6 @@ class Functions extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -1076,7 +1082,7 @@ class Functions extends Service
         $apiParams['key'] = $key;
 
         if (!is_null($value)) {
-                $apiParams['value'] = $value;
+            $apiParams['value'] = $value;
         }
 
         $apiHeaders = [];
@@ -1088,7 +1094,6 @@ class Functions extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 
     /**
@@ -1122,6 +1127,5 @@ class Functions extends Service
             $apiHeaders,
             $apiParams
         );
-
     }
 }
