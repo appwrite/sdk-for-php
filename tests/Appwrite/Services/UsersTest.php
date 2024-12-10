@@ -933,10 +933,11 @@ final class UsersTest extends TestCase {
             "\$id" => "259125845563242502",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "name" => "Aegon apple token",
+            "name" => "Apple iPhone 12",
             "userId" => "259125845563242502",
             "providerType" => "email",
-            "identifier" => "token",);
+            "identifier" => "token",
+            "expired" => true,);
 
 
         $this->client
@@ -959,10 +960,11 @@ final class UsersTest extends TestCase {
             "\$id" => "259125845563242502",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "name" => "Aegon apple token",
+            "name" => "Apple iPhone 12",
             "userId" => "259125845563242502",
             "providerType" => "email",
-            "identifier" => "token",);
+            "identifier" => "token",
+            "expired" => true,);
 
 
         $this->client
@@ -983,10 +985,11 @@ final class UsersTest extends TestCase {
             "\$id" => "259125845563242502",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "name" => "Aegon apple token",
+            "name" => "Apple iPhone 12",
             "userId" => "259125845563242502",
             "providerType" => "email",
-            "identifier" => "token",);
+            "identifier" => "token",
+            "expired" => true,);
 
 
         $this->client

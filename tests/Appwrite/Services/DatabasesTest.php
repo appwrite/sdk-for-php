@@ -258,7 +258,9 @@ final class DatabasesTest extends TestCase {
             "type" => "boolean",
             "status" => "available",
             "error" => "string",
-            "required" => true,);
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",);
 
 
         $this->client
@@ -282,7 +284,9 @@ final class DatabasesTest extends TestCase {
             "type" => "boolean",
             "status" => "available",
             "error" => "string",
-            "required" => true,);
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",);
 
 
         $this->client
@@ -308,6 +312,8 @@ final class DatabasesTest extends TestCase {
             "status" => "available",
             "error" => "string",
             "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "format" => "datetime",);
 
 
@@ -333,6 +339,8 @@ final class DatabasesTest extends TestCase {
             "status" => "available",
             "error" => "string",
             "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "format" => "datetime",);
 
 
@@ -359,6 +367,8 @@ final class DatabasesTest extends TestCase {
             "status" => "available",
             "error" => "string",
             "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "format" => "email",);
 
 
@@ -384,6 +394,8 @@ final class DatabasesTest extends TestCase {
             "status" => "available",
             "error" => "string",
             "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "format" => "email",);
 
 
@@ -410,6 +422,8 @@ final class DatabasesTest extends TestCase {
             "status" => "available",
             "error" => "string",
             "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "elements" => array(),
             "format" => "enum",);
 
@@ -437,6 +451,8 @@ final class DatabasesTest extends TestCase {
             "status" => "available",
             "error" => "string",
             "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "elements" => array(),
             "format" => "enum",);
 
@@ -464,7 +480,9 @@ final class DatabasesTest extends TestCase {
             "type" => "double",
             "status" => "available",
             "error" => "string",
-            "required" => true,);
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",);
 
 
         $this->client
@@ -488,7 +506,9 @@ final class DatabasesTest extends TestCase {
             "type" => "double",
             "status" => "available",
             "error" => "string",
-            "required" => true,);
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",);
 
 
         $this->client
@@ -515,7 +535,9 @@ final class DatabasesTest extends TestCase {
             "type" => "integer",
             "status" => "available",
             "error" => "string",
-            "required" => true,);
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",);
 
 
         $this->client
@@ -539,7 +561,9 @@ final class DatabasesTest extends TestCase {
             "type" => "integer",
             "status" => "available",
             "error" => "string",
-            "required" => true,);
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",);
 
 
         $this->client
@@ -567,6 +591,8 @@ final class DatabasesTest extends TestCase {
             "status" => "available",
             "error" => "string",
             "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "format" => "ip",);
 
 
@@ -592,6 +618,8 @@ final class DatabasesTest extends TestCase {
             "status" => "available",
             "error" => "string",
             "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "format" => "ip",);
 
 
@@ -618,6 +646,8 @@ final class DatabasesTest extends TestCase {
             "status" => "available",
             "error" => "string",
             "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "relatedCollection" => "collection",
             "relationType" => "oneToOne|oneToMany|manyToOne|manyToMany",
             "twoWay" => true,
@@ -648,6 +678,8 @@ final class DatabasesTest extends TestCase {
             "status" => "available",
             "error" => "string",
             "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "size" => 128,);
 
 
@@ -674,6 +706,8 @@ final class DatabasesTest extends TestCase {
             "status" => "available",
             "error" => "string",
             "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "size" => 128,);
 
 
@@ -700,6 +734,8 @@ final class DatabasesTest extends TestCase {
             "status" => "available",
             "error" => "string",
             "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "format" => "url",);
 
 
@@ -725,6 +761,8 @@ final class DatabasesTest extends TestCase {
             "status" => "available",
             "error" => "string",
             "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "format" => "url",);
 
 
@@ -787,6 +825,8 @@ final class DatabasesTest extends TestCase {
             "status" => "available",
             "error" => "string",
             "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "relatedCollection" => "collection",
             "relationType" => "oneToOne|oneToMany|manyToOne|manyToMany",
             "twoWay" => true,
@@ -944,7 +984,9 @@ final class DatabasesTest extends TestCase {
             "type" => "primary",
             "status" => "available",
             "error" => "string",
-            "attributes" => array(),);
+            "attributes" => array(),
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",);
 
 
         $this->client
@@ -969,7 +1011,9 @@ final class DatabasesTest extends TestCase {
             "type" => "primary",
             "status" => "available",
             "error" => "string",
-            "attributes" => array(),);
+            "attributes" => array(),
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",);
 
 
         $this->client

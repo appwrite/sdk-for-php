@@ -84,16 +84,19 @@ POST https://cloud.appwrite.io/v1/messaging/messages/push
 | topics | array | List of Topic IDs. | [] |
 | users | array | List of User IDs. | [] |
 | targets | array | List of Targets IDs. | [] |
-| data | object | Additional Data for push notification. | {} |
+| data | object | Additional key-value pair data for push notification. | {} |
 | action | string | Action for push notification. |  |
 | image | string | Image for push notification. Must be a compound bucket ID to file ID of a jpeg, png, or bmp image in Appwrite Storage. It should be formatted as <BUCKET_ID>:<FILE_ID>. |  |
 | icon | string | Icon for push notification. Available only for Android and Web Platform. |  |
-| sound | string | Sound for push notification. Available only for Android and IOS Platform. |  |
+| sound | string | Sound for push notification. Available only for Android and iOS Platform. |  |
 | color | string | Color for push notification. Available only for Android Platform. |  |
 | tag | string | Tag for push notification. Available only for Android Platform. |  |
-| badge | string | Badge for push notification. Available only for IOS Platform. |  |
+| badge | integer | Badge for push notification. Available only for iOS Platform. | -1 |
 | draft | boolean | Is message a draft |  |
 | scheduledAt | string | Scheduled delivery time for message in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. DateTime value must be in future. |  |
+| contentAvailable | boolean | If set to true, the notification will be delivered in the background. Available only for iOS Platform. |  |
+| critical | boolean | If set to true, the notification will be marked as critical. This requires the app to have the critical notification entitlement. Available only for iOS Platform. |  |
+| priority | string | Set the notification priority. "normal" will consider device state and may not deliver notifications immediately. "high" will always attempt to immediately deliver the notification. | high |
 
 ## Update push notification
 
@@ -124,6 +127,9 @@ PATCH https://cloud.appwrite.io/v1/messaging/messages/push/{messageId}
 | badge | integer | Badge for push notification. Available only for iOS platforms. |  |
 | draft | boolean | Is message a draft |  |
 | scheduledAt | string | Scheduled delivery time for message in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. DateTime value must be in future. |  |
+| contentAvailable | boolean | If set to true, the notification will be delivered in the background. Available only for iOS Platform. |  |
+| critical | boolean | If set to true, the notification will be marked as critical. This requires the app to have the critical notification entitlement. Available only for iOS Platform. |  |
+| priority | string | Set the notification priority. "normal" will consider device battery state and may send notifications later. "high" will always attempt to immediately deliver the notification. |  |
 
 ## Create SMS
 
