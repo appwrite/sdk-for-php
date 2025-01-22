@@ -59,7 +59,7 @@ final class FunctionsTest extends TestCase {
             "providerBranch" => "main",
             "providerRootDirectory" => "functions/helloWorld",
             "providerSilentMode" => true,
-            "specification" => "s-0.5vcpu-512mb",);
+            "specification" => "s-1vcpu-512mb",);
 
 
         $this->client
@@ -135,7 +135,7 @@ final class FunctionsTest extends TestCase {
             "providerBranch" => "main",
             "providerRootDirectory" => "functions/helloWorld",
             "providerSilentMode" => true,
-            "specification" => "s-0.5vcpu-512mb",);
+            "specification" => "s-1vcpu-512mb",);
 
 
         $this->client
@@ -175,7 +175,7 @@ final class FunctionsTest extends TestCase {
             "providerBranch" => "main",
             "providerRootDirectory" => "functions/helloWorld",
             "providerSilentMode" => true,
-            "specification" => "s-0.5vcpu-512mb",);
+            "specification" => "s-1vcpu-512mb",);
 
 
         $this->client
@@ -333,7 +333,7 @@ final class FunctionsTest extends TestCase {
             "providerBranch" => "main",
             "providerRootDirectory" => "functions/helloWorld",
             "providerSilentMode" => true,
-            "specification" => "s-0.5vcpu-512mb",);
+            "specification" => "s-1vcpu-512mb",);
 
 
         $this->client
@@ -457,7 +457,7 @@ final class FunctionsTest extends TestCase {
             "requestPath" => "/articles?id=5",
             "requestHeaders" => array(),
             "responseStatusCode" => 200,
-            "responseBody" => "Developers are awesome.",
+            "responseBody" => "",
             "responseHeaders" => array(),
             "logs" => "",
             "errors" => "",
@@ -489,7 +489,7 @@ final class FunctionsTest extends TestCase {
             "requestPath" => "/articles?id=5",
             "requestHeaders" => array(),
             "responseStatusCode" => 200,
-            "responseBody" => "Developers are awesome.",
+            "responseBody" => "",
             "responseHeaders" => array(),
             "logs" => "",
             "errors" => "",

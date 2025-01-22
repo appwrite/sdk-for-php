@@ -6,6 +6,7 @@ use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
 use Appwrite\InputFile;
+use Appwrite\Enums\MessagePriority;
 use Appwrite\Enums\SmtpEncryption;
 
 class Messaging extends Service
@@ -227,8 +228,8 @@ class Messaging extends Service
      * Create a new push notification.
      *
      * @param string $messageId
-     * @param string $title
-     * @param string $body
+     * @param ?string $title
+     * @param ?string $body
      * @param ?array $topics
      * @param ?array $users
      * @param ?array $targets
@@ -239,13 +240,16 @@ class Messaging extends Service
      * @param ?string $sound
      * @param ?string $color
      * @param ?string $tag
-     * @param ?string $badge
+     * @param ?int $badge
      * @param ?bool $draft
      * @param ?string $scheduledAt
+     * @param ?bool $contentAvailable
+     * @param ?bool $critical
+     * @param ?MessagePriority $priority
      * @throws AppwriteException
      * @return array
      */
-    public function createPush(string $messageId, string $title, string $body, ?array $topics = null, ?array $users = null, ?array $targets = null, ?array $data = null, ?string $action = null, ?string $image = null, ?string $icon = null, ?string $sound = null, ?string $color = null, ?string $tag = null, ?string $badge = null, ?bool $draft = null, ?string $scheduledAt = null): array
+    public function createPush(string $messageId, ?string $title = null, ?string $body = null, ?array $topics = null, ?array $users = null, ?array $targets = null, ?array $data = null, ?string $action = null, ?string $image = null, ?string $icon = null, ?string $sound = null, ?string $color = null, ?string $tag = null, ?int $badge = null, ?bool $draft = null, ?string $scheduledAt = null, ?bool $contentAvailable = null, ?bool $critical = null, ?MessagePriority $priority = null): array
     {
         $apiPath = str_replace(
             [],
@@ -255,8 +259,14 @@ class Messaging extends Service
 
         $apiParams = [];
         $apiParams['messageId'] = $messageId;
-        $apiParams['title'] = $title;
-        $apiParams['body'] = $body;
+
+        if (!is_null($title)) {
+            $apiParams['title'] = $title;
+        }
+
+        if (!is_null($body)) {
+            $apiParams['body'] = $body;
+        }
 
         if (!is_null($topics)) {
             $apiParams['topics'] = $topics;
@@ -310,6 +320,18 @@ class Messaging extends Service
             $apiParams['scheduledAt'] = $scheduledAt;
         }
 
+        if (!is_null($contentAvailable)) {
+            $apiParams['contentAvailable'] = $contentAvailable;
+        }
+
+        if (!is_null($critical)) {
+            $apiParams['critical'] = $critical;
+        }
+
+        if (!is_null($priority)) {
+            $apiParams['priority'] = $priority;
+        }
+
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
@@ -343,10 +365,13 @@ class Messaging extends Service
      * @param ?int $badge
      * @param ?bool $draft
      * @param ?string $scheduledAt
+     * @param ?bool $contentAvailable
+     * @param ?bool $critical
+     * @param ?MessagePriority $priority
      * @throws AppwriteException
      * @return array
      */
-    public function updatePush(string $messageId, ?array $topics = null, ?array $users = null, ?array $targets = null, ?string $title = null, ?string $body = null, ?array $data = null, ?string $action = null, ?string $image = null, ?string $icon = null, ?string $sound = null, ?string $color = null, ?string $tag = null, ?int $badge = null, ?bool $draft = null, ?string $scheduledAt = null): array
+    public function updatePush(string $messageId, ?array $topics = null, ?array $users = null, ?array $targets = null, ?string $title = null, ?string $body = null, ?array $data = null, ?string $action = null, ?string $image = null, ?string $icon = null, ?string $sound = null, ?string $color = null, ?string $tag = null, ?int $badge = null, ?bool $draft = null, ?string $scheduledAt = null, ?bool $contentAvailable = null, ?bool $critical = null, ?MessagePriority $priority = null): array
     {
         $apiPath = str_replace(
             ['{messageId}'],
@@ -415,6 +440,18 @@ class Messaging extends Service
 
         if (!is_null($scheduledAt)) {
             $apiParams['scheduledAt'] = $scheduledAt;
+        }
+
+        if (!is_null($contentAvailable)) {
+            $apiParams['contentAvailable'] = $contentAvailable;
+        }
+
+        if (!is_null($critical)) {
+            $apiParams['critical'] = $critical;
+        }
+
+        if (!is_null($priority)) {
+            $apiParams['priority'] = $priority;
         }
 
         $apiHeaders = [];

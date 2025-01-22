@@ -80,7 +80,7 @@ DELETE https://cloud.appwrite.io/v1/teams/{teamId}
 GET https://cloud.appwrite.io/v1/teams/{teamId}/memberships
 ```
 
-** Use this endpoint to list a team&#039;s members using the team&#039;s ID. All team members have read access to this endpoint. **
+** Use this endpoint to list a team&#039;s members using the team&#039;s ID. All team members have read access to this endpoint. Hide sensitive attributes from the response by toggling membership privacy in the Console. **
 
 ### Parameters
 
@@ -123,7 +123,7 @@ Please note that to avoid a [Redirect Attack](https://github.com/OWASP/CheatShee
 GET https://cloud.appwrite.io/v1/teams/{teamId}/memberships/{membershipId}
 ```
 
-** Get a team member by the membership unique id. All team members have read access for this resource. **
+** Get a team member by the membership unique id. All team members have read access for this resource. Hide sensitive attributes from the response by toggling membership privacy in the Console. **
 
 ### Parameters
 

@@ -10,7 +10,7 @@ GET https://cloud.appwrite.io/v1/locale
 
 ([IP Geolocation by DB-IP](https://db-ip.com)) **
 
-## List Locale Codes
+## List locale codes
 
 ```http request
 GET https://cloud.appwrite.io/v1/locale/codes

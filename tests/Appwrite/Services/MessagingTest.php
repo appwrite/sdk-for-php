@@ -107,9 +107,7 @@ final class MessagingTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->messaging->createPush(
-            "<MESSAGE_ID>",
-            "<TITLE>",
-            "<BODY>"
+            "<MESSAGE_ID>"
         );
 
         $this->assertSame($data, $response);

@@ -161,7 +161,7 @@ PUT https://cloud.appwrite.io/v1/storage/buckets/{bucketId}/files/{fileId}
 | name | string | Name of the file |  |
 | permissions | array | An array of permission string. By default, the current permissions are inherited. [Learn more about permissions](https://appwrite.io/docs/permissions). |  |
 
-## Delete File
+## Delete file
 
 ```http request
 DELETE https://cloud.appwrite.io/v1/storage/buckets/{bucketId}/files/{fileId}
