@@ -441,9 +441,9 @@ class Account extends Service
      * @param string $challengeId
      * @param string $otp
      * @throws AppwriteException
-     * @return string
+     * @return array
      */
-    public function updateMfaChallenge(string $challengeId, string $otp): string
+    public function updateMfaChallenge(string $challengeId, string $otp): array
     {
         $apiPath = str_replace(
             [],
