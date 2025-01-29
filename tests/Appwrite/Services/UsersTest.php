@@ -546,23 +546,7 @@ final class UsersTest extends TestCase {
 
     public function testMethodDeleteMfaAuthenticator(): void {
 
-        $data = array(
-            "\$id" => "5e5ea5c16897e",
-            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "name" => "John Doe",
-            "registration" => "2020-10-15T06:38:00.000+00:00",
-            "status" => true,
-            "labels" => array(),
-            "passwordUpdate" => "2020-10-15T06:38:00.000+00:00",
-            "email" => "john@appwrite.io",
-            "phone" => "+4930901820",
-            "emailVerification" => true,
-            "phoneVerification" => true,
-            "mfa" => true,
-            "prefs" => array(),
-            "targets" => array(),
-            "accessedAt" => "2020-10-15T06:38:00.000+00:00",);
+        $data = '';
 
 
         $this->client

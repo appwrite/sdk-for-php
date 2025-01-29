@@ -157,7 +157,7 @@ POST https://cloud.appwrite.io/v1/messaging/messages/sms
 PATCH https://cloud.appwrite.io/v1/messaging/messages/sms/{messageId}
 ```
 
-** Update an email message by its unique ID.
+** Update an SMS message by its unique ID.
  **
 
 ### Parameters

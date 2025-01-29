@@ -11,6 +11,7 @@ class ImageFormat implements JsonSerializable
     private static ImageFormat $GIF;
     private static ImageFormat $PNG;
     private static ImageFormat $WEBP;
+    private static ImageFormat $HEIC;
     private static ImageFormat $AVIF;
 
     private string $value;
@@ -64,6 +65,13 @@ class ImageFormat implements JsonSerializable
             self::$WEBP = new ImageFormat('webp');
         }
         return self::$WEBP;
+    }
+    public static function HEIC(): ImageFormat
+    {
+        if (!isset(self::$HEIC)) {
+            self::$HEIC = new ImageFormat('heic');
+        }
+        return self::$HEIC;
     }
     public static function AVIF(): ImageFormat
     {

@@ -385,12 +385,10 @@ class Storage extends Service
         $id = '';
         $counter = 0;
 
-        if($fileId != 'unique()') {
-            try {
-                $response = $this->client->call(Client::METHOD_GET, $apiPath . '/' . $fileId);
-                $counter = $response['chunksUploaded'] ?? 0;
-            } catch(\Exception $e) {
-            }
+        try {
+            $response = $this->client->call(Client::METHOD_GET, $apiPath . '/' . $fileId);
+            $counter = $response['chunksUploaded'] ?? 0;
+        } catch(\Exception $e) {
         }
 
         $apiHeaders = ['content-type' => 'multipart/form-data'];
@@ -426,7 +424,7 @@ class Storage extends Service
                     'progress' => min(((($counter * Client::CHUNK_SIZE) + Client::CHUNK_SIZE)), $size) / $size * 100,
                     'sizeUploaded' => min($counter * Client::CHUNK_SIZE),
                     'chunksTotal' => $response['chunksTotal'],
-                    'chunksUploaded' => $response['chunksUploaded'], 
+                    'chunksUploaded' => $response['chunksUploaded'],
                 ]);
             }
         }

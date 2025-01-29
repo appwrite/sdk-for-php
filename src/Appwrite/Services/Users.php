@@ -790,9 +790,9 @@ class Users extends Service
      * @param string $userId
      * @param AuthenticatorType $type
      * @throws AppwriteException
-     * @return array
+     * @return string
      */
-    public function deleteMfaAuthenticator(string $userId, AuthenticatorType $type): array
+    public function deleteMfaAuthenticator(string $userId, AuthenticatorType $type): string
     {
         $apiPath = str_replace(
             ['{userId}', '{type}'],
