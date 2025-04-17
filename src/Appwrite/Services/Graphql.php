@@ -15,8 +15,6 @@ class Graphql extends Service
      }
 
     /**
-     * GraphQL endpoint
-     *
      * Execute a GraphQL mutation.
      *
      * @param array $query
@@ -47,8 +45,6 @@ class Graphql extends Service
     }
 
     /**
-     * GraphQL endpoint
-     *
      * Execute a GraphQL mutation.
      *
      * @param array $query

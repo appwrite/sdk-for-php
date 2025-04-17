@@ -126,24 +126,6 @@ final class HealthTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
-    public function testMethodGetQueue(): void {
-
-        $data = array(
-            "name" => "database",
-            "ping" => 128,
-            "status" => "pass",);
-
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-
-        $response = $this->health->getQueue(
-        );
-
-        $this->assertSame($data, $response);
-    }
-
     public function testMethodGetQueueBuilds(): void {
 
         $data = array(
@@ -305,6 +287,22 @@ final class HealthTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
+    public function testMethodGetQueueStatsResources(): void {
+
+        $data = array(
+            "size" => 8,);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->health->getQueueStatsResources(
+        );
+
+        $this->assertSame($data, $response);
+    }
+
     public function testMethodGetQueueUsage(): void {
 
         $data = array(
@@ -316,22 +314,6 @@ final class HealthTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->health->getQueueUsage(
-        );
-
-        $this->assertSame($data, $response);
-    }
-
-    public function testMethodGetQueueUsageDump(): void {
-
-        $data = array(
-            "size" => 8,);
-
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-
-        $response = $this->health->getQueueUsageDump(
         );
 
         $this->assertSame($data, $response);

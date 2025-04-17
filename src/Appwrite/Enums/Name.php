@@ -11,8 +11,8 @@ class Name implements JsonSerializable
     private static Name $V1AUDITS;
     private static Name $V1MAILS;
     private static Name $V1FUNCTIONS;
-    private static Name $V1USAGE;
-    private static Name $V1USAGEDUMP;
+    private static Name $V1STATSRESOURCES;
+    private static Name $V1STATSUSAGE;
     private static Name $V1WEBHOOKS;
     private static Name $V1CERTIFICATES;
     private static Name $V1BUILDS;
@@ -71,19 +71,19 @@ class Name implements JsonSerializable
         }
         return self::$V1FUNCTIONS;
     }
-    public static function V1USAGE(): Name
+    public static function V1STATSRESOURCES(): Name
     {
-        if (!isset(self::$V1USAGE)) {
-            self::$V1USAGE = new Name('v1-usage');
+        if (!isset(self::$V1STATSRESOURCES)) {
+            self::$V1STATSRESOURCES = new Name('v1-stats-resources');
         }
-        return self::$V1USAGE;
+        return self::$V1STATSRESOURCES;
     }
-    public static function V1USAGEDUMP(): Name
+    public static function V1STATSUSAGE(): Name
     {
-        if (!isset(self::$V1USAGEDUMP)) {
-            self::$V1USAGEDUMP = new Name('v1-usage-dump');
+        if (!isset(self::$V1STATSUSAGE)) {
+            self::$V1STATSUSAGE = new Name('v1-stats-usage');
         }
-        return self::$V1USAGEDUMP;
+        return self::$V1STATSUSAGE;
     }
     public static function V1WEBHOOKS(): Name
     {

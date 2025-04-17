@@ -37,11 +37,11 @@ class Client
      */
     protected array $headers = [
         'content-type' => '',
-        'user-agent' => 'AppwritePHPSDK/13.0.0 ()',
+        'user-agent' => 'AppwritePHPSDK/13.0.1 ()',
         'x-sdk-name'=> 'PHP',
         'x-sdk-platform'=> 'server',
         'x-sdk-language'=> 'php',
-        'x-sdk-version'=> '13.0.0',
+        'x-sdk-version'=> '13.0.1',
     ];
 
     /**
@@ -165,8 +165,11 @@ class Client
      */
     public function setEndpoint(string $endpoint): Client
     {
-        $this->endpoint = $endpoint;
+        if (!str_starts_with($endpoint, 'http://') && !str_starts_with($endpoint, 'https://')) {
+            throw new AppwriteException("Invalid endpoint URL: $endpoint");
+        }
 
+        $this->endpoint = $endpoint;
         return $this;
     }
 
@@ -279,7 +282,7 @@ class Client
             if(is_array($responseBody)) {
                 throw new AppwriteException($responseBody['message'], $responseStatus, $responseBody['type'] ?? '', json_encode($responseBody));
             } else {
-                throw new AppwriteException($responseBody, $responseStatus);
+                throw new AppwriteException($responseBody, $responseStatus, '', $responseBody);
             }
         }
 

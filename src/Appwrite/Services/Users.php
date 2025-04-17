@@ -18,8 +18,6 @@ class Users extends Service
      }
 
     /**
-     * List users
-     *
      * Get a list of all the project's users. You can use the query params to
      * filter your results.
      *
@@ -47,7 +45,6 @@ class Users extends Service
         }
 
         $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_GET,
@@ -58,8 +55,6 @@ class Users extends Service
     }
 
     /**
-     * Create user
-     *
      * Create a new user.
      *
      * @param string $userId
@@ -109,8 +104,6 @@ class Users extends Service
     }
 
     /**
-     * Create user with Argon2 password
-     *
      * Create a new user. Password provided must be hashed with the
      * [Argon2](https://en.wikipedia.org/wiki/Argon2) algorithm. Use the [POST
      * /users](https://appwrite.io/docs/server/users#usersCreate) endpoint to
@@ -152,8 +145,6 @@ class Users extends Service
     }
 
     /**
-     * Create user with bcrypt password
-     *
      * Create a new user. Password provided must be hashed with the
      * [Bcrypt](https://en.wikipedia.org/wiki/Bcrypt) algorithm. Use the [POST
      * /users](https://appwrite.io/docs/server/users#usersCreate) endpoint to
@@ -195,8 +186,6 @@ class Users extends Service
     }
 
     /**
-     * List identities
-     *
      * Get identities for all users.
      *
      * @param ?array $queries
@@ -223,7 +212,6 @@ class Users extends Service
         }
 
         $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_GET,
@@ -234,8 +222,6 @@ class Users extends Service
     }
 
     /**
-     * Delete identity
-     *
      * Delete an identity by its unique ID.
      *
      * @param string $identityId
@@ -265,8 +251,6 @@ class Users extends Service
     }
 
     /**
-     * Create user with MD5 password
-     *
      * Create a new user. Password provided must be hashed with the
      * [MD5](https://en.wikipedia.org/wiki/MD5) algorithm. Use the [POST
      * /users](https://appwrite.io/docs/server/users#usersCreate) endpoint to
@@ -308,8 +292,6 @@ class Users extends Service
     }
 
     /**
-     * Create user with PHPass password
-     *
      * Create a new user. Password provided must be hashed with the
      * [PHPass](https://www.openwall.com/phpass/) algorithm. Use the [POST
      * /users](https://appwrite.io/docs/server/users#usersCreate) endpoint to
@@ -351,8 +333,6 @@ class Users extends Service
     }
 
     /**
-     * Create user with Scrypt password
-     *
      * Create a new user. Password provided must be hashed with the
      * [Scrypt](https://github.com/Tarsnap/scrypt) algorithm. Use the [POST
      * /users](https://appwrite.io/docs/server/users#usersCreate) endpoint to
@@ -404,8 +384,6 @@ class Users extends Service
     }
 
     /**
-     * Create user with Scrypt modified password
-     *
      * Create a new user. Password provided must be hashed with the [Scrypt
      * Modified](https://gist.github.com/Meldiron/eecf84a0225eccb5a378d45bb27462cc)
      * algorithm. Use the [POST
@@ -454,8 +432,6 @@ class Users extends Service
     }
 
     /**
-     * Create user with SHA password
-     *
      * Create a new user. Password provided must be hashed with the
      * [SHA](https://en.wikipedia.org/wiki/Secure_Hash_Algorithm) algorithm. Use
      * the [POST /users](https://appwrite.io/docs/server/users#usersCreate)
@@ -502,8 +478,6 @@ class Users extends Service
     }
 
     /**
-     * Get user
-     *
      * Get a user by its unique ID.
      *
      * @param string $userId
@@ -522,7 +496,6 @@ class Users extends Service
         $apiParams['userId'] = $userId;
 
         $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_GET,
@@ -533,8 +506,6 @@ class Users extends Service
     }
 
     /**
-     * Delete user
-     *
      * Delete a user by its unique ID, thereby releasing it's ID. Since ID is
      * released and can be reused, all user-related resources like documents or
      * storage files should be deleted before user deletion. If you want to keep
@@ -569,8 +540,6 @@ class Users extends Service
     }
 
     /**
-     * Update email
-     *
      * Update the user email by its unique ID.
      *
      * @param string $userId
@@ -602,8 +571,6 @@ class Users extends Service
     }
 
     /**
-     * Create user JWT
-     *
      * Use this endpoint to create a JSON Web Token for user by its unique ID. You
      * can use the resulting JWT to authenticate on behalf of the user. The JWT
      * secret will become invalid if the session it uses gets deleted.
@@ -645,8 +612,6 @@ class Users extends Service
     }
 
     /**
-     * Update user labels
-     *
      * Update the user labels by its unique ID. 
      * 
      * Labels can be used to grant access to resources. While teams are a way for
@@ -683,8 +648,6 @@ class Users extends Service
     }
 
     /**
-     * List user logs
-     *
      * Get the user activity logs list by its unique ID.
      *
      * @param string $userId
@@ -708,7 +671,6 @@ class Users extends Service
         }
 
         $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_GET,
@@ -719,8 +681,6 @@ class Users extends Service
     }
 
     /**
-     * List user memberships
-     *
      * Get the user membership list by its unique ID.
      *
      * @param string $userId
@@ -739,7 +699,6 @@ class Users extends Service
         $apiParams['userId'] = $userId;
 
         $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_GET,
@@ -750,8 +709,6 @@ class Users extends Service
     }
 
     /**
-     * Update MFA
-     *
      * Enable or disable MFA on a user account.
      *
      * @param string $userId
@@ -783,8 +740,6 @@ class Users extends Service
     }
 
     /**
-     * Delete authenticator
-     *
      * Delete an authenticator app.
      *
      * @param string $userId
@@ -816,8 +771,6 @@ class Users extends Service
     }
 
     /**
-     * List factors
-     *
      * List the factors available on the account to be used as a MFA challange.
      *
      * @param string $userId
@@ -836,7 +789,6 @@ class Users extends Service
         $apiParams['userId'] = $userId;
 
         $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_GET,
@@ -847,8 +799,6 @@ class Users extends Service
     }
 
     /**
-     * Get MFA recovery codes
-     *
      * Get recovery codes that can be used as backup for MFA flow by User ID.
      * Before getting codes, they must be generated using
      * [createMfaRecoveryCodes](/docs/references/cloud/client-web/account#createMfaRecoveryCodes)
@@ -870,7 +820,6 @@ class Users extends Service
         $apiParams['userId'] = $userId;
 
         $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_GET,
@@ -881,8 +830,6 @@ class Users extends Service
     }
 
     /**
-     * Regenerate MFA recovery codes
-     *
      * Regenerate recovery codes that can be used as backup for MFA flow by User
      * ID. Before regenerating codes, they must be first generated using
      * [createMfaRecoveryCodes](/docs/references/cloud/client-web/account#createMfaRecoveryCodes)
@@ -915,8 +862,6 @@ class Users extends Service
     }
 
     /**
-     * Create MFA recovery codes
-     *
      * Generate recovery codes used as backup for MFA flow for User ID. Recovery
      * codes can be used as a MFA verification type in
      * [createMfaChallenge](/docs/references/cloud/client-web/account#createMfaChallenge)
@@ -949,8 +894,6 @@ class Users extends Service
     }
 
     /**
-     * Update name
-     *
      * Update the user name by its unique ID.
      *
      * @param string $userId
@@ -982,8 +925,6 @@ class Users extends Service
     }
 
     /**
-     * Update password
-     *
      * Update the user password by its unique ID.
      *
      * @param string $userId
@@ -1015,8 +956,6 @@ class Users extends Service
     }
 
     /**
-     * Update phone
-     *
      * Update the user phone by its unique ID.
      *
      * @param string $userId
@@ -1048,8 +987,6 @@ class Users extends Service
     }
 
     /**
-     * Get user preferences
-     *
      * Get the user preferences by its unique ID.
      *
      * @param string $userId
@@ -1068,7 +1005,6 @@ class Users extends Service
         $apiParams['userId'] = $userId;
 
         $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_GET,
@@ -1079,8 +1015,6 @@ class Users extends Service
     }
 
     /**
-     * Update user preferences
-     *
      * Update the user preferences by its unique ID. The object you pass is stored
      * as is, and replaces any previous value. The maximum allowed prefs size is
      * 64kB and throws error if exceeded.
@@ -1114,8 +1048,6 @@ class Users extends Service
     }
 
     /**
-     * List user sessions
-     *
      * Get the user sessions list by its unique ID.
      *
      * @param string $userId
@@ -1134,7 +1066,6 @@ class Users extends Service
         $apiParams['userId'] = $userId;
 
         $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_GET,
@@ -1145,8 +1076,6 @@ class Users extends Service
     }
 
     /**
-     * Create session
-     *
      * Creates a session for a user. Returns an immediately usable session object.
      * 
      * If you want to generate a token for a custom authentication flow, use the
@@ -1181,8 +1110,6 @@ class Users extends Service
     }
 
     /**
-     * Delete user sessions
-     *
      * Delete all user's sessions by using the user's unique ID.
      *
      * @param string $userId
@@ -1212,8 +1139,6 @@ class Users extends Service
     }
 
     /**
-     * Delete user session
-     *
      * Delete a user sessions by its unique ID.
      *
      * @param string $userId
@@ -1245,8 +1170,6 @@ class Users extends Service
     }
 
     /**
-     * Update user status
-     *
      * Update the user status by its unique ID. Use this endpoint as an
      * alternative to deleting a user if you want to keep user's ID reserved.
      *
@@ -1279,8 +1202,6 @@ class Users extends Service
     }
 
     /**
-     * List user targets
-     *
      * List the messaging targets that are associated with a user.
      *
      * @param string $userId
@@ -1304,7 +1225,6 @@ class Users extends Service
         }
 
         $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_GET,
@@ -1315,8 +1235,6 @@ class Users extends Service
     }
 
     /**
-     * Create user target
-     *
      * Create a messaging target.
      *
      * @param string $userId
@@ -1362,8 +1280,6 @@ class Users extends Service
     }
 
     /**
-     * Get user target
-     *
      * Get a user's push notification target by ID.
      *
      * @param string $userId
@@ -1384,7 +1300,6 @@ class Users extends Service
         $apiParams['targetId'] = $targetId;
 
         $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_GET,
@@ -1395,8 +1310,6 @@ class Users extends Service
     }
 
     /**
-     * Update user target
-     *
      * Update a messaging target.
      *
      * @param string $userId
@@ -1443,8 +1356,6 @@ class Users extends Service
     }
 
     /**
-     * Delete user target
-     *
      * Delete a messaging target.
      *
      * @param string $userId
@@ -1476,8 +1387,6 @@ class Users extends Service
     }
 
     /**
-     * Create token
-     *
      * Returns a token with a secret key for creating a session. Use the user ID
      * and secret and submit a request to the [PUT
      * /account/sessions/token](https://appwrite.io/docs/references/cloud/client-web/account#createSession)
@@ -1521,8 +1430,6 @@ class Users extends Service
     }
 
     /**
-     * Update email verification
-     *
      * Update the user email verification status by its unique ID.
      *
      * @param string $userId
@@ -1554,8 +1461,6 @@ class Users extends Service
     }
 
     /**
-     * Update phone verification
-     *
      * Update the user phone verification status by its unique ID.
      *
      * @param string $userId

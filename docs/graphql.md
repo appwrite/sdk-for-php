@@ -1,6 +1,5 @@
 # Graphql Service
 
-## GraphQL endpoint
 
 ```http request
 POST https://cloud.appwrite.io/v1/graphql
@@ -14,7 +13,6 @@ POST https://cloud.appwrite.io/v1/graphql
 | --- | --- | --- | --- |
 | query | object | The query or queries to execute. | {} |
 
-## GraphQL endpoint
 
 ```http request
 POST https://cloud.appwrite.io/v1/graphql/mutation

@@ -1,6 +1,5 @@
 # Account Service
 
-## Get account
 
 ```http request
 GET https://cloud.appwrite.io/v1/account
@@ -8,7 +7,6 @@ GET https://cloud.appwrite.io/v1/account
 
 ** Get the currently logged in user. **
 
-## Create account
 
 ```http request
 POST https://cloud.appwrite.io/v1/account
@@ -25,7 +23,6 @@ POST https://cloud.appwrite.io/v1/account
 | password | string | New user password. Must be between 8 and 256 chars. |  |
 | name | string | User name. Max length: 128 chars. |  |
 
-## Update email
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/account/email
@@ -42,7 +39,6 @@ This endpoint can also be used to convert an anonymous account to a normal one, 
 | email | string | User email. |  |
 | password | string | User password. Must be at least 8 chars. |  |
 
-## List identities
 
 ```http request
 GET https://cloud.appwrite.io/v1/account/identities
@@ -56,7 +52,6 @@ GET https://cloud.appwrite.io/v1/account/identities
 | --- | --- | --- | --- |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: userId, provider, providerUid, providerEmail, providerAccessTokenExpiry | [] |
 
-## Delete identity
 
 ```http request
 DELETE https://cloud.appwrite.io/v1/account/identities/{identityId}
@@ -70,7 +65,6 @@ DELETE https://cloud.appwrite.io/v1/account/identities/{identityId}
 | --- | --- | --- | --- |
 | identityId | string | **Required** Identity ID. |  |
 
-## Create JWT
 
 ```http request
 POST https://cloud.appwrite.io/v1/account/jwts
@@ -78,7 +72,6 @@ POST https://cloud.appwrite.io/v1/account/jwts
 
 ** Use this endpoint to create a JSON Web Token. You can use the resulting JWT to authenticate on behalf of the current user when working with the Appwrite server-side API and SDKs. The JWT secret is valid for 15 minutes from its creation and will be invalid if the user will logout in that time frame. **
 
-## List logs
 
 ```http request
 GET https://cloud.appwrite.io/v1/account/logs
@@ -92,7 +85,6 @@ GET https://cloud.appwrite.io/v1/account/logs
 | --- | --- | --- | --- |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Only supported methods are limit and offset | [] |
 
-## Update MFA
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/account/mfa
@@ -106,7 +98,6 @@ PATCH https://cloud.appwrite.io/v1/account/mfa
 | --- | --- | --- | --- |
 | mfa | boolean | Enable or disable MFA. |  |
 
-## Create authenticator
 
 ```http request
 POST https://cloud.appwrite.io/v1/account/mfa/authenticators/{type}
@@ -120,7 +111,6 @@ POST https://cloud.appwrite.io/v1/account/mfa/authenticators/{type}
 | --- | --- | --- | --- |
 | type | string | **Required** Type of authenticator. Must be `totp` |  |
 
-## Verify authenticator
 
 ```http request
 PUT https://cloud.appwrite.io/v1/account/mfa/authenticators/{type}
@@ -135,7 +125,6 @@ PUT https://cloud.appwrite.io/v1/account/mfa/authenticators/{type}
 | type | string | **Required** Type of authenticator. |  |
 | otp | string | Valid verification token. |  |
 
-## Delete authenticator
 
 ```http request
 DELETE https://cloud.appwrite.io/v1/account/mfa/authenticators/{type}
@@ -149,7 +138,6 @@ DELETE https://cloud.appwrite.io/v1/account/mfa/authenticators/{type}
 | --- | --- | --- | --- |
 | type | string | **Required** Type of authenticator. |  |
 
-## Create MFA challenge
 
 ```http request
 POST https://cloud.appwrite.io/v1/account/mfa/challenge
@@ -163,7 +151,6 @@ POST https://cloud.appwrite.io/v1/account/mfa/challenge
 | --- | --- | --- | --- |
 | factor | string | Factor used for verification. Must be one of following: `email`, `phone`, `totp`, `recoveryCode`. |  |
 
-## Create MFA challenge (confirmation)
 
 ```http request
 PUT https://cloud.appwrite.io/v1/account/mfa/challenge
@@ -178,7 +165,6 @@ PUT https://cloud.appwrite.io/v1/account/mfa/challenge
 | challengeId | string | ID of the challenge. |  |
 | otp | string | Valid verification token. |  |
 
-## List factors
 
 ```http request
 GET https://cloud.appwrite.io/v1/account/mfa/factors
@@ -186,7 +172,6 @@ GET https://cloud.appwrite.io/v1/account/mfa/factors
 
 ** List the factors available on the account to be used as a MFA challange. **
 
-## Get MFA recovery codes
 
 ```http request
 GET https://cloud.appwrite.io/v1/account/mfa/recovery-codes
@@ -194,7 +179,6 @@ GET https://cloud.appwrite.io/v1/account/mfa/recovery-codes
 
 ** Get recovery codes that can be used as backup for MFA flow. Before getting codes, they must be generated using [createMfaRecoveryCodes](/docs/references/cloud/client-web/account#createMfaRecoveryCodes) method. An OTP challenge is required to read recovery codes. **
 
-## Create MFA recovery codes
 
 ```http request
 POST https://cloud.appwrite.io/v1/account/mfa/recovery-codes
@@ -202,7 +186,6 @@ POST https://cloud.appwrite.io/v1/account/mfa/recovery-codes
 
 ** Generate recovery codes as backup for MFA flow. It&#039;s recommended to generate and show then immediately after user successfully adds their authehticator. Recovery codes can be used as a MFA verification type in [createMfaChallenge](/docs/references/cloud/client-web/account#createMfaChallenge) method. **
 
-## Regenerate MFA recovery codes
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/account/mfa/recovery-codes
@@ -210,7 +193,6 @@ PATCH https://cloud.appwrite.io/v1/account/mfa/recovery-codes
 
 ** Regenerate recovery codes that can be used as backup for MFA flow. Before regenerating codes, they must be first generated using [createMfaRecoveryCodes](/docs/references/cloud/client-web/account#createMfaRecoveryCodes) method. An OTP challenge is required to regenreate recovery codes. **
 
-## Update name
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/account/name
@@ -224,7 +206,6 @@ PATCH https://cloud.appwrite.io/v1/account/name
 | --- | --- | --- | --- |
 | name | string | User name. Max length: 128 chars. |  |
 
-## Update password
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/account/password
@@ -239,7 +220,6 @@ PATCH https://cloud.appwrite.io/v1/account/password
 | password | string | New user password. Must be at least 8 chars. |  |
 | oldPassword | string | Current user password. Must be at least 8 chars. |  |
 
-## Update phone
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/account/phone
@@ -254,7 +234,6 @@ PATCH https://cloud.appwrite.io/v1/account/phone
 | phone | string | Phone number. Format this number with a leading '+' and a country code, e.g., +16175551212. |  |
 | password | string | User password. Must be at least 8 chars. |  |
 
-## Get account preferences
 
 ```http request
 GET https://cloud.appwrite.io/v1/account/prefs
@@ -262,7 +241,6 @@ GET https://cloud.appwrite.io/v1/account/prefs
 
 ** Get the preferences as a key-value object for the currently logged in user. **
 
-## Update preferences
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/account/prefs
@@ -276,7 +254,6 @@ PATCH https://cloud.appwrite.io/v1/account/prefs
 | --- | --- | --- | --- |
 | prefs | object | Prefs key-value JSON object. | {} |
 
-## Create password recovery
 
 ```http request
 POST https://cloud.appwrite.io/v1/account/recovery
@@ -291,7 +268,6 @@ POST https://cloud.appwrite.io/v1/account/recovery
 | email | string | User email. |  |
 | url | string | URL to redirect the user back to your app from the recovery email. Only URLs from hostnames in your project platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API. |  |
 
-## Create password recovery (confirmation)
 
 ```http request
 PUT https://cloud.appwrite.io/v1/account/recovery
@@ -309,7 +285,6 @@ Please note that in order to avoid a [Redirect Attack](https://github.com/OWASP/
 | secret | string | Valid reset token. |  |
 | password | string | New user password. Must be between 8 and 256 chars. |  |
 
-## List sessions
 
 ```http request
 GET https://cloud.appwrite.io/v1/account/sessions
@@ -317,7 +292,6 @@ GET https://cloud.appwrite.io/v1/account/sessions
 
 ** Get the list of active sessions across different devices for the currently logged in user. **
 
-## Delete sessions
 
 ```http request
 DELETE https://cloud.appwrite.io/v1/account/sessions
@@ -325,7 +299,6 @@ DELETE https://cloud.appwrite.io/v1/account/sessions
 
 ** Delete all sessions from the user account and remove any sessions cookies from the end client. **
 
-## Create anonymous session
 
 ```http request
 POST https://cloud.appwrite.io/v1/account/sessions/anonymous
@@ -333,7 +306,6 @@ POST https://cloud.appwrite.io/v1/account/sessions/anonymous
 
 ** Use this endpoint to allow a new user to register an anonymous account in your project. This route will also create a new session for the user. To allow the new user to convert an anonymous account to a normal account, you need to update its [email and password](https://appwrite.io/docs/references/cloud/client-web/account#updateEmail) or create an [OAuth2 session](https://appwrite.io/docs/references/cloud/client-web/account#CreateOAuth2Session). **
 
-## Create email password session
 
 ```http request
 POST https://cloud.appwrite.io/v1/account/sessions/email
@@ -350,7 +322,6 @@ A user is limited to 10 active sessions at a time by default. [Learn more about 
 | email | string | User email. |  |
 | password | string | User password. Must be at least 8 chars. |  |
 
-## Update magic URL session
 
 ```http request
 PUT https://cloud.appwrite.io/v1/account/sessions/magic-url
@@ -365,7 +336,6 @@ PUT https://cloud.appwrite.io/v1/account/sessions/magic-url
 | userId | string | User ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
 | secret | string | Valid verification token. |  |
 
-## Update phone session
 
 ```http request
 PUT https://cloud.appwrite.io/v1/account/sessions/phone
@@ -380,7 +350,6 @@ PUT https://cloud.appwrite.io/v1/account/sessions/phone
 | userId | string | User ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
 | secret | string | Valid verification token. |  |
 
-## Create session
 
 ```http request
 POST https://cloud.appwrite.io/v1/account/sessions/token
@@ -395,7 +364,6 @@ POST https://cloud.appwrite.io/v1/account/sessions/token
 | userId | string | User ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
 | secret | string | Secret of a token generated by login methods. For example, the `createMagicURLToken` or `createPhoneToken` methods. |  |
 
-## Get session
 
 ```http request
 GET https://cloud.appwrite.io/v1/account/sessions/{sessionId}
@@ -409,7 +377,6 @@ GET https://cloud.appwrite.io/v1/account/sessions/{sessionId}
 | --- | --- | --- | --- |
 | sessionId | string | **Required** Session ID. Use the string 'current' to get the current device session. |  |
 
-## Update session
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/account/sessions/{sessionId}
@@ -423,7 +390,6 @@ PATCH https://cloud.appwrite.io/v1/account/sessions/{sessionId}
 | --- | --- | --- | --- |
 | sessionId | string | **Required** Session ID. Use the string 'current' to update the current device session. |  |
 
-## Delete session
 
 ```http request
 DELETE https://cloud.appwrite.io/v1/account/sessions/{sessionId}
@@ -437,7 +403,6 @@ DELETE https://cloud.appwrite.io/v1/account/sessions/{sessionId}
 | --- | --- | --- | --- |
 | sessionId | string | **Required** Session ID. Use the string 'current' to delete the current device session. |  |
 
-## Update status
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/account/status
@@ -445,7 +410,6 @@ PATCH https://cloud.appwrite.io/v1/account/status
 
 ** Block the currently logged in user account. Behind the scene, the user record is not deleted but permanently blocked from any access. To completely delete a user, use the Users API instead. **
 
-## Create email token (OTP)
 
 ```http request
 POST https://cloud.appwrite.io/v1/account/tokens/email
@@ -463,7 +427,6 @@ A user is limited to 10 active sessions at a time by default. [Learn more about 
 | email | string | User email. |  |
 | phrase | boolean | Toggle for security phrase. If enabled, email will be send with a randomly generated phrase and the phrase will also be included in the response. Confirming phrases match increases the security of your authentication flow. |  |
 
-## Create magic URL token
 
 ```http request
 POST https://cloud.appwrite.io/v1/account/tokens/magic-url
@@ -483,7 +446,6 @@ A user is limited to 10 active sessions at a time by default. [Learn more about 
 | url | string | URL to redirect the user back to your app from the magic URL login. Only URLs from hostnames in your project platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API. |  |
 | phrase | boolean | Toggle for security phrase. If enabled, email will be send with a randomly generated phrase and the phrase will also be included in the response. Confirming phrases match increases the security of your authentication flow. |  |
 
-## Create OAuth2 token
 
 ```http request
 GET https://cloud.appwrite.io/v1/account/tokens/oauth2/{provider}
@@ -499,12 +461,11 @@ A user is limited to 10 active sessions at a time by default. [Learn more about 
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| provider | string | **Required** OAuth2 Provider. Currently, supported providers are: amazon, apple, auth0, authentik, autodesk, bitbucket, bitly, box, dailymotion, discord, disqus, dropbox, etsy, facebook, github, gitlab, google, linkedin, microsoft, notion, oidc, okta, paypal, paypalSandbox, podio, salesforce, slack, spotify, stripe, tradeshift, tradeshiftBox, twitch, wordpress, yahoo, yammer, yandex, zoho, zoom. |  |
+| provider | string | **Required** OAuth2 Provider. Currently, supported providers are: amazon, apple, auth0, authentik, autodesk, bitbucket, bitly, box, dailymotion, discord, disqus, dropbox, etsy, facebook, figma, github, gitlab, google, linkedin, microsoft, notion, oidc, okta, paypal, paypalSandbox, podio, salesforce, slack, spotify, stripe, tradeshift, tradeshiftBox, twitch, wordpress, yahoo, yammer, yandex, zoho, zoom. |  |
 | success | string | URL to redirect back to your app after a successful login attempt.  Only URLs from hostnames in your project's platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API. |  |
 | failure | string | URL to redirect back to your app after a failed login attempt.  Only URLs from hostnames in your project's platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API. |  |
 | scopes | array | A list of custom OAuth2 scopes. Check each provider internal docs for a list of supported scopes. Maximum of 100 scopes are allowed, each 4096 characters long. | [] |
 
-## Create phone token
 
 ```http request
 POST https://cloud.appwrite.io/v1/account/tokens/phone
@@ -521,7 +482,6 @@ A user is limited to 10 active sessions at a time by default. [Learn more about 
 | userId | string | Unique Id. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
 | phone | string | Phone number. Format this number with a leading '+' and a country code, e.g., +16175551212. |  |
 
-## Create email verification
 
 ```http request
 POST https://cloud.appwrite.io/v1/account/verification
@@ -538,7 +498,6 @@ Please note that in order to avoid a [Redirect Attack](https://github.com/OWASP/
 | --- | --- | --- | --- |
 | url | string | URL to redirect the user back to your app from the verification email. Only URLs from hostnames in your project platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API. |  |
 
-## Create email verification (confirmation)
 
 ```http request
 PUT https://cloud.appwrite.io/v1/account/verification
@@ -553,7 +512,6 @@ PUT https://cloud.appwrite.io/v1/account/verification
 | userId | string | User ID. |  |
 | secret | string | Valid verification token. |  |
 
-## Create phone verification
 
 ```http request
 POST https://cloud.appwrite.io/v1/account/verification/phone
@@ -561,7 +519,6 @@ POST https://cloud.appwrite.io/v1/account/verification/phone
 
 ** Use this endpoint to send a verification SMS to the currently logged in user. This endpoint is meant for use after updating a user&#039;s phone number using the [accountUpdatePhone](https://appwrite.io/docs/references/cloud/client-web/account#updatePhone) endpoint. Learn more about how to [complete the verification process](https://appwrite.io/docs/references/cloud/client-web/account#updatePhoneVerification). The verification code sent to the user&#039;s phone number is valid for 15 minutes. **
 
-## Update phone verification (confirmation)
 
 ```http request
 PUT https://cloud.appwrite.io/v1/account/verification/phone

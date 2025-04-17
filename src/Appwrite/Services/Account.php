@@ -18,8 +18,6 @@ class Account extends Service
      }
 
     /**
-     * Get account
-     *
      * Get the currently logged in user.
      *
      * @throws AppwriteException
@@ -36,7 +34,6 @@ class Account extends Service
         $apiParams = [];
 
         $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_GET,
@@ -47,8 +44,6 @@ class Account extends Service
     }
 
     /**
-     * Create account
-     *
      * Use this endpoint to allow a new user to register a new account in your
      * project. After the user registration completes successfully, you can use
      * the
@@ -93,8 +88,6 @@ class Account extends Service
     }
 
     /**
-     * Update email
-     *
      * Update currently logged in user account email address. After changing user
      * address, the user confirmation status will get reset. A new confirmation
      * email is not sent automatically however you can use the send confirmation
@@ -133,8 +126,6 @@ class Account extends Service
     }
 
     /**
-     * List identities
-     *
      * Get the list of identities for the currently logged in user.
      *
      * @param ?array $queries
@@ -156,7 +147,6 @@ class Account extends Service
         }
 
         $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_GET,
@@ -167,8 +157,6 @@ class Account extends Service
     }
 
     /**
-     * Delete identity
-     *
      * Delete an identity by its unique ID.
      *
      * @param string $identityId
@@ -198,8 +186,6 @@ class Account extends Service
     }
 
     /**
-     * Create JWT
-     *
      * Use this endpoint to create a JSON Web Token. You can use the resulting JWT
      * to authenticate on behalf of the current user when working with the
      * Appwrite server-side API and SDKs. The JWT secret is valid for 15 minutes
@@ -231,8 +217,6 @@ class Account extends Service
     }
 
     /**
-     * List logs
-     *
      * Get the list of latest security activity logs for the currently logged in
      * user. Each log returns user IP address, location and date and time of log.
      *
@@ -255,7 +239,6 @@ class Account extends Service
         }
 
         $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_GET,
@@ -266,8 +249,6 @@ class Account extends Service
     }
 
     /**
-     * Update MFA
-     *
      * Enable or disable MFA on an account.
      *
      * @param bool $mfa
@@ -297,8 +278,6 @@ class Account extends Service
     }
 
     /**
-     * Create authenticator
-     *
      * Add an authenticator app to be used as an MFA factor. Verify the
      * authenticator using the [verify
      * authenticator](/docs/references/cloud/client-web/account#updateMfaAuthenticator)
@@ -331,8 +310,6 @@ class Account extends Service
     }
 
     /**
-     * Verify authenticator
-     *
      * Verify an authenticator app after adding it using the [add
      * authenticator](/docs/references/cloud/client-web/account#createMfaAuthenticator)
      * method.
@@ -366,8 +343,6 @@ class Account extends Service
     }
 
     /**
-     * Delete authenticator
-     *
      * Delete an authenticator for a user by ID.
      *
      * @param AuthenticatorType $type
@@ -397,8 +372,6 @@ class Account extends Service
     }
 
     /**
-     * Create MFA challenge
-     *
      * Begin the process of MFA verification after sign-in. Finish the flow with
      * [updateMfaChallenge](/docs/references/cloud/client-web/account#updateMfaChallenge)
      * method.
@@ -430,8 +403,6 @@ class Account extends Service
     }
 
     /**
-     * Create MFA challenge (confirmation)
-     *
      * Complete the MFA challenge by providing the one-time password. Finish the
      * process of MFA verification by providing the one-time password. To begin
      * the flow, use
@@ -467,8 +438,6 @@ class Account extends Service
     }
 
     /**
-     * List factors
-     *
      * List the factors available on the account to be used as a MFA challange.
      *
      * @throws AppwriteException
@@ -485,7 +454,6 @@ class Account extends Service
         $apiParams = [];
 
         $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_GET,
@@ -496,8 +464,6 @@ class Account extends Service
     }
 
     /**
-     * Get MFA recovery codes
-     *
      * Get recovery codes that can be used as backup for MFA flow. Before getting
      * codes, they must be generated using
      * [createMfaRecoveryCodes](/docs/references/cloud/client-web/account#createMfaRecoveryCodes)
@@ -517,7 +483,6 @@ class Account extends Service
         $apiParams = [];
 
         $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_GET,
@@ -528,8 +493,6 @@ class Account extends Service
     }
 
     /**
-     * Create MFA recovery codes
-     *
      * Generate recovery codes as backup for MFA flow. It's recommended to
      * generate and show then immediately after user successfully adds their
      * authehticator. Recovery codes can be used as a MFA verification type in
@@ -561,8 +524,6 @@ class Account extends Service
     }
 
     /**
-     * Regenerate MFA recovery codes
-     *
      * Regenerate recovery codes that can be used as backup for MFA flow. Before
      * regenerating codes, they must be first generated using
      * [createMfaRecoveryCodes](/docs/references/cloud/client-web/account#createMfaRecoveryCodes)
@@ -593,8 +554,6 @@ class Account extends Service
     }
 
     /**
-     * Update name
-     *
      * Update currently logged in user account name.
      *
      * @param string $name
@@ -624,8 +583,6 @@ class Account extends Service
     }
 
     /**
-     * Update password
-     *
      * Update currently logged in user password. For validation, user is required
      * to pass in the new password, and the old password. For users created with
      * OAuth, Team Invites and Magic URL, oldPassword is optional.
@@ -662,8 +619,6 @@ class Account extends Service
     }
 
     /**
-     * Update phone
-     *
      * Update the currently logged in user's phone number. After updating the
      * phone number, the phone verification status will be reset. A confirmation
      * SMS is not sent automatically, however you can use the [POST
@@ -699,8 +654,6 @@ class Account extends Service
     }
 
     /**
-     * Get account preferences
-     *
      * Get the preferences as a key-value object for the currently logged in user.
      *
      * @throws AppwriteException
@@ -717,7 +670,6 @@ class Account extends Service
         $apiParams = [];
 
         $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_GET,
@@ -728,8 +680,6 @@ class Account extends Service
     }
 
     /**
-     * Update preferences
-     *
      * Update currently logged in user account preferences. The object you pass is
      * stored as is, and replaces any previous value. The maximum allowed prefs
      * size is 64kB and throws error if exceeded.
@@ -761,8 +711,6 @@ class Account extends Service
     }
 
     /**
-     * Create password recovery
-     *
      * Sends the user an email with a temporary secret key for password reset.
      * When the user clicks the confirmation link he is redirected back to your
      * app password reset URL with the secret key and email address values
@@ -801,8 +749,6 @@ class Account extends Service
     }
 
     /**
-     * Create password recovery (confirmation)
-     *
      * Use this endpoint to complete the user account password reset. Both the
      * **userId** and **secret** arguments will be passed as query parameters to
      * the redirect URL you have provided when sending your request to the [POST
@@ -845,8 +791,6 @@ class Account extends Service
     }
 
     /**
-     * List sessions
-     *
      * Get the list of active sessions across different devices for the currently
      * logged in user.
      *
@@ -864,7 +808,6 @@ class Account extends Service
         $apiParams = [];
 
         $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_GET,
@@ -875,8 +818,6 @@ class Account extends Service
     }
 
     /**
-     * Delete sessions
-     *
      * Delete all sessions from the user account and remove any sessions cookies
      * from the end client.
      *
@@ -905,8 +846,6 @@ class Account extends Service
     }
 
     /**
-     * Create anonymous session
-     *
      * Use this endpoint to allow a new user to register an anonymous account in
      * your project. This route will also create a new session for the user. To
      * allow the new user to convert an anonymous account to a normal account, you
@@ -940,8 +879,6 @@ class Account extends Service
     }
 
     /**
-     * Create email password session
-     *
      * Allow the user to login into their account by providing a valid email and
      * password combination. This route will create a new session for the user.
      * 
@@ -978,8 +915,6 @@ class Account extends Service
     }
 
     /**
-     * Update magic URL session
-     *
      * Use this endpoint to create a session from token. Provide the **userId**
      * and **secret** parameters from the successful response of authentication
      * flows initiated by token creation. For example, magic URL and phone login.
@@ -1013,8 +948,6 @@ class Account extends Service
     }
 
     /**
-     * Update phone session
-     *
      * Use this endpoint to create a session from token. Provide the **userId**
      * and **secret** parameters from the successful response of authentication
      * flows initiated by token creation. For example, magic URL and phone login.
@@ -1048,8 +981,6 @@ class Account extends Service
     }
 
     /**
-     * Create session
-     *
      * Use this endpoint to create a session from token. Provide the **userId**
      * and **secret** parameters from the successful response of authentication
      * flows initiated by token creation. For example, magic URL and phone login.
@@ -1083,8 +1014,6 @@ class Account extends Service
     }
 
     /**
-     * Get session
-     *
      * Use this endpoint to get a logged in user's session using a Session ID.
      * Inputting 'current' will return the current session being used.
      *
@@ -1104,7 +1033,6 @@ class Account extends Service
         $apiParams['sessionId'] = $sessionId;
 
         $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_GET,
@@ -1115,8 +1043,6 @@ class Account extends Service
     }
 
     /**
-     * Update session
-     *
      * Use this endpoint to extend a session's length. Extending a session is
      * useful when session expiry is short. If the session was created using an
      * OAuth provider, this endpoint refreshes the access token from the provider.
@@ -1148,8 +1074,6 @@ class Account extends Service
     }
 
     /**
-     * Delete session
-     *
      * Logout the user. Use 'current' as the session ID to logout on this device,
      * use a session ID to logout on another device. If you're looking to logout
      * the user on all devices, use [Delete
@@ -1183,8 +1107,6 @@ class Account extends Service
     }
 
     /**
-     * Update status
-     *
      * Block the currently logged in user account. Behind the scene, the user
      * record is not deleted but permanently blocked from any access. To
      * completely delete a user, use the Users API instead.
@@ -1214,8 +1136,6 @@ class Account extends Service
     }
 
     /**
-     * Create email token (OTP)
-     *
      * Sends the user an email with a secret key for creating a session. If the
      * provided user ID has not be registered, a new user will be created. Use the
      * returned user ID and secret and submit a request to the [POST
@@ -1261,8 +1181,6 @@ class Account extends Service
     }
 
     /**
-     * Create magic URL token
-     *
      * Sends the user an email with a secret key for creating a session. If the
      * provided user ID has not been registered, a new user will be created. When
      * the user clicks the link in the email, the user is redirected back to the
@@ -1317,8 +1235,6 @@ class Account extends Service
     }
 
     /**
-     * Create OAuth2 token
-     *
      * Allow the user to login to their account using the OAuth2 provider of their
      * choice. Each OAuth2 provider should be enabled from the Appwrite console
      * first. Use the success and failure arguments to provide a redirect URL's
@@ -1365,7 +1281,6 @@ class Account extends Service
         }
 
         $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_GET,
@@ -1376,8 +1291,6 @@ class Account extends Service
     }
 
     /**
-     * Create phone token
-     *
      * Sends the user an SMS with a secret key for creating a session. If the
      * provided user ID has not be registered, a new user will be created. Use the
      * returned user ID and secret and submit a request to the [POST
@@ -1418,8 +1331,6 @@ class Account extends Service
     }
 
     /**
-     * Create email verification
-     *
      * Use this endpoint to send a verification message to your user email address
      * to confirm they are the valid owners of that address. Both the **userId**
      * and **secret** arguments will be passed as query parameters to the URL you
@@ -1463,8 +1374,6 @@ class Account extends Service
     }
 
     /**
-     * Create email verification (confirmation)
-     *
      * Use this endpoint to complete the user email verification process. Use both
      * the **userId** and **secret** parameters that were attached to your app URL
      * to verify the user email ownership. If confirmed this route will return a
@@ -1499,8 +1408,6 @@ class Account extends Service
     }
 
     /**
-     * Create phone verification
-     *
      * Use this endpoint to send a verification SMS to the currently logged in
      * user. This endpoint is meant for use after updating a user's phone number
      * using the
@@ -1535,8 +1442,6 @@ class Account extends Service
     }
 
     /**
-     * Update phone verification (confirmation)
-     *
      * Use this endpoint to complete the user phone verification process. Use the
      * **userId** and **secret** that were sent to your user's phone number to
      * verify the user email ownership. If confirmed this route will return a 200

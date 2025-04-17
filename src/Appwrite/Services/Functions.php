@@ -17,8 +17,6 @@ class Functions extends Service
      }
 
     /**
-     * List functions
-     *
      * Get a list of all the project's functions. You can use the query params to
      * filter your results.
      *
@@ -46,7 +44,6 @@ class Functions extends Service
         }
 
         $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_GET,
@@ -57,8 +54,6 @@ class Functions extends Service
     }
 
     /**
-     * Create function
-     *
      * Create a new function. You can pass a list of
      * [permissions](https://appwrite.io/docs/permissions) to allow different
      * project users or team with access to execute the function using the client
@@ -190,8 +185,6 @@ class Functions extends Service
     }
 
     /**
-     * List runtimes
-     *
      * Get a list of all runtimes that are currently active on your instance.
      *
      * @throws AppwriteException
@@ -208,7 +201,6 @@ class Functions extends Service
         $apiParams = [];
 
         $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_GET,
@@ -219,8 +211,6 @@ class Functions extends Service
     }
 
     /**
-     * List available function runtime specifications
-     *
      * List allowed function specifications for this instance.
      * 
      *
@@ -238,7 +228,6 @@ class Functions extends Service
         $apiParams = [];
 
         $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_GET,
@@ -249,8 +238,6 @@ class Functions extends Service
     }
 
     /**
-     * Get function
-     *
      * Get a function by its unique ID.
      *
      * @param string $functionId
@@ -269,7 +256,6 @@ class Functions extends Service
         $apiParams['functionId'] = $functionId;
 
         $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_GET,
@@ -280,8 +266,6 @@ class Functions extends Service
     }
 
     /**
-     * Update function
-     *
      * Update function by its unique ID.
      *
      * @param string $functionId
@@ -390,8 +374,6 @@ class Functions extends Service
     }
 
     /**
-     * Delete function
-     *
      * Delete a function by its unique ID.
      *
      * @param string $functionId
@@ -421,8 +403,6 @@ class Functions extends Service
     }
 
     /**
-     * List deployments
-     *
      * Get a list of all the project's code deployments. You can use the query
      * params to filter your results.
      *
@@ -452,7 +432,6 @@ class Functions extends Service
         }
 
         $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_GET,
@@ -463,8 +442,6 @@ class Functions extends Service
     }
 
     /**
-     * Create deployment
-     *
      * Create a new function code deployment. Use this endpoint to upload a new
      * version of your code function. To execute your newly uploaded code, you'll
      * need to update the function's deployment to use your new deployment UID.
@@ -582,8 +559,6 @@ class Functions extends Service
     }
 
     /**
-     * Get deployment
-     *
      * Get a code deployment by its unique ID.
      *
      * @param string $functionId
@@ -604,7 +579,6 @@ class Functions extends Service
         $apiParams['deploymentId'] = $deploymentId;
 
         $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_GET,
@@ -615,8 +589,6 @@ class Functions extends Service
     }
 
     /**
-     * Update deployment
-     *
      * Update the function code deployment ID using the unique function ID. Use
      * this endpoint to switch the code deployment that should be executed by the
      * execution endpoint.
@@ -650,8 +622,6 @@ class Functions extends Service
     }
 
     /**
-     * Delete deployment
-     *
      * Delete a code deployment by its unique ID.
      *
      * @param string $functionId
@@ -683,8 +653,6 @@ class Functions extends Service
     }
 
     /**
-     * Rebuild deployment
-     *
      * Create a new build for an existing function deployment. This endpoint
      * allows you to rebuild a deployment with the updated function configuration,
      * including its entrypoint and build commands if they have been modified The
@@ -725,8 +693,6 @@ class Functions extends Service
     }
 
     /**
-     * Cancel deployment
-     *
      * Cancel an ongoing function deployment build. If the build is already in
      * progress, it will be stopped and marked as canceled. If the build hasn't
      * started yet, it will be marked as canceled without executing. You cannot
@@ -762,8 +728,6 @@ class Functions extends Service
     }
 
     /**
-     * Download deployment
-     *
      * Get a Deployment's contents by its unique ID. This endpoint supports range
      * requests for partial or streaming file download.
      *
@@ -785,7 +749,6 @@ class Functions extends Service
         $apiParams['deploymentId'] = $deploymentId;
 
         $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_GET,
@@ -796,8 +759,6 @@ class Functions extends Service
     }
 
     /**
-     * List executions
-     *
      * Get a list of all the current user function execution logs. You can use the
      * query params to filter your results.
      *
@@ -827,7 +788,6 @@ class Functions extends Service
         }
 
         $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_GET,
@@ -838,8 +798,6 @@ class Functions extends Service
     }
 
     /**
-     * Create execution
-     *
      * Trigger a function execution. The returned object will return you the
      * current execution status. You can ping the `Get Execution` endpoint to get
      * updates on the current execution status. Once this endpoint is called, your
@@ -902,8 +860,6 @@ class Functions extends Service
     }
 
     /**
-     * Get execution
-     *
      * Get a function execution log by its unique ID.
      *
      * @param string $functionId
@@ -924,7 +880,6 @@ class Functions extends Service
         $apiParams['executionId'] = $executionId;
 
         $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_GET,
@@ -935,8 +890,6 @@ class Functions extends Service
     }
 
     /**
-     * Delete execution
-     *
      * Delete a function execution by its unique ID.
      * 
      *
@@ -969,8 +922,6 @@ class Functions extends Service
     }
 
     /**
-     * List variables
-     *
      * Get a list of all variables of a specific function.
      *
      * @param string $functionId
@@ -989,7 +940,6 @@ class Functions extends Service
         $apiParams['functionId'] = $functionId;
 
         $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_GET,
@@ -1000,8 +950,6 @@ class Functions extends Service
     }
 
     /**
-     * Create variable
-     *
      * Create a new function environment variable. These variables can be accessed
      * in the function at runtime as environment variables.
      *
@@ -1036,8 +984,6 @@ class Functions extends Service
     }
 
     /**
-     * Get variable
-     *
      * Get a variable by its unique ID.
      *
      * @param string $functionId
@@ -1058,7 +1004,6 @@ class Functions extends Service
         $apiParams['variableId'] = $variableId;
 
         $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_GET,
@@ -1069,8 +1014,6 @@ class Functions extends Service
     }
 
     /**
-     * Update variable
-     *
      * Update variable by its unique ID.
      *
      * @param string $functionId
@@ -1109,8 +1052,6 @@ class Functions extends Service
     }
 
     /**
-     * Delete variable
-     *
      * Delete a variable by its unique ID.
      *
      * @param string $functionId

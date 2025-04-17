@@ -10,6 +10,6 @@ $client = (new Client())
 
 $health = new Health($client);
 
-$result = $health->getQueueUsageDump(
+$result = $health->getQueueStatsResources(
     threshold: null // optional
 );

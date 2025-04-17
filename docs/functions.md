@@ -1,6 +1,5 @@
 # Functions Service
 
-## List functions
 
 ```http request
 GET https://cloud.appwrite.io/v1/functions
@@ -15,7 +14,6 @@ GET https://cloud.appwrite.io/v1/functions
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, enabled, runtime, deployment, schedule, scheduleNext, schedulePrevious, timeout, entrypoint, commands, installationId | [] |
 | search | string | Search term to filter your list results. Max length: 256 chars. |  |
 
-## Create function
 
 ```http request
 POST https://cloud.appwrite.io/v1/functions
@@ -50,7 +48,6 @@ POST https://cloud.appwrite.io/v1/functions
 | templateVersion | string | Version (tag) for the repo linked to the function template. |  |
 | specification | string | Runtime specification for the function and builds. | s-1vcpu-512mb |
 
-## List runtimes
 
 ```http request
 GET https://cloud.appwrite.io/v1/functions/runtimes
@@ -58,7 +55,6 @@ GET https://cloud.appwrite.io/v1/functions/runtimes
 
 ** Get a list of all runtimes that are currently active on your instance. **
 
-## List available function runtime specifications
 
 ```http request
 GET https://cloud.appwrite.io/v1/functions/specifications
@@ -67,7 +63,6 @@ GET https://cloud.appwrite.io/v1/functions/specifications
 ** List allowed function specifications for this instance.
  **
 
-## Get function
 
 ```http request
 GET https://cloud.appwrite.io/v1/functions/{functionId}
@@ -81,7 +76,6 @@ GET https://cloud.appwrite.io/v1/functions/{functionId}
 | --- | --- | --- | --- |
 | functionId | string | **Required** Function ID. |  |
 
-## Update function
 
 ```http request
 PUT https://cloud.appwrite.io/v1/functions/{functionId}
@@ -112,7 +106,6 @@ PUT https://cloud.appwrite.io/v1/functions/{functionId}
 | providerRootDirectory | string | Path to function code in the linked repo. |  |
 | specification | string | Runtime specification for the function and builds. | s-1vcpu-512mb |
 
-## Delete function
 
 ```http request
 DELETE https://cloud.appwrite.io/v1/functions/{functionId}
@@ -126,7 +119,6 @@ DELETE https://cloud.appwrite.io/v1/functions/{functionId}
 | --- | --- | --- | --- |
 | functionId | string | **Required** Function ID. |  |
 
-## List deployments
 
 ```http request
 GET https://cloud.appwrite.io/v1/functions/{functionId}/deployments
@@ -142,7 +134,6 @@ GET https://cloud.appwrite.io/v1/functions/{functionId}/deployments
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: size, buildId, activate, entrypoint, commands, type, size | [] |
 | search | string | Search term to filter your list results. Max length: 256 chars. |  |
 
-## Create deployment
 
 ```http request
 POST https://cloud.appwrite.io/v1/functions/{functionId}/deployments
@@ -164,7 +155,6 @@ Use the &quot;command&quot; param to set the entrypoint used to execute your cod
 | code | file | Gzip file with your code package. When used with the Appwrite CLI, pass the path to your code directory, and the CLI will automatically package your code. Use a path that is within the current directory. |  |
 | activate | boolean | Automatically activate the deployment when it is finished building. |  |
 
-## Get deployment
 
 ```http request
 GET https://cloud.appwrite.io/v1/functions/{functionId}/deployments/{deploymentId}
@@ -179,7 +169,6 @@ GET https://cloud.appwrite.io/v1/functions/{functionId}/deployments/{deploymentI
 | functionId | string | **Required** Function ID. |  |
 | deploymentId | string | **Required** Deployment ID. |  |
 
-## Update deployment
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/functions/{functionId}/deployments/{deploymentId}
@@ -194,7 +183,6 @@ PATCH https://cloud.appwrite.io/v1/functions/{functionId}/deployments/{deploymen
 | functionId | string | **Required** Function ID. |  |
 | deploymentId | string | **Required** Deployment ID. |  |
 
-## Delete deployment
 
 ```http request
 DELETE https://cloud.appwrite.io/v1/functions/{functionId}/deployments/{deploymentId}
@@ -209,7 +197,6 @@ DELETE https://cloud.appwrite.io/v1/functions/{functionId}/deployments/{deployme
 | functionId | string | **Required** Function ID. |  |
 | deploymentId | string | **Required** Deployment ID. |  |
 
-## Rebuild deployment
 
 ```http request
 POST https://cloud.appwrite.io/v1/functions/{functionId}/deployments/{deploymentId}/build
@@ -225,7 +212,6 @@ POST https://cloud.appwrite.io/v1/functions/{functionId}/deployments/{deployment
 | deploymentId | string | **Required** Deployment ID. |  |
 | buildId | string | Build unique ID. |  |
 
-## Cancel deployment
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/functions/{functionId}/deployments/{deploymentId}/build
@@ -240,7 +226,6 @@ PATCH https://cloud.appwrite.io/v1/functions/{functionId}/deployments/{deploymen
 | functionId | string | **Required** Function ID. |  |
 | deploymentId | string | **Required** Deployment ID. |  |
 
-## Download deployment
 
 ```http request
 GET https://cloud.appwrite.io/v1/functions/{functionId}/deployments/{deploymentId}/download
@@ -255,7 +240,6 @@ GET https://cloud.appwrite.io/v1/functions/{functionId}/deployments/{deploymentI
 | functionId | string | **Required** Function ID. |  |
 | deploymentId | string | **Required** Deployment ID. |  |
 
-## List executions
 
 ```http request
 GET https://cloud.appwrite.io/v1/functions/{functionId}/executions
@@ -271,7 +255,6 @@ GET https://cloud.appwrite.io/v1/functions/{functionId}/executions
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: trigger, status, responseStatusCode, duration, requestMethod, requestPath, deploymentId | [] |
 | search | string | Search term to filter your list results. Max length: 256 chars. |  |
 
-## Create execution
 
 ```http request
 POST https://cloud.appwrite.io/v1/functions/{functionId}/executions
@@ -291,7 +274,6 @@ POST https://cloud.appwrite.io/v1/functions/{functionId}/executions
 | headers | object | HTTP headers of execution. Defaults to empty. | {} |
 | scheduledAt | string | Scheduled execution time in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. DateTime value must be in future with precision in minutes. |  |
 
-## Get execution
 
 ```http request
 GET https://cloud.appwrite.io/v1/functions/{functionId}/executions/{executionId}
@@ -306,7 +288,6 @@ GET https://cloud.appwrite.io/v1/functions/{functionId}/executions/{executionId}
 | functionId | string | **Required** Function ID. |  |
 | executionId | string | **Required** Execution ID. |  |
 
-## Delete execution
 
 ```http request
 DELETE https://cloud.appwrite.io/v1/functions/{functionId}/executions/{executionId}
@@ -322,7 +303,6 @@ DELETE https://cloud.appwrite.io/v1/functions/{functionId}/executions/{execution
 | functionId | string | **Required** Function ID. |  |
 | executionId | string | **Required** Execution ID. |  |
 
-## List variables
 
 ```http request
 GET https://cloud.appwrite.io/v1/functions/{functionId}/variables
@@ -336,7 +316,6 @@ GET https://cloud.appwrite.io/v1/functions/{functionId}/variables
 | --- | --- | --- | --- |
 | functionId | string | **Required** Function unique ID. |  |
 
-## Create variable
 
 ```http request
 POST https://cloud.appwrite.io/v1/functions/{functionId}/variables
@@ -352,7 +331,6 @@ POST https://cloud.appwrite.io/v1/functions/{functionId}/variables
 | key | string | Variable key. Max length: 255 chars. |  |
 | value | string | Variable value. Max length: 8192 chars. |  |
 
-## Get variable
 
 ```http request
 GET https://cloud.appwrite.io/v1/functions/{functionId}/variables/{variableId}
@@ -367,7 +345,6 @@ GET https://cloud.appwrite.io/v1/functions/{functionId}/variables/{variableId}
 | functionId | string | **Required** Function unique ID. |  |
 | variableId | string | **Required** Variable unique ID. |  |
 
-## Update variable
 
 ```http request
 PUT https://cloud.appwrite.io/v1/functions/{functionId}/variables/{variableId}
@@ -384,7 +361,6 @@ PUT https://cloud.appwrite.io/v1/functions/{functionId}/variables/{variableId}
 | key | string | Variable key. Max length: 255 chars. |  |
 | value | string | Variable value. Max length: 8192 chars. |  |
 
-## Delete variable
 
 ```http request
 DELETE https://cloud.appwrite.io/v1/functions/{functionId}/variables/{variableId}
