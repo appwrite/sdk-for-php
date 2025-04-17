@@ -1,6 +1,5 @@
 # Messaging Service
 
-## List messages
 
 ```http request
 GET https://cloud.appwrite.io/v1/messaging/messages
@@ -15,7 +14,6 @@ GET https://cloud.appwrite.io/v1/messaging/messages
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: scheduledAt, deliveredAt, deliveredTotal, status, description, providerType | [] |
 | search | string | Search term to filter your list results. Max length: 256 chars. |  |
 
-## Create email
 
 ```http request
 POST https://cloud.appwrite.io/v1/messaging/messages/email
@@ -40,13 +38,12 @@ POST https://cloud.appwrite.io/v1/messaging/messages/email
 | html | boolean | Is content of type HTML |  |
 | scheduledAt | string | Scheduled delivery time for message in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. DateTime value must be in future. |  |
 
-## Update email
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/messaging/messages/email/{messageId}
 ```
 
-** Update an email message by its unique ID.
+** Update an email message by its unique ID. This endpoint only works on messages that are in draft status. Messages that are already processing, sent, or failed cannot be updated.
  **
 
 ### Parameters
@@ -66,7 +63,6 @@ PATCH https://cloud.appwrite.io/v1/messaging/messages/email/{messageId}
 | scheduledAt | string | Scheduled delivery time for message in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. DateTime value must be in future. |  |
 | attachments | array | Array of compound ID strings of bucket IDs and file IDs to be attached to the email. They should be formatted as <BUCKET_ID>:<FILE_ID>. |  |
 
-## Create push notification
 
 ```http request
 POST https://cloud.appwrite.io/v1/messaging/messages/push
@@ -98,13 +94,12 @@ POST https://cloud.appwrite.io/v1/messaging/messages/push
 | critical | boolean | If set to true, the notification will be marked as critical. This requires the app to have the critical notification entitlement. Available only for iOS Platform. |  |
 | priority | string | Set the notification priority. "normal" will consider device state and may not deliver notifications immediately. "high" will always attempt to immediately deliver the notification. | high |
 
-## Update push notification
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/messaging/messages/push/{messageId}
 ```
 
-** Update a push notification by its unique ID.
+** Update a push notification by its unique ID. This endpoint only works on messages that are in draft status. Messages that are already processing, sent, or failed cannot be updated.
  **
 
 ### Parameters
@@ -131,7 +126,6 @@ PATCH https://cloud.appwrite.io/v1/messaging/messages/push/{messageId}
 | critical | boolean | If set to true, the notification will be marked as critical. This requires the app to have the critical notification entitlement. Available only for iOS Platform. |  |
 | priority | string | Set the notification priority. "normal" will consider device battery state and may send notifications later. "high" will always attempt to immediately deliver the notification. |  |
 
-## Create SMS
 
 ```http request
 POST https://cloud.appwrite.io/v1/messaging/messages/sms
@@ -151,13 +145,12 @@ POST https://cloud.appwrite.io/v1/messaging/messages/sms
 | draft | boolean | Is message a draft |  |
 | scheduledAt | string | Scheduled delivery time for message in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. DateTime value must be in future. |  |
 
-## Update SMS
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/messaging/messages/sms/{messageId}
 ```
 
-** Update an SMS message by its unique ID.
+** Update an SMS message by its unique ID. This endpoint only works on messages that are in draft status. Messages that are already processing, sent, or failed cannot be updated.
  **
 
 ### Parameters
@@ -172,7 +165,6 @@ PATCH https://cloud.appwrite.io/v1/messaging/messages/sms/{messageId}
 | draft | boolean | Is message a draft |  |
 | scheduledAt | string | Scheduled delivery time for message in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. DateTime value must be in future. |  |
 
-## Get message
 
 ```http request
 GET https://cloud.appwrite.io/v1/messaging/messages/{messageId}
@@ -187,7 +179,6 @@ GET https://cloud.appwrite.io/v1/messaging/messages/{messageId}
 | --- | --- | --- | --- |
 | messageId | string | **Required** Message ID. |  |
 
-## Delete message
 
 ```http request
 DELETE https://cloud.appwrite.io/v1/messaging/messages/{messageId}
@@ -201,7 +192,6 @@ DELETE https://cloud.appwrite.io/v1/messaging/messages/{messageId}
 | --- | --- | --- | --- |
 | messageId | string | **Required** Message ID. |  |
 
-## List message logs
 
 ```http request
 GET https://cloud.appwrite.io/v1/messaging/messages/{messageId}/logs
@@ -216,7 +206,6 @@ GET https://cloud.appwrite.io/v1/messaging/messages/{messageId}/logs
 | messageId | string | **Required** Message ID. |  |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Only supported methods are limit and offset | [] |
 
-## List message targets
 
 ```http request
 GET https://cloud.appwrite.io/v1/messaging/messages/{messageId}/targets
@@ -231,7 +220,6 @@ GET https://cloud.appwrite.io/v1/messaging/messages/{messageId}/targets
 | messageId | string | **Required** Message ID. |  |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: userId, providerId, identifier, providerType | [] |
 
-## List providers
 
 ```http request
 GET https://cloud.appwrite.io/v1/messaging/providers
@@ -246,7 +234,6 @@ GET https://cloud.appwrite.io/v1/messaging/providers
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, provider, type, enabled | [] |
 | search | string | Search term to filter your list results. Max length: 256 chars. |  |
 
-## Create APNS provider
 
 ```http request
 POST https://cloud.appwrite.io/v1/messaging/providers/apns
@@ -267,7 +254,6 @@ POST https://cloud.appwrite.io/v1/messaging/providers/apns
 | sandbox | boolean | Use APNS sandbox environment. |  |
 | enabled | boolean | Set as enabled. |  |
 
-## Update APNS provider
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/messaging/providers/apns/{providerId}
@@ -288,7 +274,6 @@ PATCH https://cloud.appwrite.io/v1/messaging/providers/apns/{providerId}
 | bundleId | string | APNS bundle ID. |  |
 | sandbox | boolean | Use APNS sandbox environment. |  |
 
-## Create FCM provider
 
 ```http request
 POST https://cloud.appwrite.io/v1/messaging/providers/fcm
@@ -305,7 +290,6 @@ POST https://cloud.appwrite.io/v1/messaging/providers/fcm
 | serviceAccountJSON | object | FCM service account JSON. | {} |
 | enabled | boolean | Set as enabled. |  |
 
-## Update FCM provider
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/messaging/providers/fcm/{providerId}
@@ -322,7 +306,6 @@ PATCH https://cloud.appwrite.io/v1/messaging/providers/fcm/{providerId}
 | enabled | boolean | Set as enabled. |  |
 | serviceAccountJSON | object | FCM service account JSON. | {} |
 
-## Create Mailgun provider
 
 ```http request
 POST https://cloud.appwrite.io/v1/messaging/providers/mailgun
@@ -345,7 +328,6 @@ POST https://cloud.appwrite.io/v1/messaging/providers/mailgun
 | replyToEmail | string | Email set in the reply to field for the mail. Default value is sender email. Reply to email must have reply to name as well. |  |
 | enabled | boolean | Set as enabled. |  |
 
-## Update Mailgun provider
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/messaging/providers/mailgun/{providerId}
@@ -368,7 +350,6 @@ PATCH https://cloud.appwrite.io/v1/messaging/providers/mailgun/{providerId}
 | replyToName | string | Name set in the reply to field for the mail. Default value is sender name. |  |
 | replyToEmail | string | Email set in the reply to field for the mail. Default value is sender email. |  |
 
-## Create Msg91 provider
 
 ```http request
 POST https://cloud.appwrite.io/v1/messaging/providers/msg91
@@ -387,7 +368,6 @@ POST https://cloud.appwrite.io/v1/messaging/providers/msg91
 | authKey | string | Msg91 auth key. |  |
 | enabled | boolean | Set as enabled. |  |
 
-## Update Msg91 provider
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/messaging/providers/msg91/{providerId}
@@ -406,7 +386,6 @@ PATCH https://cloud.appwrite.io/v1/messaging/providers/msg91/{providerId}
 | senderId | string | Msg91 sender ID. |  |
 | authKey | string | Msg91 auth key. |  |
 
-## Create Sendgrid provider
 
 ```http request
 POST https://cloud.appwrite.io/v1/messaging/providers/sendgrid
@@ -427,7 +406,6 @@ POST https://cloud.appwrite.io/v1/messaging/providers/sendgrid
 | replyToEmail | string | Email set in the reply to field for the mail. Default value is sender email. |  |
 | enabled | boolean | Set as enabled. |  |
 
-## Update Sendgrid provider
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/messaging/providers/sendgrid/{providerId}
@@ -448,7 +426,6 @@ PATCH https://cloud.appwrite.io/v1/messaging/providers/sendgrid/{providerId}
 | replyToName | string | Name set in the Reply To field for the mail. Default value is Sender Name. |  |
 | replyToEmail | string | Email set in the Reply To field for the mail. Default value is Sender Email. |  |
 
-## Create SMTP provider
 
 ```http request
 POST https://cloud.appwrite.io/v1/messaging/providers/smtp
@@ -475,7 +452,6 @@ POST https://cloud.appwrite.io/v1/messaging/providers/smtp
 | replyToEmail | string | Email set in the reply to field for the mail. Default value is sender email. |  |
 | enabled | boolean | Set as enabled. |  |
 
-## Update SMTP provider
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/messaging/providers/smtp/{providerId}
@@ -502,7 +478,6 @@ PATCH https://cloud.appwrite.io/v1/messaging/providers/smtp/{providerId}
 | replyToEmail | string | Email set in the Reply To field for the mail. Default value is Sender Email. |  |
 | enabled | boolean | Set as enabled. |  |
 
-## Create Telesign provider
 
 ```http request
 POST https://cloud.appwrite.io/v1/messaging/providers/telesign
@@ -521,7 +496,6 @@ POST https://cloud.appwrite.io/v1/messaging/providers/telesign
 | apiKey | string | Telesign API key. |  |
 | enabled | boolean | Set as enabled. |  |
 
-## Update Telesign provider
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/messaging/providers/telesign/{providerId}
@@ -540,7 +514,6 @@ PATCH https://cloud.appwrite.io/v1/messaging/providers/telesign/{providerId}
 | apiKey | string | Telesign API key. |  |
 | from | string | Sender number. |  |
 
-## Create Textmagic provider
 
 ```http request
 POST https://cloud.appwrite.io/v1/messaging/providers/textmagic
@@ -559,7 +532,6 @@ POST https://cloud.appwrite.io/v1/messaging/providers/textmagic
 | apiKey | string | Textmagic apiKey. |  |
 | enabled | boolean | Set as enabled. |  |
 
-## Update Textmagic provider
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/messaging/providers/textmagic/{providerId}
@@ -578,7 +550,6 @@ PATCH https://cloud.appwrite.io/v1/messaging/providers/textmagic/{providerId}
 | apiKey | string | Textmagic apiKey. |  |
 | from | string | Sender number. |  |
 
-## Create Twilio provider
 
 ```http request
 POST https://cloud.appwrite.io/v1/messaging/providers/twilio
@@ -597,7 +568,6 @@ POST https://cloud.appwrite.io/v1/messaging/providers/twilio
 | authToken | string | Twilio authentication token. |  |
 | enabled | boolean | Set as enabled. |  |
 
-## Update Twilio provider
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/messaging/providers/twilio/{providerId}
@@ -616,7 +586,6 @@ PATCH https://cloud.appwrite.io/v1/messaging/providers/twilio/{providerId}
 | authToken | string | Twilio authentication token. |  |
 | from | string | Sender number. |  |
 
-## Create Vonage provider
 
 ```http request
 POST https://cloud.appwrite.io/v1/messaging/providers/vonage
@@ -635,7 +604,6 @@ POST https://cloud.appwrite.io/v1/messaging/providers/vonage
 | apiSecret | string | Vonage API secret. |  |
 | enabled | boolean | Set as enabled. |  |
 
-## Update Vonage provider
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/messaging/providers/vonage/{providerId}
@@ -654,7 +622,6 @@ PATCH https://cloud.appwrite.io/v1/messaging/providers/vonage/{providerId}
 | apiSecret | string | Vonage API secret. |  |
 | from | string | Sender number. |  |
 
-## Get provider
 
 ```http request
 GET https://cloud.appwrite.io/v1/messaging/providers/{providerId}
@@ -669,7 +636,6 @@ GET https://cloud.appwrite.io/v1/messaging/providers/{providerId}
 | --- | --- | --- | --- |
 | providerId | string | **Required** Provider ID. |  |
 
-## Delete provider
 
 ```http request
 DELETE https://cloud.appwrite.io/v1/messaging/providers/{providerId}
@@ -683,7 +649,6 @@ DELETE https://cloud.appwrite.io/v1/messaging/providers/{providerId}
 | --- | --- | --- | --- |
 | providerId | string | **Required** Provider ID. |  |
 
-## List provider logs
 
 ```http request
 GET https://cloud.appwrite.io/v1/messaging/providers/{providerId}/logs
@@ -698,7 +663,6 @@ GET https://cloud.appwrite.io/v1/messaging/providers/{providerId}/logs
 | providerId | string | **Required** Provider ID. |  |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Only supported methods are limit and offset | [] |
 
-## List subscriber logs
 
 ```http request
 GET https://cloud.appwrite.io/v1/messaging/subscribers/{subscriberId}/logs
@@ -713,7 +677,6 @@ GET https://cloud.appwrite.io/v1/messaging/subscribers/{subscriberId}/logs
 | subscriberId | string | **Required** Subscriber ID. |  |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Only supported methods are limit and offset | [] |
 
-## List topics
 
 ```http request
 GET https://cloud.appwrite.io/v1/messaging/topics
@@ -728,7 +691,6 @@ GET https://cloud.appwrite.io/v1/messaging/topics
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, description, emailTotal, smsTotal, pushTotal | [] |
 | search | string | Search term to filter your list results. Max length: 256 chars. |  |
 
-## Create topic
 
 ```http request
 POST https://cloud.appwrite.io/v1/messaging/topics
@@ -744,7 +706,6 @@ POST https://cloud.appwrite.io/v1/messaging/topics
 | name | string | Topic Name. |  |
 | subscribe | array | An array of role strings with subscribe permission. By default all users are granted with any subscribe permission. [learn more about roles](https://appwrite.io/docs/permissions#permission-roles). Maximum of 100 roles are allowed, each 64 characters long. | [&quot;users&quot;] |
 
-## Get topic
 
 ```http request
 GET https://cloud.appwrite.io/v1/messaging/topics/{topicId}
@@ -759,7 +720,6 @@ GET https://cloud.appwrite.io/v1/messaging/topics/{topicId}
 | --- | --- | --- | --- |
 | topicId | string | **Required** Topic ID. |  |
 
-## Update topic
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/messaging/topics/{topicId}
@@ -776,7 +736,6 @@ PATCH https://cloud.appwrite.io/v1/messaging/topics/{topicId}
 | name | string | Topic Name. |  |
 | subscribe | array | An array of role strings with subscribe permission. By default all users are granted with any subscribe permission. [learn more about roles](https://appwrite.io/docs/permissions#permission-roles). Maximum of 100 roles are allowed, each 64 characters long. |  |
 
-## Delete topic
 
 ```http request
 DELETE https://cloud.appwrite.io/v1/messaging/topics/{topicId}
@@ -790,7 +749,6 @@ DELETE https://cloud.appwrite.io/v1/messaging/topics/{topicId}
 | --- | --- | --- | --- |
 | topicId | string | **Required** Topic ID. |  |
 
-## List topic logs
 
 ```http request
 GET https://cloud.appwrite.io/v1/messaging/topics/{topicId}/logs
@@ -805,7 +763,6 @@ GET https://cloud.appwrite.io/v1/messaging/topics/{topicId}/logs
 | topicId | string | **Required** Topic ID. |  |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Only supported methods are limit and offset | [] |
 
-## List subscribers
 
 ```http request
 GET https://cloud.appwrite.io/v1/messaging/topics/{topicId}/subscribers
@@ -821,7 +778,6 @@ GET https://cloud.appwrite.io/v1/messaging/topics/{topicId}/subscribers
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, provider, type, enabled | [] |
 | search | string | Search term to filter your list results. Max length: 256 chars. |  |
 
-## Create subscriber
 
 ```http request
 POST https://cloud.appwrite.io/v1/messaging/topics/{topicId}/subscribers
@@ -837,7 +793,6 @@ POST https://cloud.appwrite.io/v1/messaging/topics/{topicId}/subscribers
 | subscriberId | string | Subscriber ID. Choose a custom Subscriber ID or a new Subscriber ID. |  |
 | targetId | string | Target ID. The target ID to link to the specified Topic ID. |  |
 
-## Get subscriber
 
 ```http request
 GET https://cloud.appwrite.io/v1/messaging/topics/{topicId}/subscribers/{subscriberId}
@@ -853,7 +808,6 @@ GET https://cloud.appwrite.io/v1/messaging/topics/{topicId}/subscribers/{subscri
 | topicId | string | **Required** Topic ID. The topic ID subscribed to. |  |
 | subscriberId | string | **Required** Subscriber ID. |  |
 
-## Delete subscriber
 
 ```http request
 DELETE https://cloud.appwrite.io/v1/messaging/topics/{topicId}/subscribers/{subscriberId}

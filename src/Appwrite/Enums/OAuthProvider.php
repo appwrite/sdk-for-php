@@ -20,6 +20,7 @@ class OAuthProvider implements JsonSerializable
     private static OAuthProvider $DROPBOX;
     private static OAuthProvider $ETSY;
     private static OAuthProvider $FACEBOOK;
+    private static OAuthProvider $FIGMA;
     private static OAuthProvider $GITHUB;
     private static OAuthProvider $GITLAB;
     private static OAuthProvider $GOOGLE;
@@ -160,6 +161,13 @@ class OAuthProvider implements JsonSerializable
             self::$FACEBOOK = new OAuthProvider('facebook');
         }
         return self::$FACEBOOK;
+    }
+    public static function FIGMA(): OAuthProvider
+    {
+        if (!isset(self::$FIGMA)) {
+            self::$FIGMA = new OAuthProvider('figma');
+        }
+        return self::$FIGMA;
     }
     public static function GITHUB(): OAuthProvider
     {

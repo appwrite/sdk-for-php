@@ -1,6 +1,5 @@
 # Teams Service
 
-## List teams
 
 ```http request
 GET https://cloud.appwrite.io/v1/teams
@@ -15,7 +14,6 @@ GET https://cloud.appwrite.io/v1/teams
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, total, billingPlan | [] |
 | search | string | Search term to filter your list results. Max length: 256 chars. |  |
 
-## Create team
 
 ```http request
 POST https://cloud.appwrite.io/v1/teams
@@ -31,7 +29,6 @@ POST https://cloud.appwrite.io/v1/teams
 | name | string | Team name. Max length: 128 chars. |  |
 | roles | array | Array of strings. Use this param to set the roles in the team for the user who created it. The default role is **owner**. A role can be any string. Learn more about [roles and permissions](https://appwrite.io/docs/permissions). Maximum of 100 roles are allowed, each 32 characters long. | [&quot;owner&quot;] |
 
-## Get team
 
 ```http request
 GET https://cloud.appwrite.io/v1/teams/{teamId}
@@ -45,7 +42,6 @@ GET https://cloud.appwrite.io/v1/teams/{teamId}
 | --- | --- | --- | --- |
 | teamId | string | **Required** Team ID. |  |
 
-## Update name
 
 ```http request
 PUT https://cloud.appwrite.io/v1/teams/{teamId}
@@ -60,7 +56,6 @@ PUT https://cloud.appwrite.io/v1/teams/{teamId}
 | teamId | string | **Required** Team ID. |  |
 | name | string | New team name. Max length: 128 chars. |  |
 
-## Delete team
 
 ```http request
 DELETE https://cloud.appwrite.io/v1/teams/{teamId}
@@ -74,7 +69,6 @@ DELETE https://cloud.appwrite.io/v1/teams/{teamId}
 | --- | --- | --- | --- |
 | teamId | string | **Required** Team ID. |  |
 
-## List team memberships
 
 ```http request
 GET https://cloud.appwrite.io/v1/teams/{teamId}/memberships
@@ -90,7 +84,6 @@ GET https://cloud.appwrite.io/v1/teams/{teamId}/memberships
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: userId, teamId, invited, joined, confirm | [] |
 | search | string | Search term to filter your list results. Max length: 256 chars. |  |
 
-## Create team membership
 
 ```http request
 POST https://cloud.appwrite.io/v1/teams/{teamId}/memberships
@@ -117,7 +110,6 @@ Please note that to avoid a [Redirect Attack](https://github.com/OWASP/CheatShee
 | url | string | URL to redirect the user back to your app from the invitation email. This parameter is not required when an API key is supplied. Only URLs from hostnames in your project platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API. |  |
 | name | string | Name of the new team member. Max length: 128 chars. |  |
 
-## Get team membership
 
 ```http request
 GET https://cloud.appwrite.io/v1/teams/{teamId}/memberships/{membershipId}
@@ -132,7 +124,6 @@ GET https://cloud.appwrite.io/v1/teams/{teamId}/memberships/{membershipId}
 | teamId | string | **Required** Team ID. |  |
 | membershipId | string | **Required** Membership ID. |  |
 
-## Update membership
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/teams/{teamId}/memberships/{membershipId}
@@ -149,7 +140,6 @@ PATCH https://cloud.appwrite.io/v1/teams/{teamId}/memberships/{membershipId}
 | membershipId | string | **Required** Membership ID. |  |
 | roles | array | An array of strings. Use this param to set the user's roles in the team. A role can be any string. Learn more about [roles and permissions](https://appwrite.io/docs/permissions). Maximum of 100 roles are allowed, each 32 characters long. |  |
 
-## Delete team membership
 
 ```http request
 DELETE https://cloud.appwrite.io/v1/teams/{teamId}/memberships/{membershipId}
@@ -164,7 +154,6 @@ DELETE https://cloud.appwrite.io/v1/teams/{teamId}/memberships/{membershipId}
 | teamId | string | **Required** Team ID. |  |
 | membershipId | string | **Required** Membership ID. |  |
 
-## Update team membership status
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/teams/{teamId}/memberships/{membershipId}/status
@@ -184,7 +173,6 @@ If the request is successful, a session for the user is automatically created.
 | userId | string | User ID. |  |
 | secret | string | Secret key. |  |
 
-## Get team preferences
 
 ```http request
 GET https://cloud.appwrite.io/v1/teams/{teamId}/prefs
@@ -198,7 +186,6 @@ GET https://cloud.appwrite.io/v1/teams/{teamId}/prefs
 | --- | --- | --- | --- |
 | teamId | string | **Required** Team ID. |  |
 
-## Update preferences
 
 ```http request
 PUT https://cloud.appwrite.io/v1/teams/{teamId}/prefs

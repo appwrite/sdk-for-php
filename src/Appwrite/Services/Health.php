@@ -16,8 +16,6 @@ class Health extends Service
      }
 
     /**
-     * Get HTTP
-     *
      * Check the Appwrite HTTP server is up and responsive.
      *
      * @throws AppwriteException
@@ -34,7 +32,6 @@ class Health extends Service
         $apiParams = [];
 
         $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_GET,
@@ -45,8 +42,6 @@ class Health extends Service
     }
 
     /**
-     * Get antivirus
-     *
      * Check the Appwrite Antivirus server is up and connection is successful.
      *
      * @throws AppwriteException
@@ -63,7 +58,6 @@ class Health extends Service
         $apiParams = [];
 
         $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_GET,
@@ -74,8 +68,6 @@ class Health extends Service
     }
 
     /**
-     * Get cache
-     *
      * Check the Appwrite in-memory cache servers are up and connection is
      * successful.
      *
@@ -93,7 +85,6 @@ class Health extends Service
         $apiParams = [];
 
         $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_GET,
@@ -104,8 +95,6 @@ class Health extends Service
     }
 
     /**
-     * Get the SSL certificate for a domain
-     *
      * Get the SSL certificate for a domain
      *
      * @param ?string $domain
@@ -127,7 +116,6 @@ class Health extends Service
         }
 
         $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_GET,
@@ -138,8 +126,6 @@ class Health extends Service
     }
 
     /**
-     * Get DB
-     *
      * Check the Appwrite database servers are up and connection is successful.
      *
      * @throws AppwriteException
@@ -156,7 +142,6 @@ class Health extends Service
         $apiParams = [];
 
         $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_GET,
@@ -167,8 +152,6 @@ class Health extends Service
     }
 
     /**
-     * Get pubsub
-     *
      * Check the Appwrite pub-sub servers are up and connection is successful.
      *
      * @throws AppwriteException
@@ -185,7 +168,6 @@ class Health extends Service
         $apiParams = [];
 
         $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_GET,
@@ -196,38 +178,6 @@ class Health extends Service
     }
 
     /**
-     * Get queue
-     *
-     * Check the Appwrite queue messaging servers are up and connection is
-     * successful.
-     *
-     * @throws AppwriteException
-     * @return array
-     */
-    public function getQueue(): array
-    {
-        $apiPath = str_replace(
-            [],
-            [],
-            '/health/queue'
-        );
-
-        $apiParams = [];
-
-        $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
-
-        return $this->client->call(
-            Client::METHOD_GET,
-            $apiPath,
-            $apiHeaders,
-            $apiParams
-        );
-    }
-
-    /**
-     * Get builds queue
-     *
      * Get the number of builds that are waiting to be processed in the Appwrite
      * internal queue server.
      *
@@ -250,7 +200,6 @@ class Health extends Service
         }
 
         $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_GET,
@@ -261,8 +210,6 @@ class Health extends Service
     }
 
     /**
-     * Get certificates queue
-     *
      * Get the number of certificates that are waiting to be issued against
      * [Letsencrypt](https://letsencrypt.org/) in the Appwrite internal queue
      * server.
@@ -286,7 +233,6 @@ class Health extends Service
         }
 
         $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_GET,
@@ -297,8 +243,6 @@ class Health extends Service
     }
 
     /**
-     * Get databases queue
-     *
      * Get the number of database changes that are waiting to be processed in the
      * Appwrite internal queue server.
      *
@@ -326,7 +270,6 @@ class Health extends Service
         }
 
         $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_GET,
@@ -337,8 +280,6 @@ class Health extends Service
     }
 
     /**
-     * Get deletes queue
-     *
      * Get the number of background destructive changes that are waiting to be
      * processed in the Appwrite internal queue server.
      *
@@ -361,7 +302,6 @@ class Health extends Service
         }
 
         $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_GET,
@@ -372,8 +312,6 @@ class Health extends Service
     }
 
     /**
-     * Get number of failed queue jobs
-     *
      * Returns the amount of failed jobs in a given queue.
      * 
      *
@@ -398,7 +336,6 @@ class Health extends Service
         }
 
         $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_GET,
@@ -409,8 +346,6 @@ class Health extends Service
     }
 
     /**
-     * Get functions queue
-     *
      * Get the number of function executions that are waiting to be processed in
      * the Appwrite internal queue server.
      *
@@ -433,7 +368,6 @@ class Health extends Service
         }
 
         $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_GET,
@@ -444,8 +378,6 @@ class Health extends Service
     }
 
     /**
-     * Get logs queue
-     *
      * Get the number of logs that are waiting to be processed in the Appwrite
      * internal queue server.
      *
@@ -468,7 +400,6 @@ class Health extends Service
         }
 
         $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_GET,
@@ -479,8 +410,6 @@ class Health extends Service
     }
 
     /**
-     * Get mails queue
-     *
      * Get the number of mails that are waiting to be processed in the Appwrite
      * internal queue server.
      *
@@ -503,7 +432,6 @@ class Health extends Service
         }
 
         $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_GET,
@@ -514,8 +442,6 @@ class Health extends Service
     }
 
     /**
-     * Get messaging queue
-     *
      * Get the number of messages that are waiting to be processed in the Appwrite
      * internal queue server.
      *
@@ -538,7 +464,6 @@ class Health extends Service
         }
 
         $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_GET,
@@ -549,8 +474,6 @@ class Health extends Service
     }
 
     /**
-     * Get migrations queue
-     *
      * Get the number of migrations that are waiting to be processed in the
      * Appwrite internal queue server.
      *
@@ -573,7 +496,6 @@ class Health extends Service
         }
 
         $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_GET,
@@ -584,8 +506,38 @@ class Health extends Service
     }
 
     /**
-     * Get usage queue
+     * Get the number of metrics that are waiting to be processed in the Appwrite
+     * stats resources queue.
      *
+     * @param ?int $threshold
+     * @throws AppwriteException
+     * @return array
+     */
+    public function getQueueStatsResources(?int $threshold = null): array
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/health/queue/stats-resources'
+        );
+
+        $apiParams = [];
+
+        if (!is_null($threshold)) {
+            $apiParams['threshold'] = $threshold;
+        }
+
+        $apiHeaders = [];
+
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
      * Get the number of metrics that are waiting to be processed in the Appwrite
      * internal queue server.
      *
@@ -598,7 +550,7 @@ class Health extends Service
         $apiPath = str_replace(
             [],
             [],
-            '/health/queue/usage'
+            '/health/queue/stats-usage'
         );
 
         $apiParams = [];
@@ -608,7 +560,6 @@ class Health extends Service
         }
 
         $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_GET,
@@ -619,43 +570,6 @@ class Health extends Service
     }
 
     /**
-     * Get usage dump queue
-     *
-     * Get the number of projects containing metrics that are waiting to be
-     * processed in the Appwrite internal queue server.
-     *
-     * @param ?int $threshold
-     * @throws AppwriteException
-     * @return array
-     */
-    public function getQueueUsageDump(?int $threshold = null): array
-    {
-        $apiPath = str_replace(
-            [],
-            [],
-            '/health/queue/usage-dump'
-        );
-
-        $apiParams = [];
-
-        if (!is_null($threshold)) {
-            $apiParams['threshold'] = $threshold;
-        }
-
-        $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
-
-        return $this->client->call(
-            Client::METHOD_GET,
-            $apiPath,
-            $apiHeaders,
-            $apiParams
-        );
-    }
-
-    /**
-     * Get webhooks queue
-     *
      * Get the number of webhooks that are waiting to be processed in the Appwrite
      * internal queue server.
      *
@@ -678,7 +592,6 @@ class Health extends Service
         }
 
         $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_GET,
@@ -689,8 +602,6 @@ class Health extends Service
     }
 
     /**
-     * Get storage
-     *
      * Check the Appwrite storage device is up and connection is successful.
      *
      * @throws AppwriteException
@@ -707,7 +618,6 @@ class Health extends Service
         $apiParams = [];
 
         $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_GET,
@@ -718,8 +628,6 @@ class Health extends Service
     }
 
     /**
-     * Get local storage
-     *
      * Check the Appwrite local storage device is up and connection is successful.
      *
      * @throws AppwriteException
@@ -736,7 +644,6 @@ class Health extends Service
         $apiParams = [];
 
         $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_GET,
@@ -747,8 +654,6 @@ class Health extends Service
     }
 
     /**
-     * Get time
-     *
      * Check the Appwrite server time is synced with Google remote NTP server. We
      * use this technology to smoothly handle leap seconds with no disruptive
      * events. The [Network Time
@@ -771,7 +676,6 @@ class Health extends Service
         $apiParams = [];
 
         $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_GET,

@@ -1,6 +1,5 @@
 # Storage Service
 
-## List buckets
 
 ```http request
 GET https://cloud.appwrite.io/v1/storage/buckets
@@ -15,7 +14,6 @@ GET https://cloud.appwrite.io/v1/storage/buckets
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: enabled, name, fileSecurity, maximumFileSize, encryption, antivirus | [] |
 | search | string | Search term to filter your list results. Max length: 256 chars. |  |
 
-## Create bucket
 
 ```http request
 POST https://cloud.appwrite.io/v1/storage/buckets
@@ -38,7 +36,6 @@ POST https://cloud.appwrite.io/v1/storage/buckets
 | encryption | boolean | Is encryption enabled? For file size above 20MB encryption is skipped even if it's enabled | 1 |
 | antivirus | boolean | Is virus scanning enabled? For file size above 20MB AntiVirus scanning is skipped even if it's enabled | 1 |
 
-## Get bucket
 
 ```http request
 GET https://cloud.appwrite.io/v1/storage/buckets/{bucketId}
@@ -52,7 +49,6 @@ GET https://cloud.appwrite.io/v1/storage/buckets/{bucketId}
 | --- | --- | --- | --- |
 | bucketId | string | **Required** Bucket unique ID. |  |
 
-## Update bucket
 
 ```http request
 PUT https://cloud.appwrite.io/v1/storage/buckets/{bucketId}
@@ -75,7 +71,6 @@ PUT https://cloud.appwrite.io/v1/storage/buckets/{bucketId}
 | encryption | boolean | Is encryption enabled? For file size above 20MB encryption is skipped even if it's enabled | 1 |
 | antivirus | boolean | Is virus scanning enabled? For file size above 20MB AntiVirus scanning is skipped even if it's enabled | 1 |
 
-## Delete bucket
 
 ```http request
 DELETE https://cloud.appwrite.io/v1/storage/buckets/{bucketId}
@@ -89,7 +84,6 @@ DELETE https://cloud.appwrite.io/v1/storage/buckets/{bucketId}
 | --- | --- | --- | --- |
 | bucketId | string | **Required** Bucket unique ID. |  |
 
-## List files
 
 ```http request
 GET https://cloud.appwrite.io/v1/storage/buckets/{bucketId}/files
@@ -105,7 +99,6 @@ GET https://cloud.appwrite.io/v1/storage/buckets/{bucketId}/files
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, signature, mimeType, sizeOriginal, chunksTotal, chunksUploaded | [] |
 | search | string | Search term to filter your list results. Max length: 256 chars. |  |
 
-## Create file
 
 ```http request
 POST https://cloud.appwrite.io/v1/storage/buckets/{bucketId}/files
@@ -129,7 +122,6 @@ If you&#039;re creating a new file using one of the Appwrite SDKs, all the chunk
 | file | file | Binary file. Appwrite SDKs provide helpers to handle file input. [Learn about file input](https://appwrite.io/docs/products/storage/upload-download#input-file). |  |
 | permissions | array | An array of permission strings. By default, only the current user is granted all permissions. [Learn more about permissions](https://appwrite.io/docs/permissions). |  |
 
-## Get file
 
 ```http request
 GET https://cloud.appwrite.io/v1/storage/buckets/{bucketId}/files/{fileId}
@@ -144,7 +136,6 @@ GET https://cloud.appwrite.io/v1/storage/buckets/{bucketId}/files/{fileId}
 | bucketId | string | **Required** Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](https://appwrite.io/docs/server/storage#createBucket). |  |
 | fileId | string | **Required** File ID. |  |
 
-## Update file
 
 ```http request
 PUT https://cloud.appwrite.io/v1/storage/buckets/{bucketId}/files/{fileId}
@@ -161,7 +152,6 @@ PUT https://cloud.appwrite.io/v1/storage/buckets/{bucketId}/files/{fileId}
 | name | string | Name of the file |  |
 | permissions | array | An array of permission string. By default, the current permissions are inherited. [Learn more about permissions](https://appwrite.io/docs/permissions). |  |
 
-## Delete file
 
 ```http request
 DELETE https://cloud.appwrite.io/v1/storage/buckets/{bucketId}/files/{fileId}
@@ -176,7 +166,6 @@ DELETE https://cloud.appwrite.io/v1/storage/buckets/{bucketId}/files/{fileId}
 | bucketId | string | **Required** Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](https://appwrite.io/docs/server/storage#createBucket). |  |
 | fileId | string | **Required** File ID. |  |
 
-## Get file for download
 
 ```http request
 GET https://cloud.appwrite.io/v1/storage/buckets/{bucketId}/files/{fileId}/download
@@ -191,7 +180,6 @@ GET https://cloud.appwrite.io/v1/storage/buckets/{bucketId}/files/{fileId}/downl
 | bucketId | string | **Required** Storage bucket ID. You can create a new storage bucket using the Storage service [server integration](https://appwrite.io/docs/server/storage#createBucket). |  |
 | fileId | string | **Required** File ID. |  |
 
-## Get file preview
 
 ```http request
 GET https://cloud.appwrite.io/v1/storage/buckets/{bucketId}/files/{fileId}/preview
@@ -217,7 +205,6 @@ GET https://cloud.appwrite.io/v1/storage/buckets/{bucketId}/files/{fileId}/previ
 | background | string | Preview image background color. Only works with transparent images (png). Use a valid HEX color, no # is needed for prefix. |  |
 | output | string | Output format type (jpeg, jpg, png, gif and webp). |  |
 
-## Get file for view
 
 ```http request
 GET https://cloud.appwrite.io/v1/storage/buckets/{bucketId}/files/{fileId}/view

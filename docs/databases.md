@@ -1,6 +1,5 @@
 # Databases Service
 
-## List databases
 
 ```http request
 GET https://cloud.appwrite.io/v1/databases
@@ -15,7 +14,6 @@ GET https://cloud.appwrite.io/v1/databases
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name | [] |
 | search | string | Search term to filter your list results. Max length: 256 chars. |  |
 
-## Create database
 
 ```http request
 POST https://cloud.appwrite.io/v1/databases
@@ -32,7 +30,6 @@ POST https://cloud.appwrite.io/v1/databases
 | name | string | Database name. Max length: 128 chars. |  |
 | enabled | boolean | Is the database enabled? When set to 'disabled', users cannot access the database but Server SDKs with an API key can still read and write to the database. No data is lost when this is toggled. | 1 |
 
-## Get database
 
 ```http request
 GET https://cloud.appwrite.io/v1/databases/{databaseId}
@@ -46,7 +43,6 @@ GET https://cloud.appwrite.io/v1/databases/{databaseId}
 | --- | --- | --- | --- |
 | databaseId | string | **Required** Database ID. |  |
 
-## Update database
 
 ```http request
 PUT https://cloud.appwrite.io/v1/databases/{databaseId}
@@ -62,7 +58,6 @@ PUT https://cloud.appwrite.io/v1/databases/{databaseId}
 | name | string | Database name. Max length: 128 chars. |  |
 | enabled | boolean | Is database enabled? When set to 'disabled', users cannot access the database but Server SDKs with an API key can still read and write to the database. No data is lost when this is toggled. | 1 |
 
-## Delete database
 
 ```http request
 DELETE https://cloud.appwrite.io/v1/databases/{databaseId}
@@ -76,7 +71,6 @@ DELETE https://cloud.appwrite.io/v1/databases/{databaseId}
 | --- | --- | --- | --- |
 | databaseId | string | **Required** Database ID. |  |
 
-## List collections
 
 ```http request
 GET https://cloud.appwrite.io/v1/databases/{databaseId}/collections
@@ -92,7 +86,6 @@ GET https://cloud.appwrite.io/v1/databases/{databaseId}/collections
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, enabled, documentSecurity | [] |
 | search | string | Search term to filter your list results. Max length: 256 chars. |  |
 
-## Create collection
 
 ```http request
 POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections
@@ -111,7 +104,6 @@ POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections
 | documentSecurity | boolean | Enables configuring permissions for individual documents. A user needs one of document or collection level permissions to access a document. [Learn more about permissions](https://appwrite.io/docs/permissions). |  |
 | enabled | boolean | Is collection enabled? When set to 'disabled', users cannot access the collection but Server SDKs with and API key can still read and write to the collection. No data is lost when this is toggled. | 1 |
 
-## Get collection
 
 ```http request
 GET https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}
@@ -126,7 +118,6 @@ GET https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionI
 | databaseId | string | **Required** Database ID. |  |
 | collectionId | string | **Required** Collection ID. |  |
 
-## Update collection
 
 ```http request
 PUT https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}
@@ -145,7 +136,6 @@ PUT https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionI
 | documentSecurity | boolean | Enables configuring permissions for individual documents. A user needs one of document or collection level permissions to access a document. [Learn more about permissions](https://appwrite.io/docs/permissions). |  |
 | enabled | boolean | Is collection enabled? When set to 'disabled', users cannot access the collection but Server SDKs with and API key can still read and write to the collection. No data is lost when this is toggled. | 1 |
 
-## Delete collection
 
 ```http request
 DELETE https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}
@@ -160,7 +150,6 @@ DELETE https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collecti
 | databaseId | string | **Required** Database ID. |  |
 | collectionId | string | **Required** Collection ID. |  |
 
-## List attributes
 
 ```http request
 GET https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes
@@ -176,7 +165,6 @@ GET https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionI
 | collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: key, type, size, required, array, status, error | [] |
 
-## Create boolean attribute
 
 ```http request
 POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/boolean
@@ -196,7 +184,6 @@ POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collection
 | default | boolean | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | array | boolean | Is attribute an array? |  |
 
-## Update boolean attribute
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/boolean/{key}
@@ -215,7 +202,6 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 | default | boolean | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | newKey | string | New attribute key. |  |
 
-## Create datetime attribute
 
 ```http request
 POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/datetime
@@ -234,7 +220,6 @@ POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collection
 | default | string | Default value for the attribute in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. Cannot be set when attribute is required. |  |
 | array | boolean | Is attribute an array? |  |
 
-## Update dateTime attribute
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/datetime/{key}
@@ -253,7 +238,6 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | newKey | string | New attribute key. |  |
 
-## Create email attribute
 
 ```http request
 POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/email
@@ -273,7 +257,6 @@ POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collection
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | array | boolean | Is attribute an array? |  |
 
-## Update email attribute
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/email/{key}
@@ -293,7 +276,6 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | newKey | string | New attribute key. |  |
 
-## Create enum attribute
 
 ```http request
 POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/enum
@@ -314,7 +296,6 @@ POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collection
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | array | boolean | Is attribute an array? |  |
 
-## Update enum attribute
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/enum/{key}
@@ -335,7 +316,6 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | newKey | string | New attribute key. |  |
 
-## Create float attribute
 
 ```http request
 POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/float
@@ -357,7 +337,6 @@ POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collection
 | default | number | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | array | boolean | Is attribute an array? |  |
 
-## Update float attribute
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/float/{key}
@@ -379,7 +358,6 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 | default | number | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | newKey | string | New attribute key. |  |
 
-## Create integer attribute
 
 ```http request
 POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/integer
@@ -401,7 +379,6 @@ POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collection
 | default | integer | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | array | boolean | Is attribute an array? |  |
 
-## Update integer attribute
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/integer/{key}
@@ -423,7 +400,6 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 | default | integer | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | newKey | string | New attribute key. |  |
 
-## Create IP address attribute
 
 ```http request
 POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/ip
@@ -443,7 +419,6 @@ POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collection
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | array | boolean | Is attribute an array? |  |
 
-## Update IP address attribute
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/ip/{key}
@@ -463,7 +438,6 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | newKey | string | New attribute key. |  |
 
-## Create relationship attribute
 
 ```http request
 POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/relationship
@@ -485,7 +459,6 @@ POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collection
 | twoWayKey | string | Two Way Attribute Key. |  |
 | onDelete | string | Constraints option | restrict |
 
-## Create string attribute
 
 ```http request
 POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/string
@@ -507,7 +480,6 @@ POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collection
 | array | boolean | Is attribute an array? |  |
 | encrypt | boolean | Toggle encryption for the attribute. Encryption enhances security by not storing any plain text values in the database. However, encrypted attributes cannot be queried. |  |
 
-## Update string attribute
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/string/{key}
@@ -528,7 +500,6 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 | size | integer | Maximum size of the string attribute. |  |
 | newKey | string | New attribute key. |  |
 
-## Create URL attribute
 
 ```http request
 POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/url
@@ -548,7 +519,6 @@ POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collection
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | array | boolean | Is attribute an array? |  |
 
-## Update URL attribute
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/url/{key}
@@ -568,7 +538,6 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | newKey | string | New attribute key. |  |
 
-## Get attribute
 
 ```http request
 GET https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/{key}
@@ -584,7 +553,6 @@ GET https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionI
 | collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
 | key | string | **Required** Attribute Key. |  |
 
-## Delete attribute
 
 ```http request
 DELETE https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/{key}
@@ -600,7 +568,6 @@ DELETE https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collecti
 | collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
 | key | string | **Required** Attribute Key. |  |
 
-## Update relationship attribute
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/{key}/relationship
@@ -619,7 +586,6 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 | onDelete | string | Constraints option |  |
 | newKey | string | New attribute key. |  |
 
-## List documents
 
 ```http request
 GET https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/documents
@@ -635,13 +601,13 @@ GET https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionI
 | collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. | [] |
 
-## Create document
 
 ```http request
 POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/documents
 ```
 
-** Create a new Document. Before using this route, you should create a new collection resource using either a [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection) API or directly from your database console. **
+** Create a new Document. Before using this route, you should create a new collection resource using either a [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection) API or directly from your database console.
+ **
 
 ### Parameters
 
@@ -653,7 +619,6 @@ POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collection
 | data | object | Document data as JSON object. | {} |
 | permissions | array | An array of permissions strings. By default, only the current user is granted all permissions. [Learn more about permissions](https://appwrite.io/docs/permissions). |  |
 
-## Get document
 
 ```http request
 GET https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/documents/{documentId}
@@ -670,7 +635,6 @@ GET https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionI
 | documentId | string | **Required** Document ID. |  |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. | [] |
 
-## Update document
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/documents/{documentId}
@@ -688,7 +652,6 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 | data | object | Document data as JSON object. Include only attribute and value pairs to be updated. | {} |
 | permissions | array | An array of permissions strings. By default, the current permissions are inherited. [Learn more about permissions](https://appwrite.io/docs/permissions). |  |
 
-## Delete document
 
 ```http request
 DELETE https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/documents/{documentId}
@@ -704,7 +667,6 @@ DELETE https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collecti
 | collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
 | documentId | string | **Required** Document ID. |  |
 
-## List indexes
 
 ```http request
 GET https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/indexes
@@ -720,7 +682,6 @@ GET https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionI
 | collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: key, type, status, attributes, error | [] |
 
-## Create index
 
 ```http request
 POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/indexes
@@ -740,7 +701,6 @@ Attributes can be `key`, `fulltext`, and `unique`. **
 | attributes | array | Array of attributes to index. Maximum of 100 attributes are allowed, each 32 characters long. |  |
 | orders | array | Array of index orders. Maximum of 100 orders are allowed. | [] |
 
-## Get index
 
 ```http request
 GET https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/indexes/{key}
@@ -756,7 +716,6 @@ GET https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionI
 | collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
 | key | string | **Required** Index Key. |  |
 
-## Delete index
 
 ```http request
 DELETE https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/indexes/{key}

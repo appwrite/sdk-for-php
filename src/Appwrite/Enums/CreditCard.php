@@ -22,6 +22,7 @@ class CreditCard implements JsonSerializable
     private static CreditCard $VISA;
     private static CreditCard $MIR;
     private static CreditCard $MAESTRO;
+    private static CreditCard $RUPAY;
 
     private string $value;
 
@@ -151,5 +152,12 @@ class CreditCard implements JsonSerializable
             self::$MAESTRO = new CreditCard('maestro');
         }
         return self::$MAESTRO;
+    }
+    public static function RUPAY(): CreditCard
+    {
+        if (!isset(self::$RUPAY)) {
+            self::$RUPAY = new CreditCard('rupay');
+        }
+        return self::$RUPAY;
     }
 }

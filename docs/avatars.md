@@ -1,6 +1,5 @@
 # Avatars Service
 
-## Get browser icon
 
 ```http request
 GET https://cloud.appwrite.io/v1/avatars/browsers/{code}
@@ -19,7 +18,6 @@ When one dimension is specified and the other is 0, the image is scaled with pre
 | height | integer | Image height. Pass an integer between 0 to 2000. Defaults to 100. | 100 |
 | quality | integer | Image quality. Pass an integer between 0 to 100. Defaults to 100. | 100 |
 
-## Get credit card icon
 
 ```http request
 GET https://cloud.appwrite.io/v1/avatars/credit-cards/{code}
@@ -34,12 +32,11 @@ When one dimension is specified and the other is 0, the image is scaled with pre
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| code | string | **Required** Credit Card Code. Possible values: amex, argencard, cabal, cencosud, diners, discover, elo, hipercard, jcb, mastercard, naranja, targeta-shopping, union-china-pay, visa, mir, maestro. |  |
+| code | string | **Required** Credit Card Code. Possible values: amex, argencard, cabal, cencosud, diners, discover, elo, hipercard, jcb, mastercard, naranja, targeta-shopping, union-china-pay, visa, mir, maestro, rupay. |  |
 | width | integer | Image width. Pass an integer between 0 to 2000. Defaults to 100. | 100 |
 | height | integer | Image height. Pass an integer between 0 to 2000. Defaults to 100. | 100 |
 | quality | integer | Image quality. Pass an integer between 0 to 100. Defaults to 100. | 100 |
 
-## Get favicon
 
 ```http request
 GET https://cloud.appwrite.io/v1/avatars/favicon
@@ -55,7 +52,6 @@ This endpoint does not follow HTTP redirects. **
 | --- | --- | --- | --- |
 | url | string | **Required** Website URL which you want to fetch the favicon from. |  |
 
-## Get country flag
 
 ```http request
 GET https://cloud.appwrite.io/v1/avatars/flags/{code}
@@ -75,7 +71,6 @@ When one dimension is specified and the other is 0, the image is scaled with pre
 | height | integer | Image height. Pass an integer between 0 to 2000. Defaults to 100. | 100 |
 | quality | integer | Image quality. Pass an integer between 0 to 100. Defaults to 100. | 100 |
 
-## Get image from URL
 
 ```http request
 GET https://cloud.appwrite.io/v1/avatars/image
@@ -95,7 +90,6 @@ This endpoint does not follow HTTP redirects. **
 | width | integer | Resize preview image width, Pass an integer between 0 to 2000. Defaults to 400. | 400 |
 | height | integer | Resize preview image height, Pass an integer between 0 to 2000. Defaults to 400. | 400 |
 
-## Get user initials
 
 ```http request
 GET https://cloud.appwrite.io/v1/avatars/initials
@@ -117,7 +111,6 @@ When one dimension is specified and the other is 0, the image is scaled with pre
 | height | integer | Image height. Pass an integer between 0 to 2000. Defaults to 100. | 500 |
 | background | string | Changes background color. By default a random color will be picked and stay will persistent to the given name. |  |
 
-## Get QR code
 
 ```http request
 GET https://cloud.appwrite.io/v1/avatars/qr

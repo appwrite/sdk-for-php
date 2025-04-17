@@ -1,6 +1,5 @@
 # Users Service
 
-## List users
 
 ```http request
 GET https://cloud.appwrite.io/v1/users
@@ -15,7 +14,6 @@ GET https://cloud.appwrite.io/v1/users
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, email, phone, status, passwordUpdate, registration, emailVerification, phoneVerification, labels | [] |
 | search | string | Search term to filter your list results. Max length: 256 chars. |  |
 
-## Create user
 
 ```http request
 POST https://cloud.appwrite.io/v1/users
@@ -33,7 +31,6 @@ POST https://cloud.appwrite.io/v1/users
 | password | string | Plain text user password. Must be at least 8 chars. |  |
 | name | string | User name. Max length: 128 chars. |  |
 
-## Create user with Argon2 password
 
 ```http request
 POST https://cloud.appwrite.io/v1/users/argon2
@@ -50,7 +47,6 @@ POST https://cloud.appwrite.io/v1/users/argon2
 | password | string | User password hashed using Argon2. |  |
 | name | string | User name. Max length: 128 chars. |  |
 
-## Create user with bcrypt password
 
 ```http request
 POST https://cloud.appwrite.io/v1/users/bcrypt
@@ -67,7 +63,6 @@ POST https://cloud.appwrite.io/v1/users/bcrypt
 | password | string | User password hashed using Bcrypt. |  |
 | name | string | User name. Max length: 128 chars. |  |
 
-## List identities
 
 ```http request
 GET https://cloud.appwrite.io/v1/users/identities
@@ -82,7 +77,6 @@ GET https://cloud.appwrite.io/v1/users/identities
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: userId, provider, providerUid, providerEmail, providerAccessTokenExpiry | [] |
 | search | string | Search term to filter your list results. Max length: 256 chars. |  |
 
-## Delete identity
 
 ```http request
 DELETE https://cloud.appwrite.io/v1/users/identities/{identityId}
@@ -96,7 +90,6 @@ DELETE https://cloud.appwrite.io/v1/users/identities/{identityId}
 | --- | --- | --- | --- |
 | identityId | string | **Required** Identity ID. |  |
 
-## Create user with MD5 password
 
 ```http request
 POST https://cloud.appwrite.io/v1/users/md5
@@ -113,7 +106,6 @@ POST https://cloud.appwrite.io/v1/users/md5
 | password | string | User password hashed using MD5. |  |
 | name | string | User name. Max length: 128 chars. |  |
 
-## Create user with PHPass password
 
 ```http request
 POST https://cloud.appwrite.io/v1/users/phpass
@@ -130,7 +122,6 @@ POST https://cloud.appwrite.io/v1/users/phpass
 | password | string | User password hashed using PHPass. |  |
 | name | string | User name. Max length: 128 chars. |  |
 
-## Create user with Scrypt password
 
 ```http request
 POST https://cloud.appwrite.io/v1/users/scrypt
@@ -152,7 +143,6 @@ POST https://cloud.appwrite.io/v1/users/scrypt
 | passwordLength | integer | Optional hash length used to hash password. |  |
 | name | string | User name. Max length: 128 chars. |  |
 
-## Create user with Scrypt modified password
 
 ```http request
 POST https://cloud.appwrite.io/v1/users/scrypt-modified
@@ -172,7 +162,6 @@ POST https://cloud.appwrite.io/v1/users/scrypt-modified
 | passwordSignerKey | string | Signer key used to hash password. |  |
 | name | string | User name. Max length: 128 chars. |  |
 
-## Create user with SHA password
 
 ```http request
 POST https://cloud.appwrite.io/v1/users/sha
@@ -190,7 +179,6 @@ POST https://cloud.appwrite.io/v1/users/sha
 | passwordVersion | string | Optional SHA version used to hash password. Allowed values are: 'sha1', 'sha224', 'sha256', 'sha384', 'sha512/224', 'sha512/256', 'sha512', 'sha3-224', 'sha3-256', 'sha3-384', 'sha3-512' |  |
 | name | string | User name. Max length: 128 chars. |  |
 
-## Get user
 
 ```http request
 GET https://cloud.appwrite.io/v1/users/{userId}
@@ -204,7 +192,6 @@ GET https://cloud.appwrite.io/v1/users/{userId}
 | --- | --- | --- | --- |
 | userId | string | **Required** User ID. |  |
 
-## Delete user
 
 ```http request
 DELETE https://cloud.appwrite.io/v1/users/{userId}
@@ -218,7 +205,6 @@ DELETE https://cloud.appwrite.io/v1/users/{userId}
 | --- | --- | --- | --- |
 | userId | string | **Required** User ID. |  |
 
-## Update email
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/users/{userId}/email
@@ -233,7 +219,6 @@ PATCH https://cloud.appwrite.io/v1/users/{userId}/email
 | userId | string | **Required** User ID. |  |
 | email | string | User email. |  |
 
-## Create user JWT
 
 ```http request
 POST https://cloud.appwrite.io/v1/users/{userId}/jwts
@@ -249,7 +234,6 @@ POST https://cloud.appwrite.io/v1/users/{userId}/jwts
 | sessionId | string | Session ID. Use the string 'recent' to use the most recent session. Defaults to the most recent session. |  |
 | duration | integer | Time in seconds before JWT expires. Default duration is 900 seconds, and maximum is 3600 seconds. | 900 |
 
-## Update user labels
 
 ```http request
 PUT https://cloud.appwrite.io/v1/users/{userId}/labels
@@ -266,7 +250,6 @@ Labels can be used to grant access to resources. While teams are a way for user&
 | userId | string | **Required** User ID. |  |
 | labels | array | Array of user labels. Replaces the previous labels. Maximum of 1000 labels are allowed, each up to 36 alphanumeric characters long. |  |
 
-## List user logs
 
 ```http request
 GET https://cloud.appwrite.io/v1/users/{userId}/logs
@@ -281,7 +264,6 @@ GET https://cloud.appwrite.io/v1/users/{userId}/logs
 | userId | string | **Required** User ID. |  |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Only supported methods are limit and offset | [] |
 
-## List user memberships
 
 ```http request
 GET https://cloud.appwrite.io/v1/users/{userId}/memberships
@@ -295,7 +277,6 @@ GET https://cloud.appwrite.io/v1/users/{userId}/memberships
 | --- | --- | --- | --- |
 | userId | string | **Required** User ID. |  |
 
-## Update MFA
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/users/{userId}/mfa
@@ -310,7 +291,6 @@ PATCH https://cloud.appwrite.io/v1/users/{userId}/mfa
 | userId | string | **Required** User ID. |  |
 | mfa | boolean | Enable or disable MFA. |  |
 
-## Delete authenticator
 
 ```http request
 DELETE https://cloud.appwrite.io/v1/users/{userId}/mfa/authenticators/{type}
@@ -325,7 +305,6 @@ DELETE https://cloud.appwrite.io/v1/users/{userId}/mfa/authenticators/{type}
 | userId | string | **Required** User ID. |  |
 | type | string | **Required** Type of authenticator. |  |
 
-## List factors
 
 ```http request
 GET https://cloud.appwrite.io/v1/users/{userId}/mfa/factors
@@ -339,7 +318,6 @@ GET https://cloud.appwrite.io/v1/users/{userId}/mfa/factors
 | --- | --- | --- | --- |
 | userId | string | **Required** User ID. |  |
 
-## Get MFA recovery codes
 
 ```http request
 GET https://cloud.appwrite.io/v1/users/{userId}/mfa/recovery-codes
@@ -353,7 +331,6 @@ GET https://cloud.appwrite.io/v1/users/{userId}/mfa/recovery-codes
 | --- | --- | --- | --- |
 | userId | string | **Required** User ID. |  |
 
-## Regenerate MFA recovery codes
 
 ```http request
 PUT https://cloud.appwrite.io/v1/users/{userId}/mfa/recovery-codes
@@ -367,7 +344,6 @@ PUT https://cloud.appwrite.io/v1/users/{userId}/mfa/recovery-codes
 | --- | --- | --- | --- |
 | userId | string | **Required** User ID. |  |
 
-## Create MFA recovery codes
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/users/{userId}/mfa/recovery-codes
@@ -381,7 +357,6 @@ PATCH https://cloud.appwrite.io/v1/users/{userId}/mfa/recovery-codes
 | --- | --- | --- | --- |
 | userId | string | **Required** User ID. |  |
 
-## Update name
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/users/{userId}/name
@@ -396,7 +371,6 @@ PATCH https://cloud.appwrite.io/v1/users/{userId}/name
 | userId | string | **Required** User ID. |  |
 | name | string | User name. Max length: 128 chars. |  |
 
-## Update password
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/users/{userId}/password
@@ -411,7 +385,6 @@ PATCH https://cloud.appwrite.io/v1/users/{userId}/password
 | userId | string | **Required** User ID. |  |
 | password | string | New user password. Must be at least 8 chars. |  |
 
-## Update phone
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/users/{userId}/phone
@@ -426,7 +399,6 @@ PATCH https://cloud.appwrite.io/v1/users/{userId}/phone
 | userId | string | **Required** User ID. |  |
 | number | string | User phone number. |  |
 
-## Get user preferences
 
 ```http request
 GET https://cloud.appwrite.io/v1/users/{userId}/prefs
@@ -440,7 +412,6 @@ GET https://cloud.appwrite.io/v1/users/{userId}/prefs
 | --- | --- | --- | --- |
 | userId | string | **Required** User ID. |  |
 
-## Update user preferences
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/users/{userId}/prefs
@@ -455,7 +426,6 @@ PATCH https://cloud.appwrite.io/v1/users/{userId}/prefs
 | userId | string | **Required** User ID. |  |
 | prefs | object | Prefs key-value JSON object. | {} |
 
-## List user sessions
 
 ```http request
 GET https://cloud.appwrite.io/v1/users/{userId}/sessions
@@ -469,7 +439,6 @@ GET https://cloud.appwrite.io/v1/users/{userId}/sessions
 | --- | --- | --- | --- |
 | userId | string | **Required** User ID. |  |
 
-## Create session
 
 ```http request
 POST https://cloud.appwrite.io/v1/users/{userId}/sessions
@@ -485,7 +454,6 @@ If you want to generate a token for a custom authentication flow, use the [POST 
 | --- | --- | --- | --- |
 | userId | string | **Required** User ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
 
-## Delete user sessions
 
 ```http request
 DELETE https://cloud.appwrite.io/v1/users/{userId}/sessions
@@ -499,7 +467,6 @@ DELETE https://cloud.appwrite.io/v1/users/{userId}/sessions
 | --- | --- | --- | --- |
 | userId | string | **Required** User ID. |  |
 
-## Delete user session
 
 ```http request
 DELETE https://cloud.appwrite.io/v1/users/{userId}/sessions/{sessionId}
@@ -514,7 +481,6 @@ DELETE https://cloud.appwrite.io/v1/users/{userId}/sessions/{sessionId}
 | userId | string | **Required** User ID. |  |
 | sessionId | string | **Required** Session ID. |  |
 
-## Update user status
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/users/{userId}/status
@@ -529,7 +495,6 @@ PATCH https://cloud.appwrite.io/v1/users/{userId}/status
 | userId | string | **Required** User ID. |  |
 | status | boolean | User Status. To activate the user pass `true` and to block the user pass `false`. |  |
 
-## List user targets
 
 ```http request
 GET https://cloud.appwrite.io/v1/users/{userId}/targets
@@ -544,7 +509,6 @@ GET https://cloud.appwrite.io/v1/users/{userId}/targets
 | userId | string | **Required** User ID. |  |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, email, phone, status, passwordUpdate, registration, emailVerification, phoneVerification, labels | [] |
 
-## Create user target
 
 ```http request
 POST https://cloud.appwrite.io/v1/users/{userId}/targets
@@ -563,7 +527,6 @@ POST https://cloud.appwrite.io/v1/users/{userId}/targets
 | providerId | string | Provider ID. Message will be sent to this target from the specified provider ID. If no provider ID is set the first setup provider will be used. |  |
 | name | string | Target name. Max length: 128 chars. For example: My Awesome App Galaxy S23. |  |
 
-## Get user target
 
 ```http request
 GET https://cloud.appwrite.io/v1/users/{userId}/targets/{targetId}
@@ -578,7 +541,6 @@ GET https://cloud.appwrite.io/v1/users/{userId}/targets/{targetId}
 | userId | string | **Required** User ID. |  |
 | targetId | string | **Required** Target ID. |  |
 
-## Update user target
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/users/{userId}/targets/{targetId}
@@ -596,7 +558,6 @@ PATCH https://cloud.appwrite.io/v1/users/{userId}/targets/{targetId}
 | providerId | string | Provider ID. Message will be sent to this target from the specified provider ID. If no provider ID is set the first setup provider will be used. |  |
 | name | string | Target name. Max length: 128 chars. For example: My Awesome App Galaxy S23. |  |
 
-## Delete user target
 
 ```http request
 DELETE https://cloud.appwrite.io/v1/users/{userId}/targets/{targetId}
@@ -611,7 +572,6 @@ DELETE https://cloud.appwrite.io/v1/users/{userId}/targets/{targetId}
 | userId | string | **Required** User ID. |  |
 | targetId | string | **Required** Target ID. |  |
 
-## Create token
 
 ```http request
 POST https://cloud.appwrite.io/v1/users/{userId}/tokens
@@ -628,7 +588,6 @@ POST https://cloud.appwrite.io/v1/users/{userId}/tokens
 | length | integer | Token length in characters. The default length is 6 characters | 6 |
 | expire | integer | Token expiration period in seconds. The default expiration is 15 minutes. | 900 |
 
-## Update email verification
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/users/{userId}/verification
@@ -643,7 +602,6 @@ PATCH https://cloud.appwrite.io/v1/users/{userId}/verification
 | userId | string | **Required** User ID. |  |
 | emailVerification | boolean | User email verification status. |  |
 
-## Update phone verification
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/users/{userId}/verification/phone

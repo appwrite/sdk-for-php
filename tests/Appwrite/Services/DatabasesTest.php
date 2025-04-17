@@ -520,8 +520,6 @@ final class DatabasesTest extends TestCase {
             "<COLLECTION_ID>",
             "",
             true,
-            1.0,
-            1.0,
             1.0
         );
 
@@ -575,8 +573,6 @@ final class DatabasesTest extends TestCase {
             "<COLLECTION_ID>",
             "",
             true,
-            1,
-            1,
             1
         );
 
