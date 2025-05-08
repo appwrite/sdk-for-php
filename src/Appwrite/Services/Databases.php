@@ -1496,7 +1496,6 @@ class Databases extends Service
      * collection resource using either a [server
      * integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
      * API or directly from your database console.
-     * 
      *
      * @param string $databaseId
      * @param string $collectionId
@@ -1529,6 +1528,163 @@ class Databases extends Service
 
         return $this->client->call(
             Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Create new Documents. Before using this route, you should create a new
+     * collection resource using either a [server
+     * integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
+     * API or directly from your database console.
+     * 
+     *
+     * @param string $databaseId
+     * @param string $collectionId
+     * @param array $documents
+     * @throws AppwriteException
+     * @return array
+     */
+    public function createDocuments(string $databaseId, string $collectionId, array $documents): array
+    {
+        $apiPath = str_replace(
+            ['{databaseId}', '{collectionId}'],
+            [$databaseId, $collectionId],
+            '/databases/{databaseId}/collections/{collectionId}/documents'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['collectionId'] = $collectionId;
+        $apiParams['documents'] = $documents;
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Create or update Documents. Before using this route, you should create a
+     * new collection resource using either a [server
+     * integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
+     * API or directly from your database console.
+     * 
+     *
+     * @param string $databaseId
+     * @param string $collectionId
+     * @param ?array $documents
+     * @throws AppwriteException
+     * @return array
+     */
+    public function upsertDocuments(string $databaseId, string $collectionId, ?array $documents = null): array
+    {
+        $apiPath = str_replace(
+            ['{databaseId}', '{collectionId}'],
+            [$databaseId, $collectionId],
+            '/databases/{databaseId}/collections/{collectionId}/documents'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['collectionId'] = $collectionId;
+
+        if (!is_null($documents)) {
+            $apiParams['documents'] = $documents;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_PUT,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Update all documents that match your queries, if no queries are submitted
+     * then all documents are updated. You can pass only specific fields to be
+     * updated.
+     *
+     * @param string $databaseId
+     * @param string $collectionId
+     * @param ?array $data
+     * @param ?array $queries
+     * @throws AppwriteException
+     * @return array
+     */
+    public function updateDocuments(string $databaseId, string $collectionId, ?array $data = null, ?array $queries = null): array
+    {
+        $apiPath = str_replace(
+            ['{databaseId}', '{collectionId}'],
+            [$databaseId, $collectionId],
+            '/databases/{databaseId}/collections/{collectionId}/documents'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['collectionId'] = $collectionId;
+
+        if (!is_null($data)) {
+            $apiParams['data'] = $data;
+        }
+
+        if (!is_null($queries)) {
+            $apiParams['queries'] = $queries;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Bulk delete documents using queries, if no queries are passed then all
+     * documents are deleted.
+     *
+     * @param string $databaseId
+     * @param string $collectionId
+     * @param ?array $queries
+     * @throws AppwriteException
+     * @return array
+     */
+    public function deleteDocuments(string $databaseId, string $collectionId, ?array $queries = null): array
+    {
+        $apiPath = str_replace(
+            ['{databaseId}', '{collectionId}'],
+            [$databaseId, $collectionId],
+            '/databases/{databaseId}/collections/{collectionId}/documents'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['collectionId'] = $collectionId;
+
+        if (!is_null($queries)) {
+            $apiParams['queries'] = $queries;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
