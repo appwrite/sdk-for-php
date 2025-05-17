@@ -12,5 +12,6 @@ $functions = new Functions($client);
 
 $result = $functions->getDeploymentDownload(
     functionId: '<FUNCTION_ID>',
-    deploymentId: '<DEPLOYMENT_ID>'
+    deploymentId: '<DEPLOYMENT_ID>',
+    type: DeploymentDownloadType::SOURCE() // optional
 );

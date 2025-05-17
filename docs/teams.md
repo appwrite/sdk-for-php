@@ -81,7 +81,7 @@ GET https://cloud.appwrite.io/v1/teams/{teamId}/memberships
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | teamId | string | **Required** Team ID. |  |
-| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: userId, teamId, invited, joined, confirm | [] |
+| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: userId, teamId, invited, joined, confirm, roles | [] |
 | search | string | Search term to filter your list results. Max length: 256 chars. |  |
 
 

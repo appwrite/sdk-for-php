@@ -1058,6 +1058,7 @@ final class DatabasesTest extends TestCase {
             "status" => "available",
             "error" => "string",
             "attributes" => array(),
+            "lengths" => array(),
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",);
 
@@ -1085,6 +1086,7 @@ final class DatabasesTest extends TestCase {
             "status" => "available",
             "error" => "string",
             "attributes" => array(),
+            "lengths" => array(),
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",);
 

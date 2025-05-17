@@ -684,10 +684,12 @@ class Users extends Service
      * Get the user membership list by its unique ID.
      *
      * @param string $userId
+     * @param ?array $queries
+     * @param ?string $search
      * @throws AppwriteException
      * @return array
      */
-    public function listMemberships(string $userId): array
+    public function listMemberships(string $userId, ?array $queries = null, ?string $search = null): array
     {
         $apiPath = str_replace(
             ['{userId}'],
@@ -697,6 +699,14 @@ class Users extends Service
 
         $apiParams = [];
         $apiParams['userId'] = $userId;
+
+        if (!is_null($queries)) {
+            $apiParams['queries'] = $queries;
+        }
+
+        if (!is_null($search)) {
+            $apiParams['search'] = $search;
+        }
 
         $apiHeaders = [];
 

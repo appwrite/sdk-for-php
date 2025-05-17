@@ -623,8 +623,7 @@ POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collection
 POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/documents
 ```
 
-** Create new Documents. Before using this route, you should create a new collection resource using either a [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection) API or directly from your database console.
- **
+** Create new Documents. Before using this route, you should create a new collection resource using either a [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection) API or directly from your database console. **
 
 ### Parameters
 
@@ -762,6 +761,7 @@ Attributes can be `key`, `fulltext`, and `unique`. **
 | type | string | Index type. |  |
 | attributes | array | Array of attributes to index. Maximum of 100 attributes are allowed, each 32 characters long. |  |
 | orders | array | Array of index orders. Maximum of 100 orders are allowed. | [] |
+| lengths | array | Length of index. Maximum of 100 | [] |
 
 
 ```http request

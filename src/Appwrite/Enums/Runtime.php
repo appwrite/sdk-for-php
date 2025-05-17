@@ -27,6 +27,7 @@ class Runtime implements JsonSerializable
     private static Runtime $PYTHON311;
     private static Runtime $PYTHON312;
     private static Runtime $PYTHONML311;
+    private static Runtime $PYTHONML312;
     private static Runtime $DENO121;
     private static Runtime $DENO124;
     private static Runtime $DENO135;
@@ -37,6 +38,7 @@ class Runtime implements JsonSerializable
     private static Runtime $DART216;
     private static Runtime $DART217;
     private static Runtime $DART218;
+    private static Runtime $DART219;
     private static Runtime $DART30;
     private static Runtime $DART31;
     private static Runtime $DART33;
@@ -65,6 +67,8 @@ class Runtime implements JsonSerializable
     private static Runtime $GO123;
     private static Runtime $STATIC1;
     private static Runtime $FLUTTER324;
+    private static Runtime $FLUTTER327;
+    private static Runtime $FLUTTER329;
 
     private string $value;
 
@@ -230,6 +234,13 @@ class Runtime implements JsonSerializable
         }
         return self::$PYTHONML311;
     }
+    public static function PYTHONML312(): Runtime
+    {
+        if (!isset(self::$PYTHONML312)) {
+            self::$PYTHONML312 = new Runtime('python-ml-3.12');
+        }
+        return self::$PYTHONML312;
+    }
     public static function DENO121(): Runtime
     {
         if (!isset(self::$DENO121)) {
@@ -299,6 +310,13 @@ class Runtime implements JsonSerializable
             self::$DART218 = new Runtime('dart-2.18');
         }
         return self::$DART218;
+    }
+    public static function DART219(): Runtime
+    {
+        if (!isset(self::$DART219)) {
+            self::$DART219 = new Runtime('dart-2.19');
+        }
+        return self::$DART219;
     }
     public static function DART30(): Runtime
     {
@@ -495,5 +513,19 @@ class Runtime implements JsonSerializable
             self::$FLUTTER324 = new Runtime('flutter-3.24');
         }
         return self::$FLUTTER324;
+    }
+    public static function FLUTTER327(): Runtime
+    {
+        if (!isset(self::$FLUTTER327)) {
+            self::$FLUTTER327 = new Runtime('flutter-3.27');
+        }
+        return self::$FLUTTER327;
+    }
+    public static function FLUTTER329(): Runtime
+    {
+        if (!isset(self::$FLUTTER329)) {
+            self::$FLUTTER329 = new Runtime('flutter-3.29');
+        }
+        return self::$FLUTTER329;
     }
 }

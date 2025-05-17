@@ -13,5 +13,6 @@ $functions = new Functions($client);
 $result = $functions->createVariable(
     functionId: '<FUNCTION_ID>',
     key: '<KEY>',
-    value: '<VALUE>'
+    value: '<VALUE>',
+    secret: false // optional
 );

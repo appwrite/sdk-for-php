@@ -1539,7 +1539,6 @@ class Databases extends Service
      * collection resource using either a [server
      * integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
      * API or directly from your database console.
-     * 
      *
      * @param string $databaseId
      * @param string $collectionId
@@ -1852,10 +1851,11 @@ class Databases extends Service
      * @param IndexType $type
      * @param array $attributes
      * @param ?array $orders
+     * @param ?array $lengths
      * @throws AppwriteException
      * @return array
      */
-    public function createIndex(string $databaseId, string $collectionId, string $key, IndexType $type, array $attributes, ?array $orders = null): array
+    public function createIndex(string $databaseId, string $collectionId, string $key, IndexType $type, array $attributes, ?array $orders = null, ?array $lengths = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
@@ -1872,6 +1872,10 @@ class Databases extends Service
 
         if (!is_null($orders)) {
             $apiParams['orders'] = $orders;
+        }
+
+        if (!is_null($lengths)) {
+            $apiParams['lengths'] = $lengths;
         }
 
         $apiHeaders = [];

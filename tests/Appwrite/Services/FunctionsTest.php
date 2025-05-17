@@ -45,7 +45,11 @@ final class FunctionsTest extends TestCase {
             "live" => true,
             "logging" => true,
             "runtime" => "python-3.8",
-            "deployment" => "5e5ea5c16897e",
+            "deploymentId" => "5e5ea5c16897e",
+            "deploymentCreatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "latestDeploymentId" => "5e5ea5c16897e",
+            "latestDeploymentCreatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "latestDeploymentStatus" => "ready",
             "scopes" => array(),
             "vars" => array(),
             "events" => array(),
@@ -121,7 +125,11 @@ final class FunctionsTest extends TestCase {
             "live" => true,
             "logging" => true,
             "runtime" => "python-3.8",
-            "deployment" => "5e5ea5c16897e",
+            "deploymentId" => "5e5ea5c16897e",
+            "deploymentCreatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "latestDeploymentId" => "5e5ea5c16897e",
+            "latestDeploymentCreatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "latestDeploymentStatus" => "ready",
             "scopes" => array(),
             "vars" => array(),
             "events" => array(),
@@ -161,7 +169,11 @@ final class FunctionsTest extends TestCase {
             "live" => true,
             "logging" => true,
             "runtime" => "python-3.8",
-            "deployment" => "5e5ea5c16897e",
+            "deploymentId" => "5e5ea5c16897e",
+            "deploymentCreatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "latestDeploymentId" => "5e5ea5c16897e",
+            "latestDeploymentCreatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "latestDeploymentStatus" => "ready",
             "scopes" => array(),
             "vars" => array(),
             "events" => array(),
@@ -206,6 +218,51 @@ final class FunctionsTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
+    public function testMethodUpdateFunctionDeployment(): void {
+
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "execute" => array(),
+            "name" => "My Function",
+            "enabled" => true,
+            "live" => true,
+            "logging" => true,
+            "runtime" => "python-3.8",
+            "deploymentId" => "5e5ea5c16897e",
+            "deploymentCreatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "latestDeploymentId" => "5e5ea5c16897e",
+            "latestDeploymentCreatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "latestDeploymentStatus" => "ready",
+            "scopes" => array(),
+            "vars" => array(),
+            "events" => array(),
+            "schedule" => "5 4 * * *",
+            "timeout" => 300,
+            "entrypoint" => "index.js",
+            "commands" => "npm install",
+            "version" => "v2",
+            "installationId" => "6m40at4ejk5h2u9s1hboo",
+            "providerRepositoryId" => "appwrite",
+            "providerBranch" => "main",
+            "providerRootDirectory" => "functions/helloWorld",
+            "providerSilentMode" => true,
+            "specification" => "s-1vcpu-512mb",);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->functions->updateFunctionDeployment(
+            "<FUNCTION_ID>",
+            "<DEPLOYMENT_ID>"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
     public function testMethodListDeployments(): void {
 
         $data = array(
@@ -234,13 +291,16 @@ final class FunctionsTest extends TestCase {
             "resourceId" => "5e5ea6g16897e",
             "resourceType" => "functions",
             "entrypoint" => "index.js",
-            "size" => 128,
+            "sourceSize" => 128,
             "buildSize" => 128,
+            "totalSize" => 128,
             "buildId" => "5e5ea5c16897e",
             "activate" => true,
+            "screenshotLight" => "5e5ea5c16897e",
+            "screenshotDark" => "5e5ea5c16897e",
             "status" => "ready",
             "buildLogs" => "Compiling source files...",
-            "buildTime" => 128,
+            "buildDuration" => 128,
             "providerRepositoryName" => "database",
             "providerRepositoryOwner" => "utopia",
             "providerRepositoryUrl" => "https://github.com/vermakhushboo/g4-node-function",
@@ -266,6 +326,142 @@ final class FunctionsTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
+    public function testMethodCreateDuplicateDeployment(): void {
+
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "type" => "vcs",
+            "resourceId" => "5e5ea6g16897e",
+            "resourceType" => "functions",
+            "entrypoint" => "index.js",
+            "sourceSize" => 128,
+            "buildSize" => 128,
+            "totalSize" => 128,
+            "buildId" => "5e5ea5c16897e",
+            "activate" => true,
+            "screenshotLight" => "5e5ea5c16897e",
+            "screenshotDark" => "5e5ea5c16897e",
+            "status" => "ready",
+            "buildLogs" => "Compiling source files...",
+            "buildDuration" => 128,
+            "providerRepositoryName" => "database",
+            "providerRepositoryOwner" => "utopia",
+            "providerRepositoryUrl" => "https://github.com/vermakhushboo/g4-node-function",
+            "providerBranch" => "0.7.x",
+            "providerCommitHash" => "7c3f25d",
+            "providerCommitAuthorUrl" => "https://github.com/vermakhushboo",
+            "providerCommitAuthor" => "Khushboo Verma",
+            "providerCommitMessage" => "Update index.js",
+            "providerCommitUrl" => "https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb",
+            "providerBranchUrl" => "https://github.com/vermakhushboo/appwrite/tree/0.7.x",);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->functions->createDuplicateDeployment(
+            "<FUNCTION_ID>",
+            "<DEPLOYMENT_ID>"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodCreateTemplateDeployment(): void {
+
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "type" => "vcs",
+            "resourceId" => "5e5ea6g16897e",
+            "resourceType" => "functions",
+            "entrypoint" => "index.js",
+            "sourceSize" => 128,
+            "buildSize" => 128,
+            "totalSize" => 128,
+            "buildId" => "5e5ea5c16897e",
+            "activate" => true,
+            "screenshotLight" => "5e5ea5c16897e",
+            "screenshotDark" => "5e5ea5c16897e",
+            "status" => "ready",
+            "buildLogs" => "Compiling source files...",
+            "buildDuration" => 128,
+            "providerRepositoryName" => "database",
+            "providerRepositoryOwner" => "utopia",
+            "providerRepositoryUrl" => "https://github.com/vermakhushboo/g4-node-function",
+            "providerBranch" => "0.7.x",
+            "providerCommitHash" => "7c3f25d",
+            "providerCommitAuthorUrl" => "https://github.com/vermakhushboo",
+            "providerCommitAuthor" => "Khushboo Verma",
+            "providerCommitMessage" => "Update index.js",
+            "providerCommitUrl" => "https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb",
+            "providerBranchUrl" => "https://github.com/vermakhushboo/appwrite/tree/0.7.x",);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->functions->createTemplateDeployment(
+            "<FUNCTION_ID>",
+            "<REPOSITORY>",
+            "<OWNER>",
+            "<ROOT_DIRECTORY>",
+            "<VERSION>"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodCreateVcsDeployment(): void {
+
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "type" => "vcs",
+            "resourceId" => "5e5ea6g16897e",
+            "resourceType" => "functions",
+            "entrypoint" => "index.js",
+            "sourceSize" => 128,
+            "buildSize" => 128,
+            "totalSize" => 128,
+            "buildId" => "5e5ea5c16897e",
+            "activate" => true,
+            "screenshotLight" => "5e5ea5c16897e",
+            "screenshotDark" => "5e5ea5c16897e",
+            "status" => "ready",
+            "buildLogs" => "Compiling source files...",
+            "buildDuration" => 128,
+            "providerRepositoryName" => "database",
+            "providerRepositoryOwner" => "utopia",
+            "providerRepositoryUrl" => "https://github.com/vermakhushboo/g4-node-function",
+            "providerBranch" => "0.7.x",
+            "providerCommitHash" => "7c3f25d",
+            "providerCommitAuthorUrl" => "https://github.com/vermakhushboo",
+            "providerCommitAuthor" => "Khushboo Verma",
+            "providerCommitMessage" => "Update index.js",
+            "providerCommitUrl" => "https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb",
+            "providerBranchUrl" => "https://github.com/vermakhushboo/appwrite/tree/0.7.x",);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->functions->createVcsDeployment(
+            "<FUNCTION_ID>",
+            "branch",
+            "<REFERENCE>"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
     public function testMethodGetDeployment(): void {
 
         $data = array(
@@ -276,13 +472,16 @@ final class FunctionsTest extends TestCase {
             "resourceId" => "5e5ea6g16897e",
             "resourceType" => "functions",
             "entrypoint" => "index.js",
-            "size" => 128,
+            "sourceSize" => 128,
             "buildSize" => 128,
+            "totalSize" => 128,
             "buildId" => "5e5ea5c16897e",
             "activate" => true,
+            "screenshotLight" => "5e5ea5c16897e",
+            "screenshotDark" => "5e5ea5c16897e",
             "status" => "ready",
             "buildLogs" => "Compiling source files...",
-            "buildTime" => 128,
+            "buildDuration" => 128,
             "providerRepositoryName" => "database",
             "providerRepositoryOwner" => "utopia",
             "providerRepositoryUrl" => "https://github.com/vermakhushboo/g4-node-function",
@@ -307,47 +506,6 @@ final class FunctionsTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
-    public function testMethodUpdateDeployment(): void {
-
-        $data = array(
-            "\$id" => "5e5ea5c16897e",
-            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "execute" => array(),
-            "name" => "My Function",
-            "enabled" => true,
-            "live" => true,
-            "logging" => true,
-            "runtime" => "python-3.8",
-            "deployment" => "5e5ea5c16897e",
-            "scopes" => array(),
-            "vars" => array(),
-            "events" => array(),
-            "schedule" => "5 4 * * *",
-            "timeout" => 300,
-            "entrypoint" => "index.js",
-            "commands" => "npm install",
-            "version" => "v2",
-            "installationId" => "6m40at4ejk5h2u9s1hboo",
-            "providerRepositoryId" => "appwrite",
-            "providerBranch" => "main",
-            "providerRootDirectory" => "functions/helloWorld",
-            "providerSilentMode" => true,
-            "specification" => "s-1vcpu-512mb",);
-
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-
-        $response = $this->functions->updateDeployment(
-            "<FUNCTION_ID>",
-            "<DEPLOYMENT_ID>"
-        );
-
-        $this->assertSame($data, $response);
-    }
-
     public function testMethodDeleteDeployment(): void {
 
         $data = '';
@@ -365,49 +523,6 @@ final class FunctionsTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
-    public function testMethodCreateBuild(): void {
-
-        $data = '';
-
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-
-        $response = $this->functions->createBuild(
-            "<FUNCTION_ID>",
-            "<DEPLOYMENT_ID>"
-        );
-
-        $this->assertSame($data, $response);
-    }
-
-    public function testMethodUpdateDeploymentBuild(): void {
-
-        $data = array(
-            "\$id" => "5e5ea5c16897e",
-            "deploymentId" => "5e5ea5c16897e",
-            "status" => "ready",
-            "stdout" => "",
-            "stderr" => "",
-            "startTime" => "2020-10-15T06:38:00.000+00:00",
-            "endTime" => "2020-10-15T06:38:00.000+00:00",
-            "duration" => 0,
-            "size" => 128,);
-
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-
-        $response = $this->functions->updateDeploymentBuild(
-            "<FUNCTION_ID>",
-            "<DEPLOYMENT_ID>"
-        );
-
-        $this->assertSame($data, $response);
-    }
-
     public function testMethodGetDeploymentDownload(): void {
 
         $data = '';
@@ -418,6 +533,50 @@ final class FunctionsTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->functions->getDeploymentDownload(
+            "<FUNCTION_ID>",
+            "<DEPLOYMENT_ID>"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodUpdateDeploymentStatus(): void {
+
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "type" => "vcs",
+            "resourceId" => "5e5ea6g16897e",
+            "resourceType" => "functions",
+            "entrypoint" => "index.js",
+            "sourceSize" => 128,
+            "buildSize" => 128,
+            "totalSize" => 128,
+            "buildId" => "5e5ea5c16897e",
+            "activate" => true,
+            "screenshotLight" => "5e5ea5c16897e",
+            "screenshotDark" => "5e5ea5c16897e",
+            "status" => "ready",
+            "buildLogs" => "Compiling source files...",
+            "buildDuration" => 128,
+            "providerRepositoryName" => "database",
+            "providerRepositoryOwner" => "utopia",
+            "providerRepositoryUrl" => "https://github.com/vermakhushboo/g4-node-function",
+            "providerBranch" => "0.7.x",
+            "providerCommitHash" => "7c3f25d",
+            "providerCommitAuthorUrl" => "https://github.com/vermakhushboo",
+            "providerCommitAuthor" => "Khushboo Verma",
+            "providerCommitMessage" => "Update index.js",
+            "providerCommitUrl" => "https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb",
+            "providerBranchUrl" => "https://github.com/vermakhushboo/appwrite/tree/0.7.x",);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->functions->updateDeploymentStatus(
             "<FUNCTION_ID>",
             "<DEPLOYMENT_ID>"
         );
@@ -551,6 +710,7 @@ final class FunctionsTest extends TestCase {
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "key" => "API_KEY",
             "value" => "myPa\$\$word1",
+            "secret" => true,
             "resourceType" => "function",
             "resourceId" => "myAwesomeFunction",);
 
@@ -576,6 +736,7 @@ final class FunctionsTest extends TestCase {
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "key" => "API_KEY",
             "value" => "myPa\$\$word1",
+            "secret" => true,
             "resourceType" => "function",
             "resourceId" => "myAwesomeFunction",);
 
@@ -600,6 +761,7 @@ final class FunctionsTest extends TestCase {
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "key" => "API_KEY",
             "value" => "myPa\$\$word1",
+            "secret" => true,
             "resourceType" => "function",
             "resourceId" => "myAwesomeFunction",);
 

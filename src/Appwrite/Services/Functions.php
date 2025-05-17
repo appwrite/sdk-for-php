@@ -7,6 +7,8 @@ use Appwrite\Client;
 use Appwrite\Service;
 use Appwrite\InputFile;
 use Appwrite\Enums\Runtime;
+use Appwrite\Enums\VCSDeploymentType;
+use Appwrite\Enums\DeploymentDownloadType;
 use Appwrite\Enums\ExecutionMethod;
 
 class Functions extends Service
@@ -76,15 +78,11 @@ class Functions extends Service
      * @param ?string $providerBranch
      * @param ?bool $providerSilentMode
      * @param ?string $providerRootDirectory
-     * @param ?string $templateRepository
-     * @param ?string $templateOwner
-     * @param ?string $templateRootDirectory
-     * @param ?string $templateVersion
      * @param ?string $specification
      * @throws AppwriteException
      * @return array
      */
-    public function create(string $functionId, string $name, Runtime $runtime, ?array $execute = null, ?array $events = null, ?string $schedule = null, ?int $timeout = null, ?bool $enabled = null, ?bool $logging = null, ?string $entrypoint = null, ?string $commands = null, ?array $scopes = null, ?string $installationId = null, ?string $providerRepositoryId = null, ?string $providerBranch = null, ?bool $providerSilentMode = null, ?string $providerRootDirectory = null, ?string $templateRepository = null, ?string $templateOwner = null, ?string $templateRootDirectory = null, ?string $templateVersion = null, ?string $specification = null): array
+    public function create(string $functionId, string $name, Runtime $runtime, ?array $execute = null, ?array $events = null, ?string $schedule = null, ?int $timeout = null, ?bool $enabled = null, ?bool $logging = null, ?string $entrypoint = null, ?string $commands = null, ?array $scopes = null, ?string $installationId = null, ?string $providerRepositoryId = null, ?string $providerBranch = null, ?bool $providerSilentMode = null, ?string $providerRootDirectory = null, ?string $specification = null): array
     {
         $apiPath = str_replace(
             [],
@@ -153,22 +151,6 @@ class Functions extends Service
             $apiParams['providerRootDirectory'] = $providerRootDirectory;
         }
 
-        if (!is_null($templateRepository)) {
-            $apiParams['templateRepository'] = $templateRepository;
-        }
-
-        if (!is_null($templateOwner)) {
-            $apiParams['templateOwner'] = $templateOwner;
-        }
-
-        if (!is_null($templateRootDirectory)) {
-            $apiParams['templateRootDirectory'] = $templateRootDirectory;
-        }
-
-        if (!is_null($templateVersion)) {
-            $apiParams['templateVersion'] = $templateVersion;
-        }
-
         if (!is_null($specification)) {
             $apiParams['specification'] = $specification;
         }
@@ -212,7 +194,6 @@ class Functions extends Service
 
     /**
      * List allowed function specifications for this instance.
-     * 
      *
      * @throws AppwriteException
      * @return array
@@ -403,7 +384,39 @@ class Functions extends Service
     }
 
     /**
-     * Get a list of all the project's code deployments. You can use the query
+     * Update the function active deployment. Use this endpoint to switch the code
+     * deployment that should be used when visitor opens your function.
+     *
+     * @param string $functionId
+     * @param string $deploymentId
+     * @throws AppwriteException
+     * @return array
+     */
+    public function updateFunctionDeployment(string $functionId, string $deploymentId): array
+    {
+        $apiPath = str_replace(
+            ['{functionId}'],
+            [$functionId],
+            '/functions/{functionId}/deployment'
+        );
+
+        $apiParams = [];
+        $apiParams['functionId'] = $functionId;
+        $apiParams['deploymentId'] = $deploymentId;
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Get a list of all the function's code deployments. You can use the query
      * params to filter your results.
      *
      * @param string $functionId
@@ -559,7 +572,133 @@ class Functions extends Service
     }
 
     /**
-     * Get a code deployment by its unique ID.
+     * Create a new build for an existing function deployment. This endpoint
+     * allows you to rebuild a deployment with the updated function configuration,
+     * including its entrypoint and build commands if they have been modified. The
+     * build process will be queued and executed asynchronously. The original
+     * deployment's code will be preserved and used for the new build.
+     *
+     * @param string $functionId
+     * @param string $deploymentId
+     * @param ?string $buildId
+     * @throws AppwriteException
+     * @return array
+     */
+    public function createDuplicateDeployment(string $functionId, string $deploymentId, ?string $buildId = null): array
+    {
+        $apiPath = str_replace(
+            ['{functionId}'],
+            [$functionId],
+            '/functions/{functionId}/deployments/duplicate'
+        );
+
+        $apiParams = [];
+        $apiParams['functionId'] = $functionId;
+        $apiParams['deploymentId'] = $deploymentId;
+
+        if (!is_null($buildId)) {
+            $apiParams['buildId'] = $buildId;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Create a deployment based on a template.
+     * 
+     * Use this endpoint with combination of
+     * [listTemplates](https://appwrite.io/docs/server/functions#listTemplates) to
+     * find the template details.
+     *
+     * @param string $functionId
+     * @param string $repository
+     * @param string $owner
+     * @param string $rootDirectory
+     * @param string $version
+     * @param ?bool $activate
+     * @throws AppwriteException
+     * @return array
+     */
+    public function createTemplateDeployment(string $functionId, string $repository, string $owner, string $rootDirectory, string $version, ?bool $activate = null): array
+    {
+        $apiPath = str_replace(
+            ['{functionId}'],
+            [$functionId],
+            '/functions/{functionId}/deployments/template'
+        );
+
+        $apiParams = [];
+        $apiParams['functionId'] = $functionId;
+        $apiParams['repository'] = $repository;
+        $apiParams['owner'] = $owner;
+        $apiParams['rootDirectory'] = $rootDirectory;
+        $apiParams['version'] = $version;
+
+        if (!is_null($activate)) {
+            $apiParams['activate'] = $activate;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Create a deployment when a function is connected to VCS.
+     * 
+     * This endpoint lets you create deployment from a branch, commit, or a tag.
+     *
+     * @param string $functionId
+     * @param VCSDeploymentType $type
+     * @param string $reference
+     * @param ?bool $activate
+     * @throws AppwriteException
+     * @return array
+     */
+    public function createVcsDeployment(string $functionId, VCSDeploymentType $type, string $reference, ?bool $activate = null): array
+    {
+        $apiPath = str_replace(
+            ['{functionId}'],
+            [$functionId],
+            '/functions/{functionId}/deployments/vcs'
+        );
+
+        $apiParams = [];
+        $apiParams['functionId'] = $functionId;
+        $apiParams['type'] = $type;
+        $apiParams['reference'] = $reference;
+
+        if (!is_null($activate)) {
+            $apiParams['activate'] = $activate;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Get a function deployment by its unique ID.
      *
      * @param string $functionId
      * @param string $deploymentId
@@ -582,39 +721,6 @@ class Functions extends Service
 
         return $this->client->call(
             Client::METHOD_GET,
-            $apiPath,
-            $apiHeaders,
-            $apiParams
-        );
-    }
-
-    /**
-     * Update the function code deployment ID using the unique function ID. Use
-     * this endpoint to switch the code deployment that should be executed by the
-     * execution endpoint.
-     *
-     * @param string $functionId
-     * @param string $deploymentId
-     * @throws AppwriteException
-     * @return array
-     */
-    public function updateDeployment(string $functionId, string $deploymentId): array
-    {
-        $apiPath = str_replace(
-            ['{functionId}', '{deploymentId}'],
-            [$functionId, $deploymentId],
-            '/functions/{functionId}/deployments/{deploymentId}'
-        );
-
-        $apiParams = [];
-        $apiParams['functionId'] = $functionId;
-        $apiParams['deploymentId'] = $deploymentId;
-
-        $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
-
-        return $this->client->call(
-            Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
@@ -653,39 +759,36 @@ class Functions extends Service
     }
 
     /**
-     * Create a new build for an existing function deployment. This endpoint
-     * allows you to rebuild a deployment with the updated function configuration,
-     * including its entrypoint and build commands if they have been modified The
-     * build process will be queued and executed asynchronously. The original
-     * deployment's code will be preserved and used for the new build.
+     * Get a function deployment content by its unique ID. The endpoint response
+     * return with a 'Content-Disposition: attachment' header that tells the
+     * browser to start downloading the file to user downloads directory.
      *
      * @param string $functionId
      * @param string $deploymentId
-     * @param ?string $buildId
+     * @param ?DeploymentDownloadType $type
      * @throws AppwriteException
      * @return string
      */
-    public function createBuild(string $functionId, string $deploymentId, ?string $buildId = null): string
+    public function getDeploymentDownload(string $functionId, string $deploymentId, ?DeploymentDownloadType $type = null): string
     {
         $apiPath = str_replace(
             ['{functionId}', '{deploymentId}'],
             [$functionId, $deploymentId],
-            '/functions/{functionId}/deployments/{deploymentId}/build'
+            '/functions/{functionId}/deployments/{deploymentId}/download'
         );
 
         $apiParams = [];
         $apiParams['functionId'] = $functionId;
         $apiParams['deploymentId'] = $deploymentId;
 
-        if (!is_null($buildId)) {
-            $apiParams['buildId'] = $buildId;
+        if (!is_null($type)) {
+            $apiParams['type'] = $type;
         }
 
         $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
 
         return $this->client->call(
-            Client::METHOD_POST,
+            Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
@@ -704,12 +807,12 @@ class Functions extends Service
      * @throws AppwriteException
      * @return array
      */
-    public function updateDeploymentBuild(string $functionId, string $deploymentId): array
+    public function updateDeploymentStatus(string $functionId, string $deploymentId): array
     {
         $apiPath = str_replace(
             ['{functionId}', '{deploymentId}'],
             [$functionId, $deploymentId],
-            '/functions/{functionId}/deployments/{deploymentId}/build'
+            '/functions/{functionId}/deployments/{deploymentId}/status'
         );
 
         $apiParams = [];
@@ -728,47 +831,15 @@ class Functions extends Service
     }
 
     /**
-     * Get a Deployment's contents by its unique ID. This endpoint supports range
-     * requests for partial or streaming file download.
-     *
-     * @param string $functionId
-     * @param string $deploymentId
-     * @throws AppwriteException
-     * @return string
-     */
-    public function getDeploymentDownload(string $functionId, string $deploymentId): string
-    {
-        $apiPath = str_replace(
-            ['{functionId}', '{deploymentId}'],
-            [$functionId, $deploymentId],
-            '/functions/{functionId}/deployments/{deploymentId}/download'
-        );
-
-        $apiParams = [];
-        $apiParams['functionId'] = $functionId;
-        $apiParams['deploymentId'] = $deploymentId;
-
-        $apiHeaders = [];
-
-        return $this->client->call(
-            Client::METHOD_GET,
-            $apiPath,
-            $apiHeaders,
-            $apiParams
-        );
-    }
-
-    /**
      * Get a list of all the current user function execution logs. You can use the
      * query params to filter your results.
      *
      * @param string $functionId
      * @param ?array $queries
-     * @param ?string $search
      * @throws AppwriteException
      * @return array
      */
-    public function listExecutions(string $functionId, ?array $queries = null, ?string $search = null): array
+    public function listExecutions(string $functionId, ?array $queries = null): array
     {
         $apiPath = str_replace(
             ['{functionId}'],
@@ -781,10 +852,6 @@ class Functions extends Service
 
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
-        }
-
-        if (!is_null($search)) {
-            $apiParams['search'] = $search;
         }
 
         $apiHeaders = [];
@@ -891,7 +958,6 @@ class Functions extends Service
 
     /**
      * Delete a function execution by its unique ID.
-     * 
      *
      * @param string $functionId
      * @param string $executionId
@@ -956,10 +1022,11 @@ class Functions extends Service
      * @param string $functionId
      * @param string $key
      * @param string $value
+     * @param ?bool $secret
      * @throws AppwriteException
      * @return array
      */
-    public function createVariable(string $functionId, string $key, string $value): array
+    public function createVariable(string $functionId, string $key, string $value, ?bool $secret = null): array
     {
         $apiPath = str_replace(
             ['{functionId}'],
@@ -971,6 +1038,10 @@ class Functions extends Service
         $apiParams['functionId'] = $functionId;
         $apiParams['key'] = $key;
         $apiParams['value'] = $value;
+
+        if (!is_null($secret)) {
+            $apiParams['secret'] = $secret;
+        }
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -1020,10 +1091,11 @@ class Functions extends Service
      * @param string $variableId
      * @param string $key
      * @param ?string $value
+     * @param ?bool $secret
      * @throws AppwriteException
      * @return array
      */
-    public function updateVariable(string $functionId, string $variableId, string $key, ?string $value = null): array
+    public function updateVariable(string $functionId, string $variableId, string $key, ?string $value = null, ?bool $secret = null): array
     {
         $apiPath = str_replace(
             ['{functionId}', '{variableId}'],
@@ -1038,6 +1110,10 @@ class Functions extends Service
 
         if (!is_null($value)) {
             $apiParams['value'] = $value;
+        }
+
+        if (!is_null($secret)) {
+            $apiParams['secret'] = $secret;
         }
 
         $apiHeaders = [];

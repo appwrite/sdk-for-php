@@ -16,7 +16,7 @@ When one dimension is specified and the other is 0, the image is scaled with pre
 | code | string | **Required** Browser Code. |  |
 | width | integer | Image width. Pass an integer between 0 to 2000. Defaults to 100. | 100 |
 | height | integer | Image height. Pass an integer between 0 to 2000. Defaults to 100. | 100 |
-| quality | integer | Image quality. Pass an integer between 0 to 100. Defaults to 100. | 100 |
+| quality | integer | Image quality. Pass an integer between 0 to 100. Defaults to keep existing image quality. | -1 |
 
 
 ```http request
@@ -35,7 +35,7 @@ When one dimension is specified and the other is 0, the image is scaled with pre
 | code | string | **Required** Credit Card Code. Possible values: amex, argencard, cabal, cencosud, diners, discover, elo, hipercard, jcb, mastercard, naranja, targeta-shopping, union-china-pay, visa, mir, maestro, rupay. |  |
 | width | integer | Image width. Pass an integer between 0 to 2000. Defaults to 100. | 100 |
 | height | integer | Image height. Pass an integer between 0 to 2000. Defaults to 100. | 100 |
-| quality | integer | Image quality. Pass an integer between 0 to 100. Defaults to 100. | 100 |
+| quality | integer | Image quality. Pass an integer between 0 to 100. Defaults to keep existing image quality. | -1 |
 
 
 ```http request
@@ -69,7 +69,7 @@ When one dimension is specified and the other is 0, the image is scaled with pre
 | code | string | **Required** Country Code. ISO Alpha-2 country code format. |  |
 | width | integer | Image width. Pass an integer between 0 to 2000. Defaults to 100. | 100 |
 | height | integer | Image height. Pass an integer between 0 to 2000. Defaults to 100. | 100 |
-| quality | integer | Image quality. Pass an integer between 0 to 100. Defaults to 100. | 100 |
+| quality | integer | Image quality. Pass an integer between 0 to 100. Defaults to keep existing image quality. | -1 |
 
 
 ```http request

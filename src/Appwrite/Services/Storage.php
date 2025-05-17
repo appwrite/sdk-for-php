@@ -530,10 +530,11 @@ class Storage extends Service
      *
      * @param string $bucketId
      * @param string $fileId
+     * @param ?string $token
      * @throws AppwriteException
      * @return string
      */
-    public function getFileDownload(string $bucketId, string $fileId): string
+    public function getFileDownload(string $bucketId, string $fileId, ?string $token = null): string
     {
         $apiPath = str_replace(
             ['{bucketId}', '{fileId}'],
@@ -544,6 +545,10 @@ class Storage extends Service
         $apiParams = [];
         $apiParams['bucketId'] = $bucketId;
         $apiParams['fileId'] = $fileId;
+
+        if (!is_null($token)) {
+            $apiParams['token'] = $token;
+        }
 
         $apiHeaders = [];
 
@@ -575,10 +580,11 @@ class Storage extends Service
      * @param ?int $rotation
      * @param ?string $background
      * @param ?ImageFormat $output
+     * @param ?string $token
      * @throws AppwriteException
      * @return string
      */
-    public function getFilePreview(string $bucketId, string $fileId, ?int $width = null, ?int $height = null, ?ImageGravity $gravity = null, ?int $quality = null, ?int $borderWidth = null, ?string $borderColor = null, ?int $borderRadius = null, ?float $opacity = null, ?int $rotation = null, ?string $background = null, ?ImageFormat $output = null): string
+    public function getFilePreview(string $bucketId, string $fileId, ?int $width = null, ?int $height = null, ?ImageGravity $gravity = null, ?int $quality = null, ?int $borderWidth = null, ?string $borderColor = null, ?int $borderRadius = null, ?float $opacity = null, ?int $rotation = null, ?string $background = null, ?ImageFormat $output = null, ?string $token = null): string
     {
         $apiPath = str_replace(
             ['{bucketId}', '{fileId}'],
@@ -634,6 +640,10 @@ class Storage extends Service
             $apiParams['output'] = $output;
         }
 
+        if (!is_null($token)) {
+            $apiParams['token'] = $token;
+        }
+
         $apiHeaders = [];
 
         return $this->client->call(
@@ -651,10 +661,11 @@ class Storage extends Service
      *
      * @param string $bucketId
      * @param string $fileId
+     * @param ?string $token
      * @throws AppwriteException
      * @return string
      */
-    public function getFileView(string $bucketId, string $fileId): string
+    public function getFileView(string $bucketId, string $fileId, ?string $token = null): string
     {
         $apiPath = str_replace(
             ['{bucketId}', '{fileId}'],
@@ -665,6 +676,10 @@ class Storage extends Service
         $apiParams = [];
         $apiParams['bucketId'] = $bucketId;
         $apiParams['fileId'] = $fileId;
+
+        if (!is_null($token)) {
+            $apiParams['token'] = $token;
+        }
 
         $apiHeaders = [];
 

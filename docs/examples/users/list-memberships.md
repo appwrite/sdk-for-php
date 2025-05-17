@@ -11,5 +11,7 @@ $client = (new Client())
 $users = new Users($client);
 
 $result = $users->listMemberships(
-    userId: '<USER_ID>'
+    userId: '<USER_ID>',
+    queries: [], // optional
+    search: '<SEARCH>' // optional
 );
