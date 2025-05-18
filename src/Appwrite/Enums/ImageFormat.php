@@ -8,7 +8,6 @@ class ImageFormat implements JsonSerializable
 {
     private static ImageFormat $JPG;
     private static ImageFormat $JPEG;
-    private static ImageFormat $GIF;
     private static ImageFormat $PNG;
     private static ImageFormat $WEBP;
     private static ImageFormat $HEIC;
@@ -44,13 +43,6 @@ class ImageFormat implements JsonSerializable
             self::$JPEG = new ImageFormat('jpeg');
         }
         return self::$JPEG;
-    }
-    public static function GIF(): ImageFormat
-    {
-        if (!isset(self::$GIF)) {
-            self::$GIF = new ImageFormat('gif');
-        }
-        return self::$GIF;
     }
     public static function PNG(): ImageFormat
     {

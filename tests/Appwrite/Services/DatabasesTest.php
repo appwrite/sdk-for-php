@@ -888,6 +888,83 @@ final class DatabasesTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
+    public function testMethodCreateDocuments(): void {
+
+        $data = array(
+            "total" => 5,
+            "documents" => array(),);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->databases->createDocuments(
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
+            array()
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodUpsertDocuments(): void {
+
+        $data = array(
+            "total" => 5,
+            "documents" => array(),);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->databases->upsertDocuments(
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodUpdateDocuments(): void {
+
+        $data = array(
+            "total" => 5,
+            "documents" => array(),);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->databases->updateDocuments(
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodDeleteDocuments(): void {
+
+        $data = array(
+            "total" => 5,
+            "documents" => array(),);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->databases->deleteDocuments(
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
     public function testMethodGetDocument(): void {
 
         $data = array(
@@ -981,6 +1058,7 @@ final class DatabasesTest extends TestCase {
             "status" => "available",
             "error" => "string",
             "attributes" => array(),
+            "lengths" => array(),
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",);
 
@@ -1008,6 +1086,7 @@ final class DatabasesTest extends TestCase {
             "status" => "available",
             "error" => "string",
             "attributes" => array(),
+            "lengths" => array(),
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",);
 

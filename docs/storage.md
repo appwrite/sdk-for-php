@@ -179,6 +179,7 @@ GET https://cloud.appwrite.io/v1/storage/buckets/{bucketId}/files/{fileId}/downl
 | --- | --- | --- | --- |
 | bucketId | string | **Required** Storage bucket ID. You can create a new storage bucket using the Storage service [server integration](https://appwrite.io/docs/server/storage#createBucket). |  |
 | fileId | string | **Required** File ID. |  |
+| token | string | File token for accessing this file. |  |
 
 
 ```http request
@@ -196,7 +197,7 @@ GET https://cloud.appwrite.io/v1/storage/buckets/{bucketId}/files/{fileId}/previ
 | width | integer | Resize preview image width, Pass an integer between 0 to 4000. | 0 |
 | height | integer | Resize preview image height, Pass an integer between 0 to 4000. | 0 |
 | gravity | string | Image crop gravity. Can be one of center,top-left,top,top-right,left,right,bottom-left,bottom,bottom-right | center |
-| quality | integer | Preview image quality. Pass an integer between 0 to 100. Defaults to 100. | 100 |
+| quality | integer | Preview image quality. Pass an integer between 0 to 100. Defaults to keep existing image quality. | -1 |
 | borderWidth | integer | Preview image border in pixels. Pass an integer between 0 to 100. Defaults to 0. | 0 |
 | borderColor | string | Preview image border color. Use a valid HEX color, no # is needed for prefix. |  |
 | borderRadius | integer | Preview image border radius in pixels. Pass an integer between 0 to 4000. | 0 |
@@ -204,6 +205,7 @@ GET https://cloud.appwrite.io/v1/storage/buckets/{bucketId}/files/{fileId}/previ
 | rotation | integer | Preview image rotation in degrees. Pass an integer between -360 and 360. | 0 |
 | background | string | Preview image background color. Only works with transparent images (png). Use a valid HEX color, no # is needed for prefix. |  |
 | output | string | Output format type (jpeg, jpg, png, gif and webp). |  |
+| token | string | File token for accessing this file. |  |
 
 
 ```http request
@@ -218,4 +220,5 @@ GET https://cloud.appwrite.io/v1/storage/buckets/{bucketId}/files/{fileId}/view
 | --- | --- | --- | --- |
 | bucketId | string | **Required** Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](https://appwrite.io/docs/server/storage#createBucket). |  |
 | fileId | string | **Required** File ID. |  |
+| token | string | File token for accessing this file. |  |
 

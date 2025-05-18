@@ -5,7 +5,7 @@ use Appwrite\Services\Functions;
 use Appwrite\Enums\;
 
 $client = (new Client())
-    ->setEndpoint('https://cloud.appwrite.io/v1') // Your API Endpoint
+    ->setEndpoint('https://<REGION>.cloud.appwrite.io/v1') // Your API Endpoint
     ->setProject('<YOUR_PROJECT_ID>') // Your project ID
     ->setKey('<YOUR_API_KEY>'); // Your secret API key
 
@@ -29,9 +29,5 @@ $result = $functions->create(
     providerBranch: '<PROVIDER_BRANCH>', // optional
     providerSilentMode: false, // optional
     providerRootDirectory: '<PROVIDER_ROOT_DIRECTORY>', // optional
-    templateRepository: '<TEMPLATE_REPOSITORY>', // optional
-    templateOwner: '<TEMPLATE_OWNER>', // optional
-    templateRootDirectory: '<TEMPLATE_ROOT_DIRECTORY>', // optional
-    templateVersion: '<TEMPLATE_VERSION>', // optional
     specification: '' // optional
 );
