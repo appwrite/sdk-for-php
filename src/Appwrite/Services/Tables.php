@@ -10,7 +10,7 @@ use Appwrite\Enums\RelationshipType;
 use Appwrite\Enums\RelationMutate;
 use Appwrite\Enums\IndexType;
 
-class Databases extends Service
+class Tables extends Service
 {
      public function __construct(Client $client)
      {
@@ -18,177 +18,8 @@ class Databases extends Service
      }
 
     /**
-     * Get a list of all databases from the current Appwrite project. You can use
-     * the search parameter to filter your results.
-     *
-     * @param ?array $queries
-     * @param ?string $search
-     * @throws AppwriteException
-     * @return array
-     */
-    public function list(?array $queries = null, ?string $search = null): array
-    {
-        $apiPath = str_replace(
-            [],
-            [],
-            '/databases'
-        );
-
-        $apiParams = [];
-
-        if (!is_null($queries)) {
-            $apiParams['queries'] = $queries;
-        }
-
-        if (!is_null($search)) {
-            $apiParams['search'] = $search;
-        }
-
-        $apiHeaders = [];
-
-        return $this->client->call(
-            Client::METHOD_GET,
-            $apiPath,
-            $apiHeaders,
-            $apiParams
-        );
-    }
-
-    /**
-     * Create a new Database.
-     * 
-     *
-     * @param string $databaseId
-     * @param string $name
-     * @param ?bool $enabled
-     * @throws AppwriteException
-     * @return array
-     */
-    public function create(string $databaseId, string $name, ?bool $enabled = null): array
-    {
-        $apiPath = str_replace(
-            [],
-            [],
-            '/databases'
-        );
-
-        $apiParams = [];
-        $apiParams['databaseId'] = $databaseId;
-        $apiParams['name'] = $name;
-
-        if (!is_null($enabled)) {
-            $apiParams['enabled'] = $enabled;
-        }
-
-        $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
-
-        return $this->client->call(
-            Client::METHOD_POST,
-            $apiPath,
-            $apiHeaders,
-            $apiParams
-        );
-    }
-
-    /**
-     * Get a database by its unique ID. This endpoint response returns a JSON
-     * object with the database metadata.
-     *
-     * @param string $databaseId
-     * @throws AppwriteException
-     * @return array
-     */
-    public function get(string $databaseId): array
-    {
-        $apiPath = str_replace(
-            ['{databaseId}'],
-            [$databaseId],
-            '/databases/{databaseId}'
-        );
-
-        $apiParams = [];
-        $apiParams['databaseId'] = $databaseId;
-
-        $apiHeaders = [];
-
-        return $this->client->call(
-            Client::METHOD_GET,
-            $apiPath,
-            $apiHeaders,
-            $apiParams
-        );
-    }
-
-    /**
-     * Update a database by its unique ID.
-     *
-     * @param string $databaseId
-     * @param string $name
-     * @param ?bool $enabled
-     * @throws AppwriteException
-     * @return array
-     */
-    public function update(string $databaseId, string $name, ?bool $enabled = null): array
-    {
-        $apiPath = str_replace(
-            ['{databaseId}'],
-            [$databaseId],
-            '/databases/{databaseId}'
-        );
-
-        $apiParams = [];
-        $apiParams['databaseId'] = $databaseId;
-        $apiParams['name'] = $name;
-
-        if (!is_null($enabled)) {
-            $apiParams['enabled'] = $enabled;
-        }
-
-        $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
-
-        return $this->client->call(
-            Client::METHOD_PUT,
-            $apiPath,
-            $apiHeaders,
-            $apiParams
-        );
-    }
-
-    /**
-     * Delete a database by its unique ID. Only API keys with with databases.write
-     * scope can delete a database.
-     *
-     * @param string $databaseId
-     * @throws AppwriteException
-     * @return string
-     */
-    public function delete(string $databaseId): string
-    {
-        $apiPath = str_replace(
-            ['{databaseId}'],
-            [$databaseId],
-            '/databases/{databaseId}'
-        );
-
-        $apiParams = [];
-        $apiParams['databaseId'] = $databaseId;
-
-        $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
-
-        return $this->client->call(
-            Client::METHOD_DELETE,
-            $apiPath,
-            $apiHeaders,
-            $apiParams
-        );
-    }
-
-    /**
-     * Get a list of all collections that belong to the provided databaseId. You
-     * can use the search parameter to filter your results.
+     * Get a list of all tables that belong to the provided databaseId. You can
+     * use the search parameter to filter your results.
      *
      * @param string $databaseId
      * @param ?array $queries
@@ -196,12 +27,12 @@ class Databases extends Service
      * @throws AppwriteException
      * @return array
      */
-    public function listCollections(string $databaseId, ?array $queries = null, ?string $search = null): array
+    public function list(string $databaseId, ?array $queries = null, ?string $search = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
-            '/databases/{databaseId}/collections'
+            '/databases/{databaseId}/tables'
         );
 
         $apiParams = [];
@@ -226,39 +57,39 @@ class Databases extends Service
     }
 
     /**
-     * Create a new Collection. Before using this route, you should create a new
+     * Create a new Table. Before using this route, you should create a new
      * database resource using either a [server
-     * integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
+     * integration](https://appwrite.io/docs/server/databases#databasesCreateTable)
      * API or directly from your database console.
      *
      * @param string $databaseId
-     * @param string $collectionId
+     * @param string $tableId
      * @param string $name
      * @param ?array $permissions
-     * @param ?bool $documentSecurity
+     * @param ?bool $rowSecurity
      * @param ?bool $enabled
      * @throws AppwriteException
      * @return array
      */
-    public function createCollection(string $databaseId, string $collectionId, string $name, ?array $permissions = null, ?bool $documentSecurity = null, ?bool $enabled = null): array
+    public function create(string $databaseId, string $tableId, string $name, ?array $permissions = null, ?bool $rowSecurity = null, ?bool $enabled = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
-            '/databases/{databaseId}/collections'
+            '/databases/{databaseId}/tables'
         );
 
         $apiParams = [];
         $apiParams['databaseId'] = $databaseId;
-        $apiParams['collectionId'] = $collectionId;
+        $apiParams['tableId'] = $tableId;
         $apiParams['name'] = $name;
 
         if (!is_null($permissions)) {
             $apiParams['permissions'] = $permissions;
         }
 
-        if (!is_null($documentSecurity)) {
-            $apiParams['documentSecurity'] = $documentSecurity;
+        if (!is_null($rowSecurity)) {
+            $apiParams['rowSecurity'] = $rowSecurity;
         }
 
         if (!is_null($enabled)) {
@@ -277,25 +108,25 @@ class Databases extends Service
     }
 
     /**
-     * Get a collection by its unique ID. This endpoint response returns a JSON
-     * object with the collection metadata.
+     * Get a table by its unique ID. This endpoint response returns a JSON object
+     * with the table metadata.
      *
      * @param string $databaseId
-     * @param string $collectionId
+     * @param string $tableId
      * @throws AppwriteException
      * @return array
      */
-    public function getCollection(string $databaseId, string $collectionId): array
+    public function get(string $databaseId, string $tableId): array
     {
         $apiPath = str_replace(
-            ['{databaseId}', '{collectionId}'],
-            [$databaseId, $collectionId],
-            '/databases/{databaseId}/collections/{collectionId}'
+            ['{databaseId}', '{tableId}'],
+            [$databaseId, $tableId],
+            '/databases/{databaseId}/tables/{tableId}'
         );
 
         $apiParams = [];
         $apiParams['databaseId'] = $databaseId;
-        $apiParams['collectionId'] = $collectionId;
+        $apiParams['tableId'] = $tableId;
 
         $apiHeaders = [];
 
@@ -308,36 +139,36 @@ class Databases extends Service
     }
 
     /**
-     * Update a collection by its unique ID.
+     * Update a table by its unique ID.
      *
      * @param string $databaseId
-     * @param string $collectionId
+     * @param string $tableId
      * @param string $name
      * @param ?array $permissions
-     * @param ?bool $documentSecurity
+     * @param ?bool $rowSecurity
      * @param ?bool $enabled
      * @throws AppwriteException
      * @return array
      */
-    public function updateCollection(string $databaseId, string $collectionId, string $name, ?array $permissions = null, ?bool $documentSecurity = null, ?bool $enabled = null): array
+    public function update(string $databaseId, string $tableId, string $name, ?array $permissions = null, ?bool $rowSecurity = null, ?bool $enabled = null): array
     {
         $apiPath = str_replace(
-            ['{databaseId}', '{collectionId}'],
-            [$databaseId, $collectionId],
-            '/databases/{databaseId}/collections/{collectionId}'
+            ['{databaseId}', '{tableId}'],
+            [$databaseId, $tableId],
+            '/databases/{databaseId}/tables/{tableId}'
         );
 
         $apiParams = [];
         $apiParams['databaseId'] = $databaseId;
-        $apiParams['collectionId'] = $collectionId;
+        $apiParams['tableId'] = $tableId;
         $apiParams['name'] = $name;
 
         if (!is_null($permissions)) {
             $apiParams['permissions'] = $permissions;
         }
 
-        if (!is_null($documentSecurity)) {
-            $apiParams['documentSecurity'] = $documentSecurity;
+        if (!is_null($rowSecurity)) {
+            $apiParams['rowSecurity'] = $rowSecurity;
         }
 
         if (!is_null($enabled)) {
@@ -356,25 +187,25 @@ class Databases extends Service
     }
 
     /**
-     * Delete a collection by its unique ID. Only users with write permissions
-     * have access to delete this resource.
+     * Delete a table by its unique ID. Only users with write permissions have
+     * access to delete this resource.
      *
      * @param string $databaseId
-     * @param string $collectionId
+     * @param string $tableId
      * @throws AppwriteException
      * @return string
      */
-    public function deleteCollection(string $databaseId, string $collectionId): string
+    public function delete(string $databaseId, string $tableId): string
     {
         $apiPath = str_replace(
-            ['{databaseId}', '{collectionId}'],
-            [$databaseId, $collectionId],
-            '/databases/{databaseId}/collections/{collectionId}'
+            ['{databaseId}', '{tableId}'],
+            [$databaseId, $tableId],
+            '/databases/{databaseId}/tables/{tableId}'
         );
 
         $apiParams = [];
         $apiParams['databaseId'] = $databaseId;
-        $apiParams['collectionId'] = $collectionId;
+        $apiParams['tableId'] = $tableId;
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -391,22 +222,22 @@ class Databases extends Service
      * List attributes in the collection.
      *
      * @param string $databaseId
-     * @param string $collectionId
+     * @param string $tableId
      * @param ?array $queries
      * @throws AppwriteException
      * @return array
      */
-    public function listAttributes(string $databaseId, string $collectionId, ?array $queries = null): array
+    public function listColumns(string $databaseId, string $tableId, ?array $queries = null): array
     {
         $apiPath = str_replace(
-            ['{databaseId}', '{collectionId}'],
-            [$databaseId, $collectionId],
-            '/databases/{databaseId}/collections/{collectionId}/attributes'
+            ['{databaseId}', '{tableId}'],
+            [$databaseId, $tableId],
+            '/databases/{databaseId}/tables/{tableId}/columns'
         );
 
         $apiParams = [];
         $apiParams['databaseId'] = $databaseId;
-        $apiParams['collectionId'] = $collectionId;
+        $apiParams['tableId'] = $tableId;
 
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
@@ -423,11 +254,11 @@ class Databases extends Service
     }
 
     /**
-     * Create a boolean attribute.
+     * Create a boolean column.
      * 
      *
      * @param string $databaseId
-     * @param string $collectionId
+     * @param string $tableId
      * @param string $key
      * @param bool $required
      * @param ?bool $xdefault
@@ -435,17 +266,17 @@ class Databases extends Service
      * @throws AppwriteException
      * @return array
      */
-    public function createBooleanAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?bool $xdefault = null, ?bool $xarray = null): array
+    public function createBooleanColumn(string $databaseId, string $tableId, string $key, bool $required, ?bool $xdefault = null, ?bool $xarray = null): array
     {
         $apiPath = str_replace(
-            ['{databaseId}', '{collectionId}'],
-            [$databaseId, $collectionId],
-            '/databases/{databaseId}/collections/{collectionId}/attributes/boolean'
+            ['{databaseId}', '{tableId}'],
+            [$databaseId, $tableId],
+            '/databases/{databaseId}/tables/{tableId}/columns/boolean'
         );
 
         $apiParams = [];
         $apiParams['databaseId'] = $databaseId;
-        $apiParams['collectionId'] = $collectionId;
+        $apiParams['tableId'] = $tableId;
         $apiParams['key'] = $key;
         $apiParams['required'] = $required;
 
@@ -469,11 +300,11 @@ class Databases extends Service
     }
 
     /**
-     * Update a boolean attribute. Changing the `default` value will not update
-     * already existing documents.
+     * Update a boolean column. Changing the `default` value will not update
+     * already existing rows.
      *
      * @param string $databaseId
-     * @param string $collectionId
+     * @param string $tableId
      * @param string $key
      * @param bool $required
      * @param ?bool $xdefault
@@ -481,17 +312,17 @@ class Databases extends Service
      * @throws AppwriteException
      * @return array
      */
-    public function updateBooleanAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?bool $xdefault, ?string $newKey = null): array
+    public function updateBooleanColumn(string $databaseId, string $tableId, string $key, bool $required, ?bool $xdefault, ?string $newKey = null): array
     {
         $apiPath = str_replace(
-            ['{databaseId}', '{collectionId}', '{key}'],
-            [$databaseId, $collectionId, $key],
-            '/databases/{databaseId}/collections/{collectionId}/attributes/boolean/{key}'
+            ['{databaseId}', '{tableId}', '{key}'],
+            [$databaseId, $tableId, $key],
+            '/databases/{databaseId}/tables/{tableId}/columns/boolean/{key}'
         );
 
         $apiParams = [];
         $apiParams['databaseId'] = $databaseId;
-        $apiParams['collectionId'] = $collectionId;
+        $apiParams['tableId'] = $tableId;
         $apiParams['key'] = $key;
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
@@ -512,10 +343,10 @@ class Databases extends Service
     }
 
     /**
-     * Create a date time attribute according to the ISO 8601 standard.
+     * Create a date time column according to the ISO 8601 standard.
      *
      * @param string $databaseId
-     * @param string $collectionId
+     * @param string $tableId
      * @param string $key
      * @param bool $required
      * @param ?string $xdefault
@@ -523,17 +354,17 @@ class Databases extends Service
      * @throws AppwriteException
      * @return array
      */
-    public function createDatetimeAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): array
+    public function createDatetimeColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): array
     {
         $apiPath = str_replace(
-            ['{databaseId}', '{collectionId}'],
-            [$databaseId, $collectionId],
-            '/databases/{databaseId}/collections/{collectionId}/attributes/datetime'
+            ['{databaseId}', '{tableId}'],
+            [$databaseId, $tableId],
+            '/databases/{databaseId}/tables/{tableId}/columns/datetime'
         );
 
         $apiParams = [];
         $apiParams['databaseId'] = $databaseId;
-        $apiParams['collectionId'] = $collectionId;
+        $apiParams['tableId'] = $tableId;
         $apiParams['key'] = $key;
         $apiParams['required'] = $required;
 
@@ -557,11 +388,11 @@ class Databases extends Service
     }
 
     /**
-     * Update a date time attribute. Changing the `default` value will not update
-     * already existing documents.
+     * Update a date time column. Changing the `default` value will not update
+     * already existing rows.
      *
      * @param string $databaseId
-     * @param string $collectionId
+     * @param string $tableId
      * @param string $key
      * @param bool $required
      * @param ?string $xdefault
@@ -569,17 +400,17 @@ class Databases extends Service
      * @throws AppwriteException
      * @return array
      */
-    public function updateDatetimeAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): array
+    public function updateDatetimeColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): array
     {
         $apiPath = str_replace(
-            ['{databaseId}', '{collectionId}', '{key}'],
-            [$databaseId, $collectionId, $key],
-            '/databases/{databaseId}/collections/{collectionId}/attributes/datetime/{key}'
+            ['{databaseId}', '{tableId}', '{key}'],
+            [$databaseId, $tableId, $key],
+            '/databases/{databaseId}/tables/{tableId}/columns/datetime/{key}'
         );
 
         $apiParams = [];
         $apiParams['databaseId'] = $databaseId;
-        $apiParams['collectionId'] = $collectionId;
+        $apiParams['tableId'] = $tableId;
         $apiParams['key'] = $key;
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
@@ -600,11 +431,11 @@ class Databases extends Service
     }
 
     /**
-     * Create an email attribute.
+     * Create an email column.
      * 
      *
      * @param string $databaseId
-     * @param string $collectionId
+     * @param string $tableId
      * @param string $key
      * @param bool $required
      * @param ?string $xdefault
@@ -612,17 +443,17 @@ class Databases extends Service
      * @throws AppwriteException
      * @return array
      */
-    public function createEmailAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): array
+    public function createEmailColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): array
     {
         $apiPath = str_replace(
-            ['{databaseId}', '{collectionId}'],
-            [$databaseId, $collectionId],
-            '/databases/{databaseId}/collections/{collectionId}/attributes/email'
+            ['{databaseId}', '{tableId}'],
+            [$databaseId, $tableId],
+            '/databases/{databaseId}/tables/{tableId}/columns/email'
         );
 
         $apiParams = [];
         $apiParams['databaseId'] = $databaseId;
-        $apiParams['collectionId'] = $collectionId;
+        $apiParams['tableId'] = $tableId;
         $apiParams['key'] = $key;
         $apiParams['required'] = $required;
 
@@ -646,12 +477,12 @@ class Databases extends Service
     }
 
     /**
-     * Update an email attribute. Changing the `default` value will not update
-     * already existing documents.
+     * Update an email column. Changing the `default` value will not update
+     * already existing rows.
      * 
      *
      * @param string $databaseId
-     * @param string $collectionId
+     * @param string $tableId
      * @param string $key
      * @param bool $required
      * @param ?string $xdefault
@@ -659,17 +490,17 @@ class Databases extends Service
      * @throws AppwriteException
      * @return array
      */
-    public function updateEmailAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): array
+    public function updateEmailColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): array
     {
         $apiPath = str_replace(
-            ['{databaseId}', '{collectionId}', '{key}'],
-            [$databaseId, $collectionId, $key],
-            '/databases/{databaseId}/collections/{collectionId}/attributes/email/{key}'
+            ['{databaseId}', '{tableId}', '{key}'],
+            [$databaseId, $tableId, $key],
+            '/databases/{databaseId}/tables/{tableId}/columns/email/{key}'
         );
 
         $apiParams = [];
         $apiParams['databaseId'] = $databaseId;
-        $apiParams['collectionId'] = $collectionId;
+        $apiParams['tableId'] = $tableId;
         $apiParams['key'] = $key;
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
@@ -690,12 +521,11 @@ class Databases extends Service
     }
 
     /**
-     * Create an enum attribute. The `elements` param acts as a white-list of
-     * accepted values for this attribute. 
-     * 
+     * Create an enumeration column. The `elements` param acts as a white-list of
+     * accepted values for this column.
      *
      * @param string $databaseId
-     * @param string $collectionId
+     * @param string $tableId
      * @param string $key
      * @param array $elements
      * @param bool $required
@@ -704,17 +534,17 @@ class Databases extends Service
      * @throws AppwriteException
      * @return array
      */
-    public function createEnumAttribute(string $databaseId, string $collectionId, string $key, array $elements, bool $required, ?string $xdefault = null, ?bool $xarray = null): array
+    public function createEnumColumn(string $databaseId, string $tableId, string $key, array $elements, bool $required, ?string $xdefault = null, ?bool $xarray = null): array
     {
         $apiPath = str_replace(
-            ['{databaseId}', '{collectionId}'],
-            [$databaseId, $collectionId],
-            '/databases/{databaseId}/collections/{collectionId}/attributes/enum'
+            ['{databaseId}', '{tableId}'],
+            [$databaseId, $tableId],
+            '/databases/{databaseId}/tables/{tableId}/columns/enum'
         );
 
         $apiParams = [];
         $apiParams['databaseId'] = $databaseId;
-        $apiParams['collectionId'] = $collectionId;
+        $apiParams['tableId'] = $tableId;
         $apiParams['key'] = $key;
         $apiParams['elements'] = $elements;
         $apiParams['required'] = $required;
@@ -739,12 +569,12 @@ class Databases extends Service
     }
 
     /**
-     * Update an enum attribute. Changing the `default` value will not update
-     * already existing documents.
+     * Update an enum column. Changing the `default` value will not update already
+     * existing rows.
      * 
      *
      * @param string $databaseId
-     * @param string $collectionId
+     * @param string $tableId
      * @param string $key
      * @param array $elements
      * @param bool $required
@@ -753,17 +583,17 @@ class Databases extends Service
      * @throws AppwriteException
      * @return array
      */
-    public function updateEnumAttribute(string $databaseId, string $collectionId, string $key, array $elements, bool $required, ?string $xdefault, ?string $newKey = null): array
+    public function updateEnumColumn(string $databaseId, string $tableId, string $key, array $elements, bool $required, ?string $xdefault, ?string $newKey = null): array
     {
         $apiPath = str_replace(
-            ['{databaseId}', '{collectionId}', '{key}'],
-            [$databaseId, $collectionId, $key],
-            '/databases/{databaseId}/collections/{collectionId}/attributes/enum/{key}'
+            ['{databaseId}', '{tableId}', '{key}'],
+            [$databaseId, $tableId, $key],
+            '/databases/{databaseId}/tables/{tableId}/columns/enum/{key}'
         );
 
         $apiParams = [];
         $apiParams['databaseId'] = $databaseId;
-        $apiParams['collectionId'] = $collectionId;
+        $apiParams['tableId'] = $tableId;
         $apiParams['key'] = $key;
         $apiParams['elements'] = $elements;
         $apiParams['required'] = $required;
@@ -785,12 +615,12 @@ class Databases extends Service
     }
 
     /**
-     * Create a float attribute. Optionally, minimum and maximum values can be
+     * Create a float column. Optionally, minimum and maximum values can be
      * provided.
      * 
      *
      * @param string $databaseId
-     * @param string $collectionId
+     * @param string $tableId
      * @param string $key
      * @param bool $required
      * @param ?float $min
@@ -800,17 +630,17 @@ class Databases extends Service
      * @throws AppwriteException
      * @return array
      */
-    public function createFloatAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?float $min = null, ?float $max = null, ?float $xdefault = null, ?bool $xarray = null): array
+    public function createFloatColumn(string $databaseId, string $tableId, string $key, bool $required, ?float $min = null, ?float $max = null, ?float $xdefault = null, ?bool $xarray = null): array
     {
         $apiPath = str_replace(
-            ['{databaseId}', '{collectionId}'],
-            [$databaseId, $collectionId],
-            '/databases/{databaseId}/collections/{collectionId}/attributes/float'
+            ['{databaseId}', '{tableId}'],
+            [$databaseId, $tableId],
+            '/databases/{databaseId}/tables/{tableId}/columns/float'
         );
 
         $apiParams = [];
         $apiParams['databaseId'] = $databaseId;
-        $apiParams['collectionId'] = $collectionId;
+        $apiParams['tableId'] = $tableId;
         $apiParams['key'] = $key;
         $apiParams['required'] = $required;
 
@@ -842,12 +672,12 @@ class Databases extends Service
     }
 
     /**
-     * Update a float attribute. Changing the `default` value will not update
-     * already existing documents.
+     * Update a float column. Changing the `default` value will not update already
+     * existing rows.
      * 
      *
      * @param string $databaseId
-     * @param string $collectionId
+     * @param string $tableId
      * @param string $key
      * @param bool $required
      * @param ?float $xdefault
@@ -857,17 +687,17 @@ class Databases extends Service
      * @throws AppwriteException
      * @return array
      */
-    public function updateFloatAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?float $xdefault, ?float $min = null, ?float $max = null, ?string $newKey = null): array
+    public function updateFloatColumn(string $databaseId, string $tableId, string $key, bool $required, ?float $xdefault, ?float $min = null, ?float $max = null, ?string $newKey = null): array
     {
         $apiPath = str_replace(
-            ['{databaseId}', '{collectionId}', '{key}'],
-            [$databaseId, $collectionId, $key],
-            '/databases/{databaseId}/collections/{collectionId}/attributes/float/{key}'
+            ['{databaseId}', '{tableId}', '{key}'],
+            [$databaseId, $tableId, $key],
+            '/databases/{databaseId}/tables/{tableId}/columns/float/{key}'
         );
 
         $apiParams = [];
         $apiParams['databaseId'] = $databaseId;
-        $apiParams['collectionId'] = $collectionId;
+        $apiParams['tableId'] = $tableId;
         $apiParams['key'] = $key;
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
@@ -896,12 +726,12 @@ class Databases extends Service
     }
 
     /**
-     * Create an integer attribute. Optionally, minimum and maximum values can be
+     * Create an integer column. Optionally, minimum and maximum values can be
      * provided.
      * 
      *
      * @param string $databaseId
-     * @param string $collectionId
+     * @param string $tableId
      * @param string $key
      * @param bool $required
      * @param ?int $min
@@ -911,17 +741,17 @@ class Databases extends Service
      * @throws AppwriteException
      * @return array
      */
-    public function createIntegerAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?int $min = null, ?int $max = null, ?int $xdefault = null, ?bool $xarray = null): array
+    public function createIntegerColumn(string $databaseId, string $tableId, string $key, bool $required, ?int $min = null, ?int $max = null, ?int $xdefault = null, ?bool $xarray = null): array
     {
         $apiPath = str_replace(
-            ['{databaseId}', '{collectionId}'],
-            [$databaseId, $collectionId],
-            '/databases/{databaseId}/collections/{collectionId}/attributes/integer'
+            ['{databaseId}', '{tableId}'],
+            [$databaseId, $tableId],
+            '/databases/{databaseId}/tables/{tableId}/columns/integer'
         );
 
         $apiParams = [];
         $apiParams['databaseId'] = $databaseId;
-        $apiParams['collectionId'] = $collectionId;
+        $apiParams['tableId'] = $tableId;
         $apiParams['key'] = $key;
         $apiParams['required'] = $required;
 
@@ -953,12 +783,12 @@ class Databases extends Service
     }
 
     /**
-     * Update an integer attribute. Changing the `default` value will not update
-     * already existing documents.
+     * Update an integer column. Changing the `default` value will not update
+     * already existing rows.
      * 
      *
      * @param string $databaseId
-     * @param string $collectionId
+     * @param string $tableId
      * @param string $key
      * @param bool $required
      * @param ?int $xdefault
@@ -968,17 +798,17 @@ class Databases extends Service
      * @throws AppwriteException
      * @return array
      */
-    public function updateIntegerAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?int $xdefault, ?int $min = null, ?int $max = null, ?string $newKey = null): array
+    public function updateIntegerColumn(string $databaseId, string $tableId, string $key, bool $required, ?int $xdefault, ?int $min = null, ?int $max = null, ?string $newKey = null): array
     {
         $apiPath = str_replace(
-            ['{databaseId}', '{collectionId}', '{key}'],
-            [$databaseId, $collectionId, $key],
-            '/databases/{databaseId}/collections/{collectionId}/attributes/integer/{key}'
+            ['{databaseId}', '{tableId}', '{key}'],
+            [$databaseId, $tableId, $key],
+            '/databases/{databaseId}/tables/{tableId}/columns/integer/{key}'
         );
 
         $apiParams = [];
         $apiParams['databaseId'] = $databaseId;
-        $apiParams['collectionId'] = $collectionId;
+        $apiParams['tableId'] = $tableId;
         $apiParams['key'] = $key;
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
@@ -1007,11 +837,11 @@ class Databases extends Service
     }
 
     /**
-     * Create IP address attribute.
+     * Create IP address column.
      * 
      *
      * @param string $databaseId
-     * @param string $collectionId
+     * @param string $tableId
      * @param string $key
      * @param bool $required
      * @param ?string $xdefault
@@ -1019,17 +849,17 @@ class Databases extends Service
      * @throws AppwriteException
      * @return array
      */
-    public function createIpAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): array
+    public function createIpColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): array
     {
         $apiPath = str_replace(
-            ['{databaseId}', '{collectionId}'],
-            [$databaseId, $collectionId],
-            '/databases/{databaseId}/collections/{collectionId}/attributes/ip'
+            ['{databaseId}', '{tableId}'],
+            [$databaseId, $tableId],
+            '/databases/{databaseId}/tables/{tableId}/columns/ip'
         );
 
         $apiParams = [];
         $apiParams['databaseId'] = $databaseId;
-        $apiParams['collectionId'] = $collectionId;
+        $apiParams['tableId'] = $tableId;
         $apiParams['key'] = $key;
         $apiParams['required'] = $required;
 
@@ -1053,12 +883,12 @@ class Databases extends Service
     }
 
     /**
-     * Update an ip attribute. Changing the `default` value will not update
-     * already existing documents.
+     * Update an ip column. Changing the `default` value will not update already
+     * existing rows.
      * 
      *
      * @param string $databaseId
-     * @param string $collectionId
+     * @param string $tableId
      * @param string $key
      * @param bool $required
      * @param ?string $xdefault
@@ -1066,17 +896,17 @@ class Databases extends Service
      * @throws AppwriteException
      * @return array
      */
-    public function updateIpAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): array
+    public function updateIpColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): array
     {
         $apiPath = str_replace(
-            ['{databaseId}', '{collectionId}', '{key}'],
-            [$databaseId, $collectionId, $key],
-            '/databases/{databaseId}/collections/{collectionId}/attributes/ip/{key}'
+            ['{databaseId}', '{tableId}', '{key}'],
+            [$databaseId, $tableId, $key],
+            '/databases/{databaseId}/tables/{tableId}/columns/ip/{key}'
         );
 
         $apiParams = [];
         $apiParams['databaseId'] = $databaseId;
-        $apiParams['collectionId'] = $collectionId;
+        $apiParams['tableId'] = $tableId;
         $apiParams['key'] = $key;
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
@@ -1097,13 +927,13 @@ class Databases extends Service
     }
 
     /**
-     * Create relationship attribute. [Learn more about relationship
-     * attributes](https://appwrite.io/docs/databases-relationships#relationship-attributes).
+     * Create relationship column. [Learn more about relationship
+     * columns](https://appwrite.io/docs/databases-relationships#relationship-columns).
      * 
      *
      * @param string $databaseId
-     * @param string $collectionId
-     * @param string $relatedCollectionId
+     * @param string $tableId
+     * @param string $relatedTableId
      * @param RelationshipType $type
      * @param ?bool $twoWay
      * @param ?string $key
@@ -1112,18 +942,18 @@ class Databases extends Service
      * @throws AppwriteException
      * @return array
      */
-    public function createRelationshipAttribute(string $databaseId, string $collectionId, string $relatedCollectionId, RelationshipType $type, ?bool $twoWay = null, ?string $key = null, ?string $twoWayKey = null, ?RelationMutate $onDelete = null): array
+    public function createRelationshipColumn(string $databaseId, string $tableId, string $relatedTableId, RelationshipType $type, ?bool $twoWay = null, ?string $key = null, ?string $twoWayKey = null, ?RelationMutate $onDelete = null): array
     {
         $apiPath = str_replace(
-            ['{databaseId}', '{collectionId}'],
-            [$databaseId, $collectionId],
-            '/databases/{databaseId}/collections/{collectionId}/attributes/relationship'
+            ['{databaseId}', '{tableId}'],
+            [$databaseId, $tableId],
+            '/databases/{databaseId}/tables/{tableId}/columns/relationship'
         );
 
         $apiParams = [];
         $apiParams['databaseId'] = $databaseId;
-        $apiParams['collectionId'] = $collectionId;
-        $apiParams['relatedCollectionId'] = $relatedCollectionId;
+        $apiParams['tableId'] = $tableId;
+        $apiParams['relatedTableId'] = $relatedTableId;
         $apiParams['type'] = $type;
 
         if (!is_null($twoWay)) {
@@ -1154,11 +984,11 @@ class Databases extends Service
     }
 
     /**
-     * Create a string attribute.
+     * Create a string column.
      * 
      *
      * @param string $databaseId
-     * @param string $collectionId
+     * @param string $tableId
      * @param string $key
      * @param int $size
      * @param bool $required
@@ -1168,17 +998,17 @@ class Databases extends Service
      * @throws AppwriteException
      * @return array
      */
-    public function createStringAttribute(string $databaseId, string $collectionId, string $key, int $size, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): array
+    public function createStringColumn(string $databaseId, string $tableId, string $key, int $size, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): array
     {
         $apiPath = str_replace(
-            ['{databaseId}', '{collectionId}'],
-            [$databaseId, $collectionId],
-            '/databases/{databaseId}/collections/{collectionId}/attributes/string'
+            ['{databaseId}', '{tableId}'],
+            [$databaseId, $tableId],
+            '/databases/{databaseId}/tables/{tableId}/columns/string'
         );
 
         $apiParams = [];
         $apiParams['databaseId'] = $databaseId;
-        $apiParams['collectionId'] = $collectionId;
+        $apiParams['tableId'] = $tableId;
         $apiParams['key'] = $key;
         $apiParams['size'] = $size;
         $apiParams['required'] = $required;
@@ -1207,12 +1037,12 @@ class Databases extends Service
     }
 
     /**
-     * Update a string attribute. Changing the `default` value will not update
-     * already existing documents.
+     * Update a string column. Changing the `default` value will not update
+     * already existing rows.
      * 
      *
      * @param string $databaseId
-     * @param string $collectionId
+     * @param string $tableId
      * @param string $key
      * @param bool $required
      * @param ?string $xdefault
@@ -1221,17 +1051,17 @@ class Databases extends Service
      * @throws AppwriteException
      * @return array
      */
-    public function updateStringAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?int $size = null, ?string $newKey = null): array
+    public function updateStringColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?int $size = null, ?string $newKey = null): array
     {
         $apiPath = str_replace(
-            ['{databaseId}', '{collectionId}', '{key}'],
-            [$databaseId, $collectionId, $key],
-            '/databases/{databaseId}/collections/{collectionId}/attributes/string/{key}'
+            ['{databaseId}', '{tableId}', '{key}'],
+            [$databaseId, $tableId, $key],
+            '/databases/{databaseId}/tables/{tableId}/columns/string/{key}'
         );
 
         $apiParams = [];
         $apiParams['databaseId'] = $databaseId;
-        $apiParams['collectionId'] = $collectionId;
+        $apiParams['tableId'] = $tableId;
         $apiParams['key'] = $key;
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
@@ -1256,11 +1086,11 @@ class Databases extends Service
     }
 
     /**
-     * Create a URL attribute.
+     * Create a URL column.
      * 
      *
      * @param string $databaseId
-     * @param string $collectionId
+     * @param string $tableId
      * @param string $key
      * @param bool $required
      * @param ?string $xdefault
@@ -1268,17 +1098,17 @@ class Databases extends Service
      * @throws AppwriteException
      * @return array
      */
-    public function createUrlAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): array
+    public function createUrlColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): array
     {
         $apiPath = str_replace(
-            ['{databaseId}', '{collectionId}'],
-            [$databaseId, $collectionId],
-            '/databases/{databaseId}/collections/{collectionId}/attributes/url'
+            ['{databaseId}', '{tableId}'],
+            [$databaseId, $tableId],
+            '/databases/{databaseId}/tables/{tableId}/columns/url'
         );
 
         $apiParams = [];
         $apiParams['databaseId'] = $databaseId;
-        $apiParams['collectionId'] = $collectionId;
+        $apiParams['tableId'] = $tableId;
         $apiParams['key'] = $key;
         $apiParams['required'] = $required;
 
@@ -1302,12 +1132,12 @@ class Databases extends Service
     }
 
     /**
-     * Update an url attribute. Changing the `default` value will not update
-     * already existing documents.
+     * Update an url column. Changing the `default` value will not update already
+     * existing rows.
      * 
      *
      * @param string $databaseId
-     * @param string $collectionId
+     * @param string $tableId
      * @param string $key
      * @param bool $required
      * @param ?string $xdefault
@@ -1315,17 +1145,17 @@ class Databases extends Service
      * @throws AppwriteException
      * @return array
      */
-    public function updateUrlAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): array
+    public function updateUrlColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): array
     {
         $apiPath = str_replace(
-            ['{databaseId}', '{collectionId}', '{key}'],
-            [$databaseId, $collectionId, $key],
-            '/databases/{databaseId}/collections/{collectionId}/attributes/url/{key}'
+            ['{databaseId}', '{tableId}', '{key}'],
+            [$databaseId, $tableId, $key],
+            '/databases/{databaseId}/tables/{tableId}/columns/url/{key}'
         );
 
         $apiParams = [];
         $apiParams['databaseId'] = $databaseId;
-        $apiParams['collectionId'] = $collectionId;
+        $apiParams['tableId'] = $tableId;
         $apiParams['key'] = $key;
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
@@ -1346,25 +1176,25 @@ class Databases extends Service
     }
 
     /**
-     * Get attribute by ID.
+     * Get column by ID.
      *
      * @param string $databaseId
-     * @param string $collectionId
+     * @param string $tableId
      * @param string $key
      * @throws AppwriteException
      * @return array
      */
-    public function getAttribute(string $databaseId, string $collectionId, string $key): array
+    public function getColumn(string $databaseId, string $tableId, string $key): array
     {
         $apiPath = str_replace(
-            ['{databaseId}', '{collectionId}', '{key}'],
-            [$databaseId, $collectionId, $key],
-            '/databases/{databaseId}/collections/{collectionId}/attributes/{key}'
+            ['{databaseId}', '{tableId}', '{key}'],
+            [$databaseId, $tableId, $key],
+            '/databases/{databaseId}/tables/{tableId}/columns/{key}'
         );
 
         $apiParams = [];
         $apiParams['databaseId'] = $databaseId;
-        $apiParams['collectionId'] = $collectionId;
+        $apiParams['tableId'] = $tableId;
         $apiParams['key'] = $key;
 
         $apiHeaders = [];
@@ -1378,25 +1208,25 @@ class Databases extends Service
     }
 
     /**
-     * Deletes an attribute.
+     * Deletes a column.
      *
      * @param string $databaseId
-     * @param string $collectionId
+     * @param string $tableId
      * @param string $key
      * @throws AppwriteException
      * @return string
      */
-    public function deleteAttribute(string $databaseId, string $collectionId, string $key): string
+    public function deleteColumn(string $databaseId, string $tableId, string $key): string
     {
         $apiPath = str_replace(
-            ['{databaseId}', '{collectionId}', '{key}'],
-            [$databaseId, $collectionId, $key],
-            '/databases/{databaseId}/collections/{collectionId}/attributes/{key}'
+            ['{databaseId}', '{tableId}', '{key}'],
+            [$databaseId, $tableId, $key],
+            '/databases/{databaseId}/tables/{tableId}/columns/{key}'
         );
 
         $apiParams = [];
         $apiParams['databaseId'] = $databaseId;
-        $apiParams['collectionId'] = $collectionId;
+        $apiParams['tableId'] = $tableId;
         $apiParams['key'] = $key;
 
         $apiHeaders = [];
@@ -1411,29 +1241,29 @@ class Databases extends Service
     }
 
     /**
-     * Update relationship attribute. [Learn more about relationship
-     * attributes](https://appwrite.io/docs/databases-relationships#relationship-attributes).
+     * Update relationship column. [Learn more about relationship
+     * columns](https://appwrite.io/docs/databases-relationships#relationship-columns).
      * 
      *
      * @param string $databaseId
-     * @param string $collectionId
+     * @param string $tableId
      * @param string $key
      * @param ?RelationMutate $onDelete
      * @param ?string $newKey
      * @throws AppwriteException
      * @return array
      */
-    public function updateRelationshipAttribute(string $databaseId, string $collectionId, string $key, ?RelationMutate $onDelete = null, ?string $newKey = null): array
+    public function updateRelationshipColumn(string $databaseId, string $tableId, string $key, ?RelationMutate $onDelete = null, ?string $newKey = null): array
     {
         $apiPath = str_replace(
-            ['{databaseId}', '{collectionId}', '{key}'],
-            [$databaseId, $collectionId, $key],
-            '/databases/{databaseId}/collections/{collectionId}/attributes/{key}/relationship'
+            ['{databaseId}', '{tableId}', '{key}'],
+            [$databaseId, $tableId, $key],
+            '/databases/{databaseId}/tables/{tableId}/columns/{key}/relationship'
         );
 
         $apiParams = [];
         $apiParams['databaseId'] = $databaseId;
-        $apiParams['collectionId'] = $collectionId;
+        $apiParams['tableId'] = $tableId;
         $apiParams['key'] = $key;
 
         if (!is_null($onDelete)) {
@@ -1456,496 +1286,25 @@ class Databases extends Service
     }
 
     /**
-     * Get a list of all the user's documents in a given collection. You can use
-     * the query params to filter your results.
-     *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param ?array $queries
-     * @throws AppwriteException
-     * @return array
-     */
-    public function listDocuments(string $databaseId, string $collectionId, ?array $queries = null): array
-    {
-        $apiPath = str_replace(
-            ['{databaseId}', '{collectionId}'],
-            [$databaseId, $collectionId],
-            '/databases/{databaseId}/collections/{collectionId}/documents'
-        );
-
-        $apiParams = [];
-        $apiParams['databaseId'] = $databaseId;
-        $apiParams['collectionId'] = $collectionId;
-
-        if (!is_null($queries)) {
-            $apiParams['queries'] = $queries;
-        }
-
-        $apiHeaders = [];
-
-        return $this->client->call(
-            Client::METHOD_GET,
-            $apiPath,
-            $apiHeaders,
-            $apiParams
-        );
-    }
-
-    /**
-     * Create a new Document. Before using this route, you should create a new
-     * collection resource using either a [server
-     * integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
-     * API or directly from your database console.
-     *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param string $documentId
-     * @param array $data
-     * @param ?array $permissions
-     * @throws AppwriteException
-     * @return array
-     */
-    public function createDocument(string $databaseId, string $collectionId, string $documentId, array $data, ?array $permissions = null): array
-    {
-        $apiPath = str_replace(
-            ['{databaseId}', '{collectionId}'],
-            [$databaseId, $collectionId],
-            '/databases/{databaseId}/collections/{collectionId}/documents'
-        );
-
-        $apiParams = [];
-        $apiParams['databaseId'] = $databaseId;
-        $apiParams['collectionId'] = $collectionId;
-        $apiParams['documentId'] = $documentId;
-        $apiParams['data'] = $data;
-
-        if (!is_null($permissions)) {
-            $apiParams['permissions'] = $permissions;
-        }
-
-        $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
-
-        return $this->client->call(
-            Client::METHOD_POST,
-            $apiPath,
-            $apiHeaders,
-            $apiParams
-        );
-    }
-
-    /**
-     * Create new Documents. Before using this route, you should create a new
-     * collection resource using either a [server
-     * integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
-     * API or directly from your database console.
-     *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param array $documents
-     * @throws AppwriteException
-     * @return array
-     */
-    public function createDocuments(string $databaseId, string $collectionId, array $documents): array
-    {
-        $apiPath = str_replace(
-            ['{databaseId}', '{collectionId}'],
-            [$databaseId, $collectionId],
-            '/databases/{databaseId}/collections/{collectionId}/documents'
-        );
-
-        $apiParams = [];
-        $apiParams['databaseId'] = $databaseId;
-        $apiParams['collectionId'] = $collectionId;
-        $apiParams['documents'] = $documents;
-
-        $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
-
-        return $this->client->call(
-            Client::METHOD_POST,
-            $apiPath,
-            $apiHeaders,
-            $apiParams
-        );
-    }
-
-    /**
-     * Create or update Documents. Before using this route, you should create a
-     * new collection resource using either a [server
-     * integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
-     * API or directly from your database console.
-     * 
-     *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @throws AppwriteException
-     * @return array
-     */
-    public function upsertDocuments(string $databaseId, string $collectionId): array
-    {
-        $apiPath = str_replace(
-            ['{databaseId}', '{collectionId}'],
-            [$databaseId, $collectionId],
-            '/databases/{databaseId}/collections/{collectionId}/documents'
-        );
-
-        $apiParams = [];
-        $apiParams['databaseId'] = $databaseId;
-        $apiParams['collectionId'] = $collectionId;
-
-        $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
-
-        return $this->client->call(
-            Client::METHOD_PUT,
-            $apiPath,
-            $apiHeaders,
-            $apiParams
-        );
-    }
-
-    /**
-     * Update all documents that match your queries, if no queries are submitted
-     * then all documents are updated. You can pass only specific fields to be
-     * updated.
-     *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param ?array $data
-     * @param ?array $queries
-     * @throws AppwriteException
-     * @return array
-     */
-    public function updateDocuments(string $databaseId, string $collectionId, ?array $data = null, ?array $queries = null): array
-    {
-        $apiPath = str_replace(
-            ['{databaseId}', '{collectionId}'],
-            [$databaseId, $collectionId],
-            '/databases/{databaseId}/collections/{collectionId}/documents'
-        );
-
-        $apiParams = [];
-        $apiParams['databaseId'] = $databaseId;
-        $apiParams['collectionId'] = $collectionId;
-
-        if (!is_null($data)) {
-            $apiParams['data'] = $data;
-        }
-
-        if (!is_null($queries)) {
-            $apiParams['queries'] = $queries;
-        }
-
-        $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
-
-        return $this->client->call(
-            Client::METHOD_PATCH,
-            $apiPath,
-            $apiHeaders,
-            $apiParams
-        );
-    }
-
-    /**
-     * Bulk delete documents using queries, if no queries are passed then all
-     * documents are deleted.
-     *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param ?array $queries
-     * @throws AppwriteException
-     * @return array
-     */
-    public function deleteDocuments(string $databaseId, string $collectionId, ?array $queries = null): array
-    {
-        $apiPath = str_replace(
-            ['{databaseId}', '{collectionId}'],
-            [$databaseId, $collectionId],
-            '/databases/{databaseId}/collections/{collectionId}/documents'
-        );
-
-        $apiParams = [];
-        $apiParams['databaseId'] = $databaseId;
-        $apiParams['collectionId'] = $collectionId;
-
-        if (!is_null($queries)) {
-            $apiParams['queries'] = $queries;
-        }
-
-        $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
-
-        return $this->client->call(
-            Client::METHOD_DELETE,
-            $apiPath,
-            $apiHeaders,
-            $apiParams
-        );
-    }
-
-    /**
-     * Get a document by its unique ID. This endpoint response returns a JSON
-     * object with the document data.
-     *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param string $documentId
-     * @param ?array $queries
-     * @throws AppwriteException
-     * @return array
-     */
-    public function getDocument(string $databaseId, string $collectionId, string $documentId, ?array $queries = null): array
-    {
-        $apiPath = str_replace(
-            ['{databaseId}', '{collectionId}', '{documentId}'],
-            [$databaseId, $collectionId, $documentId],
-            '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}'
-        );
-
-        $apiParams = [];
-        $apiParams['databaseId'] = $databaseId;
-        $apiParams['collectionId'] = $collectionId;
-        $apiParams['documentId'] = $documentId;
-
-        if (!is_null($queries)) {
-            $apiParams['queries'] = $queries;
-        }
-
-        $apiHeaders = [];
-
-        return $this->client->call(
-            Client::METHOD_GET,
-            $apiPath,
-            $apiHeaders,
-            $apiParams
-        );
-    }
-
-    /**
-     * Create or update a Document. Before using this route, you should create a
-     * new collection resource using either a [server
-     * integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
-     * API or directly from your database console.
-     *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param string $documentId
-     * @throws AppwriteException
-     * @return array
-     */
-    public function upsertDocument(string $databaseId, string $collectionId, string $documentId): array
-    {
-        $apiPath = str_replace(
-            ['{databaseId}', '{collectionId}', '{documentId}'],
-            [$databaseId, $collectionId, $documentId],
-            '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}'
-        );
-
-        $apiParams = [];
-        $apiParams['databaseId'] = $databaseId;
-        $apiParams['collectionId'] = $collectionId;
-        $apiParams['documentId'] = $documentId;
-
-        $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
-
-        return $this->client->call(
-            Client::METHOD_PUT,
-            $apiPath,
-            $apiHeaders,
-            $apiParams
-        );
-    }
-
-    /**
-     * Update a document by its unique ID. Using the patch method you can pass
-     * only specific fields that will get updated.
-     *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param string $documentId
-     * @param ?array $data
-     * @param ?array $permissions
-     * @throws AppwriteException
-     * @return array
-     */
-    public function updateDocument(string $databaseId, string $collectionId, string $documentId, ?array $data = null, ?array $permissions = null): array
-    {
-        $apiPath = str_replace(
-            ['{databaseId}', '{collectionId}', '{documentId}'],
-            [$databaseId, $collectionId, $documentId],
-            '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}'
-        );
-
-        $apiParams = [];
-        $apiParams['databaseId'] = $databaseId;
-        $apiParams['collectionId'] = $collectionId;
-        $apiParams['documentId'] = $documentId;
-
-        if (!is_null($data)) {
-            $apiParams['data'] = $data;
-        }
-
-        if (!is_null($permissions)) {
-            $apiParams['permissions'] = $permissions;
-        }
-
-        $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
-
-        return $this->client->call(
-            Client::METHOD_PATCH,
-            $apiPath,
-            $apiHeaders,
-            $apiParams
-        );
-    }
-
-    /**
-     * Delete a document by its unique ID.
-     *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param string $documentId
-     * @throws AppwriteException
-     * @return string
-     */
-    public function deleteDocument(string $databaseId, string $collectionId, string $documentId): string
-    {
-        $apiPath = str_replace(
-            ['{databaseId}', '{collectionId}', '{documentId}'],
-            [$databaseId, $collectionId, $documentId],
-            '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}'
-        );
-
-        $apiParams = [];
-        $apiParams['databaseId'] = $databaseId;
-        $apiParams['collectionId'] = $collectionId;
-        $apiParams['documentId'] = $documentId;
-
-        $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
-
-        return $this->client->call(
-            Client::METHOD_DELETE,
-            $apiPath,
-            $apiHeaders,
-            $apiParams
-        );
-    }
-
-    /**
-     * Decrement a specific attribute of a document by a given value.
-     *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param string $documentId
-     * @param string $attribute
-     * @param ?float $value
-     * @param ?float $min
-     * @throws AppwriteException
-     * @return array
-     */
-    public function decrementDocumentAttribute(string $databaseId, string $collectionId, string $documentId, string $attribute, ?float $value = null, ?float $min = null): array
-    {
-        $apiPath = str_replace(
-            ['{databaseId}', '{collectionId}', '{documentId}', '{attribute}'],
-            [$databaseId, $collectionId, $documentId, $attribute],
-            '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}/{attribute}/decrement'
-        );
-
-        $apiParams = [];
-        $apiParams['databaseId'] = $databaseId;
-        $apiParams['collectionId'] = $collectionId;
-        $apiParams['documentId'] = $documentId;
-        $apiParams['attribute'] = $attribute;
-
-        if (!is_null($value)) {
-            $apiParams['value'] = $value;
-        }
-
-        if (!is_null($min)) {
-            $apiParams['min'] = $min;
-        }
-
-        $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
-
-        return $this->client->call(
-            Client::METHOD_PATCH,
-            $apiPath,
-            $apiHeaders,
-            $apiParams
-        );
-    }
-
-    /**
-     * Increment a specific attribute of a document by a given value.
-     *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param string $documentId
-     * @param string $attribute
-     * @param ?float $value
-     * @param ?float $max
-     * @throws AppwriteException
-     * @return array
-     */
-    public function incrementDocumentAttribute(string $databaseId, string $collectionId, string $documentId, string $attribute, ?float $value = null, ?float $max = null): array
-    {
-        $apiPath = str_replace(
-            ['{databaseId}', '{collectionId}', '{documentId}', '{attribute}'],
-            [$databaseId, $collectionId, $documentId, $attribute],
-            '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}/{attribute}/increment'
-        );
-
-        $apiParams = [];
-        $apiParams['databaseId'] = $databaseId;
-        $apiParams['collectionId'] = $collectionId;
-        $apiParams['documentId'] = $documentId;
-        $apiParams['attribute'] = $attribute;
-
-        if (!is_null($value)) {
-            $apiParams['value'] = $value;
-        }
-
-        if (!is_null($max)) {
-            $apiParams['max'] = $max;
-        }
-
-        $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
-
-        return $this->client->call(
-            Client::METHOD_PATCH,
-            $apiPath,
-            $apiHeaders,
-            $apiParams
-        );
-    }
-
-    /**
      * List indexes in the collection.
      *
      * @param string $databaseId
-     * @param string $collectionId
+     * @param string $tableId
      * @param ?array $queries
      * @throws AppwriteException
      * @return array
      */
-    public function listIndexes(string $databaseId, string $collectionId, ?array $queries = null): array
+    public function listIndexes(string $databaseId, string $tableId, ?array $queries = null): array
     {
         $apiPath = str_replace(
-            ['{databaseId}', '{collectionId}'],
-            [$databaseId, $collectionId],
-            '/databases/{databaseId}/collections/{collectionId}/indexes'
+            ['{databaseId}', '{tableId}'],
+            [$databaseId, $tableId],
+            '/databases/{databaseId}/tables/{tableId}/indexes'
         );
 
         $apiParams = [];
         $apiParams['databaseId'] = $databaseId;
-        $apiParams['collectionId'] = $collectionId;
+        $apiParams['tableId'] = $tableId;
 
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
@@ -1967,29 +1326,29 @@ class Databases extends Service
      * Attributes can be `key`, `fulltext`, and `unique`.
      *
      * @param string $databaseId
-     * @param string $collectionId
+     * @param string $tableId
      * @param string $key
      * @param IndexType $type
-     * @param array $attributes
+     * @param array $columns
      * @param ?array $orders
      * @param ?array $lengths
      * @throws AppwriteException
      * @return array
      */
-    public function createIndex(string $databaseId, string $collectionId, string $key, IndexType $type, array $attributes, ?array $orders = null, ?array $lengths = null): array
+    public function createIndex(string $databaseId, string $tableId, string $key, IndexType $type, array $columns, ?array $orders = null, ?array $lengths = null): array
     {
         $apiPath = str_replace(
-            ['{databaseId}', '{collectionId}'],
-            [$databaseId, $collectionId],
-            '/databases/{databaseId}/collections/{collectionId}/indexes'
+            ['{databaseId}', '{tableId}'],
+            [$databaseId, $tableId],
+            '/databases/{databaseId}/tables/{tableId}/indexes'
         );
 
         $apiParams = [];
         $apiParams['databaseId'] = $databaseId;
-        $apiParams['collectionId'] = $collectionId;
+        $apiParams['tableId'] = $tableId;
         $apiParams['key'] = $key;
         $apiParams['type'] = $type;
-        $apiParams['attributes'] = $attributes;
+        $apiParams['columns'] = $columns;
 
         if (!is_null($orders)) {
             $apiParams['orders'] = $orders;
@@ -2014,22 +1373,22 @@ class Databases extends Service
      * Get index by ID.
      *
      * @param string $databaseId
-     * @param string $collectionId
+     * @param string $tableId
      * @param string $key
      * @throws AppwriteException
      * @return array
      */
-    public function getIndex(string $databaseId, string $collectionId, string $key): array
+    public function getIndex(string $databaseId, string $tableId, string $key): array
     {
         $apiPath = str_replace(
-            ['{databaseId}', '{collectionId}', '{key}'],
-            [$databaseId, $collectionId, $key],
-            '/databases/{databaseId}/collections/{collectionId}/indexes/{key}'
+            ['{databaseId}', '{tableId}', '{key}'],
+            [$databaseId, $tableId, $key],
+            '/databases/{databaseId}/tables/{tableId}/indexes/{key}'
         );
 
         $apiParams = [];
         $apiParams['databaseId'] = $databaseId;
-        $apiParams['collectionId'] = $collectionId;
+        $apiParams['tableId'] = $tableId;
         $apiParams['key'] = $key;
 
         $apiHeaders = [];
@@ -2046,22 +1405,22 @@ class Databases extends Service
      * Delete an index.
      *
      * @param string $databaseId
-     * @param string $collectionId
+     * @param string $tableId
      * @param string $key
      * @throws AppwriteException
      * @return string
      */
-    public function deleteIndex(string $databaseId, string $collectionId, string $key): string
+    public function deleteIndex(string $databaseId, string $tableId, string $key): string
     {
         $apiPath = str_replace(
-            ['{databaseId}', '{collectionId}', '{key}'],
-            [$databaseId, $collectionId, $key],
-            '/databases/{databaseId}/collections/{collectionId}/indexes/{key}'
+            ['{databaseId}', '{tableId}', '{key}'],
+            [$databaseId, $tableId, $key],
+            '/databases/{databaseId}/tables/{tableId}/indexes/{key}'
         );
 
         $apiParams = [];
         $apiParams['databaseId'] = $databaseId;
-        $apiParams['collectionId'] = $collectionId;
+        $apiParams['tableId'] = $tableId;
         $apiParams['key'] = $key;
 
         $apiHeaders = [];
@@ -2069,6 +1428,476 @@ class Databases extends Service
 
         return $this->client->call(
             Client::METHOD_DELETE,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Get a list of all the user's rows in a given table. You can use the query
+     * params to filter your results.
+     *
+     * @param string $databaseId
+     * @param string $tableId
+     * @param ?array $queries
+     * @throws AppwriteException
+     * @return array
+     */
+    public function listRows(string $databaseId, string $tableId, ?array $queries = null): array
+    {
+        $apiPath = str_replace(
+            ['{databaseId}', '{tableId}'],
+            [$databaseId, $tableId],
+            '/databases/{databaseId}/tables/{tableId}/rows'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['tableId'] = $tableId;
+
+        if (!is_null($queries)) {
+            $apiParams['queries'] = $queries;
+        }
+
+        $apiHeaders = [];
+
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Create a new Row. Before using this route, you should create a new table
+     * resource using either a [server
+     * integration](https://appwrite.io/docs/server/databases#databasesCreateTable)
+     * API or directly from your database console.
+     *
+     * @param string $databaseId
+     * @param string $tableId
+     * @param string $rowId
+     * @param array $data
+     * @param ?array $permissions
+     * @throws AppwriteException
+     * @return array
+     */
+    public function createRow(string $databaseId, string $tableId, string $rowId, array $data, ?array $permissions = null): array
+    {
+        $apiPath = str_replace(
+            ['{databaseId}', '{tableId}'],
+            [$databaseId, $tableId],
+            '/databases/{databaseId}/tables/{tableId}/rows'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['tableId'] = $tableId;
+        $apiParams['rowId'] = $rowId;
+        $apiParams['data'] = $data;
+
+        if (!is_null($permissions)) {
+            $apiParams['permissions'] = $permissions;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Create new Rows. Before using this route, you should create a new table
+     * resource using either a [server
+     * integration](https://appwrite.io/docs/server/databases#databasesCreateTable)
+     * API or directly from your database console.
+     *
+     * @param string $databaseId
+     * @param string $tableId
+     * @param array $rows
+     * @throws AppwriteException
+     * @return array
+     */
+    public function createRows(string $databaseId, string $tableId, array $rows): array
+    {
+        $apiPath = str_replace(
+            ['{databaseId}', '{tableId}'],
+            [$databaseId, $tableId],
+            '/databases/{databaseId}/tables/{tableId}/rows'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['tableId'] = $tableId;
+        $apiParams['rows'] = $rows;
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Create or update Rows. Before using this route, you should create a new
+     * table resource using either a [server
+     * integration](https://appwrite.io/docs/server/databases#databasesCreateTable)
+     * API or directly from your database console.
+     * 
+     *
+     * @param string $databaseId
+     * @param string $tableId
+     * @throws AppwriteException
+     * @return array
+     */
+    public function upsertRows(string $databaseId, string $tableId): array
+    {
+        $apiPath = str_replace(
+            ['{databaseId}', '{tableId}'],
+            [$databaseId, $tableId],
+            '/databases/{databaseId}/tables/{tableId}/rows'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['tableId'] = $tableId;
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_PUT,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Update all rows that match your queries, if no queries are submitted then
+     * all rows are updated. You can pass only specific fields to be updated.
+     *
+     * @param string $databaseId
+     * @param string $tableId
+     * @param ?array $data
+     * @param ?array $queries
+     * @throws AppwriteException
+     * @return array
+     */
+    public function updateRows(string $databaseId, string $tableId, ?array $data = null, ?array $queries = null): array
+    {
+        $apiPath = str_replace(
+            ['{databaseId}', '{tableId}'],
+            [$databaseId, $tableId],
+            '/databases/{databaseId}/tables/{tableId}/rows'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['tableId'] = $tableId;
+
+        if (!is_null($data)) {
+            $apiParams['data'] = $data;
+        }
+
+        if (!is_null($queries)) {
+            $apiParams['queries'] = $queries;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Bulk delete rows using queries, if no queries are passed then all rows are
+     * deleted.
+     *
+     * @param string $databaseId
+     * @param string $tableId
+     * @param ?array $queries
+     * @throws AppwriteException
+     * @return array
+     */
+    public function deleteRows(string $databaseId, string $tableId, ?array $queries = null): array
+    {
+        $apiPath = str_replace(
+            ['{databaseId}', '{tableId}'],
+            [$databaseId, $tableId],
+            '/databases/{databaseId}/tables/{tableId}/rows'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['tableId'] = $tableId;
+
+        if (!is_null($queries)) {
+            $apiParams['queries'] = $queries;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_DELETE,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Get a row by its unique ID. This endpoint response returns a JSON object
+     * with the row data.
+     *
+     * @param string $databaseId
+     * @param string $tableId
+     * @param string $rowId
+     * @param ?array $queries
+     * @throws AppwriteException
+     * @return array
+     */
+    public function getRow(string $databaseId, string $tableId, string $rowId, ?array $queries = null): array
+    {
+        $apiPath = str_replace(
+            ['{databaseId}', '{tableId}', '{rowId}'],
+            [$databaseId, $tableId, $rowId],
+            '/databases/{databaseId}/tables/{tableId}/rows/{rowId}'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['tableId'] = $tableId;
+        $apiParams['rowId'] = $rowId;
+
+        if (!is_null($queries)) {
+            $apiParams['queries'] = $queries;
+        }
+
+        $apiHeaders = [];
+
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Create or update a Row. Before using this route, you should create a new
+     * table resource using either a [server
+     * integration](https://appwrite.io/docs/server/databases#databasesCreateTable)
+     * API or directly from your database console.
+     *
+     * @param string $databaseId
+     * @param string $tableId
+     * @param string $rowId
+     * @throws AppwriteException
+     * @return array
+     */
+    public function upsertRow(string $databaseId, string $tableId, string $rowId): array
+    {
+        $apiPath = str_replace(
+            ['{databaseId}', '{tableId}', '{rowId}'],
+            [$databaseId, $tableId, $rowId],
+            '/databases/{databaseId}/tables/{tableId}/rows/{rowId}'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['tableId'] = $tableId;
+        $apiParams['rowId'] = $rowId;
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_PUT,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Update a row by its unique ID. Using the patch method you can pass only
+     * specific fields that will get updated.
+     *
+     * @param string $databaseId
+     * @param string $tableId
+     * @param string $rowId
+     * @param ?array $data
+     * @param ?array $permissions
+     * @throws AppwriteException
+     * @return array
+     */
+    public function updateRow(string $databaseId, string $tableId, string $rowId, ?array $data = null, ?array $permissions = null): array
+    {
+        $apiPath = str_replace(
+            ['{databaseId}', '{tableId}', '{rowId}'],
+            [$databaseId, $tableId, $rowId],
+            '/databases/{databaseId}/tables/{tableId}/rows/{rowId}'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['tableId'] = $tableId;
+        $apiParams['rowId'] = $rowId;
+
+        if (!is_null($data)) {
+            $apiParams['data'] = $data;
+        }
+
+        if (!is_null($permissions)) {
+            $apiParams['permissions'] = $permissions;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Delete a row by its unique ID.
+     *
+     * @param string $databaseId
+     * @param string $tableId
+     * @param string $rowId
+     * @throws AppwriteException
+     * @return string
+     */
+    public function deleteRow(string $databaseId, string $tableId, string $rowId): string
+    {
+        $apiPath = str_replace(
+            ['{databaseId}', '{tableId}', '{rowId}'],
+            [$databaseId, $tableId, $rowId],
+            '/databases/{databaseId}/tables/{tableId}/rows/{rowId}'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['tableId'] = $tableId;
+        $apiParams['rowId'] = $rowId;
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_DELETE,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Decrement a specific column of a row by a given value.
+     *
+     * @param string $databaseId
+     * @param string $tableId
+     * @param string $rowId
+     * @param string $column
+     * @param ?float $value
+     * @param ?float $min
+     * @throws AppwriteException
+     * @return array
+     */
+    public function decrementRowColumn(string $databaseId, string $tableId, string $rowId, string $column, ?float $value = null, ?float $min = null): array
+    {
+        $apiPath = str_replace(
+            ['{databaseId}', '{tableId}', '{rowId}', '{column}'],
+            [$databaseId, $tableId, $rowId, $column],
+            '/databases/{databaseId}/tables/{tableId}/rows/{rowId}/{column}/decrement'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['tableId'] = $tableId;
+        $apiParams['rowId'] = $rowId;
+        $apiParams['column'] = $column;
+
+        if (!is_null($value)) {
+            $apiParams['value'] = $value;
+        }
+
+        if (!is_null($min)) {
+            $apiParams['min'] = $min;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Increment a specific column of a row by a given value.
+     *
+     * @param string $databaseId
+     * @param string $tableId
+     * @param string $rowId
+     * @param string $column
+     * @param ?float $value
+     * @param ?float $max
+     * @throws AppwriteException
+     * @return array
+     */
+    public function incrementRowColumn(string $databaseId, string $tableId, string $rowId, string $column, ?float $value = null, ?float $max = null): array
+    {
+        $apiPath = str_replace(
+            ['{databaseId}', '{tableId}', '{rowId}', '{column}'],
+            [$databaseId, $tableId, $rowId, $column],
+            '/databases/{databaseId}/tables/{tableId}/rows/{rowId}/{column}/increment'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['tableId'] = $tableId;
+        $apiParams['rowId'] = $rowId;
+        $apiParams['column'] = $column;
+
+        if (!is_null($value)) {
+            $apiParams['value'] = $value;
+        }
+
+        if (!is_null($max)) {
+            $apiParams['max'] = $max;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams

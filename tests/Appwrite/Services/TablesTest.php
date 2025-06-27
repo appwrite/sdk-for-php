@@ -7,27 +7,28 @@ use Appwrite\InputFile;
 use Mockery;
 use PHPUnit\Framework\TestCase;
 
-final class DatabasesTest extends TestCase {
+final class TablesTest extends TestCase {
     private $client;
-    private $databases;
+    private $tables;
 
     protected function setUp(): void {
         $this->client = Mockery::mock(Client::class);
-        $this->databases = new Databases($this->client);
+        $this->tables = new Tables($this->client);
     }
 
     public function testMethodList(): void {
 
         $data = array(
             "total" => 5,
-            "databases" => array(),);
+            "tables" => array(),);
 
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->databases->list(
+        $response = $this->tables->list(
+            "<DATABASE_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -37,18 +38,24 @@ final class DatabasesTest extends TestCase {
 
         $data = array(
             "\$id" => "5e5ea5c16897e",
-            "name" => "My Database",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "enabled" => true,);
+            "\$permissions" => array(),
+            "databaseId" => "5e5ea5c16897e",
+            "name" => "My Table",
+            "enabled" => true,
+            "rowSecurity" => true,
+            "columns" => array(),
+            "indexes" => array(),);
 
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->databases->create(
+        $response = $this->tables->create(
             "<DATABASE_ID>",
+            "<TABLE_ID>",
             "<NAME>"
         );
 
@@ -59,18 +66,24 @@ final class DatabasesTest extends TestCase {
 
         $data = array(
             "\$id" => "5e5ea5c16897e",
-            "name" => "My Database",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "enabled" => true,);
+            "\$permissions" => array(),
+            "databaseId" => "5e5ea5c16897e",
+            "name" => "My Table",
+            "enabled" => true,
+            "rowSecurity" => true,
+            "columns" => array(),
+            "indexes" => array(),);
 
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->databases->get(
-            "<DATABASE_ID>"
+        $response = $this->tables->get(
+            "<DATABASE_ID>",
+            "<TABLE_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -80,18 +93,24 @@ final class DatabasesTest extends TestCase {
 
         $data = array(
             "\$id" => "5e5ea5c16897e",
-            "name" => "My Database",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "enabled" => true,);
+            "\$permissions" => array(),
+            "databaseId" => "5e5ea5c16897e",
+            "name" => "My Table",
+            "enabled" => true,
+            "rowSecurity" => true,
+            "columns" => array(),
+            "indexes" => array(),);
 
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->databases->update(
+        $response = $this->tables->update(
             "<DATABASE_ID>",
+            "<TABLE_ID>",
             "<NAME>"
         );
 
@@ -107,151 +126,34 @@ final class DatabasesTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->databases->delete(
-            "<DATABASE_ID>"
+        $response = $this->tables->delete(
+            "<DATABASE_ID>",
+            "<TABLE_ID>"
         );
 
         $this->assertSame($data, $response);
     }
 
-    public function testMethodListCollections(): void {
+    public function testMethodListColumns(): void {
 
         $data = array(
             "total" => 5,
-            "collections" => array(),);
+            "columns" => array(),);
 
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->databases->listCollections(
-            "<DATABASE_ID>"
-        );
-
-        $this->assertSame($data, $response);
-    }
-
-    public function testMethodCreateCollection(): void {
-
-        $data = array(
-            "\$id" => "5e5ea5c16897e",
-            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$permissions" => array(),
-            "databaseId" => "5e5ea5c16897e",
-            "name" => "My Collection",
-            "enabled" => true,
-            "documentSecurity" => true,
-            "attributes" => array(),
-            "indexes" => array(),);
-
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-
-        $response = $this->databases->createCollection(
+        $response = $this->tables->listColumns(
             "<DATABASE_ID>",
-            "<COLLECTION_ID>",
-            "<NAME>"
+            "<TABLE_ID>"
         );
 
         $this->assertSame($data, $response);
     }
 
-    public function testMethodGetCollection(): void {
-
-        $data = array(
-            "\$id" => "5e5ea5c16897e",
-            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$permissions" => array(),
-            "databaseId" => "5e5ea5c16897e",
-            "name" => "My Collection",
-            "enabled" => true,
-            "documentSecurity" => true,
-            "attributes" => array(),
-            "indexes" => array(),);
-
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-
-        $response = $this->databases->getCollection(
-            "<DATABASE_ID>",
-            "<COLLECTION_ID>"
-        );
-
-        $this->assertSame($data, $response);
-    }
-
-    public function testMethodUpdateCollection(): void {
-
-        $data = array(
-            "\$id" => "5e5ea5c16897e",
-            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$permissions" => array(),
-            "databaseId" => "5e5ea5c16897e",
-            "name" => "My Collection",
-            "enabled" => true,
-            "documentSecurity" => true,
-            "attributes" => array(),
-            "indexes" => array(),);
-
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-
-        $response = $this->databases->updateCollection(
-            "<DATABASE_ID>",
-            "<COLLECTION_ID>",
-            "<NAME>"
-        );
-
-        $this->assertSame($data, $response);
-    }
-
-    public function testMethodDeleteCollection(): void {
-
-        $data = '';
-
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-
-        $response = $this->databases->deleteCollection(
-            "<DATABASE_ID>",
-            "<COLLECTION_ID>"
-        );
-
-        $this->assertSame($data, $response);
-    }
-
-    public function testMethodListAttributes(): void {
-
-        $data = array(
-            "total" => 5,
-            "attributes" => array(),);
-
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-
-        $response = $this->databases->listAttributes(
-            "<DATABASE_ID>",
-            "<COLLECTION_ID>"
-        );
-
-        $this->assertSame($data, $response);
-    }
-
-    public function testMethodCreateBooleanAttribute(): void {
+    public function testMethodCreateBooleanColumn(): void {
 
         $data = array(
             "key" => "isEnabled",
@@ -267,9 +169,9 @@ final class DatabasesTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->databases->createBooleanAttribute(
+        $response = $this->tables->createBooleanColumn(
             "<DATABASE_ID>",
-            "<COLLECTION_ID>",
+            "<TABLE_ID>",
             "",
             true
         );
@@ -277,7 +179,7 @@ final class DatabasesTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
-    public function testMethodUpdateBooleanAttribute(): void {
+    public function testMethodUpdateBooleanColumn(): void {
 
         $data = array(
             "key" => "isEnabled",
@@ -293,9 +195,9 @@ final class DatabasesTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->databases->updateBooleanAttribute(
+        $response = $this->tables->updateBooleanColumn(
             "<DATABASE_ID>",
-            "<COLLECTION_ID>",
+            "<TABLE_ID>",
             "",
             true,
             true
@@ -304,7 +206,7 @@ final class DatabasesTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
-    public function testMethodCreateDatetimeAttribute(): void {
+    public function testMethodCreateDatetimeColumn(): void {
 
         $data = array(
             "key" => "birthDay",
@@ -321,9 +223,9 @@ final class DatabasesTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->databases->createDatetimeAttribute(
+        $response = $this->tables->createDatetimeColumn(
             "<DATABASE_ID>",
-            "<COLLECTION_ID>",
+            "<TABLE_ID>",
             "",
             true
         );
@@ -331,7 +233,7 @@ final class DatabasesTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
-    public function testMethodUpdateDatetimeAttribute(): void {
+    public function testMethodUpdateDatetimeColumn(): void {
 
         $data = array(
             "key" => "birthDay",
@@ -348,9 +250,9 @@ final class DatabasesTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->databases->updateDatetimeAttribute(
+        $response = $this->tables->updateDatetimeColumn(
             "<DATABASE_ID>",
-            "<COLLECTION_ID>",
+            "<TABLE_ID>",
             "",
             true,
             ""
@@ -359,7 +261,7 @@ final class DatabasesTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
-    public function testMethodCreateEmailAttribute(): void {
+    public function testMethodCreateEmailColumn(): void {
 
         $data = array(
             "key" => "userEmail",
@@ -376,9 +278,9 @@ final class DatabasesTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->databases->createEmailAttribute(
+        $response = $this->tables->createEmailColumn(
             "<DATABASE_ID>",
-            "<COLLECTION_ID>",
+            "<TABLE_ID>",
             "",
             true
         );
@@ -386,7 +288,7 @@ final class DatabasesTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
-    public function testMethodUpdateEmailAttribute(): void {
+    public function testMethodUpdateEmailColumn(): void {
 
         $data = array(
             "key" => "userEmail",
@@ -403,9 +305,9 @@ final class DatabasesTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->databases->updateEmailAttribute(
+        $response = $this->tables->updateEmailColumn(
             "<DATABASE_ID>",
-            "<COLLECTION_ID>",
+            "<TABLE_ID>",
             "",
             true,
             "email@example.com"
@@ -414,7 +316,7 @@ final class DatabasesTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
-    public function testMethodCreateEnumAttribute(): void {
+    public function testMethodCreateEnumColumn(): void {
 
         $data = array(
             "key" => "status",
@@ -432,9 +334,9 @@ final class DatabasesTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->databases->createEnumAttribute(
+        $response = $this->tables->createEnumColumn(
             "<DATABASE_ID>",
-            "<COLLECTION_ID>",
+            "<TABLE_ID>",
             "",
             array(),
             true
@@ -443,7 +345,7 @@ final class DatabasesTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
-    public function testMethodUpdateEnumAttribute(): void {
+    public function testMethodUpdateEnumColumn(): void {
 
         $data = array(
             "key" => "status",
@@ -461,9 +363,9 @@ final class DatabasesTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->databases->updateEnumAttribute(
+        $response = $this->tables->updateEnumColumn(
             "<DATABASE_ID>",
-            "<COLLECTION_ID>",
+            "<TABLE_ID>",
             "",
             array(),
             true,
@@ -473,7 +375,7 @@ final class DatabasesTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
-    public function testMethodCreateFloatAttribute(): void {
+    public function testMethodCreateFloatColumn(): void {
 
         $data = array(
             "key" => "percentageCompleted",
@@ -489,9 +391,9 @@ final class DatabasesTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->databases->createFloatAttribute(
+        $response = $this->tables->createFloatColumn(
             "<DATABASE_ID>",
-            "<COLLECTION_ID>",
+            "<TABLE_ID>",
             "",
             true
         );
@@ -499,7 +401,7 @@ final class DatabasesTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
-    public function testMethodUpdateFloatAttribute(): void {
+    public function testMethodUpdateFloatColumn(): void {
 
         $data = array(
             "key" => "percentageCompleted",
@@ -515,9 +417,9 @@ final class DatabasesTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->databases->updateFloatAttribute(
+        $response = $this->tables->updateFloatColumn(
             "<DATABASE_ID>",
-            "<COLLECTION_ID>",
+            "<TABLE_ID>",
             "",
             true,
             1.0
@@ -526,7 +428,7 @@ final class DatabasesTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
-    public function testMethodCreateIntegerAttribute(): void {
+    public function testMethodCreateIntegerColumn(): void {
 
         $data = array(
             "key" => "count",
@@ -542,9 +444,9 @@ final class DatabasesTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->databases->createIntegerAttribute(
+        $response = $this->tables->createIntegerColumn(
             "<DATABASE_ID>",
-            "<COLLECTION_ID>",
+            "<TABLE_ID>",
             "",
             true
         );
@@ -552,7 +454,7 @@ final class DatabasesTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
-    public function testMethodUpdateIntegerAttribute(): void {
+    public function testMethodUpdateIntegerColumn(): void {
 
         $data = array(
             "key" => "count",
@@ -568,9 +470,9 @@ final class DatabasesTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->databases->updateIntegerAttribute(
+        $response = $this->tables->updateIntegerColumn(
             "<DATABASE_ID>",
-            "<COLLECTION_ID>",
+            "<TABLE_ID>",
             "",
             true,
             1
@@ -579,7 +481,7 @@ final class DatabasesTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
-    public function testMethodCreateIpAttribute(): void {
+    public function testMethodCreateIpColumn(): void {
 
         $data = array(
             "key" => "ipAddress",
@@ -596,9 +498,9 @@ final class DatabasesTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->databases->createIpAttribute(
+        $response = $this->tables->createIpColumn(
             "<DATABASE_ID>",
-            "<COLLECTION_ID>",
+            "<TABLE_ID>",
             "",
             true
         );
@@ -606,7 +508,7 @@ final class DatabasesTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
-    public function testMethodUpdateIpAttribute(): void {
+    public function testMethodUpdateIpColumn(): void {
 
         $data = array(
             "key" => "ipAddress",
@@ -623,9 +525,9 @@ final class DatabasesTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->databases->updateIpAttribute(
+        $response = $this->tables->updateIpColumn(
             "<DATABASE_ID>",
-            "<COLLECTION_ID>",
+            "<TABLE_ID>",
             "",
             true,
             ""
@@ -634,7 +536,7 @@ final class DatabasesTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
-    public function testMethodCreateRelationshipAttribute(): void {
+    public function testMethodCreateRelationshipColumn(): void {
 
         $data = array(
             "key" => "fullName",
@@ -644,7 +546,7 @@ final class DatabasesTest extends TestCase {
             "required" => true,
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "relatedCollection" => "collection",
+            "relatedTable" => "table",
             "relationType" => "oneToOne|oneToMany|manyToOne|manyToMany",
             "twoWay" => true,
             "twoWayKey" => "string",
@@ -656,17 +558,17 @@ final class DatabasesTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->databases->createRelationshipAttribute(
+        $response = $this->tables->createRelationshipColumn(
             "<DATABASE_ID>",
-            "<COLLECTION_ID>",
-            "<RELATED_COLLECTION_ID>",
+            "<TABLE_ID>",
+            "<RELATED_TABLE_ID>",
             "oneToOne"
         );
 
         $this->assertSame($data, $response);
     }
 
-    public function testMethodCreateStringAttribute(): void {
+    public function testMethodCreateStringColumn(): void {
 
         $data = array(
             "key" => "fullName",
@@ -683,9 +585,9 @@ final class DatabasesTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->databases->createStringAttribute(
+        $response = $this->tables->createStringColumn(
             "<DATABASE_ID>",
-            "<COLLECTION_ID>",
+            "<TABLE_ID>",
             "",
             1,
             true
@@ -694,7 +596,7 @@ final class DatabasesTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
-    public function testMethodUpdateStringAttribute(): void {
+    public function testMethodUpdateStringColumn(): void {
 
         $data = array(
             "key" => "fullName",
@@ -711,9 +613,9 @@ final class DatabasesTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->databases->updateStringAttribute(
+        $response = $this->tables->updateStringColumn(
             "<DATABASE_ID>",
-            "<COLLECTION_ID>",
+            "<TABLE_ID>",
             "",
             true,
             "<DEFAULT>"
@@ -722,7 +624,7 @@ final class DatabasesTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
-    public function testMethodCreateUrlAttribute(): void {
+    public function testMethodCreateUrlColumn(): void {
 
         $data = array(
             "key" => "githubUrl",
@@ -739,9 +641,9 @@ final class DatabasesTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->databases->createUrlAttribute(
+        $response = $this->tables->createUrlColumn(
             "<DATABASE_ID>",
-            "<COLLECTION_ID>",
+            "<TABLE_ID>",
             "",
             true
         );
@@ -749,7 +651,7 @@ final class DatabasesTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
-    public function testMethodUpdateUrlAttribute(): void {
+    public function testMethodUpdateUrlColumn(): void {
 
         $data = array(
             "key" => "githubUrl",
@@ -766,9 +668,9 @@ final class DatabasesTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->databases->updateUrlAttribute(
+        $response = $this->tables->updateUrlColumn(
             "<DATABASE_ID>",
-            "<COLLECTION_ID>",
+            "<TABLE_ID>",
             "",
             true,
             "https://example.com"
@@ -777,7 +679,7 @@ final class DatabasesTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
-    public function testMethodGetAttribute(): void {
+    public function testMethodGetColumn(): void {
 
         $data = '';
 
@@ -786,16 +688,16 @@ final class DatabasesTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->databases->getAttribute(
+        $response = $this->tables->getColumn(
             "<DATABASE_ID>",
-            "<COLLECTION_ID>",
+            "<TABLE_ID>",
             ""
         );
 
         $this->assertSame($data, $response);
     }
 
-    public function testMethodDeleteAttribute(): void {
+    public function testMethodDeleteColumn(): void {
 
         $data = '';
 
@@ -804,16 +706,16 @@ final class DatabasesTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->databases->deleteAttribute(
+        $response = $this->tables->deleteColumn(
             "<DATABASE_ID>",
-            "<COLLECTION_ID>",
+            "<TABLE_ID>",
             ""
         );
 
         $this->assertSame($data, $response);
     }
 
-    public function testMethodUpdateRelationshipAttribute(): void {
+    public function testMethodUpdateRelationshipColumn(): void {
 
         $data = array(
             "key" => "fullName",
@@ -823,7 +725,7 @@ final class DatabasesTest extends TestCase {
             "required" => true,
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "relatedCollection" => "collection",
+            "relatedTable" => "table",
             "relationType" => "oneToOne|oneToMany|manyToOne|manyToMany",
             "twoWay" => true,
             "twoWayKey" => "string",
@@ -835,276 +737,9 @@ final class DatabasesTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->databases->updateRelationshipAttribute(
+        $response = $this->tables->updateRelationshipColumn(
             "<DATABASE_ID>",
-            "<COLLECTION_ID>",
-            ""
-        );
-
-        $this->assertSame($data, $response);
-    }
-
-    public function testMethodListDocuments(): void {
-
-        $data = array(
-            "total" => 5,
-            "documents" => array(),);
-
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-
-        $response = $this->databases->listDocuments(
-            "<DATABASE_ID>",
-            "<COLLECTION_ID>"
-        );
-
-        $this->assertSame($data, $response);
-    }
-
-    public function testMethodCreateDocument(): void {
-
-        $data = array(
-            "\$id" => "5e5ea5c16897e",
-            "\$sequence" => 1,
-            "\$collectionId" => "5e5ea5c15117e",
-            "\$databaseId" => "5e5ea5c15117e",
-            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$permissions" => array(),);
-
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-
-        $response = $this->databases->createDocument(
-            "<DATABASE_ID>",
-            "<COLLECTION_ID>",
-            "<DOCUMENT_ID>",
-            array()
-        );
-
-        $this->assertSame($data, $response);
-    }
-
-    public function testMethodCreateDocuments(): void {
-
-        $data = array(
-            "total" => 5,
-            "documents" => array(),);
-
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-
-        $response = $this->databases->createDocuments(
-            "<DATABASE_ID>",
-            "<COLLECTION_ID>",
-            array()
-        );
-
-        $this->assertSame($data, $response);
-    }
-
-    public function testMethodUpsertDocuments(): void {
-
-        $data = array(
-            "total" => 5,
-            "documents" => array(),);
-
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-
-        $response = $this->databases->upsertDocuments(
-            "<DATABASE_ID>",
-            "<COLLECTION_ID>"
-        );
-
-        $this->assertSame($data, $response);
-    }
-
-    public function testMethodUpdateDocuments(): void {
-
-        $data = array(
-            "total" => 5,
-            "documents" => array(),);
-
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-
-        $response = $this->databases->updateDocuments(
-            "<DATABASE_ID>",
-            "<COLLECTION_ID>"
-        );
-
-        $this->assertSame($data, $response);
-    }
-
-    public function testMethodDeleteDocuments(): void {
-
-        $data = array(
-            "total" => 5,
-            "documents" => array(),);
-
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-
-        $response = $this->databases->deleteDocuments(
-            "<DATABASE_ID>",
-            "<COLLECTION_ID>"
-        );
-
-        $this->assertSame($data, $response);
-    }
-
-    public function testMethodGetDocument(): void {
-
-        $data = array(
-            "\$id" => "5e5ea5c16897e",
-            "\$sequence" => 1,
-            "\$collectionId" => "5e5ea5c15117e",
-            "\$databaseId" => "5e5ea5c15117e",
-            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$permissions" => array(),);
-
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-
-        $response = $this->databases->getDocument(
-            "<DATABASE_ID>",
-            "<COLLECTION_ID>",
-            "<DOCUMENT_ID>"
-        );
-
-        $this->assertSame($data, $response);
-    }
-
-    public function testMethodUpsertDocument(): void {
-
-        $data = array(
-            "\$id" => "5e5ea5c16897e",
-            "\$sequence" => 1,
-            "\$collectionId" => "5e5ea5c15117e",
-            "\$databaseId" => "5e5ea5c15117e",
-            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$permissions" => array(),);
-
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-
-        $response = $this->databases->upsertDocument(
-            "<DATABASE_ID>",
-            "<COLLECTION_ID>",
-            "<DOCUMENT_ID>"
-        );
-
-        $this->assertSame($data, $response);
-    }
-
-    public function testMethodUpdateDocument(): void {
-
-        $data = array(
-            "\$id" => "5e5ea5c16897e",
-            "\$sequence" => 1,
-            "\$collectionId" => "5e5ea5c15117e",
-            "\$databaseId" => "5e5ea5c15117e",
-            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$permissions" => array(),);
-
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-
-        $response = $this->databases->updateDocument(
-            "<DATABASE_ID>",
-            "<COLLECTION_ID>",
-            "<DOCUMENT_ID>"
-        );
-
-        $this->assertSame($data, $response);
-    }
-
-    public function testMethodDeleteDocument(): void {
-
-        $data = '';
-
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-
-        $response = $this->databases->deleteDocument(
-            "<DATABASE_ID>",
-            "<COLLECTION_ID>",
-            "<DOCUMENT_ID>"
-        );
-
-        $this->assertSame($data, $response);
-    }
-
-    public function testMethodDecrementDocumentAttribute(): void {
-
-        $data = array(
-            "\$id" => "5e5ea5c16897e",
-            "\$sequence" => 1,
-            "\$collectionId" => "5e5ea5c15117e",
-            "\$databaseId" => "5e5ea5c15117e",
-            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$permissions" => array(),);
-
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-
-        $response = $this->databases->decrementDocumentAttribute(
-            "<DATABASE_ID>",
-            "<COLLECTION_ID>",
-            "<DOCUMENT_ID>",
-            ""
-        );
-
-        $this->assertSame($data, $response);
-    }
-
-    public function testMethodIncrementDocumentAttribute(): void {
-
-        $data = array(
-            "\$id" => "5e5ea5c16897e",
-            "\$sequence" => 1,
-            "\$collectionId" => "5e5ea5c15117e",
-            "\$databaseId" => "5e5ea5c15117e",
-            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$permissions" => array(),);
-
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-
-        $response = $this->databases->incrementDocumentAttribute(
-            "<DATABASE_ID>",
-            "<COLLECTION_ID>",
-            "<DOCUMENT_ID>",
+            "<TABLE_ID>",
             ""
         );
 
@@ -1122,9 +757,9 @@ final class DatabasesTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->databases->listIndexes(
+        $response = $this->tables->listIndexes(
             "<DATABASE_ID>",
-            "<COLLECTION_ID>"
+            "<TABLE_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -1137,7 +772,7 @@ final class DatabasesTest extends TestCase {
             "type" => "primary",
             "status" => "available",
             "error" => "string",
-            "attributes" => array(),
+            "columns" => array(),
             "lengths" => array(),
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",);
@@ -1147,9 +782,9 @@ final class DatabasesTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->databases->createIndex(
+        $response = $this->tables->createIndex(
             "<DATABASE_ID>",
-            "<COLLECTION_ID>",
+            "<TABLE_ID>",
             "",
             "key",
             array()
@@ -1165,7 +800,7 @@ final class DatabasesTest extends TestCase {
             "type" => "primary",
             "status" => "available",
             "error" => "string",
-            "attributes" => array(),
+            "columns" => array(),
             "lengths" => array(),
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",);
@@ -1175,9 +810,9 @@ final class DatabasesTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->databases->getIndex(
+        $response = $this->tables->getIndex(
             "<DATABASE_ID>",
-            "<COLLECTION_ID>",
+            "<TABLE_ID>",
             ""
         );
 
@@ -1193,9 +828,276 @@ final class DatabasesTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->databases->deleteIndex(
+        $response = $this->tables->deleteIndex(
             "<DATABASE_ID>",
-            "<COLLECTION_ID>",
+            "<TABLE_ID>",
+            ""
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodListRows(): void {
+
+        $data = array(
+            "total" => 5,
+            "rows" => array(),);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->tables->listRows(
+            "<DATABASE_ID>",
+            "<TABLE_ID>"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodCreateRow(): void {
+
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$sequence" => 1,
+            "\$tableId" => "5e5ea5c15117e",
+            "\$databaseId" => "5e5ea5c15117e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$permissions" => array(),);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->tables->createRow(
+            "<DATABASE_ID>",
+            "<TABLE_ID>",
+            "<ROW_ID>",
+            array()
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodCreateRows(): void {
+
+        $data = array(
+            "total" => 5,
+            "rows" => array(),);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->tables->createRows(
+            "<DATABASE_ID>",
+            "<TABLE_ID>",
+            array()
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodUpsertRows(): void {
+
+        $data = array(
+            "total" => 5,
+            "rows" => array(),);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->tables->upsertRows(
+            "<DATABASE_ID>",
+            "<TABLE_ID>"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodUpdateRows(): void {
+
+        $data = array(
+            "total" => 5,
+            "rows" => array(),);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->tables->updateRows(
+            "<DATABASE_ID>",
+            "<TABLE_ID>"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodDeleteRows(): void {
+
+        $data = array(
+            "total" => 5,
+            "rows" => array(),);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->tables->deleteRows(
+            "<DATABASE_ID>",
+            "<TABLE_ID>"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodGetRow(): void {
+
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$sequence" => 1,
+            "\$tableId" => "5e5ea5c15117e",
+            "\$databaseId" => "5e5ea5c15117e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$permissions" => array(),);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->tables->getRow(
+            "<DATABASE_ID>",
+            "<TABLE_ID>",
+            "<ROW_ID>"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodUpsertRow(): void {
+
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$sequence" => 1,
+            "\$tableId" => "5e5ea5c15117e",
+            "\$databaseId" => "5e5ea5c15117e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$permissions" => array(),);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->tables->upsertRow(
+            "<DATABASE_ID>",
+            "<TABLE_ID>",
+            "<ROW_ID>"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodUpdateRow(): void {
+
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$sequence" => 1,
+            "\$tableId" => "5e5ea5c15117e",
+            "\$databaseId" => "5e5ea5c15117e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$permissions" => array(),);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->tables->updateRow(
+            "<DATABASE_ID>",
+            "<TABLE_ID>",
+            "<ROW_ID>"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodDeleteRow(): void {
+
+        $data = '';
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->tables->deleteRow(
+            "<DATABASE_ID>",
+            "<TABLE_ID>",
+            "<ROW_ID>"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodDecrementRowColumn(): void {
+
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$sequence" => 1,
+            "\$tableId" => "5e5ea5c15117e",
+            "\$databaseId" => "5e5ea5c15117e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$permissions" => array(),);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->tables->decrementRowColumn(
+            "<DATABASE_ID>",
+            "<TABLE_ID>",
+            "<ROW_ID>",
+            ""
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodIncrementRowColumn(): void {
+
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$sequence" => 1,
+            "\$tableId" => "5e5ea5c15117e",
+            "\$databaseId" => "5e5ea5c15117e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$permissions" => array(),);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->tables->incrementRowColumn(
+            "<DATABASE_ID>",
+            "<TABLE_ID>",
+            "<ROW_ID>",
             ""
         );
 
