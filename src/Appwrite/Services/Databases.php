@@ -1535,6 +1535,10 @@ class Databases extends Service
     }
 
     /**
+     * **WARNING: Experimental Feature** - This endpoint is experimental and not
+     * yet officially supported. It may be subject to breaking changes or removal
+     * in future versions.
+     * 
      * Create new Documents. Before using this route, you should create a new
      * collection resource using either a [server
      * integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
@@ -1571,19 +1575,22 @@ class Databases extends Service
     }
 
     /**
+     * **WARNING: Experimental Feature** - This endpoint is experimental and not
+     * yet officially supported. It may be subject to breaking changes or removal
+     * in future versions.
+     * 
      * Create or update Documents. Before using this route, you should create a
      * new collection resource using either a [server
      * integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
      * API or directly from your database console.
-     * 
      *
      * @param string $databaseId
      * @param string $collectionId
-     * @param ?array $documents
+     * @param array $documents
      * @throws AppwriteException
      * @return array
      */
-    public function upsertDocuments(string $databaseId, string $collectionId, ?array $documents = null): array
+    public function upsertDocuments(string $databaseId, string $collectionId, array $documents): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
@@ -1594,10 +1601,7 @@ class Databases extends Service
         $apiParams = [];
         $apiParams['databaseId'] = $databaseId;
         $apiParams['collectionId'] = $collectionId;
-
-        if (!is_null($documents)) {
-            $apiParams['documents'] = $documents;
-        }
+        $apiParams['documents'] = $documents;
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -1611,6 +1615,10 @@ class Databases extends Service
     }
 
     /**
+     * **WARNING: Experimental Feature** - This endpoint is experimental and not
+     * yet officially supported. It may be subject to breaking changes or removal
+     * in future versions.
+     * 
      * Update all documents that match your queries, if no queries are submitted
      * then all documents are updated. You can pass only specific fields to be
      * updated.
@@ -1654,6 +1662,10 @@ class Databases extends Service
     }
 
     /**
+     * **WARNING: Experimental Feature** - This endpoint is experimental and not
+     * yet officially supported. It may be subject to breaking changes or removal
+     * in future versions.
+     * 
      * Bulk delete documents using queries, if no queries are passed then all
      * documents are deleted.
      *
@@ -1722,6 +1734,53 @@ class Databases extends Service
 
         return $this->client->call(
             Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * **WARNING: Experimental Feature** - This endpoint is experimental and not
+     * yet officially supported. It may be subject to breaking changes or removal
+     * in future versions.
+     * 
+     * Create or update a Document. Before using this route, you should create a
+     * new collection resource using either a [server
+     * integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
+     * API or directly from your database console.
+     *
+     * @param string $databaseId
+     * @param string $collectionId
+     * @param string $documentId
+     * @param array $data
+     * @param ?array $permissions
+     * @throws AppwriteException
+     * @return array
+     */
+    public function upsertDocument(string $databaseId, string $collectionId, string $documentId, array $data, ?array $permissions = null): array
+    {
+        $apiPath = str_replace(
+            ['{databaseId}', '{collectionId}', '{documentId}'],
+            [$databaseId, $collectionId, $documentId],
+            '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['collectionId'] = $collectionId;
+        $apiParams['documentId'] = $documentId;
+        $apiParams['data'] = $data;
+
+        if (!is_null($permissions)) {
+            $apiParams['permissions'] = $permissions;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_PUT,
             $apiPath,
             $apiHeaders,
             $apiParams
@@ -1799,6 +1858,96 @@ class Databases extends Service
 
         return $this->client->call(
             Client::METHOD_DELETE,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Decrement a specific attribute of a document by a given value.
+     *
+     * @param string $databaseId
+     * @param string $collectionId
+     * @param string $documentId
+     * @param string $attribute
+     * @param ?float $value
+     * @param ?float $min
+     * @throws AppwriteException
+     * @return array
+     */
+    public function decrementDocumentAttribute(string $databaseId, string $collectionId, string $documentId, string $attribute, ?float $value = null, ?float $min = null): array
+    {
+        $apiPath = str_replace(
+            ['{databaseId}', '{collectionId}', '{documentId}', '{attribute}'],
+            [$databaseId, $collectionId, $documentId, $attribute],
+            '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}/{attribute}/decrement'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['collectionId'] = $collectionId;
+        $apiParams['documentId'] = $documentId;
+        $apiParams['attribute'] = $attribute;
+
+        if (!is_null($value)) {
+            $apiParams['value'] = $value;
+        }
+
+        if (!is_null($min)) {
+            $apiParams['min'] = $min;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Increment a specific attribute of a document by a given value.
+     *
+     * @param string $databaseId
+     * @param string $collectionId
+     * @param string $documentId
+     * @param string $attribute
+     * @param ?float $value
+     * @param ?float $max
+     * @throws AppwriteException
+     * @return array
+     */
+    public function incrementDocumentAttribute(string $databaseId, string $collectionId, string $documentId, string $attribute, ?float $value = null, ?float $max = null): array
+    {
+        $apiPath = str_replace(
+            ['{databaseId}', '{collectionId}', '{documentId}', '{attribute}'],
+            [$databaseId, $collectionId, $documentId, $attribute],
+            '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}/{attribute}/increment'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['collectionId'] = $collectionId;
+        $apiParams['documentId'] = $documentId;
+        $apiParams['attribute'] = $attribute;
+
+        if (!is_null($value)) {
+            $apiParams['value'] = $value;
+        }
+
+        if (!is_null($max)) {
+            $apiParams['max'] = $max;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams

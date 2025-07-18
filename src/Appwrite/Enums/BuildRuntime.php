@@ -43,6 +43,7 @@ class BuildRuntime implements JsonSerializable
     private static BuildRuntime $DART31;
     private static BuildRuntime $DART33;
     private static BuildRuntime $DART35;
+    private static BuildRuntime $DART38;
     private static BuildRuntime $DOTNET60;
     private static BuildRuntime $DOTNET70;
     private static BuildRuntime $DOTNET80;
@@ -69,6 +70,7 @@ class BuildRuntime implements JsonSerializable
     private static BuildRuntime $FLUTTER324;
     private static BuildRuntime $FLUTTER327;
     private static BuildRuntime $FLUTTER329;
+    private static BuildRuntime $FLUTTER332;
 
     private string $value;
 
@@ -346,6 +348,13 @@ class BuildRuntime implements JsonSerializable
         }
         return self::$DART35;
     }
+    public static function DART38(): BuildRuntime
+    {
+        if (!isset(self::$DART38)) {
+            self::$DART38 = new BuildRuntime('dart-3.8');
+        }
+        return self::$DART38;
+    }
     public static function DOTNET60(): BuildRuntime
     {
         if (!isset(self::$DOTNET60)) {
@@ -527,5 +536,12 @@ class BuildRuntime implements JsonSerializable
             self::$FLUTTER329 = new BuildRuntime('flutter-3.29');
         }
         return self::$FLUTTER329;
+    }
+    public static function FLUTTER332(): BuildRuntime
+    {
+        if (!isset(self::$FLUTTER332)) {
+            self::$FLUTTER332 = new BuildRuntime('flutter-3.32');
+        }
+        return self::$FLUTTER332;
     }
 }
