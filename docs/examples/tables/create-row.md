@@ -1,7 +1,7 @@
 <?php
 
 use Appwrite\Client;
-use Appwrite\Services\Databases;
+use Appwrite\Services\Tables;
 
 $client = (new Client())
     ->setEndpoint('https://<REGION>.cloud.appwrite.io/v1') // Your API Endpoint
@@ -9,10 +9,12 @@ $client = (new Client())
     ->setKey('<YOUR_API_KEY>') // Your secret API key
     ->setJWT('<YOUR_JWT>'); // Your secret JSON Web Token
 
-$databases = new Databases($client);
+$tables = new Tables($client);
 
-$result = $databases->upsertDocument(
+$result = $tables->createRow(
     databaseId: '<DATABASE_ID>',
-    collectionId: '<COLLECTION_ID>',
-    documentId: '<DOCUMENT_ID>'
+    tableId: '<TABLE_ID>',
+    rowId: '<ROW_ID>',
+    data: [],
+    permissions: ["read("any")"] // optional
 );

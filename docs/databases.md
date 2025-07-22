@@ -162,7 +162,7 @@ GET https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionI
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | databaseId | string | **Required** Database ID. |  |
-| collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
+| collectionId | string | **Required** Collection ID. |  |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: key, type, size, required, array, status, error | [] |
 
 
@@ -178,7 +178,7 @@ POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collection
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | databaseId | string | **Required** Database ID. |  |
-| collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
+| collectionId | string | **Required** Collection ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
 | key | string | Attribute Key. |  |
 | required | boolean | Is attribute required? |  |
 | default | boolean | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
@@ -196,7 +196,7 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | databaseId | string | **Required** Database ID. |  |
-| collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
+| collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#createCollection). |  |
 | key | string | **Required** Attribute Key. |  |
 | required | boolean | Is attribute required? |  |
 | default | boolean | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
@@ -214,7 +214,7 @@ POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collection
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | databaseId | string | **Required** Database ID. |  |
-| collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
+| collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#createCollection). |  |
 | key | string | Attribute Key. |  |
 | required | boolean | Is attribute required? |  |
 | default | string | Default value for the attribute in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. Cannot be set when attribute is required. |  |
@@ -232,7 +232,7 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | databaseId | string | **Required** Database ID. |  |
-| collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
+| collectionId | string | **Required** Collection ID. |  |
 | key | string | **Required** Attribute Key. |  |
 | required | boolean | Is attribute required? |  |
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
@@ -251,7 +251,7 @@ POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collection
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | databaseId | string | **Required** Database ID. |  |
-| collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
+| collectionId | string | **Required** Collection ID. |  |
 | key | string | Attribute Key. |  |
 | required | boolean | Is attribute required? |  |
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
@@ -270,18 +270,18 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | databaseId | string | **Required** Database ID. |  |
-| collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
+| collectionId | string | **Required** Collection ID. |  |
 | key | string | **Required** Attribute Key. |  |
 | required | boolean | Is attribute required? |  |
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
-| newKey | string | New attribute key. |  |
+| newKey | string | New Attribute Key. |  |
 
 
 ```http request
 POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/enum
 ```
 
-** Create an enumeration attribute. The `elements` param acts as a white-list of accepted values for this attribute. 
+** Create an enum attribute. The `elements` param acts as a white-list of accepted values for this attribute. 
  **
 
 ### Parameters
@@ -289,9 +289,9 @@ POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collection
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | databaseId | string | **Required** Database ID. |  |
-| collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
+| collectionId | string | **Required** Collection ID. |  |
 | key | string | Attribute Key. |  |
-| elements | array | Array of elements in enumerated type. Uses length of longest element to determine size. Maximum of 100 elements are allowed, each 255 characters long. |  |
+| elements | array | Array of enum values. |  |
 | required | boolean | Is attribute required? |  |
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | array | boolean | Is attribute an array? |  |
@@ -309,12 +309,12 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | databaseId | string | **Required** Database ID. |  |
-| collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
+| collectionId | string | **Required** Collection ID. |  |
 | key | string | **Required** Attribute Key. |  |
-| elements | array | Array of elements in enumerated type. Uses length of longest element to determine size. Maximum of 100 elements are allowed, each 255 characters long. |  |
+| elements | array | Updated list of enum values. |  |
 | required | boolean | Is attribute required? |  |
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
-| newKey | string | New attribute key. |  |
+| newKey | string | New Attribute Key. |  |
 
 
 ```http request
@@ -329,12 +329,12 @@ POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collection
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | databaseId | string | **Required** Database ID. |  |
-| collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
+| collectionId | string | **Required** Collection ID. |  |
 | key | string | Attribute Key. |  |
 | required | boolean | Is attribute required? |  |
-| min | number | Minimum value to enforce on new documents |  |
-| max | number | Maximum value to enforce on new documents |  |
-| default | number | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
+| min | number | Minimum value. |  |
+| max | number | Maximum value. |  |
+| default | number | Default value. Cannot be set when required. |  |
 | array | boolean | Is attribute an array? |  |
 
 
@@ -350,13 +350,13 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | databaseId | string | **Required** Database ID. |  |
-| collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
+| collectionId | string | **Required** Collection ID. |  |
 | key | string | **Required** Attribute Key. |  |
 | required | boolean | Is attribute required? |  |
-| min | number | Minimum value to enforce on new documents |  |
-| max | number | Maximum value to enforce on new documents |  |
-| default | number | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
-| newKey | string | New attribute key. |  |
+| min | number | Minimum value. |  |
+| max | number | Maximum value. |  |
+| default | number | Default value. Cannot be set when required. |  |
+| newKey | string | New Attribute Key. |  |
 
 
 ```http request
@@ -371,12 +371,12 @@ POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collection
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | databaseId | string | **Required** Database ID. |  |
-| collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
+| collectionId | string | **Required** Collection ID. |  |
 | key | string | Attribute Key. |  |
 | required | boolean | Is attribute required? |  |
-| min | integer | Minimum value to enforce on new documents |  |
-| max | integer | Maximum value to enforce on new documents |  |
-| default | integer | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
+| min | integer | Minimum value |  |
+| max | integer | Maximum value |  |
+| default | integer | Default value. Cannot be set when attribute is required. |  |
 | array | boolean | Is attribute an array? |  |
 
 
@@ -392,13 +392,13 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | databaseId | string | **Required** Database ID. |  |
-| collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
+| collectionId | string | **Required** Collection ID. |  |
 | key | string | **Required** Attribute Key. |  |
 | required | boolean | Is attribute required? |  |
-| min | integer | Minimum value to enforce on new documents |  |
-| max | integer | Maximum value to enforce on new documents |  |
-| default | integer | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
-| newKey | string | New attribute key. |  |
+| min | integer | Minimum value |  |
+| max | integer | Maximum value |  |
+| default | integer | Default value. Cannot be set when attribute is required. |  |
+| newKey | string | New Attribute Key. |  |
 
 
 ```http request
@@ -413,10 +413,10 @@ POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collection
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | databaseId | string | **Required** Database ID. |  |
-| collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
+| collectionId | string | **Required** Collection ID. |  |
 | key | string | Attribute Key. |  |
 | required | boolean | Is attribute required? |  |
-| default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
+| default | string | Default value. Cannot be set when attribute is required. |  |
 | array | boolean | Is attribute an array? |  |
 
 
@@ -432,11 +432,11 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | databaseId | string | **Required** Database ID. |  |
-| collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
+| collectionId | string | **Required** Collection ID. |  |
 | key | string | **Required** Attribute Key. |  |
 | required | boolean | Is attribute required? |  |
-| default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
-| newKey | string | New attribute key. |  |
+| default | string | Default value. Cannot be set when attribute is required. |  |
+| newKey | string | New Attribute Key. |  |
 
 
 ```http request
@@ -451,8 +451,8 @@ POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collection
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | databaseId | string | **Required** Database ID. |  |
-| collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
-| relatedCollectionId | string | Related Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
+| collectionId | string | **Required** Collection ID. |  |
+| relatedCollectionId | string | Related Collection ID. |  |
 | type | string | Relation type |  |
 | twoWay | boolean | Is Two Way? |  |
 | key | string | Attribute Key. |  |
@@ -472,7 +472,7 @@ POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collection
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | databaseId | string | **Required** Database ID. |  |
-| collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
+| collectionId | string | **Required** Collection ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
 | key | string | Attribute Key. |  |
 | size | integer | Attribute size for text attributes, in number of characters. |  |
 | required | boolean | Is attribute required? |  |
@@ -493,12 +493,12 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | databaseId | string | **Required** Database ID. |  |
-| collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
+| collectionId | string | **Required** Collection ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
 | key | string | **Required** Attribute Key. |  |
 | required | boolean | Is attribute required? |  |
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | size | integer | Maximum size of the string attribute. |  |
-| newKey | string | New attribute key. |  |
+| newKey | string | New Attribute Key. |  |
 
 
 ```http request
@@ -513,7 +513,7 @@ POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collection
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | databaseId | string | **Required** Database ID. |  |
-| collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
+| collectionId | string | **Required** Collection ID. |  |
 | key | string | Attribute Key. |  |
 | required | boolean | Is attribute required? |  |
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
@@ -532,11 +532,11 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | databaseId | string | **Required** Database ID. |  |
-| collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
+| collectionId | string | **Required** Collection ID. |  |
 | key | string | **Required** Attribute Key. |  |
 | required | boolean | Is attribute required? |  |
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
-| newKey | string | New attribute key. |  |
+| newKey | string | New Attribute Key. |  |
 
 
 ```http request
@@ -550,7 +550,7 @@ GET https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionI
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | databaseId | string | **Required** Database ID. |  |
-| collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
+| collectionId | string | **Required** Collection ID. |  |
 | key | string | **Required** Attribute Key. |  |
 
 
@@ -565,7 +565,7 @@ DELETE https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collecti
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | databaseId | string | **Required** Database ID. |  |
-| collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
+| collectionId | string | **Required** Collection ID. |  |
 | key | string | **Required** Attribute Key. |  |
 
 
@@ -581,10 +581,10 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | databaseId | string | **Required** Database ID. |  |
-| collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
+| collectionId | string | **Required** Collection ID. |  |
 | key | string | **Required** Attribute Key. |  |
 | onDelete | string | Constraints option |  |
-| newKey | string | New attribute key. |  |
+| newKey | string | New Attribute Key. |  |
 
 
 ```http request
@@ -642,7 +642,8 @@ PUT https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionI
 
 ** **WARNING: Experimental Feature** - This endpoint is experimental and not yet officially supported. It may be subject to breaking changes or removal in future versions.
 
-Create or update Documents. Before using this route, you should create a new collection resource using either a [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection) API or directly from your database console. **
+Create or update Documents. Before using this route, you should create a new collection resource using either a [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection) API or directly from your database console.
+ **
 
 ### Parameters
 
@@ -650,7 +651,6 @@ Create or update Documents. Before using this route, you should create a new col
 | --- | --- | --- | --- |
 | databaseId | string | **Required** Database ID. |  |
 | collectionId | string | **Required** Collection ID. |  |
-| documents | array | Array of document data as JSON objects. May contain partial documents. |  |
 
 
 ```http request
@@ -719,8 +719,6 @@ Create or update a Document. Before using this route, you should create a new co
 | databaseId | string | **Required** Database ID. |  |
 | collectionId | string | **Required** Collection ID. |  |
 | documentId | string | **Required** Document ID. |  |
-| data | object | Document data as JSON object. Include all required attributes of the document to be created or updated. | {} |
-| permissions | array | An array of permissions strings. By default, the current permissions are inherited. [Learn more about permissions](https://appwrite.io/docs/permissions). |  |
 
 
 ```http request
@@ -769,7 +767,7 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 | collectionId | string | **Required** Collection ID. |  |
 | documentId | string | **Required** Document ID. |  |
 | attribute | string | **Required** Attribute key. |  |
-| value | number | Value to decrement the attribute by. The value must be a number. | 1 |
+| value | number | Value to increment the attribute by. The value must be a number. | 1 |
 | min | number | Minimum value for the attribute. If the current value is lesser than this value, an exception will be thrown. |  |
 
 
