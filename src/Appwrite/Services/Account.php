@@ -923,8 +923,6 @@ class Account extends Service
      * @param string $secret
      * @throws AppwriteException
      * @return array
-     *
-     * @deprecated This API has been deprecated.
      */
     public function updateMagicURLSession(string $userId, string $secret): array
     {
@@ -958,8 +956,6 @@ class Account extends Service
      * @param string $secret
      * @throws AppwriteException
      * @return array
-     *
-     * @deprecated This API has been deprecated.
      */
     public function updatePhoneSession(string $userId, string $secret): array
     {

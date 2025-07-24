@@ -922,7 +922,8 @@ final class DatabasesTest extends TestCase {
 
         $response = $this->databases->upsertDocuments(
             "<DATABASE_ID>",
-            "<COLLECTION_ID>"
+            "<COLLECTION_ID>",
+            array()
         );
 
         $this->assertSame($data, $response);
@@ -1010,7 +1011,8 @@ final class DatabasesTest extends TestCase {
         $response = $this->databases->upsertDocument(
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
-            "<DOCUMENT_ID>"
+            "<DOCUMENT_ID>",
+            array()
         );
 
         $this->assertSame($data, $response);
