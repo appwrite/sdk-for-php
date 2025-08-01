@@ -867,6 +867,7 @@ final class DatabasesTest extends TestCase {
 
         $data = array(
             "\$id" => "5e5ea5c16897e",
+            "\$sequence" => 1,
             "\$collectionId" => "5e5ea5c15117e",
             "\$databaseId" => "5e5ea5c15117e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
@@ -921,7 +922,8 @@ final class DatabasesTest extends TestCase {
 
         $response = $this->databases->upsertDocuments(
             "<DATABASE_ID>",
-            "<COLLECTION_ID>"
+            "<COLLECTION_ID>",
+            array()
         );
 
         $this->assertSame($data, $response);
@@ -969,6 +971,7 @@ final class DatabasesTest extends TestCase {
 
         $data = array(
             "\$id" => "5e5ea5c16897e",
+            "\$sequence" => 1,
             "\$collectionId" => "5e5ea5c15117e",
             "\$databaseId" => "5e5ea5c15117e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
@@ -989,10 +992,37 @@ final class DatabasesTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
+    public function testMethodUpsertDocument(): void {
+
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$sequence" => 1,
+            "\$collectionId" => "5e5ea5c15117e",
+            "\$databaseId" => "5e5ea5c15117e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$permissions" => array(),);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->databases->upsertDocument(
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
+            "<DOCUMENT_ID>",
+            array()
+        );
+
+        $this->assertSame($data, $response);
+    }
+
     public function testMethodUpdateDocument(): void {
 
         $data = array(
             "\$id" => "5e5ea5c16897e",
+            "\$sequence" => 1,
             "\$collectionId" => "5e5ea5c15117e",
             "\$databaseId" => "5e5ea5c15117e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
@@ -1026,6 +1056,58 @@ final class DatabasesTest extends TestCase {
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
             "<DOCUMENT_ID>"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodDecrementDocumentAttribute(): void {
+
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$sequence" => 1,
+            "\$collectionId" => "5e5ea5c15117e",
+            "\$databaseId" => "5e5ea5c15117e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$permissions" => array(),);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->databases->decrementDocumentAttribute(
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
+            "<DOCUMENT_ID>",
+            ""
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodIncrementDocumentAttribute(): void {
+
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$sequence" => 1,
+            "\$collectionId" => "5e5ea5c15117e",
+            "\$databaseId" => "5e5ea5c15117e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$permissions" => array(),);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->databases->incrementDocumentAttribute(
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
+            "<DOCUMENT_ID>",
+            ""
         );
 
         $this->assertSame($data, $response);

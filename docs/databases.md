@@ -623,7 +623,9 @@ POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collection
 POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/documents
 ```
 
-** Create new Documents. Before using this route, you should create a new collection resource using either a [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection) API or directly from your database console. **
+** **WARNING: Experimental Feature** - This endpoint is experimental and not yet officially supported. It may be subject to breaking changes or removal in future versions.
+
+Create new Documents. Before using this route, you should create a new collection resource using either a [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection) API or directly from your database console. **
 
 ### Parameters
 
@@ -638,7 +640,9 @@ POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collection
 PUT https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/documents
 ```
 
-** Create or update Documents. Before using this route, you should create a new collection resource using either a [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection) API or directly from your database console.
+** **WARNING: Experimental Feature** - This endpoint is experimental and not yet officially supported. It may be subject to breaking changes or removal in future versions.
+
+Create or update Documents. Before using this route, you should create a new collection resource using either a [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection) API or directly from your database console.
  **
 
 ### Parameters
@@ -647,14 +651,16 @@ PUT https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionI
 | --- | --- | --- | --- |
 | databaseId | string | **Required** Database ID. |  |
 | collectionId | string | **Required** Collection ID. |  |
-| documents | array | Array of document data as JSON objects. May contain partial documents. | [] |
+| documents | array | Array of document data as JSON objects. May contain partial documents. |  |
 
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/documents
 ```
 
-** Update all documents that match your queries, if no queries are submitted then all documents are updated. You can pass only specific fields to be updated. **
+** **WARNING: Experimental Feature** - This endpoint is experimental and not yet officially supported. It may be subject to breaking changes or removal in future versions.
+
+Update all documents that match your queries, if no queries are submitted then all documents are updated. You can pass only specific fields to be updated. **
 
 ### Parameters
 
@@ -670,7 +676,9 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 DELETE https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/documents
 ```
 
-** Bulk delete documents using queries, if no queries are passed then all documents are deleted. **
+** **WARNING: Experimental Feature** - This endpoint is experimental and not yet officially supported. It may be subject to breaking changes or removal in future versions.
+
+Bulk delete documents using queries, if no queries are passed then all documents are deleted. **
 
 ### Parameters
 
@@ -695,6 +703,25 @@ GET https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionI
 | collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
 | documentId | string | **Required** Document ID. |  |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. | [] |
+
+
+```http request
+PUT https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/documents/{documentId}
+```
+
+** **WARNING: Experimental Feature** - This endpoint is experimental and not yet officially supported. It may be subject to breaking changes or removal in future versions.
+
+Create or update a Document. Before using this route, you should create a new collection resource using either a [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection) API or directly from your database console. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| databaseId | string | **Required** Database ID. |  |
+| collectionId | string | **Required** Collection ID. |  |
+| documentId | string | **Required** Document ID. |  |
+| data | object | Document data as JSON object. Include all required attributes of the document to be created or updated. | {} |
+| permissions | array | An array of permissions strings. By default, the current permissions are inherited. [Learn more about permissions](https://appwrite.io/docs/permissions). |  |
 
 
 ```http request
@@ -727,6 +754,42 @@ DELETE https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collecti
 | databaseId | string | **Required** Database ID. |  |
 | collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
 | documentId | string | **Required** Document ID. |  |
+
+
+```http request
+PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/documents/{documentId}/{attribute}/decrement
+```
+
+** Decrement a specific attribute of a document by a given value. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| databaseId | string | **Required** Database ID. |  |
+| collectionId | string | **Required** Collection ID. |  |
+| documentId | string | **Required** Document ID. |  |
+| attribute | string | **Required** Attribute key. |  |
+| value | number | Value to decrement the attribute by. The value must be a number. | 1 |
+| min | number | Minimum value for the attribute. If the current value is lesser than this value, an exception will be thrown. |  |
+
+
+```http request
+PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/documents/{documentId}/{attribute}/increment
+```
+
+** Increment a specific attribute of a document by a given value. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| databaseId | string | **Required** Database ID. |  |
+| collectionId | string | **Required** Collection ID. |  |
+| documentId | string | **Required** Document ID. |  |
+| attribute | string | **Required** Attribute key. |  |
+| value | number | Value to increment the attribute by. The value must be a number. | 1 |
+| max | number | Maximum value for the attribute. If the current value is greater than this value, an error will be thrown. |  |
 
 
 ```http request

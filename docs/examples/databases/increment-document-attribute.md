@@ -10,8 +10,11 @@ $client = (new Client())
 
 $databases = new Databases($client);
 
-$result = $databases->createDocuments(
+$result = $databases->incrementDocumentAttribute(
     databaseId: '<DATABASE_ID>',
     collectionId: '<COLLECTION_ID>',
-    documents: []
+    documentId: '<DOCUMENT_ID>',
+    attribute: '',
+    value: null, // optional
+    max: null // optional
 );
