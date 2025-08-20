@@ -13,6 +13,5 @@ $tablesDb = new TablesDb($client);
 $result = $tablesDb->create(
     databaseId: '<DATABASE_ID>',
     name: '<NAME>',
-    enabled: false, // optional
-    type: ::TABLESDB() // optional
+    enabled: false // optional
 );

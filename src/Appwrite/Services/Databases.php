@@ -6,7 +6,6 @@ use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
 use Appwrite\InputFile;
-use Appwrite\Enums\Type;
 use Appwrite\Enums\RelationshipType;
 use Appwrite\Enums\RelationMutate;
 use Appwrite\Enums\IndexType;
@@ -65,14 +64,13 @@ class Databases extends Service
      * @param string $databaseId
      * @param string $name
      * @param ?bool $enabled
-     * @param ?Type $type
      * @throws AppwriteException
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createDatabase` instead.
      * @see TablesDb::createDatabase
      */
-    public function create(string $databaseId, string $name, ?bool $enabled = null, ?Type $type = null): array
+    public function create(string $databaseId, string $name, ?bool $enabled = null): array
     {
         $apiPath = str_replace(
             [],
@@ -86,10 +84,6 @@ class Databases extends Service
 
         if (!is_null($enabled)) {
             $apiParams['enabled'] = $enabled;
-        }
-
-        if (!is_null($type)) {
-            $apiParams['type'] = $type;
         }
 
         $apiHeaders = [];

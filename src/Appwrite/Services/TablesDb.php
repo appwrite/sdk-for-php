@@ -6,7 +6,6 @@ use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
 use Appwrite\InputFile;
-use Appwrite\Enums\Type;
 use Appwrite\Enums\RelationshipType;
 use Appwrite\Enums\RelationMutate;
 use Appwrite\Enums\IndexType;
@@ -62,11 +61,10 @@ class TablesDb extends Service
      * @param string $databaseId
      * @param string $name
      * @param ?bool $enabled
-     * @param ?Type $type
      * @throws AppwriteException
      * @return array
      */
-    public function create(string $databaseId, string $name, ?bool $enabled = null, ?Type $type = null): array
+    public function create(string $databaseId, string $name, ?bool $enabled = null): array
     {
         $apiPath = str_replace(
             [],
@@ -80,10 +78,6 @@ class TablesDb extends Service
 
         if (!is_null($enabled)) {
             $apiParams['enabled'] = $enabled;
-        }
-
-        if (!is_null($type)) {
-            $apiParams['type'] = $type;
         }
 
         $apiHeaders = [];
@@ -1461,7 +1455,7 @@ class TablesDb extends Service
     }
 
     /**
-     * List indexes in the collection.
+     * List indexes on the table.
      *
      * @param string $databaseId
      * @param string $tableId
@@ -1498,7 +1492,7 @@ class TablesDb extends Service
     /**
      * Creates an index on the columns listed. Your index should include all the
      * columns you will query in a single request.
-     * Attributes can be `key`, `fulltext`, and `unique`.
+     * Type can be `key`, `fulltext`, or `unique`.
      *
      * @param string $databaseId
      * @param string $tableId

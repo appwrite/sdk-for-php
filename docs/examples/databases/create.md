@@ -13,6 +13,5 @@ $databases = new Databases($client);
 $result = $databases->create(
     databaseId: '<DATABASE_ID>',
     name: '<NAME>',
-    enabled: false, // optional
-    type: ::TABLESDB() // optional
+    enabled: false // optional
 );
