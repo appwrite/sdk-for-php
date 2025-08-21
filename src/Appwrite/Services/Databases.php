@@ -27,7 +27,7 @@ class Databases extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `list` instead.
-     * @see TablesDb::list
+     * @see TablesDB::list
      */
     public function list(?array $queries = null, ?string $search = null): array
     {
@@ -68,7 +68,7 @@ class Databases extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createDatabase` instead.
-     * @see TablesDb::createDatabase
+     * @see TablesDB::createDatabase
      */
     public function create(string $databaseId, string $name, ?bool $enabled = null): array
     {
@@ -106,7 +106,7 @@ class Databases extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `get` instead.
-     * @see TablesDb::get
+     * @see TablesDB::get
      */
     public function get(string $databaseId): array
     {
@@ -139,7 +139,7 @@ class Databases extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `update` instead.
-     * @see TablesDb::update
+     * @see TablesDB::update
      */
     public function update(string $databaseId, string $name, ?bool $enabled = null): array
     {
@@ -177,7 +177,7 @@ class Databases extends Service
      * @return string
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `delete` instead.
-     * @see TablesDb::delete
+     * @see TablesDB::delete
      */
     public function delete(string $databaseId): string
     {
@@ -212,7 +212,7 @@ class Databases extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `listTables` instead.
-     * @see TablesDb::listTables
+     * @see TablesDB::listTables
      */
     public function listCollections(string $databaseId, ?array $queries = null, ?string $search = null): array
     {
@@ -259,7 +259,7 @@ class Databases extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createTable` instead.
-     * @see TablesDb::createTable
+     * @see TablesDB::createTable
      */
     public function createCollection(string $databaseId, string $collectionId, string $name, ?array $permissions = null, ?bool $documentSecurity = null, ?bool $enabled = null): array
     {
@@ -307,7 +307,7 @@ class Databases extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `getTable` instead.
-     * @see TablesDb::getTable
+     * @see TablesDB::getTable
      */
     public function getCollection(string $databaseId, string $collectionId): array
     {
@@ -344,7 +344,7 @@ class Databases extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateTable` instead.
-     * @see TablesDb::updateTable
+     * @see TablesDB::updateTable
      */
     public function updateCollection(string $databaseId, string $collectionId, string $name, ?array $permissions = null, ?bool $documentSecurity = null, ?bool $enabled = null): array
     {
@@ -392,7 +392,7 @@ class Databases extends Service
      * @return string
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `deleteTable` instead.
-     * @see TablesDb::deleteTable
+     * @see TablesDB::deleteTable
      */
     public function deleteCollection(string $databaseId, string $collectionId): string
     {
@@ -427,7 +427,7 @@ class Databases extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `listColumns` instead.
-     * @see TablesDb::listColumns
+     * @see TablesDB::listColumns
      */
     public function listAttributes(string $databaseId, string $collectionId, ?array $queries = null): array
     {
@@ -469,7 +469,7 @@ class Databases extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createBooleanColumn` instead.
-     * @see TablesDb::createBooleanColumn
+     * @see TablesDB::createBooleanColumn
      */
     public function createBooleanAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?bool $xdefault = null, ?bool $xarray = null): array
     {
@@ -518,7 +518,7 @@ class Databases extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateBooleanColumn` instead.
-     * @see TablesDb::updateBooleanColumn
+     * @see TablesDB::updateBooleanColumn
      */
     public function updateBooleanAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?bool $xdefault, ?string $newKey = null): array
     {
@@ -563,7 +563,7 @@ class Databases extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createDatetimeColumn` instead.
-     * @see TablesDb::createDatetimeColumn
+     * @see TablesDB::createDatetimeColumn
      */
     public function createDatetimeAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): array
     {
@@ -612,7 +612,7 @@ class Databases extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateDatetimeColumn` instead.
-     * @see TablesDb::updateDatetimeColumn
+     * @see TablesDB::updateDatetimeColumn
      */
     public function updateDatetimeAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): array
     {
@@ -658,7 +658,7 @@ class Databases extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createEmailColumn` instead.
-     * @see TablesDb::createEmailColumn
+     * @see TablesDB::createEmailColumn
      */
     public function createEmailAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): array
     {
@@ -708,7 +708,7 @@ class Databases extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateEmailColumn` instead.
-     * @see TablesDb::updateEmailColumn
+     * @see TablesDB::updateEmailColumn
      */
     public function updateEmailAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): array
     {
@@ -756,7 +756,7 @@ class Databases extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createEnumColumn` instead.
-     * @see TablesDb::createEnumColumn
+     * @see TablesDB::createEnumColumn
      */
     public function createEnumAttribute(string $databaseId, string $collectionId, string $key, array $elements, bool $required, ?string $xdefault = null, ?bool $xarray = null): array
     {
@@ -808,7 +808,7 @@ class Databases extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateEnumColumn` instead.
-     * @see TablesDb::updateEnumColumn
+     * @see TablesDB::updateEnumColumn
      */
     public function updateEnumAttribute(string $databaseId, string $collectionId, string $key, array $elements, bool $required, ?string $xdefault, ?string $newKey = null): array
     {
@@ -858,7 +858,7 @@ class Databases extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createFloatColumn` instead.
-     * @see TablesDb::createFloatColumn
+     * @see TablesDB::createFloatColumn
      */
     public function createFloatAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?float $min = null, ?float $max = null, ?float $xdefault = null, ?bool $xarray = null): array
     {
@@ -918,7 +918,7 @@ class Databases extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateFloatColumn` instead.
-     * @see TablesDb::updateFloatColumn
+     * @see TablesDB::updateFloatColumn
      */
     public function updateFloatAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?float $xdefault, ?float $min = null, ?float $max = null, ?string $newKey = null): array
     {
@@ -975,7 +975,7 @@ class Databases extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createIntegerColumn` instead.
-     * @see TablesDb::createIntegerColumn
+     * @see TablesDB::createIntegerColumn
      */
     public function createIntegerAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?int $min = null, ?int $max = null, ?int $xdefault = null, ?bool $xarray = null): array
     {
@@ -1035,7 +1035,7 @@ class Databases extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateIntegerColumn` instead.
-     * @see TablesDb::updateIntegerColumn
+     * @see TablesDB::updateIntegerColumn
      */
     public function updateIntegerAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?int $xdefault, ?int $min = null, ?int $max = null, ?string $newKey = null): array
     {
@@ -1089,7 +1089,7 @@ class Databases extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createIpColumn` instead.
-     * @see TablesDb::createIpColumn
+     * @see TablesDB::createIpColumn
      */
     public function createIpAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): array
     {
@@ -1139,7 +1139,7 @@ class Databases extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateIpColumn` instead.
-     * @see TablesDb::updateIpColumn
+     * @see TablesDB::updateIpColumn
      */
     public function updateIpAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): array
     {
@@ -1188,7 +1188,7 @@ class Databases extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createRelationshipColumn` instead.
-     * @see TablesDb::createRelationshipColumn
+     * @see TablesDB::createRelationshipColumn
      */
     public function createRelationshipAttribute(string $databaseId, string $collectionId, string $relatedCollectionId, RelationshipType $type, ?bool $twoWay = null, ?string $key = null, ?string $twoWayKey = null, ?RelationMutate $onDelete = null): array
     {
@@ -1247,7 +1247,7 @@ class Databases extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createStringColumn` instead.
-     * @see TablesDb::createStringColumn
+     * @see TablesDB::createStringColumn
      */
     public function createStringAttribute(string $databaseId, string $collectionId, string $key, int $size, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): array
     {
@@ -1303,7 +1303,7 @@ class Databases extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateStringColumn` instead.
-     * @see TablesDb::updateStringColumn
+     * @see TablesDB::updateStringColumn
      */
     public function updateStringAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?int $size = null, ?string $newKey = null): array
     {
@@ -1353,7 +1353,7 @@ class Databases extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createUrlColumn` instead.
-     * @see TablesDb::createUrlColumn
+     * @see TablesDB::createUrlColumn
      */
     public function createUrlAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): array
     {
@@ -1403,7 +1403,7 @@ class Databases extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateUrlColumn` instead.
-     * @see TablesDb::updateUrlColumn
+     * @see TablesDB::updateUrlColumn
      */
     public function updateUrlAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): array
     {
@@ -1445,7 +1445,7 @@ class Databases extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `getColumn` instead.
-     * @see TablesDb::getColumn
+     * @see TablesDB::getColumn
      */
     public function getAttribute(string $databaseId, string $collectionId, string $key): array
     {
@@ -1480,7 +1480,7 @@ class Databases extends Service
      * @return string
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `deleteColumn` instead.
-     * @see TablesDb::deleteColumn
+     * @see TablesDB::deleteColumn
      */
     public function deleteAttribute(string $databaseId, string $collectionId, string $key): string
     {
@@ -1520,7 +1520,7 @@ class Databases extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateRelationshipColumn` instead.
-     * @see TablesDb::updateRelationshipColumn
+     * @see TablesDB::updateRelationshipColumn
      */
     public function updateRelationshipAttribute(string $databaseId, string $collectionId, string $key, ?RelationMutate $onDelete = null, ?string $newKey = null): array
     {
@@ -1565,7 +1565,7 @@ class Databases extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `listRows` instead.
-     * @see TablesDb::listRows
+     * @see TablesDB::listRows
      */
     public function listDocuments(string $databaseId, string $collectionId, ?array $queries = null): array
     {
@@ -1608,7 +1608,7 @@ class Databases extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createRow` instead.
-     * @see TablesDb::createRow
+     * @see TablesDB::createRow
      */
     public function createDocument(string $databaseId, string $collectionId, string $documentId, array $data, ?array $permissions = null): array
     {
@@ -1652,7 +1652,7 @@ class Databases extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createRows` instead.
-     * @see TablesDb::createRows
+     * @see TablesDB::createRows
      */
     public function createDocuments(string $databaseId, string $collectionId, array $documents): array
     {
@@ -1692,7 +1692,7 @@ class Databases extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `upsertRows` instead.
-     * @see TablesDb::upsertRows
+     * @see TablesDB::upsertRows
      */
     public function upsertDocuments(string $databaseId, string $collectionId, array $documents): array
     {
@@ -1731,7 +1731,7 @@ class Databases extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateRows` instead.
-     * @see TablesDb::updateRows
+     * @see TablesDB::updateRows
      */
     public function updateDocuments(string $databaseId, string $collectionId, ?array $data = null, ?array $queries = null): array
     {
@@ -1775,7 +1775,7 @@ class Databases extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `deleteRows` instead.
-     * @see TablesDb::deleteRows
+     * @see TablesDB::deleteRows
      */
     public function deleteDocuments(string $databaseId, string $collectionId, ?array $queries = null): array
     {
@@ -1816,7 +1816,7 @@ class Databases extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `getRow` instead.
-     * @see TablesDb::getRow
+     * @see TablesDB::getRow
      */
     public function getDocument(string $databaseId, string $collectionId, string $documentId, ?array $queries = null): array
     {
@@ -1860,7 +1860,7 @@ class Databases extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `upsertRow` instead.
-     * @see TablesDb::upsertRow
+     * @see TablesDB::upsertRow
      */
     public function upsertDocument(string $databaseId, string $collectionId, string $documentId, array $data, ?array $permissions = null): array
     {
@@ -1904,7 +1904,7 @@ class Databases extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateRow` instead.
-     * @see TablesDb::updateRow
+     * @see TablesDB::updateRow
      */
     public function updateDocument(string $databaseId, string $collectionId, string $documentId, ?array $data = null, ?array $permissions = null): array
     {
@@ -1948,7 +1948,7 @@ class Databases extends Service
      * @return string
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `deleteRow` instead.
-     * @see TablesDb::deleteRow
+     * @see TablesDB::deleteRow
      */
     public function deleteDocument(string $databaseId, string $collectionId, string $documentId): string
     {
@@ -1987,7 +1987,7 @@ class Databases extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `decrementRowColumn` instead.
-     * @see TablesDb::decrementRowColumn
+     * @see TablesDB::decrementRowColumn
      */
     public function decrementDocumentAttribute(string $databaseId, string $collectionId, string $documentId, string $attribute, ?float $value = null, ?float $min = null): array
     {
@@ -2035,7 +2035,7 @@ class Databases extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `incrementRowColumn` instead.
-     * @see TablesDb::incrementRowColumn
+     * @see TablesDB::incrementRowColumn
      */
     public function incrementDocumentAttribute(string $databaseId, string $collectionId, string $documentId, string $attribute, ?float $value = null, ?float $max = null): array
     {
@@ -2080,7 +2080,7 @@ class Databases extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `listIndexes` instead.
-     * @see TablesDb::listIndexes
+     * @see TablesDB::listIndexes
      */
     public function listIndexes(string $databaseId, string $collectionId, ?array $queries = null): array
     {
@@ -2124,7 +2124,7 @@ class Databases extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createIndex` instead.
-     * @see TablesDb::createIndex
+     * @see TablesDB::createIndex
      */
     public function createIndex(string $databaseId, string $collectionId, string $key, IndexType $type, array $attributes, ?array $orders = null, ?array $lengths = null): array
     {
@@ -2170,7 +2170,7 @@ class Databases extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `getIndex` instead.
-     * @see TablesDb::getIndex
+     * @see TablesDB::getIndex
      */
     public function getIndex(string $databaseId, string $collectionId, string $key): array
     {
@@ -2205,7 +2205,7 @@ class Databases extends Service
      * @return string
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `deleteIndex` instead.
-     * @see TablesDb::deleteIndex
+     * @see TablesDB::deleteIndex
      */
     public function deleteIndex(string $databaseId, string $collectionId, string $key): string
     {

@@ -147,6 +147,45 @@ POST https://cloud.appwrite.io/v1/messaging/messages/sms
 
 
 ```http request
+POST https://cloud.appwrite.io/v1/messaging/messages/sms
+```
+
+** Create a new SMS message. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| messageId | string | Message ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
+| content | string | SMS Content. |  |
+| topics | array | List of Topic IDs. | [] |
+| users | array | List of User IDs. | [] |
+| targets | array | List of Targets IDs. | [] |
+| draft | boolean | Is message a draft |  |
+| scheduledAt | string | Scheduled delivery time for message in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. DateTime value must be in future. |  |
+
+
+```http request
+PATCH https://cloud.appwrite.io/v1/messaging/messages/sms/{messageId}
+```
+
+** Update an SMS message by its unique ID. This endpoint only works on messages that are in draft status. Messages that are already processing, sent, or failed cannot be updated.
+ **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| messageId | string | **Required** Message ID. |  |
+| topics | array | List of Topic IDs. |  |
+| users | array | List of User IDs. |  |
+| targets | array | List of Targets IDs. |  |
+| content | string | Email Content. |  |
+| draft | boolean | Is message a draft |  |
+| scheduledAt | string | Scheduled delivery time for message in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. DateTime value must be in future. |  |
+
+
+```http request
 PATCH https://cloud.appwrite.io/v1/messaging/messages/sms/{messageId}
 ```
 
@@ -256,6 +295,46 @@ POST https://cloud.appwrite.io/v1/messaging/providers/apns
 
 
 ```http request
+POST https://cloud.appwrite.io/v1/messaging/providers/apns
+```
+
+** Create a new Apple Push Notification service provider. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| providerId | string | Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
+| name | string | Provider name. |  |
+| authKey | string | APNS authentication key. |  |
+| authKeyId | string | APNS authentication key ID. |  |
+| teamId | string | APNS team ID. |  |
+| bundleId | string | APNS bundle ID. |  |
+| sandbox | boolean | Use APNS sandbox environment. |  |
+| enabled | boolean | Set as enabled. |  |
+
+
+```http request
+PATCH https://cloud.appwrite.io/v1/messaging/providers/apns/{providerId}
+```
+
+** Update a Apple Push Notification service provider by its unique ID. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| providerId | string | **Required** Provider ID. |  |
+| name | string | Provider name. |  |
+| enabled | boolean | Set as enabled. |  |
+| authKey | string | APNS authentication key. |  |
+| authKeyId | string | APNS authentication key ID. |  |
+| teamId | string | APNS team ID. |  |
+| bundleId | string | APNS bundle ID. |  |
+| sandbox | boolean | Use APNS sandbox environment. |  |
+
+
+```http request
 PATCH https://cloud.appwrite.io/v1/messaging/providers/apns/{providerId}
 ```
 
@@ -289,6 +368,38 @@ POST https://cloud.appwrite.io/v1/messaging/providers/fcm
 | name | string | Provider name. |  |
 | serviceAccountJSON | object | FCM service account JSON. | {} |
 | enabled | boolean | Set as enabled. |  |
+
+
+```http request
+POST https://cloud.appwrite.io/v1/messaging/providers/fcm
+```
+
+** Create a new Firebase Cloud Messaging provider. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| providerId | string | Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
+| name | string | Provider name. |  |
+| serviceAccountJSON | object | FCM service account JSON. | {} |
+| enabled | boolean | Set as enabled. |  |
+
+
+```http request
+PATCH https://cloud.appwrite.io/v1/messaging/providers/fcm/{providerId}
+```
+
+** Update a Firebase Cloud Messaging provider by its unique ID. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| providerId | string | **Required** Provider ID. |  |
+| name | string | Provider name. |  |
+| enabled | boolean | Set as enabled. |  |
+| serviceAccountJSON | object | FCM service account JSON. | {} |
 
 
 ```http request
@@ -450,6 +561,58 @@ POST https://cloud.appwrite.io/v1/messaging/providers/smtp
 | fromEmail | string | Sender email address. |  |
 | replyToName | string | Name set in the reply to field for the mail. Default value is sender name. |  |
 | replyToEmail | string | Email set in the reply to field for the mail. Default value is sender email. |  |
+| enabled | boolean | Set as enabled. |  |
+
+
+```http request
+POST https://cloud.appwrite.io/v1/messaging/providers/smtp
+```
+
+** Create a new SMTP provider. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| providerId | string | Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
+| name | string | Provider name. |  |
+| host | string | SMTP hosts. Either a single hostname or multiple semicolon-delimited hostnames. You can also specify a different port for each host such as `smtp1.example.com:25;smtp2.example.com`. You can also specify encryption type, for example: `tls://smtp1.example.com:587;ssl://smtp2.example.com:465"`. Hosts will be tried in order. |  |
+| port | integer | The default SMTP server port. | 587 |
+| username | string | Authentication username. |  |
+| password | string | Authentication password. |  |
+| encryption | string | Encryption type. Can be omitted, 'ssl', or 'tls' |  |
+| autoTLS | boolean | Enable SMTP AutoTLS feature. | 1 |
+| mailer | string | The value to use for the X-Mailer header. |  |
+| fromName | string | Sender Name. |  |
+| fromEmail | string | Sender email address. |  |
+| replyToName | string | Name set in the reply to field for the mail. Default value is sender name. |  |
+| replyToEmail | string | Email set in the reply to field for the mail. Default value is sender email. |  |
+| enabled | boolean | Set as enabled. |  |
+
+
+```http request
+PATCH https://cloud.appwrite.io/v1/messaging/providers/smtp/{providerId}
+```
+
+** Update a SMTP provider by its unique ID. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| providerId | string | **Required** Provider ID. |  |
+| name | string | Provider name. |  |
+| host | string | SMTP hosts. Either a single hostname or multiple semicolon-delimited hostnames. You can also specify a different port for each host such as `smtp1.example.com:25;smtp2.example.com`. You can also specify encryption type, for example: `tls://smtp1.example.com:587;ssl://smtp2.example.com:465"`. Hosts will be tried in order. |  |
+| port | integer | SMTP port. |  |
+| username | string | Authentication username. |  |
+| password | string | Authentication password. |  |
+| encryption | string | Encryption type. Can be 'ssl' or 'tls' |  |
+| autoTLS | boolean | Enable SMTP AutoTLS feature. |  |
+| mailer | string | The value to use for the X-Mailer header. |  |
+| fromName | string | Sender Name. |  |
+| fromEmail | string | Sender email address. |  |
+| replyToName | string | Name set in the Reply To field for the mail. Default value is Sender Name. |  |
+| replyToEmail | string | Email set in the Reply To field for the mail. Default value is Sender Email. |  |
 | enabled | boolean | Set as enabled. |  |
 
 

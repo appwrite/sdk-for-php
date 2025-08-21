@@ -1,4 +1,4 @@
-# TablesDb Service
+# TablesDB Service
 
 
 ```http request
@@ -91,7 +91,7 @@ GET https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables
 POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables
 ```
 
-** Create a new Table. Before using this route, you should create a new database resource using either a [server integration](https://appwrite.io/docs/server/databases#databasesCreateTable) API or directly from your database console. **
+** Create a new Table. Before using this route, you should create a new database resource using either a [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreateTable) API or directly from your database console. **
 
 ### Parameters
 
@@ -178,7 +178,7 @@ POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/columns
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | databaseId | string | **Required** Database ID. |  |
-| tableId | string | **Required** Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tables#tablesCreate). |  |
+| tableId | string | **Required** Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate). |  |
 | key | string | Column Key. |  |
 | required | boolean | Is column required? |  |
 | default | boolean | Default value for column when not provided. Cannot be set when column is required. |  |
@@ -196,7 +196,7 @@ PATCH https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/column
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | databaseId | string | **Required** Database ID. |  |
-| tableId | string | **Required** Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tables#tablesCreate). |  |
+| tableId | string | **Required** Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate). |  |
 | key | string | **Required** Column Key. |  |
 | required | boolean | Is column required? |  |
 | default | boolean | Default value for column when not provided. Cannot be set when column is required. |  |
@@ -471,7 +471,7 @@ POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/columns
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | databaseId | string | **Required** Database ID. |  |
-| tableId | string | **Required** Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tables#tablesCreate). |  |
+| tableId | string | **Required** Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate). |  |
 | key | string | Column Key. |  |
 | size | integer | Attribute size for text attributes, in number of characters. |  |
 | required | boolean | Is column required? |  |
@@ -492,7 +492,7 @@ PATCH https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/column
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | databaseId | string | **Required** Database ID. |  |
-| tableId | string | **Required** Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tables#tablesCreate). |  |
+| tableId | string | **Required** Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate). |  |
 | key | string | **Required** Column Key. |  |
 | required | boolean | Is column required? |  |
 | default | string | Default value for column when not provided. Cannot be set when column is required. |  |
@@ -597,7 +597,7 @@ GET https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/indexes
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | databaseId | string | **Required** Database ID. |  |
-| tableId | string | **Required** Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tables#tablesCreate). |  |
+| tableId | string | **Required** Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate). |  |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: key, type, status, attributes, error | [] |
 
 
@@ -613,7 +613,7 @@ Type can be `key`, `fulltext`, or `unique`. **
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | databaseId | string | **Required** Database ID. |  |
-| tableId | string | **Required** Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tables#tablesCreate). |  |
+| tableId | string | **Required** Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate). |  |
 | key | string | Index Key. |  |
 | type | string | Index type. |  |
 | columns | array | Array of columns to index. Maximum of 100 columns are allowed, each 32 characters long. |  |
@@ -632,7 +632,7 @@ GET https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/indexes/
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | databaseId | string | **Required** Database ID. |  |
-| tableId | string | **Required** Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tables#tablesCreate). |  |
+| tableId | string | **Required** Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate). |  |
 | key | string | **Required** Index Key. |  |
 
 
@@ -647,7 +647,7 @@ DELETE https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/index
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | databaseId | string | **Required** Database ID. |  |
-| tableId | string | **Required** Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tables#tablesCreate). |  |
+| tableId | string | **Required** Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate). |  |
 | key | string | **Required** Index Key. |  |
 
 
@@ -662,7 +662,7 @@ GET https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/rows
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | databaseId | string | **Required** Database ID. |  |
-| tableId | string | **Required** Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tables#tablesCreate). |  |
+| tableId | string | **Required** Table ID. You can create a new table using the TableDB service [server integration](https://appwrite.io/docs/server/tablesdbdb#tablesdbCreate). |  |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. | [] |
 
 
@@ -670,14 +670,14 @@ GET https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/rows
 POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/rows
 ```
 
-** Create a new Row. Before using this route, you should create a new table resource using either a [server integration](https://appwrite.io/docs/server/databases#databasesCreateTable) API or directly from your database console. **
+** Create a new Row. Before using this route, you should create a new table resource using either a [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreateTable) API or directly from your database console. **
 
 ### Parameters
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | databaseId | string | **Required** Database ID. |  |
-| tableId | string | **Required** Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tables#tablesCreate). Make sure to define columns before creating rows. |  |
+| tableId | string | **Required** Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate). Make sure to define columns before creating rows. |  |
 | rowId | string | Row ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
 | data | object | Row data as JSON object. | {} |
 | permissions | array | An array of permissions strings. By default, only the current user is granted all permissions. [Learn more about permissions](https://appwrite.io/docs/permissions). |  |
@@ -687,14 +687,14 @@ POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/rows
 POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/rows
 ```
 
-** Create new Rows. Before using this route, you should create a new table resource using either a [server integration](https://appwrite.io/docs/server/databases#databasesCreateTable) API or directly from your database console. **
+** Create new Rows. Before using this route, you should create a new table resource using either a [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreateTable) API or directly from your database console. **
 
 ### Parameters
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | databaseId | string | **Required** Database ID. |  |
-| tableId | string | **Required** Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tables#tablesCreate). Make sure to define columns before creating rows. |  |
+| tableId | string | **Required** Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate). Make sure to define columns before creating rows. |  |
 | rows | array | Array of documents data as JSON objects. | [] |
 
 
@@ -702,7 +702,7 @@ POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/rows
 PUT https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/rows
 ```
 
-** Create or update Rows. Before using this route, you should create a new table resource using either a [server integration](https://appwrite.io/docs/server/databases#databasesCreateTable) API or directly from your database console.
+** Create or update Rows. Before using this route, you should create a new table resource using either a [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreateTable) API or directly from your database console.
  **
 
 ### Parameters
@@ -741,7 +741,7 @@ DELETE https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/rows
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | databaseId | string | **Required** Database ID. |  |
-| tableId | string | **Required** Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tables#tablesCreate). |  |
+| tableId | string | **Required** Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate). |  |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. | [] |
 
 
@@ -756,7 +756,7 @@ GET https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/rows/{ro
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | databaseId | string | **Required** Database ID. |  |
-| tableId | string | **Required** Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tables#tablesCreate). |  |
+| tableId | string | **Required** Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate). |  |
 | rowId | string | **Required** Row ID. |  |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. | [] |
 
@@ -765,7 +765,7 @@ GET https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/rows/{ro
 PUT https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/rows/{rowId}
 ```
 
-** Create or update a Row. Before using this route, you should create a new table resource using either a [server integration](https://appwrite.io/docs/server/databases#databasesCreateTable) API or directly from your database console. **
+** Create or update a Row. Before using this route, you should create a new table resource using either a [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreateTable) API or directly from your database console. **
 
 ### Parameters
 
@@ -806,7 +806,7 @@ DELETE https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/rows/
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | databaseId | string | **Required** Database ID. |  |
-| tableId | string | **Required** Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tables#tablesCreate). |  |
+| tableId | string | **Required** Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate). |  |
 | rowId | string | **Required** Row ID. |  |
 
 

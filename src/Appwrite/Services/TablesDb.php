@@ -10,7 +10,7 @@ use Appwrite\Enums\RelationshipType;
 use Appwrite\Enums\RelationMutate;
 use Appwrite\Enums\IndexType;
 
-class TablesDb extends Service
+class TablesDB extends Service
 {
      public function __construct(Client $client)
      {
@@ -228,7 +228,7 @@ class TablesDb extends Service
     /**
      * Create a new Table. Before using this route, you should create a new
      * database resource using either a [server
-     * integration](https://appwrite.io/docs/server/databases#databasesCreateTable)
+     * integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreateTable)
      * API or directly from your database console.
      *
      * @param string $databaseId
@@ -1642,7 +1642,7 @@ class TablesDb extends Service
     /**
      * Create a new Row. Before using this route, you should create a new table
      * resource using either a [server
-     * integration](https://appwrite.io/docs/server/databases#databasesCreateTable)
+     * integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreateTable)
      * API or directly from your database console.
      *
      * @param string $databaseId
@@ -1685,7 +1685,7 @@ class TablesDb extends Service
     /**
      * Create new Rows. Before using this route, you should create a new table
      * resource using either a [server
-     * integration](https://appwrite.io/docs/server/databases#databasesCreateTable)
+     * integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreateTable)
      * API or directly from your database console.
      *
      * @param string $databaseId
@@ -1721,7 +1721,7 @@ class TablesDb extends Service
     /**
      * Create or update Rows. Before using this route, you should create a new
      * table resource using either a [server
-     * integration](https://appwrite.io/docs/server/databases#databasesCreateTable)
+     * integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreateTable)
      * API or directly from your database console.
      * 
      *
@@ -1875,7 +1875,7 @@ class TablesDb extends Service
     /**
      * Create or update a Row. Before using this route, you should create a new
      * table resource using either a [server
-     * integration](https://appwrite.io/docs/server/databases#databasesCreateTable)
+     * integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreateTable)
      * API or directly from your database console.
      *
      * @param string $databaseId

@@ -7,13 +7,13 @@ use Appwrite\InputFile;
 use Mockery;
 use PHPUnit\Framework\TestCase;
 
-final class TablesDbTest extends TestCase {
+final class TablesDBTest extends TestCase {
     private $client;
-    private $tablesDb;
+    private $tablesDB;
 
     protected function setUp(): void {
         $this->client = Mockery::mock(Client::class);
-        $this->tablesDb = new TablesDb($this->client);
+        $this->tablesDB = new TablesDB($this->client);
     }
 
     public function testMethodList(): void {
@@ -27,7 +27,7 @@ final class TablesDbTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->tablesDb->list(
+        $response = $this->tablesDB->list(
         );
 
         $this->assertSame($data, $response);
@@ -48,7 +48,7 @@ final class TablesDbTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->tablesDb->create(
+        $response = $this->tablesDB->create(
             "<DATABASE_ID>",
             "<NAME>"
         );
@@ -71,7 +71,7 @@ final class TablesDbTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->tablesDb->get(
+        $response = $this->tablesDB->get(
             "<DATABASE_ID>"
         );
 
@@ -93,7 +93,7 @@ final class TablesDbTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->tablesDb->update(
+        $response = $this->tablesDB->update(
             "<DATABASE_ID>",
             "<NAME>"
         );
@@ -110,7 +110,7 @@ final class TablesDbTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->tablesDb->delete(
+        $response = $this->tablesDB->delete(
             "<DATABASE_ID>"
         );
 
@@ -128,7 +128,7 @@ final class TablesDbTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->tablesDb->listTables(
+        $response = $this->tablesDB->listTables(
             "<DATABASE_ID>"
         );
 
@@ -154,7 +154,7 @@ final class TablesDbTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->tablesDb->createTable(
+        $response = $this->tablesDB->createTable(
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "<NAME>"
@@ -182,7 +182,7 @@ final class TablesDbTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->tablesDb->getTable(
+        $response = $this->tablesDB->getTable(
             "<DATABASE_ID>",
             "<TABLE_ID>"
         );
@@ -209,7 +209,7 @@ final class TablesDbTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->tablesDb->updateTable(
+        $response = $this->tablesDB->updateTable(
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "<NAME>"
@@ -227,7 +227,7 @@ final class TablesDbTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->tablesDb->deleteTable(
+        $response = $this->tablesDB->deleteTable(
             "<DATABASE_ID>",
             "<TABLE_ID>"
         );
@@ -246,7 +246,7 @@ final class TablesDbTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->tablesDb->listColumns(
+        $response = $this->tablesDB->listColumns(
             "<DATABASE_ID>",
             "<TABLE_ID>"
         );
@@ -270,7 +270,7 @@ final class TablesDbTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->tablesDb->createBooleanColumn(
+        $response = $this->tablesDB->createBooleanColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "",
@@ -296,7 +296,7 @@ final class TablesDbTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->tablesDb->updateBooleanColumn(
+        $response = $this->tablesDB->updateBooleanColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "",
@@ -324,7 +324,7 @@ final class TablesDbTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->tablesDb->createDatetimeColumn(
+        $response = $this->tablesDB->createDatetimeColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "",
@@ -351,7 +351,7 @@ final class TablesDbTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->tablesDb->updateDatetimeColumn(
+        $response = $this->tablesDB->updateDatetimeColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "",
@@ -379,7 +379,7 @@ final class TablesDbTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->tablesDb->createEmailColumn(
+        $response = $this->tablesDB->createEmailColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "",
@@ -406,7 +406,7 @@ final class TablesDbTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->tablesDb->updateEmailColumn(
+        $response = $this->tablesDB->updateEmailColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "",
@@ -435,7 +435,7 @@ final class TablesDbTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->tablesDb->createEnumColumn(
+        $response = $this->tablesDB->createEnumColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "",
@@ -464,7 +464,7 @@ final class TablesDbTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->tablesDb->updateEnumColumn(
+        $response = $this->tablesDB->updateEnumColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "",
@@ -492,7 +492,7 @@ final class TablesDbTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->tablesDb->createFloatColumn(
+        $response = $this->tablesDB->createFloatColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "",
@@ -518,7 +518,7 @@ final class TablesDbTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->tablesDb->updateFloatColumn(
+        $response = $this->tablesDB->updateFloatColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "",
@@ -545,7 +545,7 @@ final class TablesDbTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->tablesDb->createIntegerColumn(
+        $response = $this->tablesDB->createIntegerColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "",
@@ -571,7 +571,7 @@ final class TablesDbTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->tablesDb->updateIntegerColumn(
+        $response = $this->tablesDB->updateIntegerColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "",
@@ -599,7 +599,7 @@ final class TablesDbTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->tablesDb->createIpColumn(
+        $response = $this->tablesDB->createIpColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "",
@@ -626,7 +626,7 @@ final class TablesDbTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->tablesDb->updateIpColumn(
+        $response = $this->tablesDB->updateIpColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "",
@@ -659,7 +659,7 @@ final class TablesDbTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->tablesDb->createRelationshipColumn(
+        $response = $this->tablesDB->createRelationshipColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "<RELATED_TABLE_ID>",
@@ -686,7 +686,7 @@ final class TablesDbTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->tablesDb->createStringColumn(
+        $response = $this->tablesDB->createStringColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "",
@@ -714,7 +714,7 @@ final class TablesDbTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->tablesDb->updateStringColumn(
+        $response = $this->tablesDB->updateStringColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "",
@@ -742,7 +742,7 @@ final class TablesDbTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->tablesDb->createUrlColumn(
+        $response = $this->tablesDB->createUrlColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "",
@@ -769,7 +769,7 @@ final class TablesDbTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->tablesDb->updateUrlColumn(
+        $response = $this->tablesDB->updateUrlColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "",
@@ -789,7 +789,7 @@ final class TablesDbTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->tablesDb->getColumn(
+        $response = $this->tablesDB->getColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
             ""
@@ -807,7 +807,7 @@ final class TablesDbTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->tablesDb->deleteColumn(
+        $response = $this->tablesDB->deleteColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
             ""
@@ -838,7 +838,7 @@ final class TablesDbTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->tablesDb->updateRelationshipColumn(
+        $response = $this->tablesDB->updateRelationshipColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
             ""
@@ -858,7 +858,7 @@ final class TablesDbTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->tablesDb->listIndexes(
+        $response = $this->tablesDB->listIndexes(
             "<DATABASE_ID>",
             "<TABLE_ID>"
         );
@@ -884,7 +884,7 @@ final class TablesDbTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->tablesDb->createIndex(
+        $response = $this->tablesDB->createIndex(
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "",
@@ -913,7 +913,7 @@ final class TablesDbTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->tablesDb->getIndex(
+        $response = $this->tablesDB->getIndex(
             "<DATABASE_ID>",
             "<TABLE_ID>",
             ""
@@ -931,7 +931,7 @@ final class TablesDbTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->tablesDb->deleteIndex(
+        $response = $this->tablesDB->deleteIndex(
             "<DATABASE_ID>",
             "<TABLE_ID>",
             ""
@@ -951,7 +951,7 @@ final class TablesDbTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->tablesDb->listRows(
+        $response = $this->tablesDB->listRows(
             "<DATABASE_ID>",
             "<TABLE_ID>"
         );
@@ -975,7 +975,7 @@ final class TablesDbTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->tablesDb->createRow(
+        $response = $this->tablesDB->createRow(
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "<ROW_ID>",
@@ -996,7 +996,7 @@ final class TablesDbTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->tablesDb->createRows(
+        $response = $this->tablesDB->createRows(
             "<DATABASE_ID>",
             "<TABLE_ID>",
             array()
@@ -1016,7 +1016,7 @@ final class TablesDbTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->tablesDb->upsertRows(
+        $response = $this->tablesDB->upsertRows(
             "<DATABASE_ID>",
             "<TABLE_ID>",
             array()
@@ -1036,7 +1036,7 @@ final class TablesDbTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->tablesDb->updateRows(
+        $response = $this->tablesDB->updateRows(
             "<DATABASE_ID>",
             "<TABLE_ID>"
         );
@@ -1055,7 +1055,7 @@ final class TablesDbTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->tablesDb->deleteRows(
+        $response = $this->tablesDB->deleteRows(
             "<DATABASE_ID>",
             "<TABLE_ID>"
         );
@@ -1079,7 +1079,7 @@ final class TablesDbTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->tablesDb->getRow(
+        $response = $this->tablesDB->getRow(
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "<ROW_ID>"
@@ -1104,7 +1104,7 @@ final class TablesDbTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->tablesDb->upsertRow(
+        $response = $this->tablesDB->upsertRow(
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "<ROW_ID>"
@@ -1129,7 +1129,7 @@ final class TablesDbTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->tablesDb->updateRow(
+        $response = $this->tablesDB->updateRow(
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "<ROW_ID>"
@@ -1147,7 +1147,7 @@ final class TablesDbTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->tablesDb->deleteRow(
+        $response = $this->tablesDB->deleteRow(
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "<ROW_ID>"
@@ -1172,7 +1172,7 @@ final class TablesDbTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->tablesDb->decrementRowColumn(
+        $response = $this->tablesDB->decrementRowColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "<ROW_ID>",
@@ -1198,7 +1198,7 @@ final class TablesDbTest extends TestCase {
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->tablesDb->incrementRowColumn(
+        $response = $this->tablesDB->incrementRowColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "<ROW_ID>",

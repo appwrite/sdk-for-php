@@ -1,7 +1,7 @@
 <?php
 
 use Appwrite\Client;
-use Appwrite\Services\TablesDb;
+use Appwrite\Services\TablesDB;
 use Appwrite\Enums\IndexType;
 
 $client = (new Client())
@@ -9,9 +9,9 @@ $client = (new Client())
     ->setProject('<YOUR_PROJECT_ID>') // Your project ID
     ->setKey('<YOUR_API_KEY>'); // Your secret API key
 
-$tablesDb = new TablesDb($client);
+$tablesDB = new TablesDB($client);
 
-$result = $tablesDb->createIndex(
+$result = $tablesDB->createIndex(
     databaseId: '<DATABASE_ID>',
     tableId: '<TABLE_ID>',
     key: '',

@@ -470,8 +470,67 @@ class Messaging extends Service
      * @param ?string $scheduledAt
      * @throws AppwriteException
      * @return array
+     *
+     * @deprecated This API has been deprecated since 1.8.0. Please use `createSMS` instead.
+     * @see CreateSMS
      */
     public function createSms(string $messageId, string $content, ?array $topics = null, ?array $users = null, ?array $targets = null, ?bool $draft = null, ?string $scheduledAt = null): array
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/messaging/messages/sms'
+        );
+
+        $apiParams = [];
+        $apiParams['messageId'] = $messageId;
+        $apiParams['content'] = $content;
+
+        if (!is_null($topics)) {
+            $apiParams['topics'] = $topics;
+        }
+
+        if (!is_null($users)) {
+            $apiParams['users'] = $users;
+        }
+
+        if (!is_null($targets)) {
+            $apiParams['targets'] = $targets;
+        }
+
+        if (!is_null($draft)) {
+            $apiParams['draft'] = $draft;
+        }
+
+        if (!is_null($scheduledAt)) {
+            $apiParams['scheduledAt'] = $scheduledAt;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Create a new SMS message.
+     *
+     * @param string $messageId
+     * @param string $content
+     * @param ?array $topics
+     * @param ?array $users
+     * @param ?array $targets
+     * @param ?bool $draft
+     * @param ?string $scheduledAt
+     * @throws AppwriteException
+     * @return array
+     */
+    public function createSMS(string $messageId, string $content, ?array $topics = null, ?array $users = null, ?array $targets = null, ?bool $draft = null, ?string $scheduledAt = null): array
     {
         $apiPath = str_replace(
             [],
@@ -529,8 +588,73 @@ class Messaging extends Service
      * @param ?string $scheduledAt
      * @throws AppwriteException
      * @return array
+     *
+     * @deprecated This API has been deprecated since 1.8.0. Please use `updateSMS` instead.
+     * @see UpdateSMS
      */
     public function updateSms(string $messageId, ?array $topics = null, ?array $users = null, ?array $targets = null, ?string $content = null, ?bool $draft = null, ?string $scheduledAt = null): array
+    {
+        $apiPath = str_replace(
+            ['{messageId}'],
+            [$messageId],
+            '/messaging/messages/sms/{messageId}'
+        );
+
+        $apiParams = [];
+        $apiParams['messageId'] = $messageId;
+
+        if (!is_null($topics)) {
+            $apiParams['topics'] = $topics;
+        }
+
+        if (!is_null($users)) {
+            $apiParams['users'] = $users;
+        }
+
+        if (!is_null($targets)) {
+            $apiParams['targets'] = $targets;
+        }
+
+        if (!is_null($content)) {
+            $apiParams['content'] = $content;
+        }
+
+        if (!is_null($draft)) {
+            $apiParams['draft'] = $draft;
+        }
+
+        if (!is_null($scheduledAt)) {
+            $apiParams['scheduledAt'] = $scheduledAt;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Update an SMS message by its unique ID. This endpoint only works on
+     * messages that are in draft status. Messages that are already processing,
+     * sent, or failed cannot be updated.
+     * 
+     *
+     * @param string $messageId
+     * @param ?array $topics
+     * @param ?array $users
+     * @param ?array $targets
+     * @param ?string $content
+     * @param ?bool $draft
+     * @param ?string $scheduledAt
+     * @throws AppwriteException
+     * @return array
+     */
+    public function updateSMS(string $messageId, ?array $topics = null, ?array $users = null, ?array $targets = null, ?string $content = null, ?bool $draft = null, ?string $scheduledAt = null): array
     {
         $apiPath = str_replace(
             ['{messageId}'],
@@ -750,8 +874,72 @@ class Messaging extends Service
      * @param ?bool $enabled
      * @throws AppwriteException
      * @return array
+     *
+     * @deprecated This API has been deprecated since 1.8.0. Please use `createAPNSProvider` instead.
+     * @see CreateAPNSProvider
      */
     public function createApnsProvider(string $providerId, string $name, ?string $authKey = null, ?string $authKeyId = null, ?string $teamId = null, ?string $bundleId = null, ?bool $sandbox = null, ?bool $enabled = null): array
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/messaging/providers/apns'
+        );
+
+        $apiParams = [];
+        $apiParams['providerId'] = $providerId;
+        $apiParams['name'] = $name;
+
+        if (!is_null($authKey)) {
+            $apiParams['authKey'] = $authKey;
+        }
+
+        if (!is_null($authKeyId)) {
+            $apiParams['authKeyId'] = $authKeyId;
+        }
+
+        if (!is_null($teamId)) {
+            $apiParams['teamId'] = $teamId;
+        }
+
+        if (!is_null($bundleId)) {
+            $apiParams['bundleId'] = $bundleId;
+        }
+
+        if (!is_null($sandbox)) {
+            $apiParams['sandbox'] = $sandbox;
+        }
+
+        if (!is_null($enabled)) {
+            $apiParams['enabled'] = $enabled;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Create a new Apple Push Notification service provider.
+     *
+     * @param string $providerId
+     * @param string $name
+     * @param ?string $authKey
+     * @param ?string $authKeyId
+     * @param ?string $teamId
+     * @param ?string $bundleId
+     * @param ?bool $sandbox
+     * @param ?bool $enabled
+     * @throws AppwriteException
+     * @return array
+     */
+    public function createAPNSProvider(string $providerId, string $name, ?string $authKey = null, ?string $authKeyId = null, ?string $teamId = null, ?string $bundleId = null, ?bool $sandbox = null, ?bool $enabled = null): array
     {
         $apiPath = str_replace(
             [],
@@ -811,8 +999,75 @@ class Messaging extends Service
      * @param ?bool $sandbox
      * @throws AppwriteException
      * @return array
+     *
+     * @deprecated This API has been deprecated since 1.8.0. Please use `updateAPNSProvider` instead.
+     * @see UpdateAPNSProvider
      */
     public function updateApnsProvider(string $providerId, ?string $name = null, ?bool $enabled = null, ?string $authKey = null, ?string $authKeyId = null, ?string $teamId = null, ?string $bundleId = null, ?bool $sandbox = null): array
+    {
+        $apiPath = str_replace(
+            ['{providerId}'],
+            [$providerId],
+            '/messaging/providers/apns/{providerId}'
+        );
+
+        $apiParams = [];
+        $apiParams['providerId'] = $providerId;
+
+        if (!is_null($name)) {
+            $apiParams['name'] = $name;
+        }
+
+        if (!is_null($enabled)) {
+            $apiParams['enabled'] = $enabled;
+        }
+
+        if (!is_null($authKey)) {
+            $apiParams['authKey'] = $authKey;
+        }
+
+        if (!is_null($authKeyId)) {
+            $apiParams['authKeyId'] = $authKeyId;
+        }
+
+        if (!is_null($teamId)) {
+            $apiParams['teamId'] = $teamId;
+        }
+
+        if (!is_null($bundleId)) {
+            $apiParams['bundleId'] = $bundleId;
+        }
+
+        if (!is_null($sandbox)) {
+            $apiParams['sandbox'] = $sandbox;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Update a Apple Push Notification service provider by its unique ID.
+     *
+     * @param string $providerId
+     * @param ?string $name
+     * @param ?bool $enabled
+     * @param ?string $authKey
+     * @param ?string $authKeyId
+     * @param ?string $teamId
+     * @param ?string $bundleId
+     * @param ?bool $sandbox
+     * @throws AppwriteException
+     * @return array
+     */
+    public function updateAPNSProvider(string $providerId, ?string $name = null, ?bool $enabled = null, ?string $authKey = null, ?string $authKeyId = null, ?string $teamId = null, ?string $bundleId = null, ?bool $sandbox = null): array
     {
         $apiPath = str_replace(
             ['{providerId}'],
@@ -871,8 +1126,52 @@ class Messaging extends Service
      * @param ?bool $enabled
      * @throws AppwriteException
      * @return array
+     *
+     * @deprecated This API has been deprecated since 1.8.0. Please use `createFCMProvider` instead.
+     * @see CreateFCMProvider
      */
     public function createFcmProvider(string $providerId, string $name, ?array $serviceAccountJSON = null, ?bool $enabled = null): array
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/messaging/providers/fcm'
+        );
+
+        $apiParams = [];
+        $apiParams['providerId'] = $providerId;
+        $apiParams['name'] = $name;
+
+        if (!is_null($serviceAccountJSON)) {
+            $apiParams['serviceAccountJSON'] = $serviceAccountJSON;
+        }
+
+        if (!is_null($enabled)) {
+            $apiParams['enabled'] = $enabled;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Create a new Firebase Cloud Messaging provider.
+     *
+     * @param string $providerId
+     * @param string $name
+     * @param ?array $serviceAccountJSON
+     * @param ?bool $enabled
+     * @throws AppwriteException
+     * @return array
+     */
+    public function createFCMProvider(string $providerId, string $name, ?array $serviceAccountJSON = null, ?bool $enabled = null): array
     {
         $apiPath = str_replace(
             [],
@@ -912,8 +1211,55 @@ class Messaging extends Service
      * @param ?array $serviceAccountJSON
      * @throws AppwriteException
      * @return array
+     *
+     * @deprecated This API has been deprecated since 1.8.0. Please use `updateFCMProvider` instead.
+     * @see UpdateFCMProvider
      */
     public function updateFcmProvider(string $providerId, ?string $name = null, ?bool $enabled = null, ?array $serviceAccountJSON = null): array
+    {
+        $apiPath = str_replace(
+            ['{providerId}'],
+            [$providerId],
+            '/messaging/providers/fcm/{providerId}'
+        );
+
+        $apiParams = [];
+        $apiParams['providerId'] = $providerId;
+
+        if (!is_null($name)) {
+            $apiParams['name'] = $name;
+        }
+
+        if (!is_null($enabled)) {
+            $apiParams['enabled'] = $enabled;
+        }
+
+        if (!is_null($serviceAccountJSON)) {
+            $apiParams['serviceAccountJSON'] = $serviceAccountJSON;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Update a Firebase Cloud Messaging provider by its unique ID.
+     *
+     * @param string $providerId
+     * @param ?string $name
+     * @param ?bool $enabled
+     * @param ?array $serviceAccountJSON
+     * @throws AppwriteException
+     * @return array
+     */
+    public function updateFCMProvider(string $providerId, ?string $name = null, ?bool $enabled = null, ?array $serviceAccountJSON = null): array
     {
         $apiPath = str_replace(
             ['{providerId}'],
@@ -1341,8 +1687,99 @@ class Messaging extends Service
      * @param ?bool $enabled
      * @throws AppwriteException
      * @return array
+     *
+     * @deprecated This API has been deprecated since 1.8.0. Please use `createSMTPProvider` instead.
+     * @see CreateSMTPProvider
      */
     public function createSmtpProvider(string $providerId, string $name, string $host, ?int $port = null, ?string $username = null, ?string $password = null, ?SmtpEncryption $encryption = null, ?bool $autoTLS = null, ?string $mailer = null, ?string $fromName = null, ?string $fromEmail = null, ?string $replyToName = null, ?string $replyToEmail = null, ?bool $enabled = null): array
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/messaging/providers/smtp'
+        );
+
+        $apiParams = [];
+        $apiParams['providerId'] = $providerId;
+        $apiParams['name'] = $name;
+        $apiParams['host'] = $host;
+
+        if (!is_null($port)) {
+            $apiParams['port'] = $port;
+        }
+
+        if (!is_null($username)) {
+            $apiParams['username'] = $username;
+        }
+
+        if (!is_null($password)) {
+            $apiParams['password'] = $password;
+        }
+
+        if (!is_null($encryption)) {
+            $apiParams['encryption'] = $encryption;
+        }
+
+        if (!is_null($autoTLS)) {
+            $apiParams['autoTLS'] = $autoTLS;
+        }
+
+        if (!is_null($mailer)) {
+            $apiParams['mailer'] = $mailer;
+        }
+
+        if (!is_null($fromName)) {
+            $apiParams['fromName'] = $fromName;
+        }
+
+        if (!is_null($fromEmail)) {
+            $apiParams['fromEmail'] = $fromEmail;
+        }
+
+        if (!is_null($replyToName)) {
+            $apiParams['replyToName'] = $replyToName;
+        }
+
+        if (!is_null($replyToEmail)) {
+            $apiParams['replyToEmail'] = $replyToEmail;
+        }
+
+        if (!is_null($enabled)) {
+            $apiParams['enabled'] = $enabled;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Create a new SMTP provider.
+     *
+     * @param string $providerId
+     * @param string $name
+     * @param string $host
+     * @param ?int $port
+     * @param ?string $username
+     * @param ?string $password
+     * @param ?SmtpEncryption $encryption
+     * @param ?bool $autoTLS
+     * @param ?string $mailer
+     * @param ?string $fromName
+     * @param ?string $fromEmail
+     * @param ?string $replyToName
+     * @param ?string $replyToEmail
+     * @param ?bool $enabled
+     * @throws AppwriteException
+     * @return array
+     */
+    public function createSMTPProvider(string $providerId, string $name, string $host, ?int $port = null, ?string $username = null, ?string $password = null, ?SmtpEncryption $encryption = null, ?bool $autoTLS = null, ?string $mailer = null, ?string $fromName = null, ?string $fromEmail = null, ?string $replyToName = null, ?string $replyToEmail = null, ?bool $enabled = null): array
     {
         $apiPath = str_replace(
             [],
@@ -1429,8 +1866,105 @@ class Messaging extends Service
      * @param ?bool $enabled
      * @throws AppwriteException
      * @return array
+     *
+     * @deprecated This API has been deprecated since 1.8.0. Please use `updateSMTPProvider` instead.
+     * @see UpdateSMTPProvider
      */
     public function updateSmtpProvider(string $providerId, ?string $name = null, ?string $host = null, ?int $port = null, ?string $username = null, ?string $password = null, ?SmtpEncryption $encryption = null, ?bool $autoTLS = null, ?string $mailer = null, ?string $fromName = null, ?string $fromEmail = null, ?string $replyToName = null, ?string $replyToEmail = null, ?bool $enabled = null): array
+    {
+        $apiPath = str_replace(
+            ['{providerId}'],
+            [$providerId],
+            '/messaging/providers/smtp/{providerId}'
+        );
+
+        $apiParams = [];
+        $apiParams['providerId'] = $providerId;
+
+        if (!is_null($name)) {
+            $apiParams['name'] = $name;
+        }
+
+        if (!is_null($host)) {
+            $apiParams['host'] = $host;
+        }
+
+        if (!is_null($port)) {
+            $apiParams['port'] = $port;
+        }
+
+        if (!is_null($username)) {
+            $apiParams['username'] = $username;
+        }
+
+        if (!is_null($password)) {
+            $apiParams['password'] = $password;
+        }
+
+        if (!is_null($encryption)) {
+            $apiParams['encryption'] = $encryption;
+        }
+
+        if (!is_null($autoTLS)) {
+            $apiParams['autoTLS'] = $autoTLS;
+        }
+
+        if (!is_null($mailer)) {
+            $apiParams['mailer'] = $mailer;
+        }
+
+        if (!is_null($fromName)) {
+            $apiParams['fromName'] = $fromName;
+        }
+
+        if (!is_null($fromEmail)) {
+            $apiParams['fromEmail'] = $fromEmail;
+        }
+
+        if (!is_null($replyToName)) {
+            $apiParams['replyToName'] = $replyToName;
+        }
+
+        if (!is_null($replyToEmail)) {
+            $apiParams['replyToEmail'] = $replyToEmail;
+        }
+
+        if (!is_null($enabled)) {
+            $apiParams['enabled'] = $enabled;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Update a SMTP provider by its unique ID.
+     *
+     * @param string $providerId
+     * @param ?string $name
+     * @param ?string $host
+     * @param ?int $port
+     * @param ?string $username
+     * @param ?string $password
+     * @param ?SmtpEncryption $encryption
+     * @param ?bool $autoTLS
+     * @param ?string $mailer
+     * @param ?string $fromName
+     * @param ?string $fromEmail
+     * @param ?string $replyToName
+     * @param ?string $replyToEmail
+     * @param ?bool $enabled
+     * @throws AppwriteException
+     * @return array
+     */
+    public function updateSMTPProvider(string $providerId, ?string $name = null, ?string $host = null, ?int $port = null, ?string $username = null, ?string $password = null, ?SmtpEncryption $encryption = null, ?bool $autoTLS = null, ?string $mailer = null, ?string $fromName = null, ?string $fromEmail = null, ?string $replyToName = null, ?string $replyToEmail = null, ?bool $enabled = null): array
     {
         $apiPath = str_replace(
             ['{providerId}'],
