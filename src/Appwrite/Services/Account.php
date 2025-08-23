@@ -288,7 +288,7 @@ class Account extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createMFAAuthenticator` instead.
-     * @see CreateMFAAuthenticator
+     * @see Account::createMFAAuthenticator
      */
     public function createMfaAuthenticator(AuthenticatorType $type): array
     {
@@ -355,7 +355,7 @@ class Account extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateMFAAuthenticator` instead.
-     * @see UpdateMFAAuthenticator
+     * @see Account::updateMFAAuthenticator
      */
     public function updateMfaAuthenticator(AuthenticatorType $type, string $otp): array
     {
@@ -421,7 +421,7 @@ class Account extends Service
      * @return string
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `deleteMFAAuthenticator` instead.
-     * @see DeleteMFAAuthenticator
+     * @see Account::deleteMFAAuthenticator
      */
     public function deleteMfaAuthenticator(AuthenticatorType $type): string
     {
@@ -484,7 +484,7 @@ class Account extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createMFAChallenge` instead.
-     * @see CreateMFAChallenge
+     * @see Account::createMFAChallenge
      */
     public function createMfaChallenge(AuthenticationFactor $factor): array
     {
@@ -552,7 +552,7 @@ class Account extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateMFAChallenge` instead.
-     * @see UpdateMFAChallenge
+     * @see Account::updateMFAChallenge
      */
     public function updateMfaChallenge(string $challengeId, string $otp): array
     {
@@ -619,7 +619,7 @@ class Account extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `listMFAFactors` instead.
-     * @see ListMFAFactors
+     * @see Account::listMFAFactors
      */
     public function listMfaFactors(): array
     {
@@ -677,7 +677,7 @@ class Account extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `getMFARecoveryCodes` instead.
-     * @see GetMFARecoveryCodes
+     * @see Account::getMFARecoveryCodes
      */
     public function getMfaRecoveryCodes(): array
     {
@@ -739,7 +739,7 @@ class Account extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createMFARecoveryCodes` instead.
-     * @see CreateMFARecoveryCodes
+     * @see Account::createMFARecoveryCodes
      */
     public function createMfaRecoveryCodes(): array
     {
@@ -803,7 +803,7 @@ class Account extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateMFARecoveryCodes` instead.
-     * @see UpdateMFARecoveryCodes
+     * @see Account::updateMFARecoveryCodes
      */
     public function updateMfaRecoveryCodes(): array
     {

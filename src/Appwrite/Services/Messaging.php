@@ -472,7 +472,7 @@ class Messaging extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createSMS` instead.
-     * @see CreateSMS
+     * @see Messaging::createSMS
      */
     public function createSms(string $messageId, string $content, ?array $topics = null, ?array $users = null, ?array $targets = null, ?bool $draft = null, ?string $scheduledAt = null): array
     {
@@ -590,7 +590,7 @@ class Messaging extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateSMS` instead.
-     * @see UpdateSMS
+     * @see Messaging::updateSMS
      */
     public function updateSms(string $messageId, ?array $topics = null, ?array $users = null, ?array $targets = null, ?string $content = null, ?bool $draft = null, ?string $scheduledAt = null): array
     {
@@ -876,7 +876,7 @@ class Messaging extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createAPNSProvider` instead.
-     * @see CreateAPNSProvider
+     * @see Messaging::createAPNSProvider
      */
     public function createApnsProvider(string $providerId, string $name, ?string $authKey = null, ?string $authKeyId = null, ?string $teamId = null, ?string $bundleId = null, ?bool $sandbox = null, ?bool $enabled = null): array
     {
@@ -1001,7 +1001,7 @@ class Messaging extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateAPNSProvider` instead.
-     * @see UpdateAPNSProvider
+     * @see Messaging::updateAPNSProvider
      */
     public function updateApnsProvider(string $providerId, ?string $name = null, ?bool $enabled = null, ?string $authKey = null, ?string $authKeyId = null, ?string $teamId = null, ?string $bundleId = null, ?bool $sandbox = null): array
     {
@@ -1128,7 +1128,7 @@ class Messaging extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createFCMProvider` instead.
-     * @see CreateFCMProvider
+     * @see Messaging::createFCMProvider
      */
     public function createFcmProvider(string $providerId, string $name, ?array $serviceAccountJSON = null, ?bool $enabled = null): array
     {
@@ -1213,7 +1213,7 @@ class Messaging extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateFCMProvider` instead.
-     * @see UpdateFCMProvider
+     * @see Messaging::updateFCMProvider
      */
     public function updateFcmProvider(string $providerId, ?string $name = null, ?bool $enabled = null, ?array $serviceAccountJSON = null): array
     {
@@ -1689,7 +1689,7 @@ class Messaging extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createSMTPProvider` instead.
-     * @see CreateSMTPProvider
+     * @see Messaging::createSMTPProvider
      */
     public function createSmtpProvider(string $providerId, string $name, string $host, ?int $port = null, ?string $username = null, ?string $password = null, ?SmtpEncryption $encryption = null, ?bool $autoTLS = null, ?string $mailer = null, ?string $fromName = null, ?string $fromEmail = null, ?string $replyToName = null, ?string $replyToEmail = null, ?bool $enabled = null): array
     {
@@ -1868,7 +1868,7 @@ class Messaging extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateSMTPProvider` instead.
-     * @see UpdateSMTPProvider
+     * @see Messaging::updateSMTPProvider
      */
     public function updateSmtpProvider(string $providerId, ?string $name = null, ?string $host = null, ?int $port = null, ?string $username = null, ?string $password = null, ?SmtpEncryption $encryption = null, ?bool $autoTLS = null, ?string $mailer = null, ?string $fromName = null, ?string $fromEmail = null, ?string $replyToName = null, ?string $replyToEmail = null, ?bool $enabled = null): array
     {

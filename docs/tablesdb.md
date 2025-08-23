@@ -11,7 +11,7 @@ GET https://cloud.appwrite.io/v1/tablesdb
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name | [] |
+| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following columns: name | [] |
 | search | string | Search term to filter your list results. Max length: 256 chars. |  |
 
 
@@ -83,7 +83,7 @@ GET https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | databaseId | string | **Required** Database ID. |  |
-| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, enabled, rowSecurity | [] |
+| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following columns: name, enabled, rowSecurity | [] |
 | search | string | Search term to filter your list results. Max length: 256 chars. |  |
 
 
@@ -163,7 +163,7 @@ GET https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/columns
 | --- | --- | --- | --- |
 | databaseId | string | **Required** Database ID. |  |
 | tableId | string | **Required** Table ID. |  |
-| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: key, type, size, required, array, status, error | [] |
+| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following columns: key, type, size, required, array, status, error | [] |
 
 
 ```http request
@@ -473,7 +473,7 @@ POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/columns
 | databaseId | string | **Required** Database ID. |  |
 | tableId | string | **Required** Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate). |  |
 | key | string | Column Key. |  |
-| size | integer | Attribute size for text attributes, in number of characters. |  |
+| size | integer | Column size for text columns, in number of characters. |  |
 | required | boolean | Is column required? |  |
 | default | string | Default value for column when not provided. Cannot be set when column is required. |  |
 | array | boolean | Is column an array? |  |
@@ -598,7 +598,7 @@ GET https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/indexes
 | --- | --- | --- | --- |
 | databaseId | string | **Required** Database ID. |  |
 | tableId | string | **Required** Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate). |  |
-| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: key, type, status, attributes, error | [] |
+| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following columns: key, type, status, attributes, error | [] |
 
 
 ```http request

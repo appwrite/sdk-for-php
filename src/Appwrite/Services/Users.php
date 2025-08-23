@@ -727,7 +727,7 @@ class Users extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateMFA` instead.
-     * @see UpdateMFA
+     * @see Users::updateMFA
      */
     public function updateMfa(string $userId, bool $mfa): array
     {
@@ -792,7 +792,7 @@ class Users extends Service
      * @return string
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `deleteMFAAuthenticator` instead.
-     * @see DeleteMFAAuthenticator
+     * @see Users::deleteMFAAuthenticator
      */
     public function deleteMfaAuthenticator(string $userId, AuthenticatorType $type): string
     {
@@ -856,7 +856,7 @@ class Users extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `listMFAFactors` instead.
-     * @see ListMFAFactors
+     * @see Users::listMFAFactors
      */
     public function listMfaFactors(string $userId): array
     {
@@ -918,7 +918,7 @@ class Users extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `getMFARecoveryCodes` instead.
-     * @see GetMFARecoveryCodes
+     * @see Users::getMFARecoveryCodes
      */
     public function getMfaRecoveryCodes(string $userId): array
     {
@@ -983,7 +983,7 @@ class Users extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateMFARecoveryCodes` instead.
-     * @see UpdateMFARecoveryCodes
+     * @see Users::updateMFARecoveryCodes
      */
     public function updateMfaRecoveryCodes(string $userId): array
     {
@@ -1050,7 +1050,7 @@ class Users extends Service
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createMFARecoveryCodes` instead.
-     * @see CreateMFARecoveryCodes
+     * @see Users::createMFARecoveryCodes
      */
     public function createMfaRecoveryCodes(string $userId): array
     {
