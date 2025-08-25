@@ -113,6 +113,33 @@ POST https://cloud.appwrite.io/v1/account/mfa/authenticators/{type}
 
 
 ```http request
+POST https://cloud.appwrite.io/v1/account/mfa/authenticators/{type}
+```
+
+** Add an authenticator app to be used as an MFA factor. Verify the authenticator using the [verify authenticator](/docs/references/cloud/client-web/account#updateMfaAuthenticator) method. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| type | string | **Required** Type of authenticator. Must be `totp` |  |
+
+
+```http request
+PUT https://cloud.appwrite.io/v1/account/mfa/authenticators/{type}
+```
+
+** Verify an authenticator app after adding it using the [add authenticator](/docs/references/cloud/client-web/account#createMfaAuthenticator) method. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| type | string | **Required** Type of authenticator. |  |
+| otp | string | Valid verification token. |  |
+
+
+```http request
 PUT https://cloud.appwrite.io/v1/account/mfa/authenticators/{type}
 ```
 
@@ -137,6 +164,32 @@ DELETE https://cloud.appwrite.io/v1/account/mfa/authenticators/{type}
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | type | string | **Required** Type of authenticator. |  |
+
+
+```http request
+DELETE https://cloud.appwrite.io/v1/account/mfa/authenticators/{type}
+```
+
+** Delete an authenticator for a user by ID. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| type | string | **Required** Type of authenticator. |  |
+
+
+```http request
+POST https://cloud.appwrite.io/v1/account/mfa/challenge
+```
+
+** Begin the process of MFA verification after sign-in. Finish the flow with [updateMfaChallenge](/docs/references/cloud/client-web/account#updateMfaChallenge) method. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| factor | string | Factor used for verification. Must be one of following: `email`, `phone`, `totp`, `recoveryCode`. |  |
 
 
 ```http request
@@ -167,6 +220,27 @@ PUT https://cloud.appwrite.io/v1/account/mfa/challenge
 
 
 ```http request
+PUT https://cloud.appwrite.io/v1/account/mfa/challenge
+```
+
+** Complete the MFA challenge by providing the one-time password. Finish the process of MFA verification by providing the one-time password. To begin the flow, use [createMfaChallenge](/docs/references/cloud/client-web/account#createMfaChallenge) method. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| challengeId | string | ID of the challenge. |  |
+| otp | string | Valid verification token. |  |
+
+
+```http request
+GET https://cloud.appwrite.io/v1/account/mfa/factors
+```
+
+** List the factors available on the account to be used as a MFA challange. **
+
+
+```http request
 GET https://cloud.appwrite.io/v1/account/mfa/factors
 ```
 
@@ -181,10 +255,31 @@ GET https://cloud.appwrite.io/v1/account/mfa/recovery-codes
 
 
 ```http request
+GET https://cloud.appwrite.io/v1/account/mfa/recovery-codes
+```
+
+** Get recovery codes that can be used as backup for MFA flow. Before getting codes, they must be generated using [createMfaRecoveryCodes](/docs/references/cloud/client-web/account#createMfaRecoveryCodes) method. An OTP challenge is required to read recovery codes. **
+
+
+```http request
 POST https://cloud.appwrite.io/v1/account/mfa/recovery-codes
 ```
 
 ** Generate recovery codes as backup for MFA flow. It&#039;s recommended to generate and show then immediately after user successfully adds their authehticator. Recovery codes can be used as a MFA verification type in [createMfaChallenge](/docs/references/cloud/client-web/account#createMfaChallenge) method. **
+
+
+```http request
+POST https://cloud.appwrite.io/v1/account/mfa/recovery-codes
+```
+
+** Generate recovery codes as backup for MFA flow. It&#039;s recommended to generate and show then immediately after user successfully adds their authehticator. Recovery codes can be used as a MFA verification type in [createMfaChallenge](/docs/references/cloud/client-web/account#createMfaChallenge) method. **
+
+
+```http request
+PATCH https://cloud.appwrite.io/v1/account/mfa/recovery-codes
+```
+
+** Regenerate recovery codes that can be used as backup for MFA flow. Before regenerating codes, they must be first generated using [createMfaRecoveryCodes](/docs/references/cloud/client-web/account#createMfaRecoveryCodes) method. An OTP challenge is required to regenreate recovery codes. **
 
 
 ```http request
@@ -415,15 +510,16 @@ PATCH https://cloud.appwrite.io/v1/account/status
 POST https://cloud.appwrite.io/v1/account/tokens/email
 ```
 
-** Sends the user an email with a secret key for creating a session. If the provided user ID has not be registered, a new user will be created. Use the returned user ID and secret and submit a request to the [POST /v1/account/sessions/token](https://appwrite.io/docs/references/cloud/client-web/account#createSession) endpoint to complete the login process. The secret sent to the user&#039;s email is valid for 15 minutes.
+** Sends the user an email with a secret key for creating a session. If the email address has never been used, a **new account is created** using the provided `userId`. Otherwise, if the email address is already attached to an account, the **user ID is ignored**. Then, the user will receive an email with the one-time password. Use the returned user ID and secret and submit a request to the [POST /v1/account/sessions/token](https://appwrite.io/docs/references/cloud/client-web/account#createSession) endpoint to complete the login process. The secret sent to the user&#039;s email is valid for 15 minutes.
 
-A user is limited to 10 active sessions at a time by default. [Learn more about session limits](https://appwrite.io/docs/authentication-security#limits). **
+A user is limited to 10 active sessions at a time by default. [Learn more about session limits](https://appwrite.io/docs/authentication-security#limits).
+ **
 
 ### Parameters
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| userId | string | User ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
+| userId | string | User ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. If the email address has never been used, a new account is created using the provided userId. Otherwise, if the email address is already attached to an account, the user ID is ignored. |  |
 | email | string | User email. |  |
 | phrase | boolean | Toggle for security phrase. If enabled, email will be send with a randomly generated phrase and the phrase will also be included in the response. Confirming phrases match increases the security of your authentication flow. |  |
 
@@ -441,7 +537,7 @@ A user is limited to 10 active sessions at a time by default. [Learn more about 
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| userId | string | Unique Id. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
+| userId | string | Unique Id. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. If the email address has never been used, a new account is created using the provided userId. Otherwise, if the email address is already attached to an account, the user ID is ignored. |  |
 | email | string | User email. |  |
 | url | string | URL to redirect the user back to your app from the magic URL login. Only URLs from hostnames in your project platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API. |  |
 | phrase | boolean | Toggle for security phrase. If enabled, email will be send with a randomly generated phrase and the phrase will also be included in the response. Confirming phrases match increases the security of your authentication flow. |  |
@@ -479,7 +575,7 @@ A user is limited to 10 active sessions at a time by default. [Learn more about 
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| userId | string | Unique Id. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
+| userId | string | Unique Id. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. If the phone number has never been used, a new account is created using the provided userId. Otherwise, if the phone number is already attached to an account, the user ID is ignored. |  |
 | phone | string | Phone number. Format this number with a leading '+' and a country code, e.g., +16175551212. |  |
 
 

@@ -230,6 +230,24 @@ final class AccountTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
+    public function testMethodCreateMFAAuthenticator(): void {
+
+        $data = array(
+            "secret" => "1",
+            "uri" => "1",);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->account->createMFAAuthenticator(
+            "totp"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
     public function testMethodUpdateMfaAuthenticator(): void {
 
         $data = array(
@@ -263,6 +281,39 @@ final class AccountTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
+    public function testMethodUpdateMFAAuthenticator(): void {
+
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "name" => "John Doe",
+            "registration" => "2020-10-15T06:38:00.000+00:00",
+            "status" => true,
+            "labels" => array(),
+            "passwordUpdate" => "2020-10-15T06:38:00.000+00:00",
+            "email" => "john@appwrite.io",
+            "phone" => "+4930901820",
+            "emailVerification" => true,
+            "phoneVerification" => true,
+            "mfa" => true,
+            "prefs" => array(),
+            "targets" => array(),
+            "accessedAt" => "2020-10-15T06:38:00.000+00:00",);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->account->updateMFAAuthenticator(
+            "totp",
+            "<OTP>"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
     public function testMethodDeleteMfaAuthenticator(): void {
 
         $data = '';
@@ -273,6 +324,22 @@ final class AccountTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->account->deleteMfaAuthenticator(
+            "totp"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodDeleteMFAAuthenticator(): void {
+
+        $data = '';
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->account->deleteMFAAuthenticator(
             "totp"
         );
 
@@ -293,6 +360,26 @@ final class AccountTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->account->createMfaChallenge(
+            "email"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodCreateMFAChallenge(): void {
+
+        $data = array(
+            "\$id" => "bb8ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "userId" => "5e5ea5c168bb8",
+            "expire" => "2020-10-15T06:38:00.000+00:00",);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->account->createMFAChallenge(
             "email"
         );
 
@@ -345,6 +432,52 @@ final class AccountTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
+    public function testMethodUpdateMFAChallenge(): void {
+
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "userId" => "5e5bb8c16897e",
+            "expire" => "2020-10-15T06:38:00.000+00:00",
+            "provider" => "email",
+            "providerUid" => "user@example.com",
+            "providerAccessToken" => "MTQ0NjJkZmQ5OTM2NDE1ZTZjNGZmZjI3",
+            "providerAccessTokenExpiry" => "2020-10-15T06:38:00.000+00:00",
+            "providerRefreshToken" => "MTQ0NjJkZmQ5OTM2NDE1ZTZjNGZmZjI3",
+            "ip" => "127.0.0.1",
+            "osCode" => "Mac",
+            "osName" => "Mac",
+            "osVersion" => "Mac",
+            "clientType" => "browser",
+            "clientCode" => "CM",
+            "clientName" => "Chrome Mobile iOS",
+            "clientVersion" => "84.0",
+            "clientEngine" => "WebKit",
+            "clientEngineVersion" => "605.1.15",
+            "deviceName" => "smartphone",
+            "deviceBrand" => "Google",
+            "deviceModel" => "Nexus 5",
+            "countryCode" => "US",
+            "countryName" => "United States",
+            "current" => true,
+            "factors" => array(),
+            "secret" => "5e5bb8c16897e",
+            "mfaUpdatedAt" => "2020-10-15T06:38:00.000+00:00",);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->account->updateMFAChallenge(
+            "<CHALLENGE_ID>",
+            "<OTP>"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
     public function testMethodListMfaFactors(): void {
 
         $data = array(
@@ -359,6 +492,25 @@ final class AccountTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->account->listMfaFactors(
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodListMFAFactors(): void {
+
+        $data = array(
+            "totp" => true,
+            "phone" => true,
+            "email" => true,
+            "recoveryCode" => true,);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->account->listMFAFactors(
         );
 
         $this->assertSame($data, $response);
@@ -380,6 +532,22 @@ final class AccountTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
+    public function testMethodGetMFARecoveryCodes(): void {
+
+        $data = array(
+            "recoveryCodes" => array(),);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->account->getMFARecoveryCodes(
+        );
+
+        $this->assertSame($data, $response);
+    }
+
     public function testMethodCreateMfaRecoveryCodes(): void {
 
         $data = array(
@@ -396,6 +564,22 @@ final class AccountTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
+    public function testMethodCreateMFARecoveryCodes(): void {
+
+        $data = array(
+            "recoveryCodes" => array(),);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->account->createMFARecoveryCodes(
+        );
+
+        $this->assertSame($data, $response);
+    }
+
     public function testMethodUpdateMfaRecoveryCodes(): void {
 
         $data = array(
@@ -407,6 +591,22 @@ final class AccountTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->account->updateMfaRecoveryCodes(
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodUpdateMFARecoveryCodes(): void {
+
+        $data = array(
+            "recoveryCodes" => array(),);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->account->updateMFARecoveryCodes(
         );
 
         $this->assertSame($data, $response);

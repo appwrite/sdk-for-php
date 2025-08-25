@@ -166,6 +166,33 @@ final class MessagingTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
+    public function testMethodCreateSMS(): void {
+
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "providerType" => "email",
+            "topics" => array(),
+            "users" => array(),
+            "targets" => array(),
+            "deliveredTotal" => 1,
+            "data" => array(),
+            "status" => "Message status can be one of the following: draft, processing, scheduled, sent, or failed.",);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->messaging->createSMS(
+            "<MESSAGE_ID>",
+            "<CONTENT>"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
     public function testMethodUpdateSms(): void {
 
         $data = array(
@@ -186,6 +213,32 @@ final class MessagingTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->messaging->updateSms(
+            "<MESSAGE_ID>"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodUpdateSMS(): void {
+
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "providerType" => "email",
+            "topics" => array(),
+            "users" => array(),
+            "targets" => array(),
+            "deliveredTotal" => 1,
+            "data" => array(),
+            "status" => "Message status can be one of the following: draft, processing, scheduled, sent, or failed.",);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->messaging->updateSMS(
             "<MESSAGE_ID>"
         );
 
@@ -312,6 +365,31 @@ final class MessagingTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
+    public function testMethodCreateAPNSProvider(): void {
+
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "name" => "Mailgun",
+            "provider" => "mailgun",
+            "enabled" => true,
+            "type" => "sms",
+            "credentials" => array(),);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->messaging->createAPNSProvider(
+            "<PROVIDER_ID>",
+            "<NAME>"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
     public function testMethodUpdateApnsProvider(): void {
 
         $data = array(
@@ -330,6 +408,30 @@ final class MessagingTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->messaging->updateApnsProvider(
+            "<PROVIDER_ID>"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodUpdateAPNSProvider(): void {
+
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "name" => "Mailgun",
+            "provider" => "mailgun",
+            "enabled" => true,
+            "type" => "sms",
+            "credentials" => array(),);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->messaging->updateAPNSProvider(
             "<PROVIDER_ID>"
         );
 
@@ -361,6 +463,31 @@ final class MessagingTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
+    public function testMethodCreateFCMProvider(): void {
+
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "name" => "Mailgun",
+            "provider" => "mailgun",
+            "enabled" => true,
+            "type" => "sms",
+            "credentials" => array(),);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->messaging->createFCMProvider(
+            "<PROVIDER_ID>",
+            "<NAME>"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
     public function testMethodUpdateFcmProvider(): void {
 
         $data = array(
@@ -379,6 +506,30 @@ final class MessagingTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->messaging->updateFcmProvider(
+            "<PROVIDER_ID>"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodUpdateFCMProvider(): void {
+
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "name" => "Mailgun",
+            "provider" => "mailgun",
+            "enabled" => true,
+            "type" => "sms",
+            "credentials" => array(),);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->messaging->updateFCMProvider(
             "<PROVIDER_ID>"
         );
 
@@ -558,6 +709,32 @@ final class MessagingTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
+    public function testMethodCreateSMTPProvider(): void {
+
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "name" => "Mailgun",
+            "provider" => "mailgun",
+            "enabled" => true,
+            "type" => "sms",
+            "credentials" => array(),);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->messaging->createSMTPProvider(
+            "<PROVIDER_ID>",
+            "<NAME>",
+            "<HOST>"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
     public function testMethodUpdateSmtpProvider(): void {
 
         $data = array(
@@ -576,6 +753,30 @@ final class MessagingTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->messaging->updateSmtpProvider(
+            "<PROVIDER_ID>"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodUpdateSMTPProvider(): void {
+
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "name" => "Mailgun",
+            "provider" => "mailgun",
+            "enabled" => true,
+            "type" => "sms",
+            "credentials" => array(),);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->messaging->updateSMTPProvider(
             "<PROVIDER_ID>"
         );
 
