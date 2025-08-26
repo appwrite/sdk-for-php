@@ -40,7 +40,8 @@ final class DatabasesTest extends TestCase {
             "name" => "My Database",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "enabled" => true,);
+            "enabled" => true,
+            "type" => "legacy",);
 
 
         $this->client
@@ -62,7 +63,8 @@ final class DatabasesTest extends TestCase {
             "name" => "My Database",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "enabled" => true,);
+            "enabled" => true,
+            "type" => "legacy",);
 
 
         $this->client
@@ -83,7 +85,8 @@ final class DatabasesTest extends TestCase {
             "name" => "My Database",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "enabled" => true,);
+            "enabled" => true,
+            "type" => "legacy",);
 
 
         $this->client
@@ -1135,14 +1138,15 @@ final class DatabasesTest extends TestCase {
     public function testMethodCreateIndex(): void {
 
         $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "key" => "index1",
             "type" => "primary",
             "status" => "available",
             "error" => "string",
             "attributes" => array(),
-            "lengths" => array(),
-            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",);
+            "lengths" => array(),);
 
 
         $this->client
@@ -1163,14 +1167,15 @@ final class DatabasesTest extends TestCase {
     public function testMethodGetIndex(): void {
 
         $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "key" => "index1",
             "type" => "primary",
             "status" => "available",
             "error" => "string",
             "attributes" => array(),
-            "lengths" => array(),
-            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",);
+            "lengths" => array(),);
 
 
         $this->client

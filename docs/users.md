@@ -295,6 +295,20 @@ PATCH https://cloud.appwrite.io/v1/users/{userId}/mfa
 
 
 ```http request
+PATCH https://cloud.appwrite.io/v1/users/{userId}/mfa
+```
+
+** Enable or disable MFA on a user account. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| userId | string | **Required** User ID. |  |
+| mfa | boolean | Enable or disable MFA. |  |
+
+
+```http request
 DELETE https://cloud.appwrite.io/v1/users/{userId}/mfa/authenticators/{type}
 ```
 
@@ -306,6 +320,33 @@ DELETE https://cloud.appwrite.io/v1/users/{userId}/mfa/authenticators/{type}
 | --- | --- | --- | --- |
 | userId | string | **Required** User ID. |  |
 | type | string | **Required** Type of authenticator. |  |
+
+
+```http request
+DELETE https://cloud.appwrite.io/v1/users/{userId}/mfa/authenticators/{type}
+```
+
+** Delete an authenticator app. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| userId | string | **Required** User ID. |  |
+| type | string | **Required** Type of authenticator. |  |
+
+
+```http request
+GET https://cloud.appwrite.io/v1/users/{userId}/mfa/factors
+```
+
+** List the factors available on the account to be used as a MFA challange. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| userId | string | **Required** User ID. |  |
 
 
 ```http request
@@ -335,10 +376,49 @@ GET https://cloud.appwrite.io/v1/users/{userId}/mfa/recovery-codes
 
 
 ```http request
+GET https://cloud.appwrite.io/v1/users/{userId}/mfa/recovery-codes
+```
+
+** Get recovery codes that can be used as backup for MFA flow by User ID. Before getting codes, they must be generated using [createMfaRecoveryCodes](/docs/references/cloud/client-web/account#createMfaRecoveryCodes) method. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| userId | string | **Required** User ID. |  |
+
+
+```http request
 PUT https://cloud.appwrite.io/v1/users/{userId}/mfa/recovery-codes
 ```
 
 ** Regenerate recovery codes that can be used as backup for MFA flow by User ID. Before regenerating codes, they must be first generated using [createMfaRecoveryCodes](/docs/references/cloud/client-web/account#createMfaRecoveryCodes) method. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| userId | string | **Required** User ID. |  |
+
+
+```http request
+PUT https://cloud.appwrite.io/v1/users/{userId}/mfa/recovery-codes
+```
+
+** Regenerate recovery codes that can be used as backup for MFA flow by User ID. Before regenerating codes, they must be first generated using [createMfaRecoveryCodes](/docs/references/cloud/client-web/account#createMfaRecoveryCodes) method. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| userId | string | **Required** User ID. |  |
+
+
+```http request
+PATCH https://cloud.appwrite.io/v1/users/{userId}/mfa/recovery-codes
+```
+
+** Generate recovery codes used as backup for MFA flow for User ID. Recovery codes can be used as a MFA verification type in [createMfaChallenge](/docs/references/cloud/client-web/account#createMfaChallenge) method by client SDK. **
 
 ### Parameters
 
