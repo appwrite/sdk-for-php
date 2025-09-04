@@ -1227,7 +1227,8 @@ class Account extends Service
      * @throws AppwriteException
      * @return array
      *
-     * @deprecated This API has been deprecated.
+     * @deprecated This API has been deprecated since 1.6.0. Please use `createSession` instead.
+     * @see Account::createSession
      */
     public function updateMagicURLSession(string $userId, string $secret): array
     {
@@ -1262,7 +1263,8 @@ class Account extends Service
      * @throws AppwriteException
      * @return array
      *
-     * @deprecated This API has been deprecated.
+     * @deprecated This API has been deprecated since 1.6.0. Please use `createSession` instead.
+     * @see Account::createSession
      */
     public function updatePhoneSession(string $userId, string $secret): array
     {

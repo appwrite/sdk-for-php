@@ -18,7 +18,7 @@ class CreditCard implements JsonSerializable
     private static CreditCard $MASTERCARD;
     private static CreditCard $NARANJA;
     private static CreditCard $TARJETASHOPPING;
-    private static CreditCard $UNIONCHINAPAY;
+    private static CreditCard $UNIONPAY;
     private static CreditCard $VISA;
     private static CreditCard $MIR;
     private static CreditCard $MAESTRO;
@@ -125,12 +125,12 @@ class CreditCard implements JsonSerializable
         }
         return self::$TARJETASHOPPING;
     }
-    public static function UNIONCHINAPAY(): CreditCard
+    public static function UNIONPAY(): CreditCard
     {
-        if (!isset(self::$UNIONCHINAPAY)) {
-            self::$UNIONCHINAPAY = new CreditCard('union-china-pay');
+        if (!isset(self::$UNIONPAY)) {
+            self::$UNIONPAY = new CreditCard('unionpay');
         }
-        return self::$UNIONCHINAPAY;
+        return self::$UNIONPAY;
     }
     public static function VISA(): CreditCard
     {

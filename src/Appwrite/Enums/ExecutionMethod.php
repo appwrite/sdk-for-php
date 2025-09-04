@@ -12,6 +12,7 @@ class ExecutionMethod implements JsonSerializable
     private static ExecutionMethod $PATCH;
     private static ExecutionMethod $DELETE;
     private static ExecutionMethod $OPTIONS;
+    private static ExecutionMethod $HEAD;
 
     private string $value;
 
@@ -71,5 +72,12 @@ class ExecutionMethod implements JsonSerializable
             self::$OPTIONS = new ExecutionMethod('OPTIONS');
         }
         return self::$OPTIONS;
+    }
+    public static function HEAD(): ExecutionMethod
+    {
+        if (!isset(self::$HEAD)) {
+            self::$HEAD = new ExecutionMethod('HEAD');
+        }
+        return self::$HEAD;
     }
 }

@@ -1096,6 +1096,246 @@ class TablesDB extends Service
     }
 
     /**
+     * Create a geometric line attribute.
+     *
+     * @param string $databaseId
+     * @param string $tableId
+     * @param string $key
+     * @param bool $required
+     * @param ?string $xdefault
+     * @throws AppwriteException
+     * @return array
+     */
+    public function createLineColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null): array
+    {
+        $apiPath = str_replace(
+            ['{databaseId}', '{tableId}'],
+            [$databaseId, $tableId],
+            '/tablesdb/{databaseId}/tables/{tableId}/columns/line'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['tableId'] = $tableId;
+        $apiParams['key'] = $key;
+        $apiParams['required'] = $required;
+        $apiParams['default'] = $xdefault;
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Update a line column. Changing the `default` value will not update already
+     * existing documents.
+     *
+     * @param string $databaseId
+     * @param string $tableId
+     * @param string $key
+     * @param bool $required
+     * @param ?string $xdefault
+     * @param ?string $newKey
+     * @throws AppwriteException
+     * @return array
+     */
+    public function updateLineColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?string $newKey = null): array
+    {
+        $apiPath = str_replace(
+            ['{databaseId}', '{tableId}', '{key}'],
+            [$databaseId, $tableId, $key],
+            '/tablesdb/{databaseId}/tables/{tableId}/columns/line/{key}'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['tableId'] = $tableId;
+        $apiParams['key'] = $key;
+        $apiParams['required'] = $required;
+        $apiParams['default'] = $xdefault;
+
+        if (!is_null($newKey)) {
+            $apiParams['newKey'] = $newKey;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Create a geometric point attribute.
+     *
+     * @param string $databaseId
+     * @param string $tableId
+     * @param string $key
+     * @param bool $required
+     * @param ?string $xdefault
+     * @throws AppwriteException
+     * @return array
+     */
+    public function createPointColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null): array
+    {
+        $apiPath = str_replace(
+            ['{databaseId}', '{tableId}'],
+            [$databaseId, $tableId],
+            '/tablesdb/{databaseId}/tables/{tableId}/columns/point'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['tableId'] = $tableId;
+        $apiParams['key'] = $key;
+        $apiParams['required'] = $required;
+        $apiParams['default'] = $xdefault;
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Update a point column. Changing the `default` value will not update already
+     * existing documents.
+     *
+     * @param string $databaseId
+     * @param string $tableId
+     * @param string $key
+     * @param bool $required
+     * @param ?string $xdefault
+     * @param ?string $newKey
+     * @throws AppwriteException
+     * @return array
+     */
+    public function updatePointColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?string $newKey = null): array
+    {
+        $apiPath = str_replace(
+            ['{databaseId}', '{tableId}', '{key}'],
+            [$databaseId, $tableId, $key],
+            '/tablesdb/{databaseId}/tables/{tableId}/columns/point/{key}'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['tableId'] = $tableId;
+        $apiParams['key'] = $key;
+        $apiParams['required'] = $required;
+        $apiParams['default'] = $xdefault;
+
+        if (!is_null($newKey)) {
+            $apiParams['newKey'] = $newKey;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Create a geometric polygon attribute.
+     *
+     * @param string $databaseId
+     * @param string $tableId
+     * @param string $key
+     * @param bool $required
+     * @param ?string $xdefault
+     * @throws AppwriteException
+     * @return array
+     */
+    public function createPolygonColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null): array
+    {
+        $apiPath = str_replace(
+            ['{databaseId}', '{tableId}'],
+            [$databaseId, $tableId],
+            '/tablesdb/{databaseId}/tables/{tableId}/columns/polygon'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['tableId'] = $tableId;
+        $apiParams['key'] = $key;
+        $apiParams['required'] = $required;
+        $apiParams['default'] = $xdefault;
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Update a polygon column. Changing the `default` value will not update
+     * already existing documents.
+     *
+     * @param string $databaseId
+     * @param string $tableId
+     * @param string $key
+     * @param bool $required
+     * @param ?string $xdefault
+     * @param ?string $newKey
+     * @throws AppwriteException
+     * @return array
+     */
+    public function updatePolygonColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?string $newKey = null): array
+    {
+        $apiPath = str_replace(
+            ['{databaseId}', '{tableId}', '{key}'],
+            [$databaseId, $tableId, $key],
+            '/tablesdb/{databaseId}/tables/{tableId}/columns/polygon/{key}'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['tableId'] = $tableId;
+        $apiParams['key'] = $key;
+        $apiParams['required'] = $required;
+        $apiParams['default'] = $xdefault;
+
+        if (!is_null($newKey)) {
+            $apiParams['newKey'] = $newKey;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
      * Create relationship column. [Learn more about relationship
      * columns](https://appwrite.io/docs/databases-relationships#relationship-columns).
      * 

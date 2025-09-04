@@ -440,6 +440,111 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 
 
 ```http request
+POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/line
+```
+
+** Create a geometric line attribute. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| databaseId | string | **Required** Database ID. |  |
+| collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
+| key | string | Attribute Key. |  |
+| required | boolean | Is attribute required? |  |
+| default | string | Default value for attribute when not provided, as JSON string. Cannot be set when attribute is required. |  |
+
+
+```http request
+PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/line/{key}
+```
+
+** Update a line attribute. Changing the `default` value will not update already existing documents. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| databaseId | string | **Required** Database ID. |  |
+| collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#createCollection). |  |
+| key | string | **Required** Attribute Key. |  |
+| required | boolean | Is attribute required? |  |
+| default | string | Default value for attribute when not provided, as JSON string. Cannot be set when attribute is required. |  |
+| newKey | string | New attribute key. |  |
+
+
+```http request
+POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/point
+```
+
+** Create a geometric 2d point attribute. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| databaseId | string | **Required** Database ID. |  |
+| collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
+| key | string | Attribute Key. |  |
+| required | boolean | Is attribute required? |  |
+| default | string | Default value for attribute when not provided, as JSON string. Cannot be set when attribute is required. |  |
+
+
+```http request
+PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/point/{key}
+```
+
+** Update a point attribute. Changing the `default` value will not update already existing documents. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| databaseId | string | **Required** Database ID. |  |
+| collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#createCollection). |  |
+| key | string | **Required** Attribute Key. |  |
+| required | boolean | Is attribute required? |  |
+| default | string | Default value for attribute when not provided, as JSON string. Cannot be set when attribute is required. |  |
+| newKey | string | New attribute key. |  |
+
+
+```http request
+POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/polygon
+```
+
+** Create a geometric polygon attribute. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| databaseId | string | **Required** Database ID. |  |
+| collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
+| key | string | Attribute Key. |  |
+| required | boolean | Is attribute required? |  |
+| default | string | Default value for attribute when not provided, as JSON string. Cannot be set when attribute is required. |  |
+
+
+```http request
+PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/polygon/{key}
+```
+
+** Update a polygon attribute. Changing the `default` value will not update already existing documents. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| databaseId | string | **Required** Database ID. |  |
+| collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#createCollection). |  |
+| key | string | **Required** Attribute Key. |  |
+| required | boolean | Is attribute required? |  |
+| default | string | Default value for attribute when not provided, as JSON string. Cannot be set when attribute is required. |  |
+| newKey | string | New attribute key. |  |
+
+
+```http request
 POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/relationship
 ```
 
