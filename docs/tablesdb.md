@@ -452,7 +452,7 @@ POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/columns
 | tableId | string | **Required** Table ID. You can create a new table using the TablesDB service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate). |  |
 | key | string | Column Key. |  |
 | required | boolean | Is column required? |  |
-| default | string | Default value for column when not provided, as JSON string. Cannot be set when column is required. |  |
+| default | array | Default value for column when not provided, two-dimensional array of coordinate pairs, [[longitude, latitude], [longitude, latitude], …], listing the vertices of the line in order. Cannot be set when column is required. |  |
 
 
 ```http request
@@ -469,7 +469,7 @@ PATCH https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/column
 | tableId | string | **Required** Table ID. You can create a new table using the TablesDB service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate). |  |
 | key | string | **Required** Column Key. |  |
 | required | boolean | Is column required? |  |
-| default | string | Default value for column when not provided, as JSON string. Cannot be set when column is required. |  |
+| default | array | Default value for column when not provided, two-dimensional array of coordinate pairs, [[longitude, latitude], [longitude, latitude], …], listing the vertices of the line in order. Cannot be set when column is required. |  |
 | newKey | string | New Column Key. |  |
 
 
@@ -487,7 +487,7 @@ POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/columns
 | tableId | string | **Required** Table ID. You can create a new table using the TablesDB service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate). |  |
 | key | string | Column Key. |  |
 | required | boolean | Is column required? |  |
-| default | string | Default value for column when not provided, as JSON string. Cannot be set when column is required. |  |
+| default | array | Default value for column when not provided, array of two numbers [longitude, latitude], representing a single coordinate. Cannot be set when column is required. |  |
 
 
 ```http request
@@ -504,7 +504,7 @@ PATCH https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/column
 | tableId | string | **Required** Table ID. You can create a new table using the TablesDB service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate). |  |
 | key | string | **Required** Column Key. |  |
 | required | boolean | Is column required? |  |
-| default | string | Default value for column when not provided, as JSON string. Cannot be set when column is required. |  |
+| default | array | Default value for column when not provided, array of two numbers [longitude, latitude], representing a single coordinate. Cannot be set when column is required. |  |
 | newKey | string | New Column Key. |  |
 
 
@@ -522,7 +522,7 @@ POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/columns
 | tableId | string | **Required** Table ID. You can create a new table using the TablesDB service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate). |  |
 | key | string | Column Key. |  |
 | required | boolean | Is column required? |  |
-| default | string | Default value for column when not provided, as JSON string. Cannot be set when column is required. |  |
+| default | array | Default value for column when not provided, three-dimensional array where the outer array holds one or more linear rings, [[[longitude, latitude], …], …], the first ring is the exterior boundary, any additional rings are interior holes, and each ring must start and end with the same coordinate pair. Cannot be set when column is required. |  |
 
 
 ```http request
@@ -539,7 +539,7 @@ PATCH https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/column
 | tableId | string | **Required** Table ID. You can create a new table using the TablesDB service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate). |  |
 | key | string | **Required** Column Key. |  |
 | required | boolean | Is column required? |  |
-| default | string | Default value for column when not provided, as JSON string. Cannot be set when column is required. |  |
+| default | array | Default value for column when not provided, three-dimensional array where the outer array holds one or more linear rings, [[[longitude, latitude], …], …], the first ring is the exterior boundary, any additional rings are interior holes, and each ring must start and end with the same coordinate pair. Cannot be set when column is required. |  |
 | newKey | string | New Column Key. |  |
 
 

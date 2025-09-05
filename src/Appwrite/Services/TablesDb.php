@@ -1102,11 +1102,11 @@ class TablesDB extends Service
      * @param string $tableId
      * @param string $key
      * @param bool $required
-     * @param ?string $xdefault
+     * @param ?array $xdefault
      * @throws AppwriteException
      * @return array
      */
-    public function createLineColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null): array
+    public function createLineColumn(string $databaseId, string $tableId, string $key, bool $required, ?array $xdefault = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
@@ -1140,12 +1140,12 @@ class TablesDB extends Service
      * @param string $tableId
      * @param string $key
      * @param bool $required
-     * @param ?string $xdefault
+     * @param ?array $xdefault
      * @param ?string $newKey
      * @throws AppwriteException
      * @return array
      */
-    public function updateLineColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?string $newKey = null): array
+    public function updateLineColumn(string $databaseId, string $tableId, string $key, bool $required, ?array $xdefault = null, ?string $newKey = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
@@ -1182,11 +1182,11 @@ class TablesDB extends Service
      * @param string $tableId
      * @param string $key
      * @param bool $required
-     * @param ?string $xdefault
+     * @param ?array $xdefault
      * @throws AppwriteException
      * @return array
      */
-    public function createPointColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null): array
+    public function createPointColumn(string $databaseId, string $tableId, string $key, bool $required, ?array $xdefault = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
@@ -1220,12 +1220,12 @@ class TablesDB extends Service
      * @param string $tableId
      * @param string $key
      * @param bool $required
-     * @param ?string $xdefault
+     * @param ?array $xdefault
      * @param ?string $newKey
      * @throws AppwriteException
      * @return array
      */
-    public function updatePointColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?string $newKey = null): array
+    public function updatePointColumn(string $databaseId, string $tableId, string $key, bool $required, ?array $xdefault = null, ?string $newKey = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
@@ -1262,11 +1262,11 @@ class TablesDB extends Service
      * @param string $tableId
      * @param string $key
      * @param bool $required
-     * @param ?string $xdefault
+     * @param ?array $xdefault
      * @throws AppwriteException
      * @return array
      */
-    public function createPolygonColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null): array
+    public function createPolygonColumn(string $databaseId, string $tableId, string $key, bool $required, ?array $xdefault = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
@@ -1300,12 +1300,12 @@ class TablesDB extends Service
      * @param string $tableId
      * @param string $key
      * @param bool $required
-     * @param ?string $xdefault
+     * @param ?array $xdefault
      * @param ?string $newKey
      * @throws AppwriteException
      * @return array
      */
-    public function updatePolygonColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?string $newKey = null): array
+    public function updatePolygonColumn(string $databaseId, string $tableId, string $key, bool $required, ?array $xdefault = null, ?string $newKey = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],

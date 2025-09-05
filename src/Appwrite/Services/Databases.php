@@ -1178,14 +1178,14 @@ class Databases extends Service
      * @param string $collectionId
      * @param string $key
      * @param bool $required
-     * @param ?string $xdefault
+     * @param ?array $xdefault
      * @throws AppwriteException
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createLineColumn` instead.
      * @see TablesDB::createLineColumn
      */
-    public function createLineAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null): array
+    public function createLineAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?array $xdefault = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
@@ -1219,7 +1219,7 @@ class Databases extends Service
      * @param string $collectionId
      * @param string $key
      * @param bool $required
-     * @param ?string $xdefault
+     * @param ?array $xdefault
      * @param ?string $newKey
      * @throws AppwriteException
      * @return array
@@ -1227,7 +1227,7 @@ class Databases extends Service
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateLineColumn` instead.
      * @see TablesDB::updateLineColumn
      */
-    public function updateLineAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null, ?string $newKey = null): array
+    public function updateLineAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?array $xdefault = null, ?string $newKey = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{key}'],
@@ -1264,14 +1264,14 @@ class Databases extends Service
      * @param string $collectionId
      * @param string $key
      * @param bool $required
-     * @param ?string $xdefault
+     * @param ?array $xdefault
      * @throws AppwriteException
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createPointColumn` instead.
      * @see TablesDB::createPointColumn
      */
-    public function createPointAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null): array
+    public function createPointAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?array $xdefault = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
@@ -1305,7 +1305,7 @@ class Databases extends Service
      * @param string $collectionId
      * @param string $key
      * @param bool $required
-     * @param ?string $xdefault
+     * @param ?array $xdefault
      * @param ?string $newKey
      * @throws AppwriteException
      * @return array
@@ -1313,7 +1313,7 @@ class Databases extends Service
      * @deprecated This API has been deprecated since 1.8.0. Please use `updatePointColumn` instead.
      * @see TablesDB::updatePointColumn
      */
-    public function updatePointAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null, ?string $newKey = null): array
+    public function updatePointAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?array $xdefault = null, ?string $newKey = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{key}'],
@@ -1350,14 +1350,14 @@ class Databases extends Service
      * @param string $collectionId
      * @param string $key
      * @param bool $required
-     * @param ?string $xdefault
+     * @param ?array $xdefault
      * @throws AppwriteException
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createPolygonColumn` instead.
      * @see TablesDB::createPolygonColumn
      */
-    public function createPolygonAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null): array
+    public function createPolygonAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?array $xdefault = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
@@ -1391,7 +1391,7 @@ class Databases extends Service
      * @param string $collectionId
      * @param string $key
      * @param bool $required
-     * @param ?string $xdefault
+     * @param ?array $xdefault
      * @param ?string $newKey
      * @throws AppwriteException
      * @return array
@@ -1399,7 +1399,7 @@ class Databases extends Service
      * @deprecated This API has been deprecated since 1.8.0. Please use `updatePolygonColumn` instead.
      * @see TablesDB::updatePolygonColumn
      */
-    public function updatePolygonAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null, ?string $newKey = null): array
+    public function updatePolygonAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?array $xdefault = null, ?string $newKey = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{key}'],

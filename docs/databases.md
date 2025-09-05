@@ -453,7 +453,7 @@ POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collection
 | collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
 | key | string | Attribute Key. |  |
 | required | boolean | Is attribute required? |  |
-| default | string | Default value for attribute when not provided, as JSON string. Cannot be set when attribute is required. |  |
+| default | array | Default value for attribute when not provided, two-dimensional array of coordinate pairs, [[longitude, latitude], [longitude, latitude], …], listing the vertices of the line in order. Cannot be set when attribute is required. |  |
 
 
 ```http request
@@ -470,7 +470,7 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 | collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#createCollection). |  |
 | key | string | **Required** Attribute Key. |  |
 | required | boolean | Is attribute required? |  |
-| default | string | Default value for attribute when not provided, as JSON string. Cannot be set when attribute is required. |  |
+| default | array | Default value for attribute when not provided, two-dimensional array of coordinate pairs, [[longitude, latitude], [longitude, latitude], …], listing the vertices of the line in order. Cannot be set when attribute is required. |  |
 | newKey | string | New attribute key. |  |
 
 
@@ -488,7 +488,7 @@ POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collection
 | collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
 | key | string | Attribute Key. |  |
 | required | boolean | Is attribute required? |  |
-| default | string | Default value for attribute when not provided, as JSON string. Cannot be set when attribute is required. |  |
+| default | array | Default value for attribute when not provided, array of two numbers [longitude, latitude], representing a single coordinate. Cannot be set when attribute is required. |  |
 
 
 ```http request
@@ -505,7 +505,7 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 | collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#createCollection). |  |
 | key | string | **Required** Attribute Key. |  |
 | required | boolean | Is attribute required? |  |
-| default | string | Default value for attribute when not provided, as JSON string. Cannot be set when attribute is required. |  |
+| default | array | Default value for attribute when not provided, array of two numbers [longitude, latitude], representing a single coordinate. Cannot be set when attribute is required. |  |
 | newKey | string | New attribute key. |  |
 
 
@@ -523,7 +523,7 @@ POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collection
 | collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
 | key | string | Attribute Key. |  |
 | required | boolean | Is attribute required? |  |
-| default | string | Default value for attribute when not provided, as JSON string. Cannot be set when attribute is required. |  |
+| default | array | Default value for attribute when not provided, three-dimensional array where the outer array holds one or more linear rings, [[[longitude, latitude], …], …], the first ring is the exterior boundary, any additional rings are interior holes, and each ring must start and end with the same coordinate pair. Cannot be set when attribute is required. |  |
 
 
 ```http request
@@ -540,7 +540,7 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 | collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#createCollection). |  |
 | key | string | **Required** Attribute Key. |  |
 | required | boolean | Is attribute required? |  |
-| default | string | Default value for attribute when not provided, as JSON string. Cannot be set when attribute is required. |  |
+| default | array | Default value for attribute when not provided, three-dimensional array where the outer array holds one or more linear rings, [[[longitude, latitude], …], …], the first ring is the exterior boundary, any additional rings are interior holes, and each ring must start and end with the same coordinate pair. Cannot be set when attribute is required. |  |
 | newKey | string | New attribute key. |  |
 
 
