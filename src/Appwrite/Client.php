@@ -262,7 +262,7 @@ class Client
         $warnings = $responseHeaders['x-appwrite-warning'] ?? '';
         if ($warnings) {
             foreach(explode(';', $warnings) as $warning) {
-                echo 'Warning: ' . $warning . PHP_EOL;
+                \trigger_error($warning, E_USER_WARNING);
             }
         }
         
