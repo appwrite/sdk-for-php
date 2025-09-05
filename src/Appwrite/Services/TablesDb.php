@@ -1096,7 +1096,7 @@ class TablesDB extends Service
     }
 
     /**
-     * Create a geometric line attribute.
+     * Create a geometric line column.
      *
      * @param string $databaseId
      * @param string $tableId
@@ -1134,7 +1134,7 @@ class TablesDB extends Service
 
     /**
      * Update a line column. Changing the `default` value will not update already
-     * existing documents.
+     * existing rows.
      *
      * @param string $databaseId
      * @param string $tableId
@@ -1176,7 +1176,7 @@ class TablesDB extends Service
     }
 
     /**
-     * Create a geometric point attribute.
+     * Create a geometric point column.
      *
      * @param string $databaseId
      * @param string $tableId
@@ -1214,7 +1214,7 @@ class TablesDB extends Service
 
     /**
      * Update a point column. Changing the `default` value will not update already
-     * existing documents.
+     * existing rows.
      *
      * @param string $databaseId
      * @param string $tableId
@@ -1256,7 +1256,7 @@ class TablesDB extends Service
     }
 
     /**
-     * Create a geometric polygon attribute.
+     * Create a geometric polygon column.
      *
      * @param string $databaseId
      * @param string $tableId
@@ -1294,7 +1294,7 @@ class TablesDB extends Service
 
     /**
      * Update a polygon column. Changing the `default` value will not update
-     * already existing documents.
+     * already existing rows.
      *
      * @param string $databaseId
      * @param string $tableId

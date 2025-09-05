@@ -478,7 +478,7 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/point
 ```
 
-** Create a geometric 2d point attribute. **
+** Create a geometric point attribute. **
 
 ### Parameters
 

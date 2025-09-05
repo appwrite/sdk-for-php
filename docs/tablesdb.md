@@ -442,7 +442,7 @@ PATCH https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/column
 POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/columns/line
 ```
 
-** Create a geometric line attribute. **
+** Create a geometric line column. **
 
 ### Parameters
 
@@ -459,7 +459,7 @@ POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/columns
 PATCH https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/columns/line/{key}
 ```
 
-** Update a line column. Changing the `default` value will not update already existing documents. **
+** Update a line column. Changing the `default` value will not update already existing rows. **
 
 ### Parameters
 
@@ -477,7 +477,7 @@ PATCH https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/column
 POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/columns/point
 ```
 
-** Create a geometric point attribute. **
+** Create a geometric point column. **
 
 ### Parameters
 
@@ -494,7 +494,7 @@ POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/columns
 PATCH https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/columns/point/{key}
 ```
 
-** Update a point column. Changing the `default` value will not update already existing documents. **
+** Update a point column. Changing the `default` value will not update already existing rows. **
 
 ### Parameters
 
@@ -512,7 +512,7 @@ PATCH https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/column
 POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/columns/polygon
 ```
 
-** Create a geometric polygon attribute. **
+** Create a geometric polygon column. **
 
 ### Parameters
 
@@ -529,7 +529,7 @@ POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/columns
 PATCH https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/columns/polygon/{key}
 ```
 
-** Update a polygon column. Changing the `default` value will not update already existing documents. **
+** Update a polygon column. Changing the `default` value will not update already existing rows. **
 
 ### Parameters
 

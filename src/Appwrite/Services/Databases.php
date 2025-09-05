@@ -1258,7 +1258,7 @@ class Databases extends Service
     }
 
     /**
-     * Create a geometric 2d point attribute.
+     * Create a geometric point attribute.
      *
      * @param string $databaseId
      * @param string $collectionId
