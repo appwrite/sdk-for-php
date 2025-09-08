@@ -303,7 +303,7 @@ POST https://cloud.appwrite.io/v1/functions/{functionId}/executions
 | body | string | HTTP body of execution. Default value is empty string. |  |
 | async | boolean | Execute code in the background. Default value is false. |  |
 | path | string | HTTP path of execution. Path can include query params. Default value is / | / |
-| method | string | HTTP method of execution. Default value is GET. | POST |
+| method | string | HTTP method of execution. Default value is POST. | POST |
 | headers | object | HTTP headers of execution. Defaults to empty. | {} |
 | scheduledAt | string | Scheduled execution time in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. DateTime value must be in future with precision in minutes. |  |
 

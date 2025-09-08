@@ -67,8 +67,8 @@ class Databases extends Service
      * @throws AppwriteException
      * @return array
      *
-     * @deprecated This API has been deprecated since 1.8.0. Please use `createDatabase` instead.
-     * @see TablesDB::createDatabase
+     * @deprecated This API has been deprecated since 1.8.0. Please use `create` instead.
+     * @see TablesDB::create
      */
     public function create(string $databaseId, string $name, ?bool $enabled = null): array
     {
@@ -1147,6 +1147,264 @@ class Databases extends Service
             ['{databaseId}', '{collectionId}', '{key}'],
             [$databaseId, $collectionId, $key],
             '/databases/{databaseId}/collections/{collectionId}/attributes/ip/{key}'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['collectionId'] = $collectionId;
+        $apiParams['key'] = $key;
+        $apiParams['required'] = $required;
+        $apiParams['default'] = $xdefault;
+
+        if (!is_null($newKey)) {
+            $apiParams['newKey'] = $newKey;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Create a geometric line attribute.
+     *
+     * @param string $databaseId
+     * @param string $collectionId
+     * @param string $key
+     * @param bool $required
+     * @param ?array $xdefault
+     * @throws AppwriteException
+     * @return array
+     *
+     * @deprecated This API has been deprecated since 1.8.0. Please use `createLineColumn` instead.
+     * @see TablesDB::createLineColumn
+     */
+    public function createLineAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?array $xdefault = null): array
+    {
+        $apiPath = str_replace(
+            ['{databaseId}', '{collectionId}'],
+            [$databaseId, $collectionId],
+            '/databases/{databaseId}/collections/{collectionId}/attributes/line'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['collectionId'] = $collectionId;
+        $apiParams['key'] = $key;
+        $apiParams['required'] = $required;
+        $apiParams['default'] = $xdefault;
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Update a line attribute. Changing the `default` value will not update
+     * already existing documents.
+     *
+     * @param string $databaseId
+     * @param string $collectionId
+     * @param string $key
+     * @param bool $required
+     * @param ?array $xdefault
+     * @param ?string $newKey
+     * @throws AppwriteException
+     * @return array
+     *
+     * @deprecated This API has been deprecated since 1.8.0. Please use `updateLineColumn` instead.
+     * @see TablesDB::updateLineColumn
+     */
+    public function updateLineAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?array $xdefault = null, ?string $newKey = null): array
+    {
+        $apiPath = str_replace(
+            ['{databaseId}', '{collectionId}', '{key}'],
+            [$databaseId, $collectionId, $key],
+            '/databases/{databaseId}/collections/{collectionId}/attributes/line/{key}'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['collectionId'] = $collectionId;
+        $apiParams['key'] = $key;
+        $apiParams['required'] = $required;
+        $apiParams['default'] = $xdefault;
+
+        if (!is_null($newKey)) {
+            $apiParams['newKey'] = $newKey;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Create a geometric point attribute.
+     *
+     * @param string $databaseId
+     * @param string $collectionId
+     * @param string $key
+     * @param bool $required
+     * @param ?array $xdefault
+     * @throws AppwriteException
+     * @return array
+     *
+     * @deprecated This API has been deprecated since 1.8.0. Please use `createPointColumn` instead.
+     * @see TablesDB::createPointColumn
+     */
+    public function createPointAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?array $xdefault = null): array
+    {
+        $apiPath = str_replace(
+            ['{databaseId}', '{collectionId}'],
+            [$databaseId, $collectionId],
+            '/databases/{databaseId}/collections/{collectionId}/attributes/point'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['collectionId'] = $collectionId;
+        $apiParams['key'] = $key;
+        $apiParams['required'] = $required;
+        $apiParams['default'] = $xdefault;
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Update a point attribute. Changing the `default` value will not update
+     * already existing documents.
+     *
+     * @param string $databaseId
+     * @param string $collectionId
+     * @param string $key
+     * @param bool $required
+     * @param ?array $xdefault
+     * @param ?string $newKey
+     * @throws AppwriteException
+     * @return array
+     *
+     * @deprecated This API has been deprecated since 1.8.0. Please use `updatePointColumn` instead.
+     * @see TablesDB::updatePointColumn
+     */
+    public function updatePointAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?array $xdefault = null, ?string $newKey = null): array
+    {
+        $apiPath = str_replace(
+            ['{databaseId}', '{collectionId}', '{key}'],
+            [$databaseId, $collectionId, $key],
+            '/databases/{databaseId}/collections/{collectionId}/attributes/point/{key}'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['collectionId'] = $collectionId;
+        $apiParams['key'] = $key;
+        $apiParams['required'] = $required;
+        $apiParams['default'] = $xdefault;
+
+        if (!is_null($newKey)) {
+            $apiParams['newKey'] = $newKey;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Create a geometric polygon attribute.
+     *
+     * @param string $databaseId
+     * @param string $collectionId
+     * @param string $key
+     * @param bool $required
+     * @param ?array $xdefault
+     * @throws AppwriteException
+     * @return array
+     *
+     * @deprecated This API has been deprecated since 1.8.0. Please use `createPolygonColumn` instead.
+     * @see TablesDB::createPolygonColumn
+     */
+    public function createPolygonAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?array $xdefault = null): array
+    {
+        $apiPath = str_replace(
+            ['{databaseId}', '{collectionId}'],
+            [$databaseId, $collectionId],
+            '/databases/{databaseId}/collections/{collectionId}/attributes/polygon'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['collectionId'] = $collectionId;
+        $apiParams['key'] = $key;
+        $apiParams['required'] = $required;
+        $apiParams['default'] = $xdefault;
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Update a polygon attribute. Changing the `default` value will not update
+     * already existing documents.
+     *
+     * @param string $databaseId
+     * @param string $collectionId
+     * @param string $key
+     * @param bool $required
+     * @param ?array $xdefault
+     * @param ?string $newKey
+     * @throws AppwriteException
+     * @return array
+     *
+     * @deprecated This API has been deprecated since 1.8.0. Please use `updatePolygonColumn` instead.
+     * @see TablesDB::updatePolygonColumn
+     */
+    public function updatePolygonAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?array $xdefault = null, ?string $newKey = null): array
+    {
+        $apiPath = str_replace(
+            ['{databaseId}', '{collectionId}', '{key}'],
+            [$databaseId, $collectionId, $key],
+            '/databases/{databaseId}/collections/{collectionId}/attributes/polygon/{key}'
         );
 
         $apiParams = [];

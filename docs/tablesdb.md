@@ -439,6 +439,111 @@ PATCH https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/column
 
 
 ```http request
+POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/columns/line
+```
+
+** Create a geometric line column. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| databaseId | string | **Required** Database ID. |  |
+| tableId | string | **Required** Table ID. You can create a new table using the TablesDB service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate). |  |
+| key | string | Column Key. |  |
+| required | boolean | Is column required? |  |
+| default | array | Default value for column when not provided, two-dimensional array of coordinate pairs, [[longitude, latitude], [longitude, latitude], …], listing the vertices of the line in order. Cannot be set when column is required. |  |
+
+
+```http request
+PATCH https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/columns/line/{key}
+```
+
+** Update a line column. Changing the `default` value will not update already existing rows. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| databaseId | string | **Required** Database ID. |  |
+| tableId | string | **Required** Table ID. You can create a new table using the TablesDB service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate). |  |
+| key | string | **Required** Column Key. |  |
+| required | boolean | Is column required? |  |
+| default | array | Default value for column when not provided, two-dimensional array of coordinate pairs, [[longitude, latitude], [longitude, latitude], …], listing the vertices of the line in order. Cannot be set when column is required. |  |
+| newKey | string | New Column Key. |  |
+
+
+```http request
+POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/columns/point
+```
+
+** Create a geometric point column. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| databaseId | string | **Required** Database ID. |  |
+| tableId | string | **Required** Table ID. You can create a new table using the TablesDB service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate). |  |
+| key | string | Column Key. |  |
+| required | boolean | Is column required? |  |
+| default | array | Default value for column when not provided, array of two numbers [longitude, latitude], representing a single coordinate. Cannot be set when column is required. |  |
+
+
+```http request
+PATCH https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/columns/point/{key}
+```
+
+** Update a point column. Changing the `default` value will not update already existing rows. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| databaseId | string | **Required** Database ID. |  |
+| tableId | string | **Required** Table ID. You can create a new table using the TablesDB service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate). |  |
+| key | string | **Required** Column Key. |  |
+| required | boolean | Is column required? |  |
+| default | array | Default value for column when not provided, array of two numbers [longitude, latitude], representing a single coordinate. Cannot be set when column is required. |  |
+| newKey | string | New Column Key. |  |
+
+
+```http request
+POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/columns/polygon
+```
+
+** Create a geometric polygon column. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| databaseId | string | **Required** Database ID. |  |
+| tableId | string | **Required** Table ID. You can create a new table using the TablesDB service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate). |  |
+| key | string | Column Key. |  |
+| required | boolean | Is column required? |  |
+| default | array | Default value for column when not provided, three-dimensional array where the outer array holds one or more linear rings, [[[longitude, latitude], …], …], the first ring is the exterior boundary, any additional rings are interior holes, and each ring must start and end with the same coordinate pair. Cannot be set when column is required. |  |
+
+
+```http request
+PATCH https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/columns/polygon/{key}
+```
+
+** Update a polygon column. Changing the `default` value will not update already existing rows. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| databaseId | string | **Required** Database ID. |  |
+| tableId | string | **Required** Table ID. You can create a new table using the TablesDB service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate). |  |
+| key | string | **Required** Column Key. |  |
+| required | boolean | Is column required? |  |
+| default | array | Default value for column when not provided, three-dimensional array where the outer array holds one or more linear rings, [[[longitude, latitude], …], …], the first ring is the exterior boundary, any additional rings are interior holes, and each ring must start and end with the same coordinate pair. Cannot be set when column is required. |  |
+| newKey | string | New Column Key. |  |
+
+
+```http request
 POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/columns/relationship
 ```
 

@@ -9,6 +9,7 @@ class IndexType implements JsonSerializable
     private static IndexType $KEY;
     private static IndexType $FULLTEXT;
     private static IndexType $UNIQUE;
+    private static IndexType $SPATIAL;
 
     private string $value;
 
@@ -47,5 +48,12 @@ class IndexType implements JsonSerializable
             self::$UNIQUE = new IndexType('unique');
         }
         return self::$UNIQUE;
+    }
+    public static function SPATIAL(): IndexType
+    {
+        if (!isset(self::$SPATIAL)) {
+            self::$SPATIAL = new IndexType('spatial');
+        }
+        return self::$SPATIAL;
     }
 }

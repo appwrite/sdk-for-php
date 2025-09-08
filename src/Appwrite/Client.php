@@ -37,11 +37,11 @@ class Client
      */
     protected array $headers = [
         'content-type' => '',
-        'user-agent' => 'AppwritePHPSDK/16.0.0 ()',
+        'user-agent' => 'AppwritePHPSDK/17.0.0 ()',
         'x-sdk-name'=> 'PHP',
         'x-sdk-platform'=> 'server',
         'x-sdk-language'=> 'php',
-        'x-sdk-version'=> '16.0.0',
+        'x-sdk-version'=> '17.0.0',
     ];
 
     /**
@@ -262,7 +262,7 @@ class Client
         $warnings = $responseHeaders['x-appwrite-warning'] ?? '';
         if ($warnings) {
             foreach(explode(';', $warnings) as $warning) {
-                echo 'Warning: ' . $warning . PHP_EOL;
+                \trigger_error($warning, E_USER_WARNING);
             }
         }
         

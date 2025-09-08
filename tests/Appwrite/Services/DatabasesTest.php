@@ -637,6 +637,162 @@ final class DatabasesTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
+    public function testMethodCreateLineAttribute(): void {
+
+        $data = array(
+            "key" => "fullName",
+            "type" => "string",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->databases->createLineAttribute(
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
+            "",
+            true
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodUpdateLineAttribute(): void {
+
+        $data = array(
+            "key" => "fullName",
+            "type" => "string",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->databases->updateLineAttribute(
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
+            "",
+            true
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodCreatePointAttribute(): void {
+
+        $data = array(
+            "key" => "fullName",
+            "type" => "string",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->databases->createPointAttribute(
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
+            "",
+            true
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodUpdatePointAttribute(): void {
+
+        $data = array(
+            "key" => "fullName",
+            "type" => "string",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->databases->updatePointAttribute(
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
+            "",
+            true
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodCreatePolygonAttribute(): void {
+
+        $data = array(
+            "key" => "fullName",
+            "type" => "string",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->databases->createPolygonAttribute(
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
+            "",
+            true
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodUpdatePolygonAttribute(): void {
+
+        $data = array(
+            "key" => "fullName",
+            "type" => "string",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->databases->updatePolygonAttribute(
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
+            "",
+            true
+        );
+
+        $this->assertSame($data, $response);
+    }
+
     public function testMethodCreateRelationshipAttribute(): void {
 
         $data = array(
