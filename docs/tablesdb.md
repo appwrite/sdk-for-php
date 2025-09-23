@@ -800,7 +800,7 @@ POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/rows
 | --- | --- | --- | --- |
 | databaseId | string | **Required** Database ID. |  |
 | tableId | string | **Required** Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate). Make sure to define columns before creating rows. |  |
-| rows | array | Array of documents data as JSON objects. | [] |
+| rows | array | Array of rows data as JSON objects. | [] |
 
 
 ```http request
