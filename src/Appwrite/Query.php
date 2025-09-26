@@ -234,16 +234,6 @@ class Query implements \JsonSerializable
     }
 
     /**
-     * Order Random
-     *
-     * @return string
-     */
-    public static function orderRandom(): string
-    {
-        return (new Query('orderRandom', null, null))->__toString();
-    }
-
-    /**
      * Limit
      *
      * @param int $limit
