@@ -580,7 +580,7 @@ A user is limited to 10 active sessions at a time by default. [Learn more about 
 
 
 ```http request
-POST https://cloud.appwrite.io/v1/account/verification
+POST https://cloud.appwrite.io/v1/account/verifications/email
 ```
 
 ** Use this endpoint to send a verification message to your user email address to confirm they are the valid owners of that address. Both the **userId** and **secret** arguments will be passed as query parameters to the URL you have provided to be attached to the verification email. The provided URL should redirect the user back to your app and allow you to complete the verification process by verifying both the **userId** and **secret** parameters. Learn more about how to [complete the verification process](https://appwrite.io/docs/references/cloud/client-web/account#updateVerification). The verification link sent to the user&#039;s email address is valid for 7 days.
@@ -596,7 +596,23 @@ Please note that in order to avoid a [Redirect Attack](https://github.com/OWASP/
 
 
 ```http request
-PUT https://cloud.appwrite.io/v1/account/verification
+POST https://cloud.appwrite.io/v1/account/verifications/email
+```
+
+** Use this endpoint to send a verification message to your user email address to confirm they are the valid owners of that address. Both the **userId** and **secret** arguments will be passed as query parameters to the URL you have provided to be attached to the verification email. The provided URL should redirect the user back to your app and allow you to complete the verification process by verifying both the **userId** and **secret** parameters. Learn more about how to [complete the verification process](https://appwrite.io/docs/references/cloud/client-web/account#updateVerification). The verification link sent to the user&#039;s email address is valid for 7 days.
+
+Please note that in order to avoid a [Redirect Attack](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.md), the only valid redirect URLs are the ones from domains you have set when adding your platforms in the console interface.
+ **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| url | string | URL to redirect the user back to your app from the verification email. Only URLs from hostnames in your project platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API. |  |
+
+
+```http request
+PUT https://cloud.appwrite.io/v1/account/verifications/email
 ```
 
 ** Use this endpoint to complete the user email verification process. Use both the **userId** and **secret** parameters that were attached to your app URL to verify the user email ownership. If confirmed this route will return a 200 status code. **
@@ -610,14 +626,28 @@ PUT https://cloud.appwrite.io/v1/account/verification
 
 
 ```http request
-POST https://cloud.appwrite.io/v1/account/verification/phone
+PUT https://cloud.appwrite.io/v1/account/verifications/email
+```
+
+** Use this endpoint to complete the user email verification process. Use both the **userId** and **secret** parameters that were attached to your app URL to verify the user email ownership. If confirmed this route will return a 200 status code. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| userId | string | User ID. |  |
+| secret | string | Valid verification token. |  |
+
+
+```http request
+POST https://cloud.appwrite.io/v1/account/verifications/phone
 ```
 
 ** Use this endpoint to send a verification SMS to the currently logged in user. This endpoint is meant for use after updating a user&#039;s phone number using the [accountUpdatePhone](https://appwrite.io/docs/references/cloud/client-web/account#updatePhone) endpoint. Learn more about how to [complete the verification process](https://appwrite.io/docs/references/cloud/client-web/account#updatePhoneVerification). The verification code sent to the user&#039;s phone number is valid for 15 minutes. **
 
 
 ```http request
-PUT https://cloud.appwrite.io/v1/account/verification/phone
+PUT https://cloud.appwrite.io/v1/account/verifications/phone
 ```
 
 ** Use this endpoint to complete the user phone verification process. Use the **userId** and **secret** that were sent to your user&#039;s phone number to verify the user email ownership. If confirmed this route will return a 200 status code. **
