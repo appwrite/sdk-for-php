@@ -1285,6 +1285,28 @@ final class AccountTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
+    public function testMethodCreateEmailVerification(): void {
+
+        $data = array(
+            "\$id" => "bb8ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "userId" => "5e5ea5c168bb8",
+            "secret" => "",
+            "expire" => "2020-10-15T06:38:00.000+00:00",
+            "phrase" => "Golden Fox",);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->account->createEmailVerification(
+            "https://example.com"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
     public function testMethodCreateVerification(): void {
 
         $data = array(
@@ -1302,6 +1324,29 @@ final class AccountTest extends TestCase {
 
         $response = $this->account->createVerification(
             "https://example.com"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodUpdateEmailVerification(): void {
+
+        $data = array(
+            "\$id" => "bb8ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "userId" => "5e5ea5c168bb8",
+            "secret" => "",
+            "expire" => "2020-10-15T06:38:00.000+00:00",
+            "phrase" => "Golden Fox",);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->account->updateEmailVerification(
+            "<USER_ID>",
+            "<SECRET>"
         );
 
         $this->assertSame($data, $response);

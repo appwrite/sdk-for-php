@@ -1664,12 +1664,58 @@ class Account extends Service
      * @throws AppwriteException
      * @return array
      */
+    public function createEmailVerification(string $url): array
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/account/verifications/email'
+        );
+
+        $apiParams = [];
+        $apiParams['url'] = $url;
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Use this endpoint to send a verification message to your user email address
+     * to confirm they are the valid owners of that address. Both the **userId**
+     * and **secret** arguments will be passed as query parameters to the URL you
+     * have provided to be attached to the verification email. The provided URL
+     * should redirect the user back to your app and allow you to complete the
+     * verification process by verifying both the **userId** and **secret**
+     * parameters. Learn more about how to [complete the verification
+     * process](https://appwrite.io/docs/references/cloud/client-web/account#updateVerification).
+     * The verification link sent to the user's email address is valid for 7 days.
+     * 
+     * Please note that in order to avoid a [Redirect
+     * Attack](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.md),
+     * the only valid redirect URLs are the ones from domains you have set when
+     * adding your platforms in the console interface.
+     * 
+     *
+     * @param string $url
+     * @throws AppwriteException
+     * @return array
+     *
+     * @deprecated This API has been deprecated since 1.8.0. Please use `createEmailVerification` instead.
+     * @see Account::createEmailVerification
+     */
     public function createVerification(string $url): array
     {
         $apiPath = str_replace(
             [],
             [],
-            '/account/verification'
+            '/account/verifications/email'
         );
 
         $apiParams = [];
@@ -1697,12 +1743,49 @@ class Account extends Service
      * @throws AppwriteException
      * @return array
      */
+    public function updateEmailVerification(string $userId, string $secret): array
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/account/verifications/email'
+        );
+
+        $apiParams = [];
+        $apiParams['userId'] = $userId;
+        $apiParams['secret'] = $secret;
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_PUT,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Use this endpoint to complete the user email verification process. Use both
+     * the **userId** and **secret** parameters that were attached to your app URL
+     * to verify the user email ownership. If confirmed this route will return a
+     * 200 status code.
+     *
+     * @param string $userId
+     * @param string $secret
+     * @throws AppwriteException
+     * @return array
+     *
+     * @deprecated This API has been deprecated since 1.8.0. Please use `updateEmailVerification` instead.
+     * @see Account::updateEmailVerification
+     */
     public function updateVerification(string $userId, string $secret): array
     {
         $apiPath = str_replace(
             [],
             [],
-            '/account/verification'
+            '/account/verifications/email'
         );
 
         $apiParams = [];
@@ -1738,7 +1821,7 @@ class Account extends Service
         $apiPath = str_replace(
             [],
             [],
-            '/account/verification/phone'
+            '/account/verifications/phone'
         );
 
         $apiParams = [];
@@ -1770,7 +1853,7 @@ class Account extends Service
         $apiPath = str_replace(
             [],
             [],
-            '/account/verification/phone'
+            '/account/verifications/phone'
         );
 
         $apiParams = [];
