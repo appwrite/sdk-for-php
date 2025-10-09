@@ -32,6 +32,87 @@ POST https://cloud.appwrite.io/v1/tablesdb
 
 
 ```http request
+GET https://cloud.appwrite.io/v1/tablesdb/transactions
+```
+
+** List transactions across all databases. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). | [] |
+
+
+```http request
+POST https://cloud.appwrite.io/v1/tablesdb/transactions
+```
+
+** Create a new transaction. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| ttl | integer | Seconds before the transaction expires. | 300 |
+
+
+```http request
+GET https://cloud.appwrite.io/v1/tablesdb/transactions/{transactionId}
+```
+
+** Get a transaction by its unique ID. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| transactionId | string | **Required** Transaction ID. |  |
+
+
+```http request
+PATCH https://cloud.appwrite.io/v1/tablesdb/transactions/{transactionId}
+```
+
+** Update a transaction, to either commit or roll back its operations. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| transactionId | string | **Required** Transaction ID. |  |
+| commit | boolean | Commit transaction? |  |
+| rollback | boolean | Rollback transaction? |  |
+
+
+```http request
+DELETE https://cloud.appwrite.io/v1/tablesdb/transactions/{transactionId}
+```
+
+** Delete a transaction by its unique ID. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| transactionId | string | **Required** Transaction ID. |  |
+
+
+```http request
+POST https://cloud.appwrite.io/v1/tablesdb/transactions/{transactionId}/operations
+```
+
+** Create multiple operations in a single transaction. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| transactionId | string | **Required** Transaction ID. |  |
+| operations | array | Array of staged operations. | [] |
+
+
+```http request
 GET https://cloud.appwrite.io/v1/tablesdb/{databaseId}
 ```
 
@@ -769,6 +850,7 @@ GET https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/rows
 | databaseId | string | **Required** Database ID. |  |
 | tableId | string | **Required** Table ID. You can create a new table using the TablesDB service [server integration](https://appwrite.io/docs/products/databases/tables#create-table). |  |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. | [] |
+| transactionId | string | Transaction ID to read uncommitted changes within the transaction. |  |
 
 
 ```http request
@@ -786,6 +868,7 @@ POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/rows
 | rowId | string | Row ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
 | data | object | Row data as JSON object. | {} |
 | permissions | array | An array of permissions strings. By default, only the current user is granted all permissions. [Learn more about permissions](https://appwrite.io/docs/permissions). |  |
+| transactionId | string | Transaction ID for staging the operation. |  |
 
 
 ```http request
@@ -801,6 +884,7 @@ POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/rows
 | databaseId | string | **Required** Database ID. |  |
 | tableId | string | **Required** Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/references/cloud/server-dart/tablesDB#createTable). Make sure to define columns before creating rows. |  |
 | rows | array | Array of rows data as JSON objects. | [] |
+| transactionId | string | Transaction ID for staging the operation. |  |
 
 
 ```http request
@@ -817,6 +901,7 @@ PUT https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/rows
 | databaseId | string | **Required** Database ID. |  |
 | tableId | string | **Required** Table ID. |  |
 | rows | array | Array of row data as JSON objects. May contain partial rows. |  |
+| transactionId | string | Transaction ID for staging the operation. |  |
 
 
 ```http request
@@ -833,6 +918,7 @@ PATCH https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/rows
 | tableId | string | **Required** Table ID. |  |
 | data | object | Row data as JSON object. Include only column and value pairs to be updated. | {} |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. | [] |
+| transactionId | string | Transaction ID for staging the operation. |  |
 
 
 ```http request
@@ -848,6 +934,7 @@ DELETE https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/rows
 | databaseId | string | **Required** Database ID. |  |
 | tableId | string | **Required** Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/references/cloud/server-dart/tablesDB#createTable). |  |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. | [] |
+| transactionId | string | Transaction ID for staging the operation. |  |
 
 
 ```http request
@@ -864,6 +951,7 @@ GET https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/rows/{ro
 | tableId | string | **Required** Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/references/cloud/server-dart/tablesDB#createTable). |  |
 | rowId | string | **Required** Row ID. |  |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. | [] |
+| transactionId | string | Transaction ID to read uncommitted changes within the transaction. |  |
 
 
 ```http request
@@ -881,6 +969,7 @@ PUT https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/rows/{ro
 | rowId | string | **Required** Row ID. |  |
 | data | object | Row data as JSON object. Include all required columns of the row to be created or updated. | {} |
 | permissions | array | An array of permissions strings. By default, the current permissions are inherited. [Learn more about permissions](https://appwrite.io/docs/permissions). |  |
+| transactionId | string | Transaction ID for staging the operation. |  |
 
 
 ```http request
@@ -898,6 +987,7 @@ PATCH https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/rows/{
 | rowId | string | **Required** Row ID. |  |
 | data | object | Row data as JSON object. Include only columns and value pairs to be updated. | {} |
 | permissions | array | An array of permissions strings. By default, the current permissions are inherited. [Learn more about permissions](https://appwrite.io/docs/permissions). |  |
+| transactionId | string | Transaction ID for staging the operation. |  |
 
 
 ```http request
@@ -913,6 +1003,7 @@ DELETE https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/rows/
 | databaseId | string | **Required** Database ID. |  |
 | tableId | string | **Required** Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/references/cloud/server-dart/tablesDB#createTable). |  |
 | rowId | string | **Required** Row ID. |  |
+| transactionId | string | Transaction ID for staging the operation. |  |
 
 
 ```http request
@@ -931,6 +1022,7 @@ PATCH https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/rows/{
 | column | string | **Required** Column key. |  |
 | value | number | Value to increment the column by. The value must be a number. | 1 |
 | min | number | Minimum value for the column. If the current value is lesser than this value, an exception will be thrown. |  |
+| transactionId | string | Transaction ID for staging the operation. |  |
 
 
 ```http request
@@ -949,4 +1041,5 @@ PATCH https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/rows/{
 | column | string | **Required** Column key. |  |
 | value | number | Value to increment the column by. The value must be a number. | 1 |
 | max | number | Maximum value for the column. If the current value is greater than this value, an error will be thrown. |  |
+| transactionId | string | Transaction ID for staging the operation. |  |
 

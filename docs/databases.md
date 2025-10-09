@@ -32,6 +32,87 @@ POST https://cloud.appwrite.io/v1/databases
 
 
 ```http request
+GET https://cloud.appwrite.io/v1/databases/transactions
+```
+
+** List transactions across all databases. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). | [] |
+
+
+```http request
+POST https://cloud.appwrite.io/v1/databases/transactions
+```
+
+** Create a new transaction. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| ttl | integer | Seconds before the transaction expires. | 300 |
+
+
+```http request
+GET https://cloud.appwrite.io/v1/databases/transactions/{transactionId}
+```
+
+** Get a transaction by its unique ID. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| transactionId | string | **Required** Transaction ID. |  |
+
+
+```http request
+PATCH https://cloud.appwrite.io/v1/databases/transactions/{transactionId}
+```
+
+** Update a transaction, to either commit or roll back its operations. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| transactionId | string | **Required** Transaction ID. |  |
+| commit | boolean | Commit transaction? |  |
+| rollback | boolean | Rollback transaction? |  |
+
+
+```http request
+DELETE https://cloud.appwrite.io/v1/databases/transactions/{transactionId}
+```
+
+** Delete a transaction by its unique ID. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| transactionId | string | **Required** Transaction ID. |  |
+
+
+```http request
+POST https://cloud.appwrite.io/v1/databases/transactions/{transactionId}/operations
+```
+
+** Create multiple operations in a single transaction. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| transactionId | string | **Required** Transaction ID. |  |
+| operations | array | Array of staged operations. | [] |
+
+
+```http request
 GET https://cloud.appwrite.io/v1/databases/{databaseId}
 ```
 
@@ -705,6 +786,7 @@ GET https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionI
 | databaseId | string | **Required** Database ID. |  |
 | collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. | [] |
+| transactionId | string | Transaction ID to read uncommitted changes within the transaction. |  |
 
 
 ```http request
@@ -722,6 +804,7 @@ POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collection
 | documentId | string | Document ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
 | data | object | Document data as JSON object. | {} |
 | permissions | array | An array of permissions strings. By default, only the current user is granted all permissions. [Learn more about permissions](https://appwrite.io/docs/permissions). |  |
+| transactionId | string | Transaction ID for staging the operation. |  |
 
 
 ```http request
@@ -737,6 +820,7 @@ POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collection
 | databaseId | string | **Required** Database ID. |  |
 | collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). Make sure to define attributes before creating documents. |  |
 | documents | array | Array of documents data as JSON objects. | [] |
+| transactionId | string | Transaction ID for staging the operation. |  |
 
 
 ```http request
@@ -753,6 +837,7 @@ PUT https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionI
 | databaseId | string | **Required** Database ID. |  |
 | collectionId | string | **Required** Collection ID. |  |
 | documents | array | Array of document data as JSON objects. May contain partial documents. |  |
+| transactionId | string | Transaction ID for staging the operation. |  |
 
 
 ```http request
@@ -769,6 +854,7 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 | collectionId | string | **Required** Collection ID. |  |
 | data | object | Document data as JSON object. Include only attribute and value pairs to be updated. | {} |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. | [] |
+| transactionId | string | Transaction ID for staging the operation. |  |
 
 
 ```http request
@@ -784,6 +870,7 @@ DELETE https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collecti
 | databaseId | string | **Required** Database ID. |  |
 | collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. | [] |
+| transactionId | string | Transaction ID for staging the operation. |  |
 
 
 ```http request
@@ -800,6 +887,7 @@ GET https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionI
 | collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
 | documentId | string | **Required** Document ID. |  |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. | [] |
+| transactionId | string | Transaction ID to read uncommitted changes within the transaction. |  |
 
 
 ```http request
@@ -817,6 +905,7 @@ PUT https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionI
 | documentId | string | **Required** Document ID. |  |
 | data | object | Document data as JSON object. Include all required attributes of the document to be created or updated. | {} |
 | permissions | array | An array of permissions strings. By default, the current permissions are inherited. [Learn more about permissions](https://appwrite.io/docs/permissions). |  |
+| transactionId | string | Transaction ID for staging the operation. |  |
 
 
 ```http request
@@ -834,6 +923,7 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 | documentId | string | **Required** Document ID. |  |
 | data | object | Document data as JSON object. Include only attribute and value pairs to be updated. | {} |
 | permissions | array | An array of permissions strings. By default, the current permissions are inherited. [Learn more about permissions](https://appwrite.io/docs/permissions). |  |
+| transactionId | string | Transaction ID for staging the operation. |  |
 
 
 ```http request
@@ -849,6 +939,7 @@ DELETE https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collecti
 | databaseId | string | **Required** Database ID. |  |
 | collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
 | documentId | string | **Required** Document ID. |  |
+| transactionId | string | Transaction ID for staging the operation. |  |
 
 
 ```http request
@@ -867,6 +958,7 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 | attribute | string | **Required** Attribute key. |  |
 | value | number | Value to increment the attribute by. The value must be a number. | 1 |
 | min | number | Minimum value for the attribute. If the current value is lesser than this value, an exception will be thrown. |  |
+| transactionId | string | Transaction ID for staging the operation. |  |
 
 
 ```http request
@@ -885,6 +977,7 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 | attribute | string | **Required** Attribute key. |  |
 | value | number | Value to increment the attribute by. The value must be a number. | 1 |
 | max | number | Maximum value for the attribute. If the current value is greater than this value, an error will be thrown. |  |
+| transactionId | string | Transaction ID for staging the operation. |  |
 
 
 ```http request
@@ -926,7 +1019,7 @@ Attributes can be `key`, `fulltext`, and `unique`. **
 GET https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/indexes/{key}
 ```
 
-** Get index by ID. **
+** Get an index by its unique ID. **
 
 ### Parameters
 
