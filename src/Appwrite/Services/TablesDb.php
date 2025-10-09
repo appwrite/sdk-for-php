@@ -92,6 +92,199 @@ class TablesDB extends Service
     }
 
     /**
+     * List transactions across all databases.
+     *
+     * @param ?array $queries
+     * @throws AppwriteException
+     * @return array
+     */
+    public function listTransactions(?array $queries = null): array
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/tablesdb/transactions'
+        );
+
+        $apiParams = [];
+
+        if (!is_null($queries)) {
+            $apiParams['queries'] = $queries;
+        }
+
+        $apiHeaders = [];
+
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Create a new transaction.
+     *
+     * @param ?int $ttl
+     * @throws AppwriteException
+     * @return array
+     */
+    public function createTransaction(?int $ttl = null): array
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/tablesdb/transactions'
+        );
+
+        $apiParams = [];
+
+        if (!is_null($ttl)) {
+            $apiParams['ttl'] = $ttl;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Get a transaction by its unique ID.
+     *
+     * @param string $transactionId
+     * @throws AppwriteException
+     * @return array
+     */
+    public function getTransaction(string $transactionId): array
+    {
+        $apiPath = str_replace(
+            ['{transactionId}'],
+            [$transactionId],
+            '/tablesdb/transactions/{transactionId}'
+        );
+
+        $apiParams = [];
+        $apiParams['transactionId'] = $transactionId;
+
+        $apiHeaders = [];
+
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Update a transaction, to either commit or roll back its operations.
+     *
+     * @param string $transactionId
+     * @param ?bool $commit
+     * @param ?bool $rollback
+     * @throws AppwriteException
+     * @return array
+     */
+    public function updateTransaction(string $transactionId, ?bool $commit = null, ?bool $rollback = null): array
+    {
+        $apiPath = str_replace(
+            ['{transactionId}'],
+            [$transactionId],
+            '/tablesdb/transactions/{transactionId}'
+        );
+
+        $apiParams = [];
+        $apiParams['transactionId'] = $transactionId;
+
+        if (!is_null($commit)) {
+            $apiParams['commit'] = $commit;
+        }
+
+        if (!is_null($rollback)) {
+            $apiParams['rollback'] = $rollback;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Delete a transaction by its unique ID.
+     *
+     * @param string $transactionId
+     * @throws AppwriteException
+     * @return string
+     */
+    public function deleteTransaction(string $transactionId): string
+    {
+        $apiPath = str_replace(
+            ['{transactionId}'],
+            [$transactionId],
+            '/tablesdb/transactions/{transactionId}'
+        );
+
+        $apiParams = [];
+        $apiParams['transactionId'] = $transactionId;
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_DELETE,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Create multiple operations in a single transaction.
+     *
+     * @param string $transactionId
+     * @param ?array $operations
+     * @throws AppwriteException
+     * @return array
+     */
+    public function createOperations(string $transactionId, ?array $operations = null): array
+    {
+        $apiPath = str_replace(
+            ['{transactionId}'],
+            [$transactionId],
+            '/tablesdb/transactions/{transactionId}/operations'
+        );
+
+        $apiParams = [];
+        $apiParams['transactionId'] = $transactionId;
+
+        if (!is_null($operations)) {
+            $apiParams['operations'] = $operations;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
      * Get a database by its unique ID. This endpoint response returns a JSON
      * object with the database metadata.
      *
@@ -1850,10 +2043,11 @@ class TablesDB extends Service
      * @param string $databaseId
      * @param string $tableId
      * @param ?array $queries
+     * @param ?string $transactionId
      * @throws AppwriteException
      * @return array
      */
-    public function listRows(string $databaseId, string $tableId, ?array $queries = null): array
+    public function listRows(string $databaseId, string $tableId, ?array $queries = null, ?string $transactionId = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
@@ -1867,6 +2061,10 @@ class TablesDB extends Service
 
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
+        }
+
+        if (!is_null($transactionId)) {
+            $apiParams['transactionId'] = $transactionId;
         }
 
         $apiHeaders = [];
@@ -1890,10 +2088,11 @@ class TablesDB extends Service
      * @param string $rowId
      * @param array $data
      * @param ?array $permissions
+     * @param ?string $transactionId
      * @throws AppwriteException
      * @return array
      */
-    public function createRow(string $databaseId, string $tableId, string $rowId, array $data, ?array $permissions = null): array
+    public function createRow(string $databaseId, string $tableId, string $rowId, array $data, ?array $permissions = null, ?string $transactionId = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
@@ -1909,6 +2108,10 @@ class TablesDB extends Service
 
         if (!is_null($permissions)) {
             $apiParams['permissions'] = $permissions;
+        }
+
+        if (!is_null($transactionId)) {
+            $apiParams['transactionId'] = $transactionId;
         }
 
         $apiHeaders = [];
@@ -1931,10 +2134,11 @@ class TablesDB extends Service
      * @param string $databaseId
      * @param string $tableId
      * @param array $rows
+     * @param ?string $transactionId
      * @throws AppwriteException
      * @return array
      */
-    public function createRows(string $databaseId, string $tableId, array $rows): array
+    public function createRows(string $databaseId, string $tableId, array $rows, ?string $transactionId = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
@@ -1946,6 +2150,10 @@ class TablesDB extends Service
         $apiParams['databaseId'] = $databaseId;
         $apiParams['tableId'] = $tableId;
         $apiParams['rows'] = $rows;
+
+        if (!is_null($transactionId)) {
+            $apiParams['transactionId'] = $transactionId;
+        }
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -1968,10 +2176,11 @@ class TablesDB extends Service
      * @param string $databaseId
      * @param string $tableId
      * @param array $rows
+     * @param ?string $transactionId
      * @throws AppwriteException
      * @return array
      */
-    public function upsertRows(string $databaseId, string $tableId, array $rows): array
+    public function upsertRows(string $databaseId, string $tableId, array $rows, ?string $transactionId = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
@@ -1983,6 +2192,10 @@ class TablesDB extends Service
         $apiParams['databaseId'] = $databaseId;
         $apiParams['tableId'] = $tableId;
         $apiParams['rows'] = $rows;
+
+        if (!is_null($transactionId)) {
+            $apiParams['transactionId'] = $transactionId;
+        }
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -2003,10 +2216,11 @@ class TablesDB extends Service
      * @param string $tableId
      * @param ?array $data
      * @param ?array $queries
+     * @param ?string $transactionId
      * @throws AppwriteException
      * @return array
      */
-    public function updateRows(string $databaseId, string $tableId, ?array $data = null, ?array $queries = null): array
+    public function updateRows(string $databaseId, string $tableId, ?array $data = null, ?array $queries = null, ?string $transactionId = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
@@ -2024,6 +2238,10 @@ class TablesDB extends Service
 
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
+        }
+
+        if (!is_null($transactionId)) {
+            $apiParams['transactionId'] = $transactionId;
         }
 
         $apiHeaders = [];
@@ -2044,10 +2262,11 @@ class TablesDB extends Service
      * @param string $databaseId
      * @param string $tableId
      * @param ?array $queries
+     * @param ?string $transactionId
      * @throws AppwriteException
      * @return array
      */
-    public function deleteRows(string $databaseId, string $tableId, ?array $queries = null): array
+    public function deleteRows(string $databaseId, string $tableId, ?array $queries = null, ?string $transactionId = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
@@ -2061,6 +2280,10 @@ class TablesDB extends Service
 
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
+        }
+
+        if (!is_null($transactionId)) {
+            $apiParams['transactionId'] = $transactionId;
         }
 
         $apiHeaders = [];
@@ -2082,10 +2305,11 @@ class TablesDB extends Service
      * @param string $tableId
      * @param string $rowId
      * @param ?array $queries
+     * @param ?string $transactionId
      * @throws AppwriteException
      * @return array
      */
-    public function getRow(string $databaseId, string $tableId, string $rowId, ?array $queries = null): array
+    public function getRow(string $databaseId, string $tableId, string $rowId, ?array $queries = null, ?string $transactionId = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{rowId}'],
@@ -2100,6 +2324,10 @@ class TablesDB extends Service
 
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
+        }
+
+        if (!is_null($transactionId)) {
+            $apiParams['transactionId'] = $transactionId;
         }
 
         $apiHeaders = [];
@@ -2123,10 +2351,11 @@ class TablesDB extends Service
      * @param string $rowId
      * @param ?array $data
      * @param ?array $permissions
+     * @param ?string $transactionId
      * @throws AppwriteException
      * @return array
      */
-    public function upsertRow(string $databaseId, string $tableId, string $rowId, ?array $data = null, ?array $permissions = null): array
+    public function upsertRow(string $databaseId, string $tableId, string $rowId, ?array $data = null, ?array $permissions = null, ?string $transactionId = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{rowId}'],
@@ -2145,6 +2374,10 @@ class TablesDB extends Service
 
         if (!is_null($permissions)) {
             $apiParams['permissions'] = $permissions;
+        }
+
+        if (!is_null($transactionId)) {
+            $apiParams['transactionId'] = $transactionId;
         }
 
         $apiHeaders = [];
@@ -2167,10 +2400,11 @@ class TablesDB extends Service
      * @param string $rowId
      * @param ?array $data
      * @param ?array $permissions
+     * @param ?string $transactionId
      * @throws AppwriteException
      * @return array
      */
-    public function updateRow(string $databaseId, string $tableId, string $rowId, ?array $data = null, ?array $permissions = null): array
+    public function updateRow(string $databaseId, string $tableId, string $rowId, ?array $data = null, ?array $permissions = null, ?string $transactionId = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{rowId}'],
@@ -2191,6 +2425,10 @@ class TablesDB extends Service
             $apiParams['permissions'] = $permissions;
         }
 
+        if (!is_null($transactionId)) {
+            $apiParams['transactionId'] = $transactionId;
+        }
+
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
@@ -2208,10 +2446,11 @@ class TablesDB extends Service
      * @param string $databaseId
      * @param string $tableId
      * @param string $rowId
+     * @param ?string $transactionId
      * @throws AppwriteException
      * @return string
      */
-    public function deleteRow(string $databaseId, string $tableId, string $rowId): string
+    public function deleteRow(string $databaseId, string $tableId, string $rowId, ?string $transactionId = null): string
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{rowId}'],
@@ -2223,6 +2462,10 @@ class TablesDB extends Service
         $apiParams['databaseId'] = $databaseId;
         $apiParams['tableId'] = $tableId;
         $apiParams['rowId'] = $rowId;
+
+        if (!is_null($transactionId)) {
+            $apiParams['transactionId'] = $transactionId;
+        }
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -2244,10 +2487,11 @@ class TablesDB extends Service
      * @param string $column
      * @param ?float $value
      * @param ?float $min
+     * @param ?string $transactionId
      * @throws AppwriteException
      * @return array
      */
-    public function decrementRowColumn(string $databaseId, string $tableId, string $rowId, string $column, ?float $value = null, ?float $min = null): array
+    public function decrementRowColumn(string $databaseId, string $tableId, string $rowId, string $column, ?float $value = null, ?float $min = null, ?string $transactionId = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{rowId}', '{column}'],
@@ -2267,6 +2511,10 @@ class TablesDB extends Service
 
         if (!is_null($min)) {
             $apiParams['min'] = $min;
+        }
+
+        if (!is_null($transactionId)) {
+            $apiParams['transactionId'] = $transactionId;
         }
 
         $apiHeaders = [];
@@ -2289,10 +2537,11 @@ class TablesDB extends Service
      * @param string $column
      * @param ?float $value
      * @param ?float $max
+     * @param ?string $transactionId
      * @throws AppwriteException
      * @return array
      */
-    public function incrementRowColumn(string $databaseId, string $tableId, string $rowId, string $column, ?float $value = null, ?float $max = null): array
+    public function incrementRowColumn(string $databaseId, string $tableId, string $rowId, string $column, ?float $value = null, ?float $max = null, ?string $transactionId = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{rowId}', '{column}'],
@@ -2312,6 +2561,10 @@ class TablesDB extends Service
 
         if (!is_null($max)) {
             $apiParams['max'] = $max;
+        }
+
+        if (!is_null($transactionId)) {
+            $apiParams['transactionId'] = $transactionId;
         }
 
         $apiHeaders = [];

@@ -56,6 +56,126 @@ final class TablesDBTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
+    public function testMethodListTransactions(): void {
+
+        $data = array(
+            "total" => 5,
+            "transactions" => array(),);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->tablesDB->listTransactions(
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodCreateTransaction(): void {
+
+        $data = array(
+            "\$id" => "259125845563242502",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "status" => "pending",
+            "operations" => 5,
+            "expiresAt" => "2020-10-15T06:38:00.000+00:00",);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->tablesDB->createTransaction(
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodGetTransaction(): void {
+
+        $data = array(
+            "\$id" => "259125845563242502",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "status" => "pending",
+            "operations" => 5,
+            "expiresAt" => "2020-10-15T06:38:00.000+00:00",);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->tablesDB->getTransaction(
+            "<TRANSACTION_ID>"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodUpdateTransaction(): void {
+
+        $data = array(
+            "\$id" => "259125845563242502",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "status" => "pending",
+            "operations" => 5,
+            "expiresAt" => "2020-10-15T06:38:00.000+00:00",);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->tablesDB->updateTransaction(
+            "<TRANSACTION_ID>"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodDeleteTransaction(): void {
+
+        $data = '';
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->tablesDB->deleteTransaction(
+            "<TRANSACTION_ID>"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodCreateOperations(): void {
+
+        $data = array(
+            "\$id" => "259125845563242502",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "status" => "pending",
+            "operations" => 5,
+            "expiresAt" => "2020-10-15T06:38:00.000+00:00",);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->tablesDB->createOperations(
+            "<TRANSACTION_ID>"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
     public function testMethodGet(): void {
 
         $data = array(

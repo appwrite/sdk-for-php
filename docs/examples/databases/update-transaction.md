@@ -10,9 +10,8 @@ $client = (new Client())
 
 $databases = new Databases($client);
 
-$result = $databases->upsertDocuments(
-    databaseId: '<DATABASE_ID>',
-    collectionId: '<COLLECTION_ID>',
-    documents: [],
-    transactionId: '<TRANSACTION_ID>' // optional
+$result = $databases->updateTransaction(
+    transactionId: '<TRANSACTION_ID>',
+    commit: false, // optional
+    rollback: false // optional
 );

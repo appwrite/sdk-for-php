@@ -98,6 +98,199 @@ class Databases extends Service
     }
 
     /**
+     * List transactions across all databases.
+     *
+     * @param ?array $queries
+     * @throws AppwriteException
+     * @return array
+     */
+    public function listTransactions(?array $queries = null): array
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/databases/transactions'
+        );
+
+        $apiParams = [];
+
+        if (!is_null($queries)) {
+            $apiParams['queries'] = $queries;
+        }
+
+        $apiHeaders = [];
+
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Create a new transaction.
+     *
+     * @param ?int $ttl
+     * @throws AppwriteException
+     * @return array
+     */
+    public function createTransaction(?int $ttl = null): array
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/databases/transactions'
+        );
+
+        $apiParams = [];
+
+        if (!is_null($ttl)) {
+            $apiParams['ttl'] = $ttl;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Get a transaction by its unique ID.
+     *
+     * @param string $transactionId
+     * @throws AppwriteException
+     * @return array
+     */
+    public function getTransaction(string $transactionId): array
+    {
+        $apiPath = str_replace(
+            ['{transactionId}'],
+            [$transactionId],
+            '/databases/transactions/{transactionId}'
+        );
+
+        $apiParams = [];
+        $apiParams['transactionId'] = $transactionId;
+
+        $apiHeaders = [];
+
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Update a transaction, to either commit or roll back its operations.
+     *
+     * @param string $transactionId
+     * @param ?bool $commit
+     * @param ?bool $rollback
+     * @throws AppwriteException
+     * @return array
+     */
+    public function updateTransaction(string $transactionId, ?bool $commit = null, ?bool $rollback = null): array
+    {
+        $apiPath = str_replace(
+            ['{transactionId}'],
+            [$transactionId],
+            '/databases/transactions/{transactionId}'
+        );
+
+        $apiParams = [];
+        $apiParams['transactionId'] = $transactionId;
+
+        if (!is_null($commit)) {
+            $apiParams['commit'] = $commit;
+        }
+
+        if (!is_null($rollback)) {
+            $apiParams['rollback'] = $rollback;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Delete a transaction by its unique ID.
+     *
+     * @param string $transactionId
+     * @throws AppwriteException
+     * @return string
+     */
+    public function deleteTransaction(string $transactionId): string
+    {
+        $apiPath = str_replace(
+            ['{transactionId}'],
+            [$transactionId],
+            '/databases/transactions/{transactionId}'
+        );
+
+        $apiParams = [];
+        $apiParams['transactionId'] = $transactionId;
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_DELETE,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Create multiple operations in a single transaction.
+     *
+     * @param string $transactionId
+     * @param ?array $operations
+     * @throws AppwriteException
+     * @return array
+     */
+    public function createOperations(string $transactionId, ?array $operations = null): array
+    {
+        $apiPath = str_replace(
+            ['{transactionId}'],
+            [$transactionId],
+            '/databases/transactions/{transactionId}/operations'
+        );
+
+        $apiParams = [];
+        $apiParams['transactionId'] = $transactionId;
+
+        if (!is_null($operations)) {
+            $apiParams['operations'] = $operations;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
      * Get a database by its unique ID. This endpoint response returns a JSON
      * object with the database metadata.
      *
@@ -1819,13 +2012,14 @@ class Databases extends Service
      * @param string $databaseId
      * @param string $collectionId
      * @param ?array $queries
+     * @param ?string $transactionId
      * @throws AppwriteException
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `listRows` instead.
      * @see TablesDB::listRows
      */
-    public function listDocuments(string $databaseId, string $collectionId, ?array $queries = null): array
+    public function listDocuments(string $databaseId, string $collectionId, ?array $queries = null, ?string $transactionId = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
@@ -1839,6 +2033,10 @@ class Databases extends Service
 
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
+        }
+
+        if (!is_null($transactionId)) {
+            $apiParams['transactionId'] = $transactionId;
         }
 
         $apiHeaders = [];
@@ -1862,13 +2060,14 @@ class Databases extends Service
      * @param string $documentId
      * @param array $data
      * @param ?array $permissions
+     * @param ?string $transactionId
      * @throws AppwriteException
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createRow` instead.
      * @see TablesDB::createRow
      */
-    public function createDocument(string $databaseId, string $collectionId, string $documentId, array $data, ?array $permissions = null): array
+    public function createDocument(string $databaseId, string $collectionId, string $documentId, array $data, ?array $permissions = null, ?string $transactionId = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
@@ -1884,6 +2083,10 @@ class Databases extends Service
 
         if (!is_null($permissions)) {
             $apiParams['permissions'] = $permissions;
+        }
+
+        if (!is_null($transactionId)) {
+            $apiParams['transactionId'] = $transactionId;
         }
 
         $apiHeaders = [];
@@ -1906,13 +2109,14 @@ class Databases extends Service
      * @param string $databaseId
      * @param string $collectionId
      * @param array $documents
+     * @param ?string $transactionId
      * @throws AppwriteException
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createRows` instead.
      * @see TablesDB::createRows
      */
-    public function createDocuments(string $databaseId, string $collectionId, array $documents): array
+    public function createDocuments(string $databaseId, string $collectionId, array $documents, ?string $transactionId = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
@@ -1924,6 +2128,10 @@ class Databases extends Service
         $apiParams['databaseId'] = $databaseId;
         $apiParams['collectionId'] = $collectionId;
         $apiParams['documents'] = $documents;
+
+        if (!is_null($transactionId)) {
+            $apiParams['transactionId'] = $transactionId;
+        }
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -1946,13 +2154,14 @@ class Databases extends Service
      * @param string $databaseId
      * @param string $collectionId
      * @param array $documents
+     * @param ?string $transactionId
      * @throws AppwriteException
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `upsertRows` instead.
      * @see TablesDB::upsertRows
      */
-    public function upsertDocuments(string $databaseId, string $collectionId, array $documents): array
+    public function upsertDocuments(string $databaseId, string $collectionId, array $documents, ?string $transactionId = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
@@ -1964,6 +2173,10 @@ class Databases extends Service
         $apiParams['databaseId'] = $databaseId;
         $apiParams['collectionId'] = $collectionId;
         $apiParams['documents'] = $documents;
+
+        if (!is_null($transactionId)) {
+            $apiParams['transactionId'] = $transactionId;
+        }
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -1985,13 +2198,14 @@ class Databases extends Service
      * @param string $collectionId
      * @param ?array $data
      * @param ?array $queries
+     * @param ?string $transactionId
      * @throws AppwriteException
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateRows` instead.
      * @see TablesDB::updateRows
      */
-    public function updateDocuments(string $databaseId, string $collectionId, ?array $data = null, ?array $queries = null): array
+    public function updateDocuments(string $databaseId, string $collectionId, ?array $data = null, ?array $queries = null, ?string $transactionId = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
@@ -2009,6 +2223,10 @@ class Databases extends Service
 
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
+        }
+
+        if (!is_null($transactionId)) {
+            $apiParams['transactionId'] = $transactionId;
         }
 
         $apiHeaders = [];
@@ -2029,13 +2247,14 @@ class Databases extends Service
      * @param string $databaseId
      * @param string $collectionId
      * @param ?array $queries
+     * @param ?string $transactionId
      * @throws AppwriteException
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `deleteRows` instead.
      * @see TablesDB::deleteRows
      */
-    public function deleteDocuments(string $databaseId, string $collectionId, ?array $queries = null): array
+    public function deleteDocuments(string $databaseId, string $collectionId, ?array $queries = null, ?string $transactionId = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
@@ -2049,6 +2268,10 @@ class Databases extends Service
 
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
+        }
+
+        if (!is_null($transactionId)) {
+            $apiParams['transactionId'] = $transactionId;
         }
 
         $apiHeaders = [];
@@ -2070,13 +2293,14 @@ class Databases extends Service
      * @param string $collectionId
      * @param string $documentId
      * @param ?array $queries
+     * @param ?string $transactionId
      * @throws AppwriteException
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `getRow` instead.
      * @see TablesDB::getRow
      */
-    public function getDocument(string $databaseId, string $collectionId, string $documentId, ?array $queries = null): array
+    public function getDocument(string $databaseId, string $collectionId, string $documentId, ?array $queries = null, ?string $transactionId = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{documentId}'],
@@ -2091,6 +2315,10 @@ class Databases extends Service
 
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
+        }
+
+        if (!is_null($transactionId)) {
+            $apiParams['transactionId'] = $transactionId;
         }
 
         $apiHeaders = [];
@@ -2114,13 +2342,14 @@ class Databases extends Service
      * @param string $documentId
      * @param array $data
      * @param ?array $permissions
+     * @param ?string $transactionId
      * @throws AppwriteException
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `upsertRow` instead.
      * @see TablesDB::upsertRow
      */
-    public function upsertDocument(string $databaseId, string $collectionId, string $documentId, array $data, ?array $permissions = null): array
+    public function upsertDocument(string $databaseId, string $collectionId, string $documentId, array $data, ?array $permissions = null, ?string $transactionId = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{documentId}'],
@@ -2136,6 +2365,10 @@ class Databases extends Service
 
         if (!is_null($permissions)) {
             $apiParams['permissions'] = $permissions;
+        }
+
+        if (!is_null($transactionId)) {
+            $apiParams['transactionId'] = $transactionId;
         }
 
         $apiHeaders = [];
@@ -2158,13 +2391,14 @@ class Databases extends Service
      * @param string $documentId
      * @param ?array $data
      * @param ?array $permissions
+     * @param ?string $transactionId
      * @throws AppwriteException
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateRow` instead.
      * @see TablesDB::updateRow
      */
-    public function updateDocument(string $databaseId, string $collectionId, string $documentId, ?array $data = null, ?array $permissions = null): array
+    public function updateDocument(string $databaseId, string $collectionId, string $documentId, ?array $data = null, ?array $permissions = null, ?string $transactionId = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{documentId}'],
@@ -2185,6 +2419,10 @@ class Databases extends Service
             $apiParams['permissions'] = $permissions;
         }
 
+        if (!is_null($transactionId)) {
+            $apiParams['transactionId'] = $transactionId;
+        }
+
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
@@ -2202,13 +2440,14 @@ class Databases extends Service
      * @param string $databaseId
      * @param string $collectionId
      * @param string $documentId
+     * @param ?string $transactionId
      * @throws AppwriteException
      * @return string
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `deleteRow` instead.
      * @see TablesDB::deleteRow
      */
-    public function deleteDocument(string $databaseId, string $collectionId, string $documentId): string
+    public function deleteDocument(string $databaseId, string $collectionId, string $documentId, ?string $transactionId = null): string
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{documentId}'],
@@ -2220,6 +2459,10 @@ class Databases extends Service
         $apiParams['databaseId'] = $databaseId;
         $apiParams['collectionId'] = $collectionId;
         $apiParams['documentId'] = $documentId;
+
+        if (!is_null($transactionId)) {
+            $apiParams['transactionId'] = $transactionId;
+        }
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -2241,13 +2484,14 @@ class Databases extends Service
      * @param string $attribute
      * @param ?float $value
      * @param ?float $min
+     * @param ?string $transactionId
      * @throws AppwriteException
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `decrementRowColumn` instead.
      * @see TablesDB::decrementRowColumn
      */
-    public function decrementDocumentAttribute(string $databaseId, string $collectionId, string $documentId, string $attribute, ?float $value = null, ?float $min = null): array
+    public function decrementDocumentAttribute(string $databaseId, string $collectionId, string $documentId, string $attribute, ?float $value = null, ?float $min = null, ?string $transactionId = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{documentId}', '{attribute}'],
@@ -2267,6 +2511,10 @@ class Databases extends Service
 
         if (!is_null($min)) {
             $apiParams['min'] = $min;
+        }
+
+        if (!is_null($transactionId)) {
+            $apiParams['transactionId'] = $transactionId;
         }
 
         $apiHeaders = [];
@@ -2289,13 +2537,14 @@ class Databases extends Service
      * @param string $attribute
      * @param ?float $value
      * @param ?float $max
+     * @param ?string $transactionId
      * @throws AppwriteException
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `incrementRowColumn` instead.
      * @see TablesDB::incrementRowColumn
      */
-    public function incrementDocumentAttribute(string $databaseId, string $collectionId, string $documentId, string $attribute, ?float $value = null, ?float $max = null): array
+    public function incrementDocumentAttribute(string $databaseId, string $collectionId, string $documentId, string $attribute, ?float $value = null, ?float $max = null, ?string $transactionId = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{documentId}', '{attribute}'],
@@ -2315,6 +2564,10 @@ class Databases extends Service
 
         if (!is_null($max)) {
             $apiParams['max'] = $max;
+        }
+
+        if (!is_null($transactionId)) {
+            $apiParams['transactionId'] = $transactionId;
         }
 
         $apiHeaders = [];
@@ -2419,7 +2672,7 @@ class Databases extends Service
     }
 
     /**
-     * Get index by ID.
+     * Get an index by its unique ID.
      *
      * @param string $databaseId
      * @param string $collectionId

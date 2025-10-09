@@ -1,18 +1,17 @@
 <?php
 
 use Appwrite\Client;
-use Appwrite\Services\Databases;
+use Appwrite\Services\TablesDB;
 
 $client = (new Client())
     ->setEndpoint('https://<REGION>.cloud.appwrite.io/v1') // Your API Endpoint
     ->setProject('<YOUR_PROJECT_ID>') // Your project ID
     ->setKey('<YOUR_API_KEY>'); // Your secret API key
 
-$databases = new Databases($client);
+$tablesDB = new TablesDB($client);
 
-$result = $databases->upsertDocuments(
-    databaseId: '<DATABASE_ID>',
-    collectionId: '<COLLECTION_ID>',
-    documents: [],
-    transactionId: '<TRANSACTION_ID>' // optional
+$result = $tablesDB->updateTransaction(
+    transactionId: '<TRANSACTION_ID>',
+    commit: false, // optional
+    rollback: false // optional
 );
