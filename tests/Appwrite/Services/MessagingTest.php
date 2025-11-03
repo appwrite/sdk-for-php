@@ -634,6 +634,55 @@ final class MessagingTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
+    public function testMethodCreateResendProvider(): void {
+
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "name" => "Mailgun",
+            "provider" => "mailgun",
+            "enabled" => true,
+            "type" => "sms",
+            "credentials" => array(),);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->messaging->createResendProvider(
+            "<PROVIDER_ID>",
+            "<NAME>"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodUpdateResendProvider(): void {
+
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "name" => "Mailgun",
+            "provider" => "mailgun",
+            "enabled" => true,
+            "type" => "sms",
+            "credentials" => array(),);
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->messaging->updateResendProvider(
+            "<PROVIDER_ID>"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
     public function testMethodCreateSendgridProvider(): void {
 
         $data = array(

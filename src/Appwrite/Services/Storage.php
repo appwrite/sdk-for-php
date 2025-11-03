@@ -23,10 +23,11 @@ class Storage extends Service
      *
      * @param ?array $queries
      * @param ?string $search
+     * @param ?bool $total
      * @throws AppwriteException
      * @return array
      */
-    public function listBuckets(?array $queries = null, ?string $search = null): array
+    public function listBuckets(?array $queries = null, ?string $search = null, ?bool $total = null): array
     {
         $apiPath = str_replace(
             [],
@@ -42,6 +43,10 @@ class Storage extends Service
 
         if (!is_null($search)) {
             $apiParams['search'] = $search;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
         }
 
         $apiHeaders = [];
@@ -261,10 +266,11 @@ class Storage extends Service
      * @param string $bucketId
      * @param ?array $queries
      * @param ?string $search
+     * @param ?bool $total
      * @throws AppwriteException
      * @return array
      */
-    public function listFiles(string $bucketId, ?array $queries = null, ?string $search = null): array
+    public function listFiles(string $bucketId, ?array $queries = null, ?string $search = null, ?bool $total = null): array
     {
         $apiPath = str_replace(
             ['{bucketId}'],
@@ -281,6 +287,10 @@ class Storage extends Service
 
         if (!is_null($search)) {
             $apiParams['search'] = $search;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
         }
 
         $apiHeaders = [];

@@ -21,10 +21,11 @@ class Tokens extends Service
      * @param string $bucketId
      * @param string $fileId
      * @param ?array $queries
+     * @param ?bool $total
      * @throws AppwriteException
      * @return array
      */
-    public function list(string $bucketId, string $fileId, ?array $queries = null): array
+    public function list(string $bucketId, string $fileId, ?array $queries = null, ?bool $total = null): array
     {
         $apiPath = str_replace(
             ['{bucketId}', '{fileId}'],
@@ -38,6 +39,10 @@ class Tokens extends Service
 
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
         }
 
         $apiHeaders = [];

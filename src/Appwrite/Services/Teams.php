@@ -20,10 +20,11 @@ class Teams extends Service
      *
      * @param ?array $queries
      * @param ?string $search
+     * @param ?bool $total
      * @throws AppwriteException
      * @return array
      */
-    public function list(?array $queries = null, ?string $search = null): array
+    public function list(?array $queries = null, ?string $search = null, ?bool $total = null): array
     {
         $apiPath = str_replace(
             [],
@@ -39,6 +40,10 @@ class Teams extends Service
 
         if (!is_null($search)) {
             $apiParams['search'] = $search;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
         }
 
         $apiHeaders = [];
@@ -186,10 +191,11 @@ class Teams extends Service
      * @param string $teamId
      * @param ?array $queries
      * @param ?string $search
+     * @param ?bool $total
      * @throws AppwriteException
      * @return array
      */
-    public function listMemberships(string $teamId, ?array $queries = null, ?string $search = null): array
+    public function listMemberships(string $teamId, ?array $queries = null, ?string $search = null, ?bool $total = null): array
     {
         $apiPath = str_replace(
             ['{teamId}'],
@@ -206,6 +212,10 @@ class Teams extends Service
 
         if (!is_null($search)) {
             $apiParams['search'] = $search;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
         }
 
         $apiHeaders = [];

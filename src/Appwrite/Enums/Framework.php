@@ -14,6 +14,7 @@ class Framework implements JsonSerializable
     private static Framework $VUE;
     private static Framework $SVELTEKIT;
     private static Framework $ASTRO;
+    private static Framework $TANSTACKSTART;
     private static Framework $REMIX;
     private static Framework $LYNX;
     private static Framework $FLUTTER;
@@ -93,6 +94,13 @@ class Framework implements JsonSerializable
             self::$ASTRO = new Framework('astro');
         }
         return self::$ASTRO;
+    }
+    public static function TANSTACKSTART(): Framework
+    {
+        if (!isset(self::$TANSTACKSTART)) {
+            self::$TANSTACKSTART = new Framework('tanstack-start');
+        }
+        return self::$TANSTACKSTART;
     }
     public static function REMIX(): Framework
     {

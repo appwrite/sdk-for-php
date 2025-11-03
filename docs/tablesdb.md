@@ -13,6 +13,7 @@ GET https://cloud.appwrite.io/v1/tablesdb
 | --- | --- | --- | --- |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following columns: name | [] |
 | search | string | Search term to filter your list results. Max length: 256 chars. |  |
+| total | boolean | When set to false, the total count returned will be 0 and will not be calculated. | 1 |
 
 
 ```http request
@@ -166,6 +167,7 @@ GET https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables
 | databaseId | string | **Required** Database ID. |  |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following columns: name, enabled, rowSecurity | [] |
 | search | string | Search term to filter your list results. Max length: 256 chars. |  |
+| total | boolean | When set to false, the total count returned will be 0 and will not be calculated. | 1 |
 
 
 ```http request
@@ -245,6 +247,7 @@ GET https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/columns
 | databaseId | string | **Required** Database ID. |  |
 | tableId | string | **Required** Table ID. |  |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following columns: key, type, size, required, array, status, error | [] |
+| total | boolean | When set to false, the total count returned will be 0 and will not be calculated. | 1 |
 
 
 ```http request
@@ -785,6 +788,7 @@ GET https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/indexes
 | databaseId | string | **Required** Database ID. |  |
 | tableId | string | **Required** Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/references/cloud/server-dart/tablesDB#createTable). |  |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following columns: key, type, status, attributes, error | [] |
+| total | boolean | When set to false, the total count returned will be 0 and will not be calculated. | 1 |
 
 
 ```http request
@@ -851,6 +855,7 @@ GET https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/rows
 | tableId | string | **Required** Table ID. You can create a new table using the TablesDB service [server integration](https://appwrite.io/docs/products/databases/tables#create-table). |  |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. | [] |
 | transactionId | string | Transaction ID to read uncommitted changes within the transaction. |  |
+| total | boolean | When set to false, the total count returned will be 0 and will not be calculated. | 1 |
 
 
 ```http request

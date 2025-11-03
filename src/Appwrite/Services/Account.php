@@ -129,10 +129,11 @@ class Account extends Service
      * Get the list of identities for the currently logged in user.
      *
      * @param ?array $queries
+     * @param ?bool $total
      * @throws AppwriteException
      * @return array
      */
-    public function listIdentities(?array $queries = null): array
+    public function listIdentities(?array $queries = null, ?bool $total = null): array
     {
         $apiPath = str_replace(
             [],
@@ -144,6 +145,10 @@ class Account extends Service
 
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
         }
 
         $apiHeaders = [];
@@ -221,10 +226,11 @@ class Account extends Service
      * user. Each log returns user IP address, location and date and time of log.
      *
      * @param ?array $queries
+     * @param ?bool $total
      * @throws AppwriteException
      * @return array
      */
-    public function listLogs(?array $queries = null): array
+    public function listLogs(?array $queries = null, ?bool $total = null): array
     {
         $apiPath = str_replace(
             [],
@@ -236,6 +242,10 @@ class Account extends Service
 
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
         }
 
         $apiHeaders = [];

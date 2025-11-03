@@ -23,10 +23,11 @@ class Users extends Service
      *
      * @param ?array $queries
      * @param ?string $search
+     * @param ?bool $total
      * @throws AppwriteException
      * @return array
      */
-    public function list(?array $queries = null, ?string $search = null): array
+    public function list(?array $queries = null, ?string $search = null, ?bool $total = null): array
     {
         $apiPath = str_replace(
             [],
@@ -42,6 +43,10 @@ class Users extends Service
 
         if (!is_null($search)) {
             $apiParams['search'] = $search;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
         }
 
         $apiHeaders = [];
@@ -190,10 +195,11 @@ class Users extends Service
      *
      * @param ?array $queries
      * @param ?string $search
+     * @param ?bool $total
      * @throws AppwriteException
      * @return array
      */
-    public function listIdentities(?array $queries = null, ?string $search = null): array
+    public function listIdentities(?array $queries = null, ?string $search = null, ?bool $total = null): array
     {
         $apiPath = str_replace(
             [],
@@ -209,6 +215,10 @@ class Users extends Service
 
         if (!is_null($search)) {
             $apiParams['search'] = $search;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
         }
 
         $apiHeaders = [];
@@ -652,10 +662,11 @@ class Users extends Service
      *
      * @param string $userId
      * @param ?array $queries
+     * @param ?bool $total
      * @throws AppwriteException
      * @return array
      */
-    public function listLogs(string $userId, ?array $queries = null): array
+    public function listLogs(string $userId, ?array $queries = null, ?bool $total = null): array
     {
         $apiPath = str_replace(
             ['{userId}'],
@@ -668,6 +679,10 @@ class Users extends Service
 
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
         }
 
         $apiHeaders = [];
@@ -686,10 +701,11 @@ class Users extends Service
      * @param string $userId
      * @param ?array $queries
      * @param ?string $search
+     * @param ?bool $total
      * @throws AppwriteException
      * @return array
      */
-    public function listMemberships(string $userId, ?array $queries = null, ?string $search = null): array
+    public function listMemberships(string $userId, ?array $queries = null, ?string $search = null, ?bool $total = null): array
     {
         $apiPath = str_replace(
             ['{userId}'],
@@ -706,6 +722,10 @@ class Users extends Service
 
         if (!is_null($search)) {
             $apiParams['search'] = $search;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
         }
 
         $apiHeaders = [];
@@ -1264,10 +1284,11 @@ class Users extends Service
      * Get the user sessions list by its unique ID.
      *
      * @param string $userId
+     * @param ?bool $total
      * @throws AppwriteException
      * @return array
      */
-    public function listSessions(string $userId): array
+    public function listSessions(string $userId, ?bool $total = null): array
     {
         $apiPath = str_replace(
             ['{userId}'],
@@ -1277,6 +1298,10 @@ class Users extends Service
 
         $apiParams = [];
         $apiParams['userId'] = $userId;
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
+        }
 
         $apiHeaders = [];
 
@@ -1419,10 +1444,11 @@ class Users extends Service
      *
      * @param string $userId
      * @param ?array $queries
+     * @param ?bool $total
      * @throws AppwriteException
      * @return array
      */
-    public function listTargets(string $userId, ?array $queries = null): array
+    public function listTargets(string $userId, ?array $queries = null, ?bool $total = null): array
     {
         $apiPath = str_replace(
             ['{userId}'],
@@ -1435,6 +1461,10 @@ class Users extends Service
 
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
         }
 
         $apiHeaders = [];

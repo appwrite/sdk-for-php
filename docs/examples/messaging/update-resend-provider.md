@@ -10,8 +10,13 @@ $client = (new Client())
 
 $messaging = new Messaging($client);
 
-$result = $messaging->listProviderLogs(
+$result = $messaging->updateResendProvider(
     providerId: '<PROVIDER_ID>',
-    queries: [], // optional
-    total: false // optional
+    name: '<NAME>', // optional
+    enabled: false, // optional
+    apiKey: '<API_KEY>', // optional
+    fromName: '<FROM_NAME>', // optional
+    fromEmail: 'email@example.com', // optional
+    replyToName: '<REPLY_TO_NAME>', // optional
+    replyToEmail: '<REPLY_TO_EMAIL>' // optional
 );

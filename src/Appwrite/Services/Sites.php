@@ -25,10 +25,11 @@ class Sites extends Service
      *
      * @param ?array $queries
      * @param ?string $search
+     * @param ?bool $total
      * @throws AppwriteException
      * @return array
      */
-    public function list(?array $queries = null, ?string $search = null): array
+    public function list(?array $queries = null, ?string $search = null, ?bool $total = null): array
     {
         $apiPath = str_replace(
             [],
@@ -44,6 +45,10 @@ class Sites extends Service
 
         if (!is_null($search)) {
             $apiParams['search'] = $search;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
         }
 
         $apiHeaders = [];
@@ -418,10 +423,11 @@ class Sites extends Service
      * @param string $siteId
      * @param ?array $queries
      * @param ?string $search
+     * @param ?bool $total
      * @throws AppwriteException
      * @return array
      */
-    public function listDeployments(string $siteId, ?array $queries = null, ?string $search = null): array
+    public function listDeployments(string $siteId, ?array $queries = null, ?string $search = null, ?bool $total = null): array
     {
         $apiPath = str_replace(
             ['{siteId}'],
@@ -438,6 +444,10 @@ class Sites extends Service
 
         if (!is_null($search)) {
             $apiParams['search'] = $search;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
         }
 
         $apiHeaders = [];
@@ -825,10 +835,11 @@ class Sites extends Service
      *
      * @param string $siteId
      * @param ?array $queries
+     * @param ?bool $total
      * @throws AppwriteException
      * @return array
      */
-    public function listLogs(string $siteId, ?array $queries = null): array
+    public function listLogs(string $siteId, ?array $queries = null, ?bool $total = null): array
     {
         $apiPath = str_replace(
             ['{siteId}'],
@@ -841,6 +852,10 @@ class Sites extends Service
 
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
         }
 
         $apiHeaders = [];

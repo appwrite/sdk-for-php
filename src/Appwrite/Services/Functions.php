@@ -24,10 +24,11 @@ class Functions extends Service
      *
      * @param ?array $queries
      * @param ?string $search
+     * @param ?bool $total
      * @throws AppwriteException
      * @return array
      */
-    public function list(?array $queries = null, ?string $search = null): array
+    public function list(?array $queries = null, ?string $search = null, ?bool $total = null): array
     {
         $apiPath = str_replace(
             [],
@@ -43,6 +44,10 @@ class Functions extends Service
 
         if (!is_null($search)) {
             $apiParams['search'] = $search;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
         }
 
         $apiHeaders = [];
@@ -422,10 +427,11 @@ class Functions extends Service
      * @param string $functionId
      * @param ?array $queries
      * @param ?string $search
+     * @param ?bool $total
      * @throws AppwriteException
      * @return array
      */
-    public function listDeployments(string $functionId, ?array $queries = null, ?string $search = null): array
+    public function listDeployments(string $functionId, ?array $queries = null, ?string $search = null, ?bool $total = null): array
     {
         $apiPath = str_replace(
             ['{functionId}'],
@@ -442,6 +448,10 @@ class Functions extends Service
 
         if (!is_null($search)) {
             $apiParams['search'] = $search;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
         }
 
         $apiHeaders = [];
@@ -836,10 +846,11 @@ class Functions extends Service
      *
      * @param string $functionId
      * @param ?array $queries
+     * @param ?bool $total
      * @throws AppwriteException
      * @return array
      */
-    public function listExecutions(string $functionId, ?array $queries = null): array
+    public function listExecutions(string $functionId, ?array $queries = null, ?bool $total = null): array
     {
         $apiPath = str_replace(
             ['{functionId}'],
@@ -852,6 +863,10 @@ class Functions extends Service
 
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
         }
 
         $apiHeaders = [];

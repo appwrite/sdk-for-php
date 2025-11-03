@@ -51,6 +51,7 @@ GET https://cloud.appwrite.io/v1/account/identities
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: userId, provider, providerUid, providerEmail, providerAccessTokenExpiry | [] |
+| total | boolean | When set to false, the total count returned will be 0 and will not be calculated. | 1 |
 
 
 ```http request
@@ -84,6 +85,7 @@ GET https://cloud.appwrite.io/v1/account/logs
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Only supported methods are limit and offset | [] |
+| total | boolean | When set to false, the total count returned will be 0 and will not be calculated. | 1 |
 
 
 ```http request
