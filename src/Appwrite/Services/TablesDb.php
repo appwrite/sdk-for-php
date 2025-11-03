@@ -23,10 +23,11 @@ class TablesDB extends Service
      *
      * @param ?array $queries
      * @param ?string $search
+     * @param ?bool $total
      * @throws AppwriteException
      * @return array
      */
-    public function list(?array $queries = null, ?string $search = null): array
+    public function list(?array $queries = null, ?string $search = null, ?bool $total = null): array
     {
         $apiPath = str_replace(
             [],
@@ -42,6 +43,10 @@ class TablesDB extends Service
 
         if (!is_null($search)) {
             $apiParams['search'] = $search;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
         }
 
         $apiHeaders = [];
@@ -386,10 +391,11 @@ class TablesDB extends Service
      * @param string $databaseId
      * @param ?array $queries
      * @param ?string $search
+     * @param ?bool $total
      * @throws AppwriteException
      * @return array
      */
-    public function listTables(string $databaseId, ?array $queries = null, ?string $search = null): array
+    public function listTables(string $databaseId, ?array $queries = null, ?string $search = null, ?bool $total = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}'],
@@ -406,6 +412,10 @@ class TablesDB extends Service
 
         if (!is_null($search)) {
             $apiParams['search'] = $search;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
         }
 
         $apiHeaders = [];
@@ -586,10 +596,11 @@ class TablesDB extends Service
      * @param string $databaseId
      * @param string $tableId
      * @param ?array $queries
+     * @param ?bool $total
      * @throws AppwriteException
      * @return array
      */
-    public function listColumns(string $databaseId, string $tableId, ?array $queries = null): array
+    public function listColumns(string $databaseId, string $tableId, ?array $queries = null, ?bool $total = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
@@ -603,6 +614,10 @@ class TablesDB extends Service
 
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
         }
 
         $apiHeaders = [];
@@ -1893,10 +1908,11 @@ class TablesDB extends Service
      * @param string $databaseId
      * @param string $tableId
      * @param ?array $queries
+     * @param ?bool $total
      * @throws AppwriteException
      * @return array
      */
-    public function listIndexes(string $databaseId, string $tableId, ?array $queries = null): array
+    public function listIndexes(string $databaseId, string $tableId, ?array $queries = null, ?bool $total = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
@@ -1910,6 +1926,10 @@ class TablesDB extends Service
 
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
         }
 
         $apiHeaders = [];
@@ -2044,10 +2064,11 @@ class TablesDB extends Service
      * @param string $tableId
      * @param ?array $queries
      * @param ?string $transactionId
+     * @param ?bool $total
      * @throws AppwriteException
      * @return array
      */
-    public function listRows(string $databaseId, string $tableId, ?array $queries = null, ?string $transactionId = null): array
+    public function listRows(string $databaseId, string $tableId, ?array $queries = null, ?string $transactionId = null, ?bool $total = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
@@ -2065,6 +2086,10 @@ class TablesDB extends Service
 
         if (!is_null($transactionId)) {
             $apiParams['transactionId'] = $transactionId;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
         }
 
         $apiHeaders = [];

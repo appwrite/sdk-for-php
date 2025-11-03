@@ -21,10 +21,11 @@ class Messaging extends Service
      *
      * @param ?array $queries
      * @param ?string $search
+     * @param ?bool $total
      * @throws AppwriteException
      * @return array
      */
-    public function listMessages(?array $queries = null, ?string $search = null): array
+    public function listMessages(?array $queries = null, ?string $search = null, ?bool $total = null): array
     {
         $apiPath = str_replace(
             [],
@@ -40,6 +41,10 @@ class Messaging extends Service
 
         if (!is_null($search)) {
             $apiParams['search'] = $search;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
         }
 
         $apiHeaders = [];
@@ -764,10 +769,11 @@ class Messaging extends Service
      *
      * @param string $messageId
      * @param ?array $queries
+     * @param ?bool $total
      * @throws AppwriteException
      * @return array
      */
-    public function listMessageLogs(string $messageId, ?array $queries = null): array
+    public function listMessageLogs(string $messageId, ?array $queries = null, ?bool $total = null): array
     {
         $apiPath = str_replace(
             ['{messageId}'],
@@ -780,6 +786,10 @@ class Messaging extends Service
 
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
         }
 
         $apiHeaders = [];
@@ -797,10 +807,11 @@ class Messaging extends Service
      *
      * @param string $messageId
      * @param ?array $queries
+     * @param ?bool $total
      * @throws AppwriteException
      * @return array
      */
-    public function listTargets(string $messageId, ?array $queries = null): array
+    public function listTargets(string $messageId, ?array $queries = null, ?bool $total = null): array
     {
         $apiPath = str_replace(
             ['{messageId}'],
@@ -813,6 +824,10 @@ class Messaging extends Service
 
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
         }
 
         $apiHeaders = [];
@@ -830,10 +845,11 @@ class Messaging extends Service
      *
      * @param ?array $queries
      * @param ?string $search
+     * @param ?bool $total
      * @throws AppwriteException
      * @return array
      */
-    public function listProviders(?array $queries = null, ?string $search = null): array
+    public function listProviders(?array $queries = null, ?string $search = null, ?bool $total = null): array
     {
         $apiPath = str_replace(
             [],
@@ -849,6 +865,10 @@ class Messaging extends Service
 
         if (!is_null($search)) {
             $apiParams['search'] = $search;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
         }
 
         $apiHeaders = [];
@@ -1530,6 +1550,131 @@ class Messaging extends Service
 
         if (!is_null($authKey)) {
             $apiParams['authKey'] = $authKey;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Create a new Resend provider.
+     *
+     * @param string $providerId
+     * @param string $name
+     * @param ?string $apiKey
+     * @param ?string $fromName
+     * @param ?string $fromEmail
+     * @param ?string $replyToName
+     * @param ?string $replyToEmail
+     * @param ?bool $enabled
+     * @throws AppwriteException
+     * @return array
+     */
+    public function createResendProvider(string $providerId, string $name, ?string $apiKey = null, ?string $fromName = null, ?string $fromEmail = null, ?string $replyToName = null, ?string $replyToEmail = null, ?bool $enabled = null): array
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/messaging/providers/resend'
+        );
+
+        $apiParams = [];
+        $apiParams['providerId'] = $providerId;
+        $apiParams['name'] = $name;
+
+        if (!is_null($apiKey)) {
+            $apiParams['apiKey'] = $apiKey;
+        }
+
+        if (!is_null($fromName)) {
+            $apiParams['fromName'] = $fromName;
+        }
+
+        if (!is_null($fromEmail)) {
+            $apiParams['fromEmail'] = $fromEmail;
+        }
+
+        if (!is_null($replyToName)) {
+            $apiParams['replyToName'] = $replyToName;
+        }
+
+        if (!is_null($replyToEmail)) {
+            $apiParams['replyToEmail'] = $replyToEmail;
+        }
+
+        if (!is_null($enabled)) {
+            $apiParams['enabled'] = $enabled;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Update a Resend provider by its unique ID.
+     *
+     * @param string $providerId
+     * @param ?string $name
+     * @param ?bool $enabled
+     * @param ?string $apiKey
+     * @param ?string $fromName
+     * @param ?string $fromEmail
+     * @param ?string $replyToName
+     * @param ?string $replyToEmail
+     * @throws AppwriteException
+     * @return array
+     */
+    public function updateResendProvider(string $providerId, ?string $name = null, ?bool $enabled = null, ?string $apiKey = null, ?string $fromName = null, ?string $fromEmail = null, ?string $replyToName = null, ?string $replyToEmail = null): array
+    {
+        $apiPath = str_replace(
+            ['{providerId}'],
+            [$providerId],
+            '/messaging/providers/resend/{providerId}'
+        );
+
+        $apiParams = [];
+        $apiParams['providerId'] = $providerId;
+
+        if (!is_null($name)) {
+            $apiParams['name'] = $name;
+        }
+
+        if (!is_null($enabled)) {
+            $apiParams['enabled'] = $enabled;
+        }
+
+        if (!is_null($apiKey)) {
+            $apiParams['apiKey'] = $apiKey;
+        }
+
+        if (!is_null($fromName)) {
+            $apiParams['fromName'] = $fromName;
+        }
+
+        if (!is_null($fromEmail)) {
+            $apiParams['fromEmail'] = $fromEmail;
+        }
+
+        if (!is_null($replyToName)) {
+            $apiParams['replyToName'] = $replyToName;
+        }
+
+        if (!is_null($replyToEmail)) {
+            $apiParams['replyToEmail'] = $replyToEmail;
         }
 
         $apiHeaders = [];
@@ -2521,10 +2666,11 @@ class Messaging extends Service
      *
      * @param string $providerId
      * @param ?array $queries
+     * @param ?bool $total
      * @throws AppwriteException
      * @return array
      */
-    public function listProviderLogs(string $providerId, ?array $queries = null): array
+    public function listProviderLogs(string $providerId, ?array $queries = null, ?bool $total = null): array
     {
         $apiPath = str_replace(
             ['{providerId}'],
@@ -2537,6 +2683,10 @@ class Messaging extends Service
 
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
         }
 
         $apiHeaders = [];
@@ -2554,10 +2704,11 @@ class Messaging extends Service
      *
      * @param string $subscriberId
      * @param ?array $queries
+     * @param ?bool $total
      * @throws AppwriteException
      * @return array
      */
-    public function listSubscriberLogs(string $subscriberId, ?array $queries = null): array
+    public function listSubscriberLogs(string $subscriberId, ?array $queries = null, ?bool $total = null): array
     {
         $apiPath = str_replace(
             ['{subscriberId}'],
@@ -2570,6 +2721,10 @@ class Messaging extends Service
 
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
         }
 
         $apiHeaders = [];
@@ -2587,10 +2742,11 @@ class Messaging extends Service
      *
      * @param ?array $queries
      * @param ?string $search
+     * @param ?bool $total
      * @throws AppwriteException
      * @return array
      */
-    public function listTopics(?array $queries = null, ?string $search = null): array
+    public function listTopics(?array $queries = null, ?string $search = null, ?bool $total = null): array
     {
         $apiPath = str_replace(
             [],
@@ -2606,6 +2762,10 @@ class Messaging extends Service
 
         if (!is_null($search)) {
             $apiParams['search'] = $search;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
         }
 
         $apiHeaders = [];
@@ -2757,10 +2917,11 @@ class Messaging extends Service
      *
      * @param string $topicId
      * @param ?array $queries
+     * @param ?bool $total
      * @throws AppwriteException
      * @return array
      */
-    public function listTopicLogs(string $topicId, ?array $queries = null): array
+    public function listTopicLogs(string $topicId, ?array $queries = null, ?bool $total = null): array
     {
         $apiPath = str_replace(
             ['{topicId}'],
@@ -2773,6 +2934,10 @@ class Messaging extends Service
 
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
         }
 
         $apiHeaders = [];
@@ -2791,10 +2956,11 @@ class Messaging extends Service
      * @param string $topicId
      * @param ?array $queries
      * @param ?string $search
+     * @param ?bool $total
      * @throws AppwriteException
      * @return array
      */
-    public function listSubscribers(string $topicId, ?array $queries = null, ?string $search = null): array
+    public function listSubscribers(string $topicId, ?array $queries = null, ?string $search = null, ?bool $total = null): array
     {
         $apiPath = str_replace(
             ['{topicId}'],
@@ -2811,6 +2977,10 @@ class Messaging extends Service
 
         if (!is_null($search)) {
             $apiParams['search'] = $search;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
         }
 
         $apiHeaders = [];

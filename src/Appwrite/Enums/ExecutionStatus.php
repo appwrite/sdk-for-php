@@ -10,6 +10,7 @@ class ExecutionStatus implements JsonSerializable
     private static ExecutionStatus $PROCESSING;
     private static ExecutionStatus $COMPLETED;
     private static ExecutionStatus $FAILED;
+    private static ExecutionStatus $SCHEDULED;
 
     private string $value;
 
@@ -55,5 +56,12 @@ class ExecutionStatus implements JsonSerializable
             self::$FAILED = new ExecutionStatus('failed');
         }
         return self::$FAILED;
+    }
+    public static function SCHEDULED(): ExecutionStatus
+    {
+        if (!isset(self::$SCHEDULED)) {
+            self::$SCHEDULED = new ExecutionStatus('scheduled');
+        }
+        return self::$SCHEDULED;
     }
 }

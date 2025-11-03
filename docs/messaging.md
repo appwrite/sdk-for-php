@@ -13,6 +13,7 @@ GET https://cloud.appwrite.io/v1/messaging/messages
 | --- | --- | --- | --- |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: scheduledAt, deliveredAt, deliveredTotal, status, description, providerType | [] |
 | search | string | Search term to filter your list results. Max length: 256 chars. |  |
+| total | boolean | When set to false, the total count returned will be 0 and will not be calculated. | 1 |
 
 
 ```http request
@@ -244,6 +245,7 @@ GET https://cloud.appwrite.io/v1/messaging/messages/{messageId}/logs
 | --- | --- | --- | --- |
 | messageId | string | **Required** Message ID. |  |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Only supported methods are limit and offset | [] |
+| total | boolean | When set to false, the total count returned will be 0 and will not be calculated. | 1 |
 
 
 ```http request
@@ -258,6 +260,7 @@ GET https://cloud.appwrite.io/v1/messaging/messages/{messageId}/targets
 | --- | --- | --- | --- |
 | messageId | string | **Required** Message ID. |  |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: userId, providerId, identifier, providerType | [] |
+| total | boolean | When set to false, the total count returned will be 0 and will not be calculated. | 1 |
 
 
 ```http request
@@ -272,6 +275,7 @@ GET https://cloud.appwrite.io/v1/messaging/providers
 | --- | --- | --- | --- |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, provider, type, enabled | [] |
 | search | string | Search term to filter your list results. Max length: 256 chars. |  |
+| total | boolean | When set to false, the total count returned will be 0 and will not be calculated. | 1 |
 
 
 ```http request
@@ -496,6 +500,46 @@ PATCH https://cloud.appwrite.io/v1/messaging/providers/msg91/{providerId}
 | templateId | string | Msg91 template ID. |  |
 | senderId | string | Msg91 sender ID. |  |
 | authKey | string | Msg91 auth key. |  |
+
+
+```http request
+POST https://cloud.appwrite.io/v1/messaging/providers/resend
+```
+
+** Create a new Resend provider. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| providerId | string | Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
+| name | string | Provider name. |  |
+| apiKey | string | Resend API key. |  |
+| fromName | string | Sender Name. |  |
+| fromEmail | string | Sender email address. |  |
+| replyToName | string | Name set in the reply to field for the mail. Default value is sender name. |  |
+| replyToEmail | string | Email set in the reply to field for the mail. Default value is sender email. |  |
+| enabled | boolean | Set as enabled. |  |
+
+
+```http request
+PATCH https://cloud.appwrite.io/v1/messaging/providers/resend/{providerId}
+```
+
+** Update a Resend provider by its unique ID. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| providerId | string | **Required** Provider ID. |  |
+| name | string | Provider name. |  |
+| enabled | boolean | Set as enabled. |  |
+| apiKey | string | Resend API key. |  |
+| fromName | string | Sender Name. |  |
+| fromEmail | string | Sender email address. |  |
+| replyToName | string | Name set in the Reply To field for the mail. Default value is Sender Name. |  |
+| replyToEmail | string | Email set in the Reply To field for the mail. Default value is Sender Email. |  |
 
 
 ```http request
@@ -825,6 +869,7 @@ GET https://cloud.appwrite.io/v1/messaging/providers/{providerId}/logs
 | --- | --- | --- | --- |
 | providerId | string | **Required** Provider ID. |  |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Only supported methods are limit and offset | [] |
+| total | boolean | When set to false, the total count returned will be 0 and will not be calculated. | 1 |
 
 
 ```http request
@@ -839,6 +884,7 @@ GET https://cloud.appwrite.io/v1/messaging/subscribers/{subscriberId}/logs
 | --- | --- | --- | --- |
 | subscriberId | string | **Required** Subscriber ID. |  |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Only supported methods are limit and offset | [] |
+| total | boolean | When set to false, the total count returned will be 0 and will not be calculated. | 1 |
 
 
 ```http request
@@ -853,6 +899,7 @@ GET https://cloud.appwrite.io/v1/messaging/topics
 | --- | --- | --- | --- |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, description, emailTotal, smsTotal, pushTotal | [] |
 | search | string | Search term to filter your list results. Max length: 256 chars. |  |
+| total | boolean | When set to false, the total count returned will be 0 and will not be calculated. | 1 |
 
 
 ```http request
@@ -925,6 +972,7 @@ GET https://cloud.appwrite.io/v1/messaging/topics/{topicId}/logs
 | --- | --- | --- | --- |
 | topicId | string | **Required** Topic ID. |  |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Only supported methods are limit and offset | [] |
+| total | boolean | When set to false, the total count returned will be 0 and will not be calculated. | 1 |
 
 
 ```http request
@@ -940,6 +988,7 @@ GET https://cloud.appwrite.io/v1/messaging/topics/{topicId}/subscribers
 | topicId | string | **Required** Topic ID. The topic ID subscribed to. |  |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, provider, type, enabled | [] |
 | search | string | Search term to filter your list results. Max length: 256 chars. |  |
+| total | boolean | When set to false, the total count returned will be 0 and will not be calculated. | 1 |
 
 
 ```http request

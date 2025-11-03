@@ -23,13 +23,14 @@ class Databases extends Service
      *
      * @param ?array $queries
      * @param ?string $search
+     * @param ?bool $total
      * @throws AppwriteException
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `list` instead.
      * @see TablesDB::list
      */
-    public function list(?array $queries = null, ?string $search = null): array
+    public function list(?array $queries = null, ?string $search = null, ?bool $total = null): array
     {
         $apiPath = str_replace(
             [],
@@ -45,6 +46,10 @@ class Databases extends Service
 
         if (!is_null($search)) {
             $apiParams['search'] = $search;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
         }
 
         $apiHeaders = [];
@@ -401,13 +406,14 @@ class Databases extends Service
      * @param string $databaseId
      * @param ?array $queries
      * @param ?string $search
+     * @param ?bool $total
      * @throws AppwriteException
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `listTables` instead.
      * @see TablesDB::listTables
      */
-    public function listCollections(string $databaseId, ?array $queries = null, ?string $search = null): array
+    public function listCollections(string $databaseId, ?array $queries = null, ?string $search = null, ?bool $total = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}'],
@@ -424,6 +430,10 @@ class Databases extends Service
 
         if (!is_null($search)) {
             $apiParams['search'] = $search;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
         }
 
         $apiHeaders = [];
@@ -616,13 +626,14 @@ class Databases extends Service
      * @param string $databaseId
      * @param string $collectionId
      * @param ?array $queries
+     * @param ?bool $total
      * @throws AppwriteException
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `listColumns` instead.
      * @see TablesDB::listColumns
      */
-    public function listAttributes(string $databaseId, string $collectionId, ?array $queries = null): array
+    public function listAttributes(string $databaseId, string $collectionId, ?array $queries = null, ?bool $total = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
@@ -636,6 +647,10 @@ class Databases extends Service
 
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
         }
 
         $apiHeaders = [];
@@ -2013,13 +2028,14 @@ class Databases extends Service
      * @param string $collectionId
      * @param ?array $queries
      * @param ?string $transactionId
+     * @param ?bool $total
      * @throws AppwriteException
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `listRows` instead.
      * @see TablesDB::listRows
      */
-    public function listDocuments(string $databaseId, string $collectionId, ?array $queries = null, ?string $transactionId = null): array
+    public function listDocuments(string $databaseId, string $collectionId, ?array $queries = null, ?string $transactionId = null, ?bool $total = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
@@ -2037,6 +2053,10 @@ class Databases extends Service
 
         if (!is_null($transactionId)) {
             $apiParams['transactionId'] = $transactionId;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
         }
 
         $apiHeaders = [];
@@ -2587,13 +2607,14 @@ class Databases extends Service
      * @param string $databaseId
      * @param string $collectionId
      * @param ?array $queries
+     * @param ?bool $total
      * @throws AppwriteException
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `listIndexes` instead.
      * @see TablesDB::listIndexes
      */
-    public function listIndexes(string $databaseId, string $collectionId, ?array $queries = null): array
+    public function listIndexes(string $databaseId, string $collectionId, ?array $queries = null, ?bool $total = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
@@ -2607,6 +2628,10 @@ class Databases extends Service
 
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
         }
 
         $apiHeaders = [];
