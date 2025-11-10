@@ -745,40 +745,6 @@ class Users extends Service
      * @param bool $mfa
      * @throws AppwriteException
      * @return array
-     *
-     * @deprecated This API has been deprecated since 1.8.0. Please use `updateMFA` instead.
-     * @see Users::updateMFA
-     */
-    public function updateMfa(string $userId, bool $mfa): array
-    {
-        $apiPath = str_replace(
-            ['{userId}'],
-            [$userId],
-            '/users/{userId}/mfa'
-        );
-
-        $apiParams = [];
-        $apiParams['userId'] = $userId;
-        $apiParams['mfa'] = $mfa;
-
-        $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
-
-        return $this->client->call(
-            Client::METHOD_PATCH,
-            $apiPath,
-            $apiHeaders,
-            $apiParams
-        );
-    }
-
-    /**
-     * Enable or disable MFA on a user account.
-     *
-     * @param string $userId
-     * @param bool $mfa
-     * @throws AppwriteException
-     * @return array
      */
     public function updateMFA(string $userId, bool $mfa): array
     {
@@ -797,40 +763,6 @@ class Users extends Service
 
         return $this->client->call(
             Client::METHOD_PATCH,
-            $apiPath,
-            $apiHeaders,
-            $apiParams
-        );
-    }
-
-    /**
-     * Delete an authenticator app.
-     *
-     * @param string $userId
-     * @param AuthenticatorType $type
-     * @throws AppwriteException
-     * @return string
-     *
-     * @deprecated This API has been deprecated since 1.8.0. Please use `deleteMFAAuthenticator` instead.
-     * @see Users::deleteMFAAuthenticator
-     */
-    public function deleteMfaAuthenticator(string $userId, AuthenticatorType $type): string
-    {
-        $apiPath = str_replace(
-            ['{userId}', '{type}'],
-            [$userId, $type],
-            '/users/{userId}/mfa/authenticators/{type}'
-        );
-
-        $apiParams = [];
-        $apiParams['userId'] = $userId;
-        $apiParams['type'] = $type;
-
-        $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
-
-        return $this->client->call(
-            Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
@@ -874,37 +806,6 @@ class Users extends Service
      * @param string $userId
      * @throws AppwriteException
      * @return array
-     *
-     * @deprecated This API has been deprecated since 1.8.0. Please use `listMFAFactors` instead.
-     * @see Users::listMFAFactors
-     */
-    public function listMfaFactors(string $userId): array
-    {
-        $apiPath = str_replace(
-            ['{userId}'],
-            [$userId],
-            '/users/{userId}/mfa/factors'
-        );
-
-        $apiParams = [];
-        $apiParams['userId'] = $userId;
-
-        $apiHeaders = [];
-
-        return $this->client->call(
-            Client::METHOD_GET,
-            $apiPath,
-            $apiHeaders,
-            $apiParams
-        );
-    }
-
-    /**
-     * List the factors available on the account to be used as a MFA challange.
-     *
-     * @param string $userId
-     * @throws AppwriteException
-     * @return array
      */
     public function listMFAFactors(string $userId): array
     {
@@ -912,40 +813,6 @@ class Users extends Service
             ['{userId}'],
             [$userId],
             '/users/{userId}/mfa/factors'
-        );
-
-        $apiParams = [];
-        $apiParams['userId'] = $userId;
-
-        $apiHeaders = [];
-
-        return $this->client->call(
-            Client::METHOD_GET,
-            $apiPath,
-            $apiHeaders,
-            $apiParams
-        );
-    }
-
-    /**
-     * Get recovery codes that can be used as backup for MFA flow by User ID.
-     * Before getting codes, they must be generated using
-     * [createMfaRecoveryCodes](/docs/references/cloud/client-web/account#createMfaRecoveryCodes)
-     * method.
-     *
-     * @param string $userId
-     * @throws AppwriteException
-     * @return array
-     *
-     * @deprecated This API has been deprecated since 1.8.0. Please use `getMFARecoveryCodes` instead.
-     * @see Users::getMFARecoveryCodes
-     */
-    public function getMfaRecoveryCodes(string $userId): array
-    {
-        $apiPath = str_replace(
-            ['{userId}'],
-            [$userId],
-            '/users/{userId}/mfa/recovery-codes'
         );
 
         $apiParams = [];
@@ -1001,41 +868,6 @@ class Users extends Service
      * @param string $userId
      * @throws AppwriteException
      * @return array
-     *
-     * @deprecated This API has been deprecated since 1.8.0. Please use `updateMFARecoveryCodes` instead.
-     * @see Users::updateMFARecoveryCodes
-     */
-    public function updateMfaRecoveryCodes(string $userId): array
-    {
-        $apiPath = str_replace(
-            ['{userId}'],
-            [$userId],
-            '/users/{userId}/mfa/recovery-codes'
-        );
-
-        $apiParams = [];
-        $apiParams['userId'] = $userId;
-
-        $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
-
-        return $this->client->call(
-            Client::METHOD_PUT,
-            $apiPath,
-            $apiHeaders,
-            $apiParams
-        );
-    }
-
-    /**
-     * Regenerate recovery codes that can be used as backup for MFA flow by User
-     * ID. Before regenerating codes, they must be first generated using
-     * [createMfaRecoveryCodes](/docs/references/cloud/client-web/account#createMfaRecoveryCodes)
-     * method.
-     *
-     * @param string $userId
-     * @throws AppwriteException
-     * @return array
      */
     public function updateMFARecoveryCodes(string $userId): array
     {
@@ -1053,41 +885,6 @@ class Users extends Service
 
         return $this->client->call(
             Client::METHOD_PUT,
-            $apiPath,
-            $apiHeaders,
-            $apiParams
-        );
-    }
-
-    /**
-     * Generate recovery codes used as backup for MFA flow for User ID. Recovery
-     * codes can be used as a MFA verification type in
-     * [createMfaChallenge](/docs/references/cloud/client-web/account#createMfaChallenge)
-     * method by client SDK.
-     *
-     * @param string $userId
-     * @throws AppwriteException
-     * @return array
-     *
-     * @deprecated This API has been deprecated since 1.8.0. Please use `createMFARecoveryCodes` instead.
-     * @see Users::createMFARecoveryCodes
-     */
-    public function createMfaRecoveryCodes(string $userId): array
-    {
-        $apiPath = str_replace(
-            ['{userId}'],
-            [$userId],
-            '/users/{userId}/mfa/recovery-codes'
-        );
-
-        $apiParams = [];
-        $apiParams['userId'] = $userId;
-
-        $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
-
-        return $this->client->call(
-            Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams

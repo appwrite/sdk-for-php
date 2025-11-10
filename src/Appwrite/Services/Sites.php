@@ -463,7 +463,7 @@ class Sites extends Service
     /**
      * Create a new site code deployment. Use this endpoint to upload a new
      * version of your site code. To activate your newly uploaded code, you'll
-     * need to update the function's deployment to use your new deployment ID.
+     * need to update the site's deployment to use your new deployment ID.
      *
      * @param string $siteId
      * @param InputFile $code

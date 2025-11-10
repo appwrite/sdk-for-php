@@ -9,6 +9,9 @@ use Appwrite\InputFile;
 use Appwrite\Enums\Browser;
 use Appwrite\Enums\CreditCard;
 use Appwrite\Enums\Flag;
+use Appwrite\Enums\Theme;
+use Appwrite\Enums\Timezone;
+use Appwrite\Enums\Output;
 
 class Avatars extends Service
 {
@@ -345,6 +348,138 @@ class Avatars extends Service
 
         if (!is_null($download)) {
             $apiParams['download'] = $download;
+        }
+
+        $apiHeaders = [];
+
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Use this endpoint to capture a screenshot of any website URL. This endpoint
+     * uses a headless browser to render the webpage and capture it as an image.
+     * 
+     * You can configure the browser viewport size, theme, user agent,
+     * geolocation, permissions, and more. Capture either just the viewport or the
+     * full page scroll.
+     * 
+     * When width and height are specified, the image is resized accordingly. If
+     * both dimensions are 0, the API provides an image at original size. If
+     * dimensions are not specified, the default viewport size is 1280x720px.
+     *
+     * @param string $url
+     * @param ?array $headers
+     * @param ?int $viewportWidth
+     * @param ?int $viewportHeight
+     * @param ?float $scale
+     * @param ?Theme $theme
+     * @param ?string $userAgent
+     * @param ?bool $fullpage
+     * @param ?string $locale
+     * @param ?Timezone $timezone
+     * @param ?float $latitude
+     * @param ?float $longitude
+     * @param ?float $accuracy
+     * @param ?bool $touch
+     * @param ?array $permissions
+     * @param ?int $sleep
+     * @param ?int $width
+     * @param ?int $height
+     * @param ?int $quality
+     * @param ?Output $output
+     * @throws AppwriteException
+     * @return string
+     */
+    public function getScreenshot(string $url, ?array $headers = null, ?int $viewportWidth = null, ?int $viewportHeight = null, ?float $scale = null, ?Theme $theme = null, ?string $userAgent = null, ?bool $fullpage = null, ?string $locale = null, ?Timezone $timezone = null, ?float $latitude = null, ?float $longitude = null, ?float $accuracy = null, ?bool $touch = null, ?array $permissions = null, ?int $sleep = null, ?int $width = null, ?int $height = null, ?int $quality = null, ?Output $output = null): string
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/avatars/screenshots'
+        );
+
+        $apiParams = [];
+        $apiParams['url'] = $url;
+
+        if (!is_null($headers)) {
+            $apiParams['headers'] = $headers;
+        }
+
+        if (!is_null($viewportWidth)) {
+            $apiParams['viewportWidth'] = $viewportWidth;
+        }
+
+        if (!is_null($viewportHeight)) {
+            $apiParams['viewportHeight'] = $viewportHeight;
+        }
+
+        if (!is_null($scale)) {
+            $apiParams['scale'] = $scale;
+        }
+
+        if (!is_null($theme)) {
+            $apiParams['theme'] = $theme;
+        }
+
+        if (!is_null($userAgent)) {
+            $apiParams['userAgent'] = $userAgent;
+        }
+
+        if (!is_null($fullpage)) {
+            $apiParams['fullpage'] = $fullpage;
+        }
+
+        if (!is_null($locale)) {
+            $apiParams['locale'] = $locale;
+        }
+
+        if (!is_null($timezone)) {
+            $apiParams['timezone'] = $timezone;
+        }
+
+        if (!is_null($latitude)) {
+            $apiParams['latitude'] = $latitude;
+        }
+
+        if (!is_null($longitude)) {
+            $apiParams['longitude'] = $longitude;
+        }
+
+        if (!is_null($accuracy)) {
+            $apiParams['accuracy'] = $accuracy;
+        }
+
+        if (!is_null($touch)) {
+            $apiParams['touch'] = $touch;
+        }
+
+        if (!is_null($permissions)) {
+            $apiParams['permissions'] = $permissions;
+        }
+
+        if (!is_null($sleep)) {
+            $apiParams['sleep'] = $sleep;
+        }
+
+        if (!is_null($width)) {
+            $apiParams['width'] = $width;
+        }
+
+        if (!is_null($height)) {
+            $apiParams['height'] = $height;
+        }
+
+        if (!is_null($quality)) {
+            $apiParams['quality'] = $quality;
+        }
+
+        if (!is_null($output)) {
+            $apiParams['output'] = $output;
         }
 
         $apiHeaders = [];

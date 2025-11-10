@@ -128,3 +128,39 @@ GET https://cloud.appwrite.io/v1/avatars/qr
 | margin | integer | Margin from edge. Pass an integer between 0 to 10. Defaults to 1. | 1 |
 | download | boolean | Return resulting image with 'Content-Disposition: attachment ' headers for the browser to start downloading it. Pass 0 for no header, or 1 for otherwise. Default value is set to 0. |  |
 
+
+```http request
+GET https://cloud.appwrite.io/v1/avatars/screenshots
+```
+
+** Use this endpoint to capture a screenshot of any website URL. This endpoint uses a headless browser to render the webpage and capture it as an image.
+
+You can configure the browser viewport size, theme, user agent, geolocation, permissions, and more. Capture either just the viewport or the full page scroll.
+
+When width and height are specified, the image is resized accordingly. If both dimensions are 0, the API provides an image at original size. If dimensions are not specified, the default viewport size is 1280x720px. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| url | string | **Required** Website URL which you want to capture. |  |
+| headers | object | HTTP headers to send with the browser request. Defaults to empty. | {} |
+| viewportWidth | integer | Browser viewport width. Pass an integer between 1 to 1920. Defaults to 1280. | 1280 |
+| viewportHeight | integer | Browser viewport height. Pass an integer between 1 to 1080. Defaults to 720. | 720 |
+| scale | number | Browser scale factor. Pass a number between 0.1 to 3. Defaults to 1. | 1 |
+| theme | string | Browser theme. Pass "light" or "dark". Defaults to "light". | light |
+| userAgent | string | Custom user agent string. Defaults to browser default. |  |
+| fullpage | boolean | Capture full page scroll. Pass 0 for viewport only, or 1 for full page. Defaults to 0. |  |
+| locale | string | Browser locale (e.g., "en-US", "fr-FR"). Defaults to browser default. |  |
+| timezone | string | IANA timezone identifier (e.g., "America/New_York", "Europe/London"). Defaults to browser default. |  |
+| latitude | number | Geolocation latitude. Pass a number between -90 to 90. Defaults to 0. | 0 |
+| longitude | number | Geolocation longitude. Pass a number between -180 to 180. Defaults to 0. | 0 |
+| accuracy | number | Geolocation accuracy in meters. Pass a number between 0 to 100000. Defaults to 0. | 0 |
+| touch | boolean | Enable touch support. Pass 0 for no touch, or 1 for touch enabled. Defaults to 0. |  |
+| permissions | array | Browser permissions to grant. Pass an array of permission names like ["geolocation", "camera", "microphone"]. Defaults to empty. | [] |
+| sleep | integer | Wait time in seconds before taking the screenshot. Pass an integer between 0 to 10. Defaults to 0. | 0 |
+| width | integer | Output image width. Pass 0 to use original width, or an integer between 1 to 2000. Defaults to 0 (original width). | 0 |
+| height | integer | Output image height. Pass 0 to use original height, or an integer between 1 to 2000. Defaults to 0 (original height). | 0 |
+| quality | integer | Screenshot quality. Pass an integer between 0 to 100. Defaults to keep existing image quality. | -1 |
+| output | string | Output format type (jpeg, jpg, png, gif and webp). |  |
+
