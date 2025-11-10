@@ -127,4 +127,20 @@ final class AvatarsTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
+    public function testMethodGetScreenshot(): void {
+
+        $data = '';
+
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->avatars->getScreenshot(
+            "https://example.com"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
 }

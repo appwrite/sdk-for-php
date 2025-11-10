@@ -1,5 +1,9 @@
 # Change Log
 
+## 17.5.1
+
+* Fix duplicate methods issue (e.g., `updateMFA` and `updateMfa`) causing build and runtime errors
+
 ## 17.5.0
 
 * Add `total` parameter to list queries allowing skipping counting rows in a table for improved performance

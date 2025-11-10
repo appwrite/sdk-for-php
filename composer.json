@@ -7,6 +7,9 @@
         "url": "https://appwrite.io/support",
         "email": "team@appwrite.io"
     },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
     "autoload": {
         "psr-4": {
             "Appwrite\\": "src/Appwrite"
@@ -19,7 +22,7 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^10",
-        "mockery/mockery": "^1.6.6"
+        "mockery/mockery": "^1.6.12"
     },
     "minimum-stability": "dev"
 }

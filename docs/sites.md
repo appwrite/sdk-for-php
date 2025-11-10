@@ -150,7 +150,7 @@ GET https://cloud.appwrite.io/v1/sites/{siteId}/deployments
 POST https://cloud.appwrite.io/v1/sites/{siteId}/deployments
 ```
 
-** Create a new site code deployment. Use this endpoint to upload a new version of your site code. To activate your newly uploaded code, you&#039;ll need to update the function&#039;s deployment to use your new deployment ID. **
+** Create a new site code deployment. Use this endpoint to upload a new version of your site code. To activate your newly uploaded code, you&#039;ll need to update the site&#039;s deployment to use your new deployment ID. **
 
 ### Parameters
 

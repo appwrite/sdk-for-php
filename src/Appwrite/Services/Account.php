@@ -296,41 +296,6 @@ class Account extends Service
      * @param AuthenticatorType $type
      * @throws AppwriteException
      * @return array
-     *
-     * @deprecated This API has been deprecated since 1.8.0. Please use `createMFAAuthenticator` instead.
-     * @see Account::createMFAAuthenticator
-     */
-    public function createMfaAuthenticator(AuthenticatorType $type): array
-    {
-        $apiPath = str_replace(
-            ['{type}'],
-            [$type],
-            '/account/mfa/authenticators/{type}'
-        );
-
-        $apiParams = [];
-        $apiParams['type'] = $type;
-
-        $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
-
-        return $this->client->call(
-            Client::METHOD_POST,
-            $apiPath,
-            $apiHeaders,
-            $apiParams
-        );
-    }
-
-    /**
-     * Add an authenticator app to be used as an MFA factor. Verify the
-     * authenticator using the [verify
-     * authenticator](/docs/references/cloud/client-web/account#updateMfaAuthenticator)
-     * method.
-     *
-     * @param AuthenticatorType $type
-     * @throws AppwriteException
-     * @return array
      */
     public function createMFAAuthenticator(AuthenticatorType $type): array
     {
@@ -348,42 +313,6 @@ class Account extends Service
 
         return $this->client->call(
             Client::METHOD_POST,
-            $apiPath,
-            $apiHeaders,
-            $apiParams
-        );
-    }
-
-    /**
-     * Verify an authenticator app after adding it using the [add
-     * authenticator](/docs/references/cloud/client-web/account#createMfaAuthenticator)
-     * method.
-     *
-     * @param AuthenticatorType $type
-     * @param string $otp
-     * @throws AppwriteException
-     * @return array
-     *
-     * @deprecated This API has been deprecated since 1.8.0. Please use `updateMFAAuthenticator` instead.
-     * @see Account::updateMFAAuthenticator
-     */
-    public function updateMfaAuthenticator(AuthenticatorType $type, string $otp): array
-    {
-        $apiPath = str_replace(
-            ['{type}'],
-            [$type],
-            '/account/mfa/authenticators/{type}'
-        );
-
-        $apiParams = [];
-        $apiParams['type'] = $type;
-        $apiParams['otp'] = $otp;
-
-        $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
-
-        return $this->client->call(
-            Client::METHOD_PUT,
             $apiPath,
             $apiHeaders,
             $apiParams
@@ -429,38 +358,6 @@ class Account extends Service
      * @param AuthenticatorType $type
      * @throws AppwriteException
      * @return string
-     *
-     * @deprecated This API has been deprecated since 1.8.0. Please use `deleteMFAAuthenticator` instead.
-     * @see Account::deleteMFAAuthenticator
-     */
-    public function deleteMfaAuthenticator(AuthenticatorType $type): string
-    {
-        $apiPath = str_replace(
-            ['{type}'],
-            [$type],
-            '/account/mfa/authenticators/{type}'
-        );
-
-        $apiParams = [];
-        $apiParams['type'] = $type;
-
-        $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
-
-        return $this->client->call(
-            Client::METHOD_DELETE,
-            $apiPath,
-            $apiHeaders,
-            $apiParams
-        );
-    }
-
-    /**
-     * Delete an authenticator for a user by ID.
-     *
-     * @param AuthenticatorType $type
-     * @throws AppwriteException
-     * @return string
      */
     public function deleteMFAAuthenticator(AuthenticatorType $type): string
     {
@@ -478,40 +375,6 @@ class Account extends Service
 
         return $this->client->call(
             Client::METHOD_DELETE,
-            $apiPath,
-            $apiHeaders,
-            $apiParams
-        );
-    }
-
-    /**
-     * Begin the process of MFA verification after sign-in. Finish the flow with
-     * [updateMfaChallenge](/docs/references/cloud/client-web/account#updateMfaChallenge)
-     * method.
-     *
-     * @param AuthenticationFactor $factor
-     * @throws AppwriteException
-     * @return array
-     *
-     * @deprecated This API has been deprecated since 1.8.0. Please use `createMFAChallenge` instead.
-     * @see Account::createMFAChallenge
-     */
-    public function createMfaChallenge(AuthenticationFactor $factor): array
-    {
-        $apiPath = str_replace(
-            [],
-            [],
-            '/account/mfa/challenge'
-        );
-
-        $apiParams = [];
-        $apiParams['factor'] = $factor;
-
-        $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
-
-        return $this->client->call(
-            Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
@@ -560,44 +423,6 @@ class Account extends Service
      * @param string $otp
      * @throws AppwriteException
      * @return array
-     *
-     * @deprecated This API has been deprecated since 1.8.0. Please use `updateMFAChallenge` instead.
-     * @see Account::updateMFAChallenge
-     */
-    public function updateMfaChallenge(string $challengeId, string $otp): array
-    {
-        $apiPath = str_replace(
-            [],
-            [],
-            '/account/mfa/challenge'
-        );
-
-        $apiParams = [];
-        $apiParams['challengeId'] = $challengeId;
-        $apiParams['otp'] = $otp;
-
-        $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
-
-        return $this->client->call(
-            Client::METHOD_PUT,
-            $apiPath,
-            $apiHeaders,
-            $apiParams
-        );
-    }
-
-    /**
-     * Complete the MFA challenge by providing the one-time password. Finish the
-     * process of MFA verification by providing the one-time password. To begin
-     * the flow, use
-     * [createMfaChallenge](/docs/references/cloud/client-web/account#createMfaChallenge)
-     * method.
-     *
-     * @param string $challengeId
-     * @param string $otp
-     * @throws AppwriteException
-     * @return array
      */
     public function updateMFAChallenge(string $challengeId, string $otp): array
     {
@@ -627,35 +452,6 @@ class Account extends Service
      *
      * @throws AppwriteException
      * @return array
-     *
-     * @deprecated This API has been deprecated since 1.8.0. Please use `listMFAFactors` instead.
-     * @see Account::listMFAFactors
-     */
-    public function listMfaFactors(): array
-    {
-        $apiPath = str_replace(
-            [],
-            [],
-            '/account/mfa/factors'
-        );
-
-        $apiParams = [];
-
-        $apiHeaders = [];
-
-        return $this->client->call(
-            Client::METHOD_GET,
-            $apiPath,
-            $apiHeaders,
-            $apiParams
-        );
-    }
-
-    /**
-     * List the factors available on the account to be used as a MFA challange.
-     *
-     * @throws AppwriteException
-     * @return array
      */
     public function listMFAFactors(): array
     {
@@ -663,38 +459,6 @@ class Account extends Service
             [],
             [],
             '/account/mfa/factors'
-        );
-
-        $apiParams = [];
-
-        $apiHeaders = [];
-
-        return $this->client->call(
-            Client::METHOD_GET,
-            $apiPath,
-            $apiHeaders,
-            $apiParams
-        );
-    }
-
-    /**
-     * Get recovery codes that can be used as backup for MFA flow. Before getting
-     * codes, they must be generated using
-     * [createMfaRecoveryCodes](/docs/references/cloud/client-web/account#createMfaRecoveryCodes)
-     * method. An OTP challenge is required to read recovery codes.
-     *
-     * @throws AppwriteException
-     * @return array
-     *
-     * @deprecated This API has been deprecated since 1.8.0. Please use `getMFARecoveryCodes` instead.
-     * @see Account::getMFARecoveryCodes
-     */
-    public function getMfaRecoveryCodes(): array
-    {
-        $apiPath = str_replace(
-            [],
-            [],
-            '/account/mfa/recovery-codes'
         );
 
         $apiParams = [];
@@ -747,40 +511,6 @@ class Account extends Service
      *
      * @throws AppwriteException
      * @return array
-     *
-     * @deprecated This API has been deprecated since 1.8.0. Please use `createMFARecoveryCodes` instead.
-     * @see Account::createMFARecoveryCodes
-     */
-    public function createMfaRecoveryCodes(): array
-    {
-        $apiPath = str_replace(
-            [],
-            [],
-            '/account/mfa/recovery-codes'
-        );
-
-        $apiParams = [];
-
-        $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
-
-        return $this->client->call(
-            Client::METHOD_POST,
-            $apiPath,
-            $apiHeaders,
-            $apiParams
-        );
-    }
-
-    /**
-     * Generate recovery codes as backup for MFA flow. It's recommended to
-     * generate and show then immediately after user successfully adds their
-     * authehticator. Recovery codes can be used as a MFA verification type in
-     * [createMfaChallenge](/docs/references/cloud/client-web/account#createMfaChallenge)
-     * method.
-     *
-     * @throws AppwriteException
-     * @return array
      */
     public function createMFARecoveryCodes(): array
     {
@@ -797,39 +527,6 @@ class Account extends Service
 
         return $this->client->call(
             Client::METHOD_POST,
-            $apiPath,
-            $apiHeaders,
-            $apiParams
-        );
-    }
-
-    /**
-     * Regenerate recovery codes that can be used as backup for MFA flow. Before
-     * regenerating codes, they must be first generated using
-     * [createMfaRecoveryCodes](/docs/references/cloud/client-web/account#createMfaRecoveryCodes)
-     * method. An OTP challenge is required to regenreate recovery codes.
-     *
-     * @throws AppwriteException
-     * @return array
-     *
-     * @deprecated This API has been deprecated since 1.8.0. Please use `updateMFARecoveryCodes` instead.
-     * @see Account::updateMFARecoveryCodes
-     */
-    public function updateMfaRecoveryCodes(): array
-    {
-        $apiPath = str_replace(
-            [],
-            [],
-            '/account/mfa/recovery-codes'
-        );
-
-        $apiParams = [];
-
-        $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
-
-        return $this->client->call(
-            Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
