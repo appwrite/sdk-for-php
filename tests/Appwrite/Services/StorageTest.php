@@ -47,7 +47,8 @@ final class StorageTest extends TestCase {
             "allowedFileExtensions" => array(),
             "compression" => "gzip",
             "encryption" => true,
-            "antivirus" => true,);
+            "antivirus" => true,
+            "transformations" => true,);
 
 
         $this->client
@@ -76,7 +77,8 @@ final class StorageTest extends TestCase {
             "allowedFileExtensions" => array(),
             "compression" => "gzip",
             "encryption" => true,
-            "antivirus" => true,);
+            "antivirus" => true,
+            "transformations" => true,);
 
 
         $this->client
@@ -104,7 +106,8 @@ final class StorageTest extends TestCase {
             "allowedFileExtensions" => array(),
             "compression" => "gzip",
             "encryption" => true,
-            "antivirus" => true,);
+            "antivirus" => true,
+            "transformations" => true,);
 
 
         $this->client

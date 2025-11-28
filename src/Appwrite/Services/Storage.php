@@ -72,10 +72,11 @@ class Storage extends Service
      * @param ?Compression $compression
      * @param ?bool $encryption
      * @param ?bool $antivirus
+     * @param ?bool $transformations
      * @throws AppwriteException
      * @return array
      */
-    public function createBucket(string $bucketId, string $name, ?array $permissions = null, ?bool $fileSecurity = null, ?bool $enabled = null, ?int $maximumFileSize = null, ?array $allowedFileExtensions = null, ?Compression $compression = null, ?bool $encryption = null, ?bool $antivirus = null): array
+    public function createBucket(string $bucketId, string $name, ?array $permissions = null, ?bool $fileSecurity = null, ?bool $enabled = null, ?int $maximumFileSize = null, ?array $allowedFileExtensions = null, ?Compression $compression = null, ?bool $encryption = null, ?bool $antivirus = null, ?bool $transformations = null): array
     {
         $apiPath = str_replace(
             [],
@@ -86,10 +87,7 @@ class Storage extends Service
         $apiParams = [];
         $apiParams['bucketId'] = $bucketId;
         $apiParams['name'] = $name;
-
-        if (!is_null($permissions)) {
-            $apiParams['permissions'] = $permissions;
-        }
+        $apiParams['permissions'] = $permissions;
 
         if (!is_null($fileSecurity)) {
             $apiParams['fileSecurity'] = $fileSecurity;
@@ -117,6 +115,10 @@ class Storage extends Service
 
         if (!is_null($antivirus)) {
             $apiParams['antivirus'] = $antivirus;
+        }
+
+        if (!is_null($transformations)) {
+            $apiParams['transformations'] = $transformations;
         }
 
         $apiHeaders = [];
@@ -172,10 +174,11 @@ class Storage extends Service
      * @param ?Compression $compression
      * @param ?bool $encryption
      * @param ?bool $antivirus
+     * @param ?bool $transformations
      * @throws AppwriteException
      * @return array
      */
-    public function updateBucket(string $bucketId, string $name, ?array $permissions = null, ?bool $fileSecurity = null, ?bool $enabled = null, ?int $maximumFileSize = null, ?array $allowedFileExtensions = null, ?Compression $compression = null, ?bool $encryption = null, ?bool $antivirus = null): array
+    public function updateBucket(string $bucketId, string $name, ?array $permissions = null, ?bool $fileSecurity = null, ?bool $enabled = null, ?int $maximumFileSize = null, ?array $allowedFileExtensions = null, ?Compression $compression = null, ?bool $encryption = null, ?bool $antivirus = null, ?bool $transformations = null): array
     {
         $apiPath = str_replace(
             ['{bucketId}'],
@@ -186,10 +189,7 @@ class Storage extends Service
         $apiParams = [];
         $apiParams['bucketId'] = $bucketId;
         $apiParams['name'] = $name;
-
-        if (!is_null($permissions)) {
-            $apiParams['permissions'] = $permissions;
-        }
+        $apiParams['permissions'] = $permissions;
 
         if (!is_null($fileSecurity)) {
             $apiParams['fileSecurity'] = $fileSecurity;
@@ -217,6 +217,10 @@ class Storage extends Service
 
         if (!is_null($antivirus)) {
             $apiParams['antivirus'] = $antivirus;
+        }
+
+        if (!is_null($transformations)) {
+            $apiParams['transformations'] = $transformations;
         }
 
         $apiHeaders = [];
@@ -481,14 +485,8 @@ class Storage extends Service
         $apiParams = [];
         $apiParams['bucketId'] = $bucketId;
         $apiParams['fileId'] = $fileId;
-
-        if (!is_null($name)) {
-            $apiParams['name'] = $name;
-        }
-
-        if (!is_null($permissions)) {
-            $apiParams['permissions'] = $permissions;
-        }
+        $apiParams['name'] = $name;
+        $apiParams['permissions'] = $permissions;
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';

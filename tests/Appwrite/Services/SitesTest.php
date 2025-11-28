@@ -417,7 +417,8 @@ final class SitesTest extends TestCase {
             "<REPOSITORY>",
             "<OWNER>",
             "<ROOT_DIRECTORY>",
-            "<VERSION>"
+            "branch",
+            "<REFERENCE>"
         );
 
         $this->assertSame($data, $response);

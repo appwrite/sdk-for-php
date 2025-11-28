@@ -119,10 +119,7 @@ class Messaging extends Service
         if (!is_null($html)) {
             $apiParams['html'] = $html;
         }
-
-        if (!is_null($scheduledAt)) {
-            $apiParams['scheduledAt'] = $scheduledAt;
-        }
+        $apiParams['scheduledAt'] = $scheduledAt;
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -166,50 +163,17 @@ class Messaging extends Service
 
         $apiParams = [];
         $apiParams['messageId'] = $messageId;
-
-        if (!is_null($topics)) {
-            $apiParams['topics'] = $topics;
-        }
-
-        if (!is_null($users)) {
-            $apiParams['users'] = $users;
-        }
-
-        if (!is_null($targets)) {
-            $apiParams['targets'] = $targets;
-        }
-
-        if (!is_null($subject)) {
-            $apiParams['subject'] = $subject;
-        }
-
-        if (!is_null($content)) {
-            $apiParams['content'] = $content;
-        }
-
-        if (!is_null($draft)) {
-            $apiParams['draft'] = $draft;
-        }
-
-        if (!is_null($html)) {
-            $apiParams['html'] = $html;
-        }
-
-        if (!is_null($cc)) {
-            $apiParams['cc'] = $cc;
-        }
-
-        if (!is_null($bcc)) {
-            $apiParams['bcc'] = $bcc;
-        }
-
-        if (!is_null($scheduledAt)) {
-            $apiParams['scheduledAt'] = $scheduledAt;
-        }
-
-        if (!is_null($attachments)) {
-            $apiParams['attachments'] = $attachments;
-        }
+        $apiParams['topics'] = $topics;
+        $apiParams['users'] = $users;
+        $apiParams['targets'] = $targets;
+        $apiParams['subject'] = $subject;
+        $apiParams['content'] = $content;
+        $apiParams['draft'] = $draft;
+        $apiParams['html'] = $html;
+        $apiParams['cc'] = $cc;
+        $apiParams['bcc'] = $bcc;
+        $apiParams['scheduledAt'] = $scheduledAt;
+        $apiParams['attachments'] = $attachments;
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -277,10 +241,7 @@ class Messaging extends Service
         if (!is_null($targets)) {
             $apiParams['targets'] = $targets;
         }
-
-        if (!is_null($data)) {
-            $apiParams['data'] = $data;
-        }
+        $apiParams['data'] = $data;
 
         if (!is_null($action)) {
             $apiParams['action'] = $action;
@@ -313,10 +274,7 @@ class Messaging extends Service
         if (!is_null($draft)) {
             $apiParams['draft'] = $draft;
         }
-
-        if (!is_null($scheduledAt)) {
-            $apiParams['scheduledAt'] = $scheduledAt;
-        }
+        $apiParams['scheduledAt'] = $scheduledAt;
 
         if (!is_null($contentAvailable)) {
             $apiParams['contentAvailable'] = $contentAvailable;
@@ -379,78 +337,24 @@ class Messaging extends Service
 
         $apiParams = [];
         $apiParams['messageId'] = $messageId;
-
-        if (!is_null($topics)) {
-            $apiParams['topics'] = $topics;
-        }
-
-        if (!is_null($users)) {
-            $apiParams['users'] = $users;
-        }
-
-        if (!is_null($targets)) {
-            $apiParams['targets'] = $targets;
-        }
-
-        if (!is_null($title)) {
-            $apiParams['title'] = $title;
-        }
-
-        if (!is_null($body)) {
-            $apiParams['body'] = $body;
-        }
-
-        if (!is_null($data)) {
-            $apiParams['data'] = $data;
-        }
-
-        if (!is_null($action)) {
-            $apiParams['action'] = $action;
-        }
-
-        if (!is_null($image)) {
-            $apiParams['image'] = $image;
-        }
-
-        if (!is_null($icon)) {
-            $apiParams['icon'] = $icon;
-        }
-
-        if (!is_null($sound)) {
-            $apiParams['sound'] = $sound;
-        }
-
-        if (!is_null($color)) {
-            $apiParams['color'] = $color;
-        }
-
-        if (!is_null($tag)) {
-            $apiParams['tag'] = $tag;
-        }
-
-        if (!is_null($badge)) {
-            $apiParams['badge'] = $badge;
-        }
-
-        if (!is_null($draft)) {
-            $apiParams['draft'] = $draft;
-        }
-
-        if (!is_null($scheduledAt)) {
-            $apiParams['scheduledAt'] = $scheduledAt;
-        }
-
-        if (!is_null($contentAvailable)) {
-            $apiParams['contentAvailable'] = $contentAvailable;
-        }
-
-        if (!is_null($critical)) {
-            $apiParams['critical'] = $critical;
-        }
-
-        if (!is_null($priority)) {
-            $apiParams['priority'] = $priority;
-        }
+        $apiParams['topics'] = $topics;
+        $apiParams['users'] = $users;
+        $apiParams['targets'] = $targets;
+        $apiParams['title'] = $title;
+        $apiParams['body'] = $body;
+        $apiParams['data'] = $data;
+        $apiParams['action'] = $action;
+        $apiParams['image'] = $image;
+        $apiParams['icon'] = $icon;
+        $apiParams['sound'] = $sound;
+        $apiParams['color'] = $color;
+        $apiParams['tag'] = $tag;
+        $apiParams['badge'] = $badge;
+        $apiParams['draft'] = $draft;
+        $apiParams['scheduledAt'] = $scheduledAt;
+        $apiParams['contentAvailable'] = $contentAvailable;
+        $apiParams['critical'] = $critical;
+        $apiParams['priority'] = $priority;
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -503,10 +407,7 @@ class Messaging extends Service
         if (!is_null($draft)) {
             $apiParams['draft'] = $draft;
         }
-
-        if (!is_null($scheduledAt)) {
-            $apiParams['scheduledAt'] = $scheduledAt;
-        }
+        $apiParams['scheduledAt'] = $scheduledAt;
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -545,30 +446,12 @@ class Messaging extends Service
 
         $apiParams = [];
         $apiParams['messageId'] = $messageId;
-
-        if (!is_null($topics)) {
-            $apiParams['topics'] = $topics;
-        }
-
-        if (!is_null($users)) {
-            $apiParams['users'] = $users;
-        }
-
-        if (!is_null($targets)) {
-            $apiParams['targets'] = $targets;
-        }
-
-        if (!is_null($content)) {
-            $apiParams['content'] = $content;
-        }
-
-        if (!is_null($draft)) {
-            $apiParams['draft'] = $draft;
-        }
-
-        if (!is_null($scheduledAt)) {
-            $apiParams['scheduledAt'] = $scheduledAt;
-        }
+        $apiParams['topics'] = $topics;
+        $apiParams['users'] = $users;
+        $apiParams['targets'] = $targets;
+        $apiParams['content'] = $content;
+        $apiParams['draft'] = $draft;
+        $apiParams['scheduledAt'] = $scheduledAt;
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -802,10 +685,7 @@ class Messaging extends Service
         if (!is_null($sandbox)) {
             $apiParams['sandbox'] = $sandbox;
         }
-
-        if (!is_null($enabled)) {
-            $apiParams['enabled'] = $enabled;
-        }
+        $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -846,10 +726,7 @@ class Messaging extends Service
         if (!is_null($name)) {
             $apiParams['name'] = $name;
         }
-
-        if (!is_null($enabled)) {
-            $apiParams['enabled'] = $enabled;
-        }
+        $apiParams['enabled'] = $enabled;
 
         if (!is_null($authKey)) {
             $apiParams['authKey'] = $authKey;
@@ -866,10 +743,7 @@ class Messaging extends Service
         if (!is_null($bundleId)) {
             $apiParams['bundleId'] = $bundleId;
         }
-
-        if (!is_null($sandbox)) {
-            $apiParams['sandbox'] = $sandbox;
-        }
+        $apiParams['sandbox'] = $sandbox;
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -903,14 +777,8 @@ class Messaging extends Service
         $apiParams = [];
         $apiParams['providerId'] = $providerId;
         $apiParams['name'] = $name;
-
-        if (!is_null($serviceAccountJSON)) {
-            $apiParams['serviceAccountJSON'] = $serviceAccountJSON;
-        }
-
-        if (!is_null($enabled)) {
-            $apiParams['enabled'] = $enabled;
-        }
+        $apiParams['serviceAccountJSON'] = $serviceAccountJSON;
+        $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -947,14 +815,8 @@ class Messaging extends Service
         if (!is_null($name)) {
             $apiParams['name'] = $name;
         }
-
-        if (!is_null($enabled)) {
-            $apiParams['enabled'] = $enabled;
-        }
-
-        if (!is_null($serviceAccountJSON)) {
-            $apiParams['serviceAccountJSON'] = $serviceAccountJSON;
-        }
+        $apiParams['enabled'] = $enabled;
+        $apiParams['serviceAccountJSON'] = $serviceAccountJSON;
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -1002,10 +864,7 @@ class Messaging extends Service
         if (!is_null($domain)) {
             $apiParams['domain'] = $domain;
         }
-
-        if (!is_null($isEuRegion)) {
-            $apiParams['isEuRegion'] = $isEuRegion;
-        }
+        $apiParams['isEuRegion'] = $isEuRegion;
 
         if (!is_null($fromName)) {
             $apiParams['fromName'] = $fromName;
@@ -1022,10 +881,7 @@ class Messaging extends Service
         if (!is_null($replyToEmail)) {
             $apiParams['replyToEmail'] = $replyToEmail;
         }
-
-        if (!is_null($enabled)) {
-            $apiParams['enabled'] = $enabled;
-        }
+        $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -1076,14 +932,8 @@ class Messaging extends Service
         if (!is_null($domain)) {
             $apiParams['domain'] = $domain;
         }
-
-        if (!is_null($isEuRegion)) {
-            $apiParams['isEuRegion'] = $isEuRegion;
-        }
-
-        if (!is_null($enabled)) {
-            $apiParams['enabled'] = $enabled;
-        }
+        $apiParams['isEuRegion'] = $isEuRegion;
+        $apiParams['enabled'] = $enabled;
 
         if (!is_null($fromName)) {
             $apiParams['fromName'] = $fromName;
@@ -1147,10 +997,7 @@ class Messaging extends Service
         if (!is_null($authKey)) {
             $apiParams['authKey'] = $authKey;
         }
-
-        if (!is_null($enabled)) {
-            $apiParams['enabled'] = $enabled;
-        }
+        $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -1189,10 +1036,7 @@ class Messaging extends Service
         if (!is_null($name)) {
             $apiParams['name'] = $name;
         }
-
-        if (!is_null($enabled)) {
-            $apiParams['enabled'] = $enabled;
-        }
+        $apiParams['enabled'] = $enabled;
 
         if (!is_null($templateId)) {
             $apiParams['templateId'] = $templateId;
@@ -1262,10 +1106,7 @@ class Messaging extends Service
         if (!is_null($replyToEmail)) {
             $apiParams['replyToEmail'] = $replyToEmail;
         }
-
-        if (!is_null($enabled)) {
-            $apiParams['enabled'] = $enabled;
-        }
+        $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -1306,10 +1147,7 @@ class Messaging extends Service
         if (!is_null($name)) {
             $apiParams['name'] = $name;
         }
-
-        if (!is_null($enabled)) {
-            $apiParams['enabled'] = $enabled;
-        }
+        $apiParams['enabled'] = $enabled;
 
         if (!is_null($apiKey)) {
             $apiParams['apiKey'] = $apiKey;
@@ -1387,10 +1225,7 @@ class Messaging extends Service
         if (!is_null($replyToEmail)) {
             $apiParams['replyToEmail'] = $replyToEmail;
         }
-
-        if (!is_null($enabled)) {
-            $apiParams['enabled'] = $enabled;
-        }
+        $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -1431,10 +1266,7 @@ class Messaging extends Service
         if (!is_null($name)) {
             $apiParams['name'] = $name;
         }
-
-        if (!is_null($enabled)) {
-            $apiParams['enabled'] = $enabled;
-        }
+        $apiParams['enabled'] = $enabled;
 
         if (!is_null($apiKey)) {
             $apiParams['apiKey'] = $apiKey;
@@ -1539,10 +1371,7 @@ class Messaging extends Service
         if (!is_null($replyToEmail)) {
             $apiParams['replyToEmail'] = $replyToEmail;
         }
-
-        if (!is_null($enabled)) {
-            $apiParams['enabled'] = $enabled;
-        }
+        $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -1593,10 +1422,7 @@ class Messaging extends Service
         if (!is_null($host)) {
             $apiParams['host'] = $host;
         }
-
-        if (!is_null($port)) {
-            $apiParams['port'] = $port;
-        }
+        $apiParams['port'] = $port;
 
         if (!is_null($username)) {
             $apiParams['username'] = $username;
@@ -1609,10 +1435,7 @@ class Messaging extends Service
         if (!is_null($encryption)) {
             $apiParams['encryption'] = $encryption;
         }
-
-        if (!is_null($autoTLS)) {
-            $apiParams['autoTLS'] = $autoTLS;
-        }
+        $apiParams['autoTLS'] = $autoTLS;
 
         if (!is_null($mailer)) {
             $apiParams['mailer'] = $mailer;
@@ -1633,10 +1456,7 @@ class Messaging extends Service
         if (!is_null($replyToEmail)) {
             $apiParams['replyToEmail'] = $replyToEmail;
         }
-
-        if (!is_null($enabled)) {
-            $apiParams['enabled'] = $enabled;
-        }
+        $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -1684,10 +1504,7 @@ class Messaging extends Service
         if (!is_null($apiKey)) {
             $apiParams['apiKey'] = $apiKey;
         }
-
-        if (!is_null($enabled)) {
-            $apiParams['enabled'] = $enabled;
-        }
+        $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -1726,10 +1543,7 @@ class Messaging extends Service
         if (!is_null($name)) {
             $apiParams['name'] = $name;
         }
-
-        if (!is_null($enabled)) {
-            $apiParams['enabled'] = $enabled;
-        }
+        $apiParams['enabled'] = $enabled;
 
         if (!is_null($customerId)) {
             $apiParams['customerId'] = $customerId;
@@ -1789,10 +1603,7 @@ class Messaging extends Service
         if (!is_null($apiKey)) {
             $apiParams['apiKey'] = $apiKey;
         }
-
-        if (!is_null($enabled)) {
-            $apiParams['enabled'] = $enabled;
-        }
+        $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -1831,10 +1642,7 @@ class Messaging extends Service
         if (!is_null($name)) {
             $apiParams['name'] = $name;
         }
-
-        if (!is_null($enabled)) {
-            $apiParams['enabled'] = $enabled;
-        }
+        $apiParams['enabled'] = $enabled;
 
         if (!is_null($username)) {
             $apiParams['username'] = $username;
@@ -1894,10 +1702,7 @@ class Messaging extends Service
         if (!is_null($authToken)) {
             $apiParams['authToken'] = $authToken;
         }
-
-        if (!is_null($enabled)) {
-            $apiParams['enabled'] = $enabled;
-        }
+        $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -1936,10 +1741,7 @@ class Messaging extends Service
         if (!is_null($name)) {
             $apiParams['name'] = $name;
         }
-
-        if (!is_null($enabled)) {
-            $apiParams['enabled'] = $enabled;
-        }
+        $apiParams['enabled'] = $enabled;
 
         if (!is_null($accountSid)) {
             $apiParams['accountSid'] = $accountSid;
@@ -1999,10 +1801,7 @@ class Messaging extends Service
         if (!is_null($apiSecret)) {
             $apiParams['apiSecret'] = $apiSecret;
         }
-
-        if (!is_null($enabled)) {
-            $apiParams['enabled'] = $enabled;
-        }
+        $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -2041,10 +1840,7 @@ class Messaging extends Service
         if (!is_null($name)) {
             $apiParams['name'] = $name;
         }
-
-        if (!is_null($enabled)) {
-            $apiParams['enabled'] = $enabled;
-        }
+        $apiParams['enabled'] = $enabled;
 
         if (!is_null($apiKey)) {
             $apiParams['apiKey'] = $apiKey;
@@ -2329,14 +2125,8 @@ class Messaging extends Service
 
         $apiParams = [];
         $apiParams['topicId'] = $topicId;
-
-        if (!is_null($name)) {
-            $apiParams['name'] = $name;
-        }
-
-        if (!is_null($subscribe)) {
-            $apiParams['subscribe'] = $subscribe;
-        }
+        $apiParams['name'] = $name;
+        $apiParams['subscribe'] = $subscribe;
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';

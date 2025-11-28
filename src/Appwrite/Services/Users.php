@@ -80,14 +80,8 @@ class Users extends Service
 
         $apiParams = [];
         $apiParams['userId'] = $userId;
-
-        if (!is_null($email)) {
-            $apiParams['email'] = $email;
-        }
-
-        if (!is_null($phone)) {
-            $apiParams['phone'] = $phone;
-        }
+        $apiParams['email'] = $email;
+        $apiParams['phone'] = $phone;
 
         if (!is_null($password)) {
             $apiParams['password'] = $password;

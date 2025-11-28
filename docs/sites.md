@@ -194,7 +194,8 @@ Use this endpoint with combination of [listTemplates](https://appwrite.io/docs/p
 | repository | string | Repository name of the template. |  |
 | owner | string | The name of the owner of the template. |  |
 | rootDirectory | string | Path to site code in the template repo. |  |
-| version | string | Version (tag) for the repo linked to the site template. |  |
+| type | string | Type for the reference provided. Can be commit, branch, or tag |  |
+| reference | string | Reference value, can be a commit hash, branch name, or release tag |  |
 | activate | boolean | Automatically activate the deployment when it is finished building. |  |
 
 

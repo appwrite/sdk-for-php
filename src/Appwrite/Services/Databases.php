@@ -476,10 +476,7 @@ class Databases extends Service
         $apiParams['databaseId'] = $databaseId;
         $apiParams['collectionId'] = $collectionId;
         $apiParams['name'] = $name;
-
-        if (!is_null($permissions)) {
-            $apiParams['permissions'] = $permissions;
-        }
+        $apiParams['permissions'] = $permissions;
 
         if (!is_null($documentSecurity)) {
             $apiParams['documentSecurity'] = $documentSecurity;
@@ -561,10 +558,7 @@ class Databases extends Service
         $apiParams['databaseId'] = $databaseId;
         $apiParams['collectionId'] = $collectionId;
         $apiParams['name'] = $name;
-
-        if (!is_null($permissions)) {
-            $apiParams['permissions'] = $permissions;
-        }
+        $apiParams['permissions'] = $permissions;
 
         if (!is_null($documentSecurity)) {
             $apiParams['documentSecurity'] = $documentSecurity;
@@ -692,10 +686,7 @@ class Databases extends Service
         $apiParams['collectionId'] = $collectionId;
         $apiParams['key'] = $key;
         $apiParams['required'] = $required;
-
-        if (!is_null($xdefault)) {
-            $apiParams['default'] = $xdefault;
-        }
+        $apiParams['default'] = $xdefault;
 
         if (!is_null($xarray)) {
             $apiParams['array'] = $xarray;
@@ -742,10 +733,7 @@ class Databases extends Service
         $apiParams['key'] = $key;
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
-
-        if (!is_null($newKey)) {
-            $apiParams['newKey'] = $newKey;
-        }
+        $apiParams['newKey'] = $newKey;
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -786,10 +774,7 @@ class Databases extends Service
         $apiParams['collectionId'] = $collectionId;
         $apiParams['key'] = $key;
         $apiParams['required'] = $required;
-
-        if (!is_null($xdefault)) {
-            $apiParams['default'] = $xdefault;
-        }
+        $apiParams['default'] = $xdefault;
 
         if (!is_null($xarray)) {
             $apiParams['array'] = $xarray;
@@ -836,10 +821,7 @@ class Databases extends Service
         $apiParams['key'] = $key;
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
-
-        if (!is_null($newKey)) {
-            $apiParams['newKey'] = $newKey;
-        }
+        $apiParams['newKey'] = $newKey;
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -881,10 +863,7 @@ class Databases extends Service
         $apiParams['collectionId'] = $collectionId;
         $apiParams['key'] = $key;
         $apiParams['required'] = $required;
-
-        if (!is_null($xdefault)) {
-            $apiParams['default'] = $xdefault;
-        }
+        $apiParams['default'] = $xdefault;
 
         if (!is_null($xarray)) {
             $apiParams['array'] = $xarray;
@@ -932,10 +911,7 @@ class Databases extends Service
         $apiParams['key'] = $key;
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
-
-        if (!is_null($newKey)) {
-            $apiParams['newKey'] = $newKey;
-        }
+        $apiParams['newKey'] = $newKey;
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -980,10 +956,7 @@ class Databases extends Service
         $apiParams['key'] = $key;
         $apiParams['elements'] = $elements;
         $apiParams['required'] = $required;
-
-        if (!is_null($xdefault)) {
-            $apiParams['default'] = $xdefault;
-        }
+        $apiParams['default'] = $xdefault;
 
         if (!is_null($xarray)) {
             $apiParams['array'] = $xarray;
@@ -1033,10 +1006,7 @@ class Databases extends Service
         $apiParams['elements'] = $elements;
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
-
-        if (!is_null($newKey)) {
-            $apiParams['newKey'] = $newKey;
-        }
+        $apiParams['newKey'] = $newKey;
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -1081,18 +1051,9 @@ class Databases extends Service
         $apiParams['collectionId'] = $collectionId;
         $apiParams['key'] = $key;
         $apiParams['required'] = $required;
-
-        if (!is_null($min)) {
-            $apiParams['min'] = $min;
-        }
-
-        if (!is_null($max)) {
-            $apiParams['max'] = $max;
-        }
-
-        if (!is_null($xdefault)) {
-            $apiParams['default'] = $xdefault;
-        }
+        $apiParams['min'] = $min;
+        $apiParams['max'] = $max;
+        $apiParams['default'] = $xdefault;
 
         if (!is_null($xarray)) {
             $apiParams['array'] = $xarray;
@@ -1142,18 +1103,9 @@ class Databases extends Service
         $apiParams['key'] = $key;
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
-
-        if (!is_null($min)) {
-            $apiParams['min'] = $min;
-        }
-
-        if (!is_null($max)) {
-            $apiParams['max'] = $max;
-        }
-
-        if (!is_null($newKey)) {
-            $apiParams['newKey'] = $newKey;
-        }
+        $apiParams['min'] = $min;
+        $apiParams['max'] = $max;
+        $apiParams['newKey'] = $newKey;
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -1198,18 +1150,9 @@ class Databases extends Service
         $apiParams['collectionId'] = $collectionId;
         $apiParams['key'] = $key;
         $apiParams['required'] = $required;
-
-        if (!is_null($min)) {
-            $apiParams['min'] = $min;
-        }
-
-        if (!is_null($max)) {
-            $apiParams['max'] = $max;
-        }
-
-        if (!is_null($xdefault)) {
-            $apiParams['default'] = $xdefault;
-        }
+        $apiParams['min'] = $min;
+        $apiParams['max'] = $max;
+        $apiParams['default'] = $xdefault;
 
         if (!is_null($xarray)) {
             $apiParams['array'] = $xarray;
@@ -1259,18 +1202,9 @@ class Databases extends Service
         $apiParams['key'] = $key;
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
-
-        if (!is_null($min)) {
-            $apiParams['min'] = $min;
-        }
-
-        if (!is_null($max)) {
-            $apiParams['max'] = $max;
-        }
-
-        if (!is_null($newKey)) {
-            $apiParams['newKey'] = $newKey;
-        }
+        $apiParams['min'] = $min;
+        $apiParams['max'] = $max;
+        $apiParams['newKey'] = $newKey;
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -1312,10 +1246,7 @@ class Databases extends Service
         $apiParams['collectionId'] = $collectionId;
         $apiParams['key'] = $key;
         $apiParams['required'] = $required;
-
-        if (!is_null($xdefault)) {
-            $apiParams['default'] = $xdefault;
-        }
+        $apiParams['default'] = $xdefault;
 
         if (!is_null($xarray)) {
             $apiParams['array'] = $xarray;
@@ -1363,10 +1294,7 @@ class Databases extends Service
         $apiParams['key'] = $key;
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
-
-        if (!is_null($newKey)) {
-            $apiParams['newKey'] = $newKey;
-        }
+        $apiParams['newKey'] = $newKey;
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -1449,10 +1377,7 @@ class Databases extends Service
         $apiParams['key'] = $key;
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
-
-        if (!is_null($newKey)) {
-            $apiParams['newKey'] = $newKey;
-        }
+        $apiParams['newKey'] = $newKey;
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -1535,10 +1460,7 @@ class Databases extends Service
         $apiParams['key'] = $key;
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
-
-        if (!is_null($newKey)) {
-            $apiParams['newKey'] = $newKey;
-        }
+        $apiParams['newKey'] = $newKey;
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -1621,10 +1543,7 @@ class Databases extends Service
         $apiParams['key'] = $key;
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
-
-        if (!is_null($newKey)) {
-            $apiParams['newKey'] = $newKey;
-        }
+        $apiParams['newKey'] = $newKey;
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -1673,14 +1592,8 @@ class Databases extends Service
         if (!is_null($twoWay)) {
             $apiParams['twoWay'] = $twoWay;
         }
-
-        if (!is_null($key)) {
-            $apiParams['key'] = $key;
-        }
-
-        if (!is_null($twoWayKey)) {
-            $apiParams['twoWayKey'] = $twoWayKey;
-        }
+        $apiParams['key'] = $key;
+        $apiParams['twoWayKey'] = $twoWayKey;
 
         if (!is_null($onDelete)) {
             $apiParams['onDelete'] = $onDelete;
@@ -1729,10 +1642,7 @@ class Databases extends Service
         $apiParams['key'] = $key;
         $apiParams['size'] = $size;
         $apiParams['required'] = $required;
-
-        if (!is_null($xdefault)) {
-            $apiParams['default'] = $xdefault;
-        }
+        $apiParams['default'] = $xdefault;
 
         if (!is_null($xarray)) {
             $apiParams['array'] = $xarray;
@@ -1785,14 +1695,8 @@ class Databases extends Service
         $apiParams['key'] = $key;
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
-
-        if (!is_null($size)) {
-            $apiParams['size'] = $size;
-        }
-
-        if (!is_null($newKey)) {
-            $apiParams['newKey'] = $newKey;
-        }
+        $apiParams['size'] = $size;
+        $apiParams['newKey'] = $newKey;
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -1834,10 +1738,7 @@ class Databases extends Service
         $apiParams['collectionId'] = $collectionId;
         $apiParams['key'] = $key;
         $apiParams['required'] = $required;
-
-        if (!is_null($xdefault)) {
-            $apiParams['default'] = $xdefault;
-        }
+        $apiParams['default'] = $xdefault;
 
         if (!is_null($xarray)) {
             $apiParams['array'] = $xarray;
@@ -1885,10 +1786,7 @@ class Databases extends Service
         $apiParams['key'] = $key;
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
-
-        if (!is_null($newKey)) {
-            $apiParams['newKey'] = $newKey;
-        }
+        $apiParams['newKey'] = $newKey;
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -2000,14 +1898,8 @@ class Databases extends Service
         $apiParams['databaseId'] = $databaseId;
         $apiParams['collectionId'] = $collectionId;
         $apiParams['key'] = $key;
-
-        if (!is_null($onDelete)) {
-            $apiParams['onDelete'] = $onDelete;
-        }
-
-        if (!is_null($newKey)) {
-            $apiParams['newKey'] = $newKey;
-        }
+        $apiParams['onDelete'] = $onDelete;
+        $apiParams['newKey'] = $newKey;
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -2100,14 +1992,8 @@ class Databases extends Service
         $apiParams['collectionId'] = $collectionId;
         $apiParams['documentId'] = $documentId;
         $apiParams['data'] = $data;
-
-        if (!is_null($permissions)) {
-            $apiParams['permissions'] = $permissions;
-        }
-
-        if (!is_null($transactionId)) {
-            $apiParams['transactionId'] = $transactionId;
-        }
+        $apiParams['permissions'] = $permissions;
+        $apiParams['transactionId'] = $transactionId;
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -2148,10 +2034,7 @@ class Databases extends Service
         $apiParams['databaseId'] = $databaseId;
         $apiParams['collectionId'] = $collectionId;
         $apiParams['documents'] = $documents;
-
-        if (!is_null($transactionId)) {
-            $apiParams['transactionId'] = $transactionId;
-        }
+        $apiParams['transactionId'] = $transactionId;
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -2193,10 +2076,7 @@ class Databases extends Service
         $apiParams['databaseId'] = $databaseId;
         $apiParams['collectionId'] = $collectionId;
         $apiParams['documents'] = $documents;
-
-        if (!is_null($transactionId)) {
-            $apiParams['transactionId'] = $transactionId;
-        }
+        $apiParams['transactionId'] = $transactionId;
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -2244,10 +2124,7 @@ class Databases extends Service
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
         }
-
-        if (!is_null($transactionId)) {
-            $apiParams['transactionId'] = $transactionId;
-        }
+        $apiParams['transactionId'] = $transactionId;
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -2289,10 +2166,7 @@ class Databases extends Service
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
         }
-
-        if (!is_null($transactionId)) {
-            $apiParams['transactionId'] = $transactionId;
-        }
+        $apiParams['transactionId'] = $transactionId;
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -2382,14 +2256,8 @@ class Databases extends Service
         $apiParams['collectionId'] = $collectionId;
         $apiParams['documentId'] = $documentId;
         $apiParams['data'] = $data;
-
-        if (!is_null($permissions)) {
-            $apiParams['permissions'] = $permissions;
-        }
-
-        if (!is_null($transactionId)) {
-            $apiParams['transactionId'] = $transactionId;
-        }
+        $apiParams['permissions'] = $permissions;
+        $apiParams['transactionId'] = $transactionId;
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -2434,14 +2302,8 @@ class Databases extends Service
         if (!is_null($data)) {
             $apiParams['data'] = $data;
         }
-
-        if (!is_null($permissions)) {
-            $apiParams['permissions'] = $permissions;
-        }
-
-        if (!is_null($transactionId)) {
-            $apiParams['transactionId'] = $transactionId;
-        }
+        $apiParams['permissions'] = $permissions;
+        $apiParams['transactionId'] = $transactionId;
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -2479,10 +2341,7 @@ class Databases extends Service
         $apiParams['databaseId'] = $databaseId;
         $apiParams['collectionId'] = $collectionId;
         $apiParams['documentId'] = $documentId;
-
-        if (!is_null($transactionId)) {
-            $apiParams['transactionId'] = $transactionId;
-        }
+        $apiParams['transactionId'] = $transactionId;
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -2528,14 +2387,8 @@ class Databases extends Service
         if (!is_null($value)) {
             $apiParams['value'] = $value;
         }
-
-        if (!is_null($min)) {
-            $apiParams['min'] = $min;
-        }
-
-        if (!is_null($transactionId)) {
-            $apiParams['transactionId'] = $transactionId;
-        }
+        $apiParams['min'] = $min;
+        $apiParams['transactionId'] = $transactionId;
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -2581,14 +2434,8 @@ class Databases extends Service
         if (!is_null($value)) {
             $apiParams['value'] = $value;
         }
-
-        if (!is_null($max)) {
-            $apiParams['max'] = $max;
-        }
-
-        if (!is_null($transactionId)) {
-            $apiParams['transactionId'] = $transactionId;
-        }
+        $apiParams['max'] = $max;
+        $apiParams['transactionId'] = $transactionId;
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
