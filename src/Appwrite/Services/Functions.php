@@ -7,7 +7,8 @@ use Appwrite\Client;
 use Appwrite\Service;
 use Appwrite\InputFile;
 use Appwrite\Enums\Runtime;
-use Appwrite\Enums\VCSDeploymentType;
+use Appwrite\Enums\TemplateReferenceType;
+use Appwrite\Enums\VCSReferenceType;
 use Appwrite\Enums\DeploymentDownloadType;
 use Appwrite\Enums\ExecutionMethod;
 
@@ -632,12 +633,13 @@ class Functions extends Service
      * @param string $repository
      * @param string $owner
      * @param string $rootDirectory
-     * @param string $version
+     * @param TemplateReferenceType $type
+     * @param string $reference
      * @param ?bool $activate
      * @throws AppwriteException
      * @return array
      */
-    public function createTemplateDeployment(string $functionId, string $repository, string $owner, string $rootDirectory, string $version, ?bool $activate = null): array
+    public function createTemplateDeployment(string $functionId, string $repository, string $owner, string $rootDirectory, TemplateReferenceType $type, string $reference, ?bool $activate = null): array
     {
         $apiPath = str_replace(
             ['{functionId}'],
@@ -650,7 +652,8 @@ class Functions extends Service
         $apiParams['repository'] = $repository;
         $apiParams['owner'] = $owner;
         $apiParams['rootDirectory'] = $rootDirectory;
-        $apiParams['version'] = $version;
+        $apiParams['type'] = $type;
+        $apiParams['reference'] = $reference;
 
         if (!is_null($activate)) {
             $apiParams['activate'] = $activate;
@@ -673,13 +676,13 @@ class Functions extends Service
      * This endpoint lets you create deployment from a branch, commit, or a tag.
      *
      * @param string $functionId
-     * @param VCSDeploymentType $type
+     * @param VCSReferenceType $type
      * @param string $reference
      * @param ?bool $activate
      * @throws AppwriteException
      * @return array
      */
-    public function createVcsDeployment(string $functionId, VCSDeploymentType $type, string $reference, ?bool $activate = null): array
+    public function createVcsDeployment(string $functionId, VCSReferenceType $type, string $reference, ?bool $activate = null): array
     {
         $apiPath = str_replace(
             ['{functionId}'],
@@ -925,10 +928,7 @@ class Functions extends Service
         if (!is_null($headers)) {
             $apiParams['headers'] = $headers;
         }
-
-        if (!is_null($scheduledAt)) {
-            $apiParams['scheduledAt'] = $scheduledAt;
-        }
+        $apiParams['scheduledAt'] = $scheduledAt;
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -1122,14 +1122,8 @@ class Functions extends Service
         $apiParams['functionId'] = $functionId;
         $apiParams['variableId'] = $variableId;
         $apiParams['key'] = $key;
-
-        if (!is_null($value)) {
-            $apiParams['value'] = $value;
-        }
-
-        if (!is_null($secret)) {
-            $apiParams['secret'] = $secret;
-        }
+        $apiParams['value'] = $value;
+        $apiParams['secret'] = $secret;
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';

@@ -4,11 +4,11 @@ namespace Appwrite\Enums;
 
 use JsonSerializable;
 
-class VCSDeploymentType implements JsonSerializable
+class TemplateReferenceType implements JsonSerializable
 {
-    private static VCSDeploymentType $BRANCH;
-    private static VCSDeploymentType $COMMIT;
-    private static VCSDeploymentType $TAG;
+    private static TemplateReferenceType $BRANCH;
+    private static TemplateReferenceType $COMMIT;
+    private static TemplateReferenceType $TAG;
 
     private string $value;
 
@@ -27,24 +27,24 @@ class VCSDeploymentType implements JsonSerializable
         return $this->value;
     }
 
-    public static function BRANCH(): VCSDeploymentType
+    public static function BRANCH(): TemplateReferenceType
     {
         if (!isset(self::$BRANCH)) {
-            self::$BRANCH = new VCSDeploymentType('branch');
+            self::$BRANCH = new TemplateReferenceType('branch');
         }
         return self::$BRANCH;
     }
-    public static function COMMIT(): VCSDeploymentType
+    public static function COMMIT(): TemplateReferenceType
     {
         if (!isset(self::$COMMIT)) {
-            self::$COMMIT = new VCSDeploymentType('commit');
+            self::$COMMIT = new TemplateReferenceType('commit');
         }
         return self::$COMMIT;
     }
-    public static function TAG(): VCSDeploymentType
+    public static function TAG(): TemplateReferenceType
     {
         if (!isset(self::$TAG)) {
-            self::$TAG = new VCSDeploymentType('tag');
+            self::$TAG = new TemplateReferenceType('tag');
         }
         return self::$TAG;
     }
