@@ -395,7 +395,7 @@ class Account extends Service
         $apiPath = str_replace(
             [],
             [],
-            '/account/mfa/challenge'
+            '/account/mfa/challenges'
         );
 
         $apiParams = [];
@@ -429,7 +429,7 @@ class Account extends Service
         $apiPath = str_replace(
             [],
             [],
-            '/account/mfa/challenge'
+            '/account/mfa/challenges'
         );
 
         $apiParams = [];
