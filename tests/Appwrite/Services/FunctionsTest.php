@@ -411,7 +411,8 @@ final class FunctionsTest extends TestCase {
             "<REPOSITORY>",
             "<OWNER>",
             "<ROOT_DIRECTORY>",
-            "<VERSION>"
+            "commit",
+            "<REFERENCE>"
         );
 
         $this->assertSame($data, $response);

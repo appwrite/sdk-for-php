@@ -9,7 +9,8 @@ use Appwrite\InputFile;
 use Appwrite\Enums\Framework;
 use Appwrite\Enums\BuildRuntime;
 use Appwrite\Enums\Adapter;
-use Appwrite\Enums\VCSDeploymentType;
+use Appwrite\Enums\TemplateReferenceType;
+use Appwrite\Enums\VCSReferenceType;
 use Appwrite\Enums\DeploymentDownloadType;
 
 class Sites extends Service
@@ -621,12 +622,13 @@ class Sites extends Service
      * @param string $repository
      * @param string $owner
      * @param string $rootDirectory
-     * @param string $version
+     * @param TemplateReferenceType $type
+     * @param string $reference
      * @param ?bool $activate
      * @throws AppwriteException
      * @return array
      */
-    public function createTemplateDeployment(string $siteId, string $repository, string $owner, string $rootDirectory, string $version, ?bool $activate = null): array
+    public function createTemplateDeployment(string $siteId, string $repository, string $owner, string $rootDirectory, TemplateReferenceType $type, string $reference, ?bool $activate = null): array
     {
         $apiPath = str_replace(
             ['{siteId}'],
@@ -639,7 +641,8 @@ class Sites extends Service
         $apiParams['repository'] = $repository;
         $apiParams['owner'] = $owner;
         $apiParams['rootDirectory'] = $rootDirectory;
-        $apiParams['version'] = $version;
+        $apiParams['type'] = $type;
+        $apiParams['reference'] = $reference;
 
         if (!is_null($activate)) {
             $apiParams['activate'] = $activate;
@@ -662,13 +665,13 @@ class Sites extends Service
      * This endpoint lets you create deployment from a branch, commit, or a tag.
      *
      * @param string $siteId
-     * @param VCSDeploymentType $type
+     * @param VCSReferenceType $type
      * @param string $reference
      * @param ?bool $activate
      * @throws AppwriteException
      * @return array
      */
-    public function createVcsDeployment(string $siteId, VCSDeploymentType $type, string $reference, ?bool $activate = null): array
+    public function createVcsDeployment(string $siteId, VCSReferenceType $type, string $reference, ?bool $activate = null): array
     {
         $apiPath = str_replace(
             ['{siteId}'],
@@ -1049,14 +1052,8 @@ class Sites extends Service
         $apiParams['siteId'] = $siteId;
         $apiParams['variableId'] = $variableId;
         $apiParams['key'] = $key;
-
-        if (!is_null($value)) {
-            $apiParams['value'] = $value;
-        }
-
-        if (!is_null($secret)) {
-            $apiParams['secret'] = $secret;
-        }
+        $apiParams['value'] = $value;
+        $apiParams['secret'] = $secret;
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';

@@ -182,7 +182,7 @@ DELETE https://cloud.appwrite.io/v1/account/mfa/authenticators/{type}
 
 
 ```http request
-POST https://cloud.appwrite.io/v1/account/mfa/challenge
+POST https://cloud.appwrite.io/v1/account/mfa/challenges
 ```
 
 ** Begin the process of MFA verification after sign-in. Finish the flow with [updateMfaChallenge](/docs/references/cloud/client-web/account#updateMfaChallenge) method. **
@@ -195,7 +195,7 @@ POST https://cloud.appwrite.io/v1/account/mfa/challenge
 
 
 ```http request
-POST https://cloud.appwrite.io/v1/account/mfa/challenge
+POST https://cloud.appwrite.io/v1/account/mfa/challenges
 ```
 
 ** Begin the process of MFA verification after sign-in. Finish the flow with [updateMfaChallenge](/docs/references/cloud/client-web/account#updateMfaChallenge) method. **
@@ -208,7 +208,7 @@ POST https://cloud.appwrite.io/v1/account/mfa/challenge
 
 
 ```http request
-PUT https://cloud.appwrite.io/v1/account/mfa/challenge
+PUT https://cloud.appwrite.io/v1/account/mfa/challenges
 ```
 
 ** Complete the MFA challenge by providing the one-time password. Finish the process of MFA verification by providing the one-time password. To begin the flow, use [createMfaChallenge](/docs/references/cloud/client-web/account#createMfaChallenge) method. **
@@ -222,7 +222,7 @@ PUT https://cloud.appwrite.io/v1/account/mfa/challenge
 
 
 ```http request
-PUT https://cloud.appwrite.io/v1/account/mfa/challenge
+PUT https://cloud.appwrite.io/v1/account/mfa/challenges
 ```
 
 ** Complete the MFA challenge by providing the one-time password. Finish the process of MFA verification by providing the one-time password. To begin the flow, use [createMfaChallenge](/docs/references/cloud/client-web/account#createMfaChallenge) method. **
