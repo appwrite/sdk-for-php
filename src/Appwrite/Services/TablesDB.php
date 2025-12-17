@@ -440,10 +440,12 @@ class TablesDB extends Service
      * @param ?array $permissions
      * @param ?bool $rowSecurity
      * @param ?bool $enabled
+     * @param ?array $columns
+     * @param ?array $indexes
      * @throws AppwriteException
      * @return array
      */
-    public function createTable(string $databaseId, string $tableId, string $name, ?array $permissions = null, ?bool $rowSecurity = null, ?bool $enabled = null): array
+    public function createTable(string $databaseId, string $tableId, string $name, ?array $permissions = null, ?bool $rowSecurity = null, ?bool $enabled = null, ?array $columns = null, ?array $indexes = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}'],
@@ -463,6 +465,14 @@ class TablesDB extends Service
 
         if (!is_null($enabled)) {
             $apiParams['enabled'] = $enabled;
+        }
+
+        if (!is_null($columns)) {
+            $apiParams['columns'] = $columns;
+        }
+
+        if (!is_null($indexes)) {
+            $apiParams['indexes'] = $indexes;
         }
 
         $apiHeaders = [];

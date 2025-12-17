@@ -458,13 +458,15 @@ class Databases extends Service
      * @param ?array $permissions
      * @param ?bool $documentSecurity
      * @param ?bool $enabled
+     * @param ?array $attributes
+     * @param ?array $indexes
      * @throws AppwriteException
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createTable` instead.
      * @see TablesDB::createTable
      */
-    public function createCollection(string $databaseId, string $collectionId, string $name, ?array $permissions = null, ?bool $documentSecurity = null, ?bool $enabled = null): array
+    public function createCollection(string $databaseId, string $collectionId, string $name, ?array $permissions = null, ?bool $documentSecurity = null, ?bool $enabled = null, ?array $attributes = null, ?array $indexes = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}'],
@@ -484,6 +486,14 @@ class Databases extends Service
 
         if (!is_null($enabled)) {
             $apiParams['enabled'] = $enabled;
+        }
+
+        if (!is_null($attributes)) {
+            $apiParams['attributes'] = $attributes;
+        }
+
+        if (!is_null($indexes)) {
+            $apiParams['indexes'] = $indexes;
         }
 
         $apiHeaders = [];
