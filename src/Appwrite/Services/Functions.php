@@ -485,7 +485,7 @@ class Functions extends Service
      * @throws AppwriteException
      * @return array
      */
-    public function createDeployment(string $functionId, InputFile $code, bool $activate, ?string $entrypoint = null, ?string $commands = null, callable $onProgress = null): array
+    public function createDeployment(string $functionId, InputFile $code, bool $activate, ?string $entrypoint = null, ?string $commands = null, ?callable $onProgress = null): array
     {
         $apiPath = str_replace(
             ['{functionId}'],
@@ -552,7 +552,7 @@ class Functions extends Service
                 fseek($handle, $start);
                 $chunk = @fread($handle, Client::CHUNK_SIZE);
             } else {
-                $chunk = substr($file->getData(), $start, Client::CHUNK_SIZE);
+                $chunk = substr($code->getData(), $start, Client::CHUNK_SIZE);
             }
             $apiParams['code'] = new \CURLFile('data://' . $mimeType . ';base64,' . base64_encode($chunk), $mimeType, $postedName);
             $apiHeaders['content-range'] = 'bytes ' . ($counter * Client::CHUNK_SIZE) . '-' . min(((($counter * Client::CHUNK_SIZE) + Client::CHUNK_SIZE) - 1), $size - 1) . '/' . $size;

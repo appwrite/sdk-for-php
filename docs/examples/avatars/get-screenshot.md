@@ -4,7 +4,7 @@ use Appwrite\Client;
 use Appwrite\Services\Avatars;
 use Appwrite\Enums\Theme;
 use Appwrite\Enums\Timezone;
-use Appwrite\Enums\Output;
+use Appwrite\Enums\ImageFormat;
 
 $client = (new Client())
     ->setEndpoint('https://<REGION>.cloud.appwrite.io/v1') // Your API Endpoint
@@ -36,5 +36,5 @@ $result = $avatars->getScreenshot(
     width: 800, // optional
     height: 600, // optional
     quality: 85, // optional
-    output: Output::JPG() // optional
+    output: ImageFormat::JPG() // optional
 );

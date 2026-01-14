@@ -6,6 +6,9 @@ use Appwrite\Client;
 use Appwrite\InputFile;
 use Mockery;
 use PHPUnit\Framework\TestCase;
+use Appwrite\Enums\Compression;
+use Appwrite\Enums\ImageGravity;
+use Appwrite\Enums\ImageFormat;
 
 final class StorageTest extends TestCase {
     private $client;
@@ -20,8 +23,7 @@ final class StorageTest extends TestCase {
 
         $data = array(
             "total" => 5,
-            "buckets" => array(),);
-
+            "buckets" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -48,8 +50,8 @@ final class StorageTest extends TestCase {
             "compression" => "gzip",
             "encryption" => true,
             "antivirus" => true,
-            "transformations" => true,);
-
+            "transformations" => true,
+            "totalSize" => 128);
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -78,8 +80,8 @@ final class StorageTest extends TestCase {
             "compression" => "gzip",
             "encryption" => true,
             "antivirus" => true,
-            "transformations" => true,);
-
+            "transformations" => true,
+            "totalSize" => 128);
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -107,8 +109,8 @@ final class StorageTest extends TestCase {
             "compression" => "gzip",
             "encryption" => true,
             "antivirus" => true,
-            "transformations" => true,);
-
+            "transformations" => true,
+            "totalSize" => 128);
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -126,7 +128,6 @@ final class StorageTest extends TestCase {
 
         $data = '';
 
-
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
@@ -142,8 +143,7 @@ final class StorageTest extends TestCase {
 
         $data = array(
             "total" => 5,
-            "files" => array(),);
-
+            "files" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -169,8 +169,7 @@ final class StorageTest extends TestCase {
             "mimeType" => "image/png",
             "sizeOriginal" => 17890,
             "chunksTotal" => 17890,
-            "chunksUploaded" => 17890,);
-
+            "chunksUploaded" => 17890);
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -198,8 +197,7 @@ final class StorageTest extends TestCase {
             "mimeType" => "image/png",
             "sizeOriginal" => 17890,
             "chunksTotal" => 17890,
-            "chunksUploaded" => 17890,);
-
+            "chunksUploaded" => 17890);
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -226,8 +224,7 @@ final class StorageTest extends TestCase {
             "mimeType" => "image/png",
             "sizeOriginal" => 17890,
             "chunksTotal" => 17890,
-            "chunksUploaded" => 17890,);
-
+            "chunksUploaded" => 17890);
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -245,7 +242,6 @@ final class StorageTest extends TestCase {
 
         $data = '';
 
-
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
@@ -261,7 +257,6 @@ final class StorageTest extends TestCase {
     public function testMethodGetFileDownload(): void {
 
         $data = '';
-
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -279,7 +274,6 @@ final class StorageTest extends TestCase {
 
         $data = '';
 
-
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
@@ -295,7 +289,6 @@ final class StorageTest extends TestCase {
     public function testMethodGetFileView(): void {
 
         $data = '';
-
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
