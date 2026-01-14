@@ -4,6 +4,17 @@
 
 * Update SDK as per latest server specs
 
+## 19.1.0
+
+* Added ability to create columns and indexes synchronously while creating a table
+
+## 19.0.0
+
+* Rename `VCSDeploymentType` enum to `VCSReferenceType`
+* Change `createTemplateDeployment` method signature: replace `version` parameter with `type` (TemplateReferenceType)
+  and `reference` parameters
+* Add `Theme`, `Timezone` and `Output` enums
+
 ## 18.0.1
 
 * Fix `TablesDB` service to use correct file name
