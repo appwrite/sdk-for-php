@@ -1,5 +1,9 @@
 # Change Log
 
+## 19.1.1
+
+* Update SDK as per latest server specs
+
 ## 18.0.1
 
 * Fix `TablesDB` service to use correct file name
