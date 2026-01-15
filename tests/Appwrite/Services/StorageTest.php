@@ -169,7 +169,9 @@ final class StorageTest extends TestCase {
             "mimeType" => "image/png",
             "sizeOriginal" => 17890,
             "chunksTotal" => 17890,
-            "chunksUploaded" => 17890);
+            "chunksUploaded" => 17890,
+            "encryption" => true,
+            "compression" => "gzip");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -197,7 +199,9 @@ final class StorageTest extends TestCase {
             "mimeType" => "image/png",
             "sizeOriginal" => 17890,
             "chunksTotal" => 17890,
-            "chunksUploaded" => 17890);
+            "chunksUploaded" => 17890,
+            "encryption" => true,
+            "compression" => "gzip");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -224,7 +228,9 @@ final class StorageTest extends TestCase {
             "mimeType" => "image/png",
             "sizeOriginal" => 17890,
             "chunksTotal" => 17890,
-            "chunksUploaded" => 17890);
+            "chunksUploaded" => 17890,
+            "encryption" => true,
+            "compression" => "gzip");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
