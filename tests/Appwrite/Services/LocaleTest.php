@@ -25,8 +25,7 @@ final class LocaleTest extends TestCase {
             "continentCode" => "NA",
             "continent" => "North America",
             "eu" => true,
-            "currency" => "USD",);
-
+            "currency" => "USD");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -42,8 +41,7 @@ final class LocaleTest extends TestCase {
 
         $data = array(
             "total" => 5,
-            "localeCodes" => array(),);
-
+            "localeCodes" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -59,8 +57,7 @@ final class LocaleTest extends TestCase {
 
         $data = array(
             "total" => 5,
-            "continents" => array(),);
-
+            "continents" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -76,8 +73,7 @@ final class LocaleTest extends TestCase {
 
         $data = array(
             "total" => 5,
-            "countries" => array(),);
-
+            "countries" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -93,8 +89,7 @@ final class LocaleTest extends TestCase {
 
         $data = array(
             "total" => 5,
-            "countries" => array(),);
-
+            "countries" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -110,8 +105,7 @@ final class LocaleTest extends TestCase {
 
         $data = array(
             "total" => 5,
-            "phones" => array(),);
-
+            "phones" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -127,8 +121,7 @@ final class LocaleTest extends TestCase {
 
         $data = array(
             "total" => 5,
-            "currencies" => array(),);
-
+            "currencies" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -144,8 +137,7 @@ final class LocaleTest extends TestCase {
 
         $data = array(
             "total" => 5,
-            "languages" => array(),);
-
+            "languages" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())

@@ -2244,7 +2244,7 @@ class Databases extends Service
      * @param string $databaseId
      * @param string $collectionId
      * @param string $documentId
-     * @param array $data
+     * @param ?array $data
      * @param ?array $permissions
      * @param ?string $transactionId
      * @throws AppwriteException
@@ -2253,7 +2253,7 @@ class Databases extends Service
      * @deprecated This API has been deprecated since 1.8.0. Please use `upsertRow` instead.
      * @see TablesDB::upsertRow
      */
-    public function upsertDocument(string $databaseId, string $collectionId, string $documentId, array $data, ?array $permissions = null, ?string $transactionId = null): array
+    public function upsertDocument(string $databaseId, string $collectionId, string $documentId, ?array $data = null, ?array $permissions = null, ?string $transactionId = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{documentId}'],
@@ -2265,7 +2265,10 @@ class Databases extends Service
         $apiParams['databaseId'] = $databaseId;
         $apiParams['collectionId'] = $collectionId;
         $apiParams['documentId'] = $documentId;
-        $apiParams['data'] = $data;
+
+        if (!is_null($data)) {
+            $apiParams['data'] = $data;
+        }
         $apiParams['permissions'] = $permissions;
         $apiParams['transactionId'] = $transactionId;
 

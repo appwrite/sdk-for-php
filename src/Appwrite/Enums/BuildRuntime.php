@@ -28,9 +28,6 @@ class BuildRuntime implements JsonSerializable
     private static BuildRuntime $PYTHON312;
     private static BuildRuntime $PYTHONML311;
     private static BuildRuntime $PYTHONML312;
-    private static BuildRuntime $DENO121;
-    private static BuildRuntime $DENO124;
-    private static BuildRuntime $DENO135;
     private static BuildRuntime $DENO140;
     private static BuildRuntime $DENO146;
     private static BuildRuntime $DENO20;
@@ -244,27 +241,6 @@ class BuildRuntime implements JsonSerializable
             self::$PYTHONML312 = new BuildRuntime('python-ml-3.12');
         }
         return self::$PYTHONML312;
-    }
-    public static function DENO121(): BuildRuntime
-    {
-        if (!isset(self::$DENO121)) {
-            self::$DENO121 = new BuildRuntime('deno-1.21');
-        }
-        return self::$DENO121;
-    }
-    public static function DENO124(): BuildRuntime
-    {
-        if (!isset(self::$DENO124)) {
-            self::$DENO124 = new BuildRuntime('deno-1.24');
-        }
-        return self::$DENO124;
-    }
-    public static function DENO135(): BuildRuntime
-    {
-        if (!isset(self::$DENO135)) {
-            self::$DENO135 = new BuildRuntime('deno-1.35');
-        }
-        return self::$DENO135;
     }
     public static function DENO140(): BuildRuntime
     {

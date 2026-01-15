@@ -6,6 +6,8 @@ use Appwrite\Client;
 use Appwrite\InputFile;
 use Mockery;
 use PHPUnit\Framework\TestCase;
+use Appwrite\Enums\MessagePriority;
+use Appwrite\Enums\SmtpEncryption;
 
 final class MessagingTest extends TestCase {
     private $client;
@@ -20,8 +22,7 @@ final class MessagingTest extends TestCase {
 
         $data = array(
             "total" => 5,
-            "messages" => array(),);
-
+            "messages" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -45,8 +46,7 @@ final class MessagingTest extends TestCase {
             "targets" => array(),
             "deliveredTotal" => 1,
             "data" => array(),
-            "status" => "Message status can be one of the following: draft, processing, scheduled, sent, or failed.",);
-
+            "status" => "processing");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -73,8 +73,7 @@ final class MessagingTest extends TestCase {
             "targets" => array(),
             "deliveredTotal" => 1,
             "data" => array(),
-            "status" => "Message status can be one of the following: draft, processing, scheduled, sent, or failed.",);
-
+            "status" => "processing");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -99,8 +98,7 @@ final class MessagingTest extends TestCase {
             "targets" => array(),
             "deliveredTotal" => 1,
             "data" => array(),
-            "status" => "Message status can be one of the following: draft, processing, scheduled, sent, or failed.",);
-
+            "status" => "processing");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -125,8 +123,7 @@ final class MessagingTest extends TestCase {
             "targets" => array(),
             "deliveredTotal" => 1,
             "data" => array(),
-            "status" => "Message status can be one of the following: draft, processing, scheduled, sent, or failed.",);
-
+            "status" => "processing");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -151,8 +148,7 @@ final class MessagingTest extends TestCase {
             "targets" => array(),
             "deliveredTotal" => 1,
             "data" => array(),
-            "status" => "Message status can be one of the following: draft, processing, scheduled, sent, or failed.",);
-
+            "status" => "processing");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -178,8 +174,7 @@ final class MessagingTest extends TestCase {
             "targets" => array(),
             "deliveredTotal" => 1,
             "data" => array(),
-            "status" => "Message status can be one of the following: draft, processing, scheduled, sent, or failed.",);
-
+            "status" => "processing");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -204,8 +199,7 @@ final class MessagingTest extends TestCase {
             "targets" => array(),
             "deliveredTotal" => 1,
             "data" => array(),
-            "status" => "Message status can be one of the following: draft, processing, scheduled, sent, or failed.",);
-
+            "status" => "processing");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -222,7 +216,6 @@ final class MessagingTest extends TestCase {
 
         $data = '';
 
-
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
@@ -238,8 +231,7 @@ final class MessagingTest extends TestCase {
 
         $data = array(
             "total" => 5,
-            "logs" => array(),);
-
+            "logs" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -256,8 +248,7 @@ final class MessagingTest extends TestCase {
 
         $data = array(
             "total" => 5,
-            "targets" => array(),);
-
+            "targets" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -274,8 +265,7 @@ final class MessagingTest extends TestCase {
 
         $data = array(
             "total" => 5,
-            "providers" => array(),);
-
+            "providers" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -297,8 +287,7 @@ final class MessagingTest extends TestCase {
             "provider" => "mailgun",
             "enabled" => true,
             "type" => "sms",
-            "credentials" => array(),);
-
+            "credentials" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -322,8 +311,7 @@ final class MessagingTest extends TestCase {
             "provider" => "mailgun",
             "enabled" => true,
             "type" => "sms",
-            "credentials" => array(),);
-
+            "credentials" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -346,8 +334,7 @@ final class MessagingTest extends TestCase {
             "provider" => "mailgun",
             "enabled" => true,
             "type" => "sms",
-            "credentials" => array(),);
-
+            "credentials" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -371,8 +358,7 @@ final class MessagingTest extends TestCase {
             "provider" => "mailgun",
             "enabled" => true,
             "type" => "sms",
-            "credentials" => array(),);
-
+            "credentials" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -395,8 +381,7 @@ final class MessagingTest extends TestCase {
             "provider" => "mailgun",
             "enabled" => true,
             "type" => "sms",
-            "credentials" => array(),);
-
+            "credentials" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -420,8 +405,7 @@ final class MessagingTest extends TestCase {
             "provider" => "mailgun",
             "enabled" => true,
             "type" => "sms",
-            "credentials" => array(),);
-
+            "credentials" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -444,8 +428,7 @@ final class MessagingTest extends TestCase {
             "provider" => "mailgun",
             "enabled" => true,
             "type" => "sms",
-            "credentials" => array(),);
-
+            "credentials" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -469,8 +452,7 @@ final class MessagingTest extends TestCase {
             "provider" => "mailgun",
             "enabled" => true,
             "type" => "sms",
-            "credentials" => array(),);
-
+            "credentials" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -493,8 +475,7 @@ final class MessagingTest extends TestCase {
             "provider" => "mailgun",
             "enabled" => true,
             "type" => "sms",
-            "credentials" => array(),);
-
+            "credentials" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -518,8 +499,7 @@ final class MessagingTest extends TestCase {
             "provider" => "mailgun",
             "enabled" => true,
             "type" => "sms",
-            "credentials" => array(),);
-
+            "credentials" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -542,8 +522,7 @@ final class MessagingTest extends TestCase {
             "provider" => "mailgun",
             "enabled" => true,
             "type" => "sms",
-            "credentials" => array(),);
-
+            "credentials" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -567,8 +546,7 @@ final class MessagingTest extends TestCase {
             "provider" => "mailgun",
             "enabled" => true,
             "type" => "sms",
-            "credentials" => array(),);
-
+            "credentials" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -591,8 +569,7 @@ final class MessagingTest extends TestCase {
             "provider" => "mailgun",
             "enabled" => true,
             "type" => "sms",
-            "credentials" => array(),);
-
+            "credentials" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -617,8 +594,7 @@ final class MessagingTest extends TestCase {
             "provider" => "mailgun",
             "enabled" => true,
             "type" => "sms",
-            "credentials" => array(),);
-
+            "credentials" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -641,8 +617,7 @@ final class MessagingTest extends TestCase {
             "provider" => "mailgun",
             "enabled" => true,
             "type" => "sms",
-            "credentials" => array(),);
-
+            "credentials" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -666,8 +641,7 @@ final class MessagingTest extends TestCase {
             "provider" => "mailgun",
             "enabled" => true,
             "type" => "sms",
-            "credentials" => array(),);
-
+            "credentials" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -690,8 +664,7 @@ final class MessagingTest extends TestCase {
             "provider" => "mailgun",
             "enabled" => true,
             "type" => "sms",
-            "credentials" => array(),);
-
+            "credentials" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -715,8 +688,7 @@ final class MessagingTest extends TestCase {
             "provider" => "mailgun",
             "enabled" => true,
             "type" => "sms",
-            "credentials" => array(),);
-
+            "credentials" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -739,8 +711,7 @@ final class MessagingTest extends TestCase {
             "provider" => "mailgun",
             "enabled" => true,
             "type" => "sms",
-            "credentials" => array(),);
-
+            "credentials" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -764,8 +735,7 @@ final class MessagingTest extends TestCase {
             "provider" => "mailgun",
             "enabled" => true,
             "type" => "sms",
-            "credentials" => array(),);
-
+            "credentials" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -788,8 +758,7 @@ final class MessagingTest extends TestCase {
             "provider" => "mailgun",
             "enabled" => true,
             "type" => "sms",
-            "credentials" => array(),);
-
+            "credentials" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -813,8 +782,7 @@ final class MessagingTest extends TestCase {
             "provider" => "mailgun",
             "enabled" => true,
             "type" => "sms",
-            "credentials" => array(),);
-
+            "credentials" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -837,8 +805,7 @@ final class MessagingTest extends TestCase {
             "provider" => "mailgun",
             "enabled" => true,
             "type" => "sms",
-            "credentials" => array(),);
-
+            "credentials" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -855,7 +822,6 @@ final class MessagingTest extends TestCase {
 
         $data = '';
 
-
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
@@ -871,8 +837,7 @@ final class MessagingTest extends TestCase {
 
         $data = array(
             "total" => 5,
-            "logs" => array(),);
-
+            "logs" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -889,8 +854,7 @@ final class MessagingTest extends TestCase {
 
         $data = array(
             "total" => 5,
-            "logs" => array(),);
-
+            "logs" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -907,8 +871,7 @@ final class MessagingTest extends TestCase {
 
         $data = array(
             "total" => 5,
-            "topics" => array(),);
-
+            "topics" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -930,8 +893,7 @@ final class MessagingTest extends TestCase {
             "emailTotal" => 100,
             "smsTotal" => 100,
             "pushTotal" => 100,
-            "subscribe" => array(),);
-
+            "subscribe" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -955,8 +917,7 @@ final class MessagingTest extends TestCase {
             "emailTotal" => 100,
             "smsTotal" => 100,
             "pushTotal" => 100,
-            "subscribe" => array(),);
-
+            "subscribe" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -979,8 +940,7 @@ final class MessagingTest extends TestCase {
             "emailTotal" => 100,
             "smsTotal" => 100,
             "pushTotal" => 100,
-            "subscribe" => array(),);
-
+            "subscribe" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -997,7 +957,6 @@ final class MessagingTest extends TestCase {
 
         $data = '';
 
-
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
@@ -1013,8 +972,7 @@ final class MessagingTest extends TestCase {
 
         $data = array(
             "total" => 5,
-            "logs" => array(),);
-
+            "logs" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1031,8 +989,7 @@ final class MessagingTest extends TestCase {
 
         $data = array(
             "total" => 5,
-            "subscribers" => array(),);
-
+            "subscribers" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1056,8 +1013,7 @@ final class MessagingTest extends TestCase {
             "userId" => "5e5ea5c16897e",
             "userName" => "Aegon Targaryen",
             "topicId" => "259125845563242502",
-            "providerType" => "email",);
-
+            "providerType" => "email");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1083,8 +1039,7 @@ final class MessagingTest extends TestCase {
             "userId" => "5e5ea5c16897e",
             "userName" => "Aegon Targaryen",
             "topicId" => "259125845563242502",
-            "providerType" => "email",);
-
+            "providerType" => "email");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1101,7 +1056,6 @@ final class MessagingTest extends TestCase {
     public function testMethodDeleteSubscriber(): void {
 
         $data = '';
-
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())

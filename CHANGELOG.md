@@ -1,5 +1,13 @@
 # Change Log
 
+## 19.1.1
+
+* Update SDK as per latest server specs, these include -
+    * Updates to Runtime enums
+    * `Output` is now renamed to `ImageFormat` - Note that this is a breaking change
+    * Introduces Backups module for managing Database backups
+    * Introduces Organization module
+
 ## 19.1.0
 
 * Added ability to create columns and indexes synchronously while creating a table
@@ -7,7 +15,8 @@
 ## 19.0.0
 
 * Rename `VCSDeploymentType` enum to `VCSReferenceType`
-* Change `createTemplateDeployment` method signature: replace `version` parameter with `type` (TemplateReferenceType) and `reference` parameters
+* Change `createTemplateDeployment` method signature: replace `version` parameter with `type` (TemplateReferenceType)
+  and `reference` parameters
 * Add `Theme`, `Timezone` and `Output` enums
 
 ## 18.0.1

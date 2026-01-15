@@ -1,15 +1,15 @@
 <?php
 
 use Appwrite\Client;
-use Appwrite\Services\Account;
+use Appwrite\Services\Organizations;
 
 $client = (new Client())
     ->setEndpoint('https://<REGION>.cloud.appwrite.io/v1') // Your API Endpoint
     ->setProject('<YOUR_PROJECT_ID>') // Your project ID
     ->setSession(''); // The user session to authenticate with
 
-$account = new Account($client);
+$organizations = new Organizations($client);
 
-$result = $account->createJWT(
-    duration: 0 // optional
+$result = $organizations->estimationDeleteOrganization(
+    organizationId: '<ORGANIZATION_ID>'
 );

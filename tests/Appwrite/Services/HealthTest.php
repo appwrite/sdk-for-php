@@ -6,6 +6,7 @@ use Appwrite\Client;
 use Appwrite\InputFile;
 use Mockery;
 use PHPUnit\Framework\TestCase;
+use Appwrite\Enums\Name;
 
 final class HealthTest extends TestCase {
     private $client;
@@ -21,8 +22,7 @@ final class HealthTest extends TestCase {
         $data = array(
             "name" => "database",
             "ping" => 128,
-            "status" => "pass",);
-
+            "status" => "pass");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -38,8 +38,7 @@ final class HealthTest extends TestCase {
 
         $data = array(
             "version" => "1.0.0",
-            "status" => "online",);
-
+            "status" => "online");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -56,8 +55,7 @@ final class HealthTest extends TestCase {
         $data = array(
             "name" => "database",
             "ping" => 128,
-            "status" => "pass",);
-
+            "status" => "pass");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -77,8 +75,7 @@ final class HealthTest extends TestCase {
             "issuerOrganisation" => "",
             "validFrom" => "1704200998",
             "validTo" => "1711458597",
-            "signatureTypeSN" => "RSA-SHA256",);
-
+            "signatureTypeSN" => "RSA-SHA256");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -95,8 +92,7 @@ final class HealthTest extends TestCase {
         $data = array(
             "name" => "database",
             "ping" => 128,
-            "status" => "pass",);
-
+            "status" => "pass");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -113,8 +109,7 @@ final class HealthTest extends TestCase {
         $data = array(
             "name" => "database",
             "ping" => 128,
-            "status" => "pass",);
-
+            "status" => "pass");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -129,8 +124,7 @@ final class HealthTest extends TestCase {
     public function testMethodGetQueueBuilds(): void {
 
         $data = array(
-            "size" => 8,);
-
+            "size" => 8);
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -145,8 +139,7 @@ final class HealthTest extends TestCase {
     public function testMethodGetQueueCertificates(): void {
 
         $data = array(
-            "size" => 8,);
-
+            "size" => 8);
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -161,8 +154,7 @@ final class HealthTest extends TestCase {
     public function testMethodGetQueueDatabases(): void {
 
         $data = array(
-            "size" => 8,);
-
+            "size" => 8);
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -177,8 +169,7 @@ final class HealthTest extends TestCase {
     public function testMethodGetQueueDeletes(): void {
 
         $data = array(
-            "size" => 8,);
-
+            "size" => 8);
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -193,15 +184,14 @@ final class HealthTest extends TestCase {
     public function testMethodGetFailedJobs(): void {
 
         $data = array(
-            "size" => 8,);
-
+            "size" => 8);
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
         $response = $this->health->getFailedJobs(
-            "v1-database"
+            Name::V1DATABASE()
         );
 
         $this->assertSame($data, $response);
@@ -210,8 +200,7 @@ final class HealthTest extends TestCase {
     public function testMethodGetQueueFunctions(): void {
 
         $data = array(
-            "size" => 8,);
-
+            "size" => 8);
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -226,8 +215,7 @@ final class HealthTest extends TestCase {
     public function testMethodGetQueueLogs(): void {
 
         $data = array(
-            "size" => 8,);
-
+            "size" => 8);
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -242,8 +230,7 @@ final class HealthTest extends TestCase {
     public function testMethodGetQueueMails(): void {
 
         $data = array(
-            "size" => 8,);
-
+            "size" => 8);
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -258,8 +245,7 @@ final class HealthTest extends TestCase {
     public function testMethodGetQueueMessaging(): void {
 
         $data = array(
-            "size" => 8,);
-
+            "size" => 8);
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -274,8 +260,7 @@ final class HealthTest extends TestCase {
     public function testMethodGetQueueMigrations(): void {
 
         $data = array(
-            "size" => 8,);
-
+            "size" => 8);
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -290,8 +275,7 @@ final class HealthTest extends TestCase {
     public function testMethodGetQueueStatsResources(): void {
 
         $data = array(
-            "size" => 8,);
-
+            "size" => 8);
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -306,8 +290,7 @@ final class HealthTest extends TestCase {
     public function testMethodGetQueueUsage(): void {
 
         $data = array(
-            "size" => 8,);
-
+            "size" => 8);
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -322,8 +305,7 @@ final class HealthTest extends TestCase {
     public function testMethodGetQueueWebhooks(): void {
 
         $data = array(
-            "size" => 8,);
-
+            "size" => 8);
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -340,8 +322,7 @@ final class HealthTest extends TestCase {
         $data = array(
             "name" => "database",
             "ping" => 128,
-            "status" => "pass",);
-
+            "status" => "pass");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -358,8 +339,7 @@ final class HealthTest extends TestCase {
         $data = array(
             "name" => "database",
             "ping" => 128,
-            "status" => "pass",);
-
+            "status" => "pass");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -376,8 +356,7 @@ final class HealthTest extends TestCase {
         $data = array(
             "remoteTime" => 1639490751,
             "localTime" => 1639490844,
-            "diff" => 93,);
-
+            "diff" => 93);
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())

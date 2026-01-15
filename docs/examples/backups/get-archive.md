@@ -1,15 +1,15 @@
 <?php
 
 use Appwrite\Client;
-use Appwrite\Services\Account;
+use Appwrite\Services\Backups;
 
 $client = (new Client())
     ->setEndpoint('https://<REGION>.cloud.appwrite.io/v1') // Your API Endpoint
     ->setProject('<YOUR_PROJECT_ID>') // Your project ID
-    ->setSession(''); // The user session to authenticate with
+    ->setKey('<YOUR_API_KEY>'); // Your secret API key
 
-$account = new Account($client);
+$backups = new Backups($client);
 
-$result = $account->createJWT(
-    duration: 0 // optional
+$result = $backups->getArchive(
+    archiveId: '<ARCHIVE_ID>'
 );

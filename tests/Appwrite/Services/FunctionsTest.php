@@ -6,6 +6,11 @@ use Appwrite\Client;
 use Appwrite\InputFile;
 use Mockery;
 use PHPUnit\Framework\TestCase;
+use Appwrite\Enums\Runtime;
+use Appwrite\Enums\TemplateReferenceType;
+use Appwrite\Enums\VCSReferenceType;
+use Appwrite\Enums\DeploymentDownloadType;
+use Appwrite\Enums\ExecutionMethod;
 
 final class FunctionsTest extends TestCase {
     private $client;
@@ -20,8 +25,7 @@ final class FunctionsTest extends TestCase {
 
         $data = array(
             "total" => 5,
-            "functions" => array(),);
-
+            "functions" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -63,8 +67,7 @@ final class FunctionsTest extends TestCase {
             "providerBranch" => "main",
             "providerRootDirectory" => "functions/helloWorld",
             "providerSilentMode" => true,
-            "specification" => "s-1vcpu-512mb",);
-
+            "specification" => "s-1vcpu-512mb");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -73,7 +76,7 @@ final class FunctionsTest extends TestCase {
         $response = $this->functions->create(
             "<FUNCTION_ID>",
             "<NAME>",
-            "node-14.5"
+            Runtime::NODE145()
         );
 
         $this->assertSame($data, $response);
@@ -83,8 +86,7 @@ final class FunctionsTest extends TestCase {
 
         $data = array(
             "total" => 5,
-            "runtimes" => array(),);
-
+            "runtimes" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -100,8 +102,7 @@ final class FunctionsTest extends TestCase {
 
         $data = array(
             "total" => 5,
-            "specifications" => array(),);
-
+            "specifications" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -143,8 +144,7 @@ final class FunctionsTest extends TestCase {
             "providerBranch" => "main",
             "providerRootDirectory" => "functions/helloWorld",
             "providerSilentMode" => true,
-            "specification" => "s-1vcpu-512mb",);
-
+            "specification" => "s-1vcpu-512mb");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -187,8 +187,7 @@ final class FunctionsTest extends TestCase {
             "providerBranch" => "main",
             "providerRootDirectory" => "functions/helloWorld",
             "providerSilentMode" => true,
-            "specification" => "s-1vcpu-512mb",);
-
+            "specification" => "s-1vcpu-512mb");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -205,7 +204,6 @@ final class FunctionsTest extends TestCase {
     public function testMethodDelete(): void {
 
         $data = '';
-
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -248,8 +246,7 @@ final class FunctionsTest extends TestCase {
             "providerBranch" => "main",
             "providerRootDirectory" => "functions/helloWorld",
             "providerSilentMode" => true,
-            "specification" => "s-1vcpu-512mb",);
-
+            "specification" => "s-1vcpu-512mb");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -267,8 +264,7 @@ final class FunctionsTest extends TestCase {
 
         $data = array(
             "total" => 5,
-            "deployments" => array(),);
-
+            "deployments" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -310,8 +306,7 @@ final class FunctionsTest extends TestCase {
             "providerCommitMessage" => "Update index.js",
             "providerCommitUrl" => "https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb",
             "providerBranch" => "0.7.x",
-            "providerBranchUrl" => "https://github.com/vermakhushboo/appwrite/tree/0.7.x",);
-
+            "providerBranchUrl" => "https://github.com/vermakhushboo/appwrite/tree/0.7.x");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -355,8 +350,7 @@ final class FunctionsTest extends TestCase {
             "providerCommitMessage" => "Update index.js",
             "providerCommitUrl" => "https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb",
             "providerBranch" => "0.7.x",
-            "providerBranchUrl" => "https://github.com/vermakhushboo/appwrite/tree/0.7.x",);
-
+            "providerBranchUrl" => "https://github.com/vermakhushboo/appwrite/tree/0.7.x");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -399,8 +393,7 @@ final class FunctionsTest extends TestCase {
             "providerCommitMessage" => "Update index.js",
             "providerCommitUrl" => "https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb",
             "providerBranch" => "0.7.x",
-            "providerBranchUrl" => "https://github.com/vermakhushboo/appwrite/tree/0.7.x",);
-
+            "providerBranchUrl" => "https://github.com/vermakhushboo/appwrite/tree/0.7.x");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -411,7 +404,7 @@ final class FunctionsTest extends TestCase {
             "<REPOSITORY>",
             "<OWNER>",
             "<ROOT_DIRECTORY>",
-            "commit",
+            TemplateReferenceType::COMMIT(),
             "<REFERENCE>"
         );
 
@@ -447,8 +440,7 @@ final class FunctionsTest extends TestCase {
             "providerCommitMessage" => "Update index.js",
             "providerCommitUrl" => "https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb",
             "providerBranch" => "0.7.x",
-            "providerBranchUrl" => "https://github.com/vermakhushboo/appwrite/tree/0.7.x",);
-
+            "providerBranchUrl" => "https://github.com/vermakhushboo/appwrite/tree/0.7.x");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -456,7 +448,7 @@ final class FunctionsTest extends TestCase {
 
         $response = $this->functions->createVcsDeployment(
             "<FUNCTION_ID>",
-            "branch",
+            VCSReferenceType::BRANCH(),
             "<REFERENCE>"
         );
 
@@ -492,8 +484,7 @@ final class FunctionsTest extends TestCase {
             "providerCommitMessage" => "Update index.js",
             "providerCommitUrl" => "https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb",
             "providerBranch" => "0.7.x",
-            "providerBranchUrl" => "https://github.com/vermakhushboo/appwrite/tree/0.7.x",);
-
+            "providerBranchUrl" => "https://github.com/vermakhushboo/appwrite/tree/0.7.x");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -511,7 +502,6 @@ final class FunctionsTest extends TestCase {
 
         $data = '';
 
-
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
@@ -527,7 +517,6 @@ final class FunctionsTest extends TestCase {
     public function testMethodGetDeploymentDownload(): void {
 
         $data = '';
-
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -570,8 +559,7 @@ final class FunctionsTest extends TestCase {
             "providerCommitMessage" => "Update index.js",
             "providerCommitUrl" => "https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb",
             "providerBranch" => "0.7.x",
-            "providerBranchUrl" => "https://github.com/vermakhushboo/appwrite/tree/0.7.x",);
-
+            "providerBranchUrl" => "https://github.com/vermakhushboo/appwrite/tree/0.7.x");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -589,8 +577,7 @@ final class FunctionsTest extends TestCase {
 
         $data = array(
             "total" => 5,
-            "executions" => array(),);
-
+            "executions" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -622,8 +609,7 @@ final class FunctionsTest extends TestCase {
             "responseHeaders" => array(),
             "logs" => "",
             "errors" => "",
-            "duration" => 0.4,);
-
+            "duration" => 0.4);
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -655,8 +641,7 @@ final class FunctionsTest extends TestCase {
             "responseHeaders" => array(),
             "logs" => "",
             "errors" => "",
-            "duration" => 0.4,);
-
+            "duration" => 0.4);
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -674,7 +659,6 @@ final class FunctionsTest extends TestCase {
 
         $data = '';
 
-
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
@@ -691,8 +675,7 @@ final class FunctionsTest extends TestCase {
 
         $data = array(
             "total" => 5,
-            "variables" => array(),);
-
+            "variables" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -715,8 +698,7 @@ final class FunctionsTest extends TestCase {
             "value" => "myPa\$\$word1",
             "secret" => true,
             "resourceType" => "function",
-            "resourceId" => "myAwesomeFunction",);
-
+            "resourceId" => "myAwesomeFunction");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -741,8 +723,7 @@ final class FunctionsTest extends TestCase {
             "value" => "myPa\$\$word1",
             "secret" => true,
             "resourceType" => "function",
-            "resourceId" => "myAwesomeFunction",);
-
+            "resourceId" => "myAwesomeFunction");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -766,8 +747,7 @@ final class FunctionsTest extends TestCase {
             "value" => "myPa\$\$word1",
             "secret" => true,
             "resourceType" => "function",
-            "resourceId" => "myAwesomeFunction",);
-
+            "resourceId" => "myAwesomeFunction");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -785,7 +765,6 @@ final class FunctionsTest extends TestCase {
     public function testMethodDeleteVariable(): void {
 
         $data = '';
-
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())

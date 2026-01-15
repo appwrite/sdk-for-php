@@ -7,40 +7,41 @@ use Appwrite\InputFile;
 use Mockery;
 use PHPUnit\Framework\TestCase;
 
-final class GraphqlTest extends TestCase {
+final class OrganizationsTest extends TestCase {
     private $client;
-    private $graphql;
+    private $organizations;
 
     protected function setUp(): void {
         $this->client = Mockery::mock(Client::class);
-        $this->graphql = new Graphql($this->client);
+        $this->organizations = new Organizations($this->client);
     }
 
-    public function testMethodQuery(): void {
+    public function testMethodDelete(): void {
 
-        $data = array();
+        $data = '';
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->graphql->query(
-            array()
+        $response = $this->organizations->delete(
+            "<ORGANIZATION_ID>"
         );
 
         $this->assertSame($data, $response);
     }
 
-    public function testMethodMutation(): void {
+    public function testMethodEstimationDeleteOrganization(): void {
 
-        $data = array();
+        $data = array(
+            "unpaidInvoices" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->graphql->mutation(
-            array()
+        $response = $this->organizations->estimationDeleteOrganization(
+            "<ORGANIZATION_ID>"
         );
 
         $this->assertSame($data, $response);

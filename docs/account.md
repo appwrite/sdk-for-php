@@ -73,6 +73,12 @@ POST https://cloud.appwrite.io/v1/account/jwts
 
 ** Use this endpoint to create a JSON Web Token. You can use the resulting JWT to authenticate on behalf of the current user when working with the Appwrite server-side API and SDKs. The JWT secret is valid for 15 minutes from its creation and will be invalid if the user will logout in that time frame. **
 
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| duration | integer | Time in seconds before JWT expires. Default duration is 900 seconds, and maximum is 3600 seconds. | 900 |
+
 
 ```http request
 GET https://cloud.appwrite.io/v1/account/logs

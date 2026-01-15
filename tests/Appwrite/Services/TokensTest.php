@@ -20,8 +20,7 @@ final class TokensTest extends TestCase {
 
         $data = array(
             "total" => 5,
-            "tokens" => array(),);
-
+            "tokens" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -44,8 +43,7 @@ final class TokensTest extends TestCase {
             "resourceType" => "files",
             "expire" => "2020-10-15T06:38:00.000+00:00",
             "secret" => "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
-            "accessedAt" => "2020-10-15T06:38:00.000+00:00",);
-
+            "accessedAt" => "2020-10-15T06:38:00.000+00:00");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -68,8 +66,7 @@ final class TokensTest extends TestCase {
             "resourceType" => "files",
             "expire" => "2020-10-15T06:38:00.000+00:00",
             "secret" => "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
-            "accessedAt" => "2020-10-15T06:38:00.000+00:00",);
-
+            "accessedAt" => "2020-10-15T06:38:00.000+00:00");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -91,8 +88,7 @@ final class TokensTest extends TestCase {
             "resourceType" => "files",
             "expire" => "2020-10-15T06:38:00.000+00:00",
             "secret" => "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
-            "accessedAt" => "2020-10-15T06:38:00.000+00:00",);
-
+            "accessedAt" => "2020-10-15T06:38:00.000+00:00");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -108,7 +104,6 @@ final class TokensTest extends TestCase {
     public function testMethodDelete(): void {
 
         $data = '';
-
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())

@@ -20,8 +20,7 @@ final class TeamsTest extends TestCase {
 
         $data = array(
             "total" => 5,
-            "teams" => array(),);
-
+            "teams" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -41,8 +40,7 @@ final class TeamsTest extends TestCase {
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "VIP",
             "total" => 7,
-            "prefs" => array(),);
-
+            "prefs" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -64,8 +62,7 @@ final class TeamsTest extends TestCase {
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "VIP",
             "total" => 7,
-            "prefs" => array(),);
-
+            "prefs" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -86,8 +83,7 @@ final class TeamsTest extends TestCase {
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "VIP",
             "total" => 7,
-            "prefs" => array(),);
-
+            "prefs" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -105,7 +101,6 @@ final class TeamsTest extends TestCase {
 
         $data = '';
 
-
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
@@ -121,8 +116,7 @@ final class TeamsTest extends TestCase {
 
         $data = array(
             "total" => 5,
-            "memberships" => array(),);
-
+            "memberships" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -150,8 +144,7 @@ final class TeamsTest extends TestCase {
             "joined" => "2020-10-15T06:38:00.000+00:00",
             "confirm" => true,
             "mfa" => true,
-            "roles" => array(),);
-
+            "roles" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -180,8 +173,7 @@ final class TeamsTest extends TestCase {
             "joined" => "2020-10-15T06:38:00.000+00:00",
             "confirm" => true,
             "mfa" => true,
-            "roles" => array(),);
-
+            "roles" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -210,8 +202,7 @@ final class TeamsTest extends TestCase {
             "joined" => "2020-10-15T06:38:00.000+00:00",
             "confirm" => true,
             "mfa" => true,
-            "roles" => array(),);
-
+            "roles" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -229,7 +220,6 @@ final class TeamsTest extends TestCase {
     public function testMethodDeleteMembership(): void {
 
         $data = '';
-
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -258,8 +248,7 @@ final class TeamsTest extends TestCase {
             "joined" => "2020-10-15T06:38:00.000+00:00",
             "confirm" => true,
             "mfa" => true,
-            "roles" => array(),);
-
+            "roles" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -279,7 +268,6 @@ final class TeamsTest extends TestCase {
 
         $data = array();
 
-
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
@@ -294,7 +282,6 @@ final class TeamsTest extends TestCase {
     public function testMethodUpdatePrefs(): void {
 
         $data = array();
-
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())

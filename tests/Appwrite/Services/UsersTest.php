@@ -6,6 +6,9 @@ use Appwrite\Client;
 use Appwrite\InputFile;
 use Mockery;
 use PHPUnit\Framework\TestCase;
+use Appwrite\Enums\PasswordHash;
+use Appwrite\Enums\AuthenticatorType;
+use Appwrite\Enums\MessagingProviderType;
 
 final class UsersTest extends TestCase {
     private $client;
@@ -20,8 +23,7 @@ final class UsersTest extends TestCase {
 
         $data = array(
             "total" => 5,
-            "users" => array(),);
-
+            "users" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -51,8 +53,7 @@ final class UsersTest extends TestCase {
             "mfa" => true,
             "prefs" => array(),
             "targets" => array(),
-            "accessedAt" => "2020-10-15T06:38:00.000+00:00",);
-
+            "accessedAt" => "2020-10-15T06:38:00.000+00:00");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -83,8 +84,7 @@ final class UsersTest extends TestCase {
             "mfa" => true,
             "prefs" => array(),
             "targets" => array(),
-            "accessedAt" => "2020-10-15T06:38:00.000+00:00",);
-
+            "accessedAt" => "2020-10-15T06:38:00.000+00:00");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -117,8 +117,7 @@ final class UsersTest extends TestCase {
             "mfa" => true,
             "prefs" => array(),
             "targets" => array(),
-            "accessedAt" => "2020-10-15T06:38:00.000+00:00",);
-
+            "accessedAt" => "2020-10-15T06:38:00.000+00:00");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -137,8 +136,7 @@ final class UsersTest extends TestCase {
 
         $data = array(
             "total" => 5,
-            "identities" => array(),);
-
+            "identities" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -153,7 +151,6 @@ final class UsersTest extends TestCase {
     public function testMethodDeleteIdentity(): void {
 
         $data = '';
-
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -184,8 +181,7 @@ final class UsersTest extends TestCase {
             "mfa" => true,
             "prefs" => array(),
             "targets" => array(),
-            "accessedAt" => "2020-10-15T06:38:00.000+00:00",);
-
+            "accessedAt" => "2020-10-15T06:38:00.000+00:00");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -218,8 +214,7 @@ final class UsersTest extends TestCase {
             "mfa" => true,
             "prefs" => array(),
             "targets" => array(),
-            "accessedAt" => "2020-10-15T06:38:00.000+00:00",);
-
+            "accessedAt" => "2020-10-15T06:38:00.000+00:00");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -252,8 +247,7 @@ final class UsersTest extends TestCase {
             "mfa" => true,
             "prefs" => array(),
             "targets" => array(),
-            "accessedAt" => "2020-10-15T06:38:00.000+00:00",);
-
+            "accessedAt" => "2020-10-15T06:38:00.000+00:00");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -291,8 +285,7 @@ final class UsersTest extends TestCase {
             "mfa" => true,
             "prefs" => array(),
             "targets" => array(),
-            "accessedAt" => "2020-10-15T06:38:00.000+00:00",);
-
+            "accessedAt" => "2020-10-15T06:38:00.000+00:00");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -328,8 +321,7 @@ final class UsersTest extends TestCase {
             "mfa" => true,
             "prefs" => array(),
             "targets" => array(),
-            "accessedAt" => "2020-10-15T06:38:00.000+00:00",);
-
+            "accessedAt" => "2020-10-15T06:38:00.000+00:00");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -362,8 +354,7 @@ final class UsersTest extends TestCase {
             "mfa" => true,
             "prefs" => array(),
             "targets" => array(),
-            "accessedAt" => "2020-10-15T06:38:00.000+00:00",);
-
+            "accessedAt" => "2020-10-15T06:38:00.000+00:00");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -379,7 +370,6 @@ final class UsersTest extends TestCase {
     public function testMethodDelete(): void {
 
         $data = '';
-
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -410,8 +400,7 @@ final class UsersTest extends TestCase {
             "mfa" => true,
             "prefs" => array(),
             "targets" => array(),
-            "accessedAt" => "2020-10-15T06:38:00.000+00:00",);
-
+            "accessedAt" => "2020-10-15T06:38:00.000+00:00");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -428,8 +417,7 @@ final class UsersTest extends TestCase {
     public function testMethodCreateJWT(): void {
 
         $data = array(
-            "jwt" => "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",);
-
+            "jwt" => "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -460,8 +448,7 @@ final class UsersTest extends TestCase {
             "mfa" => true,
             "prefs" => array(),
             "targets" => array(),
-            "accessedAt" => "2020-10-15T06:38:00.000+00:00",);
-
+            "accessedAt" => "2020-10-15T06:38:00.000+00:00");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -479,8 +466,7 @@ final class UsersTest extends TestCase {
 
         $data = array(
             "total" => 5,
-            "logs" => array(),);
-
+            "logs" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -497,8 +483,7 @@ final class UsersTest extends TestCase {
 
         $data = array(
             "total" => 5,
-            "memberships" => array(),);
-
+            "memberships" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -529,8 +514,7 @@ final class UsersTest extends TestCase {
             "mfa" => true,
             "prefs" => array(),
             "targets" => array(),
-            "accessedAt" => "2020-10-15T06:38:00.000+00:00",);
-
+            "accessedAt" => "2020-10-15T06:38:00.000+00:00");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -548,14 +532,13 @@ final class UsersTest extends TestCase {
 
         $data = '';
 
-
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
         $response = $this->users->deleteMFAAuthenticator(
             "<USER_ID>",
-            "totp"
+            AuthenticatorType::TOTP()
         );
 
         $this->assertSame($data, $response);
@@ -567,8 +550,7 @@ final class UsersTest extends TestCase {
             "totp" => true,
             "phone" => true,
             "email" => true,
-            "recoveryCode" => true,);
-
+            "recoveryCode" => true);
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -584,8 +566,7 @@ final class UsersTest extends TestCase {
     public function testMethodGetMFARecoveryCodes(): void {
 
         $data = array(
-            "recoveryCodes" => array(),);
-
+            "recoveryCodes" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -601,8 +582,7 @@ final class UsersTest extends TestCase {
     public function testMethodUpdateMFARecoveryCodes(): void {
 
         $data = array(
-            "recoveryCodes" => array(),);
-
+            "recoveryCodes" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -618,8 +598,7 @@ final class UsersTest extends TestCase {
     public function testMethodCreateMFARecoveryCodes(): void {
 
         $data = array(
-            "recoveryCodes" => array(),);
-
+            "recoveryCodes" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -650,8 +629,7 @@ final class UsersTest extends TestCase {
             "mfa" => true,
             "prefs" => array(),
             "targets" => array(),
-            "accessedAt" => "2020-10-15T06:38:00.000+00:00",);
-
+            "accessedAt" => "2020-10-15T06:38:00.000+00:00");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -683,8 +661,7 @@ final class UsersTest extends TestCase {
             "mfa" => true,
             "prefs" => array(),
             "targets" => array(),
-            "accessedAt" => "2020-10-15T06:38:00.000+00:00",);
-
+            "accessedAt" => "2020-10-15T06:38:00.000+00:00");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -716,8 +693,7 @@ final class UsersTest extends TestCase {
             "mfa" => true,
             "prefs" => array(),
             "targets" => array(),
-            "accessedAt" => "2020-10-15T06:38:00.000+00:00",);
-
+            "accessedAt" => "2020-10-15T06:38:00.000+00:00");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -735,7 +711,6 @@ final class UsersTest extends TestCase {
 
         $data = array();
 
-
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
@@ -750,7 +725,6 @@ final class UsersTest extends TestCase {
     public function testMethodUpdatePrefs(): void {
 
         $data = array();
-
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -768,8 +742,7 @@ final class UsersTest extends TestCase {
 
         $data = array(
             "total" => 5,
-            "sessions" => array(),);
-
+            "sessions" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -813,8 +786,7 @@ final class UsersTest extends TestCase {
             "current" => true,
             "factors" => array(),
             "secret" => "5e5bb8c16897e",
-            "mfaUpdatedAt" => "2020-10-15T06:38:00.000+00:00",);
-
+            "mfaUpdatedAt" => "2020-10-15T06:38:00.000+00:00");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -831,7 +803,6 @@ final class UsersTest extends TestCase {
 
         $data = '';
 
-
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
@@ -846,7 +817,6 @@ final class UsersTest extends TestCase {
     public function testMethodDeleteSession(): void {
 
         $data = '';
-
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -878,8 +848,7 @@ final class UsersTest extends TestCase {
             "mfa" => true,
             "prefs" => array(),
             "targets" => array(),
-            "accessedAt" => "2020-10-15T06:38:00.000+00:00",);
-
+            "accessedAt" => "2020-10-15T06:38:00.000+00:00");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -897,8 +866,7 @@ final class UsersTest extends TestCase {
 
         $data = array(
             "total" => 5,
-            "targets" => array(),);
-
+            "targets" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -921,8 +889,7 @@ final class UsersTest extends TestCase {
             "userId" => "259125845563242502",
             "providerType" => "email",
             "identifier" => "token",
-            "expired" => true,);
-
+            "expired" => true);
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -931,7 +898,7 @@ final class UsersTest extends TestCase {
         $response = $this->users->createTarget(
             "<USER_ID>",
             "<TARGET_ID>",
-            "email",
+            MessagingProviderType::EMAIL(),
             "<IDENTIFIER>"
         );
 
@@ -948,8 +915,7 @@ final class UsersTest extends TestCase {
             "userId" => "259125845563242502",
             "providerType" => "email",
             "identifier" => "token",
-            "expired" => true,);
-
+            "expired" => true);
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -973,8 +939,7 @@ final class UsersTest extends TestCase {
             "userId" => "259125845563242502",
             "providerType" => "email",
             "identifier" => "token",
-            "expired" => true,);
-
+            "expired" => true);
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -991,7 +956,6 @@ final class UsersTest extends TestCase {
     public function testMethodDeleteTarget(): void {
 
         $data = '';
-
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1013,8 +977,7 @@ final class UsersTest extends TestCase {
             "userId" => "5e5ea5c168bb8",
             "secret" => "",
             "expire" => "2020-10-15T06:38:00.000+00:00",
-            "phrase" => "Golden Fox",);
-
+            "phrase" => "Golden Fox");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1045,8 +1008,7 @@ final class UsersTest extends TestCase {
             "mfa" => true,
             "prefs" => array(),
             "targets" => array(),
-            "accessedAt" => "2020-10-15T06:38:00.000+00:00",);
-
+            "accessedAt" => "2020-10-15T06:38:00.000+00:00");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1078,8 +1040,7 @@ final class UsersTest extends TestCase {
             "mfa" => true,
             "prefs" => array(),
             "targets" => array(),
-            "accessedAt" => "2020-10-15T06:38:00.000+00:00",);
-
+            "accessedAt" => "2020-10-15T06:38:00.000+00:00");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
