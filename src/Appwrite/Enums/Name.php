@@ -16,6 +16,7 @@ class Name implements JsonSerializable
     private static Name $V1WEBHOOKS;
     private static Name $V1CERTIFICATES;
     private static Name $V1BUILDS;
+    private static Name $V1SCREENSHOTS;
     private static Name $V1MESSAGING;
     private static Name $V1MIGRATIONS;
 
@@ -105,6 +106,13 @@ class Name implements JsonSerializable
             self::$V1BUILDS = new Name('v1-builds');
         }
         return self::$V1BUILDS;
+    }
+    public static function V1SCREENSHOTS(): Name
+    {
+        if (!isset(self::$V1SCREENSHOTS)) {
+            self::$V1SCREENSHOTS = new Name('v1-screenshots');
+        }
+        return self::$V1SCREENSHOTS;
     }
     public static function V1MESSAGING(): Name
     {

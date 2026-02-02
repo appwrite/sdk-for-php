@@ -178,6 +178,38 @@ class Health extends Service
     }
 
     /**
+     * Get the number of audit logs that are waiting to be processed in the
+     * Appwrite internal queue server.
+     *
+     * @param ?int $threshold
+     * @throws AppwriteException
+     * @return array
+     */
+    public function getQueueAudits(?int $threshold = null): array
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/health/queue/audits'
+        );
+
+        $apiParams = [];
+
+        if (!is_null($threshold)) {
+            $apiParams['threshold'] = $threshold;
+        }
+
+        $apiHeaders = [];
+
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
      * Get the number of builds that are waiting to be processed in the Appwrite
      * internal queue server.
      *

@@ -6,6 +6,12 @@ use Appwrite\Client;
 use Appwrite\InputFile;
 use Mockery;
 use PHPUnit\Framework\TestCase;
+use Appwrite\Enums\Framework;
+use Appwrite\Enums\BuildRuntime;
+use Appwrite\Enums\Adapter;
+use Appwrite\Enums\TemplateReferenceType;
+use Appwrite\Enums\VCSReferenceType;
+use Appwrite\Enums\DeploymentDownloadType;
 
 final class SitesTest extends TestCase {
     private $client;
@@ -20,8 +26,7 @@ final class SitesTest extends TestCase {
 
         $data = array(
             "total" => 5,
-            "sites" => array(),);
-
+            "sites" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -64,8 +69,7 @@ final class SitesTest extends TestCase {
             "specification" => "s-1vcpu-512mb",
             "buildRuntime" => "node-22",
             "adapter" => "static",
-            "fallbackFile" => "index.html",);
-
+            "fallbackFile" => "index.html");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -74,8 +78,8 @@ final class SitesTest extends TestCase {
         $response = $this->sites->create(
             "<SITE_ID>",
             "<NAME>",
-            "analog",
-            "node-14.5"
+            Framework::ANALOG(),
+            BuildRuntime::NODE145()
         );
 
         $this->assertSame($data, $response);
@@ -85,8 +89,7 @@ final class SitesTest extends TestCase {
 
         $data = array(
             "total" => 5,
-            "frameworks" => array(),);
-
+            "frameworks" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -102,8 +105,7 @@ final class SitesTest extends TestCase {
 
         $data = array(
             "total" => 5,
-            "specifications" => array(),);
-
+            "specifications" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -146,8 +148,7 @@ final class SitesTest extends TestCase {
             "specification" => "s-1vcpu-512mb",
             "buildRuntime" => "node-22",
             "adapter" => "static",
-            "fallbackFile" => "index.html",);
-
+            "fallbackFile" => "index.html");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -191,8 +192,7 @@ final class SitesTest extends TestCase {
             "specification" => "s-1vcpu-512mb",
             "buildRuntime" => "node-22",
             "adapter" => "static",
-            "fallbackFile" => "index.html",);
-
+            "fallbackFile" => "index.html");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -201,7 +201,7 @@ final class SitesTest extends TestCase {
         $response = $this->sites->update(
             "<SITE_ID>",
             "<NAME>",
-            "analog"
+            Framework::ANALOG()
         );
 
         $this->assertSame($data, $response);
@@ -210,7 +210,6 @@ final class SitesTest extends TestCase {
     public function testMethodDelete(): void {
 
         $data = '';
-
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -254,8 +253,7 @@ final class SitesTest extends TestCase {
             "specification" => "s-1vcpu-512mb",
             "buildRuntime" => "node-22",
             "adapter" => "static",
-            "fallbackFile" => "index.html",);
-
+            "fallbackFile" => "index.html");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -273,8 +271,7 @@ final class SitesTest extends TestCase {
 
         $data = array(
             "total" => 5,
-            "deployments" => array(),);
-
+            "deployments" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -316,8 +313,7 @@ final class SitesTest extends TestCase {
             "providerCommitMessage" => "Update index.js",
             "providerCommitUrl" => "https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb",
             "providerBranch" => "0.7.x",
-            "providerBranchUrl" => "https://github.com/vermakhushboo/appwrite/tree/0.7.x",);
-
+            "providerBranchUrl" => "https://github.com/vermakhushboo/appwrite/tree/0.7.x");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -361,8 +357,7 @@ final class SitesTest extends TestCase {
             "providerCommitMessage" => "Update index.js",
             "providerCommitUrl" => "https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb",
             "providerBranch" => "0.7.x",
-            "providerBranchUrl" => "https://github.com/vermakhushboo/appwrite/tree/0.7.x",);
-
+            "providerBranchUrl" => "https://github.com/vermakhushboo/appwrite/tree/0.7.x");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -405,8 +400,7 @@ final class SitesTest extends TestCase {
             "providerCommitMessage" => "Update index.js",
             "providerCommitUrl" => "https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb",
             "providerBranch" => "0.7.x",
-            "providerBranchUrl" => "https://github.com/vermakhushboo/appwrite/tree/0.7.x",);
-
+            "providerBranchUrl" => "https://github.com/vermakhushboo/appwrite/tree/0.7.x");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -417,7 +411,7 @@ final class SitesTest extends TestCase {
             "<REPOSITORY>",
             "<OWNER>",
             "<ROOT_DIRECTORY>",
-            "branch",
+            TemplateReferenceType::BRANCH(),
             "<REFERENCE>"
         );
 
@@ -453,8 +447,7 @@ final class SitesTest extends TestCase {
             "providerCommitMessage" => "Update index.js",
             "providerCommitUrl" => "https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb",
             "providerBranch" => "0.7.x",
-            "providerBranchUrl" => "https://github.com/vermakhushboo/appwrite/tree/0.7.x",);
-
+            "providerBranchUrl" => "https://github.com/vermakhushboo/appwrite/tree/0.7.x");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -462,7 +455,7 @@ final class SitesTest extends TestCase {
 
         $response = $this->sites->createVcsDeployment(
             "<SITE_ID>",
-            "branch",
+            VCSReferenceType::BRANCH(),
             "<REFERENCE>"
         );
 
@@ -498,8 +491,7 @@ final class SitesTest extends TestCase {
             "providerCommitMessage" => "Update index.js",
             "providerCommitUrl" => "https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb",
             "providerBranch" => "0.7.x",
-            "providerBranchUrl" => "https://github.com/vermakhushboo/appwrite/tree/0.7.x",);
-
+            "providerBranchUrl" => "https://github.com/vermakhushboo/appwrite/tree/0.7.x");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -517,7 +509,6 @@ final class SitesTest extends TestCase {
 
         $data = '';
 
-
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
@@ -533,7 +524,6 @@ final class SitesTest extends TestCase {
     public function testMethodGetDeploymentDownload(): void {
 
         $data = '';
-
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -576,8 +566,7 @@ final class SitesTest extends TestCase {
             "providerCommitMessage" => "Update index.js",
             "providerCommitUrl" => "https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb",
             "providerBranch" => "0.7.x",
-            "providerBranchUrl" => "https://github.com/vermakhushboo/appwrite/tree/0.7.x",);
-
+            "providerBranchUrl" => "https://github.com/vermakhushboo/appwrite/tree/0.7.x");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -595,8 +584,7 @@ final class SitesTest extends TestCase {
 
         $data = array(
             "total" => 5,
-            "executions" => array(),);
-
+            "executions" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -628,8 +616,7 @@ final class SitesTest extends TestCase {
             "responseHeaders" => array(),
             "logs" => "",
             "errors" => "",
-            "duration" => 0.4,);
-
+            "duration" => 0.4);
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -647,7 +634,6 @@ final class SitesTest extends TestCase {
 
         $data = '';
 
-
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
@@ -664,8 +650,7 @@ final class SitesTest extends TestCase {
 
         $data = array(
             "total" => 5,
-            "variables" => array(),);
-
+            "variables" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -688,8 +673,7 @@ final class SitesTest extends TestCase {
             "value" => "myPa\$\$word1",
             "secret" => true,
             "resourceType" => "function",
-            "resourceId" => "myAwesomeFunction",);
-
+            "resourceId" => "myAwesomeFunction");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -714,8 +698,7 @@ final class SitesTest extends TestCase {
             "value" => "myPa\$\$word1",
             "secret" => true,
             "resourceType" => "function",
-            "resourceId" => "myAwesomeFunction",);
-
+            "resourceId" => "myAwesomeFunction");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -739,8 +722,7 @@ final class SitesTest extends TestCase {
             "value" => "myPa\$\$word1",
             "secret" => true,
             "resourceType" => "function",
-            "resourceId" => "myAwesomeFunction",);
-
+            "resourceId" => "myAwesomeFunction");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -758,7 +740,6 @@ final class SitesTest extends TestCase {
     public function testMethodDeleteVariable(): void {
 
         $data = '';
-
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())

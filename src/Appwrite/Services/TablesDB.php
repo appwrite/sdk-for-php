@@ -9,6 +9,7 @@ use Appwrite\InputFile;
 use Appwrite\Enums\RelationshipType;
 use Appwrite\Enums\RelationMutate;
 use Appwrite\Enums\IndexType;
+use Appwrite\Enums\OrderBy;
 
 class TablesDB extends Service
 {
@@ -322,12 +323,12 @@ class TablesDB extends Service
      * Update a database by its unique ID.
      *
      * @param string $databaseId
-     * @param string $name
+     * @param ?string $name
      * @param ?bool $enabled
      * @throws AppwriteException
      * @return array
      */
-    public function update(string $databaseId, string $name, ?bool $enabled = null): array
+    public function update(string $databaseId, ?string $name = null, ?bool $enabled = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}'],
@@ -337,7 +338,10 @@ class TablesDB extends Service
 
         $apiParams = [];
         $apiParams['databaseId'] = $databaseId;
-        $apiParams['name'] = $name;
+
+        if (!is_null($name)) {
+            $apiParams['name'] = $name;
+        }
 
         if (!is_null($enabled)) {
             $apiParams['enabled'] = $enabled;
@@ -522,14 +526,14 @@ class TablesDB extends Service
      *
      * @param string $databaseId
      * @param string $tableId
-     * @param string $name
+     * @param ?string $name
      * @param ?array $permissions
      * @param ?bool $rowSecurity
      * @param ?bool $enabled
      * @throws AppwriteException
      * @return array
      */
-    public function updateTable(string $databaseId, string $tableId, string $name, ?array $permissions = null, ?bool $rowSecurity = null, ?bool $enabled = null): array
+    public function updateTable(string $databaseId, string $tableId, ?string $name = null, ?array $permissions = null, ?bool $rowSecurity = null, ?bool $enabled = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
@@ -540,7 +544,10 @@ class TablesDB extends Service
         $apiParams = [];
         $apiParams['databaseId'] = $databaseId;
         $apiParams['tableId'] = $tableId;
-        $apiParams['name'] = $name;
+
+        if (!is_null($name)) {
+            $apiParams['name'] = $name;
+        }
         $apiParams['permissions'] = $permissions;
 
         if (!is_null($rowSecurity)) {

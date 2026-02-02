@@ -37,12 +37,26 @@ class Client
      */
     protected array $headers = [
         'content-type' => '',
-        'user-agent' => 'AppwritePHPSDK/19.1.0 ()',
+        'user-agent' => 'AppwritePHPSDK/20.0.0 ()',
         'x-sdk-name'=> 'PHP',
         'x-sdk-platform'=> 'server',
         'x-sdk-language'=> 'php',
-        'x-sdk-version'=> '19.1.0',
+        'x-sdk-version'=> '20.0.0',
     ];
+
+    /**
+     * Timeout in seconds
+     *
+     * @var int|null
+     */
+    protected ?int $timeout = null;
+
+    /**
+     * Connect timeout in seconds
+     *
+     * @var int|null
+     */
+    protected ?int $connectTimeout = null;
 
     /**
      * Client constructor.
@@ -174,13 +188,37 @@ class Client
     }
 
     /**
+     * Set Timeout
+     *
+     * @param int $timeout Timeout in seconds
+     * @return Client
+     */
+    public function setTimeout(int $timeout): Client
+    {
+        $this->timeout = $timeout;
+        return $this;
+    }
+
+    /**
+     * Set Connect Timeout
+     *
+     * @param int $connectTimeout Connect timeout in seconds
+     * @return Client
+     */
+    public function setConnectTimeout(int $connectTimeout): Client
+    {
+        $this->connectTimeout = $connectTimeout;
+        return $this;
+    }
+
+    /**
      * @param $key
      * @param $value
      */
     public function addHeader(string $key, string $value): Client
     {
         $this->headers[strtolower($key)] = $value;
-        
+
         return $this;
     }
 
@@ -210,7 +248,7 @@ class Client
 
         switch ($headers['content-type']) {
             case 'application/json':
-                $query = json_encode($params);
+                $query = json_encode($this->prepareParams($params));
                 break;
 
             case 'multipart/form-data':
@@ -253,6 +291,16 @@ class Client
         if($this->selfSigned) {
             curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        }
+
+        // Set timeout if configured
+        if($this->timeout !== null) {
+            curl_setopt($ch, CURLOPT_TIMEOUT, $this->timeout);
+        }
+
+        // Set connect timeout if configured
+        if($this->connectTimeout !== null) {
+            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $this->connectTimeout);
         }
 
         $responseBody   = curl_exec($ch);
@@ -315,5 +363,24 @@ class Client
         }
 
         return $output;
+    }
+
+    /**
+     * Prepare params for JSON encoding by converting model objects to arrays
+     *
+     * @param mixed $data
+     * @return mixed
+     */
+    protected function prepareParams($data)
+    {
+        if (is_array($data)) {
+            return array_map([$this, 'prepareParams'], $data);
+        }
+
+        if (is_object($data) && method_exists($data, 'toArray')) {
+            return $data->toArray();
+        }
+
+        return $data;
     }
 }

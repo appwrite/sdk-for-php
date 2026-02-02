@@ -9,6 +9,7 @@ use Appwrite\InputFile;
 use Appwrite\Enums\RelationshipType;
 use Appwrite\Enums\RelationMutate;
 use Appwrite\Enums\IndexType;
+use Appwrite\Enums\OrderBy;
 
 class Databases extends Service
 {
@@ -331,7 +332,7 @@ class Databases extends Service
      * Update a database by its unique ID.
      *
      * @param string $databaseId
-     * @param string $name
+     * @param ?string $name
      * @param ?bool $enabled
      * @throws AppwriteException
      * @return array
@@ -339,7 +340,7 @@ class Databases extends Service
      * @deprecated This API has been deprecated since 1.8.0. Please use `update` instead.
      * @see TablesDB::update
      */
-    public function update(string $databaseId, string $name, ?bool $enabled = null): array
+    public function update(string $databaseId, ?string $name = null, ?bool $enabled = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}'],
@@ -349,7 +350,10 @@ class Databases extends Service
 
         $apiParams = [];
         $apiParams['databaseId'] = $databaseId;
-        $apiParams['name'] = $name;
+
+        if (!is_null($name)) {
+            $apiParams['name'] = $name;
+        }
 
         if (!is_null($enabled)) {
             $apiParams['enabled'] = $enabled;
@@ -546,7 +550,7 @@ class Databases extends Service
      *
      * @param string $databaseId
      * @param string $collectionId
-     * @param string $name
+     * @param ?string $name
      * @param ?array $permissions
      * @param ?bool $documentSecurity
      * @param ?bool $enabled
@@ -556,7 +560,7 @@ class Databases extends Service
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateTable` instead.
      * @see TablesDB::updateTable
      */
-    public function updateCollection(string $databaseId, string $collectionId, string $name, ?array $permissions = null, ?bool $documentSecurity = null, ?bool $enabled = null): array
+    public function updateCollection(string $databaseId, string $collectionId, ?string $name = null, ?array $permissions = null, ?bool $documentSecurity = null, ?bool $enabled = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
@@ -567,7 +571,10 @@ class Databases extends Service
         $apiParams = [];
         $apiParams['databaseId'] = $databaseId;
         $apiParams['collectionId'] = $collectionId;
-        $apiParams['name'] = $name;
+
+        if (!is_null($name)) {
+            $apiParams['name'] = $name;
+        }
         $apiParams['permissions'] = $permissions;
 
         if (!is_null($documentSecurity)) {
@@ -2244,7 +2251,7 @@ class Databases extends Service
      * @param string $databaseId
      * @param string $collectionId
      * @param string $documentId
-     * @param array $data
+     * @param ?array $data
      * @param ?array $permissions
      * @param ?string $transactionId
      * @throws AppwriteException
@@ -2253,7 +2260,7 @@ class Databases extends Service
      * @deprecated This API has been deprecated since 1.8.0. Please use `upsertRow` instead.
      * @see TablesDB::upsertRow
      */
-    public function upsertDocument(string $databaseId, string $collectionId, string $documentId, array $data, ?array $permissions = null, ?string $transactionId = null): array
+    public function upsertDocument(string $databaseId, string $collectionId, string $documentId, ?array $data = null, ?array $permissions = null, ?string $transactionId = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{documentId}'],
@@ -2265,7 +2272,10 @@ class Databases extends Service
         $apiParams['databaseId'] = $databaseId;
         $apiParams['collectionId'] = $collectionId;
         $apiParams['documentId'] = $documentId;
-        $apiParams['data'] = $data;
+
+        if (!is_null($data)) {
+            $apiParams['data'] = $data;
+        }
         $apiParams['permissions'] = $permissions;
         $apiParams['transactionId'] = $transactionId;
 

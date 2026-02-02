@@ -197,10 +197,11 @@ class Account extends Service
      * from its creation and will be invalid if the user will logout in that time
      * frame.
      *
+     * @param ?int $duration
      * @throws AppwriteException
      * @return array
      */
-    public function createJWT(): array
+    public function createJWT(?int $duration = null): array
     {
         $apiPath = str_replace(
             [],
@@ -209,6 +210,10 @@ class Account extends Service
         );
 
         $apiParams = [];
+
+        if (!is_null($duration)) {
+            $apiParams['duration'] = $duration;
+        }
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
