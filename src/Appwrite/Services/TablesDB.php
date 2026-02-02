@@ -1326,6 +1326,174 @@ class TablesDB extends Service
     }
 
     /**
+     * Create a longtext column.
+     * 
+     *
+     * @param string $databaseId
+     * @param string $tableId
+     * @param string $key
+     * @param bool $required
+     * @param ?string $xdefault
+     * @param ?bool $xarray
+     * @throws AppwriteException
+     * @return array
+     */
+    public function createLongtextColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): array
+    {
+        $apiPath = str_replace(
+            ['{databaseId}', '{tableId}'],
+            [$databaseId, $tableId],
+            '/tablesdb/{databaseId}/tables/{tableId}/columns/longtext'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['tableId'] = $tableId;
+        $apiParams['key'] = $key;
+        $apiParams['required'] = $required;
+        $apiParams['default'] = $xdefault;
+
+        if (!is_null($xarray)) {
+            $apiParams['array'] = $xarray;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Update a longtext column. Changing the `default` value will not update
+     * already existing rows.
+     * 
+     *
+     * @param string $databaseId
+     * @param string $tableId
+     * @param string $key
+     * @param bool $required
+     * @param ?string $xdefault
+     * @param ?string $newKey
+     * @throws AppwriteException
+     * @return array
+     */
+    public function updateLongtextColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): array
+    {
+        $apiPath = str_replace(
+            ['{databaseId}', '{tableId}', '{key}'],
+            [$databaseId, $tableId, $key],
+            '/tablesdb/{databaseId}/tables/{tableId}/columns/longtext/{key}'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['tableId'] = $tableId;
+        $apiParams['key'] = $key;
+        $apiParams['required'] = $required;
+        $apiParams['default'] = $xdefault;
+        $apiParams['newKey'] = $newKey;
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Create a mediumtext column.
+     * 
+     *
+     * @param string $databaseId
+     * @param string $tableId
+     * @param string $key
+     * @param bool $required
+     * @param ?string $xdefault
+     * @param ?bool $xarray
+     * @throws AppwriteException
+     * @return array
+     */
+    public function createMediumtextColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): array
+    {
+        $apiPath = str_replace(
+            ['{databaseId}', '{tableId}'],
+            [$databaseId, $tableId],
+            '/tablesdb/{databaseId}/tables/{tableId}/columns/mediumtext'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['tableId'] = $tableId;
+        $apiParams['key'] = $key;
+        $apiParams['required'] = $required;
+        $apiParams['default'] = $xdefault;
+
+        if (!is_null($xarray)) {
+            $apiParams['array'] = $xarray;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Update a mediumtext column. Changing the `default` value will not update
+     * already existing rows.
+     * 
+     *
+     * @param string $databaseId
+     * @param string $tableId
+     * @param string $key
+     * @param bool $required
+     * @param ?string $xdefault
+     * @param ?string $newKey
+     * @throws AppwriteException
+     * @return array
+     */
+    public function updateMediumtextColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): array
+    {
+        $apiPath = str_replace(
+            ['{databaseId}', '{tableId}', '{key}'],
+            [$databaseId, $tableId, $key],
+            '/tablesdb/{databaseId}/tables/{tableId}/columns/mediumtext/{key}'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['tableId'] = $tableId;
+        $apiParams['key'] = $key;
+        $apiParams['required'] = $required;
+        $apiParams['default'] = $xdefault;
+        $apiParams['newKey'] = $newKey;
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
      * Create a geometric point column.
      *
      * @param string $databaseId
@@ -1544,6 +1712,9 @@ class TablesDB extends Service
      * @param ?bool $encrypt
      * @throws AppwriteException
      * @return array
+     *
+     * @deprecated This API has been deprecated since 1.9.0. Please use `createTextColumn` instead.
+     * @see TablesDB::createTextColumn
      */
     public function createStringColumn(string $databaseId, string $tableId, string $key, int $size, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): array
     {
@@ -1594,6 +1765,9 @@ class TablesDB extends Service
      * @param ?string $newKey
      * @throws AppwriteException
      * @return array
+     *
+     * @deprecated This API has been deprecated since 1.8.0. Please use `updateTextColumn` instead.
+     * @see TablesDB::updateTextColumn
      */
     public function updateStringColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?int $size = null, ?string $newKey = null): array
     {
@@ -1610,6 +1784,90 @@ class TablesDB extends Service
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
         $apiParams['size'] = $size;
+        $apiParams['newKey'] = $newKey;
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Create a text column.
+     * 
+     *
+     * @param string $databaseId
+     * @param string $tableId
+     * @param string $key
+     * @param bool $required
+     * @param ?string $xdefault
+     * @param ?bool $xarray
+     * @throws AppwriteException
+     * @return array
+     */
+    public function createTextColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): array
+    {
+        $apiPath = str_replace(
+            ['{databaseId}', '{tableId}'],
+            [$databaseId, $tableId],
+            '/tablesdb/{databaseId}/tables/{tableId}/columns/text'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['tableId'] = $tableId;
+        $apiParams['key'] = $key;
+        $apiParams['required'] = $required;
+        $apiParams['default'] = $xdefault;
+
+        if (!is_null($xarray)) {
+            $apiParams['array'] = $xarray;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Update a text column. Changing the `default` value will not update already
+     * existing rows.
+     * 
+     *
+     * @param string $databaseId
+     * @param string $tableId
+     * @param string $key
+     * @param bool $required
+     * @param ?string $xdefault
+     * @param ?string $newKey
+     * @throws AppwriteException
+     * @return array
+     */
+    public function updateTextColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): array
+    {
+        $apiPath = str_replace(
+            ['{databaseId}', '{tableId}', '{key}'],
+            [$databaseId, $tableId, $key],
+            '/tablesdb/{databaseId}/tables/{tableId}/columns/text/{key}'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['tableId'] = $tableId;
+        $apiParams['key'] = $key;
+        $apiParams['required'] = $required;
+        $apiParams['default'] = $xdefault;
         $apiParams['newKey'] = $newKey;
 
         $apiHeaders = [];
@@ -1694,6 +1952,94 @@ class TablesDB extends Service
         $apiParams['key'] = $key;
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
+        $apiParams['newKey'] = $newKey;
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Create a varchar column.
+     * 
+     *
+     * @param string $databaseId
+     * @param string $tableId
+     * @param string $key
+     * @param int $size
+     * @param bool $required
+     * @param ?string $xdefault
+     * @param ?bool $xarray
+     * @throws AppwriteException
+     * @return array
+     */
+    public function createVarcharColumn(string $databaseId, string $tableId, string $key, int $size, bool $required, ?string $xdefault = null, ?bool $xarray = null): array
+    {
+        $apiPath = str_replace(
+            ['{databaseId}', '{tableId}'],
+            [$databaseId, $tableId],
+            '/tablesdb/{databaseId}/tables/{tableId}/columns/varchar'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['tableId'] = $tableId;
+        $apiParams['key'] = $key;
+        $apiParams['size'] = $size;
+        $apiParams['required'] = $required;
+        $apiParams['default'] = $xdefault;
+
+        if (!is_null($xarray)) {
+            $apiParams['array'] = $xarray;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Update a varchar column. Changing the `default` value will not update
+     * already existing rows.
+     * 
+     *
+     * @param string $databaseId
+     * @param string $tableId
+     * @param string $key
+     * @param bool $required
+     * @param ?string $xdefault
+     * @param ?int $size
+     * @param ?string $newKey
+     * @throws AppwriteException
+     * @return array
+     */
+    public function updateVarcharColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?int $size = null, ?string $newKey = null): array
+    {
+        $apiPath = str_replace(
+            ['{databaseId}', '{tableId}', '{key}'],
+            [$databaseId, $tableId, $key],
+            '/tablesdb/{databaseId}/tables/{tableId}/columns/varchar/{key}'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['tableId'] = $tableId;
+        $apiParams['key'] = $key;
+        $apiParams['required'] = $required;
+        $apiParams['default'] = $xdefault;
+        $apiParams['size'] = $size;
         $apiParams['newKey'] = $newKey;
 
         $apiHeaders = [];

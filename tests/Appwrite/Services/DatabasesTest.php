@@ -778,6 +778,108 @@ final class DatabasesTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
+    public function testMethodCreateLongtextAttribute(): void {
+
+        $data = array(
+            "key" => "fullName",
+            "type" => "string",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00");
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->databases->createLongtextAttribute(
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
+            "",
+            true
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodUpdateLongtextAttribute(): void {
+
+        $data = array(
+            "key" => "fullName",
+            "type" => "string",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00");
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->databases->updateLongtextAttribute(
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
+            "",
+            true,
+            "<DEFAULT>"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodCreateMediumtextAttribute(): void {
+
+        $data = array(
+            "key" => "fullName",
+            "type" => "string",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00");
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->databases->createMediumtextAttribute(
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
+            "",
+            true
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodUpdateMediumtextAttribute(): void {
+
+        $data = array(
+            "key" => "fullName",
+            "type" => "string",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00");
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->databases->updateMediumtextAttribute(
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
+            "",
+            true,
+            "<DEFAULT>"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
     public function testMethodCreatePointAttribute(): void {
 
         $data = array(
@@ -963,6 +1065,57 @@ final class DatabasesTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
+    public function testMethodCreateTextAttribute(): void {
+
+        $data = array(
+            "key" => "fullName",
+            "type" => "string",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00");
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->databases->createTextAttribute(
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
+            "",
+            true
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodUpdateTextAttribute(): void {
+
+        $data = array(
+            "key" => "fullName",
+            "type" => "string",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00");
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->databases->updateTextAttribute(
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
+            "",
+            true,
+            "<DEFAULT>"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
     public function testMethodCreateUrlAttribute(): void {
 
         $data = array(
@@ -1011,6 +1164,60 @@ final class DatabasesTest extends TestCase {
             "",
             true,
             "https://example.com"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodCreateVarcharAttribute(): void {
+
+        $data = array(
+            "key" => "fullName",
+            "type" => "string",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "size" => 128);
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->databases->createVarcharAttribute(
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
+            "",
+            1,
+            true
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodUpdateVarcharAttribute(): void {
+
+        $data = array(
+            "key" => "fullName",
+            "type" => "string",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "size" => 128);
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->databases->updateVarcharAttribute(
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
+            "",
+            true,
+            "<DEFAULT>"
         );
 
         $this->assertSame($data, $response);

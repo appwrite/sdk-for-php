@@ -1408,6 +1408,174 @@ class Databases extends Service
     }
 
     /**
+     * Create a longtext attribute.
+     * 
+     *
+     * @param string $databaseId
+     * @param string $collectionId
+     * @param string $key
+     * @param bool $required
+     * @param ?string $xdefault
+     * @param ?bool $xarray
+     * @throws AppwriteException
+     * @return array
+     */
+    public function createLongtextAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): array
+    {
+        $apiPath = str_replace(
+            ['{databaseId}', '{collectionId}'],
+            [$databaseId, $collectionId],
+            '/databases/{databaseId}/collections/{collectionId}/attributes/longtext'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['collectionId'] = $collectionId;
+        $apiParams['key'] = $key;
+        $apiParams['required'] = $required;
+        $apiParams['default'] = $xdefault;
+
+        if (!is_null($xarray)) {
+            $apiParams['array'] = $xarray;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Update a longtext attribute. Changing the `default` value will not update
+     * already existing documents.
+     * 
+     *
+     * @param string $databaseId
+     * @param string $collectionId
+     * @param string $key
+     * @param bool $required
+     * @param ?string $xdefault
+     * @param ?string $newKey
+     * @throws AppwriteException
+     * @return array
+     */
+    public function updateLongtextAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): array
+    {
+        $apiPath = str_replace(
+            ['{databaseId}', '{collectionId}', '{key}'],
+            [$databaseId, $collectionId, $key],
+            '/databases/{databaseId}/collections/{collectionId}/attributes/longtext/{key}'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['collectionId'] = $collectionId;
+        $apiParams['key'] = $key;
+        $apiParams['required'] = $required;
+        $apiParams['default'] = $xdefault;
+        $apiParams['newKey'] = $newKey;
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Create a mediumtext attribute.
+     * 
+     *
+     * @param string $databaseId
+     * @param string $collectionId
+     * @param string $key
+     * @param bool $required
+     * @param ?string $xdefault
+     * @param ?bool $xarray
+     * @throws AppwriteException
+     * @return array
+     */
+    public function createMediumtextAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): array
+    {
+        $apiPath = str_replace(
+            ['{databaseId}', '{collectionId}'],
+            [$databaseId, $collectionId],
+            '/databases/{databaseId}/collections/{collectionId}/attributes/mediumtext'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['collectionId'] = $collectionId;
+        $apiParams['key'] = $key;
+        $apiParams['required'] = $required;
+        $apiParams['default'] = $xdefault;
+
+        if (!is_null($xarray)) {
+            $apiParams['array'] = $xarray;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Update a mediumtext attribute. Changing the `default` value will not update
+     * already existing documents.
+     * 
+     *
+     * @param string $databaseId
+     * @param string $collectionId
+     * @param string $key
+     * @param bool $required
+     * @param ?string $xdefault
+     * @param ?string $newKey
+     * @throws AppwriteException
+     * @return array
+     */
+    public function updateMediumtextAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): array
+    {
+        $apiPath = str_replace(
+            ['{databaseId}', '{collectionId}', '{key}'],
+            [$databaseId, $collectionId, $key],
+            '/databases/{databaseId}/collections/{collectionId}/attributes/mediumtext/{key}'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['collectionId'] = $collectionId;
+        $apiParams['key'] = $key;
+        $apiParams['required'] = $required;
+        $apiParams['default'] = $xdefault;
+        $apiParams['newKey'] = $newKey;
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
      * Create a geometric point attribute.
      *
      * @param string $databaseId
@@ -1727,6 +1895,90 @@ class Databases extends Service
     }
 
     /**
+     * Create a text attribute.
+     * 
+     *
+     * @param string $databaseId
+     * @param string $collectionId
+     * @param string $key
+     * @param bool $required
+     * @param ?string $xdefault
+     * @param ?bool $xarray
+     * @throws AppwriteException
+     * @return array
+     */
+    public function createTextAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): array
+    {
+        $apiPath = str_replace(
+            ['{databaseId}', '{collectionId}'],
+            [$databaseId, $collectionId],
+            '/databases/{databaseId}/collections/{collectionId}/attributes/text'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['collectionId'] = $collectionId;
+        $apiParams['key'] = $key;
+        $apiParams['required'] = $required;
+        $apiParams['default'] = $xdefault;
+
+        if (!is_null($xarray)) {
+            $apiParams['array'] = $xarray;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Update a text attribute. Changing the `default` value will not update
+     * already existing documents.
+     * 
+     *
+     * @param string $databaseId
+     * @param string $collectionId
+     * @param string $key
+     * @param bool $required
+     * @param ?string $xdefault
+     * @param ?string $newKey
+     * @throws AppwriteException
+     * @return array
+     */
+    public function updateTextAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): array
+    {
+        $apiPath = str_replace(
+            ['{databaseId}', '{collectionId}', '{key}'],
+            [$databaseId, $collectionId, $key],
+            '/databases/{databaseId}/collections/{collectionId}/attributes/text/{key}'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['collectionId'] = $collectionId;
+        $apiParams['key'] = $key;
+        $apiParams['required'] = $required;
+        $apiParams['default'] = $xdefault;
+        $apiParams['newKey'] = $newKey;
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
      * Create a URL attribute.
      * 
      *
@@ -1803,6 +2055,94 @@ class Databases extends Service
         $apiParams['key'] = $key;
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
+        $apiParams['newKey'] = $newKey;
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Create a varchar attribute.
+     * 
+     *
+     * @param string $databaseId
+     * @param string $collectionId
+     * @param string $key
+     * @param int $size
+     * @param bool $required
+     * @param ?string $xdefault
+     * @param ?bool $xarray
+     * @throws AppwriteException
+     * @return array
+     */
+    public function createVarcharAttribute(string $databaseId, string $collectionId, string $key, int $size, bool $required, ?string $xdefault = null, ?bool $xarray = null): array
+    {
+        $apiPath = str_replace(
+            ['{databaseId}', '{collectionId}'],
+            [$databaseId, $collectionId],
+            '/databases/{databaseId}/collections/{collectionId}/attributes/varchar'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['collectionId'] = $collectionId;
+        $apiParams['key'] = $key;
+        $apiParams['size'] = $size;
+        $apiParams['required'] = $required;
+        $apiParams['default'] = $xdefault;
+
+        if (!is_null($xarray)) {
+            $apiParams['array'] = $xarray;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Update a varchar attribute. Changing the `default` value will not update
+     * already existing documents.
+     * 
+     *
+     * @param string $databaseId
+     * @param string $collectionId
+     * @param string $key
+     * @param bool $required
+     * @param ?string $xdefault
+     * @param ?int $size
+     * @param ?string $newKey
+     * @throws AppwriteException
+     * @return array
+     */
+    public function updateVarcharAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?int $size = null, ?string $newKey = null): array
+    {
+        $apiPath = str_replace(
+            ['{databaseId}', '{collectionId}', '{key}'],
+            [$databaseId, $collectionId, $key],
+            '/databases/{databaseId}/collections/{collectionId}/attributes/varchar/{key}'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['collectionId'] = $collectionId;
+        $apiParams['key'] = $key;
+        $apiParams['required'] = $required;
+        $apiParams['default'] = $xdefault;
+        $apiParams['size'] = $size;
         $apiParams['newKey'] = $newKey;
 
         $apiHeaders = [];
