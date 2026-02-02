@@ -20,7 +20,6 @@ final class GraphqlTest extends TestCase {
 
         $data = array();
 
-
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
@@ -35,7 +34,6 @@ final class GraphqlTest extends TestCase {
     public function testMethodMutation(): void {
 
         $data = array();
-
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())

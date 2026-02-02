@@ -50,6 +50,19 @@ GET https://cloud.appwrite.io/v1/health/pubsub
 
 
 ```http request
+GET https://cloud.appwrite.io/v1/health/queue/audits
+```
+
+** Get the number of audit logs that are waiting to be processed in the Appwrite internal queue server. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| threshold | integer | Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000. | 5000 |
+
+
+```http request
 GET https://cloud.appwrite.io/v1/health/queue/builds
 ```
 

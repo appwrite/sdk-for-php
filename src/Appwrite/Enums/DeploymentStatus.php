@@ -10,6 +10,7 @@ class DeploymentStatus implements JsonSerializable
     private static DeploymentStatus $PROCESSING;
     private static DeploymentStatus $BUILDING;
     private static DeploymentStatus $READY;
+    private static DeploymentStatus $CANCELED;
     private static DeploymentStatus $FAILED;
 
     private string $value;
@@ -56,6 +57,13 @@ class DeploymentStatus implements JsonSerializable
             self::$READY = new DeploymentStatus('ready');
         }
         return self::$READY;
+    }
+    public static function CANCELED(): DeploymentStatus
+    {
+        if (!isset(self::$CANCELED)) {
+            self::$CANCELED = new DeploymentStatus('canceled');
+        }
+        return self::$CANCELED;
     }
     public static function FAILED(): DeploymentStatus
     {

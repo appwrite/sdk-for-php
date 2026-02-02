@@ -6,6 +6,10 @@ use Appwrite\Client;
 use Appwrite\InputFile;
 use Mockery;
 use PHPUnit\Framework\TestCase;
+use Appwrite\Enums\RelationshipType;
+use Appwrite\Enums\RelationMutate;
+use Appwrite\Enums\IndexType;
+use Appwrite\Enums\OrderBy;
 
 final class DatabasesTest extends TestCase {
     private $client;
@@ -20,8 +24,7 @@ final class DatabasesTest extends TestCase {
 
         $data = array(
             "total" => 5,
-            "databases" => array(),);
-
+            "databases" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -41,8 +44,7 @@ final class DatabasesTest extends TestCase {
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "enabled" => true,
-            "type" => "legacy",);
-
+            "type" => "legacy");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -60,8 +62,7 @@ final class DatabasesTest extends TestCase {
 
         $data = array(
             "total" => 5,
-            "transactions" => array(),);
-
+            "transactions" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -81,8 +82,7 @@ final class DatabasesTest extends TestCase {
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "status" => "pending",
             "operations" => 5,
-            "expiresAt" => "2020-10-15T06:38:00.000+00:00",);
-
+            "expiresAt" => "2020-10-15T06:38:00.000+00:00");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -102,8 +102,7 @@ final class DatabasesTest extends TestCase {
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "status" => "pending",
             "operations" => 5,
-            "expiresAt" => "2020-10-15T06:38:00.000+00:00",);
-
+            "expiresAt" => "2020-10-15T06:38:00.000+00:00");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -124,8 +123,7 @@ final class DatabasesTest extends TestCase {
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "status" => "pending",
             "operations" => 5,
-            "expiresAt" => "2020-10-15T06:38:00.000+00:00",);
-
+            "expiresAt" => "2020-10-15T06:38:00.000+00:00");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -141,7 +139,6 @@ final class DatabasesTest extends TestCase {
     public function testMethodDeleteTransaction(): void {
 
         $data = '';
-
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -162,8 +159,7 @@ final class DatabasesTest extends TestCase {
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "status" => "pending",
             "operations" => 5,
-            "expiresAt" => "2020-10-15T06:38:00.000+00:00",);
-
+            "expiresAt" => "2020-10-15T06:38:00.000+00:00");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -184,8 +180,7 @@ final class DatabasesTest extends TestCase {
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "enabled" => true,
-            "type" => "legacy",);
-
+            "type" => "legacy");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -206,16 +201,14 @@ final class DatabasesTest extends TestCase {
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "enabled" => true,
-            "type" => "legacy",);
-
+            "type" => "legacy");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
         $response = $this->databases->update(
-            "<DATABASE_ID>",
-            "<NAME>"
+            "<DATABASE_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -224,7 +217,6 @@ final class DatabasesTest extends TestCase {
     public function testMethodDelete(): void {
 
         $data = '';
-
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -241,8 +233,7 @@ final class DatabasesTest extends TestCase {
 
         $data = array(
             "total" => 5,
-            "collections" => array(),);
-
+            "collections" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -267,8 +258,7 @@ final class DatabasesTest extends TestCase {
             "enabled" => true,
             "documentSecurity" => true,
             "attributes" => array(),
-            "indexes" => array(),);
-
+            "indexes" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -295,8 +285,7 @@ final class DatabasesTest extends TestCase {
             "enabled" => true,
             "documentSecurity" => true,
             "attributes" => array(),
-            "indexes" => array(),);
-
+            "indexes" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -322,8 +311,7 @@ final class DatabasesTest extends TestCase {
             "enabled" => true,
             "documentSecurity" => true,
             "attributes" => array(),
-            "indexes" => array(),);
-
+            "indexes" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -331,8 +319,7 @@ final class DatabasesTest extends TestCase {
 
         $response = $this->databases->updateCollection(
             "<DATABASE_ID>",
-            "<COLLECTION_ID>",
-            "<NAME>"
+            "<COLLECTION_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -341,7 +328,6 @@ final class DatabasesTest extends TestCase {
     public function testMethodDeleteCollection(): void {
 
         $data = '';
-
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -359,8 +345,7 @@ final class DatabasesTest extends TestCase {
 
         $data = array(
             "total" => 5,
-            "attributes" => array(),);
-
+            "attributes" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -383,8 +368,7 @@ final class DatabasesTest extends TestCase {
             "error" => "string",
             "required" => true,
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",);
-
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -409,8 +393,7 @@ final class DatabasesTest extends TestCase {
             "error" => "string",
             "required" => true,
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",);
-
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -437,8 +420,7 @@ final class DatabasesTest extends TestCase {
             "required" => true,
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "format" => "datetime",);
-
+            "format" => "datetime");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -464,8 +446,7 @@ final class DatabasesTest extends TestCase {
             "required" => true,
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "format" => "datetime",);
-
+            "format" => "datetime");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -492,8 +473,7 @@ final class DatabasesTest extends TestCase {
             "required" => true,
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "format" => "email",);
-
+            "format" => "email");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -519,8 +499,7 @@ final class DatabasesTest extends TestCase {
             "required" => true,
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "format" => "email",);
-
+            "format" => "email");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -548,8 +527,7 @@ final class DatabasesTest extends TestCase {
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "elements" => array(),
-            "format" => "enum",);
-
+            "format" => "enum");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -577,8 +555,7 @@ final class DatabasesTest extends TestCase {
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "elements" => array(),
-            "format" => "enum",);
-
+            "format" => "enum");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -605,8 +582,7 @@ final class DatabasesTest extends TestCase {
             "error" => "string",
             "required" => true,
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",);
-
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -631,8 +607,7 @@ final class DatabasesTest extends TestCase {
             "error" => "string",
             "required" => true,
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",);
-
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -658,8 +633,7 @@ final class DatabasesTest extends TestCase {
             "error" => "string",
             "required" => true,
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",);
-
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -684,8 +658,7 @@ final class DatabasesTest extends TestCase {
             "error" => "string",
             "required" => true,
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",);
-
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -712,8 +685,7 @@ final class DatabasesTest extends TestCase {
             "required" => true,
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "format" => "ip",);
-
+            "format" => "ip");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -739,8 +711,7 @@ final class DatabasesTest extends TestCase {
             "required" => true,
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "format" => "ip",);
-
+            "format" => "ip");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -766,8 +737,7 @@ final class DatabasesTest extends TestCase {
             "error" => "string",
             "required" => true,
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",);
-
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -792,8 +762,7 @@ final class DatabasesTest extends TestCase {
             "error" => "string",
             "required" => true,
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",);
-
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -809,6 +778,108 @@ final class DatabasesTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
+    public function testMethodCreateLongtextAttribute(): void {
+
+        $data = array(
+            "key" => "fullName",
+            "type" => "string",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00");
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->databases->createLongtextAttribute(
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
+            "",
+            true
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodUpdateLongtextAttribute(): void {
+
+        $data = array(
+            "key" => "fullName",
+            "type" => "string",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00");
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->databases->updateLongtextAttribute(
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
+            "",
+            true,
+            "<DEFAULT>"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodCreateMediumtextAttribute(): void {
+
+        $data = array(
+            "key" => "fullName",
+            "type" => "string",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00");
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->databases->createMediumtextAttribute(
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
+            "",
+            true
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodUpdateMediumtextAttribute(): void {
+
+        $data = array(
+            "key" => "fullName",
+            "type" => "string",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00");
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->databases->updateMediumtextAttribute(
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
+            "",
+            true,
+            "<DEFAULT>"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
     public function testMethodCreatePointAttribute(): void {
 
         $data = array(
@@ -818,8 +889,7 @@ final class DatabasesTest extends TestCase {
             "error" => "string",
             "required" => true,
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",);
-
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -844,8 +914,7 @@ final class DatabasesTest extends TestCase {
             "error" => "string",
             "required" => true,
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",);
-
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -870,8 +939,7 @@ final class DatabasesTest extends TestCase {
             "error" => "string",
             "required" => true,
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",);
-
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -896,8 +964,7 @@ final class DatabasesTest extends TestCase {
             "error" => "string",
             "required" => true,
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",);
-
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -928,8 +995,7 @@ final class DatabasesTest extends TestCase {
             "twoWay" => true,
             "twoWayKey" => "string",
             "onDelete" => "restrict|cascade|setNull",
-            "side" => "parent|child",);
-
+            "side" => "parent|child");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -939,7 +1005,7 @@ final class DatabasesTest extends TestCase {
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
             "<RELATED_COLLECTION_ID>",
-            "oneToOne"
+            RelationshipType::ONETOONE()
         );
 
         $this->assertSame($data, $response);
@@ -955,8 +1021,7 @@ final class DatabasesTest extends TestCase {
             "required" => true,
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "size" => 128,);
-
+            "size" => 128);
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -983,14 +1048,64 @@ final class DatabasesTest extends TestCase {
             "required" => true,
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "size" => 128,);
-
+            "size" => 128);
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
         $response = $this->databases->updateStringAttribute(
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
+            "",
+            true,
+            "<DEFAULT>"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodCreateTextAttribute(): void {
+
+        $data = array(
+            "key" => "fullName",
+            "type" => "string",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00");
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->databases->createTextAttribute(
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
+            "",
+            true
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodUpdateTextAttribute(): void {
+
+        $data = array(
+            "key" => "fullName",
+            "type" => "string",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00");
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->databases->updateTextAttribute(
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
             "",
@@ -1011,8 +1126,7 @@ final class DatabasesTest extends TestCase {
             "required" => true,
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "format" => "url",);
-
+            "format" => "url");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1038,8 +1152,7 @@ final class DatabasesTest extends TestCase {
             "required" => true,
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "format" => "url",);
-
+            "format" => "url");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1056,10 +1169,70 @@ final class DatabasesTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
+    public function testMethodCreateVarcharAttribute(): void {
+
+        $data = array(
+            "key" => "fullName",
+            "type" => "string",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "size" => 128);
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->databases->createVarcharAttribute(
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
+            "",
+            1,
+            true
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodUpdateVarcharAttribute(): void {
+
+        $data = array(
+            "key" => "fullName",
+            "type" => "string",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "size" => 128);
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->databases->updateVarcharAttribute(
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
+            "",
+            true,
+            "<DEFAULT>"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
     public function testMethodGetAttribute(): void {
 
-        $data = '';
-
+        $data = array(
+            "key" => "isEnabled",
+            "type" => "boolean",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1077,7 +1250,6 @@ final class DatabasesTest extends TestCase {
     public function testMethodDeleteAttribute(): void {
 
         $data = '';
-
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1107,8 +1279,7 @@ final class DatabasesTest extends TestCase {
             "twoWay" => true,
             "twoWayKey" => "string",
             "onDelete" => "restrict|cascade|setNull",
-            "side" => "parent|child",);
-
+            "side" => "parent|child");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1127,8 +1298,7 @@ final class DatabasesTest extends TestCase {
 
         $data = array(
             "total" => 5,
-            "documents" => array(),);
-
+            "documents" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1151,8 +1321,7 @@ final class DatabasesTest extends TestCase {
             "\$databaseId" => "5e5ea5c15117e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$permissions" => array(),);
-
+            "\$permissions" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1172,8 +1341,7 @@ final class DatabasesTest extends TestCase {
 
         $data = array(
             "total" => 5,
-            "documents" => array(),);
-
+            "documents" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1192,8 +1360,7 @@ final class DatabasesTest extends TestCase {
 
         $data = array(
             "total" => 5,
-            "documents" => array(),);
-
+            "documents" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1212,8 +1379,7 @@ final class DatabasesTest extends TestCase {
 
         $data = array(
             "total" => 5,
-            "documents" => array(),);
-
+            "documents" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1231,8 +1397,7 @@ final class DatabasesTest extends TestCase {
 
         $data = array(
             "total" => 5,
-            "documents" => array(),);
-
+            "documents" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1255,8 +1420,7 @@ final class DatabasesTest extends TestCase {
             "\$databaseId" => "5e5ea5c15117e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$permissions" => array(),);
-
+            "\$permissions" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1280,8 +1444,7 @@ final class DatabasesTest extends TestCase {
             "\$databaseId" => "5e5ea5c15117e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$permissions" => array(),);
-
+            "\$permissions" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1290,8 +1453,7 @@ final class DatabasesTest extends TestCase {
         $response = $this->databases->upsertDocument(
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
-            "<DOCUMENT_ID>",
-            array()
+            "<DOCUMENT_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -1306,8 +1468,7 @@ final class DatabasesTest extends TestCase {
             "\$databaseId" => "5e5ea5c15117e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$permissions" => array(),);
-
+            "\$permissions" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1325,7 +1486,6 @@ final class DatabasesTest extends TestCase {
     public function testMethodDeleteDocument(): void {
 
         $data = '';
-
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1349,8 +1509,7 @@ final class DatabasesTest extends TestCase {
             "\$databaseId" => "5e5ea5c15117e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$permissions" => array(),);
-
+            "\$permissions" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1375,8 +1534,7 @@ final class DatabasesTest extends TestCase {
             "\$databaseId" => "5e5ea5c15117e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$permissions" => array(),);
-
+            "\$permissions" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1396,8 +1554,7 @@ final class DatabasesTest extends TestCase {
 
         $data = array(
             "total" => 5,
-            "indexes" => array(),);
-
+            "indexes" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1422,8 +1579,7 @@ final class DatabasesTest extends TestCase {
             "status" => "available",
             "error" => "string",
             "attributes" => array(),
-            "lengths" => array(),);
-
+            "lengths" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1433,7 +1589,7 @@ final class DatabasesTest extends TestCase {
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
             "",
-            "key",
+            IndexType::KEY(),
             array()
         );
 
@@ -1451,8 +1607,7 @@ final class DatabasesTest extends TestCase {
             "status" => "available",
             "error" => "string",
             "attributes" => array(),
-            "lengths" => array(),);
-
+            "lengths" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1470,7 +1625,6 @@ final class DatabasesTest extends TestCase {
     public function testMethodDeleteIndex(): void {
 
         $data = '';
-
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())

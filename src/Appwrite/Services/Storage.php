@@ -334,7 +334,7 @@ class Storage extends Service
      * @throws AppwriteException
      * @return array
      */
-    public function createFile(string $bucketId, string $fileId, InputFile $file, ?array $permissions = null, callable $onProgress = null): array
+    public function createFile(string $bucketId, string $fileId, InputFile $file, ?array $permissions = null, ?callable $onProgress = null): array
     {
         $apiPath = str_replace(
             ['{bucketId}'],
@@ -485,7 +485,10 @@ class Storage extends Service
         $apiParams = [];
         $apiParams['bucketId'] = $bucketId;
         $apiParams['fileId'] = $fileId;
-        $apiParams['name'] = $name;
+
+        if (!is_null($name)) {
+            $apiParams['name'] = $name;
+        }
         $apiParams['permissions'] = $permissions;
 
         $apiHeaders = [];

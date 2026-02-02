@@ -45,7 +45,6 @@ class OAuthProvider implements JsonSerializable
     private static OAuthProvider $YANDEX;
     private static OAuthProvider $ZOHO;
     private static OAuthProvider $ZOOM;
-    private static OAuthProvider $MOCK;
 
     private string $value;
 
@@ -336,12 +335,5 @@ class OAuthProvider implements JsonSerializable
             self::$ZOOM = new OAuthProvider('zoom');
         }
         return self::$ZOOM;
-    }
-    public static function MOCK(): OAuthProvider
-    {
-        if (!isset(self::$MOCK)) {
-            self::$MOCK = new OAuthProvider('mock');
-        }
-        return self::$MOCK;
     }
 }

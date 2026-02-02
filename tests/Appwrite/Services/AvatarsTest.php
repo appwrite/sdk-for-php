@@ -6,6 +6,13 @@ use Appwrite\Client;
 use Appwrite\InputFile;
 use Mockery;
 use PHPUnit\Framework\TestCase;
+use Appwrite\Enums\Browser;
+use Appwrite\Enums\CreditCard;
+use Appwrite\Enums\Flag;
+use Appwrite\Enums\Theme;
+use Appwrite\Enums\Timezone;
+use Appwrite\Enums\BrowserPermission;
+use Appwrite\Enums\ImageFormat;
 
 final class AvatarsTest extends TestCase {
     private $client;
@@ -20,13 +27,12 @@ final class AvatarsTest extends TestCase {
 
         $data = '';
 
-
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
         $response = $this->avatars->getBrowser(
-            "aa"
+            Browser::AVANTBROWSER()
         );
 
         $this->assertSame($data, $response);
@@ -36,13 +42,12 @@ final class AvatarsTest extends TestCase {
 
         $data = '';
 
-
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
         $response = $this->avatars->getCreditCard(
-            "amex"
+            CreditCard::AMERICANEXPRESS()
         );
 
         $this->assertSame($data, $response);
@@ -51,7 +56,6 @@ final class AvatarsTest extends TestCase {
     public function testMethodGetFavicon(): void {
 
         $data = '';
-
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -68,13 +72,12 @@ final class AvatarsTest extends TestCase {
 
         $data = '';
 
-
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
         $response = $this->avatars->getFlag(
-            "af"
+            Flag::AFGHANISTAN()
         );
 
         $this->assertSame($data, $response);
@@ -83,7 +86,6 @@ final class AvatarsTest extends TestCase {
     public function testMethodGetImage(): void {
 
         $data = '';
-
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -100,7 +102,6 @@ final class AvatarsTest extends TestCase {
 
         $data = '';
 
-
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
@@ -114,7 +115,6 @@ final class AvatarsTest extends TestCase {
     public function testMethodGetQR(): void {
 
         $data = '';
-
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -130,7 +130,6 @@ final class AvatarsTest extends TestCase {
     public function testMethodGetScreenshot(): void {
 
         $data = '';
-
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
