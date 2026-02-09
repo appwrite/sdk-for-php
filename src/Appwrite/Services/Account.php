@@ -6,6 +6,7 @@ use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
 use Appwrite\InputFile;
+use Appwrite\Enums\Scopes;
 use Appwrite\Enums\AuthenticatorType;
 use Appwrite\Enums\AuthenticationFactor;
 use Appwrite\Enums\OAuthProvider;
@@ -220,6 +221,165 @@ class Account extends Service
 
         return $this->client->call(
             Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Get a list of all API keys from the current account. 
+     *
+     * @param ?bool $total
+     * @throws AppwriteException
+     * @return array
+     */
+    public function listKeys(?bool $total = null): array
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/account/keys'
+        );
+
+        $apiParams = [];
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
+        }
+
+        $apiHeaders = [];
+
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Create a new account API key.
+     *
+     * @param string $name
+     * @param array $scopes
+     * @param ?string $expire
+     * @throws AppwriteException
+     * @return array
+     */
+    public function createKey(string $name, array $scopes, ?string $expire = null): array
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/account/keys'
+        );
+
+        $apiParams = [];
+        $apiParams['name'] = $name;
+        $apiParams['scopes'] = $scopes;
+        $apiParams['expire'] = $expire;
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Get a key by its unique ID. This endpoint returns details about a specific
+     * API key in your account including it's scopes.
+     *
+     * @param string $keyId
+     * @throws AppwriteException
+     * @return array
+     */
+    public function getKey(string $keyId): array
+    {
+        $apiPath = str_replace(
+            ['{keyId}'],
+            [$keyId],
+            '/account/keys/{keyId}'
+        );
+
+        $apiParams = [];
+        $apiParams['keyId'] = $keyId;
+
+        $apiHeaders = [];
+
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Update a key by its unique ID. Use this endpoint to update the name,
+     * scopes, or expiration time of an API key.
+     *
+     * @param string $keyId
+     * @param string $name
+     * @param array $scopes
+     * @param ?string $expire
+     * @throws AppwriteException
+     * @return array
+     */
+    public function updateKey(string $keyId, string $name, array $scopes, ?string $expire = null): array
+    {
+        $apiPath = str_replace(
+            ['{keyId}'],
+            [$keyId],
+            '/account/keys/{keyId}'
+        );
+
+        $apiParams = [];
+        $apiParams['keyId'] = $keyId;
+        $apiParams['name'] = $name;
+        $apiParams['scopes'] = $scopes;
+        $apiParams['expire'] = $expire;
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_PUT,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Delete a key by its unique ID. Once deleted, the key can no longer be used
+     * to authenticate API calls.
+     *
+     * @param string $keyId
+     * @throws AppwriteException
+     * @return string
+     */
+    public function deleteKey(string $keyId): string
+    {
+        $apiPath = str_replace(
+            ['{keyId}'],
+            [$keyId],
+            '/account/keys/{keyId}'
+        );
+
+        $apiParams = [];
+        $apiParams['keyId'] = $keyId;
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams

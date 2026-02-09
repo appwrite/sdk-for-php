@@ -6,6 +6,7 @@ use Appwrite\Client;
 use Appwrite\InputFile;
 use Mockery;
 use PHPUnit\Framework\TestCase;
+use Appwrite\Enums\BackupServices;
 
 final class BackupsTest extends TestCase {
     private $client;
@@ -51,7 +52,7 @@ final class BackupsTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->backups->createArchive(
-            array()
+            array(BackupServices::DATABASES())
         );
 
         $this->assertSame($data, $response);
@@ -132,7 +133,7 @@ final class BackupsTest extends TestCase {
 
         $response = $this->backups->createPolicy(
             "<POLICY_ID>",
-            array(),
+            array(BackupServices::DATABASES()),
             1,
             ""
         );
@@ -224,7 +225,7 @@ final class BackupsTest extends TestCase {
 
         $response = $this->backups->createRestoration(
             "<ARCHIVE_ID>",
-            array()
+            array(BackupServices::DATABASES())
         );
 
         $this->assertSame($data, $response);

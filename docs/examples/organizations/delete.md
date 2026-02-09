@@ -1,3 +1,4 @@
+```php
 <?php
 
 use Appwrite\Client;
@@ -12,4 +13,4 @@ $organizations = new Organizations($client);
 
 $result = $organizations->delete(
     organizationId: '<ORGANIZATION_ID>'
-);
+);```

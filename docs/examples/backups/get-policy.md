@@ -1,3 +1,4 @@
+```php
 <?php
 
 use Appwrite\Client;
@@ -12,4 +13,4 @@ $backups = new Backups($client);
 
 $result = $backups->getPolicy(
     policyId: '<POLICY_ID>'
-);
+);```

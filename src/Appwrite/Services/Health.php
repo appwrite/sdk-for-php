@@ -178,6 +178,100 @@ class Health extends Service
     }
 
     /**
+     * Get the number of audit logs that are waiting to be processed in the
+     * Appwrite internal queue server.
+     *
+     * @param ?int $threshold
+     * @throws AppwriteException
+     * @return array
+     */
+    public function getQueueAudits(?int $threshold = null): array
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/health/queue/audits'
+        );
+
+        $apiParams = [];
+
+        if (!is_null($threshold)) {
+            $apiParams['threshold'] = $threshold;
+        }
+
+        $apiHeaders = [];
+
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Get billing project aggregation queue.
+     *
+     * @param ?int $threshold
+     * @throws AppwriteException
+     * @return array
+     */
+    public function getQueueBillingProjectAggregation(?int $threshold = null): array
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/health/queue/billing-project-aggregation'
+        );
+
+        $apiParams = [];
+
+        if (!is_null($threshold)) {
+            $apiParams['threshold'] = $threshold;
+        }
+
+        $apiHeaders = [];
+
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Get billing team aggregation queue.
+     *
+     * @param ?int $threshold
+     * @throws AppwriteException
+     * @return array
+     */
+    public function getQueueBillingTeamAggregation(?int $threshold = null): array
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/health/queue/billing-team-aggregation'
+        );
+
+        $apiParams = [];
+
+        if (!is_null($threshold)) {
+            $apiParams['threshold'] = $threshold;
+        }
+
+        $apiHeaders = [];
+
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
      * Get the number of builds that are waiting to be processed in the Appwrite
      * internal queue server.
      *
@@ -191,6 +285,37 @@ class Health extends Service
             [],
             [],
             '/health/queue/builds'
+        );
+
+        $apiParams = [];
+
+        if (!is_null($threshold)) {
+            $apiParams['threshold'] = $threshold;
+        }
+
+        $apiHeaders = [];
+
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Get the priority builds queue size.
+     *
+     * @param ?int $threshold
+     * @throws AppwriteException
+     * @return array
+     */
+    public function getQueuePriorityBuilds(?int $threshold = null): array
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/health/queue/builds-priority'
         );
 
         $apiParams = [];
@@ -506,6 +631,37 @@ class Health extends Service
     }
 
     /**
+     * Get region manager queue.
+     *
+     * @param ?int $threshold
+     * @throws AppwriteException
+     * @return array
+     */
+    public function getQueueRegionManager(?int $threshold = null): array
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/health/queue/region-manager'
+        );
+
+        $apiParams = [];
+
+        if (!is_null($threshold)) {
+            $apiParams['threshold'] = $threshold;
+        }
+
+        $apiHeaders = [];
+
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
      * Get the number of metrics that are waiting to be processed in the Appwrite
      * stats resources queue.
      *
@@ -551,6 +707,37 @@ class Health extends Service
             [],
             [],
             '/health/queue/stats-usage'
+        );
+
+        $apiParams = [];
+
+        if (!is_null($threshold)) {
+            $apiParams['threshold'] = $threshold;
+        }
+
+        $apiHeaders = [];
+
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Get threats queue.
+     *
+     * @param ?int $threshold
+     * @throws AppwriteException
+     * @return array
+     */
+    public function getQueueThreats(?int $threshold = null): array
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/health/queue/threats'
         );
 
         $apiParams = [];

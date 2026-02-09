@@ -9,6 +9,7 @@ use PHPUnit\Framework\TestCase;
 use Appwrite\Enums\RelationshipType;
 use Appwrite\Enums\RelationMutate;
 use Appwrite\Enums\IndexType;
+use Appwrite\Enums\OrderBy;
 
 final class TablesDBTest extends TestCase {
     private $client;
@@ -213,8 +214,7 @@ final class TablesDBTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->tablesDB->update(
-            "<DATABASE_ID>",
-            "<NAME>"
+            "<DATABASE_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -264,7 +264,9 @@ final class TablesDBTest extends TestCase {
             "enabled" => true,
             "rowSecurity" => true,
             "columns" => array(),
-            "indexes" => array());
+            "indexes" => array(),
+            "bytesMax" => 65535,
+            "bytesUsed" => 1500);
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -291,7 +293,9 @@ final class TablesDBTest extends TestCase {
             "enabled" => true,
             "rowSecurity" => true,
             "columns" => array(),
-            "indexes" => array());
+            "indexes" => array(),
+            "bytesMax" => 65535,
+            "bytesUsed" => 1500);
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -317,7 +321,9 @@ final class TablesDBTest extends TestCase {
             "enabled" => true,
             "rowSecurity" => true,
             "columns" => array(),
-            "indexes" => array());
+            "indexes" => array(),
+            "bytesMax" => 65535,
+            "bytesUsed" => 1500);
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -325,8 +331,7 @@ final class TablesDBTest extends TestCase {
 
         $response = $this->tablesDB->updateTable(
             "<DATABASE_ID>",
-            "<TABLE_ID>",
-            "<NAME>"
+            "<TABLE_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -785,6 +790,108 @@ final class TablesDBTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
+    public function testMethodCreateLongtextColumn(): void {
+
+        $data = array(
+            "key" => "fullName",
+            "type" => "string",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00");
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->tablesDB->createLongtextColumn(
+            "<DATABASE_ID>",
+            "<TABLE_ID>",
+            "",
+            true
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodUpdateLongtextColumn(): void {
+
+        $data = array(
+            "key" => "fullName",
+            "type" => "string",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00");
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->tablesDB->updateLongtextColumn(
+            "<DATABASE_ID>",
+            "<TABLE_ID>",
+            "",
+            true,
+            "<DEFAULT>"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodCreateMediumtextColumn(): void {
+
+        $data = array(
+            "key" => "fullName",
+            "type" => "string",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00");
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->tablesDB->createMediumtextColumn(
+            "<DATABASE_ID>",
+            "<TABLE_ID>",
+            "",
+            true
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodUpdateMediumtextColumn(): void {
+
+        $data = array(
+            "key" => "fullName",
+            "type" => "string",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00");
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->tablesDB->updateMediumtextColumn(
+            "<DATABASE_ID>",
+            "<TABLE_ID>",
+            "",
+            true,
+            "<DEFAULT>"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
     public function testMethodCreatePointColumn(): void {
 
         $data = array(
@@ -970,6 +1077,57 @@ final class TablesDBTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
+    public function testMethodCreateTextColumn(): void {
+
+        $data = array(
+            "key" => "fullName",
+            "type" => "string",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00");
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->tablesDB->createTextColumn(
+            "<DATABASE_ID>",
+            "<TABLE_ID>",
+            "",
+            true
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodUpdateTextColumn(): void {
+
+        $data = array(
+            "key" => "fullName",
+            "type" => "string",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00");
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->tablesDB->updateTextColumn(
+            "<DATABASE_ID>",
+            "<TABLE_ID>",
+            "",
+            true,
+            "<DEFAULT>"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
     public function testMethodCreateUrlColumn(): void {
 
         $data = array(
@@ -1018,6 +1176,60 @@ final class TablesDBTest extends TestCase {
             "",
             true,
             "https://example.com"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodCreateVarcharColumn(): void {
+
+        $data = array(
+            "key" => "fullName",
+            "type" => "string",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "size" => 128);
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->tablesDB->createVarcharColumn(
+            "<DATABASE_ID>",
+            "<TABLE_ID>",
+            "",
+            1,
+            true
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodUpdateVarcharColumn(): void {
+
+        $data = array(
+            "key" => "fullName",
+            "type" => "string",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "size" => 128);
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->tablesDB->updateVarcharColumn(
+            "<DATABASE_ID>",
+            "<TABLE_ID>",
+            "",
+            true,
+            "<DEFAULT>"
         );
 
         $this->assertSame($data, $response);

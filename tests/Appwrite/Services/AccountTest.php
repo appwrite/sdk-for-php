@@ -6,6 +6,7 @@ use Appwrite\Client;
 use Appwrite\InputFile;
 use Mockery;
 use PHPUnit\Framework\TestCase;
+use Appwrite\Enums\Scopes;
 use Appwrite\Enums\AuthenticatorType;
 use Appwrite\Enums\AuthenticationFactor;
 use Appwrite\Enums\OAuthProvider;
@@ -155,6 +156,112 @@ final class AccountTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->account->createJWT(
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodListKeys(): void {
+
+        $data = array(
+            "total" => 5,
+            "keys" => array());
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->account->listKeys(
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodCreateKey(): void {
+
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "name" => "My API Key",
+            "expire" => "2020-10-15T06:38:00.000+00:00",
+            "scopes" => array(),
+            "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
+            "accessedAt" => "2020-10-15T06:38:00.000+00:00",
+            "sdks" => array());
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->account->createKey(
+            "<NAME>",
+            array(Scopes::ACCOUNT())
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodGetKey(): void {
+
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "name" => "My API Key",
+            "expire" => "2020-10-15T06:38:00.000+00:00",
+            "scopes" => array(),
+            "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
+            "accessedAt" => "2020-10-15T06:38:00.000+00:00",
+            "sdks" => array());
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->account->getKey(
+            "<KEY_ID>"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodUpdateKey(): void {
+
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "name" => "My API Key",
+            "expire" => "2020-10-15T06:38:00.000+00:00",
+            "scopes" => array(),
+            "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
+            "accessedAt" => "2020-10-15T06:38:00.000+00:00",
+            "sdks" => array());
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->account->updateKey(
+            "<KEY_ID>",
+            "<NAME>",
+            array(Scopes::ACCOUNT())
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodDeleteKey(): void {
+
+        $data = '';
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->account->deleteKey(
+            "<KEY_ID>"
         );
 
         $this->assertSame($data, $response);

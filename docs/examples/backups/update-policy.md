@@ -1,3 +1,4 @@
+```php
 <?php
 
 use Appwrite\Client;
@@ -16,4 +17,4 @@ $result = $backups->updatePolicy(
     retention: 1, // optional
     schedule: '', // optional
     enabled: false // optional
-);
+);```

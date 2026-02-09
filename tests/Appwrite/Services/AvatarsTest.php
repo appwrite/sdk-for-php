@@ -11,6 +11,7 @@ use Appwrite\Enums\CreditCard;
 use Appwrite\Enums\Flag;
 use Appwrite\Enums\Theme;
 use Appwrite\Enums\Timezone;
+use Appwrite\Enums\BrowserPermission;
 use Appwrite\Enums\ImageFormat;
 
 final class AvatarsTest extends TestCase {

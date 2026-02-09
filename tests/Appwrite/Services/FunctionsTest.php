@@ -7,6 +7,7 @@ use Appwrite\InputFile;
 use Mockery;
 use PHPUnit\Framework\TestCase;
 use Appwrite\Enums\Runtime;
+use Appwrite\Enums\Scopes;
 use Appwrite\Enums\TemplateReferenceType;
 use Appwrite\Enums\VCSReferenceType;
 use Appwrite\Enums\DeploymentDownloadType;
