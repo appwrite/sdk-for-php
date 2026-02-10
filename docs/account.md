@@ -81,6 +81,76 @@ POST https://cloud.appwrite.io/v1/account/jwts
 
 
 ```http request
+GET https://cloud.appwrite.io/v1/account/keys
+```
+
+** Get a list of all API keys from the current account.  **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| total | boolean | When set to false, the total count returned will be 0 and will not be calculated. | 1 |
+
+
+```http request
+POST https://cloud.appwrite.io/v1/account/keys
+```
+
+** Create a new account API key. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| name | string | Key name. Max length: 128 chars. |  |
+| scopes | array | Key scopes list. Maximum of 100 scopes are allowed. |  |
+| expire | string | Expiration time in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. Use null for unlimited expiration. |  |
+
+
+```http request
+GET https://cloud.appwrite.io/v1/account/keys/{keyId}
+```
+
+** Get a key by its unique ID. This endpoint returns details about a specific API key in your account including it&#039;s scopes. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| keyId | string | **Required** Key unique ID. |  |
+
+
+```http request
+PUT https://cloud.appwrite.io/v1/account/keys/{keyId}
+```
+
+** Update a key by its unique ID. Use this endpoint to update the name, scopes, or expiration time of an API key. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| keyId | string | **Required** Key unique ID. |  |
+| name | string | Key name. Max length: 128 chars. |  |
+| scopes | array | Key scopes list. Maximum of 100 scopes are allowed. |  |
+| expire | string | Expiration time in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. Use null for unlimited expiration. |  |
+
+
+```http request
+DELETE https://cloud.appwrite.io/v1/account/keys/{keyId}
+```
+
+** Delete a key by its unique ID. Once deleted, the key can no longer be used to authenticate API calls. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| keyId | string | **Required** Key unique ID. |  |
+
+
+```http request
 GET https://cloud.appwrite.io/v1/account/logs
 ```
 
@@ -565,7 +635,7 @@ A user is limited to 10 active sessions at a time by default. [Learn more about 
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| provider | string | **Required** OAuth2 Provider. Currently, supported providers are: amazon, apple, auth0, authentik, autodesk, bitbucket, bitly, box, dailymotion, discord, disqus, dropbox, etsy, facebook, figma, github, gitlab, google, linkedin, microsoft, notion, oidc, okta, paypal, paypalSandbox, podio, salesforce, slack, spotify, stripe, tradeshift, tradeshiftBox, twitch, wordpress, yahoo, yammer, yandex, zoho, zoom. |  |
+| provider | string | **Required** OAuth2 Provider. Currently, supported providers are: amazon, apple, auth0, authentik, autodesk, bitbucket, bitly, box, dailymotion, discord, disqus, dropbox, etsy, facebook, figma, github, gitlab, google, linkedin, microsoft, notion, oidc, okta, paypal, paypalSandbox, podio, salesforce, slack, spotify, stripe, tradeshift, tradeshiftBox, twitch, wordpress, yahoo, yammer, yandex, zoho, zoom, githubImagine, googleImagine. |  |
 | success | string | URL to redirect back to your app after a successful login attempt.  Only URLs from hostnames in your project's platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API. |  |
 | failure | string | URL to redirect back to your app after a failed login attempt.  Only URLs from hostnames in your project's platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API. |  |
 | scopes | array | A list of custom OAuth2 scopes. Check each provider internal docs for a list of supported scopes. Maximum of 100 scopes are allowed, each 4096 characters long. | [] |

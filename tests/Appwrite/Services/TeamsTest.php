@@ -6,7 +6,6 @@ use Appwrite\Client;
 use Appwrite\InputFile;
 use Mockery;
 use PHPUnit\Framework\TestCase;
-use Appwrite\Enums\Roles;
 
 final class TeamsTest extends TestCase {
     private $client;
@@ -153,7 +152,7 @@ final class TeamsTest extends TestCase {
 
         $response = $this->teams->createMembership(
             "<TEAM_ID>",
-            array(Roles::ADMIN())
+            array()
         );
 
         $this->assertSame($data, $response);
@@ -212,7 +211,7 @@ final class TeamsTest extends TestCase {
         $response = $this->teams->updateMembership(
             "<TEAM_ID>",
             "<MEMBERSHIP_ID>",
-            array(Roles::ADMIN())
+            array()
         );
 
         $this->assertSame($data, $response);

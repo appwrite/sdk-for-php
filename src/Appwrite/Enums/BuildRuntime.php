@@ -28,9 +28,6 @@ class BuildRuntime implements JsonSerializable
     private static BuildRuntime $PYTHON312;
     private static BuildRuntime $PYTHONML311;
     private static BuildRuntime $PYTHONML312;
-    private static BuildRuntime $DENO121;
-    private static BuildRuntime $DENO124;
-    private static BuildRuntime $DENO135;
     private static BuildRuntime $DENO140;
     private static BuildRuntime $DENO146;
     private static BuildRuntime $DENO20;
@@ -45,6 +42,7 @@ class BuildRuntime implements JsonSerializable
     private static BuildRuntime $DART35;
     private static BuildRuntime $DART38;
     private static BuildRuntime $DART39;
+    private static BuildRuntime $DART310;
     private static BuildRuntime $DOTNET60;
     private static BuildRuntime $DOTNET70;
     private static BuildRuntime $DOTNET80;
@@ -73,6 +71,7 @@ class BuildRuntime implements JsonSerializable
     private static BuildRuntime $FLUTTER329;
     private static BuildRuntime $FLUTTER332;
     private static BuildRuntime $FLUTTER335;
+    private static BuildRuntime $FLUTTER338;
 
     private string $value;
 
@@ -245,27 +244,6 @@ class BuildRuntime implements JsonSerializable
         }
         return self::$PYTHONML312;
     }
-    public static function DENO121(): BuildRuntime
-    {
-        if (!isset(self::$DENO121)) {
-            self::$DENO121 = new BuildRuntime('deno-1.21');
-        }
-        return self::$DENO121;
-    }
-    public static function DENO124(): BuildRuntime
-    {
-        if (!isset(self::$DENO124)) {
-            self::$DENO124 = new BuildRuntime('deno-1.24');
-        }
-        return self::$DENO124;
-    }
-    public static function DENO135(): BuildRuntime
-    {
-        if (!isset(self::$DENO135)) {
-            self::$DENO135 = new BuildRuntime('deno-1.35');
-        }
-        return self::$DENO135;
-    }
     public static function DENO140(): BuildRuntime
     {
         if (!isset(self::$DENO140)) {
@@ -363,6 +341,13 @@ class BuildRuntime implements JsonSerializable
             self::$DART39 = new BuildRuntime('dart-3.9');
         }
         return self::$DART39;
+    }
+    public static function DART310(): BuildRuntime
+    {
+        if (!isset(self::$DART310)) {
+            self::$DART310 = new BuildRuntime('dart-3.10');
+        }
+        return self::$DART310;
     }
     public static function DOTNET60(): BuildRuntime
     {
@@ -559,5 +544,12 @@ class BuildRuntime implements JsonSerializable
             self::$FLUTTER335 = new BuildRuntime('flutter-3.35');
         }
         return self::$FLUTTER335;
+    }
+    public static function FLUTTER338(): BuildRuntime
+    {
+        if (!isset(self::$FLUTTER338)) {
+            self::$FLUTTER338 = new BuildRuntime('flutter-3.38');
+        }
+        return self::$FLUTTER338;
     }
 }
