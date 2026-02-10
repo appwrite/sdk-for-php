@@ -1,5 +1,12 @@
 # Change Log
 
+## 20.0.1
+
+* Update SDK as per latest server specs, these include -
+    * Introduces Backups module for managing Database backups
+    * Introduces Organization module
+    * Introduce Account level keys, Backup Service & Models
+
 ## 18.0.1
 
 * Fix `TablesDB` service to use correct file name
