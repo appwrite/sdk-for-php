@@ -45,8 +45,6 @@ class OAuthProvider implements JsonSerializable
     private static OAuthProvider $YANDEX;
     private static OAuthProvider $ZOHO;
     private static OAuthProvider $ZOOM;
-    private static OAuthProvider $GITHUBIMAGINE;
-    private static OAuthProvider $GOOGLEIMAGINE;
 
     private string $value;
 
@@ -337,19 +335,5 @@ class OAuthProvider implements JsonSerializable
             self::$ZOOM = new OAuthProvider('zoom');
         }
         return self::$ZOOM;
-    }
-    public static function GITHUBIMAGINE(): OAuthProvider
-    {
-        if (!isset(self::$GITHUBIMAGINE)) {
-            self::$GITHUBIMAGINE = new OAuthProvider('githubImagine');
-        }
-        return self::$GITHUBIMAGINE;
-    }
-    public static function GOOGLEIMAGINE(): OAuthProvider
-    {
-        if (!isset(self::$GOOGLEIMAGINE)) {
-            self::$GOOGLEIMAGINE = new OAuthProvider('googleImagine');
-        }
-        return self::$GOOGLEIMAGINE;
     }
 }
