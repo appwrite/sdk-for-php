@@ -44,7 +44,9 @@ final class TablesDBTest extends TestCase {
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "enabled" => true,
-            "type" => "legacy");
+            "type" => "legacy",
+            "policies" => array(),
+            "archives" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -180,7 +182,9 @@ final class TablesDBTest extends TestCase {
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "enabled" => true,
-            "type" => "legacy");
+            "type" => "legacy",
+            "policies" => array(),
+            "archives" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -201,7 +205,9 @@ final class TablesDBTest extends TestCase {
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "enabled" => true,
-            "type" => "legacy");
+            "type" => "legacy",
+            "policies" => array(),
+            "archives" => array());
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())

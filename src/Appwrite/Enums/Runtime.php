@@ -28,9 +28,6 @@ class Runtime implements JsonSerializable
     private static Runtime $PYTHON312;
     private static Runtime $PYTHONML311;
     private static Runtime $PYTHONML312;
-    private static Runtime $DENO121;
-    private static Runtime $DENO124;
-    private static Runtime $DENO135;
     private static Runtime $DENO140;
     private static Runtime $DENO146;
     private static Runtime $DENO20;
@@ -246,27 +243,6 @@ class Runtime implements JsonSerializable
             self::$PYTHONML312 = new Runtime('python-ml-3.12');
         }
         return self::$PYTHONML312;
-    }
-    public static function DENO121(): Runtime
-    {
-        if (!isset(self::$DENO121)) {
-            self::$DENO121 = new Runtime('deno-1.21');
-        }
-        return self::$DENO121;
-    }
-    public static function DENO124(): Runtime
-    {
-        if (!isset(self::$DENO124)) {
-            self::$DENO124 = new Runtime('deno-1.24');
-        }
-        return self::$DENO124;
-    }
-    public static function DENO135(): Runtime
-    {
-        if (!isset(self::$DENO135)) {
-            self::$DENO135 = new Runtime('deno-1.35');
-        }
-        return self::$DENO135;
     }
     public static function DENO140(): Runtime
     {
