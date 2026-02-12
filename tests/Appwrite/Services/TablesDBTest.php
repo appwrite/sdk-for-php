@@ -258,7 +258,9 @@ final class TablesDBTest extends TestCase {
             "enabled" => true,
             "rowSecurity" => true,
             "columns" => array(),
-            "indexes" => array());
+            "indexes" => array(),
+            "bytesMax" => 65535,
+            "bytesUsed" => 1500);
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -285,7 +287,9 @@ final class TablesDBTest extends TestCase {
             "enabled" => true,
             "rowSecurity" => true,
             "columns" => array(),
-            "indexes" => array());
+            "indexes" => array(),
+            "bytesMax" => 65535,
+            "bytesUsed" => 1500);
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -311,7 +315,9 @@ final class TablesDBTest extends TestCase {
             "enabled" => true,
             "rowSecurity" => true,
             "columns" => array(),
-            "indexes" => array());
+            "indexes" => array(),
+            "bytesMax" => 65535,
+            "bytesUsed" => 1500);
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())

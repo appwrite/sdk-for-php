@@ -45,6 +45,7 @@ class Runtime implements JsonSerializable
     private static Runtime $DART35;
     private static Runtime $DART38;
     private static Runtime $DART39;
+    private static Runtime $DART310;
     private static Runtime $DOTNET60;
     private static Runtime $DOTNET70;
     private static Runtime $DOTNET80;
@@ -73,6 +74,7 @@ class Runtime implements JsonSerializable
     private static Runtime $FLUTTER329;
     private static Runtime $FLUTTER332;
     private static Runtime $FLUTTER335;
+    private static Runtime $FLUTTER338;
 
     private string $value;
 
@@ -364,6 +366,13 @@ class Runtime implements JsonSerializable
         }
         return self::$DART39;
     }
+    public static function DART310(): Runtime
+    {
+        if (!isset(self::$DART310)) {
+            self::$DART310 = new Runtime('dart-3.10');
+        }
+        return self::$DART310;
+    }
     public static function DOTNET60(): Runtime
     {
         if (!isset(self::$DOTNET60)) {
@@ -559,5 +568,12 @@ class Runtime implements JsonSerializable
             self::$FLUTTER335 = new Runtime('flutter-3.35');
         }
         return self::$FLUTTER335;
+    }
+    public static function FLUTTER338(): Runtime
+    {
+        if (!isset(self::$FLUTTER338)) {
+            self::$FLUTTER338 = new Runtime('flutter-3.38');
+        }
+        return self::$FLUTTER338;
     }
 }
