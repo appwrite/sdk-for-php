@@ -1,5 +1,10 @@
 # Change Log
 
+## 20.1.0
+
+* Fix doc examples with proper formatting
+* Add support for the new `Backups` service
+
 ## 20.0.0
 
 * Add array-based enum parameters (e.g., `permissions: array<BrowserPermission>`).
