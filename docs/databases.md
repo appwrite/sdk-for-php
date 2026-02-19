@@ -577,6 +577,7 @@ POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collection
 | required | boolean | Is attribute required? |  |
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | array | boolean | Is attribute an array? |  |
+| encrypt | boolean | Toggle encryption for the attribute. Encryption enhances security by not storing any plain text values in the database. However, encrypted attributes cannot be queried. |  |
 
 
 ```http request
@@ -615,6 +616,7 @@ POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collection
 | required | boolean | Is attribute required? |  |
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | array | boolean | Is attribute an array? |  |
+| encrypt | boolean | Toggle encryption for the attribute. Encryption enhances security by not storing any plain text values in the database. However, encrypted attributes cannot be queried. |  |
 
 
 ```http request
@@ -785,6 +787,7 @@ POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collection
 | required | boolean | Is attribute required? |  |
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | array | boolean | Is attribute an array? |  |
+| encrypt | boolean | Toggle encryption for the attribute. Encryption enhances security by not storing any plain text values in the database. However, encrypted attributes cannot be queried. |  |
 
 
 ```http request
@@ -862,6 +865,7 @@ POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collection
 | required | boolean | Is attribute required? |  |
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | array | boolean | Is attribute an array? |  |
+| encrypt | boolean | Toggle encryption for the attribute. Encryption enhances security by not storing any plain text values in the database. However, encrypted attributes cannot be queried. |  |
 
 
 ```http request

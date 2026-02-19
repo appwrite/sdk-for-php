@@ -2,15 +2,15 @@
 <?php
 
 use Appwrite\Client;
-use Appwrite\Services\Health;
+use Appwrite\Services\Activities;
 
 $client = (new Client())
     ->setEndpoint('https://<REGION>.cloud.appwrite.io/v1') // Your API Endpoint
     ->setProject('<YOUR_PROJECT_ID>') // Your project ID
     ->setKey('<YOUR_API_KEY>'); // Your secret API key
 
-$health = new Health($client);
+$activities = new Activities($client);
 
-$result = $health->getQueueBillingTeamAggregation(
-    threshold: null // optional
+$result = $activities->listEvents(
+    queries: '' // optional
 );```

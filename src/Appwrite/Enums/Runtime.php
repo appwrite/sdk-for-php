@@ -13,24 +13,35 @@ class Runtime implements JsonSerializable
     private static Runtime $NODE200;
     private static Runtime $NODE210;
     private static Runtime $NODE22;
+    private static Runtime $NODE23;
+    private static Runtime $NODE24;
+    private static Runtime $NODE25;
     private static Runtime $PHP80;
     private static Runtime $PHP81;
     private static Runtime $PHP82;
     private static Runtime $PHP83;
+    private static Runtime $PHP84;
     private static Runtime $RUBY30;
     private static Runtime $RUBY31;
     private static Runtime $RUBY32;
     private static Runtime $RUBY33;
+    private static Runtime $RUBY34;
+    private static Runtime $RUBY40;
     private static Runtime $PYTHON38;
     private static Runtime $PYTHON39;
     private static Runtime $PYTHON310;
     private static Runtime $PYTHON311;
     private static Runtime $PYTHON312;
+    private static Runtime $PYTHON313;
+    private static Runtime $PYTHON314;
     private static Runtime $PYTHONML311;
     private static Runtime $PYTHONML312;
+    private static Runtime $PYTHONML313;
     private static Runtime $DENO140;
     private static Runtime $DENO146;
     private static Runtime $DENO20;
+    private static Runtime $DENO25;
+    private static Runtime $DENO26;
     private static Runtime $DART215;
     private static Runtime $DART216;
     private static Runtime $DART217;
@@ -46,25 +57,34 @@ class Runtime implements JsonSerializable
     private static Runtime $DOTNET60;
     private static Runtime $DOTNET70;
     private static Runtime $DOTNET80;
+    private static Runtime $DOTNET10;
     private static Runtime $JAVA80;
     private static Runtime $JAVA110;
     private static Runtime $JAVA170;
     private static Runtime $JAVA180;
     private static Runtime $JAVA210;
     private static Runtime $JAVA22;
+    private static Runtime $JAVA25;
     private static Runtime $SWIFT55;
     private static Runtime $SWIFT58;
     private static Runtime $SWIFT59;
     private static Runtime $SWIFT510;
+    private static Runtime $SWIFT62;
     private static Runtime $KOTLIN16;
     private static Runtime $KOTLIN18;
     private static Runtime $KOTLIN19;
     private static Runtime $KOTLIN20;
+    private static Runtime $KOTLIN23;
     private static Runtime $CPP17;
     private static Runtime $CPP20;
     private static Runtime $BUN10;
     private static Runtime $BUN11;
+    private static Runtime $BUN12;
+    private static Runtime $BUN13;
     private static Runtime $GO123;
+    private static Runtime $GO124;
+    private static Runtime $GO125;
+    private static Runtime $GO126;
     private static Runtime $STATIC1;
     private static Runtime $FLUTTER324;
     private static Runtime $FLUTTER327;
@@ -139,6 +159,27 @@ class Runtime implements JsonSerializable
         }
         return self::$NODE22;
     }
+    public static function NODE23(): Runtime
+    {
+        if (!isset(self::$NODE23)) {
+            self::$NODE23 = new Runtime('node-23');
+        }
+        return self::$NODE23;
+    }
+    public static function NODE24(): Runtime
+    {
+        if (!isset(self::$NODE24)) {
+            self::$NODE24 = new Runtime('node-24');
+        }
+        return self::$NODE24;
+    }
+    public static function NODE25(): Runtime
+    {
+        if (!isset(self::$NODE25)) {
+            self::$NODE25 = new Runtime('node-25');
+        }
+        return self::$NODE25;
+    }
     public static function PHP80(): Runtime
     {
         if (!isset(self::$PHP80)) {
@@ -167,6 +208,13 @@ class Runtime implements JsonSerializable
         }
         return self::$PHP83;
     }
+    public static function PHP84(): Runtime
+    {
+        if (!isset(self::$PHP84)) {
+            self::$PHP84 = new Runtime('php-8.4');
+        }
+        return self::$PHP84;
+    }
     public static function RUBY30(): Runtime
     {
         if (!isset(self::$RUBY30)) {
@@ -194,6 +242,20 @@ class Runtime implements JsonSerializable
             self::$RUBY33 = new Runtime('ruby-3.3');
         }
         return self::$RUBY33;
+    }
+    public static function RUBY34(): Runtime
+    {
+        if (!isset(self::$RUBY34)) {
+            self::$RUBY34 = new Runtime('ruby-3.4');
+        }
+        return self::$RUBY34;
+    }
+    public static function RUBY40(): Runtime
+    {
+        if (!isset(self::$RUBY40)) {
+            self::$RUBY40 = new Runtime('ruby-4.0');
+        }
+        return self::$RUBY40;
     }
     public static function PYTHON38(): Runtime
     {
@@ -230,6 +292,20 @@ class Runtime implements JsonSerializable
         }
         return self::$PYTHON312;
     }
+    public static function PYTHON313(): Runtime
+    {
+        if (!isset(self::$PYTHON313)) {
+            self::$PYTHON313 = new Runtime('python-3.13');
+        }
+        return self::$PYTHON313;
+    }
+    public static function PYTHON314(): Runtime
+    {
+        if (!isset(self::$PYTHON314)) {
+            self::$PYTHON314 = new Runtime('python-3.14');
+        }
+        return self::$PYTHON314;
+    }
     public static function PYTHONML311(): Runtime
     {
         if (!isset(self::$PYTHONML311)) {
@@ -243,6 +319,13 @@ class Runtime implements JsonSerializable
             self::$PYTHONML312 = new Runtime('python-ml-3.12');
         }
         return self::$PYTHONML312;
+    }
+    public static function PYTHONML313(): Runtime
+    {
+        if (!isset(self::$PYTHONML313)) {
+            self::$PYTHONML313 = new Runtime('python-ml-3.13');
+        }
+        return self::$PYTHONML313;
     }
     public static function DENO140(): Runtime
     {
@@ -264,6 +347,20 @@ class Runtime implements JsonSerializable
             self::$DENO20 = new Runtime('deno-2.0');
         }
         return self::$DENO20;
+    }
+    public static function DENO25(): Runtime
+    {
+        if (!isset(self::$DENO25)) {
+            self::$DENO25 = new Runtime('deno-2.5');
+        }
+        return self::$DENO25;
+    }
+    public static function DENO26(): Runtime
+    {
+        if (!isset(self::$DENO26)) {
+            self::$DENO26 = new Runtime('deno-2.6');
+        }
+        return self::$DENO26;
     }
     public static function DART215(): Runtime
     {
@@ -370,6 +467,13 @@ class Runtime implements JsonSerializable
         }
         return self::$DOTNET80;
     }
+    public static function DOTNET10(): Runtime
+    {
+        if (!isset(self::$DOTNET10)) {
+            self::$DOTNET10 = new Runtime('dotnet-10');
+        }
+        return self::$DOTNET10;
+    }
     public static function JAVA80(): Runtime
     {
         if (!isset(self::$JAVA80)) {
@@ -412,6 +516,13 @@ class Runtime implements JsonSerializable
         }
         return self::$JAVA22;
     }
+    public static function JAVA25(): Runtime
+    {
+        if (!isset(self::$JAVA25)) {
+            self::$JAVA25 = new Runtime('java-25');
+        }
+        return self::$JAVA25;
+    }
     public static function SWIFT55(): Runtime
     {
         if (!isset(self::$SWIFT55)) {
@@ -439,6 +550,13 @@ class Runtime implements JsonSerializable
             self::$SWIFT510 = new Runtime('swift-5.10');
         }
         return self::$SWIFT510;
+    }
+    public static function SWIFT62(): Runtime
+    {
+        if (!isset(self::$SWIFT62)) {
+            self::$SWIFT62 = new Runtime('swift-6.2');
+        }
+        return self::$SWIFT62;
     }
     public static function KOTLIN16(): Runtime
     {
@@ -468,6 +586,13 @@ class Runtime implements JsonSerializable
         }
         return self::$KOTLIN20;
     }
+    public static function KOTLIN23(): Runtime
+    {
+        if (!isset(self::$KOTLIN23)) {
+            self::$KOTLIN23 = new Runtime('kotlin-2.3');
+        }
+        return self::$KOTLIN23;
+    }
     public static function CPP17(): Runtime
     {
         if (!isset(self::$CPP17)) {
@@ -496,12 +621,47 @@ class Runtime implements JsonSerializable
         }
         return self::$BUN11;
     }
+    public static function BUN12(): Runtime
+    {
+        if (!isset(self::$BUN12)) {
+            self::$BUN12 = new Runtime('bun-1.2');
+        }
+        return self::$BUN12;
+    }
+    public static function BUN13(): Runtime
+    {
+        if (!isset(self::$BUN13)) {
+            self::$BUN13 = new Runtime('bun-1.3');
+        }
+        return self::$BUN13;
+    }
     public static function GO123(): Runtime
     {
         if (!isset(self::$GO123)) {
             self::$GO123 = new Runtime('go-1.23');
         }
         return self::$GO123;
+    }
+    public static function GO124(): Runtime
+    {
+        if (!isset(self::$GO124)) {
+            self::$GO124 = new Runtime('go-1.24');
+        }
+        return self::$GO124;
+    }
+    public static function GO125(): Runtime
+    {
+        if (!isset(self::$GO125)) {
+            self::$GO125 = new Runtime('go-1.25');
+        }
+        return self::$GO125;
+    }
+    public static function GO126(): Runtime
+    {
+        if (!isset(self::$GO126)) {
+            self::$GO126 = new Runtime('go-1.26');
+        }
+        return self::$GO126;
     }
     public static function STATIC1(): Runtime
     {

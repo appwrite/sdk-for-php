@@ -576,6 +576,7 @@ POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/columns
 | required | boolean | Is column required? |  |
 | default | string | Default value for column when not provided. Cannot be set when column is required. |  |
 | array | boolean | Is column an array? |  |
+| encrypt | boolean | Toggle encryption for the column. Encryption enhances security by not storing any plain text values in the database. However, encrypted columns cannot be queried. |  |
 
 
 ```http request
@@ -614,6 +615,7 @@ POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/columns
 | required | boolean | Is column required? |  |
 | default | string | Default value for column when not provided. Cannot be set when column is required. |  |
 | array | boolean | Is column an array? |  |
+| encrypt | boolean | Toggle encryption for the column. Encryption enhances security by not storing any plain text values in the database. However, encrypted columns cannot be queried. |  |
 
 
 ```http request
@@ -784,6 +786,7 @@ POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/columns
 | required | boolean | Is column required? |  |
 | default | string | Default value for column when not provided. Cannot be set when column is required. |  |
 | array | boolean | Is column an array? |  |
+| encrypt | boolean | Toggle encryption for the column. Encryption enhances security by not storing any plain text values in the database. However, encrypted columns cannot be queried. |  |
 
 
 ```http request
@@ -861,6 +864,7 @@ POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/columns
 | required | boolean | Is column required? |  |
 | default | string | Default value for column when not provided. Cannot be set when column is required. |  |
 | array | boolean | Is column an array? |  |
+| encrypt | boolean | Toggle encryption for the column. Encryption enhances security by not storing any plain text values in the database. However, encrypted columns cannot be queried. |  |
 
 
 ```http request

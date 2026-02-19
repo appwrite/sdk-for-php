@@ -54,6 +54,8 @@ class Scopes implements JsonSerializable
     private static Scopes $TARGETSWRITE;
     private static Scopes $RULESREAD;
     private static Scopes $RULESWRITE;
+    private static Scopes $SCHEDULESREAD;
+    private static Scopes $SCHEDULESWRITE;
     private static Scopes $MIGRATIONSREAD;
     private static Scopes $MIGRATIONSWRITE;
     private static Scopes $VCSREAD;
@@ -69,6 +71,7 @@ class Scopes implements JsonSerializable
     private static Scopes $RESTORATIONSWRITE;
     private static Scopes $DOMAINSREAD;
     private static Scopes $DOMAINSWRITE;
+    private static Scopes $EVENTSREAD;
 
     private string $value;
 
@@ -423,6 +426,20 @@ class Scopes implements JsonSerializable
         }
         return self::$RULESWRITE;
     }
+    public static function SCHEDULESREAD(): Scopes
+    {
+        if (!isset(self::$SCHEDULESREAD)) {
+            self::$SCHEDULESREAD = new Scopes('schedules.read');
+        }
+        return self::$SCHEDULESREAD;
+    }
+    public static function SCHEDULESWRITE(): Scopes
+    {
+        if (!isset(self::$SCHEDULESWRITE)) {
+            self::$SCHEDULESWRITE = new Scopes('schedules.write');
+        }
+        return self::$SCHEDULESWRITE;
+    }
     public static function MIGRATIONSREAD(): Scopes
     {
         if (!isset(self::$MIGRATIONSREAD)) {
@@ -527,5 +544,12 @@ class Scopes implements JsonSerializable
             self::$DOMAINSWRITE = new Scopes('domains.write');
         }
         return self::$DOMAINSWRITE;
+    }
+    public static function EVENTSREAD(): Scopes
+    {
+        if (!isset(self::$EVENTSREAD)) {
+            self::$EVENTSREAD = new Scopes('events.read');
+        }
+        return self::$EVENTSREAD;
     }
 }
