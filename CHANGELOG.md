@@ -1,9 +1,15 @@
 # Change Log
 
-## 20.1.0
+## 20.2.0
+
+* Added optional encrypt parameter for database attributes (Text, Longtext, Mediumtext, Varchar) and corresponding column creation methods to enable encryption at rest. Encrypted attributes/columns cannot be queried.
+* Updated API docs and code examples to include the new encrypt option (defaulting to false) across databases and TablesDB sections.
+* Updated README compatibility note to reflect Appwrite server version 1.8.x.
+* Add support for the new `Backups` service
+
+## 20.0.1
 
 * Fix doc examples with proper formatting
-* Add support for the new `Backups` service
 
 ## 20.0.0
 

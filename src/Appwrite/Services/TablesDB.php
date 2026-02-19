@@ -1335,10 +1335,11 @@ class TablesDB extends Service
      * @param bool $required
      * @param ?string $xdefault
      * @param ?bool $xarray
+     * @param ?bool $encrypt
      * @throws AppwriteException
      * @return array
      */
-    public function createLongtextColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): array
+    public function createLongtextColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
@@ -1355,6 +1356,10 @@ class TablesDB extends Service
 
         if (!is_null($xarray)) {
             $apiParams['array'] = $xarray;
+        }
+
+        if (!is_null($encrypt)) {
+            $apiParams['encrypt'] = $encrypt;
         }
 
         $apiHeaders = [];
@@ -1419,10 +1424,11 @@ class TablesDB extends Service
      * @param bool $required
      * @param ?string $xdefault
      * @param ?bool $xarray
+     * @param ?bool $encrypt
      * @throws AppwriteException
      * @return array
      */
-    public function createMediumtextColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): array
+    public function createMediumtextColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
@@ -1439,6 +1445,10 @@ class TablesDB extends Service
 
         if (!is_null($xarray)) {
             $apiParams['array'] = $xarray;
+        }
+
+        if (!is_null($encrypt)) {
+            $apiParams['encrypt'] = $encrypt;
         }
 
         $apiHeaders = [];
@@ -1807,10 +1817,11 @@ class TablesDB extends Service
      * @param bool $required
      * @param ?string $xdefault
      * @param ?bool $xarray
+     * @param ?bool $encrypt
      * @throws AppwriteException
      * @return array
      */
-    public function createTextColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): array
+    public function createTextColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
@@ -1827,6 +1838,10 @@ class TablesDB extends Service
 
         if (!is_null($xarray)) {
             $apiParams['array'] = $xarray;
+        }
+
+        if (!is_null($encrypt)) {
+            $apiParams['encrypt'] = $encrypt;
         }
 
         $apiHeaders = [];
@@ -1976,10 +1991,11 @@ class TablesDB extends Service
      * @param bool $required
      * @param ?string $xdefault
      * @param ?bool $xarray
+     * @param ?bool $encrypt
      * @throws AppwriteException
      * @return array
      */
-    public function createVarcharColumn(string $databaseId, string $tableId, string $key, int $size, bool $required, ?string $xdefault = null, ?bool $xarray = null): array
+    public function createVarcharColumn(string $databaseId, string $tableId, string $key, int $size, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
@@ -1997,6 +2013,10 @@ class TablesDB extends Service
 
         if (!is_null($xarray)) {
             $apiParams['array'] = $xarray;
+        }
+
+        if (!is_null($encrypt)) {
+            $apiParams['encrypt'] = $encrypt;
         }
 
         $apiHeaders = [];

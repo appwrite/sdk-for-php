@@ -1417,10 +1417,11 @@ class Databases extends Service
      * @param bool $required
      * @param ?string $xdefault
      * @param ?bool $xarray
+     * @param ?bool $encrypt
      * @throws AppwriteException
      * @return array
      */
-    public function createLongtextAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): array
+    public function createLongtextAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
@@ -1437,6 +1438,10 @@ class Databases extends Service
 
         if (!is_null($xarray)) {
             $apiParams['array'] = $xarray;
+        }
+
+        if (!is_null($encrypt)) {
+            $apiParams['encrypt'] = $encrypt;
         }
 
         $apiHeaders = [];
@@ -1501,10 +1506,11 @@ class Databases extends Service
      * @param bool $required
      * @param ?string $xdefault
      * @param ?bool $xarray
+     * @param ?bool $encrypt
      * @throws AppwriteException
      * @return array
      */
-    public function createMediumtextAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): array
+    public function createMediumtextAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
@@ -1521,6 +1527,10 @@ class Databases extends Service
 
         if (!is_null($xarray)) {
             $apiParams['array'] = $xarray;
+        }
+
+        if (!is_null($encrypt)) {
+            $apiParams['encrypt'] = $encrypt;
         }
 
         $apiHeaders = [];
@@ -1904,10 +1914,11 @@ class Databases extends Service
      * @param bool $required
      * @param ?string $xdefault
      * @param ?bool $xarray
+     * @param ?bool $encrypt
      * @throws AppwriteException
      * @return array
      */
-    public function createTextAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): array
+    public function createTextAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
@@ -1924,6 +1935,10 @@ class Databases extends Service
 
         if (!is_null($xarray)) {
             $apiParams['array'] = $xarray;
+        }
+
+        if (!is_null($encrypt)) {
+            $apiParams['encrypt'] = $encrypt;
         }
 
         $apiHeaders = [];
@@ -2079,10 +2094,11 @@ class Databases extends Service
      * @param bool $required
      * @param ?string $xdefault
      * @param ?bool $xarray
+     * @param ?bool $encrypt
      * @throws AppwriteException
      * @return array
      */
-    public function createVarcharAttribute(string $databaseId, string $collectionId, string $key, int $size, bool $required, ?string $xdefault = null, ?bool $xarray = null): array
+    public function createVarcharAttribute(string $databaseId, string $collectionId, string $key, int $size, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
@@ -2100,6 +2116,10 @@ class Databases extends Service
 
         if (!is_null($xarray)) {
             $apiParams['array'] = $xarray;
+        }
+
+        if (!is_null($encrypt)) {
+            $apiParams['encrypt'] = $encrypt;
         }
 
         $apiHeaders = [];
