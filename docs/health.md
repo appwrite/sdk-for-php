@@ -36,6 +36,21 @@ GET https://cloud.appwrite.io/v1/health/certificate
 
 
 ```http request
+GET https://cloud.appwrite.io/v1/health/console-pausing
+```
+
+** Get console pausing health status. Monitors projects approaching the pause threshold to detect potential issues with console access tracking.
+ **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| threshold | integer | Percentage threshold of projects approaching pause. When hit (equal or higher), endpoint returns server error. Default value is 10. | 10 |
+| inactivityDays | integer | Number of days of inactivity before a project is paused. Should match the plan's projectInactivityDays setting. Default value is 7. | 7 |
+
+
+```http request
 GET https://cloud.appwrite.io/v1/health/db
 ```
 
@@ -63,6 +78,32 @@ GET https://cloud.appwrite.io/v1/health/queue/audits
 
 
 ```http request
+GET https://cloud.appwrite.io/v1/health/queue/billing-project-aggregation
+```
+
+** Get billing project aggregation queue. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| threshold | integer | Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000. | 10000 |
+
+
+```http request
+GET https://cloud.appwrite.io/v1/health/queue/billing-team-aggregation
+```
+
+** Get billing team aggregation queue. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| threshold | integer | Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000. | 10000 |
+
+
+```http request
 GET https://cloud.appwrite.io/v1/health/queue/builds
 ```
 
@@ -73,6 +114,19 @@ GET https://cloud.appwrite.io/v1/health/queue/builds
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | threshold | integer | Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000. | 5000 |
+
+
+```http request
+GET https://cloud.appwrite.io/v1/health/queue/builds-priority
+```
+
+** Get the priority builds queue size. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| threshold | integer | Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 500. | 500 |
 
 
 ```http request
@@ -196,6 +250,19 @@ GET https://cloud.appwrite.io/v1/health/queue/migrations
 
 
 ```http request
+GET https://cloud.appwrite.io/v1/health/queue/region-manager
+```
+
+** Get region manager queue. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| threshold | integer | Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 100. | 100 |
+
+
+```http request
 GET https://cloud.appwrite.io/v1/health/queue/stats-resources
 ```
 
@@ -219,6 +286,19 @@ GET https://cloud.appwrite.io/v1/health/queue/stats-usage
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | threshold | integer | Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000. | 5000 |
+
+
+```http request
+GET https://cloud.appwrite.io/v1/health/queue/threats
+```
+
+** Get threats queue. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| threshold | integer | Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 100. | 100 |
 
 
 ```http request
