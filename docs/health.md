@@ -36,6 +36,21 @@ GET https://cloud.appwrite.io/v1/health/certificate
 
 
 ```http request
+GET https://cloud.appwrite.io/v1/health/console-pausing
+```
+
+** Get console pausing health status. Monitors projects approaching the pause threshold to detect potential issues with console access tracking.
+ **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| threshold | integer | Percentage threshold of projects approaching pause. When hit (equal or higher), endpoint returns server error. Default value is 10. | 10 |
+| inactivityDays | integer | Number of days of inactivity before a project is paused. Should match the plan's projectInactivityDays setting. Default value is 7. | 7 |
+
+
+```http request
 GET https://cloud.appwrite.io/v1/health/db
 ```
 

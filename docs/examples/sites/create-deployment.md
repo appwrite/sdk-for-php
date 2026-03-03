@@ -15,8 +15,8 @@ $sites = new Sites($client);
 $result = $sites->createDeployment(
     siteId: '<SITE_ID>',
     code: InputFile::withPath('file.png'),
-    activate: false,
     installCommand: '<INSTALL_COMMAND>', // optional
     buildCommand: '<BUILD_COMMAND>', // optional
-    outputDirectory: '<OUTPUT_DIRECTORY>' // optional
+    outputDirectory: '<OUTPUT_DIRECTORY>', // optional
+    activate: false // optional
 );```

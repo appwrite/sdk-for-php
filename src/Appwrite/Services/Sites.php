@@ -468,14 +468,14 @@ class Sites extends Service
      *
      * @param string $siteId
      * @param InputFile $code
-     * @param bool $activate
      * @param ?string $installCommand
      * @param ?string $buildCommand
      * @param ?string $outputDirectory
+     * @param ?bool $activate
      * @throws AppwriteException
      * @return array
      */
-    public function createDeployment(string $siteId, InputFile $code, bool $activate, ?string $installCommand = null, ?string $buildCommand = null, ?string $outputDirectory = null, ?callable $onProgress = null): array
+    public function createDeployment(string $siteId, InputFile $code, ?string $installCommand = null, ?string $buildCommand = null, ?string $outputDirectory = null, ?bool $activate = null, ?callable $onProgress = null): array
     {
         $apiPath = str_replace(
             ['{siteId}'],
@@ -486,7 +486,6 @@ class Sites extends Service
         $apiParams = [];
         $apiParams['siteId'] = $siteId;
         $apiParams['code'] = $code;
-        $apiParams['activate'] = $activate;
 
         if (!is_null($installCommand)) {
             $apiParams['installCommand'] = $installCommand;
@@ -498,6 +497,10 @@ class Sites extends Service
 
         if (!is_null($outputDirectory)) {
             $apiParams['outputDirectory'] = $outputDirectory;
+        }
+
+        if (!is_null($activate)) {
+            $apiParams['activate'] = $activate;
         }
 
         $apiHeaders = [];

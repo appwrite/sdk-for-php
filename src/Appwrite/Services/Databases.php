@@ -1806,6 +1806,51 @@ class Databases extends Service
     }
 
     /**
+     * Update relationship attribute. [Learn more about relationship
+     * attributes](https://appwrite.io/docs/databases-relationships#relationship-attributes).
+     * 
+     *
+     * @param string $databaseId
+     * @param string $collectionId
+     * @param string $key
+     * @param ?RelationMutate $onDelete
+     * @param ?string $newKey
+     * @throws AppwriteException
+     * @return array
+     *
+     * @deprecated This API has been deprecated since 1.8.0. Please use `updateRelationshipColumn` instead.
+     * @see TablesDB::updateRelationshipColumn
+     */
+    public function updateRelationshipAttribute(string $databaseId, string $collectionId, string $key, ?RelationMutate $onDelete = null, ?string $newKey = null): array
+    {
+        $apiPath = str_replace(
+            ['{databaseId}', '{collectionId}', '{key}'],
+            [$databaseId, $collectionId, $key],
+            '/databases/{databaseId}/collections/{collectionId}/attributes/relationship/{key}'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['collectionId'] = $collectionId;
+        $apiParams['key'] = $key;
+
+        if (!is_null($onDelete)) {
+            $apiParams['onDelete'] = $onDelete;
+        }
+        $apiParams['newKey'] = $newKey;
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
      * Create a string attribute.
      * 
      *
@@ -2248,48 +2293,6 @@ class Databases extends Service
     }
 
     /**
-     * Update relationship attribute. [Learn more about relationship
-     * attributes](https://appwrite.io/docs/databases-relationships#relationship-attributes).
-     * 
-     *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param string $key
-     * @param ?RelationMutate $onDelete
-     * @param ?string $newKey
-     * @throws AppwriteException
-     * @return array
-     *
-     * @deprecated This API has been deprecated since 1.8.0. Please use `updateRelationshipColumn` instead.
-     * @see TablesDB::updateRelationshipColumn
-     */
-    public function updateRelationshipAttribute(string $databaseId, string $collectionId, string $key, ?RelationMutate $onDelete = null, ?string $newKey = null): array
-    {
-        $apiPath = str_replace(
-            ['{databaseId}', '{collectionId}', '{key}'],
-            [$databaseId, $collectionId, $key],
-            '/databases/{databaseId}/collections/{collectionId}/attributes/{key}/relationship'
-        );
-
-        $apiParams = [];
-        $apiParams['databaseId'] = $databaseId;
-        $apiParams['collectionId'] = $collectionId;
-        $apiParams['key'] = $key;
-        $apiParams['onDelete'] = $onDelete;
-        $apiParams['newKey'] = $newKey;
-
-        $apiHeaders = [];
-        $apiHeaders['content-type'] = 'application/json';
-
-        return $this->client->call(
-            Client::METHOD_PATCH,
-            $apiPath,
-            $apiHeaders,
-            $apiParams
-        );
-    }
-
-    /**
      * Get a list of all the user's documents in a given collection. You can use
      * the query params to filter your results.
      *
@@ -2298,13 +2301,14 @@ class Databases extends Service
      * @param ?array $queries
      * @param ?string $transactionId
      * @param ?bool $total
+     * @param ?int $ttl
      * @throws AppwriteException
      * @return array
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `listRows` instead.
      * @see TablesDB::listRows
      */
-    public function listDocuments(string $databaseId, string $collectionId, ?array $queries = null, ?string $transactionId = null, ?bool $total = null): array
+    public function listDocuments(string $databaseId, string $collectionId, ?array $queries = null, ?string $transactionId = null, ?bool $total = null, ?int $ttl = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
@@ -2326,6 +2330,10 @@ class Databases extends Service
 
         if (!is_null($total)) {
             $apiParams['total'] = $total;
+        }
+
+        if (!is_null($ttl)) {
+            $apiParams['ttl'] = $ttl;
         }
 
         $apiHeaders = [];

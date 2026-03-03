@@ -1,5 +1,11 @@
 # Change Log
 
+## 21.0.0
+
+* Breaking: Updated createDeployment signature and relationship attribute endpoint path
+* Added TTL parameter support to listDocuments and listRows
+* Added getConsolePausing health endpoint to Health service
+
 ## 20.2.0
 
 * Added optional encrypt parameter for database attributes (Text, Longtext, Mediumtext, Varchar) and corresponding column creation methods to enable encryption at rest. Encrypted attributes/columns cannot be queried.

@@ -126,6 +126,44 @@ class Health extends Service
     }
 
     /**
+     * Get console pausing health status. Monitors projects approaching the pause
+     * threshold to detect potential issues with console access tracking.
+     * 
+     *
+     * @param ?int $threshold
+     * @param ?int $inactivityDays
+     * @throws AppwriteException
+     * @return array
+     */
+    public function getConsolePausing(?int $threshold = null, ?int $inactivityDays = null): array
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/health/console-pausing'
+        );
+
+        $apiParams = [];
+
+        if (!is_null($threshold)) {
+            $apiParams['threshold'] = $threshold;
+        }
+
+        if (!is_null($inactivityDays)) {
+            $apiParams['inactivityDays'] = $inactivityDays;
+        }
+
+        $apiHeaders = [];
+
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
      * Check the Appwrite database servers are up and connection is successful.
      *
      * @throws AppwriteException

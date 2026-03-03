@@ -86,6 +86,23 @@ final class HealthTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
+    public function testMethodGetConsolePausing(): void {
+
+        $data = array(
+            "name" => "database",
+            "ping" => 128,
+            "status" => "pass");
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->health->getConsolePausing(
+        );
+
+        $this->assertSame($data, $response);
+    }
+
     public function testMethodGetDB(): void {
 
         $data = array(
