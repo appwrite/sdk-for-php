@@ -1016,6 +1016,7 @@ GET https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/rows
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. | [] |
 | transactionId | string | Transaction ID to read uncommitted changes within the transaction. |  |
 | total | boolean | When set to false, the total count returned will be 0 and will not be calculated. | 1 |
+| ttl | integer | TTL (seconds) for cached responses when caching is enabled for select queries. Must be between 0 and 86400 (24 hours). | 0 |
 
 
 ```http request

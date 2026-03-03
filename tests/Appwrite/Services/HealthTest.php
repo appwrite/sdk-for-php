@@ -133,36 +133,6 @@ final class HealthTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
-    public function testMethodGetQueueBillingProjectAggregation(): void {
-
-        $data = array(
-            "size" => 8);
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-
-        $response = $this->health->getQueueBillingProjectAggregation(
-        );
-
-        $this->assertSame($data, $response);
-    }
-
-    public function testMethodGetQueueBillingTeamAggregation(): void {
-
-        $data = array(
-            "size" => 8);
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-
-        $response = $this->health->getQueueBillingTeamAggregation(
-        );
-
-        $this->assertSame($data, $response);
-    }
-
     public function testMethodGetQueueBuilds(): void {
 
         $data = array(
@@ -173,21 +143,6 @@ final class HealthTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->health->getQueueBuilds(
-        );
-
-        $this->assertSame($data, $response);
-    }
-
-    public function testMethodGetQueuePriorityBuilds(): void {
-
-        $data = array(
-            "size" => 8);
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-
-        $response = $this->health->getQueuePriorityBuilds(
         );
 
         $this->assertSame($data, $response);
@@ -329,21 +284,6 @@ final class HealthTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
-    public function testMethodGetQueueRegionManager(): void {
-
-        $data = array(
-            "size" => 8);
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-
-        $response = $this->health->getQueueRegionManager(
-        );
-
-        $this->assertSame($data, $response);
-    }
-
     public function testMethodGetQueueStatsResources(): void {
 
         $data = array(
@@ -369,21 +309,6 @@ final class HealthTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->health->getQueueUsage(
-        );
-
-        $this->assertSame($data, $response);
-    }
-
-    public function testMethodGetQueueThreats(): void {
-
-        $data = array(
-            "size" => 8);
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-
-        $response = $this->health->getQueueThreats(
         );
 
         $this->assertSame($data, $response);

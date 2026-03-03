@@ -264,7 +264,7 @@ POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collection
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | databaseId | string | **Required** Database ID. |  |
-| collectionId | string | **Required** Collection ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
+| collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
 | key | string | Attribute Key. |  |
 | required | boolean | Is attribute required? |  |
 | default | boolean | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
@@ -730,6 +730,24 @@ POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collection
 
 
 ```http request
+PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/relationship/{key}
+```
+
+** Update relationship attribute. [Learn more about relationship attributes](https://appwrite.io/docs/databases-relationships#relationship-attributes).
+ **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| databaseId | string | **Required** Database ID. |  |
+| collectionId | string | **Required** Collection ID. |  |
+| key | string | **Required** Attribute Key. |  |
+| onDelete | string | Constraints option |  |
+| newKey | string | New Attribute Key. |  |
+
+
+```http request
 POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/string
 ```
 
@@ -919,24 +937,6 @@ DELETE https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collecti
 
 
 ```http request
-PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/{key}/relationship
-```
-
-** Update relationship attribute. [Learn more about relationship attributes](https://appwrite.io/docs/databases-relationships#relationship-attributes).
- **
-
-### Parameters
-
-| Field Name | Type | Description | Default |
-| --- | --- | --- | --- |
-| databaseId | string | **Required** Database ID. |  |
-| collectionId | string | **Required** Collection ID. |  |
-| key | string | **Required** Attribute Key. |  |
-| onDelete | string | Constraints option |  |
-| newKey | string | New Attribute Key. |  |
-
-
-```http request
 GET https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/documents
 ```
 
@@ -951,6 +951,7 @@ GET https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionI
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. | [] |
 | transactionId | string | Transaction ID to read uncommitted changes within the transaction. |  |
 | total | boolean | When set to false, the total count returned will be 0 and will not be calculated. | 1 |
+| ttl | integer | TTL (seconds) for cached responses when caching is enabled for select queries. Must be between 0 and 86400 (24 hours). | 0 |
 
 
 ```http request

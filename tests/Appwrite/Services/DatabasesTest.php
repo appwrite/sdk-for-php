@@ -44,9 +44,7 @@ final class DatabasesTest extends TestCase {
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "enabled" => true,
-            "type" => "legacy",
-            "policies" => array(),
-            "archives" => array());
+            "type" => "legacy");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -182,9 +180,7 @@ final class DatabasesTest extends TestCase {
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "enabled" => true,
-            "type" => "legacy",
-            "policies" => array(),
-            "archives" => array());
+            "type" => "legacy");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -205,9 +201,7 @@ final class DatabasesTest extends TestCase {
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "enabled" => true,
-            "type" => "legacy",
-            "policies" => array(),
-            "archives" => array());
+            "type" => "legacy");
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1023,6 +1017,36 @@ final class DatabasesTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
+    public function testMethodUpdateRelationshipAttribute(): void {
+
+        $data = array(
+            "key" => "fullName",
+            "type" => "string",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "relatedCollection" => "collection",
+            "relationType" => "oneToOne|oneToMany|manyToOne|manyToMany",
+            "twoWay" => true,
+            "twoWayKey" => "string",
+            "onDelete" => "restrict|cascade|setNull",
+            "side" => "parent|child");
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->databases->updateRelationshipAttribute(
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
+            ""
+        );
+
+        $this->assertSame($data, $response);
+    }
+
     public function testMethodCreateStringAttribute(): void {
 
         $data = array(
@@ -1268,36 +1292,6 @@ final class DatabasesTest extends TestCase {
             ->andReturn($data);
 
         $response = $this->databases->deleteAttribute(
-            "<DATABASE_ID>",
-            "<COLLECTION_ID>",
-            ""
-        );
-
-        $this->assertSame($data, $response);
-    }
-
-    public function testMethodUpdateRelationshipAttribute(): void {
-
-        $data = array(
-            "key" => "fullName",
-            "type" => "string",
-            "status" => "available",
-            "error" => "string",
-            "required" => true,
-            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "relatedCollection" => "collection",
-            "relationType" => "oneToOne|oneToMany|manyToOne|manyToMany",
-            "twoWay" => true,
-            "twoWayKey" => "string",
-            "onDelete" => "restrict|cascade|setNull",
-            "side" => "parent|child");
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-
-        $response = $this->databases->updateRelationshipAttribute(
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
             ""

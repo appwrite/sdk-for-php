@@ -2340,10 +2340,11 @@ class TablesDB extends Service
      * @param ?array $queries
      * @param ?string $transactionId
      * @param ?bool $total
+     * @param ?int $ttl
      * @throws AppwriteException
      * @return array
      */
-    public function listRows(string $databaseId, string $tableId, ?array $queries = null, ?string $transactionId = null, ?bool $total = null): array
+    public function listRows(string $databaseId, string $tableId, ?array $queries = null, ?string $transactionId = null, ?bool $total = null, ?int $ttl = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
@@ -2365,6 +2366,10 @@ class TablesDB extends Service
 
         if (!is_null($total)) {
             $apiParams['total'] = $total;
+        }
+
+        if (!is_null($ttl)) {
+            $apiParams['ttl'] = $ttl;
         }
 
         $apiHeaders = [];
