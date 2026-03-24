@@ -1,0 +1,255 @@
+<?php
+
+namespace Appwrite\Services;
+
+use Appwrite\AppwriteException;
+use Appwrite\Client;
+use Appwrite\Service;
+use Appwrite\InputFile;
+
+class Webhooks extends Service
+{
+     public function __construct(Client $client)
+     {
+         parent::__construct($client);
+     }
+
+    /**
+     * Get a list of all webhooks belonging to the project. You can use the query
+     * params to filter your results.
+     *
+     * @param ?array $queries
+     * @param ?bool $total
+     * @throws AppwriteException
+     * @return array
+     */
+    public function list(?array $queries = null, ?bool $total = null): array
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/webhooks'
+        );
+
+        $apiParams = [];
+
+        if (!is_null($queries)) {
+            $apiParams['queries'] = $queries;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
+        }
+
+        $apiHeaders = [];
+
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Create a new webhook. Use this endpoint to configure a URL that will
+     * receive events from Appwrite when specific events occur.
+     *
+     * @param string $webhookId
+     * @param string $url
+     * @param string $name
+     * @param array $events
+     * @param ?bool $enabled
+     * @param ?bool $security
+     * @param ?string $httpUser
+     * @param ?string $httpPass
+     * @throws AppwriteException
+     * @return array
+     */
+    public function create(string $webhookId, string $url, string $name, array $events, ?bool $enabled = null, ?bool $security = null, ?string $httpUser = null, ?string $httpPass = null): array
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/webhooks'
+        );
+
+        $apiParams = [];
+        $apiParams['webhookId'] = $webhookId;
+        $apiParams['url'] = $url;
+        $apiParams['name'] = $name;
+        $apiParams['events'] = $events;
+
+        if (!is_null($enabled)) {
+            $apiParams['enabled'] = $enabled;
+        }
+
+        if (!is_null($security)) {
+            $apiParams['security'] = $security;
+        }
+
+        if (!is_null($httpUser)) {
+            $apiParams['httpUser'] = $httpUser;
+        }
+
+        if (!is_null($httpPass)) {
+            $apiParams['httpPass'] = $httpPass;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Get a webhook by its unique ID. This endpoint returns details about a
+     * specific webhook configured for a project. 
+     *
+     * @param string $webhookId
+     * @throws AppwriteException
+     * @return array
+     */
+    public function get(string $webhookId): array
+    {
+        $apiPath = str_replace(
+            ['{webhookId}'],
+            [$webhookId],
+            '/webhooks/{webhookId}'
+        );
+
+        $apiParams = [];
+        $apiParams['webhookId'] = $webhookId;
+
+        $apiHeaders = [];
+
+        return $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Update a webhook by its unique ID. Use this endpoint to update the URL,
+     * events, or status of an existing webhook.
+     *
+     * @param string $webhookId
+     * @param string $name
+     * @param string $url
+     * @param array $events
+     * @param ?bool $enabled
+     * @param ?bool $security
+     * @param ?string $httpUser
+     * @param ?string $httpPass
+     * @throws AppwriteException
+     * @return array
+     */
+    public function update(string $webhookId, string $name, string $url, array $events, ?bool $enabled = null, ?bool $security = null, ?string $httpUser = null, ?string $httpPass = null): array
+    {
+        $apiPath = str_replace(
+            ['{webhookId}'],
+            [$webhookId],
+            '/webhooks/{webhookId}'
+        );
+
+        $apiParams = [];
+        $apiParams['webhookId'] = $webhookId;
+        $apiParams['name'] = $name;
+        $apiParams['url'] = $url;
+        $apiParams['events'] = $events;
+
+        if (!is_null($enabled)) {
+            $apiParams['enabled'] = $enabled;
+        }
+
+        if (!is_null($security)) {
+            $apiParams['security'] = $security;
+        }
+
+        if (!is_null($httpUser)) {
+            $apiParams['httpUser'] = $httpUser;
+        }
+
+        if (!is_null($httpPass)) {
+            $apiParams['httpPass'] = $httpPass;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_PUT,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Delete a webhook by its unique ID. Once deleted, the webhook will no longer
+     * receive project events. 
+     *
+     * @param string $webhookId
+     * @throws AppwriteException
+     * @return string
+     */
+    public function delete(string $webhookId): string
+    {
+        $apiPath = str_replace(
+            ['{webhookId}'],
+            [$webhookId],
+            '/webhooks/{webhookId}'
+        );
+
+        $apiParams = [];
+        $apiParams['webhookId'] = $webhookId;
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_DELETE,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Update the webhook signature key. This endpoint can be used to regenerate
+     * the signature key used to sign and validate payload deliveries for a
+     * specific webhook.
+     *
+     * @param string $webhookId
+     * @throws AppwriteException
+     * @return array
+     */
+    public function updateSignature(string $webhookId): array
+    {
+        $apiPath = str_replace(
+            ['{webhookId}'],
+            [$webhookId],
+            '/webhooks/{webhookId}/signature'
+        );
+
+        $apiParams = [];
+        $apiParams['webhookId'] = $webhookId;
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+}

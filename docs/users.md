@@ -11,7 +11,7 @@ GET https://cloud.appwrite.io/v1/users
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, email, phone, status, passwordUpdate, registration, emailVerification, phoneVerification, labels | [] |
+| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, email, phone, status, passwordUpdate, registration, emailVerification, phoneVerification, labels, impersonator | [] |
 | search | string | Search term to filter your list results. Max length: 256 chars. |  |
 | total | boolean | When set to false, the total count returned will be 0 and will not be calculated. | 1 |
 
@@ -220,6 +220,21 @@ PATCH https://cloud.appwrite.io/v1/users/{userId}/email
 | --- | --- | --- | --- |
 | userId | string | **Required** User ID. |  |
 | email | string | User email. |  |
+
+
+```http request
+PATCH https://cloud.appwrite.io/v1/users/{userId}/impersonator
+```
+
+** Enable or disable whether a user can impersonate other users. When impersonation headers are used, the request runs as the target user for API behavior, while internal audit logs still attribute the action to the original impersonator and store the impersonated target details only in internal audit payload data.
+ **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| userId | string | **Required** User ID. |  |
+| impersonator | boolean | Whether the user can impersonate other users. When true, the user can browse project users to choose a target and can pass impersonation headers to act as that user. Internal audit logs still attribute impersonated actions to the original impersonator and store the target user details only in internal audit payload data. |  |
 
 
 ```http request

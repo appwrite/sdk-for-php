@@ -8,7 +8,7 @@ use Mockery;
 use PHPUnit\Framework\TestCase;
 use Appwrite\Enums\RelationshipType;
 use Appwrite\Enums\RelationMutate;
-use Appwrite\Enums\IndexType;
+use Appwrite\Enums\DatabasesIndexType;
 use Appwrite\Enums\OrderBy;
 
 final class DatabasesTest extends TestCase {
@@ -1328,7 +1328,7 @@ final class DatabasesTest extends TestCase {
 
         $data = array(
             "\$id" => "5e5ea5c16897e",
-            "\$sequence" => 1,
+            "\$sequence" => "1",
             "\$collectionId" => "5e5ea5c15117e",
             "\$databaseId" => "5e5ea5c15117e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
@@ -1427,7 +1427,7 @@ final class DatabasesTest extends TestCase {
 
         $data = array(
             "\$id" => "5e5ea5c16897e",
-            "\$sequence" => 1,
+            "\$sequence" => "1",
             "\$collectionId" => "5e5ea5c15117e",
             "\$databaseId" => "5e5ea5c15117e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
@@ -1451,7 +1451,7 @@ final class DatabasesTest extends TestCase {
 
         $data = array(
             "\$id" => "5e5ea5c16897e",
-            "\$sequence" => 1,
+            "\$sequence" => "1",
             "\$collectionId" => "5e5ea5c15117e",
             "\$databaseId" => "5e5ea5c15117e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
@@ -1475,7 +1475,7 @@ final class DatabasesTest extends TestCase {
 
         $data = array(
             "\$id" => "5e5ea5c16897e",
-            "\$sequence" => 1,
+            "\$sequence" => "1",
             "\$collectionId" => "5e5ea5c15117e",
             "\$databaseId" => "5e5ea5c15117e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
@@ -1516,7 +1516,7 @@ final class DatabasesTest extends TestCase {
 
         $data = array(
             "\$id" => "5e5ea5c16897e",
-            "\$sequence" => 1,
+            "\$sequence" => "1",
             "\$collectionId" => "5e5ea5c15117e",
             "\$databaseId" => "5e5ea5c15117e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
@@ -1541,7 +1541,7 @@ final class DatabasesTest extends TestCase {
 
         $data = array(
             "\$id" => "5e5ea5c16897e",
-            "\$sequence" => 1,
+            "\$sequence" => "1",
             "\$collectionId" => "5e5ea5c15117e",
             "\$databaseId" => "5e5ea5c15117e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
@@ -1601,7 +1601,7 @@ final class DatabasesTest extends TestCase {
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
             "",
-            IndexType::KEY(),
+            DatabasesIndexType::KEY(),
             array()
         );
 

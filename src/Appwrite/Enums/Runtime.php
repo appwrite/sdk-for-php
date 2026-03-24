@@ -92,6 +92,92 @@ class Runtime implements JsonSerializable
     private static Runtime $FLUTTER332;
     private static Runtime $FLUTTER335;
     private static Runtime $FLUTTER338;
+    private static Runtime $NODE145RC;
+    private static Runtime $NODE160RC;
+    private static Runtime $NODE180RC;
+    private static Runtime $NODE190RC;
+    private static Runtime $NODE200RC;
+    private static Runtime $NODE210RC;
+    private static Runtime $NODE22RC;
+    private static Runtime $NODE23RC;
+    private static Runtime $NODE24RC;
+    private static Runtime $NODE25RC;
+    private static Runtime $PHP80RC;
+    private static Runtime $PHP81RC;
+    private static Runtime $PHP82RC;
+    private static Runtime $PHP83RC;
+    private static Runtime $PHP84RC;
+    private static Runtime $RUBY30RC;
+    private static Runtime $RUBY31RC;
+    private static Runtime $RUBY32RC;
+    private static Runtime $RUBY33RC;
+    private static Runtime $RUBY34RC;
+    private static Runtime $RUBY40RC;
+    private static Runtime $PYTHON38RC;
+    private static Runtime $PYTHON39RC;
+    private static Runtime $PYTHON310RC;
+    private static Runtime $PYTHON311RC;
+    private static Runtime $PYTHON312RC;
+    private static Runtime $PYTHON313RC;
+    private static Runtime $PYTHON314RC;
+    private static Runtime $PYTHONML311RC;
+    private static Runtime $PYTHONML312RC;
+    private static Runtime $PYTHONML313RC;
+    private static Runtime $DENO140RC;
+    private static Runtime $DENO146RC;
+    private static Runtime $DENO20RC;
+    private static Runtime $DENO25RC;
+    private static Runtime $DENO26RC;
+    private static Runtime $DART215RC;
+    private static Runtime $DART216RC;
+    private static Runtime $DART217RC;
+    private static Runtime $DART218RC;
+    private static Runtime $DART219RC;
+    private static Runtime $DART30RC;
+    private static Runtime $DART31RC;
+    private static Runtime $DART33RC;
+    private static Runtime $DART35RC;
+    private static Runtime $DART38RC;
+    private static Runtime $DART39RC;
+    private static Runtime $DART310RC;
+    private static Runtime $DOTNET60RC;
+    private static Runtime $DOTNET70RC;
+    private static Runtime $DOTNET80RC;
+    private static Runtime $DOTNET10RC;
+    private static Runtime $JAVA80RC;
+    private static Runtime $JAVA110RC;
+    private static Runtime $JAVA170RC;
+    private static Runtime $JAVA180RC;
+    private static Runtime $JAVA210RC;
+    private static Runtime $JAVA22RC;
+    private static Runtime $JAVA25RC;
+    private static Runtime $SWIFT55RC;
+    private static Runtime $SWIFT58RC;
+    private static Runtime $SWIFT59RC;
+    private static Runtime $SWIFT510RC;
+    private static Runtime $SWIFT62RC;
+    private static Runtime $KOTLIN16RC;
+    private static Runtime $KOTLIN18RC;
+    private static Runtime $KOTLIN19RC;
+    private static Runtime $KOTLIN20RC;
+    private static Runtime $KOTLIN23RC;
+    private static Runtime $CPP17RC;
+    private static Runtime $CPP20RC;
+    private static Runtime $BUN10RC;
+    private static Runtime $BUN11RC;
+    private static Runtime $BUN12RC;
+    private static Runtime $BUN13RC;
+    private static Runtime $GO123RC;
+    private static Runtime $GO124RC;
+    private static Runtime $GO125RC;
+    private static Runtime $GO126RC;
+    private static Runtime $STATIC1RC;
+    private static Runtime $FLUTTER324RC;
+    private static Runtime $FLUTTER327RC;
+    private static Runtime $FLUTTER329RC;
+    private static Runtime $FLUTTER332RC;
+    private static Runtime $FLUTTER335RC;
+    private static Runtime $FLUTTER338RC;
 
     private string $value;
 
@@ -711,5 +797,607 @@ class Runtime implements JsonSerializable
             self::$FLUTTER338 = new Runtime('flutter-3.38');
         }
         return self::$FLUTTER338;
+    }
+    public static function NODE145RC(): Runtime
+    {
+        if (!isset(self::$NODE145RC)) {
+            self::$NODE145RC = new Runtime('node-14.5-rc');
+        }
+        return self::$NODE145RC;
+    }
+    public static function NODE160RC(): Runtime
+    {
+        if (!isset(self::$NODE160RC)) {
+            self::$NODE160RC = new Runtime('node-16.0-rc');
+        }
+        return self::$NODE160RC;
+    }
+    public static function NODE180RC(): Runtime
+    {
+        if (!isset(self::$NODE180RC)) {
+            self::$NODE180RC = new Runtime('node-18.0-rc');
+        }
+        return self::$NODE180RC;
+    }
+    public static function NODE190RC(): Runtime
+    {
+        if (!isset(self::$NODE190RC)) {
+            self::$NODE190RC = new Runtime('node-19.0-rc');
+        }
+        return self::$NODE190RC;
+    }
+    public static function NODE200RC(): Runtime
+    {
+        if (!isset(self::$NODE200RC)) {
+            self::$NODE200RC = new Runtime('node-20.0-rc');
+        }
+        return self::$NODE200RC;
+    }
+    public static function NODE210RC(): Runtime
+    {
+        if (!isset(self::$NODE210RC)) {
+            self::$NODE210RC = new Runtime('node-21.0-rc');
+        }
+        return self::$NODE210RC;
+    }
+    public static function NODE22RC(): Runtime
+    {
+        if (!isset(self::$NODE22RC)) {
+            self::$NODE22RC = new Runtime('node-22-rc');
+        }
+        return self::$NODE22RC;
+    }
+    public static function NODE23RC(): Runtime
+    {
+        if (!isset(self::$NODE23RC)) {
+            self::$NODE23RC = new Runtime('node-23-rc');
+        }
+        return self::$NODE23RC;
+    }
+    public static function NODE24RC(): Runtime
+    {
+        if (!isset(self::$NODE24RC)) {
+            self::$NODE24RC = new Runtime('node-24-rc');
+        }
+        return self::$NODE24RC;
+    }
+    public static function NODE25RC(): Runtime
+    {
+        if (!isset(self::$NODE25RC)) {
+            self::$NODE25RC = new Runtime('node-25-rc');
+        }
+        return self::$NODE25RC;
+    }
+    public static function PHP80RC(): Runtime
+    {
+        if (!isset(self::$PHP80RC)) {
+            self::$PHP80RC = new Runtime('php-8.0-rc');
+        }
+        return self::$PHP80RC;
+    }
+    public static function PHP81RC(): Runtime
+    {
+        if (!isset(self::$PHP81RC)) {
+            self::$PHP81RC = new Runtime('php-8.1-rc');
+        }
+        return self::$PHP81RC;
+    }
+    public static function PHP82RC(): Runtime
+    {
+        if (!isset(self::$PHP82RC)) {
+            self::$PHP82RC = new Runtime('php-8.2-rc');
+        }
+        return self::$PHP82RC;
+    }
+    public static function PHP83RC(): Runtime
+    {
+        if (!isset(self::$PHP83RC)) {
+            self::$PHP83RC = new Runtime('php-8.3-rc');
+        }
+        return self::$PHP83RC;
+    }
+    public static function PHP84RC(): Runtime
+    {
+        if (!isset(self::$PHP84RC)) {
+            self::$PHP84RC = new Runtime('php-8.4-rc');
+        }
+        return self::$PHP84RC;
+    }
+    public static function RUBY30RC(): Runtime
+    {
+        if (!isset(self::$RUBY30RC)) {
+            self::$RUBY30RC = new Runtime('ruby-3.0-rc');
+        }
+        return self::$RUBY30RC;
+    }
+    public static function RUBY31RC(): Runtime
+    {
+        if (!isset(self::$RUBY31RC)) {
+            self::$RUBY31RC = new Runtime('ruby-3.1-rc');
+        }
+        return self::$RUBY31RC;
+    }
+    public static function RUBY32RC(): Runtime
+    {
+        if (!isset(self::$RUBY32RC)) {
+            self::$RUBY32RC = new Runtime('ruby-3.2-rc');
+        }
+        return self::$RUBY32RC;
+    }
+    public static function RUBY33RC(): Runtime
+    {
+        if (!isset(self::$RUBY33RC)) {
+            self::$RUBY33RC = new Runtime('ruby-3.3-rc');
+        }
+        return self::$RUBY33RC;
+    }
+    public static function RUBY34RC(): Runtime
+    {
+        if (!isset(self::$RUBY34RC)) {
+            self::$RUBY34RC = new Runtime('ruby-3.4-rc');
+        }
+        return self::$RUBY34RC;
+    }
+    public static function RUBY40RC(): Runtime
+    {
+        if (!isset(self::$RUBY40RC)) {
+            self::$RUBY40RC = new Runtime('ruby-4.0-rc');
+        }
+        return self::$RUBY40RC;
+    }
+    public static function PYTHON38RC(): Runtime
+    {
+        if (!isset(self::$PYTHON38RC)) {
+            self::$PYTHON38RC = new Runtime('python-3.8-rc');
+        }
+        return self::$PYTHON38RC;
+    }
+    public static function PYTHON39RC(): Runtime
+    {
+        if (!isset(self::$PYTHON39RC)) {
+            self::$PYTHON39RC = new Runtime('python-3.9-rc');
+        }
+        return self::$PYTHON39RC;
+    }
+    public static function PYTHON310RC(): Runtime
+    {
+        if (!isset(self::$PYTHON310RC)) {
+            self::$PYTHON310RC = new Runtime('python-3.10-rc');
+        }
+        return self::$PYTHON310RC;
+    }
+    public static function PYTHON311RC(): Runtime
+    {
+        if (!isset(self::$PYTHON311RC)) {
+            self::$PYTHON311RC = new Runtime('python-3.11-rc');
+        }
+        return self::$PYTHON311RC;
+    }
+    public static function PYTHON312RC(): Runtime
+    {
+        if (!isset(self::$PYTHON312RC)) {
+            self::$PYTHON312RC = new Runtime('python-3.12-rc');
+        }
+        return self::$PYTHON312RC;
+    }
+    public static function PYTHON313RC(): Runtime
+    {
+        if (!isset(self::$PYTHON313RC)) {
+            self::$PYTHON313RC = new Runtime('python-3.13-rc');
+        }
+        return self::$PYTHON313RC;
+    }
+    public static function PYTHON314RC(): Runtime
+    {
+        if (!isset(self::$PYTHON314RC)) {
+            self::$PYTHON314RC = new Runtime('python-3.14-rc');
+        }
+        return self::$PYTHON314RC;
+    }
+    public static function PYTHONML311RC(): Runtime
+    {
+        if (!isset(self::$PYTHONML311RC)) {
+            self::$PYTHONML311RC = new Runtime('python-ml-3.11-rc');
+        }
+        return self::$PYTHONML311RC;
+    }
+    public static function PYTHONML312RC(): Runtime
+    {
+        if (!isset(self::$PYTHONML312RC)) {
+            self::$PYTHONML312RC = new Runtime('python-ml-3.12-rc');
+        }
+        return self::$PYTHONML312RC;
+    }
+    public static function PYTHONML313RC(): Runtime
+    {
+        if (!isset(self::$PYTHONML313RC)) {
+            self::$PYTHONML313RC = new Runtime('python-ml-3.13-rc');
+        }
+        return self::$PYTHONML313RC;
+    }
+    public static function DENO140RC(): Runtime
+    {
+        if (!isset(self::$DENO140RC)) {
+            self::$DENO140RC = new Runtime('deno-1.40-rc');
+        }
+        return self::$DENO140RC;
+    }
+    public static function DENO146RC(): Runtime
+    {
+        if (!isset(self::$DENO146RC)) {
+            self::$DENO146RC = new Runtime('deno-1.46-rc');
+        }
+        return self::$DENO146RC;
+    }
+    public static function DENO20RC(): Runtime
+    {
+        if (!isset(self::$DENO20RC)) {
+            self::$DENO20RC = new Runtime('deno-2.0-rc');
+        }
+        return self::$DENO20RC;
+    }
+    public static function DENO25RC(): Runtime
+    {
+        if (!isset(self::$DENO25RC)) {
+            self::$DENO25RC = new Runtime('deno-2.5-rc');
+        }
+        return self::$DENO25RC;
+    }
+    public static function DENO26RC(): Runtime
+    {
+        if (!isset(self::$DENO26RC)) {
+            self::$DENO26RC = new Runtime('deno-2.6-rc');
+        }
+        return self::$DENO26RC;
+    }
+    public static function DART215RC(): Runtime
+    {
+        if (!isset(self::$DART215RC)) {
+            self::$DART215RC = new Runtime('dart-2.15-rc');
+        }
+        return self::$DART215RC;
+    }
+    public static function DART216RC(): Runtime
+    {
+        if (!isset(self::$DART216RC)) {
+            self::$DART216RC = new Runtime('dart-2.16-rc');
+        }
+        return self::$DART216RC;
+    }
+    public static function DART217RC(): Runtime
+    {
+        if (!isset(self::$DART217RC)) {
+            self::$DART217RC = new Runtime('dart-2.17-rc');
+        }
+        return self::$DART217RC;
+    }
+    public static function DART218RC(): Runtime
+    {
+        if (!isset(self::$DART218RC)) {
+            self::$DART218RC = new Runtime('dart-2.18-rc');
+        }
+        return self::$DART218RC;
+    }
+    public static function DART219RC(): Runtime
+    {
+        if (!isset(self::$DART219RC)) {
+            self::$DART219RC = new Runtime('dart-2.19-rc');
+        }
+        return self::$DART219RC;
+    }
+    public static function DART30RC(): Runtime
+    {
+        if (!isset(self::$DART30RC)) {
+            self::$DART30RC = new Runtime('dart-3.0-rc');
+        }
+        return self::$DART30RC;
+    }
+    public static function DART31RC(): Runtime
+    {
+        if (!isset(self::$DART31RC)) {
+            self::$DART31RC = new Runtime('dart-3.1-rc');
+        }
+        return self::$DART31RC;
+    }
+    public static function DART33RC(): Runtime
+    {
+        if (!isset(self::$DART33RC)) {
+            self::$DART33RC = new Runtime('dart-3.3-rc');
+        }
+        return self::$DART33RC;
+    }
+    public static function DART35RC(): Runtime
+    {
+        if (!isset(self::$DART35RC)) {
+            self::$DART35RC = new Runtime('dart-3.5-rc');
+        }
+        return self::$DART35RC;
+    }
+    public static function DART38RC(): Runtime
+    {
+        if (!isset(self::$DART38RC)) {
+            self::$DART38RC = new Runtime('dart-3.8-rc');
+        }
+        return self::$DART38RC;
+    }
+    public static function DART39RC(): Runtime
+    {
+        if (!isset(self::$DART39RC)) {
+            self::$DART39RC = new Runtime('dart-3.9-rc');
+        }
+        return self::$DART39RC;
+    }
+    public static function DART310RC(): Runtime
+    {
+        if (!isset(self::$DART310RC)) {
+            self::$DART310RC = new Runtime('dart-3.10-rc');
+        }
+        return self::$DART310RC;
+    }
+    public static function DOTNET60RC(): Runtime
+    {
+        if (!isset(self::$DOTNET60RC)) {
+            self::$DOTNET60RC = new Runtime('dotnet-6.0-rc');
+        }
+        return self::$DOTNET60RC;
+    }
+    public static function DOTNET70RC(): Runtime
+    {
+        if (!isset(self::$DOTNET70RC)) {
+            self::$DOTNET70RC = new Runtime('dotnet-7.0-rc');
+        }
+        return self::$DOTNET70RC;
+    }
+    public static function DOTNET80RC(): Runtime
+    {
+        if (!isset(self::$DOTNET80RC)) {
+            self::$DOTNET80RC = new Runtime('dotnet-8.0-rc');
+        }
+        return self::$DOTNET80RC;
+    }
+    public static function DOTNET10RC(): Runtime
+    {
+        if (!isset(self::$DOTNET10RC)) {
+            self::$DOTNET10RC = new Runtime('dotnet-10-rc');
+        }
+        return self::$DOTNET10RC;
+    }
+    public static function JAVA80RC(): Runtime
+    {
+        if (!isset(self::$JAVA80RC)) {
+            self::$JAVA80RC = new Runtime('java-8.0-rc');
+        }
+        return self::$JAVA80RC;
+    }
+    public static function JAVA110RC(): Runtime
+    {
+        if (!isset(self::$JAVA110RC)) {
+            self::$JAVA110RC = new Runtime('java-11.0-rc');
+        }
+        return self::$JAVA110RC;
+    }
+    public static function JAVA170RC(): Runtime
+    {
+        if (!isset(self::$JAVA170RC)) {
+            self::$JAVA170RC = new Runtime('java-17.0-rc');
+        }
+        return self::$JAVA170RC;
+    }
+    public static function JAVA180RC(): Runtime
+    {
+        if (!isset(self::$JAVA180RC)) {
+            self::$JAVA180RC = new Runtime('java-18.0-rc');
+        }
+        return self::$JAVA180RC;
+    }
+    public static function JAVA210RC(): Runtime
+    {
+        if (!isset(self::$JAVA210RC)) {
+            self::$JAVA210RC = new Runtime('java-21.0-rc');
+        }
+        return self::$JAVA210RC;
+    }
+    public static function JAVA22RC(): Runtime
+    {
+        if (!isset(self::$JAVA22RC)) {
+            self::$JAVA22RC = new Runtime('java-22-rc');
+        }
+        return self::$JAVA22RC;
+    }
+    public static function JAVA25RC(): Runtime
+    {
+        if (!isset(self::$JAVA25RC)) {
+            self::$JAVA25RC = new Runtime('java-25-rc');
+        }
+        return self::$JAVA25RC;
+    }
+    public static function SWIFT55RC(): Runtime
+    {
+        if (!isset(self::$SWIFT55RC)) {
+            self::$SWIFT55RC = new Runtime('swift-5.5-rc');
+        }
+        return self::$SWIFT55RC;
+    }
+    public static function SWIFT58RC(): Runtime
+    {
+        if (!isset(self::$SWIFT58RC)) {
+            self::$SWIFT58RC = new Runtime('swift-5.8-rc');
+        }
+        return self::$SWIFT58RC;
+    }
+    public static function SWIFT59RC(): Runtime
+    {
+        if (!isset(self::$SWIFT59RC)) {
+            self::$SWIFT59RC = new Runtime('swift-5.9-rc');
+        }
+        return self::$SWIFT59RC;
+    }
+    public static function SWIFT510RC(): Runtime
+    {
+        if (!isset(self::$SWIFT510RC)) {
+            self::$SWIFT510RC = new Runtime('swift-5.10-rc');
+        }
+        return self::$SWIFT510RC;
+    }
+    public static function SWIFT62RC(): Runtime
+    {
+        if (!isset(self::$SWIFT62RC)) {
+            self::$SWIFT62RC = new Runtime('swift-6.2-rc');
+        }
+        return self::$SWIFT62RC;
+    }
+    public static function KOTLIN16RC(): Runtime
+    {
+        if (!isset(self::$KOTLIN16RC)) {
+            self::$KOTLIN16RC = new Runtime('kotlin-1.6-rc');
+        }
+        return self::$KOTLIN16RC;
+    }
+    public static function KOTLIN18RC(): Runtime
+    {
+        if (!isset(self::$KOTLIN18RC)) {
+            self::$KOTLIN18RC = new Runtime('kotlin-1.8-rc');
+        }
+        return self::$KOTLIN18RC;
+    }
+    public static function KOTLIN19RC(): Runtime
+    {
+        if (!isset(self::$KOTLIN19RC)) {
+            self::$KOTLIN19RC = new Runtime('kotlin-1.9-rc');
+        }
+        return self::$KOTLIN19RC;
+    }
+    public static function KOTLIN20RC(): Runtime
+    {
+        if (!isset(self::$KOTLIN20RC)) {
+            self::$KOTLIN20RC = new Runtime('kotlin-2.0-rc');
+        }
+        return self::$KOTLIN20RC;
+    }
+    public static function KOTLIN23RC(): Runtime
+    {
+        if (!isset(self::$KOTLIN23RC)) {
+            self::$KOTLIN23RC = new Runtime('kotlin-2.3-rc');
+        }
+        return self::$KOTLIN23RC;
+    }
+    public static function CPP17RC(): Runtime
+    {
+        if (!isset(self::$CPP17RC)) {
+            self::$CPP17RC = new Runtime('cpp-17-rc');
+        }
+        return self::$CPP17RC;
+    }
+    public static function CPP20RC(): Runtime
+    {
+        if (!isset(self::$CPP20RC)) {
+            self::$CPP20RC = new Runtime('cpp-20-rc');
+        }
+        return self::$CPP20RC;
+    }
+    public static function BUN10RC(): Runtime
+    {
+        if (!isset(self::$BUN10RC)) {
+            self::$BUN10RC = new Runtime('bun-1.0-rc');
+        }
+        return self::$BUN10RC;
+    }
+    public static function BUN11RC(): Runtime
+    {
+        if (!isset(self::$BUN11RC)) {
+            self::$BUN11RC = new Runtime('bun-1.1-rc');
+        }
+        return self::$BUN11RC;
+    }
+    public static function BUN12RC(): Runtime
+    {
+        if (!isset(self::$BUN12RC)) {
+            self::$BUN12RC = new Runtime('bun-1.2-rc');
+        }
+        return self::$BUN12RC;
+    }
+    public static function BUN13RC(): Runtime
+    {
+        if (!isset(self::$BUN13RC)) {
+            self::$BUN13RC = new Runtime('bun-1.3-rc');
+        }
+        return self::$BUN13RC;
+    }
+    public static function GO123RC(): Runtime
+    {
+        if (!isset(self::$GO123RC)) {
+            self::$GO123RC = new Runtime('go-1.23-rc');
+        }
+        return self::$GO123RC;
+    }
+    public static function GO124RC(): Runtime
+    {
+        if (!isset(self::$GO124RC)) {
+            self::$GO124RC = new Runtime('go-1.24-rc');
+        }
+        return self::$GO124RC;
+    }
+    public static function GO125RC(): Runtime
+    {
+        if (!isset(self::$GO125RC)) {
+            self::$GO125RC = new Runtime('go-1.25-rc');
+        }
+        return self::$GO125RC;
+    }
+    public static function GO126RC(): Runtime
+    {
+        if (!isset(self::$GO126RC)) {
+            self::$GO126RC = new Runtime('go-1.26-rc');
+        }
+        return self::$GO126RC;
+    }
+    public static function STATIC1RC(): Runtime
+    {
+        if (!isset(self::$STATIC1RC)) {
+            self::$STATIC1RC = new Runtime('static-1-rc');
+        }
+        return self::$STATIC1RC;
+    }
+    public static function FLUTTER324RC(): Runtime
+    {
+        if (!isset(self::$FLUTTER324RC)) {
+            self::$FLUTTER324RC = new Runtime('flutter-3.24-rc');
+        }
+        return self::$FLUTTER324RC;
+    }
+    public static function FLUTTER327RC(): Runtime
+    {
+        if (!isset(self::$FLUTTER327RC)) {
+            self::$FLUTTER327RC = new Runtime('flutter-3.27-rc');
+        }
+        return self::$FLUTTER327RC;
+    }
+    public static function FLUTTER329RC(): Runtime
+    {
+        if (!isset(self::$FLUTTER329RC)) {
+            self::$FLUTTER329RC = new Runtime('flutter-3.29-rc');
+        }
+        return self::$FLUTTER329RC;
+    }
+    public static function FLUTTER332RC(): Runtime
+    {
+        if (!isset(self::$FLUTTER332RC)) {
+            self::$FLUTTER332RC = new Runtime('flutter-3.32-rc');
+        }
+        return self::$FLUTTER332RC;
+    }
+    public static function FLUTTER335RC(): Runtime
+    {
+        if (!isset(self::$FLUTTER335RC)) {
+            self::$FLUTTER335RC = new Runtime('flutter-3.35-rc');
+        }
+        return self::$FLUTTER335RC;
+    }
+    public static function FLUTTER338RC(): Runtime
+    {
+        if (!isset(self::$FLUTTER338RC)) {
+            self::$FLUTTER338RC = new Runtime('flutter-3.38-rc');
+        }
+        return self::$FLUTTER338RC;
     }
 }

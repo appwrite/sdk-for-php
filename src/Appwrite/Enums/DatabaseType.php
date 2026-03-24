@@ -8,6 +8,8 @@ class DatabaseType implements JsonSerializable
 {
     private static DatabaseType $LEGACY;
     private static DatabaseType $TABLESDB;
+    private static DatabaseType $DOCUMENTSDB;
+    private static DatabaseType $VECTORSDB;
 
     private string $value;
 
@@ -39,5 +41,19 @@ class DatabaseType implements JsonSerializable
             self::$TABLESDB = new DatabaseType('tablesdb');
         }
         return self::$TABLESDB;
+    }
+    public static function DOCUMENTSDB(): DatabaseType
+    {
+        if (!isset(self::$DOCUMENTSDB)) {
+            self::$DOCUMENTSDB = new DatabaseType('documentsdb');
+        }
+        return self::$DOCUMENTSDB;
+    }
+    public static function VECTORSDB(): DatabaseType
+    {
+        if (!isset(self::$VECTORSDB)) {
+            self::$VECTORSDB = new DatabaseType('vectorsdb');
+        }
+        return self::$VECTORSDB;
     }
 }

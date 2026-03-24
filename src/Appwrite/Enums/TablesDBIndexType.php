@@ -4,12 +4,12 @@ namespace Appwrite\Enums;
 
 use JsonSerializable;
 
-class IndexType implements JsonSerializable
+class TablesDBIndexType implements JsonSerializable
 {
-    private static IndexType $KEY;
-    private static IndexType $FULLTEXT;
-    private static IndexType $UNIQUE;
-    private static IndexType $SPATIAL;
+    private static TablesDBIndexType $KEY;
+    private static TablesDBIndexType $FULLTEXT;
+    private static TablesDBIndexType $UNIQUE;
+    private static TablesDBIndexType $SPATIAL;
 
     private string $value;
 
@@ -28,31 +28,31 @@ class IndexType implements JsonSerializable
         return $this->value;
     }
 
-    public static function KEY(): IndexType
+    public static function KEY(): TablesDBIndexType
     {
         if (!isset(self::$KEY)) {
-            self::$KEY = new IndexType('key');
+            self::$KEY = new TablesDBIndexType('key');
         }
         return self::$KEY;
     }
-    public static function FULLTEXT(): IndexType
+    public static function FULLTEXT(): TablesDBIndexType
     {
         if (!isset(self::$FULLTEXT)) {
-            self::$FULLTEXT = new IndexType('fulltext');
+            self::$FULLTEXT = new TablesDBIndexType('fulltext');
         }
         return self::$FULLTEXT;
     }
-    public static function UNIQUE(): IndexType
+    public static function UNIQUE(): TablesDBIndexType
     {
         if (!isset(self::$UNIQUE)) {
-            self::$UNIQUE = new IndexType('unique');
+            self::$UNIQUE = new TablesDBIndexType('unique');
         }
         return self::$UNIQUE;
     }
-    public static function SPATIAL(): IndexType
+    public static function SPATIAL(): TablesDBIndexType
     {
         if (!isset(self::$SPATIAL)) {
-            self::$SPATIAL = new IndexType('spatial');
+            self::$SPATIAL = new TablesDBIndexType('spatial');
         }
         return self::$SPATIAL;
     }

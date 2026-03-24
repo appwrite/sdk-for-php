@@ -575,6 +575,42 @@ class Users extends Service
     }
 
     /**
+     * Enable or disable whether a user can impersonate other users. When
+     * impersonation headers are used, the request runs as the target user for API
+     * behavior, while internal audit logs still attribute the action to the
+     * original impersonator and store the impersonated target details only in
+     * internal audit payload data.
+     * 
+     *
+     * @param string $userId
+     * @param bool $impersonator
+     * @throws AppwriteException
+     * @return array
+     */
+    public function updateImpersonator(string $userId, bool $impersonator): array
+    {
+        $apiPath = str_replace(
+            ['{userId}'],
+            [$userId],
+            '/users/{userId}/impersonator'
+        );
+
+        $apiParams = [];
+        $apiParams['userId'] = $userId;
+        $apiParams['impersonator'] = $impersonator;
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
      * Use this endpoint to create a JSON Web Token for user by its unique ID. You
      * can use the resulting JWT to authenticate on behalf of the user. The JWT
      * secret will become invalid if the session it uses gets deleted.

@@ -37,11 +37,11 @@ class Client
      */
     protected array $headers = [
         'content-type' => '',
-        'user-agent' => 'AppwritePHPSDK/20.2.1 ()',
+        'user-agent' => 'AppwritePHPSDK/20.2.0 ()',
         'x-sdk-name'=> 'PHP',
         'x-sdk-platform'=> 'server',
         'x-sdk-language'=> 'php',
-        'x-sdk-version'=> '20.2.1',
+        'x-sdk-version'=> '20.2.0',
     ];
 
     /**
@@ -63,7 +63,7 @@ class Client
      */
     public function __construct()
     {
-        $this->headers['X-Appwrite-Response-Format'] = '1.8.0';
+        $this->headers['X-Appwrite-Response-Format'] = '1.9.0';
  
     }
 
@@ -157,6 +157,54 @@ class Client
     public function setForwardedUserAgent(string $value): Client
     {
         $this->addHeader('X-Forwarded-User-Agent', $value);
+
+        return $this;
+    }
+
+    /**
+     * Set ImpersonateUserId
+     *
+     * Impersonate a user by ID on an already user-authenticated request. Requires the current request to be authenticated as a user with impersonator capability; X-Appwrite-Key alone is not sufficient. Impersonator users are intentionally granted users.read so they can discover a target before impersonation begins. Internal audit logs still attribute actions to the original impersonator and record the impersonated target only in internal audit payload data.
+     *
+     * @param string $value
+     *
+     * @return Client
+     */
+    public function setImpersonateUserId(string $value): Client
+    {
+        $this->addHeader('X-Appwrite-Impersonate-User-Id', $value);
+
+        return $this;
+    }
+
+    /**
+     * Set ImpersonateUserEmail
+     *
+     * Impersonate a user by email on an already user-authenticated request. Requires the current request to be authenticated as a user with impersonator capability; X-Appwrite-Key alone is not sufficient. Impersonator users are intentionally granted users.read so they can discover a target before impersonation begins. Internal audit logs still attribute actions to the original impersonator and record the impersonated target only in internal audit payload data.
+     *
+     * @param string $value
+     *
+     * @return Client
+     */
+    public function setImpersonateUserEmail(string $value): Client
+    {
+        $this->addHeader('X-Appwrite-Impersonate-User-Email', $value);
+
+        return $this;
+    }
+
+    /**
+     * Set ImpersonateUserPhone
+     *
+     * Impersonate a user by phone on an already user-authenticated request. Requires the current request to be authenticated as a user with impersonator capability; X-Appwrite-Key alone is not sufficient. Impersonator users are intentionally granted users.read so they can discover a target before impersonation begins. Internal audit logs still attribute actions to the original impersonator and record the impersonated target only in internal audit payload data.
+     *
+     * @param string $value
+     *
+     * @return Client
+     */
+    public function setImpersonateUserPhone(string $value): Client
+    {
+        $this->addHeader('X-Appwrite-Impersonate-User-Phone', $value);
 
         return $this;
     }
