@@ -1,5 +1,9 @@
 # Change Log
 
+## 21.0.0
+
+* [BREAKING] Changed `$sequence` type from `int` to `string` for rows and documents
+
 ## 20.2.0
 
 * Added optional encrypt parameter for database attributes (Text, Longtext, Mediumtext, Varchar) and corresponding column creation methods to enable encryption at rest. Encrypted attributes/columns cannot be queried.
