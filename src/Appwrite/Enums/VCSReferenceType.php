@@ -8,7 +8,6 @@ class VCSReferenceType implements JsonSerializable
 {
     private static VCSReferenceType $BRANCH;
     private static VCSReferenceType $COMMIT;
-    private static VCSReferenceType $TAG;
 
     private string $value;
 
@@ -40,12 +39,5 @@ class VCSReferenceType implements JsonSerializable
             self::$COMMIT = new VCSReferenceType('commit');
         }
         return self::$COMMIT;
-    }
-    public static function TAG(): VCSReferenceType
-    {
-        if (!isset(self::$TAG)) {
-            self::$TAG = new VCSReferenceType('tag');
-        }
-        return self::$TAG;
     }
 }
