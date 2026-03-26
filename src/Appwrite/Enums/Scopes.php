@@ -63,6 +63,10 @@ class Scopes implements JsonSerializable
     private static Scopes $ASSISTANTREAD;
     private static Scopes $TOKENSREAD;
     private static Scopes $TOKENSWRITE;
+    private static Scopes $WEBHOOKSREAD;
+    private static Scopes $WEBHOOKSWRITE;
+    private static Scopes $PROJECTREAD;
+    private static Scopes $PROJECTWRITE;
     private static Scopes $POLICIESWRITE;
     private static Scopes $POLICIESREAD;
     private static Scopes $ARCHIVESREAD;
@@ -488,6 +492,34 @@ class Scopes implements JsonSerializable
             self::$TOKENSWRITE = new Scopes('tokens.write');
         }
         return self::$TOKENSWRITE;
+    }
+    public static function WEBHOOKSREAD(): Scopes
+    {
+        if (!isset(self::$WEBHOOKSREAD)) {
+            self::$WEBHOOKSREAD = new Scopes('webhooks.read');
+        }
+        return self::$WEBHOOKSREAD;
+    }
+    public static function WEBHOOKSWRITE(): Scopes
+    {
+        if (!isset(self::$WEBHOOKSWRITE)) {
+            self::$WEBHOOKSWRITE = new Scopes('webhooks.write');
+        }
+        return self::$WEBHOOKSWRITE;
+    }
+    public static function PROJECTREAD(): Scopes
+    {
+        if (!isset(self::$PROJECTREAD)) {
+            self::$PROJECTREAD = new Scopes('project.read');
+        }
+        return self::$PROJECTREAD;
+    }
+    public static function PROJECTWRITE(): Scopes
+    {
+        if (!isset(self::$PROJECTWRITE)) {
+            self::$PROJECTWRITE = new Scopes('project.write');
+        }
+        return self::$PROJECTWRITE;
     }
     public static function POLICIESWRITE(): Scopes
     {

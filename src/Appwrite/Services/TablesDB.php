@@ -8,7 +8,7 @@ use Appwrite\Service;
 use Appwrite\InputFile;
 use Appwrite\Enums\RelationshipType;
 use Appwrite\Enums\RelationMutate;
-use Appwrite\Enums\IndexType;
+use Appwrite\Enums\TablesDBIndexType;
 use Appwrite\Enums\OrderBy;
 
 class TablesDB extends Service
@@ -2225,14 +2225,14 @@ class TablesDB extends Service
      * @param string $databaseId
      * @param string $tableId
      * @param string $key
-     * @param IndexType $type
+     * @param TablesDBIndexType $type
      * @param array $columns
      * @param ?array $orders
      * @param ?array $lengths
      * @throws AppwriteException
      * @return array
      */
-    public function createIndex(string $databaseId, string $tableId, string $key, IndexType $type, array $columns, ?array $orders = null, ?array $lengths = null): array
+    public function createIndex(string $databaseId, string $tableId, string $key, TablesDBIndexType $type, array $columns, ?array $orders = null, ?array $lengths = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],

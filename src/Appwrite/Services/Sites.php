@@ -74,6 +74,7 @@ class Sites extends Service
      * @param ?int $timeout
      * @param ?string $installCommand
      * @param ?string $buildCommand
+     * @param ?string $startCommand
      * @param ?string $outputDirectory
      * @param ?Adapter $adapter
      * @param ?string $installationId
@@ -82,11 +83,13 @@ class Sites extends Service
      * @param ?string $providerBranch
      * @param ?bool $providerSilentMode
      * @param ?string $providerRootDirectory
-     * @param ?string $specification
+     * @param ?string $buildSpecification
+     * @param ?string $runtimeSpecification
+     * @param ?int $deploymentRetention
      * @throws AppwriteException
      * @return array
      */
-    public function create(string $siteId, string $name, Framework $framework, BuildRuntime $buildRuntime, ?bool $enabled = null, ?bool $logging = null, ?int $timeout = null, ?string $installCommand = null, ?string $buildCommand = null, ?string $outputDirectory = null, ?Adapter $adapter = null, ?string $installationId = null, ?string $fallbackFile = null, ?string $providerRepositoryId = null, ?string $providerBranch = null, ?bool $providerSilentMode = null, ?string $providerRootDirectory = null, ?string $specification = null): array
+    public function create(string $siteId, string $name, Framework $framework, BuildRuntime $buildRuntime, ?bool $enabled = null, ?bool $logging = null, ?int $timeout = null, ?string $installCommand = null, ?string $buildCommand = null, ?string $startCommand = null, ?string $outputDirectory = null, ?Adapter $adapter = null, ?string $installationId = null, ?string $fallbackFile = null, ?string $providerRepositoryId = null, ?string $providerBranch = null, ?bool $providerSilentMode = null, ?string $providerRootDirectory = null, ?string $buildSpecification = null, ?string $runtimeSpecification = null, ?int $deploymentRetention = null): array
     {
         $apiPath = str_replace(
             [],
@@ -118,6 +121,10 @@ class Sites extends Service
 
         if (!is_null($buildCommand)) {
             $apiParams['buildCommand'] = $buildCommand;
+        }
+
+        if (!is_null($startCommand)) {
+            $apiParams['startCommand'] = $startCommand;
         }
 
         if (!is_null($outputDirectory)) {
@@ -152,8 +159,16 @@ class Sites extends Service
             $apiParams['providerRootDirectory'] = $providerRootDirectory;
         }
 
-        if (!is_null($specification)) {
-            $apiParams['specification'] = $specification;
+        if (!is_null($buildSpecification)) {
+            $apiParams['buildSpecification'] = $buildSpecification;
+        }
+
+        if (!is_null($runtimeSpecification)) {
+            $apiParams['runtimeSpecification'] = $runtimeSpecification;
+        }
+
+        if (!is_null($deploymentRetention)) {
+            $apiParams['deploymentRetention'] = $deploymentRetention;
         }
 
         $apiHeaders = [];
@@ -259,6 +274,7 @@ class Sites extends Service
      * @param ?int $timeout
      * @param ?string $installCommand
      * @param ?string $buildCommand
+     * @param ?string $startCommand
      * @param ?string $outputDirectory
      * @param ?BuildRuntime $buildRuntime
      * @param ?Adapter $adapter
@@ -268,11 +284,13 @@ class Sites extends Service
      * @param ?string $providerBranch
      * @param ?bool $providerSilentMode
      * @param ?string $providerRootDirectory
-     * @param ?string $specification
+     * @param ?string $buildSpecification
+     * @param ?string $runtimeSpecification
+     * @param ?int $deploymentRetention
      * @throws AppwriteException
      * @return array
      */
-    public function update(string $siteId, string $name, Framework $framework, ?bool $enabled = null, ?bool $logging = null, ?int $timeout = null, ?string $installCommand = null, ?string $buildCommand = null, ?string $outputDirectory = null, ?BuildRuntime $buildRuntime = null, ?Adapter $adapter = null, ?string $fallbackFile = null, ?string $installationId = null, ?string $providerRepositoryId = null, ?string $providerBranch = null, ?bool $providerSilentMode = null, ?string $providerRootDirectory = null, ?string $specification = null): array
+    public function update(string $siteId, string $name, Framework $framework, ?bool $enabled = null, ?bool $logging = null, ?int $timeout = null, ?string $installCommand = null, ?string $buildCommand = null, ?string $startCommand = null, ?string $outputDirectory = null, ?BuildRuntime $buildRuntime = null, ?Adapter $adapter = null, ?string $fallbackFile = null, ?string $installationId = null, ?string $providerRepositoryId = null, ?string $providerBranch = null, ?bool $providerSilentMode = null, ?string $providerRootDirectory = null, ?string $buildSpecification = null, ?string $runtimeSpecification = null, ?int $deploymentRetention = null): array
     {
         $apiPath = str_replace(
             ['{siteId}'],
@@ -303,6 +321,10 @@ class Sites extends Service
 
         if (!is_null($buildCommand)) {
             $apiParams['buildCommand'] = $buildCommand;
+        }
+
+        if (!is_null($startCommand)) {
+            $apiParams['startCommand'] = $startCommand;
         }
 
         if (!is_null($outputDirectory)) {
@@ -341,8 +363,16 @@ class Sites extends Service
             $apiParams['providerRootDirectory'] = $providerRootDirectory;
         }
 
-        if (!is_null($specification)) {
-            $apiParams['specification'] = $specification;
+        if (!is_null($buildSpecification)) {
+            $apiParams['buildSpecification'] = $buildSpecification;
+        }
+
+        if (!is_null($runtimeSpecification)) {
+            $apiParams['runtimeSpecification'] = $runtimeSpecification;
+        }
+
+        if (!is_null($deploymentRetention)) {
+            $apiParams['deploymentRetention'] = $deploymentRetention;
         }
 
         $apiHeaders = [];

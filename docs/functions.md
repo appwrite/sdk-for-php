@@ -43,7 +43,9 @@ POST https://cloud.appwrite.io/v1/functions
 | providerBranch | string | Production branch for the repo linked to the function. |  |
 | providerSilentMode | boolean | Is the VCS (Version Control System) connection in silent mode for the repo linked to the function? In silent mode, comments will not be made on commits and pull requests. |  |
 | providerRootDirectory | string | Path to function code in the linked repo. |  |
-| specification | string | Runtime specification for the function and builds. | [] |
+| buildSpecification | string | Build specification for the function deployments. | [] |
+| runtimeSpecification | string | Runtime specification for the function executions. | [] |
+| deploymentRetention | integer | Days to keep non-active deployments before deletion. Value 0 means all deployments will be kept. | 0 |
 
 
 ```http request
@@ -100,7 +102,9 @@ PUT https://cloud.appwrite.io/v1/functions/{functionId}
 | providerBranch | string | Production branch for the repo linked to the function |  |
 | providerSilentMode | boolean | Is the VCS (Version Control System) connection in silent mode for the repo linked to the function? In silent mode, comments will not be made on commits and pull requests. |  |
 | providerRootDirectory | string | Path to function code in the linked repo. |  |
-| specification | string | Runtime specification for the function and builds. | [] |
+| buildSpecification | string | Build specification for the function deployments. | [] |
+| runtimeSpecification | string | Runtime specification for the function executions. | [] |
+| deploymentRetention | integer | Days to keep non-active deployments before deletion. Value 0 means all deployments will be kept. | 0 |
 
 
 ```http request

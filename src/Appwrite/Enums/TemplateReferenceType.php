@@ -6,8 +6,8 @@ use JsonSerializable;
 
 class TemplateReferenceType implements JsonSerializable
 {
-    private static TemplateReferenceType $BRANCH;
     private static TemplateReferenceType $COMMIT;
+    private static TemplateReferenceType $BRANCH;
     private static TemplateReferenceType $TAG;
 
     private string $value;
@@ -27,19 +27,19 @@ class TemplateReferenceType implements JsonSerializable
         return $this->value;
     }
 
-    public static function BRANCH(): TemplateReferenceType
-    {
-        if (!isset(self::$BRANCH)) {
-            self::$BRANCH = new TemplateReferenceType('branch');
-        }
-        return self::$BRANCH;
-    }
     public static function COMMIT(): TemplateReferenceType
     {
         if (!isset(self::$COMMIT)) {
             self::$COMMIT = new TemplateReferenceType('commit');
         }
         return self::$COMMIT;
+    }
+    public static function BRANCH(): TemplateReferenceType
+    {
+        if (!isset(self::$BRANCH)) {
+            self::$BRANCH = new TemplateReferenceType('branch');
+        }
+        return self::$BRANCH;
     }
     public static function TAG(): TemplateReferenceType
     {

@@ -3,7 +3,7 @@
 
 use Appwrite\Client;
 use Appwrite\Services\TablesDB;
-use Appwrite\Enums\IndexType;
+use Appwrite\Enums\TablesDBIndexType;
 use Appwrite\Enums\OrderBy;
 
 $client = (new Client())
@@ -17,7 +17,7 @@ $result = $tablesDB->createIndex(
     databaseId: '<DATABASE_ID>',
     tableId: '<TABLE_ID>',
     key: '',
-    type: IndexType::KEY(),
+    type: TablesDBIndexType::KEY(),
     columns: [],
     orders: [OrderBy::ASC()], // optional
     lengths: [] // optional

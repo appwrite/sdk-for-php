@@ -34,6 +34,7 @@ POST https://cloud.appwrite.io/v1/sites
 | timeout | integer | Maximum request time in seconds. | 30 |
 | installCommand | string | Install Command. |  |
 | buildCommand | string | Build Command. |  |
+| startCommand | string | Custom start command. Leave empty to use default. |  |
 | outputDirectory | string | Output Directory for site. |  |
 | buildRuntime | string | Runtime to use during build step. |  |
 | adapter | string | Framework adapter defining rendering strategy. Allowed values are: static, ssr |  |
@@ -43,7 +44,9 @@ POST https://cloud.appwrite.io/v1/sites
 | providerBranch | string | Production branch for the repo linked to the site. |  |
 | providerSilentMode | boolean | Is the VCS (Version Control System) connection in silent mode for the repo linked to the site? In silent mode, comments will not be made on commits and pull requests. |  |
 | providerRootDirectory | string | Path to site code in the linked repo. |  |
-| specification | string | Framework specification for the site and builds. | [] |
+| buildSpecification | string | Build specification for the site deployments. | [] |
+| runtimeSpecification | string | Runtime specification for the SSR executions. | [] |
+| deploymentRetention | integer | Days to keep non-active deployments before deletion. Value 0 means all deployments will be kept. | 0 |
 
 
 ```http request
@@ -91,6 +94,7 @@ PUT https://cloud.appwrite.io/v1/sites/{siteId}
 | timeout | integer | Maximum request time in seconds. | 30 |
 | installCommand | string | Install Command. |  |
 | buildCommand | string | Build Command. |  |
+| startCommand | string | Custom start command. Leave empty to use default. |  |
 | outputDirectory | string | Output Directory for site. |  |
 | buildRuntime | string | Runtime to use during build step. |  |
 | adapter | string | Framework adapter defining rendering strategy. Allowed values are: static, ssr |  |
@@ -100,7 +104,9 @@ PUT https://cloud.appwrite.io/v1/sites/{siteId}
 | providerBranch | string | Production branch for the repo linked to the site. |  |
 | providerSilentMode | boolean | Is the VCS (Version Control System) connection in silent mode for the repo linked to the site? In silent mode, comments will not be made on commits and pull requests. |  |
 | providerRootDirectory | string | Path to site code in the linked repo. |  |
-| specification | string | Framework specification for the site and builds. | [] |
+| buildSpecification | string | Build specification for the site deployments. | [] |
+| runtimeSpecification | string | Runtime specification for the SSR executions. | [] |
+| deploymentRetention | integer | Days to keep non-active deployments before deletion. Value 0 means all deployments will be kept. | 0 |
 
 
 ```http request

@@ -8,7 +8,7 @@ use Appwrite\Service;
 use Appwrite\InputFile;
 use Appwrite\Enums\RelationshipType;
 use Appwrite\Enums\RelationMutate;
-use Appwrite\Enums\IndexType;
+use Appwrite\Enums\DatabasesIndexType;
 use Appwrite\Enums\OrderBy;
 
 class Databases extends Service
@@ -2887,7 +2887,7 @@ class Databases extends Service
      * @param string $databaseId
      * @param string $collectionId
      * @param string $key
-     * @param IndexType $type
+     * @param DatabasesIndexType $type
      * @param array $attributes
      * @param ?array $orders
      * @param ?array $lengths
@@ -2897,7 +2897,7 @@ class Databases extends Service
      * @deprecated This API has been deprecated since 1.8.0. Please use `createIndex` instead.
      * @see TablesDB::createIndex
      */
-    public function createIndex(string $databaseId, string $collectionId, string $key, IndexType $type, array $attributes, ?array $orders = null, ?array $lengths = null): array
+    public function createIndex(string $databaseId, string $collectionId, string $key, DatabasesIndexType $type, array $attributes, ?array $orders = null, ?array $lengths = null): array
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],

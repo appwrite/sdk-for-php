@@ -85,11 +85,13 @@ class Functions extends Service
      * @param ?string $providerBranch
      * @param ?bool $providerSilentMode
      * @param ?string $providerRootDirectory
-     * @param ?string $specification
+     * @param ?string $buildSpecification
+     * @param ?string $runtimeSpecification
+     * @param ?int $deploymentRetention
      * @throws AppwriteException
      * @return array
      */
-    public function create(string $functionId, string $name, Runtime $runtime, ?array $execute = null, ?array $events = null, ?string $schedule = null, ?int $timeout = null, ?bool $enabled = null, ?bool $logging = null, ?string $entrypoint = null, ?string $commands = null, ?array $scopes = null, ?string $installationId = null, ?string $providerRepositoryId = null, ?string $providerBranch = null, ?bool $providerSilentMode = null, ?string $providerRootDirectory = null, ?string $specification = null): array
+    public function create(string $functionId, string $name, Runtime $runtime, ?array $execute = null, ?array $events = null, ?string $schedule = null, ?int $timeout = null, ?bool $enabled = null, ?bool $logging = null, ?string $entrypoint = null, ?string $commands = null, ?array $scopes = null, ?string $installationId = null, ?string $providerRepositoryId = null, ?string $providerBranch = null, ?bool $providerSilentMode = null, ?string $providerRootDirectory = null, ?string $buildSpecification = null, ?string $runtimeSpecification = null, ?int $deploymentRetention = null): array
     {
         $apiPath = str_replace(
             [],
@@ -158,8 +160,16 @@ class Functions extends Service
             $apiParams['providerRootDirectory'] = $providerRootDirectory;
         }
 
-        if (!is_null($specification)) {
-            $apiParams['specification'] = $specification;
+        if (!is_null($buildSpecification)) {
+            $apiParams['buildSpecification'] = $buildSpecification;
+        }
+
+        if (!is_null($runtimeSpecification)) {
+            $apiParams['runtimeSpecification'] = $runtimeSpecification;
+        }
+
+        if (!is_null($deploymentRetention)) {
+            $apiParams['deploymentRetention'] = $deploymentRetention;
         }
 
         $apiHeaders = [];
@@ -273,11 +283,13 @@ class Functions extends Service
      * @param ?string $providerBranch
      * @param ?bool $providerSilentMode
      * @param ?string $providerRootDirectory
-     * @param ?string $specification
+     * @param ?string $buildSpecification
+     * @param ?string $runtimeSpecification
+     * @param ?int $deploymentRetention
      * @throws AppwriteException
      * @return array
      */
-    public function update(string $functionId, string $name, ?Runtime $runtime = null, ?array $execute = null, ?array $events = null, ?string $schedule = null, ?int $timeout = null, ?bool $enabled = null, ?bool $logging = null, ?string $entrypoint = null, ?string $commands = null, ?array $scopes = null, ?string $installationId = null, ?string $providerRepositoryId = null, ?string $providerBranch = null, ?bool $providerSilentMode = null, ?string $providerRootDirectory = null, ?string $specification = null): array
+    public function update(string $functionId, string $name, ?Runtime $runtime = null, ?array $execute = null, ?array $events = null, ?string $schedule = null, ?int $timeout = null, ?bool $enabled = null, ?bool $logging = null, ?string $entrypoint = null, ?string $commands = null, ?array $scopes = null, ?string $installationId = null, ?string $providerRepositoryId = null, ?string $providerBranch = null, ?bool $providerSilentMode = null, ?string $providerRootDirectory = null, ?string $buildSpecification = null, ?string $runtimeSpecification = null, ?int $deploymentRetention = null): array
     {
         $apiPath = str_replace(
             ['{functionId}'],
@@ -346,8 +358,16 @@ class Functions extends Service
             $apiParams['providerRootDirectory'] = $providerRootDirectory;
         }
 
-        if (!is_null($specification)) {
-            $apiParams['specification'] = $specification;
+        if (!is_null($buildSpecification)) {
+            $apiParams['buildSpecification'] = $buildSpecification;
+        }
+
+        if (!is_null($runtimeSpecification)) {
+            $apiParams['runtimeSpecification'] = $runtimeSpecification;
+        }
+
+        if (!is_null($deploymentRetention)) {
+            $apiParams['deploymentRetention'] = $deploymentRetention;
         }
 
         $apiHeaders = [];
