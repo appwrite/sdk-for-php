@@ -32,4 +32,12 @@ class AuthenticatorType implements JsonSerializable
         }
         return self::$TOTP;
     }
+
+    public static function from(string $value): self
+    {
+        return match ($value) {
+            'totp' => self::TOTP(),
+            default => throw new \InvalidArgumentException('Unknown AuthenticatorType value: ' . $value),
+        };
+    }
 }

@@ -12,18 +12,18 @@ use Appwrite\Enums\OAuthProvider;
 
 class Account extends Service
 {
-     public function __construct(Client $client)
-     {
-         parent::__construct($client);
-     }
+    public function __construct(Client $client)
+    {
+        parent::__construct($client);
+    }
 
     /**
      * Get the currently logged in user.
      *
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\User
      */
-    public function get(): array
+    public function get(): \Appwrite\Models\User
     {
         $apiPath = str_replace(
             [],
@@ -35,12 +35,18 @@ class Account extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\User::class]
+        );
+
     }
 
     /**
@@ -57,9 +63,9 @@ class Account extends Service
      * @param string $password
      * @param ?string $name
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\User
      */
-    public function create(string $userId, string $email, string $password, ?string $name = null): array
+    public function create(string $userId, string $email, string $password, ?string $name = null): \Appwrite\Models\User
     {
         $apiPath = str_replace(
             [],
@@ -79,12 +85,18 @@ class Account extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\User::class]
+        );
+
     }
 
     /**
@@ -100,9 +112,9 @@ class Account extends Service
      * @param string $email
      * @param string $password
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\User
      */
-    public function updateEmail(string $email, string $password): array
+    public function updateEmail(string $email, string $password): \Appwrite\Models\User
     {
         $apiPath = str_replace(
             [],
@@ -117,12 +129,18 @@ class Account extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\User::class]
+        );
+
     }
 
     /**
@@ -131,9 +149,9 @@ class Account extends Service
      * @param ?array $queries
      * @param ?bool $total
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\IdentityList
      */
-    public function listIdentities(?array $queries = null, ?bool $total = null): array
+    public function listIdentities(?array $queries = null, ?bool $total = null): \Appwrite\Models\IdentityList
     {
         $apiPath = str_replace(
             [],
@@ -153,12 +171,18 @@ class Account extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\IdentityList::class]
+        );
+
     }
 
     /**
@@ -182,12 +206,15 @@ class Account extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $response;
+
     }
 
     /**
@@ -199,9 +226,9 @@ class Account extends Service
      *
      * @param ?int $duration
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Jwt
      */
-    public function createJWT(?int $duration = null): array
+    public function createJWT(?int $duration = null): \Appwrite\Models\Jwt
     {
         $apiPath = str_replace(
             [],
@@ -218,12 +245,18 @@ class Account extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Jwt::class]
+        );
+
     }
 
     /**
@@ -233,9 +266,9 @@ class Account extends Service
      * @param ?array $queries
      * @param ?bool $total
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\LogList
      */
-    public function listLogs(?array $queries = null, ?bool $total = null): array
+    public function listLogs(?array $queries = null, ?bool $total = null): \Appwrite\Models\LogList
     {
         $apiPath = str_replace(
             [],
@@ -255,12 +288,18 @@ class Account extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\LogList::class]
+        );
+
     }
 
     /**
@@ -268,9 +307,9 @@ class Account extends Service
      *
      * @param bool $mfa
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\User
      */
-    public function updateMFA(bool $mfa): array
+    public function updateMFA(bool $mfa): \Appwrite\Models\User
     {
         $apiPath = str_replace(
             [],
@@ -284,12 +323,18 @@ class Account extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\User::class]
+        );
+
     }
 
     /**
@@ -300,9 +345,9 @@ class Account extends Service
      *
      * @param AuthenticatorType $type
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\MfaType
      */
-    public function createMFAAuthenticator(AuthenticatorType $type): array
+    public function createMFAAuthenticator(AuthenticatorType $type): \Appwrite\Models\MfaType
     {
         $apiPath = str_replace(
             ['{type}'],
@@ -316,12 +361,18 @@ class Account extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\MfaType::class]
+        );
+
     }
 
     /**
@@ -332,9 +383,9 @@ class Account extends Service
      * @param AuthenticatorType $type
      * @param string $otp
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\User
      */
-    public function updateMFAAuthenticator(AuthenticatorType $type, string $otp): array
+    public function updateMFAAuthenticator(AuthenticatorType $type, string $otp): \Appwrite\Models\User
     {
         $apiPath = str_replace(
             ['{type}'],
@@ -349,12 +400,18 @@ class Account extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PUT,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\User::class]
+        );
+
     }
 
     /**
@@ -378,12 +435,15 @@ class Account extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $response;
+
     }
 
     /**
@@ -393,9 +453,9 @@ class Account extends Service
      *
      * @param AuthenticationFactor $factor
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\MfaChallenge
      */
-    public function createMFAChallenge(AuthenticationFactor $factor): array
+    public function createMFAChallenge(AuthenticationFactor $factor): \Appwrite\Models\MfaChallenge
     {
         $apiPath = str_replace(
             [],
@@ -409,12 +469,18 @@ class Account extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\MfaChallenge::class]
+        );
+
     }
 
     /**
@@ -427,9 +493,9 @@ class Account extends Service
      * @param string $challengeId
      * @param string $otp
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Session
      */
-    public function updateMFAChallenge(string $challengeId, string $otp): array
+    public function updateMFAChallenge(string $challengeId, string $otp): \Appwrite\Models\Session
     {
         $apiPath = str_replace(
             [],
@@ -444,21 +510,27 @@ class Account extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PUT,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Session::class]
+        );
+
     }
 
     /**
      * List the factors available on the account to be used as a MFA challange.
      *
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\MfaFactors
      */
-    public function listMFAFactors(): array
+    public function listMFAFactors(): \Appwrite\Models\MfaFactors
     {
         $apiPath = str_replace(
             [],
@@ -470,12 +542,18 @@ class Account extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\MfaFactors::class]
+        );
+
     }
 
     /**
@@ -485,9 +563,9 @@ class Account extends Service
      * method. An OTP challenge is required to read recovery codes.
      *
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\MfaRecoveryCodes
      */
-    public function getMFARecoveryCodes(): array
+    public function getMFARecoveryCodes(): \Appwrite\Models\MfaRecoveryCodes
     {
         $apiPath = str_replace(
             [],
@@ -499,12 +577,18 @@ class Account extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\MfaRecoveryCodes::class]
+        );
+
     }
 
     /**
@@ -515,9 +599,9 @@ class Account extends Service
      * method.
      *
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\MfaRecoveryCodes
      */
-    public function createMFARecoveryCodes(): array
+    public function createMFARecoveryCodes(): \Appwrite\Models\MfaRecoveryCodes
     {
         $apiPath = str_replace(
             [],
@@ -530,12 +614,18 @@ class Account extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\MfaRecoveryCodes::class]
+        );
+
     }
 
     /**
@@ -545,9 +635,9 @@ class Account extends Service
      * method. An OTP challenge is required to regenreate recovery codes.
      *
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\MfaRecoveryCodes
      */
-    public function updateMFARecoveryCodes(): array
+    public function updateMFARecoveryCodes(): \Appwrite\Models\MfaRecoveryCodes
     {
         $apiPath = str_replace(
             [],
@@ -560,12 +650,18 @@ class Account extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\MfaRecoveryCodes::class]
+        );
+
     }
 
     /**
@@ -573,9 +669,9 @@ class Account extends Service
      *
      * @param string $name
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\User
      */
-    public function updateName(string $name): array
+    public function updateName(string $name): \Appwrite\Models\User
     {
         $apiPath = str_replace(
             [],
@@ -589,12 +685,18 @@ class Account extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\User::class]
+        );
+
     }
 
     /**
@@ -605,9 +707,9 @@ class Account extends Service
      * @param string $password
      * @param ?string $oldPassword
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\User
      */
-    public function updatePassword(string $password, ?string $oldPassword = null): array
+    public function updatePassword(string $password, ?string $oldPassword = null): \Appwrite\Models\User
     {
         $apiPath = str_replace(
             [],
@@ -625,12 +727,18 @@ class Account extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\User::class]
+        );
+
     }
 
     /**
@@ -643,9 +751,9 @@ class Account extends Service
      * @param string $phone
      * @param string $password
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\User
      */
-    public function updatePhone(string $phone, string $password): array
+    public function updatePhone(string $phone, string $password): \Appwrite\Models\User
     {
         $apiPath = str_replace(
             [],
@@ -660,21 +768,27 @@ class Account extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\User::class]
+        );
+
     }
 
     /**
      * Get the preferences as a key-value object for the currently logged in user.
      *
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Preferences
      */
-    public function getPrefs(): array
+    public function getPrefs(): \Appwrite\Models\Preferences
     {
         $apiPath = str_replace(
             [],
@@ -686,12 +800,18 @@ class Account extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Preferences::class]
+        );
+
     }
 
     /**
@@ -701,9 +821,9 @@ class Account extends Service
      *
      * @param array $prefs
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\User
      */
-    public function updatePrefs(array $prefs): array
+    public function updatePrefs(array $prefs): \Appwrite\Models\User
     {
         $apiPath = str_replace(
             [],
@@ -717,12 +837,18 @@ class Account extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\User::class]
+        );
+
     }
 
     /**
@@ -738,9 +864,9 @@ class Account extends Service
      * @param string $email
      * @param string $url
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Token
      */
-    public function createRecovery(string $email, string $url): array
+    public function createRecovery(string $email, string $url): \Appwrite\Models\Token
     {
         $apiPath = str_replace(
             [],
@@ -755,12 +881,18 @@ class Account extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Token::class]
+        );
+
     }
 
     /**
@@ -779,9 +911,9 @@ class Account extends Service
      * @param string $secret
      * @param string $password
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Token
      */
-    public function updateRecovery(string $userId, string $secret, string $password): array
+    public function updateRecovery(string $userId, string $secret, string $password): \Appwrite\Models\Token
     {
         $apiPath = str_replace(
             [],
@@ -797,12 +929,18 @@ class Account extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PUT,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Token::class]
+        );
+
     }
 
     /**
@@ -810,9 +948,9 @@ class Account extends Service
      * logged in user.
      *
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\SessionList
      */
-    public function listSessions(): array
+    public function listSessions(): \Appwrite\Models\SessionList
     {
         $apiPath = str_replace(
             [],
@@ -824,12 +962,18 @@ class Account extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\SessionList::class]
+        );
+
     }
 
     /**
@@ -852,12 +996,15 @@ class Account extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $response;
+
     }
 
     /**
@@ -870,9 +1017,9 @@ class Account extends Service
      * session](https://appwrite.io/docs/references/cloud/client-web/account#CreateOAuth2Session).
      *
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Session
      */
-    public function createAnonymousSession(): array
+    public function createAnonymousSession(): \Appwrite\Models\Session
     {
         $apiPath = str_replace(
             [],
@@ -885,12 +1032,18 @@ class Account extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Session::class]
+        );
+
     }
 
     /**
@@ -904,9 +1057,9 @@ class Account extends Service
      * @param string $email
      * @param string $password
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Session
      */
-    public function createEmailPasswordSession(string $email, string $password): array
+    public function createEmailPasswordSession(string $email, string $password): \Appwrite\Models\Session
     {
         $apiPath = str_replace(
             [],
@@ -921,12 +1074,18 @@ class Account extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Session::class]
+        );
+
     }
 
     /**
@@ -937,12 +1096,12 @@ class Account extends Service
      * @param string $userId
      * @param string $secret
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Session
      *
      * @deprecated This API has been deprecated since 1.6.0. Please use `createSession` instead.
      * @see Account::createSession
      */
-    public function updateMagicURLSession(string $userId, string $secret): array
+    public function updateMagicURLSession(string $userId, string $secret): \Appwrite\Models\Session
     {
         $apiPath = str_replace(
             [],
@@ -957,12 +1116,18 @@ class Account extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PUT,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Session::class]
+        );
+
     }
 
     /**
@@ -973,12 +1138,12 @@ class Account extends Service
      * @param string $userId
      * @param string $secret
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Session
      *
      * @deprecated This API has been deprecated since 1.6.0. Please use `createSession` instead.
      * @see Account::createSession
      */
-    public function updatePhoneSession(string $userId, string $secret): array
+    public function updatePhoneSession(string $userId, string $secret): \Appwrite\Models\Session
     {
         $apiPath = str_replace(
             [],
@@ -993,12 +1158,18 @@ class Account extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PUT,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Session::class]
+        );
+
     }
 
     /**
@@ -1009,9 +1180,9 @@ class Account extends Service
      * @param string $userId
      * @param string $secret
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Session
      */
-    public function createSession(string $userId, string $secret): array
+    public function createSession(string $userId, string $secret): \Appwrite\Models\Session
     {
         $apiPath = str_replace(
             [],
@@ -1026,12 +1197,18 @@ class Account extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Session::class]
+        );
+
     }
 
     /**
@@ -1040,9 +1217,9 @@ class Account extends Service
      *
      * @param string $sessionId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Session
      */
-    public function getSession(string $sessionId): array
+    public function getSession(string $sessionId): \Appwrite\Models\Session
     {
         $apiPath = str_replace(
             ['{sessionId}'],
@@ -1055,12 +1232,18 @@ class Account extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Session::class]
+        );
+
     }
 
     /**
@@ -1070,9 +1253,9 @@ class Account extends Service
      *
      * @param string $sessionId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Session
      */
-    public function updateSession(string $sessionId): array
+    public function updateSession(string $sessionId): \Appwrite\Models\Session
     {
         $apiPath = str_replace(
             ['{sessionId}'],
@@ -1086,12 +1269,18 @@ class Account extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Session::class]
+        );
+
     }
 
     /**
@@ -1119,12 +1308,15 @@ class Account extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $response;
+
     }
 
     /**
@@ -1133,9 +1325,9 @@ class Account extends Service
      * completely delete a user, use the Users API instead.
      *
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\User
      */
-    public function updateStatus(): array
+    public function updateStatus(): \Appwrite\Models\User
     {
         $apiPath = str_replace(
             [],
@@ -1148,12 +1340,18 @@ class Account extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\User::class]
+        );
+
     }
 
     /**
@@ -1176,9 +1374,9 @@ class Account extends Service
      * @param string $email
      * @param ?bool $phrase
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Token
      */
-    public function createEmailToken(string $userId, string $email, ?bool $phrase = null): array
+    public function createEmailToken(string $userId, string $email, ?bool $phrase = null): \Appwrite\Models\Token
     {
         $apiPath = str_replace(
             [],
@@ -1197,12 +1395,18 @@ class Account extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Token::class]
+        );
+
     }
 
     /**
@@ -1226,9 +1430,9 @@ class Account extends Service
      * @param ?string $url
      * @param ?bool $phrase
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Token
      */
-    public function createMagicURLToken(string $userId, string $email, ?string $url = null, ?bool $phrase = null): array
+    public function createMagicURLToken(string $userId, string $email, ?string $url = null, ?bool $phrase = null): \Appwrite\Models\Token
     {
         $apiPath = str_replace(
             [],
@@ -1251,12 +1455,18 @@ class Account extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Token::class]
+        );
+
     }
 
     /**
@@ -1307,12 +1517,15 @@ class Account extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams, 'location'
         );
+
+        return $response;
+
     }
 
     /**
@@ -1330,9 +1543,9 @@ class Account extends Service
      * @param string $userId
      * @param string $phone
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Token
      */
-    public function createPhoneToken(string $userId, string $phone): array
+    public function createPhoneToken(string $userId, string $phone): \Appwrite\Models\Token
     {
         $apiPath = str_replace(
             [],
@@ -1347,12 +1560,18 @@ class Account extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Token::class]
+        );
+
     }
 
     /**
@@ -1374,9 +1593,9 @@ class Account extends Service
      *
      * @param string $url
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Token
      */
-    public function createEmailVerification(string $url): array
+    public function createEmailVerification(string $url): \Appwrite\Models\Token
     {
         $apiPath = str_replace(
             [],
@@ -1390,12 +1609,18 @@ class Account extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Token::class]
+        );
+
     }
 
     /**
@@ -1417,12 +1642,12 @@ class Account extends Service
      *
      * @param string $url
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Token
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createEmailVerification` instead.
      * @see Account::createEmailVerification
      */
-    public function createVerification(string $url): array
+    public function createVerification(string $url): \Appwrite\Models\Token
     {
         $apiPath = str_replace(
             [],
@@ -1436,12 +1661,18 @@ class Account extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Token::class]
+        );
+
     }
 
     /**
@@ -1453,9 +1684,9 @@ class Account extends Service
      * @param string $userId
      * @param string $secret
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Token
      */
-    public function updateEmailVerification(string $userId, string $secret): array
+    public function updateEmailVerification(string $userId, string $secret): \Appwrite\Models\Token
     {
         $apiPath = str_replace(
             [],
@@ -1470,12 +1701,18 @@ class Account extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PUT,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Token::class]
+        );
+
     }
 
     /**
@@ -1487,12 +1724,12 @@ class Account extends Service
      * @param string $userId
      * @param string $secret
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Token
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateEmailVerification` instead.
      * @see Account::updateEmailVerification
      */
-    public function updateVerification(string $userId, string $secret): array
+    public function updateVerification(string $userId, string $secret): \Appwrite\Models\Token
     {
         $apiPath = str_replace(
             [],
@@ -1507,12 +1744,18 @@ class Account extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PUT,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Token::class]
+        );
+
     }
 
     /**
@@ -1526,9 +1769,9 @@ class Account extends Service
      * minutes.
      *
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Token
      */
-    public function createPhoneVerification(): array
+    public function createPhoneVerification(): \Appwrite\Models\Token
     {
         $apiPath = str_replace(
             [],
@@ -1541,12 +1784,18 @@ class Account extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Token::class]
+        );
+
     }
 
     /**
@@ -1558,9 +1807,9 @@ class Account extends Service
      * @param string $userId
      * @param string $secret
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Token
      */
-    public function updatePhoneVerification(string $userId, string $secret): array
+    public function updatePhoneVerification(string $userId, string $secret): \Appwrite\Models\Token
     {
         $apiPath = str_replace(
             [],
@@ -1575,11 +1824,17 @@ class Account extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PUT,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Token::class]
+        );
+
     }
 }

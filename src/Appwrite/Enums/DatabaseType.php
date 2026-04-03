@@ -56,4 +56,15 @@ class DatabaseType implements JsonSerializable
         }
         return self::$VECTORSDB;
     }
+
+    public static function from(string $value): self
+    {
+        return match ($value) {
+            'legacy' => self::LEGACY(),
+            'tablesdb' => self::TABLESDB(),
+            'documentsdb' => self::DOCUMENTSDB(),
+            'vectorsdb' => self::VECTORSDB(),
+            default => throw new \InvalidArgumentException('Unknown DatabaseType value: ' . $value),
+        };
+    }
 }

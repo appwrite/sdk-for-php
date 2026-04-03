@@ -136,4 +136,25 @@ class Browser implements JsonSerializable
         }
         return self::$OPERANEXT;
     }
+
+    public static function from(string $value): self
+    {
+        return match ($value) {
+            'aa' => self::AVANTBROWSER(),
+            'an' => self::ANDROIDWEBVIEWBETA(),
+            'ch' => self::GOOGLECHROME(),
+            'ci' => self::GOOGLECHROMEIOS(),
+            'cm' => self::GOOGLECHROMEMOBILE(),
+            'cr' => self::CHROMIUM(),
+            'ff' => self::MOZILLAFIREFOX(),
+            'sf' => self::SAFARI(),
+            'mf' => self::MOBILESAFARI(),
+            'ps' => self::MICROSOFTEDGE(),
+            'oi' => self::MICROSOFTEDGEIOS(),
+            'om' => self::OPERAMINI(),
+            'op' => self::OPERA(),
+            'on' => self::OPERANEXT(),
+            default => throw new \InvalidArgumentException('Unknown Browser value: ' . $value),
+        };
+    }
 }

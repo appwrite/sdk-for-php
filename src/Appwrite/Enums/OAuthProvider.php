@@ -336,4 +336,50 @@ class OAuthProvider implements JsonSerializable
         }
         return self::$ZOOM;
     }
+
+    public static function from(string $value): self
+    {
+        return match ($value) {
+            'amazon' => self::AMAZON(),
+            'apple' => self::APPLE(),
+            'auth0' => self::AUTH0(),
+            'authentik' => self::AUTHENTIK(),
+            'autodesk' => self::AUTODESK(),
+            'bitbucket' => self::BITBUCKET(),
+            'bitly' => self::BITLY(),
+            'box' => self::BOX(),
+            'dailymotion' => self::DAILYMOTION(),
+            'discord' => self::DISCORD(),
+            'disqus' => self::DISQUS(),
+            'dropbox' => self::DROPBOX(),
+            'etsy' => self::ETSY(),
+            'facebook' => self::FACEBOOK(),
+            'figma' => self::FIGMA(),
+            'github' => self::GITHUB(),
+            'gitlab' => self::GITLAB(),
+            'google' => self::GOOGLE(),
+            'linkedin' => self::LINKEDIN(),
+            'microsoft' => self::MICROSOFT(),
+            'notion' => self::NOTION(),
+            'oidc' => self::OIDC(),
+            'okta' => self::OKTA(),
+            'paypal' => self::PAYPAL(),
+            'paypalSandbox' => self::PAYPALSANDBOX(),
+            'podio' => self::PODIO(),
+            'salesforce' => self::SALESFORCE(),
+            'slack' => self::SLACK(),
+            'spotify' => self::SPOTIFY(),
+            'stripe' => self::STRIPE(),
+            'tradeshift' => self::TRADESHIFT(),
+            'tradeshiftBox' => self::TRADESHIFTBOX(),
+            'twitch' => self::TWITCH(),
+            'wordpress' => self::WORDPRESS(),
+            'yahoo' => self::YAHOO(),
+            'yammer' => self::YAMMER(),
+            'yandex' => self::YANDEX(),
+            'zoho' => self::ZOHO(),
+            'zoom' => self::ZOOM(),
+            default => throw new \InvalidArgumentException('Unknown OAuthProvider value: ' . $value),
+        };
+    }
 }

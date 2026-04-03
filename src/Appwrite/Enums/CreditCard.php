@@ -160,4 +160,28 @@ class CreditCard implements JsonSerializable
         }
         return self::$RUPAY;
     }
+
+    public static function from(string $value): self
+    {
+        return match ($value) {
+            'amex' => self::AMERICANEXPRESS(),
+            'argencard' => self::ARGENCARD(),
+            'cabal' => self::CABAL(),
+            'cencosud' => self::CENCOSUD(),
+            'diners' => self::DINERSCLUB(),
+            'discover' => self::DISCOVER(),
+            'elo' => self::ELO(),
+            'hipercard' => self::HIPERCARD(),
+            'jcb' => self::JCB(),
+            'mastercard' => self::MASTERCARD(),
+            'naranja' => self::NARANJA(),
+            'targeta-shopping' => self::TARJETASHOPPING(),
+            'unionpay' => self::UNIONPAY(),
+            'visa' => self::VISA(),
+            'mir' => self::MIR(),
+            'maestro' => self::MAESTRO(),
+            'rupay' => self::RUPAY(),
+            default => throw new \InvalidArgumentException('Unknown CreditCard value: ' . $value),
+        };
+    }
 }

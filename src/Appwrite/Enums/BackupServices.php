@@ -72,4 +72,17 @@ class BackupServices implements JsonSerializable
         }
         return self::$STORAGE;
     }
+
+    public static function from(string $value): self
+    {
+        return match ($value) {
+            'databases' => self::DATABASES(),
+            'tablesdb' => self::TABLESDB(),
+            'documentsdb' => self::DOCUMENTSDB(),
+            'vectorsdb' => self::VECTORSDB(),
+            'functions' => self::FUNCTIONS(),
+            'storage' => self::STORAGE(),
+            default => throw new \InvalidArgumentException('Unknown BackupServices value: ' . $value),
+        };
+    }
 }

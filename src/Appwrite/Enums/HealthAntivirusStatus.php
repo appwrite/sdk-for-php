@@ -48,4 +48,14 @@ class HealthAntivirusStatus implements JsonSerializable
         }
         return self::$ONLINE;
     }
+
+    public static function from(string $value): self
+    {
+        return match ($value) {
+            'disabled' => self::DISABLED(),
+            'offline' => self::OFFLINE(),
+            'online' => self::ONLINE(),
+            default => throw new \InvalidArgumentException('Unknown HealthAntivirusStatus value: ' . $value),
+        };
+    }
 }

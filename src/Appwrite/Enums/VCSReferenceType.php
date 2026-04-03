@@ -48,4 +48,14 @@ class VCSReferenceType implements JsonSerializable
         }
         return self::$TAG;
     }
+
+    public static function from(string $value): self
+    {
+        return match ($value) {
+            'branch' => self::BRANCH(),
+            'commit' => self::COMMIT(),
+            'tag' => self::TAG(),
+            default => throw new \InvalidArgumentException('Unknown VCSReferenceType value: ' . $value),
+        };
+    }
 }

@@ -1,5 +1,14 @@
 # Change Log
 
+## 22.0.0
+
+* [BREAKING] Raised minimum PHP version from 8.0 to 8.2
+* [BREAKING] All service methods now return typed model objects instead of `array`
+* Added 142 typed response model classes with `ArraySerializable` trait for backward-compatible array access
+* Added `from(string)` factory method to all enums for value-based construction
+* Added `Client::getHeaders()` method to retrieve request headers
+* Added `dart-3.11` and `flutter-3.41` runtime enum values
+
 ## 21.0.0
 
 * [BREAKING] Changed `$sequence` type from `int` to `string` for rows and documents

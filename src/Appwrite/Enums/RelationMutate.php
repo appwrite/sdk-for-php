@@ -48,4 +48,14 @@ class RelationMutate implements JsonSerializable
         }
         return self::$SETNULL;
     }
+
+    public static function from(string $value): self
+    {
+        return match ($value) {
+            'cascade' => self::CASCADE(),
+            'restrict' => self::RESTRICT(),
+            'setNull' => self::SETNULL(),
+            default => throw new \InvalidArgumentException('Unknown RelationMutate value: ' . $value),
+        };
+    }
 }

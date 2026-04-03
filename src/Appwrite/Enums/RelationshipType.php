@@ -56,4 +56,15 @@ class RelationshipType implements JsonSerializable
         }
         return self::$ONETOMANY;
     }
+
+    public static function from(string $value): self
+    {
+        return match ($value) {
+            'oneToOne' => self::ONETOONE(),
+            'manyToOne' => self::MANYTOONE(),
+            'manyToMany' => self::MANYTOMANY(),
+            'oneToMany' => self::ONETOMANY(),
+            default => throw new \InvalidArgumentException('Unknown RelationshipType value: ' . $value),
+        };
+    }
 }

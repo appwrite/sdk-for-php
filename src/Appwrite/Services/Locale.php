@@ -9,10 +9,10 @@ use Appwrite\InputFile;
 
 class Locale extends Service
 {
-     public function __construct(Client $client)
-     {
-         parent::__construct($client);
-     }
+    public function __construct(Client $client)
+    {
+        parent::__construct($client);
+    }
 
     /**
      * Get the current user location based on IP. Returns an object with user
@@ -23,9 +23,9 @@ class Locale extends Service
      * ([IP Geolocation by DB-IP](https://db-ip.com))
      *
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Locale
      */
-    public function get(): array
+    public function get(): \Appwrite\Models\Locale
     {
         $apiPath = str_replace(
             [],
@@ -37,12 +37,18 @@ class Locale extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Locale::class]
+        );
+
     }
 
     /**
@@ -50,9 +56,9 @@ class Locale extends Service
      * 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).
      *
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\LocaleCodeList
      */
-    public function listCodes(): array
+    public function listCodes(): \Appwrite\Models\LocaleCodeList
     {
         $apiPath = str_replace(
             [],
@@ -64,12 +70,18 @@ class Locale extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\LocaleCodeList::class]
+        );
+
     }
 
     /**
@@ -77,9 +89,9 @@ class Locale extends Service
      * supported language.
      *
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\ContinentList
      */
-    public function listContinents(): array
+    public function listContinents(): \Appwrite\Models\ContinentList
     {
         $apiPath = str_replace(
             [],
@@ -91,12 +103,18 @@ class Locale extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\ContinentList::class]
+        );
+
     }
 
     /**
@@ -104,9 +122,9 @@ class Locale extends Service
      * supported language.
      *
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\CountryList
      */
-    public function listCountries(): array
+    public function listCountries(): \Appwrite\Models\CountryList
     {
         $apiPath = str_replace(
             [],
@@ -118,12 +136,18 @@ class Locale extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\CountryList::class]
+        );
+
     }
 
     /**
@@ -131,9 +155,9 @@ class Locale extends Service
      * locale header to get the data in a supported language.
      *
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\CountryList
      */
-    public function listCountriesEU(): array
+    public function listCountriesEU(): \Appwrite\Models\CountryList
     {
         $apiPath = str_replace(
             [],
@@ -145,12 +169,18 @@ class Locale extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\CountryList::class]
+        );
+
     }
 
     /**
@@ -158,9 +188,9 @@ class Locale extends Service
      * data in a supported language.
      *
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\PhoneList
      */
-    public function listCountriesPhones(): array
+    public function listCountriesPhones(): \Appwrite\Models\PhoneList
     {
         $apiPath = str_replace(
             [],
@@ -172,12 +202,18 @@ class Locale extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\PhoneList::class]
+        );
+
     }
 
     /**
@@ -186,9 +222,9 @@ class Locale extends Service
      * header to get the data in a supported language.
      *
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\CurrencyList
      */
-    public function listCurrencies(): array
+    public function listCurrencies(): \Appwrite\Models\CurrencyList
     {
         $apiPath = str_replace(
             [],
@@ -200,12 +236,18 @@ class Locale extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\CurrencyList::class]
+        );
+
     }
 
     /**
@@ -213,9 +255,9 @@ class Locale extends Service
      * in English, and name in the respective language.
      *
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\LanguageList
      */
-    public function listLanguages(): array
+    public function listLanguages(): \Appwrite\Models\LanguageList
     {
         $apiPath = str_replace(
             [],
@@ -227,11 +269,17 @@ class Locale extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\LanguageList::class]
+        );
+
     }
 }

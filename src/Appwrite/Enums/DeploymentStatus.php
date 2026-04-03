@@ -72,4 +72,17 @@ class DeploymentStatus implements JsonSerializable
         }
         return self::$FAILED;
     }
+
+    public static function from(string $value): self
+    {
+        return match ($value) {
+            'waiting' => self::WAITING(),
+            'processing' => self::PROCESSING(),
+            'building' => self::BUILDING(),
+            'ready' => self::READY(),
+            'canceled' => self::CANCELED(),
+            'failed' => self::FAILED(),
+            default => throw new \InvalidArgumentException('Unknown DeploymentStatus value: ' . $value),
+        };
+    }
 }

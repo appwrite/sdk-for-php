@@ -16,10 +16,10 @@ use Appwrite\Enums\ImageFormat;
 
 class Avatars extends Service
 {
-     public function __construct(Client $client)
-     {
-         parent::__construct($client);
-     }
+    public function __construct(Client $client)
+    {
+        parent::__construct($client);
+    }
 
     /**
      * You can use this endpoint to show different browser icons to your users.
@@ -65,12 +65,15 @@ class Avatars extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $response;
+
     }
 
     /**
@@ -116,12 +119,15 @@ class Avatars extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $response;
+
     }
 
     /**
@@ -147,12 +153,15 @@ class Avatars extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $response;
+
     }
 
     /**
@@ -199,12 +208,15 @@ class Avatars extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $response;
+
     }
 
     /**
@@ -247,12 +259,15 @@ class Avatars extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $response;
+
     }
 
     /**
@@ -308,12 +323,15 @@ class Avatars extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $response;
+
     }
 
     /**
@@ -353,12 +371,15 @@ class Avatars extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $response;
+
     }
 
     /**
@@ -485,11 +506,14 @@ class Avatars extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $response;
+
     }
 }

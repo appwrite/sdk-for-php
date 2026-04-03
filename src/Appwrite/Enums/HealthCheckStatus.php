@@ -40,4 +40,13 @@ class HealthCheckStatus implements JsonSerializable
         }
         return self::$FAIL;
     }
+
+    public static function from(string $value): self
+    {
+        return match ($value) {
+            'pass' => self::PASS(),
+            'fail' => self::FAIL(),
+            default => throw new \InvalidArgumentException('Unknown HealthCheckStatus value: ' . $value),
+        };
+    }
 }

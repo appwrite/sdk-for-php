@@ -9,19 +9,19 @@ use Appwrite\InputFile;
 
 class Activities extends Service
 {
-     public function __construct(Client $client)
-     {
-         parent::__construct($client);
-     }
+    public function __construct(Client $client)
+    {
+        parent::__construct($client);
+    }
 
     /**
      * List all events for selected filters.
      *
      * @param ?string $queries
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\ActivityEventList
      */
-    public function listEvents(?string $queries = null): array
+    public function listEvents(?string $queries = null): \Appwrite\Models\ActivityEventList
     {
         $apiPath = str_replace(
             [],
@@ -37,12 +37,18 @@ class Activities extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\ActivityEventList::class]
+        );
+
     }
 
     /**
@@ -51,9 +57,9 @@ class Activities extends Service
      *
      * @param string $eventId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\ActivityEvent
      */
-    public function getEvent(string $eventId): array
+    public function getEvent(string $eventId): \Appwrite\Models\ActivityEvent
     {
         $apiPath = str_replace(
             ['{eventId}'],
@@ -66,11 +72,17 @@ class Activities extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\ActivityEvent::class]
+        );
+
     }
 }

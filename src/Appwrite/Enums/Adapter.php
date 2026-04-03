@@ -40,4 +40,13 @@ class Adapter implements JsonSerializable
         }
         return self::$SSR;
     }
+
+    public static function from(string $value): self
+    {
+        return match ($value) {
+            'static' => self::STATIC(),
+            'ssr' => self::SSR(),
+            default => throw new \InvalidArgumentException('Unknown Adapter value: ' . $value),
+        };
+    }
 }

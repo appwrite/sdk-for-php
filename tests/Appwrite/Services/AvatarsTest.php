@@ -14,17 +14,19 @@ use Appwrite\Enums\Timezone;
 use Appwrite\Enums\BrowserPermission;
 use Appwrite\Enums\ImageFormat;
 
-final class AvatarsTest extends TestCase {
+final class AvatarsTest extends TestCase
+{
     private $client;
     private $avatars;
 
-    protected function setUp(): void {
+    protected function setUp(): void
+    {
         $this->client = Mockery::mock(Client::class);
         $this->avatars = new Avatars($this->client);
     }
 
-    public function testMethodGetBrowser(): void {
-
+    public function testMethodGetBrowser(): void
+    {
         $data = '';
 
         $this->client
@@ -38,8 +40,8 @@ final class AvatarsTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
-    public function testMethodGetCreditCard(): void {
-
+    public function testMethodGetCreditCard(): void
+    {
         $data = '';
 
         $this->client
@@ -53,8 +55,8 @@ final class AvatarsTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
-    public function testMethodGetFavicon(): void {
-
+    public function testMethodGetFavicon(): void
+    {
         $data = '';
 
         $this->client
@@ -68,8 +70,8 @@ final class AvatarsTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
-    public function testMethodGetFlag(): void {
-
+    public function testMethodGetFlag(): void
+    {
         $data = '';
 
         $this->client
@@ -83,8 +85,8 @@ final class AvatarsTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
-    public function testMethodGetImage(): void {
-
+    public function testMethodGetImage(): void
+    {
         $data = '';
 
         $this->client
@@ -98,22 +100,21 @@ final class AvatarsTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
-    public function testMethodGetInitials(): void {
-
+    public function testMethodGetInitials(): void
+    {
         $data = '';
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->avatars->getInitials(
-        );
+        $response = $this->avatars->getInitials();
 
         $this->assertSame($data, $response);
     }
 
-    public function testMethodGetQR(): void {
-
+    public function testMethodGetQR(): void
+    {
         $data = '';
 
         $this->client
@@ -127,8 +128,8 @@ final class AvatarsTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
-    public function testMethodGetScreenshot(): void {
-
+    public function testMethodGetScreenshot(): void
+    {
         $data = '';
 
         $this->client

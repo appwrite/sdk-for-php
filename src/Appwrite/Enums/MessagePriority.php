@@ -40,4 +40,13 @@ class MessagePriority implements JsonSerializable
         }
         return self::$HIGH;
     }
+
+    public static function from(string $value): self
+    {
+        return match ($value) {
+            'normal' => self::NORMAL(),
+            'high' => self::HIGH(),
+            default => throw new \InvalidArgumentException('Unknown MessagePriority value: ' . $value),
+        };
+    }
 }

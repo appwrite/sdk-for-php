@@ -48,4 +48,14 @@ class SmtpEncryption implements JsonSerializable
         }
         return self::$TLS;
     }
+
+    public static function from(string $value): self
+    {
+        return match ($value) {
+            'none' => self::NONE(),
+            'ssl' => self::SSL(),
+            'tls' => self::TLS(),
+            default => throw new \InvalidArgumentException('Unknown SmtpEncryption value: ' . $value),
+        };
+    }
 }

@@ -8,212 +8,233 @@ use Mockery;
 use PHPUnit\Framework\TestCase;
 use Appwrite\Enums\Name;
 
-final class HealthTest extends TestCase {
+final class HealthTest extends TestCase
+{
     private $client;
     private $health;
 
-    protected function setUp(): void {
+    protected function setUp(): void
+    {
         $this->client = Mockery::mock(Client::class);
         $this->health = new Health($this->client);
     }
 
-    public function testMethodGet(): void {
-
+    public function testMethodGet(): void
+    {
         $data = array(
             "name" => "database",
             "ping" => 128,
-            "status" => "pass");
+            "status" => "pass"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->health->get(
-        );
+        $response = $this->health->get();
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\HealthStatus::class, $response);
     }
 
-    public function testMethodGetAntivirus(): void {
-
+    public function testMethodGetAntivirus(): void
+    {
         $data = array(
             "version" => "1.0.0",
-            "status" => "online");
+            "status" => "disabled"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->health->getAntivirus(
-        );
+        $response = $this->health->getAntivirus();
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\HealthAntivirus::class, $response);
     }
 
-    public function testMethodGetCache(): void {
-
+    public function testMethodGetCache(): void
+    {
         $data = array(
             "total" => 5,
-            "statuses" => array());
+            "statuses" => array(
+                array(
+                    "name" => "database",
+                    "ping" => 128,
+                    "status" => "pass"
+                )
+            )
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->health->getCache(
-        );
+        $response = $this->health->getCache();
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\HealthStatusList::class, $response);
     }
 
-    public function testMethodGetCertificate(): void {
-
+    public function testMethodGetCertificate(): void
+    {
         $data = array(
             "name" => "/CN=www.google.com",
-            "subjectSN" => "",
-            "issuerOrganisation" => "",
+            "subjectSN" => "[SUBJECTSN]",
+            "issuerOrganisation" => "[ISSUERORGANISATION]",
             "validFrom" => "1704200998",
             "validTo" => "1711458597",
-            "signatureTypeSN" => "RSA-SHA256");
+            "signatureTypeSN" => "RSA-SHA256"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->health->getCertificate(
-        );
+        $response = $this->health->getCertificate();
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\HealthCertificate::class, $response);
     }
 
-    public function testMethodGetConsolePausing(): void {
-
+    public function testMethodGetConsolePausing(): void
+    {
         $data = array(
             "name" => "database",
             "ping" => 128,
-            "status" => "pass");
+            "status" => "pass"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->health->getConsolePausing(
-        );
+        $response = $this->health->getConsolePausing();
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\HealthStatus::class, $response);
     }
 
-    public function testMethodGetDB(): void {
-
+    public function testMethodGetDB(): void
+    {
         $data = array(
             "total" => 5,
-            "statuses" => array());
+            "statuses" => array(
+                array(
+                    "name" => "database",
+                    "ping" => 128,
+                    "status" => "pass"
+                )
+            )
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->health->getDB(
-        );
+        $response = $this->health->getDB();
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\HealthStatusList::class, $response);
     }
 
-    public function testMethodGetPubSub(): void {
-
+    public function testMethodGetPubSub(): void
+    {
         $data = array(
             "total" => 5,
-            "statuses" => array());
+            "statuses" => array(
+                array(
+                    "name" => "database",
+                    "ping" => 128,
+                    "status" => "pass"
+                )
+            )
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->health->getPubSub(
-        );
+        $response = $this->health->getPubSub();
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\HealthStatusList::class, $response);
     }
 
-    public function testMethodGetQueueAudits(): void {
-
+    public function testMethodGetQueueAudits(): void
+    {
         $data = array(
-            "size" => 8);
+            "size" => 8
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->health->getQueueAudits(
-        );
+        $response = $this->health->getQueueAudits();
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\HealthQueue::class, $response);
     }
 
-    public function testMethodGetQueueBuilds(): void {
-
+    public function testMethodGetQueueBuilds(): void
+    {
         $data = array(
-            "size" => 8);
+            "size" => 8
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->health->getQueueBuilds(
-        );
+        $response = $this->health->getQueueBuilds();
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\HealthQueue::class, $response);
     }
 
-    public function testMethodGetQueueCertificates(): void {
-
+    public function testMethodGetQueueCertificates(): void
+    {
         $data = array(
-            "size" => 8);
+            "size" => 8
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->health->getQueueCertificates(
-        );
+        $response = $this->health->getQueueCertificates();
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\HealthQueue::class, $response);
     }
 
-    public function testMethodGetQueueDatabases(): void {
-
+    public function testMethodGetQueueDatabases(): void
+    {
         $data = array(
-            "size" => 8);
+            "size" => 8
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->health->getQueueDatabases(
-        );
+        $response = $this->health->getQueueDatabases();
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\HealthQueue::class, $response);
     }
 
-    public function testMethodGetQueueDeletes(): void {
-
+    public function testMethodGetQueueDeletes(): void
+    {
         $data = array(
-            "size" => 8);
+            "size" => 8
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->health->getQueueDeletes(
-        );
+        $response = $this->health->getQueueDeletes();
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\HealthQueue::class, $response);
     }
 
-    public function testMethodGetFailedJobs(): void {
-
+    public function testMethodGetFailedJobs(): void
+    {
         $data = array(
-            "size" => 8);
+            "size" => 8
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -223,178 +244,178 @@ final class HealthTest extends TestCase {
             Name::V1DATABASE()
         );
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\HealthQueue::class, $response);
     }
 
-    public function testMethodGetQueueFunctions(): void {
-
+    public function testMethodGetQueueFunctions(): void
+    {
         $data = array(
-            "size" => 8);
+            "size" => 8
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->health->getQueueFunctions(
-        );
+        $response = $this->health->getQueueFunctions();
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\HealthQueue::class, $response);
     }
 
-    public function testMethodGetQueueLogs(): void {
-
+    public function testMethodGetQueueLogs(): void
+    {
         $data = array(
-            "size" => 8);
+            "size" => 8
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->health->getQueueLogs(
-        );
+        $response = $this->health->getQueueLogs();
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\HealthQueue::class, $response);
     }
 
-    public function testMethodGetQueueMails(): void {
-
+    public function testMethodGetQueueMails(): void
+    {
         $data = array(
-            "size" => 8);
+            "size" => 8
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->health->getQueueMails(
-        );
+        $response = $this->health->getQueueMails();
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\HealthQueue::class, $response);
     }
 
-    public function testMethodGetQueueMessaging(): void {
-
+    public function testMethodGetQueueMessaging(): void
+    {
         $data = array(
-            "size" => 8);
+            "size" => 8
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->health->getQueueMessaging(
-        );
+        $response = $this->health->getQueueMessaging();
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\HealthQueue::class, $response);
     }
 
-    public function testMethodGetQueueMigrations(): void {
-
+    public function testMethodGetQueueMigrations(): void
+    {
         $data = array(
-            "size" => 8);
+            "size" => 8
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->health->getQueueMigrations(
-        );
+        $response = $this->health->getQueueMigrations();
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\HealthQueue::class, $response);
     }
 
-    public function testMethodGetQueueStatsResources(): void {
-
+    public function testMethodGetQueueStatsResources(): void
+    {
         $data = array(
-            "size" => 8);
+            "size" => 8
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->health->getQueueStatsResources(
-        );
+        $response = $this->health->getQueueStatsResources();
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\HealthQueue::class, $response);
     }
 
-    public function testMethodGetQueueUsage(): void {
-
+    public function testMethodGetQueueUsage(): void
+    {
         $data = array(
-            "size" => 8);
+            "size" => 8
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->health->getQueueUsage(
-        );
+        $response = $this->health->getQueueUsage();
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\HealthQueue::class, $response);
     }
 
-    public function testMethodGetQueueWebhooks(): void {
-
+    public function testMethodGetQueueWebhooks(): void
+    {
         $data = array(
-            "size" => 8);
+            "size" => 8
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->health->getQueueWebhooks(
-        );
+        $response = $this->health->getQueueWebhooks();
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\HealthQueue::class, $response);
     }
 
-    public function testMethodGetStorage(): void {
-
-        $data = array(
-            "name" => "database",
-            "ping" => 128,
-            "status" => "pass");
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-
-        $response = $this->health->getStorage(
-        );
-
-        $this->assertSame($data, $response);
-    }
-
-    public function testMethodGetStorageLocal(): void {
-
+    public function testMethodGetStorage(): void
+    {
         $data = array(
             "name" => "database",
             "ping" => 128,
-            "status" => "pass");
+            "status" => "pass"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->health->getStorageLocal(
-        );
+        $response = $this->health->getStorage();
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\HealthStatus::class, $response);
     }
 
-    public function testMethodGetTime(): void {
+    public function testMethodGetStorageLocal(): void
+    {
+        $data = array(
+            "name" => "database",
+            "ping" => 128,
+            "status" => "pass"
+        );
 
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->health->getStorageLocal();
+
+        $this->assertInstanceOf(\Appwrite\Models\HealthStatus::class, $response);
+    }
+
+    public function testMethodGetTime(): void
+    {
         $data = array(
             "remoteTime" => 1639490751,
             "localTime" => 1639490844,
-            "diff" => 93);
+            "diff" => 93
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->health->getTime(
-        );
+        $response = $this->health->getTime();
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\HealthTime::class, $response);
     }
 
 }

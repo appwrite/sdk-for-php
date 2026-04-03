@@ -15,10 +15,10 @@ use Appwrite\Enums\DeploymentDownloadType;
 
 class Sites extends Service
 {
-     public function __construct(Client $client)
-     {
-         parent::__construct($client);
-     }
+    public function __construct(Client $client)
+    {
+        parent::__construct($client);
+    }
 
     /**
      * Get a list of all the project's sites. You can use the query params to
@@ -28,9 +28,9 @@ class Sites extends Service
      * @param ?string $search
      * @param ?bool $total
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\SiteList
      */
-    public function list(?array $queries = null, ?string $search = null, ?bool $total = null): array
+    public function list(?array $queries = null, ?string $search = null, ?bool $total = null): \Appwrite\Models\SiteList
     {
         $apiPath = str_replace(
             [],
@@ -54,12 +54,18 @@ class Sites extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\SiteList::class]
+        );
+
     }
 
     /**
@@ -87,9 +93,9 @@ class Sites extends Service
      * @param ?string $runtimeSpecification
      * @param ?int $deploymentRetention
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Site
      */
-    public function create(string $siteId, string $name, Framework $framework, BuildRuntime $buildRuntime, ?bool $enabled = null, ?bool $logging = null, ?int $timeout = null, ?string $installCommand = null, ?string $buildCommand = null, ?string $startCommand = null, ?string $outputDirectory = null, ?Adapter $adapter = null, ?string $installationId = null, ?string $fallbackFile = null, ?string $providerRepositoryId = null, ?string $providerBranch = null, ?bool $providerSilentMode = null, ?string $providerRootDirectory = null, ?string $buildSpecification = null, ?string $runtimeSpecification = null, ?int $deploymentRetention = null): array
+    public function create(string $siteId, string $name, Framework $framework, BuildRuntime $buildRuntime, ?bool $enabled = null, ?bool $logging = null, ?int $timeout = null, ?string $installCommand = null, ?string $buildCommand = null, ?string $startCommand = null, ?string $outputDirectory = null, ?Adapter $adapter = null, ?string $installationId = null, ?string $fallbackFile = null, ?string $providerRepositoryId = null, ?string $providerBranch = null, ?bool $providerSilentMode = null, ?string $providerRootDirectory = null, ?string $buildSpecification = null, ?string $runtimeSpecification = null, ?int $deploymentRetention = null): \Appwrite\Models\Site
     {
         $apiPath = str_replace(
             [],
@@ -174,12 +180,18 @@ class Sites extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Site::class]
+        );
+
     }
 
     /**
@@ -187,9 +199,9 @@ class Sites extends Service
      * instance.
      *
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\FrameworkList
      */
-    public function listFrameworks(): array
+    public function listFrameworks(): \Appwrite\Models\FrameworkList
     {
         $apiPath = str_replace(
             [],
@@ -201,21 +213,27 @@ class Sites extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\FrameworkList::class]
+        );
+
     }
 
     /**
      * List allowed site specifications for this instance.
      *
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\SpecificationList
      */
-    public function listSpecifications(): array
+    public function listSpecifications(): \Appwrite\Models\SpecificationList
     {
         $apiPath = str_replace(
             [],
@@ -227,12 +245,18 @@ class Sites extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\SpecificationList::class]
+        );
+
     }
 
     /**
@@ -240,9 +264,9 @@ class Sites extends Service
      *
      * @param string $siteId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Site
      */
-    public function get(string $siteId): array
+    public function get(string $siteId): \Appwrite\Models\Site
     {
         $apiPath = str_replace(
             ['{siteId}'],
@@ -255,12 +279,18 @@ class Sites extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Site::class]
+        );
+
     }
 
     /**
@@ -288,9 +318,9 @@ class Sites extends Service
      * @param ?string $runtimeSpecification
      * @param ?int $deploymentRetention
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Site
      */
-    public function update(string $siteId, string $name, Framework $framework, ?bool $enabled = null, ?bool $logging = null, ?int $timeout = null, ?string $installCommand = null, ?string $buildCommand = null, ?string $startCommand = null, ?string $outputDirectory = null, ?BuildRuntime $buildRuntime = null, ?Adapter $adapter = null, ?string $fallbackFile = null, ?string $installationId = null, ?string $providerRepositoryId = null, ?string $providerBranch = null, ?bool $providerSilentMode = null, ?string $providerRootDirectory = null, ?string $buildSpecification = null, ?string $runtimeSpecification = null, ?int $deploymentRetention = null): array
+    public function update(string $siteId, string $name, Framework $framework, ?bool $enabled = null, ?bool $logging = null, ?int $timeout = null, ?string $installCommand = null, ?string $buildCommand = null, ?string $startCommand = null, ?string $outputDirectory = null, ?BuildRuntime $buildRuntime = null, ?Adapter $adapter = null, ?string $fallbackFile = null, ?string $installationId = null, ?string $providerRepositoryId = null, ?string $providerBranch = null, ?bool $providerSilentMode = null, ?string $providerRootDirectory = null, ?string $buildSpecification = null, ?string $runtimeSpecification = null, ?int $deploymentRetention = null): \Appwrite\Models\Site
     {
         $apiPath = str_replace(
             ['{siteId}'],
@@ -378,12 +408,18 @@ class Sites extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PUT,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Site::class]
+        );
+
     }
 
     /**
@@ -407,12 +443,15 @@ class Sites extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $response;
+
     }
 
     /**
@@ -422,9 +461,9 @@ class Sites extends Service
      * @param string $siteId
      * @param string $deploymentId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Site
      */
-    public function updateSiteDeployment(string $siteId, string $deploymentId): array
+    public function updateSiteDeployment(string $siteId, string $deploymentId): \Appwrite\Models\Site
     {
         $apiPath = str_replace(
             ['{siteId}'],
@@ -439,12 +478,18 @@ class Sites extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Site::class]
+        );
+
     }
 
     /**
@@ -456,9 +501,9 @@ class Sites extends Service
      * @param ?string $search
      * @param ?bool $total
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\DeploymentList
      */
-    public function listDeployments(string $siteId, ?array $queries = null, ?string $search = null, ?bool $total = null): array
+    public function listDeployments(string $siteId, ?array $queries = null, ?string $search = null, ?bool $total = null): \Appwrite\Models\DeploymentList
     {
         $apiPath = str_replace(
             ['{siteId}'],
@@ -483,12 +528,18 @@ class Sites extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\DeploymentList::class]
+        );
+
     }
 
     /**
@@ -503,9 +554,9 @@ class Sites extends Service
      * @param ?string $outputDirectory
      * @param ?bool $activate
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Deployment
      */
-    public function createDeployment(string $siteId, InputFile $code, ?string $installCommand = null, ?string $buildCommand = null, ?string $outputDirectory = null, ?bool $activate = null, ?callable $onProgress = null): array
+    public function createDeployment(string $siteId, InputFile $code, ?string $installCommand = null, ?string $buildCommand = null, ?string $outputDirectory = null, ?bool $activate = null, ?callable $onProgress = null): \Appwrite\Models\Deployment
     {
         $apiPath = str_replace(
             ['{siteId}'],
@@ -544,9 +595,13 @@ class Sites extends Service
             $postedName = $code->getFilename();
             if ($size <= Client::CHUNK_SIZE) {
                 $apiParams['code'] = new \CURLFile('data://' . $mimeType . ';base64,' . base64_encode($code->getData()), $mimeType, $postedName);
-                return $this->client->call(Client::METHOD_POST, $apiPath, [
+                $response = $this->client->call(Client::METHOD_POST, $apiPath, [
                             'content-type' => 'multipart/form-data',
                         ], $apiParams);
+                return $this->parseResponse(
+                    $response,
+                    [\Appwrite\Models\Deployment::class]
+                );
             }
         } else {
             $size = filesize($code->getPath());
@@ -555,9 +610,13 @@ class Sites extends Service
             //send single file if size is less than or equal to 5MB
             if ($size <= Client::CHUNK_SIZE) {
                 $apiParams['code'] = new \CURLFile($code->getPath(), $mimeType, $postedName);
-                return $this->client->call(Client::METHOD_POST, $apiPath, [
+                $response = $this->client->call(Client::METHOD_POST, $apiPath, [
                             'content-type' => 'multipart/form-data',
                         ], $apiParams);
+                return $this->parseResponse(
+                    $response,
+                    [\Appwrite\Models\Deployment::class]
+                );
             }
         }
 
@@ -605,7 +664,10 @@ class Sites extends Service
         if(!empty($handle)) {
             @fclose($handle);
         }
-        return $response;
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Deployment::class]
+        );
 
     }
 
@@ -619,9 +681,9 @@ class Sites extends Service
      * @param string $siteId
      * @param string $deploymentId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Deployment
      */
-    public function createDuplicateDeployment(string $siteId, string $deploymentId): array
+    public function createDuplicateDeployment(string $siteId, string $deploymentId): \Appwrite\Models\Deployment
     {
         $apiPath = str_replace(
             ['{siteId}'],
@@ -636,12 +698,18 @@ class Sites extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Deployment::class]
+        );
+
     }
 
     /**
@@ -659,9 +727,9 @@ class Sites extends Service
      * @param string $reference
      * @param ?bool $activate
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Deployment
      */
-    public function createTemplateDeployment(string $siteId, string $repository, string $owner, string $rootDirectory, TemplateReferenceType $type, string $reference, ?bool $activate = null): array
+    public function createTemplateDeployment(string $siteId, string $repository, string $owner, string $rootDirectory, TemplateReferenceType $type, string $reference, ?bool $activate = null): \Appwrite\Models\Deployment
     {
         $apiPath = str_replace(
             ['{siteId}'],
@@ -684,12 +752,18 @@ class Sites extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Deployment::class]
+        );
+
     }
 
     /**
@@ -702,9 +776,9 @@ class Sites extends Service
      * @param string $reference
      * @param ?bool $activate
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Deployment
      */
-    public function createVcsDeployment(string $siteId, VCSReferenceType $type, string $reference, ?bool $activate = null): array
+    public function createVcsDeployment(string $siteId, VCSReferenceType $type, string $reference, ?bool $activate = null): \Appwrite\Models\Deployment
     {
         $apiPath = str_replace(
             ['{siteId}'],
@@ -724,12 +798,18 @@ class Sites extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Deployment::class]
+        );
+
     }
 
     /**
@@ -738,9 +818,9 @@ class Sites extends Service
      * @param string $siteId
      * @param string $deploymentId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Deployment
      */
-    public function getDeployment(string $siteId, string $deploymentId): array
+    public function getDeployment(string $siteId, string $deploymentId): \Appwrite\Models\Deployment
     {
         $apiPath = str_replace(
             ['{siteId}', '{deploymentId}'],
@@ -754,12 +834,18 @@ class Sites extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Deployment::class]
+        );
+
     }
 
     /**
@@ -785,12 +871,15 @@ class Sites extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $response;
+
     }
 
     /**
@@ -822,12 +911,15 @@ class Sites extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $response;
+
     }
 
     /**
@@ -840,9 +932,9 @@ class Sites extends Service
      * @param string $siteId
      * @param string $deploymentId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Deployment
      */
-    public function updateDeploymentStatus(string $siteId, string $deploymentId): array
+    public function updateDeploymentStatus(string $siteId, string $deploymentId): \Appwrite\Models\Deployment
     {
         $apiPath = str_replace(
             ['{siteId}', '{deploymentId}'],
@@ -857,12 +949,18 @@ class Sites extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Deployment::class]
+        );
+
     }
 
     /**
@@ -873,9 +971,9 @@ class Sites extends Service
      * @param ?array $queries
      * @param ?bool $total
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\ExecutionList
      */
-    public function listLogs(string $siteId, ?array $queries = null, ?bool $total = null): array
+    public function listLogs(string $siteId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\ExecutionList
     {
         $apiPath = str_replace(
             ['{siteId}'],
@@ -896,12 +994,18 @@ class Sites extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\ExecutionList::class]
+        );
+
     }
 
     /**
@@ -910,9 +1014,9 @@ class Sites extends Service
      * @param string $siteId
      * @param string $logId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Execution
      */
-    public function getLog(string $siteId, string $logId): array
+    public function getLog(string $siteId, string $logId): \Appwrite\Models\Execution
     {
         $apiPath = str_replace(
             ['{siteId}', '{logId}'],
@@ -926,12 +1030,18 @@ class Sites extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Execution::class]
+        );
+
     }
 
     /**
@@ -957,12 +1067,15 @@ class Sites extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $response;
+
     }
 
     /**
@@ -970,9 +1083,9 @@ class Sites extends Service
      *
      * @param string $siteId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\VariableList
      */
-    public function listVariables(string $siteId): array
+    public function listVariables(string $siteId): \Appwrite\Models\VariableList
     {
         $apiPath = str_replace(
             ['{siteId}'],
@@ -985,12 +1098,18 @@ class Sites extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\VariableList::class]
+        );
+
     }
 
     /**
@@ -1002,9 +1121,9 @@ class Sites extends Service
      * @param string $value
      * @param ?bool $secret
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Variable
      */
-    public function createVariable(string $siteId, string $key, string $value, ?bool $secret = null): array
+    public function createVariable(string $siteId, string $key, string $value, ?bool $secret = null): \Appwrite\Models\Variable
     {
         $apiPath = str_replace(
             ['{siteId}'],
@@ -1024,12 +1143,18 @@ class Sites extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Variable::class]
+        );
+
     }
 
     /**
@@ -1038,9 +1163,9 @@ class Sites extends Service
      * @param string $siteId
      * @param string $variableId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Variable
      */
-    public function getVariable(string $siteId, string $variableId): array
+    public function getVariable(string $siteId, string $variableId): \Appwrite\Models\Variable
     {
         $apiPath = str_replace(
             ['{siteId}', '{variableId}'],
@@ -1054,12 +1179,18 @@ class Sites extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Variable::class]
+        );
+
     }
 
     /**
@@ -1071,9 +1202,9 @@ class Sites extends Service
      * @param ?string $value
      * @param ?bool $secret
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Variable
      */
-    public function updateVariable(string $siteId, string $variableId, string $key, ?string $value = null, ?bool $secret = null): array
+    public function updateVariable(string $siteId, string $variableId, string $key, ?string $value = null, ?bool $secret = null): \Appwrite\Models\Variable
     {
         $apiPath = str_replace(
             ['{siteId}', '{variableId}'],
@@ -1091,12 +1222,18 @@ class Sites extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PUT,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Variable::class]
+        );
+
     }
 
     /**
@@ -1122,11 +1259,14 @@ class Sites extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $response;
+
     }
 }

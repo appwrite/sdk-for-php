@@ -20,6 +20,8 @@ To install via [Composer](http://getcomposer.org/):
 composer require appwrite/appwrite
 ```
 
+Requires PHP 8.2 or later.
+
 
 ## Getting Started
 

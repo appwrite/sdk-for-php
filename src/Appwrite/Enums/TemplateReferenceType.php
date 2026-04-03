@@ -48,4 +48,14 @@ class TemplateReferenceType implements JsonSerializable
         }
         return self::$TAG;
     }
+
+    public static function from(string $value): self
+    {
+        return match ($value) {
+            'commit' => self::COMMIT(),
+            'branch' => self::BRANCH(),
+            'tag' => self::TAG(),
+            default => throw new \InvalidArgumentException('Unknown TemplateReferenceType value: ' . $value),
+        };
+    }
 }

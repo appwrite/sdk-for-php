@@ -10,33 +10,65 @@ use Appwrite\Enums\PasswordHash;
 use Appwrite\Enums\AuthenticatorType;
 use Appwrite\Enums\MessagingProviderType;
 
-final class UsersTest extends TestCase {
+final class UsersTest extends TestCase
+{
     private $client;
     private $users;
 
-    protected function setUp(): void {
+    protected function setUp(): void
+    {
         $this->client = Mockery::mock(Client::class);
         $this->users = new Users($this->client);
     }
 
-    public function testMethodList(): void {
-
+    public function testMethodList(): void
+    {
         $data = array(
             "total" => 5,
-            "users" => array());
+            "users" => array(
+                array(
+                    "\$id" => "5e5ea5c16897e",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "name" => "John Doe",
+                    "registration" => "2020-10-15T06:38:00.000+00:00",
+                    "status" => true,
+                    "labels" => array(),
+                    "passwordUpdate" => "2020-10-15T06:38:00.000+00:00",
+                    "email" => "john@appwrite.io",
+                    "phone" => "+4930901820",
+                    "emailVerification" => true,
+                    "phoneVerification" => true,
+                    "mfa" => true,
+                    "prefs" => array(),
+                    "targets" => array(
+                        array(
+                            "\$id" => "259125845563242502",
+                            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                            "name" => "Apple iPhone 12",
+                            "userId" => "259125845563242502",
+                            "providerType" => "email",
+                            "identifier" => "token",
+                            "expired" => true
+                        )
+                    ),
+                    "accessedAt" => "2020-10-15T06:38:00.000+00:00"
+                )
+            )
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->users->list(
-        );
+        $response = $this->users->list();
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\UserList::class, $response);
     }
 
-    public function testMethodCreate(): void {
-
+    public function testMethodCreate(): void
+    {
         $data = array(
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
@@ -52,8 +84,20 @@ final class UsersTest extends TestCase {
             "phoneVerification" => true,
             "mfa" => true,
             "prefs" => array(),
-            "targets" => array(),
-            "accessedAt" => "2020-10-15T06:38:00.000+00:00");
+            "targets" => array(
+                array(
+                    "\$id" => "259125845563242502",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "name" => "Apple iPhone 12",
+                    "userId" => "259125845563242502",
+                    "providerType" => "email",
+                    "identifier" => "token",
+                    "expired" => true
+                )
+            ),
+            "accessedAt" => "2020-10-15T06:38:00.000+00:00"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -63,11 +107,11 @@ final class UsersTest extends TestCase {
             "<USER_ID>"
         );
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\User::class, $response);
     }
 
-    public function testMethodCreateArgon2User(): void {
-
+    public function testMethodCreateArgon2User(): void
+    {
         $data = array(
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
@@ -83,8 +127,20 @@ final class UsersTest extends TestCase {
             "phoneVerification" => true,
             "mfa" => true,
             "prefs" => array(),
-            "targets" => array(),
-            "accessedAt" => "2020-10-15T06:38:00.000+00:00");
+            "targets" => array(
+                array(
+                    "\$id" => "259125845563242502",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "name" => "Apple iPhone 12",
+                    "userId" => "259125845563242502",
+                    "providerType" => "email",
+                    "identifier" => "token",
+                    "expired" => true
+                )
+            ),
+            "accessedAt" => "2020-10-15T06:38:00.000+00:00"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -96,11 +152,11 @@ final class UsersTest extends TestCase {
             "password"
         );
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\User::class, $response);
     }
 
-    public function testMethodCreateBcryptUser(): void {
-
+    public function testMethodCreateBcryptUser(): void
+    {
         $data = array(
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
@@ -116,8 +172,20 @@ final class UsersTest extends TestCase {
             "phoneVerification" => true,
             "mfa" => true,
             "prefs" => array(),
-            "targets" => array(),
-            "accessedAt" => "2020-10-15T06:38:00.000+00:00");
+            "targets" => array(
+                array(
+                    "\$id" => "259125845563242502",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "name" => "Apple iPhone 12",
+                    "userId" => "259125845563242502",
+                    "providerType" => "email",
+                    "identifier" => "token",
+                    "expired" => true
+                )
+            ),
+            "accessedAt" => "2020-10-15T06:38:00.000+00:00"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -129,27 +197,40 @@ final class UsersTest extends TestCase {
             "password"
         );
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\User::class, $response);
     }
 
-    public function testMethodListIdentities(): void {
-
+    public function testMethodListIdentities(): void
+    {
         $data = array(
             "total" => 5,
-            "identities" => array());
+            "identities" => array(
+                array(
+                    "\$id" => "5e5ea5c16897e",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "userId" => "5e5bb8c16897e",
+                    "provider" => "email",
+                    "providerUid" => "5e5bb8c16897e",
+                    "providerEmail" => "user@example.com",
+                    "providerAccessToken" => "MTQ0NjJkZmQ5OTM2NDE1ZTZjNGZmZjI3",
+                    "providerAccessTokenExpiry" => "2020-10-15T06:38:00.000+00:00",
+                    "providerRefreshToken" => "MTQ0NjJkZmQ5OTM2NDE1ZTZjNGZmZjI3"
+                )
+            )
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->users->listIdentities(
-        );
+        $response = $this->users->listIdentities();
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\IdentityList::class, $response);
     }
 
-    public function testMethodDeleteIdentity(): void {
-
+    public function testMethodDeleteIdentity(): void
+    {
         $data = '';
 
         $this->client
@@ -163,8 +244,8 @@ final class UsersTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
-    public function testMethodCreateMD5User(): void {
-
+    public function testMethodCreateMD5User(): void
+    {
         $data = array(
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
@@ -180,8 +261,20 @@ final class UsersTest extends TestCase {
             "phoneVerification" => true,
             "mfa" => true,
             "prefs" => array(),
-            "targets" => array(),
-            "accessedAt" => "2020-10-15T06:38:00.000+00:00");
+            "targets" => array(
+                array(
+                    "\$id" => "259125845563242502",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "name" => "Apple iPhone 12",
+                    "userId" => "259125845563242502",
+                    "providerType" => "email",
+                    "identifier" => "token",
+                    "expired" => true
+                )
+            ),
+            "accessedAt" => "2020-10-15T06:38:00.000+00:00"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -193,11 +286,11 @@ final class UsersTest extends TestCase {
             "password"
         );
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\User::class, $response);
     }
 
-    public function testMethodCreatePHPassUser(): void {
-
+    public function testMethodCreatePHPassUser(): void
+    {
         $data = array(
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
@@ -213,8 +306,20 @@ final class UsersTest extends TestCase {
             "phoneVerification" => true,
             "mfa" => true,
             "prefs" => array(),
-            "targets" => array(),
-            "accessedAt" => "2020-10-15T06:38:00.000+00:00");
+            "targets" => array(
+                array(
+                    "\$id" => "259125845563242502",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "name" => "Apple iPhone 12",
+                    "userId" => "259125845563242502",
+                    "providerType" => "email",
+                    "identifier" => "token",
+                    "expired" => true
+                )
+            ),
+            "accessedAt" => "2020-10-15T06:38:00.000+00:00"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -226,11 +331,11 @@ final class UsersTest extends TestCase {
             "password"
         );
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\User::class, $response);
     }
 
-    public function testMethodCreateScryptUser(): void {
-
+    public function testMethodCreateScryptUser(): void
+    {
         $data = array(
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
@@ -246,8 +351,20 @@ final class UsersTest extends TestCase {
             "phoneVerification" => true,
             "mfa" => true,
             "prefs" => array(),
-            "targets" => array(),
-            "accessedAt" => "2020-10-15T06:38:00.000+00:00");
+            "targets" => array(
+                array(
+                    "\$id" => "259125845563242502",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "name" => "Apple iPhone 12",
+                    "userId" => "259125845563242502",
+                    "providerType" => "email",
+                    "identifier" => "token",
+                    "expired" => true
+                )
+            ),
+            "accessedAt" => "2020-10-15T06:38:00.000+00:00"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -264,11 +381,11 @@ final class UsersTest extends TestCase {
             1
         );
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\User::class, $response);
     }
 
-    public function testMethodCreateScryptModifiedUser(): void {
-
+    public function testMethodCreateScryptModifiedUser(): void
+    {
         $data = array(
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
@@ -284,8 +401,20 @@ final class UsersTest extends TestCase {
             "phoneVerification" => true,
             "mfa" => true,
             "prefs" => array(),
-            "targets" => array(),
-            "accessedAt" => "2020-10-15T06:38:00.000+00:00");
+            "targets" => array(
+                array(
+                    "\$id" => "259125845563242502",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "name" => "Apple iPhone 12",
+                    "userId" => "259125845563242502",
+                    "providerType" => "email",
+                    "identifier" => "token",
+                    "expired" => true
+                )
+            ),
+            "accessedAt" => "2020-10-15T06:38:00.000+00:00"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -300,11 +429,11 @@ final class UsersTest extends TestCase {
             "<PASSWORD_SIGNER_KEY>"
         );
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\User::class, $response);
     }
 
-    public function testMethodCreateSHAUser(): void {
-
+    public function testMethodCreateSHAUser(): void
+    {
         $data = array(
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
@@ -320,8 +449,20 @@ final class UsersTest extends TestCase {
             "phoneVerification" => true,
             "mfa" => true,
             "prefs" => array(),
-            "targets" => array(),
-            "accessedAt" => "2020-10-15T06:38:00.000+00:00");
+            "targets" => array(
+                array(
+                    "\$id" => "259125845563242502",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "name" => "Apple iPhone 12",
+                    "userId" => "259125845563242502",
+                    "providerType" => "email",
+                    "identifier" => "token",
+                    "expired" => true
+                )
+            ),
+            "accessedAt" => "2020-10-15T06:38:00.000+00:00"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -333,11 +474,11 @@ final class UsersTest extends TestCase {
             "password"
         );
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\User::class, $response);
     }
 
-    public function testMethodGet(): void {
-
+    public function testMethodGet(): void
+    {
         $data = array(
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
@@ -353,8 +494,20 @@ final class UsersTest extends TestCase {
             "phoneVerification" => true,
             "mfa" => true,
             "prefs" => array(),
-            "targets" => array(),
-            "accessedAt" => "2020-10-15T06:38:00.000+00:00");
+            "targets" => array(
+                array(
+                    "\$id" => "259125845563242502",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "name" => "Apple iPhone 12",
+                    "userId" => "259125845563242502",
+                    "providerType" => "email",
+                    "identifier" => "token",
+                    "expired" => true
+                )
+            ),
+            "accessedAt" => "2020-10-15T06:38:00.000+00:00"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -364,11 +517,11 @@ final class UsersTest extends TestCase {
             "<USER_ID>"
         );
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\User::class, $response);
     }
 
-    public function testMethodDelete(): void {
-
+    public function testMethodDelete(): void
+    {
         $data = '';
 
         $this->client
@@ -382,8 +535,8 @@ final class UsersTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
-    public function testMethodUpdateEmail(): void {
-
+    public function testMethodUpdateEmail(): void
+    {
         $data = array(
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
@@ -399,8 +552,20 @@ final class UsersTest extends TestCase {
             "phoneVerification" => true,
             "mfa" => true,
             "prefs" => array(),
-            "targets" => array(),
-            "accessedAt" => "2020-10-15T06:38:00.000+00:00");
+            "targets" => array(
+                array(
+                    "\$id" => "259125845563242502",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "name" => "Apple iPhone 12",
+                    "userId" => "259125845563242502",
+                    "providerType" => "email",
+                    "identifier" => "token",
+                    "expired" => true
+                )
+            ),
+            "accessedAt" => "2020-10-15T06:38:00.000+00:00"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -411,11 +576,11 @@ final class UsersTest extends TestCase {
             "email@example.com"
         );
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\User::class, $response);
     }
 
-    public function testMethodUpdateImpersonator(): void {
-
+    public function testMethodUpdateImpersonator(): void
+    {
         $data = array(
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
@@ -431,8 +596,20 @@ final class UsersTest extends TestCase {
             "phoneVerification" => true,
             "mfa" => true,
             "prefs" => array(),
-            "targets" => array(),
-            "accessedAt" => "2020-10-15T06:38:00.000+00:00");
+            "targets" => array(
+                array(
+                    "\$id" => "259125845563242502",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "name" => "Apple iPhone 12",
+                    "userId" => "259125845563242502",
+                    "providerType" => "email",
+                    "identifier" => "token",
+                    "expired" => true
+                )
+            ),
+            "accessedAt" => "2020-10-15T06:38:00.000+00:00"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -443,13 +620,14 @@ final class UsersTest extends TestCase {
             true
         );
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\User::class, $response);
     }
 
-    public function testMethodCreateJWT(): void {
-
+    public function testMethodCreateJWT(): void
+    {
         $data = array(
-            "jwt" => "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c");
+            "jwt" => "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -459,11 +637,11 @@ final class UsersTest extends TestCase {
             "<USER_ID>"
         );
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\Jwt::class, $response);
     }
 
-    public function testMethodUpdateLabels(): void {
-
+    public function testMethodUpdateLabels(): void
+    {
         $data = array(
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
@@ -479,8 +657,20 @@ final class UsersTest extends TestCase {
             "phoneVerification" => true,
             "mfa" => true,
             "prefs" => array(),
-            "targets" => array(),
-            "accessedAt" => "2020-10-15T06:38:00.000+00:00");
+            "targets" => array(
+                array(
+                    "\$id" => "259125845563242502",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "name" => "Apple iPhone 12",
+                    "userId" => "259125845563242502",
+                    "providerType" => "email",
+                    "identifier" => "token",
+                    "expired" => true
+                )
+            ),
+            "accessedAt" => "2020-10-15T06:38:00.000+00:00"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -491,14 +681,39 @@ final class UsersTest extends TestCase {
             array()
         );
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\User::class, $response);
     }
 
-    public function testMethodListLogs(): void {
-
+    public function testMethodListLogs(): void
+    {
         $data = array(
             "total" => 5,
-            "logs" => array());
+            "logs" => array(
+                array(
+                    "event" => "account.sessions.create",
+                    "userId" => "610fc2f985ee0",
+                    "userEmail" => "john@appwrite.io",
+                    "userName" => "John Doe",
+                    "mode" => "admin",
+                    "ip" => "127.0.0.1",
+                    "time" => "2020-10-15T06:38:00.000+00:00",
+                    "osCode" => "Mac",
+                    "osName" => "Mac",
+                    "osVersion" => "Mac",
+                    "clientType" => "browser",
+                    "clientCode" => "CM",
+                    "clientName" => "Chrome Mobile iOS",
+                    "clientVersion" => "84.0",
+                    "clientEngine" => "WebKit",
+                    "clientEngineVersion" => "605.1.15",
+                    "deviceName" => "smartphone",
+                    "deviceBrand" => "Google",
+                    "deviceModel" => "Nexus 5",
+                    "countryCode" => "US",
+                    "countryName" => "United States"
+                )
+            )
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -508,14 +723,31 @@ final class UsersTest extends TestCase {
             "<USER_ID>"
         );
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\LogList::class, $response);
     }
 
-    public function testMethodListMemberships(): void {
-
+    public function testMethodListMemberships(): void
+    {
         $data = array(
             "total" => 5,
-            "memberships" => array());
+            "memberships" => array(
+                array(
+                    "\$id" => "5e5ea5c16897e",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "userId" => "5e5ea5c16897e",
+                    "userName" => "John Doe",
+                    "userEmail" => "john@appwrite.io",
+                    "teamId" => "5e5ea5c16897e",
+                    "teamName" => "VIP",
+                    "invited" => "2020-10-15T06:38:00.000+00:00",
+                    "joined" => "2020-10-15T06:38:00.000+00:00",
+                    "confirm" => true,
+                    "mfa" => true,
+                    "roles" => array()
+                )
+            )
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -525,11 +757,11 @@ final class UsersTest extends TestCase {
             "<USER_ID>"
         );
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\MembershipList::class, $response);
     }
 
-    public function testMethodUpdateMFA(): void {
-
+    public function testMethodUpdateMFA(): void
+    {
         $data = array(
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
@@ -545,8 +777,20 @@ final class UsersTest extends TestCase {
             "phoneVerification" => true,
             "mfa" => true,
             "prefs" => array(),
-            "targets" => array(),
-            "accessedAt" => "2020-10-15T06:38:00.000+00:00");
+            "targets" => array(
+                array(
+                    "\$id" => "259125845563242502",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "name" => "Apple iPhone 12",
+                    "userId" => "259125845563242502",
+                    "providerType" => "email",
+                    "identifier" => "token",
+                    "expired" => true
+                )
+            ),
+            "accessedAt" => "2020-10-15T06:38:00.000+00:00"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -557,11 +801,11 @@ final class UsersTest extends TestCase {
             true
         );
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\User::class, $response);
     }
 
-    public function testMethodDeleteMFAAuthenticator(): void {
-
+    public function testMethodDeleteMFAAuthenticator(): void
+    {
         $data = '';
 
         $this->client
@@ -576,13 +820,14 @@ final class UsersTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
-    public function testMethodListMFAFactors(): void {
-
+    public function testMethodListMFAFactors(): void
+    {
         $data = array(
             "totp" => true,
             "phone" => true,
             "email" => true,
-            "recoveryCode" => true);
+            "recoveryCode" => true
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -592,13 +837,14 @@ final class UsersTest extends TestCase {
             "<USER_ID>"
         );
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\MfaFactors::class, $response);
     }
 
-    public function testMethodGetMFARecoveryCodes(): void {
-
+    public function testMethodGetMFARecoveryCodes(): void
+    {
         $data = array(
-            "recoveryCodes" => array());
+            "recoveryCodes" => array()
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -608,13 +854,14 @@ final class UsersTest extends TestCase {
             "<USER_ID>"
         );
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\MfaRecoveryCodes::class, $response);
     }
 
-    public function testMethodUpdateMFARecoveryCodes(): void {
-
+    public function testMethodUpdateMFARecoveryCodes(): void
+    {
         $data = array(
-            "recoveryCodes" => array());
+            "recoveryCodes" => array()
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -624,13 +871,14 @@ final class UsersTest extends TestCase {
             "<USER_ID>"
         );
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\MfaRecoveryCodes::class, $response);
     }
 
-    public function testMethodCreateMFARecoveryCodes(): void {
-
+    public function testMethodCreateMFARecoveryCodes(): void
+    {
         $data = array(
-            "recoveryCodes" => array());
+            "recoveryCodes" => array()
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -640,11 +888,11 @@ final class UsersTest extends TestCase {
             "<USER_ID>"
         );
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\MfaRecoveryCodes::class, $response);
     }
 
-    public function testMethodUpdateName(): void {
-
+    public function testMethodUpdateName(): void
+    {
         $data = array(
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
@@ -660,8 +908,20 @@ final class UsersTest extends TestCase {
             "phoneVerification" => true,
             "mfa" => true,
             "prefs" => array(),
-            "targets" => array(),
-            "accessedAt" => "2020-10-15T06:38:00.000+00:00");
+            "targets" => array(
+                array(
+                    "\$id" => "259125845563242502",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "name" => "Apple iPhone 12",
+                    "userId" => "259125845563242502",
+                    "providerType" => "email",
+                    "identifier" => "token",
+                    "expired" => true
+                )
+            ),
+            "accessedAt" => "2020-10-15T06:38:00.000+00:00"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -672,11 +932,11 @@ final class UsersTest extends TestCase {
             "<NAME>"
         );
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\User::class, $response);
     }
 
-    public function testMethodUpdatePassword(): void {
-
+    public function testMethodUpdatePassword(): void
+    {
         $data = array(
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
@@ -692,8 +952,20 @@ final class UsersTest extends TestCase {
             "phoneVerification" => true,
             "mfa" => true,
             "prefs" => array(),
-            "targets" => array(),
-            "accessedAt" => "2020-10-15T06:38:00.000+00:00");
+            "targets" => array(
+                array(
+                    "\$id" => "259125845563242502",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "name" => "Apple iPhone 12",
+                    "userId" => "259125845563242502",
+                    "providerType" => "email",
+                    "identifier" => "token",
+                    "expired" => true
+                )
+            ),
+            "accessedAt" => "2020-10-15T06:38:00.000+00:00"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -704,11 +976,11 @@ final class UsersTest extends TestCase {
             ""
         );
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\User::class, $response);
     }
 
-    public function testMethodUpdatePhone(): void {
-
+    public function testMethodUpdatePhone(): void
+    {
         $data = array(
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
@@ -724,8 +996,20 @@ final class UsersTest extends TestCase {
             "phoneVerification" => true,
             "mfa" => true,
             "prefs" => array(),
-            "targets" => array(),
-            "accessedAt" => "2020-10-15T06:38:00.000+00:00");
+            "targets" => array(
+                array(
+                    "\$id" => "259125845563242502",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "name" => "Apple iPhone 12",
+                    "userId" => "259125845563242502",
+                    "providerType" => "email",
+                    "identifier" => "token",
+                    "expired" => true
+                )
+            ),
+            "accessedAt" => "2020-10-15T06:38:00.000+00:00"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -736,11 +1020,11 @@ final class UsersTest extends TestCase {
             "+12065550100"
         );
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\User::class, $response);
     }
 
-    public function testMethodGetPrefs(): void {
-
+    public function testMethodGetPrefs(): void
+    {
         $data = array();
 
         $this->client
@@ -751,11 +1035,11 @@ final class UsersTest extends TestCase {
             "<USER_ID>"
         );
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\Preferences::class, $response);
     }
 
-    public function testMethodUpdatePrefs(): void {
-
+    public function testMethodUpdatePrefs(): void
+    {
         $data = array();
 
         $this->client
@@ -767,14 +1051,47 @@ final class UsersTest extends TestCase {
             array()
         );
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\Preferences::class, $response);
     }
 
-    public function testMethodListSessions(): void {
-
+    public function testMethodListSessions(): void
+    {
         $data = array(
             "total" => 5,
-            "sessions" => array());
+            "sessions" => array(
+                array(
+                    "\$id" => "5e5ea5c16897e",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "userId" => "5e5bb8c16897e",
+                    "expire" => "2020-10-15T06:38:00.000+00:00",
+                    "provider" => "email",
+                    "providerUid" => "user@example.com",
+                    "providerAccessToken" => "MTQ0NjJkZmQ5OTM2NDE1ZTZjNGZmZjI3",
+                    "providerAccessTokenExpiry" => "2020-10-15T06:38:00.000+00:00",
+                    "providerRefreshToken" => "MTQ0NjJkZmQ5OTM2NDE1ZTZjNGZmZjI3",
+                    "ip" => "127.0.0.1",
+                    "osCode" => "Mac",
+                    "osName" => "Mac",
+                    "osVersion" => "Mac",
+                    "clientType" => "browser",
+                    "clientCode" => "CM",
+                    "clientName" => "Chrome Mobile iOS",
+                    "clientVersion" => "84.0",
+                    "clientEngine" => "WebKit",
+                    "clientEngineVersion" => "605.1.15",
+                    "deviceName" => "smartphone",
+                    "deviceBrand" => "Google",
+                    "deviceModel" => "Nexus 5",
+                    "countryCode" => "US",
+                    "countryName" => "United States",
+                    "current" => true,
+                    "factors" => array(),
+                    "secret" => "5e5bb8c16897e",
+                    "mfaUpdatedAt" => "2020-10-15T06:38:00.000+00:00"
+                )
+            )
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -784,11 +1101,11 @@ final class UsersTest extends TestCase {
             "<USER_ID>"
         );
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\SessionList::class, $response);
     }
 
-    public function testMethodCreateSession(): void {
-
+    public function testMethodCreateSession(): void
+    {
         $data = array(
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
@@ -818,7 +1135,8 @@ final class UsersTest extends TestCase {
             "current" => true,
             "factors" => array(),
             "secret" => "5e5bb8c16897e",
-            "mfaUpdatedAt" => "2020-10-15T06:38:00.000+00:00");
+            "mfaUpdatedAt" => "2020-10-15T06:38:00.000+00:00"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -828,11 +1146,11 @@ final class UsersTest extends TestCase {
             "<USER_ID>"
         );
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\Session::class, $response);
     }
 
-    public function testMethodDeleteSessions(): void {
-
+    public function testMethodDeleteSessions(): void
+    {
         $data = '';
 
         $this->client
@@ -846,8 +1164,8 @@ final class UsersTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
-    public function testMethodDeleteSession(): void {
-
+    public function testMethodDeleteSession(): void
+    {
         $data = '';
 
         $this->client
@@ -862,8 +1180,8 @@ final class UsersTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
-    public function testMethodUpdateStatus(): void {
-
+    public function testMethodUpdateStatus(): void
+    {
         $data = array(
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
@@ -879,8 +1197,20 @@ final class UsersTest extends TestCase {
             "phoneVerification" => true,
             "mfa" => true,
             "prefs" => array(),
-            "targets" => array(),
-            "accessedAt" => "2020-10-15T06:38:00.000+00:00");
+            "targets" => array(
+                array(
+                    "\$id" => "259125845563242502",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "name" => "Apple iPhone 12",
+                    "userId" => "259125845563242502",
+                    "providerType" => "email",
+                    "identifier" => "token",
+                    "expired" => true
+                )
+            ),
+            "accessedAt" => "2020-10-15T06:38:00.000+00:00"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -891,14 +1221,26 @@ final class UsersTest extends TestCase {
             true
         );
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\User::class, $response);
     }
 
-    public function testMethodListTargets(): void {
-
+    public function testMethodListTargets(): void
+    {
         $data = array(
             "total" => 5,
-            "targets" => array());
+            "targets" => array(
+                array(
+                    "\$id" => "259125845563242502",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "name" => "Apple iPhone 12",
+                    "userId" => "259125845563242502",
+                    "providerType" => "email",
+                    "identifier" => "token",
+                    "expired" => true
+                )
+            )
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -908,11 +1250,11 @@ final class UsersTest extends TestCase {
             "<USER_ID>"
         );
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\TargetList::class, $response);
     }
 
-    public function testMethodCreateTarget(): void {
-
+    public function testMethodCreateTarget(): void
+    {
         $data = array(
             "\$id" => "259125845563242502",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
@@ -921,7 +1263,8 @@ final class UsersTest extends TestCase {
             "userId" => "259125845563242502",
             "providerType" => "email",
             "identifier" => "token",
-            "expired" => true);
+            "expired" => true
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -934,11 +1277,11 @@ final class UsersTest extends TestCase {
             "<IDENTIFIER>"
         );
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\Target::class, $response);
     }
 
-    public function testMethodGetTarget(): void {
-
+    public function testMethodGetTarget(): void
+    {
         $data = array(
             "\$id" => "259125845563242502",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
@@ -947,7 +1290,8 @@ final class UsersTest extends TestCase {
             "userId" => "259125845563242502",
             "providerType" => "email",
             "identifier" => "token",
-            "expired" => true);
+            "expired" => true
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -958,11 +1302,11 @@ final class UsersTest extends TestCase {
             "<TARGET_ID>"
         );
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\Target::class, $response);
     }
 
-    public function testMethodUpdateTarget(): void {
-
+    public function testMethodUpdateTarget(): void
+    {
         $data = array(
             "\$id" => "259125845563242502",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
@@ -971,7 +1315,8 @@ final class UsersTest extends TestCase {
             "userId" => "259125845563242502",
             "providerType" => "email",
             "identifier" => "token",
-            "expired" => true);
+            "expired" => true
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -982,11 +1327,11 @@ final class UsersTest extends TestCase {
             "<TARGET_ID>"
         );
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\Target::class, $response);
     }
 
-    public function testMethodDeleteTarget(): void {
-
+    public function testMethodDeleteTarget(): void
+    {
         $data = '';
 
         $this->client
@@ -1001,15 +1346,16 @@ final class UsersTest extends TestCase {
         $this->assertSame($data, $response);
     }
 
-    public function testMethodCreateToken(): void {
-
+    public function testMethodCreateToken(): void
+    {
         $data = array(
             "\$id" => "bb8ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "userId" => "5e5ea5c168bb8",
-            "secret" => "",
+            "secret" => "[SECRET]",
             "expire" => "2020-10-15T06:38:00.000+00:00",
-            "phrase" => "Golden Fox");
+            "phrase" => "Golden Fox"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1019,11 +1365,11 @@ final class UsersTest extends TestCase {
             "<USER_ID>"
         );
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\Token::class, $response);
     }
 
-    public function testMethodUpdateEmailVerification(): void {
-
+    public function testMethodUpdateEmailVerification(): void
+    {
         $data = array(
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
@@ -1039,8 +1385,20 @@ final class UsersTest extends TestCase {
             "phoneVerification" => true,
             "mfa" => true,
             "prefs" => array(),
-            "targets" => array(),
-            "accessedAt" => "2020-10-15T06:38:00.000+00:00");
+            "targets" => array(
+                array(
+                    "\$id" => "259125845563242502",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "name" => "Apple iPhone 12",
+                    "userId" => "259125845563242502",
+                    "providerType" => "email",
+                    "identifier" => "token",
+                    "expired" => true
+                )
+            ),
+            "accessedAt" => "2020-10-15T06:38:00.000+00:00"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1051,11 +1409,11 @@ final class UsersTest extends TestCase {
             true
         );
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\User::class, $response);
     }
 
-    public function testMethodUpdatePhoneVerification(): void {
-
+    public function testMethodUpdatePhoneVerification(): void
+    {
         $data = array(
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
@@ -1071,8 +1429,20 @@ final class UsersTest extends TestCase {
             "phoneVerification" => true,
             "mfa" => true,
             "prefs" => array(),
-            "targets" => array(),
-            "accessedAt" => "2020-10-15T06:38:00.000+00:00");
+            "targets" => array(
+                array(
+                    "\$id" => "259125845563242502",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "name" => "Apple iPhone 12",
+                    "userId" => "259125845563242502",
+                    "providerType" => "email",
+                    "identifier" => "token",
+                    "expired" => true
+                )
+            ),
+            "accessedAt" => "2020-10-15T06:38:00.000+00:00"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1083,7 +1453,7 @@ final class UsersTest extends TestCase {
             true
         );
 
-        $this->assertSame($data, $response);
+        $this->assertInstanceOf(\Appwrite\Models\User::class, $response);
     }
 
 }

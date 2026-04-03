@@ -48,4 +48,14 @@ class ExecutionTrigger implements JsonSerializable
         }
         return self::$EVENT;
     }
+
+    public static function from(string $value): self
+    {
+        return match ($value) {
+            'http' => self::HTTP(),
+            'schedule' => self::SCHEDULE(),
+            'event' => self::EVENT(),
+            default => throw new \InvalidArgumentException('Unknown ExecutionTrigger value: ' . $value),
+        };
+    }
 }

@@ -40,4 +40,13 @@ class OrderBy implements JsonSerializable
         }
         return self::$DESC;
     }
+
+    public static function from(string $value): self
+    {
+        return match ($value) {
+            'asc' => self::ASC(),
+            'desc' => self::DESC(),
+            default => throw new \InvalidArgumentException('Unknown OrderBy value: ' . $value),
+        };
+    }
 }

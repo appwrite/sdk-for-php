@@ -54,6 +54,7 @@ class Runtime implements JsonSerializable
     private static Runtime $DART38;
     private static Runtime $DART39;
     private static Runtime $DART310;
+    private static Runtime $DART311;
     private static Runtime $DOTNET60;
     private static Runtime $DOTNET70;
     private static Runtime $DOTNET80;
@@ -92,6 +93,7 @@ class Runtime implements JsonSerializable
     private static Runtime $FLUTTER332;
     private static Runtime $FLUTTER335;
     private static Runtime $FLUTTER338;
+    private static Runtime $FLUTTER341;
 
     private string $value;
 
@@ -446,6 +448,13 @@ class Runtime implements JsonSerializable
         }
         return self::$DART310;
     }
+    public static function DART311(): Runtime
+    {
+        if (!isset(self::$DART311)) {
+            self::$DART311 = new Runtime('dart-3.11');
+        }
+        return self::$DART311;
+    }
     public static function DOTNET60(): Runtime
     {
         if (!isset(self::$DOTNET60)) {
@@ -711,5 +720,107 @@ class Runtime implements JsonSerializable
             self::$FLUTTER338 = new Runtime('flutter-3.38');
         }
         return self::$FLUTTER338;
+    }
+    public static function FLUTTER341(): Runtime
+    {
+        if (!isset(self::$FLUTTER341)) {
+            self::$FLUTTER341 = new Runtime('flutter-3.41');
+        }
+        return self::$FLUTTER341;
+    }
+
+    public static function from(string $value): self
+    {
+        return match ($value) {
+            'node-14.5' => self::NODE145(),
+            'node-16.0' => self::NODE160(),
+            'node-18.0' => self::NODE180(),
+            'node-19.0' => self::NODE190(),
+            'node-20.0' => self::NODE200(),
+            'node-21.0' => self::NODE210(),
+            'node-22' => self::NODE22(),
+            'node-23' => self::NODE23(),
+            'node-24' => self::NODE24(),
+            'node-25' => self::NODE25(),
+            'php-8.0' => self::PHP80(),
+            'php-8.1' => self::PHP81(),
+            'php-8.2' => self::PHP82(),
+            'php-8.3' => self::PHP83(),
+            'php-8.4' => self::PHP84(),
+            'ruby-3.0' => self::RUBY30(),
+            'ruby-3.1' => self::RUBY31(),
+            'ruby-3.2' => self::RUBY32(),
+            'ruby-3.3' => self::RUBY33(),
+            'ruby-3.4' => self::RUBY34(),
+            'ruby-4.0' => self::RUBY40(),
+            'python-3.8' => self::PYTHON38(),
+            'python-3.9' => self::PYTHON39(),
+            'python-3.10' => self::PYTHON310(),
+            'python-3.11' => self::PYTHON311(),
+            'python-3.12' => self::PYTHON312(),
+            'python-3.13' => self::PYTHON313(),
+            'python-3.14' => self::PYTHON314(),
+            'python-ml-3.11' => self::PYTHONML311(),
+            'python-ml-3.12' => self::PYTHONML312(),
+            'python-ml-3.13' => self::PYTHONML313(),
+            'deno-1.40' => self::DENO140(),
+            'deno-1.46' => self::DENO146(),
+            'deno-2.0' => self::DENO20(),
+            'deno-2.5' => self::DENO25(),
+            'deno-2.6' => self::DENO26(),
+            'dart-2.15' => self::DART215(),
+            'dart-2.16' => self::DART216(),
+            'dart-2.17' => self::DART217(),
+            'dart-2.18' => self::DART218(),
+            'dart-2.19' => self::DART219(),
+            'dart-3.0' => self::DART30(),
+            'dart-3.1' => self::DART31(),
+            'dart-3.3' => self::DART33(),
+            'dart-3.5' => self::DART35(),
+            'dart-3.8' => self::DART38(),
+            'dart-3.9' => self::DART39(),
+            'dart-3.10' => self::DART310(),
+            'dart-3.11' => self::DART311(),
+            'dotnet-6.0' => self::DOTNET60(),
+            'dotnet-7.0' => self::DOTNET70(),
+            'dotnet-8.0' => self::DOTNET80(),
+            'dotnet-10' => self::DOTNET10(),
+            'java-8.0' => self::JAVA80(),
+            'java-11.0' => self::JAVA110(),
+            'java-17.0' => self::JAVA170(),
+            'java-18.0' => self::JAVA180(),
+            'java-21.0' => self::JAVA210(),
+            'java-22' => self::JAVA22(),
+            'java-25' => self::JAVA25(),
+            'swift-5.5' => self::SWIFT55(),
+            'swift-5.8' => self::SWIFT58(),
+            'swift-5.9' => self::SWIFT59(),
+            'swift-5.10' => self::SWIFT510(),
+            'swift-6.2' => self::SWIFT62(),
+            'kotlin-1.6' => self::KOTLIN16(),
+            'kotlin-1.8' => self::KOTLIN18(),
+            'kotlin-1.9' => self::KOTLIN19(),
+            'kotlin-2.0' => self::KOTLIN20(),
+            'kotlin-2.3' => self::KOTLIN23(),
+            'cpp-17' => self::CPP17(),
+            'cpp-20' => self::CPP20(),
+            'bun-1.0' => self::BUN10(),
+            'bun-1.1' => self::BUN11(),
+            'bun-1.2' => self::BUN12(),
+            'bun-1.3' => self::BUN13(),
+            'go-1.23' => self::GO123(),
+            'go-1.24' => self::GO124(),
+            'go-1.25' => self::GO125(),
+            'go-1.26' => self::GO126(),
+            'static-1' => self::STATIC1(),
+            'flutter-3.24' => self::FLUTTER324(),
+            'flutter-3.27' => self::FLUTTER327(),
+            'flutter-3.29' => self::FLUTTER329(),
+            'flutter-3.32' => self::FLUTTER332(),
+            'flutter-3.35' => self::FLUTTER335(),
+            'flutter-3.38' => self::FLUTTER338(),
+            'flutter-3.41' => self::FLUTTER341(),
+            default => throw new \InvalidArgumentException('Unknown Runtime value: ' . $value),
+        };
     }
 }

@@ -56,4 +56,15 @@ class TablesDBIndexType implements JsonSerializable
         }
         return self::$SPATIAL;
     }
+
+    public static function from(string $value): self
+    {
+        return match ($value) {
+            'key' => self::KEY(),
+            'fulltext' => self::FULLTEXT(),
+            'unique' => self::UNIQUE(),
+            'spatial' => self::SPATIAL(),
+            default => throw new \InvalidArgumentException('Unknown TablesDBIndexType value: ' . $value),
+        };
+    }
 }
