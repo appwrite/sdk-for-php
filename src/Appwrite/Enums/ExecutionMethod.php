@@ -80,4 +80,18 @@ class ExecutionMethod implements JsonSerializable
         }
         return self::$HEAD;
     }
+
+    public static function from(string $value): self
+    {
+        return match ($value) {
+            'GET' => self::GET(),
+            'POST' => self::POST(),
+            'PUT' => self::PUT(),
+            'PATCH' => self::PATCH(),
+            'DELETE' => self::DELETE(),
+            'OPTIONS' => self::OPTIONS(),
+            'HEAD' => self::HEAD(),
+            default => throw new \InvalidArgumentException('Unknown ExecutionMethod value: ' . $value),
+        };
+    }
 }

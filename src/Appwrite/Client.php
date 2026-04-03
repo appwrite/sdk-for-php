@@ -37,11 +37,11 @@ class Client
      */
     protected array $headers = [
         'content-type' => '',
-        'user-agent' => 'AppwritePHPSDK/21.0.0 ()',
+        'user-agent' => 'AppwritePHPSDK/22.0.0 ()',
         'x-sdk-name'=> 'PHP',
         'x-sdk-platform'=> 'server',
         'x-sdk-language'=> 'php',
-        'x-sdk-version'=> '21.0.0',
+        'x-sdk-version'=> '22.0.0',
     ];
 
     /**
@@ -268,6 +268,16 @@ class Client
         $this->headers[strtolower($key)] = $value;
 
         return $this;
+    }
+
+    /**
+     * Get the request headers.
+     *
+     * @return array
+     */
+    public function getHeaders(): array
+    {
+        return $this->headers;
     }
 
     /**

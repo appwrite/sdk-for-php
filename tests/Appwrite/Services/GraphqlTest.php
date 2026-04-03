@@ -17,7 +17,7 @@ final class GraphqlTest extends TestCase {
     }
 
     public function testMethodQuery(): void {
-
+                        
         $data = array();
 
         $this->client
@@ -28,11 +28,11 @@ final class GraphqlTest extends TestCase {
             array()
         );
 
-        $this->assertSame($data, $response);
-    }
+                $this->assertSame($data, $response);
+            }
 
     public function testMethodMutation(): void {
-
+                        
         $data = array();
 
         $this->client
@@ -43,7 +43,7 @@ final class GraphqlTest extends TestCase {
             array()
         );
 
-        $this->assertSame($data, $response);
-    }
+                $this->assertSame($data, $response);
+            }
 
 }

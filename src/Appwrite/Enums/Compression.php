@@ -48,4 +48,14 @@ class Compression implements JsonSerializable
         }
         return self::$ZSTD;
     }
+
+    public static function from(string $value): self
+    {
+        return match ($value) {
+            'none' => self::NONE(),
+            'gzip' => self::GZIP(),
+            'zstd' => self::ZSTD(),
+            default => throw new \InvalidArgumentException('Unknown Compression value: ' . $value),
+        };
+    }
 }

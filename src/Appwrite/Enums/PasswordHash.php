@@ -112,4 +112,22 @@ class PasswordHash implements JsonSerializable
         }
         return self::$SHA3512;
     }
+
+    public static function from(string $value): self
+    {
+        return match ($value) {
+            'sha1' => self::SHA1(),
+            'sha224' => self::SHA224(),
+            'sha256' => self::SHA256(),
+            'sha384' => self::SHA384(),
+            'sha512/224' => self::SHA512224(),
+            'sha512/256' => self::SHA512256(),
+            'sha512' => self::SHA512(),
+            'sha3-224' => self::SHA3224(),
+            'sha3-256' => self::SHA3256(),
+            'sha3-384' => self::SHA3384(),
+            'sha3-512' => self::SHA3512(),
+            default => throw new \InvalidArgumentException('Unknown PasswordHash value: ' . $value),
+        };
+    }
 }

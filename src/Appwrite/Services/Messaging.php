@@ -23,9 +23,9 @@ class Messaging extends Service
      * @param ?string $search
      * @param ?bool $total
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\MessageList
      */
-    public function listMessages(?array $queries = null, ?string $search = null, ?bool $total = null): array
+    public function listMessages(?array $queries = null, ?string $search = null, ?bool $total = null): \Appwrite\Models\MessageList
     {
         $apiPath = str_replace(
             [],
@@ -49,12 +49,18 @@ class Messaging extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\MessageList::class]
+        );
+
     }
 
     /**
@@ -73,9 +79,9 @@ class Messaging extends Service
      * @param ?bool $html
      * @param ?string $scheduledAt
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Message
      */
-    public function createEmail(string $messageId, string $subject, string $content, ?array $topics = null, ?array $users = null, ?array $targets = null, ?array $cc = null, ?array $bcc = null, ?array $attachments = null, ?bool $draft = null, ?bool $html = null, ?string $scheduledAt = null): array
+    public function createEmail(string $messageId, string $subject, string $content, ?array $topics = null, ?array $users = null, ?array $targets = null, ?array $cc = null, ?array $bcc = null, ?array $attachments = null, ?bool $draft = null, ?bool $html = null, ?string $scheduledAt = null): \Appwrite\Models\Message
     {
         $apiPath = str_replace(
             [],
@@ -124,12 +130,18 @@ class Messaging extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Message::class]
+        );
+
     }
 
     /**
@@ -151,9 +163,9 @@ class Messaging extends Service
      * @param ?string $scheduledAt
      * @param ?array $attachments
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Message
      */
-    public function updateEmail(string $messageId, ?array $topics = null, ?array $users = null, ?array $targets = null, ?string $subject = null, ?string $content = null, ?bool $draft = null, ?bool $html = null, ?array $cc = null, ?array $bcc = null, ?string $scheduledAt = null, ?array $attachments = null): array
+    public function updateEmail(string $messageId, ?array $topics = null, ?array $users = null, ?array $targets = null, ?string $subject = null, ?string $content = null, ?bool $draft = null, ?bool $html = null, ?array $cc = null, ?array $bcc = null, ?string $scheduledAt = null, ?array $attachments = null): \Appwrite\Models\Message
     {
         $apiPath = str_replace(
             ['{messageId}'],
@@ -178,12 +190,18 @@ class Messaging extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Message::class]
+        );
+
     }
 
     /**
@@ -209,9 +227,9 @@ class Messaging extends Service
      * @param ?bool $critical
      * @param ?MessagePriority $priority
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Message
      */
-    public function createPush(string $messageId, ?string $title = null, ?string $body = null, ?array $topics = null, ?array $users = null, ?array $targets = null, ?array $data = null, ?string $action = null, ?string $image = null, ?string $icon = null, ?string $sound = null, ?string $color = null, ?string $tag = null, ?int $badge = null, ?bool $draft = null, ?string $scheduledAt = null, ?bool $contentAvailable = null, ?bool $critical = null, ?MessagePriority $priority = null): array
+    public function createPush(string $messageId, ?string $title = null, ?string $body = null, ?array $topics = null, ?array $users = null, ?array $targets = null, ?array $data = null, ?string $action = null, ?string $image = null, ?string $icon = null, ?string $sound = null, ?string $color = null, ?string $tag = null, ?int $badge = null, ?bool $draft = null, ?string $scheduledAt = null, ?bool $contentAvailable = null, ?bool $critical = null, ?MessagePriority $priority = null): \Appwrite\Models\Message
     {
         $apiPath = str_replace(
             [],
@@ -291,12 +309,18 @@ class Messaging extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Message::class]
+        );
+
     }
 
     /**
@@ -325,9 +349,9 @@ class Messaging extends Service
      * @param ?bool $critical
      * @param ?MessagePriority $priority
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Message
      */
-    public function updatePush(string $messageId, ?array $topics = null, ?array $users = null, ?array $targets = null, ?string $title = null, ?string $body = null, ?array $data = null, ?string $action = null, ?string $image = null, ?string $icon = null, ?string $sound = null, ?string $color = null, ?string $tag = null, ?int $badge = null, ?bool $draft = null, ?string $scheduledAt = null, ?bool $contentAvailable = null, ?bool $critical = null, ?MessagePriority $priority = null): array
+    public function updatePush(string $messageId, ?array $topics = null, ?array $users = null, ?array $targets = null, ?string $title = null, ?string $body = null, ?array $data = null, ?string $action = null, ?string $image = null, ?string $icon = null, ?string $sound = null, ?string $color = null, ?string $tag = null, ?int $badge = null, ?bool $draft = null, ?string $scheduledAt = null, ?bool $contentAvailable = null, ?bool $critical = null, ?MessagePriority $priority = null): \Appwrite\Models\Message
     {
         $apiPath = str_replace(
             ['{messageId}'],
@@ -359,12 +383,18 @@ class Messaging extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Message::class]
+        );
+
     }
 
     /**
@@ -378,9 +408,9 @@ class Messaging extends Service
      * @param ?bool $draft
      * @param ?string $scheduledAt
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Message
      */
-    public function createSMS(string $messageId, string $content, ?array $topics = null, ?array $users = null, ?array $targets = null, ?bool $draft = null, ?string $scheduledAt = null): array
+    public function createSMS(string $messageId, string $content, ?array $topics = null, ?array $users = null, ?array $targets = null, ?bool $draft = null, ?string $scheduledAt = null): \Appwrite\Models\Message
     {
         $apiPath = str_replace(
             [],
@@ -412,12 +442,18 @@ class Messaging extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Message::class]
+        );
+
     }
 
     /**
@@ -434,9 +470,9 @@ class Messaging extends Service
      * @param ?bool $draft
      * @param ?string $scheduledAt
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Message
      */
-    public function updateSMS(string $messageId, ?array $topics = null, ?array $users = null, ?array $targets = null, ?string $content = null, ?bool $draft = null, ?string $scheduledAt = null): array
+    public function updateSMS(string $messageId, ?array $topics = null, ?array $users = null, ?array $targets = null, ?string $content = null, ?bool $draft = null, ?string $scheduledAt = null): \Appwrite\Models\Message
     {
         $apiPath = str_replace(
             ['{messageId}'],
@@ -456,12 +492,18 @@ class Messaging extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Message::class]
+        );
+
     }
 
     /**
@@ -470,9 +512,9 @@ class Messaging extends Service
      *
      * @param string $messageId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Message
      */
-    public function getMessage(string $messageId): array
+    public function getMessage(string $messageId): \Appwrite\Models\Message
     {
         $apiPath = str_replace(
             ['{messageId}'],
@@ -485,12 +527,18 @@ class Messaging extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Message::class]
+        );
+
     }
 
     /**
@@ -515,12 +563,15 @@ class Messaging extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $response;
+
     }
 
     /**
@@ -530,9 +581,9 @@ class Messaging extends Service
      * @param ?array $queries
      * @param ?bool $total
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\LogList
      */
-    public function listMessageLogs(string $messageId, ?array $queries = null, ?bool $total = null): array
+    public function listMessageLogs(string $messageId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\LogList
     {
         $apiPath = str_replace(
             ['{messageId}'],
@@ -553,12 +604,18 @@ class Messaging extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\LogList::class]
+        );
+
     }
 
     /**
@@ -568,9 +625,9 @@ class Messaging extends Service
      * @param ?array $queries
      * @param ?bool $total
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\TargetList
      */
-    public function listTargets(string $messageId, ?array $queries = null, ?bool $total = null): array
+    public function listTargets(string $messageId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\TargetList
     {
         $apiPath = str_replace(
             ['{messageId}'],
@@ -591,12 +648,18 @@ class Messaging extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\TargetList::class]
+        );
+
     }
 
     /**
@@ -606,9 +669,9 @@ class Messaging extends Service
      * @param ?string $search
      * @param ?bool $total
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\ProviderList
      */
-    public function listProviders(?array $queries = null, ?string $search = null, ?bool $total = null): array
+    public function listProviders(?array $queries = null, ?string $search = null, ?bool $total = null): \Appwrite\Models\ProviderList
     {
         $apiPath = str_replace(
             [],
@@ -632,12 +695,18 @@ class Messaging extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\ProviderList::class]
+        );
+
     }
 
     /**
@@ -652,9 +721,9 @@ class Messaging extends Service
      * @param ?bool $sandbox
      * @param ?bool $enabled
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Provider
      */
-    public function createAPNSProvider(string $providerId, string $name, ?string $authKey = null, ?string $authKeyId = null, ?string $teamId = null, ?string $bundleId = null, ?bool $sandbox = null, ?bool $enabled = null): array
+    public function createAPNSProvider(string $providerId, string $name, ?string $authKey = null, ?string $authKeyId = null, ?string $teamId = null, ?string $bundleId = null, ?bool $sandbox = null, ?bool $enabled = null): \Appwrite\Models\Provider
     {
         $apiPath = str_replace(
             [],
@@ -690,12 +759,18 @@ class Messaging extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Provider::class]
+        );
+
     }
 
     /**
@@ -710,9 +785,9 @@ class Messaging extends Service
      * @param ?string $bundleId
      * @param ?bool $sandbox
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Provider
      */
-    public function updateAPNSProvider(string $providerId, ?string $name = null, ?bool $enabled = null, ?string $authKey = null, ?string $authKeyId = null, ?string $teamId = null, ?string $bundleId = null, ?bool $sandbox = null): array
+    public function updateAPNSProvider(string $providerId, ?string $name = null, ?bool $enabled = null, ?string $authKey = null, ?string $authKeyId = null, ?string $teamId = null, ?string $bundleId = null, ?bool $sandbox = null): \Appwrite\Models\Provider
     {
         $apiPath = str_replace(
             ['{providerId}'],
@@ -748,12 +823,18 @@ class Messaging extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Provider::class]
+        );
+
     }
 
     /**
@@ -764,9 +845,9 @@ class Messaging extends Service
      * @param ?array $serviceAccountJSON
      * @param ?bool $enabled
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Provider
      */
-    public function createFCMProvider(string $providerId, string $name, ?array $serviceAccountJSON = null, ?bool $enabled = null): array
+    public function createFCMProvider(string $providerId, string $name, ?array $serviceAccountJSON = null, ?bool $enabled = null): \Appwrite\Models\Provider
     {
         $apiPath = str_replace(
             [],
@@ -783,12 +864,18 @@ class Messaging extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Provider::class]
+        );
+
     }
 
     /**
@@ -799,9 +886,9 @@ class Messaging extends Service
      * @param ?bool $enabled
      * @param ?array $serviceAccountJSON
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Provider
      */
-    public function updateFCMProvider(string $providerId, ?string $name = null, ?bool $enabled = null, ?array $serviceAccountJSON = null): array
+    public function updateFCMProvider(string $providerId, ?string $name = null, ?bool $enabled = null, ?array $serviceAccountJSON = null): \Appwrite\Models\Provider
     {
         $apiPath = str_replace(
             ['{providerId}'],
@@ -821,12 +908,18 @@ class Messaging extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Provider::class]
+        );
+
     }
 
     /**
@@ -843,9 +936,9 @@ class Messaging extends Service
      * @param ?string $replyToEmail
      * @param ?bool $enabled
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Provider
      */
-    public function createMailgunProvider(string $providerId, string $name, ?string $apiKey = null, ?string $domain = null, ?bool $isEuRegion = null, ?string $fromName = null, ?string $fromEmail = null, ?string $replyToName = null, ?string $replyToEmail = null, ?bool $enabled = null): array
+    public function createMailgunProvider(string $providerId, string $name, ?string $apiKey = null, ?string $domain = null, ?bool $isEuRegion = null, ?string $fromName = null, ?string $fromEmail = null, ?string $replyToName = null, ?string $replyToEmail = null, ?bool $enabled = null): \Appwrite\Models\Provider
     {
         $apiPath = str_replace(
             [],
@@ -886,12 +979,18 @@ class Messaging extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Provider::class]
+        );
+
     }
 
     /**
@@ -908,9 +1007,9 @@ class Messaging extends Service
      * @param ?string $replyToName
      * @param ?string $replyToEmail
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Provider
      */
-    public function updateMailgunProvider(string $providerId, ?string $name = null, ?string $apiKey = null, ?string $domain = null, ?bool $isEuRegion = null, ?bool $enabled = null, ?string $fromName = null, ?string $fromEmail = null, ?string $replyToName = null, ?string $replyToEmail = null): array
+    public function updateMailgunProvider(string $providerId, ?string $name = null, ?string $apiKey = null, ?string $domain = null, ?bool $isEuRegion = null, ?bool $enabled = null, ?string $fromName = null, ?string $fromEmail = null, ?string $replyToName = null, ?string $replyToEmail = null): \Appwrite\Models\Provider
     {
         $apiPath = str_replace(
             ['{providerId}'],
@@ -954,12 +1053,18 @@ class Messaging extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Provider::class]
+        );
+
     }
 
     /**
@@ -972,9 +1077,9 @@ class Messaging extends Service
      * @param ?string $authKey
      * @param ?bool $enabled
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Provider
      */
-    public function createMsg91Provider(string $providerId, string $name, ?string $templateId = null, ?string $senderId = null, ?string $authKey = null, ?bool $enabled = null): array
+    public function createMsg91Provider(string $providerId, string $name, ?string $templateId = null, ?string $senderId = null, ?string $authKey = null, ?bool $enabled = null): \Appwrite\Models\Provider
     {
         $apiPath = str_replace(
             [],
@@ -1002,12 +1107,18 @@ class Messaging extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Provider::class]
+        );
+
     }
 
     /**
@@ -1020,9 +1131,9 @@ class Messaging extends Service
      * @param ?string $senderId
      * @param ?string $authKey
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Provider
      */
-    public function updateMsg91Provider(string $providerId, ?string $name = null, ?bool $enabled = null, ?string $templateId = null, ?string $senderId = null, ?string $authKey = null): array
+    public function updateMsg91Provider(string $providerId, ?string $name = null, ?bool $enabled = null, ?string $templateId = null, ?string $senderId = null, ?string $authKey = null): \Appwrite\Models\Provider
     {
         $apiPath = str_replace(
             ['{providerId}'],
@@ -1053,12 +1164,18 @@ class Messaging extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Provider::class]
+        );
+
     }
 
     /**
@@ -1073,9 +1190,9 @@ class Messaging extends Service
      * @param ?string $replyToEmail
      * @param ?bool $enabled
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Provider
      */
-    public function createResendProvider(string $providerId, string $name, ?string $apiKey = null, ?string $fromName = null, ?string $fromEmail = null, ?string $replyToName = null, ?string $replyToEmail = null, ?bool $enabled = null): array
+    public function createResendProvider(string $providerId, string $name, ?string $apiKey = null, ?string $fromName = null, ?string $fromEmail = null, ?string $replyToName = null, ?string $replyToEmail = null, ?bool $enabled = null): \Appwrite\Models\Provider
     {
         $apiPath = str_replace(
             [],
@@ -1111,12 +1228,18 @@ class Messaging extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Provider::class]
+        );
+
     }
 
     /**
@@ -1131,9 +1254,9 @@ class Messaging extends Service
      * @param ?string $replyToName
      * @param ?string $replyToEmail
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Provider
      */
-    public function updateResendProvider(string $providerId, ?string $name = null, ?bool $enabled = null, ?string $apiKey = null, ?string $fromName = null, ?string $fromEmail = null, ?string $replyToName = null, ?string $replyToEmail = null): array
+    public function updateResendProvider(string $providerId, ?string $name = null, ?bool $enabled = null, ?string $apiKey = null, ?string $fromName = null, ?string $fromEmail = null, ?string $replyToName = null, ?string $replyToEmail = null): \Appwrite\Models\Provider
     {
         $apiPath = str_replace(
             ['{providerId}'],
@@ -1172,12 +1295,18 @@ class Messaging extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Provider::class]
+        );
+
     }
 
     /**
@@ -1192,9 +1321,9 @@ class Messaging extends Service
      * @param ?string $replyToEmail
      * @param ?bool $enabled
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Provider
      */
-    public function createSendgridProvider(string $providerId, string $name, ?string $apiKey = null, ?string $fromName = null, ?string $fromEmail = null, ?string $replyToName = null, ?string $replyToEmail = null, ?bool $enabled = null): array
+    public function createSendgridProvider(string $providerId, string $name, ?string $apiKey = null, ?string $fromName = null, ?string $fromEmail = null, ?string $replyToName = null, ?string $replyToEmail = null, ?bool $enabled = null): \Appwrite\Models\Provider
     {
         $apiPath = str_replace(
             [],
@@ -1230,12 +1359,18 @@ class Messaging extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Provider::class]
+        );
+
     }
 
     /**
@@ -1250,9 +1385,9 @@ class Messaging extends Service
      * @param ?string $replyToName
      * @param ?string $replyToEmail
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Provider
      */
-    public function updateSendgridProvider(string $providerId, ?string $name = null, ?bool $enabled = null, ?string $apiKey = null, ?string $fromName = null, ?string $fromEmail = null, ?string $replyToName = null, ?string $replyToEmail = null): array
+    public function updateSendgridProvider(string $providerId, ?string $name = null, ?bool $enabled = null, ?string $apiKey = null, ?string $fromName = null, ?string $fromEmail = null, ?string $replyToName = null, ?string $replyToEmail = null): \Appwrite\Models\Provider
     {
         $apiPath = str_replace(
             ['{providerId}'],
@@ -1291,12 +1426,18 @@ class Messaging extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Provider::class]
+        );
+
     }
 
     /**
@@ -1317,9 +1458,9 @@ class Messaging extends Service
      * @param ?string $replyToEmail
      * @param ?bool $enabled
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Provider
      */
-    public function createSMTPProvider(string $providerId, string $name, string $host, ?int $port = null, ?string $username = null, ?string $password = null, ?SmtpEncryption $encryption = null, ?bool $autoTLS = null, ?string $mailer = null, ?string $fromName = null, ?string $fromEmail = null, ?string $replyToName = null, ?string $replyToEmail = null, ?bool $enabled = null): array
+    public function createSMTPProvider(string $providerId, string $name, string $host, ?int $port = null, ?string $username = null, ?string $password = null, ?SmtpEncryption $encryption = null, ?bool $autoTLS = null, ?string $mailer = null, ?string $fromName = null, ?string $fromEmail = null, ?string $replyToName = null, ?string $replyToEmail = null, ?bool $enabled = null): \Appwrite\Models\Provider
     {
         $apiPath = str_replace(
             [],
@@ -1376,12 +1517,18 @@ class Messaging extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Provider::class]
+        );
+
     }
 
     /**
@@ -1402,9 +1549,9 @@ class Messaging extends Service
      * @param ?string $replyToEmail
      * @param ?bool $enabled
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Provider
      */
-    public function updateSMTPProvider(string $providerId, ?string $name = null, ?string $host = null, ?int $port = null, ?string $username = null, ?string $password = null, ?SmtpEncryption $encryption = null, ?bool $autoTLS = null, ?string $mailer = null, ?string $fromName = null, ?string $fromEmail = null, ?string $replyToName = null, ?string $replyToEmail = null, ?bool $enabled = null): array
+    public function updateSMTPProvider(string $providerId, ?string $name = null, ?string $host = null, ?int $port = null, ?string $username = null, ?string $password = null, ?SmtpEncryption $encryption = null, ?bool $autoTLS = null, ?string $mailer = null, ?string $fromName = null, ?string $fromEmail = null, ?string $replyToName = null, ?string $replyToEmail = null, ?bool $enabled = null): \Appwrite\Models\Provider
     {
         $apiPath = str_replace(
             ['{providerId}'],
@@ -1461,12 +1608,18 @@ class Messaging extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Provider::class]
+        );
+
     }
 
     /**
@@ -1479,9 +1632,9 @@ class Messaging extends Service
      * @param ?string $apiKey
      * @param ?bool $enabled
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Provider
      */
-    public function createTelesignProvider(string $providerId, string $name, ?string $from = null, ?string $customerId = null, ?string $apiKey = null, ?bool $enabled = null): array
+    public function createTelesignProvider(string $providerId, string $name, ?string $from = null, ?string $customerId = null, ?string $apiKey = null, ?bool $enabled = null): \Appwrite\Models\Provider
     {
         $apiPath = str_replace(
             [],
@@ -1509,12 +1662,18 @@ class Messaging extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Provider::class]
+        );
+
     }
 
     /**
@@ -1527,9 +1686,9 @@ class Messaging extends Service
      * @param ?string $apiKey
      * @param ?string $from
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Provider
      */
-    public function updateTelesignProvider(string $providerId, ?string $name = null, ?bool $enabled = null, ?string $customerId = null, ?string $apiKey = null, ?string $from = null): array
+    public function updateTelesignProvider(string $providerId, ?string $name = null, ?bool $enabled = null, ?string $customerId = null, ?string $apiKey = null, ?string $from = null): \Appwrite\Models\Provider
     {
         $apiPath = str_replace(
             ['{providerId}'],
@@ -1560,12 +1719,18 @@ class Messaging extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Provider::class]
+        );
+
     }
 
     /**
@@ -1578,9 +1743,9 @@ class Messaging extends Service
      * @param ?string $apiKey
      * @param ?bool $enabled
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Provider
      */
-    public function createTextmagicProvider(string $providerId, string $name, ?string $from = null, ?string $username = null, ?string $apiKey = null, ?bool $enabled = null): array
+    public function createTextmagicProvider(string $providerId, string $name, ?string $from = null, ?string $username = null, ?string $apiKey = null, ?bool $enabled = null): \Appwrite\Models\Provider
     {
         $apiPath = str_replace(
             [],
@@ -1608,12 +1773,18 @@ class Messaging extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Provider::class]
+        );
+
     }
 
     /**
@@ -1626,9 +1797,9 @@ class Messaging extends Service
      * @param ?string $apiKey
      * @param ?string $from
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Provider
      */
-    public function updateTextmagicProvider(string $providerId, ?string $name = null, ?bool $enabled = null, ?string $username = null, ?string $apiKey = null, ?string $from = null): array
+    public function updateTextmagicProvider(string $providerId, ?string $name = null, ?bool $enabled = null, ?string $username = null, ?string $apiKey = null, ?string $from = null): \Appwrite\Models\Provider
     {
         $apiPath = str_replace(
             ['{providerId}'],
@@ -1659,12 +1830,18 @@ class Messaging extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Provider::class]
+        );
+
     }
 
     /**
@@ -1677,9 +1854,9 @@ class Messaging extends Service
      * @param ?string $authToken
      * @param ?bool $enabled
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Provider
      */
-    public function createTwilioProvider(string $providerId, string $name, ?string $from = null, ?string $accountSid = null, ?string $authToken = null, ?bool $enabled = null): array
+    public function createTwilioProvider(string $providerId, string $name, ?string $from = null, ?string $accountSid = null, ?string $authToken = null, ?bool $enabled = null): \Appwrite\Models\Provider
     {
         $apiPath = str_replace(
             [],
@@ -1707,12 +1884,18 @@ class Messaging extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Provider::class]
+        );
+
     }
 
     /**
@@ -1725,9 +1908,9 @@ class Messaging extends Service
      * @param ?string $authToken
      * @param ?string $from
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Provider
      */
-    public function updateTwilioProvider(string $providerId, ?string $name = null, ?bool $enabled = null, ?string $accountSid = null, ?string $authToken = null, ?string $from = null): array
+    public function updateTwilioProvider(string $providerId, ?string $name = null, ?bool $enabled = null, ?string $accountSid = null, ?string $authToken = null, ?string $from = null): \Appwrite\Models\Provider
     {
         $apiPath = str_replace(
             ['{providerId}'],
@@ -1758,12 +1941,18 @@ class Messaging extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Provider::class]
+        );
+
     }
 
     /**
@@ -1776,9 +1965,9 @@ class Messaging extends Service
      * @param ?string $apiSecret
      * @param ?bool $enabled
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Provider
      */
-    public function createVonageProvider(string $providerId, string $name, ?string $from = null, ?string $apiKey = null, ?string $apiSecret = null, ?bool $enabled = null): array
+    public function createVonageProvider(string $providerId, string $name, ?string $from = null, ?string $apiKey = null, ?string $apiSecret = null, ?bool $enabled = null): \Appwrite\Models\Provider
     {
         $apiPath = str_replace(
             [],
@@ -1806,12 +1995,18 @@ class Messaging extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Provider::class]
+        );
+
     }
 
     /**
@@ -1824,9 +2019,9 @@ class Messaging extends Service
      * @param ?string $apiSecret
      * @param ?string $from
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Provider
      */
-    public function updateVonageProvider(string $providerId, ?string $name = null, ?bool $enabled = null, ?string $apiKey = null, ?string $apiSecret = null, ?string $from = null): array
+    public function updateVonageProvider(string $providerId, ?string $name = null, ?bool $enabled = null, ?string $apiKey = null, ?string $apiSecret = null, ?string $from = null): \Appwrite\Models\Provider
     {
         $apiPath = str_replace(
             ['{providerId}'],
@@ -1857,12 +2052,18 @@ class Messaging extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Provider::class]
+        );
+
     }
 
     /**
@@ -1871,9 +2072,9 @@ class Messaging extends Service
      *
      * @param string $providerId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Provider
      */
-    public function getProvider(string $providerId): array
+    public function getProvider(string $providerId): \Appwrite\Models\Provider
     {
         $apiPath = str_replace(
             ['{providerId}'],
@@ -1886,12 +2087,18 @@ class Messaging extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Provider::class]
+        );
+
     }
 
     /**
@@ -1915,12 +2122,15 @@ class Messaging extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $response;
+
     }
 
     /**
@@ -1930,9 +2140,9 @@ class Messaging extends Service
      * @param ?array $queries
      * @param ?bool $total
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\LogList
      */
-    public function listProviderLogs(string $providerId, ?array $queries = null, ?bool $total = null): array
+    public function listProviderLogs(string $providerId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\LogList
     {
         $apiPath = str_replace(
             ['{providerId}'],
@@ -1953,12 +2163,18 @@ class Messaging extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\LogList::class]
+        );
+
     }
 
     /**
@@ -1968,9 +2184,9 @@ class Messaging extends Service
      * @param ?array $queries
      * @param ?bool $total
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\LogList
      */
-    public function listSubscriberLogs(string $subscriberId, ?array $queries = null, ?bool $total = null): array
+    public function listSubscriberLogs(string $subscriberId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\LogList
     {
         $apiPath = str_replace(
             ['{subscriberId}'],
@@ -1991,12 +2207,18 @@ class Messaging extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\LogList::class]
+        );
+
     }
 
     /**
@@ -2006,9 +2228,9 @@ class Messaging extends Service
      * @param ?string $search
      * @param ?bool $total
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\TopicList
      */
-    public function listTopics(?array $queries = null, ?string $search = null, ?bool $total = null): array
+    public function listTopics(?array $queries = null, ?string $search = null, ?bool $total = null): \Appwrite\Models\TopicList
     {
         $apiPath = str_replace(
             [],
@@ -2032,12 +2254,18 @@ class Messaging extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\TopicList::class]
+        );
+
     }
 
     /**
@@ -2047,9 +2275,9 @@ class Messaging extends Service
      * @param string $name
      * @param ?array $subscribe
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Topic
      */
-    public function createTopic(string $topicId, string $name, ?array $subscribe = null): array
+    public function createTopic(string $topicId, string $name, ?array $subscribe = null): \Appwrite\Models\Topic
     {
         $apiPath = str_replace(
             [],
@@ -2068,12 +2296,18 @@ class Messaging extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Topic::class]
+        );
+
     }
 
     /**
@@ -2082,9 +2316,9 @@ class Messaging extends Service
      *
      * @param string $topicId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Topic
      */
-    public function getTopic(string $topicId): array
+    public function getTopic(string $topicId): \Appwrite\Models\Topic
     {
         $apiPath = str_replace(
             ['{topicId}'],
@@ -2097,12 +2331,18 @@ class Messaging extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Topic::class]
+        );
+
     }
 
     /**
@@ -2113,9 +2353,9 @@ class Messaging extends Service
      * @param ?string $name
      * @param ?array $subscribe
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Topic
      */
-    public function updateTopic(string $topicId, ?string $name = null, ?array $subscribe = null): array
+    public function updateTopic(string $topicId, ?string $name = null, ?array $subscribe = null): \Appwrite\Models\Topic
     {
         $apiPath = str_replace(
             ['{topicId}'],
@@ -2131,12 +2371,18 @@ class Messaging extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Topic::class]
+        );
+
     }
 
     /**
@@ -2160,12 +2406,15 @@ class Messaging extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $response;
+
     }
 
     /**
@@ -2175,9 +2424,9 @@ class Messaging extends Service
      * @param ?array $queries
      * @param ?bool $total
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\LogList
      */
-    public function listTopicLogs(string $topicId, ?array $queries = null, ?bool $total = null): array
+    public function listTopicLogs(string $topicId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\LogList
     {
         $apiPath = str_replace(
             ['{topicId}'],
@@ -2198,12 +2447,18 @@ class Messaging extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\LogList::class]
+        );
+
     }
 
     /**
@@ -2214,9 +2469,9 @@ class Messaging extends Service
      * @param ?string $search
      * @param ?bool $total
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\SubscriberList
      */
-    public function listSubscribers(string $topicId, ?array $queries = null, ?string $search = null, ?bool $total = null): array
+    public function listSubscribers(string $topicId, ?array $queries = null, ?string $search = null, ?bool $total = null): \Appwrite\Models\SubscriberList
     {
         $apiPath = str_replace(
             ['{topicId}'],
@@ -2241,12 +2496,18 @@ class Messaging extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\SubscriberList::class]
+        );
+
     }
 
     /**
@@ -2256,9 +2517,9 @@ class Messaging extends Service
      * @param string $subscriberId
      * @param string $targetId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Subscriber
      */
-    public function createSubscriber(string $topicId, string $subscriberId, string $targetId): array
+    public function createSubscriber(string $topicId, string $subscriberId, string $targetId): \Appwrite\Models\Subscriber
     {
         $apiPath = str_replace(
             ['{topicId}'],
@@ -2274,12 +2535,18 @@ class Messaging extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Subscriber::class]
+        );
+
     }
 
     /**
@@ -2289,9 +2556,9 @@ class Messaging extends Service
      * @param string $topicId
      * @param string $subscriberId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Subscriber
      */
-    public function getSubscriber(string $topicId, string $subscriberId): array
+    public function getSubscriber(string $topicId, string $subscriberId): \Appwrite\Models\Subscriber
     {
         $apiPath = str_replace(
             ['{topicId}', '{subscriberId}'],
@@ -2305,12 +2572,18 @@ class Messaging extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Subscriber::class]
+        );
+
     }
 
     /**
@@ -2336,11 +2609,14 @@ class Messaging extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $response;
+
     }
 }

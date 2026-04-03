@@ -20,10 +20,26 @@ final class StorageTest extends TestCase {
     }
 
     public function testMethodListBuckets(): void {
-
-        $data = array(
-            "total" => 5,
-            "buckets" => array());
+                        
+        $data = array("total" => 5
+,"buckets" =>     array(array("\$id" => "5e5ea5c16897e"
+,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
+,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
+,"\$permissions" => array()
+,"fileSecurity" => true
+,"name" => "Documents"
+,"enabled" => true
+,"maximumFileSize" => 100
+,"allowedFileExtensions" => array()
+,"compression" => "gzip"
+,"encryption" => true
+,"antivirus" => true
+,"transformations" => true
+,"totalSize" => 128
+)
+)
+    )
+;
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -32,26 +48,27 @@ final class StorageTest extends TestCase {
         $response = $this->storage->listBuckets(
         );
 
-        $this->assertSame($data, $response);
-    }
+                $this->assertInstanceOf(\Appwrite\Models\BucketList::class, $response);
+            }
 
     public function testMethodCreateBucket(): void {
-
-        $data = array(
-            "\$id" => "5e5ea5c16897e",
-            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$permissions" => array(),
-            "fileSecurity" => true,
-            "name" => "Documents",
-            "enabled" => true,
-            "maximumFileSize" => 100,
-            "allowedFileExtensions" => array(),
-            "compression" => "gzip",
-            "encryption" => true,
-            "antivirus" => true,
-            "transformations" => true,
-            "totalSize" => 128);
+                        
+        $data = array("\$id" => "5e5ea5c16897e"
+,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
+,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
+,"\$permissions" => array()
+,"fileSecurity" => true
+,"name" => "Documents"
+,"enabled" => true
+,"maximumFileSize" => 100
+,"allowedFileExtensions" => array()
+,"compression" => "gzip"
+,"encryption" => true
+,"antivirus" => true
+,"transformations" => true
+,"totalSize" => 128
+)
+;
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -62,26 +79,27 @@ final class StorageTest extends TestCase {
             "<NAME>"
         );
 
-        $this->assertSame($data, $response);
-    }
+                $this->assertInstanceOf(\Appwrite\Models\Bucket::class, $response);
+            }
 
     public function testMethodGetBucket(): void {
-
-        $data = array(
-            "\$id" => "5e5ea5c16897e",
-            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$permissions" => array(),
-            "fileSecurity" => true,
-            "name" => "Documents",
-            "enabled" => true,
-            "maximumFileSize" => 100,
-            "allowedFileExtensions" => array(),
-            "compression" => "gzip",
-            "encryption" => true,
-            "antivirus" => true,
-            "transformations" => true,
-            "totalSize" => 128);
+                        
+        $data = array("\$id" => "5e5ea5c16897e"
+,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
+,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
+,"\$permissions" => array()
+,"fileSecurity" => true
+,"name" => "Documents"
+,"enabled" => true
+,"maximumFileSize" => 100
+,"allowedFileExtensions" => array()
+,"compression" => "gzip"
+,"encryption" => true
+,"antivirus" => true
+,"transformations" => true
+,"totalSize" => 128
+)
+;
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -91,26 +109,27 @@ final class StorageTest extends TestCase {
             "<BUCKET_ID>"
         );
 
-        $this->assertSame($data, $response);
-    }
+                $this->assertInstanceOf(\Appwrite\Models\Bucket::class, $response);
+            }
 
     public function testMethodUpdateBucket(): void {
-
-        $data = array(
-            "\$id" => "5e5ea5c16897e",
-            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$permissions" => array(),
-            "fileSecurity" => true,
-            "name" => "Documents",
-            "enabled" => true,
-            "maximumFileSize" => 100,
-            "allowedFileExtensions" => array(),
-            "compression" => "gzip",
-            "encryption" => true,
-            "antivirus" => true,
-            "transformations" => true,
-            "totalSize" => 128);
+                        
+        $data = array("\$id" => "5e5ea5c16897e"
+,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
+,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
+,"\$permissions" => array()
+,"fileSecurity" => true
+,"name" => "Documents"
+,"enabled" => true
+,"maximumFileSize" => 100
+,"allowedFileExtensions" => array()
+,"compression" => "gzip"
+,"encryption" => true
+,"antivirus" => true
+,"transformations" => true
+,"totalSize" => 128
+)
+;
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -121,11 +140,11 @@ final class StorageTest extends TestCase {
             "<NAME>"
         );
 
-        $this->assertSame($data, $response);
-    }
+                $this->assertInstanceOf(\Appwrite\Models\Bucket::class, $response);
+            }
 
     public function testMethodDeleteBucket(): void {
-
+                        
         $data = '';
 
         $this->client
@@ -136,14 +155,29 @@ final class StorageTest extends TestCase {
             "<BUCKET_ID>"
         );
 
-        $this->assertSame($data, $response);
-    }
+                $this->assertSame($data, $response);
+            }
 
     public function testMethodListFiles(): void {
-
-        $data = array(
-            "total" => 5,
-            "files" => array());
+                        
+        $data = array("total" => 5
+,"files" =>     array(array("\$id" => "5e5ea5c16897e"
+,"bucketId" => "5e5ea5c16897e"
+,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
+,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
+,"\$permissions" => array()
+,"name" => "Pink.png"
+,"signature" => "5d529fd02b544198ae075bd57c1762bb"
+,"mimeType" => "image/png"
+,"sizeOriginal" => 17890
+,"chunksTotal" => 17890
+,"chunksUploaded" => 17890
+,"encryption" => true
+,"compression" => "gzip"
+)
+)
+    )
+;
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -153,25 +187,26 @@ final class StorageTest extends TestCase {
             "<BUCKET_ID>"
         );
 
-        $this->assertSame($data, $response);
-    }
+                $this->assertInstanceOf(\Appwrite\Models\FileList::class, $response);
+            }
 
     public function testMethodCreateFile(): void {
-
-        $data = array(
-            "\$id" => "5e5ea5c16897e",
-            "bucketId" => "5e5ea5c16897e",
-            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$permissions" => array(),
-            "name" => "Pink.png",
-            "signature" => "5d529fd02b544198ae075bd57c1762bb",
-            "mimeType" => "image/png",
-            "sizeOriginal" => 17890,
-            "chunksTotal" => 17890,
-            "chunksUploaded" => 17890,
-            "encryption" => true,
-            "compression" => "gzip");
+                        
+        $data = array("\$id" => "5e5ea5c16897e"
+,"bucketId" => "5e5ea5c16897e"
+,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
+,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
+,"\$permissions" => array()
+,"name" => "Pink.png"
+,"signature" => "5d529fd02b544198ae075bd57c1762bb"
+,"mimeType" => "image/png"
+,"sizeOriginal" => 17890
+,"chunksTotal" => 17890
+,"chunksUploaded" => 17890
+,"encryption" => true
+,"compression" => "gzip"
+)
+;
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -183,25 +218,26 @@ final class StorageTest extends TestCase {
             InputFile::withData('', "image/png")
         );
 
-        $this->assertSame($data, $response);
-    }
+                $this->assertInstanceOf(\Appwrite\Models\File::class, $response);
+            }
 
     public function testMethodGetFile(): void {
-
-        $data = array(
-            "\$id" => "5e5ea5c16897e",
-            "bucketId" => "5e5ea5c16897e",
-            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$permissions" => array(),
-            "name" => "Pink.png",
-            "signature" => "5d529fd02b544198ae075bd57c1762bb",
-            "mimeType" => "image/png",
-            "sizeOriginal" => 17890,
-            "chunksTotal" => 17890,
-            "chunksUploaded" => 17890,
-            "encryption" => true,
-            "compression" => "gzip");
+                        
+        $data = array("\$id" => "5e5ea5c16897e"
+,"bucketId" => "5e5ea5c16897e"
+,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
+,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
+,"\$permissions" => array()
+,"name" => "Pink.png"
+,"signature" => "5d529fd02b544198ae075bd57c1762bb"
+,"mimeType" => "image/png"
+,"sizeOriginal" => 17890
+,"chunksTotal" => 17890
+,"chunksUploaded" => 17890
+,"encryption" => true
+,"compression" => "gzip"
+)
+;
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -212,25 +248,26 @@ final class StorageTest extends TestCase {
             "<FILE_ID>"
         );
 
-        $this->assertSame($data, $response);
-    }
+                $this->assertInstanceOf(\Appwrite\Models\File::class, $response);
+            }
 
     public function testMethodUpdateFile(): void {
-
-        $data = array(
-            "\$id" => "5e5ea5c16897e",
-            "bucketId" => "5e5ea5c16897e",
-            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$permissions" => array(),
-            "name" => "Pink.png",
-            "signature" => "5d529fd02b544198ae075bd57c1762bb",
-            "mimeType" => "image/png",
-            "sizeOriginal" => 17890,
-            "chunksTotal" => 17890,
-            "chunksUploaded" => 17890,
-            "encryption" => true,
-            "compression" => "gzip");
+                        
+        $data = array("\$id" => "5e5ea5c16897e"
+,"bucketId" => "5e5ea5c16897e"
+,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
+,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
+,"\$permissions" => array()
+,"name" => "Pink.png"
+,"signature" => "5d529fd02b544198ae075bd57c1762bb"
+,"mimeType" => "image/png"
+,"sizeOriginal" => 17890
+,"chunksTotal" => 17890
+,"chunksUploaded" => 17890
+,"encryption" => true
+,"compression" => "gzip"
+)
+;
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -241,11 +278,11 @@ final class StorageTest extends TestCase {
             "<FILE_ID>"
         );
 
-        $this->assertSame($data, $response);
-    }
+                $this->assertInstanceOf(\Appwrite\Models\File::class, $response);
+            }
 
     public function testMethodDeleteFile(): void {
-
+                        
         $data = '';
 
         $this->client
@@ -257,11 +294,11 @@ final class StorageTest extends TestCase {
             "<FILE_ID>"
         );
 
-        $this->assertSame($data, $response);
-    }
+                $this->assertSame($data, $response);
+            }
 
     public function testMethodGetFileDownload(): void {
-
+                        
         $data = '';
 
         $this->client
@@ -273,11 +310,11 @@ final class StorageTest extends TestCase {
             "<FILE_ID>"
         );
 
-        $this->assertSame($data, $response);
-    }
+                $this->assertSame($data, $response);
+            }
 
     public function testMethodGetFilePreview(): void {
-
+                        
         $data = '';
 
         $this->client
@@ -289,11 +326,11 @@ final class StorageTest extends TestCase {
             "<FILE_ID>"
         );
 
-        $this->assertSame($data, $response);
-    }
+                $this->assertSame($data, $response);
+            }
 
     public function testMethodGetFileView(): void {
-
+                        
         $data = '';
 
         $this->client
@@ -305,7 +342,7 @@ final class StorageTest extends TestCase {
             "<FILE_ID>"
         );
 
-        $this->assertSame($data, $response);
-    }
+                $this->assertSame($data, $response);
+            }
 
 }

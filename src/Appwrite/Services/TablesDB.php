@@ -26,9 +26,9 @@ class TablesDB extends Service
      * @param ?string $search
      * @param ?bool $total
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\DatabaseList
      */
-    public function list(?array $queries = null, ?string $search = null, ?bool $total = null): array
+    public function list(?array $queries = null, ?string $search = null, ?bool $total = null): \Appwrite\Models\DatabaseList
     {
         $apiPath = str_replace(
             [],
@@ -52,12 +52,18 @@ class TablesDB extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\DatabaseList::class]
+        );
+
     }
 
     /**
@@ -68,9 +74,9 @@ class TablesDB extends Service
      * @param string $name
      * @param ?bool $enabled
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Database
      */
-    public function create(string $databaseId, string $name, ?bool $enabled = null): array
+    public function create(string $databaseId, string $name, ?bool $enabled = null): \Appwrite\Models\Database
     {
         $apiPath = str_replace(
             [],
@@ -89,12 +95,18 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Database::class]
+        );
+
     }
 
     /**
@@ -102,9 +114,9 @@ class TablesDB extends Service
      *
      * @param ?array $queries
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\TransactionList
      */
-    public function listTransactions(?array $queries = null): array
+    public function listTransactions(?array $queries = null): \Appwrite\Models\TransactionList
     {
         $apiPath = str_replace(
             [],
@@ -120,12 +132,18 @@ class TablesDB extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\TransactionList::class]
+        );
+
     }
 
     /**
@@ -133,9 +151,9 @@ class TablesDB extends Service
      *
      * @param ?int $ttl
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Transaction
      */
-    public function createTransaction(?int $ttl = null): array
+    public function createTransaction(?int $ttl = null): \Appwrite\Models\Transaction
     {
         $apiPath = str_replace(
             [],
@@ -152,12 +170,18 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Transaction::class]
+        );
+
     }
 
     /**
@@ -165,9 +189,9 @@ class TablesDB extends Service
      *
      * @param string $transactionId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Transaction
      */
-    public function getTransaction(string $transactionId): array
+    public function getTransaction(string $transactionId): \Appwrite\Models\Transaction
     {
         $apiPath = str_replace(
             ['{transactionId}'],
@@ -180,12 +204,18 @@ class TablesDB extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Transaction::class]
+        );
+
     }
 
     /**
@@ -195,9 +225,9 @@ class TablesDB extends Service
      * @param ?bool $commit
      * @param ?bool $rollback
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Transaction
      */
-    public function updateTransaction(string $transactionId, ?bool $commit = null, ?bool $rollback = null): array
+    public function updateTransaction(string $transactionId, ?bool $commit = null, ?bool $rollback = null): \Appwrite\Models\Transaction
     {
         $apiPath = str_replace(
             ['{transactionId}'],
@@ -219,12 +249,18 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Transaction::class]
+        );
+
     }
 
     /**
@@ -248,12 +284,15 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $response;
+
     }
 
     /**
@@ -262,9 +301,9 @@ class TablesDB extends Service
      * @param string $transactionId
      * @param ?array $operations
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Transaction
      */
-    public function createOperations(string $transactionId, ?array $operations = null): array
+    public function createOperations(string $transactionId, ?array $operations = null): \Appwrite\Models\Transaction
     {
         $apiPath = str_replace(
             ['{transactionId}'],
@@ -282,12 +321,18 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Transaction::class]
+        );
+
     }
 
     /**
@@ -296,9 +341,9 @@ class TablesDB extends Service
      *
      * @param string $databaseId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Database
      */
-    public function get(string $databaseId): array
+    public function get(string $databaseId): \Appwrite\Models\Database
     {
         $apiPath = str_replace(
             ['{databaseId}'],
@@ -311,12 +356,18 @@ class TablesDB extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Database::class]
+        );
+
     }
 
     /**
@@ -326,9 +377,9 @@ class TablesDB extends Service
      * @param ?string $name
      * @param ?bool $enabled
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Database
      */
-    public function update(string $databaseId, ?string $name = null, ?bool $enabled = null): array
+    public function update(string $databaseId, ?string $name = null, ?bool $enabled = null): \Appwrite\Models\Database
     {
         $apiPath = str_replace(
             ['{databaseId}'],
@@ -350,12 +401,18 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PUT,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Database::class]
+        );
+
     }
 
     /**
@@ -380,12 +437,15 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $response;
+
     }
 
     /**
@@ -397,9 +457,9 @@ class TablesDB extends Service
      * @param ?string $search
      * @param ?bool $total
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\TableList
      */
-    public function listTables(string $databaseId, ?array $queries = null, ?string $search = null, ?bool $total = null): array
+    public function listTables(string $databaseId, ?array $queries = null, ?string $search = null, ?bool $total = null): \Appwrite\Models\TableList
     {
         $apiPath = str_replace(
             ['{databaseId}'],
@@ -424,12 +484,18 @@ class TablesDB extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\TableList::class]
+        );
+
     }
 
     /**
@@ -447,9 +513,9 @@ class TablesDB extends Service
      * @param ?array $columns
      * @param ?array $indexes
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Table
      */
-    public function createTable(string $databaseId, string $tableId, string $name, ?array $permissions = null, ?bool $rowSecurity = null, ?bool $enabled = null, ?array $columns = null, ?array $indexes = null): array
+    public function createTable(string $databaseId, string $tableId, string $name, ?array $permissions = null, ?bool $rowSecurity = null, ?bool $enabled = null, ?array $columns = null, ?array $indexes = null): \Appwrite\Models\Table
     {
         $apiPath = str_replace(
             ['{databaseId}'],
@@ -482,12 +548,18 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Table::class]
+        );
+
     }
 
     /**
@@ -497,9 +569,9 @@ class TablesDB extends Service
      * @param string $databaseId
      * @param string $tableId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Table
      */
-    public function getTable(string $databaseId, string $tableId): array
+    public function getTable(string $databaseId, string $tableId): \Appwrite\Models\Table
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
@@ -513,12 +585,18 @@ class TablesDB extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Table::class]
+        );
+
     }
 
     /**
@@ -531,9 +609,9 @@ class TablesDB extends Service
      * @param ?bool $rowSecurity
      * @param ?bool $enabled
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Table
      */
-    public function updateTable(string $databaseId, string $tableId, ?string $name = null, ?array $permissions = null, ?bool $rowSecurity = null, ?bool $enabled = null): array
+    public function updateTable(string $databaseId, string $tableId, ?string $name = null, ?array $permissions = null, ?bool $rowSecurity = null, ?bool $enabled = null): \Appwrite\Models\Table
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
@@ -561,12 +639,18 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PUT,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Table::class]
+        );
+
     }
 
     /**
@@ -593,12 +677,15 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $response;
+
     }
 
     /**
@@ -609,9 +696,9 @@ class TablesDB extends Service
      * @param ?array $queries
      * @param ?bool $total
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\ColumnList
      */
-    public function listColumns(string $databaseId, string $tableId, ?array $queries = null, ?bool $total = null): array
+    public function listColumns(string $databaseId, string $tableId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\ColumnList
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
@@ -633,12 +720,18 @@ class TablesDB extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\ColumnList::class]
+        );
+
     }
 
     /**
@@ -652,9 +745,9 @@ class TablesDB extends Service
      * @param ?bool $xdefault
      * @param ?bool $xarray
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\ColumnBoolean
      */
-    public function createBooleanColumn(string $databaseId, string $tableId, string $key, bool $required, ?bool $xdefault = null, ?bool $xarray = null): array
+    public function createBooleanColumn(string $databaseId, string $tableId, string $key, bool $required, ?bool $xdefault = null, ?bool $xarray = null): \Appwrite\Models\ColumnBoolean
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
@@ -676,12 +769,18 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\ColumnBoolean::class]
+        );
+
     }
 
     /**
@@ -695,9 +794,9 @@ class TablesDB extends Service
      * @param ?bool $xdefault
      * @param ?string $newKey
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\ColumnBoolean
      */
-    public function updateBooleanColumn(string $databaseId, string $tableId, string $key, bool $required, ?bool $xdefault, ?string $newKey = null): array
+    public function updateBooleanColumn(string $databaseId, string $tableId, string $key, bool $required, ?bool $xdefault, ?string $newKey = null): \Appwrite\Models\ColumnBoolean
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
@@ -716,12 +815,18 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\ColumnBoolean::class]
+        );
+
     }
 
     /**
@@ -734,9 +839,9 @@ class TablesDB extends Service
      * @param ?string $xdefault
      * @param ?bool $xarray
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\ColumnDatetime
      */
-    public function createDatetimeColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): array
+    public function createDatetimeColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): \Appwrite\Models\ColumnDatetime
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
@@ -758,12 +863,18 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\ColumnDatetime::class]
+        );
+
     }
 
     /**
@@ -777,9 +888,9 @@ class TablesDB extends Service
      * @param ?string $xdefault
      * @param ?string $newKey
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\ColumnDatetime
      */
-    public function updateDatetimeColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): array
+    public function updateDatetimeColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\ColumnDatetime
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
@@ -798,12 +909,18 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\ColumnDatetime::class]
+        );
+
     }
 
     /**
@@ -817,9 +934,9 @@ class TablesDB extends Service
      * @param ?string $xdefault
      * @param ?bool $xarray
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\ColumnEmail
      */
-    public function createEmailColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): array
+    public function createEmailColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): \Appwrite\Models\ColumnEmail
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
@@ -841,12 +958,18 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\ColumnEmail::class]
+        );
+
     }
 
     /**
@@ -861,9 +984,9 @@ class TablesDB extends Service
      * @param ?string $xdefault
      * @param ?string $newKey
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\ColumnEmail
      */
-    public function updateEmailColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): array
+    public function updateEmailColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\ColumnEmail
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
@@ -882,12 +1005,18 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\ColumnEmail::class]
+        );
+
     }
 
     /**
@@ -902,9 +1031,9 @@ class TablesDB extends Service
      * @param ?string $xdefault
      * @param ?bool $xarray
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\ColumnEnum
      */
-    public function createEnumColumn(string $databaseId, string $tableId, string $key, array $elements, bool $required, ?string $xdefault = null, ?bool $xarray = null): array
+    public function createEnumColumn(string $databaseId, string $tableId, string $key, array $elements, bool $required, ?string $xdefault = null, ?bool $xarray = null): \Appwrite\Models\ColumnEnum
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
@@ -927,12 +1056,18 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\ColumnEnum::class]
+        );
+
     }
 
     /**
@@ -948,9 +1083,9 @@ class TablesDB extends Service
      * @param ?string $xdefault
      * @param ?string $newKey
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\ColumnEnum
      */
-    public function updateEnumColumn(string $databaseId, string $tableId, string $key, array $elements, bool $required, ?string $xdefault, ?string $newKey = null): array
+    public function updateEnumColumn(string $databaseId, string $tableId, string $key, array $elements, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\ColumnEnum
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
@@ -970,12 +1105,18 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\ColumnEnum::class]
+        );
+
     }
 
     /**
@@ -992,9 +1133,9 @@ class TablesDB extends Service
      * @param ?float $xdefault
      * @param ?bool $xarray
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\ColumnFloat
      */
-    public function createFloatColumn(string $databaseId, string $tableId, string $key, bool $required, ?float $min = null, ?float $max = null, ?float $xdefault = null, ?bool $xarray = null): array
+    public function createFloatColumn(string $databaseId, string $tableId, string $key, bool $required, ?float $min = null, ?float $max = null, ?float $xdefault = null, ?bool $xarray = null): \Appwrite\Models\ColumnFloat
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
@@ -1018,12 +1159,18 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\ColumnFloat::class]
+        );
+
     }
 
     /**
@@ -1040,9 +1187,9 @@ class TablesDB extends Service
      * @param ?float $max
      * @param ?string $newKey
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\ColumnFloat
      */
-    public function updateFloatColumn(string $databaseId, string $tableId, string $key, bool $required, ?float $xdefault, ?float $min = null, ?float $max = null, ?string $newKey = null): array
+    public function updateFloatColumn(string $databaseId, string $tableId, string $key, bool $required, ?float $xdefault, ?float $min = null, ?float $max = null, ?string $newKey = null): \Appwrite\Models\ColumnFloat
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
@@ -1063,12 +1210,18 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\ColumnFloat::class]
+        );
+
     }
 
     /**
@@ -1085,9 +1238,9 @@ class TablesDB extends Service
      * @param ?int $xdefault
      * @param ?bool $xarray
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\ColumnInteger
      */
-    public function createIntegerColumn(string $databaseId, string $tableId, string $key, bool $required, ?int $min = null, ?int $max = null, ?int $xdefault = null, ?bool $xarray = null): array
+    public function createIntegerColumn(string $databaseId, string $tableId, string $key, bool $required, ?int $min = null, ?int $max = null, ?int $xdefault = null, ?bool $xarray = null): \Appwrite\Models\ColumnInteger
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
@@ -1111,12 +1264,18 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\ColumnInteger::class]
+        );
+
     }
 
     /**
@@ -1133,9 +1292,9 @@ class TablesDB extends Service
      * @param ?int $max
      * @param ?string $newKey
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\ColumnInteger
      */
-    public function updateIntegerColumn(string $databaseId, string $tableId, string $key, bool $required, ?int $xdefault, ?int $min = null, ?int $max = null, ?string $newKey = null): array
+    public function updateIntegerColumn(string $databaseId, string $tableId, string $key, bool $required, ?int $xdefault, ?int $min = null, ?int $max = null, ?string $newKey = null): \Appwrite\Models\ColumnInteger
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
@@ -1156,12 +1315,18 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\ColumnInteger::class]
+        );
+
     }
 
     /**
@@ -1175,9 +1340,9 @@ class TablesDB extends Service
      * @param ?string $xdefault
      * @param ?bool $xarray
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\ColumnIp
      */
-    public function createIpColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): array
+    public function createIpColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): \Appwrite\Models\ColumnIp
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
@@ -1199,12 +1364,18 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\ColumnIp::class]
+        );
+
     }
 
     /**
@@ -1219,9 +1390,9 @@ class TablesDB extends Service
      * @param ?string $xdefault
      * @param ?string $newKey
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\ColumnIp
      */
-    public function updateIpColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): array
+    public function updateIpColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\ColumnIp
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
@@ -1240,12 +1411,18 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\ColumnIp::class]
+        );
+
     }
 
     /**
@@ -1257,9 +1434,9 @@ class TablesDB extends Service
      * @param bool $required
      * @param ?array $xdefault
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\ColumnLine
      */
-    public function createLineColumn(string $databaseId, string $tableId, string $key, bool $required, ?array $xdefault = null): array
+    public function createLineColumn(string $databaseId, string $tableId, string $key, bool $required, ?array $xdefault = null): \Appwrite\Models\ColumnLine
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
@@ -1277,12 +1454,18 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\ColumnLine::class]
+        );
+
     }
 
     /**
@@ -1296,9 +1479,9 @@ class TablesDB extends Service
      * @param ?array $xdefault
      * @param ?string $newKey
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\ColumnLine
      */
-    public function updateLineColumn(string $databaseId, string $tableId, string $key, bool $required, ?array $xdefault = null, ?string $newKey = null): array
+    public function updateLineColumn(string $databaseId, string $tableId, string $key, bool $required, ?array $xdefault = null, ?string $newKey = null): \Appwrite\Models\ColumnLine
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
@@ -1317,12 +1500,18 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\ColumnLine::class]
+        );
+
     }
 
     /**
@@ -1337,9 +1526,9 @@ class TablesDB extends Service
      * @param ?bool $xarray
      * @param ?bool $encrypt
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\ColumnLongtext
      */
-    public function createLongtextColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): array
+    public function createLongtextColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): \Appwrite\Models\ColumnLongtext
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
@@ -1365,12 +1554,18 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\ColumnLongtext::class]
+        );
+
     }
 
     /**
@@ -1385,9 +1580,9 @@ class TablesDB extends Service
      * @param ?string $xdefault
      * @param ?string $newKey
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\ColumnLongtext
      */
-    public function updateLongtextColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): array
+    public function updateLongtextColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\ColumnLongtext
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
@@ -1406,12 +1601,18 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\ColumnLongtext::class]
+        );
+
     }
 
     /**
@@ -1426,9 +1627,9 @@ class TablesDB extends Service
      * @param ?bool $xarray
      * @param ?bool $encrypt
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\ColumnMediumtext
      */
-    public function createMediumtextColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): array
+    public function createMediumtextColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): \Appwrite\Models\ColumnMediumtext
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
@@ -1454,12 +1655,18 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\ColumnMediumtext::class]
+        );
+
     }
 
     /**
@@ -1474,9 +1681,9 @@ class TablesDB extends Service
      * @param ?string $xdefault
      * @param ?string $newKey
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\ColumnMediumtext
      */
-    public function updateMediumtextColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): array
+    public function updateMediumtextColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\ColumnMediumtext
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
@@ -1495,12 +1702,18 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\ColumnMediumtext::class]
+        );
+
     }
 
     /**
@@ -1512,9 +1725,9 @@ class TablesDB extends Service
      * @param bool $required
      * @param ?array $xdefault
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\ColumnPoint
      */
-    public function createPointColumn(string $databaseId, string $tableId, string $key, bool $required, ?array $xdefault = null): array
+    public function createPointColumn(string $databaseId, string $tableId, string $key, bool $required, ?array $xdefault = null): \Appwrite\Models\ColumnPoint
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
@@ -1532,12 +1745,18 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\ColumnPoint::class]
+        );
+
     }
 
     /**
@@ -1551,9 +1770,9 @@ class TablesDB extends Service
      * @param ?array $xdefault
      * @param ?string $newKey
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\ColumnPoint
      */
-    public function updatePointColumn(string $databaseId, string $tableId, string $key, bool $required, ?array $xdefault = null, ?string $newKey = null): array
+    public function updatePointColumn(string $databaseId, string $tableId, string $key, bool $required, ?array $xdefault = null, ?string $newKey = null): \Appwrite\Models\ColumnPoint
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
@@ -1572,12 +1791,18 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\ColumnPoint::class]
+        );
+
     }
 
     /**
@@ -1589,9 +1814,9 @@ class TablesDB extends Service
      * @param bool $required
      * @param ?array $xdefault
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\ColumnPolygon
      */
-    public function createPolygonColumn(string $databaseId, string $tableId, string $key, bool $required, ?array $xdefault = null): array
+    public function createPolygonColumn(string $databaseId, string $tableId, string $key, bool $required, ?array $xdefault = null): \Appwrite\Models\ColumnPolygon
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
@@ -1609,12 +1834,18 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\ColumnPolygon::class]
+        );
+
     }
 
     /**
@@ -1628,9 +1859,9 @@ class TablesDB extends Service
      * @param ?array $xdefault
      * @param ?string $newKey
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\ColumnPolygon
      */
-    public function updatePolygonColumn(string $databaseId, string $tableId, string $key, bool $required, ?array $xdefault = null, ?string $newKey = null): array
+    public function updatePolygonColumn(string $databaseId, string $tableId, string $key, bool $required, ?array $xdefault = null, ?string $newKey = null): \Appwrite\Models\ColumnPolygon
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
@@ -1649,12 +1880,18 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\ColumnPolygon::class]
+        );
+
     }
 
     /**
@@ -1671,9 +1908,9 @@ class TablesDB extends Service
      * @param ?string $twoWayKey
      * @param ?RelationMutate $onDelete
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\ColumnRelationship
      */
-    public function createRelationshipColumn(string $databaseId, string $tableId, string $relatedTableId, RelationshipType $type, ?bool $twoWay = null, ?string $key = null, ?string $twoWayKey = null, ?RelationMutate $onDelete = null): array
+    public function createRelationshipColumn(string $databaseId, string $tableId, string $relatedTableId, RelationshipType $type, ?bool $twoWay = null, ?string $key = null, ?string $twoWayKey = null, ?RelationMutate $onDelete = null): \Appwrite\Models\ColumnRelationship
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
@@ -1700,12 +1937,18 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\ColumnRelationship::class]
+        );
+
     }
 
     /**
@@ -1721,12 +1964,12 @@ class TablesDB extends Service
      * @param ?bool $xarray
      * @param ?bool $encrypt
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\ColumnString
      *
      * @deprecated This API has been deprecated since 1.9.0. Please use `createTextColumn` instead.
      * @see TablesDB::createTextColumn
      */
-    public function createStringColumn(string $databaseId, string $tableId, string $key, int $size, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): array
+    public function createStringColumn(string $databaseId, string $tableId, string $key, int $size, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): \Appwrite\Models\ColumnString
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
@@ -1753,12 +1996,18 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\ColumnString::class]
+        );
+
     }
 
     /**
@@ -1774,12 +2023,12 @@ class TablesDB extends Service
      * @param ?int $size
      * @param ?string $newKey
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\ColumnString
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateTextColumn` instead.
      * @see TablesDB::updateTextColumn
      */
-    public function updateStringColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?int $size = null, ?string $newKey = null): array
+    public function updateStringColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?int $size = null, ?string $newKey = null): \Appwrite\Models\ColumnString
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
@@ -1799,12 +2048,18 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\ColumnString::class]
+        );
+
     }
 
     /**
@@ -1819,9 +2074,9 @@ class TablesDB extends Service
      * @param ?bool $xarray
      * @param ?bool $encrypt
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\ColumnText
      */
-    public function createTextColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): array
+    public function createTextColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): \Appwrite\Models\ColumnText
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
@@ -1847,12 +2102,18 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\ColumnText::class]
+        );
+
     }
 
     /**
@@ -1867,9 +2128,9 @@ class TablesDB extends Service
      * @param ?string $xdefault
      * @param ?string $newKey
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\ColumnText
      */
-    public function updateTextColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): array
+    public function updateTextColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\ColumnText
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
@@ -1888,12 +2149,18 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\ColumnText::class]
+        );
+
     }
 
     /**
@@ -1907,9 +2174,9 @@ class TablesDB extends Service
      * @param ?string $xdefault
      * @param ?bool $xarray
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\ColumnUrl
      */
-    public function createUrlColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): array
+    public function createUrlColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): \Appwrite\Models\ColumnUrl
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
@@ -1931,12 +2198,18 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\ColumnUrl::class]
+        );
+
     }
 
     /**
@@ -1951,9 +2224,9 @@ class TablesDB extends Service
      * @param ?string $xdefault
      * @param ?string $newKey
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\ColumnUrl
      */
-    public function updateUrlColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): array
+    public function updateUrlColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\ColumnUrl
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
@@ -1972,12 +2245,18 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\ColumnUrl::class]
+        );
+
     }
 
     /**
@@ -1993,9 +2272,9 @@ class TablesDB extends Service
      * @param ?bool $xarray
      * @param ?bool $encrypt
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\ColumnVarchar
      */
-    public function createVarcharColumn(string $databaseId, string $tableId, string $key, int $size, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): array
+    public function createVarcharColumn(string $databaseId, string $tableId, string $key, int $size, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): \Appwrite\Models\ColumnVarchar
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
@@ -2022,12 +2301,18 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\ColumnVarchar::class]
+        );
+
     }
 
     /**
@@ -2043,9 +2328,9 @@ class TablesDB extends Service
      * @param ?int $size
      * @param ?string $newKey
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\ColumnVarchar
      */
-    public function updateVarcharColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?int $size = null, ?string $newKey = null): array
+    public function updateVarcharColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?int $size = null, ?string $newKey = null): \Appwrite\Models\ColumnVarchar
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
@@ -2065,12 +2350,18 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\ColumnVarchar::class]
+        );
+
     }
 
     /**
@@ -2080,9 +2371,9 @@ class TablesDB extends Service
      * @param string $tableId
      * @param string $key
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\ColumnBoolean|\Appwrite\Models\ColumnInteger|\Appwrite\Models\ColumnFloat|\Appwrite\Models\ColumnEmail|\Appwrite\Models\ColumnEnum|\Appwrite\Models\ColumnUrl|\Appwrite\Models\ColumnIp|\Appwrite\Models\ColumnDatetime|\Appwrite\Models\ColumnRelationship|\Appwrite\Models\ColumnString
      */
-    public function getColumn(string $databaseId, string $tableId, string $key): array
+    public function getColumn(string $databaseId, string $tableId, string $key): \Appwrite\Models\ColumnBoolean|\Appwrite\Models\ColumnInteger|\Appwrite\Models\ColumnFloat|\Appwrite\Models\ColumnEmail|\Appwrite\Models\ColumnEnum|\Appwrite\Models\ColumnUrl|\Appwrite\Models\ColumnIp|\Appwrite\Models\ColumnDatetime|\Appwrite\Models\ColumnRelationship|\Appwrite\Models\ColumnString
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
@@ -2097,12 +2388,61 @@ class TablesDB extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\ColumnBoolean::class, \Appwrite\Models\ColumnInteger::class, \Appwrite\Models\ColumnFloat::class, \Appwrite\Models\ColumnEmail::class, \Appwrite\Models\ColumnEnum::class, \Appwrite\Models\ColumnUrl::class, \Appwrite\Models\ColumnIp::class, \Appwrite\Models\ColumnDatetime::class, \Appwrite\Models\ColumnRelationship::class, \Appwrite\Models\ColumnString::class]
+,
+            [
+                \Appwrite\Models\ColumnBoolean::class => [
+                    'required' => ['key', 'type', 'status', 'error', 'required', '$createdAt', '$updatedAt', ],
+                    'all' => ['key', 'type', 'status', 'error', 'required', 'array', '$createdAt', '$updatedAt', 'default'],
+                ],
+                \Appwrite\Models\ColumnInteger::class => [
+                    'required' => ['key', 'type', 'status', 'error', 'required', '$createdAt', '$updatedAt', ],
+                    'all' => ['key', 'type', 'status', 'error', 'required', 'array', '$createdAt', '$updatedAt', 'min', 'max', 'default'],
+                ],
+                \Appwrite\Models\ColumnFloat::class => [
+                    'required' => ['key', 'type', 'status', 'error', 'required', '$createdAt', '$updatedAt', ],
+                    'all' => ['key', 'type', 'status', 'error', 'required', 'array', '$createdAt', '$updatedAt', 'min', 'max', 'default'],
+                ],
+                \Appwrite\Models\ColumnEmail::class => [
+                    'required' => ['key', 'type', 'status', 'error', 'required', '$createdAt', '$updatedAt', 'format', ],
+                    'all' => ['key', 'type', 'status', 'error', 'required', 'array', '$createdAt', '$updatedAt', 'format', 'default'],
+                ],
+                \Appwrite\Models\ColumnEnum::class => [
+                    'required' => ['key', 'type', 'status', 'error', 'required', '$createdAt', '$updatedAt', 'elements', 'format', ],
+                    'all' => ['key', 'type', 'status', 'error', 'required', 'array', '$createdAt', '$updatedAt', 'elements', 'format', 'default'],
+                ],
+                \Appwrite\Models\ColumnUrl::class => [
+                    'required' => ['key', 'type', 'status', 'error', 'required', '$createdAt', '$updatedAt', 'format', ],
+                    'all' => ['key', 'type', 'status', 'error', 'required', 'array', '$createdAt', '$updatedAt', 'format', 'default'],
+                ],
+                \Appwrite\Models\ColumnIp::class => [
+                    'required' => ['key', 'type', 'status', 'error', 'required', '$createdAt', '$updatedAt', 'format', ],
+                    'all' => ['key', 'type', 'status', 'error', 'required', 'array', '$createdAt', '$updatedAt', 'format', 'default'],
+                ],
+                \Appwrite\Models\ColumnDatetime::class => [
+                    'required' => ['key', 'type', 'status', 'error', 'required', '$createdAt', '$updatedAt', 'format', ],
+                    'all' => ['key', 'type', 'status', 'error', 'required', 'array', '$createdAt', '$updatedAt', 'format', 'default'],
+                ],
+                \Appwrite\Models\ColumnRelationship::class => [
+                    'required' => ['key', 'type', 'status', 'error', 'required', '$createdAt', '$updatedAt', 'relatedTable', 'relationType', 'twoWay', 'twoWayKey', 'onDelete', 'side'],
+                    'all' => ['key', 'type', 'status', 'error', 'required', 'array', '$createdAt', '$updatedAt', 'relatedTable', 'relationType', 'twoWay', 'twoWayKey', 'onDelete', 'side'],
+                ],
+                \Appwrite\Models\ColumnString::class => [
+                    'required' => ['key', 'type', 'status', 'error', 'required', '$createdAt', '$updatedAt', 'size', ],
+                    'all' => ['key', 'type', 'status', 'error', 'required', 'array', '$createdAt', '$updatedAt', 'size', 'default', 'encrypt'],
+                ]
+            ]
+        );
+
     }
 
     /**
@@ -2130,12 +2470,15 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $response;
+
     }
 
     /**
@@ -2149,9 +2492,9 @@ class TablesDB extends Service
      * @param ?RelationMutate $onDelete
      * @param ?string $newKey
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\ColumnRelationship
      */
-    public function updateRelationshipColumn(string $databaseId, string $tableId, string $key, ?RelationMutate $onDelete = null, ?string $newKey = null): array
+    public function updateRelationshipColumn(string $databaseId, string $tableId, string $key, ?RelationMutate $onDelete = null, ?string $newKey = null): \Appwrite\Models\ColumnRelationship
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
@@ -2169,12 +2512,18 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\ColumnRelationship::class]
+        );
+
     }
 
     /**
@@ -2185,9 +2534,9 @@ class TablesDB extends Service
      * @param ?array $queries
      * @param ?bool $total
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\ColumnIndexList
      */
-    public function listIndexes(string $databaseId, string $tableId, ?array $queries = null, ?bool $total = null): array
+    public function listIndexes(string $databaseId, string $tableId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\ColumnIndexList
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
@@ -2209,12 +2558,18 @@ class TablesDB extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\ColumnIndexList::class]
+        );
+
     }
 
     /**
@@ -2230,9 +2585,9 @@ class TablesDB extends Service
      * @param ?array $orders
      * @param ?array $lengths
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\ColumnIndex
      */
-    public function createIndex(string $databaseId, string $tableId, string $key, TablesDBIndexType $type, array $columns, ?array $orders = null, ?array $lengths = null): array
+    public function createIndex(string $databaseId, string $tableId, string $key, TablesDBIndexType $type, array $columns, ?array $orders = null, ?array $lengths = null): \Appwrite\Models\ColumnIndex
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
@@ -2258,12 +2613,18 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\ColumnIndex::class]
+        );
+
     }
 
     /**
@@ -2273,9 +2634,9 @@ class TablesDB extends Service
      * @param string $tableId
      * @param string $key
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\ColumnIndex
      */
-    public function getIndex(string $databaseId, string $tableId, string $key): array
+    public function getIndex(string $databaseId, string $tableId, string $key): \Appwrite\Models\ColumnIndex
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
@@ -2290,12 +2651,18 @@ class TablesDB extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\ColumnIndex::class]
+        );
+
     }
 
     /**
@@ -2323,12 +2690,15 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $response;
+
     }
 
     /**
@@ -2342,9 +2712,9 @@ class TablesDB extends Service
      * @param ?bool $total
      * @param ?int $ttl
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\RowList
      */
-    public function listRows(string $databaseId, string $tableId, ?array $queries = null, ?string $transactionId = null, ?bool $total = null, ?int $ttl = null): array
+    public function listRows(string $databaseId, string $tableId, ?array $queries = null, ?string $transactionId = null, ?bool $total = null, ?int $ttl = null): \Appwrite\Models\RowList
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
@@ -2374,12 +2744,18 @@ class TablesDB extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\RowList::class]
+        );
+
     }
 
     /**
@@ -2395,9 +2771,9 @@ class TablesDB extends Service
      * @param ?array $permissions
      * @param ?string $transactionId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Row
      */
-    public function createRow(string $databaseId, string $tableId, string $rowId, array $data, ?array $permissions = null, ?string $transactionId = null): array
+    public function createRow(string $databaseId, string $tableId, string $rowId, array $data, ?array $permissions = null, ?string $transactionId = null): \Appwrite\Models\Row
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
@@ -2416,12 +2792,18 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Row::class]
+        );
+
     }
 
     /**
@@ -2435,9 +2817,9 @@ class TablesDB extends Service
      * @param array $rows
      * @param ?string $transactionId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\RowList
      */
-    public function createRows(string $databaseId, string $tableId, array $rows, ?string $transactionId = null): array
+    public function createRows(string $databaseId, string $tableId, array $rows, ?string $transactionId = null): \Appwrite\Models\RowList
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
@@ -2454,12 +2836,18 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\RowList::class]
+        );
+
     }
 
     /**
@@ -2474,9 +2862,9 @@ class TablesDB extends Service
      * @param array $rows
      * @param ?string $transactionId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\RowList
      */
-    public function upsertRows(string $databaseId, string $tableId, array $rows, ?string $transactionId = null): array
+    public function upsertRows(string $databaseId, string $tableId, array $rows, ?string $transactionId = null): \Appwrite\Models\RowList
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
@@ -2493,12 +2881,18 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PUT,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\RowList::class]
+        );
+
     }
 
     /**
@@ -2511,9 +2905,9 @@ class TablesDB extends Service
      * @param ?array $queries
      * @param ?string $transactionId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\RowList
      */
-    public function updateRows(string $databaseId, string $tableId, ?array $data = null, ?array $queries = null, ?string $transactionId = null): array
+    public function updateRows(string $databaseId, string $tableId, ?array $data = null, ?array $queries = null, ?string $transactionId = null): \Appwrite\Models\RowList
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
@@ -2537,12 +2931,18 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\RowList::class]
+        );
+
     }
 
     /**
@@ -2554,9 +2954,9 @@ class TablesDB extends Service
      * @param ?array $queries
      * @param ?string $transactionId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\RowList
      */
-    public function deleteRows(string $databaseId, string $tableId, ?array $queries = null, ?string $transactionId = null): array
+    public function deleteRows(string $databaseId, string $tableId, ?array $queries = null, ?string $transactionId = null): \Appwrite\Models\RowList
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
@@ -2576,12 +2976,18 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\RowList::class]
+        );
+
     }
 
     /**
@@ -2594,9 +3000,9 @@ class TablesDB extends Service
      * @param ?array $queries
      * @param ?string $transactionId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Row
      */
-    public function getRow(string $databaseId, string $tableId, string $rowId, ?array $queries = null, ?string $transactionId = null): array
+    public function getRow(string $databaseId, string $tableId, string $rowId, ?array $queries = null, ?string $transactionId = null): \Appwrite\Models\Row
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{rowId}'],
@@ -2619,12 +3025,18 @@ class TablesDB extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Row::class]
+        );
+
     }
 
     /**
@@ -2640,9 +3052,9 @@ class TablesDB extends Service
      * @param ?array $permissions
      * @param ?string $transactionId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Row
      */
-    public function upsertRow(string $databaseId, string $tableId, string $rowId, ?array $data = null, ?array $permissions = null, ?string $transactionId = null): array
+    public function upsertRow(string $databaseId, string $tableId, string $rowId, ?array $data = null, ?array $permissions = null, ?string $transactionId = null): \Appwrite\Models\Row
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{rowId}'],
@@ -2664,12 +3076,18 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PUT,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Row::class]
+        );
+
     }
 
     /**
@@ -2683,9 +3101,9 @@ class TablesDB extends Service
      * @param ?array $permissions
      * @param ?string $transactionId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Row
      */
-    public function updateRow(string $databaseId, string $tableId, string $rowId, ?array $data = null, ?array $permissions = null, ?string $transactionId = null): array
+    public function updateRow(string $databaseId, string $tableId, string $rowId, ?array $data = null, ?array $permissions = null, ?string $transactionId = null): \Appwrite\Models\Row
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{rowId}'],
@@ -2707,12 +3125,18 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Row::class]
+        );
+
     }
 
     /**
@@ -2742,12 +3166,15 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $response;
+
     }
 
     /**
@@ -2761,9 +3188,9 @@ class TablesDB extends Service
      * @param ?float $min
      * @param ?string $transactionId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Row
      */
-    public function decrementRowColumn(string $databaseId, string $tableId, string $rowId, string $column, ?float $value = null, ?float $min = null, ?string $transactionId = null): array
+    public function decrementRowColumn(string $databaseId, string $tableId, string $rowId, string $column, ?float $value = null, ?float $min = null, ?string $transactionId = null): \Appwrite\Models\Row
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{rowId}', '{column}'],
@@ -2786,12 +3213,18 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Row::class]
+        );
+
     }
 
     /**
@@ -2805,9 +3238,9 @@ class TablesDB extends Service
      * @param ?float $max
      * @param ?string $transactionId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Row
      */
-    public function incrementRowColumn(string $databaseId, string $tableId, string $rowId, string $column, ?float $value = null, ?float $max = null, ?string $transactionId = null): array
+    public function incrementRowColumn(string $databaseId, string $tableId, string $rowId, string $column, ?float $value = null, ?float $max = null, ?string $transactionId = null): \Appwrite\Models\Row
     {
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{rowId}', '{column}'],
@@ -2830,11 +3263,17 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Row::class]
+        );
+
     }
 }

@@ -80,4 +80,18 @@ class ImageFormat implements JsonSerializable
         }
         return self::$GIF;
     }
+
+    public static function from(string $value): self
+    {
+        return match ($value) {
+            'jpg' => self::JPG(),
+            'jpeg' => self::JPEG(),
+            'png' => self::PNG(),
+            'webp' => self::WEBP(),
+            'heic' => self::HEIC(),
+            'avif' => self::AVIF(),
+            'gif' => self::GIF(),
+            default => throw new \InvalidArgumentException('Unknown ImageFormat value: ' . $value),
+        };
+    }
 }

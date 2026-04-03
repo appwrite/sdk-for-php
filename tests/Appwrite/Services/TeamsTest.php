@@ -17,10 +17,19 @@ final class TeamsTest extends TestCase {
     }
 
     public function testMethodList(): void {
+                        
+        $data = array("total" => 5
+,"teams" =>     array(array("\$id" => "5e5ea5c16897e"
+,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
+,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
+,"name" => "VIP"
+,"total" => 7
+,"prefs" =>     array()
 
-        $data = array(
-            "total" => 5,
-            "teams" => array());
+    )
+)
+    )
+;
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -29,18 +38,20 @@ final class TeamsTest extends TestCase {
         $response = $this->teams->list(
         );
 
-        $this->assertSame($data, $response);
-    }
+                $this->assertInstanceOf(\Appwrite\Models\TeamList::class, $response);
+            }
 
     public function testMethodCreate(): void {
+                        
+        $data = array("\$id" => "5e5ea5c16897e"
+,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
+,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
+,"name" => "VIP"
+,"total" => 7
+,"prefs" =>     array()
 
-        $data = array(
-            "\$id" => "5e5ea5c16897e",
-            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "name" => "VIP",
-            "total" => 7,
-            "prefs" => array());
+    )
+;
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -51,18 +62,20 @@ final class TeamsTest extends TestCase {
             "<NAME>"
         );
 
-        $this->assertSame($data, $response);
-    }
+                $this->assertInstanceOf(\Appwrite\Models\Team::class, $response);
+            }
 
     public function testMethodGet(): void {
+                        
+        $data = array("\$id" => "5e5ea5c16897e"
+,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
+,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
+,"name" => "VIP"
+,"total" => 7
+,"prefs" =>     array()
 
-        $data = array(
-            "\$id" => "5e5ea5c16897e",
-            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "name" => "VIP",
-            "total" => 7,
-            "prefs" => array());
+    )
+;
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -72,18 +85,20 @@ final class TeamsTest extends TestCase {
             "<TEAM_ID>"
         );
 
-        $this->assertSame($data, $response);
-    }
+                $this->assertInstanceOf(\Appwrite\Models\Team::class, $response);
+            }
 
     public function testMethodUpdateName(): void {
+                        
+        $data = array("\$id" => "5e5ea5c16897e"
+,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
+,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
+,"name" => "VIP"
+,"total" => 7
+,"prefs" =>     array()
 
-        $data = array(
-            "\$id" => "5e5ea5c16897e",
-            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "name" => "VIP",
-            "total" => 7,
-            "prefs" => array());
+    )
+;
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -94,11 +109,11 @@ final class TeamsTest extends TestCase {
             "<NAME>"
         );
 
-        $this->assertSame($data, $response);
-    }
+                $this->assertInstanceOf(\Appwrite\Models\Team::class, $response);
+            }
 
     public function testMethodDelete(): void {
-
+                        
         $data = '';
 
         $this->client
@@ -109,14 +124,29 @@ final class TeamsTest extends TestCase {
             "<TEAM_ID>"
         );
 
-        $this->assertSame($data, $response);
-    }
+                $this->assertSame($data, $response);
+            }
 
     public function testMethodListMemberships(): void {
-
-        $data = array(
-            "total" => 5,
-            "memberships" => array());
+                        
+        $data = array("total" => 5
+,"memberships" =>     array(array("\$id" => "5e5ea5c16897e"
+,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
+,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
+,"userId" => "5e5ea5c16897e"
+,"userName" => "John Doe"
+,"userEmail" => "john@appwrite.io"
+,"teamId" => "5e5ea5c16897e"
+,"teamName" => "VIP"
+,"invited" => "2020-10-15T06:38:00.000+00:00"
+,"joined" => "2020-10-15T06:38:00.000+00:00"
+,"confirm" => true
+,"mfa" => true
+,"roles" => array()
+)
+)
+    )
+;
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -126,25 +156,26 @@ final class TeamsTest extends TestCase {
             "<TEAM_ID>"
         );
 
-        $this->assertSame($data, $response);
-    }
+                $this->assertInstanceOf(\Appwrite\Models\MembershipList::class, $response);
+            }
 
     public function testMethodCreateMembership(): void {
-
-        $data = array(
-            "\$id" => "5e5ea5c16897e",
-            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "userId" => "5e5ea5c16897e",
-            "userName" => "John Doe",
-            "userEmail" => "john@appwrite.io",
-            "teamId" => "5e5ea5c16897e",
-            "teamName" => "VIP",
-            "invited" => "2020-10-15T06:38:00.000+00:00",
-            "joined" => "2020-10-15T06:38:00.000+00:00",
-            "confirm" => true,
-            "mfa" => true,
-            "roles" => array());
+                        
+        $data = array("\$id" => "5e5ea5c16897e"
+,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
+,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
+,"userId" => "5e5ea5c16897e"
+,"userName" => "John Doe"
+,"userEmail" => "john@appwrite.io"
+,"teamId" => "5e5ea5c16897e"
+,"teamName" => "VIP"
+,"invited" => "2020-10-15T06:38:00.000+00:00"
+,"joined" => "2020-10-15T06:38:00.000+00:00"
+,"confirm" => true
+,"mfa" => true
+,"roles" => array()
+)
+;
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -155,25 +186,26 @@ final class TeamsTest extends TestCase {
             array()
         );
 
-        $this->assertSame($data, $response);
-    }
+                $this->assertInstanceOf(\Appwrite\Models\Membership::class, $response);
+            }
 
     public function testMethodGetMembership(): void {
-
-        $data = array(
-            "\$id" => "5e5ea5c16897e",
-            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "userId" => "5e5ea5c16897e",
-            "userName" => "John Doe",
-            "userEmail" => "john@appwrite.io",
-            "teamId" => "5e5ea5c16897e",
-            "teamName" => "VIP",
-            "invited" => "2020-10-15T06:38:00.000+00:00",
-            "joined" => "2020-10-15T06:38:00.000+00:00",
-            "confirm" => true,
-            "mfa" => true,
-            "roles" => array());
+                        
+        $data = array("\$id" => "5e5ea5c16897e"
+,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
+,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
+,"userId" => "5e5ea5c16897e"
+,"userName" => "John Doe"
+,"userEmail" => "john@appwrite.io"
+,"teamId" => "5e5ea5c16897e"
+,"teamName" => "VIP"
+,"invited" => "2020-10-15T06:38:00.000+00:00"
+,"joined" => "2020-10-15T06:38:00.000+00:00"
+,"confirm" => true
+,"mfa" => true
+,"roles" => array()
+)
+;
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -184,25 +216,26 @@ final class TeamsTest extends TestCase {
             "<MEMBERSHIP_ID>"
         );
 
-        $this->assertSame($data, $response);
-    }
+                $this->assertInstanceOf(\Appwrite\Models\Membership::class, $response);
+            }
 
     public function testMethodUpdateMembership(): void {
-
-        $data = array(
-            "\$id" => "5e5ea5c16897e",
-            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "userId" => "5e5ea5c16897e",
-            "userName" => "John Doe",
-            "userEmail" => "john@appwrite.io",
-            "teamId" => "5e5ea5c16897e",
-            "teamName" => "VIP",
-            "invited" => "2020-10-15T06:38:00.000+00:00",
-            "joined" => "2020-10-15T06:38:00.000+00:00",
-            "confirm" => true,
-            "mfa" => true,
-            "roles" => array());
+                        
+        $data = array("\$id" => "5e5ea5c16897e"
+,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
+,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
+,"userId" => "5e5ea5c16897e"
+,"userName" => "John Doe"
+,"userEmail" => "john@appwrite.io"
+,"teamId" => "5e5ea5c16897e"
+,"teamName" => "VIP"
+,"invited" => "2020-10-15T06:38:00.000+00:00"
+,"joined" => "2020-10-15T06:38:00.000+00:00"
+,"confirm" => true
+,"mfa" => true
+,"roles" => array()
+)
+;
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -214,11 +247,11 @@ final class TeamsTest extends TestCase {
             array()
         );
 
-        $this->assertSame($data, $response);
-    }
+                $this->assertInstanceOf(\Appwrite\Models\Membership::class, $response);
+            }
 
     public function testMethodDeleteMembership(): void {
-
+                        
         $data = '';
 
         $this->client
@@ -230,25 +263,26 @@ final class TeamsTest extends TestCase {
             "<MEMBERSHIP_ID>"
         );
 
-        $this->assertSame($data, $response);
-    }
+                $this->assertSame($data, $response);
+            }
 
     public function testMethodUpdateMembershipStatus(): void {
-
-        $data = array(
-            "\$id" => "5e5ea5c16897e",
-            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "userId" => "5e5ea5c16897e",
-            "userName" => "John Doe",
-            "userEmail" => "john@appwrite.io",
-            "teamId" => "5e5ea5c16897e",
-            "teamName" => "VIP",
-            "invited" => "2020-10-15T06:38:00.000+00:00",
-            "joined" => "2020-10-15T06:38:00.000+00:00",
-            "confirm" => true,
-            "mfa" => true,
-            "roles" => array());
+                        
+        $data = array("\$id" => "5e5ea5c16897e"
+,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
+,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
+,"userId" => "5e5ea5c16897e"
+,"userName" => "John Doe"
+,"userEmail" => "john@appwrite.io"
+,"teamId" => "5e5ea5c16897e"
+,"teamName" => "VIP"
+,"invited" => "2020-10-15T06:38:00.000+00:00"
+,"joined" => "2020-10-15T06:38:00.000+00:00"
+,"confirm" => true
+,"mfa" => true
+,"roles" => array()
+)
+;
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -261,12 +295,13 @@ final class TeamsTest extends TestCase {
             "<SECRET>"
         );
 
-        $this->assertSame($data, $response);
-    }
+                $this->assertInstanceOf(\Appwrite\Models\Membership::class, $response);
+            }
 
     public function testMethodGetPrefs(): void {
-
-        $data = array();
+                        
+        $data = array()
+;
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -276,12 +311,13 @@ final class TeamsTest extends TestCase {
             "<TEAM_ID>"
         );
 
-        $this->assertSame($data, $response);
-    }
+                $this->assertInstanceOf(\Appwrite\Models\Preferences::class, $response);
+            }
 
     public function testMethodUpdatePrefs(): void {
-
-        $data = array();
+                        
+        $data = array()
+;
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -292,7 +328,7 @@ final class TeamsTest extends TestCase {
             array()
         );
 
-        $this->assertSame($data, $response);
-    }
+                $this->assertInstanceOf(\Appwrite\Models\Preferences::class, $response);
+            }
 
 }

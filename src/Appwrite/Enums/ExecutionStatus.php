@@ -64,4 +64,16 @@ class ExecutionStatus implements JsonSerializable
         }
         return self::$SCHEDULED;
     }
+
+    public static function from(string $value): self
+    {
+        return match ($value) {
+            'waiting' => self::WAITING(),
+            'processing' => self::PROCESSING(),
+            'completed' => self::COMPLETED(),
+            'failed' => self::FAILED(),
+            'scheduled' => self::SCHEDULED(),
+            default => throw new \InvalidArgumentException('Unknown ExecutionStatus value: ' . $value),
+        };
+    }
 }

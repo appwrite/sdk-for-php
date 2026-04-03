@@ -144,4 +144,26 @@ class Framework implements JsonSerializable
         }
         return self::$OTHER;
     }
+
+    public static function from(string $value): self
+    {
+        return match ($value) {
+            'analog' => self::ANALOG(),
+            'angular' => self::ANGULAR(),
+            'nextjs' => self::NEXTJS(),
+            'react' => self::REACT(),
+            'nuxt' => self::NUXT(),
+            'vue' => self::VUE(),
+            'sveltekit' => self::SVELTEKIT(),
+            'astro' => self::ASTRO(),
+            'tanstack-start' => self::TANSTACKSTART(),
+            'remix' => self::REMIX(),
+            'lynx' => self::LYNX(),
+            'flutter' => self::FLUTTER(),
+            'react-native' => self::REACTNATIVE(),
+            'vite' => self::VITE(),
+            'other' => self::OTHER(),
+            default => throw new \InvalidArgumentException('Unknown Framework value: ' . $value),
+        };
+    }
 }

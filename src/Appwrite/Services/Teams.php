@@ -22,9 +22,9 @@ class Teams extends Service
      * @param ?string $search
      * @param ?bool $total
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\TeamList
      */
-    public function list(?array $queries = null, ?string $search = null, ?bool $total = null): array
+    public function list(?array $queries = null, ?string $search = null, ?bool $total = null): \Appwrite\Models\TeamList
     {
         $apiPath = str_replace(
             [],
@@ -48,12 +48,18 @@ class Teams extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\TeamList::class]
+        );
+
     }
 
     /**
@@ -65,9 +71,9 @@ class Teams extends Service
      * @param string $name
      * @param ?array $roles
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Team
      */
-    public function create(string $teamId, string $name, ?array $roles = null): array
+    public function create(string $teamId, string $name, ?array $roles = null): \Appwrite\Models\Team
     {
         $apiPath = str_replace(
             [],
@@ -86,12 +92,18 @@ class Teams extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Team::class]
+        );
+
     }
 
     /**
@@ -99,9 +111,9 @@ class Teams extends Service
      *
      * @param string $teamId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Team
      */
-    public function get(string $teamId): array
+    public function get(string $teamId): \Appwrite\Models\Team
     {
         $apiPath = str_replace(
             ['{teamId}'],
@@ -114,12 +126,18 @@ class Teams extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Team::class]
+        );
+
     }
 
     /**
@@ -128,9 +146,9 @@ class Teams extends Service
      * @param string $teamId
      * @param string $name
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Team
      */
-    public function updateName(string $teamId, string $name): array
+    public function updateName(string $teamId, string $name): \Appwrite\Models\Team
     {
         $apiPath = str_replace(
             ['{teamId}'],
@@ -145,12 +163,18 @@ class Teams extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PUT,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Team::class]
+        );
+
     }
 
     /**
@@ -175,12 +199,15 @@ class Teams extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $response;
+
     }
 
     /**
@@ -193,9 +220,9 @@ class Teams extends Service
      * @param ?string $search
      * @param ?bool $total
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\MembershipList
      */
-    public function listMemberships(string $teamId, ?array $queries = null, ?string $search = null, ?bool $total = null): array
+    public function listMemberships(string $teamId, ?array $queries = null, ?string $search = null, ?bool $total = null): \Appwrite\Models\MembershipList
     {
         $apiPath = str_replace(
             ['{teamId}'],
@@ -220,12 +247,18 @@ class Teams extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\MembershipList::class]
+        );
+
     }
 
     /**
@@ -259,9 +292,9 @@ class Teams extends Service
      * @param ?string $url
      * @param ?string $name
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Membership
      */
-    public function createMembership(string $teamId, array $roles, ?string $email = null, ?string $userId = null, ?string $phone = null, ?string $url = null, ?string $name = null): array
+    public function createMembership(string $teamId, array $roles, ?string $email = null, ?string $userId = null, ?string $phone = null, ?string $url = null, ?string $name = null): \Appwrite\Models\Membership
     {
         $apiPath = str_replace(
             ['{teamId}'],
@@ -296,12 +329,18 @@ class Teams extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Membership::class]
+        );
+
     }
 
     /**
@@ -312,9 +351,9 @@ class Teams extends Service
      * @param string $teamId
      * @param string $membershipId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Membership
      */
-    public function getMembership(string $teamId, string $membershipId): array
+    public function getMembership(string $teamId, string $membershipId): \Appwrite\Models\Membership
     {
         $apiPath = str_replace(
             ['{teamId}', '{membershipId}'],
@@ -328,12 +367,18 @@ class Teams extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Membership::class]
+        );
+
     }
 
     /**
@@ -346,9 +391,9 @@ class Teams extends Service
      * @param string $membershipId
      * @param array $roles
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Membership
      */
-    public function updateMembership(string $teamId, string $membershipId, array $roles): array
+    public function updateMembership(string $teamId, string $membershipId, array $roles): \Appwrite\Models\Membership
     {
         $apiPath = str_replace(
             ['{teamId}', '{membershipId}'],
@@ -364,12 +409,18 @@ class Teams extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Membership::class]
+        );
+
     }
 
     /**
@@ -397,12 +448,15 @@ class Teams extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $response;
+
     }
 
     /**
@@ -419,9 +473,9 @@ class Teams extends Service
      * @param string $userId
      * @param string $secret
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Membership
      */
-    public function updateMembershipStatus(string $teamId, string $membershipId, string $userId, string $secret): array
+    public function updateMembershipStatus(string $teamId, string $membershipId, string $userId, string $secret): \Appwrite\Models\Membership
     {
         $apiPath = str_replace(
             ['{teamId}', '{membershipId}'],
@@ -438,12 +492,18 @@ class Teams extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Membership::class]
+        );
+
     }
 
     /**
@@ -453,9 +513,9 @@ class Teams extends Service
      *
      * @param string $teamId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Preferences
      */
-    public function getPrefs(string $teamId): array
+    public function getPrefs(string $teamId): \Appwrite\Models\Preferences
     {
         $apiPath = str_replace(
             ['{teamId}'],
@@ -468,12 +528,18 @@ class Teams extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Preferences::class]
+        );
+
     }
 
     /**
@@ -484,9 +550,9 @@ class Teams extends Service
      * @param string $teamId
      * @param array $prefs
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Preferences
      */
-    public function updatePrefs(string $teamId, array $prefs): array
+    public function updatePrefs(string $teamId, array $prefs): \Appwrite\Models\Preferences
     {
         $apiPath = str_replace(
             ['{teamId}'],
@@ -501,11 +567,17 @@ class Teams extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PUT,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Preferences::class]
+        );
+
     }
 }

@@ -24,7 +24,7 @@ final class AvatarsTest extends TestCase {
     }
 
     public function testMethodGetBrowser(): void {
-
+                        
         $data = '';
 
         $this->client
@@ -35,11 +35,11 @@ final class AvatarsTest extends TestCase {
             Browser::AVANTBROWSER()
         );
 
-        $this->assertSame($data, $response);
-    }
+                $this->assertSame($data, $response);
+            }
 
     public function testMethodGetCreditCard(): void {
-
+                        
         $data = '';
 
         $this->client
@@ -50,11 +50,11 @@ final class AvatarsTest extends TestCase {
             CreditCard::AMERICANEXPRESS()
         );
 
-        $this->assertSame($data, $response);
-    }
+                $this->assertSame($data, $response);
+            }
 
     public function testMethodGetFavicon(): void {
-
+                        
         $data = '';
 
         $this->client
@@ -65,11 +65,11 @@ final class AvatarsTest extends TestCase {
             "https://example.com"
         );
 
-        $this->assertSame($data, $response);
-    }
+                $this->assertSame($data, $response);
+            }
 
     public function testMethodGetFlag(): void {
-
+                        
         $data = '';
 
         $this->client
@@ -80,11 +80,11 @@ final class AvatarsTest extends TestCase {
             Flag::AFGHANISTAN()
         );
 
-        $this->assertSame($data, $response);
-    }
+                $this->assertSame($data, $response);
+            }
 
     public function testMethodGetImage(): void {
-
+                        
         $data = '';
 
         $this->client
@@ -95,11 +95,11 @@ final class AvatarsTest extends TestCase {
             "https://example.com"
         );
 
-        $this->assertSame($data, $response);
-    }
+                $this->assertSame($data, $response);
+            }
 
     public function testMethodGetInitials(): void {
-
+                        
         $data = '';
 
         $this->client
@@ -109,11 +109,11 @@ final class AvatarsTest extends TestCase {
         $response = $this->avatars->getInitials(
         );
 
-        $this->assertSame($data, $response);
-    }
+                $this->assertSame($data, $response);
+            }
 
     public function testMethodGetQR(): void {
-
+                        
         $data = '';
 
         $this->client
@@ -124,11 +124,11 @@ final class AvatarsTest extends TestCase {
             "<TEXT>"
         );
 
-        $this->assertSame($data, $response);
-    }
+                $this->assertSame($data, $response);
+            }
 
     public function testMethodGetScreenshot(): void {
-
+                        
         $data = '';
 
         $this->client
@@ -139,7 +139,7 @@ final class AvatarsTest extends TestCase {
             "https://example.com"
         );
 
-        $this->assertSame($data, $response);
-    }
+                $this->assertSame($data, $response);
+            }
 
 }

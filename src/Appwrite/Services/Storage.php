@@ -25,9 +25,9 @@ class Storage extends Service
      * @param ?string $search
      * @param ?bool $total
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\BucketList
      */
-    public function listBuckets(?array $queries = null, ?string $search = null, ?bool $total = null): array
+    public function listBuckets(?array $queries = null, ?string $search = null, ?bool $total = null): \Appwrite\Models\BucketList
     {
         $apiPath = str_replace(
             [],
@@ -51,12 +51,18 @@ class Storage extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\BucketList::class]
+        );
+
     }
 
     /**
@@ -74,9 +80,9 @@ class Storage extends Service
      * @param ?bool $antivirus
      * @param ?bool $transformations
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Bucket
      */
-    public function createBucket(string $bucketId, string $name, ?array $permissions = null, ?bool $fileSecurity = null, ?bool $enabled = null, ?int $maximumFileSize = null, ?array $allowedFileExtensions = null, ?Compression $compression = null, ?bool $encryption = null, ?bool $antivirus = null, ?bool $transformations = null): array
+    public function createBucket(string $bucketId, string $name, ?array $permissions = null, ?bool $fileSecurity = null, ?bool $enabled = null, ?int $maximumFileSize = null, ?array $allowedFileExtensions = null, ?Compression $compression = null, ?bool $encryption = null, ?bool $antivirus = null, ?bool $transformations = null): \Appwrite\Models\Bucket
     {
         $apiPath = str_replace(
             [],
@@ -124,12 +130,18 @@ class Storage extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Bucket::class]
+        );
+
     }
 
     /**
@@ -138,9 +150,9 @@ class Storage extends Service
      *
      * @param string $bucketId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Bucket
      */
-    public function getBucket(string $bucketId): array
+    public function getBucket(string $bucketId): \Appwrite\Models\Bucket
     {
         $apiPath = str_replace(
             ['{bucketId}'],
@@ -153,12 +165,18 @@ class Storage extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Bucket::class]
+        );
+
     }
 
     /**
@@ -176,9 +194,9 @@ class Storage extends Service
      * @param ?bool $antivirus
      * @param ?bool $transformations
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Bucket
      */
-    public function updateBucket(string $bucketId, string $name, ?array $permissions = null, ?bool $fileSecurity = null, ?bool $enabled = null, ?int $maximumFileSize = null, ?array $allowedFileExtensions = null, ?Compression $compression = null, ?bool $encryption = null, ?bool $antivirus = null, ?bool $transformations = null): array
+    public function updateBucket(string $bucketId, string $name, ?array $permissions = null, ?bool $fileSecurity = null, ?bool $enabled = null, ?int $maximumFileSize = null, ?array $allowedFileExtensions = null, ?Compression $compression = null, ?bool $encryption = null, ?bool $antivirus = null, ?bool $transformations = null): \Appwrite\Models\Bucket
     {
         $apiPath = str_replace(
             ['{bucketId}'],
@@ -226,12 +244,18 @@ class Storage extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PUT,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Bucket::class]
+        );
+
     }
 
     /**
@@ -255,12 +279,15 @@ class Storage extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $response;
+
     }
 
     /**
@@ -272,9 +299,9 @@ class Storage extends Service
      * @param ?string $search
      * @param ?bool $total
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\FileList
      */
-    public function listFiles(string $bucketId, ?array $queries = null, ?string $search = null, ?bool $total = null): array
+    public function listFiles(string $bucketId, ?array $queries = null, ?string $search = null, ?bool $total = null): \Appwrite\Models\FileList
     {
         $apiPath = str_replace(
             ['{bucketId}'],
@@ -299,12 +326,18 @@ class Storage extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\FileList::class]
+        );
+
     }
 
     /**
@@ -332,9 +365,9 @@ class Storage extends Service
      * @param InputFile $file
      * @param ?array $permissions
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\File
      */
-    public function createFile(string $bucketId, string $fileId, InputFile $file, ?array $permissions = null, ?callable $onProgress = null): array
+    public function createFile(string $bucketId, string $fileId, InputFile $file, ?array $permissions = null, ?callable $onProgress = null): \Appwrite\Models\File
     {
         $apiPath = str_replace(
             ['{bucketId}'],
@@ -362,9 +395,13 @@ class Storage extends Service
             $postedName = $file->getFilename();
             if ($size <= Client::CHUNK_SIZE) {
                 $apiParams['file'] = new \CURLFile('data://' . $mimeType . ';base64,' . base64_encode($file->getData()), $mimeType, $postedName);
-                return $this->client->call(Client::METHOD_POST, $apiPath, [
+                $response = $this->client->call(Client::METHOD_POST, $apiPath, [
                             'content-type' => 'multipart/form-data',
                         ], $apiParams);
+                return $this->parseResponse(
+                    $response,
+                    [\Appwrite\Models\File::class]
+                );
             }
         } else {
             $size = filesize($file->getPath());
@@ -373,9 +410,13 @@ class Storage extends Service
             //send single file if size is less than or equal to 5MB
             if ($size <= Client::CHUNK_SIZE) {
                 $apiParams['file'] = new \CURLFile($file->getPath(), $mimeType, $postedName);
-                return $this->client->call(Client::METHOD_POST, $apiPath, [
+                $response = $this->client->call(Client::METHOD_POST, $apiPath, [
                             'content-type' => 'multipart/form-data',
                         ], $apiParams);
+                return $this->parseResponse(
+                    $response,
+                    [\Appwrite\Models\File::class]
+                );
             }
         }
 
@@ -428,7 +469,10 @@ class Storage extends Service
         if(!empty($handle)) {
             @fclose($handle);
         }
-        return $response;
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\File::class]
+        );
 
     }
 
@@ -439,9 +483,9 @@ class Storage extends Service
      * @param string $bucketId
      * @param string $fileId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\File
      */
-    public function getFile(string $bucketId, string $fileId): array
+    public function getFile(string $bucketId, string $fileId): \Appwrite\Models\File
     {
         $apiPath = str_replace(
             ['{bucketId}', '{fileId}'],
@@ -455,12 +499,18 @@ class Storage extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\File::class]
+        );
+
     }
 
     /**
@@ -472,9 +522,9 @@ class Storage extends Service
      * @param ?string $name
      * @param ?array $permissions
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\File
      */
-    public function updateFile(string $bucketId, string $fileId, ?string $name = null, ?array $permissions = null): array
+    public function updateFile(string $bucketId, string $fileId, ?string $name = null, ?array $permissions = null): \Appwrite\Models\File
     {
         $apiPath = str_replace(
             ['{bucketId}', '{fileId}'],
@@ -494,12 +544,18 @@ class Storage extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PUT,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\File::class]
+        );
+
     }
 
     /**
@@ -526,12 +582,15 @@ class Storage extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $response;
+
     }
 
     /**
@@ -563,12 +622,15 @@ class Storage extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $response;
+
     }
 
     /**
@@ -657,12 +719,15 @@ class Storage extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $response;
+
     }
 
     /**
@@ -694,11 +759,14 @@ class Storage extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $response;
+
     }
 }

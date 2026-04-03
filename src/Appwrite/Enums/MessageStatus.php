@@ -64,4 +64,16 @@ class MessageStatus implements JsonSerializable
         }
         return self::$FAILED;
     }
+
+    public static function from(string $value): self
+    {
+        return match ($value) {
+            'draft' => self::DRAFT(),
+            'processing' => self::PROCESSING(),
+            'scheduled' => self::SCHEDULED(),
+            'sent' => self::SENT(),
+            'failed' => self::FAILED(),
+            default => throw new \InvalidArgumentException('Unknown MessageStatus value: ' . $value),
+        };
+    }
 }

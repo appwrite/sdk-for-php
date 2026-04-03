@@ -19,9 +19,9 @@ class Health extends Service
      * Check the Appwrite HTTP server is up and responsive.
      *
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\HealthStatus
      */
-    public function get(): array
+    public function get(): \Appwrite\Models\HealthStatus
     {
         $apiPath = str_replace(
             [],
@@ -33,21 +33,27 @@ class Health extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\HealthStatus::class]
+        );
+
     }
 
     /**
      * Check the Appwrite Antivirus server is up and connection is successful.
      *
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\HealthAntivirus
      */
-    public function getAntivirus(): array
+    public function getAntivirus(): \Appwrite\Models\HealthAntivirus
     {
         $apiPath = str_replace(
             [],
@@ -59,12 +65,18 @@ class Health extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\HealthAntivirus::class]
+        );
+
     }
 
     /**
@@ -72,9 +84,9 @@ class Health extends Service
      * successful.
      *
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\HealthStatusList
      */
-    public function getCache(): array
+    public function getCache(): \Appwrite\Models\HealthStatusList
     {
         $apiPath = str_replace(
             [],
@@ -86,12 +98,18 @@ class Health extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\HealthStatusList::class]
+        );
+
     }
 
     /**
@@ -99,9 +117,9 @@ class Health extends Service
      *
      * @param ?string $domain
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\HealthCertificate
      */
-    public function getCertificate(?string $domain = null): array
+    public function getCertificate(?string $domain = null): \Appwrite\Models\HealthCertificate
     {
         $apiPath = str_replace(
             [],
@@ -117,12 +135,18 @@ class Health extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\HealthCertificate::class]
+        );
+
     }
 
     /**
@@ -133,9 +157,9 @@ class Health extends Service
      * @param ?int $threshold
      * @param ?int $inactivityDays
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\HealthStatus
      */
-    public function getConsolePausing(?int $threshold = null, ?int $inactivityDays = null): array
+    public function getConsolePausing(?int $threshold = null, ?int $inactivityDays = null): \Appwrite\Models\HealthStatus
     {
         $apiPath = str_replace(
             [],
@@ -155,21 +179,27 @@ class Health extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\HealthStatus::class]
+        );
+
     }
 
     /**
      * Check the Appwrite database servers are up and connection is successful.
      *
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\HealthStatusList
      */
-    public function getDB(): array
+    public function getDB(): \Appwrite\Models\HealthStatusList
     {
         $apiPath = str_replace(
             [],
@@ -181,21 +211,27 @@ class Health extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\HealthStatusList::class]
+        );
+
     }
 
     /**
      * Check the Appwrite pub-sub servers are up and connection is successful.
      *
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\HealthStatusList
      */
-    public function getPubSub(): array
+    public function getPubSub(): \Appwrite\Models\HealthStatusList
     {
         $apiPath = str_replace(
             [],
@@ -207,23 +243,30 @@ class Health extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\HealthStatusList::class]
+        );
+
     }
 
     /**
      * Get the number of audit logs that are waiting to be processed in the
      * Appwrite internal queue server.
+     * 
      *
      * @param ?int $threshold
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\HealthQueue
      */
-    public function getQueueAudits(?int $threshold = null): array
+    public function getQueueAudits(?int $threshold = null): \Appwrite\Models\HealthQueue
     {
         $apiPath = str_replace(
             [],
@@ -239,12 +282,18 @@ class Health extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\HealthQueue::class]
+        );
+
     }
 
     /**
@@ -253,9 +302,9 @@ class Health extends Service
      *
      * @param ?int $threshold
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\HealthQueue
      */
-    public function getQueueBuilds(?int $threshold = null): array
+    public function getQueueBuilds(?int $threshold = null): \Appwrite\Models\HealthQueue
     {
         $apiPath = str_replace(
             [],
@@ -271,12 +320,18 @@ class Health extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\HealthQueue::class]
+        );
+
     }
 
     /**
@@ -286,9 +341,9 @@ class Health extends Service
      *
      * @param ?int $threshold
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\HealthQueue
      */
-    public function getQueueCertificates(?int $threshold = null): array
+    public function getQueueCertificates(?int $threshold = null): \Appwrite\Models\HealthQueue
     {
         $apiPath = str_replace(
             [],
@@ -304,12 +359,18 @@ class Health extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\HealthQueue::class]
+        );
+
     }
 
     /**
@@ -319,9 +380,9 @@ class Health extends Service
      * @param ?string $name
      * @param ?int $threshold
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\HealthQueue
      */
-    public function getQueueDatabases(?string $name = null, ?int $threshold = null): array
+    public function getQueueDatabases(?string $name = null, ?int $threshold = null): \Appwrite\Models\HealthQueue
     {
         $apiPath = str_replace(
             [],
@@ -341,12 +402,18 @@ class Health extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\HealthQueue::class]
+        );
+
     }
 
     /**
@@ -355,9 +422,9 @@ class Health extends Service
      *
      * @param ?int $threshold
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\HealthQueue
      */
-    public function getQueueDeletes(?int $threshold = null): array
+    public function getQueueDeletes(?int $threshold = null): \Appwrite\Models\HealthQueue
     {
         $apiPath = str_replace(
             [],
@@ -373,12 +440,18 @@ class Health extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\HealthQueue::class]
+        );
+
     }
 
     /**
@@ -388,9 +461,9 @@ class Health extends Service
      * @param Name $name
      * @param ?int $threshold
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\HealthQueue
      */
-    public function getFailedJobs(Name $name, ?int $threshold = null): array
+    public function getFailedJobs(Name $name, ?int $threshold = null): \Appwrite\Models\HealthQueue
     {
         $apiPath = str_replace(
             ['{name}'],
@@ -407,12 +480,18 @@ class Health extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\HealthQueue::class]
+        );
+
     }
 
     /**
@@ -421,9 +500,9 @@ class Health extends Service
      *
      * @param ?int $threshold
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\HealthQueue
      */
-    public function getQueueFunctions(?int $threshold = null): array
+    public function getQueueFunctions(?int $threshold = null): \Appwrite\Models\HealthQueue
     {
         $apiPath = str_replace(
             [],
@@ -439,12 +518,18 @@ class Health extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\HealthQueue::class]
+        );
+
     }
 
     /**
@@ -453,9 +538,9 @@ class Health extends Service
      *
      * @param ?int $threshold
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\HealthQueue
      */
-    public function getQueueLogs(?int $threshold = null): array
+    public function getQueueLogs(?int $threshold = null): \Appwrite\Models\HealthQueue
     {
         $apiPath = str_replace(
             [],
@@ -471,12 +556,18 @@ class Health extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\HealthQueue::class]
+        );
+
     }
 
     /**
@@ -485,9 +576,9 @@ class Health extends Service
      *
      * @param ?int $threshold
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\HealthQueue
      */
-    public function getQueueMails(?int $threshold = null): array
+    public function getQueueMails(?int $threshold = null): \Appwrite\Models\HealthQueue
     {
         $apiPath = str_replace(
             [],
@@ -503,12 +594,18 @@ class Health extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\HealthQueue::class]
+        );
+
     }
 
     /**
@@ -517,9 +614,9 @@ class Health extends Service
      *
      * @param ?int $threshold
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\HealthQueue
      */
-    public function getQueueMessaging(?int $threshold = null): array
+    public function getQueueMessaging(?int $threshold = null): \Appwrite\Models\HealthQueue
     {
         $apiPath = str_replace(
             [],
@@ -535,12 +632,18 @@ class Health extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\HealthQueue::class]
+        );
+
     }
 
     /**
@@ -549,9 +652,9 @@ class Health extends Service
      *
      * @param ?int $threshold
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\HealthQueue
      */
-    public function getQueueMigrations(?int $threshold = null): array
+    public function getQueueMigrations(?int $threshold = null): \Appwrite\Models\HealthQueue
     {
         $apiPath = str_replace(
             [],
@@ -567,12 +670,18 @@ class Health extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\HealthQueue::class]
+        );
+
     }
 
     /**
@@ -581,9 +690,9 @@ class Health extends Service
      *
      * @param ?int $threshold
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\HealthQueue
      */
-    public function getQueueStatsResources(?int $threshold = null): array
+    public function getQueueStatsResources(?int $threshold = null): \Appwrite\Models\HealthQueue
     {
         $apiPath = str_replace(
             [],
@@ -599,12 +708,18 @@ class Health extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\HealthQueue::class]
+        );
+
     }
 
     /**
@@ -613,9 +728,9 @@ class Health extends Service
      *
      * @param ?int $threshold
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\HealthQueue
      */
-    public function getQueueUsage(?int $threshold = null): array
+    public function getQueueUsage(?int $threshold = null): \Appwrite\Models\HealthQueue
     {
         $apiPath = str_replace(
             [],
@@ -631,12 +746,18 @@ class Health extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\HealthQueue::class]
+        );
+
     }
 
     /**
@@ -645,9 +766,9 @@ class Health extends Service
      *
      * @param ?int $threshold
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\HealthQueue
      */
-    public function getQueueWebhooks(?int $threshold = null): array
+    public function getQueueWebhooks(?int $threshold = null): \Appwrite\Models\HealthQueue
     {
         $apiPath = str_replace(
             [],
@@ -663,21 +784,27 @@ class Health extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\HealthQueue::class]
+        );
+
     }
 
     /**
      * Check the Appwrite storage device is up and connection is successful.
      *
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\HealthStatus
      */
-    public function getStorage(): array
+    public function getStorage(): \Appwrite\Models\HealthStatus
     {
         $apiPath = str_replace(
             [],
@@ -689,21 +816,27 @@ class Health extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\HealthStatus::class]
+        );
+
     }
 
     /**
      * Check the Appwrite local storage device is up and connection is successful.
      *
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\HealthStatus
      */
-    public function getStorageLocal(): array
+    public function getStorageLocal(): \Appwrite\Models\HealthStatus
     {
         $apiPath = str_replace(
             [],
@@ -715,12 +848,18 @@ class Health extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\HealthStatus::class]
+        );
+
     }
 
     /**
@@ -733,9 +872,9 @@ class Health extends Service
      * uses NTP.
      *
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\HealthTime
      */
-    public function getTime(): array
+    public function getTime(): \Appwrite\Models\HealthTime
     {
         $apiPath = str_replace(
             [],
@@ -747,11 +886,17 @@ class Health extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\HealthTime::class]
+        );
+
     }
 }

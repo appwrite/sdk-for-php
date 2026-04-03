@@ -128,4 +128,24 @@ class Name implements JsonSerializable
         }
         return self::$V1MIGRATIONS;
     }
+
+    public static function from(string $value): self
+    {
+        return match ($value) {
+            'v1-database' => self::V1DATABASE(),
+            'v1-deletes' => self::V1DELETES(),
+            'v1-audits' => self::V1AUDITS(),
+            'v1-mails' => self::V1MAILS(),
+            'v1-functions' => self::V1FUNCTIONS(),
+            'v1-stats-resources' => self::V1STATSRESOURCES(),
+            'v1-stats-usage' => self::V1STATSUSAGE(),
+            'v1-webhooks' => self::V1WEBHOOKS(),
+            'v1-certificates' => self::V1CERTIFICATES(),
+            'v1-builds' => self::V1BUILDS(),
+            'v1-screenshots' => self::V1SCREENSHOTS(),
+            'v1-messaging' => self::V1MESSAGING(),
+            'v1-migrations' => self::V1MIGRATIONS(),
+            default => throw new \InvalidArgumentException('Unknown Name value: ' . $value),
+        };
+    }
 }

@@ -40,4 +40,13 @@ class Theme implements JsonSerializable
         }
         return self::$DARK;
     }
+
+    public static function from(string $value): self
+    {
+        return match ($value) {
+            'light' => self::LIGHT(),
+            'dark' => self::DARK(),
+            default => throw new \InvalidArgumentException('Unknown Theme value: ' . $value),
+        };
+    }
 }

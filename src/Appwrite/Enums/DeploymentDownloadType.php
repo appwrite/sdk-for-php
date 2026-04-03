@@ -40,4 +40,13 @@ class DeploymentDownloadType implements JsonSerializable
         }
         return self::$OUTPUT;
     }
+
+    public static function from(string $value): self
+    {
+        return match ($value) {
+            'source' => self::SOURCE(),
+            'output' => self::OUTPUT(),
+            default => throw new \InvalidArgumentException('Unknown DeploymentDownloadType value: ' . $value),
+        };
+    }
 }

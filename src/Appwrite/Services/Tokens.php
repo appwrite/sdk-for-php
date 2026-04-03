@@ -23,9 +23,9 @@ class Tokens extends Service
      * @param ?array $queries
      * @param ?bool $total
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\ResourceTokenList
      */
-    public function list(string $bucketId, string $fileId, ?array $queries = null, ?bool $total = null): array
+    public function list(string $bucketId, string $fileId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\ResourceTokenList
     {
         $apiPath = str_replace(
             ['{bucketId}', '{fileId}'],
@@ -47,12 +47,18 @@ class Tokens extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\ResourceTokenList::class]
+        );
+
     }
 
     /**
@@ -63,9 +69,9 @@ class Tokens extends Service
      * @param string $fileId
      * @param ?string $expire
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\ResourceToken
      */
-    public function createFileToken(string $bucketId, string $fileId, ?string $expire = null): array
+    public function createFileToken(string $bucketId, string $fileId, ?string $expire = null): \Appwrite\Models\ResourceToken
     {
         $apiPath = str_replace(
             ['{bucketId}', '{fileId}'],
@@ -81,12 +87,18 @@ class Tokens extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\ResourceToken::class]
+        );
+
     }
 
     /**
@@ -94,9 +106,9 @@ class Tokens extends Service
      *
      * @param string $tokenId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\ResourceToken
      */
-    public function get(string $tokenId): array
+    public function get(string $tokenId): \Appwrite\Models\ResourceToken
     {
         $apiPath = str_replace(
             ['{tokenId}'],
@@ -109,12 +121,18 @@ class Tokens extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\ResourceToken::class]
+        );
+
     }
 
     /**
@@ -124,9 +142,9 @@ class Tokens extends Service
      * @param string $tokenId
      * @param ?string $expire
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\ResourceToken
      */
-    public function update(string $tokenId, ?string $expire = null): array
+    public function update(string $tokenId, ?string $expire = null): \Appwrite\Models\ResourceToken
     {
         $apiPath = str_replace(
             ['{tokenId}'],
@@ -141,12 +159,18 @@ class Tokens extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\ResourceToken::class]
+        );
+
     }
 
     /**
@@ -170,11 +194,14 @@ class Tokens extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $response;
+
     }
 }

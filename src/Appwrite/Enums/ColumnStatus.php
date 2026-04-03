@@ -64,4 +64,16 @@ class ColumnStatus implements JsonSerializable
         }
         return self::$FAILED;
     }
+
+    public static function from(string $value): self
+    {
+        return match ($value) {
+            'available' => self::AVAILABLE(),
+            'processing' => self::PROCESSING(),
+            'deleting' => self::DELETING(),
+            'stuck' => self::STUCK(),
+            'failed' => self::FAILED(),
+            default => throw new \InvalidArgumentException('Unknown ColumnStatus value: ' . $value),
+        };
+    }
 }

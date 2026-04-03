@@ -184,4 +184,31 @@ class BrowserPermission implements JsonSerializable
         }
         return self::$XRSPATIALTRACKING;
     }
+
+    public static function from(string $value): self
+    {
+        return match ($value) {
+            'geolocation' => self::GEOLOCATION(),
+            'camera' => self::CAMERA(),
+            'microphone' => self::MICROPHONE(),
+            'notifications' => self::NOTIFICATIONS(),
+            'midi' => self::MIDI(),
+            'push' => self::PUSH(),
+            'clipboard-read' => self::CLIPBOARDREAD(),
+            'clipboard-write' => self::CLIPBOARDWRITE(),
+            'payment-handler' => self::PAYMENTHANDLER(),
+            'usb' => self::USB(),
+            'bluetooth' => self::BLUETOOTH(),
+            'accelerometer' => self::ACCELEROMETER(),
+            'gyroscope' => self::GYROSCOPE(),
+            'magnetometer' => self::MAGNETOMETER(),
+            'ambient-light-sensor' => self::AMBIENTLIGHTSENSOR(),
+            'background-sync' => self::BACKGROUNDSYNC(),
+            'persistent-storage' => self::PERSISTENTSTORAGE(),
+            'screen-wake-lock' => self::SCREENWAKELOCK(),
+            'web-share' => self::WEBSHARE(),
+            'xr-spatial-tracking' => self::XRSPATIALTRACKING(),
+            default => throw new \InvalidArgumentException('Unknown BrowserPermission value: ' . $value),
+        };
+    }
 }

@@ -48,4 +48,14 @@ class MessagingProviderType implements JsonSerializable
         }
         return self::$PUSH;
     }
+
+    public static function from(string $value): self
+    {
+        return match ($value) {
+            'email' => self::EMAIL(),
+            'sms' => self::SMS(),
+            'push' => self::PUSH(),
+            default => throw new \InvalidArgumentException('Unknown MessagingProviderType value: ' . $value),
+        };
+    }
 }

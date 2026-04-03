@@ -36,12 +36,15 @@ class Graphql extends Service
         $apiHeaders['x-sdk-graphql'] = 'true';
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $response;
+
     }
 
     /**
@@ -66,11 +69,14 @@ class Graphql extends Service
         $apiHeaders['x-sdk-graphql'] = 'true';
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $response;
+
     }
 }

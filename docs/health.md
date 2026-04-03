@@ -68,7 +68,8 @@ GET https://cloud.appwrite.io/v1/health/pubsub
 GET https://cloud.appwrite.io/v1/health/queue/audits
 ```
 
-** Get the number of audit logs that are waiting to be processed in the Appwrite internal queue server. **
+** Get the number of audit logs that are waiting to be processed in the Appwrite internal queue server.
+ **
 
 ### Parameters
 

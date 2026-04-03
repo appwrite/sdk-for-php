@@ -26,12 +26,12 @@ class Databases extends Service
      * @param ?string $search
      * @param ?bool $total
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\DatabaseList
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `list` instead.
      * @see TablesDB::list
      */
-    public function list(?array $queries = null, ?string $search = null, ?bool $total = null): array
+    public function list(?array $queries = null, ?string $search = null, ?bool $total = null): \Appwrite\Models\DatabaseList
     {
         $apiPath = str_replace(
             [],
@@ -55,12 +55,18 @@ class Databases extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\DatabaseList::class]
+        );
+
     }
 
     /**
@@ -71,12 +77,12 @@ class Databases extends Service
      * @param string $name
      * @param ?bool $enabled
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Database
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `create` instead.
      * @see TablesDB::create
      */
-    public function create(string $databaseId, string $name, ?bool $enabled = null): array
+    public function create(string $databaseId, string $name, ?bool $enabled = null): \Appwrite\Models\Database
     {
         $apiPath = str_replace(
             [],
@@ -95,12 +101,18 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Database::class]
+        );
+
     }
 
     /**
@@ -108,9 +120,9 @@ class Databases extends Service
      *
      * @param ?array $queries
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\TransactionList
      */
-    public function listTransactions(?array $queries = null): array
+    public function listTransactions(?array $queries = null): \Appwrite\Models\TransactionList
     {
         $apiPath = str_replace(
             [],
@@ -126,12 +138,18 @@ class Databases extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\TransactionList::class]
+        );
+
     }
 
     /**
@@ -139,9 +157,9 @@ class Databases extends Service
      *
      * @param ?int $ttl
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Transaction
      */
-    public function createTransaction(?int $ttl = null): array
+    public function createTransaction(?int $ttl = null): \Appwrite\Models\Transaction
     {
         $apiPath = str_replace(
             [],
@@ -158,12 +176,18 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Transaction::class]
+        );
+
     }
 
     /**
@@ -171,9 +195,9 @@ class Databases extends Service
      *
      * @param string $transactionId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Transaction
      */
-    public function getTransaction(string $transactionId): array
+    public function getTransaction(string $transactionId): \Appwrite\Models\Transaction
     {
         $apiPath = str_replace(
             ['{transactionId}'],
@@ -186,12 +210,18 @@ class Databases extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Transaction::class]
+        );
+
     }
 
     /**
@@ -201,9 +231,9 @@ class Databases extends Service
      * @param ?bool $commit
      * @param ?bool $rollback
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Transaction
      */
-    public function updateTransaction(string $transactionId, ?bool $commit = null, ?bool $rollback = null): array
+    public function updateTransaction(string $transactionId, ?bool $commit = null, ?bool $rollback = null): \Appwrite\Models\Transaction
     {
         $apiPath = str_replace(
             ['{transactionId}'],
@@ -225,12 +255,18 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Transaction::class]
+        );
+
     }
 
     /**
@@ -254,12 +290,15 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $response;
+
     }
 
     /**
@@ -268,9 +307,9 @@ class Databases extends Service
      * @param string $transactionId
      * @param ?array $operations
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Transaction
      */
-    public function createOperations(string $transactionId, ?array $operations = null): array
+    public function createOperations(string $transactionId, ?array $operations = null): \Appwrite\Models\Transaction
     {
         $apiPath = str_replace(
             ['{transactionId}'],
@@ -288,12 +327,18 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Transaction::class]
+        );
+
     }
 
     /**
@@ -302,12 +347,12 @@ class Databases extends Service
      *
      * @param string $databaseId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Database
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `get` instead.
      * @see TablesDB::get
      */
-    public function get(string $databaseId): array
+    public function get(string $databaseId): \Appwrite\Models\Database
     {
         $apiPath = str_replace(
             ['{databaseId}'],
@@ -320,12 +365,18 @@ class Databases extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Database::class]
+        );
+
     }
 
     /**
@@ -335,12 +386,12 @@ class Databases extends Service
      * @param ?string $name
      * @param ?bool $enabled
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Database
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `update` instead.
      * @see TablesDB::update
      */
-    public function update(string $databaseId, ?string $name = null, ?bool $enabled = null): array
+    public function update(string $databaseId, ?string $name = null, ?bool $enabled = null): \Appwrite\Models\Database
     {
         $apiPath = str_replace(
             ['{databaseId}'],
@@ -362,12 +413,18 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PUT,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Database::class]
+        );
+
     }
 
     /**
@@ -395,12 +452,15 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $response;
+
     }
 
     /**
@@ -412,12 +472,12 @@ class Databases extends Service
      * @param ?string $search
      * @param ?bool $total
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\CollectionList
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `listTables` instead.
      * @see TablesDB::listTables
      */
-    public function listCollections(string $databaseId, ?array $queries = null, ?string $search = null, ?bool $total = null): array
+    public function listCollections(string $databaseId, ?array $queries = null, ?string $search = null, ?bool $total = null): \Appwrite\Models\CollectionList
     {
         $apiPath = str_replace(
             ['{databaseId}'],
@@ -442,12 +502,18 @@ class Databases extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\CollectionList::class]
+        );
+
     }
 
     /**
@@ -465,12 +531,12 @@ class Databases extends Service
      * @param ?array $attributes
      * @param ?array $indexes
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Collection
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createTable` instead.
      * @see TablesDB::createTable
      */
-    public function createCollection(string $databaseId, string $collectionId, string $name, ?array $permissions = null, ?bool $documentSecurity = null, ?bool $enabled = null, ?array $attributes = null, ?array $indexes = null): array
+    public function createCollection(string $databaseId, string $collectionId, string $name, ?array $permissions = null, ?bool $documentSecurity = null, ?bool $enabled = null, ?array $attributes = null, ?array $indexes = null): \Appwrite\Models\Collection
     {
         $apiPath = str_replace(
             ['{databaseId}'],
@@ -503,12 +569,18 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Collection::class]
+        );
+
     }
 
     /**
@@ -518,12 +590,12 @@ class Databases extends Service
      * @param string $databaseId
      * @param string $collectionId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Collection
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `getTable` instead.
      * @see TablesDB::getTable
      */
-    public function getCollection(string $databaseId, string $collectionId): array
+    public function getCollection(string $databaseId, string $collectionId): \Appwrite\Models\Collection
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
@@ -537,12 +609,18 @@ class Databases extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Collection::class]
+        );
+
     }
 
     /**
@@ -555,12 +633,12 @@ class Databases extends Service
      * @param ?bool $documentSecurity
      * @param ?bool $enabled
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Collection
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateTable` instead.
      * @see TablesDB::updateTable
      */
-    public function updateCollection(string $databaseId, string $collectionId, ?string $name = null, ?array $permissions = null, ?bool $documentSecurity = null, ?bool $enabled = null): array
+    public function updateCollection(string $databaseId, string $collectionId, ?string $name = null, ?array $permissions = null, ?bool $documentSecurity = null, ?bool $enabled = null): \Appwrite\Models\Collection
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
@@ -588,12 +666,18 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PUT,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Collection::class]
+        );
+
     }
 
     /**
@@ -623,12 +707,15 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $response;
+
     }
 
     /**
@@ -639,12 +726,12 @@ class Databases extends Service
      * @param ?array $queries
      * @param ?bool $total
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\AttributeList
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `listColumns` instead.
      * @see TablesDB::listColumns
      */
-    public function listAttributes(string $databaseId, string $collectionId, ?array $queries = null, ?bool $total = null): array
+    public function listAttributes(string $databaseId, string $collectionId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\AttributeList
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
@@ -666,12 +753,18 @@ class Databases extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\AttributeList::class]
+        );
+
     }
 
     /**
@@ -685,12 +778,12 @@ class Databases extends Service
      * @param ?bool $xdefault
      * @param ?bool $xarray
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\AttributeBoolean
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createBooleanColumn` instead.
      * @see TablesDB::createBooleanColumn
      */
-    public function createBooleanAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?bool $xdefault = null, ?bool $xarray = null): array
+    public function createBooleanAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?bool $xdefault = null, ?bool $xarray = null): \Appwrite\Models\AttributeBoolean
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
@@ -712,12 +805,18 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\AttributeBoolean::class]
+        );
+
     }
 
     /**
@@ -731,12 +830,12 @@ class Databases extends Service
      * @param ?bool $xdefault
      * @param ?string $newKey
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\AttributeBoolean
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateBooleanColumn` instead.
      * @see TablesDB::updateBooleanColumn
      */
-    public function updateBooleanAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?bool $xdefault, ?string $newKey = null): array
+    public function updateBooleanAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?bool $xdefault, ?string $newKey = null): \Appwrite\Models\AttributeBoolean
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{key}'],
@@ -755,12 +854,18 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\AttributeBoolean::class]
+        );
+
     }
 
     /**
@@ -773,12 +878,12 @@ class Databases extends Service
      * @param ?string $xdefault
      * @param ?bool $xarray
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\AttributeDatetime
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createDatetimeColumn` instead.
      * @see TablesDB::createDatetimeColumn
      */
-    public function createDatetimeAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): array
+    public function createDatetimeAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): \Appwrite\Models\AttributeDatetime
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
@@ -800,12 +905,18 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\AttributeDatetime::class]
+        );
+
     }
 
     /**
@@ -819,12 +930,12 @@ class Databases extends Service
      * @param ?string $xdefault
      * @param ?string $newKey
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\AttributeDatetime
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateDatetimeColumn` instead.
      * @see TablesDB::updateDatetimeColumn
      */
-    public function updateDatetimeAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): array
+    public function updateDatetimeAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\AttributeDatetime
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{key}'],
@@ -843,12 +954,18 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\AttributeDatetime::class]
+        );
+
     }
 
     /**
@@ -862,12 +979,12 @@ class Databases extends Service
      * @param ?string $xdefault
      * @param ?bool $xarray
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\AttributeEmail
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createEmailColumn` instead.
      * @see TablesDB::createEmailColumn
      */
-    public function createEmailAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): array
+    public function createEmailAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): \Appwrite\Models\AttributeEmail
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
@@ -889,12 +1006,18 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\AttributeEmail::class]
+        );
+
     }
 
     /**
@@ -909,12 +1032,12 @@ class Databases extends Service
      * @param ?string $xdefault
      * @param ?string $newKey
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\AttributeEmail
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateEmailColumn` instead.
      * @see TablesDB::updateEmailColumn
      */
-    public function updateEmailAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): array
+    public function updateEmailAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\AttributeEmail
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{key}'],
@@ -933,12 +1056,18 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\AttributeEmail::class]
+        );
+
     }
 
     /**
@@ -954,12 +1083,12 @@ class Databases extends Service
      * @param ?string $xdefault
      * @param ?bool $xarray
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\AttributeEnum
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createEnumColumn` instead.
      * @see TablesDB::createEnumColumn
      */
-    public function createEnumAttribute(string $databaseId, string $collectionId, string $key, array $elements, bool $required, ?string $xdefault = null, ?bool $xarray = null): array
+    public function createEnumAttribute(string $databaseId, string $collectionId, string $key, array $elements, bool $required, ?string $xdefault = null, ?bool $xarray = null): \Appwrite\Models\AttributeEnum
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
@@ -982,12 +1111,18 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\AttributeEnum::class]
+        );
+
     }
 
     /**
@@ -1003,12 +1138,12 @@ class Databases extends Service
      * @param ?string $xdefault
      * @param ?string $newKey
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\AttributeEnum
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateEnumColumn` instead.
      * @see TablesDB::updateEnumColumn
      */
-    public function updateEnumAttribute(string $databaseId, string $collectionId, string $key, array $elements, bool $required, ?string $xdefault, ?string $newKey = null): array
+    public function updateEnumAttribute(string $databaseId, string $collectionId, string $key, array $elements, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\AttributeEnum
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{key}'],
@@ -1028,12 +1163,18 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\AttributeEnum::class]
+        );
+
     }
 
     /**
@@ -1050,12 +1191,12 @@ class Databases extends Service
      * @param ?float $xdefault
      * @param ?bool $xarray
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\AttributeFloat
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createFloatColumn` instead.
      * @see TablesDB::createFloatColumn
      */
-    public function createFloatAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?float $min = null, ?float $max = null, ?float $xdefault = null, ?bool $xarray = null): array
+    public function createFloatAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?float $min = null, ?float $max = null, ?float $xdefault = null, ?bool $xarray = null): \Appwrite\Models\AttributeFloat
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
@@ -1079,12 +1220,18 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\AttributeFloat::class]
+        );
+
     }
 
     /**
@@ -1101,12 +1248,12 @@ class Databases extends Service
      * @param ?float $max
      * @param ?string $newKey
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\AttributeFloat
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateFloatColumn` instead.
      * @see TablesDB::updateFloatColumn
      */
-    public function updateFloatAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?float $xdefault, ?float $min = null, ?float $max = null, ?string $newKey = null): array
+    public function updateFloatAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?float $xdefault, ?float $min = null, ?float $max = null, ?string $newKey = null): \Appwrite\Models\AttributeFloat
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{key}'],
@@ -1127,12 +1274,18 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\AttributeFloat::class]
+        );
+
     }
 
     /**
@@ -1149,12 +1302,12 @@ class Databases extends Service
      * @param ?int $xdefault
      * @param ?bool $xarray
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\AttributeInteger
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createIntegerColumn` instead.
      * @see TablesDB::createIntegerColumn
      */
-    public function createIntegerAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?int $min = null, ?int $max = null, ?int $xdefault = null, ?bool $xarray = null): array
+    public function createIntegerAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?int $min = null, ?int $max = null, ?int $xdefault = null, ?bool $xarray = null): \Appwrite\Models\AttributeInteger
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
@@ -1178,12 +1331,18 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\AttributeInteger::class]
+        );
+
     }
 
     /**
@@ -1200,12 +1359,12 @@ class Databases extends Service
      * @param ?int $max
      * @param ?string $newKey
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\AttributeInteger
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateIntegerColumn` instead.
      * @see TablesDB::updateIntegerColumn
      */
-    public function updateIntegerAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?int $xdefault, ?int $min = null, ?int $max = null, ?string $newKey = null): array
+    public function updateIntegerAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?int $xdefault, ?int $min = null, ?int $max = null, ?string $newKey = null): \Appwrite\Models\AttributeInteger
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{key}'],
@@ -1226,12 +1385,18 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\AttributeInteger::class]
+        );
+
     }
 
     /**
@@ -1245,12 +1410,12 @@ class Databases extends Service
      * @param ?string $xdefault
      * @param ?bool $xarray
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\AttributeIp
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createIpColumn` instead.
      * @see TablesDB::createIpColumn
      */
-    public function createIpAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): array
+    public function createIpAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): \Appwrite\Models\AttributeIp
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
@@ -1272,12 +1437,18 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\AttributeIp::class]
+        );
+
     }
 
     /**
@@ -1292,12 +1463,12 @@ class Databases extends Service
      * @param ?string $xdefault
      * @param ?string $newKey
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\AttributeIp
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateIpColumn` instead.
      * @see TablesDB::updateIpColumn
      */
-    public function updateIpAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): array
+    public function updateIpAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\AttributeIp
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{key}'],
@@ -1316,12 +1487,18 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\AttributeIp::class]
+        );
+
     }
 
     /**
@@ -1333,12 +1510,12 @@ class Databases extends Service
      * @param bool $required
      * @param ?array $xdefault
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\AttributeLine
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createLineColumn` instead.
      * @see TablesDB::createLineColumn
      */
-    public function createLineAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?array $xdefault = null): array
+    public function createLineAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?array $xdefault = null): \Appwrite\Models\AttributeLine
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
@@ -1356,12 +1533,18 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\AttributeLine::class]
+        );
+
     }
 
     /**
@@ -1375,12 +1558,12 @@ class Databases extends Service
      * @param ?array $xdefault
      * @param ?string $newKey
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\AttributeLine
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateLineColumn` instead.
      * @see TablesDB::updateLineColumn
      */
-    public function updateLineAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?array $xdefault = null, ?string $newKey = null): array
+    public function updateLineAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?array $xdefault = null, ?string $newKey = null): \Appwrite\Models\AttributeLine
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{key}'],
@@ -1399,12 +1582,18 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\AttributeLine::class]
+        );
+
     }
 
     /**
@@ -1419,9 +1608,9 @@ class Databases extends Service
      * @param ?bool $xarray
      * @param ?bool $encrypt
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\AttributeLongtext
      */
-    public function createLongtextAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): array
+    public function createLongtextAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): \Appwrite\Models\AttributeLongtext
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
@@ -1447,12 +1636,18 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\AttributeLongtext::class]
+        );
+
     }
 
     /**
@@ -1467,9 +1662,9 @@ class Databases extends Service
      * @param ?string $xdefault
      * @param ?string $newKey
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\AttributeLongtext
      */
-    public function updateLongtextAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): array
+    public function updateLongtextAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\AttributeLongtext
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{key}'],
@@ -1488,12 +1683,18 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\AttributeLongtext::class]
+        );
+
     }
 
     /**
@@ -1508,9 +1709,9 @@ class Databases extends Service
      * @param ?bool $xarray
      * @param ?bool $encrypt
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\AttributeMediumtext
      */
-    public function createMediumtextAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): array
+    public function createMediumtextAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): \Appwrite\Models\AttributeMediumtext
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
@@ -1536,12 +1737,18 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\AttributeMediumtext::class]
+        );
+
     }
 
     /**
@@ -1556,9 +1763,9 @@ class Databases extends Service
      * @param ?string $xdefault
      * @param ?string $newKey
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\AttributeMediumtext
      */
-    public function updateMediumtextAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): array
+    public function updateMediumtextAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\AttributeMediumtext
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{key}'],
@@ -1577,12 +1784,18 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\AttributeMediumtext::class]
+        );
+
     }
 
     /**
@@ -1594,12 +1807,12 @@ class Databases extends Service
      * @param bool $required
      * @param ?array $xdefault
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\AttributePoint
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createPointColumn` instead.
      * @see TablesDB::createPointColumn
      */
-    public function createPointAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?array $xdefault = null): array
+    public function createPointAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?array $xdefault = null): \Appwrite\Models\AttributePoint
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
@@ -1617,12 +1830,18 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\AttributePoint::class]
+        );
+
     }
 
     /**
@@ -1636,12 +1855,12 @@ class Databases extends Service
      * @param ?array $xdefault
      * @param ?string $newKey
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\AttributePoint
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updatePointColumn` instead.
      * @see TablesDB::updatePointColumn
      */
-    public function updatePointAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?array $xdefault = null, ?string $newKey = null): array
+    public function updatePointAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?array $xdefault = null, ?string $newKey = null): \Appwrite\Models\AttributePoint
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{key}'],
@@ -1660,12 +1879,18 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\AttributePoint::class]
+        );
+
     }
 
     /**
@@ -1677,12 +1902,12 @@ class Databases extends Service
      * @param bool $required
      * @param ?array $xdefault
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\AttributePolygon
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createPolygonColumn` instead.
      * @see TablesDB::createPolygonColumn
      */
-    public function createPolygonAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?array $xdefault = null): array
+    public function createPolygonAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?array $xdefault = null): \Appwrite\Models\AttributePolygon
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
@@ -1700,12 +1925,18 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\AttributePolygon::class]
+        );
+
     }
 
     /**
@@ -1719,12 +1950,12 @@ class Databases extends Service
      * @param ?array $xdefault
      * @param ?string $newKey
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\AttributePolygon
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updatePolygonColumn` instead.
      * @see TablesDB::updatePolygonColumn
      */
-    public function updatePolygonAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?array $xdefault = null, ?string $newKey = null): array
+    public function updatePolygonAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?array $xdefault = null, ?string $newKey = null): \Appwrite\Models\AttributePolygon
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{key}'],
@@ -1743,12 +1974,18 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\AttributePolygon::class]
+        );
+
     }
 
     /**
@@ -1765,12 +2002,12 @@ class Databases extends Service
      * @param ?string $twoWayKey
      * @param ?RelationMutate $onDelete
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\AttributeRelationship
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createRelationshipColumn` instead.
      * @see TablesDB::createRelationshipColumn
      */
-    public function createRelationshipAttribute(string $databaseId, string $collectionId, string $relatedCollectionId, RelationshipType $type, ?bool $twoWay = null, ?string $key = null, ?string $twoWayKey = null, ?RelationMutate $onDelete = null): array
+    public function createRelationshipAttribute(string $databaseId, string $collectionId, string $relatedCollectionId, RelationshipType $type, ?bool $twoWay = null, ?string $key = null, ?string $twoWayKey = null, ?RelationMutate $onDelete = null): \Appwrite\Models\AttributeRelationship
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
@@ -1797,12 +2034,18 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\AttributeRelationship::class]
+        );
+
     }
 
     /**
@@ -1816,12 +2059,12 @@ class Databases extends Service
      * @param ?RelationMutate $onDelete
      * @param ?string $newKey
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\AttributeRelationship
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateRelationshipColumn` instead.
      * @see TablesDB::updateRelationshipColumn
      */
-    public function updateRelationshipAttribute(string $databaseId, string $collectionId, string $key, ?RelationMutate $onDelete = null, ?string $newKey = null): array
+    public function updateRelationshipAttribute(string $databaseId, string $collectionId, string $key, ?RelationMutate $onDelete = null, ?string $newKey = null): \Appwrite\Models\AttributeRelationship
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{key}'],
@@ -1842,12 +2085,18 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\AttributeRelationship::class]
+        );
+
     }
 
     /**
@@ -1863,12 +2112,12 @@ class Databases extends Service
      * @param ?bool $xarray
      * @param ?bool $encrypt
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\AttributeString
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createStringColumn` instead.
      * @see TablesDB::createStringColumn
      */
-    public function createStringAttribute(string $databaseId, string $collectionId, string $key, int $size, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): array
+    public function createStringAttribute(string $databaseId, string $collectionId, string $key, int $size, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): \Appwrite\Models\AttributeString
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
@@ -1895,12 +2144,18 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\AttributeString::class]
+        );
+
     }
 
     /**
@@ -1916,12 +2171,12 @@ class Databases extends Service
      * @param ?int $size
      * @param ?string $newKey
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\AttributeString
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateStringColumn` instead.
      * @see TablesDB::updateStringColumn
      */
-    public function updateStringAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?int $size = null, ?string $newKey = null): array
+    public function updateStringAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?int $size = null, ?string $newKey = null): \Appwrite\Models\AttributeString
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{key}'],
@@ -1941,12 +2196,18 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\AttributeString::class]
+        );
+
     }
 
     /**
@@ -1961,9 +2222,9 @@ class Databases extends Service
      * @param ?bool $xarray
      * @param ?bool $encrypt
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\AttributeText
      */
-    public function createTextAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): array
+    public function createTextAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): \Appwrite\Models\AttributeText
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
@@ -1989,12 +2250,18 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\AttributeText::class]
+        );
+
     }
 
     /**
@@ -2009,9 +2276,9 @@ class Databases extends Service
      * @param ?string $xdefault
      * @param ?string $newKey
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\AttributeText
      */
-    public function updateTextAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): array
+    public function updateTextAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\AttributeText
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{key}'],
@@ -2030,12 +2297,18 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\AttributeText::class]
+        );
+
     }
 
     /**
@@ -2049,12 +2322,12 @@ class Databases extends Service
      * @param ?string $xdefault
      * @param ?bool $xarray
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\AttributeUrl
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createUrlColumn` instead.
      * @see TablesDB::createUrlColumn
      */
-    public function createUrlAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): array
+    public function createUrlAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): \Appwrite\Models\AttributeUrl
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
@@ -2076,12 +2349,18 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\AttributeUrl::class]
+        );
+
     }
 
     /**
@@ -2096,12 +2375,12 @@ class Databases extends Service
      * @param ?string $xdefault
      * @param ?string $newKey
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\AttributeUrl
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateUrlColumn` instead.
      * @see TablesDB::updateUrlColumn
      */
-    public function updateUrlAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): array
+    public function updateUrlAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\AttributeUrl
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{key}'],
@@ -2120,12 +2399,18 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\AttributeUrl::class]
+        );
+
     }
 
     /**
@@ -2141,9 +2426,9 @@ class Databases extends Service
      * @param ?bool $xarray
      * @param ?bool $encrypt
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\AttributeVarchar
      */
-    public function createVarcharAttribute(string $databaseId, string $collectionId, string $key, int $size, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): array
+    public function createVarcharAttribute(string $databaseId, string $collectionId, string $key, int $size, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): \Appwrite\Models\AttributeVarchar
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
@@ -2170,12 +2455,18 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\AttributeVarchar::class]
+        );
+
     }
 
     /**
@@ -2191,9 +2482,9 @@ class Databases extends Service
      * @param ?int $size
      * @param ?string $newKey
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\AttributeVarchar
      */
-    public function updateVarcharAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?int $size = null, ?string $newKey = null): array
+    public function updateVarcharAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?int $size = null, ?string $newKey = null): \Appwrite\Models\AttributeVarchar
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{key}'],
@@ -2213,12 +2504,18 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\AttributeVarchar::class]
+        );
+
     }
 
     /**
@@ -2228,12 +2525,12 @@ class Databases extends Service
      * @param string $collectionId
      * @param string $key
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\AttributeBoolean|\Appwrite\Models\AttributeInteger|\Appwrite\Models\AttributeFloat|\Appwrite\Models\AttributeEmail|\Appwrite\Models\AttributeEnum|\Appwrite\Models\AttributeUrl|\Appwrite\Models\AttributeIp|\Appwrite\Models\AttributeDatetime|\Appwrite\Models\AttributeRelationship|\Appwrite\Models\AttributeString
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `getColumn` instead.
      * @see TablesDB::getColumn
      */
-    public function getAttribute(string $databaseId, string $collectionId, string $key): array
+    public function getAttribute(string $databaseId, string $collectionId, string $key): \Appwrite\Models\AttributeBoolean|\Appwrite\Models\AttributeInteger|\Appwrite\Models\AttributeFloat|\Appwrite\Models\AttributeEmail|\Appwrite\Models\AttributeEnum|\Appwrite\Models\AttributeUrl|\Appwrite\Models\AttributeIp|\Appwrite\Models\AttributeDatetime|\Appwrite\Models\AttributeRelationship|\Appwrite\Models\AttributeString
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{key}'],
@@ -2248,12 +2545,61 @@ class Databases extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\AttributeBoolean::class, \Appwrite\Models\AttributeInteger::class, \Appwrite\Models\AttributeFloat::class, \Appwrite\Models\AttributeEmail::class, \Appwrite\Models\AttributeEnum::class, \Appwrite\Models\AttributeUrl::class, \Appwrite\Models\AttributeIp::class, \Appwrite\Models\AttributeDatetime::class, \Appwrite\Models\AttributeRelationship::class, \Appwrite\Models\AttributeString::class]
+,
+            [
+                \Appwrite\Models\AttributeBoolean::class => [
+                    'required' => ['key', 'type', 'status', 'error', 'required', '$createdAt', '$updatedAt', ],
+                    'all' => ['key', 'type', 'status', 'error', 'required', 'array', '$createdAt', '$updatedAt', 'default'],
+                ],
+                \Appwrite\Models\AttributeInteger::class => [
+                    'required' => ['key', 'type', 'status', 'error', 'required', '$createdAt', '$updatedAt', ],
+                    'all' => ['key', 'type', 'status', 'error', 'required', 'array', '$createdAt', '$updatedAt', 'min', 'max', 'default'],
+                ],
+                \Appwrite\Models\AttributeFloat::class => [
+                    'required' => ['key', 'type', 'status', 'error', 'required', '$createdAt', '$updatedAt', ],
+                    'all' => ['key', 'type', 'status', 'error', 'required', 'array', '$createdAt', '$updatedAt', 'min', 'max', 'default'],
+                ],
+                \Appwrite\Models\AttributeEmail::class => [
+                    'required' => ['key', 'type', 'status', 'error', 'required', '$createdAt', '$updatedAt', 'format', ],
+                    'all' => ['key', 'type', 'status', 'error', 'required', 'array', '$createdAt', '$updatedAt', 'format', 'default'],
+                ],
+                \Appwrite\Models\AttributeEnum::class => [
+                    'required' => ['key', 'type', 'status', 'error', 'required', '$createdAt', '$updatedAt', 'elements', 'format', ],
+                    'all' => ['key', 'type', 'status', 'error', 'required', 'array', '$createdAt', '$updatedAt', 'elements', 'format', 'default'],
+                ],
+                \Appwrite\Models\AttributeUrl::class => [
+                    'required' => ['key', 'type', 'status', 'error', 'required', '$createdAt', '$updatedAt', 'format', ],
+                    'all' => ['key', 'type', 'status', 'error', 'required', 'array', '$createdAt', '$updatedAt', 'format', 'default'],
+                ],
+                \Appwrite\Models\AttributeIp::class => [
+                    'required' => ['key', 'type', 'status', 'error', 'required', '$createdAt', '$updatedAt', 'format', ],
+                    'all' => ['key', 'type', 'status', 'error', 'required', 'array', '$createdAt', '$updatedAt', 'format', 'default'],
+                ],
+                \Appwrite\Models\AttributeDatetime::class => [
+                    'required' => ['key', 'type', 'status', 'error', 'required', '$createdAt', '$updatedAt', 'format', ],
+                    'all' => ['key', 'type', 'status', 'error', 'required', 'array', '$createdAt', '$updatedAt', 'format', 'default'],
+                ],
+                \Appwrite\Models\AttributeRelationship::class => [
+                    'required' => ['key', 'type', 'status', 'error', 'required', '$createdAt', '$updatedAt', 'relatedCollection', 'relationType', 'twoWay', 'twoWayKey', 'onDelete', 'side'],
+                    'all' => ['key', 'type', 'status', 'error', 'required', 'array', '$createdAt', '$updatedAt', 'relatedCollection', 'relationType', 'twoWay', 'twoWayKey', 'onDelete', 'side'],
+                ],
+                \Appwrite\Models\AttributeString::class => [
+                    'required' => ['key', 'type', 'status', 'error', 'required', '$createdAt', '$updatedAt', 'size', ],
+                    'all' => ['key', 'type', 'status', 'error', 'required', 'array', '$createdAt', '$updatedAt', 'size', 'default', 'encrypt'],
+                ]
+            ]
+        );
+
     }
 
     /**
@@ -2284,12 +2630,15 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $response;
+
     }
 
     /**
@@ -2303,12 +2652,12 @@ class Databases extends Service
      * @param ?bool $total
      * @param ?int $ttl
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\DocumentList
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `listRows` instead.
      * @see TablesDB::listRows
      */
-    public function listDocuments(string $databaseId, string $collectionId, ?array $queries = null, ?string $transactionId = null, ?bool $total = null, ?int $ttl = null): array
+    public function listDocuments(string $databaseId, string $collectionId, ?array $queries = null, ?string $transactionId = null, ?bool $total = null, ?int $ttl = null): \Appwrite\Models\DocumentList
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
@@ -2338,12 +2687,18 @@ class Databases extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\DocumentList::class]
+        );
+
     }
 
     /**
@@ -2359,12 +2714,12 @@ class Databases extends Service
      * @param ?array $permissions
      * @param ?string $transactionId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Document
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createRow` instead.
      * @see TablesDB::createRow
      */
-    public function createDocument(string $databaseId, string $collectionId, string $documentId, array $data, ?array $permissions = null, ?string $transactionId = null): array
+    public function createDocument(string $databaseId, string $collectionId, string $documentId, array $data, ?array $permissions = null, ?string $transactionId = null): \Appwrite\Models\Document
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
@@ -2383,12 +2738,18 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Document::class]
+        );
+
     }
 
     /**
@@ -2402,12 +2763,12 @@ class Databases extends Service
      * @param array $documents
      * @param ?string $transactionId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\DocumentList
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createRows` instead.
      * @see TablesDB::createRows
      */
-    public function createDocuments(string $databaseId, string $collectionId, array $documents, ?string $transactionId = null): array
+    public function createDocuments(string $databaseId, string $collectionId, array $documents, ?string $transactionId = null): \Appwrite\Models\DocumentList
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
@@ -2424,12 +2785,18 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\DocumentList::class]
+        );
+
     }
 
     /**
@@ -2444,12 +2811,12 @@ class Databases extends Service
      * @param array $documents
      * @param ?string $transactionId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\DocumentList
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `upsertRows` instead.
      * @see TablesDB::upsertRows
      */
-    public function upsertDocuments(string $databaseId, string $collectionId, array $documents, ?string $transactionId = null): array
+    public function upsertDocuments(string $databaseId, string $collectionId, array $documents, ?string $transactionId = null): \Appwrite\Models\DocumentList
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
@@ -2466,12 +2833,18 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PUT,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\DocumentList::class]
+        );
+
     }
 
     /**
@@ -2485,12 +2858,12 @@ class Databases extends Service
      * @param ?array $queries
      * @param ?string $transactionId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\DocumentList
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateRows` instead.
      * @see TablesDB::updateRows
      */
-    public function updateDocuments(string $databaseId, string $collectionId, ?array $data = null, ?array $queries = null, ?string $transactionId = null): array
+    public function updateDocuments(string $databaseId, string $collectionId, ?array $data = null, ?array $queries = null, ?string $transactionId = null): \Appwrite\Models\DocumentList
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
@@ -2514,12 +2887,18 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\DocumentList::class]
+        );
+
     }
 
     /**
@@ -2531,12 +2910,12 @@ class Databases extends Service
      * @param ?array $queries
      * @param ?string $transactionId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\DocumentList
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `deleteRows` instead.
      * @see TablesDB::deleteRows
      */
-    public function deleteDocuments(string $databaseId, string $collectionId, ?array $queries = null, ?string $transactionId = null): array
+    public function deleteDocuments(string $databaseId, string $collectionId, ?array $queries = null, ?string $transactionId = null): \Appwrite\Models\DocumentList
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
@@ -2556,12 +2935,18 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\DocumentList::class]
+        );
+
     }
 
     /**
@@ -2574,12 +2959,12 @@ class Databases extends Service
      * @param ?array $queries
      * @param ?string $transactionId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Document
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `getRow` instead.
      * @see TablesDB::getRow
      */
-    public function getDocument(string $databaseId, string $collectionId, string $documentId, ?array $queries = null, ?string $transactionId = null): array
+    public function getDocument(string $databaseId, string $collectionId, string $documentId, ?array $queries = null, ?string $transactionId = null): \Appwrite\Models\Document
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{documentId}'],
@@ -2602,12 +2987,18 @@ class Databases extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Document::class]
+        );
+
     }
 
     /**
@@ -2623,12 +3014,12 @@ class Databases extends Service
      * @param ?array $permissions
      * @param ?string $transactionId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Document
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `upsertRow` instead.
      * @see TablesDB::upsertRow
      */
-    public function upsertDocument(string $databaseId, string $collectionId, string $documentId, ?array $data = null, ?array $permissions = null, ?string $transactionId = null): array
+    public function upsertDocument(string $databaseId, string $collectionId, string $documentId, ?array $data = null, ?array $permissions = null, ?string $transactionId = null): \Appwrite\Models\Document
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{documentId}'],
@@ -2650,12 +3041,18 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PUT,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Document::class]
+        );
+
     }
 
     /**
@@ -2669,12 +3066,12 @@ class Databases extends Service
      * @param ?array $permissions
      * @param ?string $transactionId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Document
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateRow` instead.
      * @see TablesDB::updateRow
      */
-    public function updateDocument(string $databaseId, string $collectionId, string $documentId, ?array $data = null, ?array $permissions = null, ?string $transactionId = null): array
+    public function updateDocument(string $databaseId, string $collectionId, string $documentId, ?array $data = null, ?array $permissions = null, ?string $transactionId = null): \Appwrite\Models\Document
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{documentId}'],
@@ -2696,12 +3093,18 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Document::class]
+        );
+
     }
 
     /**
@@ -2734,12 +3137,15 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $response;
+
     }
 
     /**
@@ -2753,12 +3159,12 @@ class Databases extends Service
      * @param ?float $min
      * @param ?string $transactionId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Document
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `decrementRowColumn` instead.
      * @see TablesDB::decrementRowColumn
      */
-    public function decrementDocumentAttribute(string $databaseId, string $collectionId, string $documentId, string $attribute, ?float $value = null, ?float $min = null, ?string $transactionId = null): array
+    public function decrementDocumentAttribute(string $databaseId, string $collectionId, string $documentId, string $attribute, ?float $value = null, ?float $min = null, ?string $transactionId = null): \Appwrite\Models\Document
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{documentId}', '{attribute}'],
@@ -2781,12 +3187,18 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Document::class]
+        );
+
     }
 
     /**
@@ -2800,12 +3212,12 @@ class Databases extends Service
      * @param ?float $max
      * @param ?string $transactionId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Document
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `incrementRowColumn` instead.
      * @see TablesDB::incrementRowColumn
      */
-    public function incrementDocumentAttribute(string $databaseId, string $collectionId, string $documentId, string $attribute, ?float $value = null, ?float $max = null, ?string $transactionId = null): array
+    public function incrementDocumentAttribute(string $databaseId, string $collectionId, string $documentId, string $attribute, ?float $value = null, ?float $max = null, ?string $transactionId = null): \Appwrite\Models\Document
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{documentId}', '{attribute}'],
@@ -2828,12 +3240,18 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Document::class]
+        );
+
     }
 
     /**
@@ -2844,12 +3262,12 @@ class Databases extends Service
      * @param ?array $queries
      * @param ?bool $total
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\IndexList
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `listIndexes` instead.
      * @see TablesDB::listIndexes
      */
-    public function listIndexes(string $databaseId, string $collectionId, ?array $queries = null, ?bool $total = null): array
+    public function listIndexes(string $databaseId, string $collectionId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\IndexList
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
@@ -2871,12 +3289,18 @@ class Databases extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\IndexList::class]
+        );
+
     }
 
     /**
@@ -2892,12 +3316,12 @@ class Databases extends Service
      * @param ?array $orders
      * @param ?array $lengths
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Index
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createIndex` instead.
      * @see TablesDB::createIndex
      */
-    public function createIndex(string $databaseId, string $collectionId, string $key, DatabasesIndexType $type, array $attributes, ?array $orders = null, ?array $lengths = null): array
+    public function createIndex(string $databaseId, string $collectionId, string $key, DatabasesIndexType $type, array $attributes, ?array $orders = null, ?array $lengths = null): \Appwrite\Models\Index
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
@@ -2923,12 +3347,18 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Index::class]
+        );
+
     }
 
     /**
@@ -2938,12 +3368,12 @@ class Databases extends Service
      * @param string $collectionId
      * @param string $key
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Index
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `getIndex` instead.
      * @see TablesDB::getIndex
      */
-    public function getIndex(string $databaseId, string $collectionId, string $key): array
+    public function getIndex(string $databaseId, string $collectionId, string $key): \Appwrite\Models\Index
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{key}'],
@@ -2958,12 +3388,18 @@ class Databases extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Index::class]
+        );
+
     }
 
     /**
@@ -2994,11 +3430,14 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $response;
+
     }
 }

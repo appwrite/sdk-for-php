@@ -20,9 +20,9 @@ class Backups extends Service
      *
      * @param ?array $queries
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\BackupArchiveList
      */
-    public function listArchives(?array $queries = null): array
+    public function listArchives(?array $queries = null): \Appwrite\Models\BackupArchiveList
     {
         $apiPath = str_replace(
             [],
@@ -38,12 +38,18 @@ class Backups extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\BackupArchiveList::class]
+        );
+
     }
 
     /**
@@ -52,9 +58,9 @@ class Backups extends Service
      * @param array $services
      * @param ?string $resourceId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\BackupArchive
      */
-    public function createArchive(array $services, ?string $resourceId = null): array
+    public function createArchive(array $services, ?string $resourceId = null): \Appwrite\Models\BackupArchive
     {
         $apiPath = str_replace(
             [],
@@ -69,12 +75,18 @@ class Backups extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\BackupArchive::class]
+        );
+
     }
 
     /**
@@ -82,9 +94,9 @@ class Backups extends Service
      *
      * @param string $archiveId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\BackupArchive
      */
-    public function getArchive(string $archiveId): array
+    public function getArchive(string $archiveId): \Appwrite\Models\BackupArchive
     {
         $apiPath = str_replace(
             ['{archiveId}'],
@@ -97,12 +109,18 @@ class Backups extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\BackupArchive::class]
+        );
+
     }
 
     /**
@@ -126,12 +144,15 @@ class Backups extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $response;
+
     }
 
     /**
@@ -139,9 +160,9 @@ class Backups extends Service
      *
      * @param ?array $queries
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\BackupPolicyList
      */
-    public function listPolicies(?array $queries = null): array
+    public function listPolicies(?array $queries = null): \Appwrite\Models\BackupPolicyList
     {
         $apiPath = str_replace(
             [],
@@ -157,12 +178,18 @@ class Backups extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\BackupPolicyList::class]
+        );
+
     }
 
     /**
@@ -176,9 +203,9 @@ class Backups extends Service
      * @param ?string $resourceId
      * @param ?bool $enabled
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\BackupPolicy
      */
-    public function createPolicy(string $policyId, array $services, int $retention, string $schedule, ?string $name = null, ?string $resourceId = null, ?bool $enabled = null): array
+    public function createPolicy(string $policyId, array $services, int $retention, string $schedule, ?string $name = null, ?string $resourceId = null, ?bool $enabled = null): \Appwrite\Models\BackupPolicy
     {
         $apiPath = str_replace(
             [],
@@ -204,12 +231,18 @@ class Backups extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\BackupPolicy::class]
+        );
+
     }
 
     /**
@@ -217,9 +250,9 @@ class Backups extends Service
      *
      * @param string $policyId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\BackupPolicy
      */
-    public function getPolicy(string $policyId): array
+    public function getPolicy(string $policyId): \Appwrite\Models\BackupPolicy
     {
         $apiPath = str_replace(
             ['{policyId}'],
@@ -232,12 +265,18 @@ class Backups extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\BackupPolicy::class]
+        );
+
     }
 
     /**
@@ -249,9 +288,9 @@ class Backups extends Service
      * @param ?string $schedule
      * @param ?bool $enabled
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\BackupPolicy
      */
-    public function updatePolicy(string $policyId, ?string $name = null, ?int $retention = null, ?string $schedule = null, ?bool $enabled = null): array
+    public function updatePolicy(string $policyId, ?string $name = null, ?int $retention = null, ?string $schedule = null, ?bool $enabled = null): \Appwrite\Models\BackupPolicy
     {
         $apiPath = str_replace(
             ['{policyId}'],
@@ -272,12 +311,18 @@ class Backups extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\BackupPolicy::class]
+        );
+
     }
 
     /**
@@ -301,12 +346,15 @@ class Backups extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $response;
+
     }
 
     /**
@@ -317,9 +365,9 @@ class Backups extends Service
      * @param ?string $newResourceId
      * @param ?string $newResourceName
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\BackupRestoration
      */
-    public function createRestoration(string $archiveId, array $services, ?string $newResourceId = null, ?string $newResourceName = null): array
+    public function createRestoration(string $archiveId, array $services, ?string $newResourceId = null, ?string $newResourceName = null): \Appwrite\Models\BackupRestoration
     {
         $apiPath = str_replace(
             [],
@@ -342,12 +390,18 @@ class Backups extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\BackupRestoration::class]
+        );
+
     }
 
     /**
@@ -355,9 +409,9 @@ class Backups extends Service
      *
      * @param ?array $queries
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\BackupRestorationList
      */
-    public function listRestorations(?array $queries = null): array
+    public function listRestorations(?array $queries = null): \Appwrite\Models\BackupRestorationList
     {
         $apiPath = str_replace(
             [],
@@ -373,12 +427,18 @@ class Backups extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\BackupRestorationList::class]
+        );
+
     }
 
     /**
@@ -386,9 +446,9 @@ class Backups extends Service
      *
      * @param string $restorationId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\BackupRestoration
      */
-    public function getRestoration(string $restorationId): array
+    public function getRestoration(string $restorationId): \Appwrite\Models\BackupRestoration
     {
         $apiPath = str_replace(
             ['{restorationId}'],
@@ -401,11 +461,17 @@ class Backups extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\BackupRestoration::class]
+        );
+
     }
 }

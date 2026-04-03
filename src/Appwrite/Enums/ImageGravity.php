@@ -96,4 +96,20 @@ class ImageGravity implements JsonSerializable
         }
         return self::$BOTTOMRIGHT;
     }
+
+    public static function from(string $value): self
+    {
+        return match ($value) {
+            'center' => self::CENTER(),
+            'top-left' => self::TOPLEFT(),
+            'top' => self::TOP(),
+            'top-right' => self::TOPRIGHT(),
+            'left' => self::LEFT(),
+            'right' => self::RIGHT(),
+            'bottom-left' => self::BOTTOMLEFT(),
+            'bottom' => self::BOTTOM(),
+            'bottom-right' => self::BOTTOMRIGHT(),
+            default => throw new \InvalidArgumentException('Unknown ImageGravity value: ' . $value),
+        };
+    }
 }

@@ -56,4 +56,15 @@ class AuthenticationFactor implements JsonSerializable
         }
         return self::$RECOVERYCODE;
     }
+
+    public static function from(string $value): self
+    {
+        return match ($value) {
+            'email' => self::EMAIL(),
+            'phone' => self::PHONE(),
+            'totp' => self::TOTP(),
+            'recoverycode' => self::RECOVERYCODE(),
+            default => throw new \InvalidArgumentException('Unknown AuthenticationFactor value: ' . $value),
+        };
+    }
 }

@@ -28,9 +28,9 @@ class Functions extends Service
      * @param ?string $search
      * @param ?bool $total
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\FunctionList
      */
-    public function list(?array $queries = null, ?string $search = null, ?bool $total = null): array
+    public function list(?array $queries = null, ?string $search = null, ?bool $total = null): \Appwrite\Models\FunctionList
     {
         $apiPath = str_replace(
             [],
@@ -54,12 +54,18 @@ class Functions extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\FunctionList::class]
+        );
+
     }
 
     /**
@@ -89,9 +95,9 @@ class Functions extends Service
      * @param ?string $runtimeSpecification
      * @param ?int $deploymentRetention
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\FunctionModel
      */
-    public function create(string $functionId, string $name, Runtime $runtime, ?array $execute = null, ?array $events = null, ?string $schedule = null, ?int $timeout = null, ?bool $enabled = null, ?bool $logging = null, ?string $entrypoint = null, ?string $commands = null, ?array $scopes = null, ?string $installationId = null, ?string $providerRepositoryId = null, ?string $providerBranch = null, ?bool $providerSilentMode = null, ?string $providerRootDirectory = null, ?string $buildSpecification = null, ?string $runtimeSpecification = null, ?int $deploymentRetention = null): array
+    public function create(string $functionId, string $name, Runtime $runtime, ?array $execute = null, ?array $events = null, ?string $schedule = null, ?int $timeout = null, ?bool $enabled = null, ?bool $logging = null, ?string $entrypoint = null, ?string $commands = null, ?array $scopes = null, ?string $installationId = null, ?string $providerRepositoryId = null, ?string $providerBranch = null, ?bool $providerSilentMode = null, ?string $providerRootDirectory = null, ?string $buildSpecification = null, ?string $runtimeSpecification = null, ?int $deploymentRetention = null): \Appwrite\Models\FunctionModel
     {
         $apiPath = str_replace(
             [],
@@ -175,21 +181,27 @@ class Functions extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\FunctionModel::class]
+        );
+
     }
 
     /**
      * Get a list of all runtimes that are currently active on your instance.
      *
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\RuntimeList
      */
-    public function listRuntimes(): array
+    public function listRuntimes(): \Appwrite\Models\RuntimeList
     {
         $apiPath = str_replace(
             [],
@@ -201,21 +213,27 @@ class Functions extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\RuntimeList::class]
+        );
+
     }
 
     /**
      * List allowed function specifications for this instance.
      *
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\SpecificationList
      */
-    public function listSpecifications(): array
+    public function listSpecifications(): \Appwrite\Models\SpecificationList
     {
         $apiPath = str_replace(
             [],
@@ -227,12 +245,18 @@ class Functions extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\SpecificationList::class]
+        );
+
     }
 
     /**
@@ -240,9 +264,9 @@ class Functions extends Service
      *
      * @param string $functionId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\FunctionModel
      */
-    public function get(string $functionId): array
+    public function get(string $functionId): \Appwrite\Models\FunctionModel
     {
         $apiPath = str_replace(
             ['{functionId}'],
@@ -255,12 +279,18 @@ class Functions extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\FunctionModel::class]
+        );
+
     }
 
     /**
@@ -287,9 +317,9 @@ class Functions extends Service
      * @param ?string $runtimeSpecification
      * @param ?int $deploymentRetention
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\FunctionModel
      */
-    public function update(string $functionId, string $name, ?Runtime $runtime = null, ?array $execute = null, ?array $events = null, ?string $schedule = null, ?int $timeout = null, ?bool $enabled = null, ?bool $logging = null, ?string $entrypoint = null, ?string $commands = null, ?array $scopes = null, ?string $installationId = null, ?string $providerRepositoryId = null, ?string $providerBranch = null, ?bool $providerSilentMode = null, ?string $providerRootDirectory = null, ?string $buildSpecification = null, ?string $runtimeSpecification = null, ?int $deploymentRetention = null): array
+    public function update(string $functionId, string $name, ?Runtime $runtime = null, ?array $execute = null, ?array $events = null, ?string $schedule = null, ?int $timeout = null, ?bool $enabled = null, ?bool $logging = null, ?string $entrypoint = null, ?string $commands = null, ?array $scopes = null, ?string $installationId = null, ?string $providerRepositoryId = null, ?string $providerBranch = null, ?bool $providerSilentMode = null, ?string $providerRootDirectory = null, ?string $buildSpecification = null, ?string $runtimeSpecification = null, ?int $deploymentRetention = null): \Appwrite\Models\FunctionModel
     {
         $apiPath = str_replace(
             ['{functionId}'],
@@ -373,12 +403,18 @@ class Functions extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PUT,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\FunctionModel::class]
+        );
+
     }
 
     /**
@@ -402,12 +438,15 @@ class Functions extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $response;
+
     }
 
     /**
@@ -417,9 +456,9 @@ class Functions extends Service
      * @param string $functionId
      * @param string $deploymentId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\FunctionModel
      */
-    public function updateFunctionDeployment(string $functionId, string $deploymentId): array
+    public function updateFunctionDeployment(string $functionId, string $deploymentId): \Appwrite\Models\FunctionModel
     {
         $apiPath = str_replace(
             ['{functionId}'],
@@ -434,12 +473,18 @@ class Functions extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\FunctionModel::class]
+        );
+
     }
 
     /**
@@ -451,9 +496,9 @@ class Functions extends Service
      * @param ?string $search
      * @param ?bool $total
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\DeploymentList
      */
-    public function listDeployments(string $functionId, ?array $queries = null, ?string $search = null, ?bool $total = null): array
+    public function listDeployments(string $functionId, ?array $queries = null, ?string $search = null, ?bool $total = null): \Appwrite\Models\DeploymentList
     {
         $apiPath = str_replace(
             ['{functionId}'],
@@ -478,12 +523,18 @@ class Functions extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\DeploymentList::class]
+        );
+
     }
 
     /**
@@ -504,9 +555,9 @@ class Functions extends Service
      * @param ?string $entrypoint
      * @param ?string $commands
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Deployment
      */
-    public function createDeployment(string $functionId, InputFile $code, bool $activate, ?string $entrypoint = null, ?string $commands = null, ?callable $onProgress = null): array
+    public function createDeployment(string $functionId, InputFile $code, bool $activate, ?string $entrypoint = null, ?string $commands = null, ?callable $onProgress = null): \Appwrite\Models\Deployment
     {
         $apiPath = str_replace(
             ['{functionId}'],
@@ -538,9 +589,13 @@ class Functions extends Service
             $postedName = $code->getFilename();
             if ($size <= Client::CHUNK_SIZE) {
                 $apiParams['code'] = new \CURLFile('data://' . $mimeType . ';base64,' . base64_encode($code->getData()), $mimeType, $postedName);
-                return $this->client->call(Client::METHOD_POST, $apiPath, [
+                $response = $this->client->call(Client::METHOD_POST, $apiPath, [
                             'content-type' => 'multipart/form-data',
                         ], $apiParams);
+                return $this->parseResponse(
+                    $response,
+                    [\Appwrite\Models\Deployment::class]
+                );
             }
         } else {
             $size = filesize($code->getPath());
@@ -549,9 +604,13 @@ class Functions extends Service
             //send single file if size is less than or equal to 5MB
             if ($size <= Client::CHUNK_SIZE) {
                 $apiParams['code'] = new \CURLFile($code->getPath(), $mimeType, $postedName);
-                return $this->client->call(Client::METHOD_POST, $apiPath, [
+                $response = $this->client->call(Client::METHOD_POST, $apiPath, [
                             'content-type' => 'multipart/form-data',
                         ], $apiParams);
+                return $this->parseResponse(
+                    $response,
+                    [\Appwrite\Models\Deployment::class]
+                );
             }
         }
 
@@ -599,7 +658,10 @@ class Functions extends Service
         if(!empty($handle)) {
             @fclose($handle);
         }
-        return $response;
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Deployment::class]
+        );
 
     }
 
@@ -614,9 +676,9 @@ class Functions extends Service
      * @param string $deploymentId
      * @param ?string $buildId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Deployment
      */
-    public function createDuplicateDeployment(string $functionId, string $deploymentId, ?string $buildId = null): array
+    public function createDuplicateDeployment(string $functionId, string $deploymentId, ?string $buildId = null): \Appwrite\Models\Deployment
     {
         $apiPath = str_replace(
             ['{functionId}'],
@@ -635,12 +697,18 @@ class Functions extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Deployment::class]
+        );
+
     }
 
     /**
@@ -658,9 +726,9 @@ class Functions extends Service
      * @param string $reference
      * @param ?bool $activate
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Deployment
      */
-    public function createTemplateDeployment(string $functionId, string $repository, string $owner, string $rootDirectory, TemplateReferenceType $type, string $reference, ?bool $activate = null): array
+    public function createTemplateDeployment(string $functionId, string $repository, string $owner, string $rootDirectory, TemplateReferenceType $type, string $reference, ?bool $activate = null): \Appwrite\Models\Deployment
     {
         $apiPath = str_replace(
             ['{functionId}'],
@@ -683,12 +751,18 @@ class Functions extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Deployment::class]
+        );
+
     }
 
     /**
@@ -701,9 +775,9 @@ class Functions extends Service
      * @param string $reference
      * @param ?bool $activate
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Deployment
      */
-    public function createVcsDeployment(string $functionId, VCSReferenceType $type, string $reference, ?bool $activate = null): array
+    public function createVcsDeployment(string $functionId, VCSReferenceType $type, string $reference, ?bool $activate = null): \Appwrite\Models\Deployment
     {
         $apiPath = str_replace(
             ['{functionId}'],
@@ -723,12 +797,18 @@ class Functions extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Deployment::class]
+        );
+
     }
 
     /**
@@ -737,9 +817,9 @@ class Functions extends Service
      * @param string $functionId
      * @param string $deploymentId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Deployment
      */
-    public function getDeployment(string $functionId, string $deploymentId): array
+    public function getDeployment(string $functionId, string $deploymentId): \Appwrite\Models\Deployment
     {
         $apiPath = str_replace(
             ['{functionId}', '{deploymentId}'],
@@ -753,12 +833,18 @@ class Functions extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Deployment::class]
+        );
+
     }
 
     /**
@@ -784,12 +870,15 @@ class Functions extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $response;
+
     }
 
     /**
@@ -821,12 +910,15 @@ class Functions extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $response;
+
     }
 
     /**
@@ -839,9 +931,9 @@ class Functions extends Service
      * @param string $functionId
      * @param string $deploymentId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Deployment
      */
-    public function updateDeploymentStatus(string $functionId, string $deploymentId): array
+    public function updateDeploymentStatus(string $functionId, string $deploymentId): \Appwrite\Models\Deployment
     {
         $apiPath = str_replace(
             ['{functionId}', '{deploymentId}'],
@@ -856,12 +948,18 @@ class Functions extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Deployment::class]
+        );
+
     }
 
     /**
@@ -872,9 +970,9 @@ class Functions extends Service
      * @param ?array $queries
      * @param ?bool $total
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\ExecutionList
      */
-    public function listExecutions(string $functionId, ?array $queries = null, ?bool $total = null): array
+    public function listExecutions(string $functionId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\ExecutionList
     {
         $apiPath = str_replace(
             ['{functionId}'],
@@ -895,12 +993,18 @@ class Functions extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\ExecutionList::class]
+        );
+
     }
 
     /**
@@ -917,9 +1021,9 @@ class Functions extends Service
      * @param ?array $headers
      * @param ?string $scheduledAt
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Execution
      */
-    public function createExecution(string $functionId, ?string $body = null, ?bool $async = null, ?string $xpath = null, ?ExecutionMethod $method = null, ?array $headers = null, ?string $scheduledAt = null): array
+    public function createExecution(string $functionId, ?string $body = null, ?bool $async = null, ?string $xpath = null, ?ExecutionMethod $method = null, ?array $headers = null, ?string $scheduledAt = null): \Appwrite\Models\Execution
     {
         $apiPath = str_replace(
             ['{functionId}'],
@@ -954,12 +1058,18 @@ class Functions extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Execution::class]
+        );
+
     }
 
     /**
@@ -968,9 +1078,9 @@ class Functions extends Service
      * @param string $functionId
      * @param string $executionId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Execution
      */
-    public function getExecution(string $functionId, string $executionId): array
+    public function getExecution(string $functionId, string $executionId): \Appwrite\Models\Execution
     {
         $apiPath = str_replace(
             ['{functionId}', '{executionId}'],
@@ -984,12 +1094,18 @@ class Functions extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Execution::class]
+        );
+
     }
 
     /**
@@ -1015,12 +1131,15 @@ class Functions extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $response;
+
     }
 
     /**
@@ -1028,9 +1147,9 @@ class Functions extends Service
      *
      * @param string $functionId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\VariableList
      */
-    public function listVariables(string $functionId): array
+    public function listVariables(string $functionId): \Appwrite\Models\VariableList
     {
         $apiPath = str_replace(
             ['{functionId}'],
@@ -1043,12 +1162,18 @@ class Functions extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\VariableList::class]
+        );
+
     }
 
     /**
@@ -1060,9 +1185,9 @@ class Functions extends Service
      * @param string $value
      * @param ?bool $secret
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Variable
      */
-    public function createVariable(string $functionId, string $key, string $value, ?bool $secret = null): array
+    public function createVariable(string $functionId, string $key, string $value, ?bool $secret = null): \Appwrite\Models\Variable
     {
         $apiPath = str_replace(
             ['{functionId}'],
@@ -1082,12 +1207,18 @@ class Functions extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Variable::class]
+        );
+
     }
 
     /**
@@ -1096,9 +1227,9 @@ class Functions extends Service
      * @param string $functionId
      * @param string $variableId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Variable
      */
-    public function getVariable(string $functionId, string $variableId): array
+    public function getVariable(string $functionId, string $variableId): \Appwrite\Models\Variable
     {
         $apiPath = str_replace(
             ['{functionId}', '{variableId}'],
@@ -1112,12 +1243,18 @@ class Functions extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Variable::class]
+        );
+
     }
 
     /**
@@ -1129,9 +1266,9 @@ class Functions extends Service
      * @param ?string $value
      * @param ?bool $secret
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Variable
      */
-    public function updateVariable(string $functionId, string $variableId, string $key, ?string $value = null, ?bool $secret = null): array
+    public function updateVariable(string $functionId, string $variableId, string $key, ?string $value = null, ?bool $secret = null): \Appwrite\Models\Variable
     {
         $apiPath = str_replace(
             ['{functionId}', '{variableId}'],
@@ -1149,12 +1286,18 @@ class Functions extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PUT,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Variable::class]
+        );
+
     }
 
     /**
@@ -1180,11 +1323,14 @@ class Functions extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $response;
+
     }
 }

@@ -21,9 +21,9 @@ class Webhooks extends Service
      * @param ?array $queries
      * @param ?bool $total
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\WebhookList
      */
-    public function list(?array $queries = null, ?bool $total = null): array
+    public function list(?array $queries = null, ?bool $total = null): \Appwrite\Models\WebhookList
     {
         $apiPath = str_replace(
             [],
@@ -43,12 +43,18 @@ class Webhooks extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\WebhookList::class]
+        );
+
     }
 
     /**
@@ -64,9 +70,9 @@ class Webhooks extends Service
      * @param ?string $httpUser
      * @param ?string $httpPass
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Webhook
      */
-    public function create(string $webhookId, string $url, string $name, array $events, ?bool $enabled = null, ?bool $security = null, ?string $httpUser = null, ?string $httpPass = null): array
+    public function create(string $webhookId, string $url, string $name, array $events, ?bool $enabled = null, ?bool $security = null, ?string $httpUser = null, ?string $httpPass = null): \Appwrite\Models\Webhook
     {
         $apiPath = str_replace(
             [],
@@ -99,12 +105,18 @@ class Webhooks extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Webhook::class]
+        );
+
     }
 
     /**
@@ -113,9 +125,9 @@ class Webhooks extends Service
      *
      * @param string $webhookId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Webhook
      */
-    public function get(string $webhookId): array
+    public function get(string $webhookId): \Appwrite\Models\Webhook
     {
         $apiPath = str_replace(
             ['{webhookId}'],
@@ -128,12 +140,18 @@ class Webhooks extends Service
 
         $apiHeaders = [];
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Webhook::class]
+        );
+
     }
 
     /**
@@ -149,9 +167,9 @@ class Webhooks extends Service
      * @param ?string $httpUser
      * @param ?string $httpPass
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Webhook
      */
-    public function update(string $webhookId, string $name, string $url, array $events, ?bool $enabled = null, ?bool $security = null, ?string $httpUser = null, ?string $httpPass = null): array
+    public function update(string $webhookId, string $name, string $url, array $events, ?bool $enabled = null, ?bool $security = null, ?string $httpUser = null, ?string $httpPass = null): \Appwrite\Models\Webhook
     {
         $apiPath = str_replace(
             ['{webhookId}'],
@@ -184,12 +202,18 @@ class Webhooks extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PUT,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Webhook::class]
+        );
+
     }
 
     /**
@@ -214,12 +238,15 @@ class Webhooks extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $response;
+
     }
 
     /**
@@ -229,9 +256,9 @@ class Webhooks extends Service
      *
      * @param string $webhookId
      * @throws AppwriteException
-     * @return array
+     * @return \Appwrite\Models\Webhook
      */
-    public function updateSignature(string $webhookId): array
+    public function updateSignature(string $webhookId): \Appwrite\Models\Webhook
     {
         $apiPath = str_replace(
             ['{webhookId}'],
@@ -245,11 +272,17 @@ class Webhooks extends Service
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
-        return $this->client->call(
+        $response = $this->client->call(
             Client::METHOD_PATCH,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
+
+        return $this->parseResponse(
+            $response,
+            [\Appwrite\Models\Webhook::class]
+        );
+
     }
 }
