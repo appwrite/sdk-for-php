@@ -13,115 +13,122 @@ use Appwrite\Enums\VCSReferenceType;
 use Appwrite\Enums\DeploymentDownloadType;
 use Appwrite\Enums\ExecutionMethod;
 
-final class FunctionsTest extends TestCase {
+final class FunctionsTest extends TestCase
+{
     private $client;
     private $functions;
 
-    protected function setUp(): void {
+    protected function setUp(): void
+    {
         $this->client = Mockery::mock(Client::class);
         $this->functions = new Functions($this->client);
     }
 
-    public function testMethodList(): void {
-                        
-        $data = array("total" => 5
-,"functions" =>     array(array("\$id" => "5e5ea5c16897e"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"execute" => array()
-,"name" => "My Function"
-,"enabled" => true
-,"live" => true
-,"logging" => true
-,"runtime" => "python-3.8"
-,"deploymentRetention" => 7
-,"deploymentId" => "5e5ea5c16897e"
-,"deploymentCreatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"latestDeploymentId" => "5e5ea5c16897e"
-,"latestDeploymentCreatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"latestDeploymentStatus" => "ready"
-,"scopes" => array()
-,"vars" =>     array(array("\$id" => "5e5ea5c16897e"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"key" => "API_KEY"
-,"value" => "myPa\$\$word1"
-,"secret" => true
-,"resourceType" => "function"
-,"resourceId" => "myAwesomeFunction"
-)
-)
-    ,"events" => array()
-,"schedule" => "5 4 * * *"
-,"timeout" => 300
-,"entrypoint" => "index.js"
-,"commands" => "npm install"
-,"version" => "v2"
-,"installationId" => "6m40at4ejk5h2u9s1hboo"
-,"providerRepositoryId" => "appwrite"
-,"providerBranch" => "main"
-,"providerRootDirectory" => "functions/helloWorld"
-,"providerSilentMode" => true
-,"buildSpecification" => "s-1vcpu-512mb"
-,"runtimeSpecification" => "s-1vcpu-512mb"
-)
-)
-    )
-;
+    public function testMethodList(): void
+    {
+        $data = array(
+            "total" => 5,
+            "functions" => array(
+                array(
+                    "\$id" => "5e5ea5c16897e",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "execute" => array(),
+                    "name" => "My Function",
+                    "enabled" => true,
+                    "live" => true,
+                    "logging" => true,
+                    "runtime" => "python-3.8",
+                    "deploymentRetention" => 7,
+                    "deploymentId" => "5e5ea5c16897e",
+                    "deploymentCreatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "latestDeploymentId" => "5e5ea5c16897e",
+                    "latestDeploymentCreatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "latestDeploymentStatus" => "ready",
+                    "scopes" => array(),
+                    "vars" => array(
+                        array(
+                            "\$id" => "5e5ea5c16897e",
+                            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                            "key" => "API_KEY",
+                            "value" => "myPa\$\$word1",
+                            "secret" => true,
+                            "resourceType" => "function",
+                            "resourceId" => "myAwesomeFunction"
+                        )
+                    ),
+                    "events" => array(),
+                    "schedule" => "5 4 * * *",
+                    "timeout" => 300,
+                    "entrypoint" => "index.js",
+                    "commands" => "npm install",
+                    "version" => "v2",
+                    "installationId" => "6m40at4ejk5h2u9s1hboo",
+                    "providerRepositoryId" => "appwrite",
+                    "providerBranch" => "main",
+                    "providerRootDirectory" => "functions/helloWorld",
+                    "providerSilentMode" => true,
+                    "buildSpecification" => "s-1vcpu-512mb",
+                    "runtimeSpecification" => "s-1vcpu-512mb"
+                )
+            )
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->functions->list(
+        $response = $this->functions->list();
+
+        $this->assertInstanceOf(\Appwrite\Models\FunctionList::class, $response);
+    }
+
+    public function testMethodCreate(): void
+    {
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "execute" => array(),
+            "name" => "My Function",
+            "enabled" => true,
+            "live" => true,
+            "logging" => true,
+            "runtime" => "python-3.8",
+            "deploymentRetention" => 7,
+            "deploymentId" => "5e5ea5c16897e",
+            "deploymentCreatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "latestDeploymentId" => "5e5ea5c16897e",
+            "latestDeploymentCreatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "latestDeploymentStatus" => "ready",
+            "scopes" => array(),
+            "vars" => array(
+                array(
+                    "\$id" => "5e5ea5c16897e",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "key" => "API_KEY",
+                    "value" => "myPa\$\$word1",
+                    "secret" => true,
+                    "resourceType" => "function",
+                    "resourceId" => "myAwesomeFunction"
+                )
+            ),
+            "events" => array(),
+            "schedule" => "5 4 * * *",
+            "timeout" => 300,
+            "entrypoint" => "index.js",
+            "commands" => "npm install",
+            "version" => "v2",
+            "installationId" => "6m40at4ejk5h2u9s1hboo",
+            "providerRepositoryId" => "appwrite",
+            "providerBranch" => "main",
+            "providerRootDirectory" => "functions/helloWorld",
+            "providerSilentMode" => true,
+            "buildSpecification" => "s-1vcpu-512mb",
+            "runtimeSpecification" => "s-1vcpu-512mb"
         );
-
-                $this->assertInstanceOf(\Appwrite\Models\FunctionList::class, $response);
-            }
-
-    public function testMethodCreate(): void {
-                        
-        $data = array("\$id" => "5e5ea5c16897e"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"execute" => array()
-,"name" => "My Function"
-,"enabled" => true
-,"live" => true
-,"logging" => true
-,"runtime" => "python-3.8"
-,"deploymentRetention" => 7
-,"deploymentId" => "5e5ea5c16897e"
-,"deploymentCreatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"latestDeploymentId" => "5e5ea5c16897e"
-,"latestDeploymentCreatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"latestDeploymentStatus" => "ready"
-,"scopes" => array()
-,"vars" =>     array(array("\$id" => "5e5ea5c16897e"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"key" => "API_KEY"
-,"value" => "myPa\$\$word1"
-,"secret" => true
-,"resourceType" => "function"
-,"resourceId" => "myAwesomeFunction"
-)
-)
-    ,"events" => array()
-,"schedule" => "5 4 * * *"
-,"timeout" => 300
-,"entrypoint" => "index.js"
-,"commands" => "npm install"
-,"version" => "v2"
-,"installationId" => "6m40at4ejk5h2u9s1hboo"
-,"providerRepositoryId" => "appwrite"
-,"providerBranch" => "main"
-,"providerRootDirectory" => "functions/helloWorld"
-,"providerSilentMode" => true
-,"buildSpecification" => "s-1vcpu-512mb"
-,"runtimeSpecification" => "s-1vcpu-512mb"
-)
-;
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -133,100 +140,104 @@ final class FunctionsTest extends TestCase {
             Runtime::NODE145()
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\FunctionModel::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\FunctionModel::class, $response);
+    }
 
-    public function testMethodListRuntimes(): void {
-                        
-        $data = array("total" => 5
-,"runtimes" =>     array(array("\$id" => "python-3.8"
-,"key" => "python"
-,"name" => "Python"
-,"version" => "3.8"
-,"base" => "python:3.8-alpine"
-,"image" => "appwrite\\/runtime-for-python:3.8"
-,"logo" => "python.png"
-,"supports" => array()
-)
-)
-    )
-;
+    public function testMethodListRuntimes(): void
+    {
+        $data = array(
+            "total" => 5,
+            "runtimes" => array(
+                array(
+                    "\$id" => "python-3.8",
+                    "key" => "python",
+                    "name" => "Python",
+                    "version" => "3.8",
+                    "base" => "python:3.8-alpine",
+                    "image" => "appwrite\\/runtime-for-python:3.8",
+                    "logo" => "python.png",
+                    "supports" => array()
+                )
+            )
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->functions->listRuntimes(
+        $response = $this->functions->listRuntimes();
+
+        $this->assertInstanceOf(\Appwrite\Models\RuntimeList::class, $response);
+    }
+
+    public function testMethodListSpecifications(): void
+    {
+        $data = array(
+            "total" => 5,
+            "specifications" => array(
+                array(
+                    "memory" => 512,
+                    "cpus" => 1,
+                    "enabled" => true,
+                    "slug" => "s-1vcpu-512mb"
+                )
+            )
         );
-
-                $this->assertInstanceOf(\Appwrite\Models\RuntimeList::class, $response);
-            }
-
-    public function testMethodListSpecifications(): void {
-                        
-        $data = array("total" => 5
-,"specifications" =>     array(array("memory" => 512
-,"cpus" => 1
-,"enabled" => true
-,"slug" => "s-1vcpu-512mb"
-)
-)
-    )
-;
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->functions->listSpecifications(
+        $response = $this->functions->listSpecifications();
+
+        $this->assertInstanceOf(\Appwrite\Models\SpecificationList::class, $response);
+    }
+
+    public function testMethodGet(): void
+    {
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "execute" => array(),
+            "name" => "My Function",
+            "enabled" => true,
+            "live" => true,
+            "logging" => true,
+            "runtime" => "python-3.8",
+            "deploymentRetention" => 7,
+            "deploymentId" => "5e5ea5c16897e",
+            "deploymentCreatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "latestDeploymentId" => "5e5ea5c16897e",
+            "latestDeploymentCreatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "latestDeploymentStatus" => "ready",
+            "scopes" => array(),
+            "vars" => array(
+                array(
+                    "\$id" => "5e5ea5c16897e",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "key" => "API_KEY",
+                    "value" => "myPa\$\$word1",
+                    "secret" => true,
+                    "resourceType" => "function",
+                    "resourceId" => "myAwesomeFunction"
+                )
+            ),
+            "events" => array(),
+            "schedule" => "5 4 * * *",
+            "timeout" => 300,
+            "entrypoint" => "index.js",
+            "commands" => "npm install",
+            "version" => "v2",
+            "installationId" => "6m40at4ejk5h2u9s1hboo",
+            "providerRepositoryId" => "appwrite",
+            "providerBranch" => "main",
+            "providerRootDirectory" => "functions/helloWorld",
+            "providerSilentMode" => true,
+            "buildSpecification" => "s-1vcpu-512mb",
+            "runtimeSpecification" => "s-1vcpu-512mb"
         );
-
-                $this->assertInstanceOf(\Appwrite\Models\SpecificationList::class, $response);
-            }
-
-    public function testMethodGet(): void {
-                        
-        $data = array("\$id" => "5e5ea5c16897e"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"execute" => array()
-,"name" => "My Function"
-,"enabled" => true
-,"live" => true
-,"logging" => true
-,"runtime" => "python-3.8"
-,"deploymentRetention" => 7
-,"deploymentId" => "5e5ea5c16897e"
-,"deploymentCreatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"latestDeploymentId" => "5e5ea5c16897e"
-,"latestDeploymentCreatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"latestDeploymentStatus" => "ready"
-,"scopes" => array()
-,"vars" =>     array(array("\$id" => "5e5ea5c16897e"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"key" => "API_KEY"
-,"value" => "myPa\$\$word1"
-,"secret" => true
-,"resourceType" => "function"
-,"resourceId" => "myAwesomeFunction"
-)
-)
-    ,"events" => array()
-,"schedule" => "5 4 * * *"
-,"timeout" => 300
-,"entrypoint" => "index.js"
-,"commands" => "npm install"
-,"version" => "v2"
-,"installationId" => "6m40at4ejk5h2u9s1hboo"
-,"providerRepositoryId" => "appwrite"
-,"providerBranch" => "main"
-,"providerRootDirectory" => "functions/helloWorld"
-,"providerSilentMode" => true
-,"buildSpecification" => "s-1vcpu-512mb"
-,"runtimeSpecification" => "s-1vcpu-512mb"
-)
-;
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -236,52 +247,54 @@ final class FunctionsTest extends TestCase {
             "<FUNCTION_ID>"
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\FunctionModel::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\FunctionModel::class, $response);
+    }
 
-    public function testMethodUpdate(): void {
-                        
-        $data = array("\$id" => "5e5ea5c16897e"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"execute" => array()
-,"name" => "My Function"
-,"enabled" => true
-,"live" => true
-,"logging" => true
-,"runtime" => "python-3.8"
-,"deploymentRetention" => 7
-,"deploymentId" => "5e5ea5c16897e"
-,"deploymentCreatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"latestDeploymentId" => "5e5ea5c16897e"
-,"latestDeploymentCreatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"latestDeploymentStatus" => "ready"
-,"scopes" => array()
-,"vars" =>     array(array("\$id" => "5e5ea5c16897e"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"key" => "API_KEY"
-,"value" => "myPa\$\$word1"
-,"secret" => true
-,"resourceType" => "function"
-,"resourceId" => "myAwesomeFunction"
-)
-)
-    ,"events" => array()
-,"schedule" => "5 4 * * *"
-,"timeout" => 300
-,"entrypoint" => "index.js"
-,"commands" => "npm install"
-,"version" => "v2"
-,"installationId" => "6m40at4ejk5h2u9s1hboo"
-,"providerRepositoryId" => "appwrite"
-,"providerBranch" => "main"
-,"providerRootDirectory" => "functions/helloWorld"
-,"providerSilentMode" => true
-,"buildSpecification" => "s-1vcpu-512mb"
-,"runtimeSpecification" => "s-1vcpu-512mb"
-)
-;
+    public function testMethodUpdate(): void
+    {
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "execute" => array(),
+            "name" => "My Function",
+            "enabled" => true,
+            "live" => true,
+            "logging" => true,
+            "runtime" => "python-3.8",
+            "deploymentRetention" => 7,
+            "deploymentId" => "5e5ea5c16897e",
+            "deploymentCreatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "latestDeploymentId" => "5e5ea5c16897e",
+            "latestDeploymentCreatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "latestDeploymentStatus" => "ready",
+            "scopes" => array(),
+            "vars" => array(
+                array(
+                    "\$id" => "5e5ea5c16897e",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "key" => "API_KEY",
+                    "value" => "myPa\$\$word1",
+                    "secret" => true,
+                    "resourceType" => "function",
+                    "resourceId" => "myAwesomeFunction"
+                )
+            ),
+            "events" => array(),
+            "schedule" => "5 4 * * *",
+            "timeout" => 300,
+            "entrypoint" => "index.js",
+            "commands" => "npm install",
+            "version" => "v2",
+            "installationId" => "6m40at4ejk5h2u9s1hboo",
+            "providerRepositoryId" => "appwrite",
+            "providerBranch" => "main",
+            "providerRootDirectory" => "functions/helloWorld",
+            "providerSilentMode" => true,
+            "buildSpecification" => "s-1vcpu-512mb",
+            "runtimeSpecification" => "s-1vcpu-512mb"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -292,11 +305,11 @@ final class FunctionsTest extends TestCase {
             "<NAME>"
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\FunctionModel::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\FunctionModel::class, $response);
+    }
 
-    public function testMethodDelete(): void {
-                        
+    public function testMethodDelete(): void
+    {
         $data = '';
 
         $this->client
@@ -307,52 +320,54 @@ final class FunctionsTest extends TestCase {
             "<FUNCTION_ID>"
         );
 
-                $this->assertSame($data, $response);
-            }
+        $this->assertSame($data, $response);
+    }
 
-    public function testMethodUpdateFunctionDeployment(): void {
-                        
-        $data = array("\$id" => "5e5ea5c16897e"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"execute" => array()
-,"name" => "My Function"
-,"enabled" => true
-,"live" => true
-,"logging" => true
-,"runtime" => "python-3.8"
-,"deploymentRetention" => 7
-,"deploymentId" => "5e5ea5c16897e"
-,"deploymentCreatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"latestDeploymentId" => "5e5ea5c16897e"
-,"latestDeploymentCreatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"latestDeploymentStatus" => "ready"
-,"scopes" => array()
-,"vars" =>     array(array("\$id" => "5e5ea5c16897e"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"key" => "API_KEY"
-,"value" => "myPa\$\$word1"
-,"secret" => true
-,"resourceType" => "function"
-,"resourceId" => "myAwesomeFunction"
-)
-)
-    ,"events" => array()
-,"schedule" => "5 4 * * *"
-,"timeout" => 300
-,"entrypoint" => "index.js"
-,"commands" => "npm install"
-,"version" => "v2"
-,"installationId" => "6m40at4ejk5h2u9s1hboo"
-,"providerRepositoryId" => "appwrite"
-,"providerBranch" => "main"
-,"providerRootDirectory" => "functions/helloWorld"
-,"providerSilentMode" => true
-,"buildSpecification" => "s-1vcpu-512mb"
-,"runtimeSpecification" => "s-1vcpu-512mb"
-)
-;
+    public function testMethodUpdateFunctionDeployment(): void
+    {
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "execute" => array(),
+            "name" => "My Function",
+            "enabled" => true,
+            "live" => true,
+            "logging" => true,
+            "runtime" => "python-3.8",
+            "deploymentRetention" => 7,
+            "deploymentId" => "5e5ea5c16897e",
+            "deploymentCreatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "latestDeploymentId" => "5e5ea5c16897e",
+            "latestDeploymentCreatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "latestDeploymentStatus" => "ready",
+            "scopes" => array(),
+            "vars" => array(
+                array(
+                    "\$id" => "5e5ea5c16897e",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "key" => "API_KEY",
+                    "value" => "myPa\$\$word1",
+                    "secret" => true,
+                    "resourceType" => "function",
+                    "resourceId" => "myAwesomeFunction"
+                )
+            ),
+            "events" => array(),
+            "schedule" => "5 4 * * *",
+            "timeout" => 300,
+            "entrypoint" => "index.js",
+            "commands" => "npm install",
+            "version" => "v2",
+            "installationId" => "6m40at4ejk5h2u9s1hboo",
+            "providerRepositoryId" => "appwrite",
+            "providerBranch" => "main",
+            "providerRootDirectory" => "functions/helloWorld",
+            "providerSilentMode" => true,
+            "buildSpecification" => "s-1vcpu-512mb",
+            "runtimeSpecification" => "s-1vcpu-512mb"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -363,43 +378,45 @@ final class FunctionsTest extends TestCase {
             "<DEPLOYMENT_ID>"
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\FunctionModel::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\FunctionModel::class, $response);
+    }
 
-    public function testMethodListDeployments(): void {
-                        
-        $data = array("total" => 5
-,"deployments" =>     array(array("\$id" => "5e5ea5c16897e"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"type" => "vcs"
-,"resourceId" => "5e5ea6g16897e"
-,"resourceType" => "functions"
-,"entrypoint" => "index.js"
-,"sourceSize" => 128
-,"buildSize" => 128
-,"totalSize" => 128
-,"buildId" => "5e5ea5c16897e"
-,"activate" => true
-,"screenshotLight" => "5e5ea5c16897e"
-,"screenshotDark" => "5e5ea5c16897e"
-,"status" => "waiting"
-,"buildLogs" => "Compiling source files..."
-,"buildDuration" => 128
-,"providerRepositoryName" => "database"
-,"providerRepositoryOwner" => "utopia"
-,"providerRepositoryUrl" => "https://github.com/vermakhushboo/g4-node-function"
-,"providerCommitHash" => "7c3f25d"
-,"providerCommitAuthorUrl" => "https://github.com/vermakhushboo"
-,"providerCommitAuthor" => "Khushboo Verma"
-,"providerCommitMessage" => "Update index.js"
-,"providerCommitUrl" => "https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb"
-,"providerBranch" => "0.7.x"
-,"providerBranchUrl" => "https://github.com/vermakhushboo/appwrite/tree/0.7.x"
-)
-)
-    )
-;
+    public function testMethodListDeployments(): void
+    {
+        $data = array(
+            "total" => 5,
+            "deployments" => array(
+                array(
+                    "\$id" => "5e5ea5c16897e",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "type" => "vcs",
+                    "resourceId" => "5e5ea6g16897e",
+                    "resourceType" => "functions",
+                    "entrypoint" => "index.js",
+                    "sourceSize" => 128,
+                    "buildSize" => 128,
+                    "totalSize" => 128,
+                    "buildId" => "5e5ea5c16897e",
+                    "activate" => true,
+                    "screenshotLight" => "5e5ea5c16897e",
+                    "screenshotDark" => "5e5ea5c16897e",
+                    "status" => "waiting",
+                    "buildLogs" => "Compiling source files...",
+                    "buildDuration" => 128,
+                    "providerRepositoryName" => "database",
+                    "providerRepositoryOwner" => "utopia",
+                    "providerRepositoryUrl" => "https://github.com/vermakhushboo/g4-node-function",
+                    "providerCommitHash" => "7c3f25d",
+                    "providerCommitAuthorUrl" => "https://github.com/vermakhushboo",
+                    "providerCommitAuthor" => "Khushboo Verma",
+                    "providerCommitMessage" => "Update index.js",
+                    "providerCommitUrl" => "https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb",
+                    "providerBranch" => "0.7.x",
+                    "providerBranchUrl" => "https://github.com/vermakhushboo/appwrite/tree/0.7.x"
+                )
+            )
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -409,40 +426,40 @@ final class FunctionsTest extends TestCase {
             "<FUNCTION_ID>"
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\DeploymentList::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\DeploymentList::class, $response);
+    }
 
-    public function testMethodCreateDeployment(): void {
-                        
-        $data = array("\$id" => "5e5ea5c16897e"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"type" => "vcs"
-,"resourceId" => "5e5ea6g16897e"
-,"resourceType" => "functions"
-,"entrypoint" => "index.js"
-,"sourceSize" => 128
-,"buildSize" => 128
-,"totalSize" => 128
-,"buildId" => "5e5ea5c16897e"
-,"activate" => true
-,"screenshotLight" => "5e5ea5c16897e"
-,"screenshotDark" => "5e5ea5c16897e"
-,"status" => "waiting"
-,"buildLogs" => "Compiling source files..."
-,"buildDuration" => 128
-,"providerRepositoryName" => "database"
-,"providerRepositoryOwner" => "utopia"
-,"providerRepositoryUrl" => "https://github.com/vermakhushboo/g4-node-function"
-,"providerCommitHash" => "7c3f25d"
-,"providerCommitAuthorUrl" => "https://github.com/vermakhushboo"
-,"providerCommitAuthor" => "Khushboo Verma"
-,"providerCommitMessage" => "Update index.js"
-,"providerCommitUrl" => "https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb"
-,"providerBranch" => "0.7.x"
-,"providerBranchUrl" => "https://github.com/vermakhushboo/appwrite/tree/0.7.x"
-)
-;
+    public function testMethodCreateDeployment(): void
+    {
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "type" => "vcs",
+            "resourceId" => "5e5ea6g16897e",
+            "resourceType" => "functions",
+            "entrypoint" => "index.js",
+            "sourceSize" => 128,
+            "buildSize" => 128,
+            "totalSize" => 128,
+            "buildId" => "5e5ea5c16897e",
+            "activate" => true,
+            "screenshotLight" => "5e5ea5c16897e",
+            "screenshotDark" => "5e5ea5c16897e",
+            "status" => "waiting",
+            "buildLogs" => "Compiling source files...",
+            "buildDuration" => 128,
+            "providerRepositoryName" => "database",
+            "providerRepositoryOwner" => "utopia",
+            "providerRepositoryUrl" => "https://github.com/vermakhushboo/g4-node-function",
+            "providerCommitHash" => "7c3f25d",
+            "providerCommitAuthorUrl" => "https://github.com/vermakhushboo",
+            "providerCommitAuthor" => "Khushboo Verma",
+            "providerCommitMessage" => "Update index.js",
+            "providerCommitUrl" => "https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb",
+            "providerBranch" => "0.7.x",
+            "providerBranchUrl" => "https://github.com/vermakhushboo/appwrite/tree/0.7.x"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -450,44 +467,44 @@ final class FunctionsTest extends TestCase {
 
         $response = $this->functions->createDeployment(
             "<FUNCTION_ID>",
-            InputFile::withData('', "image/png"),
+            InputFile::withData('', 'image/png'),
             true
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\Deployment::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\Deployment::class, $response);
+    }
 
-    public function testMethodCreateDuplicateDeployment(): void {
-                        
-        $data = array("\$id" => "5e5ea5c16897e"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"type" => "vcs"
-,"resourceId" => "5e5ea6g16897e"
-,"resourceType" => "functions"
-,"entrypoint" => "index.js"
-,"sourceSize" => 128
-,"buildSize" => 128
-,"totalSize" => 128
-,"buildId" => "5e5ea5c16897e"
-,"activate" => true
-,"screenshotLight" => "5e5ea5c16897e"
-,"screenshotDark" => "5e5ea5c16897e"
-,"status" => "waiting"
-,"buildLogs" => "Compiling source files..."
-,"buildDuration" => 128
-,"providerRepositoryName" => "database"
-,"providerRepositoryOwner" => "utopia"
-,"providerRepositoryUrl" => "https://github.com/vermakhushboo/g4-node-function"
-,"providerCommitHash" => "7c3f25d"
-,"providerCommitAuthorUrl" => "https://github.com/vermakhushboo"
-,"providerCommitAuthor" => "Khushboo Verma"
-,"providerCommitMessage" => "Update index.js"
-,"providerCommitUrl" => "https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb"
-,"providerBranch" => "0.7.x"
-,"providerBranchUrl" => "https://github.com/vermakhushboo/appwrite/tree/0.7.x"
-)
-;
+    public function testMethodCreateDuplicateDeployment(): void
+    {
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "type" => "vcs",
+            "resourceId" => "5e5ea6g16897e",
+            "resourceType" => "functions",
+            "entrypoint" => "index.js",
+            "sourceSize" => 128,
+            "buildSize" => 128,
+            "totalSize" => 128,
+            "buildId" => "5e5ea5c16897e",
+            "activate" => true,
+            "screenshotLight" => "5e5ea5c16897e",
+            "screenshotDark" => "5e5ea5c16897e",
+            "status" => "waiting",
+            "buildLogs" => "Compiling source files...",
+            "buildDuration" => 128,
+            "providerRepositoryName" => "database",
+            "providerRepositoryOwner" => "utopia",
+            "providerRepositoryUrl" => "https://github.com/vermakhushboo/g4-node-function",
+            "providerCommitHash" => "7c3f25d",
+            "providerCommitAuthorUrl" => "https://github.com/vermakhushboo",
+            "providerCommitAuthor" => "Khushboo Verma",
+            "providerCommitMessage" => "Update index.js",
+            "providerCommitUrl" => "https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb",
+            "providerBranch" => "0.7.x",
+            "providerBranchUrl" => "https://github.com/vermakhushboo/appwrite/tree/0.7.x"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -498,40 +515,40 @@ final class FunctionsTest extends TestCase {
             "<DEPLOYMENT_ID>"
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\Deployment::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\Deployment::class, $response);
+    }
 
-    public function testMethodCreateTemplateDeployment(): void {
-                        
-        $data = array("\$id" => "5e5ea5c16897e"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"type" => "vcs"
-,"resourceId" => "5e5ea6g16897e"
-,"resourceType" => "functions"
-,"entrypoint" => "index.js"
-,"sourceSize" => 128
-,"buildSize" => 128
-,"totalSize" => 128
-,"buildId" => "5e5ea5c16897e"
-,"activate" => true
-,"screenshotLight" => "5e5ea5c16897e"
-,"screenshotDark" => "5e5ea5c16897e"
-,"status" => "waiting"
-,"buildLogs" => "Compiling source files..."
-,"buildDuration" => 128
-,"providerRepositoryName" => "database"
-,"providerRepositoryOwner" => "utopia"
-,"providerRepositoryUrl" => "https://github.com/vermakhushboo/g4-node-function"
-,"providerCommitHash" => "7c3f25d"
-,"providerCommitAuthorUrl" => "https://github.com/vermakhushboo"
-,"providerCommitAuthor" => "Khushboo Verma"
-,"providerCommitMessage" => "Update index.js"
-,"providerCommitUrl" => "https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb"
-,"providerBranch" => "0.7.x"
-,"providerBranchUrl" => "https://github.com/vermakhushboo/appwrite/tree/0.7.x"
-)
-;
+    public function testMethodCreateTemplateDeployment(): void
+    {
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "type" => "vcs",
+            "resourceId" => "5e5ea6g16897e",
+            "resourceType" => "functions",
+            "entrypoint" => "index.js",
+            "sourceSize" => 128,
+            "buildSize" => 128,
+            "totalSize" => 128,
+            "buildId" => "5e5ea5c16897e",
+            "activate" => true,
+            "screenshotLight" => "5e5ea5c16897e",
+            "screenshotDark" => "5e5ea5c16897e",
+            "status" => "waiting",
+            "buildLogs" => "Compiling source files...",
+            "buildDuration" => 128,
+            "providerRepositoryName" => "database",
+            "providerRepositoryOwner" => "utopia",
+            "providerRepositoryUrl" => "https://github.com/vermakhushboo/g4-node-function",
+            "providerCommitHash" => "7c3f25d",
+            "providerCommitAuthorUrl" => "https://github.com/vermakhushboo",
+            "providerCommitAuthor" => "Khushboo Verma",
+            "providerCommitMessage" => "Update index.js",
+            "providerCommitUrl" => "https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb",
+            "providerBranch" => "0.7.x",
+            "providerBranchUrl" => "https://github.com/vermakhushboo/appwrite/tree/0.7.x"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -546,40 +563,40 @@ final class FunctionsTest extends TestCase {
             "<REFERENCE>"
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\Deployment::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\Deployment::class, $response);
+    }
 
-    public function testMethodCreateVcsDeployment(): void {
-                        
-        $data = array("\$id" => "5e5ea5c16897e"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"type" => "vcs"
-,"resourceId" => "5e5ea6g16897e"
-,"resourceType" => "functions"
-,"entrypoint" => "index.js"
-,"sourceSize" => 128
-,"buildSize" => 128
-,"totalSize" => 128
-,"buildId" => "5e5ea5c16897e"
-,"activate" => true
-,"screenshotLight" => "5e5ea5c16897e"
-,"screenshotDark" => "5e5ea5c16897e"
-,"status" => "waiting"
-,"buildLogs" => "Compiling source files..."
-,"buildDuration" => 128
-,"providerRepositoryName" => "database"
-,"providerRepositoryOwner" => "utopia"
-,"providerRepositoryUrl" => "https://github.com/vermakhushboo/g4-node-function"
-,"providerCommitHash" => "7c3f25d"
-,"providerCommitAuthorUrl" => "https://github.com/vermakhushboo"
-,"providerCommitAuthor" => "Khushboo Verma"
-,"providerCommitMessage" => "Update index.js"
-,"providerCommitUrl" => "https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb"
-,"providerBranch" => "0.7.x"
-,"providerBranchUrl" => "https://github.com/vermakhushboo/appwrite/tree/0.7.x"
-)
-;
+    public function testMethodCreateVcsDeployment(): void
+    {
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "type" => "vcs",
+            "resourceId" => "5e5ea6g16897e",
+            "resourceType" => "functions",
+            "entrypoint" => "index.js",
+            "sourceSize" => 128,
+            "buildSize" => 128,
+            "totalSize" => 128,
+            "buildId" => "5e5ea5c16897e",
+            "activate" => true,
+            "screenshotLight" => "5e5ea5c16897e",
+            "screenshotDark" => "5e5ea5c16897e",
+            "status" => "waiting",
+            "buildLogs" => "Compiling source files...",
+            "buildDuration" => 128,
+            "providerRepositoryName" => "database",
+            "providerRepositoryOwner" => "utopia",
+            "providerRepositoryUrl" => "https://github.com/vermakhushboo/g4-node-function",
+            "providerCommitHash" => "7c3f25d",
+            "providerCommitAuthorUrl" => "https://github.com/vermakhushboo",
+            "providerCommitAuthor" => "Khushboo Verma",
+            "providerCommitMessage" => "Update index.js",
+            "providerCommitUrl" => "https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb",
+            "providerBranch" => "0.7.x",
+            "providerBranchUrl" => "https://github.com/vermakhushboo/appwrite/tree/0.7.x"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -591,40 +608,40 @@ final class FunctionsTest extends TestCase {
             "<REFERENCE>"
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\Deployment::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\Deployment::class, $response);
+    }
 
-    public function testMethodGetDeployment(): void {
-                        
-        $data = array("\$id" => "5e5ea5c16897e"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"type" => "vcs"
-,"resourceId" => "5e5ea6g16897e"
-,"resourceType" => "functions"
-,"entrypoint" => "index.js"
-,"sourceSize" => 128
-,"buildSize" => 128
-,"totalSize" => 128
-,"buildId" => "5e5ea5c16897e"
-,"activate" => true
-,"screenshotLight" => "5e5ea5c16897e"
-,"screenshotDark" => "5e5ea5c16897e"
-,"status" => "waiting"
-,"buildLogs" => "Compiling source files..."
-,"buildDuration" => 128
-,"providerRepositoryName" => "database"
-,"providerRepositoryOwner" => "utopia"
-,"providerRepositoryUrl" => "https://github.com/vermakhushboo/g4-node-function"
-,"providerCommitHash" => "7c3f25d"
-,"providerCommitAuthorUrl" => "https://github.com/vermakhushboo"
-,"providerCommitAuthor" => "Khushboo Verma"
-,"providerCommitMessage" => "Update index.js"
-,"providerCommitUrl" => "https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb"
-,"providerBranch" => "0.7.x"
-,"providerBranchUrl" => "https://github.com/vermakhushboo/appwrite/tree/0.7.x"
-)
-;
+    public function testMethodGetDeployment(): void
+    {
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "type" => "vcs",
+            "resourceId" => "5e5ea6g16897e",
+            "resourceType" => "functions",
+            "entrypoint" => "index.js",
+            "sourceSize" => 128,
+            "buildSize" => 128,
+            "totalSize" => 128,
+            "buildId" => "5e5ea5c16897e",
+            "activate" => true,
+            "screenshotLight" => "5e5ea5c16897e",
+            "screenshotDark" => "5e5ea5c16897e",
+            "status" => "waiting",
+            "buildLogs" => "Compiling source files...",
+            "buildDuration" => 128,
+            "providerRepositoryName" => "database",
+            "providerRepositoryOwner" => "utopia",
+            "providerRepositoryUrl" => "https://github.com/vermakhushboo/g4-node-function",
+            "providerCommitHash" => "7c3f25d",
+            "providerCommitAuthorUrl" => "https://github.com/vermakhushboo",
+            "providerCommitAuthor" => "Khushboo Verma",
+            "providerCommitMessage" => "Update index.js",
+            "providerCommitUrl" => "https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb",
+            "providerBranch" => "0.7.x",
+            "providerBranchUrl" => "https://github.com/vermakhushboo/appwrite/tree/0.7.x"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -635,11 +652,11 @@ final class FunctionsTest extends TestCase {
             "<DEPLOYMENT_ID>"
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\Deployment::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\Deployment::class, $response);
+    }
 
-    public function testMethodDeleteDeployment(): void {
-                        
+    public function testMethodDeleteDeployment(): void
+    {
         $data = '';
 
         $this->client
@@ -651,11 +668,11 @@ final class FunctionsTest extends TestCase {
             "<DEPLOYMENT_ID>"
         );
 
-                $this->assertSame($data, $response);
-            }
+        $this->assertSame($data, $response);
+    }
 
-    public function testMethodGetDeploymentDownload(): void {
-                        
+    public function testMethodGetDeploymentDownload(): void
+    {
         $data = '';
 
         $this->client
@@ -667,40 +684,40 @@ final class FunctionsTest extends TestCase {
             "<DEPLOYMENT_ID>"
         );
 
-                $this->assertSame($data, $response);
-            }
+        $this->assertSame($data, $response);
+    }
 
-    public function testMethodUpdateDeploymentStatus(): void {
-                        
-        $data = array("\$id" => "5e5ea5c16897e"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"type" => "vcs"
-,"resourceId" => "5e5ea6g16897e"
-,"resourceType" => "functions"
-,"entrypoint" => "index.js"
-,"sourceSize" => 128
-,"buildSize" => 128
-,"totalSize" => 128
-,"buildId" => "5e5ea5c16897e"
-,"activate" => true
-,"screenshotLight" => "5e5ea5c16897e"
-,"screenshotDark" => "5e5ea5c16897e"
-,"status" => "waiting"
-,"buildLogs" => "Compiling source files..."
-,"buildDuration" => 128
-,"providerRepositoryName" => "database"
-,"providerRepositoryOwner" => "utopia"
-,"providerRepositoryUrl" => "https://github.com/vermakhushboo/g4-node-function"
-,"providerCommitHash" => "7c3f25d"
-,"providerCommitAuthorUrl" => "https://github.com/vermakhushboo"
-,"providerCommitAuthor" => "Khushboo Verma"
-,"providerCommitMessage" => "Update index.js"
-,"providerCommitUrl" => "https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb"
-,"providerBranch" => "0.7.x"
-,"providerBranchUrl" => "https://github.com/vermakhushboo/appwrite/tree/0.7.x"
-)
-;
+    public function testMethodUpdateDeploymentStatus(): void
+    {
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "type" => "vcs",
+            "resourceId" => "5e5ea6g16897e",
+            "resourceType" => "functions",
+            "entrypoint" => "index.js",
+            "sourceSize" => 128,
+            "buildSize" => 128,
+            "totalSize" => 128,
+            "buildId" => "5e5ea5c16897e",
+            "activate" => true,
+            "screenshotLight" => "5e5ea5c16897e",
+            "screenshotDark" => "5e5ea5c16897e",
+            "status" => "waiting",
+            "buildLogs" => "Compiling source files...",
+            "buildDuration" => 128,
+            "providerRepositoryName" => "database",
+            "providerRepositoryOwner" => "utopia",
+            "providerRepositoryUrl" => "https://github.com/vermakhushboo/g4-node-function",
+            "providerCommitHash" => "7c3f25d",
+            "providerCommitAuthorUrl" => "https://github.com/vermakhushboo",
+            "providerCommitAuthor" => "Khushboo Verma",
+            "providerCommitMessage" => "Update index.js",
+            "providerCommitUrl" => "https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb",
+            "providerBranch" => "0.7.x",
+            "providerBranchUrl" => "https://github.com/vermakhushboo/appwrite/tree/0.7.x"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -711,39 +728,45 @@ final class FunctionsTest extends TestCase {
             "<DEPLOYMENT_ID>"
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\Deployment::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\Deployment::class, $response);
+    }
 
-    public function testMethodListExecutions(): void {
-                        
-        $data = array("total" => 5
-,"executions" =>     array(array("\$id" => "5e5ea5c16897e"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$permissions" => array()
-,"functionId" => "5e5ea6g16897e"
-,"deploymentId" => "5e5ea5c16897e"
-,"trigger" => "http"
-,"status" => "waiting"
-,"requestMethod" => "GET"
-,"requestPath" => "/articles?id=5"
-,"requestHeaders" =>     array(array("name" => "Content-Type"
-,"value" => "application/json"
-)
-)
-    ,"responseStatusCode" => 200
-,"responseBody" => "[RESPONSEBODY]"
-,"responseHeaders" =>     array(array("name" => "Content-Type"
-,"value" => "application/json"
-)
-)
-    ,"logs" => "[LOGS]"
-,"errors" => "[ERRORS]"
-,"duration" => 0.4
-)
-)
-    )
-;
+    public function testMethodListExecutions(): void
+    {
+        $data = array(
+            "total" => 5,
+            "executions" => array(
+                array(
+                    "\$id" => "5e5ea5c16897e",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$permissions" => array(),
+                    "functionId" => "5e5ea6g16897e",
+                    "deploymentId" => "5e5ea5c16897e",
+                    "trigger" => "http",
+                    "status" => "waiting",
+                    "requestMethod" => "GET",
+                    "requestPath" => "/articles?id=5",
+                    "requestHeaders" => array(
+                        array(
+                            "name" => "Content-Type",
+                            "value" => "application/json"
+                        )
+                    ),
+                    "responseStatusCode" => 200,
+                    "responseBody" => "[RESPONSEBODY]",
+                    "responseHeaders" => array(
+                        array(
+                            "name" => "Content-Type",
+                            "value" => "application/json"
+                        )
+                    ),
+                    "logs" => "[LOGS]",
+                    "errors" => "[ERRORS]",
+                    "duration" => 0.4
+                )
+            )
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -753,36 +776,40 @@ final class FunctionsTest extends TestCase {
             "<FUNCTION_ID>"
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\ExecutionList::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\ExecutionList::class, $response);
+    }
 
-    public function testMethodCreateExecution(): void {
-                        
-        $data = array("\$id" => "5e5ea5c16897e"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$permissions" => array()
-,"functionId" => "5e5ea6g16897e"
-,"deploymentId" => "5e5ea5c16897e"
-,"trigger" => "http"
-,"status" => "waiting"
-,"requestMethod" => "GET"
-,"requestPath" => "/articles?id=5"
-,"requestHeaders" =>     array(array("name" => "Content-Type"
-,"value" => "application/json"
-)
-)
-    ,"responseStatusCode" => 200
-,"responseBody" => "[RESPONSEBODY]"
-,"responseHeaders" =>     array(array("name" => "Content-Type"
-,"value" => "application/json"
-)
-)
-    ,"logs" => "[LOGS]"
-,"errors" => "[ERRORS]"
-,"duration" => 0.4
-)
-;
+    public function testMethodCreateExecution(): void
+    {
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$permissions" => array(),
+            "functionId" => "5e5ea6g16897e",
+            "deploymentId" => "5e5ea5c16897e",
+            "trigger" => "http",
+            "status" => "waiting",
+            "requestMethod" => "GET",
+            "requestPath" => "/articles?id=5",
+            "requestHeaders" => array(
+                array(
+                    "name" => "Content-Type",
+                    "value" => "application/json"
+                )
+            ),
+            "responseStatusCode" => 200,
+            "responseBody" => "[RESPONSEBODY]",
+            "responseHeaders" => array(
+                array(
+                    "name" => "Content-Type",
+                    "value" => "application/json"
+                )
+            ),
+            "logs" => "[LOGS]",
+            "errors" => "[ERRORS]",
+            "duration" => 0.4
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -792,36 +819,40 @@ final class FunctionsTest extends TestCase {
             "<FUNCTION_ID>"
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\Execution::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\Execution::class, $response);
+    }
 
-    public function testMethodGetExecution(): void {
-                        
-        $data = array("\$id" => "5e5ea5c16897e"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$permissions" => array()
-,"functionId" => "5e5ea6g16897e"
-,"deploymentId" => "5e5ea5c16897e"
-,"trigger" => "http"
-,"status" => "waiting"
-,"requestMethod" => "GET"
-,"requestPath" => "/articles?id=5"
-,"requestHeaders" =>     array(array("name" => "Content-Type"
-,"value" => "application/json"
-)
-)
-    ,"responseStatusCode" => 200
-,"responseBody" => "[RESPONSEBODY]"
-,"responseHeaders" =>     array(array("name" => "Content-Type"
-,"value" => "application/json"
-)
-)
-    ,"logs" => "[LOGS]"
-,"errors" => "[ERRORS]"
-,"duration" => 0.4
-)
-;
+    public function testMethodGetExecution(): void
+    {
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$permissions" => array(),
+            "functionId" => "5e5ea6g16897e",
+            "deploymentId" => "5e5ea5c16897e",
+            "trigger" => "http",
+            "status" => "waiting",
+            "requestMethod" => "GET",
+            "requestPath" => "/articles?id=5",
+            "requestHeaders" => array(
+                array(
+                    "name" => "Content-Type",
+                    "value" => "application/json"
+                )
+            ),
+            "responseStatusCode" => 200,
+            "responseBody" => "[RESPONSEBODY]",
+            "responseHeaders" => array(
+                array(
+                    "name" => "Content-Type",
+                    "value" => "application/json"
+                )
+            ),
+            "logs" => "[LOGS]",
+            "errors" => "[ERRORS]",
+            "duration" => 0.4
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -832,11 +863,11 @@ final class FunctionsTest extends TestCase {
             "<EXECUTION_ID>"
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\Execution::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\Execution::class, $response);
+    }
 
-    public function testMethodDeleteExecution(): void {
-                        
+    public function testMethodDeleteExecution(): void
+    {
         $data = '';
 
         $this->client
@@ -848,24 +879,26 @@ final class FunctionsTest extends TestCase {
             "<EXECUTION_ID>"
         );
 
-                $this->assertSame($data, $response);
-            }
+        $this->assertSame($data, $response);
+    }
 
-    public function testMethodListVariables(): void {
-                        
-        $data = array("total" => 5
-,"variables" =>     array(array("\$id" => "5e5ea5c16897e"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"key" => "API_KEY"
-,"value" => "myPa\$\$word1"
-,"secret" => true
-,"resourceType" => "function"
-,"resourceId" => "myAwesomeFunction"
-)
-)
-    )
-;
+    public function testMethodListVariables(): void
+    {
+        $data = array(
+            "total" => 5,
+            "variables" => array(
+                array(
+                    "\$id" => "5e5ea5c16897e",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "key" => "API_KEY",
+                    "value" => "myPa\$\$word1",
+                    "secret" => true,
+                    "resourceType" => "function",
+                    "resourceId" => "myAwesomeFunction"
+                )
+            )
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -875,21 +908,21 @@ final class FunctionsTest extends TestCase {
             "<FUNCTION_ID>"
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\VariableList::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\VariableList::class, $response);
+    }
 
-    public function testMethodCreateVariable(): void {
-                        
-        $data = array("\$id" => "5e5ea5c16897e"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"key" => "API_KEY"
-,"value" => "myPa\$\$word1"
-,"secret" => true
-,"resourceType" => "function"
-,"resourceId" => "myAwesomeFunction"
-)
-;
+    public function testMethodCreateVariable(): void
+    {
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "key" => "API_KEY",
+            "value" => "myPa\$\$word1",
+            "secret" => true,
+            "resourceType" => "function",
+            "resourceId" => "myAwesomeFunction"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -901,21 +934,21 @@ final class FunctionsTest extends TestCase {
             "<VALUE>"
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\Variable::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\Variable::class, $response);
+    }
 
-    public function testMethodGetVariable(): void {
-                        
-        $data = array("\$id" => "5e5ea5c16897e"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"key" => "API_KEY"
-,"value" => "myPa\$\$word1"
-,"secret" => true
-,"resourceType" => "function"
-,"resourceId" => "myAwesomeFunction"
-)
-;
+    public function testMethodGetVariable(): void
+    {
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "key" => "API_KEY",
+            "value" => "myPa\$\$word1",
+            "secret" => true,
+            "resourceType" => "function",
+            "resourceId" => "myAwesomeFunction"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -926,21 +959,21 @@ final class FunctionsTest extends TestCase {
             "<VARIABLE_ID>"
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\Variable::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\Variable::class, $response);
+    }
 
-    public function testMethodUpdateVariable(): void {
-                        
-        $data = array("\$id" => "5e5ea5c16897e"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"key" => "API_KEY"
-,"value" => "myPa\$\$word1"
-,"secret" => true
-,"resourceType" => "function"
-,"resourceId" => "myAwesomeFunction"
-)
-;
+    public function testMethodUpdateVariable(): void
+    {
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "key" => "API_KEY",
+            "value" => "myPa\$\$word1",
+            "secret" => true,
+            "resourceType" => "function",
+            "resourceId" => "myAwesomeFunction"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -952,11 +985,11 @@ final class FunctionsTest extends TestCase {
             "<KEY>"
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\Variable::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\Variable::class, $response);
+    }
 
-    public function testMethodDeleteVariable(): void {
-                        
+    public function testMethodDeleteVariable(): void
+    {
         $data = '';
 
         $this->client
@@ -968,7 +1001,7 @@ final class FunctionsTest extends TestCase {
             "<VARIABLE_ID>"
         );
 
-                $this->assertSame($data, $response);
-            }
+        $this->assertSame($data, $response);
+    }
 
 }

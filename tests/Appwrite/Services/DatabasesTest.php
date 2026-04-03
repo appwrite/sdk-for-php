@@ -11,119 +11,134 @@ use Appwrite\Enums\RelationMutate;
 use Appwrite\Enums\DatabasesIndexType;
 use Appwrite\Enums\OrderBy;
 
-final class DatabasesTest extends TestCase {
+final class DatabasesTest extends TestCase
+{
     private $client;
     private $databases;
 
-    protected function setUp(): void {
+    protected function setUp(): void
+    {
         $this->client = Mockery::mock(Client::class);
         $this->databases = new Databases($this->client);
     }
 
-    public function testMethodList(): void {
-                        
-        $data = array("total" => 5
-,"databases" =>     array(array("\$id" => "5e5ea5c16897e"
-,"name" => "My Database"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"enabled" => true
-,"type" => "legacy"
-,"policies" =>     array(array("\$id" => "5e5ea5c16897e"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"key" => "index1"
-,"type" => "primary"
-,"status" => "available"
-,"error" => "string"
-,"attributes" => array()
-,"lengths" => array()
-)
-)
-    ,"archives" =>     array(array("\$id" => "5e5ea5c16897e"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$permissions" => array()
-,"databaseId" => "5e5ea5c16897e"
-,"name" => "My Collection"
-,"enabled" => true
-,"documentSecurity" => true
-,"attributes" => array()
-,"indexes" =>     array(array("\$id" => "5e5ea5c16897e"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"key" => "index1"
-,"type" => "primary"
-,"status" => "available"
-,"error" => "string"
-,"attributes" => array()
-,"lengths" => array()
-)
-)
-    ,"bytesMax" => 65535
-,"bytesUsed" => 1500
-)
-)
-    )
-)
-    )
-;
+    public function testMethodList(): void
+    {
+        $data = array(
+            "total" => 5,
+            "databases" => array(
+                array(
+                    "\$id" => "5e5ea5c16897e",
+                    "name" => "My Database",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "enabled" => true,
+                    "type" => "legacy",
+                    "policies" => array(
+                        array(
+                            "\$id" => "5e5ea5c16897e",
+                            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                            "key" => "index1",
+                            "type" => "primary",
+                            "status" => "available",
+                            "error" => "string",
+                            "attributes" => array(),
+                            "lengths" => array()
+                        )
+                    ),
+                    "archives" => array(
+                        array(
+                            "\$id" => "5e5ea5c16897e",
+                            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                            "\$permissions" => array(),
+                            "databaseId" => "5e5ea5c16897e",
+                            "name" => "My Collection",
+                            "enabled" => true,
+                            "documentSecurity" => true,
+                            "attributes" => array(),
+                            "indexes" => array(
+                                array(
+                                    "\$id" => "5e5ea5c16897e",
+                                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                                    "key" => "index1",
+                                    "type" => "primary",
+                                    "status" => "available",
+                                    "error" => "string",
+                                    "attributes" => array(),
+                                    "lengths" => array()
+                                )
+                            ),
+                            "bytesMax" => 65535,
+                            "bytesUsed" => 1500
+                        )
+                    )
+                )
+            )
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->databases->list(
+        $response = $this->databases->list();
+
+        $this->assertInstanceOf(\Appwrite\Models\DatabaseList::class, $response);
+    }
+
+    public function testMethodCreate(): void
+    {
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "name" => "My Database",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "enabled" => true,
+            "type" => "legacy",
+            "policies" => array(
+                array(
+                    "\$id" => "5e5ea5c16897e",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "key" => "index1",
+                    "type" => "primary",
+                    "status" => "available",
+                    "error" => "string",
+                    "attributes" => array(),
+                    "lengths" => array()
+                )
+            ),
+            "archives" => array(
+                array(
+                    "\$id" => "5e5ea5c16897e",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$permissions" => array(),
+                    "databaseId" => "5e5ea5c16897e",
+                    "name" => "My Collection",
+                    "enabled" => true,
+                    "documentSecurity" => true,
+                    "attributes" => array(),
+                    "indexes" => array(
+                        array(
+                            "\$id" => "5e5ea5c16897e",
+                            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                            "key" => "index1",
+                            "type" => "primary",
+                            "status" => "available",
+                            "error" => "string",
+                            "attributes" => array(),
+                            "lengths" => array()
+                        )
+                    ),
+                    "bytesMax" => 65535,
+                    "bytesUsed" => 1500
+                )
+            )
         );
-
-                $this->assertInstanceOf(\Appwrite\Models\DatabaseList::class, $response);
-            }
-
-    public function testMethodCreate(): void {
-                        
-        $data = array("\$id" => "5e5ea5c16897e"
-,"name" => "My Database"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"enabled" => true
-,"type" => "legacy"
-,"policies" =>     array(array("\$id" => "5e5ea5c16897e"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"key" => "index1"
-,"type" => "primary"
-,"status" => "available"
-,"error" => "string"
-,"attributes" => array()
-,"lengths" => array()
-)
-)
-    ,"archives" =>     array(array("\$id" => "5e5ea5c16897e"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$permissions" => array()
-,"databaseId" => "5e5ea5c16897e"
-,"name" => "My Collection"
-,"enabled" => true
-,"documentSecurity" => true
-,"attributes" => array()
-,"indexes" =>     array(array("\$id" => "5e5ea5c16897e"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"key" => "index1"
-,"type" => "primary"
-,"status" => "available"
-,"error" => "string"
-,"attributes" => array()
-,"lengths" => array()
-)
-)
-    ,"bytesMax" => 65535
-,"bytesUsed" => 1500
-)
-)
-    )
-;
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -134,64 +149,64 @@ final class DatabasesTest extends TestCase {
             "<NAME>"
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\Database::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\Database::class, $response);
+    }
 
-    public function testMethodListTransactions(): void {
-                        
-        $data = array("total" => 5
-,"transactions" =>     array(array("\$id" => "259125845563242502"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"status" => "pending"
-,"operations" => 5
-,"expiresAt" => "2020-10-15T06:38:00.000+00:00"
-)
-)
-    )
-;
+    public function testMethodListTransactions(): void
+    {
+        $data = array(
+            "total" => 5,
+            "transactions" => array(
+                array(
+                    "\$id" => "259125845563242502",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "status" => "pending",
+                    "operations" => 5,
+                    "expiresAt" => "2020-10-15T06:38:00.000+00:00"
+                )
+            )
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->databases->listTransactions(
+        $response = $this->databases->listTransactions();
+
+        $this->assertInstanceOf(\Appwrite\Models\TransactionList::class, $response);
+    }
+
+    public function testMethodCreateTransaction(): void
+    {
+        $data = array(
+            "\$id" => "259125845563242502",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "status" => "pending",
+            "operations" => 5,
+            "expiresAt" => "2020-10-15T06:38:00.000+00:00"
         );
-
-                $this->assertInstanceOf(\Appwrite\Models\TransactionList::class, $response);
-            }
-
-    public function testMethodCreateTransaction(): void {
-                        
-        $data = array("\$id" => "259125845563242502"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"status" => "pending"
-,"operations" => 5
-,"expiresAt" => "2020-10-15T06:38:00.000+00:00"
-)
-;
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->databases->createTransaction(
+        $response = $this->databases->createTransaction();
+
+        $this->assertInstanceOf(\Appwrite\Models\Transaction::class, $response);
+    }
+
+    public function testMethodGetTransaction(): void
+    {
+        $data = array(
+            "\$id" => "259125845563242502",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "status" => "pending",
+            "operations" => 5,
+            "expiresAt" => "2020-10-15T06:38:00.000+00:00"
         );
-
-                $this->assertInstanceOf(\Appwrite\Models\Transaction::class, $response);
-            }
-
-    public function testMethodGetTransaction(): void {
-                        
-        $data = array("\$id" => "259125845563242502"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"status" => "pending"
-,"operations" => 5
-,"expiresAt" => "2020-10-15T06:38:00.000+00:00"
-)
-;
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -201,19 +216,19 @@ final class DatabasesTest extends TestCase {
             "<TRANSACTION_ID>"
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\Transaction::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\Transaction::class, $response);
+    }
 
-    public function testMethodUpdateTransaction(): void {
-                        
-        $data = array("\$id" => "259125845563242502"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"status" => "pending"
-,"operations" => 5
-,"expiresAt" => "2020-10-15T06:38:00.000+00:00"
-)
-;
+    public function testMethodUpdateTransaction(): void
+    {
+        $data = array(
+            "\$id" => "259125845563242502",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "status" => "pending",
+            "operations" => 5,
+            "expiresAt" => "2020-10-15T06:38:00.000+00:00"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -223,11 +238,11 @@ final class DatabasesTest extends TestCase {
             "<TRANSACTION_ID>"
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\Transaction::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\Transaction::class, $response);
+    }
 
-    public function testMethodDeleteTransaction(): void {
-                        
+    public function testMethodDeleteTransaction(): void
+    {
         $data = '';
 
         $this->client
@@ -238,19 +253,19 @@ final class DatabasesTest extends TestCase {
             "<TRANSACTION_ID>"
         );
 
-                $this->assertSame($data, $response);
-            }
+        $this->assertSame($data, $response);
+    }
 
-    public function testMethodCreateOperations(): void {
-                        
-        $data = array("\$id" => "259125845563242502"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"status" => "pending"
-,"operations" => 5
-,"expiresAt" => "2020-10-15T06:38:00.000+00:00"
-)
-;
+    public function testMethodCreateOperations(): void
+    {
+        $data = array(
+            "\$id" => "259125845563242502",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "status" => "pending",
+            "operations" => 5,
+            "expiresAt" => "2020-10-15T06:38:00.000+00:00"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -260,54 +275,60 @@ final class DatabasesTest extends TestCase {
             "<TRANSACTION_ID>"
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\Transaction::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\Transaction::class, $response);
+    }
 
-    public function testMethodGet(): void {
-                        
-        $data = array("\$id" => "5e5ea5c16897e"
-,"name" => "My Database"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"enabled" => true
-,"type" => "legacy"
-,"policies" =>     array(array("\$id" => "5e5ea5c16897e"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"key" => "index1"
-,"type" => "primary"
-,"status" => "available"
-,"error" => "string"
-,"attributes" => array()
-,"lengths" => array()
-)
-)
-    ,"archives" =>     array(array("\$id" => "5e5ea5c16897e"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$permissions" => array()
-,"databaseId" => "5e5ea5c16897e"
-,"name" => "My Collection"
-,"enabled" => true
-,"documentSecurity" => true
-,"attributes" => array()
-,"indexes" =>     array(array("\$id" => "5e5ea5c16897e"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"key" => "index1"
-,"type" => "primary"
-,"status" => "available"
-,"error" => "string"
-,"attributes" => array()
-,"lengths" => array()
-)
-)
-    ,"bytesMax" => 65535
-,"bytesUsed" => 1500
-)
-)
-    )
-;
+    public function testMethodGet(): void
+    {
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "name" => "My Database",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "enabled" => true,
+            "type" => "legacy",
+            "policies" => array(
+                array(
+                    "\$id" => "5e5ea5c16897e",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "key" => "index1",
+                    "type" => "primary",
+                    "status" => "available",
+                    "error" => "string",
+                    "attributes" => array(),
+                    "lengths" => array()
+                )
+            ),
+            "archives" => array(
+                array(
+                    "\$id" => "5e5ea5c16897e",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$permissions" => array(),
+                    "databaseId" => "5e5ea5c16897e",
+                    "name" => "My Collection",
+                    "enabled" => true,
+                    "documentSecurity" => true,
+                    "attributes" => array(),
+                    "indexes" => array(
+                        array(
+                            "\$id" => "5e5ea5c16897e",
+                            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                            "key" => "index1",
+                            "type" => "primary",
+                            "status" => "available",
+                            "error" => "string",
+                            "attributes" => array(),
+                            "lengths" => array()
+                        )
+                    ),
+                    "bytesMax" => 65535,
+                    "bytesUsed" => 1500
+                )
+            )
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -317,54 +338,60 @@ final class DatabasesTest extends TestCase {
             "<DATABASE_ID>"
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\Database::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\Database::class, $response);
+    }
 
-    public function testMethodUpdate(): void {
-                        
-        $data = array("\$id" => "5e5ea5c16897e"
-,"name" => "My Database"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"enabled" => true
-,"type" => "legacy"
-,"policies" =>     array(array("\$id" => "5e5ea5c16897e"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"key" => "index1"
-,"type" => "primary"
-,"status" => "available"
-,"error" => "string"
-,"attributes" => array()
-,"lengths" => array()
-)
-)
-    ,"archives" =>     array(array("\$id" => "5e5ea5c16897e"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$permissions" => array()
-,"databaseId" => "5e5ea5c16897e"
-,"name" => "My Collection"
-,"enabled" => true
-,"documentSecurity" => true
-,"attributes" => array()
-,"indexes" =>     array(array("\$id" => "5e5ea5c16897e"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"key" => "index1"
-,"type" => "primary"
-,"status" => "available"
-,"error" => "string"
-,"attributes" => array()
-,"lengths" => array()
-)
-)
-    ,"bytesMax" => 65535
-,"bytesUsed" => 1500
-)
-)
-    )
-;
+    public function testMethodUpdate(): void
+    {
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "name" => "My Database",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "enabled" => true,
+            "type" => "legacy",
+            "policies" => array(
+                array(
+                    "\$id" => "5e5ea5c16897e",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "key" => "index1",
+                    "type" => "primary",
+                    "status" => "available",
+                    "error" => "string",
+                    "attributes" => array(),
+                    "lengths" => array()
+                )
+            ),
+            "archives" => array(
+                array(
+                    "\$id" => "5e5ea5c16897e",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$permissions" => array(),
+                    "databaseId" => "5e5ea5c16897e",
+                    "name" => "My Collection",
+                    "enabled" => true,
+                    "documentSecurity" => true,
+                    "attributes" => array(),
+                    "indexes" => array(
+                        array(
+                            "\$id" => "5e5ea5c16897e",
+                            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                            "key" => "index1",
+                            "type" => "primary",
+                            "status" => "available",
+                            "error" => "string",
+                            "attributes" => array(),
+                            "lengths" => array()
+                        )
+                    ),
+                    "bytesMax" => 65535,
+                    "bytesUsed" => 1500
+                )
+            )
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -374,11 +401,11 @@ final class DatabasesTest extends TestCase {
             "<DATABASE_ID>"
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\Database::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\Database::class, $response);
+    }
 
-    public function testMethodDelete(): void {
-                        
+    public function testMethodDelete(): void
+    {
         $data = '';
 
         $this->client
@@ -389,38 +416,42 @@ final class DatabasesTest extends TestCase {
             "<DATABASE_ID>"
         );
 
-                $this->assertSame($data, $response);
-            }
+        $this->assertSame($data, $response);
+    }
 
-    public function testMethodListCollections(): void {
-                        
-        $data = array("total" => 5
-,"collections" =>     array(array("\$id" => "5e5ea5c16897e"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$permissions" => array()
-,"databaseId" => "5e5ea5c16897e"
-,"name" => "My Collection"
-,"enabled" => true
-,"documentSecurity" => true
-,"attributes" => array()
-,"indexes" =>     array(array("\$id" => "5e5ea5c16897e"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"key" => "index1"
-,"type" => "primary"
-,"status" => "available"
-,"error" => "string"
-,"attributes" => array()
-,"lengths" => array()
-)
-)
-    ,"bytesMax" => 65535
-,"bytesUsed" => 1500
-)
-)
-    )
-;
+    public function testMethodListCollections(): void
+    {
+        $data = array(
+            "total" => 5,
+            "collections" => array(
+                array(
+                    "\$id" => "5e5ea5c16897e",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$permissions" => array(),
+                    "databaseId" => "5e5ea5c16897e",
+                    "name" => "My Collection",
+                    "enabled" => true,
+                    "documentSecurity" => true,
+                    "attributes" => array(),
+                    "indexes" => array(
+                        array(
+                            "\$id" => "5e5ea5c16897e",
+                            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                            "key" => "index1",
+                            "type" => "primary",
+                            "status" => "available",
+                            "error" => "string",
+                            "attributes" => array(),
+                            "lengths" => array()
+                        )
+                    ),
+                    "bytesMax" => 65535,
+                    "bytesUsed" => 1500
+                )
+            )
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -430,35 +461,37 @@ final class DatabasesTest extends TestCase {
             "<DATABASE_ID>"
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\CollectionList::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\CollectionList::class, $response);
+    }
 
-    public function testMethodCreateCollection(): void {
-                        
-        $data = array("\$id" => "5e5ea5c16897e"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$permissions" => array()
-,"databaseId" => "5e5ea5c16897e"
-,"name" => "My Collection"
-,"enabled" => true
-,"documentSecurity" => true
-,"attributes" => array()
-,"indexes" =>     array(array("\$id" => "5e5ea5c16897e"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"key" => "index1"
-,"type" => "primary"
-,"status" => "available"
-,"error" => "string"
-,"attributes" => array()
-,"lengths" => array()
-)
-)
-    ,"bytesMax" => 65535
-,"bytesUsed" => 1500
-)
-;
+    public function testMethodCreateCollection(): void
+    {
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$permissions" => array(),
+            "databaseId" => "5e5ea5c16897e",
+            "name" => "My Collection",
+            "enabled" => true,
+            "documentSecurity" => true,
+            "attributes" => array(),
+            "indexes" => array(
+                array(
+                    "\$id" => "5e5ea5c16897e",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "key" => "index1",
+                    "type" => "primary",
+                    "status" => "available",
+                    "error" => "string",
+                    "attributes" => array(),
+                    "lengths" => array()
+                )
+            ),
+            "bytesMax" => 65535,
+            "bytesUsed" => 1500
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -470,35 +503,37 @@ final class DatabasesTest extends TestCase {
             "<NAME>"
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\Collection::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\Collection::class, $response);
+    }
 
-    public function testMethodGetCollection(): void {
-                        
-        $data = array("\$id" => "5e5ea5c16897e"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$permissions" => array()
-,"databaseId" => "5e5ea5c16897e"
-,"name" => "My Collection"
-,"enabled" => true
-,"documentSecurity" => true
-,"attributes" => array()
-,"indexes" =>     array(array("\$id" => "5e5ea5c16897e"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"key" => "index1"
-,"type" => "primary"
-,"status" => "available"
-,"error" => "string"
-,"attributes" => array()
-,"lengths" => array()
-)
-)
-    ,"bytesMax" => 65535
-,"bytesUsed" => 1500
-)
-;
+    public function testMethodGetCollection(): void
+    {
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$permissions" => array(),
+            "databaseId" => "5e5ea5c16897e",
+            "name" => "My Collection",
+            "enabled" => true,
+            "documentSecurity" => true,
+            "attributes" => array(),
+            "indexes" => array(
+                array(
+                    "\$id" => "5e5ea5c16897e",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "key" => "index1",
+                    "type" => "primary",
+                    "status" => "available",
+                    "error" => "string",
+                    "attributes" => array(),
+                    "lengths" => array()
+                )
+            ),
+            "bytesMax" => 65535,
+            "bytesUsed" => 1500
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -509,35 +544,37 @@ final class DatabasesTest extends TestCase {
             "<COLLECTION_ID>"
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\Collection::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\Collection::class, $response);
+    }
 
-    public function testMethodUpdateCollection(): void {
-                        
-        $data = array("\$id" => "5e5ea5c16897e"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$permissions" => array()
-,"databaseId" => "5e5ea5c16897e"
-,"name" => "My Collection"
-,"enabled" => true
-,"documentSecurity" => true
-,"attributes" => array()
-,"indexes" =>     array(array("\$id" => "5e5ea5c16897e"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"key" => "index1"
-,"type" => "primary"
-,"status" => "available"
-,"error" => "string"
-,"attributes" => array()
-,"lengths" => array()
-)
-)
-    ,"bytesMax" => 65535
-,"bytesUsed" => 1500
-)
-;
+    public function testMethodUpdateCollection(): void
+    {
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$permissions" => array(),
+            "databaseId" => "5e5ea5c16897e",
+            "name" => "My Collection",
+            "enabled" => true,
+            "documentSecurity" => true,
+            "attributes" => array(),
+            "indexes" => array(
+                array(
+                    "\$id" => "5e5ea5c16897e",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "key" => "index1",
+                    "type" => "primary",
+                    "status" => "available",
+                    "error" => "string",
+                    "attributes" => array(),
+                    "lengths" => array()
+                )
+            ),
+            "bytesMax" => 65535,
+            "bytesUsed" => 1500
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -548,11 +585,11 @@ final class DatabasesTest extends TestCase {
             "<COLLECTION_ID>"
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\Collection::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\Collection::class, $response);
+    }
 
-    public function testMethodDeleteCollection(): void {
-                        
+    public function testMethodDeleteCollection(): void
+    {
         $data = '';
 
         $this->client
@@ -564,15 +601,15 @@ final class DatabasesTest extends TestCase {
             "<COLLECTION_ID>"
         );
 
-                $this->assertSame($data, $response);
-            }
+        $this->assertSame($data, $response);
+    }
 
-    public function testMethodListAttributes(): void {
-                        
-        $data = array("total" => 5
-,"attributes" => array()
-)
-;
+    public function testMethodListAttributes(): void
+    {
+        $data = array(
+            "total" => 5,
+            "attributes" => array()
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -583,20 +620,20 @@ final class DatabasesTest extends TestCase {
             "<COLLECTION_ID>"
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\AttributeList::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\AttributeList::class, $response);
+    }
 
-    public function testMethodCreateBooleanAttribute(): void {
-                        
-        $data = array("key" => "isEnabled"
-,"type" => "boolean"
-,"status" => "available"
-,"error" => "string"
-,"required" => true
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-)
-;
+    public function testMethodCreateBooleanAttribute(): void
+    {
+        $data = array(
+            "key" => "isEnabled",
+            "type" => "boolean",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -609,20 +646,20 @@ final class DatabasesTest extends TestCase {
             true
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\AttributeBoolean::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\AttributeBoolean::class, $response);
+    }
 
-    public function testMethodUpdateBooleanAttribute(): void {
-                        
-        $data = array("key" => "isEnabled"
-,"type" => "boolean"
-,"status" => "available"
-,"error" => "string"
-,"required" => true
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-)
-;
+    public function testMethodUpdateBooleanAttribute(): void
+    {
+        $data = array(
+            "key" => "isEnabled",
+            "type" => "boolean",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -636,21 +673,21 @@ final class DatabasesTest extends TestCase {
             true
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\AttributeBoolean::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\AttributeBoolean::class, $response);
+    }
 
-    public function testMethodCreateDatetimeAttribute(): void {
-                        
-        $data = array("key" => "birthDay"
-,"type" => "datetime"
-,"status" => "available"
-,"error" => "string"
-,"required" => true
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"format" => "datetime"
-)
-;
+    public function testMethodCreateDatetimeAttribute(): void
+    {
+        $data = array(
+            "key" => "birthDay",
+            "type" => "datetime",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "format" => "datetime"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -663,21 +700,21 @@ final class DatabasesTest extends TestCase {
             true
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\AttributeDatetime::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\AttributeDatetime::class, $response);
+    }
 
-    public function testMethodUpdateDatetimeAttribute(): void {
-                        
-        $data = array("key" => "birthDay"
-,"type" => "datetime"
-,"status" => "available"
-,"error" => "string"
-,"required" => true
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"format" => "datetime"
-)
-;
+    public function testMethodUpdateDatetimeAttribute(): void
+    {
+        $data = array(
+            "key" => "birthDay",
+            "type" => "datetime",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "format" => "datetime"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -691,21 +728,21 @@ final class DatabasesTest extends TestCase {
             "2020-10-15T06:38:00.000+00:00"
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\AttributeDatetime::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\AttributeDatetime::class, $response);
+    }
 
-    public function testMethodCreateEmailAttribute(): void {
-                        
-        $data = array("key" => "userEmail"
-,"type" => "string"
-,"status" => "available"
-,"error" => "string"
-,"required" => true
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"format" => "email"
-)
-;
+    public function testMethodCreateEmailAttribute(): void
+    {
+        $data = array(
+            "key" => "userEmail",
+            "type" => "string",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "format" => "email"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -718,21 +755,21 @@ final class DatabasesTest extends TestCase {
             true
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\AttributeEmail::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\AttributeEmail::class, $response);
+    }
 
-    public function testMethodUpdateEmailAttribute(): void {
-                        
-        $data = array("key" => "userEmail"
-,"type" => "string"
-,"status" => "available"
-,"error" => "string"
-,"required" => true
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"format" => "email"
-)
-;
+    public function testMethodUpdateEmailAttribute(): void
+    {
+        $data = array(
+            "key" => "userEmail",
+            "type" => "string",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "format" => "email"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -746,22 +783,22 @@ final class DatabasesTest extends TestCase {
             "email@example.com"
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\AttributeEmail::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\AttributeEmail::class, $response);
+    }
 
-    public function testMethodCreateEnumAttribute(): void {
-                        
-        $data = array("key" => "status"
-,"type" => "string"
-,"status" => "available"
-,"error" => "string"
-,"required" => true
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"elements" => array()
-,"format" => "enum"
-)
-;
+    public function testMethodCreateEnumAttribute(): void
+    {
+        $data = array(
+            "key" => "status",
+            "type" => "string",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "elements" => array(),
+            "format" => "enum"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -775,22 +812,22 @@ final class DatabasesTest extends TestCase {
             true
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\AttributeEnum::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\AttributeEnum::class, $response);
+    }
 
-    public function testMethodUpdateEnumAttribute(): void {
-                        
-        $data = array("key" => "status"
-,"type" => "string"
-,"status" => "available"
-,"error" => "string"
-,"required" => true
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"elements" => array()
-,"format" => "enum"
-)
-;
+    public function testMethodUpdateEnumAttribute(): void
+    {
+        $data = array(
+            "key" => "status",
+            "type" => "string",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "elements" => array(),
+            "format" => "enum"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -805,20 +842,20 @@ final class DatabasesTest extends TestCase {
             "<DEFAULT>"
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\AttributeEnum::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\AttributeEnum::class, $response);
+    }
 
-    public function testMethodCreateFloatAttribute(): void {
-                        
-        $data = array("key" => "percentageCompleted"
-,"type" => "double"
-,"status" => "available"
-,"error" => "string"
-,"required" => true
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-)
-;
+    public function testMethodCreateFloatAttribute(): void
+    {
+        $data = array(
+            "key" => "percentageCompleted",
+            "type" => "double",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -831,20 +868,20 @@ final class DatabasesTest extends TestCase {
             true
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\AttributeFloat::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\AttributeFloat::class, $response);
+    }
 
-    public function testMethodUpdateFloatAttribute(): void {
-                        
-        $data = array("key" => "percentageCompleted"
-,"type" => "double"
-,"status" => "available"
-,"error" => "string"
-,"required" => true
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-)
-;
+    public function testMethodUpdateFloatAttribute(): void
+    {
+        $data = array(
+            "key" => "percentageCompleted",
+            "type" => "double",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -858,20 +895,20 @@ final class DatabasesTest extends TestCase {
             1.0
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\AttributeFloat::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\AttributeFloat::class, $response);
+    }
 
-    public function testMethodCreateIntegerAttribute(): void {
-                        
-        $data = array("key" => "count"
-,"type" => "integer"
-,"status" => "available"
-,"error" => "string"
-,"required" => true
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-)
-;
+    public function testMethodCreateIntegerAttribute(): void
+    {
+        $data = array(
+            "key" => "count",
+            "type" => "integer",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -884,20 +921,20 @@ final class DatabasesTest extends TestCase {
             true
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\AttributeInteger::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\AttributeInteger::class, $response);
+    }
 
-    public function testMethodUpdateIntegerAttribute(): void {
-                        
-        $data = array("key" => "count"
-,"type" => "integer"
-,"status" => "available"
-,"error" => "string"
-,"required" => true
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-)
-;
+    public function testMethodUpdateIntegerAttribute(): void
+    {
+        $data = array(
+            "key" => "count",
+            "type" => "integer",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -911,21 +948,21 @@ final class DatabasesTest extends TestCase {
             1
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\AttributeInteger::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\AttributeInteger::class, $response);
+    }
 
-    public function testMethodCreateIpAttribute(): void {
-                        
-        $data = array("key" => "ipAddress"
-,"type" => "string"
-,"status" => "available"
-,"error" => "string"
-,"required" => true
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"format" => "ip"
-)
-;
+    public function testMethodCreateIpAttribute(): void
+    {
+        $data = array(
+            "key" => "ipAddress",
+            "type" => "string",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "format" => "ip"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -938,21 +975,21 @@ final class DatabasesTest extends TestCase {
             true
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\AttributeIp::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\AttributeIp::class, $response);
+    }
 
-    public function testMethodUpdateIpAttribute(): void {
-                        
-        $data = array("key" => "ipAddress"
-,"type" => "string"
-,"status" => "available"
-,"error" => "string"
-,"required" => true
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"format" => "ip"
-)
-;
+    public function testMethodUpdateIpAttribute(): void
+    {
+        $data = array(
+            "key" => "ipAddress",
+            "type" => "string",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "format" => "ip"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -966,20 +1003,20 @@ final class DatabasesTest extends TestCase {
             ""
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\AttributeIp::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\AttributeIp::class, $response);
+    }
 
-    public function testMethodCreateLineAttribute(): void {
-                        
-        $data = array("key" => "fullName"
-,"type" => "string"
-,"status" => "available"
-,"error" => "string"
-,"required" => true
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-)
-;
+    public function testMethodCreateLineAttribute(): void
+    {
+        $data = array(
+            "key" => "fullName",
+            "type" => "string",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -992,20 +1029,20 @@ final class DatabasesTest extends TestCase {
             true
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\AttributeLine::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\AttributeLine::class, $response);
+    }
 
-    public function testMethodUpdateLineAttribute(): void {
-                        
-        $data = array("key" => "fullName"
-,"type" => "string"
-,"status" => "available"
-,"error" => "string"
-,"required" => true
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-)
-;
+    public function testMethodUpdateLineAttribute(): void
+    {
+        $data = array(
+            "key" => "fullName",
+            "type" => "string",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1018,20 +1055,20 @@ final class DatabasesTest extends TestCase {
             true
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\AttributeLine::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\AttributeLine::class, $response);
+    }
 
-    public function testMethodCreateLongtextAttribute(): void {
-                        
-        $data = array("key" => "fullName"
-,"type" => "string"
-,"status" => "available"
-,"error" => "string"
-,"required" => true
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-)
-;
+    public function testMethodCreateLongtextAttribute(): void
+    {
+        $data = array(
+            "key" => "fullName",
+            "type" => "string",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1044,20 +1081,20 @@ final class DatabasesTest extends TestCase {
             true
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\AttributeLongtext::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\AttributeLongtext::class, $response);
+    }
 
-    public function testMethodUpdateLongtextAttribute(): void {
-                        
-        $data = array("key" => "fullName"
-,"type" => "string"
-,"status" => "available"
-,"error" => "string"
-,"required" => true
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-)
-;
+    public function testMethodUpdateLongtextAttribute(): void
+    {
+        $data = array(
+            "key" => "fullName",
+            "type" => "string",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1071,20 +1108,20 @@ final class DatabasesTest extends TestCase {
             "<DEFAULT>"
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\AttributeLongtext::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\AttributeLongtext::class, $response);
+    }
 
-    public function testMethodCreateMediumtextAttribute(): void {
-                        
-        $data = array("key" => "fullName"
-,"type" => "string"
-,"status" => "available"
-,"error" => "string"
-,"required" => true
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-)
-;
+    public function testMethodCreateMediumtextAttribute(): void
+    {
+        $data = array(
+            "key" => "fullName",
+            "type" => "string",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1097,20 +1134,20 @@ final class DatabasesTest extends TestCase {
             true
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\AttributeMediumtext::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\AttributeMediumtext::class, $response);
+    }
 
-    public function testMethodUpdateMediumtextAttribute(): void {
-                        
-        $data = array("key" => "fullName"
-,"type" => "string"
-,"status" => "available"
-,"error" => "string"
-,"required" => true
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-)
-;
+    public function testMethodUpdateMediumtextAttribute(): void
+    {
+        $data = array(
+            "key" => "fullName",
+            "type" => "string",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1124,20 +1161,20 @@ final class DatabasesTest extends TestCase {
             "<DEFAULT>"
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\AttributeMediumtext::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\AttributeMediumtext::class, $response);
+    }
 
-    public function testMethodCreatePointAttribute(): void {
-                        
-        $data = array("key" => "fullName"
-,"type" => "string"
-,"status" => "available"
-,"error" => "string"
-,"required" => true
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-)
-;
+    public function testMethodCreatePointAttribute(): void
+    {
+        $data = array(
+            "key" => "fullName",
+            "type" => "string",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1150,20 +1187,20 @@ final class DatabasesTest extends TestCase {
             true
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\AttributePoint::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\AttributePoint::class, $response);
+    }
 
-    public function testMethodUpdatePointAttribute(): void {
-                        
-        $data = array("key" => "fullName"
-,"type" => "string"
-,"status" => "available"
-,"error" => "string"
-,"required" => true
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-)
-;
+    public function testMethodUpdatePointAttribute(): void
+    {
+        $data = array(
+            "key" => "fullName",
+            "type" => "string",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1176,20 +1213,20 @@ final class DatabasesTest extends TestCase {
             true
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\AttributePoint::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\AttributePoint::class, $response);
+    }
 
-    public function testMethodCreatePolygonAttribute(): void {
-                        
-        $data = array("key" => "fullName"
-,"type" => "string"
-,"status" => "available"
-,"error" => "string"
-,"required" => true
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-)
-;
+    public function testMethodCreatePolygonAttribute(): void
+    {
+        $data = array(
+            "key" => "fullName",
+            "type" => "string",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1202,20 +1239,20 @@ final class DatabasesTest extends TestCase {
             true
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\AttributePolygon::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\AttributePolygon::class, $response);
+    }
 
-    public function testMethodUpdatePolygonAttribute(): void {
-                        
-        $data = array("key" => "fullName"
-,"type" => "string"
-,"status" => "available"
-,"error" => "string"
-,"required" => true
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-)
-;
+    public function testMethodUpdatePolygonAttribute(): void
+    {
+        $data = array(
+            "key" => "fullName",
+            "type" => "string",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1228,26 +1265,26 @@ final class DatabasesTest extends TestCase {
             true
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\AttributePolygon::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\AttributePolygon::class, $response);
+    }
 
-    public function testMethodCreateRelationshipAttribute(): void {
-                        
-        $data = array("key" => "fullName"
-,"type" => "string"
-,"status" => "available"
-,"error" => "string"
-,"required" => true
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"relatedCollection" => "collection"
-,"relationType" => "oneToOne|oneToMany|manyToOne|manyToMany"
-,"twoWay" => true
-,"twoWayKey" => "string"
-,"onDelete" => "restrict|cascade|setNull"
-,"side" => "parent|child"
-)
-;
+    public function testMethodCreateRelationshipAttribute(): void
+    {
+        $data = array(
+            "key" => "fullName",
+            "type" => "string",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "relatedCollection" => "collection",
+            "relationType" => "oneToOne|oneToMany|manyToOne|manyToMany",
+            "twoWay" => true,
+            "twoWayKey" => "string",
+            "onDelete" => "restrict|cascade|setNull",
+            "side" => "parent|child"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1260,26 +1297,26 @@ final class DatabasesTest extends TestCase {
             RelationshipType::ONETOONE()
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\AttributeRelationship::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\AttributeRelationship::class, $response);
+    }
 
-    public function testMethodUpdateRelationshipAttribute(): void {
-                        
-        $data = array("key" => "fullName"
-,"type" => "string"
-,"status" => "available"
-,"error" => "string"
-,"required" => true
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"relatedCollection" => "collection"
-,"relationType" => "oneToOne|oneToMany|manyToOne|manyToMany"
-,"twoWay" => true
-,"twoWayKey" => "string"
-,"onDelete" => "restrict|cascade|setNull"
-,"side" => "parent|child"
-)
-;
+    public function testMethodUpdateRelationshipAttribute(): void
+    {
+        $data = array(
+            "key" => "fullName",
+            "type" => "string",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "relatedCollection" => "collection",
+            "relationType" => "oneToOne|oneToMany|manyToOne|manyToMany",
+            "twoWay" => true,
+            "twoWayKey" => "string",
+            "onDelete" => "restrict|cascade|setNull",
+            "side" => "parent|child"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1291,21 +1328,21 @@ final class DatabasesTest extends TestCase {
             ""
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\AttributeRelationship::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\AttributeRelationship::class, $response);
+    }
 
-    public function testMethodCreateStringAttribute(): void {
-                        
-        $data = array("key" => "fullName"
-,"type" => "string"
-,"status" => "available"
-,"error" => "string"
-,"required" => true
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"size" => 128
-)
-;
+    public function testMethodCreateStringAttribute(): void
+    {
+        $data = array(
+            "key" => "fullName",
+            "type" => "string",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "size" => 128
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1319,21 +1356,21 @@ final class DatabasesTest extends TestCase {
             true
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\AttributeString::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\AttributeString::class, $response);
+    }
 
-    public function testMethodUpdateStringAttribute(): void {
-                        
-        $data = array("key" => "fullName"
-,"type" => "string"
-,"status" => "available"
-,"error" => "string"
-,"required" => true
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"size" => 128
-)
-;
+    public function testMethodUpdateStringAttribute(): void
+    {
+        $data = array(
+            "key" => "fullName",
+            "type" => "string",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "size" => 128
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1347,20 +1384,20 @@ final class DatabasesTest extends TestCase {
             "<DEFAULT>"
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\AttributeString::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\AttributeString::class, $response);
+    }
 
-    public function testMethodCreateTextAttribute(): void {
-                        
-        $data = array("key" => "fullName"
-,"type" => "string"
-,"status" => "available"
-,"error" => "string"
-,"required" => true
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-)
-;
+    public function testMethodCreateTextAttribute(): void
+    {
+        $data = array(
+            "key" => "fullName",
+            "type" => "string",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1373,20 +1410,20 @@ final class DatabasesTest extends TestCase {
             true
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\AttributeText::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\AttributeText::class, $response);
+    }
 
-    public function testMethodUpdateTextAttribute(): void {
-                        
-        $data = array("key" => "fullName"
-,"type" => "string"
-,"status" => "available"
-,"error" => "string"
-,"required" => true
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-)
-;
+    public function testMethodUpdateTextAttribute(): void
+    {
+        $data = array(
+            "key" => "fullName",
+            "type" => "string",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1400,21 +1437,21 @@ final class DatabasesTest extends TestCase {
             "<DEFAULT>"
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\AttributeText::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\AttributeText::class, $response);
+    }
 
-    public function testMethodCreateUrlAttribute(): void {
-                        
-        $data = array("key" => "githubUrl"
-,"type" => "string"
-,"status" => "available"
-,"error" => "string"
-,"required" => true
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"format" => "url"
-)
-;
+    public function testMethodCreateUrlAttribute(): void
+    {
+        $data = array(
+            "key" => "githubUrl",
+            "type" => "string",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "format" => "url"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1427,21 +1464,21 @@ final class DatabasesTest extends TestCase {
             true
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\AttributeUrl::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\AttributeUrl::class, $response);
+    }
 
-    public function testMethodUpdateUrlAttribute(): void {
-                        
-        $data = array("key" => "githubUrl"
-,"type" => "string"
-,"status" => "available"
-,"error" => "string"
-,"required" => true
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"format" => "url"
-)
-;
+    public function testMethodUpdateUrlAttribute(): void
+    {
+        $data = array(
+            "key" => "githubUrl",
+            "type" => "string",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "format" => "url"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1455,21 +1492,21 @@ final class DatabasesTest extends TestCase {
             "https://example.com"
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\AttributeUrl::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\AttributeUrl::class, $response);
+    }
 
-    public function testMethodCreateVarcharAttribute(): void {
-                        
-        $data = array("key" => "fullName"
-,"type" => "string"
-,"status" => "available"
-,"error" => "string"
-,"required" => true
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"size" => 128
-)
-;
+    public function testMethodCreateVarcharAttribute(): void
+    {
+        $data = array(
+            "key" => "fullName",
+            "type" => "string",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "size" => 128
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1483,21 +1520,21 @@ final class DatabasesTest extends TestCase {
             true
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\AttributeVarchar::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\AttributeVarchar::class, $response);
+    }
 
-    public function testMethodUpdateVarcharAttribute(): void {
-                        
-        $data = array("key" => "fullName"
-,"type" => "string"
-,"status" => "available"
-,"error" => "string"
-,"required" => true
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"size" => 128
-)
-;
+    public function testMethodUpdateVarcharAttribute(): void
+    {
+        $data = array(
+            "key" => "fullName",
+            "type" => "string",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "size" => 128
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1511,20 +1548,20 @@ final class DatabasesTest extends TestCase {
             "<DEFAULT>"
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\AttributeVarchar::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\AttributeVarchar::class, $response);
+    }
 
-    public function testMethodGetAttribute(): void {
-                                        
-        $data = array("key" => "isEnabled"
-,"type" => "boolean"
-,"status" => "available"
-,"error" => "string"
-,"required" => true
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-)
-;
+    public function testMethodGetAttribute(): void
+    {
+        $data = array(
+            "key" => "isEnabled",
+            "type" => "boolean",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1536,11 +1573,11 @@ final class DatabasesTest extends TestCase {
             ""
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\AttributeBoolean::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\AttributeBoolean::class, $response);
+    }
 
-    public function testMethodDeleteAttribute(): void {
-                        
+    public function testMethodDeleteAttribute(): void
+    {
         $data = '';
 
         $this->client
@@ -1553,23 +1590,25 @@ final class DatabasesTest extends TestCase {
             ""
         );
 
-                $this->assertSame($data, $response);
-            }
+        $this->assertSame($data, $response);
+    }
 
-    public function testMethodListDocuments(): void {
-                        
-        $data = array("total" => 5
-,"documents" =>     array(array("\$id" => "5e5ea5c16897e"
-,"\$sequence" => "1"
-,"\$collectionId" => "5e5ea5c15117e"
-,"\$databaseId" => "5e5ea5c15117e"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$permissions" => array()
-)
-)
-    )
-;
+    public function testMethodListDocuments(): void
+    {
+        $data = array(
+            "total" => 5,
+            "documents" => array(
+                array(
+                    "\$id" => "5e5ea5c16897e",
+                    "\$sequence" => "1",
+                    "\$collectionId" => "5e5ea5c15117e",
+                    "\$databaseId" => "5e5ea5c15117e",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$permissions" => array()
+                )
+            )
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1580,20 +1619,20 @@ final class DatabasesTest extends TestCase {
             "<COLLECTION_ID>"
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\DocumentList::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\DocumentList::class, $response);
+    }
 
-    public function testMethodCreateDocument(): void {
-                        
-        $data = array("\$id" => "5e5ea5c16897e"
-,"\$sequence" => "1"
-,"\$collectionId" => "5e5ea5c15117e"
-,"\$databaseId" => "5e5ea5c15117e"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$permissions" => array()
-)
-;
+    public function testMethodCreateDocument(): void
+    {
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$sequence" => "1",
+            "\$collectionId" => "5e5ea5c15117e",
+            "\$databaseId" => "5e5ea5c15117e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$permissions" => array()
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1606,23 +1645,25 @@ final class DatabasesTest extends TestCase {
             array()
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\Document::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\Document::class, $response);
+    }
 
-    public function testMethodCreateDocuments(): void {
-                        
-        $data = array("total" => 5
-,"documents" =>     array(array("\$id" => "5e5ea5c16897e"
-,"\$sequence" => "1"
-,"\$collectionId" => "5e5ea5c15117e"
-,"\$databaseId" => "5e5ea5c15117e"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$permissions" => array()
-)
-)
-    )
-;
+    public function testMethodCreateDocuments(): void
+    {
+        $data = array(
+            "total" => 5,
+            "documents" => array(
+                array(
+                    "\$id" => "5e5ea5c16897e",
+                    "\$sequence" => "1",
+                    "\$collectionId" => "5e5ea5c15117e",
+                    "\$databaseId" => "5e5ea5c15117e",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$permissions" => array()
+                )
+            )
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1634,23 +1675,25 @@ final class DatabasesTest extends TestCase {
             array()
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\DocumentList::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\DocumentList::class, $response);
+    }
 
-    public function testMethodUpsertDocuments(): void {
-                        
-        $data = array("total" => 5
-,"documents" =>     array(array("\$id" => "5e5ea5c16897e"
-,"\$sequence" => "1"
-,"\$collectionId" => "5e5ea5c15117e"
-,"\$databaseId" => "5e5ea5c15117e"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$permissions" => array()
-)
-)
-    )
-;
+    public function testMethodUpsertDocuments(): void
+    {
+        $data = array(
+            "total" => 5,
+            "documents" => array(
+                array(
+                    "\$id" => "5e5ea5c16897e",
+                    "\$sequence" => "1",
+                    "\$collectionId" => "5e5ea5c15117e",
+                    "\$databaseId" => "5e5ea5c15117e",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$permissions" => array()
+                )
+            )
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1662,23 +1705,25 @@ final class DatabasesTest extends TestCase {
             array()
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\DocumentList::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\DocumentList::class, $response);
+    }
 
-    public function testMethodUpdateDocuments(): void {
-                        
-        $data = array("total" => 5
-,"documents" =>     array(array("\$id" => "5e5ea5c16897e"
-,"\$sequence" => "1"
-,"\$collectionId" => "5e5ea5c15117e"
-,"\$databaseId" => "5e5ea5c15117e"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$permissions" => array()
-)
-)
-    )
-;
+    public function testMethodUpdateDocuments(): void
+    {
+        $data = array(
+            "total" => 5,
+            "documents" => array(
+                array(
+                    "\$id" => "5e5ea5c16897e",
+                    "\$sequence" => "1",
+                    "\$collectionId" => "5e5ea5c15117e",
+                    "\$databaseId" => "5e5ea5c15117e",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$permissions" => array()
+                )
+            )
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1689,23 +1734,25 @@ final class DatabasesTest extends TestCase {
             "<COLLECTION_ID>"
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\DocumentList::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\DocumentList::class, $response);
+    }
 
-    public function testMethodDeleteDocuments(): void {
-                        
-        $data = array("total" => 5
-,"documents" =>     array(array("\$id" => "5e5ea5c16897e"
-,"\$sequence" => "1"
-,"\$collectionId" => "5e5ea5c15117e"
-,"\$databaseId" => "5e5ea5c15117e"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$permissions" => array()
-)
-)
-    )
-;
+    public function testMethodDeleteDocuments(): void
+    {
+        $data = array(
+            "total" => 5,
+            "documents" => array(
+                array(
+                    "\$id" => "5e5ea5c16897e",
+                    "\$sequence" => "1",
+                    "\$collectionId" => "5e5ea5c15117e",
+                    "\$databaseId" => "5e5ea5c15117e",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$permissions" => array()
+                )
+            )
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1716,20 +1763,20 @@ final class DatabasesTest extends TestCase {
             "<COLLECTION_ID>"
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\DocumentList::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\DocumentList::class, $response);
+    }
 
-    public function testMethodGetDocument(): void {
-                        
-        $data = array("\$id" => "5e5ea5c16897e"
-,"\$sequence" => "1"
-,"\$collectionId" => "5e5ea5c15117e"
-,"\$databaseId" => "5e5ea5c15117e"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$permissions" => array()
-)
-;
+    public function testMethodGetDocument(): void
+    {
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$sequence" => "1",
+            "\$collectionId" => "5e5ea5c15117e",
+            "\$databaseId" => "5e5ea5c15117e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$permissions" => array()
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1741,20 +1788,20 @@ final class DatabasesTest extends TestCase {
             "<DOCUMENT_ID>"
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\Document::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\Document::class, $response);
+    }
 
-    public function testMethodUpsertDocument(): void {
-                        
-        $data = array("\$id" => "5e5ea5c16897e"
-,"\$sequence" => "1"
-,"\$collectionId" => "5e5ea5c15117e"
-,"\$databaseId" => "5e5ea5c15117e"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$permissions" => array()
-)
-;
+    public function testMethodUpsertDocument(): void
+    {
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$sequence" => "1",
+            "\$collectionId" => "5e5ea5c15117e",
+            "\$databaseId" => "5e5ea5c15117e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$permissions" => array()
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1766,20 +1813,20 @@ final class DatabasesTest extends TestCase {
             "<DOCUMENT_ID>"
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\Document::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\Document::class, $response);
+    }
 
-    public function testMethodUpdateDocument(): void {
-                        
-        $data = array("\$id" => "5e5ea5c16897e"
-,"\$sequence" => "1"
-,"\$collectionId" => "5e5ea5c15117e"
-,"\$databaseId" => "5e5ea5c15117e"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$permissions" => array()
-)
-;
+    public function testMethodUpdateDocument(): void
+    {
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$sequence" => "1",
+            "\$collectionId" => "5e5ea5c15117e",
+            "\$databaseId" => "5e5ea5c15117e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$permissions" => array()
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1791,11 +1838,11 @@ final class DatabasesTest extends TestCase {
             "<DOCUMENT_ID>"
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\Document::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\Document::class, $response);
+    }
 
-    public function testMethodDeleteDocument(): void {
-                        
+    public function testMethodDeleteDocument(): void
+    {
         $data = '';
 
         $this->client
@@ -1808,20 +1855,20 @@ final class DatabasesTest extends TestCase {
             "<DOCUMENT_ID>"
         );
 
-                $this->assertSame($data, $response);
-            }
+        $this->assertSame($data, $response);
+    }
 
-    public function testMethodDecrementDocumentAttribute(): void {
-                        
-        $data = array("\$id" => "5e5ea5c16897e"
-,"\$sequence" => "1"
-,"\$collectionId" => "5e5ea5c15117e"
-,"\$databaseId" => "5e5ea5c15117e"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$permissions" => array()
-)
-;
+    public function testMethodDecrementDocumentAttribute(): void
+    {
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$sequence" => "1",
+            "\$collectionId" => "5e5ea5c15117e",
+            "\$databaseId" => "5e5ea5c15117e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$permissions" => array()
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1834,20 +1881,20 @@ final class DatabasesTest extends TestCase {
             ""
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\Document::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\Document::class, $response);
+    }
 
-    public function testMethodIncrementDocumentAttribute(): void {
-                        
-        $data = array("\$id" => "5e5ea5c16897e"
-,"\$sequence" => "1"
-,"\$collectionId" => "5e5ea5c15117e"
-,"\$databaseId" => "5e5ea5c15117e"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$permissions" => array()
-)
-;
+    public function testMethodIncrementDocumentAttribute(): void
+    {
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$sequence" => "1",
+            "\$collectionId" => "5e5ea5c15117e",
+            "\$databaseId" => "5e5ea5c15117e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$permissions" => array()
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1860,25 +1907,27 @@ final class DatabasesTest extends TestCase {
             ""
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\Document::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\Document::class, $response);
+    }
 
-    public function testMethodListIndexes(): void {
-                        
-        $data = array("total" => 5
-,"indexes" =>     array(array("\$id" => "5e5ea5c16897e"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"key" => "index1"
-,"type" => "primary"
-,"status" => "available"
-,"error" => "string"
-,"attributes" => array()
-,"lengths" => array()
-)
-)
-    )
-;
+    public function testMethodListIndexes(): void
+    {
+        $data = array(
+            "total" => 5,
+            "indexes" => array(
+                array(
+                    "\$id" => "5e5ea5c16897e",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "key" => "index1",
+                    "type" => "primary",
+                    "status" => "available",
+                    "error" => "string",
+                    "attributes" => array(),
+                    "lengths" => array()
+                )
+            )
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1889,22 +1938,22 @@ final class DatabasesTest extends TestCase {
             "<COLLECTION_ID>"
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\IndexList::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\IndexList::class, $response);
+    }
 
-    public function testMethodCreateIndex(): void {
-                        
-        $data = array("\$id" => "5e5ea5c16897e"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"key" => "index1"
-,"type" => "primary"
-,"status" => "available"
-,"error" => "string"
-,"attributes" => array()
-,"lengths" => array()
-)
-;
+    public function testMethodCreateIndex(): void
+    {
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "key" => "index1",
+            "type" => "primary",
+            "status" => "available",
+            "error" => "string",
+            "attributes" => array(),
+            "lengths" => array()
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1918,22 +1967,22 @@ final class DatabasesTest extends TestCase {
             array()
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\Index::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\Index::class, $response);
+    }
 
-    public function testMethodGetIndex(): void {
-                        
-        $data = array("\$id" => "5e5ea5c16897e"
-,"\$createdAt" => "2020-10-15T06:38:00.000+00:00"
-,"\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-,"key" => "index1"
-,"type" => "primary"
-,"status" => "available"
-,"error" => "string"
-,"attributes" => array()
-,"lengths" => array()
-)
-;
+    public function testMethodGetIndex(): void
+    {
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "key" => "index1",
+            "type" => "primary",
+            "status" => "available",
+            "error" => "string",
+            "attributes" => array(),
+            "lengths" => array()
+        );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1945,11 +1994,11 @@ final class DatabasesTest extends TestCase {
             ""
         );
 
-                $this->assertInstanceOf(\Appwrite\Models\Index::class, $response);
-            }
+        $this->assertInstanceOf(\Appwrite\Models\Index::class, $response);
+    }
 
-    public function testMethodDeleteIndex(): void {
-                        
+    public function testMethodDeleteIndex(): void
+    {
         $data = '';
 
         $this->client
@@ -1962,7 +2011,7 @@ final class DatabasesTest extends TestCase {
             ""
         );
 
-                $this->assertSame($data, $response);
-            }
+        $this->assertSame($data, $response);
+    }
 
 }
