@@ -15,10 +15,10 @@ use Appwrite\Enums\DeploymentDownloadType;
 
 class Sites extends Service
 {
-     public function __construct(Client $client)
-     {
-         parent::__construct($client);
-     }
+    public function __construct(Client $client)
+    {
+        parent::__construct($client);
+    }
 
     /**
      * Get a list of all the project's sites. You can use the query params to

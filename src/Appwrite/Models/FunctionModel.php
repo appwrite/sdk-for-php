@@ -34,15 +34,15 @@ readonly class FunctionModel
      * @param array $execute execution permissions.
      * @param string $name function name.
      * @param bool $enabled function enabled.
-     * @param bool $live is the function deployed with the latest configuration? this is set to false if you&#039;ve changed an environment variables, entrypoint, commands, or other settings that needs redeploy to be applied. when the value is false, redeploy the function to update it with the latest configuration.
+     * @param bool $live is the function deployed with the latest configuration? this is set to false if you've changed an environment variables, entrypoint, commands, or other settings that needs redeploy to be applied. when the value is false, redeploy the function to update it with the latest configuration.
      * @param bool $logging when disabled, executions will exclude logs and errors, and will be slightly faster.
      * @param string $runtime function execution and build runtime.
      * @param int $deploymentRetention how many days to keep the non-active deployments before they will be automatically deleted.
-     * @param string $deploymentId function&#039;s active deployment id.
+     * @param string $deploymentId function's active deployment id.
      * @param string $deploymentCreatedAt active deployment creation date in iso 8601 format.
-     * @param string $latestDeploymentId function&#039;s latest deployment id.
+     * @param string $latestDeploymentId function's latest deployment id.
      * @param string $latestDeploymentCreatedAt latest deployment creation date in iso 8601 format.
-     * @param string $latestDeploymentStatus status of latest deployment. possible values are &quot;waiting&quot;, &quot;processing&quot;, &quot;building&quot;, &quot;ready&quot;, and &quot;failed&quot;.
+     * @param string $latestDeploymentStatus status of latest deployment. possible values are "waiting", "processing", "building", "ready", and "failed".
      * @param array $scopes allowed permission scopes.
      * @param list<Variable> $vars function variables.
      * @param array $events function trigger events.

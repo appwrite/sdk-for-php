@@ -12,10 +12,10 @@ use Appwrite\Enums\ImageFormat;
 
 class Storage extends Service
 {
-     public function __construct(Client $client)
-     {
-         parent::__construct($client);
-     }
+    public function __construct(Client $client)
+    {
+        parent::__construct($client);
+    }
 
     /**
      * Get a list of all the storage buckets. You can use the query params to

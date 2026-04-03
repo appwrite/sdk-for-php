@@ -9,10 +9,10 @@ use Appwrite\InputFile;
 
 class Locale extends Service
 {
-     public function __construct(Client $client)
-     {
-         parent::__construct($client);
-     }
+    public function __construct(Client $client)
+    {
+        parent::__construct($client);
+    }
 
     /**
      * Get the current user location based on IP. Returns an object with user

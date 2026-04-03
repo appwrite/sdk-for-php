@@ -9,10 +9,10 @@ use Appwrite\InputFile;
 
 class Teams extends Service
 {
-     public function __construct(Client $client)
-     {
-         parent::__construct($client);
-     }
+    public function __construct(Client $client)
+    {
+        parent::__construct($client);
+    }
 
     /**
      * Get a list of all the teams in which the current user is a member. You can

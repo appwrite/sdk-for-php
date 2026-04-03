@@ -10,10 +10,10 @@ use Appwrite\Enums\BackupServices;
 
 class Backups extends Service
 {
-     public function __construct(Client $client)
-     {
-         parent::__construct($client);
-     }
+    public function __construct(Client $client)
+    {
+        parent::__construct($client);
+    }
 
     /**
      * List all archives for a project.

@@ -37,7 +37,7 @@ readonly class Deployment
      * @param bool $activate whether the deployment should be automatically activated.
      * @param string $screenshotLight screenshot with light theme preference file id.
      * @param string $screenshotDark screenshot with dark theme preference file id.
-     * @param DeploymentStatus $status the deployment status. possible values are &quot;waiting&quot;, &quot;processing&quot;, &quot;building&quot;, &quot;ready&quot;, &quot;canceled&quot; and &quot;failed&quot;.
+     * @param DeploymentStatus $status the deployment status. possible values are "waiting", "processing", "building", "ready", "canceled" and "failed".
      * @param string $buildLogs the build logs.
      * @param int $buildDuration the current build time in seconds.
      * @param string $providerRepositoryName the name of the vcs provider repository

@@ -9,10 +9,10 @@ use Appwrite\InputFile;
 
 class Activities extends Service
 {
-     public function __construct(Client $client)
-     {
-         parent::__construct($client);
-     }
+    public function __construct(Client $client)
+    {
+        parent::__construct($client);
+    }
 
     /**
      * List all events for selected filters.

@@ -10,10 +10,10 @@ use Appwrite\Enums\Name;
 
 class Health extends Service
 {
-     public function __construct(Client $client)
-     {
-         parent::__construct($client);
-     }
+    public function __construct(Client $client)
+    {
+        parent::__construct($client);
+    }
 
     /**
      * Check the Appwrite HTTP server is up and responsive.

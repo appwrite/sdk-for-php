@@ -11,10 +11,10 @@ use Appwrite\Enums\SmtpEncryption;
 
 class Messaging extends Service
 {
-     public function __construct(Client $client)
-     {
-         parent::__construct($client);
-     }
+    public function __construct(Client $client)
+    {
+        parent::__construct($client);
+    }
 
     /**
      * Get a list of all messages from the current Appwrite project.

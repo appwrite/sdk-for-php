@@ -12,10 +12,10 @@ use Appwrite\Enums\OAuthProvider;
 
 class Account extends Service
 {
-     public function __construct(Client $client)
-     {
-         parent::__construct($client);
-     }
+    public function __construct(Client $client)
+    {
+        parent::__construct($client);
+    }
 
     /**
      * Get the currently logged in user.

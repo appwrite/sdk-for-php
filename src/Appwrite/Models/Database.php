@@ -35,7 +35,7 @@ readonly class Database
      * @param string $name database name.
      * @param string $createdAt database creation date in iso 8601 format.
      * @param string $updatedAt database update date in iso 8601 format.
-     * @param bool $enabled if database is enabled. can be &#039;enabled&#039; or &#039;disabled&#039;. when disabled, the database is inaccessible to users, but remains accessible to server sdks using api keys.
+     * @param bool $enabled if database is enabled. can be 'enabled' or 'disabled'. when disabled, the database is inaccessible to users, but remains accessible to server sdks using api keys.
      * @param DatabaseType $type database type.
      * @param list<Index> $policies database backup policies.
      * @param list<Collection> $archives database backup archives.

@@ -9,10 +9,10 @@ use Appwrite\InputFile;
 
 class Tokens extends Service
 {
-     public function __construct(Client $client)
-     {
-         parent::__construct($client);
-     }
+    public function __construct(Client $client)
+    {
+        parent::__construct($client);
+    }
 
     /**
      * List all the tokens created for a specific file or bucket. You can use the

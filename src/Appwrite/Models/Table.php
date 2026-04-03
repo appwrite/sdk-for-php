@@ -35,7 +35,7 @@ readonly class Table
      * @param array $permissions table permissions. [learn more about permissions](https://appwrite.io/docs/permissions).
      * @param string $databaseId database id.
      * @param string $name table name.
-     * @param bool $enabled table enabled. can be &#039;enabled&#039; or &#039;disabled&#039;. when disabled, the table is inaccessible to users, but remains accessible to server sdks using api keys.
+     * @param bool $enabled table enabled. can be 'enabled' or 'disabled'. when disabled, the table is inaccessible to users, but remains accessible to server sdks using api keys.
      * @param bool $rowSecurity whether row-level permissions are enabled. [learn more about permissions](https://appwrite.io/docs/permissions).
      * @param array $columns table columns.
      * @param list<ColumnIndex> $indexes table indexes.

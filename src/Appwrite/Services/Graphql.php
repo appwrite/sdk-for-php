@@ -9,10 +9,10 @@ use Appwrite\InputFile;
 
 class Graphql extends Service
 {
-     public function __construct(Client $client)
-     {
-         parent::__construct($client);
-     }
+    public function __construct(Client $client)
+    {
+        parent::__construct($client);
+    }
 
     /**
      * Execute a GraphQL mutation.

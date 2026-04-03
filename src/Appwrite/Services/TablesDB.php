@@ -13,10 +13,10 @@ use Appwrite\Enums\OrderBy;
 
 class TablesDB extends Service
 {
-     public function __construct(Client $client)
-     {
-         parent::__construct($client);
-     }
+    public function __construct(Client $client)
+    {
+        parent::__construct($client);
+    }
 
     /**
      * Get a list of all databases from the current Appwrite project. You can use

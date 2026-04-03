@@ -33,17 +33,17 @@ readonly class Site
      * @param string $updatedAt site update date in iso 8601 format.
      * @param string $name site name.
      * @param bool $enabled site enabled.
-     * @param bool $live is the site deployed with the latest configuration? this is set to false if you&#039;ve changed an environment variables, entrypoint, commands, or other settings that needs redeploy to be applied. when the value is false, redeploy the site to update it with the latest configuration.
+     * @param bool $live is the site deployed with the latest configuration? this is set to false if you've changed an environment variables, entrypoint, commands, or other settings that needs redeploy to be applied. when the value is false, redeploy the site to update it with the latest configuration.
      * @param bool $logging when disabled, request logs will exclude logs and errors, and site responses will be slightly faster.
      * @param string $framework site framework.
      * @param int $deploymentRetention how many days to keep the non-active deployments before they will be automatically deleted.
-     * @param string $deploymentId site&#039;s active deployment id.
+     * @param string $deploymentId site's active deployment id.
      * @param string $deploymentCreatedAt active deployment creation date in iso 8601 format.
      * @param string $deploymentScreenshotLight screenshot of active deployment with light theme preference file id.
      * @param string $deploymentScreenshotDark screenshot of active deployment with dark theme preference file id.
-     * @param string $latestDeploymentId site&#039;s latest deployment id.
+     * @param string $latestDeploymentId site's latest deployment id.
      * @param string $latestDeploymentCreatedAt latest deployment creation date in iso 8601 format.
-     * @param string $latestDeploymentStatus status of latest deployment. possible values are &quot;waiting&quot;, &quot;processing&quot;, &quot;building&quot;, &quot;ready&quot;, and &quot;failed&quot;.
+     * @param string $latestDeploymentStatus status of latest deployment. possible values are "waiting", "processing", "building", "ready", and "failed".
      * @param list<Variable> $vars site variables.
      * @param int $timeout site request timeout in seconds.
      * @param string $installCommand the install command used to install the site dependencies.

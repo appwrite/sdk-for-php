@@ -16,10 +16,10 @@ use Appwrite\Enums\ImageFormat;
 
 class Avatars extends Service
 {
-     public function __construct(Client $client)
-     {
-         parent::__construct($client);
-     }
+    public function __construct(Client $client)
+    {
+        parent::__construct($client);
+    }
 
     /**
      * You can use this endpoint to show different browser icons to your users.

@@ -9,10 +9,10 @@ use Appwrite\InputFile;
 
 class Project extends Service
 {
-     public function __construct(Client $client)
-     {
-         parent::__construct($client);
-     }
+    public function __construct(Client $client)
+    {
+        parent::__construct($client);
+    }
 
     /**
      * Get a list of all project environment variables.

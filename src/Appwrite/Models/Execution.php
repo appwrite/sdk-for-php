@@ -38,7 +38,7 @@ readonly class Execution
      * @param string $updatedAt execution update date in iso 8601 format.
      * @param array $permissions execution roles.
      * @param string $functionId function id.
-     * @param string $deploymentId function&#039;s deployment id used to create the execution.
+     * @param string $deploymentId function's deployment id used to create the execution.
      * @param ExecutionTrigger $trigger the trigger that caused the function to execute. possible values can be: `http`, `schedule`, or `event`.
      * @param ExecutionStatus $status the status of the function execution. possible values can be: `waiting`, `processing`, `completed`, `failed`, or `scheduled`.
      * @param string $requestMethod http request method type.

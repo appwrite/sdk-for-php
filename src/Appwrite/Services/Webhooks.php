@@ -9,10 +9,10 @@ use Appwrite\InputFile;
 
 class Webhooks extends Service
 {
-     public function __construct(Client $client)
-     {
-         parent::__construct($client);
-     }
+    public function __construct(Client $client)
+    {
+        parent::__construct($client);
+    }
 
     /**
      * Get a list of all webhooks belonging to the project. You can use the query
