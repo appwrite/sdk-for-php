@@ -562,13 +562,18 @@ final class ProjectTest extends TestCase
 
     public function testMethodGetPlatform(): void
     {
-        $data = array(
-            "\$id" => "5e5ea5c16897e",
-            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "name" => "My Web App",
-            "type" => "windows",
-            "packageName" => "com.company.appname"
+        $data = array_replace(
+            array(
+                "\$id" => "5e5ea5c16897e",
+                "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                "name" => "My Web App",
+                "type" => "windows",
+                "packageName" => "com.company.appname"
+            ),
+            array(
+                "type" => "linux"
+            )
         );
 
         $this->client

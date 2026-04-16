@@ -2609,7 +2609,47 @@ class Databases extends Service
             throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
         }
 
-        return \Appwrite\Models\AttributeBoolean::from($response);
+        if (($response['type'] ?? null) === 'string' && ($response['format'] ?? null) === 'email') {
+            return \Appwrite\Models\AttributeEmail::from($response);
+        }
+
+        if (($response['type'] ?? null) === 'string' && ($response['format'] ?? null) === 'enum') {
+            return \Appwrite\Models\AttributeEnum::from($response);
+        }
+
+        if (($response['type'] ?? null) === 'string' && ($response['format'] ?? null) === 'url') {
+            return \Appwrite\Models\AttributeUrl::from($response);
+        }
+
+        if (($response['type'] ?? null) === 'string' && ($response['format'] ?? null) === 'ip') {
+            return \Appwrite\Models\AttributeIp::from($response);
+        }
+
+        if (($response['type'] ?? null) === 'boolean') {
+            return \Appwrite\Models\AttributeBoolean::from($response);
+        }
+
+        if (($response['type'] ?? null) === 'integer') {
+            return \Appwrite\Models\AttributeInteger::from($response);
+        }
+
+        if (($response['type'] ?? null) === 'double') {
+            return \Appwrite\Models\AttributeFloat::from($response);
+        }
+
+        if (($response['type'] ?? null) === 'datetime') {
+            return \Appwrite\Models\AttributeDatetime::from($response);
+        }
+
+        if (($response['type'] ?? null) === 'relationship') {
+            return \Appwrite\Models\AttributeRelationship::from($response);
+        }
+
+        if (($response['type'] ?? null) === 'string') {
+            return \Appwrite\Models\AttributeString::from($response);
+        }
+
+        throw new \UnexpectedValueException('Unable to match response to any expected response model.');
 
     }
 

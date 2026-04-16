@@ -2451,7 +2451,47 @@ class TablesDB extends Service
             throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
         }
 
-        return \Appwrite\Models\ColumnBoolean::from($response);
+        if (($response['type'] ?? null) === 'string' && ($response['format'] ?? null) === 'email') {
+            return \Appwrite\Models\ColumnEmail::from($response);
+        }
+
+        if (($response['type'] ?? null) === 'string' && ($response['format'] ?? null) === 'enum') {
+            return \Appwrite\Models\ColumnEnum::from($response);
+        }
+
+        if (($response['type'] ?? null) === 'string' && ($response['format'] ?? null) === 'url') {
+            return \Appwrite\Models\ColumnUrl::from($response);
+        }
+
+        if (($response['type'] ?? null) === 'string' && ($response['format'] ?? null) === 'ip') {
+            return \Appwrite\Models\ColumnIp::from($response);
+        }
+
+        if (($response['type'] ?? null) === 'boolean') {
+            return \Appwrite\Models\ColumnBoolean::from($response);
+        }
+
+        if (($response['type'] ?? null) === 'integer') {
+            return \Appwrite\Models\ColumnInteger::from($response);
+        }
+
+        if (($response['type'] ?? null) === 'double') {
+            return \Appwrite\Models\ColumnFloat::from($response);
+        }
+
+        if (($response['type'] ?? null) === 'datetime') {
+            return \Appwrite\Models\ColumnDatetime::from($response);
+        }
+
+        if (($response['type'] ?? null) === 'relationship') {
+            return \Appwrite\Models\ColumnRelationship::from($response);
+        }
+
+        if (($response['type'] ?? null) === 'string') {
+            return \Appwrite\Models\ColumnString::from($response);
+        }
+
+        throw new \UnexpectedValueException('Unable to match response to any expected response model.');
 
     }
 

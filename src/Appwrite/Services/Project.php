@@ -742,7 +742,27 @@ class Project extends Service
             throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
         }
 
-        return \Appwrite\Models\PlatformWeb::from($response);
+        if (($response['type'] ?? null) === 'web') {
+            return \Appwrite\Models\PlatformWeb::from($response);
+        }
+
+        if (($response['type'] ?? null) === 'apple') {
+            return \Appwrite\Models\PlatformApple::from($response);
+        }
+
+        if (($response['type'] ?? null) === 'android') {
+            return \Appwrite\Models\PlatformAndroid::from($response);
+        }
+
+        if (($response['type'] ?? null) === 'windows') {
+            return \Appwrite\Models\PlatformWindows::from($response);
+        }
+
+        if (($response['type'] ?? null) === 'linux') {
+            return \Appwrite\Models\PlatformLinux::from($response);
+        }
+
+        throw new \UnexpectedValueException('Unable to match response to any expected response model.');
 
     }
 
