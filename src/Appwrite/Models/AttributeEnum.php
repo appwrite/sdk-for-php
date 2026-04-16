@@ -12,16 +12,6 @@ readonly class AttributeEnum
     use ArraySerializable;
 
     /**
-     * @var array<string, string>
-     */
-    private const FIELD_MAP = [
-        'xarray' => 'array',
-        'createdAt' => '$createdAt',
-        'updatedAt' => '$updatedAt',
-        'xdefault' => 'default'
-    ];
-
-    /**
      * AttributeEnum constructor.
      *
      * @param string $key attribute key.
@@ -33,8 +23,8 @@ readonly class AttributeEnum
      * @param string $updatedAt attribute update date in iso 8601 format.
      * @param array $elements array of elements in enumerated type.
      * @param string $format string format.
-     * @param bool|null $xarray is attribute an array?
-     * @param string|null $xdefault default value for attribute when not provided. cannot be set when attribute is required.
+     * @param bool|null $array is attribute an array?
+     * @param string|null $default default value for attribute when not provided. cannot be set when attribute is required.
      */
     public function __construct(
         public string $key,
@@ -46,8 +36,78 @@ readonly class AttributeEnum
         public string $updatedAt,
         public array $elements,
         public string $format,
-        public ?bool $xarray = null,
-        public ?string $xdefault = null
+        public ?bool $array = null,
+        public ?string $default = null
     ) {
+    }
+
+    /**
+     * @param array<string, mixed> $data
+     */
+    public static function from(array $data): static
+    {
+        if (!array_key_exists('key', $data)) {
+            throw new \InvalidArgumentException('Missing required field "key" for ' . static::class . '.');
+        }
+        if (!array_key_exists('type', $data)) {
+            throw new \InvalidArgumentException('Missing required field "type" for ' . static::class . '.');
+        }
+        if (!array_key_exists('status', $data)) {
+            throw new \InvalidArgumentException('Missing required field "status" for ' . static::class . '.');
+        }
+        if (!array_key_exists('error', $data)) {
+            throw new \InvalidArgumentException('Missing required field "error" for ' . static::class . '.');
+        }
+        if (!array_key_exists('required', $data)) {
+            throw new \InvalidArgumentException('Missing required field "required" for ' . static::class . '.');
+        }
+        if (!array_key_exists('$createdAt', $data)) {
+            throw new \InvalidArgumentException('Missing required field "$createdAt" for ' . static::class . '.');
+        }
+        if (!array_key_exists('$updatedAt', $data)) {
+            throw new \InvalidArgumentException('Missing required field "$updatedAt" for ' . static::class . '.');
+        }
+        if (!array_key_exists('elements', $data)) {
+            throw new \InvalidArgumentException('Missing required field "elements" for ' . static::class . '.');
+        }
+        if (!array_key_exists('format', $data)) {
+            throw new \InvalidArgumentException('Missing required field "format" for ' . static::class . '.');
+        }
+
+        return new static(
+            key: $data['key'],
+            type: $data['type'],
+            status: static::hydrateTypedValue(AttributeStatus::class, $data['status']),
+            error: $data['error'],
+            required: $data['required'],
+            createdAt: $data['$createdAt'],
+            updatedAt: $data['$updatedAt'],
+            elements: $data['elements'],
+            format: $data['format'],
+            array: array_key_exists('array', $data) ? $data['array'] : null,
+            default: array_key_exists('default', $data) ? $data['default'] : null
+        );
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function toArray(): array
+    {
+        $result = [
+            'key' => static::serializeValue($this->key),
+            'type' => static::serializeValue($this->type),
+            'status' => static::serializeValue($this->status),
+            'error' => static::serializeValue($this->error),
+            'required' => static::serializeValue($this->required),
+            'array' => static::serializeValue($this->array),
+            '$createdAt' => static::serializeValue($this->createdAt),
+            '$updatedAt' => static::serializeValue($this->updatedAt),
+            'elements' => static::serializeValue($this->elements),
+            'format' => static::serializeValue($this->format),
+            'default' => static::serializeValue($this->default)
+        ];
+
+        return $result;
     }
 }

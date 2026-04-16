@@ -12,16 +12,6 @@ readonly class ColumnFloat
     use ArraySerializable;
 
     /**
-     * @var array<string, string>
-     */
-    private const FIELD_MAP = [
-        'xarray' => 'array',
-        'createdAt' => '$createdAt',
-        'updatedAt' => '$updatedAt',
-        'xdefault' => 'default'
-    ];
-
-    /**
      * ColumnFloat constructor.
      *
      * @param string $key column key.
@@ -31,10 +21,10 @@ readonly class ColumnFloat
      * @param bool $required is column required?
      * @param string $createdAt column creation date in iso 8601 format.
      * @param string $updatedAt column update date in iso 8601 format.
-     * @param bool|null $xarray is column an array?
+     * @param bool|null $array is column an array?
      * @param float|null $min minimum value to enforce for new documents.
      * @param float|null $max maximum value to enforce for new documents.
-     * @param float|null $xdefault default value for column when not provided. cannot be set when column is required.
+     * @param float|null $default default value for column when not provided. cannot be set when column is required.
      */
     public function __construct(
         public string $key,
@@ -44,10 +34,74 @@ readonly class ColumnFloat
         public bool $required,
         public string $createdAt,
         public string $updatedAt,
-        public ?bool $xarray = null,
+        public ?bool $array = null,
         public ?float $min = null,
         public ?float $max = null,
-        public ?float $xdefault = null
+        public ?float $default = null
     ) {
+    }
+
+    /**
+     * @param array<string, mixed> $data
+     */
+    public static function from(array $data): static
+    {
+        if (!array_key_exists('key', $data)) {
+            throw new \InvalidArgumentException('Missing required field "key" for ' . static::class . '.');
+        }
+        if (!array_key_exists('type', $data)) {
+            throw new \InvalidArgumentException('Missing required field "type" for ' . static::class . '.');
+        }
+        if (!array_key_exists('status', $data)) {
+            throw new \InvalidArgumentException('Missing required field "status" for ' . static::class . '.');
+        }
+        if (!array_key_exists('error', $data)) {
+            throw new \InvalidArgumentException('Missing required field "error" for ' . static::class . '.');
+        }
+        if (!array_key_exists('required', $data)) {
+            throw new \InvalidArgumentException('Missing required field "required" for ' . static::class . '.');
+        }
+        if (!array_key_exists('$createdAt', $data)) {
+            throw new \InvalidArgumentException('Missing required field "$createdAt" for ' . static::class . '.');
+        }
+        if (!array_key_exists('$updatedAt', $data)) {
+            throw new \InvalidArgumentException('Missing required field "$updatedAt" for ' . static::class . '.');
+        }
+
+        return new static(
+            key: $data['key'],
+            type: $data['type'],
+            status: static::hydrateTypedValue(ColumnStatus::class, $data['status']),
+            error: $data['error'],
+            required: $data['required'],
+            createdAt: $data['$createdAt'],
+            updatedAt: $data['$updatedAt'],
+            array: array_key_exists('array', $data) ? $data['array'] : null,
+            min: array_key_exists('min', $data) ? $data['min'] : null,
+            max: array_key_exists('max', $data) ? $data['max'] : null,
+            default: array_key_exists('default', $data) ? $data['default'] : null
+        );
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function toArray(): array
+    {
+        $result = [
+            'key' => static::serializeValue($this->key),
+            'type' => static::serializeValue($this->type),
+            'status' => static::serializeValue($this->status),
+            'error' => static::serializeValue($this->error),
+            'required' => static::serializeValue($this->required),
+            'array' => static::serializeValue($this->array),
+            '$createdAt' => static::serializeValue($this->createdAt),
+            '$updatedAt' => static::serializeValue($this->updatedAt),
+            'min' => static::serializeValue($this->min),
+            'max' => static::serializeValue($this->max),
+            'default' => static::serializeValue($this->default)
+        ];
+
+        return $result;
     }
 }

@@ -40,6 +40,7 @@ class OAuthProvider implements JsonSerializable
     private static OAuthProvider $TRADESHIFTBOX;
     private static OAuthProvider $TWITCH;
     private static OAuthProvider $WORDPRESS;
+    private static OAuthProvider $X;
     private static OAuthProvider $YAHOO;
     private static OAuthProvider $YAMMER;
     private static OAuthProvider $YANDEX;
@@ -301,6 +302,13 @@ class OAuthProvider implements JsonSerializable
         }
         return self::$WORDPRESS;
     }
+    public static function X(): OAuthProvider
+    {
+        if (!isset(self::$X)) {
+            self::$X = new OAuthProvider('x');
+        }
+        return self::$X;
+    }
     public static function YAHOO(): OAuthProvider
     {
         if (!isset(self::$YAHOO)) {
@@ -374,6 +382,7 @@ class OAuthProvider implements JsonSerializable
             'tradeshiftBox' => self::TRADESHIFTBOX(),
             'twitch' => self::TWITCH(),
             'wordpress' => self::WORDPRESS(),
+            'x' => self::X(),
             'yahoo' => self::YAHOO(),
             'yammer' => self::YAMMER(),
             'yandex' => self::YANDEX(),

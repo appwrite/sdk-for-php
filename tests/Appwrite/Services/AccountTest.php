@@ -221,6 +221,7 @@ final class AccountTest extends TestCase
                     "userEmail" => "john@appwrite.io",
                     "userName" => "John Doe",
                     "mode" => "admin",
+                    "userType" => "user",
                     "ip" => "127.0.0.1",
                     "time" => "2020-10-15T06:38:00.000+00:00",
                     "osCode" => "Mac",

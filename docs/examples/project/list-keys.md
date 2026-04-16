@@ -2,15 +2,16 @@
 <?php
 
 use Appwrite\Client;
-use Appwrite\Services\Webhooks;
+use Appwrite\Services\Project;
 
 $client = (new Client())
     ->setEndpoint('https://<REGION>.cloud.appwrite.io/v1') // Your API Endpoint
     ->setProject('<YOUR_PROJECT_ID>') // Your project ID
     ->setKey('<YOUR_API_KEY>'); // Your secret API key
 
-$webhooks = new Webhooks($client);
+$project = new Project($client);
 
-$result = $webhooks->updateSignature(
-    webhookId: '<WEBHOOK_ID>'
+$result = $project->listKeys(
+    queries: [], // optional
+    total: false // optional
 );```

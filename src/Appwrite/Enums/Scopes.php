@@ -67,6 +67,10 @@ class Scopes implements JsonSerializable
     private static Scopes $WEBHOOKSWRITE;
     private static Scopes $PROJECTREAD;
     private static Scopes $PROJECTWRITE;
+    private static Scopes $KEYSREAD;
+    private static Scopes $KEYSWRITE;
+    private static Scopes $PLATFORMSREAD;
+    private static Scopes $PLATFORMSWRITE;
     private static Scopes $POLICIESWRITE;
     private static Scopes $POLICIESREAD;
     private static Scopes $ARCHIVESREAD;
@@ -521,6 +525,34 @@ class Scopes implements JsonSerializable
         }
         return self::$PROJECTWRITE;
     }
+    public static function KEYSREAD(): Scopes
+    {
+        if (!isset(self::$KEYSREAD)) {
+            self::$KEYSREAD = new Scopes('keys.read');
+        }
+        return self::$KEYSREAD;
+    }
+    public static function KEYSWRITE(): Scopes
+    {
+        if (!isset(self::$KEYSWRITE)) {
+            self::$KEYSWRITE = new Scopes('keys.write');
+        }
+        return self::$KEYSWRITE;
+    }
+    public static function PLATFORMSREAD(): Scopes
+    {
+        if (!isset(self::$PLATFORMSREAD)) {
+            self::$PLATFORMSREAD = new Scopes('platforms.read');
+        }
+        return self::$PLATFORMSREAD;
+    }
+    public static function PLATFORMSWRITE(): Scopes
+    {
+        if (!isset(self::$PLATFORMSWRITE)) {
+            self::$PLATFORMSWRITE = new Scopes('platforms.write');
+        }
+        return self::$PLATFORMSWRITE;
+    }
     public static function POLICIESWRITE(): Scopes
     {
         if (!isset(self::$POLICIESWRITE)) {
@@ -649,6 +681,10 @@ class Scopes implements JsonSerializable
             'webhooks.write' => self::WEBHOOKSWRITE(),
             'project.read' => self::PROJECTREAD(),
             'project.write' => self::PROJECTWRITE(),
+            'keys.read' => self::KEYSREAD(),
+            'keys.write' => self::KEYSWRITE(),
+            'platforms.read' => self::PLATFORMSREAD(),
+            'platforms.write' => self::PLATFORMSWRITE(),
             'policies.write' => self::POLICIESWRITE(),
             'policies.read' => self::POLICIESREAD(),
             'archives.read' => self::ARCHIVESREAD(),

@@ -30,10 +30,10 @@ final class WebhooksTest extends TestCase
                     "name" => "My Webhook",
                     "url" => "https://example.com/webhook",
                     "events" => array(),
-                    "security" => true,
-                    "httpUser" => "username",
-                    "httpPass" => "password",
-                    "signatureKey" => "ad3d581ca230e2b7059c545e5a",
+                    "tls" => true,
+                    "authUsername" => "username",
+                    "authPassword" => "password",
+                    "secret" => "ad3d581ca230e2b7059c545e5a",
                     "enabled" => true,
                     "logs" => "Failed to connect to remote server.",
                     "attempts" => 10
@@ -59,10 +59,10 @@ final class WebhooksTest extends TestCase
             "name" => "My Webhook",
             "url" => "https://example.com/webhook",
             "events" => array(),
-            "security" => true,
-            "httpUser" => "username",
-            "httpPass" => "password",
-            "signatureKey" => "ad3d581ca230e2b7059c545e5a",
+            "tls" => true,
+            "authUsername" => "username",
+            "authPassword" => "password",
+            "secret" => "ad3d581ca230e2b7059c545e5a",
             "enabled" => true,
             "logs" => "Failed to connect to remote server.",
             "attempts" => 10
@@ -91,10 +91,10 @@ final class WebhooksTest extends TestCase
             "name" => "My Webhook",
             "url" => "https://example.com/webhook",
             "events" => array(),
-            "security" => true,
-            "httpUser" => "username",
-            "httpPass" => "password",
-            "signatureKey" => "ad3d581ca230e2b7059c545e5a",
+            "tls" => true,
+            "authUsername" => "username",
+            "authPassword" => "password",
+            "secret" => "ad3d581ca230e2b7059c545e5a",
             "enabled" => true,
             "logs" => "Failed to connect to remote server.",
             "attempts" => 10
@@ -120,10 +120,10 @@ final class WebhooksTest extends TestCase
             "name" => "My Webhook",
             "url" => "https://example.com/webhook",
             "events" => array(),
-            "security" => true,
-            "httpUser" => "username",
-            "httpPass" => "password",
-            "signatureKey" => "ad3d581ca230e2b7059c545e5a",
+            "tls" => true,
+            "authUsername" => "username",
+            "authPassword" => "password",
+            "secret" => "ad3d581ca230e2b7059c545e5a",
             "enabled" => true,
             "logs" => "Failed to connect to remote server.",
             "attempts" => 10
@@ -158,7 +158,7 @@ final class WebhooksTest extends TestCase
         $this->assertSame($data, $response);
     }
 
-    public function testMethodUpdateSignature(): void
+    public function testMethodUpdateSecret(): void
     {
         $data = array(
             "\$id" => "5e5ea5c16897e",
@@ -167,10 +167,10 @@ final class WebhooksTest extends TestCase
             "name" => "My Webhook",
             "url" => "https://example.com/webhook",
             "events" => array(),
-            "security" => true,
-            "httpUser" => "username",
-            "httpPass" => "password",
-            "signatureKey" => "ad3d581ca230e2b7059c545e5a",
+            "tls" => true,
+            "authUsername" => "username",
+            "authPassword" => "password",
+            "secret" => "ad3d581ca230e2b7059c545e5a",
             "enabled" => true,
             "logs" => "Failed to connect to remote server.",
             "attempts" => 10
@@ -180,7 +180,7 @@ final class WebhooksTest extends TestCase
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->webhooks->updateSignature(
+        $response = $this->webhooks->updateSecret(
             "<WEBHOOK_ID>"
         );
 

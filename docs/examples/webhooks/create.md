@@ -17,7 +17,8 @@ $result = $webhooks->create(
     name: '<NAME>',
     events: [],
     enabled: false, // optional
-    security: false, // optional
-    httpUser: '<HTTP_USER>', // optional
-    httpPass: '<HTTP_PASS>' // optional
+    tls: false, // optional
+    authUsername: '<AUTH_USERNAME>', // optional
+    authPassword: '<AUTH_PASSWORD>', // optional
+    secret: '<SECRET>' // optional
 );```

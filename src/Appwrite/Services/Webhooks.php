@@ -50,10 +50,11 @@ class Webhooks extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\WebhookList::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\WebhookList::from($response);
 
     }
 
@@ -66,13 +67,14 @@ class Webhooks extends Service
      * @param string $name
      * @param array $events
      * @param ?bool $enabled
-     * @param ?bool $security
-     * @param ?string $httpUser
-     * @param ?string $httpPass
+     * @param ?bool $tls
+     * @param ?string $authUsername
+     * @param ?string $authPassword
+     * @param ?string $secret
      * @throws AppwriteException
      * @return \Appwrite\Models\Webhook
      */
-    public function create(string $webhookId, string $url, string $name, array $events, ?bool $enabled = null, ?bool $security = null, ?string $httpUser = null, ?string $httpPass = null): \Appwrite\Models\Webhook
+    public function create(string $webhookId, string $url, string $name, array $events, ?bool $enabled = null, ?bool $tls = null, ?string $authUsername = null, ?string $authPassword = null, ?string $secret = null): \Appwrite\Models\Webhook
     {
         $apiPath = str_replace(
             [],
@@ -90,17 +92,18 @@ class Webhooks extends Service
             $apiParams['enabled'] = $enabled;
         }
 
-        if (!is_null($security)) {
-            $apiParams['security'] = $security;
+        if (!is_null($tls)) {
+            $apiParams['tls'] = $tls;
         }
 
-        if (!is_null($httpUser)) {
-            $apiParams['httpUser'] = $httpUser;
+        if (!is_null($authUsername)) {
+            $apiParams['authUsername'] = $authUsername;
         }
 
-        if (!is_null($httpPass)) {
-            $apiParams['httpPass'] = $httpPass;
+        if (!is_null($authPassword)) {
+            $apiParams['authPassword'] = $authPassword;
         }
+        $apiParams['secret'] = $secret;
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -112,10 +115,11 @@ class Webhooks extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Webhook::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Webhook::from($response);
 
     }
 
@@ -147,10 +151,11 @@ class Webhooks extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Webhook::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Webhook::from($response);
 
     }
 
@@ -163,13 +168,13 @@ class Webhooks extends Service
      * @param string $url
      * @param array $events
      * @param ?bool $enabled
-     * @param ?bool $security
-     * @param ?string $httpUser
-     * @param ?string $httpPass
+     * @param ?bool $tls
+     * @param ?string $authUsername
+     * @param ?string $authPassword
      * @throws AppwriteException
      * @return \Appwrite\Models\Webhook
      */
-    public function update(string $webhookId, string $name, string $url, array $events, ?bool $enabled = null, ?bool $security = null, ?string $httpUser = null, ?string $httpPass = null): \Appwrite\Models\Webhook
+    public function update(string $webhookId, string $name, string $url, array $events, ?bool $enabled = null, ?bool $tls = null, ?string $authUsername = null, ?string $authPassword = null): \Appwrite\Models\Webhook
     {
         $apiPath = str_replace(
             ['{webhookId}'],
@@ -187,16 +192,16 @@ class Webhooks extends Service
             $apiParams['enabled'] = $enabled;
         }
 
-        if (!is_null($security)) {
-            $apiParams['security'] = $security;
+        if (!is_null($tls)) {
+            $apiParams['tls'] = $tls;
         }
 
-        if (!is_null($httpUser)) {
-            $apiParams['httpUser'] = $httpUser;
+        if (!is_null($authUsername)) {
+            $apiParams['authUsername'] = $authUsername;
         }
 
-        if (!is_null($httpPass)) {
-            $apiParams['httpPass'] = $httpPass;
+        if (!is_null($authPassword)) {
+            $apiParams['authPassword'] = $authPassword;
         }
 
         $apiHeaders = [];
@@ -209,10 +214,11 @@ class Webhooks extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Webhook::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Webhook::from($response);
 
     }
 
@@ -250,24 +256,26 @@ class Webhooks extends Service
     }
 
     /**
-     * Update the webhook signature key. This endpoint can be used to regenerate
-     * the signature key used to sign and validate payload deliveries for a
-     * specific webhook.
+     * Update the webhook signing key. This endpoint can be used to regenerate the
+     * signing key used to sign and validate payload deliveries for a specific
+     * webhook.
      *
      * @param string $webhookId
+     * @param ?string $secret
      * @throws AppwriteException
      * @return \Appwrite\Models\Webhook
      */
-    public function updateSignature(string $webhookId): \Appwrite\Models\Webhook
+    public function updateSecret(string $webhookId, ?string $secret = null): \Appwrite\Models\Webhook
     {
         $apiPath = str_replace(
             ['{webhookId}'],
             [$webhookId],
-            '/webhooks/{webhookId}/signature'
+            '/webhooks/{webhookId}/secret'
         );
 
         $apiParams = [];
         $apiParams['webhookId'] = $webhookId;
+        $apiParams['secret'] = $secret;
 
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
@@ -279,10 +287,11 @@ class Webhooks extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Webhook::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Webhook::from($response);
 
     }
 }
