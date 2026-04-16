@@ -62,10 +62,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\DatabaseList::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\DatabaseList::from($response);
 
     }
 
@@ -108,10 +109,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Database::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Database::from($response);
 
     }
 
@@ -145,10 +147,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\TransactionList::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\TransactionList::from($response);
 
     }
 
@@ -183,10 +186,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Transaction::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Transaction::from($response);
 
     }
 
@@ -217,10 +221,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Transaction::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Transaction::from($response);
 
     }
 
@@ -262,10 +267,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Transaction::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Transaction::from($response);
 
     }
 
@@ -334,10 +340,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Transaction::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Transaction::from($response);
 
     }
 
@@ -372,10 +379,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Database::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Database::from($response);
 
     }
 
@@ -420,10 +428,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Database::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Database::from($response);
 
     }
 
@@ -509,10 +518,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\CollectionList::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\CollectionList::from($response);
 
     }
 
@@ -576,10 +586,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Collection::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Collection::from($response);
 
     }
 
@@ -616,10 +627,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Collection::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Collection::from($response);
 
     }
 
@@ -632,13 +644,14 @@ class Databases extends Service
      * @param ?array $permissions
      * @param ?bool $documentSecurity
      * @param ?bool $enabled
+     * @param ?bool $purge
      * @throws AppwriteException
      * @return \Appwrite\Models\Collection
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateTable` instead.
      * @see TablesDB::updateTable
      */
-    public function updateCollection(string $databaseId, string $collectionId, ?string $name = null, ?array $permissions = null, ?bool $documentSecurity = null, ?bool $enabled = null): \Appwrite\Models\Collection
+    public function updateCollection(string $databaseId, string $collectionId, ?string $name = null, ?array $permissions = null, ?bool $documentSecurity = null, ?bool $enabled = null, ?bool $purge = null): \Appwrite\Models\Collection
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
@@ -663,6 +676,10 @@ class Databases extends Service
             $apiParams['enabled'] = $enabled;
         }
 
+        if (!is_null($purge)) {
+            $apiParams['purge'] = $purge;
+        }
+
         $apiHeaders = [];
         $apiHeaders['content-type'] = 'application/json';
 
@@ -673,10 +690,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Collection::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Collection::from($response);
 
     }
 
@@ -760,10 +778,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\AttributeList::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\AttributeList::from($response);
 
     }
 
@@ -812,10 +831,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\AttributeBoolean::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\AttributeBoolean::from($response);
 
     }
 
@@ -861,10 +881,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\AttributeBoolean::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\AttributeBoolean::from($response);
 
     }
 
@@ -912,10 +933,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\AttributeDatetime::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\AttributeDatetime::from($response);
 
     }
 
@@ -961,10 +983,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\AttributeDatetime::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\AttributeDatetime::from($response);
 
     }
 
@@ -1013,10 +1036,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\AttributeEmail::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\AttributeEmail::from($response);
 
     }
 
@@ -1063,10 +1087,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\AttributeEmail::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\AttributeEmail::from($response);
 
     }
 
@@ -1118,10 +1143,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\AttributeEnum::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\AttributeEnum::from($response);
 
     }
 
@@ -1170,10 +1196,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\AttributeEnum::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\AttributeEnum::from($response);
 
     }
 
@@ -1227,10 +1254,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\AttributeFloat::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\AttributeFloat::from($response);
 
     }
 
@@ -1281,10 +1309,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\AttributeFloat::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\AttributeFloat::from($response);
 
     }
 
@@ -1338,10 +1367,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\AttributeInteger::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\AttributeInteger::from($response);
 
     }
 
@@ -1392,10 +1422,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\AttributeInteger::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\AttributeInteger::from($response);
 
     }
 
@@ -1444,10 +1475,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\AttributeIp::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\AttributeIp::from($response);
 
     }
 
@@ -1494,10 +1526,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\AttributeIp::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\AttributeIp::from($response);
 
     }
 
@@ -1540,10 +1573,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\AttributeLine::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\AttributeLine::from($response);
 
     }
 
@@ -1589,10 +1623,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\AttributeLine::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\AttributeLine::from($response);
 
     }
 
@@ -1643,10 +1678,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\AttributeLongtext::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\AttributeLongtext::from($response);
 
     }
 
@@ -1690,10 +1726,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\AttributeLongtext::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\AttributeLongtext::from($response);
 
     }
 
@@ -1744,10 +1781,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\AttributeMediumtext::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\AttributeMediumtext::from($response);
 
     }
 
@@ -1791,10 +1829,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\AttributeMediumtext::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\AttributeMediumtext::from($response);
 
     }
 
@@ -1837,10 +1876,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\AttributePoint::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\AttributePoint::from($response);
 
     }
 
@@ -1886,10 +1926,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\AttributePoint::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\AttributePoint::from($response);
 
     }
 
@@ -1932,10 +1973,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\AttributePolygon::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\AttributePolygon::from($response);
 
     }
 
@@ -1981,10 +2023,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\AttributePolygon::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\AttributePolygon::from($response);
 
     }
 
@@ -2041,10 +2084,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\AttributeRelationship::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\AttributeRelationship::from($response);
 
     }
 
@@ -2092,10 +2136,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\AttributeRelationship::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\AttributeRelationship::from($response);
 
     }
 
@@ -2151,10 +2196,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\AttributeString::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\AttributeString::from($response);
 
     }
 
@@ -2203,10 +2249,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\AttributeString::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\AttributeString::from($response);
 
     }
 
@@ -2257,10 +2304,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\AttributeText::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\AttributeText::from($response);
 
     }
 
@@ -2304,10 +2352,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\AttributeText::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\AttributeText::from($response);
 
     }
 
@@ -2356,10 +2405,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\AttributeUrl::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\AttributeUrl::from($response);
 
     }
 
@@ -2406,10 +2456,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\AttributeUrl::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\AttributeUrl::from($response);
 
     }
 
@@ -2462,10 +2513,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\AttributeVarchar::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\AttributeVarchar::from($response);
 
     }
 
@@ -2511,10 +2563,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\AttributeVarchar::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\AttributeVarchar::from($response);
 
     }
 
@@ -2552,53 +2605,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\AttributeBoolean::class, \Appwrite\Models\AttributeInteger::class, \Appwrite\Models\AttributeFloat::class, \Appwrite\Models\AttributeEmail::class, \Appwrite\Models\AttributeEnum::class, \Appwrite\Models\AttributeUrl::class, \Appwrite\Models\AttributeIp::class, \Appwrite\Models\AttributeDatetime::class, \Appwrite\Models\AttributeRelationship::class, \Appwrite\Models\AttributeString::class]
-,
-            [
-                \Appwrite\Models\AttributeBoolean::class => [
-                    'required' => ['key', 'type', 'status', 'error', 'required', '$createdAt', '$updatedAt', ],
-                    'all' => ['key', 'type', 'status', 'error', 'required', 'array', '$createdAt', '$updatedAt', 'default'],
-                ],
-                \Appwrite\Models\AttributeInteger::class => [
-                    'required' => ['key', 'type', 'status', 'error', 'required', '$createdAt', '$updatedAt', ],
-                    'all' => ['key', 'type', 'status', 'error', 'required', 'array', '$createdAt', '$updatedAt', 'min', 'max', 'default'],
-                ],
-                \Appwrite\Models\AttributeFloat::class => [
-                    'required' => ['key', 'type', 'status', 'error', 'required', '$createdAt', '$updatedAt', ],
-                    'all' => ['key', 'type', 'status', 'error', 'required', 'array', '$createdAt', '$updatedAt', 'min', 'max', 'default'],
-                ],
-                \Appwrite\Models\AttributeEmail::class => [
-                    'required' => ['key', 'type', 'status', 'error', 'required', '$createdAt', '$updatedAt', 'format', ],
-                    'all' => ['key', 'type', 'status', 'error', 'required', 'array', '$createdAt', '$updatedAt', 'format', 'default'],
-                ],
-                \Appwrite\Models\AttributeEnum::class => [
-                    'required' => ['key', 'type', 'status', 'error', 'required', '$createdAt', '$updatedAt', 'elements', 'format', ],
-                    'all' => ['key', 'type', 'status', 'error', 'required', 'array', '$createdAt', '$updatedAt', 'elements', 'format', 'default'],
-                ],
-                \Appwrite\Models\AttributeUrl::class => [
-                    'required' => ['key', 'type', 'status', 'error', 'required', '$createdAt', '$updatedAt', 'format', ],
-                    'all' => ['key', 'type', 'status', 'error', 'required', 'array', '$createdAt', '$updatedAt', 'format', 'default'],
-                ],
-                \Appwrite\Models\AttributeIp::class => [
-                    'required' => ['key', 'type', 'status', 'error', 'required', '$createdAt', '$updatedAt', 'format', ],
-                    'all' => ['key', 'type', 'status', 'error', 'required', 'array', '$createdAt', '$updatedAt', 'format', 'default'],
-                ],
-                \Appwrite\Models\AttributeDatetime::class => [
-                    'required' => ['key', 'type', 'status', 'error', 'required', '$createdAt', '$updatedAt', 'format', ],
-                    'all' => ['key', 'type', 'status', 'error', 'required', 'array', '$createdAt', '$updatedAt', 'format', 'default'],
-                ],
-                \Appwrite\Models\AttributeRelationship::class => [
-                    'required' => ['key', 'type', 'status', 'error', 'required', '$createdAt', '$updatedAt', 'relatedCollection', 'relationType', 'twoWay', 'twoWayKey', 'onDelete', 'side'],
-                    'all' => ['key', 'type', 'status', 'error', 'required', 'array', '$createdAt', '$updatedAt', 'relatedCollection', 'relationType', 'twoWay', 'twoWayKey', 'onDelete', 'side'],
-                ],
-                \Appwrite\Models\AttributeString::class => [
-                    'required' => ['key', 'type', 'status', 'error', 'required', '$createdAt', '$updatedAt', 'size', ],
-                    'all' => ['key', 'type', 'status', 'error', 'required', 'array', '$createdAt', '$updatedAt', 'size', 'default', 'encrypt'],
-                ]
-            ]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\AttributeBoolean::from($response);
 
     }
 
@@ -2694,10 +2705,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\DocumentList::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\DocumentList::from($response);
 
     }
 
@@ -2745,10 +2757,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Document::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Document::from($response);
 
     }
 
@@ -2792,10 +2805,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\DocumentList::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\DocumentList::from($response);
 
     }
 
@@ -2840,10 +2854,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\DocumentList::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\DocumentList::from($response);
 
     }
 
@@ -2894,10 +2909,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\DocumentList::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\DocumentList::from($response);
 
     }
 
@@ -2942,10 +2958,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\DocumentList::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\DocumentList::from($response);
 
     }
 
@@ -2994,10 +3011,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Document::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Document::from($response);
 
     }
 
@@ -3048,10 +3066,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Document::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Document::from($response);
 
     }
 
@@ -3100,10 +3119,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Document::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Document::from($response);
 
     }
 
@@ -3194,10 +3214,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Document::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Document::from($response);
 
     }
 
@@ -3247,10 +3268,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Document::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Document::from($response);
 
     }
 
@@ -3296,10 +3318,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\IndexList::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\IndexList::from($response);
 
     }
 
@@ -3354,10 +3377,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Index::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Index::from($response);
 
     }
 
@@ -3395,10 +3419,11 @@ class Databases extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Index::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Index::from($response);
 
     }
 

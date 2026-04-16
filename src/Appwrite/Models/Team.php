@@ -10,15 +10,6 @@ readonly class Team
     use ArraySerializable;
 
     /**
-     * @var array<string, string>
-     */
-    private const FIELD_MAP = [
-        'id' => '$id',
-        'createdAt' => '$createdAt',
-        'updatedAt' => '$updatedAt'
-    ];
-
-    /**
      * Team constructor.
      *
      * @param string $id team id.
@@ -36,5 +27,56 @@ readonly class Team
         public int $total,
         public Preferences $prefs
     ) {
+    }
+
+    /**
+     * @param array<string, mixed> $data
+     */
+    public static function from(array $data): static
+    {
+        if (!array_key_exists('$id', $data)) {
+            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
+        }
+        if (!array_key_exists('$createdAt', $data)) {
+            throw new \InvalidArgumentException('Missing required field "$createdAt" for ' . static::class . '.');
+        }
+        if (!array_key_exists('$updatedAt', $data)) {
+            throw new \InvalidArgumentException('Missing required field "$updatedAt" for ' . static::class . '.');
+        }
+        if (!array_key_exists('name', $data)) {
+            throw new \InvalidArgumentException('Missing required field "name" for ' . static::class . '.');
+        }
+        if (!array_key_exists('total', $data)) {
+            throw new \InvalidArgumentException('Missing required field "total" for ' . static::class . '.');
+        }
+        if (!array_key_exists('prefs', $data)) {
+            throw new \InvalidArgumentException('Missing required field "prefs" for ' . static::class . '.');
+        }
+
+        return new static(
+            id: $data['$id'],
+            createdAt: $data['$createdAt'],
+            updatedAt: $data['$updatedAt'],
+            name: $data['name'],
+            total: $data['total'],
+            prefs: static::hydrateTypedValue(Preferences::class, $data['prefs'])
+        );
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function toArray(): array
+    {
+        $result = [
+            '$id' => static::serializeValue($this->id),
+            '$createdAt' => static::serializeValue($this->createdAt),
+            '$updatedAt' => static::serializeValue($this->updatedAt),
+            'name' => static::serializeValue($this->name),
+            'total' => static::serializeValue($this->total),
+            'prefs' => static::serializeValue($this->prefs)
+        ];
+
+        return $result;
     }
 }

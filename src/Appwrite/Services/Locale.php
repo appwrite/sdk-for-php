@@ -44,10 +44,11 @@ class Locale extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Locale::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Locale::from($response);
 
     }
 
@@ -77,10 +78,11 @@ class Locale extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\LocaleCodeList::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\LocaleCodeList::from($response);
 
     }
 
@@ -110,10 +112,11 @@ class Locale extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\ContinentList::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\ContinentList::from($response);
 
     }
 
@@ -143,10 +146,11 @@ class Locale extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\CountryList::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\CountryList::from($response);
 
     }
 
@@ -176,10 +180,11 @@ class Locale extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\CountryList::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\CountryList::from($response);
 
     }
 
@@ -209,10 +214,11 @@ class Locale extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\PhoneList::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\PhoneList::from($response);
 
     }
 
@@ -243,10 +249,11 @@ class Locale extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\CurrencyList::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\CurrencyList::from($response);
 
     }
 
@@ -276,10 +283,11 @@ class Locale extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\LanguageList::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\LanguageList::from($response);
 
     }
 }

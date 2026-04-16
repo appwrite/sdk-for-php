@@ -56,10 +56,11 @@ class Messaging extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\MessageList::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\MessageList::from($response);
 
     }
 
@@ -137,10 +138,11 @@ class Messaging extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Message::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Message::from($response);
 
     }
 
@@ -197,10 +199,11 @@ class Messaging extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Message::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Message::from($response);
 
     }
 
@@ -316,10 +319,11 @@ class Messaging extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Message::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Message::from($response);
 
     }
 
@@ -390,10 +394,11 @@ class Messaging extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Message::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Message::from($response);
 
     }
 
@@ -449,10 +454,11 @@ class Messaging extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Message::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Message::from($response);
 
     }
 
@@ -499,10 +505,11 @@ class Messaging extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Message::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Message::from($response);
 
     }
 
@@ -534,10 +541,11 @@ class Messaging extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Message::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Message::from($response);
 
     }
 
@@ -611,10 +619,11 @@ class Messaging extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\LogList::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\LogList::from($response);
 
     }
 
@@ -655,10 +664,11 @@ class Messaging extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\TargetList::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\TargetList::from($response);
 
     }
 
@@ -702,10 +712,11 @@ class Messaging extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\ProviderList::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\ProviderList::from($response);
 
     }
 
@@ -766,10 +777,11 @@ class Messaging extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Provider::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Provider::from($response);
 
     }
 
@@ -830,10 +842,11 @@ class Messaging extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Provider::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Provider::from($response);
 
     }
 
@@ -871,10 +884,11 @@ class Messaging extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Provider::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Provider::from($response);
 
     }
 
@@ -915,10 +929,11 @@ class Messaging extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Provider::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Provider::from($response);
 
     }
 
@@ -986,10 +1001,11 @@ class Messaging extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Provider::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Provider::from($response);
 
     }
 
@@ -1060,10 +1076,11 @@ class Messaging extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Provider::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Provider::from($response);
 
     }
 
@@ -1114,10 +1131,11 @@ class Messaging extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Provider::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Provider::from($response);
 
     }
 
@@ -1171,10 +1189,11 @@ class Messaging extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Provider::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Provider::from($response);
 
     }
 
@@ -1235,10 +1254,11 @@ class Messaging extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Provider::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Provider::from($response);
 
     }
 
@@ -1302,10 +1322,11 @@ class Messaging extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Provider::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Provider::from($response);
 
     }
 
@@ -1366,10 +1387,11 @@ class Messaging extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Provider::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Provider::from($response);
 
     }
 
@@ -1433,10 +1455,11 @@ class Messaging extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Provider::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Provider::from($response);
 
     }
 
@@ -1524,10 +1547,11 @@ class Messaging extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Provider::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Provider::from($response);
 
     }
 
@@ -1615,10 +1639,11 @@ class Messaging extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Provider::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Provider::from($response);
 
     }
 
@@ -1669,10 +1694,11 @@ class Messaging extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Provider::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Provider::from($response);
 
     }
 
@@ -1726,10 +1752,11 @@ class Messaging extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Provider::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Provider::from($response);
 
     }
 
@@ -1780,10 +1807,11 @@ class Messaging extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Provider::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Provider::from($response);
 
     }
 
@@ -1837,10 +1865,11 @@ class Messaging extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Provider::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Provider::from($response);
 
     }
 
@@ -1891,10 +1920,11 @@ class Messaging extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Provider::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Provider::from($response);
 
     }
 
@@ -1948,10 +1978,11 @@ class Messaging extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Provider::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Provider::from($response);
 
     }
 
@@ -2002,10 +2033,11 @@ class Messaging extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Provider::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Provider::from($response);
 
     }
 
@@ -2059,10 +2091,11 @@ class Messaging extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Provider::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Provider::from($response);
 
     }
 
@@ -2094,10 +2127,11 @@ class Messaging extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Provider::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Provider::from($response);
 
     }
 
@@ -2170,10 +2204,11 @@ class Messaging extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\LogList::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\LogList::from($response);
 
     }
 
@@ -2214,10 +2249,11 @@ class Messaging extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\LogList::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\LogList::from($response);
 
     }
 
@@ -2261,10 +2297,11 @@ class Messaging extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\TopicList::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\TopicList::from($response);
 
     }
 
@@ -2303,10 +2340,11 @@ class Messaging extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Topic::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Topic::from($response);
 
     }
 
@@ -2338,10 +2376,11 @@ class Messaging extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Topic::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Topic::from($response);
 
     }
 
@@ -2378,10 +2417,11 @@ class Messaging extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Topic::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Topic::from($response);
 
     }
 
@@ -2454,10 +2494,11 @@ class Messaging extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\LogList::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\LogList::from($response);
 
     }
 
@@ -2503,10 +2544,11 @@ class Messaging extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\SubscriberList::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\SubscriberList::from($response);
 
     }
 
@@ -2542,10 +2584,11 @@ class Messaging extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Subscriber::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Subscriber::from($response);
 
     }
 
@@ -2579,10 +2622,11 @@ class Messaging extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Subscriber::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Subscriber::from($response);
 
     }
 

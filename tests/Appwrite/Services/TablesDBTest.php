@@ -1523,13 +1523,14 @@ final class TablesDBTest extends TestCase
     public function testMethodGetColumn(): void
     {
         $data = array(
-            "key" => "isEnabled",
-            "type" => "boolean",
+            "key" => "fullName",
+            "type" => "string",
             "status" => "available",
             "error" => "string",
             "required" => true,
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "size" => 128
         );
 
         $this->client
@@ -1542,7 +1543,7 @@ final class TablesDBTest extends TestCase
             ""
         );
 
-        $this->assertInstanceOf(\Appwrite\Models\ColumnBoolean::class, $response);
+        $this->assertInstanceOf(\Appwrite\Models\ColumnString::class, $response);
     }
 
     public function testMethodDeleteColumn(): void

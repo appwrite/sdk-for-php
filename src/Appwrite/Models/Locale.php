@@ -30,4 +30,60 @@ readonly class Locale
         public string $currency
     ) {
     }
+
+    /**
+     * @param array<string, mixed> $data
+     */
+    public static function from(array $data): static
+    {
+        if (!array_key_exists('ip', $data)) {
+            throw new \InvalidArgumentException('Missing required field "ip" for ' . static::class . '.');
+        }
+        if (!array_key_exists('countryCode', $data)) {
+            throw new \InvalidArgumentException('Missing required field "countryCode" for ' . static::class . '.');
+        }
+        if (!array_key_exists('country', $data)) {
+            throw new \InvalidArgumentException('Missing required field "country" for ' . static::class . '.');
+        }
+        if (!array_key_exists('continentCode', $data)) {
+            throw new \InvalidArgumentException('Missing required field "continentCode" for ' . static::class . '.');
+        }
+        if (!array_key_exists('continent', $data)) {
+            throw new \InvalidArgumentException('Missing required field "continent" for ' . static::class . '.');
+        }
+        if (!array_key_exists('eu', $data)) {
+            throw new \InvalidArgumentException('Missing required field "eu" for ' . static::class . '.');
+        }
+        if (!array_key_exists('currency', $data)) {
+            throw new \InvalidArgumentException('Missing required field "currency" for ' . static::class . '.');
+        }
+
+        return new static(
+            ip: $data['ip'],
+            countryCode: $data['countryCode'],
+            country: $data['country'],
+            continentCode: $data['continentCode'],
+            continent: $data['continent'],
+            eu: $data['eu'],
+            currency: $data['currency']
+        );
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function toArray(): array
+    {
+        $result = [
+            'ip' => static::serializeValue($this->ip),
+            'countryCode' => static::serializeValue($this->countryCode),
+            'country' => static::serializeValue($this->country),
+            'continentCode' => static::serializeValue($this->continentCode),
+            'continent' => static::serializeValue($this->continent),
+            'eu' => static::serializeValue($this->eu),
+            'currency' => static::serializeValue($this->currency)
+        ];
+
+        return $result;
+    }
 }

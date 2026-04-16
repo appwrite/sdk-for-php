@@ -1554,13 +1554,14 @@ final class DatabasesTest extends TestCase
     public function testMethodGetAttribute(): void
     {
         $data = array(
-            "key" => "isEnabled",
-            "type" => "boolean",
+            "key" => "fullName",
+            "type" => "string",
             "status" => "available",
             "error" => "string",
             "required" => true,
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "size" => 128
         );
 
         $this->client
@@ -1573,7 +1574,7 @@ final class DatabasesTest extends TestCase
             ""
         );
 
-        $this->assertInstanceOf(\Appwrite\Models\AttributeBoolean::class, $response);
+        $this->assertInstanceOf(\Appwrite\Models\AttributeString::class, $response);
     }
 
     public function testMethodDeleteAttribute(): void

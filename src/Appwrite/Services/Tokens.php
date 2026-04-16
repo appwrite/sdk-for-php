@@ -54,10 +54,11 @@ class Tokens extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\ResourceTokenList::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\ResourceTokenList::from($response);
 
     }
 
@@ -94,10 +95,11 @@ class Tokens extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\ResourceToken::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\ResourceToken::from($response);
 
     }
 
@@ -128,10 +130,11 @@ class Tokens extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\ResourceToken::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\ResourceToken::from($response);
 
     }
 
@@ -166,10 +169,11 @@ class Tokens extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\ResourceToken::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\ResourceToken::from($response);
 
     }
 

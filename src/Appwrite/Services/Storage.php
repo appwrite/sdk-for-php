@@ -58,10 +58,11 @@ class Storage extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\BucketList::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\BucketList::from($response);
 
     }
 
@@ -137,10 +138,11 @@ class Storage extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Bucket::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Bucket::from($response);
 
     }
 
@@ -172,10 +174,11 @@ class Storage extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Bucket::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Bucket::from($response);
 
     }
 
@@ -251,10 +254,11 @@ class Storage extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Bucket::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Bucket::from($response);
 
     }
 
@@ -333,10 +337,11 @@ class Storage extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\FileList::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\FileList::from($response);
 
     }
 
@@ -398,10 +403,11 @@ class Storage extends Service
                 $response = $this->client->call(Client::METHOD_POST, $apiPath, [
                             'content-type' => 'multipart/form-data',
                         ], $apiParams);
-                return $this->parseResponse(
-                    $response,
-                    [\Appwrite\Models\File::class]
-                );
+                if (!is_array($response)) {
+                    throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+                }
+
+                return \Appwrite\Models\File::from($response);
             }
         } else {
             $size = filesize($file->getPath());
@@ -413,10 +419,11 @@ class Storage extends Service
                 $response = $this->client->call(Client::METHOD_POST, $apiPath, [
                             'content-type' => 'multipart/form-data',
                         ], $apiParams);
-                return $this->parseResponse(
-                    $response,
-                    [\Appwrite\Models\File::class]
-                );
+                if (!is_array($response)) {
+                    throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+                }
+
+                return \Appwrite\Models\File::from($response);
             }
         }
 
@@ -469,10 +476,11 @@ class Storage extends Service
         if(!empty($handle)) {
             @fclose($handle);
         }
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\File::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\File::from($response);
 
     }
 
@@ -506,10 +514,11 @@ class Storage extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\File::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\File::from($response);
 
     }
 
@@ -551,10 +560,11 @@ class Storage extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\File::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\File::from($response);
 
     }
 

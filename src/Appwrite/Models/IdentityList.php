@@ -10,13 +10,6 @@ readonly class IdentityList
     use ArraySerializable;
 
     /**
-     * @var array<string, class-string>
-     */
-    private const ARRAY_TYPES = [
-        'identities' => Identity::class
-    ];
-
-    /**
      * IdentityList constructor.
      *
      * @param int $total total number of identities that matched your query.
@@ -26,5 +19,41 @@ readonly class IdentityList
         public int $total,
         public array $identities
     ) {
+    }
+
+    /**
+     * @param array<string, mixed> $data
+     */
+    public static function from(array $data): static
+    {
+        if (!array_key_exists('total', $data)) {
+            throw new \InvalidArgumentException('Missing required field "total" for ' . static::class . '.');
+        }
+        if (!array_key_exists('identities', $data)) {
+            throw new \InvalidArgumentException('Missing required field "identities" for ' . static::class . '.');
+        }
+
+        return new static(
+            total: $data['total'],
+            identities: is_array($data['identities'])
+                ? array_map(
+                    static fn (mixed $item): mixed => static::hydrateTypedValue(Identity::class, $item),
+                    $data['identities']
+                )
+                : $data['identities']
+        );
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function toArray(): array
+    {
+        $result = [
+            'total' => static::serializeValue($this->total),
+            'identities' => static::serializeValue($this->identities)
+        ];
+
+        return $result;
     }
 }

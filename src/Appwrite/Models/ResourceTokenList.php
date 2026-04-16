@@ -10,13 +10,6 @@ readonly class ResourceTokenList
     use ArraySerializable;
 
     /**
-     * @var array<string, class-string>
-     */
-    private const ARRAY_TYPES = [
-        'tokens' => ResourceToken::class
-    ];
-
-    /**
      * ResourceTokenList constructor.
      *
      * @param int $total total number of tokens that matched your query.
@@ -26,5 +19,41 @@ readonly class ResourceTokenList
         public int $total,
         public array $tokens
     ) {
+    }
+
+    /**
+     * @param array<string, mixed> $data
+     */
+    public static function from(array $data): static
+    {
+        if (!array_key_exists('total', $data)) {
+            throw new \InvalidArgumentException('Missing required field "total" for ' . static::class . '.');
+        }
+        if (!array_key_exists('tokens', $data)) {
+            throw new \InvalidArgumentException('Missing required field "tokens" for ' . static::class . '.');
+        }
+
+        return new static(
+            total: $data['total'],
+            tokens: is_array($data['tokens'])
+                ? array_map(
+                    static fn (mixed $item): mixed => static::hydrateTypedValue(ResourceToken::class, $item),
+                    $data['tokens']
+                )
+                : $data['tokens']
+        );
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function toArray(): array
+    {
+        $result = [
+            'total' => static::serializeValue($this->total),
+            'tokens' => static::serializeValue($this->tokens)
+        ];
+
+        return $result;
     }
 }

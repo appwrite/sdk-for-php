@@ -10,22 +10,6 @@ readonly class User
     use ArraySerializable;
 
     /**
-     * @var array<string, string>
-     */
-    private const FIELD_MAP = [
-        'id' => '$id',
-        'createdAt' => '$createdAt',
-        'updatedAt' => '$updatedAt'
-    ];
-
-    /**
-     * @var array<string, class-string>
-     */
-    private const ARRAY_TYPES = [
-        'targets' => Target::class
-    ];
-
-    /**
      * User constructor.
      *
      * @param string $id user id.
@@ -73,5 +57,121 @@ readonly class User
         public ?bool $impersonator = null,
         public ?string $impersonatorUserId = null
     ) {
+    }
+
+    /**
+     * @param array<string, mixed> $data
+     */
+    public static function from(array $data): static
+    {
+        if (!array_key_exists('$id', $data)) {
+            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
+        }
+        if (!array_key_exists('$createdAt', $data)) {
+            throw new \InvalidArgumentException('Missing required field "$createdAt" for ' . static::class . '.');
+        }
+        if (!array_key_exists('$updatedAt', $data)) {
+            throw new \InvalidArgumentException('Missing required field "$updatedAt" for ' . static::class . '.');
+        }
+        if (!array_key_exists('name', $data)) {
+            throw new \InvalidArgumentException('Missing required field "name" for ' . static::class . '.');
+        }
+        if (!array_key_exists('registration', $data)) {
+            throw new \InvalidArgumentException('Missing required field "registration" for ' . static::class . '.');
+        }
+        if (!array_key_exists('status', $data)) {
+            throw new \InvalidArgumentException('Missing required field "status" for ' . static::class . '.');
+        }
+        if (!array_key_exists('labels', $data)) {
+            throw new \InvalidArgumentException('Missing required field "labels" for ' . static::class . '.');
+        }
+        if (!array_key_exists('passwordUpdate', $data)) {
+            throw new \InvalidArgumentException('Missing required field "passwordUpdate" for ' . static::class . '.');
+        }
+        if (!array_key_exists('email', $data)) {
+            throw new \InvalidArgumentException('Missing required field "email" for ' . static::class . '.');
+        }
+        if (!array_key_exists('phone', $data)) {
+            throw new \InvalidArgumentException('Missing required field "phone" for ' . static::class . '.');
+        }
+        if (!array_key_exists('emailVerification', $data)) {
+            throw new \InvalidArgumentException('Missing required field "emailVerification" for ' . static::class . '.');
+        }
+        if (!array_key_exists('phoneVerification', $data)) {
+            throw new \InvalidArgumentException('Missing required field "phoneVerification" for ' . static::class . '.');
+        }
+        if (!array_key_exists('mfa', $data)) {
+            throw new \InvalidArgumentException('Missing required field "mfa" for ' . static::class . '.');
+        }
+        if (!array_key_exists('prefs', $data)) {
+            throw new \InvalidArgumentException('Missing required field "prefs" for ' . static::class . '.');
+        }
+        if (!array_key_exists('targets', $data)) {
+            throw new \InvalidArgumentException('Missing required field "targets" for ' . static::class . '.');
+        }
+        if (!array_key_exists('accessedAt', $data)) {
+            throw new \InvalidArgumentException('Missing required field "accessedAt" for ' . static::class . '.');
+        }
+
+        return new static(
+            id: $data['$id'],
+            createdAt: $data['$createdAt'],
+            updatedAt: $data['$updatedAt'],
+            name: $data['name'],
+            registration: $data['registration'],
+            status: $data['status'],
+            labels: $data['labels'],
+            passwordUpdate: $data['passwordUpdate'],
+            email: $data['email'],
+            phone: $data['phone'],
+            emailVerification: $data['emailVerification'],
+            phoneVerification: $data['phoneVerification'],
+            mfa: $data['mfa'],
+            prefs: static::hydrateTypedValue(Preferences::class, $data['prefs']),
+            targets: is_array($data['targets'])
+                ? array_map(
+                    static fn (mixed $item): mixed => static::hydrateTypedValue(Target::class, $item),
+                    $data['targets']
+                )
+                : $data['targets'],
+            accessedAt: $data['accessedAt'],
+            password: array_key_exists('password', $data) ? $data['password'] : null,
+            hash: array_key_exists('hash', $data) ? $data['hash'] : null,
+            hashOptions: array_key_exists('hashOptions', $data) ? $data['hashOptions'] : null,
+            impersonator: array_key_exists('impersonator', $data) ? $data['impersonator'] : null,
+            impersonatorUserId: array_key_exists('impersonatorUserId', $data) ? $data['impersonatorUserId'] : null
+        );
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function toArray(): array
+    {
+        $result = [
+            '$id' => static::serializeValue($this->id),
+            '$createdAt' => static::serializeValue($this->createdAt),
+            '$updatedAt' => static::serializeValue($this->updatedAt),
+            'name' => static::serializeValue($this->name),
+            'password' => static::serializeValue($this->password),
+            'hash' => static::serializeValue($this->hash),
+            'hashOptions' => static::serializeValue($this->hashOptions),
+            'registration' => static::serializeValue($this->registration),
+            'status' => static::serializeValue($this->status),
+            'labels' => static::serializeValue($this->labels),
+            'passwordUpdate' => static::serializeValue($this->passwordUpdate),
+            'email' => static::serializeValue($this->email),
+            'phone' => static::serializeValue($this->phone),
+            'emailVerification' => static::serializeValue($this->emailVerification),
+            'phoneVerification' => static::serializeValue($this->phoneVerification),
+            'mfa' => static::serializeValue($this->mfa),
+            'prefs' => static::serializeValue($this->prefs),
+            'targets' => static::serializeValue($this->targets),
+            'accessedAt' => static::serializeValue($this->accessedAt),
+            'impersonator' => static::serializeValue($this->impersonator),
+            'impersonatorUserId' => static::serializeValue($this->impersonatorUserId)
+        ];
+
+        return $result;
     }
 }

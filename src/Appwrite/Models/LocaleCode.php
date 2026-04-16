@@ -20,4 +20,35 @@ readonly class LocaleCode
         public string $name
     ) {
     }
+
+    /**
+     * @param array<string, mixed> $data
+     */
+    public static function from(array $data): static
+    {
+        if (!array_key_exists('code', $data)) {
+            throw new \InvalidArgumentException('Missing required field "code" for ' . static::class . '.');
+        }
+        if (!array_key_exists('name', $data)) {
+            throw new \InvalidArgumentException('Missing required field "name" for ' . static::class . '.');
+        }
+
+        return new static(
+            code: $data['code'],
+            name: $data['name']
+        );
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function toArray(): array
+    {
+        $result = [
+            'code' => static::serializeValue($this->code),
+            'name' => static::serializeValue($this->name)
+        ];
+
+        return $result;
+    }
 }

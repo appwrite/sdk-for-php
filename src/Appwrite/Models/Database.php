@@ -12,23 +12,6 @@ readonly class Database
     use ArraySerializable;
 
     /**
-     * @var array<string, string>
-     */
-    private const FIELD_MAP = [
-        'id' => '$id',
-        'createdAt' => '$createdAt',
-        'updatedAt' => '$updatedAt'
-    ];
-
-    /**
-     * @var array<string, class-string>
-     */
-    private const ARRAY_TYPES = [
-        'policies' => Index::class,
-        'archives' => Collection::class
-    ];
-
-    /**
      * Database constructor.
      *
      * @param string $id database id.
@@ -50,5 +33,76 @@ readonly class Database
         public array $policies,
         public array $archives
     ) {
+    }
+
+    /**
+     * @param array<string, mixed> $data
+     */
+    public static function from(array $data): static
+    {
+        if (!array_key_exists('$id', $data)) {
+            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
+        }
+        if (!array_key_exists('name', $data)) {
+            throw new \InvalidArgumentException('Missing required field "name" for ' . static::class . '.');
+        }
+        if (!array_key_exists('$createdAt', $data)) {
+            throw new \InvalidArgumentException('Missing required field "$createdAt" for ' . static::class . '.');
+        }
+        if (!array_key_exists('$updatedAt', $data)) {
+            throw new \InvalidArgumentException('Missing required field "$updatedAt" for ' . static::class . '.');
+        }
+        if (!array_key_exists('enabled', $data)) {
+            throw new \InvalidArgumentException('Missing required field "enabled" for ' . static::class . '.');
+        }
+        if (!array_key_exists('type', $data)) {
+            throw new \InvalidArgumentException('Missing required field "type" for ' . static::class . '.');
+        }
+        if (!array_key_exists('policies', $data)) {
+            throw new \InvalidArgumentException('Missing required field "policies" for ' . static::class . '.');
+        }
+        if (!array_key_exists('archives', $data)) {
+            throw new \InvalidArgumentException('Missing required field "archives" for ' . static::class . '.');
+        }
+
+        return new static(
+            id: $data['$id'],
+            name: $data['name'],
+            createdAt: $data['$createdAt'],
+            updatedAt: $data['$updatedAt'],
+            enabled: $data['enabled'],
+            type: static::hydrateTypedValue(DatabaseType::class, $data['type']),
+            policies: is_array($data['policies'])
+                ? array_map(
+                    static fn (mixed $item): mixed => static::hydrateTypedValue(Index::class, $item),
+                    $data['policies']
+                )
+                : $data['policies'],
+            archives: is_array($data['archives'])
+                ? array_map(
+                    static fn (mixed $item): mixed => static::hydrateTypedValue(Collection::class, $item),
+                    $data['archives']
+                )
+                : $data['archives']
+        );
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function toArray(): array
+    {
+        $result = [
+            '$id' => static::serializeValue($this->id),
+            'name' => static::serializeValue($this->name),
+            '$createdAt' => static::serializeValue($this->createdAt),
+            '$updatedAt' => static::serializeValue($this->updatedAt),
+            'enabled' => static::serializeValue($this->enabled),
+            'type' => static::serializeValue($this->type),
+            'policies' => static::serializeValue($this->policies),
+            'archives' => static::serializeValue($this->archives)
+        ];
+
+        return $result;
     }
 }

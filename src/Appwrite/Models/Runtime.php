@@ -10,13 +10,6 @@ readonly class Runtime
     use ArraySerializable;
 
     /**
-     * @var array<string, string>
-     */
-    private const FIELD_MAP = [
-        'id' => '$id'
-    ];
-
-    /**
      * Runtime constructor.
      *
      * @param string $id runtime id.
@@ -38,5 +31,66 @@ readonly class Runtime
         public string $logo,
         public array $supports
     ) {
+    }
+
+    /**
+     * @param array<string, mixed> $data
+     */
+    public static function from(array $data): static
+    {
+        if (!array_key_exists('$id', $data)) {
+            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
+        }
+        if (!array_key_exists('key', $data)) {
+            throw new \InvalidArgumentException('Missing required field "key" for ' . static::class . '.');
+        }
+        if (!array_key_exists('name', $data)) {
+            throw new \InvalidArgumentException('Missing required field "name" for ' . static::class . '.');
+        }
+        if (!array_key_exists('version', $data)) {
+            throw new \InvalidArgumentException('Missing required field "version" for ' . static::class . '.');
+        }
+        if (!array_key_exists('base', $data)) {
+            throw new \InvalidArgumentException('Missing required field "base" for ' . static::class . '.');
+        }
+        if (!array_key_exists('image', $data)) {
+            throw new \InvalidArgumentException('Missing required field "image" for ' . static::class . '.');
+        }
+        if (!array_key_exists('logo', $data)) {
+            throw new \InvalidArgumentException('Missing required field "logo" for ' . static::class . '.');
+        }
+        if (!array_key_exists('supports', $data)) {
+            throw new \InvalidArgumentException('Missing required field "supports" for ' . static::class . '.');
+        }
+
+        return new static(
+            id: $data['$id'],
+            key: $data['key'],
+            name: $data['name'],
+            version: $data['version'],
+            base: $data['base'],
+            image: $data['image'],
+            logo: $data['logo'],
+            supports: $data['supports']
+        );
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function toArray(): array
+    {
+        $result = [
+            '$id' => static::serializeValue($this->id),
+            'key' => static::serializeValue($this->key),
+            'name' => static::serializeValue($this->name),
+            'version' => static::serializeValue($this->version),
+            'base' => static::serializeValue($this->base),
+            'image' => static::serializeValue($this->image),
+            'logo' => static::serializeValue($this->logo),
+            'supports' => static::serializeValue($this->supports)
+        ];
+
+        return $result;
     }
 }

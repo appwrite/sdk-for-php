@@ -18,4 +18,30 @@ readonly class HealthQueue
         public int $size
     ) {
     }
+
+    /**
+     * @param array<string, mixed> $data
+     */
+    public static function from(array $data): static
+    {
+        if (!array_key_exists('size', $data)) {
+            throw new \InvalidArgumentException('Missing required field "size" for ' . static::class . '.');
+        }
+
+        return new static(
+            size: $data['size']
+        );
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function toArray(): array
+    {
+        $result = [
+            'size' => static::serializeValue($this->size)
+        ];
+
+        return $result;
+    }
 }

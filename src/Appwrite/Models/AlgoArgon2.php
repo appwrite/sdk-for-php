@@ -24,4 +24,45 @@ readonly class AlgoArgon2
         public int $threads
     ) {
     }
+
+    /**
+     * @param array<string, mixed> $data
+     */
+    public static function from(array $data): static
+    {
+        if (!array_key_exists('type', $data)) {
+            throw new \InvalidArgumentException('Missing required field "type" for ' . static::class . '.');
+        }
+        if (!array_key_exists('memoryCost', $data)) {
+            throw new \InvalidArgumentException('Missing required field "memoryCost" for ' . static::class . '.');
+        }
+        if (!array_key_exists('timeCost', $data)) {
+            throw new \InvalidArgumentException('Missing required field "timeCost" for ' . static::class . '.');
+        }
+        if (!array_key_exists('threads', $data)) {
+            throw new \InvalidArgumentException('Missing required field "threads" for ' . static::class . '.');
+        }
+
+        return new static(
+            type: $data['type'],
+            memoryCost: $data['memoryCost'],
+            timeCost: $data['timeCost'],
+            threads: $data['threads']
+        );
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function toArray(): array
+    {
+        $result = [
+            'type' => static::serializeValue($this->type),
+            'memoryCost' => static::serializeValue($this->memoryCost),
+            'timeCost' => static::serializeValue($this->timeCost),
+            'threads' => static::serializeValue($this->threads)
+        ];
+
+        return $result;
+    }
 }

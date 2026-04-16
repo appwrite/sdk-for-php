@@ -11,7 +11,7 @@ GET https://cloud.appwrite.io/v1/webhooks
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, url, httpUser, security, events, enabled, logs, attempts | [] |
+| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, url, authUsername, tls, events, enabled, logs, attempts | [] |
 | total | boolean | When set to false, the total count returned will be 0 and will not be calculated. | 1 |
 
 
@@ -30,9 +30,10 @@ POST https://cloud.appwrite.io/v1/webhooks
 | name | string | Webhook name. Max length: 128 chars. |  |
 | events | array | Events list. Maximum of 100 events are allowed. |  |
 | enabled | boolean | Enable or disable a webhook. | 1 |
-| security | boolean | Certificate verification, false for disabled or true for enabled. |  |
-| httpUser | string | Webhook HTTP user. Max length: 256 chars. |  |
-| httpPass | string | Webhook HTTP password. Max length: 256 chars. |  |
+| tls | boolean | Certificate verification, false for disabled or true for enabled. |  |
+| authUsername | string | Webhook HTTP user. Max length: 256 chars. |  |
+| authPassword | string | Webhook HTTP password. Max length: 256 chars. |  |
+| secret | string | Webhook secret key. If not provided, a new key will be generated automatically. Key must be at least 8 characters long, and at max 256 characters. |  |
 
 
 ```http request
@@ -63,9 +64,9 @@ PUT https://cloud.appwrite.io/v1/webhooks/{webhookId}
 | url | string | Webhook URL. |  |
 | events | array | Events list. Maximum of 100 events are allowed. |  |
 | enabled | boolean | Enable or disable a webhook. | 1 |
-| security | boolean | Certificate verification, false for disabled or true for enabled. |  |
-| httpUser | string | Webhook HTTP user. Max length: 256 chars. |  |
-| httpPass | string | Webhook HTTP password. Max length: 256 chars. |  |
+| tls | boolean | Certificate verification, false for disabled or true for enabled. |  |
+| authUsername | string | Webhook HTTP user. Max length: 256 chars. |  |
+| authPassword | string | Webhook HTTP password. Max length: 256 chars. |  |
 
 
 ```http request
@@ -82,14 +83,15 @@ DELETE https://cloud.appwrite.io/v1/webhooks/{webhookId}
 
 
 ```http request
-PATCH https://cloud.appwrite.io/v1/webhooks/{webhookId}/signature
+PATCH https://cloud.appwrite.io/v1/webhooks/{webhookId}/secret
 ```
 
-** Update the webhook signature key. This endpoint can be used to regenerate the signature key used to sign and validate payload deliveries for a specific webhook. **
+** Update the webhook signing key. This endpoint can be used to regenerate the signing key used to sign and validate payload deliveries for a specific webhook. **
 
 ### Parameters
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | webhookId | string | **Required** Webhook ID. |  |
+| secret | string | Webhook secret key. If not provided, a new key will be generated automatically. Key must be at least 8 characters long, and at max 256 characters. |  |
 

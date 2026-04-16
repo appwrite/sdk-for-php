@@ -61,10 +61,11 @@ class Sites extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\SiteList::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\SiteList::from($response);
 
     }
 
@@ -187,10 +188,11 @@ class Sites extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Site::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Site::from($response);
 
     }
 
@@ -220,10 +222,11 @@ class Sites extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\FrameworkList::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\FrameworkList::from($response);
 
     }
 
@@ -252,10 +255,11 @@ class Sites extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\SpecificationList::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\SpecificationList::from($response);
 
     }
 
@@ -286,10 +290,11 @@ class Sites extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Site::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Site::from($response);
 
     }
 
@@ -415,10 +420,11 @@ class Sites extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Site::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Site::from($response);
 
     }
 
@@ -485,10 +491,11 @@ class Sites extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Site::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Site::from($response);
 
     }
 
@@ -535,10 +542,11 @@ class Sites extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\DeploymentList::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\DeploymentList::from($response);
 
     }
 
@@ -598,10 +606,11 @@ class Sites extends Service
                 $response = $this->client->call(Client::METHOD_POST, $apiPath, [
                             'content-type' => 'multipart/form-data',
                         ], $apiParams);
-                return $this->parseResponse(
-                    $response,
-                    [\Appwrite\Models\Deployment::class]
-                );
+                if (!is_array($response)) {
+                    throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+                }
+
+                return \Appwrite\Models\Deployment::from($response);
             }
         } else {
             $size = filesize($code->getPath());
@@ -613,10 +622,11 @@ class Sites extends Service
                 $response = $this->client->call(Client::METHOD_POST, $apiPath, [
                             'content-type' => 'multipart/form-data',
                         ], $apiParams);
-                return $this->parseResponse(
-                    $response,
-                    [\Appwrite\Models\Deployment::class]
-                );
+                if (!is_array($response)) {
+                    throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+                }
+
+                return \Appwrite\Models\Deployment::from($response);
             }
         }
 
@@ -664,10 +674,11 @@ class Sites extends Service
         if(!empty($handle)) {
             @fclose($handle);
         }
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Deployment::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Deployment::from($response);
 
     }
 
@@ -705,10 +716,11 @@ class Sites extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Deployment::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Deployment::from($response);
 
     }
 
@@ -759,10 +771,11 @@ class Sites extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Deployment::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Deployment::from($response);
 
     }
 
@@ -805,10 +818,11 @@ class Sites extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Deployment::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Deployment::from($response);
 
     }
 
@@ -841,10 +855,11 @@ class Sites extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Deployment::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Deployment::from($response);
 
     }
 
@@ -956,10 +971,11 @@ class Sites extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Deployment::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Deployment::from($response);
 
     }
 
@@ -1001,10 +1017,11 @@ class Sites extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\ExecutionList::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\ExecutionList::from($response);
 
     }
 
@@ -1037,10 +1054,11 @@ class Sites extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Execution::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Execution::from($response);
 
     }
 
@@ -1105,10 +1123,11 @@ class Sites extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\VariableList::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\VariableList::from($response);
 
     }
 
@@ -1150,10 +1169,11 @@ class Sites extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Variable::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Variable::from($response);
 
     }
 
@@ -1186,10 +1206,11 @@ class Sites extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Variable::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Variable::from($response);
 
     }
 
@@ -1229,10 +1250,11 @@ class Sites extends Service
             $apiParams
         );
 
-        return $this->parseResponse(
-            $response,
-            [\Appwrite\Models\Variable::class]
-        );
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Variable::from($response);
 
     }
 

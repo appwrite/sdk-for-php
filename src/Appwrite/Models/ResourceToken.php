@@ -10,14 +10,6 @@ readonly class ResourceToken
     use ArraySerializable;
 
     /**
-     * @var array<string, string>
-     */
-    private const FIELD_MAP = [
-        'id' => '$id',
-        'createdAt' => '$createdAt'
-    ];
-
-    /**
      * ResourceToken constructor.
      *
      * @param string $id token id.
@@ -37,5 +29,61 @@ readonly class ResourceToken
         public string $secret,
         public string $accessedAt
     ) {
+    }
+
+    /**
+     * @param array<string, mixed> $data
+     */
+    public static function from(array $data): static
+    {
+        if (!array_key_exists('$id', $data)) {
+            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
+        }
+        if (!array_key_exists('$createdAt', $data)) {
+            throw new \InvalidArgumentException('Missing required field "$createdAt" for ' . static::class . '.');
+        }
+        if (!array_key_exists('resourceId', $data)) {
+            throw new \InvalidArgumentException('Missing required field "resourceId" for ' . static::class . '.');
+        }
+        if (!array_key_exists('resourceType', $data)) {
+            throw new \InvalidArgumentException('Missing required field "resourceType" for ' . static::class . '.');
+        }
+        if (!array_key_exists('expire', $data)) {
+            throw new \InvalidArgumentException('Missing required field "expire" for ' . static::class . '.');
+        }
+        if (!array_key_exists('secret', $data)) {
+            throw new \InvalidArgumentException('Missing required field "secret" for ' . static::class . '.');
+        }
+        if (!array_key_exists('accessedAt', $data)) {
+            throw new \InvalidArgumentException('Missing required field "accessedAt" for ' . static::class . '.');
+        }
+
+        return new static(
+            id: $data['$id'],
+            createdAt: $data['$createdAt'],
+            resourceId: $data['resourceId'],
+            resourceType: $data['resourceType'],
+            expire: $data['expire'],
+            secret: $data['secret'],
+            accessedAt: $data['accessedAt']
+        );
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function toArray(): array
+    {
+        $result = [
+            '$id' => static::serializeValue($this->id),
+            '$createdAt' => static::serializeValue($this->createdAt),
+            'resourceId' => static::serializeValue($this->resourceId),
+            'resourceType' => static::serializeValue($this->resourceType),
+            'expire' => static::serializeValue($this->expire),
+            'secret' => static::serializeValue($this->secret),
+            'accessedAt' => static::serializeValue($this->accessedAt)
+        ];
+
+        return $result;
     }
 }
