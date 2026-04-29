@@ -382,7 +382,6 @@ class Client
             throw new AppwriteException(curl_error($ch), $responseStatus, $responseBody['type'] ?? '', $responseBody);
         }
         
-        curl_close($ch);
 
         if($responseStatus >= 400) {
             if(is_array($responseBody)) {
