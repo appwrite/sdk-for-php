@@ -3,7 +3,7 @@
 
 use Appwrite\Client;
 use Appwrite\Services\Project;
-use Appwrite\Enums\PolicyId;
+use Appwrite\Enums\ProjectPolicyId;
 
 $client = (new Client())
     ->setEndpoint('https://<REGION>.cloud.appwrite.io/v1') // Your API Endpoint
@@ -13,5 +13,5 @@ $client = (new Client())
 $project = new Project($client);
 
 $result = $project->getPolicy(
-    policyId: PolicyId::PASSWORDDICTIONARY()
+    policyId: ProjectPolicyId::PASSWORDDICTIONARY()
 );```

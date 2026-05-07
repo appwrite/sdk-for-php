@@ -6,10 +6,10 @@ use Appwrite\Client;
 use Appwrite\InputFile;
 use Mockery;
 use PHPUnit\Framework\TestCase;
-use Appwrite\Enums\MethodId;
+use Appwrite\Enums\AuthMethod;
 use Appwrite\Enums\Scopes;
-use Appwrite\Enums\ProviderId;
-use Appwrite\Enums\PolicyId;
+use Appwrite\Enums\OAuthProvider;
+use Appwrite\Enums\ProjectPolicyId;
 use Appwrite\Enums\ProtocolId;
 use Appwrite\Enums\ServiceId;
 use Appwrite\Enums\Secure;
@@ -205,7 +205,7 @@ final class ProjectTest extends TestCase
             ->andReturn($data);
 
         $response = $this->project->updateAuthMethod(
-            MethodId::EMAILPASSWORD(),
+            AuthMethod::EMAILPASSWORD(),
             true
         );
 
@@ -667,7 +667,7 @@ final class ProjectTest extends TestCase
             ->andReturn($data);
 
         $response = $this->project->getOAuth2Provider(
-            ProviderId::AMAZON()
+            OAuthProvider::AMAZON()
         );
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Microsoft::class, $response);
@@ -3316,7 +3316,7 @@ final class ProjectTest extends TestCase
             ->andReturn($data);
 
         $response = $this->project->getPolicy(
-            PolicyId::PASSWORDDICTIONARY()
+            ProjectPolicyId::PASSWORDDICTIONARY()
         );
 
         $this->assertInstanceOf(\Appwrite\Models\PolicyMembershipPrivacy::class, $response);
