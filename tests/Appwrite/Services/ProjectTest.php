@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 use Appwrite\Enums\AuthMethod;
 use Appwrite\Enums\Scopes;
 use Appwrite\Enums\OAuthProvider;
-use Appwrite\Enums\ProjectPolicyId;
+use Appwrite\Enums\ProjectPolicy;
 use Appwrite\Enums\ProtocolId;
 use Appwrite\Enums\ServiceId;
 use Appwrite\Enums\Secure;
@@ -3316,7 +3316,7 @@ final class ProjectTest extends TestCase
             ->andReturn($data);
 
         $response = $this->project->getPolicy(
-            ProjectPolicyId::PASSWORDDICTIONARY()
+            ProjectPolicy::PASSWORDDICTIONARY()
         );
 
         $this->assertInstanceOf(\Appwrite\Models\PolicyMembershipPrivacy::class, $response);
