@@ -930,6 +930,7 @@ final class FunctionsTest extends TestCase
 
         $response = $this->functions->createVariable(
             "<FUNCTION_ID>",
+            "<VARIABLE_ID>",
             "<KEY>",
             "<VALUE>"
         );
@@ -981,8 +982,7 @@ final class FunctionsTest extends TestCase
 
         $response = $this->functions->updateVariable(
             "<FUNCTION_ID>",
-            "<VARIABLE_ID>",
-            "<KEY>"
+            "<VARIABLE_ID>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Variable::class, $response);

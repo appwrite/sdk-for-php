@@ -787,6 +787,119 @@ class Databases extends Service
     }
 
     /**
+     * Create a bigint attribute. Optionally, minimum and maximum values can be
+     * provided.
+     * 
+     *
+     * @param string $databaseId
+     * @param string $collectionId
+     * @param string $key
+     * @param bool $required
+     * @param ?int $min
+     * @param ?int $max
+     * @param ?int $xdefault
+     * @param ?bool $xarray
+     * @throws AppwriteException
+     * @return \Appwrite\Models\AttributeBigint
+     *
+     * @deprecated This API has been deprecated since 1.8.0. Please use `createBigIntColumn` instead.
+     * @see TablesDB::createBigIntColumn
+     */
+    public function createBigIntAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?int $min = null, ?int $max = null, ?int $xdefault = null, ?bool $xarray = null): \Appwrite\Models\AttributeBigint
+    {
+        $apiPath = str_replace(
+            ['{databaseId}', '{collectionId}'],
+            [$databaseId, $collectionId],
+            '/databases/{databaseId}/collections/{collectionId}/attributes/bigint'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['collectionId'] = $collectionId;
+        $apiParams['key'] = $key;
+        $apiParams['required'] = $required;
+        $apiParams['min'] = $min;
+        $apiParams['max'] = $max;
+        $apiParams['default'] = $xdefault;
+
+        if (!is_null($xarray)) {
+            $apiParams['array'] = $xarray;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\AttributeBigint::from($response);
+
+    }
+
+    /**
+     * Update a bigint attribute. Changing the `default` value will not update
+     * already existing documents.
+     * 
+     *
+     * @param string $databaseId
+     * @param string $collectionId
+     * @param string $key
+     * @param bool $required
+     * @param ?int $xdefault
+     * @param ?int $min
+     * @param ?int $max
+     * @param ?string $newKey
+     * @throws AppwriteException
+     * @return \Appwrite\Models\AttributeBigint
+     *
+     * @deprecated This API has been deprecated since 1.8.0. Please use `updateBigIntColumn` instead.
+     * @see TablesDB::updateBigIntColumn
+     */
+    public function updateBigIntAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?int $xdefault, ?int $min = null, ?int $max = null, ?string $newKey = null): \Appwrite\Models\AttributeBigint
+    {
+        $apiPath = str_replace(
+            ['{databaseId}', '{collectionId}', '{key}'],
+            [$databaseId, $collectionId, $key],
+            '/databases/{databaseId}/collections/{collectionId}/attributes/bigint/{key}'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['collectionId'] = $collectionId;
+        $apiParams['key'] = $key;
+        $apiParams['required'] = $required;
+        $apiParams['default'] = $xdefault;
+        $apiParams['min'] = $min;
+        $apiParams['max'] = $max;
+        $apiParams['newKey'] = $newKey;
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\AttributeBigint::from($response);
+
+    }
+
+    /**
      * Create a boolean attribute.
      * 
      *

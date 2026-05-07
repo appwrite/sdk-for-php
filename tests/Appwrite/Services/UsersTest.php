@@ -739,6 +739,7 @@ final class UsersTest extends TestCase
                     "userId" => "5e5ea5c16897e",
                     "userName" => "John Doe",
                     "userEmail" => "john@appwrite.io",
+                    "userPhone" => "+1 555 555 5555",
                     "teamId" => "5e5ea5c16897e",
                     "teamName" => "VIP",
                     "invited" => "2020-10-15T06:38:00.000+00:00",

@@ -86,6 +86,7 @@ class Runtime implements JsonSerializable
     private static Runtime $GO124;
     private static Runtime $GO125;
     private static Runtime $GO126;
+    private static Runtime $RUST183;
     private static Runtime $STATIC1;
     private static Runtime $FLUTTER324;
     private static Runtime $FLUTTER327;
@@ -672,6 +673,13 @@ class Runtime implements JsonSerializable
         }
         return self::$GO126;
     }
+    public static function RUST183(): Runtime
+    {
+        if (!isset(self::$RUST183)) {
+            self::$RUST183 = new Runtime('rust-1.83');
+        }
+        return self::$RUST183;
+    }
     public static function STATIC1(): Runtime
     {
         if (!isset(self::$STATIC1)) {
@@ -812,6 +820,7 @@ class Runtime implements JsonSerializable
             'go-1.24' => self::GO124(),
             'go-1.25' => self::GO125(),
             'go-1.26' => self::GO126(),
+            'rust-1.83' => self::RUST183(),
             'static-1' => self::STATIC1(),
             'flutter-3.24' => self::FLUTTER324(),
             'flutter-3.27' => self::FLUTTER327(),

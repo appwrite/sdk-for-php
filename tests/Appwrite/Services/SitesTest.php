@@ -903,6 +903,7 @@ final class SitesTest extends TestCase
 
         $response = $this->sites->createVariable(
             "<SITE_ID>",
+            "<VARIABLE_ID>",
             "<KEY>",
             "<VALUE>"
         );
@@ -954,8 +955,7 @@ final class SitesTest extends TestCase
 
         $response = $this->sites->updateVariable(
             "<SITE_ID>",
-            "<VARIABLE_ID>",
-            "<KEY>"
+            "<VARIABLE_ID>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Variable::class, $response);

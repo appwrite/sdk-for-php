@@ -37,11 +37,11 @@ class Client
      */
     protected array $headers = [
         'content-type' => '',
-        'user-agent' => 'AppwritePHPSDK/23.0.0 ()',
+        'user-agent' => 'AppwritePHPSDK/23.1.0 ()',
         'x-sdk-name'=> 'PHP',
         'x-sdk-platform'=> 'server',
         'x-sdk-language'=> 'php',
-        'x-sdk-version'=> '23.0.0',
+        'x-sdk-version'=> '23.1.0',
     ];
 
     /**
@@ -63,7 +63,7 @@ class Client
      */
     public function __construct()
     {
-        $this->headers['X-Appwrite-Response-Format'] = '1.9.1';
+        $this->headers['X-Appwrite-Response-Format'] = '1.9.4';
  
     }
 
@@ -157,6 +157,38 @@ class Client
     public function setForwardedUserAgent(string $value): Client
     {
         $this->addHeader('X-Forwarded-User-Agent', $value);
+
+        return $this;
+    }
+
+    /**
+     * Set DevKey
+     *
+     * Your secret dev API key
+     *
+     * @param string $value
+     *
+     * @return Client
+     */
+    public function setDevKey(string $value): Client
+    {
+        $this->addHeader('X-Appwrite-Dev-Key', $value);
+
+        return $this;
+    }
+
+    /**
+     * Set Cookie
+     *
+     * The user cookie to authenticate with. Used by SDKs that forward an incoming Cookie header in server-side runtimes.
+     *
+     * @param string $value
+     *
+     * @return Client
+     */
+    public function setCookie(string $value): Client
+    {
+        $this->addHeader('Cookie', $value);
 
         return $this;
     }
@@ -381,8 +413,6 @@ class Client
         if (curl_errno($ch)) {
             throw new AppwriteException(curl_error($ch), $responseStatus, $responseBody['type'] ?? '', $responseBody);
         }
-        
-        curl_close($ch);
 
         if($responseStatus >= 400) {
             if(is_array($responseBody)) {
@@ -413,7 +443,7 @@ class Client
             $finalKey = $prefix ? "{$prefix}[{$key}]" : $key;
 
             if (is_array($value)) {
-                $output += $this->flatten($value, $finalKey); // @todo: handle name collision here if needed
+                $output = array_merge($output, $this->flatten($value, $finalKey));
             }
             else {
                 $output[$finalKey] = $value;
