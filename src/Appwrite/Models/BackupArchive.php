@@ -17,7 +17,7 @@ readonly class BackupArchive
      * @param string $updatedAt archive update date in iso 8601 format.
      * @param string $policyId archive policy id.
      * @param int $size archive size in bytes.
-     * @param string $status the status of the archive creation. possible values: pending, processing, uploading, completed, failed.
+     * @param string $status the status of the archive creation. possible values: pending, processing, uploading, completed, failed, skipped.
      * @param string $startedAt the backup start time.
      * @param string $migrationId migration id.
      * @param array $services the services that are backed up by this archive.

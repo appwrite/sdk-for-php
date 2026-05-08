@@ -12,5 +12,7 @@ $client = (new Client())
 $sites = new Sites($client);
 
 $result = $sites->listVariables(
-    siteId: '<SITE_ID>'
+    siteId: '<SITE_ID>',
+    queries: [], // optional
+    total: false // optional
 );```

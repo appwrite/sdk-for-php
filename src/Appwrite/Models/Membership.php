@@ -18,6 +18,7 @@ readonly class Membership
      * @param string $userId user id.
      * @param string $userName user name. hide this attribute by toggling membership privacy in the console.
      * @param string $userEmail user email address. hide this attribute by toggling membership privacy in the console.
+     * @param string $userPhone user phone number. hide this attribute by toggling membership privacy in the console.
      * @param string $teamId team id.
      * @param string $teamName team name.
      * @param string $invited date, the user has been invited to join the team in iso 8601 format.
@@ -33,6 +34,7 @@ readonly class Membership
         public string $userId,
         public string $userName,
         public string $userEmail,
+        public string $userPhone,
         public string $teamId,
         public string $teamName,
         public string $invited,
@@ -66,6 +68,9 @@ readonly class Membership
         if (!array_key_exists('userEmail', $data)) {
             throw new \InvalidArgumentException('Missing required field "userEmail" for ' . static::class . '.');
         }
+        if (!array_key_exists('userPhone', $data)) {
+            throw new \InvalidArgumentException('Missing required field "userPhone" for ' . static::class . '.');
+        }
         if (!array_key_exists('teamId', $data)) {
             throw new \InvalidArgumentException('Missing required field "teamId" for ' . static::class . '.');
         }
@@ -95,6 +100,7 @@ readonly class Membership
             userId: $data['userId'],
             userName: $data['userName'],
             userEmail: $data['userEmail'],
+            userPhone: $data['userPhone'],
             teamId: $data['teamId'],
             teamName: $data['teamName'],
             invited: $data['invited'],
@@ -117,6 +123,7 @@ readonly class Membership
             'userId' => static::serializeValue($this->userId),
             'userName' => static::serializeValue($this->userName),
             'userEmail' => static::serializeValue($this->userEmail),
+            'userPhone' => static::serializeValue($this->userPhone),
             'teamId' => static::serializeValue($this->teamId),
             'teamName' => static::serializeValue($this->teamName),
             'invited' => static::serializeValue($this->invited),

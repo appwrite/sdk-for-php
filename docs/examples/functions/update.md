@@ -25,7 +25,7 @@ $result = $functions->update(
     logging: false, // optional
     entrypoint: '<ENTRYPOINT>', // optional
     commands: '<COMMANDS>', // optional
-    scopes: [Scopes::SESSIONSWRITE()], // optional
+    scopes: [Scopes::PROJECTREAD()], // optional
     installationId: '<INSTALLATION_ID>', // optional
     providerRepositoryId: '<PROVIDER_REPOSITORY_ID>', // optional
     providerBranch: '<PROVIDER_BRANCH>', // optional

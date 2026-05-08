@@ -754,6 +754,113 @@ class TablesDB extends Service
     }
 
     /**
+     * Create a bigint column. Optionally, minimum and maximum values can be
+     * provided.
+     * 
+     *
+     * @param string $databaseId
+     * @param string $tableId
+     * @param string $key
+     * @param bool $required
+     * @param ?int $min
+     * @param ?int $max
+     * @param ?int $xdefault
+     * @param ?bool $xarray
+     * @throws AppwriteException
+     * @return \Appwrite\Models\ColumnBigint
+     */
+    public function createBigIntColumn(string $databaseId, string $tableId, string $key, bool $required, ?int $min = null, ?int $max = null, ?int $xdefault = null, ?bool $xarray = null): \Appwrite\Models\ColumnBigint
+    {
+        $apiPath = str_replace(
+            ['{databaseId}', '{tableId}'],
+            [$databaseId, $tableId],
+            '/tablesdb/{databaseId}/tables/{tableId}/columns/bigint'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['tableId'] = $tableId;
+        $apiParams['key'] = $key;
+        $apiParams['required'] = $required;
+        $apiParams['min'] = $min;
+        $apiParams['max'] = $max;
+        $apiParams['default'] = $xdefault;
+
+        if (!is_null($xarray)) {
+            $apiParams['array'] = $xarray;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\ColumnBigint::from($response);
+
+    }
+
+    /**
+     * Update a bigint column. Changing the `default` value will not update
+     * already existing rows.
+     * 
+     *
+     * @param string $databaseId
+     * @param string $tableId
+     * @param string $key
+     * @param bool $required
+     * @param ?int $xdefault
+     * @param ?int $min
+     * @param ?int $max
+     * @param ?string $newKey
+     * @throws AppwriteException
+     * @return \Appwrite\Models\ColumnBigint
+     */
+    public function updateBigIntColumn(string $databaseId, string $tableId, string $key, bool $required, ?int $xdefault, ?int $min = null, ?int $max = null, ?string $newKey = null): \Appwrite\Models\ColumnBigint
+    {
+        $apiPath = str_replace(
+            ['{databaseId}', '{tableId}', '{key}'],
+            [$databaseId, $tableId, $key],
+            '/tablesdb/{databaseId}/tables/{tableId}/columns/bigint/{key}'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['tableId'] = $tableId;
+        $apiParams['key'] = $key;
+        $apiParams['required'] = $required;
+        $apiParams['default'] = $xdefault;
+        $apiParams['min'] = $min;
+        $apiParams['max'] = $max;
+        $apiParams['newKey'] = $newKey;
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\ColumnBigint::from($response);
+
+    }
+
+    /**
      * Create a boolean column.
      * 
      *
