@@ -3,7 +3,6 @@
 
 use Appwrite\Client;
 use Appwrite\Services\Project;
-use Appwrite\Enums\ProtocolId;
 
 $client = (new Client())
     ->setEndpoint('https://<REGION>.cloud.appwrite.io/v1') // Your API Endpoint
@@ -12,7 +11,8 @@ $client = (new Client())
 
 $project = new Project($client);
 
-$result = $project->updateProtocolStatus(
-    protocolId: ProtocolId::REST(),
-    enabled: false
+$result = $project->updateOAuth2Kick(
+    clientId: '<CLIENT_ID>', // optional
+    clientSecret: '<CLIENT_SECRET>', // optional
+    enabled: false // optional
 );```

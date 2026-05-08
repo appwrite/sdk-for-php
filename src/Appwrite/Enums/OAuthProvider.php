@@ -21,9 +21,12 @@ class OAuthProvider implements JsonSerializable
     private static OAuthProvider $ETSY;
     private static OAuthProvider $FACEBOOK;
     private static OAuthProvider $FIGMA;
+    private static OAuthProvider $FUSIONAUTH;
     private static OAuthProvider $GITHUB;
     private static OAuthProvider $GITLAB;
     private static OAuthProvider $GOOGLE;
+    private static OAuthProvider $KEYCLOAK;
+    private static OAuthProvider $KICK;
     private static OAuthProvider $LINKEDIN;
     private static OAuthProvider $MICROSOFT;
     private static OAuthProvider $NOTION;
@@ -46,6 +49,8 @@ class OAuthProvider implements JsonSerializable
     private static OAuthProvider $YANDEX;
     private static OAuthProvider $ZOHO;
     private static OAuthProvider $ZOOM;
+    private static OAuthProvider $GITHUBIMAGINE;
+    private static OAuthProvider $GOOGLEIMAGINE;
 
     private string $value;
 
@@ -169,6 +174,13 @@ class OAuthProvider implements JsonSerializable
         }
         return self::$FIGMA;
     }
+    public static function FUSIONAUTH(): OAuthProvider
+    {
+        if (!isset(self::$FUSIONAUTH)) {
+            self::$FUSIONAUTH = new OAuthProvider('fusionauth');
+        }
+        return self::$FUSIONAUTH;
+    }
     public static function GITHUB(): OAuthProvider
     {
         if (!isset(self::$GITHUB)) {
@@ -189,6 +201,20 @@ class OAuthProvider implements JsonSerializable
             self::$GOOGLE = new OAuthProvider('google');
         }
         return self::$GOOGLE;
+    }
+    public static function KEYCLOAK(): OAuthProvider
+    {
+        if (!isset(self::$KEYCLOAK)) {
+            self::$KEYCLOAK = new OAuthProvider('keycloak');
+        }
+        return self::$KEYCLOAK;
+    }
+    public static function KICK(): OAuthProvider
+    {
+        if (!isset(self::$KICK)) {
+            self::$KICK = new OAuthProvider('kick');
+        }
+        return self::$KICK;
     }
     public static function LINKEDIN(): OAuthProvider
     {
@@ -344,6 +370,20 @@ class OAuthProvider implements JsonSerializable
         }
         return self::$ZOOM;
     }
+    public static function GITHUBIMAGINE(): OAuthProvider
+    {
+        if (!isset(self::$GITHUBIMAGINE)) {
+            self::$GITHUBIMAGINE = new OAuthProvider('githubImagine');
+        }
+        return self::$GITHUBIMAGINE;
+    }
+    public static function GOOGLEIMAGINE(): OAuthProvider
+    {
+        if (!isset(self::$GOOGLEIMAGINE)) {
+            self::$GOOGLEIMAGINE = new OAuthProvider('googleImagine');
+        }
+        return self::$GOOGLEIMAGINE;
+    }
 
     public static function from(string $value): self
     {
@@ -363,9 +403,12 @@ class OAuthProvider implements JsonSerializable
             'etsy' => self::ETSY(),
             'facebook' => self::FACEBOOK(),
             'figma' => self::FIGMA(),
+            'fusionauth' => self::FUSIONAUTH(),
             'github' => self::GITHUB(),
             'gitlab' => self::GITLAB(),
             'google' => self::GOOGLE(),
+            'keycloak' => self::KEYCLOAK(),
+            'kick' => self::KICK(),
             'linkedin' => self::LINKEDIN(),
             'microsoft' => self::MICROSOFT(),
             'notion' => self::NOTION(),
@@ -388,6 +431,8 @@ class OAuthProvider implements JsonSerializable
             'yandex' => self::YANDEX(),
             'zoho' => self::ZOHO(),
             'zoom' => self::ZOOM(),
+            'githubImagine' => self::GITHUBIMAGINE(),
+            'googleImagine' => self::GOOGLEIMAGINE(),
             default => throw new \InvalidArgumentException('Unknown OAuthProvider value: ' . $value),
         };
     }

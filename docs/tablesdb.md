@@ -254,6 +254,48 @@ GET https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/columns
 
 
 ```http request
+POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/columns/bigint
+```
+
+** Create a bigint column. Optionally, minimum and maximum values can be provided.
+ **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| databaseId | string | **Required** Database ID. |  |
+| tableId | string | **Required** Table ID. |  |
+| key | string | Column Key. |  |
+| required | boolean | Is column required? |  |
+| min | integer | Minimum value |  |
+| max | integer | Maximum value |  |
+| default | integer | Default value. Cannot be set when column is required. |  |
+| array | boolean | Is column an array? |  |
+
+
+```http request
+PATCH https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/columns/bigint/{key}
+```
+
+** Update a bigint column. Changing the `default` value will not update already existing rows.
+ **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| databaseId | string | **Required** Database ID. |  |
+| tableId | string | **Required** Table ID. |  |
+| key | string | **Required** Column Key. |  |
+| required | boolean | Is column required? |  |
+| min | integer | Minimum value |  |
+| max | integer | Maximum value |  |
+| default | integer | Default value. Cannot be set when column is required. |  |
+| newKey | string | New Column Key. |  |
+
+
+```http request
 POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/columns/boolean
 ```
 

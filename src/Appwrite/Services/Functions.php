@@ -1165,10 +1165,12 @@ class Functions extends Service
      * Get a list of all variables of a specific function.
      *
      * @param string $functionId
+     * @param ?array $queries
+     * @param ?bool $total
      * @throws AppwriteException
      * @return \Appwrite\Models\VariableList
      */
-    public function listVariables(string $functionId): \Appwrite\Models\VariableList
+    public function listVariables(string $functionId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\VariableList
     {
         $apiPath = str_replace(
             ['{functionId}'],
@@ -1178,6 +1180,14 @@ class Functions extends Service
 
         $apiParams = [];
         $apiParams['functionId'] = $functionId;
+
+        if (!is_null($queries)) {
+            $apiParams['queries'] = $queries;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
+        }
 
         $apiHeaders = [];
 
@@ -1201,13 +1211,14 @@ class Functions extends Service
      * in the function at runtime as environment variables.
      *
      * @param string $functionId
+     * @param string $variableId
      * @param string $key
      * @param string $value
      * @param ?bool $secret
      * @throws AppwriteException
      * @return \Appwrite\Models\Variable
      */
-    public function createVariable(string $functionId, string $key, string $value, ?bool $secret = null): \Appwrite\Models\Variable
+    public function createVariable(string $functionId, string $variableId, string $key, string $value, ?bool $secret = null): \Appwrite\Models\Variable
     {
         $apiPath = str_replace(
             ['{functionId}'],
@@ -1217,6 +1228,7 @@ class Functions extends Service
 
         $apiParams = [];
         $apiParams['functionId'] = $functionId;
+        $apiParams['variableId'] = $variableId;
         $apiParams['key'] = $key;
         $apiParams['value'] = $value;
 
@@ -1284,13 +1296,13 @@ class Functions extends Service
      *
      * @param string $functionId
      * @param string $variableId
-     * @param string $key
+     * @param ?string $key
      * @param ?string $value
      * @param ?bool $secret
      * @throws AppwriteException
      * @return \Appwrite\Models\Variable
      */
-    public function updateVariable(string $functionId, string $variableId, string $key, ?string $value = null, ?bool $secret = null): \Appwrite\Models\Variable
+    public function updateVariable(string $functionId, string $variableId, ?string $key = null, ?string $value = null, ?bool $secret = null): \Appwrite\Models\Variable
     {
         $apiPath = str_replace(
             ['{functionId}', '{variableId}'],

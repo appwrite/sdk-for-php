@@ -623,6 +623,59 @@ final class DatabasesTest extends TestCase
         $this->assertInstanceOf(\Appwrite\Models\AttributeList::class, $response);
     }
 
+    public function testMethodCreateBigIntAttribute(): void
+    {
+        $data = array(
+            "key" => "count",
+            "type" => "bigint",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
+        );
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->databases->createBigIntAttribute(
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
+            "",
+            true
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\AttributeBigint::class, $response);
+    }
+
+    public function testMethodUpdateBigIntAttribute(): void
+    {
+        $data = array(
+            "key" => "count",
+            "type" => "bigint",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
+        );
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->databases->updateBigIntAttribute(
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>",
+            "",
+            true,
+            1
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\AttributeBigint::class, $response);
+    }
+
     public function testMethodCreateBooleanAttribute(): void
     {
         $data = array(

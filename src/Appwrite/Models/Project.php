@@ -40,6 +40,8 @@ readonly class Project
      * @param bool $authMembershipsUserName whether or not to show user names in the teams membership response.
      * @param bool $authMembershipsUserEmail whether or not to show user emails in the teams membership response.
      * @param bool $authMembershipsMfa whether or not to show user mfa status in the teams membership response.
+     * @param bool $authMembershipsUserId whether or not to show user ids in the teams membership response.
+     * @param bool $authMembershipsUserPhone whether or not to show user phone numbers in the teams membership response.
      * @param bool $authInvalidateSessions whether or not all existing sessions should be invalidated on password change
      * @param list<AuthProvider> $oAuthProviders list of auth providers.
      * @param array $platforms list of platforms.
@@ -49,11 +51,12 @@ readonly class Project
      * @param bool $smtpEnabled status for custom smtp
      * @param string $smtpSenderName smtp sender name
      * @param string $smtpSenderEmail smtp sender email
-     * @param string $smtpReplyTo smtp reply to email
+     * @param string $smtpReplyToName smtp reply to name
+     * @param string $smtpReplyToEmail smtp reply to email
      * @param string $smtpHost smtp server host name
      * @param int $smtpPort smtp server port
      * @param string $smtpUsername smtp server username
-     * @param string $smtpPassword smtp server password
+     * @param string $smtpPassword smtp server password. this property is write-only and always returned empty.
      * @param string $smtpSecure smtp server secure protocol
      * @param int $pingCount number of times the ping was received for this project.
      * @param string $pingedAt last ping datetime in iso 8601 format.
@@ -120,6 +123,8 @@ readonly class Project
         public bool $authMembershipsUserName,
         public bool $authMembershipsUserEmail,
         public bool $authMembershipsMfa,
+        public bool $authMembershipsUserId,
+        public bool $authMembershipsUserPhone,
         public bool $authInvalidateSessions,
         public array $oAuthProviders,
         public array $platforms,
@@ -129,7 +134,8 @@ readonly class Project
         public bool $smtpEnabled,
         public string $smtpSenderName,
         public string $smtpSenderEmail,
-        public string $smtpReplyTo,
+        public string $smtpReplyToName,
+        public string $smtpReplyToEmail,
         public string $smtpHost,
         public int $smtpPort,
         public string $smtpUsername,
@@ -262,6 +268,12 @@ readonly class Project
         if (!array_key_exists('authMembershipsMfa', $data)) {
             throw new \InvalidArgumentException('Missing required field "authMembershipsMfa" for ' . static::class . '.');
         }
+        if (!array_key_exists('authMembershipsUserId', $data)) {
+            throw new \InvalidArgumentException('Missing required field "authMembershipsUserId" for ' . static::class . '.');
+        }
+        if (!array_key_exists('authMembershipsUserPhone', $data)) {
+            throw new \InvalidArgumentException('Missing required field "authMembershipsUserPhone" for ' . static::class . '.');
+        }
         if (!array_key_exists('authInvalidateSessions', $data)) {
             throw new \InvalidArgumentException('Missing required field "authInvalidateSessions" for ' . static::class . '.');
         }
@@ -289,8 +301,11 @@ readonly class Project
         if (!array_key_exists('smtpSenderEmail', $data)) {
             throw new \InvalidArgumentException('Missing required field "smtpSenderEmail" for ' . static::class . '.');
         }
-        if (!array_key_exists('smtpReplyTo', $data)) {
-            throw new \InvalidArgumentException('Missing required field "smtpReplyTo" for ' . static::class . '.');
+        if (!array_key_exists('smtpReplyToName', $data)) {
+            throw new \InvalidArgumentException('Missing required field "smtpReplyToName" for ' . static::class . '.');
+        }
+        if (!array_key_exists('smtpReplyToEmail', $data)) {
+            throw new \InvalidArgumentException('Missing required field "smtpReplyToEmail" for ' . static::class . '.');
         }
         if (!array_key_exists('smtpHost', $data)) {
             throw new \InvalidArgumentException('Missing required field "smtpHost" for ' . static::class . '.');
@@ -447,6 +462,8 @@ readonly class Project
             authMembershipsUserName: $data['authMembershipsUserName'],
             authMembershipsUserEmail: $data['authMembershipsUserEmail'],
             authMembershipsMfa: $data['authMembershipsMfa'],
+            authMembershipsUserId: $data['authMembershipsUserId'],
+            authMembershipsUserPhone: $data['authMembershipsUserPhone'],
             authInvalidateSessions: $data['authInvalidateSessions'],
             oAuthProviders: is_array($data['oAuthProviders'])
                 ? array_map(
@@ -476,7 +493,8 @@ readonly class Project
             smtpEnabled: $data['smtpEnabled'],
             smtpSenderName: $data['smtpSenderName'],
             smtpSenderEmail: $data['smtpSenderEmail'],
-            smtpReplyTo: $data['smtpReplyTo'],
+            smtpReplyToName: $data['smtpReplyToName'],
+            smtpReplyToEmail: $data['smtpReplyToEmail'],
             smtpHost: $data['smtpHost'],
             smtpPort: $data['smtpPort'],
             smtpUsername: $data['smtpUsername'],
@@ -559,6 +577,8 @@ readonly class Project
             'authMembershipsUserName' => static::serializeValue($this->authMembershipsUserName),
             'authMembershipsUserEmail' => static::serializeValue($this->authMembershipsUserEmail),
             'authMembershipsMfa' => static::serializeValue($this->authMembershipsMfa),
+            'authMembershipsUserId' => static::serializeValue($this->authMembershipsUserId),
+            'authMembershipsUserPhone' => static::serializeValue($this->authMembershipsUserPhone),
             'authInvalidateSessions' => static::serializeValue($this->authInvalidateSessions),
             'oAuthProviders' => static::serializeValue($this->oAuthProviders),
             'platforms' => static::serializeValue($this->platforms),
@@ -568,7 +588,8 @@ readonly class Project
             'smtpEnabled' => static::serializeValue($this->smtpEnabled),
             'smtpSenderName' => static::serializeValue($this->smtpSenderName),
             'smtpSenderEmail' => static::serializeValue($this->smtpSenderEmail),
-            'smtpReplyTo' => static::serializeValue($this->smtpReplyTo),
+            'smtpReplyToName' => static::serializeValue($this->smtpReplyToName),
+            'smtpReplyToEmail' => static::serializeValue($this->smtpReplyToEmail),
             'smtpHost' => static::serializeValue($this->smtpHost),
             'smtpPort' => static::serializeValue($this->smtpPort),
             'smtpUsername' => static::serializeValue($this->smtpUsername),
