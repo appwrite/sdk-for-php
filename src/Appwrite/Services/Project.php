@@ -6,10 +6,10 @@ use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
 use Appwrite\InputFile;
-use Appwrite\Enums\AuthMethod;
+use Appwrite\Enums\MethodId;
 use Appwrite\Enums\Scopes;
-use Appwrite\Enums\OAuthProvider;
-use Appwrite\Enums\ProjectPolicy;
+use Appwrite\Enums\ProviderId;
+use Appwrite\Enums\PolicyId;
 use Appwrite\Enums\ProtocolId;
 use Appwrite\Enums\ServiceId;
 use Appwrite\Enums\Secure;
@@ -57,12 +57,12 @@ class Project extends Service
      * Update properties of a specific auth method. Use this endpoint to enable or
      * disable a method in your project. 
      *
-     * @param AuthMethod $methodId
+     * @param MethodId $methodId
      * @param bool $enabled
      * @throws AppwriteException
      * @return \Appwrite\Models\Project
      */
-    public function updateAuthMethod(AuthMethod $methodId, bool $enabled): \Appwrite\Models\Project
+    public function updateAuthMethod(MethodId $methodId, bool $enabled): \Appwrite\Models\Project
     {
         $apiPath = str_replace(
             ['{methodId}'],
@@ -611,11 +611,11 @@ class Project extends Service
      * Get a single OAuth2 provider configuration. Credential fields (client
      * secret, p8 file, key/team IDs) are write-only and always returned empty.
      *
-     * @param OAuthProvider $providerId
+     * @param ProviderId $providerId
      * @throws AppwriteException
      * @return \Appwrite\Models\OAuth2Github|\Appwrite\Models\OAuth2Discord|\Appwrite\Models\OAuth2Figma|\Appwrite\Models\OAuth2Dropbox|\Appwrite\Models\OAuth2Dailymotion|\Appwrite\Models\OAuth2Bitbucket|\Appwrite\Models\OAuth2Bitly|\Appwrite\Models\OAuth2Box|\Appwrite\Models\OAuth2Autodesk|\Appwrite\Models\OAuth2Google|\Appwrite\Models\OAuth2Zoom|\Appwrite\Models\OAuth2Zoho|\Appwrite\Models\OAuth2Yandex|\Appwrite\Models\OAuth2X|\Appwrite\Models\OAuth2WordPress|\Appwrite\Models\OAuth2Twitch|\Appwrite\Models\OAuth2Stripe|\Appwrite\Models\OAuth2Spotify|\Appwrite\Models\OAuth2Slack|\Appwrite\Models\OAuth2Podio|\Appwrite\Models\OAuth2Notion|\Appwrite\Models\OAuth2Salesforce|\Appwrite\Models\OAuth2Yahoo|\Appwrite\Models\OAuth2Linkedin|\Appwrite\Models\OAuth2Disqus|\Appwrite\Models\OAuth2Amazon|\Appwrite\Models\OAuth2Etsy|\Appwrite\Models\OAuth2Facebook|\Appwrite\Models\OAuth2Tradeshift|\Appwrite\Models\OAuth2Paypal|\Appwrite\Models\OAuth2Gitlab|\Appwrite\Models\OAuth2Authentik|\Appwrite\Models\OAuth2Auth0|\Appwrite\Models\OAuth2FusionAuth|\Appwrite\Models\OAuth2Keycloak|\Appwrite\Models\OAuth2Oidc|\Appwrite\Models\OAuth2Apple|\Appwrite\Models\OAuth2Okta|\Appwrite\Models\OAuth2Kick|\Appwrite\Models\OAuth2Microsoft
      */
-    public function getOAuth2Provider(OAuthProvider $providerId): \Appwrite\Models\OAuth2Github|\Appwrite\Models\OAuth2Discord|\Appwrite\Models\OAuth2Figma|\Appwrite\Models\OAuth2Dropbox|\Appwrite\Models\OAuth2Dailymotion|\Appwrite\Models\OAuth2Bitbucket|\Appwrite\Models\OAuth2Bitly|\Appwrite\Models\OAuth2Box|\Appwrite\Models\OAuth2Autodesk|\Appwrite\Models\OAuth2Google|\Appwrite\Models\OAuth2Zoom|\Appwrite\Models\OAuth2Zoho|\Appwrite\Models\OAuth2Yandex|\Appwrite\Models\OAuth2X|\Appwrite\Models\OAuth2WordPress|\Appwrite\Models\OAuth2Twitch|\Appwrite\Models\OAuth2Stripe|\Appwrite\Models\OAuth2Spotify|\Appwrite\Models\OAuth2Slack|\Appwrite\Models\OAuth2Podio|\Appwrite\Models\OAuth2Notion|\Appwrite\Models\OAuth2Salesforce|\Appwrite\Models\OAuth2Yahoo|\Appwrite\Models\OAuth2Linkedin|\Appwrite\Models\OAuth2Disqus|\Appwrite\Models\OAuth2Amazon|\Appwrite\Models\OAuth2Etsy|\Appwrite\Models\OAuth2Facebook|\Appwrite\Models\OAuth2Tradeshift|\Appwrite\Models\OAuth2Paypal|\Appwrite\Models\OAuth2Gitlab|\Appwrite\Models\OAuth2Authentik|\Appwrite\Models\OAuth2Auth0|\Appwrite\Models\OAuth2FusionAuth|\Appwrite\Models\OAuth2Keycloak|\Appwrite\Models\OAuth2Oidc|\Appwrite\Models\OAuth2Apple|\Appwrite\Models\OAuth2Okta|\Appwrite\Models\OAuth2Kick|\Appwrite\Models\OAuth2Microsoft
+    public function getOAuth2Provider(ProviderId $providerId): \Appwrite\Models\OAuth2Github|\Appwrite\Models\OAuth2Discord|\Appwrite\Models\OAuth2Figma|\Appwrite\Models\OAuth2Dropbox|\Appwrite\Models\OAuth2Dailymotion|\Appwrite\Models\OAuth2Bitbucket|\Appwrite\Models\OAuth2Bitly|\Appwrite\Models\OAuth2Box|\Appwrite\Models\OAuth2Autodesk|\Appwrite\Models\OAuth2Google|\Appwrite\Models\OAuth2Zoom|\Appwrite\Models\OAuth2Zoho|\Appwrite\Models\OAuth2Yandex|\Appwrite\Models\OAuth2X|\Appwrite\Models\OAuth2WordPress|\Appwrite\Models\OAuth2Twitch|\Appwrite\Models\OAuth2Stripe|\Appwrite\Models\OAuth2Spotify|\Appwrite\Models\OAuth2Slack|\Appwrite\Models\OAuth2Podio|\Appwrite\Models\OAuth2Notion|\Appwrite\Models\OAuth2Salesforce|\Appwrite\Models\OAuth2Yahoo|\Appwrite\Models\OAuth2Linkedin|\Appwrite\Models\OAuth2Disqus|\Appwrite\Models\OAuth2Amazon|\Appwrite\Models\OAuth2Etsy|\Appwrite\Models\OAuth2Facebook|\Appwrite\Models\OAuth2Tradeshift|\Appwrite\Models\OAuth2Paypal|\Appwrite\Models\OAuth2Gitlab|\Appwrite\Models\OAuth2Authentik|\Appwrite\Models\OAuth2Auth0|\Appwrite\Models\OAuth2FusionAuth|\Appwrite\Models\OAuth2Keycloak|\Appwrite\Models\OAuth2Oidc|\Appwrite\Models\OAuth2Apple|\Appwrite\Models\OAuth2Okta|\Appwrite\Models\OAuth2Kick|\Appwrite\Models\OAuth2Microsoft
     {
         $apiPath = str_replace(
             [],
@@ -3480,11 +3480,11 @@ class Project extends Service
      * Get a policy by its unique ID. This endpoint returns the current
      * configuration for the requested project policy.
      *
-     * @param ProjectPolicy $policyId
+     * @param PolicyId $policyId
      * @throws AppwriteException
      * @return \Appwrite\Models\PolicyPasswordDictionary|\Appwrite\Models\PolicyPasswordHistory|\Appwrite\Models\PolicyPasswordPersonalData|\Appwrite\Models\PolicySessionAlert|\Appwrite\Models\PolicySessionDuration|\Appwrite\Models\PolicySessionInvalidation|\Appwrite\Models\PolicySessionLimit|\Appwrite\Models\PolicyUserLimit|\Appwrite\Models\PolicyMembershipPrivacy
      */
-    public function getPolicy(ProjectPolicy $policyId): \Appwrite\Models\PolicyPasswordDictionary|\Appwrite\Models\PolicyPasswordHistory|\Appwrite\Models\PolicyPasswordPersonalData|\Appwrite\Models\PolicySessionAlert|\Appwrite\Models\PolicySessionDuration|\Appwrite\Models\PolicySessionInvalidation|\Appwrite\Models\PolicySessionLimit|\Appwrite\Models\PolicyUserLimit|\Appwrite\Models\PolicyMembershipPrivacy
+    public function getPolicy(PolicyId $policyId): \Appwrite\Models\PolicyPasswordDictionary|\Appwrite\Models\PolicyPasswordHistory|\Appwrite\Models\PolicyPasswordPersonalData|\Appwrite\Models\PolicySessionAlert|\Appwrite\Models\PolicySessionDuration|\Appwrite\Models\PolicySessionInvalidation|\Appwrite\Models\PolicySessionLimit|\Appwrite\Models\PolicyUserLimit|\Appwrite\Models\PolicyMembershipPrivacy
     {
         $apiPath = str_replace(
             ['{policyId}'],

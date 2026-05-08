@@ -4,17 +4,17 @@ namespace Appwrite\Enums;
 
 use JsonSerializable;
 
-class ProjectPolicy implements JsonSerializable
+class PolicyId implements JsonSerializable
 {
-    private static ProjectPolicy $PASSWORDDICTIONARY;
-    private static ProjectPolicy $PASSWORDHISTORY;
-    private static ProjectPolicy $PASSWORDPERSONALDATA;
-    private static ProjectPolicy $SESSIONALERT;
-    private static ProjectPolicy $SESSIONDURATION;
-    private static ProjectPolicy $SESSIONINVALIDATION;
-    private static ProjectPolicy $SESSIONLIMIT;
-    private static ProjectPolicy $USERLIMIT;
-    private static ProjectPolicy $MEMBERSHIPPRIVACY;
+    private static PolicyId $PASSWORDDICTIONARY;
+    private static PolicyId $PASSWORDHISTORY;
+    private static PolicyId $PASSWORDPERSONALDATA;
+    private static PolicyId $SESSIONALERT;
+    private static PolicyId $SESSIONDURATION;
+    private static PolicyId $SESSIONINVALIDATION;
+    private static PolicyId $SESSIONLIMIT;
+    private static PolicyId $USERLIMIT;
+    private static PolicyId $MEMBERSHIPPRIVACY;
 
     private string $value;
 
@@ -33,66 +33,66 @@ class ProjectPolicy implements JsonSerializable
         return $this->value;
     }
 
-    public static function PASSWORDDICTIONARY(): ProjectPolicy
+    public static function PASSWORDDICTIONARY(): PolicyId
     {
         if (!isset(self::$PASSWORDDICTIONARY)) {
-            self::$PASSWORDDICTIONARY = new ProjectPolicy('password-dictionary');
+            self::$PASSWORDDICTIONARY = new PolicyId('password-dictionary');
         }
         return self::$PASSWORDDICTIONARY;
     }
-    public static function PASSWORDHISTORY(): ProjectPolicy
+    public static function PASSWORDHISTORY(): PolicyId
     {
         if (!isset(self::$PASSWORDHISTORY)) {
-            self::$PASSWORDHISTORY = new ProjectPolicy('password-history');
+            self::$PASSWORDHISTORY = new PolicyId('password-history');
         }
         return self::$PASSWORDHISTORY;
     }
-    public static function PASSWORDPERSONALDATA(): ProjectPolicy
+    public static function PASSWORDPERSONALDATA(): PolicyId
     {
         if (!isset(self::$PASSWORDPERSONALDATA)) {
-            self::$PASSWORDPERSONALDATA = new ProjectPolicy('password-personal-data');
+            self::$PASSWORDPERSONALDATA = new PolicyId('password-personal-data');
         }
         return self::$PASSWORDPERSONALDATA;
     }
-    public static function SESSIONALERT(): ProjectPolicy
+    public static function SESSIONALERT(): PolicyId
     {
         if (!isset(self::$SESSIONALERT)) {
-            self::$SESSIONALERT = new ProjectPolicy('session-alert');
+            self::$SESSIONALERT = new PolicyId('session-alert');
         }
         return self::$SESSIONALERT;
     }
-    public static function SESSIONDURATION(): ProjectPolicy
+    public static function SESSIONDURATION(): PolicyId
     {
         if (!isset(self::$SESSIONDURATION)) {
-            self::$SESSIONDURATION = new ProjectPolicy('session-duration');
+            self::$SESSIONDURATION = new PolicyId('session-duration');
         }
         return self::$SESSIONDURATION;
     }
-    public static function SESSIONINVALIDATION(): ProjectPolicy
+    public static function SESSIONINVALIDATION(): PolicyId
     {
         if (!isset(self::$SESSIONINVALIDATION)) {
-            self::$SESSIONINVALIDATION = new ProjectPolicy('session-invalidation');
+            self::$SESSIONINVALIDATION = new PolicyId('session-invalidation');
         }
         return self::$SESSIONINVALIDATION;
     }
-    public static function SESSIONLIMIT(): ProjectPolicy
+    public static function SESSIONLIMIT(): PolicyId
     {
         if (!isset(self::$SESSIONLIMIT)) {
-            self::$SESSIONLIMIT = new ProjectPolicy('session-limit');
+            self::$SESSIONLIMIT = new PolicyId('session-limit');
         }
         return self::$SESSIONLIMIT;
     }
-    public static function USERLIMIT(): ProjectPolicy
+    public static function USERLIMIT(): PolicyId
     {
         if (!isset(self::$USERLIMIT)) {
-            self::$USERLIMIT = new ProjectPolicy('user-limit');
+            self::$USERLIMIT = new PolicyId('user-limit');
         }
         return self::$USERLIMIT;
     }
-    public static function MEMBERSHIPPRIVACY(): ProjectPolicy
+    public static function MEMBERSHIPPRIVACY(): PolicyId
     {
         if (!isset(self::$MEMBERSHIPPRIVACY)) {
-            self::$MEMBERSHIPPRIVACY = new ProjectPolicy('membership-privacy');
+            self::$MEMBERSHIPPRIVACY = new PolicyId('membership-privacy');
         }
         return self::$MEMBERSHIPPRIVACY;
     }
@@ -109,7 +109,7 @@ class ProjectPolicy implements JsonSerializable
             'session-limit' => self::SESSIONLIMIT(),
             'user-limit' => self::USERLIMIT(),
             'membership-privacy' => self::MEMBERSHIPPRIVACY(),
-            default => throw new \InvalidArgumentException('Unknown ProjectPolicy value: ' . $value),
+            default => throw new \InvalidArgumentException('Unknown PolicyId value: ' . $value),
         };
     }
 }

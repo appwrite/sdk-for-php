@@ -3,7 +3,7 @@
 
 use Appwrite\Client;
 use Appwrite\Services\Project;
-use Appwrite\Enums\AuthMethod;
+use Appwrite\Enums\MethodId;
 
 $client = (new Client())
     ->setEndpoint('https://<REGION>.cloud.appwrite.io/v1') // Your API Endpoint
@@ -13,6 +13,6 @@ $client = (new Client())
 $project = new Project($client);
 
 $result = $project->updateAuthMethod(
-    methodId: AuthMethod::EMAILPASSWORD(),
+    methodId: MethodId::EMAILPASSWORD(),
     enabled: false
 );```
