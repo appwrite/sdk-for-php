@@ -4,15 +4,15 @@ namespace Appwrite\Enums;
 
 use JsonSerializable;
 
-class MethodId implements JsonSerializable
+class AuthMethod implements JsonSerializable
 {
-    private static MethodId $EMAILPASSWORD;
-    private static MethodId $MAGICURL;
-    private static MethodId $EMAILOTP;
-    private static MethodId $ANONYMOUS;
-    private static MethodId $INVITES;
-    private static MethodId $JWT;
-    private static MethodId $PHONE;
+    private static AuthMethod $EMAILPASSWORD;
+    private static AuthMethod $MAGICURL;
+    private static AuthMethod $EMAILOTP;
+    private static AuthMethod $ANONYMOUS;
+    private static AuthMethod $INVITES;
+    private static AuthMethod $JWT;
+    private static AuthMethod $PHONE;
 
     private string $value;
 
@@ -31,52 +31,52 @@ class MethodId implements JsonSerializable
         return $this->value;
     }
 
-    public static function EMAILPASSWORD(): MethodId
+    public static function EMAILPASSWORD(): AuthMethod
     {
         if (!isset(self::$EMAILPASSWORD)) {
-            self::$EMAILPASSWORD = new MethodId('email-password');
+            self::$EMAILPASSWORD = new AuthMethod('email-password');
         }
         return self::$EMAILPASSWORD;
     }
-    public static function MAGICURL(): MethodId
+    public static function MAGICURL(): AuthMethod
     {
         if (!isset(self::$MAGICURL)) {
-            self::$MAGICURL = new MethodId('magic-url');
+            self::$MAGICURL = new AuthMethod('magic-url');
         }
         return self::$MAGICURL;
     }
-    public static function EMAILOTP(): MethodId
+    public static function EMAILOTP(): AuthMethod
     {
         if (!isset(self::$EMAILOTP)) {
-            self::$EMAILOTP = new MethodId('email-otp');
+            self::$EMAILOTP = new AuthMethod('email-otp');
         }
         return self::$EMAILOTP;
     }
-    public static function ANONYMOUS(): MethodId
+    public static function ANONYMOUS(): AuthMethod
     {
         if (!isset(self::$ANONYMOUS)) {
-            self::$ANONYMOUS = new MethodId('anonymous');
+            self::$ANONYMOUS = new AuthMethod('anonymous');
         }
         return self::$ANONYMOUS;
     }
-    public static function INVITES(): MethodId
+    public static function INVITES(): AuthMethod
     {
         if (!isset(self::$INVITES)) {
-            self::$INVITES = new MethodId('invites');
+            self::$INVITES = new AuthMethod('invites');
         }
         return self::$INVITES;
     }
-    public static function JWT(): MethodId
+    public static function JWT(): AuthMethod
     {
         if (!isset(self::$JWT)) {
-            self::$JWT = new MethodId('jwt');
+            self::$JWT = new AuthMethod('jwt');
         }
         return self::$JWT;
     }
-    public static function PHONE(): MethodId
+    public static function PHONE(): AuthMethod
     {
         if (!isset(self::$PHONE)) {
-            self::$PHONE = new MethodId('phone');
+            self::$PHONE = new AuthMethod('phone');
         }
         return self::$PHONE;
     }
@@ -91,7 +91,7 @@ class MethodId implements JsonSerializable
             'invites' => self::INVITES(),
             'jwt' => self::JWT(),
             'phone' => self::PHONE(),
-            default => throw new \InvalidArgumentException('Unknown MethodId value: ' . $value),
+            default => throw new \InvalidArgumentException('Unknown AuthMethod value: ' . $value),
         };
     }
 }

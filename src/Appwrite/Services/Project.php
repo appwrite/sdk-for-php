@@ -6,10 +6,10 @@ use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
 use Appwrite\InputFile;
-use Appwrite\Enums\MethodId;
+use Appwrite\Enums\AuthMethod;
 use Appwrite\Enums\Scopes;
-use Appwrite\Enums\ProviderId;
-use Appwrite\Enums\PolicyId;
+use Appwrite\Enums\OAuthProvider;
+use Appwrite\Enums\ProjectPolicy;
 use Appwrite\Enums\ProtocolId;
 use Appwrite\Enums\ServiceId;
 use Appwrite\Enums\Secure;
@@ -57,12 +57,12 @@ class Project extends Service
      * Update properties of a specific auth method. Use this endpoint to enable or
      * disable a method in your project. 
      *
-     * @param MethodId $methodId
+     * @param AuthMethod $methodId
      * @param bool $enabled
      * @throws AppwriteException
      * @return \Appwrite\Models\Project
      */
-    public function updateAuthMethod(MethodId $methodId, bool $enabled): \Appwrite\Models\Project
+    public function updateAuthMethod(AuthMethod $methodId, bool $enabled): \Appwrite\Models\Project
     {
         $apiPath = str_replace(
             ['{methodId}'],
@@ -604,202 +604,6 @@ class Project extends Service
         }
 
         return \Appwrite\Models\OAuth2ProviderList::from($response);
-
-    }
-
-    /**
-     * Get a single OAuth2 provider configuration. Credential fields (client
-     * secret, p8 file, key/team IDs) are write-only and always returned empty.
-     *
-     * @param ProviderId $providerId
-     * @throws AppwriteException
-     * @return \Appwrite\Models\OAuth2Github|\Appwrite\Models\OAuth2Discord|\Appwrite\Models\OAuth2Figma|\Appwrite\Models\OAuth2Dropbox|\Appwrite\Models\OAuth2Dailymotion|\Appwrite\Models\OAuth2Bitbucket|\Appwrite\Models\OAuth2Bitly|\Appwrite\Models\OAuth2Box|\Appwrite\Models\OAuth2Autodesk|\Appwrite\Models\OAuth2Google|\Appwrite\Models\OAuth2Zoom|\Appwrite\Models\OAuth2Zoho|\Appwrite\Models\OAuth2Yandex|\Appwrite\Models\OAuth2X|\Appwrite\Models\OAuth2WordPress|\Appwrite\Models\OAuth2Twitch|\Appwrite\Models\OAuth2Stripe|\Appwrite\Models\OAuth2Spotify|\Appwrite\Models\OAuth2Slack|\Appwrite\Models\OAuth2Podio|\Appwrite\Models\OAuth2Notion|\Appwrite\Models\OAuth2Salesforce|\Appwrite\Models\OAuth2Yahoo|\Appwrite\Models\OAuth2Linkedin|\Appwrite\Models\OAuth2Disqus|\Appwrite\Models\OAuth2Amazon|\Appwrite\Models\OAuth2Etsy|\Appwrite\Models\OAuth2Facebook|\Appwrite\Models\OAuth2Tradeshift|\Appwrite\Models\OAuth2Paypal|\Appwrite\Models\OAuth2Gitlab|\Appwrite\Models\OAuth2Authentik|\Appwrite\Models\OAuth2Auth0|\Appwrite\Models\OAuth2FusionAuth|\Appwrite\Models\OAuth2Keycloak|\Appwrite\Models\OAuth2Oidc|\Appwrite\Models\OAuth2Apple|\Appwrite\Models\OAuth2Okta|\Appwrite\Models\OAuth2Kick|\Appwrite\Models\OAuth2Microsoft
-     */
-    public function getOAuth2Provider(ProviderId $providerId): \Appwrite\Models\OAuth2Github|\Appwrite\Models\OAuth2Discord|\Appwrite\Models\OAuth2Figma|\Appwrite\Models\OAuth2Dropbox|\Appwrite\Models\OAuth2Dailymotion|\Appwrite\Models\OAuth2Bitbucket|\Appwrite\Models\OAuth2Bitly|\Appwrite\Models\OAuth2Box|\Appwrite\Models\OAuth2Autodesk|\Appwrite\Models\OAuth2Google|\Appwrite\Models\OAuth2Zoom|\Appwrite\Models\OAuth2Zoho|\Appwrite\Models\OAuth2Yandex|\Appwrite\Models\OAuth2X|\Appwrite\Models\OAuth2WordPress|\Appwrite\Models\OAuth2Twitch|\Appwrite\Models\OAuth2Stripe|\Appwrite\Models\OAuth2Spotify|\Appwrite\Models\OAuth2Slack|\Appwrite\Models\OAuth2Podio|\Appwrite\Models\OAuth2Notion|\Appwrite\Models\OAuth2Salesforce|\Appwrite\Models\OAuth2Yahoo|\Appwrite\Models\OAuth2Linkedin|\Appwrite\Models\OAuth2Disqus|\Appwrite\Models\OAuth2Amazon|\Appwrite\Models\OAuth2Etsy|\Appwrite\Models\OAuth2Facebook|\Appwrite\Models\OAuth2Tradeshift|\Appwrite\Models\OAuth2Paypal|\Appwrite\Models\OAuth2Gitlab|\Appwrite\Models\OAuth2Authentik|\Appwrite\Models\OAuth2Auth0|\Appwrite\Models\OAuth2FusionAuth|\Appwrite\Models\OAuth2Keycloak|\Appwrite\Models\OAuth2Oidc|\Appwrite\Models\OAuth2Apple|\Appwrite\Models\OAuth2Okta|\Appwrite\Models\OAuth2Kick|\Appwrite\Models\OAuth2Microsoft
-    {
-        $apiPath = str_replace(
-            [],
-            [],
-            '/project/oauth2/:provider'
-        );
-
-        $apiParams = [];
-        $apiParams['providerId'] = $providerId;
-
-        $apiHeaders = [];
-
-        $response = $this->client->call(
-            Client::METHOD_GET,
-            $apiPath,
-            $apiHeaders,
-            $apiParams
-        );
-
-        if (!is_array($response)) {
-            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
-        }
-
-        if (($response['$id'] ?? null) === 'github') {
-            return \Appwrite\Models\OAuth2Github::from($response);
-        }
-
-        if (($response['$id'] ?? null) === 'discord') {
-            return \Appwrite\Models\OAuth2Discord::from($response);
-        }
-
-        if (($response['$id'] ?? null) === 'figma') {
-            return \Appwrite\Models\OAuth2Figma::from($response);
-        }
-
-        if (($response['$id'] ?? null) === 'dropbox') {
-            return \Appwrite\Models\OAuth2Dropbox::from($response);
-        }
-
-        if (($response['$id'] ?? null) === 'dailymotion') {
-            return \Appwrite\Models\OAuth2Dailymotion::from($response);
-        }
-
-        if (($response['$id'] ?? null) === 'bitbucket') {
-            return \Appwrite\Models\OAuth2Bitbucket::from($response);
-        }
-
-        if (($response['$id'] ?? null) === 'bitly') {
-            return \Appwrite\Models\OAuth2Bitly::from($response);
-        }
-
-        if (($response['$id'] ?? null) === 'box') {
-            return \Appwrite\Models\OAuth2Box::from($response);
-        }
-
-        if (($response['$id'] ?? null) === 'autodesk') {
-            return \Appwrite\Models\OAuth2Autodesk::from($response);
-        }
-
-        if (($response['$id'] ?? null) === 'google') {
-            return \Appwrite\Models\OAuth2Google::from($response);
-        }
-
-        if (($response['$id'] ?? null) === 'zoom') {
-            return \Appwrite\Models\OAuth2Zoom::from($response);
-        }
-
-        if (($response['$id'] ?? null) === 'zoho') {
-            return \Appwrite\Models\OAuth2Zoho::from($response);
-        }
-
-        if (($response['$id'] ?? null) === 'yandex') {
-            return \Appwrite\Models\OAuth2Yandex::from($response);
-        }
-
-        if (($response['$id'] ?? null) === 'x') {
-            return \Appwrite\Models\OAuth2X::from($response);
-        }
-
-        if (($response['$id'] ?? null) === 'wordpress') {
-            return \Appwrite\Models\OAuth2WordPress::from($response);
-        }
-
-        if (($response['$id'] ?? null) === 'twitch') {
-            return \Appwrite\Models\OAuth2Twitch::from($response);
-        }
-
-        if (($response['$id'] ?? null) === 'stripe') {
-            return \Appwrite\Models\OAuth2Stripe::from($response);
-        }
-
-        if (($response['$id'] ?? null) === 'spotify') {
-            return \Appwrite\Models\OAuth2Spotify::from($response);
-        }
-
-        if (($response['$id'] ?? null) === 'slack') {
-            return \Appwrite\Models\OAuth2Slack::from($response);
-        }
-
-        if (($response['$id'] ?? null) === 'podio') {
-            return \Appwrite\Models\OAuth2Podio::from($response);
-        }
-
-        if (($response['$id'] ?? null) === 'notion') {
-            return \Appwrite\Models\OAuth2Notion::from($response);
-        }
-
-        if (($response['$id'] ?? null) === 'salesforce') {
-            return \Appwrite\Models\OAuth2Salesforce::from($response);
-        }
-
-        if (($response['$id'] ?? null) === 'yahoo') {
-            return \Appwrite\Models\OAuth2Yahoo::from($response);
-        }
-
-        if (($response['$id'] ?? null) === 'linkedin') {
-            return \Appwrite\Models\OAuth2Linkedin::from($response);
-        }
-
-        if (($response['$id'] ?? null) === 'disqus') {
-            return \Appwrite\Models\OAuth2Disqus::from($response);
-        }
-
-        if (($response['$id'] ?? null) === 'amazon') {
-            return \Appwrite\Models\OAuth2Amazon::from($response);
-        }
-
-        if (($response['$id'] ?? null) === 'etsy') {
-            return \Appwrite\Models\OAuth2Etsy::from($response);
-        }
-
-        if (($response['$id'] ?? null) === 'facebook') {
-            return \Appwrite\Models\OAuth2Facebook::from($response);
-        }
-
-        if (($response['$id'] ?? null) === 'tradeshiftBox') {
-            return \Appwrite\Models\OAuth2Tradeshift::from($response);
-        }
-
-        if (($response['$id'] ?? null) === 'paypalSandbox') {
-            return \Appwrite\Models\OAuth2Paypal::from($response);
-        }
-
-        if (($response['$id'] ?? null) === 'gitlab') {
-            return \Appwrite\Models\OAuth2Gitlab::from($response);
-        }
-
-        if (($response['$id'] ?? null) === 'authentik') {
-            return \Appwrite\Models\OAuth2Authentik::from($response);
-        }
-
-        if (($response['$id'] ?? null) === 'auth0') {
-            return \Appwrite\Models\OAuth2Auth0::from($response);
-        }
-
-        if (($response['$id'] ?? null) === 'fusionauth') {
-            return \Appwrite\Models\OAuth2FusionAuth::from($response);
-        }
-
-        if (($response['$id'] ?? null) === 'keycloak') {
-            return \Appwrite\Models\OAuth2Keycloak::from($response);
-        }
-
-        if (($response['$id'] ?? null) === 'oidc') {
-            return \Appwrite\Models\OAuth2Oidc::from($response);
-        }
-
-        if (($response['$id'] ?? null) === 'apple') {
-            return \Appwrite\Models\OAuth2Apple::from($response);
-        }
-
-        if (($response['$id'] ?? null) === 'okta') {
-            return \Appwrite\Models\OAuth2Okta::from($response);
-        }
-
-        if (($response['$id'] ?? null) === 'kick') {
-            return \Appwrite\Models\OAuth2Kick::from($response);
-        }
-
-        if (($response['$id'] ?? null) === 'microsoft') {
-            return \Appwrite\Models\OAuth2Microsoft::from($response);
-        }
-
-        throw new \UnexpectedValueException('Unable to match response to any expected response model.');
 
     }
 
@@ -2514,6 +2318,202 @@ class Project extends Service
     }
 
     /**
+     * Get a single OAuth2 provider configuration. Credential fields (client
+     * secret, p8 file, key/team IDs) are write-only and always returned empty.
+     *
+     * @param OAuthProvider $providerId
+     * @throws AppwriteException
+     * @return \Appwrite\Models\OAuth2Github|\Appwrite\Models\OAuth2Discord|\Appwrite\Models\OAuth2Figma|\Appwrite\Models\OAuth2Dropbox|\Appwrite\Models\OAuth2Dailymotion|\Appwrite\Models\OAuth2Bitbucket|\Appwrite\Models\OAuth2Bitly|\Appwrite\Models\OAuth2Box|\Appwrite\Models\OAuth2Autodesk|\Appwrite\Models\OAuth2Google|\Appwrite\Models\OAuth2Zoom|\Appwrite\Models\OAuth2Zoho|\Appwrite\Models\OAuth2Yandex|\Appwrite\Models\OAuth2X|\Appwrite\Models\OAuth2WordPress|\Appwrite\Models\OAuth2Twitch|\Appwrite\Models\OAuth2Stripe|\Appwrite\Models\OAuth2Spotify|\Appwrite\Models\OAuth2Slack|\Appwrite\Models\OAuth2Podio|\Appwrite\Models\OAuth2Notion|\Appwrite\Models\OAuth2Salesforce|\Appwrite\Models\OAuth2Yahoo|\Appwrite\Models\OAuth2Linkedin|\Appwrite\Models\OAuth2Disqus|\Appwrite\Models\OAuth2Amazon|\Appwrite\Models\OAuth2Etsy|\Appwrite\Models\OAuth2Facebook|\Appwrite\Models\OAuth2Tradeshift|\Appwrite\Models\OAuth2Paypal|\Appwrite\Models\OAuth2Gitlab|\Appwrite\Models\OAuth2Authentik|\Appwrite\Models\OAuth2Auth0|\Appwrite\Models\OAuth2FusionAuth|\Appwrite\Models\OAuth2Keycloak|\Appwrite\Models\OAuth2Oidc|\Appwrite\Models\OAuth2Apple|\Appwrite\Models\OAuth2Okta|\Appwrite\Models\OAuth2Kick|\Appwrite\Models\OAuth2Microsoft
+     */
+    public function getOAuth2Provider(OAuthProvider $providerId): \Appwrite\Models\OAuth2Github|\Appwrite\Models\OAuth2Discord|\Appwrite\Models\OAuth2Figma|\Appwrite\Models\OAuth2Dropbox|\Appwrite\Models\OAuth2Dailymotion|\Appwrite\Models\OAuth2Bitbucket|\Appwrite\Models\OAuth2Bitly|\Appwrite\Models\OAuth2Box|\Appwrite\Models\OAuth2Autodesk|\Appwrite\Models\OAuth2Google|\Appwrite\Models\OAuth2Zoom|\Appwrite\Models\OAuth2Zoho|\Appwrite\Models\OAuth2Yandex|\Appwrite\Models\OAuth2X|\Appwrite\Models\OAuth2WordPress|\Appwrite\Models\OAuth2Twitch|\Appwrite\Models\OAuth2Stripe|\Appwrite\Models\OAuth2Spotify|\Appwrite\Models\OAuth2Slack|\Appwrite\Models\OAuth2Podio|\Appwrite\Models\OAuth2Notion|\Appwrite\Models\OAuth2Salesforce|\Appwrite\Models\OAuth2Yahoo|\Appwrite\Models\OAuth2Linkedin|\Appwrite\Models\OAuth2Disqus|\Appwrite\Models\OAuth2Amazon|\Appwrite\Models\OAuth2Etsy|\Appwrite\Models\OAuth2Facebook|\Appwrite\Models\OAuth2Tradeshift|\Appwrite\Models\OAuth2Paypal|\Appwrite\Models\OAuth2Gitlab|\Appwrite\Models\OAuth2Authentik|\Appwrite\Models\OAuth2Auth0|\Appwrite\Models\OAuth2FusionAuth|\Appwrite\Models\OAuth2Keycloak|\Appwrite\Models\OAuth2Oidc|\Appwrite\Models\OAuth2Apple|\Appwrite\Models\OAuth2Okta|\Appwrite\Models\OAuth2Kick|\Appwrite\Models\OAuth2Microsoft
+    {
+        $apiPath = str_replace(
+            ['{providerId}'],
+            [$providerId],
+            '/project/oauth2/{providerId}'
+        );
+
+        $apiParams = [];
+        $apiParams['providerId'] = $providerId;
+
+        $apiHeaders = [];
+
+        $response = $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        if (($response['$id'] ?? null) === 'github') {
+            return \Appwrite\Models\OAuth2Github::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'discord') {
+            return \Appwrite\Models\OAuth2Discord::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'figma') {
+            return \Appwrite\Models\OAuth2Figma::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'dropbox') {
+            return \Appwrite\Models\OAuth2Dropbox::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'dailymotion') {
+            return \Appwrite\Models\OAuth2Dailymotion::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'bitbucket') {
+            return \Appwrite\Models\OAuth2Bitbucket::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'bitly') {
+            return \Appwrite\Models\OAuth2Bitly::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'box') {
+            return \Appwrite\Models\OAuth2Box::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'autodesk') {
+            return \Appwrite\Models\OAuth2Autodesk::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'google') {
+            return \Appwrite\Models\OAuth2Google::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'zoom') {
+            return \Appwrite\Models\OAuth2Zoom::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'zoho') {
+            return \Appwrite\Models\OAuth2Zoho::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'yandex') {
+            return \Appwrite\Models\OAuth2Yandex::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'x') {
+            return \Appwrite\Models\OAuth2X::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'wordpress') {
+            return \Appwrite\Models\OAuth2WordPress::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'twitch') {
+            return \Appwrite\Models\OAuth2Twitch::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'stripe') {
+            return \Appwrite\Models\OAuth2Stripe::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'spotify') {
+            return \Appwrite\Models\OAuth2Spotify::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'slack') {
+            return \Appwrite\Models\OAuth2Slack::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'podio') {
+            return \Appwrite\Models\OAuth2Podio::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'notion') {
+            return \Appwrite\Models\OAuth2Notion::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'salesforce') {
+            return \Appwrite\Models\OAuth2Salesforce::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'yahoo') {
+            return \Appwrite\Models\OAuth2Yahoo::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'linkedin') {
+            return \Appwrite\Models\OAuth2Linkedin::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'disqus') {
+            return \Appwrite\Models\OAuth2Disqus::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'amazon') {
+            return \Appwrite\Models\OAuth2Amazon::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'etsy') {
+            return \Appwrite\Models\OAuth2Etsy::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'facebook') {
+            return \Appwrite\Models\OAuth2Facebook::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'tradeshiftBox') {
+            return \Appwrite\Models\OAuth2Tradeshift::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'paypalSandbox') {
+            return \Appwrite\Models\OAuth2Paypal::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'gitlab') {
+            return \Appwrite\Models\OAuth2Gitlab::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'authentik') {
+            return \Appwrite\Models\OAuth2Authentik::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'auth0') {
+            return \Appwrite\Models\OAuth2Auth0::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'fusionauth') {
+            return \Appwrite\Models\OAuth2FusionAuth::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'keycloak') {
+            return \Appwrite\Models\OAuth2Keycloak::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'oidc') {
+            return \Appwrite\Models\OAuth2Oidc::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'apple') {
+            return \Appwrite\Models\OAuth2Apple::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'okta') {
+            return \Appwrite\Models\OAuth2Okta::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'kick') {
+            return \Appwrite\Models\OAuth2Kick::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'microsoft') {
+            return \Appwrite\Models\OAuth2Microsoft::from($response);
+        }
+
+        throw new \UnexpectedValueException('Unable to match response to any expected response model.');
+
+    }
+
+    /**
      * Get a list of all platforms in the project. This endpoint returns an array
      * of all platforms and their configurations.
      *
@@ -3480,11 +3480,11 @@ class Project extends Service
      * Get a policy by its unique ID. This endpoint returns the current
      * configuration for the requested project policy.
      *
-     * @param PolicyId $policyId
+     * @param ProjectPolicy $policyId
      * @throws AppwriteException
      * @return \Appwrite\Models\PolicyPasswordDictionary|\Appwrite\Models\PolicyPasswordHistory|\Appwrite\Models\PolicyPasswordPersonalData|\Appwrite\Models\PolicySessionAlert|\Appwrite\Models\PolicySessionDuration|\Appwrite\Models\PolicySessionInvalidation|\Appwrite\Models\PolicySessionLimit|\Appwrite\Models\PolicyUserLimit|\Appwrite\Models\PolicyMembershipPrivacy
      */
-    public function getPolicy(PolicyId $policyId): \Appwrite\Models\PolicyPasswordDictionary|\Appwrite\Models\PolicyPasswordHistory|\Appwrite\Models\PolicyPasswordPersonalData|\Appwrite\Models\PolicySessionAlert|\Appwrite\Models\PolicySessionDuration|\Appwrite\Models\PolicySessionInvalidation|\Appwrite\Models\PolicySessionLimit|\Appwrite\Models\PolicyUserLimit|\Appwrite\Models\PolicyMembershipPrivacy
+    public function getPolicy(ProjectPolicy $policyId): \Appwrite\Models\PolicyPasswordDictionary|\Appwrite\Models\PolicyPasswordHistory|\Appwrite\Models\PolicyPasswordPersonalData|\Appwrite\Models\PolicySessionAlert|\Appwrite\Models\PolicySessionDuration|\Appwrite\Models\PolicySessionInvalidation|\Appwrite\Models\PolicySessionLimit|\Appwrite\Models\PolicyUserLimit|\Appwrite\Models\PolicyMembershipPrivacy
     {
         $apiPath = str_replace(
             ['{policyId}'],
