@@ -15,7 +15,7 @@ readonly class AuthProvider
      * @param string $key auth provider.
      * @param string $name auth provider name.
      * @param string $appId oauth 2.0 application id.
-     * @param string $secret oauth 2.0 application secret. might be json string if provider requires extra configuration.
+     * @param string $secret oauth 2.0 application secret. might be json string if provider requires extra configuration. this property is write-only and always returned empty.
      * @param bool $enabled auth provider is active and can be used to create session.
      */
     public function __construct(

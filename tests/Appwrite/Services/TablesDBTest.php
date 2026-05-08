@@ -623,6 +623,59 @@ final class TablesDBTest extends TestCase
         $this->assertInstanceOf(\Appwrite\Models\ColumnList::class, $response);
     }
 
+    public function testMethodCreateBigIntColumn(): void
+    {
+        $data = array(
+            "key" => "count",
+            "type" => "bigint",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
+        );
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->tablesDB->createBigIntColumn(
+            "<DATABASE_ID>",
+            "<TABLE_ID>",
+            "",
+            true
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\ColumnBigint::class, $response);
+    }
+
+    public function testMethodUpdateBigIntColumn(): void
+    {
+        $data = array(
+            "key" => "count",
+            "type" => "bigint",
+            "status" => "available",
+            "error" => "string",
+            "required" => true,
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
+        );
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->tablesDB->updateBigIntColumn(
+            "<DATABASE_ID>",
+            "<TABLE_ID>",
+            "",
+            true,
+            1
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\ColumnBigint::class, $response);
+    }
+
     public function testMethodCreateBooleanColumn(): void
     {
         $data = array(

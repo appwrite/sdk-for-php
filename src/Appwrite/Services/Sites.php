@@ -1100,10 +1100,12 @@ class Sites extends Service
      * Get a list of all variables of a specific site.
      *
      * @param string $siteId
+     * @param ?array $queries
+     * @param ?bool $total
      * @throws AppwriteException
      * @return \Appwrite\Models\VariableList
      */
-    public function listVariables(string $siteId): \Appwrite\Models\VariableList
+    public function listVariables(string $siteId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\VariableList
     {
         $apiPath = str_replace(
             ['{siteId}'],
@@ -1113,6 +1115,14 @@ class Sites extends Service
 
         $apiParams = [];
         $apiParams['siteId'] = $siteId;
+
+        if (!is_null($queries)) {
+            $apiParams['queries'] = $queries;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
+        }
 
         $apiHeaders = [];
 
@@ -1136,13 +1146,14 @@ class Sites extends Service
      * and runtime (server-side rendering) as environment variables.
      *
      * @param string $siteId
+     * @param string $variableId
      * @param string $key
      * @param string $value
      * @param ?bool $secret
      * @throws AppwriteException
      * @return \Appwrite\Models\Variable
      */
-    public function createVariable(string $siteId, string $key, string $value, ?bool $secret = null): \Appwrite\Models\Variable
+    public function createVariable(string $siteId, string $variableId, string $key, string $value, ?bool $secret = null): \Appwrite\Models\Variable
     {
         $apiPath = str_replace(
             ['{siteId}'],
@@ -1152,6 +1163,7 @@ class Sites extends Service
 
         $apiParams = [];
         $apiParams['siteId'] = $siteId;
+        $apiParams['variableId'] = $variableId;
         $apiParams['key'] = $key;
         $apiParams['value'] = $value;
 
@@ -1219,13 +1231,13 @@ class Sites extends Service
      *
      * @param string $siteId
      * @param string $variableId
-     * @param string $key
+     * @param ?string $key
      * @param ?string $value
      * @param ?bool $secret
      * @throws AppwriteException
      * @return \Appwrite\Models\Variable
      */
-    public function updateVariable(string $siteId, string $variableId, string $key, ?string $value = null, ?bool $secret = null): \Appwrite\Models\Variable
+    public function updateVariable(string $siteId, string $variableId, ?string $key = null, ?string $value = null, ?bool $secret = null): \Appwrite\Models\Variable
     {
         $apiPath = str_replace(
             ['{siteId}', '{variableId}'],

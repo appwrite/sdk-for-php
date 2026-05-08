@@ -254,6 +254,48 @@ GET https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionI
 
 
 ```http request
+POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/bigint
+```
+
+** Create a bigint attribute. Optionally, minimum and maximum values can be provided.
+ **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| databaseId | string | **Required** Database ID. |  |
+| collectionId | string | **Required** Collection ID. |  |
+| key | string | Attribute Key. |  |
+| required | boolean | Is attribute required? |  |
+| min | integer | Minimum value |  |
+| max | integer | Maximum value |  |
+| default | integer | Default value. Cannot be set when attribute is required. |  |
+| array | boolean | Is attribute an array? |  |
+
+
+```http request
+PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/bigint/{key}
+```
+
+** Update a bigint attribute. Changing the `default` value will not update already existing documents.
+ **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| databaseId | string | **Required** Database ID. |  |
+| collectionId | string | **Required** Collection ID. |  |
+| key | string | **Required** Attribute Key. |  |
+| required | boolean | Is attribute required? |  |
+| min | integer | Minimum value |  |
+| max | integer | Maximum value |  |
+| default | integer | Default value. Cannot be set when attribute is required. |  |
+| newKey | string | New Attribute Key. |  |
+
+
+```http request
 POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/attributes/boolean
 ```
 
