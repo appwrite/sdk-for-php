@@ -20,8 +20,8 @@ readonly class Database
      * @param string $updatedAt database update date in iso 8601 format.
      * @param bool $enabled if database is enabled. can be 'enabled' or 'disabled'. when disabled, the database is inaccessible to users, but remains accessible to server sdks using api keys.
      * @param DatabaseType $type database type.
-     * @param list<Index> $policies database backup policies.
-     * @param list<Collection> $archives database backup archives.
+     * @param list<BackupPolicy> $policies database backup policies.
+     * @param list<BackupArchive> $archives database backup archives.
      */
     public function __construct(
         public string $id,
@@ -74,13 +74,13 @@ readonly class Database
             type: static::hydrateTypedValue(DatabaseType::class, $data['type']),
             policies: is_array($data['policies'])
                 ? array_map(
-                    static fn (mixed $item): mixed => static::hydrateTypedValue(Index::class, $item),
+                    static fn (mixed $item): mixed => static::hydrateTypedValue(BackupPolicy::class, $item),
                     $data['policies']
                 )
                 : $data['policies'],
             archives: is_array($data['archives'])
                 ? array_map(
-                    static fn (mixed $item): mixed => static::hydrateTypedValue(Collection::class, $item),
+                    static fn (mixed $item): mixed => static::hydrateTypedValue(BackupArchive::class, $item),
                     $data['archives']
                 )
                 : $data['archives']
