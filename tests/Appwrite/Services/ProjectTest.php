@@ -8,6 +8,7 @@ use Mockery;
 use PHPUnit\Framework\TestCase;
 use Appwrite\Enums\AuthMethod;
 use Appwrite\Enums\Scopes;
+use Appwrite\Enums\Prompt;
 use Appwrite\Enums\OAuthProvider;
 use Appwrite\Enums\ProjectPolicy;
 use Appwrite\Enums\ProtocolId;
@@ -653,7 +654,7 @@ final class ProjectTest extends TestCase
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "amzn1.application-oa2-client.87400c00000000000000000000063d5b2",
-            "clientSecret" => "<CLIENT_SECRET>"
+            "clientSecret" => "79ffe4000000000000000000000000000000000000000000000000000002de55"
         );
 
         $this->client
@@ -691,7 +692,7 @@ final class ProjectTest extends TestCase
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "OaOkIA000000000000000000005KLSYq",
-            "clientSecret" => "<CLIENT_SECRET>",
+            "clientSecret" => "zXz0000-00000000000000000000000000000-00000000000000000000PJafnF",
             "endpoint" => "example.us.auth0.com"
         );
 
@@ -710,7 +711,7 @@ final class ProjectTest extends TestCase
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "dTKOPa0000000000000000000000000000e7G8hv",
-            "clientSecret" => "<CLIENT_SECRET>",
+            "clientSecret" => "ntQadq000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000Hp5WK",
             "endpoint" => "example.authentik.com"
         );
 
@@ -729,7 +730,7 @@ final class ProjectTest extends TestCase
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "5zw90v00000000000000000000kVYXN7",
-            "clientSecret" => "<CLIENT_SECRET>"
+            "clientSecret" => "7I000000000000MW"
         );
 
         $this->client
@@ -747,7 +748,7 @@ final class ProjectTest extends TestCase
             "\$id" => "github",
             "enabled" => true,
             "key" => "Knt70000000000ByRc",
-            "secret" => "<CLIENT_SECRET>"
+            "secret" => "NMfLZJ00000000000000000000TLQdDx"
         );
 
         $this->client
@@ -765,7 +766,7 @@ final class ProjectTest extends TestCase
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "d95151000000000000000000000000000067af9b",
-            "clientSecret" => "<CLIENT_SECRET>"
+            "clientSecret" => "a13e250000000000000000000000000000d73095"
         );
 
         $this->client
@@ -783,7 +784,7 @@ final class ProjectTest extends TestCase
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "deglcs00000000000000000000x2og6y",
-            "clientSecret" => "<CLIENT_SECRET>"
+            "clientSecret" => "OKM1f100000000000000000000eshEif"
         );
 
         $this->client
@@ -801,7 +802,7 @@ final class ProjectTest extends TestCase
             "\$id" => "github",
             "enabled" => true,
             "apiKey" => "07a9000000000000067f",
-            "apiSecret" => "<CLIENT_SECRET>"
+            "apiSecret" => "a399a90000000000000000000000000000d90639"
         );
 
         $this->client
@@ -819,7 +820,7 @@ final class ProjectTest extends TestCase
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "950722000000343754",
-            "clientSecret" => "<CLIENT_SECRET>"
+            "clientSecret" => "YmPXnM000000000000000000002zFg5D"
         );
 
         $this->client
@@ -837,7 +838,7 @@ final class ProjectTest extends TestCase
             "\$id" => "github",
             "enabled" => true,
             "publicKey" => "cgegH70000000000000000000000000000000000000000000000000000Hr1nYX",
-            "secretKey" => "<CLIENT_SECRET>"
+            "secretKey" => "W7Bykj00000000000000000000000000000000000000000000000000003o43w9"
         );
 
         $this->client
@@ -855,7 +856,7 @@ final class ProjectTest extends TestCase
             "\$id" => "github",
             "enabled" => true,
             "appKey" => "jl000000000009t",
-            "appSecret" => "<CLIENT_SECRET>"
+            "appSecret" => "g200000000000vw"
         );
 
         $this->client
@@ -873,7 +874,7 @@ final class ProjectTest extends TestCase
             "\$id" => "github",
             "enabled" => true,
             "keyString" => "nsgzxh0000000000008j85a2",
-            "sharedSecret" => "<CLIENT_SECRET>"
+            "sharedSecret" => "tp000000ru"
         );
 
         $this->client
@@ -891,7 +892,7 @@ final class ProjectTest extends TestCase
             "\$id" => "github",
             "enabled" => true,
             "appId" => "260600000007694",
-            "appSecret" => "<CLIENT_SECRET>"
+            "appSecret" => "2d0b2800000000000000000000d38af4"
         );
 
         $this->client
@@ -909,7 +910,7 @@ final class ProjectTest extends TestCase
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "byay5H0000000000VtiI40",
-            "clientSecret" => "<CLIENT_SECRET>"
+            "clientSecret" => "yEpOYn0000000000000000004iIsU5"
         );
 
         $this->client
@@ -927,7 +928,7 @@ final class ProjectTest extends TestCase
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "b2222c00-0000-0000-0000-000000862097",
-            "clientSecret" => "<CLIENT_SECRET>",
+            "clientSecret" => "Jx4s0C0000000000000000000000000000000wGqLsc",
             "endpoint" => "example.fusionauth.io"
         );
 
@@ -946,7 +947,7 @@ final class ProjectTest extends TestCase
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "e4d87900000000540733",
-            "clientSecret" => "<CLIENT_SECRET>"
+            "clientSecret" => "5e07c00000000000000000000000000000198bcc"
         );
 
         $this->client
@@ -964,7 +965,7 @@ final class ProjectTest extends TestCase
             "\$id" => "github",
             "enabled" => true,
             "applicationId" => "d41ffe0000000000000000000000000000000000000000000000000000d5e252",
-            "secret" => "<CLIENT_SECRET>",
+            "secret" => "gloas-838cfa0000000000000000000000000000000000000000000000000000ecbb38",
             "endpoint" => "https://gitlab.com"
         );
 
@@ -983,7 +984,8 @@ final class ProjectTest extends TestCase
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "120000000095-92ifjb00000000000000000000g7ijfb.apps.googleusercontent.com",
-            "clientSecret" => "<CLIENT_SECRET>"
+            "clientSecret" => "GOCSPX-2k8gsR0000000000000000VNahJj",
+            "prompt" => array()
         );
 
         $this->client
@@ -1001,7 +1003,7 @@ final class ProjectTest extends TestCase
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "appwrite-o0000000st-app",
-            "clientSecret" => "<CLIENT_SECRET>",
+            "clientSecret" => "jdjrJd00000000000000000000HUsaZO",
             "endpoint" => "keycloak.example.com",
             "realmName" => "appwrite-realm"
         );
@@ -1021,7 +1023,7 @@ final class ProjectTest extends TestCase
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "01KQ7C00000000000001MFHS32",
-            "clientSecret" => "<CLIENT_SECRET>"
+            "clientSecret" => "34ac5600000000000000000000000000000000000000000000000000e830c8b"
         );
 
         $this->client
@@ -1039,7 +1041,7 @@ final class ProjectTest extends TestCase
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "770000000000dv",
-            "primaryClientSecret" => "<CLIENT_SECRET>"
+            "primaryClientSecret" => "WPL_AP1.2Bf0000000000000./HtlYw=="
         );
 
         $this->client
@@ -1057,7 +1059,7 @@ final class ProjectTest extends TestCase
             "\$id" => "github",
             "enabled" => true,
             "applicationId" => "00001111-aaaa-2222-bbbb-3333cccc4444",
-            "applicationSecret" => "<CLIENT_SECRET>",
+            "applicationSecret" => "A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u",
             "tenant" => "common"
         );
 
@@ -1076,7 +1078,7 @@ final class ProjectTest extends TestCase
             "\$id" => "github",
             "enabled" => true,
             "oauthClientId" => "341d8700-0000-0000-0000-000000446ee3",
-            "oauthClientSecret" => "<CLIENT_SECRET>"
+            "oauthClientSecret" => "secret_dLUr4b000000000000000000000000000000lFHAa9"
         );
 
         $this->client
@@ -1094,7 +1096,7 @@ final class ProjectTest extends TestCase
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "qibI2x0000000000000000000000000006L2YFoG",
-            "clientSecret" => "<CLIENT_SECRET>",
+            "clientSecret" => "Ah68ed000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000003qpcHV",
             "wellKnownURL" => "https://myoauth.com/.well-known/openid-configuration",
             "authorizationURL" => "https://myoauth.com/oauth2/authorize",
             "tokenURL" => "https://myoauth.com/oauth2/token",
@@ -1116,7 +1118,7 @@ final class ProjectTest extends TestCase
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "0oa00000000000000698",
-            "clientSecret" => "<CLIENT_SECRET>",
+            "clientSecret" => "Kiq0000000000000000000000000000000000000-00000000000H2L5-3SJ-vRV",
             "domain" => "trial-6400025.okta.com",
             "authorizationServerId" => "aus000000000000000h7z"
         );
@@ -1136,7 +1138,7 @@ final class ProjectTest extends TestCase
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "AdhIEG7-000000000000-0000000000000000000000000000000-0000000000000000000000-2pyB",
-            "secretKey" => "<CLIENT_SECRET>"
+            "secretKey" => "EH8KCXtew--000000000000000000000000000000000000000_C-1_5UP_000000000000000CB7KDp"
         );
 
         $this->client
@@ -1154,7 +1156,7 @@ final class ProjectTest extends TestCase
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "AdhIEG7-000000000000-0000000000000000000000000000000-0000000000000000000000-2pyB",
-            "secretKey" => "<CLIENT_SECRET>"
+            "secretKey" => "EH8KCXtew--000000000000000000000000000000000000000_C-1_5UP_000000000000000CB7KDp"
         );
 
         $this->client
@@ -1172,7 +1174,7 @@ final class ProjectTest extends TestCase
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "appwrite-oauth-test-app",
-            "clientSecret" => "<CLIENT_SECRET>"
+            "clientSecret" => "Rn247T0000000000000000000000000000000000000000000000000000W2zWTN"
         );
 
         $this->client
@@ -1190,7 +1192,7 @@ final class ProjectTest extends TestCase
             "\$id" => "github",
             "enabled" => true,
             "customerKey" => "3MVG9I0000000000000000000000000000000000000000000000000000000000000000000000000C5Aejq",
-            "customerSecret" => "<CLIENT_SECRET>"
+            "customerSecret" => "3w000000000000e2"
         );
 
         $this->client
@@ -1208,7 +1210,7 @@ final class ProjectTest extends TestCase
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "23000000089.15000000000023",
-            "clientSecret" => "<CLIENT_SECRET>"
+            "clientSecret" => "81656000000000000000000000f3d2fd"
         );
 
         $this->client
@@ -1226,7 +1228,7 @@ final class ProjectTest extends TestCase
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "6ec271000000000000000000009beace",
-            "clientSecret" => "<CLIENT_SECRET>"
+            "clientSecret" => "db068a000000000000000000008b5b9f"
         );
 
         $this->client
@@ -1244,7 +1246,7 @@ final class ProjectTest extends TestCase
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "ca_UKibXX0000000000000000000006byvR",
-            "apiSecretKey" => "<CLIENT_SECRET>"
+            "apiSecretKey" => "sk_51SfOd000000000000000000000000000000000000000000000000000000000000000000000000000000000000000QGWYfp"
         );
 
         $this->client
@@ -1262,7 +1264,7 @@ final class ProjectTest extends TestCase
             "\$id" => "github",
             "enabled" => true,
             "oauth2ClientId" => "appwrite-test-org.appwrite-test-app",
-            "oauth2ClientSecret" => "<CLIENT_SECRET>"
+            "oauth2ClientSecret" => "7cb52700-0000-0000-0000-000000ca5b83"
         );
 
         $this->client
@@ -1280,7 +1282,7 @@ final class ProjectTest extends TestCase
             "\$id" => "github",
             "enabled" => true,
             "oauth2ClientId" => "appwrite-test-org.appwrite-test-app",
-            "oauth2ClientSecret" => "<CLIENT_SECRET>"
+            "oauth2ClientSecret" => "7cb52700-0000-0000-0000-000000ca5b83"
         );
 
         $this->client
@@ -1298,7 +1300,7 @@ final class ProjectTest extends TestCase
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "vvi0in000000000000000000ikmt9p",
-            "clientSecret" => "<CLIENT_SECRET>"
+            "clientSecret" => "pmapue000000000000000000zylw3v"
         );
 
         $this->client
@@ -1316,7 +1318,7 @@ final class ProjectTest extends TestCase
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "130005",
-            "clientSecret" => "<CLIENT_SECRET>"
+            "clientSecret" => "PlBfJS0000000000000000000000000000000000000000000000000000EdUZJk"
         );
 
         $this->client
@@ -1334,7 +1336,7 @@ final class ProjectTest extends TestCase
             "\$id" => "github",
             "enabled" => true,
             "customerKey" => "slzZV0000000000000NFLaWT",
-            "secretKey" => "<CLIENT_SECRET>"
+            "secretKey" => "tkEPkp00000000000000000000000000000000000000FTxbI9"
         );
 
         $this->client
@@ -1352,7 +1354,7 @@ final class ProjectTest extends TestCase
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "dj0yJm000000000000000000000000000000000000000000000000000000000000000000000000000000000000Z4PWRm",
-            "clientSecret" => "<CLIENT_SECRET>"
+            "clientSecret" => "cf978f0000000000000000000000000000c5e2e9"
         );
 
         $this->client
@@ -1370,7 +1372,7 @@ final class ProjectTest extends TestCase
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "6a8a6a0000000000000000000091483c",
-            "clientSecret" => "<CLIENT_SECRET>"
+            "clientSecret" => "bbf98500000000000000000000c75a63"
         );
 
         $this->client
@@ -1388,7 +1390,7 @@ final class ProjectTest extends TestCase
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "1000.83C178000000000000000000RPNX0B",
-            "clientSecret" => "<CLIENT_SECRET>"
+            "clientSecret" => "fb5cac000000000000000000000000000000a68f6e"
         );
 
         $this->client
@@ -1406,7 +1408,7 @@ final class ProjectTest extends TestCase
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "QMAC00000000000000w0AQ",
-            "clientSecret" => "<CLIENT_SECRET>"
+            "clientSecret" => "GAWsG4000000000000000000007U01ON"
         );
 
         $this->client
@@ -1425,7 +1427,7 @@ final class ProjectTest extends TestCase
                 "\$id" => "github",
                 "enabled" => true,
                 "applicationId" => "00001111-aaaa-2222-bbbb-3333cccc4444",
-                "applicationSecret" => "<CLIENT_SECRET>",
+                "applicationSecret" => "A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u",
                 "tenant" => "common"
             ),
             array(
@@ -1756,6 +1758,519 @@ final class ProjectTest extends TestCase
         $response = $this->project->listPolicies();
 
         $this->assertInstanceOf(\Appwrite\Models\PolicyList::class, $response);
+    }
+
+    public function testMethodUpdateDenyCanonicalEmailPolicy(): void
+    {
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "name" => "New Project",
+            "description" => "This is a new project.",
+            "teamId" => "1592981250",
+            "logo" => "5f5c451b403cb",
+            "url" => "5f5c451b403cb",
+            "legalName" => "Company LTD.",
+            "legalCountry" => "US",
+            "legalState" => "New York",
+            "legalCity" => "New York City.",
+            "legalAddress" => "620 Eighth Avenue, New York, NY 10018",
+            "legalTaxId" => "131102020",
+            "authDuration" => 60,
+            "authLimit" => 100,
+            "authSessionsLimit" => 10,
+            "authPasswordHistory" => 5,
+            "authPasswordDictionary" => true,
+            "authPersonalDataCheck" => true,
+            "authDisposableEmails" => true,
+            "authCanonicalEmails" => true,
+            "authFreeEmails" => true,
+            "authMockNumbers" => array(
+                array(
+                    "number" => "+1612842323",
+                    "otp" => "123456",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
+                )
+            ),
+            "authSessionAlerts" => true,
+            "authMembershipsUserName" => true,
+            "authMembershipsUserEmail" => true,
+            "authMembershipsMfa" => true,
+            "authMembershipsUserId" => true,
+            "authMembershipsUserPhone" => true,
+            "authInvalidateSessions" => true,
+            "oAuthProviders" => array(
+                array(
+                    "key" => "github",
+                    "name" => "GitHub",
+                    "appId" => "259125845563242502",
+                    "secret" => "[SECRET]",
+                    "enabled" => true
+                )
+            ),
+            "platforms" => array(),
+            "webhooks" => array(
+                array(
+                    "\$id" => "5e5ea5c16897e",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "name" => "My Webhook",
+                    "url" => "https://example.com/webhook",
+                    "events" => array(),
+                    "tls" => true,
+                    "authUsername" => "username",
+                    "authPassword" => "password",
+                    "secret" => "ad3d581ca230e2b7059c545e5a",
+                    "enabled" => true,
+                    "logs" => "Failed to connect to remote server.",
+                    "attempts" => 10
+                )
+            ),
+            "keys" => array(
+                array(
+                    "\$id" => "5e5ea5c16897e",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "name" => "My API Key",
+                    "expire" => "2020-10-15T06:38:00.000+00:00",
+                    "scopes" => array(),
+                    "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
+                    "accessedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "sdks" => array()
+                )
+            ),
+            "devKeys" => array(
+                array(
+                    "\$id" => "5e5ea5c16897e",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "name" => "Dev API Key",
+                    "expire" => "2020-10-15T06:38:00.000+00:00",
+                    "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
+                    "accessedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "sdks" => array()
+                )
+            ),
+            "smtpEnabled" => true,
+            "smtpSenderName" => "John Appwrite",
+            "smtpSenderEmail" => "john@appwrite.io",
+            "smtpReplyToName" => "Support Team",
+            "smtpReplyToEmail" => "support@appwrite.io",
+            "smtpHost" => "mail.appwrite.io",
+            "smtpPort" => 25,
+            "smtpUsername" => "emailuser",
+            "smtpPassword" => "[SMTPPASSWORD]",
+            "smtpSecure" => "tls",
+            "pingCount" => 1,
+            "pingedAt" => "2020-10-15T06:38:00.000+00:00",
+            "labels" => array(),
+            "status" => "active",
+            "authEmailPassword" => true,
+            "authUsersAuthMagicURL" => true,
+            "authEmailOtp" => true,
+            "authAnonymous" => true,
+            "authInvites" => true,
+            "authJWT" => true,
+            "authPhone" => true,
+            "serviceStatusForAccount" => true,
+            "serviceStatusForAvatars" => true,
+            "serviceStatusForDatabases" => true,
+            "serviceStatusForTablesdb" => true,
+            "serviceStatusForLocale" => true,
+            "serviceStatusForHealth" => true,
+            "serviceStatusForProject" => true,
+            "serviceStatusForStorage" => true,
+            "serviceStatusForTeams" => true,
+            "serviceStatusForUsers" => true,
+            "serviceStatusForVcs" => true,
+            "serviceStatusForSites" => true,
+            "serviceStatusForFunctions" => true,
+            "serviceStatusForProxy" => true,
+            "serviceStatusForGraphql" => true,
+            "serviceStatusForMigrations" => true,
+            "serviceStatusForMessaging" => true,
+            "protocolStatusForRest" => true,
+            "protocolStatusForGraphql" => true,
+            "protocolStatusForWebsocket" => true,
+            "region" => "fra",
+            "billingLimits" => array(
+                "bandwidth" => 5,
+                "storage" => 150,
+                "users" => 200000,
+                "executions" => 750000,
+                "GBHours" => 100,
+                "imageTransformations" => 100,
+                "authPhone" => 10,
+                "budgetLimit" => 100
+            ),
+            "blocks" => array(
+                array(
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "resourceType" => "project",
+                    "resourceId" => "5e5ea5c16897e",
+                    "projectName" => "My Project",
+                    "region" => "fra",
+                    "organizationName" => "Acme Inc.",
+                    "organizationId" => "5e5ea5c16897e",
+                    "billingPlan" => "pro"
+                )
+            ),
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
+        );
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->project->updateDenyCanonicalEmailPolicy(
+            true
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
+    }
+
+    public function testMethodUpdateDenyDisposableEmailPolicy(): void
+    {
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "name" => "New Project",
+            "description" => "This is a new project.",
+            "teamId" => "1592981250",
+            "logo" => "5f5c451b403cb",
+            "url" => "5f5c451b403cb",
+            "legalName" => "Company LTD.",
+            "legalCountry" => "US",
+            "legalState" => "New York",
+            "legalCity" => "New York City.",
+            "legalAddress" => "620 Eighth Avenue, New York, NY 10018",
+            "legalTaxId" => "131102020",
+            "authDuration" => 60,
+            "authLimit" => 100,
+            "authSessionsLimit" => 10,
+            "authPasswordHistory" => 5,
+            "authPasswordDictionary" => true,
+            "authPersonalDataCheck" => true,
+            "authDisposableEmails" => true,
+            "authCanonicalEmails" => true,
+            "authFreeEmails" => true,
+            "authMockNumbers" => array(
+                array(
+                    "number" => "+1612842323",
+                    "otp" => "123456",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
+                )
+            ),
+            "authSessionAlerts" => true,
+            "authMembershipsUserName" => true,
+            "authMembershipsUserEmail" => true,
+            "authMembershipsMfa" => true,
+            "authMembershipsUserId" => true,
+            "authMembershipsUserPhone" => true,
+            "authInvalidateSessions" => true,
+            "oAuthProviders" => array(
+                array(
+                    "key" => "github",
+                    "name" => "GitHub",
+                    "appId" => "259125845563242502",
+                    "secret" => "[SECRET]",
+                    "enabled" => true
+                )
+            ),
+            "platforms" => array(),
+            "webhooks" => array(
+                array(
+                    "\$id" => "5e5ea5c16897e",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "name" => "My Webhook",
+                    "url" => "https://example.com/webhook",
+                    "events" => array(),
+                    "tls" => true,
+                    "authUsername" => "username",
+                    "authPassword" => "password",
+                    "secret" => "ad3d581ca230e2b7059c545e5a",
+                    "enabled" => true,
+                    "logs" => "Failed to connect to remote server.",
+                    "attempts" => 10
+                )
+            ),
+            "keys" => array(
+                array(
+                    "\$id" => "5e5ea5c16897e",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "name" => "My API Key",
+                    "expire" => "2020-10-15T06:38:00.000+00:00",
+                    "scopes" => array(),
+                    "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
+                    "accessedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "sdks" => array()
+                )
+            ),
+            "devKeys" => array(
+                array(
+                    "\$id" => "5e5ea5c16897e",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "name" => "Dev API Key",
+                    "expire" => "2020-10-15T06:38:00.000+00:00",
+                    "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
+                    "accessedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "sdks" => array()
+                )
+            ),
+            "smtpEnabled" => true,
+            "smtpSenderName" => "John Appwrite",
+            "smtpSenderEmail" => "john@appwrite.io",
+            "smtpReplyToName" => "Support Team",
+            "smtpReplyToEmail" => "support@appwrite.io",
+            "smtpHost" => "mail.appwrite.io",
+            "smtpPort" => 25,
+            "smtpUsername" => "emailuser",
+            "smtpPassword" => "[SMTPPASSWORD]",
+            "smtpSecure" => "tls",
+            "pingCount" => 1,
+            "pingedAt" => "2020-10-15T06:38:00.000+00:00",
+            "labels" => array(),
+            "status" => "active",
+            "authEmailPassword" => true,
+            "authUsersAuthMagicURL" => true,
+            "authEmailOtp" => true,
+            "authAnonymous" => true,
+            "authInvites" => true,
+            "authJWT" => true,
+            "authPhone" => true,
+            "serviceStatusForAccount" => true,
+            "serviceStatusForAvatars" => true,
+            "serviceStatusForDatabases" => true,
+            "serviceStatusForTablesdb" => true,
+            "serviceStatusForLocale" => true,
+            "serviceStatusForHealth" => true,
+            "serviceStatusForProject" => true,
+            "serviceStatusForStorage" => true,
+            "serviceStatusForTeams" => true,
+            "serviceStatusForUsers" => true,
+            "serviceStatusForVcs" => true,
+            "serviceStatusForSites" => true,
+            "serviceStatusForFunctions" => true,
+            "serviceStatusForProxy" => true,
+            "serviceStatusForGraphql" => true,
+            "serviceStatusForMigrations" => true,
+            "serviceStatusForMessaging" => true,
+            "protocolStatusForRest" => true,
+            "protocolStatusForGraphql" => true,
+            "protocolStatusForWebsocket" => true,
+            "region" => "fra",
+            "billingLimits" => array(
+                "bandwidth" => 5,
+                "storage" => 150,
+                "users" => 200000,
+                "executions" => 750000,
+                "GBHours" => 100,
+                "imageTransformations" => 100,
+                "authPhone" => 10,
+                "budgetLimit" => 100
+            ),
+            "blocks" => array(
+                array(
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "resourceType" => "project",
+                    "resourceId" => "5e5ea5c16897e",
+                    "projectName" => "My Project",
+                    "region" => "fra",
+                    "organizationName" => "Acme Inc.",
+                    "organizationId" => "5e5ea5c16897e",
+                    "billingPlan" => "pro"
+                )
+            ),
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
+        );
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->project->updateDenyDisposableEmailPolicy(
+            true
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
+    }
+
+    public function testMethodUpdateDenyFreeEmailPolicy(): void
+    {
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "name" => "New Project",
+            "description" => "This is a new project.",
+            "teamId" => "1592981250",
+            "logo" => "5f5c451b403cb",
+            "url" => "5f5c451b403cb",
+            "legalName" => "Company LTD.",
+            "legalCountry" => "US",
+            "legalState" => "New York",
+            "legalCity" => "New York City.",
+            "legalAddress" => "620 Eighth Avenue, New York, NY 10018",
+            "legalTaxId" => "131102020",
+            "authDuration" => 60,
+            "authLimit" => 100,
+            "authSessionsLimit" => 10,
+            "authPasswordHistory" => 5,
+            "authPasswordDictionary" => true,
+            "authPersonalDataCheck" => true,
+            "authDisposableEmails" => true,
+            "authCanonicalEmails" => true,
+            "authFreeEmails" => true,
+            "authMockNumbers" => array(
+                array(
+                    "number" => "+1612842323",
+                    "otp" => "123456",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
+                )
+            ),
+            "authSessionAlerts" => true,
+            "authMembershipsUserName" => true,
+            "authMembershipsUserEmail" => true,
+            "authMembershipsMfa" => true,
+            "authMembershipsUserId" => true,
+            "authMembershipsUserPhone" => true,
+            "authInvalidateSessions" => true,
+            "oAuthProviders" => array(
+                array(
+                    "key" => "github",
+                    "name" => "GitHub",
+                    "appId" => "259125845563242502",
+                    "secret" => "[SECRET]",
+                    "enabled" => true
+                )
+            ),
+            "platforms" => array(),
+            "webhooks" => array(
+                array(
+                    "\$id" => "5e5ea5c16897e",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "name" => "My Webhook",
+                    "url" => "https://example.com/webhook",
+                    "events" => array(),
+                    "tls" => true,
+                    "authUsername" => "username",
+                    "authPassword" => "password",
+                    "secret" => "ad3d581ca230e2b7059c545e5a",
+                    "enabled" => true,
+                    "logs" => "Failed to connect to remote server.",
+                    "attempts" => 10
+                )
+            ),
+            "keys" => array(
+                array(
+                    "\$id" => "5e5ea5c16897e",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "name" => "My API Key",
+                    "expire" => "2020-10-15T06:38:00.000+00:00",
+                    "scopes" => array(),
+                    "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
+                    "accessedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "sdks" => array()
+                )
+            ),
+            "devKeys" => array(
+                array(
+                    "\$id" => "5e5ea5c16897e",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "name" => "Dev API Key",
+                    "expire" => "2020-10-15T06:38:00.000+00:00",
+                    "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
+                    "accessedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "sdks" => array()
+                )
+            ),
+            "smtpEnabled" => true,
+            "smtpSenderName" => "John Appwrite",
+            "smtpSenderEmail" => "john@appwrite.io",
+            "smtpReplyToName" => "Support Team",
+            "smtpReplyToEmail" => "support@appwrite.io",
+            "smtpHost" => "mail.appwrite.io",
+            "smtpPort" => 25,
+            "smtpUsername" => "emailuser",
+            "smtpPassword" => "[SMTPPASSWORD]",
+            "smtpSecure" => "tls",
+            "pingCount" => 1,
+            "pingedAt" => "2020-10-15T06:38:00.000+00:00",
+            "labels" => array(),
+            "status" => "active",
+            "authEmailPassword" => true,
+            "authUsersAuthMagicURL" => true,
+            "authEmailOtp" => true,
+            "authAnonymous" => true,
+            "authInvites" => true,
+            "authJWT" => true,
+            "authPhone" => true,
+            "serviceStatusForAccount" => true,
+            "serviceStatusForAvatars" => true,
+            "serviceStatusForDatabases" => true,
+            "serviceStatusForTablesdb" => true,
+            "serviceStatusForLocale" => true,
+            "serviceStatusForHealth" => true,
+            "serviceStatusForProject" => true,
+            "serviceStatusForStorage" => true,
+            "serviceStatusForTeams" => true,
+            "serviceStatusForUsers" => true,
+            "serviceStatusForVcs" => true,
+            "serviceStatusForSites" => true,
+            "serviceStatusForFunctions" => true,
+            "serviceStatusForProxy" => true,
+            "serviceStatusForGraphql" => true,
+            "serviceStatusForMigrations" => true,
+            "serviceStatusForMessaging" => true,
+            "protocolStatusForRest" => true,
+            "protocolStatusForGraphql" => true,
+            "protocolStatusForWebsocket" => true,
+            "region" => "fra",
+            "billingLimits" => array(
+                "bandwidth" => 5,
+                "storage" => 150,
+                "users" => 200000,
+                "executions" => 750000,
+                "GBHours" => 100,
+                "imageTransformations" => 100,
+                "authPhone" => 10,
+                "budgetLimit" => 100
+            ),
+            "blocks" => array(
+                array(
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "resourceType" => "project",
+                    "resourceId" => "5e5ea5c16897e",
+                    "projectName" => "My Project",
+                    "region" => "fra",
+                    "organizationName" => "Acme Inc.",
+                    "organizationId" => "5e5ea5c16897e",
+                    "billingPlan" => "pro"
+                )
+            ),
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
+        );
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->project->updateDenyFreeEmailPolicy(
+            true
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
     }
 
     public function testMethodUpdateMembershipPrivacyPolicy(): void
