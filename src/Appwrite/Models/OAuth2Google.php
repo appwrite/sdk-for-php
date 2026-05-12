@@ -2,6 +2,8 @@
 
 namespace Appwrite\Models;
 
+use Appwrite\Enums\OAuth2GooglePrompt;
+
 /**
  * OAuth2Google
  */
@@ -16,12 +18,14 @@ readonly class OAuth2Google
      * @param bool $enabled oauth2 provider is active and can be used to create sessions.
      * @param string $clientId google oauth2 client id.
      * @param string $clientSecret google oauth2 client secret.
+     * @param list<OAuth2GooglePrompt> $prompt google oauth2 prompt values.
      */
     public function __construct(
         public string $id,
         public bool $enabled,
         public string $clientId,
-        public string $clientSecret
+        public string $clientSecret,
+        public array $prompt
     ) {
     }
 
@@ -42,12 +46,21 @@ readonly class OAuth2Google
         if (!array_key_exists('clientSecret', $data)) {
             throw new \InvalidArgumentException('Missing required field "clientSecret" for ' . static::class . '.');
         }
+        if (!array_key_exists('prompt', $data)) {
+            throw new \InvalidArgumentException('Missing required field "prompt" for ' . static::class . '.');
+        }
 
         return new static(
             id: $data['$id'],
             enabled: $data['enabled'],
             clientId: $data['clientId'],
-            clientSecret: $data['clientSecret']
+            clientSecret: $data['clientSecret'],
+            prompt: is_array($data['prompt'])
+                ? array_map(
+                    static fn (mixed $item): mixed => static::hydrateTypedValue(OAuth2GooglePrompt::class, $item),
+                    $data['prompt']
+                )
+                : $data['prompt']
         );
     }
 
@@ -60,7 +73,8 @@ readonly class OAuth2Google
             '$id' => static::serializeValue($this->id),
             'enabled' => static::serializeValue($this->enabled),
             'clientId' => static::serializeValue($this->clientId),
-            'clientSecret' => static::serializeValue($this->clientSecret)
+            'clientSecret' => static::serializeValue($this->clientSecret),
+            'prompt' => static::serializeValue($this->prompt)
         ];
 
         return $result;

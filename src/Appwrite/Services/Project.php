@@ -8,6 +8,7 @@ use Appwrite\Service;
 use Appwrite\InputFile;
 use Appwrite\Enums\AuthMethod;
 use Appwrite\Enums\Scopes;
+use Appwrite\Enums\Prompt;
 use Appwrite\Enums\OAuthProvider;
 use Appwrite\Enums\ProjectPolicy;
 use Appwrite\Enums\ProtocolId;
@@ -1344,11 +1345,12 @@ class Project extends Service
      *
      * @param ?string $clientId
      * @param ?string $clientSecret
+     * @param ?array $prompt
      * @param ?bool $enabled
      * @throws AppwriteException
      * @return \Appwrite\Models\OAuth2Google
      */
-    public function updateOAuth2Google(?string $clientId = null, ?string $clientSecret = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Google
+    public function updateOAuth2Google(?string $clientId = null, ?string $clientSecret = null, ?array $prompt = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Google
     {
         $apiPath = str_replace(
             [],
@@ -1359,6 +1361,7 @@ class Project extends Service
         $apiParams = [];
         $apiParams['clientId'] = $clientId;
         $apiParams['clientSecret'] = $clientSecret;
+        $apiParams['prompt'] = $prompt;
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
@@ -3101,6 +3104,117 @@ class Project extends Service
         }
 
         return \Appwrite\Models\PolicyList::from($response);
+
+    }
+
+    /**
+     * Configures if email aliases such as subaddresses and emails with suffixes
+     * are denied during new users sign-ups and email updates.
+     *
+     * @param bool $enabled
+     * @throws AppwriteException
+     * @return \Appwrite\Models\Project
+     */
+    public function updateDenyCanonicalEmailPolicy(bool $enabled): \Appwrite\Models\Project
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/project/policies/deny-canonical-email'
+        );
+
+        $apiParams = [];
+        $apiParams['enabled'] = $enabled;
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Project::from($response);
+
+    }
+
+    /**
+     * Configures if disposable emails from known temporary domains are denied
+     * during new users sign-ups and email updates.
+     *
+     * @param bool $enabled
+     * @throws AppwriteException
+     * @return \Appwrite\Models\Project
+     */
+    public function updateDenyDisposableEmailPolicy(bool $enabled): \Appwrite\Models\Project
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/project/policies/deny-disposable-email'
+        );
+
+        $apiParams = [];
+        $apiParams['enabled'] = $enabled;
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Project::from($response);
+
+    }
+
+    /**
+     * Configures if emails from free providers such as Gmail or Yahoo are denied
+     * during new users sign-ups and email updates.
+     *
+     * @param bool $enabled
+     * @throws AppwriteException
+     * @return \Appwrite\Models\Project
+     */
+    public function updateDenyFreeEmailPolicy(bool $enabled): \Appwrite\Models\Project
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/project/policies/deny-free-email'
+        );
+
+        $apiParams = [];
+        $apiParams['enabled'] = $enabled;
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Project::from($response);
 
     }
 

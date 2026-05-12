@@ -37,14 +37,14 @@ final class DatabasesTest extends TestCase
                     "policies" => array(
                         array(
                             "\$id" => "5e5ea5c16897e",
+                            "name" => "Hourly backups",
                             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-                            "key" => "index1",
-                            "type" => "primary",
-                            "status" => "available",
-                            "error" => "string",
-                            "attributes" => array(),
-                            "lengths" => array()
+                            "services" => array(),
+                            "resources" => array(),
+                            "retention" => 7,
+                            "schedule" => "0 * * * *",
+                            "enabled" => true
                         )
                     ),
                     "archives" => array(
@@ -52,27 +52,13 @@ final class DatabasesTest extends TestCase
                             "\$id" => "5e5ea5c16897e",
                             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-                            "\$permissions" => array(),
-                            "databaseId" => "5e5ea5c16897e",
-                            "name" => "My Collection",
-                            "enabled" => true,
-                            "documentSecurity" => true,
-                            "attributes" => array(),
-                            "indexes" => array(
-                                array(
-                                    "\$id" => "5e5ea5c16897e",
-                                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-                                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-                                    "key" => "index1",
-                                    "type" => "primary",
-                                    "status" => "available",
-                                    "error" => "string",
-                                    "attributes" => array(),
-                                    "lengths" => array()
-                                )
-                            ),
-                            "bytesMax" => 65535,
-                            "bytesUsed" => 1500
+                            "policyId" => "did8jx6ws45jana098ab7",
+                            "size" => 100000,
+                            "status" => "completed",
+                            "startedAt" => "2020-10-15T06:38:00.000+00:00",
+                            "migrationId" => "did8jx6ws45jana098ab7",
+                            "services" => array(),
+                            "resources" => array()
                         )
                     )
                 )
@@ -100,14 +86,14 @@ final class DatabasesTest extends TestCase
             "policies" => array(
                 array(
                     "\$id" => "5e5ea5c16897e",
+                    "name" => "Hourly backups",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "key" => "index1",
-                    "type" => "primary",
-                    "status" => "available",
-                    "error" => "string",
-                    "attributes" => array(),
-                    "lengths" => array()
+                    "services" => array(),
+                    "resources" => array(),
+                    "retention" => 7,
+                    "schedule" => "0 * * * *",
+                    "enabled" => true
                 )
             ),
             "archives" => array(
@@ -115,27 +101,13 @@ final class DatabasesTest extends TestCase
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "\$permissions" => array(),
-                    "databaseId" => "5e5ea5c16897e",
-                    "name" => "My Collection",
-                    "enabled" => true,
-                    "documentSecurity" => true,
-                    "attributes" => array(),
-                    "indexes" => array(
-                        array(
-                            "\$id" => "5e5ea5c16897e",
-                            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-                            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-                            "key" => "index1",
-                            "type" => "primary",
-                            "status" => "available",
-                            "error" => "string",
-                            "attributes" => array(),
-                            "lengths" => array()
-                        )
-                    ),
-                    "bytesMax" => 65535,
-                    "bytesUsed" => 1500
+                    "policyId" => "did8jx6ws45jana098ab7",
+                    "size" => 100000,
+                    "status" => "completed",
+                    "startedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "migrationId" => "did8jx6ws45jana098ab7",
+                    "services" => array(),
+                    "resources" => array()
                 )
             )
         );
@@ -290,14 +262,14 @@ final class DatabasesTest extends TestCase
             "policies" => array(
                 array(
                     "\$id" => "5e5ea5c16897e",
+                    "name" => "Hourly backups",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "key" => "index1",
-                    "type" => "primary",
-                    "status" => "available",
-                    "error" => "string",
-                    "attributes" => array(),
-                    "lengths" => array()
+                    "services" => array(),
+                    "resources" => array(),
+                    "retention" => 7,
+                    "schedule" => "0 * * * *",
+                    "enabled" => true
                 )
             ),
             "archives" => array(
@@ -305,27 +277,13 @@ final class DatabasesTest extends TestCase
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "\$permissions" => array(),
-                    "databaseId" => "5e5ea5c16897e",
-                    "name" => "My Collection",
-                    "enabled" => true,
-                    "documentSecurity" => true,
-                    "attributes" => array(),
-                    "indexes" => array(
-                        array(
-                            "\$id" => "5e5ea5c16897e",
-                            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-                            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-                            "key" => "index1",
-                            "type" => "primary",
-                            "status" => "available",
-                            "error" => "string",
-                            "attributes" => array(),
-                            "lengths" => array()
-                        )
-                    ),
-                    "bytesMax" => 65535,
-                    "bytesUsed" => 1500
+                    "policyId" => "did8jx6ws45jana098ab7",
+                    "size" => 100000,
+                    "status" => "completed",
+                    "startedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "migrationId" => "did8jx6ws45jana098ab7",
+                    "services" => array(),
+                    "resources" => array()
                 )
             )
         );
@@ -353,14 +311,14 @@ final class DatabasesTest extends TestCase
             "policies" => array(
                 array(
                     "\$id" => "5e5ea5c16897e",
+                    "name" => "Hourly backups",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "key" => "index1",
-                    "type" => "primary",
-                    "status" => "available",
-                    "error" => "string",
-                    "attributes" => array(),
-                    "lengths" => array()
+                    "services" => array(),
+                    "resources" => array(),
+                    "retention" => 7,
+                    "schedule" => "0 * * * *",
+                    "enabled" => true
                 )
             ),
             "archives" => array(
@@ -368,27 +326,13 @@ final class DatabasesTest extends TestCase
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "\$permissions" => array(),
-                    "databaseId" => "5e5ea5c16897e",
-                    "name" => "My Collection",
-                    "enabled" => true,
-                    "documentSecurity" => true,
-                    "attributes" => array(),
-                    "indexes" => array(
-                        array(
-                            "\$id" => "5e5ea5c16897e",
-                            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-                            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-                            "key" => "index1",
-                            "type" => "primary",
-                            "status" => "available",
-                            "error" => "string",
-                            "attributes" => array(),
-                            "lengths" => array()
-                        )
-                    ),
-                    "bytesMax" => 65535,
-                    "bytesUsed" => 1500
+                    "policyId" => "did8jx6ws45jana098ab7",
+                    "size" => 100000,
+                    "status" => "completed",
+                    "startedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "migrationId" => "did8jx6ws45jana098ab7",
+                    "services" => array(),
+                    "resources" => array()
                 )
             )
         );

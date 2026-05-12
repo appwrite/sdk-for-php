@@ -3,7 +3,6 @@
 
 use Appwrite\Client;
 use Appwrite\Services\Project;
-use Appwrite\Enums\Prompt;
 
 $client = (new Client())
     ->setEndpoint('https://<REGION>.cloud.appwrite.io/v1') // Your API Endpoint
@@ -12,9 +11,6 @@ $client = (new Client())
 
 $project = new Project($client);
 
-$result = $project->updateOAuth2Google(
-    clientId: '<CLIENT_ID>', // optional
-    clientSecret: '<CLIENT_SECRET>', // optional
-    prompt: [Prompt::NONE()], // optional
-    enabled: false // optional
+$result = $project->updateDenyDisposableEmailPolicy(
+    enabled: false
 );```
