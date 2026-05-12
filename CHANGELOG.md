@@ -3,6 +3,9 @@
 ## 23.1.1
 
 * Fixed: `Database` model `policies` and `archives` now hydrate as `BackupPolicy` / `BackupArchive` instead of `Index` / `Collection`
+* Added: `prompt` parameter to `Project::updateOAuth2Google` and `prompt` field on the `OAuth2Google` model, backed by the new `OAuth2GooglePrompt` enum
+* Added: `Project::updateDenyCanonicalEmailPolicy`, `Project::updateDenyDisposableEmailPolicy`, and `Project::updateDenyFreeEmailPolicy`
+* Updated: `BuildRuntime` and `Runtime` enums with `deno-1.21`, `deno-1.24`, and `deno-1.35`
 
 ## 23.1.0
 
