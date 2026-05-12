@@ -1,5 +1,9 @@
 # Change Log
 
+## 23.1.1
+
+* Fixed: `Database` model `policies` and `archives` now hydrate as `BackupPolicy` / `BackupArchive` instead of `Index` / `Collection`
+
 ## 23.1.0
 
 * Added: Introduced `bigint` create/update APIs for legacy Databases attributes
