@@ -49,8 +49,6 @@ class OAuthProvider implements JsonSerializable
     private static OAuthProvider $YANDEX;
     private static OAuthProvider $ZOHO;
     private static OAuthProvider $ZOOM;
-    private static OAuthProvider $GITHUBIMAGINE;
-    private static OAuthProvider $GOOGLEIMAGINE;
 
     private string $value;
 
@@ -370,20 +368,6 @@ class OAuthProvider implements JsonSerializable
         }
         return self::$ZOOM;
     }
-    public static function GITHUBIMAGINE(): OAuthProvider
-    {
-        if (!isset(self::$GITHUBIMAGINE)) {
-            self::$GITHUBIMAGINE = new OAuthProvider('githubImagine');
-        }
-        return self::$GITHUBIMAGINE;
-    }
-    public static function GOOGLEIMAGINE(): OAuthProvider
-    {
-        if (!isset(self::$GOOGLEIMAGINE)) {
-            self::$GOOGLEIMAGINE = new OAuthProvider('googleImagine');
-        }
-        return self::$GOOGLEIMAGINE;
-    }
 
     public static function from(string $value): self
     {
@@ -431,8 +415,6 @@ class OAuthProvider implements JsonSerializable
             'yandex' => self::YANDEX(),
             'zoho' => self::ZOHO(),
             'zoom' => self::ZOOM(),
-            'githubImagine' => self::GITHUBIMAGINE(),
-            'googleImagine' => self::GOOGLEIMAGINE(),
             default => throw new \InvalidArgumentException('Unknown OAuthProvider value: ' . $value),
         };
     }

@@ -6,21 +6,55 @@ use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
 use Appwrite\InputFile;
-use Appwrite\Enums\AuthMethod;
-use Appwrite\Enums\Scopes;
-use Appwrite\Enums\OAuthProvider;
-use Appwrite\Enums\ProjectPolicy;
-use Appwrite\Enums\ProtocolId;
-use Appwrite\Enums\ServiceId;
-use Appwrite\Enums\Secure;
-use Appwrite\Enums\EmailTemplateType;
-use Appwrite\Enums\EmailTemplateLocale;
+use Appwrite\Enums\ProjectAuthMethodId;
+use Appwrite\Enums\ProjectKeyScopes;
+use Appwrite\Enums\ProjectOAuth2GooglePrompt;
+use Appwrite\Enums\ProjectOAuthProviderId;
+use Appwrite\Enums\ProjectPolicyId;
+use Appwrite\Enums\ProjectProtocolId;
+use Appwrite\Enums\ProjectServiceId;
+use Appwrite\Enums\ProjectSMTPSecure;
+use Appwrite\Enums\ProjectEmailTemplateId;
+use Appwrite\Enums\ProjectEmailTemplateLocale;
 
 class Project extends Service
 {
     public function __construct(Client $client)
     {
         parent::__construct($client);
+    }
+
+    /**
+     * Get a project.
+     *
+     * @throws AppwriteException
+     * @return \Appwrite\Models\Project
+     */
+    public function get(): \Appwrite\Models\Project
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/project'
+        );
+
+        $apiParams = [];
+
+        $apiHeaders = [];
+
+        $response = $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Project::from($response);
+
     }
 
     /**
@@ -57,12 +91,12 @@ class Project extends Service
      * Update properties of a specific auth method. Use this endpoint to enable or
      * disable a method in your project. 
      *
-     * @param AuthMethod $methodId
+     * @param ProjectAuthMethodId $methodId
      * @param bool $enabled
      * @throws AppwriteException
      * @return \Appwrite\Models\Project
      */
-    public function updateAuthMethod(AuthMethod $methodId, bool $enabled): \Appwrite\Models\Project
+    public function updateAuthMethod(ProjectAuthMethodId $methodId, bool $enabled): \Appwrite\Models\Project
     {
         $apiPath = str_replace(
             ['{methodId}'],
@@ -1344,11 +1378,12 @@ class Project extends Service
      *
      * @param ?string $clientId
      * @param ?string $clientSecret
+     * @param ?array $prompt
      * @param ?bool $enabled
      * @throws AppwriteException
      * @return \Appwrite\Models\OAuth2Google
      */
-    public function updateOAuth2Google(?string $clientId = null, ?string $clientSecret = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Google
+    public function updateOAuth2Google(?string $clientId = null, ?string $clientSecret = null, ?array $prompt = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Google
     {
         $apiPath = str_replace(
             [],
@@ -1359,6 +1394,7 @@ class Project extends Service
         $apiParams = [];
         $apiParams['clientId'] = $clientId;
         $apiParams['clientSecret'] = $clientSecret;
+        $apiParams['prompt'] = $prompt;
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
@@ -2321,11 +2357,11 @@ class Project extends Service
      * Get a single OAuth2 provider configuration. Credential fields (client
      * secret, p8 file, key/team IDs) are write-only and always returned empty.
      *
-     * @param OAuthProvider $providerId
+     * @param ProjectOAuthProviderId $providerId
      * @throws AppwriteException
      * @return \Appwrite\Models\OAuth2Github|\Appwrite\Models\OAuth2Discord|\Appwrite\Models\OAuth2Figma|\Appwrite\Models\OAuth2Dropbox|\Appwrite\Models\OAuth2Dailymotion|\Appwrite\Models\OAuth2Bitbucket|\Appwrite\Models\OAuth2Bitly|\Appwrite\Models\OAuth2Box|\Appwrite\Models\OAuth2Autodesk|\Appwrite\Models\OAuth2Google|\Appwrite\Models\OAuth2Zoom|\Appwrite\Models\OAuth2Zoho|\Appwrite\Models\OAuth2Yandex|\Appwrite\Models\OAuth2X|\Appwrite\Models\OAuth2WordPress|\Appwrite\Models\OAuth2Twitch|\Appwrite\Models\OAuth2Stripe|\Appwrite\Models\OAuth2Spotify|\Appwrite\Models\OAuth2Slack|\Appwrite\Models\OAuth2Podio|\Appwrite\Models\OAuth2Notion|\Appwrite\Models\OAuth2Salesforce|\Appwrite\Models\OAuth2Yahoo|\Appwrite\Models\OAuth2Linkedin|\Appwrite\Models\OAuth2Disqus|\Appwrite\Models\OAuth2Amazon|\Appwrite\Models\OAuth2Etsy|\Appwrite\Models\OAuth2Facebook|\Appwrite\Models\OAuth2Tradeshift|\Appwrite\Models\OAuth2Paypal|\Appwrite\Models\OAuth2Gitlab|\Appwrite\Models\OAuth2Authentik|\Appwrite\Models\OAuth2Auth0|\Appwrite\Models\OAuth2FusionAuth|\Appwrite\Models\OAuth2Keycloak|\Appwrite\Models\OAuth2Oidc|\Appwrite\Models\OAuth2Apple|\Appwrite\Models\OAuth2Okta|\Appwrite\Models\OAuth2Kick|\Appwrite\Models\OAuth2Microsoft
      */
-    public function getOAuth2Provider(OAuthProvider $providerId): \Appwrite\Models\OAuth2Github|\Appwrite\Models\OAuth2Discord|\Appwrite\Models\OAuth2Figma|\Appwrite\Models\OAuth2Dropbox|\Appwrite\Models\OAuth2Dailymotion|\Appwrite\Models\OAuth2Bitbucket|\Appwrite\Models\OAuth2Bitly|\Appwrite\Models\OAuth2Box|\Appwrite\Models\OAuth2Autodesk|\Appwrite\Models\OAuth2Google|\Appwrite\Models\OAuth2Zoom|\Appwrite\Models\OAuth2Zoho|\Appwrite\Models\OAuth2Yandex|\Appwrite\Models\OAuth2X|\Appwrite\Models\OAuth2WordPress|\Appwrite\Models\OAuth2Twitch|\Appwrite\Models\OAuth2Stripe|\Appwrite\Models\OAuth2Spotify|\Appwrite\Models\OAuth2Slack|\Appwrite\Models\OAuth2Podio|\Appwrite\Models\OAuth2Notion|\Appwrite\Models\OAuth2Salesforce|\Appwrite\Models\OAuth2Yahoo|\Appwrite\Models\OAuth2Linkedin|\Appwrite\Models\OAuth2Disqus|\Appwrite\Models\OAuth2Amazon|\Appwrite\Models\OAuth2Etsy|\Appwrite\Models\OAuth2Facebook|\Appwrite\Models\OAuth2Tradeshift|\Appwrite\Models\OAuth2Paypal|\Appwrite\Models\OAuth2Gitlab|\Appwrite\Models\OAuth2Authentik|\Appwrite\Models\OAuth2Auth0|\Appwrite\Models\OAuth2FusionAuth|\Appwrite\Models\OAuth2Keycloak|\Appwrite\Models\OAuth2Oidc|\Appwrite\Models\OAuth2Apple|\Appwrite\Models\OAuth2Okta|\Appwrite\Models\OAuth2Kick|\Appwrite\Models\OAuth2Microsoft
+    public function getOAuth2Provider(ProjectOAuthProviderId $providerId): \Appwrite\Models\OAuth2Github|\Appwrite\Models\OAuth2Discord|\Appwrite\Models\OAuth2Figma|\Appwrite\Models\OAuth2Dropbox|\Appwrite\Models\OAuth2Dailymotion|\Appwrite\Models\OAuth2Bitbucket|\Appwrite\Models\OAuth2Bitly|\Appwrite\Models\OAuth2Box|\Appwrite\Models\OAuth2Autodesk|\Appwrite\Models\OAuth2Google|\Appwrite\Models\OAuth2Zoom|\Appwrite\Models\OAuth2Zoho|\Appwrite\Models\OAuth2Yandex|\Appwrite\Models\OAuth2X|\Appwrite\Models\OAuth2WordPress|\Appwrite\Models\OAuth2Twitch|\Appwrite\Models\OAuth2Stripe|\Appwrite\Models\OAuth2Spotify|\Appwrite\Models\OAuth2Slack|\Appwrite\Models\OAuth2Podio|\Appwrite\Models\OAuth2Notion|\Appwrite\Models\OAuth2Salesforce|\Appwrite\Models\OAuth2Yahoo|\Appwrite\Models\OAuth2Linkedin|\Appwrite\Models\OAuth2Disqus|\Appwrite\Models\OAuth2Amazon|\Appwrite\Models\OAuth2Etsy|\Appwrite\Models\OAuth2Facebook|\Appwrite\Models\OAuth2Tradeshift|\Appwrite\Models\OAuth2Paypal|\Appwrite\Models\OAuth2Gitlab|\Appwrite\Models\OAuth2Authentik|\Appwrite\Models\OAuth2Auth0|\Appwrite\Models\OAuth2FusionAuth|\Appwrite\Models\OAuth2Keycloak|\Appwrite\Models\OAuth2Oidc|\Appwrite\Models\OAuth2Apple|\Appwrite\Models\OAuth2Okta|\Appwrite\Models\OAuth2Kick|\Appwrite\Models\OAuth2Microsoft
     {
         $apiPath = str_replace(
             ['{providerId}'],
@@ -3105,6 +3141,117 @@ class Project extends Service
     }
 
     /**
+     * Configures if aliased emails such as subaddresses and emails with suffixes
+     * are denied during new users sign-ups and email updates.
+     *
+     * @param bool $enabled
+     * @throws AppwriteException
+     * @return \Appwrite\Models\Project
+     */
+    public function updateDenyAliasedEmailPolicy(bool $enabled): \Appwrite\Models\Project
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/project/policies/deny-aliased-email'
+        );
+
+        $apiParams = [];
+        $apiParams['enabled'] = $enabled;
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Project::from($response);
+
+    }
+
+    /**
+     * Configures if disposable emails from known temporary domains are denied
+     * during new users sign-ups and email updates.
+     *
+     * @param bool $enabled
+     * @throws AppwriteException
+     * @return \Appwrite\Models\Project
+     */
+    public function updateDenyDisposableEmailPolicy(bool $enabled): \Appwrite\Models\Project
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/project/policies/deny-disposable-email'
+        );
+
+        $apiParams = [];
+        $apiParams['enabled'] = $enabled;
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Project::from($response);
+
+    }
+
+    /**
+     * Configures if emails from free providers such as Gmail or Yahoo are denied
+     * during new users sign-ups and email updates.
+     *
+     * @param bool $enabled
+     * @throws AppwriteException
+     * @return \Appwrite\Models\Project
+     */
+    public function updateDenyFreeEmailPolicy(bool $enabled): \Appwrite\Models\Project
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/project/policies/deny-free-email'
+        );
+
+        $apiParams = [];
+        $apiParams['enabled'] = $enabled;
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Project::from($response);
+
+    }
+
+    /**
      * Updating this policy allows you to control if team members can see other
      * members information. When enabled, all team members can see ID, name,
      * email, phone number, and MFA status of other members..
@@ -3480,11 +3627,11 @@ class Project extends Service
      * Get a policy by its unique ID. This endpoint returns the current
      * configuration for the requested project policy.
      *
-     * @param ProjectPolicy $policyId
+     * @param ProjectPolicyId $policyId
      * @throws AppwriteException
      * @return \Appwrite\Models\PolicyPasswordDictionary|\Appwrite\Models\PolicyPasswordHistory|\Appwrite\Models\PolicyPasswordPersonalData|\Appwrite\Models\PolicySessionAlert|\Appwrite\Models\PolicySessionDuration|\Appwrite\Models\PolicySessionInvalidation|\Appwrite\Models\PolicySessionLimit|\Appwrite\Models\PolicyUserLimit|\Appwrite\Models\PolicyMembershipPrivacy
      */
-    public function getPolicy(ProjectPolicy $policyId): \Appwrite\Models\PolicyPasswordDictionary|\Appwrite\Models\PolicyPasswordHistory|\Appwrite\Models\PolicyPasswordPersonalData|\Appwrite\Models\PolicySessionAlert|\Appwrite\Models\PolicySessionDuration|\Appwrite\Models\PolicySessionInvalidation|\Appwrite\Models\PolicySessionLimit|\Appwrite\Models\PolicyUserLimit|\Appwrite\Models\PolicyMembershipPrivacy
+    public function getPolicy(ProjectPolicyId $policyId): \Appwrite\Models\PolicyPasswordDictionary|\Appwrite\Models\PolicyPasswordHistory|\Appwrite\Models\PolicyPasswordPersonalData|\Appwrite\Models\PolicySessionAlert|\Appwrite\Models\PolicySessionDuration|\Appwrite\Models\PolicySessionInvalidation|\Appwrite\Models\PolicySessionLimit|\Appwrite\Models\PolicyUserLimit|\Appwrite\Models\PolicyMembershipPrivacy
     {
         $apiPath = str_replace(
             ['{policyId}'],
@@ -3552,12 +3699,12 @@ class Project extends Service
      * Update properties of a specific protocol. Use this endpoint to enable or
      * disable a protocol in your project. 
      *
-     * @param ProtocolId $protocolId
+     * @param ProjectProtocolId $protocolId
      * @param bool $enabled
      * @throws AppwriteException
      * @return \Appwrite\Models\Project
      */
-    public function updateProtocol(ProtocolId $protocolId, bool $enabled): \Appwrite\Models\Project
+    public function updateProtocol(ProjectProtocolId $protocolId, bool $enabled): \Appwrite\Models\Project
     {
         $apiPath = str_replace(
             ['{protocolId}'],
@@ -3591,12 +3738,12 @@ class Project extends Service
      * Update properties of a specific service. Use this endpoint to enable or
      * disable a service in your project. 
      *
-     * @param ServiceId $serviceId
+     * @param ProjectServiceId $serviceId
      * @param bool $enabled
      * @throws AppwriteException
      * @return \Appwrite\Models\Project
      */
-    public function updateService(ServiceId $serviceId, bool $enabled): \Appwrite\Models\Project
+    public function updateService(ProjectServiceId $serviceId, bool $enabled): \Appwrite\Models\Project
     {
         $apiPath = str_replace(
             ['{serviceId}'],
@@ -3639,12 +3786,12 @@ class Project extends Service
      * @param ?string $senderName
      * @param ?string $replyToEmail
      * @param ?string $replyToName
-     * @param ?Secure $secure
+     * @param ?ProjectSMTPSecure $secure
      * @param ?bool $enabled
      * @throws AppwriteException
      * @return \Appwrite\Models\Project
      */
-    public function updateSMTP(?string $host = null, ?int $port = null, ?string $username = null, ?string $password = null, ?string $senderEmail = null, ?string $senderName = null, ?string $replyToEmail = null, ?string $replyToName = null, ?Secure $secure = null, ?bool $enabled = null): \Appwrite\Models\Project
+    public function updateSMTP(?string $host = null, ?int $port = null, ?string $username = null, ?string $password = null, ?string $senderEmail = null, ?string $senderName = null, ?string $replyToEmail = null, ?string $replyToName = null, ?ProjectSMTPSecure $secure = null, ?bool $enabled = null): \Appwrite\Models\Project
     {
         $apiPath = str_replace(
             [],
@@ -3763,8 +3910,8 @@ class Project extends Service
      * Update a custom email template for the specified locale and type. Use this
      * endpoint to modify the content of your email templates.
      *
-     * @param EmailTemplateType $templateId
-     * @param ?EmailTemplateLocale $locale
+     * @param ProjectEmailTemplateId $templateId
+     * @param ?ProjectEmailTemplateLocale $locale
      * @param ?string $subject
      * @param ?string $message
      * @param ?string $senderName
@@ -3774,7 +3921,7 @@ class Project extends Service
      * @throws AppwriteException
      * @return \Appwrite\Models\EmailTemplate
      */
-    public function updateEmailTemplate(EmailTemplateType $templateId, ?EmailTemplateLocale $locale = null, ?string $subject = null, ?string $message = null, ?string $senderName = null, ?string $senderEmail = null, ?string $replyToEmail = null, ?string $replyToName = null): \Appwrite\Models\EmailTemplate
+    public function updateEmailTemplate(ProjectEmailTemplateId $templateId, ?ProjectEmailTemplateLocale $locale = null, ?string $subject = null, ?string $message = null, ?string $senderName = null, ?string $senderEmail = null, ?string $replyToEmail = null, ?string $replyToName = null): \Appwrite\Models\EmailTemplate
     {
         $apiPath = str_replace(
             [],
@@ -3818,12 +3965,12 @@ class Project extends Service
      * endpoint returns the template content, subject, and other configuration
      * details.
      *
-     * @param EmailTemplateType $templateId
-     * @param ?EmailTemplateLocale $locale
+     * @param ProjectEmailTemplateId $templateId
+     * @param ?ProjectEmailTemplateLocale $locale
      * @throws AppwriteException
      * @return \Appwrite\Models\EmailTemplate
      */
-    public function getEmailTemplate(EmailTemplateType $templateId, ?EmailTemplateLocale $locale = null): \Appwrite\Models\EmailTemplate
+    public function getEmailTemplate(ProjectEmailTemplateId $templateId, ?ProjectEmailTemplateLocale $locale = null): \Appwrite\Models\EmailTemplate
     {
         $apiPath = str_replace(
             ['{templateId}'],
