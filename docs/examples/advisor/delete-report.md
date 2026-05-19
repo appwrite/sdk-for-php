@@ -2,17 +2,15 @@
 <?php
 
 use Appwrite\Client;
-use Appwrite\Services\Project;
-use Appwrite\Enums\ProjectKeyScopes;
+use Appwrite\Services\Advisor;
 
 $client = (new Client())
     ->setEndpoint('https://<REGION>.cloud.appwrite.io/v1') // Your API Endpoint
     ->setProject('<YOUR_PROJECT_ID>') // Your project ID
     ->setKey('<YOUR_API_KEY>'); // Your secret API key
 
-$project = new Project($client);
+$advisor = new Advisor($client);
 
-$result = $project->createEphemeralKey(
-    scopes: [ProjectKeyScopes::PROJECTREAD()],
-    duration: 600
+$result = $advisor->deleteReport(
+    reportId: '<REPORT_ID>'
 );```

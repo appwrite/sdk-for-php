@@ -2,6 +2,13 @@
 
 
 ```http request
+GET https://cloud.appwrite.io/v1/project
+```
+
+** Get a project. **
+
+
+```http request
 DELETE https://cloud.appwrite.io/v1/project
 ```
 
@@ -494,7 +501,7 @@ PATCH https://cloud.appwrite.io/v1/project/oauth2/google
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | clientId | string | 'Client ID' of Google OAuth2 app. For example: 120000000095-92ifjb00000000000000000000g7ijfb.apps.googleusercontent.com |  |
-| clientSecret | string | 'Client Secret' of Google OAuth2 app. For example: GOCSPX-2k8gsR0000000000000000VNahJj |  |
+| clientSecret | string | 'Client Secret' of Google OAuth2 app. For example: example-google-client-secret |  |
 | prompt | array | Array of Google OAuth2 prompt values. If "none" is included, it must be the only element. "none" means: don't display any authentication or consent screens. Must not be specified with other values. "consent" means: prompt the user for consent. "select_account" means: prompt the user to select an account. |  |
 | enabled | boolean | OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid. |  |
 
@@ -542,7 +549,7 @@ PATCH https://cloud.appwrite.io/v1/project/oauth2/linkedin
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | clientId | string | 'Client ID' of Linkedin OAuth2 app. For example: 770000000000dv |  |
-| primaryClientSecret | string | 'Primary Client Secret or Secondary Client Secret' of Linkedin OAuth2 app. For example: WPL_AP1.2Bf0000000000000./HtlYw== |  |
+| primaryClientSecret | string | 'Primary Client Secret or Secondary Client Secret' of Linkedin OAuth2 app. For example: example-linkedin-client-secret |  |
 | enabled | boolean | OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid. |  |
 
 
@@ -1071,16 +1078,16 @@ GET https://cloud.appwrite.io/v1/project/policies
 
 
 ```http request
-PATCH https://cloud.appwrite.io/v1/project/policies/deny-canonical-email
+PATCH https://cloud.appwrite.io/v1/project/policies/deny-aliased-email
 ```
 
-** Configures if email aliases such as subaddresses and emails with suffixes are denied during new users sign-ups and email updates. **
+** Configures if aliased emails such as subaddresses and emails with suffixes are denied during new users sign-ups and email updates. **
 
 ### Parameters
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| enabled | boolean | Set whether or not to block email aliases during signup and email updates. |  |
+| enabled | boolean | Set whether or not to block aliased emails during signup and email updates. |  |
 
 
 ```http request
@@ -1269,7 +1276,7 @@ PATCH https://cloud.appwrite.io/v1/project/services/{serviceId}
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| serviceId | string | **Required** Service name. Can be one of: account, avatars, databases, tablesdb, locale, health, project, storage, teams, users, vcs, sites, functions, proxy, graphql, migrations, messaging |  |
+| serviceId | string | **Required** Service name. Can be one of: account, avatars, databases, tablesdb, locale, health, project, storage, teams, users, vcs, sites, functions, proxy, graphql, migrations, messaging, advisor |  |
 | enabled | boolean | Service status. |  |
 
 

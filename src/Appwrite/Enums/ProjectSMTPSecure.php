@@ -4,10 +4,10 @@ namespace Appwrite\Enums;
 
 use JsonSerializable;
 
-class Secure implements JsonSerializable
+class ProjectSMTPSecure implements JsonSerializable
 {
-    private static Secure $TLS;
-    private static Secure $SSL;
+    private static ProjectSMTPSecure $TLS;
+    private static ProjectSMTPSecure $SSL;
 
     private string $value;
 
@@ -26,17 +26,17 @@ class Secure implements JsonSerializable
         return $this->value;
     }
 
-    public static function TLS(): Secure
+    public static function TLS(): ProjectSMTPSecure
     {
         if (!isset(self::$TLS)) {
-            self::$TLS = new Secure('tls');
+            self::$TLS = new ProjectSMTPSecure('tls');
         }
         return self::$TLS;
     }
-    public static function SSL(): Secure
+    public static function SSL(): ProjectSMTPSecure
     {
         if (!isset(self::$SSL)) {
-            self::$SSL = new Secure('ssl');
+            self::$SSL = new ProjectSMTPSecure('ssl');
         }
         return self::$SSL;
     }
@@ -46,7 +46,7 @@ class Secure implements JsonSerializable
         return match ($value) {
             'tls' => self::TLS(),
             'ssl' => self::SSL(),
-            default => throw new \InvalidArgumentException('Unknown Secure value: ' . $value),
+            default => throw new \InvalidArgumentException('Unknown ProjectSMTPSecure value: ' . $value),
         };
     }
 }

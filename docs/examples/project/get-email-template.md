@@ -3,8 +3,8 @@
 
 use Appwrite\Client;
 use Appwrite\Services\Project;
-use Appwrite\Enums\EmailTemplateType;
-use Appwrite\Enums\EmailTemplateLocale;
+use Appwrite\Enums\ProjectEmailTemplateId;
+use Appwrite\Enums\ProjectEmailTemplateLocale;
 
 $client = (new Client())
     ->setEndpoint('https://<REGION>.cloud.appwrite.io/v1') // Your API Endpoint
@@ -14,6 +14,6 @@ $client = (new Client())
 $project = new Project($client);
 
 $result = $project->getEmailTemplate(
-    templateId: EmailTemplateType::VERIFICATION(),
-    locale: EmailTemplateLocale::AF() // optional
+    templateId: ProjectEmailTemplateId::VERIFICATION(),
+    locale: ProjectEmailTemplateLocale::AF() // optional
 );```

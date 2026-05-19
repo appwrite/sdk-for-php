@@ -3,7 +3,7 @@
 
 use Appwrite\Client;
 use Appwrite\Services\Project;
-use Appwrite\Enums\Secure;
+use Appwrite\Enums\ProjectSMTPSecure;
 
 $client = (new Client())
     ->setEndpoint('https://<REGION>.cloud.appwrite.io/v1') // Your API Endpoint
@@ -21,6 +21,6 @@ $result = $project->updateSMTP(
     senderName: '<SENDER_NAME>', // optional
     replyToEmail: 'email@example.com', // optional
     replyToName: '<REPLY_TO_NAME>', // optional
-    secure: Secure::TLS(), // optional
+    secure: ProjectSMTPSecure::TLS(), // optional
     enabled: false // optional
 );```

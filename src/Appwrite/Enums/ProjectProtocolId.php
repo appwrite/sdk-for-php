@@ -4,11 +4,11 @@ namespace Appwrite\Enums;
 
 use JsonSerializable;
 
-class ProtocolId implements JsonSerializable
+class ProjectProtocolId implements JsonSerializable
 {
-    private static ProtocolId $REST;
-    private static ProtocolId $GRAPHQL;
-    private static ProtocolId $WEBSOCKET;
+    private static ProjectProtocolId $REST;
+    private static ProjectProtocolId $GRAPHQL;
+    private static ProjectProtocolId $WEBSOCKET;
 
     private string $value;
 
@@ -27,24 +27,24 @@ class ProtocolId implements JsonSerializable
         return $this->value;
     }
 
-    public static function REST(): ProtocolId
+    public static function REST(): ProjectProtocolId
     {
         if (!isset(self::$REST)) {
-            self::$REST = new ProtocolId('rest');
+            self::$REST = new ProjectProtocolId('rest');
         }
         return self::$REST;
     }
-    public static function GRAPHQL(): ProtocolId
+    public static function GRAPHQL(): ProjectProtocolId
     {
         if (!isset(self::$GRAPHQL)) {
-            self::$GRAPHQL = new ProtocolId('graphql');
+            self::$GRAPHQL = new ProjectProtocolId('graphql');
         }
         return self::$GRAPHQL;
     }
-    public static function WEBSOCKET(): ProtocolId
+    public static function WEBSOCKET(): ProjectProtocolId
     {
         if (!isset(self::$WEBSOCKET)) {
-            self::$WEBSOCKET = new ProtocolId('websocket');
+            self::$WEBSOCKET = new ProjectProtocolId('websocket');
         }
         return self::$WEBSOCKET;
     }
@@ -55,7 +55,7 @@ class ProtocolId implements JsonSerializable
             'rest' => self::REST(),
             'graphql' => self::GRAPHQL(),
             'websocket' => self::WEBSOCKET(),
-            default => throw new \InvalidArgumentException('Unknown ProtocolId value: ' . $value),
+            default => throw new \InvalidArgumentException('Unknown ProjectProtocolId value: ' . $value),
         };
     }
 }
