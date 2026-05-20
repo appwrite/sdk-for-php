@@ -1,5 +1,14 @@
 # Change Log
 
+## 24.0.1
+
+* Fixed: `Project.billingLimits` now hydrates as `?BillingLimits` (nullable) — server emits `billingLimits: {}` for projects with no usage limits crossed, which previously threw `InvalidArgumentException: Missing required field "bandwidth"` on every `Project` response parse
+* Fixed: All 8 `BillingLimits` inner fields (`bandwidth`, `storage`, `users`, `executions`, `GBHours`, `imageTransformations`, `authPhone`, `budgetLimit`) now hydrate as `?int` — match the runtime "sparse map of limits crossed" semantics
+* Fixed: `Project.consoleAccessedAt` no longer null at runtime — server now emits empty string for never-accessed projects, matching the OSS `pingedAt` convention
+* Added: `File.sizeActual` field — actual bytes used on disk after compression / encryption
+* Removed: `Prompt` enum — stale leftover, no remaining references
+* Updated: Advisor doc examples (`get-insight`, `get-report`, `list-insights`, `list-reports`) corrected to use API key auth instead of session
+
 ## 24.0.0
 
 * Breaking: Renamed `AuthMethod` enum to `ProjectAuthMethodId`
