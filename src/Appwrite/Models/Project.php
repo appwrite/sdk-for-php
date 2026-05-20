@@ -36,9 +36,9 @@ readonly class Project
      * @param list<ProjectService> $services list of services.
      * @param list<ProjectProtocol> $protocols list of protocols.
      * @param string $region project region
-     * @param BillingLimits $billingLimits billing limits reached
      * @param list<Block> $blocks project blocks information
      * @param string $consoleAccessedAt last time the project was accessed via console. used with plan's projectinactivitydays to determine if project is paused.
+     * @param BillingLimits|null $billingLimits billing limits reached
      */
     public function __construct(
         public string $id,
@@ -65,9 +65,9 @@ readonly class Project
         public array $services,
         public array $protocols,
         public string $region,
-        public BillingLimits $billingLimits,
         public array $blocks,
-        public string $consoleAccessedAt
+        public string $consoleAccessedAt,
+        public ?BillingLimits $billingLimits = null
     ) {
     }
 
@@ -148,9 +148,6 @@ readonly class Project
         if (!array_key_exists('region', $data)) {
             throw new \InvalidArgumentException('Missing required field "region" for ' . static::class . '.');
         }
-        if (!array_key_exists('billingLimits', $data)) {
-            throw new \InvalidArgumentException('Missing required field "billingLimits" for ' . static::class . '.');
-        }
         if (!array_key_exists('blocks', $data)) {
             throw new \InvalidArgumentException('Missing required field "blocks" for ' . static::class . '.');
         }
@@ -203,14 +200,14 @@ readonly class Project
                 )
                 : $data['protocols'],
             region: $data['region'],
-            billingLimits: static::hydrateTypedValue(BillingLimits::class, $data['billingLimits']),
             blocks: is_array($data['blocks'])
                 ? array_map(
                     static fn (mixed $item): mixed => static::hydrateTypedValue(Block::class, $item),
                     $data['blocks']
                 )
                 : $data['blocks'],
-            consoleAccessedAt: $data['consoleAccessedAt']
+            consoleAccessedAt: $data['consoleAccessedAt'],
+            billingLimits: array_key_exists('billingLimits', $data) ? static::hydrateTypedValue(BillingLimits::class, $data['billingLimits'], true) : null
         );
     }
 

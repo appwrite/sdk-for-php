@@ -12,24 +12,24 @@ readonly class BillingLimits
     /**
      * BillingLimits constructor.
      *
-     * @param int $bandwidth bandwidth limit
-     * @param int $storage storage limit
-     * @param int $users users limit
-     * @param int $executions executions limit
-     * @param int $gBHours gbhours limit
-     * @param int $imageTransformations image transformations limit
-     * @param int $authPhone auth phone limit
-     * @param int $budgetLimit budget limit percentage
+     * @param int|null $bandwidth bandwidth limit
+     * @param int|null $storage storage limit
+     * @param int|null $users users limit
+     * @param int|null $executions executions limit
+     * @param int|null $gBHours gbhours limit
+     * @param int|null $imageTransformations image transformations limit
+     * @param int|null $authPhone auth phone limit
+     * @param int|null $budgetLimit budget limit percentage
      */
     public function __construct(
-        public int $bandwidth,
-        public int $storage,
-        public int $users,
-        public int $executions,
-        public int $gBHours,
-        public int $imageTransformations,
-        public int $authPhone,
-        public int $budgetLimit
+        public ?int $bandwidth = null,
+        public ?int $storage = null,
+        public ?int $users = null,
+        public ?int $executions = null,
+        public ?int $gBHours = null,
+        public ?int $imageTransformations = null,
+        public ?int $authPhone = null,
+        public ?int $budgetLimit = null
     ) {
     }
 
@@ -38,40 +38,16 @@ readonly class BillingLimits
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('bandwidth', $data)) {
-            throw new \InvalidArgumentException('Missing required field "bandwidth" for ' . static::class . '.');
-        }
-        if (!array_key_exists('storage', $data)) {
-            throw new \InvalidArgumentException('Missing required field "storage" for ' . static::class . '.');
-        }
-        if (!array_key_exists('users', $data)) {
-            throw new \InvalidArgumentException('Missing required field "users" for ' . static::class . '.');
-        }
-        if (!array_key_exists('executions', $data)) {
-            throw new \InvalidArgumentException('Missing required field "executions" for ' . static::class . '.');
-        }
-        if (!array_key_exists('GBHours', $data)) {
-            throw new \InvalidArgumentException('Missing required field "GBHours" for ' . static::class . '.');
-        }
-        if (!array_key_exists('imageTransformations', $data)) {
-            throw new \InvalidArgumentException('Missing required field "imageTransformations" for ' . static::class . '.');
-        }
-        if (!array_key_exists('authPhone', $data)) {
-            throw new \InvalidArgumentException('Missing required field "authPhone" for ' . static::class . '.');
-        }
-        if (!array_key_exists('budgetLimit', $data)) {
-            throw new \InvalidArgumentException('Missing required field "budgetLimit" for ' . static::class . '.');
-        }
 
         return new static(
-            bandwidth: $data['bandwidth'],
-            storage: $data['storage'],
-            users: $data['users'],
-            executions: $data['executions'],
-            gBHours: $data['GBHours'],
-            imageTransformations: $data['imageTransformations'],
-            authPhone: $data['authPhone'],
-            budgetLimit: $data['budgetLimit']
+            bandwidth: array_key_exists('bandwidth', $data) ? $data['bandwidth'] : null,
+            storage: array_key_exists('storage', $data) ? $data['storage'] : null,
+            users: array_key_exists('users', $data) ? $data['users'] : null,
+            executions: array_key_exists('executions', $data) ? $data['executions'] : null,
+            gBHours: array_key_exists('GBHours', $data) ? $data['GBHours'] : null,
+            imageTransformations: array_key_exists('imageTransformations', $data) ? $data['imageTransformations'] : null,
+            authPhone: array_key_exists('authPhone', $data) ? $data['authPhone'] : null,
+            budgetLimit: array_key_exists('budgetLimit', $data) ? $data['budgetLimit'] : null
         );
     }
 

@@ -21,6 +21,7 @@ readonly class File
      * @param string $signature file md5 signature.
      * @param string $mimeType file mime type.
      * @param int $sizeOriginal file original size in bytes.
+     * @param int $sizeActual file actual stored size in bytes after compression and/or encryption.
      * @param int $chunksTotal total number of chunks available
      * @param int $chunksUploaded total number of chunks uploaded
      * @param bool $encryption whether file contents are encrypted at rest.
@@ -36,6 +37,7 @@ readonly class File
         public string $signature,
         public string $mimeType,
         public int $sizeOriginal,
+        public int $sizeActual,
         public int $chunksTotal,
         public int $chunksUploaded,
         public bool $encryption,
@@ -75,6 +77,9 @@ readonly class File
         if (!array_key_exists('sizeOriginal', $data)) {
             throw new \InvalidArgumentException('Missing required field "sizeOriginal" for ' . static::class . '.');
         }
+        if (!array_key_exists('sizeActual', $data)) {
+            throw new \InvalidArgumentException('Missing required field "sizeActual" for ' . static::class . '.');
+        }
         if (!array_key_exists('chunksTotal', $data)) {
             throw new \InvalidArgumentException('Missing required field "chunksTotal" for ' . static::class . '.');
         }
@@ -98,6 +103,7 @@ readonly class File
             signature: $data['signature'],
             mimeType: $data['mimeType'],
             sizeOriginal: $data['sizeOriginal'],
+            sizeActual: $data['sizeActual'],
             chunksTotal: $data['chunksTotal'],
             chunksUploaded: $data['chunksUploaded'],
             encryption: $data['encryption'],
@@ -120,6 +126,7 @@ readonly class File
             'signature' => static::serializeValue($this->signature),
             'mimeType' => static::serializeValue($this->mimeType),
             'sizeOriginal' => static::serializeValue($this->sizeOriginal),
+            'sizeActual' => static::serializeValue($this->sizeActual),
             'chunksTotal' => static::serializeValue($this->chunksTotal),
             'chunksUploaded' => static::serializeValue($this->chunksUploaded),
             'encryption' => static::serializeValue($this->encryption),
