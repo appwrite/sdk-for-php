@@ -1,13 +1,12 @@
 # Change Log
 
-## 25.0.0
+## 24.1.0
 
-* Breaking: Removed `Prompt` enum class
-* Breaking: Changed `BillingLimits` properties from required to nullable
-* Breaking: Moved `billingLimits` property to optional in `Project` model
-* Added `sizeActual` property to `File` model for compressed storage size
-* Updated authentication examples from session to API key based
-* Breaking: Removed `updateDenyCanonicalEmailPolicy` method documentation
+* Added `sizeActual` property to `File` model for actual stored size after compression/encryption
+* Updated `BillingLimits` properties to be nullable to match the server's sparse "limits crossed" response
+* Updated `Project.billingLimits` to be nullable
+* Updated advisor example docs to use API key authentication
+* Removed orphaned `Prompt` enum (already unused; superseded by `ProjectOAuth2GooglePrompt` in 24.0.0)
 
 ## 24.0.0
 
