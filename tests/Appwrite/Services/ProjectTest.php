@@ -877,7 +877,7 @@ final class ProjectTest extends TestCase
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "120000000095-92ifjb00000000000000000000g7ijfb.apps.googleusercontent.com",
-            "clientSecret" => "GOCSPX-2k8gsR0000000000000000VNahJj",
+            "clientSecret" => "example-google-client-secret",
             "prompt" => array()
         );
 
@@ -934,7 +934,7 @@ final class ProjectTest extends TestCase
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "770000000000dv",
-            "primaryClientSecret" => "WPL_AP1.2Bf0000000000000./HtlYw=="
+            "primaryClientSecret" => "example-linkedin-client-secret"
         );
 
         $this->client
