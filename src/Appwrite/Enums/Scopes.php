@@ -88,8 +88,6 @@ class Scopes implements JsonSerializable
     private static Scopes $INSIGHTSWRITE;
     private static Scopes $REPORTSREAD;
     private static Scopes $REPORTSWRITE;
-    private static Scopes $PRESENCESREAD;
-    private static Scopes $PRESENCESWRITE;
     private static Scopes $BACKUPSPOLICIESREAD;
     private static Scopes $BACKUPSPOLICIESWRITE;
     private static Scopes $ARCHIVESREAD;
@@ -692,20 +690,6 @@ class Scopes implements JsonSerializable
         }
         return self::$REPORTSWRITE;
     }
-    public static function PRESENCESREAD(): Scopes
-    {
-        if (!isset(self::$PRESENCESREAD)) {
-            self::$PRESENCESREAD = new Scopes('presences.read');
-        }
-        return self::$PRESENCESREAD;
-    }
-    public static function PRESENCESWRITE(): Scopes
-    {
-        if (!isset(self::$PRESENCESWRITE)) {
-            self::$PRESENCESWRITE = new Scopes('presences.write');
-        }
-        return self::$PRESENCESWRITE;
-    }
     public static function BACKUPSPOLICIESREAD(): Scopes
     {
         if (!isset(self::$BACKUPSPOLICIESREAD)) {
@@ -862,8 +846,6 @@ class Scopes implements JsonSerializable
             'insights.write' => self::INSIGHTSWRITE(),
             'reports.read' => self::REPORTSREAD(),
             'reports.write' => self::REPORTSWRITE(),
-            'presences.read' => self::PRESENCESREAD(),
-            'presences.write' => self::PRESENCESWRITE(),
             'backups.policies.read' => self::BACKUPSPOLICIESREAD(),
             'backups.policies.write' => self::BACKUPSPOLICIESWRITE(),
             'archives.read' => self::ARCHIVESREAD(),

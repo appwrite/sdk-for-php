@@ -1,21 +1,5 @@
 # Change Log
 
-## 24.0.0
-
-* Breaking: Renamed `AuthMethod` enum to `ProjectAuthMethodId`
-* Breaking: Renamed `EmailTemplateType` to `ProjectEmailTemplateId` and `EmailTemplateLocale` to `ProjectEmailTemplateLocale`
-* Breaking: Renamed `ServiceId` to `ProjectServiceId`, `ProtocolId` to `ProjectProtocolId`, `Secure` to `ProjectSMTPSecure`, `ProjectPolicy` to `ProjectPolicyId`
-* Breaking: Replaced `Scopes` enum with `ProjectKeyScopes` for project key endpoints
-* Breaking: Removed `updateDenyCanonicalEmailPolicy`; replaced with `updateDenyAliasedEmailPolicy`, `updateDenyDisposableEmailPolicy`, and `updateDenyFreeEmailPolicy`
-* Breaking: Removed `AuthProvider` model; use new `ProjectOAuthProviderId` enum instead
-* Added: `Project::get` method to fetch current project details
-* Added: `Advisor`, `Presences`, and `Usage` services
-* Added: `Insight`, `Presence`, `Report`, `UsageEvent`, and `UsageGauge` models with list variants
-* Added: `ProjectAuthMethod`, `ProjectProtocol`, and `ProjectService` models
-* Added: `ProjectOAuthProviderId` and `ProjectOAuth2GooglePrompt` enums
-* Updated: `Project`, `Database`, and `OAuth2Google` model schemas
-* Updated: `X-Appwrite-Response-Format` header to `1.9.5`
-
 ## 23.1.1
 
 * Fixed: `Database` model `policies` and `archives` now hydrate as `BackupPolicy` / `BackupArchive` instead of `Index` / `Collection`

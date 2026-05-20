@@ -88,8 +88,6 @@ class ProjectKeyScopes implements JsonSerializable
     private static ProjectKeyScopes $INSIGHTSWRITE;
     private static ProjectKeyScopes $REPORTSREAD;
     private static ProjectKeyScopes $REPORTSWRITE;
-    private static ProjectKeyScopes $PRESENCESREAD;
-    private static ProjectKeyScopes $PRESENCESWRITE;
     private static ProjectKeyScopes $BACKUPSPOLICIESREAD;
     private static ProjectKeyScopes $BACKUPSPOLICIESWRITE;
     private static ProjectKeyScopes $ARCHIVESREAD;
@@ -692,20 +690,6 @@ class ProjectKeyScopes implements JsonSerializable
         }
         return self::$REPORTSWRITE;
     }
-    public static function PRESENCESREAD(): ProjectKeyScopes
-    {
-        if (!isset(self::$PRESENCESREAD)) {
-            self::$PRESENCESREAD = new ProjectKeyScopes('presences.read');
-        }
-        return self::$PRESENCESREAD;
-    }
-    public static function PRESENCESWRITE(): ProjectKeyScopes
-    {
-        if (!isset(self::$PRESENCESWRITE)) {
-            self::$PRESENCESWRITE = new ProjectKeyScopes('presences.write');
-        }
-        return self::$PRESENCESWRITE;
-    }
     public static function BACKUPSPOLICIESREAD(): ProjectKeyScopes
     {
         if (!isset(self::$BACKUPSPOLICIESREAD)) {
@@ -862,8 +846,6 @@ class ProjectKeyScopes implements JsonSerializable
             'insights.write' => self::INSIGHTSWRITE(),
             'reports.read' => self::REPORTSREAD(),
             'reports.write' => self::REPORTSWRITE(),
-            'presences.read' => self::PRESENCESREAD(),
-            'presences.write' => self::PRESENCESWRITE(),
             'backups.policies.read' => self::BACKUPSPOLICIESREAD(),
             'backups.policies.write' => self::BACKUPSPOLICIESWRITE(),
             'archives.read' => self::ARCHIVESREAD(),

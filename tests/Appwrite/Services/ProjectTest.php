@@ -81,16 +81,6 @@ final class ProjectTest extends TestCase
                 )
             ),
             "region" => "fra",
-            "billingLimits" => array(
-                "bandwidth" => 5,
-                "storage" => 150,
-                "users" => 200000,
-                "executions" => 750000,
-                "GBHours" => 100,
-                "imageTransformations" => 100,
-                "authPhone" => 10,
-                "budgetLimit" => 100
-            ),
             "blocks" => array(
                 array(
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
@@ -181,16 +171,6 @@ final class ProjectTest extends TestCase
                 )
             ),
             "region" => "fra",
-            "billingLimits" => array(
-                "bandwidth" => 5,
-                "storage" => 150,
-                "users" => 200000,
-                "executions" => 750000,
-                "GBHours" => 100,
-                "imageTransformations" => 100,
-                "authPhone" => 10,
-                "budgetLimit" => 100
-            ),
             "blocks" => array(
                 array(
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
@@ -419,16 +399,6 @@ final class ProjectTest extends TestCase
                 )
             ),
             "region" => "fra",
-            "billingLimits" => array(
-                "bandwidth" => 5,
-                "storage" => 150,
-                "users" => 200000,
-                "executions" => 750000,
-                "GBHours" => 100,
-                "imageTransformations" => 100,
-                "authPhone" => 10,
-                "budgetLimit" => 100
-            ),
             "blocks" => array(
                 array(
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
@@ -907,7 +877,7 @@ final class ProjectTest extends TestCase
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "120000000095-92ifjb00000000000000000000g7ijfb.apps.googleusercontent.com",
-            "clientSecret" => "example-google-client-secret",
+            "clientSecret" => "GOCSPX-2k8gsR0000000000000000VNahJj",
             "prompt" => array()
         );
 
@@ -964,7 +934,7 @@ final class ProjectTest extends TestCase
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "770000000000dv",
-            "primaryClientSecret" => "example-linkedin-client-secret"
+            "primaryClientSecret" => "WPL_AP1.2Bf0000000000000./HtlYw=="
         );
 
         $this->client
@@ -1736,16 +1706,6 @@ final class ProjectTest extends TestCase
                 )
             ),
             "region" => "fra",
-            "billingLimits" => array(
-                "bandwidth" => 5,
-                "storage" => 150,
-                "users" => 200000,
-                "executions" => 750000,
-                "GBHours" => 100,
-                "imageTransformations" => 100,
-                "authPhone" => 10,
-                "budgetLimit" => 100
-            ),
             "blocks" => array(
                 array(
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
@@ -1825,16 +1785,6 @@ final class ProjectTest extends TestCase
                 )
             ),
             "region" => "fra",
-            "billingLimits" => array(
-                "bandwidth" => 5,
-                "storage" => 150,
-                "users" => 200000,
-                "executions" => 750000,
-                "GBHours" => 100,
-                "imageTransformations" => 100,
-                "authPhone" => 10,
-                "budgetLimit" => 100
-            ),
             "blocks" => array(
                 array(
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
@@ -1914,16 +1864,6 @@ final class ProjectTest extends TestCase
                 )
             ),
             "region" => "fra",
-            "billingLimits" => array(
-                "bandwidth" => 5,
-                "storage" => 150,
-                "users" => 200000,
-                "executions" => 750000,
-                "GBHours" => 100,
-                "imageTransformations" => 100,
-                "authPhone" => 10,
-                "budgetLimit" => 100
-            ),
             "blocks" => array(
                 array(
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
@@ -2003,16 +1943,6 @@ final class ProjectTest extends TestCase
                 )
             ),
             "region" => "fra",
-            "billingLimits" => array(
-                "bandwidth" => 5,
-                "storage" => 150,
-                "users" => 200000,
-                "executions" => 750000,
-                "GBHours" => 100,
-                "imageTransformations" => 100,
-                "authPhone" => 10,
-                "budgetLimit" => 100
-            ),
             "blocks" => array(
                 array(
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
@@ -2090,16 +2020,6 @@ final class ProjectTest extends TestCase
                 )
             ),
             "region" => "fra",
-            "billingLimits" => array(
-                "bandwidth" => 5,
-                "storage" => 150,
-                "users" => 200000,
-                "executions" => 750000,
-                "GBHours" => 100,
-                "imageTransformations" => 100,
-                "authPhone" => 10,
-                "budgetLimit" => 100
-            ),
             "blocks" => array(
                 array(
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
@@ -2179,16 +2099,6 @@ final class ProjectTest extends TestCase
                 )
             ),
             "region" => "fra",
-            "billingLimits" => array(
-                "bandwidth" => 5,
-                "storage" => 150,
-                "users" => 200000,
-                "executions" => 750000,
-                "GBHours" => 100,
-                "imageTransformations" => 100,
-                "authPhone" => 10,
-                "budgetLimit" => 100
-            ),
             "blocks" => array(
                 array(
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
@@ -2268,16 +2178,6 @@ final class ProjectTest extends TestCase
                 )
             ),
             "region" => "fra",
-            "billingLimits" => array(
-                "bandwidth" => 5,
-                "storage" => 150,
-                "users" => 200000,
-                "executions" => 750000,
-                "GBHours" => 100,
-                "imageTransformations" => 100,
-                "authPhone" => 10,
-                "budgetLimit" => 100
-            ),
             "blocks" => array(
                 array(
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
@@ -2357,16 +2257,6 @@ final class ProjectTest extends TestCase
                 )
             ),
             "region" => "fra",
-            "billingLimits" => array(
-                "bandwidth" => 5,
-                "storage" => 150,
-                "users" => 200000,
-                "executions" => 750000,
-                "GBHours" => 100,
-                "imageTransformations" => 100,
-                "authPhone" => 10,
-                "budgetLimit" => 100
-            ),
             "blocks" => array(
                 array(
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
@@ -2446,16 +2336,6 @@ final class ProjectTest extends TestCase
                 )
             ),
             "region" => "fra",
-            "billingLimits" => array(
-                "bandwidth" => 5,
-                "storage" => 150,
-                "users" => 200000,
-                "executions" => 750000,
-                "GBHours" => 100,
-                "imageTransformations" => 100,
-                "authPhone" => 10,
-                "budgetLimit" => 100
-            ),
             "blocks" => array(
                 array(
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
@@ -2535,16 +2415,6 @@ final class ProjectTest extends TestCase
                 )
             ),
             "region" => "fra",
-            "billingLimits" => array(
-                "bandwidth" => 5,
-                "storage" => 150,
-                "users" => 200000,
-                "executions" => 750000,
-                "GBHours" => 100,
-                "imageTransformations" => 100,
-                "authPhone" => 10,
-                "budgetLimit" => 100
-            ),
             "blocks" => array(
                 array(
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
@@ -2624,16 +2494,6 @@ final class ProjectTest extends TestCase
                 )
             ),
             "region" => "fra",
-            "billingLimits" => array(
-                "bandwidth" => 5,
-                "storage" => 150,
-                "users" => 200000,
-                "executions" => 750000,
-                "GBHours" => 100,
-                "imageTransformations" => 100,
-                "authPhone" => 10,
-                "budgetLimit" => 100
-            ),
             "blocks" => array(
                 array(
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
@@ -2713,16 +2573,6 @@ final class ProjectTest extends TestCase
                 )
             ),
             "region" => "fra",
-            "billingLimits" => array(
-                "bandwidth" => 5,
-                "storage" => 150,
-                "users" => 200000,
-                "executions" => 750000,
-                "GBHours" => 100,
-                "imageTransformations" => 100,
-                "authPhone" => 10,
-                "budgetLimit" => 100
-            ),
             "blocks" => array(
                 array(
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
@@ -2829,16 +2679,6 @@ final class ProjectTest extends TestCase
                 )
             ),
             "region" => "fra",
-            "billingLimits" => array(
-                "bandwidth" => 5,
-                "storage" => 150,
-                "users" => 200000,
-                "executions" => 750000,
-                "GBHours" => 100,
-                "imageTransformations" => 100,
-                "authPhone" => 10,
-                "budgetLimit" => 100
-            ),
             "blocks" => array(
                 array(
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
@@ -2919,16 +2759,6 @@ final class ProjectTest extends TestCase
                 )
             ),
             "region" => "fra",
-            "billingLimits" => array(
-                "bandwidth" => 5,
-                "storage" => 150,
-                "users" => 200000,
-                "executions" => 750000,
-                "GBHours" => 100,
-                "imageTransformations" => 100,
-                "authPhone" => 10,
-                "budgetLimit" => 100
-            ),
             "blocks" => array(
                 array(
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
@@ -3009,16 +2839,6 @@ final class ProjectTest extends TestCase
                 )
             ),
             "region" => "fra",
-            "billingLimits" => array(
-                "bandwidth" => 5,
-                "storage" => 150,
-                "users" => 200000,
-                "executions" => 750000,
-                "GBHours" => 100,
-                "imageTransformations" => 100,
-                "authPhone" => 10,
-                "budgetLimit" => 100
-            ),
             "blocks" => array(
                 array(
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
