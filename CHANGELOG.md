@@ -1,5 +1,14 @@
 # Change Log
 
+## 25.0.0
+
+* Breaking: Removed `Prompt` enum class
+* Breaking: Changed `BillingLimits` properties from required to nullable
+* Breaking: Moved `billingLimits` property to optional in `Project` model
+* Added `sizeActual` property to `File` model for compressed storage size
+* Updated authentication examples from session to API key based
+* Breaking: Removed `updateDenyCanonicalEmailPolicy` method documentation
+
 ## 24.0.0
 
 * Breaking: Renamed `AuthMethod` enum to `ProjectAuthMethodId`
