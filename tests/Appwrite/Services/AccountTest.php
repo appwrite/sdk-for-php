@@ -929,6 +929,21 @@ final class AccountTest extends TestCase
         $this->assertInstanceOf(\Appwrite\Models\Session::class, $response);
     }
 
+    public function testMethodCreateOAuth2Session(): void
+    {
+        $data = '';
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->account->createOAuth2Session(
+            OAuthProvider::AMAZON()
+        );
+
+        $this->assertSame($data, $response);
+    }
+
     public function testMethodUpdatePhoneSession(): void
     {
         $data = array(
@@ -1165,6 +1180,71 @@ final class AccountTest extends TestCase
         $response = $this->account->updateStatus();
 
         $this->assertInstanceOf(\Appwrite\Models\User::class, $response);
+    }
+
+    public function testMethodCreatePushTarget(): void
+    {
+        $data = array(
+            "\$id" => "259125845563242502",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "name" => "Apple iPhone 12",
+            "userId" => "259125845563242502",
+            "providerType" => "email",
+            "identifier" => "token",
+            "expired" => true
+        );
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->account->createPushTarget(
+            "<TARGET_ID>",
+            "<IDENTIFIER>"
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\Target::class, $response);
+    }
+
+    public function testMethodUpdatePushTarget(): void
+    {
+        $data = array(
+            "\$id" => "259125845563242502",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "name" => "Apple iPhone 12",
+            "userId" => "259125845563242502",
+            "providerType" => "email",
+            "identifier" => "token",
+            "expired" => true
+        );
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->account->updatePushTarget(
+            "<TARGET_ID>",
+            "<IDENTIFIER>"
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\Target::class, $response);
+    }
+
+    public function testMethodDeletePushTarget(): void
+    {
+        $data = '';
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+
+        $response = $this->account->deletePushTarget(
+            "<TARGET_ID>"
+        );
+
+        $this->assertSame($data, $response);
     }
 
     public function testMethodCreateEmailToken(): void

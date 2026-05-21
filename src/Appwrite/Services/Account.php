@@ -1157,6 +1157,67 @@ class Account extends Service
     }
 
     /**
+     * Allow the user to login to their account using the OAuth2 provider of their
+     * choice. Each OAuth2 provider should be enabled from the Appwrite console
+     * first. Use the success and failure arguments to provide a redirect URL's
+     * back to your app when login is completed.
+     * 
+     * If there is already an active session, the new session will be attached to
+     * the logged-in account. If there are no active sessions, the server will
+     * attempt to look for a user with the same email address as the email
+     * received from the OAuth2 provider and attach the new session to the
+     * existing user. If no matching user is found - the server will create a new
+     * user.
+     * 
+     * A user is limited to 10 active sessions at a time by default. [Learn more
+     * about session
+     * limits](https://appwrite.io/docs/authentication-security#limits).
+     * 
+     *
+     * @param OAuthProvider $provider
+     * @param ?string $success
+     * @param ?string $failure
+     * @param ?array $scopes
+     * @throws AppwriteException
+     * @return string
+     */
+    public function createOAuth2Session(OAuthProvider $provider, ?string $success = null, ?string $failure = null, ?array $scopes = null): string
+    {
+        $apiPath = str_replace(
+            ['{provider}'],
+            [$provider],
+            '/account/sessions/oauth2/{provider}'
+        );
+
+        $apiParams = [];
+        $apiParams['provider'] = $provider;
+
+        if (!is_null($success)) {
+            $apiParams['success'] = $success;
+        }
+
+        if (!is_null($failure)) {
+            $apiParams['failure'] = $failure;
+        }
+
+        if (!is_null($scopes)) {
+            $apiParams['scopes'] = $scopes;
+        }
+
+        $apiHeaders = [];
+
+        $response = $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams, 'location'
+        );
+
+        return $response;
+
+    }
+
+    /**
      * Use this endpoint to create a session from token. Provide the **userId**
      * and **secret** parameters from the successful response of authentication
      * flows initiated by token creation. For example, magic URL and phone login.
@@ -1382,6 +1443,129 @@ class Account extends Service
         }
 
         return \Appwrite\Models\User::from($response);
+
+    }
+
+    /**
+     * Use this endpoint to register a device for push notifications. Provide a
+     * target ID (custom or generated using ID.unique()), a device identifier
+     * (usually a device token), and optionally specify which provider should send
+     * notifications to this target. The target is automatically linked to the
+     * current session and includes device information like brand and model.
+     *
+     * @param string $targetId
+     * @param string $identifier
+     * @param ?string $providerId
+     * @throws AppwriteException
+     * @return \Appwrite\Models\Target
+     */
+    public function createPushTarget(string $targetId, string $identifier, ?string $providerId = null): \Appwrite\Models\Target
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/account/targets/push'
+        );
+
+        $apiParams = [];
+        $apiParams['targetId'] = $targetId;
+        $apiParams['identifier'] = $identifier;
+
+        if (!is_null($providerId)) {
+            $apiParams['providerId'] = $providerId;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Target::from($response);
+
+    }
+
+    /**
+     * Update the currently logged in user's push notification target. You can
+     * modify the target's identifier (device token) and provider ID (token,
+     * email, phone etc.). The target must exist and belong to the current user.
+     * If you change the provider ID, notifications will be sent through the new
+     * messaging provider instead.
+     *
+     * @param string $targetId
+     * @param string $identifier
+     * @throws AppwriteException
+     * @return \Appwrite\Models\Target
+     */
+    public function updatePushTarget(string $targetId, string $identifier): \Appwrite\Models\Target
+    {
+        $apiPath = str_replace(
+            ['{targetId}'],
+            [$targetId],
+            '/account/targets/{targetId}/push'
+        );
+
+        $apiParams = [];
+        $apiParams['targetId'] = $targetId;
+        $apiParams['identifier'] = $identifier;
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PUT,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Target::from($response);
+
+    }
+
+    /**
+     * Delete a push notification target for the currently logged in user. After
+     * deletion, the device will no longer receive push notifications. The target
+     * must exist and belong to the current user.
+     *
+     * @param string $targetId
+     * @throws AppwriteException
+     * @return string
+     */
+    public function deletePushTarget(string $targetId): string
+    {
+        $apiPath = str_replace(
+            ['{targetId}'],
+            [$targetId],
+            '/account/targets/{targetId}/push'
+        );
+
+        $apiParams = [];
+        $apiParams['targetId'] = $targetId;
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_DELETE,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        return $response;
 
     }
 

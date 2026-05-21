@@ -37,9 +37,6 @@ class BuildRuntime implements JsonSerializable
     private static BuildRuntime $PYTHONML311;
     private static BuildRuntime $PYTHONML312;
     private static BuildRuntime $PYTHONML313;
-    private static BuildRuntime $DENO121;
-    private static BuildRuntime $DENO124;
-    private static BuildRuntime $DENO135;
     private static BuildRuntime $DENO140;
     private static BuildRuntime $DENO146;
     private static BuildRuntime $DENO20;
@@ -332,27 +329,6 @@ class BuildRuntime implements JsonSerializable
             self::$PYTHONML313 = new BuildRuntime('python-ml-3.13');
         }
         return self::$PYTHONML313;
-    }
-    public static function DENO121(): BuildRuntime
-    {
-        if (!isset(self::$DENO121)) {
-            self::$DENO121 = new BuildRuntime('deno-1.21');
-        }
-        return self::$DENO121;
-    }
-    public static function DENO124(): BuildRuntime
-    {
-        if (!isset(self::$DENO124)) {
-            self::$DENO124 = new BuildRuntime('deno-1.24');
-        }
-        return self::$DENO124;
-    }
-    public static function DENO135(): BuildRuntime
-    {
-        if (!isset(self::$DENO135)) {
-            self::$DENO135 = new BuildRuntime('deno-1.35');
-        }
-        return self::$DENO135;
     }
     public static function DENO140(): BuildRuntime
     {
@@ -795,9 +771,6 @@ class BuildRuntime implements JsonSerializable
             'python-ml-3.11' => self::PYTHONML311(),
             'python-ml-3.12' => self::PYTHONML312(),
             'python-ml-3.13' => self::PYTHONML313(),
-            'deno-1.21' => self::DENO121(),
-            'deno-1.24' => self::DENO124(),
-            'deno-1.35' => self::DENO135(),
             'deno-1.40' => self::DENO140(),
             'deno-1.46' => self::DENO146(),
             'deno-2.0' => self::DENO20(),
