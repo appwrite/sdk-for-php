@@ -518,6 +518,8 @@ class Storage extends Service
             }, $this->client, Client::class);
             [$endpoint, $globalHeaders, $selfSigned, $timeout, $connectTimeout] = $clientConfig();
             $responseHeaders = [];
+            $lastResponse = $response;
+            $completedResponse = null;
 
             $makeHandle = function(array $chunk) use ($readChunk, $apiPath, $apiHeaders, $apiParams, $mimeType, $postedName, $size, $uploadId, $endpoint, $globalHeaders, $selfSigned, $timeout, $connectTimeout, $flattenParams, &$responseHeaders) {
                 $chunkParams = $apiParams;
@@ -576,53 +578,59 @@ class Storage extends Service
                     curl_multi_add_handle($multiHandle, $ch);
                 }
 
-                do {
-                    $status = curl_multi_exec($multiHandle, $active);
-                    if ($active) {
-                        curl_multi_select($multiHandle);
-                    }
-                } while ($active && $status == CURLM_OK);
+                try {
+                    do {
+                        $status = curl_multi_exec($multiHandle, $active);
+                        if ($active) {
+                            curl_multi_select($multiHandle);
+                        }
+                    } while ($active && ($status == CURLM_OK || $status == CURLM_CALL_MULTI_PERFORM));
 
-                foreach ($handles as $handleInfo) {
-                    $ch = $handleInfo['handle'];
-                    $body = curl_multi_getcontent($ch);
-                    $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-                    $contentType = $responseHeaders[spl_object_id($ch)]['content-type'] ?? '';
+                    foreach ($handles as $handleInfo) {
+                        $ch = $handleInfo['handle'];
+                        $body = curl_multi_getcontent($ch);
+                        $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+                        $contentType = $responseHeaders[spl_object_id($ch)]['content-type'] ?? '';
 
-                    if (curl_errno($ch)) {
-                        throw new AppwriteException(curl_error($ch), $statusCode, '', $body);
-                    }
-
-                    $chunkResponse = str_starts_with($contentType, 'application/json') ? json_decode($body, true) : $body;
-
-                    if($statusCode >= 400) {
-                        if(is_array($chunkResponse)) {
-                            throw new AppwriteException($chunkResponse['message'], $statusCode, $chunkResponse['type'] ?? '', json_encode($chunkResponse));
+                        if (curl_errno($ch)) {
+                            throw new AppwriteException(curl_error($ch), $statusCode, '', $body);
                         }
 
-                        throw new AppwriteException($chunkResponse, $statusCode, '', $chunkResponse);
-                    }
+                        $chunkResponse = str_starts_with($contentType, 'application/json') ? json_decode($body, true) : $body;
 
-                    $completedCount++;
-                    $uploadedSize += $handleInfo['chunk']['end'] - $handleInfo['chunk']['start'];
-                    if($isUploadComplete($chunkResponse)) {
-                        $response = $chunkResponse;
-                    }
-                    if($onProgress !== null) {
-                        $onProgress([
-                            '$id' => $uploadId,
-                            'progress' => $uploadedSize / $size * 100,
-                            'sizeUploaded' => $uploadedSize,
-                            'chunksTotal' => $totalChunks,
-                            'chunksUploaded' => $completedCount,
-                        ]);
-                    }
+                        if($statusCode >= 400) {
+                            if(is_array($chunkResponse)) {
+                                throw new AppwriteException($chunkResponse['message'], $statusCode, $chunkResponse['type'] ?? '', json_encode($chunkResponse));
+                            }
 
-                    curl_multi_remove_handle($multiHandle, $ch);
+                            throw new AppwriteException($chunkResponse, $statusCode, '', $chunkResponse);
+                        }
+
+                        $completedCount++;
+                        $uploadedSize += $handleInfo['chunk']['end'] - $handleInfo['chunk']['start'];
+                        $lastResponse = $chunkResponse;
+                        if($isUploadComplete($chunkResponse)) {
+                            $completedResponse = $chunkResponse;
+                        }
+                        if($onProgress !== null) {
+                            $onProgress([
+                                '$id' => $uploadId,
+                                'progress' => $uploadedSize / $size * 100,
+                                'sizeUploaded' => $uploadedSize,
+                                'chunksTotal' => $totalChunks,
+                                'chunksUploaded' => $completedCount,
+                            ]);
+                        }
+                    }
+                } finally {
+                    foreach ($handles as $handleInfo) {
+                        curl_multi_remove_handle($multiHandle, $handleInfo['handle']);
+                        curl_close($handleInfo['handle']);
+                    }
+                    curl_multi_close($multiHandle);
                 }
-
-                curl_multi_close($multiHandle);
             }
+            $response = $completedResponse ?? $lastResponse;
 
         }
         if(!empty($handle)) {
