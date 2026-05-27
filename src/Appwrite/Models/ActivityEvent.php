@@ -13,10 +13,10 @@ readonly class ActivityEvent
      * ActivityEvent constructor.
      *
      * @param string $id event id.
-     * @param string $userType user type.
-     * @param string $userId user id.
-     * @param string $userEmail user email.
-     * @param string $userName user name.
+     * @param string $actorType actor type.
+     * @param string $actorId actor id.
+     * @param string $actorEmail actor email.
+     * @param string $actorName actor name.
      * @param string $resourceParent resource parent.
      * @param string $resourceType resource type.
      * @param string $resourceId resource id.
@@ -47,10 +47,10 @@ readonly class ActivityEvent
      */
     public function __construct(
         public string $id,
-        public string $userType,
-        public string $userId,
-        public string $userEmail,
-        public string $userName,
+        public string $actorType,
+        public string $actorId,
+        public string $actorEmail,
+        public string $actorName,
         public string $resourceParent,
         public string $resourceType,
         public string $resourceId,
@@ -89,17 +89,17 @@ readonly class ActivityEvent
         if (!array_key_exists('$id', $data)) {
             throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
         }
-        if (!array_key_exists('userType', $data)) {
-            throw new \InvalidArgumentException('Missing required field "userType" for ' . static::class . '.');
+        if (!array_key_exists('actorType', $data)) {
+            throw new \InvalidArgumentException('Missing required field "actorType" for ' . static::class . '.');
         }
-        if (!array_key_exists('userId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "userId" for ' . static::class . '.');
+        if (!array_key_exists('actorId', $data)) {
+            throw new \InvalidArgumentException('Missing required field "actorId" for ' . static::class . '.');
         }
-        if (!array_key_exists('userEmail', $data)) {
-            throw new \InvalidArgumentException('Missing required field "userEmail" for ' . static::class . '.');
+        if (!array_key_exists('actorEmail', $data)) {
+            throw new \InvalidArgumentException('Missing required field "actorEmail" for ' . static::class . '.');
         }
-        if (!array_key_exists('userName', $data)) {
-            throw new \InvalidArgumentException('Missing required field "userName" for ' . static::class . '.');
+        if (!array_key_exists('actorName', $data)) {
+            throw new \InvalidArgumentException('Missing required field "actorName" for ' . static::class . '.');
         }
         if (!array_key_exists('resourceParent', $data)) {
             throw new \InvalidArgumentException('Missing required field "resourceParent" for ' . static::class . '.');
@@ -185,10 +185,10 @@ readonly class ActivityEvent
 
         return new static(
             id: $data['$id'],
-            userType: $data['userType'],
-            userId: $data['userId'],
-            userEmail: $data['userEmail'],
-            userName: $data['userName'],
+            actorType: $data['actorType'],
+            actorId: $data['actorId'],
+            actorEmail: $data['actorEmail'],
+            actorName: $data['actorName'],
             resourceParent: $data['resourceParent'],
             resourceType: $data['resourceType'],
             resourceId: $data['resourceId'],
@@ -226,10 +226,10 @@ readonly class ActivityEvent
     {
         $result = [
             '$id' => static::serializeValue($this->id),
-            'userType' => static::serializeValue($this->userType),
-            'userId' => static::serializeValue($this->userId),
-            'userEmail' => static::serializeValue($this->userEmail),
-            'userName' => static::serializeValue($this->userName),
+            'actorType' => static::serializeValue($this->actorType),
+            'actorId' => static::serializeValue($this->actorId),
+            'actorEmail' => static::serializeValue($this->actorEmail),
+            'actorName' => static::serializeValue($this->actorName),
             'resourceParent' => static::serializeValue($this->resourceParent),
             'resourceType' => static::serializeValue($this->resourceType),
             'resourceId' => static::serializeValue($this->resourceId),

@@ -10,6 +10,7 @@ class BackupServices implements JsonSerializable
     private static BackupServices $TABLESDB;
     private static BackupServices $DOCUMENTSDB;
     private static BackupServices $VECTORSDB;
+    private static BackupServices $DEDICATEDDATABASES;
     private static BackupServices $FUNCTIONS;
     private static BackupServices $STORAGE;
 
@@ -58,6 +59,13 @@ class BackupServices implements JsonSerializable
         }
         return self::$VECTORSDB;
     }
+    public static function DEDICATEDDATABASES(): BackupServices
+    {
+        if (!isset(self::$DEDICATEDDATABASES)) {
+            self::$DEDICATEDDATABASES = new BackupServices('dedicatedDatabases');
+        }
+        return self::$DEDICATEDDATABASES;
+    }
     public static function FUNCTIONS(): BackupServices
     {
         if (!isset(self::$FUNCTIONS)) {
@@ -80,6 +88,7 @@ class BackupServices implements JsonSerializable
             'tablesdb' => self::TABLESDB(),
             'documentsdb' => self::DOCUMENTSDB(),
             'vectorsdb' => self::VECTORSDB(),
+            'dedicatedDatabases' => self::DEDICATEDDATABASES(),
             'functions' => self::FUNCTIONS(),
             'storage' => self::STORAGE(),
             default => throw new \InvalidArgumentException('Unknown BackupServices value: ' . $value),

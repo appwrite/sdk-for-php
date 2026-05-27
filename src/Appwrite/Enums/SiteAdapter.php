@@ -4,10 +4,10 @@ namespace Appwrite\Enums;
 
 use JsonSerializable;
 
-class Adapter implements JsonSerializable
+class SiteAdapter implements JsonSerializable
 {
-    private static Adapter $STATIC;
-    private static Adapter $SSR;
+    private static SiteAdapter $STATIC;
+    private static SiteAdapter $SSR;
 
     private string $value;
 
@@ -26,17 +26,17 @@ class Adapter implements JsonSerializable
         return $this->value;
     }
 
-    public static function STATIC(): Adapter
+    public static function STATIC(): SiteAdapter
     {
         if (!isset(self::$STATIC)) {
-            self::$STATIC = new Adapter('static');
+            self::$STATIC = new SiteAdapter('static');
         }
         return self::$STATIC;
     }
-    public static function SSR(): Adapter
+    public static function SSR(): SiteAdapter
     {
         if (!isset(self::$SSR)) {
-            self::$SSR = new Adapter('ssr');
+            self::$SSR = new SiteAdapter('ssr');
         }
         return self::$SSR;
     }
@@ -46,7 +46,7 @@ class Adapter implements JsonSerializable
         return match ($value) {
             'static' => self::STATIC(),
             'ssr' => self::SSR(),
-            default => throw new \InvalidArgumentException('Unknown Adapter value: ' . $value),
+            default => throw new \InvalidArgumentException('Unknown SiteAdapter value: ' . $value),
         };
     }
 }

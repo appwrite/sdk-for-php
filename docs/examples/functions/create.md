@@ -3,8 +3,8 @@
 
 use Appwrite\Client;
 use Appwrite\Services\Functions;
-use Appwrite\Enums\Runtime;
-use Appwrite\Enums\Scopes;
+use Appwrite\Enums\FunctionRuntime;
+use Appwrite\Enums\ProjectKeyScopes;
 
 $client = (new Client())
     ->setEndpoint('https://<REGION>.cloud.appwrite.io/v1') // Your API Endpoint
@@ -16,7 +16,7 @@ $functions = new Functions($client);
 $result = $functions->create(
     functionId: '<FUNCTION_ID>',
     name: '<NAME>',
-    runtime: Runtime::NODE145(),
+    runtime: FunctionRuntime::NODE145(),
     execute: ["any"], // optional
     events: [], // optional
     schedule: '', // optional
@@ -25,12 +25,14 @@ $result = $functions->create(
     logging: false, // optional
     entrypoint: '<ENTRYPOINT>', // optional
     commands: '<COMMANDS>', // optional
-    scopes: [Scopes::PROJECTREAD()], // optional
+    scopes: [ProjectKeyScopes::PROJECTREAD()], // optional
     installationId: '<INSTALLATION_ID>', // optional
     providerRepositoryId: '<PROVIDER_REPOSITORY_ID>', // optional
     providerBranch: '<PROVIDER_BRANCH>', // optional
     providerSilentMode: false, // optional
     providerRootDirectory: '<PROVIDER_ROOT_DIRECTORY>', // optional
+    providerBranches: [], // optional
+    providerPaths: [], // optional
     buildSpecification: '', // optional
     runtimeSpecification: '', // optional
     deploymentRetention: 0 // optional

@@ -6,7 +6,7 @@ use Appwrite\Client;
 use Appwrite\InputFile;
 use Mockery;
 use PHPUnit\Framework\TestCase;
-use Appwrite\Enums\Name;
+use Appwrite\Enums\HealthQueueName;
 
 final class HealthTest extends TestCase
 {
@@ -241,7 +241,7 @@ final class HealthTest extends TestCase
             ->andReturn($data);
 
         $response = $this->health->getFailedJobs(
-            Name::V1DATABASE()
+            HealthQueueName::V1DATABASE()
         );
 
         $this->assertInstanceOf(\Appwrite\Models\HealthQueue::class, $response);

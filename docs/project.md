@@ -501,7 +501,7 @@ PATCH https://cloud.appwrite.io/v1/project/oauth2/google
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | clientId | string | 'Client ID' of Google OAuth2 app. For example: 120000000095-92ifjb00000000000000000000g7ijfb.apps.googleusercontent.com |  |
-| clientSecret | string | 'Client Secret' of Google OAuth2 app. For example: example-google-client-secret |  |
+| clientSecret | string | 'Client Secret' of Google OAuth2 app. For example: GOCSPX-2k8gsR0000000000000000VNahJj |  |
 | prompt | array | Array of Google OAuth2 prompt values. If "none" is included, it must be the only element. "none" means: don't display any authentication or consent screens. Must not be specified with other values. "consent" means: prompt the user for consent. "select_account" means: prompt the user to select an account. |  |
 | enabled | boolean | OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid. |  |
 
@@ -549,7 +549,7 @@ PATCH https://cloud.appwrite.io/v1/project/oauth2/linkedin
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | clientId | string | 'Client ID' of Linkedin OAuth2 app. For example: 770000000000dv |  |
-| primaryClientSecret | string | 'Primary Client Secret or Secondary Client Secret' of Linkedin OAuth2 app. For example: example-linkedin-client-secret |  |
+| primaryClientSecret | string | 'Primary Client Secret or Secondary Client Secret' of Linkedin OAuth2 app. For example: WPL_AP1.2Bf0000000000000./HtlYw== |  |
 | enabled | boolean | OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid. |  |
 
 
@@ -1292,12 +1292,12 @@ PATCH https://cloud.appwrite.io/v1/project/smtp
 | --- | --- | --- | --- |
 | host | string | SMTP server hostname (domain) |  |
 | port | integer | SMTP server port |  |
-| username | string | SMTP server username. Leave empty for no authorization. |  |
-| password | string | SMTP server password. Leave empty for no authorization. This property is stored securely and cannot be read in future (write-only). |  |
-| senderEmail | string | Email address shown in inbox as the sender of the email. |  |
-| senderName | string | Name shown in inbox as the sender of the email. |  |
-| replyToEmail | string | Email used when user replies to the email. |  |
-| replyToName | string | Name used when user replies to the email. |  |
+| username | string | SMTP server username. Pass an empty string to clear a previously set value. |  |
+| password | string | SMTP server password. Pass an empty string to clear a previously set value. This property is stored securely and cannot be read in future (write-only). |  |
+| senderEmail | string | Email address shown in inbox as the sender of the email. Pass an empty string to clear a previously set value. |  |
+| senderName | string | Name shown in inbox as the sender of the email. Pass an empty string to clear a previously set value. |  |
+| replyToEmail | string | Email used when user replies to the email. Pass an empty string to clear a previously set value. |  |
+| replyToName | string | Name used when user replies to the email. Pass an empty string to clear a previously set value. |  |
 | secure | string | Configures if communication with SMTP server is encrypted. Allowed values are: tls, ssl. Leave empty for no encryption. |  |
 | enabled | boolean | Enable or disable custom SMTP. Custom SMTP is useful for branding purposes, but also allows use of custom email templates. |  |
 
@@ -1344,8 +1344,8 @@ PATCH https://cloud.appwrite.io/v1/project/templates/email
 | subject | string | Subject of the email template. Can be up to 255 characters. |  |
 | message | string | Plain or HTML body of the email template message. Can be up to 10MB of content. |  |
 | senderName | string | Name of the email sender. |  |
-| senderEmail | string | Email of the sender. |  |
-| replyToEmail | string | Reply to email. |  |
+| senderEmail | string | Email of the sender. Pass an empty string to clear a previously set value. |  |
+| replyToEmail | string | Reply to email. Pass an empty string to clear a previously set value. |  |
 | replyToName | string | Reply to name. |  |
 
 

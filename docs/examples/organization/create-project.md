@@ -2,17 +2,18 @@
 <?php
 
 use Appwrite\Client;
-use Appwrite\Services\Health;
-use Appwrite\Enums\HealthQueueName;
+use Appwrite\Services\Organization;
+use Appwrite\Enums\Region;
 
 $client = (new Client())
     ->setEndpoint('https://<REGION>.cloud.appwrite.io/v1') // Your API Endpoint
     ->setProject('<YOUR_PROJECT_ID>') // Your project ID
     ->setKey('<YOUR_API_KEY>'); // Your secret API key
 
-$health = new Health($client);
+$organization = new Organization($client);
 
-$result = $health->getFailedJobs(
-    name: HealthQueueName::V1DATABASE(),
-    threshold: null // optional
+$result = $organization->createProject(
+    projectId: '',
+    name: '<NAME>',
+    region: Region::FRA() // optional
 );```

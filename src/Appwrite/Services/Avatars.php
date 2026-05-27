@@ -9,7 +9,7 @@ use Appwrite\InputFile;
 use Appwrite\Enums\Browser;
 use Appwrite\Enums\CreditCard;
 use Appwrite\Enums\Flag;
-use Appwrite\Enums\Theme;
+use Appwrite\Enums\BrowserTheme;
 use Appwrite\Enums\Timezone;
 use Appwrite\Enums\BrowserPermission;
 use Appwrite\Enums\ImageFormat;
@@ -399,7 +399,7 @@ class Avatars extends Service
      * @param ?int $viewportWidth
      * @param ?int $viewportHeight
      * @param ?float $scale
-     * @param ?Theme $theme
+     * @param ?BrowserTheme $theme
      * @param ?string $userAgent
      * @param ?bool $fullpage
      * @param ?string $locale
@@ -417,7 +417,7 @@ class Avatars extends Service
      * @throws AppwriteException
      * @return string
      */
-    public function getScreenshot(string $url, ?array $headers = null, ?int $viewportWidth = null, ?int $viewportHeight = null, ?float $scale = null, ?Theme $theme = null, ?string $userAgent = null, ?bool $fullpage = null, ?string $locale = null, ?Timezone $timezone = null, ?float $latitude = null, ?float $longitude = null, ?float $accuracy = null, ?bool $touch = null, ?array $permissions = null, ?int $sleep = null, ?int $width = null, ?int $height = null, ?int $quality = null, ?ImageFormat $output = null): string
+    public function getScreenshot(string $url, ?array $headers = null, ?int $viewportWidth = null, ?int $viewportHeight = null, ?float $scale = null, ?BrowserTheme $theme = null, ?string $userAgent = null, ?bool $fullpage = null, ?string $locale = null, ?Timezone $timezone = null, ?float $latitude = null, ?float $longitude = null, ?float $accuracy = null, ?bool $touch = null, ?array $permissions = null, ?int $sleep = null, ?int $width = null, ?int $height = null, ?int $quality = null, ?ImageFormat $output = null): string
     {
         $apiPath = str_replace(
             [],

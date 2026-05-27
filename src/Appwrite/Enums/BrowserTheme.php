@@ -4,10 +4,10 @@ namespace Appwrite\Enums;
 
 use JsonSerializable;
 
-class Theme implements JsonSerializable
+class BrowserTheme implements JsonSerializable
 {
-    private static Theme $LIGHT;
-    private static Theme $DARK;
+    private static BrowserTheme $LIGHT;
+    private static BrowserTheme $DARK;
 
     private string $value;
 
@@ -26,17 +26,17 @@ class Theme implements JsonSerializable
         return $this->value;
     }
 
-    public static function LIGHT(): Theme
+    public static function LIGHT(): BrowserTheme
     {
         if (!isset(self::$LIGHT)) {
-            self::$LIGHT = new Theme('light');
+            self::$LIGHT = new BrowserTheme('light');
         }
         return self::$LIGHT;
     }
-    public static function DARK(): Theme
+    public static function DARK(): BrowserTheme
     {
         if (!isset(self::$DARK)) {
-            self::$DARK = new Theme('dark');
+            self::$DARK = new BrowserTheme('dark');
         }
         return self::$DARK;
     }
@@ -46,7 +46,7 @@ class Theme implements JsonSerializable
         return match ($value) {
             'light' => self::LIGHT(),
             'dark' => self::DARK(),
-            default => throw new \InvalidArgumentException('Unknown Theme value: ' . $value),
+            default => throw new \InvalidArgumentException('Unknown BrowserTheme value: ' . $value),
         };
     }
 }

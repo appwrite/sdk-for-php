@@ -6,7 +6,7 @@ use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
 use Appwrite\InputFile;
-use Appwrite\Enums\StatusCode;
+use Appwrite\Enums\RedirectStatusCode;
 use Appwrite\Enums\ProxyResourceType;
 
 class Proxy extends Service
@@ -154,13 +154,13 @@ class Proxy extends Service
      *
      * @param string $domain
      * @param string $url
-     * @param StatusCode $statusCode
+     * @param RedirectStatusCode $statusCode
      * @param string $resourceId
      * @param ProxyResourceType $resourceType
      * @throws AppwriteException
      * @return \Appwrite\Models\ProxyRule
      */
-    public function createRedirectRule(string $domain, string $url, StatusCode $statusCode, string $resourceId, ProxyResourceType $resourceType): \Appwrite\Models\ProxyRule
+    public function createRedirectRule(string $domain, string $url, RedirectStatusCode $statusCode, string $resourceId, ProxyResourceType $resourceType): \Appwrite\Models\ProxyRule
     {
         $apiPath = str_replace(
             [],

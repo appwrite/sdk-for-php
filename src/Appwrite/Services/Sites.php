@@ -6,9 +6,9 @@ use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
 use Appwrite\InputFile;
-use Appwrite\Enums\Framework;
-use Appwrite\Enums\BuildRuntime;
-use Appwrite\Enums\Adapter;
+use Appwrite\Enums\SiteFramework;
+use Appwrite\Enums\SiteBuildRuntime;
+use Appwrite\Enums\SiteAdapter;
 use Appwrite\Enums\TemplateReferenceType;
 use Appwrite\Enums\VCSReferenceType;
 use Appwrite\Enums\DeploymentDownloadType;
@@ -74,8 +74,8 @@ class Sites extends Service
      *
      * @param string $siteId
      * @param string $name
-     * @param Framework $framework
-     * @param BuildRuntime $buildRuntime
+     * @param SiteFramework $framework
+     * @param SiteBuildRuntime $buildRuntime
      * @param ?bool $enabled
      * @param ?bool $logging
      * @param ?int $timeout
@@ -83,20 +83,22 @@ class Sites extends Service
      * @param ?string $buildCommand
      * @param ?string $startCommand
      * @param ?string $outputDirectory
-     * @param ?Adapter $adapter
+     * @param ?SiteAdapter $adapter
      * @param ?string $installationId
      * @param ?string $fallbackFile
      * @param ?string $providerRepositoryId
      * @param ?string $providerBranch
      * @param ?bool $providerSilentMode
      * @param ?string $providerRootDirectory
+     * @param ?array $providerBranches
+     * @param ?array $providerPaths
      * @param ?string $buildSpecification
      * @param ?string $runtimeSpecification
      * @param ?int $deploymentRetention
      * @throws AppwriteException
      * @return \Appwrite\Models\Site
      */
-    public function create(string $siteId, string $name, Framework $framework, BuildRuntime $buildRuntime, ?bool $enabled = null, ?bool $logging = null, ?int $timeout = null, ?string $installCommand = null, ?string $buildCommand = null, ?string $startCommand = null, ?string $outputDirectory = null, ?Adapter $adapter = null, ?string $installationId = null, ?string $fallbackFile = null, ?string $providerRepositoryId = null, ?string $providerBranch = null, ?bool $providerSilentMode = null, ?string $providerRootDirectory = null, ?string $buildSpecification = null, ?string $runtimeSpecification = null, ?int $deploymentRetention = null): \Appwrite\Models\Site
+    public function create(string $siteId, string $name, SiteFramework $framework, SiteBuildRuntime $buildRuntime, ?bool $enabled = null, ?bool $logging = null, ?int $timeout = null, ?string $installCommand = null, ?string $buildCommand = null, ?string $startCommand = null, ?string $outputDirectory = null, ?SiteAdapter $adapter = null, ?string $installationId = null, ?string $fallbackFile = null, ?string $providerRepositoryId = null, ?string $providerBranch = null, ?bool $providerSilentMode = null, ?string $providerRootDirectory = null, ?array $providerBranches = null, ?array $providerPaths = null, ?string $buildSpecification = null, ?string $runtimeSpecification = null, ?int $deploymentRetention = null): \Appwrite\Models\Site
     {
         $apiPath = str_replace(
             [],
@@ -164,6 +166,14 @@ class Sites extends Service
 
         if (!is_null($providerRootDirectory)) {
             $apiParams['providerRootDirectory'] = $providerRootDirectory;
+        }
+
+        if (!is_null($providerBranches)) {
+            $apiParams['providerBranches'] = $providerBranches;
+        }
+
+        if (!is_null($providerPaths)) {
+            $apiParams['providerPaths'] = $providerPaths;
         }
 
         if (!is_null($buildSpecification)) {
@@ -303,7 +313,7 @@ class Sites extends Service
      *
      * @param string $siteId
      * @param string $name
-     * @param Framework $framework
+     * @param SiteFramework $framework
      * @param ?bool $enabled
      * @param ?bool $logging
      * @param ?int $timeout
@@ -311,21 +321,23 @@ class Sites extends Service
      * @param ?string $buildCommand
      * @param ?string $startCommand
      * @param ?string $outputDirectory
-     * @param ?BuildRuntime $buildRuntime
-     * @param ?Adapter $adapter
+     * @param ?SiteBuildRuntime $buildRuntime
+     * @param ?SiteAdapter $adapter
      * @param ?string $fallbackFile
      * @param ?string $installationId
      * @param ?string $providerRepositoryId
      * @param ?string $providerBranch
      * @param ?bool $providerSilentMode
      * @param ?string $providerRootDirectory
+     * @param ?array $providerBranches
+     * @param ?array $providerPaths
      * @param ?string $buildSpecification
      * @param ?string $runtimeSpecification
      * @param ?int $deploymentRetention
      * @throws AppwriteException
      * @return \Appwrite\Models\Site
      */
-    public function update(string $siteId, string $name, Framework $framework, ?bool $enabled = null, ?bool $logging = null, ?int $timeout = null, ?string $installCommand = null, ?string $buildCommand = null, ?string $startCommand = null, ?string $outputDirectory = null, ?BuildRuntime $buildRuntime = null, ?Adapter $adapter = null, ?string $fallbackFile = null, ?string $installationId = null, ?string $providerRepositoryId = null, ?string $providerBranch = null, ?bool $providerSilentMode = null, ?string $providerRootDirectory = null, ?string $buildSpecification = null, ?string $runtimeSpecification = null, ?int $deploymentRetention = null): \Appwrite\Models\Site
+    public function update(string $siteId, string $name, SiteFramework $framework, ?bool $enabled = null, ?bool $logging = null, ?int $timeout = null, ?string $installCommand = null, ?string $buildCommand = null, ?string $startCommand = null, ?string $outputDirectory = null, ?SiteBuildRuntime $buildRuntime = null, ?SiteAdapter $adapter = null, ?string $fallbackFile = null, ?string $installationId = null, ?string $providerRepositoryId = null, ?string $providerBranch = null, ?bool $providerSilentMode = null, ?string $providerRootDirectory = null, ?array $providerBranches = null, ?array $providerPaths = null, ?string $buildSpecification = null, ?string $runtimeSpecification = null, ?int $deploymentRetention = null): \Appwrite\Models\Site
     {
         $apiPath = str_replace(
             ['{siteId}'],
@@ -397,6 +409,8 @@ class Sites extends Service
         if (!is_null($providerRootDirectory)) {
             $apiParams['providerRootDirectory'] = $providerRootDirectory;
         }
+        $apiParams['providerBranches'] = $providerBranches;
+        $apiParams['providerPaths'] = $providerPaths;
 
         if (!is_null($buildSpecification)) {
             $apiParams['buildSpecification'] = $buildSpecification;
@@ -641,35 +655,194 @@ class Sites extends Service
             $handle = @fopen($code->getPath(), "rb");
         }
 
+        $uploadId = '';
+                $totalChunks = (int) ceil($size / Client::CHUNK_SIZE);
+        $chunks = [];
         $start = $counter * Client::CHUNK_SIZE;
         while ($start < $size) {
-            $chunk = '';
-            if(!empty($handle)) {
-                fseek($handle, $start);
-                $chunk = @fread($handle, Client::CHUNK_SIZE);
-            } else {
-                $chunk = substr($code->getData(), $start, Client::CHUNK_SIZE);
-            }
-            $apiParams['code'] = new \CURLFile('data://' . $mimeType . ';base64,' . base64_encode($chunk), $mimeType, $postedName);
-            $apiHeaders['content-range'] = 'bytes ' . ($counter * Client::CHUNK_SIZE) . '-' . min(((($counter * Client::CHUNK_SIZE) + Client::CHUNK_SIZE) - 1), $size - 1) . '/' . $size;
-            if(!empty($id)) {
-                $apiHeaders['x-appwrite-id'] = $id;
-            }
-            $response = $this->client->call(Client::METHOD_POST, $apiPath, $apiHeaders, $apiParams);
+            $chunks[] = [
+                'index' => $counter,
+                'start' => $start,
+                'end' => min($start + Client::CHUNK_SIZE, $size),
+            ];
             $counter++;
             $start += Client::CHUNK_SIZE;
-            if(empty($id)) {
-                $id = $response['$id'];
+        }
+
+        $readChunk = function(int $start, int $end) use ($handle, $code) {
+            if(!empty($handle)) {
+                fseek($handle, $start);
+                return @fread($handle, $end - $start);
             }
+
+            return substr($code->getData(), $start, $end - $start);
+        };
+
+        $uploadChunk = function(array $chunk, string $currentUploadId = '') use ($readChunk, $apiPath, $apiHeaders, $apiParams, $mimeType, $postedName, $size) {
+            $chunkParams = $apiParams;
+            $chunkHeaders = $apiHeaders;
+            $data = $readChunk($chunk['start'], $chunk['end']);
+            $chunkParams['code'] = new \CURLFile('data://' . $mimeType . ';base64,' . base64_encode($data), $mimeType, $postedName);
+            $chunkHeaders['content-range'] = 'bytes ' . $chunk['start'] . '-' . ($chunk['end'] - 1) . '/' . $size;
+            if(!empty($currentUploadId)) {
+                $chunkHeaders['x-appwrite-id'] = $currentUploadId;
+            }
+
+            return $this->client->call(Client::METHOD_POST, $apiPath, $chunkHeaders, $chunkParams);
+        };
+
+        $isUploadComplete = function($chunkResponse) use ($totalChunks): bool {
+            if(!is_array($chunkResponse) || !isset($chunkResponse['chunksUploaded'])) {
+                return false;
+            }
+
+            return (int) $chunkResponse['chunksUploaded'] >= (int) ($chunkResponse['chunksTotal'] ?? $totalChunks);
+        };
+
+        if (!empty($chunks)) {
+            $response = $uploadChunk($chunks[0], $uploadId);
+            if(empty($uploadId)) {
+                $uploadId = $response['$id'];
+            }
+            $completedCount = $chunks[0]['index'] + 1;
+            $uploadedSize = $chunks[0]['end'];
             if($onProgress !== null) {
                 $onProgress([
                     '$id' => $response['$id'],
-                    'progress' => min(((($counter * Client::CHUNK_SIZE) + Client::CHUNK_SIZE)), $size) / $size * 100,
-                    'sizeUploaded' => min($counter * Client::CHUNK_SIZE),
-                    'chunksTotal' => $response['chunksTotal'],
-                    'chunksUploaded' => $response['chunksUploaded'],
+                    'progress' => $uploadedSize / $size * 100,
+                    'sizeUploaded' => $uploadedSize,
+                    'chunksTotal' => $totalChunks,
+                    'chunksUploaded' => $completedCount,
                 ]);
             }
+
+            $remainingChunks = array_slice($chunks, 1);
+            $clientConfig = \Closure::bind(function() {
+                if (property_exists($this, 'key') && $this->key !== null) {
+                    $this->headers['authorization'] = $this->getAuthorization();
+                }
+
+                return [$this->endpoint, $this->headers, $this->selfSigned, $this->timeout, $this->connectTimeout];
+            }, $this->client, Client::class);
+            $flattenParams = \Closure::bind(function(array $params): array {
+                return $this->flatten($params);
+            }, $this->client, Client::class);
+            [$endpoint, $globalHeaders, $selfSigned, $timeout, $connectTimeout] = $clientConfig();
+            $responseHeaders = [];
+            $lastResponse = $response;
+            $completedResponse = null;
+
+            $makeHandle = function(array $chunk) use ($readChunk, $apiPath, $apiHeaders, $apiParams, $mimeType, $postedName, $size, $uploadId, $endpoint, $globalHeaders, $selfSigned, $timeout, $connectTimeout, $flattenParams, &$responseHeaders) {
+                $chunkParams = $apiParams;
+                $chunkHeaders = array_merge($globalHeaders, $apiHeaders);
+                $data = $readChunk($chunk['start'], $chunk['end']);
+                $chunkParams['code'] = new \CURLFile('data://' . $mimeType . ';base64,' . base64_encode($data), $mimeType, $postedName);
+                $chunkHeaders['content-range'] = 'bytes ' . $chunk['start'] . '-' . ($chunk['end'] - 1) . '/' . $size;
+                if(!empty($uploadId)) {
+                    $chunkHeaders['x-appwrite-id'] = $uploadId;
+                }
+
+                $headers = [];
+                foreach ($chunkHeaders as $key => $value) {
+                    $headers[] = $key . ':' . $value;
+                }
+
+                $ch = curl_init($endpoint . $apiPath);
+                $responseHeaders[spl_object_id($ch)] = [];
+                curl_setopt($ch, CURLOPT_CUSTOMREQUEST, Client::METHOD_POST);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                curl_setopt($ch, CURLOPT_USERAGENT, php_uname('s') . '-' . php_uname('r') . ':php-' . phpversion());
+                curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $flattenParams($chunkParams));
+                curl_setopt($ch, CURLOPT_HEADERFUNCTION, function($curl, $header) use (&$responseHeaders) {
+                    $length = strlen($header);
+                    $header = explode(':', strtolower($header), 2);
+                    if (count($header) >= 2) {
+                        $responseHeaders[spl_object_id($curl)][strtolower(trim($header[0]))] = trim($header[1]);
+                    }
+
+                    return $length;
+                });
+                if($selfSigned) {
+                    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+                    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+                }
+                if($timeout !== null) {
+                    curl_setopt($ch, CURLOPT_TIMEOUT, $timeout);
+                }
+                if($connectTimeout !== null) {
+                    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $connectTimeout);
+                }
+
+                return $ch;
+            };
+
+            $nextChunk = 0;
+            while ($nextChunk < count($remainingChunks)) {
+                $multiHandle = curl_multi_init();
+                $handles = [];
+                for ($i = 0; $i < 8 && $nextChunk < count($remainingChunks); $i++, $nextChunk++) {
+                    $chunk = $remainingChunks[$nextChunk];
+                    $ch = $makeHandle($chunk);
+                    $handles[spl_object_id($ch)] = ['handle' => $ch, 'chunk' => $chunk];
+                    curl_multi_add_handle($multiHandle, $ch);
+                }
+
+                try {
+                    do {
+                        $status = curl_multi_exec($multiHandle, $active);
+                        if ($active) {
+                            curl_multi_select($multiHandle);
+                        }
+                    } while ($active && ($status == CURLM_OK || $status == CURLM_CALL_MULTI_PERFORM));
+
+                    foreach ($handles as $handleInfo) {
+                        $ch = $handleInfo['handle'];
+                        $body = curl_multi_getcontent($ch);
+                        $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+                        $contentType = $responseHeaders[spl_object_id($ch)]['content-type'] ?? '';
+
+                        if (curl_errno($ch)) {
+                            throw new AppwriteException(curl_error($ch), $statusCode, '', $body);
+                        }
+
+                        $chunkResponse = str_starts_with($contentType, 'application/json') ? json_decode($body, true) : $body;
+
+                        if($statusCode >= 400) {
+                            if(is_array($chunkResponse)) {
+                                throw new AppwriteException($chunkResponse['message'], $statusCode, $chunkResponse['type'] ?? '', json_encode($chunkResponse));
+                            }
+
+                            throw new AppwriteException($chunkResponse, $statusCode, '', $chunkResponse);
+                        }
+
+                        $completedCount++;
+                        $uploadedSize += $handleInfo['chunk']['end'] - $handleInfo['chunk']['start'];
+                        $lastResponse = $chunkResponse;
+                        if($isUploadComplete($chunkResponse)) {
+                            $completedResponse = $chunkResponse;
+                        }
+                        if($onProgress !== null) {
+                            $onProgress([
+                                '$id' => $uploadId,
+                                'progress' => $uploadedSize / $size * 100,
+                                'sizeUploaded' => $uploadedSize,
+                                'chunksTotal' => $totalChunks,
+                                'chunksUploaded' => $completedCount,
+                            ]);
+                        }
+                    }
+                } finally {
+                    foreach ($handles as $handleInfo) {
+                        curl_multi_remove_handle($multiHandle, $handleInfo['handle']);
+                        curl_close($handleInfo['handle']);
+                    }
+                    curl_multi_close($multiHandle);
+                }
+            }
+            $response = $completedResponse ?? $lastResponse;
+
         }
         if(!empty($handle)) {
             @fclose($handle);

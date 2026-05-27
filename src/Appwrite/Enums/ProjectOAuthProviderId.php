@@ -49,8 +49,6 @@ class ProjectOAuthProviderId implements JsonSerializable
     private static ProjectOAuthProviderId $YANDEX;
     private static ProjectOAuthProviderId $ZOHO;
     private static ProjectOAuthProviderId $ZOOM;
-    private static ProjectOAuthProviderId $GITHUBIMAGINE;
-    private static ProjectOAuthProviderId $GOOGLEIMAGINE;
 
     private string $value;
 
@@ -370,20 +368,6 @@ class ProjectOAuthProviderId implements JsonSerializable
         }
         return self::$ZOOM;
     }
-    public static function GITHUBIMAGINE(): ProjectOAuthProviderId
-    {
-        if (!isset(self::$GITHUBIMAGINE)) {
-            self::$GITHUBIMAGINE = new ProjectOAuthProviderId('githubImagine');
-        }
-        return self::$GITHUBIMAGINE;
-    }
-    public static function GOOGLEIMAGINE(): ProjectOAuthProviderId
-    {
-        if (!isset(self::$GOOGLEIMAGINE)) {
-            self::$GOOGLEIMAGINE = new ProjectOAuthProviderId('googleImagine');
-        }
-        return self::$GOOGLEIMAGINE;
-    }
 
     public static function from(string $value): self
     {
@@ -431,8 +415,6 @@ class ProjectOAuthProviderId implements JsonSerializable
             'yandex' => self::YANDEX(),
             'zoho' => self::ZOHO(),
             'zoom' => self::ZOOM(),
-            'githubImagine' => self::GITHUBIMAGINE(),
-            'googleImagine' => self::GOOGLEIMAGINE(),
             default => throw new \InvalidArgumentException('Unknown ProjectOAuthProviderId value: ' . $value),
         };
     }

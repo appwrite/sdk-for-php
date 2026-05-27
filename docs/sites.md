@@ -44,6 +44,8 @@ POST https://cloud.appwrite.io/v1/sites
 | providerBranch | string | Production branch for the repo linked to the site. |  |
 | providerSilentMode | boolean | Is the VCS (Version Control System) connection in silent mode for the repo linked to the site? In silent mode, comments will not be made on commits and pull requests. |  |
 | providerRootDirectory | string | Path to site code in the linked repo. |  |
+| providerBranches | array | List of branch name patterns to trigger automatic deployments. Supports wildcards. Leave empty to deploy on all branches. | [] |
+| providerPaths | array | List of file path patterns to trigger automatic deployments. Supports wildcards. Leave empty to deploy on all file changes. | [] |
 | buildSpecification | string | Build specification for the site deployments. | [] |
 | runtimeSpecification | string | Runtime specification for the SSR executions. | [] |
 | deploymentRetention | integer | Days to keep non-active deployments before deletion. Value 0 means all deployments will be kept. | 0 |
@@ -104,6 +106,8 @@ PUT https://cloud.appwrite.io/v1/sites/{siteId}
 | providerBranch | string | Production branch for the repo linked to the site. |  |
 | providerSilentMode | boolean | Is the VCS (Version Control System) connection in silent mode for the repo linked to the site? In silent mode, comments will not be made on commits and pull requests. |  |
 | providerRootDirectory | string | Path to site code in the linked repo. |  |
+| providerBranches | array | List of branch name patterns to trigger automatic deployments. Supports wildcards. Leave empty to deploy on all branches. |  |
+| providerPaths | array | List of file path patterns to trigger automatic deployments. Supports wildcards. Leave empty to deploy on all file changes. |  |
 | buildSpecification | string | Build specification for the site deployments. | [] |
 | runtimeSpecification | string | Runtime specification for the SSR executions. | [] |
 | deploymentRetention | integer | Days to keep non-active deployments before deletion. Value 0 means all deployments will be kept. | 0 |

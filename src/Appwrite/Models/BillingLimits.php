@@ -3,7 +3,7 @@
 namespace Appwrite\Models;
 
 /**
- * BillingLimits
+ * Limits
  */
 readonly class BillingLimits
 {

@@ -6,7 +6,7 @@ use Appwrite\Client;
 use Appwrite\InputFile;
 use Mockery;
 use PHPUnit\Framework\TestCase;
-use Appwrite\Enums\StatusCode;
+use Appwrite\Enums\RedirectStatusCode;
 use Appwrite\Enums\ProxyResourceType;
 
 final class ProxyTest extends TestCase
@@ -140,7 +140,7 @@ final class ProxyTest extends TestCase
         $response = $this->proxy->createRedirectRule(
             "",
             "https://example.com",
-            StatusCode::MOVEDPERMANENTLY301(),
+            RedirectStatusCode::MOVEDPERMANENTLY(),
             "<RESOURCE_ID>",
             ProxyResourceType::SITE()
         );

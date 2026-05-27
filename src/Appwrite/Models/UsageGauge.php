@@ -15,11 +15,15 @@ readonly class UsageGauge
      * @param string $metric the metric key.
      * @param int $value the current snapshot value.
      * @param string $time the snapshot timestamp.
+     * @param string $resourceType the resource type.
+     * @param string $resourceId the resource id.
      */
     public function __construct(
         public string $metric,
         public int $value,
-        public string $time
+        public string $time,
+        public string $resourceType,
+        public string $resourceId
     ) {
     }
 
@@ -37,11 +41,19 @@ readonly class UsageGauge
         if (!array_key_exists('time', $data)) {
             throw new \InvalidArgumentException('Missing required field "time" for ' . static::class . '.');
         }
+        if (!array_key_exists('resourceType', $data)) {
+            throw new \InvalidArgumentException('Missing required field "resourceType" for ' . static::class . '.');
+        }
+        if (!array_key_exists('resourceId', $data)) {
+            throw new \InvalidArgumentException('Missing required field "resourceId" for ' . static::class . '.');
+        }
 
         return new static(
             metric: $data['metric'],
             value: $data['value'],
-            time: $data['time']
+            time: $data['time'],
+            resourceType: $data['resourceType'],
+            resourceId: $data['resourceId']
         );
     }
 
@@ -53,7 +65,9 @@ readonly class UsageGauge
         $result = [
             'metric' => static::serializeValue($this->metric),
             'value' => static::serializeValue($this->value),
-            'time' => static::serializeValue($this->time)
+            'time' => static::serializeValue($this->time),
+            'resourceType' => static::serializeValue($this->resourceType),
+            'resourceId' => static::serializeValue($this->resourceId)
         ];
 
         return $result;

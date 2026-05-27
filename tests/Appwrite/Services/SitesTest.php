@@ -6,9 +6,9 @@ use Appwrite\Client;
 use Appwrite\InputFile;
 use Mockery;
 use PHPUnit\Framework\TestCase;
-use Appwrite\Enums\Framework;
-use Appwrite\Enums\BuildRuntime;
-use Appwrite\Enums\Adapter;
+use Appwrite\Enums\SiteFramework;
+use Appwrite\Enums\SiteBuildRuntime;
+use Appwrite\Enums\SiteAdapter;
 use Appwrite\Enums\TemplateReferenceType;
 use Appwrite\Enums\VCSReferenceType;
 use Appwrite\Enums\DeploymentDownloadType;
@@ -68,6 +68,8 @@ final class SitesTest extends TestCase
                     "providerBranch" => "main",
                     "providerRootDirectory" => "sites/helloWorld",
                     "providerSilentMode" => true,
+                    "providerBranches" => array(),
+                    "providerPaths" => array(),
                     "buildSpecification" => "s-1vcpu-512mb",
                     "runtimeSpecification" => "s-1vcpu-512mb",
                     "buildRuntime" => "node-22",
@@ -127,6 +129,8 @@ final class SitesTest extends TestCase
             "providerBranch" => "main",
             "providerRootDirectory" => "sites/helloWorld",
             "providerSilentMode" => true,
+            "providerBranches" => array(),
+            "providerPaths" => array(),
             "buildSpecification" => "s-1vcpu-512mb",
             "runtimeSpecification" => "s-1vcpu-512mb",
             "buildRuntime" => "node-22",
@@ -141,8 +145,8 @@ final class SitesTest extends TestCase
         $response = $this->sites->create(
             "<SITE_ID>",
             "<NAME>",
-            Framework::ANALOG(),
-            BuildRuntime::NODE145()
+            SiteFramework::ANALOG(),
+            SiteBuildRuntime::NODE145()
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Site::class, $response);
@@ -244,6 +248,8 @@ final class SitesTest extends TestCase
             "providerBranch" => "main",
             "providerRootDirectory" => "sites/helloWorld",
             "providerSilentMode" => true,
+            "providerBranches" => array(),
+            "providerPaths" => array(),
             "buildSpecification" => "s-1vcpu-512mb",
             "runtimeSpecification" => "s-1vcpu-512mb",
             "buildRuntime" => "node-22",
@@ -303,6 +309,8 @@ final class SitesTest extends TestCase
             "providerBranch" => "main",
             "providerRootDirectory" => "sites/helloWorld",
             "providerSilentMode" => true,
+            "providerBranches" => array(),
+            "providerPaths" => array(),
             "buildSpecification" => "s-1vcpu-512mb",
             "runtimeSpecification" => "s-1vcpu-512mb",
             "buildRuntime" => "node-22",
@@ -317,7 +325,7 @@ final class SitesTest extends TestCase
         $response = $this->sites->update(
             "<SITE_ID>",
             "<NAME>",
-            Framework::ANALOG()
+            SiteFramework::ANALOG()
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Site::class, $response);
@@ -379,6 +387,8 @@ final class SitesTest extends TestCase
             "providerBranch" => "main",
             "providerRootDirectory" => "sites/helloWorld",
             "providerSilentMode" => true,
+            "providerBranches" => array(),
+            "providerPaths" => array(),
             "buildSpecification" => "s-1vcpu-512mb",
             "runtimeSpecification" => "s-1vcpu-512mb",
             "buildRuntime" => "node-22",

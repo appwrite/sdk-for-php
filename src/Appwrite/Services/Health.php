@@ -6,7 +6,7 @@ use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
 use Appwrite\InputFile;
-use Appwrite\Enums\Name;
+use Appwrite\Enums\HealthQueueName;
 
 class Health extends Service
 {
@@ -470,12 +470,12 @@ class Health extends Service
      * Returns the amount of failed jobs in a given queue.
      * 
      *
-     * @param Name $name
+     * @param HealthQueueName $name
      * @param ?int $threshold
      * @throws AppwriteException
      * @return \Appwrite\Models\HealthQueue
      */
-    public function getFailedJobs(Name $name, ?int $threshold = null): \Appwrite\Models\HealthQueue
+    public function getFailedJobs(HealthQueueName $name, ?int $threshold = null): \Appwrite\Models\HealthQueue
     {
         $apiPath = str_replace(
             ['{name}'],

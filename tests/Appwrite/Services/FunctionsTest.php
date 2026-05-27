@@ -6,8 +6,8 @@ use Appwrite\Client;
 use Appwrite\InputFile;
 use Mockery;
 use PHPUnit\Framework\TestCase;
-use Appwrite\Enums\Runtime;
-use Appwrite\Enums\Scopes;
+use Appwrite\Enums\FunctionRuntime;
+use Appwrite\Enums\ProjectKeyScopes;
 use Appwrite\Enums\TemplateReferenceType;
 use Appwrite\Enums\VCSReferenceType;
 use Appwrite\Enums\DeploymentDownloadType;
@@ -69,6 +69,8 @@ final class FunctionsTest extends TestCase
                     "providerBranch" => "main",
                     "providerRootDirectory" => "functions/helloWorld",
                     "providerSilentMode" => true,
+                    "providerBranches" => array(),
+                    "providerPaths" => array(),
                     "buildSpecification" => "s-1vcpu-512mb",
                     "runtimeSpecification" => "s-1vcpu-512mb"
                 )
@@ -126,6 +128,8 @@ final class FunctionsTest extends TestCase
             "providerBranch" => "main",
             "providerRootDirectory" => "functions/helloWorld",
             "providerSilentMode" => true,
+            "providerBranches" => array(),
+            "providerPaths" => array(),
             "buildSpecification" => "s-1vcpu-512mb",
             "runtimeSpecification" => "s-1vcpu-512mb"
         );
@@ -137,7 +141,7 @@ final class FunctionsTest extends TestCase
         $response = $this->functions->create(
             "<FUNCTION_ID>",
             "<NAME>",
-            Runtime::NODE145()
+            FunctionRuntime::NODE145()
         );
 
         $this->assertInstanceOf(\Appwrite\Models\FunctionModel::class, $response);
@@ -235,6 +239,8 @@ final class FunctionsTest extends TestCase
             "providerBranch" => "main",
             "providerRootDirectory" => "functions/helloWorld",
             "providerSilentMode" => true,
+            "providerBranches" => array(),
+            "providerPaths" => array(),
             "buildSpecification" => "s-1vcpu-512mb",
             "runtimeSpecification" => "s-1vcpu-512mb"
         );
@@ -292,6 +298,8 @@ final class FunctionsTest extends TestCase
             "providerBranch" => "main",
             "providerRootDirectory" => "functions/helloWorld",
             "providerSilentMode" => true,
+            "providerBranches" => array(),
+            "providerPaths" => array(),
             "buildSpecification" => "s-1vcpu-512mb",
             "runtimeSpecification" => "s-1vcpu-512mb"
         );
@@ -365,6 +373,8 @@ final class FunctionsTest extends TestCase
             "providerBranch" => "main",
             "providerRootDirectory" => "functions/helloWorld",
             "providerSilentMode" => true,
+            "providerBranches" => array(),
+            "providerPaths" => array(),
             "buildSpecification" => "s-1vcpu-512mb",
             "runtimeSpecification" => "s-1vcpu-512mb"
         );
