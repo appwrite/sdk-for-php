@@ -171,7 +171,7 @@ class Presences extends Service
      * @throws AppwriteException
      * @return \Appwrite\Models\Presence
      */
-    public function updatePresence(string $presenceId, string $userId, ?string $status = null, ?string $expiresAt = null, ?array $metadata = null, ?array $permissions = null, ?bool $purge = null): \Appwrite\Models\Presence
+    public function update(string $presenceId, string $userId, ?string $status = null, ?string $expiresAt = null, ?array $metadata = null, ?array $permissions = null, ?bool $purge = null): \Appwrite\Models\Presence
     {
         $apiPath = str_replace(
             ['{presenceId}'],

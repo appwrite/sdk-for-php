@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 use Appwrite\Enums\Browser;
 use Appwrite\Enums\CreditCard;
 use Appwrite\Enums\Flag;
-use Appwrite\Enums\Theme;
+use Appwrite\Enums\BrowserTheme;
 use Appwrite\Enums\Timezone;
 use Appwrite\Enums\BrowserPermission;
 use Appwrite\Enums\ImageFormat;

@@ -6,10 +6,10 @@ use JsonSerializable;
 
 class StatusCode implements JsonSerializable
 {
-    private static StatusCode $MOVEDPERMANENTLY301;
-    private static StatusCode $FOUND302;
-    private static StatusCode $TEMPORARYREDIRECT307;
-    private static StatusCode $PERMANENTREDIRECT308;
+    private static StatusCode $MOVEDPERMANENTLY;
+    private static StatusCode $FOUND;
+    private static StatusCode $TEMPORARYREDIRECT;
+    private static StatusCode $PERMANENTREDIRECT;
 
     private string $value;
 
@@ -28,42 +28,42 @@ class StatusCode implements JsonSerializable
         return $this->value;
     }
 
-    public static function MOVEDPERMANENTLY301(): StatusCode
+    public static function MOVEDPERMANENTLY(): StatusCode
     {
-        if (!isset(self::$MOVEDPERMANENTLY301)) {
-            self::$MOVEDPERMANENTLY301 = new StatusCode('301');
+        if (!isset(self::$MOVEDPERMANENTLY)) {
+            self::$MOVEDPERMANENTLY = new StatusCode('301');
         }
-        return self::$MOVEDPERMANENTLY301;
+        return self::$MOVEDPERMANENTLY;
     }
-    public static function FOUND302(): StatusCode
+    public static function FOUND(): StatusCode
     {
-        if (!isset(self::$FOUND302)) {
-            self::$FOUND302 = new StatusCode('302');
+        if (!isset(self::$FOUND)) {
+            self::$FOUND = new StatusCode('302');
         }
-        return self::$FOUND302;
+        return self::$FOUND;
     }
-    public static function TEMPORARYREDIRECT307(): StatusCode
+    public static function TEMPORARYREDIRECT(): StatusCode
     {
-        if (!isset(self::$TEMPORARYREDIRECT307)) {
-            self::$TEMPORARYREDIRECT307 = new StatusCode('307');
+        if (!isset(self::$TEMPORARYREDIRECT)) {
+            self::$TEMPORARYREDIRECT = new StatusCode('307');
         }
-        return self::$TEMPORARYREDIRECT307;
+        return self::$TEMPORARYREDIRECT;
     }
-    public static function PERMANENTREDIRECT308(): StatusCode
+    public static function PERMANENTREDIRECT(): StatusCode
     {
-        if (!isset(self::$PERMANENTREDIRECT308)) {
-            self::$PERMANENTREDIRECT308 = new StatusCode('308');
+        if (!isset(self::$PERMANENTREDIRECT)) {
+            self::$PERMANENTREDIRECT = new StatusCode('308');
         }
-        return self::$PERMANENTREDIRECT308;
+        return self::$PERMANENTREDIRECT;
     }
 
     public static function from(string $value): self
     {
         return match ($value) {
-            '301' => self::MOVEDPERMANENTLY301(),
-            '302' => self::FOUND302(),
-            '307' => self::TEMPORARYREDIRECT307(),
-            '308' => self::PERMANENTREDIRECT308(),
+            '301' => self::MOVEDPERMANENTLY(),
+            '302' => self::FOUND(),
+            '307' => self::TEMPORARYREDIRECT(),
+            '308' => self::PERMANENTREDIRECT(),
             default => throw new \InvalidArgumentException('Unknown StatusCode value: ' . $value),
         };
     }

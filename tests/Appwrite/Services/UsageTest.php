@@ -55,7 +55,9 @@ final class UsageTest extends TestCase
                 array(
                     "metric" => "users",
                     "value" => 1500,
-                    "time" => "2026-04-09T12:00:00.000+00:00"
+                    "time" => "2026-04-09T12:00:00.000+00:00",
+                    "resourceType" => "dedicatedDatabases",
+                    "resourceId" => "production"
                 )
             )
         );

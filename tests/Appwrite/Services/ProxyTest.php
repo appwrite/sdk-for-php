@@ -140,7 +140,7 @@ final class ProxyTest extends TestCase
         $response = $this->proxy->createRedirectRule(
             "",
             "https://example.com",
-            StatusCode::MOVEDPERMANENTLY301(),
+            StatusCode::MOVEDPERMANENTLY(),
             "<RESOURCE_ID>",
             ProxyResourceType::SITE()
         );

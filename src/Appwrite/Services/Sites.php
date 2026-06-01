@@ -90,13 +90,15 @@ class Sites extends Service
      * @param ?string $providerBranch
      * @param ?bool $providerSilentMode
      * @param ?string $providerRootDirectory
+     * @param ?array $providerBranches
+     * @param ?array $providerPaths
      * @param ?string $buildSpecification
      * @param ?string $runtimeSpecification
      * @param ?int $deploymentRetention
      * @throws AppwriteException
      * @return \Appwrite\Models\Site
      */
-    public function create(string $siteId, string $name, Framework $framework, BuildRuntime $buildRuntime, ?bool $enabled = null, ?bool $logging = null, ?int $timeout = null, ?string $installCommand = null, ?string $buildCommand = null, ?string $startCommand = null, ?string $outputDirectory = null, ?Adapter $adapter = null, ?string $installationId = null, ?string $fallbackFile = null, ?string $providerRepositoryId = null, ?string $providerBranch = null, ?bool $providerSilentMode = null, ?string $providerRootDirectory = null, ?string $buildSpecification = null, ?string $runtimeSpecification = null, ?int $deploymentRetention = null): \Appwrite\Models\Site
+    public function create(string $siteId, string $name, Framework $framework, BuildRuntime $buildRuntime, ?bool $enabled = null, ?bool $logging = null, ?int $timeout = null, ?string $installCommand = null, ?string $buildCommand = null, ?string $startCommand = null, ?string $outputDirectory = null, ?Adapter $adapter = null, ?string $installationId = null, ?string $fallbackFile = null, ?string $providerRepositoryId = null, ?string $providerBranch = null, ?bool $providerSilentMode = null, ?string $providerRootDirectory = null, ?array $providerBranches = null, ?array $providerPaths = null, ?string $buildSpecification = null, ?string $runtimeSpecification = null, ?int $deploymentRetention = null): \Appwrite\Models\Site
     {
         $apiPath = str_replace(
             [],
@@ -164,6 +166,14 @@ class Sites extends Service
 
         if (!is_null($providerRootDirectory)) {
             $apiParams['providerRootDirectory'] = $providerRootDirectory;
+        }
+
+        if (!is_null($providerBranches)) {
+            $apiParams['providerBranches'] = $providerBranches;
+        }
+
+        if (!is_null($providerPaths)) {
+            $apiParams['providerPaths'] = $providerPaths;
         }
 
         if (!is_null($buildSpecification)) {
@@ -319,13 +329,15 @@ class Sites extends Service
      * @param ?string $providerBranch
      * @param ?bool $providerSilentMode
      * @param ?string $providerRootDirectory
+     * @param ?array $providerBranches
+     * @param ?array $providerPaths
      * @param ?string $buildSpecification
      * @param ?string $runtimeSpecification
      * @param ?int $deploymentRetention
      * @throws AppwriteException
      * @return \Appwrite\Models\Site
      */
-    public function update(string $siteId, string $name, Framework $framework, ?bool $enabled = null, ?bool $logging = null, ?int $timeout = null, ?string $installCommand = null, ?string $buildCommand = null, ?string $startCommand = null, ?string $outputDirectory = null, ?BuildRuntime $buildRuntime = null, ?Adapter $adapter = null, ?string $fallbackFile = null, ?string $installationId = null, ?string $providerRepositoryId = null, ?string $providerBranch = null, ?bool $providerSilentMode = null, ?string $providerRootDirectory = null, ?string $buildSpecification = null, ?string $runtimeSpecification = null, ?int $deploymentRetention = null): \Appwrite\Models\Site
+    public function update(string $siteId, string $name, Framework $framework, ?bool $enabled = null, ?bool $logging = null, ?int $timeout = null, ?string $installCommand = null, ?string $buildCommand = null, ?string $startCommand = null, ?string $outputDirectory = null, ?BuildRuntime $buildRuntime = null, ?Adapter $adapter = null, ?string $fallbackFile = null, ?string $installationId = null, ?string $providerRepositoryId = null, ?string $providerBranch = null, ?bool $providerSilentMode = null, ?string $providerRootDirectory = null, ?array $providerBranches = null, ?array $providerPaths = null, ?string $buildSpecification = null, ?string $runtimeSpecification = null, ?int $deploymentRetention = null): \Appwrite\Models\Site
     {
         $apiPath = str_replace(
             ['{siteId}'],
@@ -397,6 +409,8 @@ class Sites extends Service
         if (!is_null($providerRootDirectory)) {
             $apiParams['providerRootDirectory'] = $providerRootDirectory;
         }
+        $apiParams['providerBranches'] = $providerBranches;
+        $apiParams['providerPaths'] = $providerPaths;
 
         if (!is_null($buildSpecification)) {
             $apiParams['buildSpecification'] = $buildSpecification;

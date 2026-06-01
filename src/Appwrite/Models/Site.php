@@ -39,6 +39,8 @@ readonly class Site
      * @param string $providerBranch vcs (version control system) branch name
      * @param string $providerRootDirectory path to site in vcs (version control system) repository
      * @param bool $providerSilentMode is vcs (version control system) connection is in silent mode? when in silence mode, no comments will be posted on the repository pull or merge requests
+     * @param array $providerBranches list of branch name patterns that trigger automatic deployments. supports glob wildcards. empty list deploys on all branches.
+     * @param array $providerPaths list of file path patterns that trigger automatic deployments. supports glob wildcards. empty list deploys on all file changes.
      * @param string $buildSpecification machine specification for deployment builds.
      * @param string $runtimeSpecification machine specification for ssr executions.
      * @param string $buildRuntime site build runtime.
@@ -73,6 +75,8 @@ readonly class Site
         public string $providerBranch,
         public string $providerRootDirectory,
         public bool $providerSilentMode,
+        public array $providerBranches,
+        public array $providerPaths,
         public string $buildSpecification,
         public string $runtimeSpecification,
         public string $buildRuntime,
@@ -167,6 +171,12 @@ readonly class Site
         if (!array_key_exists('providerSilentMode', $data)) {
             throw new \InvalidArgumentException('Missing required field "providerSilentMode" for ' . static::class . '.');
         }
+        if (!array_key_exists('providerBranches', $data)) {
+            throw new \InvalidArgumentException('Missing required field "providerBranches" for ' . static::class . '.');
+        }
+        if (!array_key_exists('providerPaths', $data)) {
+            throw new \InvalidArgumentException('Missing required field "providerPaths" for ' . static::class . '.');
+        }
         if (!array_key_exists('buildSpecification', $data)) {
             throw new \InvalidArgumentException('Missing required field "buildSpecification" for ' . static::class . '.');
         }
@@ -216,6 +226,8 @@ readonly class Site
             providerBranch: $data['providerBranch'],
             providerRootDirectory: $data['providerRootDirectory'],
             providerSilentMode: $data['providerSilentMode'],
+            providerBranches: $data['providerBranches'],
+            providerPaths: $data['providerPaths'],
             buildSpecification: $data['buildSpecification'],
             runtimeSpecification: $data['runtimeSpecification'],
             buildRuntime: $data['buildRuntime'],
@@ -257,6 +269,8 @@ readonly class Site
             'providerBranch' => static::serializeValue($this->providerBranch),
             'providerRootDirectory' => static::serializeValue($this->providerRootDirectory),
             'providerSilentMode' => static::serializeValue($this->providerSilentMode),
+            'providerBranches' => static::serializeValue($this->providerBranches),
+            'providerPaths' => static::serializeValue($this->providerPaths),
             'buildSpecification' => static::serializeValue($this->buildSpecification),
             'runtimeSpecification' => static::serializeValue($this->runtimeSpecification),
             'buildRuntime' => static::serializeValue($this->buildRuntime),

@@ -7,7 +7,7 @@ use Appwrite\Client;
 use Appwrite\Service;
 use Appwrite\InputFile;
 use Appwrite\Enums\Runtime;
-use Appwrite\Enums\Scopes;
+use Appwrite\Enums\ProjectKeyScopes;
 use Appwrite\Enums\TemplateReferenceType;
 use Appwrite\Enums\VCSReferenceType;
 use Appwrite\Enums\DeploymentDownloadType;
@@ -92,13 +92,15 @@ class Functions extends Service
      * @param ?string $providerBranch
      * @param ?bool $providerSilentMode
      * @param ?string $providerRootDirectory
+     * @param ?array $providerBranches
+     * @param ?array $providerPaths
      * @param ?string $buildSpecification
      * @param ?string $runtimeSpecification
      * @param ?int $deploymentRetention
      * @throws AppwriteException
      * @return \Appwrite\Models\FunctionModel
      */
-    public function create(string $functionId, string $name, Runtime $runtime, ?array $execute = null, ?array $events = null, ?string $schedule = null, ?int $timeout = null, ?bool $enabled = null, ?bool $logging = null, ?string $entrypoint = null, ?string $commands = null, ?array $scopes = null, ?string $installationId = null, ?string $providerRepositoryId = null, ?string $providerBranch = null, ?bool $providerSilentMode = null, ?string $providerRootDirectory = null, ?string $buildSpecification = null, ?string $runtimeSpecification = null, ?int $deploymentRetention = null): \Appwrite\Models\FunctionModel
+    public function create(string $functionId, string $name, Runtime $runtime, ?array $execute = null, ?array $events = null, ?string $schedule = null, ?int $timeout = null, ?bool $enabled = null, ?bool $logging = null, ?string $entrypoint = null, ?string $commands = null, ?array $scopes = null, ?string $installationId = null, ?string $providerRepositoryId = null, ?string $providerBranch = null, ?bool $providerSilentMode = null, ?string $providerRootDirectory = null, ?array $providerBranches = null, ?array $providerPaths = null, ?string $buildSpecification = null, ?string $runtimeSpecification = null, ?int $deploymentRetention = null): \Appwrite\Models\FunctionModel
     {
         $apiPath = str_replace(
             [],
@@ -165,6 +167,14 @@ class Functions extends Service
 
         if (!is_null($providerRootDirectory)) {
             $apiParams['providerRootDirectory'] = $providerRootDirectory;
+        }
+
+        if (!is_null($providerBranches)) {
+            $apiParams['providerBranches'] = $providerBranches;
+        }
+
+        if (!is_null($providerPaths)) {
+            $apiParams['providerPaths'] = $providerPaths;
         }
 
         if (!is_null($buildSpecification)) {
@@ -318,13 +328,15 @@ class Functions extends Service
      * @param ?string $providerBranch
      * @param ?bool $providerSilentMode
      * @param ?string $providerRootDirectory
+     * @param ?array $providerBranches
+     * @param ?array $providerPaths
      * @param ?string $buildSpecification
      * @param ?string $runtimeSpecification
      * @param ?int $deploymentRetention
      * @throws AppwriteException
      * @return \Appwrite\Models\FunctionModel
      */
-    public function update(string $functionId, string $name, ?Runtime $runtime = null, ?array $execute = null, ?array $events = null, ?string $schedule = null, ?int $timeout = null, ?bool $enabled = null, ?bool $logging = null, ?string $entrypoint = null, ?string $commands = null, ?array $scopes = null, ?string $installationId = null, ?string $providerRepositoryId = null, ?string $providerBranch = null, ?bool $providerSilentMode = null, ?string $providerRootDirectory = null, ?string $buildSpecification = null, ?string $runtimeSpecification = null, ?int $deploymentRetention = null): \Appwrite\Models\FunctionModel
+    public function update(string $functionId, string $name, ?Runtime $runtime = null, ?array $execute = null, ?array $events = null, ?string $schedule = null, ?int $timeout = null, ?bool $enabled = null, ?bool $logging = null, ?string $entrypoint = null, ?string $commands = null, ?array $scopes = null, ?string $installationId = null, ?string $providerRepositoryId = null, ?string $providerBranch = null, ?bool $providerSilentMode = null, ?string $providerRootDirectory = null, ?array $providerBranches = null, ?array $providerPaths = null, ?string $buildSpecification = null, ?string $runtimeSpecification = null, ?int $deploymentRetention = null): \Appwrite\Models\FunctionModel
     {
         $apiPath = str_replace(
             ['{functionId}'],
@@ -392,6 +404,8 @@ class Functions extends Service
         if (!is_null($providerRootDirectory)) {
             $apiParams['providerRootDirectory'] = $providerRootDirectory;
         }
+        $apiParams['providerBranches'] = $providerBranches;
+        $apiParams['providerPaths'] = $providerPaths;
 
         if (!is_null($buildSpecification)) {
             $apiParams['buildSpecification'] = $buildSpecification;

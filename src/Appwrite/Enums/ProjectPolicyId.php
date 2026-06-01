@@ -15,6 +15,9 @@ class ProjectPolicyId implements JsonSerializable
     private static ProjectPolicyId $SESSIONLIMIT;
     private static ProjectPolicyId $USERLIMIT;
     private static ProjectPolicyId $MEMBERSHIPPRIVACY;
+    private static ProjectPolicyId $DENYALIASEDEMAIL;
+    private static ProjectPolicyId $DENYDISPOSABLEEMAIL;
+    private static ProjectPolicyId $DENYFREEEMAIL;
 
     private string $value;
 
@@ -96,6 +99,27 @@ class ProjectPolicyId implements JsonSerializable
         }
         return self::$MEMBERSHIPPRIVACY;
     }
+    public static function DENYALIASEDEMAIL(): ProjectPolicyId
+    {
+        if (!isset(self::$DENYALIASEDEMAIL)) {
+            self::$DENYALIASEDEMAIL = new ProjectPolicyId('deny-aliased-email');
+        }
+        return self::$DENYALIASEDEMAIL;
+    }
+    public static function DENYDISPOSABLEEMAIL(): ProjectPolicyId
+    {
+        if (!isset(self::$DENYDISPOSABLEEMAIL)) {
+            self::$DENYDISPOSABLEEMAIL = new ProjectPolicyId('deny-disposable-email');
+        }
+        return self::$DENYDISPOSABLEEMAIL;
+    }
+    public static function DENYFREEEMAIL(): ProjectPolicyId
+    {
+        if (!isset(self::$DENYFREEEMAIL)) {
+            self::$DENYFREEEMAIL = new ProjectPolicyId('deny-free-email');
+        }
+        return self::$DENYFREEEMAIL;
+    }
 
     public static function from(string $value): self
     {
@@ -109,6 +133,9 @@ class ProjectPolicyId implements JsonSerializable
             'session-limit' => self::SESSIONLIMIT(),
             'user-limit' => self::USERLIMIT(),
             'membership-privacy' => self::MEMBERSHIPPRIVACY(),
+            'deny-aliased-email' => self::DENYALIASEDEMAIL(),
+            'deny-disposable-email' => self::DENYDISPOSABLEEMAIL(),
+            'deny-free-email' => self::DENYFREEEMAIL(),
             default => throw new \InvalidArgumentException('Unknown ProjectPolicyId value: ' . $value),
         };
     }

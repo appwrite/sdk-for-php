@@ -37,9 +37,6 @@ class Runtime implements JsonSerializable
     private static Runtime $PYTHONML311;
     private static Runtime $PYTHONML312;
     private static Runtime $PYTHONML313;
-    private static Runtime $DENO121;
-    private static Runtime $DENO124;
-    private static Runtime $DENO135;
     private static Runtime $DENO140;
     private static Runtime $DENO146;
     private static Runtime $DENO20;
@@ -58,6 +55,7 @@ class Runtime implements JsonSerializable
     private static Runtime $DART39;
     private static Runtime $DART310;
     private static Runtime $DART311;
+    private static Runtime $DART312;
     private static Runtime $DOTNET60;
     private static Runtime $DOTNET70;
     private static Runtime $DOTNET80;
@@ -98,6 +96,7 @@ class Runtime implements JsonSerializable
     private static Runtime $FLUTTER335;
     private static Runtime $FLUTTER338;
     private static Runtime $FLUTTER341;
+    private static Runtime $FLUTTER344;
 
     private string $value;
 
@@ -333,27 +332,6 @@ class Runtime implements JsonSerializable
         }
         return self::$PYTHONML313;
     }
-    public static function DENO121(): Runtime
-    {
-        if (!isset(self::$DENO121)) {
-            self::$DENO121 = new Runtime('deno-1.21');
-        }
-        return self::$DENO121;
-    }
-    public static function DENO124(): Runtime
-    {
-        if (!isset(self::$DENO124)) {
-            self::$DENO124 = new Runtime('deno-1.24');
-        }
-        return self::$DENO124;
-    }
-    public static function DENO135(): Runtime
-    {
-        if (!isset(self::$DENO135)) {
-            self::$DENO135 = new Runtime('deno-1.35');
-        }
-        return self::$DENO135;
-    }
     public static function DENO140(): Runtime
     {
         if (!isset(self::$DENO140)) {
@@ -479,6 +457,13 @@ class Runtime implements JsonSerializable
             self::$DART311 = new Runtime('dart-3.11');
         }
         return self::$DART311;
+    }
+    public static function DART312(): Runtime
+    {
+        if (!isset(self::$DART312)) {
+            self::$DART312 = new Runtime('dart-3.12');
+        }
+        return self::$DART312;
     }
     public static function DOTNET60(): Runtime
     {
@@ -760,6 +745,13 @@ class Runtime implements JsonSerializable
         }
         return self::$FLUTTER341;
     }
+    public static function FLUTTER344(): Runtime
+    {
+        if (!isset(self::$FLUTTER344)) {
+            self::$FLUTTER344 = new Runtime('flutter-3.44');
+        }
+        return self::$FLUTTER344;
+    }
 
     public static function from(string $value): self
     {
@@ -795,9 +787,6 @@ class Runtime implements JsonSerializable
             'python-ml-3.11' => self::PYTHONML311(),
             'python-ml-3.12' => self::PYTHONML312(),
             'python-ml-3.13' => self::PYTHONML313(),
-            'deno-1.21' => self::DENO121(),
-            'deno-1.24' => self::DENO124(),
-            'deno-1.35' => self::DENO135(),
             'deno-1.40' => self::DENO140(),
             'deno-1.46' => self::DENO146(),
             'deno-2.0' => self::DENO20(),
@@ -816,6 +805,7 @@ class Runtime implements JsonSerializable
             'dart-3.9' => self::DART39(),
             'dart-3.10' => self::DART310(),
             'dart-3.11' => self::DART311(),
+            'dart-3.12' => self::DART312(),
             'dotnet-6.0' => self::DOTNET60(),
             'dotnet-7.0' => self::DOTNET70(),
             'dotnet-8.0' => self::DOTNET80(),
@@ -856,6 +846,7 @@ class Runtime implements JsonSerializable
             'flutter-3.35' => self::FLUTTER335(),
             'flutter-3.38' => self::FLUTTER338(),
             'flutter-3.41' => self::FLUTTER341(),
+            'flutter-3.44' => self::FLUTTER344(),
             default => throw new \InvalidArgumentException('Unknown Runtime value: ' . $value),
         };
     }

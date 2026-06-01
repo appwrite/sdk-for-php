@@ -3629,9 +3629,9 @@ class Project extends Service
      *
      * @param ProjectPolicyId $policyId
      * @throws AppwriteException
-     * @return \Appwrite\Models\PolicyPasswordDictionary|\Appwrite\Models\PolicyPasswordHistory|\Appwrite\Models\PolicyPasswordPersonalData|\Appwrite\Models\PolicySessionAlert|\Appwrite\Models\PolicySessionDuration|\Appwrite\Models\PolicySessionInvalidation|\Appwrite\Models\PolicySessionLimit|\Appwrite\Models\PolicyUserLimit|\Appwrite\Models\PolicyMembershipPrivacy
+     * @return \Appwrite\Models\PolicyPasswordDictionary|\Appwrite\Models\PolicyPasswordHistory|\Appwrite\Models\PolicyPasswordPersonalData|\Appwrite\Models\PolicySessionAlert|\Appwrite\Models\PolicySessionDuration|\Appwrite\Models\PolicySessionInvalidation|\Appwrite\Models\PolicySessionLimit|\Appwrite\Models\PolicyUserLimit|\Appwrite\Models\PolicyMembershipPrivacy|\Appwrite\Models\PolicyDenyAliasedEmail|\Appwrite\Models\PolicyDenyDisposableEmail|\Appwrite\Models\PolicyDenyFreeEmail
      */
-    public function getPolicy(ProjectPolicyId $policyId): \Appwrite\Models\PolicyPasswordDictionary|\Appwrite\Models\PolicyPasswordHistory|\Appwrite\Models\PolicyPasswordPersonalData|\Appwrite\Models\PolicySessionAlert|\Appwrite\Models\PolicySessionDuration|\Appwrite\Models\PolicySessionInvalidation|\Appwrite\Models\PolicySessionLimit|\Appwrite\Models\PolicyUserLimit|\Appwrite\Models\PolicyMembershipPrivacy
+    public function getPolicy(ProjectPolicyId $policyId): \Appwrite\Models\PolicyPasswordDictionary|\Appwrite\Models\PolicyPasswordHistory|\Appwrite\Models\PolicyPasswordPersonalData|\Appwrite\Models\PolicySessionAlert|\Appwrite\Models\PolicySessionDuration|\Appwrite\Models\PolicySessionInvalidation|\Appwrite\Models\PolicySessionLimit|\Appwrite\Models\PolicyUserLimit|\Appwrite\Models\PolicyMembershipPrivacy|\Appwrite\Models\PolicyDenyAliasedEmail|\Appwrite\Models\PolicyDenyDisposableEmail|\Appwrite\Models\PolicyDenyFreeEmail
     {
         $apiPath = str_replace(
             ['{policyId}'],
@@ -3689,6 +3689,18 @@ class Project extends Service
 
         if (($response['$id'] ?? null) === 'membership-privacy') {
             return \Appwrite\Models\PolicyMembershipPrivacy::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'deny-aliased-email') {
+            return \Appwrite\Models\PolicyDenyAliasedEmail::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'deny-disposable-email') {
+            return \Appwrite\Models\PolicyDenyDisposableEmail::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'deny-free-email') {
+            return \Appwrite\Models\PolicyDenyFreeEmail::from($response);
         }
 
         throw new \UnexpectedValueException('Unable to match response to any expected response model.');
