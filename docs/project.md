@@ -501,7 +501,7 @@ PATCH https://cloud.appwrite.io/v1/project/oauth2/google
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | clientId | string | 'Client ID' of Google OAuth2 app. For example: 120000000095-92ifjb00000000000000000000g7ijfb.apps.googleusercontent.com |  |
-| clientSecret | string | 'Client Secret' of Google OAuth2 app. For example: GOCSPX-2k8gsR0000000000000000VNahJj |  |
+| clientSecret | string | 'Client Secret' of Google OAuth2 app. For example: your-google-client-secret |  |
 | prompt | array | Array of Google OAuth2 prompt values. If "none" is included, it must be the only element. "none" means: don't display any authentication or consent screens. Must not be specified with other values. "consent" means: prompt the user for consent. "select_account" means: prompt the user to select an account. |  |
 | enabled | boolean | OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid. |  |
 
