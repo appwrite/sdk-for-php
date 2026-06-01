@@ -3,7 +3,7 @@
 
 use Appwrite\Client;
 use Appwrite\Services\Proxy;
-use Appwrite\Enums\RedirectStatusCode;
+use Appwrite\Enums\StatusCode;
 use Appwrite\Enums\ProxyResourceType;
 
 $client = (new Client())
@@ -16,7 +16,7 @@ $proxy = new Proxy($client);
 $result = $proxy->createRedirectRule(
     domain: '',
     url: 'https://example.com',
-    statusCode: RedirectStatusCode::MOVEDPERMANENTLY(),
+    statusCode: StatusCode::MOVEDPERMANENTLY(),
     resourceId: '<RESOURCE_ID>',
     resourceType: ProxyResourceType::SITE()
 );```

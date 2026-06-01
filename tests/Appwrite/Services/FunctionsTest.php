@@ -6,7 +6,7 @@ use Appwrite\Client;
 use Appwrite\InputFile;
 use Mockery;
 use PHPUnit\Framework\TestCase;
-use Appwrite\Enums\FunctionRuntime;
+use Appwrite\Enums\Runtime;
 use Appwrite\Enums\ProjectKeyScopes;
 use Appwrite\Enums\TemplateReferenceType;
 use Appwrite\Enums\VCSReferenceType;
@@ -141,7 +141,7 @@ final class FunctionsTest extends TestCase
         $response = $this->functions->create(
             "<FUNCTION_ID>",
             "<NAME>",
-            FunctionRuntime::NODE145()
+            Runtime::NODE145()
         );
 
         $this->assertInstanceOf(\Appwrite\Models\FunctionModel::class, $response);

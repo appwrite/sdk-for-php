@@ -9,8 +9,6 @@ readonly class Presence
 {
     use ArraySerializable;
 
-    private const ADDITIONAL_PROPERTIES = true;
-
     /**
      * Presence constructor.
      *
@@ -22,7 +20,7 @@ readonly class Presence
      * @param string $source presence source.
      * @param string|null $status presence status.
      * @param string|null $expiresAt presence expiry date in iso 8601 format.
-     * @param array<string, mixed> $metadata Additional properties.
+     * @param array|null $metadata presence metadata.
      */
     public function __construct(
         public string $id,
@@ -33,7 +31,7 @@ readonly class Presence
         public string $source,
         public ?string $status = null,
         public ?string $expiresAt = null,
-        public array $metadata = []
+        public ?array $metadata = null
     ) {
     }
 
@@ -61,20 +59,6 @@ readonly class Presence
             throw new \InvalidArgumentException('Missing required field "source" for ' . static::class . '.');
         }
 
-        $additionalProperties = static::extractAdditionalPropertiesFromFields(
-            $data,
-            [
-                '$id',
-                '$createdAt',
-                '$updatedAt',
-                '$permissions',
-                'userId',
-                'status',
-                'source',
-                'expiresAt'
-            ]
-        );
-
         return new static(
             id: $data['$id'],
             createdAt: $data['$createdAt'],
@@ -84,7 +68,7 @@ readonly class Presence
             source: $data['source'],
             status: array_key_exists('status', $data) ? $data['status'] : null,
             expiresAt: array_key_exists('expiresAt', $data) ? $data['expiresAt'] : null,
-            metadata: $additionalProperties
+            metadata: array_key_exists('metadata', $data) ? $data['metadata'] : null
         );
     }
 
@@ -101,12 +85,9 @@ readonly class Presence
             'userId' => static::serializeValue($this->userId),
             'status' => static::serializeValue($this->status),
             'source' => static::serializeValue($this->source),
-            'expiresAt' => static::serializeValue($this->expiresAt)
+            'expiresAt' => static::serializeValue($this->expiresAt),
+            'metadata' => static::serializeValue($this->metadata)
         ];
-
-        foreach (static::serializeAdditionalProperties($this->metadata) as $field => $value) {
-            $result[$field] = $value;
-        }
 
         return $result;
     }

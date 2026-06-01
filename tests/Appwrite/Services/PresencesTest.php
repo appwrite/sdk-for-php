@@ -89,7 +89,7 @@ final class PresencesTest extends TestCase
         $this->assertInstanceOf(\Appwrite\Models\Presence::class, $response);
     }
 
-    public function testMethodUpdatePresence(): void
+    public function testMethodUpdate(): void
     {
         $data = array(
             "\$id" => "5e5ea5c16897e",
@@ -104,7 +104,7 @@ final class PresencesTest extends TestCase
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
 
-        $response = $this->presences->updatePresence(
+        $response = $this->presences->update(
             "<PRESENCE_ID>",
             "<USER_ID>"
         );

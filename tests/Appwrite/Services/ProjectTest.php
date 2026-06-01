@@ -2604,14 +2604,10 @@ final class ProjectTest extends TestCase
         $data = array_replace(
             array(
                 "\$id" => "password-dictionary",
-                "userId" => true,
-                "userEmail" => true,
-                "userPhone" => true,
-                "userName" => true,
-                "userMFA" => true
+                "enabled" => true
             ),
             array(
-                "\$id" => "membership-privacy"
+                "\$id" => "deny-free-email"
             )
         );
 
@@ -2623,7 +2619,7 @@ final class ProjectTest extends TestCase
             ProjectPolicyId::PASSWORDDICTIONARY()
         );
 
-        $this->assertInstanceOf(\Appwrite\Models\PolicyMembershipPrivacy::class, $response);
+        $this->assertInstanceOf(\Appwrite\Models\PolicyDenyFreeEmail::class, $response);
     }
 
     public function testMethodUpdateProtocol(): void

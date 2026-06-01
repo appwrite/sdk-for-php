@@ -6,7 +6,7 @@ use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
 use Appwrite\InputFile;
-use Appwrite\Enums\FunctionRuntime;
+use Appwrite\Enums\Runtime;
 use Appwrite\Enums\ProjectKeyScopes;
 use Appwrite\Enums\TemplateReferenceType;
 use Appwrite\Enums\VCSReferenceType;
@@ -77,7 +77,7 @@ class Functions extends Service
      *
      * @param string $functionId
      * @param string $name
-     * @param FunctionRuntime $runtime
+     * @param Runtime $runtime
      * @param ?array $execute
      * @param ?array $events
      * @param ?string $schedule
@@ -100,7 +100,7 @@ class Functions extends Service
      * @throws AppwriteException
      * @return \Appwrite\Models\FunctionModel
      */
-    public function create(string $functionId, string $name, FunctionRuntime $runtime, ?array $execute = null, ?array $events = null, ?string $schedule = null, ?int $timeout = null, ?bool $enabled = null, ?bool $logging = null, ?string $entrypoint = null, ?string $commands = null, ?array $scopes = null, ?string $installationId = null, ?string $providerRepositoryId = null, ?string $providerBranch = null, ?bool $providerSilentMode = null, ?string $providerRootDirectory = null, ?array $providerBranches = null, ?array $providerPaths = null, ?string $buildSpecification = null, ?string $runtimeSpecification = null, ?int $deploymentRetention = null): \Appwrite\Models\FunctionModel
+    public function create(string $functionId, string $name, Runtime $runtime, ?array $execute = null, ?array $events = null, ?string $schedule = null, ?int $timeout = null, ?bool $enabled = null, ?bool $logging = null, ?string $entrypoint = null, ?string $commands = null, ?array $scopes = null, ?string $installationId = null, ?string $providerRepositoryId = null, ?string $providerBranch = null, ?bool $providerSilentMode = null, ?string $providerRootDirectory = null, ?array $providerBranches = null, ?array $providerPaths = null, ?string $buildSpecification = null, ?string $runtimeSpecification = null, ?int $deploymentRetention = null): \Appwrite\Models\FunctionModel
     {
         $apiPath = str_replace(
             [],
@@ -313,7 +313,7 @@ class Functions extends Service
      *
      * @param string $functionId
      * @param string $name
-     * @param ?FunctionRuntime $runtime
+     * @param ?Runtime $runtime
      * @param ?array $execute
      * @param ?array $events
      * @param ?string $schedule
@@ -336,7 +336,7 @@ class Functions extends Service
      * @throws AppwriteException
      * @return \Appwrite\Models\FunctionModel
      */
-    public function update(string $functionId, string $name, ?FunctionRuntime $runtime = null, ?array $execute = null, ?array $events = null, ?string $schedule = null, ?int $timeout = null, ?bool $enabled = null, ?bool $logging = null, ?string $entrypoint = null, ?string $commands = null, ?array $scopes = null, ?string $installationId = null, ?string $providerRepositoryId = null, ?string $providerBranch = null, ?bool $providerSilentMode = null, ?string $providerRootDirectory = null, ?array $providerBranches = null, ?array $providerPaths = null, ?string $buildSpecification = null, ?string $runtimeSpecification = null, ?int $deploymentRetention = null): \Appwrite\Models\FunctionModel
+    public function update(string $functionId, string $name, ?Runtime $runtime = null, ?array $execute = null, ?array $events = null, ?string $schedule = null, ?int $timeout = null, ?bool $enabled = null, ?bool $logging = null, ?string $entrypoint = null, ?string $commands = null, ?array $scopes = null, ?string $installationId = null, ?string $providerRepositoryId = null, ?string $providerBranch = null, ?bool $providerSilentMode = null, ?string $providerRootDirectory = null, ?array $providerBranches = null, ?array $providerPaths = null, ?string $buildSpecification = null, ?string $runtimeSpecification = null, ?int $deploymentRetention = null): \Appwrite\Models\FunctionModel
     {
         $apiPath = str_replace(
             ['{functionId}'],

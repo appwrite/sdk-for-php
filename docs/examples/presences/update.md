@@ -13,7 +13,7 @@ $client = (new Client())
 
 $presences = new Presences($client);
 
-$result = $presences->updatePresence(
+$result = $presences->update(
     presenceId: '<PRESENCE_ID>',
     userId: '<USER_ID>',
     status: '<STATUS>', // optional

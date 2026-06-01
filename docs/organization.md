@@ -100,7 +100,7 @@ POST https://cloud.appwrite.io/v1/organization/projects
 | --- | --- | --- | --- |
 | projectId | string | Unique Id. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, and hyphen. Can't start with a special char. Max length is 36 chars. |  |
 | name | string | Project name. Max length: 128 chars. |  |
-| region | string | Project Region. |  |
+| region | string | Project Region. | fra |
 
 
 ```http request

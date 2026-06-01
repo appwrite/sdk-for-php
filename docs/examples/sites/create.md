@@ -3,9 +3,9 @@
 
 use Appwrite\Client;
 use Appwrite\Services\Sites;
-use Appwrite\Enums\SiteFramework;
-use Appwrite\Enums\SiteBuildRuntime;
-use Appwrite\Enums\SiteAdapter;
+use Appwrite\Enums\Framework;
+use Appwrite\Enums\BuildRuntime;
+use Appwrite\Enums\Adapter;
 
 $client = (new Client())
     ->setEndpoint('https://<REGION>.cloud.appwrite.io/v1') // Your API Endpoint
@@ -17,8 +17,8 @@ $sites = new Sites($client);
 $result = $sites->create(
     siteId: '<SITE_ID>',
     name: '<NAME>',
-    framework: SiteFramework::ANALOG(),
-    buildRuntime: SiteBuildRuntime::NODE145(),
+    framework: Framework::ANALOG(),
+    buildRuntime: BuildRuntime::NODE145(),
     enabled: false, // optional
     logging: false, // optional
     timeout: 1, // optional
@@ -26,7 +26,7 @@ $result = $sites->create(
     buildCommand: '<BUILD_COMMAND>', // optional
     startCommand: '<START_COMMAND>', // optional
     outputDirectory: '<OUTPUT_DIRECTORY>', // optional
-    adapter: SiteAdapter::STATIC(), // optional
+    adapter: Adapter::STATIC(), // optional
     installationId: '<INSTALLATION_ID>', // optional
     fallbackFile: '<FALLBACK_FILE>', // optional
     providerRepositoryId: '<PROVIDER_REPOSITORY_ID>', // optional

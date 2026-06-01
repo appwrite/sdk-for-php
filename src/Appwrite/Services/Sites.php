@@ -6,9 +6,9 @@ use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
 use Appwrite\InputFile;
-use Appwrite\Enums\SiteFramework;
-use Appwrite\Enums\SiteBuildRuntime;
-use Appwrite\Enums\SiteAdapter;
+use Appwrite\Enums\Framework;
+use Appwrite\Enums\BuildRuntime;
+use Appwrite\Enums\Adapter;
 use Appwrite\Enums\TemplateReferenceType;
 use Appwrite\Enums\VCSReferenceType;
 use Appwrite\Enums\DeploymentDownloadType;
@@ -74,8 +74,8 @@ class Sites extends Service
      *
      * @param string $siteId
      * @param string $name
-     * @param SiteFramework $framework
-     * @param SiteBuildRuntime $buildRuntime
+     * @param Framework $framework
+     * @param BuildRuntime $buildRuntime
      * @param ?bool $enabled
      * @param ?bool $logging
      * @param ?int $timeout
@@ -83,7 +83,7 @@ class Sites extends Service
      * @param ?string $buildCommand
      * @param ?string $startCommand
      * @param ?string $outputDirectory
-     * @param ?SiteAdapter $adapter
+     * @param ?Adapter $adapter
      * @param ?string $installationId
      * @param ?string $fallbackFile
      * @param ?string $providerRepositoryId
@@ -98,7 +98,7 @@ class Sites extends Service
      * @throws AppwriteException
      * @return \Appwrite\Models\Site
      */
-    public function create(string $siteId, string $name, SiteFramework $framework, SiteBuildRuntime $buildRuntime, ?bool $enabled = null, ?bool $logging = null, ?int $timeout = null, ?string $installCommand = null, ?string $buildCommand = null, ?string $startCommand = null, ?string $outputDirectory = null, ?SiteAdapter $adapter = null, ?string $installationId = null, ?string $fallbackFile = null, ?string $providerRepositoryId = null, ?string $providerBranch = null, ?bool $providerSilentMode = null, ?string $providerRootDirectory = null, ?array $providerBranches = null, ?array $providerPaths = null, ?string $buildSpecification = null, ?string $runtimeSpecification = null, ?int $deploymentRetention = null): \Appwrite\Models\Site
+    public function create(string $siteId, string $name, Framework $framework, BuildRuntime $buildRuntime, ?bool $enabled = null, ?bool $logging = null, ?int $timeout = null, ?string $installCommand = null, ?string $buildCommand = null, ?string $startCommand = null, ?string $outputDirectory = null, ?Adapter $adapter = null, ?string $installationId = null, ?string $fallbackFile = null, ?string $providerRepositoryId = null, ?string $providerBranch = null, ?bool $providerSilentMode = null, ?string $providerRootDirectory = null, ?array $providerBranches = null, ?array $providerPaths = null, ?string $buildSpecification = null, ?string $runtimeSpecification = null, ?int $deploymentRetention = null): \Appwrite\Models\Site
     {
         $apiPath = str_replace(
             [],
@@ -313,7 +313,7 @@ class Sites extends Service
      *
      * @param string $siteId
      * @param string $name
-     * @param SiteFramework $framework
+     * @param Framework $framework
      * @param ?bool $enabled
      * @param ?bool $logging
      * @param ?int $timeout
@@ -321,8 +321,8 @@ class Sites extends Service
      * @param ?string $buildCommand
      * @param ?string $startCommand
      * @param ?string $outputDirectory
-     * @param ?SiteBuildRuntime $buildRuntime
-     * @param ?SiteAdapter $adapter
+     * @param ?BuildRuntime $buildRuntime
+     * @param ?Adapter $adapter
      * @param ?string $fallbackFile
      * @param ?string $installationId
      * @param ?string $providerRepositoryId
@@ -337,7 +337,7 @@ class Sites extends Service
      * @throws AppwriteException
      * @return \Appwrite\Models\Site
      */
-    public function update(string $siteId, string $name, SiteFramework $framework, ?bool $enabled = null, ?bool $logging = null, ?int $timeout = null, ?string $installCommand = null, ?string $buildCommand = null, ?string $startCommand = null, ?string $outputDirectory = null, ?SiteBuildRuntime $buildRuntime = null, ?SiteAdapter $adapter = null, ?string $fallbackFile = null, ?string $installationId = null, ?string $providerRepositoryId = null, ?string $providerBranch = null, ?bool $providerSilentMode = null, ?string $providerRootDirectory = null, ?array $providerBranches = null, ?array $providerPaths = null, ?string $buildSpecification = null, ?string $runtimeSpecification = null, ?int $deploymentRetention = null): \Appwrite\Models\Site
+    public function update(string $siteId, string $name, Framework $framework, ?bool $enabled = null, ?bool $logging = null, ?int $timeout = null, ?string $installCommand = null, ?string $buildCommand = null, ?string $startCommand = null, ?string $outputDirectory = null, ?BuildRuntime $buildRuntime = null, ?Adapter $adapter = null, ?string $fallbackFile = null, ?string $installationId = null, ?string $providerRepositoryId = null, ?string $providerBranch = null, ?bool $providerSilentMode = null, ?string $providerRootDirectory = null, ?array $providerBranches = null, ?array $providerPaths = null, ?string $buildSpecification = null, ?string $runtimeSpecification = null, ?int $deploymentRetention = null): \Appwrite\Models\Site
     {
         $apiPath = str_replace(
             ['{siteId}'],

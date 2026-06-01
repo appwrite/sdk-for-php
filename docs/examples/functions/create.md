@@ -3,7 +3,7 @@
 
 use Appwrite\Client;
 use Appwrite\Services\Functions;
-use Appwrite\Enums\FunctionRuntime;
+use Appwrite\Enums\Runtime;
 use Appwrite\Enums\ProjectKeyScopes;
 
 $client = (new Client())
@@ -16,7 +16,7 @@ $functions = new Functions($client);
 $result = $functions->create(
     functionId: '<FUNCTION_ID>',
     name: '<NAME>',
-    runtime: FunctionRuntime::NODE145(),
+    runtime: Runtime::NODE145(),
     execute: ["any"], // optional
     events: [], // optional
     schedule: '', // optional

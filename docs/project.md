@@ -1249,7 +1249,7 @@ GET https://cloud.appwrite.io/v1/project/policies/{policyId}
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| policyId | string | **Required** Policy ID. Can be one of: password-dictionary, password-history, password-personal-data, session-alert, session-duration, session-invalidation, session-limit, user-limit, membership-privacy. |  |
+| policyId | string | **Required** Policy ID. Can be one of: password-dictionary, password-history, password-personal-data, session-alert, session-duration, session-invalidation, session-limit, user-limit, membership-privacy, deny-aliased-email, deny-disposable-email, deny-free-email. |  |
 
 
 ```http request

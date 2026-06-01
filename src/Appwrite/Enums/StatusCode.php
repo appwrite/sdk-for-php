@@ -4,12 +4,12 @@ namespace Appwrite\Enums;
 
 use JsonSerializable;
 
-class RedirectStatusCode implements JsonSerializable
+class StatusCode implements JsonSerializable
 {
-    private static RedirectStatusCode $MOVEDPERMANENTLY;
-    private static RedirectStatusCode $FOUND;
-    private static RedirectStatusCode $TEMPORARYREDIRECT;
-    private static RedirectStatusCode $PERMANENTREDIRECT;
+    private static StatusCode $MOVEDPERMANENTLY;
+    private static StatusCode $FOUND;
+    private static StatusCode $TEMPORARYREDIRECT;
+    private static StatusCode $PERMANENTREDIRECT;
 
     private string $value;
 
@@ -28,31 +28,31 @@ class RedirectStatusCode implements JsonSerializable
         return $this->value;
     }
 
-    public static function MOVEDPERMANENTLY(): RedirectStatusCode
+    public static function MOVEDPERMANENTLY(): StatusCode
     {
         if (!isset(self::$MOVEDPERMANENTLY)) {
-            self::$MOVEDPERMANENTLY = new RedirectStatusCode('301');
+            self::$MOVEDPERMANENTLY = new StatusCode('301');
         }
         return self::$MOVEDPERMANENTLY;
     }
-    public static function FOUND(): RedirectStatusCode
+    public static function FOUND(): StatusCode
     {
         if (!isset(self::$FOUND)) {
-            self::$FOUND = new RedirectStatusCode('302');
+            self::$FOUND = new StatusCode('302');
         }
         return self::$FOUND;
     }
-    public static function TEMPORARYREDIRECT(): RedirectStatusCode
+    public static function TEMPORARYREDIRECT(): StatusCode
     {
         if (!isset(self::$TEMPORARYREDIRECT)) {
-            self::$TEMPORARYREDIRECT = new RedirectStatusCode('307');
+            self::$TEMPORARYREDIRECT = new StatusCode('307');
         }
         return self::$TEMPORARYREDIRECT;
     }
-    public static function PERMANENTREDIRECT(): RedirectStatusCode
+    public static function PERMANENTREDIRECT(): StatusCode
     {
         if (!isset(self::$PERMANENTREDIRECT)) {
-            self::$PERMANENTREDIRECT = new RedirectStatusCode('308');
+            self::$PERMANENTREDIRECT = new StatusCode('308');
         }
         return self::$PERMANENTREDIRECT;
     }
@@ -64,7 +64,7 @@ class RedirectStatusCode implements JsonSerializable
             '302' => self::FOUND(),
             '307' => self::TEMPORARYREDIRECT(),
             '308' => self::PERMANENTREDIRECT(),
-            default => throw new \InvalidArgumentException('Unknown RedirectStatusCode value: ' . $value),
+            default => throw new \InvalidArgumentException('Unknown StatusCode value: ' . $value),
         };
     }
 }
