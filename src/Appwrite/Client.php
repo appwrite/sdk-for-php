@@ -37,12 +37,19 @@ class Client
      */
     protected array $headers = [
         'content-type' => '',
-        'user-agent' => 'AppwritePHPSDK/25.0.0 ()',
+        'user-agent' => 'AppwritePHPSDK/25.1.0 ()',
         'x-sdk-name'=> 'PHP',
         'x-sdk-platform'=> 'server',
         'x-sdk-language'=> 'php',
-        'x-sdk-version'=> '25.0.0',
+        'x-sdk-version'=> '25.1.0',
     ];
+
+    /**
+     * Auth/config values used by generated service methods.
+     *
+     * @var array
+     */
+    protected array $config = [];
 
     /**
      * Timeout in seconds
@@ -78,7 +85,7 @@ class Client
      */
     public function setProject(string $value): Client
     {
-        $this->addHeader('X-Appwrite-Project', $value);
+        $this->config['project'] = $value;
 
         return $this;
     }
@@ -95,6 +102,7 @@ class Client
     public function setKey(string $value): Client
     {
         $this->addHeader('X-Appwrite-Key', $value);
+        $this->config['key'] = $value;
 
         return $this;
     }
@@ -111,6 +119,7 @@ class Client
     public function setJWT(string $value): Client
     {
         $this->addHeader('X-Appwrite-JWT', $value);
+        $this->config['jwt'] = $value;
 
         return $this;
     }
@@ -125,6 +134,7 @@ class Client
     public function setLocale(string $value): Client
     {
         $this->addHeader('X-Appwrite-Locale', $value);
+        $this->config['locale'] = $value;
 
         return $this;
     }
@@ -141,6 +151,7 @@ class Client
     public function setSession(string $value): Client
     {
         $this->addHeader('X-Appwrite-Session', $value);
+        $this->config['session'] = $value;
 
         return $this;
     }
@@ -157,6 +168,7 @@ class Client
     public function setForwardedUserAgent(string $value): Client
     {
         $this->addHeader('X-Forwarded-User-Agent', $value);
+        $this->config['forwardeduseragent'] = $value;
 
         return $this;
     }
@@ -173,6 +185,7 @@ class Client
     public function setDevKey(string $value): Client
     {
         $this->addHeader('X-Appwrite-Dev-Key', $value);
+        $this->config['devkey'] = $value;
 
         return $this;
     }
@@ -189,6 +202,7 @@ class Client
     public function setCookie(string $value): Client
     {
         $this->addHeader('Cookie', $value);
+        $this->config['cookie'] = $value;
 
         return $this;
     }
@@ -205,6 +219,7 @@ class Client
     public function setImpersonateUserId(string $value): Client
     {
         $this->addHeader('X-Appwrite-Impersonate-User-Id', $value);
+        $this->config['impersonateuserid'] = $value;
 
         return $this;
     }
@@ -221,6 +236,7 @@ class Client
     public function setImpersonateUserEmail(string $value): Client
     {
         $this->addHeader('X-Appwrite-Impersonate-User-Email', $value);
+        $this->config['impersonateuseremail'] = $value;
 
         return $this;
     }
@@ -237,10 +253,16 @@ class Client
     public function setImpersonateUserPhone(string $value): Client
     {
         $this->addHeader('X-Appwrite-Impersonate-User-Phone', $value);
+        $this->config['impersonateuserphone'] = $value;
 
         return $this;
     }
 
+
+    public function getConfig(string $key): string
+    {
+        return $this->config[$key] ?? '';
+    }
 
     /***
      * @param bool $status
@@ -333,7 +355,8 @@ class Client
     )
     {
         $headers = array_merge($this->headers, $headers);
-        $ch = curl_init($this->endpoint . $path . (($method == self::METHOD_GET && !empty($params)) ? '?' . http_build_query($params) : ''));
+        $querySeparator = str_contains($path, '?') ? '&' : '?';
+        $ch = curl_init($this->endpoint . $path . (($method == self::METHOD_GET && !empty($params)) ? $querySeparator . http_build_query($params) : ''));
         $responseHeaders = [];
 
         switch ($headers['content-type']) {

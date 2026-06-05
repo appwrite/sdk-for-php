@@ -68,6 +68,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->list();
 
@@ -115,6 +118,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->create(
             "<DATABASE_ID>",
@@ -143,6 +149,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->listTransactions();
 
@@ -163,6 +172,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->createTransaction();
 
@@ -183,6 +195,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->getTransaction(
             "<TRANSACTION_ID>"
@@ -205,6 +220,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->updateTransaction(
             "<TRANSACTION_ID>"
@@ -220,6 +238,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->deleteTransaction(
             "<TRANSACTION_ID>"
@@ -242,6 +263,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->createOperations(
             "<TRANSACTION_ID>"
@@ -291,6 +315,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->get(
             "<DATABASE_ID>"
@@ -340,6 +367,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->update(
             "<DATABASE_ID>"
@@ -355,6 +385,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->delete(
             "<DATABASE_ID>"
@@ -400,6 +433,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->listCollections(
             "<DATABASE_ID>"
@@ -440,6 +476,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->createCollection(
             "<DATABASE_ID>",
@@ -482,6 +521,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->getCollection(
             "<DATABASE_ID>",
@@ -523,6 +565,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->updateCollection(
             "<DATABASE_ID>",
@@ -539,6 +584,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->deleteCollection(
             "<DATABASE_ID>",
@@ -558,6 +606,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->listAttributes(
             "<DATABASE_ID>",
@@ -582,6 +633,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->createBigIntAttribute(
             "<DATABASE_ID>",
@@ -608,6 +662,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->updateBigIntAttribute(
             "<DATABASE_ID>",
@@ -635,6 +692,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->createBooleanAttribute(
             "<DATABASE_ID>",
@@ -661,6 +721,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->updateBooleanAttribute(
             "<DATABASE_ID>",
@@ -689,6 +752,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->createDatetimeAttribute(
             "<DATABASE_ID>",
@@ -716,6 +782,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->updateDatetimeAttribute(
             "<DATABASE_ID>",
@@ -744,6 +813,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->createEmailAttribute(
             "<DATABASE_ID>",
@@ -771,6 +843,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->updateEmailAttribute(
             "<DATABASE_ID>",
@@ -800,6 +875,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->createEnumAttribute(
             "<DATABASE_ID>",
@@ -829,6 +907,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->updateEnumAttribute(
             "<DATABASE_ID>",
@@ -857,6 +938,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->createFloatAttribute(
             "<DATABASE_ID>",
@@ -883,6 +967,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->updateFloatAttribute(
             "<DATABASE_ID>",
@@ -910,6 +997,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->createIntegerAttribute(
             "<DATABASE_ID>",
@@ -936,6 +1026,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->updateIntegerAttribute(
             "<DATABASE_ID>",
@@ -964,6 +1057,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->createIpAttribute(
             "<DATABASE_ID>",
@@ -991,6 +1087,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->updateIpAttribute(
             "<DATABASE_ID>",
@@ -1018,6 +1117,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->createLineAttribute(
             "<DATABASE_ID>",
@@ -1044,6 +1146,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->updateLineAttribute(
             "<DATABASE_ID>",
@@ -1070,6 +1175,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->createLongtextAttribute(
             "<DATABASE_ID>",
@@ -1096,6 +1204,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->updateLongtextAttribute(
             "<DATABASE_ID>",
@@ -1123,6 +1234,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->createMediumtextAttribute(
             "<DATABASE_ID>",
@@ -1149,6 +1263,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->updateMediumtextAttribute(
             "<DATABASE_ID>",
@@ -1176,6 +1293,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->createPointAttribute(
             "<DATABASE_ID>",
@@ -1202,6 +1322,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->updatePointAttribute(
             "<DATABASE_ID>",
@@ -1228,6 +1351,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->createPolygonAttribute(
             "<DATABASE_ID>",
@@ -1254,6 +1380,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->updatePolygonAttribute(
             "<DATABASE_ID>",
@@ -1286,6 +1415,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->createRelationshipAttribute(
             "<DATABASE_ID>",
@@ -1318,6 +1450,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->updateRelationshipAttribute(
             "<DATABASE_ID>",
@@ -1344,6 +1479,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->createStringAttribute(
             "<DATABASE_ID>",
@@ -1372,6 +1510,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->updateStringAttribute(
             "<DATABASE_ID>",
@@ -1399,6 +1540,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->createTextAttribute(
             "<DATABASE_ID>",
@@ -1425,6 +1569,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->updateTextAttribute(
             "<DATABASE_ID>",
@@ -1453,6 +1600,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->createUrlAttribute(
             "<DATABASE_ID>",
@@ -1480,6 +1630,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->updateUrlAttribute(
             "<DATABASE_ID>",
@@ -1508,6 +1661,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->createVarcharAttribute(
             "<DATABASE_ID>",
@@ -1536,6 +1692,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->updateVarcharAttribute(
             "<DATABASE_ID>",
@@ -1569,6 +1728,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->getAttribute(
             "<DATABASE_ID>",
@@ -1586,6 +1748,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->deleteAttribute(
             "<DATABASE_ID>",
@@ -1616,6 +1781,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->listDocuments(
             "<DATABASE_ID>",
@@ -1640,6 +1808,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->createDocument(
             "<DATABASE_ID>",
@@ -1671,6 +1842,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->createDocuments(
             "<DATABASE_ID>",
@@ -1701,6 +1875,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->upsertDocuments(
             "<DATABASE_ID>",
@@ -1731,6 +1908,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->updateDocuments(
             "<DATABASE_ID>",
@@ -1760,6 +1940,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->deleteDocuments(
             "<DATABASE_ID>",
@@ -1784,6 +1967,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->getDocument(
             "<DATABASE_ID>",
@@ -1809,6 +1995,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->upsertDocument(
             "<DATABASE_ID>",
@@ -1834,6 +2023,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->updateDocument(
             "<DATABASE_ID>",
@@ -1851,6 +2043,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->deleteDocument(
             "<DATABASE_ID>",
@@ -1876,6 +2071,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->decrementDocumentAttribute(
             "<DATABASE_ID>",
@@ -1902,6 +2100,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->incrementDocumentAttribute(
             "<DATABASE_ID>",
@@ -1935,6 +2136,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->listIndexes(
             "<DATABASE_ID>",
@@ -1961,6 +2165,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->createIndex(
             "<DATABASE_ID>",
@@ -1990,6 +2197,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->getIndex(
             "<DATABASE_ID>",
@@ -2007,6 +2217,9 @@ final class DatabasesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->databases->deleteIndex(
             "<DATABASE_ID>",

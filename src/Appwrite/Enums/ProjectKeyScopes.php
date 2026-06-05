@@ -99,6 +99,8 @@ class ProjectKeyScopes implements JsonSerializable
     private static ProjectKeyScopes $DOMAINSREAD;
     private static ProjectKeyScopes $DOMAINSWRITE;
     private static ProjectKeyScopes $EVENTSREAD;
+    private static ProjectKeyScopes $APPSREAD;
+    private static ProjectKeyScopes $APPSWRITE;
     private static ProjectKeyScopes $USAGEREAD;
 
     private string $value;
@@ -769,6 +771,20 @@ class ProjectKeyScopes implements JsonSerializable
         }
         return self::$EVENTSREAD;
     }
+    public static function APPSREAD(): ProjectKeyScopes
+    {
+        if (!isset(self::$APPSREAD)) {
+            self::$APPSREAD = new ProjectKeyScopes('apps.read');
+        }
+        return self::$APPSREAD;
+    }
+    public static function APPSWRITE(): ProjectKeyScopes
+    {
+        if (!isset(self::$APPSWRITE)) {
+            self::$APPSWRITE = new ProjectKeyScopes('apps.write');
+        }
+        return self::$APPSWRITE;
+    }
     public static function USAGEREAD(): ProjectKeyScopes
     {
         if (!isset(self::$USAGEREAD)) {
@@ -873,6 +889,8 @@ class ProjectKeyScopes implements JsonSerializable
             'domains.read' => self::DOMAINSREAD(),
             'domains.write' => self::DOMAINSWRITE(),
             'events.read' => self::EVENTSREAD(),
+            'apps.read' => self::APPSREAD(),
+            'apps.write' => self::APPSWRITE(),
             'usage.read' => self::USAGEREAD(),
             default => throw new \InvalidArgumentException('Unknown ProjectKeyScopes value: ' . $value),
         };

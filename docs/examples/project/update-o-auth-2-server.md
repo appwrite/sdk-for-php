@@ -1,0 +1,23 @@
+```php
+<?php
+
+use Appwrite\Client;
+use Appwrite\Services\Project;
+
+$client = (new Client())
+    ->setEndpoint('https://<REGION>.cloud.appwrite.io/v1') // Your API Endpoint
+    ->setProject('<YOUR_PROJECT_ID>') // Your project ID
+    ->setKey('<YOUR_API_KEY>'); // Your secret API key
+
+$project = new Project($client);
+
+$result = $project->updateOAuth2Server(
+    enabled: false,
+    authorizationUrl: 'https://example.com',
+    scopes: [], // optional
+    accessTokenDuration: 60, // optional
+    refreshTokenDuration: 60, // optional
+    publicAccessTokenDuration: 60, // optional
+    publicRefreshTokenDuration: 60, // optional
+    confidentialPkce: false // optional
+);```

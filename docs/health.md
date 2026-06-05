@@ -16,6 +16,14 @@ GET https://cloud.appwrite.io/v1/health/anti-virus
 
 
 ```http request
+GET https://cloud.appwrite.io/v1/health/audits-db
+```
+
+** Check the database that backs the audit and activity store. When the connection is reachable the endpoint returns a passing status with its response time.
+ **
+
+
+```http request
 GET https://cloud.appwrite.io/v1/health/cache
 ```
 

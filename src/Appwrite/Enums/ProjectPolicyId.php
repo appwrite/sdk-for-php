@@ -8,6 +8,7 @@ class ProjectPolicyId implements JsonSerializable
 {
     private static ProjectPolicyId $PASSWORDDICTIONARY;
     private static ProjectPolicyId $PASSWORDHISTORY;
+    private static ProjectPolicyId $PASSWORDSTRENGTH;
     private static ProjectPolicyId $PASSWORDPERSONALDATA;
     private static ProjectPolicyId $SESSIONALERT;
     private static ProjectPolicyId $SESSIONDURATION;
@@ -49,6 +50,13 @@ class ProjectPolicyId implements JsonSerializable
             self::$PASSWORDHISTORY = new ProjectPolicyId('password-history');
         }
         return self::$PASSWORDHISTORY;
+    }
+    public static function PASSWORDSTRENGTH(): ProjectPolicyId
+    {
+        if (!isset(self::$PASSWORDSTRENGTH)) {
+            self::$PASSWORDSTRENGTH = new ProjectPolicyId('password-strength');
+        }
+        return self::$PASSWORDSTRENGTH;
     }
     public static function PASSWORDPERSONALDATA(): ProjectPolicyId
     {
@@ -126,6 +134,7 @@ class ProjectPolicyId implements JsonSerializable
         return match ($value) {
             'password-dictionary' => self::PASSWORDDICTIONARY(),
             'password-history' => self::PASSWORDHISTORY(),
+            'password-strength' => self::PASSWORDSTRENGTH(),
             'password-personal-data' => self::PASSWORDPERSONALDATA(),
             'session-alert' => self::SESSIONALERT(),
             'session-duration' => self::SESSIONDURATION(),

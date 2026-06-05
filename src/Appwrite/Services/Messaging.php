@@ -48,6 +48,7 @@ class Messaging extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -129,6 +130,7 @@ class Messaging extends Service
         $apiParams['scheduledAt'] = $scheduledAt;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -190,6 +192,7 @@ class Messaging extends Service
         $apiParams['attachments'] = $attachments;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -310,6 +313,7 @@ class Messaging extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -385,6 +389,7 @@ class Messaging extends Service
         $apiParams['priority'] = $priority;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -445,6 +450,7 @@ class Messaging extends Service
         $apiParams['scheduledAt'] = $scheduledAt;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -496,6 +502,7 @@ class Messaging extends Service
         $apiParams['scheduledAt'] = $scheduledAt;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -533,6 +540,7 @@ class Messaging extends Service
         $apiParams['messageId'] = $messageId;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -569,6 +577,7 @@ class Messaging extends Service
         $apiParams['messageId'] = $messageId;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -611,6 +620,7 @@ class Messaging extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -656,6 +666,7 @@ class Messaging extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -704,6 +715,7 @@ class Messaging extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -768,6 +780,7 @@ class Messaging extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -833,6 +846,7 @@ class Messaging extends Service
         $apiParams['sandbox'] = $sandbox;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -875,6 +889,7 @@ class Messaging extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -920,6 +935,7 @@ class Messaging extends Service
         $apiParams['serviceAccountJSON'] = $serviceAccountJSON;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -992,6 +1008,7 @@ class Messaging extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1067,6 +1084,7 @@ class Messaging extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1122,6 +1140,7 @@ class Messaging extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1180,6 +1199,7 @@ class Messaging extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1245,6 +1265,7 @@ class Messaging extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1313,6 +1334,7 @@ class Messaging extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1378,6 +1400,7 @@ class Messaging extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1446,6 +1469,162 @@ class Messaging extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Provider::from($response);
+
+    }
+
+    /**
+     * Create a new Amazon SES provider.
+     *
+     * @param string $providerId
+     * @param string $name
+     * @param ?string $accessKey
+     * @param ?string $secretKey
+     * @param ?string $region
+     * @param ?string $fromName
+     * @param ?string $fromEmail
+     * @param ?string $replyToName
+     * @param ?string $replyToEmail
+     * @param ?bool $enabled
+     * @throws AppwriteException
+     * @return \Appwrite\Models\Provider
+     */
+    public function createSesProvider(string $providerId, string $name, ?string $accessKey = null, ?string $secretKey = null, ?string $region = null, ?string $fromName = null, ?string $fromEmail = null, ?string $replyToName = null, ?string $replyToEmail = null, ?bool $enabled = null): \Appwrite\Models\Provider
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/messaging/providers/ses'
+        );
+
+        $apiParams = [];
+        $apiParams['providerId'] = $providerId;
+        $apiParams['name'] = $name;
+
+        if (!is_null($accessKey)) {
+            $apiParams['accessKey'] = $accessKey;
+        }
+
+        if (!is_null($secretKey)) {
+            $apiParams['secretKey'] = $secretKey;
+        }
+
+        if (!is_null($region)) {
+            $apiParams['region'] = $region;
+        }
+
+        if (!is_null($fromName)) {
+            $apiParams['fromName'] = $fromName;
+        }
+
+        if (!is_null($fromEmail)) {
+            $apiParams['fromEmail'] = $fromEmail;
+        }
+
+        if (!is_null($replyToName)) {
+            $apiParams['replyToName'] = $replyToName;
+        }
+
+        if (!is_null($replyToEmail)) {
+            $apiParams['replyToEmail'] = $replyToEmail;
+        }
+        $apiParams['enabled'] = $enabled;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Provider::from($response);
+
+    }
+
+    /**
+     * Update an Amazon SES provider by its unique ID.
+     *
+     * @param string $providerId
+     * @param ?string $name
+     * @param ?bool $enabled
+     * @param ?string $accessKey
+     * @param ?string $secretKey
+     * @param ?string $region
+     * @param ?string $fromName
+     * @param ?string $fromEmail
+     * @param ?string $replyToName
+     * @param ?string $replyToEmail
+     * @throws AppwriteException
+     * @return \Appwrite\Models\Provider
+     */
+    public function updateSesProvider(string $providerId, ?string $name = null, ?bool $enabled = null, ?string $accessKey = null, ?string $secretKey = null, ?string $region = null, ?string $fromName = null, ?string $fromEmail = null, ?string $replyToName = null, ?string $replyToEmail = null): \Appwrite\Models\Provider
+    {
+        $apiPath = str_replace(
+            ['{providerId}'],
+            [$providerId],
+            '/messaging/providers/ses/{providerId}'
+        );
+
+        $apiParams = [];
+        $apiParams['providerId'] = $providerId;
+
+        if (!is_null($name)) {
+            $apiParams['name'] = $name;
+        }
+        $apiParams['enabled'] = $enabled;
+
+        if (!is_null($accessKey)) {
+            $apiParams['accessKey'] = $accessKey;
+        }
+
+        if (!is_null($secretKey)) {
+            $apiParams['secretKey'] = $secretKey;
+        }
+
+        if (!is_null($region)) {
+            $apiParams['region'] = $region;
+        }
+
+        if (!is_null($fromName)) {
+            $apiParams['fromName'] = $fromName;
+        }
+
+        if (!is_null($fromEmail)) {
+            $apiParams['fromEmail'] = $fromEmail;
+        }
+
+        if (!is_null($replyToName)) {
+            $apiParams['replyToName'] = $replyToName;
+        }
+
+        if (!is_null($replyToEmail)) {
+            $apiParams['replyToEmail'] = $replyToEmail;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1538,6 +1717,7 @@ class Messaging extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1630,6 +1810,7 @@ class Messaging extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1685,6 +1866,7 @@ class Messaging extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1743,6 +1925,7 @@ class Messaging extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1798,6 +1981,7 @@ class Messaging extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1856,6 +2040,7 @@ class Messaging extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1911,6 +2096,7 @@ class Messaging extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1969,6 +2155,7 @@ class Messaging extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -2024,6 +2211,7 @@ class Messaging extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -2082,6 +2270,7 @@ class Messaging extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -2119,6 +2308,7 @@ class Messaging extends Service
         $apiParams['providerId'] = $providerId;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -2154,6 +2344,7 @@ class Messaging extends Service
         $apiParams['providerId'] = $providerId;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -2196,6 +2387,7 @@ class Messaging extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -2241,6 +2433,7 @@ class Messaging extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -2289,6 +2482,7 @@ class Messaging extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -2331,6 +2525,7 @@ class Messaging extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -2368,6 +2563,7 @@ class Messaging extends Service
         $apiParams['topicId'] = $topicId;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -2408,6 +2604,7 @@ class Messaging extends Service
         $apiParams['subscribe'] = $subscribe;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -2444,6 +2641,7 @@ class Messaging extends Service
         $apiParams['topicId'] = $topicId;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -2486,6 +2684,7 @@ class Messaging extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -2536,6 +2735,7 @@ class Messaging extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -2575,6 +2775,7 @@ class Messaging extends Service
         $apiParams['targetId'] = $targetId;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -2614,6 +2815,7 @@ class Messaging extends Service
         $apiParams['subscriberId'] = $subscriberId;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -2651,6 +2853,7 @@ class Messaging extends Service
         $apiParams['subscriberId'] = $subscriberId;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(

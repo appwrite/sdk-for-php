@@ -33,6 +33,7 @@ class Graphql extends Service
         $apiParams['query'] = $query;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['x-sdk-graphql'] = 'true';
         $apiHeaders['content-type'] = 'application/json';
 
@@ -66,6 +67,7 @@ class Graphql extends Service
         $apiParams['query'] = $query;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['x-sdk-graphql'] = 'true';
         $apiHeaders['content-type'] = 'application/json';
 

@@ -17,6 +17,7 @@ readonly class Project
      * @param string $updatedAt project update date in iso 8601 format.
      * @param string $name project name.
      * @param string $teamId project team id.
+     * @param string $region project region
      * @param list<DevKey> $devKeys deprecated since 1.9.5: list of dev keys.
      * @param bool $smtpEnabled status for custom smtp
      * @param string $smtpSenderName smtp sender name
@@ -35,9 +36,17 @@ readonly class Project
      * @param list<ProjectAuthMethod> $authMethods list of auth methods.
      * @param list<ProjectService> $services list of services.
      * @param list<ProjectProtocol> $protocols list of protocols.
-     * @param string $region project region
      * @param list<Block> $blocks project blocks information
      * @param string $consoleAccessedAt last time the project was accessed via console. used with plan's projectinactivitydays to determine if project is paused.
+     * @param bool $oAuth2ServerEnabled oauth2 server status
+     * @param string $oAuth2ServerAuthorizationUrl oauth2 server authorization url
+     * @param array $oAuth2ServerScopes oauth2 server allowed scopes
+     * @param int $oAuth2ServerAccessTokenDuration oauth2 server access token duration in seconds for confidential clients
+     * @param int $oAuth2ServerRefreshTokenDuration oauth2 server refresh token duration in seconds for confidential clients
+     * @param int $oAuth2ServerPublicAccessTokenDuration oauth2 server access token duration in seconds for public clients (spas, mobile, native)
+     * @param int $oAuth2ServerPublicRefreshTokenDuration oauth2 server refresh token duration in seconds for public clients (spas, mobile, native)
+     * @param bool $oAuth2ServerConfidentialPkce when enabled, pkce is required for confidential clients (server-side flows using client_secret). pkce is always required for public clients regardless of this setting.
+     * @param string $oAuth2ServerDiscoveryUrl oauth2 server discovery url
      * @param BillingLimits|null $billingLimits billing limits reached
      */
     public function __construct(
@@ -46,6 +55,7 @@ readonly class Project
         public string $updatedAt,
         public string $name,
         public string $teamId,
+        public string $region,
         public array $devKeys,
         public bool $smtpEnabled,
         public string $smtpSenderName,
@@ -64,9 +74,17 @@ readonly class Project
         public array $authMethods,
         public array $services,
         public array $protocols,
-        public string $region,
         public array $blocks,
         public string $consoleAccessedAt,
+        public bool $oAuth2ServerEnabled,
+        public string $oAuth2ServerAuthorizationUrl,
+        public array $oAuth2ServerScopes,
+        public int $oAuth2ServerAccessTokenDuration,
+        public int $oAuth2ServerRefreshTokenDuration,
+        public int $oAuth2ServerPublicAccessTokenDuration,
+        public int $oAuth2ServerPublicRefreshTokenDuration,
+        public bool $oAuth2ServerConfidentialPkce,
+        public string $oAuth2ServerDiscoveryUrl,
         public ?BillingLimits $billingLimits = null
     ) {
     }
@@ -90,6 +108,9 @@ readonly class Project
         }
         if (!array_key_exists('teamId', $data)) {
             throw new \InvalidArgumentException('Missing required field "teamId" for ' . static::class . '.');
+        }
+        if (!array_key_exists('region', $data)) {
+            throw new \InvalidArgumentException('Missing required field "region" for ' . static::class . '.');
         }
         if (!array_key_exists('devKeys', $data)) {
             throw new \InvalidArgumentException('Missing required field "devKeys" for ' . static::class . '.');
@@ -145,14 +166,38 @@ readonly class Project
         if (!array_key_exists('protocols', $data)) {
             throw new \InvalidArgumentException('Missing required field "protocols" for ' . static::class . '.');
         }
-        if (!array_key_exists('region', $data)) {
-            throw new \InvalidArgumentException('Missing required field "region" for ' . static::class . '.');
-        }
         if (!array_key_exists('blocks', $data)) {
             throw new \InvalidArgumentException('Missing required field "blocks" for ' . static::class . '.');
         }
         if (!array_key_exists('consoleAccessedAt', $data)) {
             throw new \InvalidArgumentException('Missing required field "consoleAccessedAt" for ' . static::class . '.');
+        }
+        if (!array_key_exists('oAuth2ServerEnabled', $data)) {
+            throw new \InvalidArgumentException('Missing required field "oAuth2ServerEnabled" for ' . static::class . '.');
+        }
+        if (!array_key_exists('oAuth2ServerAuthorizationUrl', $data)) {
+            throw new \InvalidArgumentException('Missing required field "oAuth2ServerAuthorizationUrl" for ' . static::class . '.');
+        }
+        if (!array_key_exists('oAuth2ServerScopes', $data)) {
+            throw new \InvalidArgumentException('Missing required field "oAuth2ServerScopes" for ' . static::class . '.');
+        }
+        if (!array_key_exists('oAuth2ServerAccessTokenDuration', $data)) {
+            throw new \InvalidArgumentException('Missing required field "oAuth2ServerAccessTokenDuration" for ' . static::class . '.');
+        }
+        if (!array_key_exists('oAuth2ServerRefreshTokenDuration', $data)) {
+            throw new \InvalidArgumentException('Missing required field "oAuth2ServerRefreshTokenDuration" for ' . static::class . '.');
+        }
+        if (!array_key_exists('oAuth2ServerPublicAccessTokenDuration', $data)) {
+            throw new \InvalidArgumentException('Missing required field "oAuth2ServerPublicAccessTokenDuration" for ' . static::class . '.');
+        }
+        if (!array_key_exists('oAuth2ServerPublicRefreshTokenDuration', $data)) {
+            throw new \InvalidArgumentException('Missing required field "oAuth2ServerPublicRefreshTokenDuration" for ' . static::class . '.');
+        }
+        if (!array_key_exists('oAuth2ServerConfidentialPkce', $data)) {
+            throw new \InvalidArgumentException('Missing required field "oAuth2ServerConfidentialPkce" for ' . static::class . '.');
+        }
+        if (!array_key_exists('oAuth2ServerDiscoveryUrl', $data)) {
+            throw new \InvalidArgumentException('Missing required field "oAuth2ServerDiscoveryUrl" for ' . static::class . '.');
         }
 
         return new static(
@@ -161,6 +206,7 @@ readonly class Project
             updatedAt: $data['$updatedAt'],
             name: $data['name'],
             teamId: $data['teamId'],
+            region: $data['region'],
             devKeys: is_array($data['devKeys'])
                 ? array_map(
                     static fn (mixed $item): mixed => static::hydrateTypedValue(DevKey::class, $item),
@@ -199,7 +245,6 @@ readonly class Project
                     $data['protocols']
                 )
                 : $data['protocols'],
-            region: $data['region'],
             blocks: is_array($data['blocks'])
                 ? array_map(
                     static fn (mixed $item): mixed => static::hydrateTypedValue(Block::class, $item),
@@ -207,6 +252,15 @@ readonly class Project
                 )
                 : $data['blocks'],
             consoleAccessedAt: $data['consoleAccessedAt'],
+            oAuth2ServerEnabled: $data['oAuth2ServerEnabled'],
+            oAuth2ServerAuthorizationUrl: $data['oAuth2ServerAuthorizationUrl'],
+            oAuth2ServerScopes: $data['oAuth2ServerScopes'],
+            oAuth2ServerAccessTokenDuration: $data['oAuth2ServerAccessTokenDuration'],
+            oAuth2ServerRefreshTokenDuration: $data['oAuth2ServerRefreshTokenDuration'],
+            oAuth2ServerPublicAccessTokenDuration: $data['oAuth2ServerPublicAccessTokenDuration'],
+            oAuth2ServerPublicRefreshTokenDuration: $data['oAuth2ServerPublicRefreshTokenDuration'],
+            oAuth2ServerConfidentialPkce: $data['oAuth2ServerConfidentialPkce'],
+            oAuth2ServerDiscoveryUrl: $data['oAuth2ServerDiscoveryUrl'],
             billingLimits: array_key_exists('billingLimits', $data) ? static::hydrateTypedValue(BillingLimits::class, $data['billingLimits'], true) : null
         );
     }
@@ -222,6 +276,7 @@ readonly class Project
             '$updatedAt' => static::serializeValue($this->updatedAt),
             'name' => static::serializeValue($this->name),
             'teamId' => static::serializeValue($this->teamId),
+            'region' => static::serializeValue($this->region),
             'devKeys' => static::serializeValue($this->devKeys),
             'smtpEnabled' => static::serializeValue($this->smtpEnabled),
             'smtpSenderName' => static::serializeValue($this->smtpSenderName),
@@ -240,10 +295,18 @@ readonly class Project
             'authMethods' => static::serializeValue($this->authMethods),
             'services' => static::serializeValue($this->services),
             'protocols' => static::serializeValue($this->protocols),
-            'region' => static::serializeValue($this->region),
-            'billingLimits' => static::serializeValue($this->billingLimits),
             'blocks' => static::serializeValue($this->blocks),
-            'consoleAccessedAt' => static::serializeValue($this->consoleAccessedAt)
+            'consoleAccessedAt' => static::serializeValue($this->consoleAccessedAt),
+            'billingLimits' => static::serializeValue($this->billingLimits),
+            'oAuth2ServerEnabled' => static::serializeValue($this->oAuth2ServerEnabled),
+            'oAuth2ServerAuthorizationUrl' => static::serializeValue($this->oAuth2ServerAuthorizationUrl),
+            'oAuth2ServerScopes' => static::serializeValue($this->oAuth2ServerScopes),
+            'oAuth2ServerAccessTokenDuration' => static::serializeValue($this->oAuth2ServerAccessTokenDuration),
+            'oAuth2ServerRefreshTokenDuration' => static::serializeValue($this->oAuth2ServerRefreshTokenDuration),
+            'oAuth2ServerPublicAccessTokenDuration' => static::serializeValue($this->oAuth2ServerPublicAccessTokenDuration),
+            'oAuth2ServerPublicRefreshTokenDuration' => static::serializeValue($this->oAuth2ServerPublicRefreshTokenDuration),
+            'oAuth2ServerConfidentialPkce' => static::serializeValue($this->oAuth2ServerConfidentialPkce),
+            'oAuth2ServerDiscoveryUrl' => static::serializeValue($this->oAuth2ServerDiscoveryUrl)
         ];
 
         return $result;
