@@ -50,6 +50,7 @@ class Users extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -99,6 +100,7 @@ class Users extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -147,6 +149,7 @@ class Users extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -195,6 +198,7 @@ class Users extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -244,6 +248,7 @@ class Users extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -279,6 +284,7 @@ class Users extends Service
         $apiParams['identityId'] = $identityId;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -323,6 +329,7 @@ class Users extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -371,6 +378,7 @@ class Users extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -429,6 +437,7 @@ class Users extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -484,6 +493,7 @@ class Users extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -537,6 +547,7 @@ class Users extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -573,6 +584,7 @@ class Users extends Service
         $apiParams['userId'] = $userId;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -613,6 +625,7 @@ class Users extends Service
         $apiParams['userId'] = $userId;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -647,6 +660,7 @@ class Users extends Service
         $apiParams['email'] = $email;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -690,6 +704,7 @@ class Users extends Service
         $apiParams['impersonator'] = $impersonator;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -738,6 +753,7 @@ class Users extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -781,6 +797,7 @@ class Users extends Service
         $apiParams['labels'] = $labels;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -827,6 +844,7 @@ class Users extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -877,6 +895,7 @@ class Users extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -914,6 +933,7 @@ class Users extends Service
         $apiParams['mfa'] = $mfa;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -952,6 +972,7 @@ class Users extends Service
         $apiParams['type'] = $type;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -984,6 +1005,7 @@ class Users extends Service
         $apiParams['userId'] = $userId;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -1022,6 +1044,7 @@ class Users extends Service
         $apiParams['userId'] = $userId;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -1060,6 +1083,7 @@ class Users extends Service
         $apiParams['userId'] = $userId;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1099,6 +1123,7 @@ class Users extends Service
         $apiParams['userId'] = $userId;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1137,6 +1162,7 @@ class Users extends Service
         $apiParams['name'] = $name;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1175,6 +1201,7 @@ class Users extends Service
         $apiParams['password'] = $password;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1213,6 +1240,7 @@ class Users extends Service
         $apiParams['number'] = $number;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1249,6 +1277,7 @@ class Users extends Service
         $apiParams['userId'] = $userId;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -1288,6 +1317,7 @@ class Users extends Service
         $apiParams['prefs'] = $prefs;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1329,6 +1359,7 @@ class Users extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -1369,6 +1400,7 @@ class Users extends Service
         $apiParams['userId'] = $userId;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1405,6 +1437,7 @@ class Users extends Service
         $apiParams['userId'] = $userId;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1439,6 +1472,7 @@ class Users extends Service
         $apiParams['sessionId'] = $sessionId;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1474,6 +1508,7 @@ class Users extends Service
         $apiParams['status'] = $status;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1520,6 +1555,7 @@ class Users extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -1571,6 +1607,7 @@ class Users extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1609,6 +1646,7 @@ class Users extends Service
         $apiParams['targetId'] = $targetId;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -1661,6 +1699,7 @@ class Users extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1699,6 +1738,7 @@ class Users extends Service
         $apiParams['targetId'] = $targetId;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1745,6 +1785,7 @@ class Users extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1783,6 +1824,7 @@ class Users extends Service
         $apiParams['emailVerification'] = $emailVerification;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1821,6 +1863,7 @@ class Users extends Service
         $apiParams['phoneVerification'] = $phoneVerification;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(

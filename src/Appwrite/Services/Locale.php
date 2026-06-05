@@ -36,6 +36,7 @@ class Locale extends Service
         $apiParams = [];
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -70,6 +71,7 @@ class Locale extends Service
         $apiParams = [];
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -104,6 +106,7 @@ class Locale extends Service
         $apiParams = [];
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -138,6 +141,7 @@ class Locale extends Service
         $apiParams = [];
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -172,6 +176,7 @@ class Locale extends Service
         $apiParams = [];
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -206,6 +211,7 @@ class Locale extends Service
         $apiParams = [];
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -241,6 +247,7 @@ class Locale extends Service
         $apiParams = [];
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -275,6 +282,7 @@ class Locale extends Service
         $apiParams = [];
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,

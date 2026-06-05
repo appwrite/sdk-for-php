@@ -41,6 +41,9 @@ final class UsageTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->usage->listEvents();
 
@@ -65,6 +68,9 @@ final class UsageTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->usage->listGauges();
 

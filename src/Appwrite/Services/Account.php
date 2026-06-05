@@ -34,6 +34,7 @@ class Account extends Service
         $apiParams = [];
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -84,6 +85,7 @@ class Account extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -129,6 +131,7 @@ class Account extends Service
         $apiParams['password'] = $password;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -173,6 +176,7 @@ class Account extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -208,6 +212,7 @@ class Account extends Service
         $apiParams['identityId'] = $identityId;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -247,6 +252,7 @@ class Account extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -292,6 +298,7 @@ class Account extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -327,6 +334,7 @@ class Account extends Service
         $apiParams['mfa'] = $mfa;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -366,6 +374,7 @@ class Account extends Service
         $apiParams['type'] = $type;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -406,6 +415,7 @@ class Account extends Service
         $apiParams['otp'] = $otp;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -442,6 +452,7 @@ class Account extends Service
         $apiParams['type'] = $type;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -476,6 +487,7 @@ class Account extends Service
         $apiParams['factor'] = $factor;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -518,6 +530,7 @@ class Account extends Service
         $apiParams['otp'] = $otp;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -552,6 +565,7 @@ class Account extends Service
         $apiParams = [];
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -588,6 +602,7 @@ class Account extends Service
         $apiParams = [];
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -625,6 +640,7 @@ class Account extends Service
         $apiParams = [];
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -662,6 +678,7 @@ class Account extends Service
         $apiParams = [];
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -698,6 +715,7 @@ class Account extends Service
         $apiParams['name'] = $name;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -741,6 +759,7 @@ class Account extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -783,6 +802,7 @@ class Account extends Service
         $apiParams['password'] = $password;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -817,6 +837,7 @@ class Account extends Service
         $apiParams = [];
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -854,6 +875,7 @@ class Account extends Service
         $apiParams['prefs'] = $prefs;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -899,6 +921,7 @@ class Account extends Service
         $apiParams['url'] = $url;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -948,6 +971,7 @@ class Account extends Service
         $apiParams['password'] = $password;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -983,6 +1007,7 @@ class Account extends Service
         $apiParams = [];
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -1017,6 +1042,7 @@ class Account extends Service
         $apiParams = [];
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1053,6 +1079,7 @@ class Account extends Service
         $apiParams = [];
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1096,6 +1123,7 @@ class Account extends Service
         $apiParams['password'] = $password;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1139,6 +1167,7 @@ class Account extends Service
         $apiParams['secret'] = $secret;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1182,6 +1211,7 @@ class Account extends Service
         $apiParams['secret'] = $secret;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1222,6 +1252,7 @@ class Account extends Service
         $apiParams['secret'] = $secret;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1259,6 +1290,7 @@ class Account extends Service
         $apiParams['sessionId'] = $sessionId;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -1296,6 +1328,7 @@ class Account extends Service
         $apiParams['sessionId'] = $sessionId;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1336,6 +1369,7 @@ class Account extends Service
         $apiParams['sessionId'] = $sessionId;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1368,6 +1402,7 @@ class Account extends Service
         $apiParams = [];
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1424,6 +1459,7 @@ class Account extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1485,6 +1521,7 @@ class Account extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1549,6 +1586,7 @@ class Account extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -1591,6 +1629,7 @@ class Account extends Service
         $apiParams['phone'] = $phone;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1641,6 +1680,7 @@ class Account extends Service
         $apiParams['url'] = $url;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1694,6 +1734,7 @@ class Account extends Service
         $apiParams['url'] = $url;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1735,6 +1776,7 @@ class Account extends Service
         $apiParams['secret'] = $secret;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1779,6 +1821,7 @@ class Account extends Service
         $apiParams['secret'] = $secret;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1820,6 +1863,7 @@ class Account extends Service
         $apiParams = [];
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1861,6 +1905,7 @@ class Account extends Service
         $apiParams['secret'] = $secret;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(

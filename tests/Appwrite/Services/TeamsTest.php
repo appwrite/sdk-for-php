@@ -37,6 +37,9 @@ final class TeamsTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->teams->list();
 
@@ -57,6 +60,9 @@ final class TeamsTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->teams->create(
             "<TEAM_ID>",
@@ -80,6 +86,9 @@ final class TeamsTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->teams->get(
             "<TEAM_ID>"
@@ -102,6 +111,9 @@ final class TeamsTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->teams->updateName(
             "<TEAM_ID>",
@@ -118,6 +130,9 @@ final class TeamsTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->teams->delete(
             "<TEAM_ID>"
@@ -153,6 +168,9 @@ final class TeamsTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->teams->listMemberships(
             "<TEAM_ID>"
@@ -183,6 +201,9 @@ final class TeamsTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->teams->createMembership(
             "<TEAM_ID>",
@@ -214,6 +235,9 @@ final class TeamsTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->teams->getMembership(
             "<TEAM_ID>",
@@ -245,6 +269,9 @@ final class TeamsTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->teams->updateMembership(
             "<TEAM_ID>",
@@ -262,6 +289,9 @@ final class TeamsTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->teams->deleteMembership(
             "<TEAM_ID>",
@@ -293,6 +323,9 @@ final class TeamsTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->teams->updateMembershipStatus(
             "<TEAM_ID>",
@@ -311,6 +344,9 @@ final class TeamsTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->teams->getPrefs(
             "<TEAM_ID>"
@@ -326,6 +362,9 @@ final class TeamsTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->teams->updatePrefs(
             "<TEAM_ID>",

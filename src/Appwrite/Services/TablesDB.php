@@ -51,6 +51,7 @@ class TablesDB extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -94,6 +95,7 @@ class TablesDB extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -133,6 +135,7 @@ class TablesDB extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -171,6 +174,7 @@ class TablesDB extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -207,6 +211,7 @@ class TablesDB extends Service
         $apiParams['transactionId'] = $transactionId;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -252,6 +257,7 @@ class TablesDB extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -288,6 +294,7 @@ class TablesDB extends Service
         $apiParams['transactionId'] = $transactionId;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -325,6 +332,7 @@ class TablesDB extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -362,6 +370,7 @@ class TablesDB extends Service
         $apiParams['databaseId'] = $databaseId;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -407,6 +416,7 @@ class TablesDB extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -444,6 +454,7 @@ class TablesDB extends Service
         $apiParams['databaseId'] = $databaseId;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -492,6 +503,7 @@ class TablesDB extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -556,6 +568,7 @@ class TablesDB extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -595,6 +608,7 @@ class TablesDB extends Service
         $apiParams['tableId'] = $tableId;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -654,6 +668,7 @@ class TablesDB extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -693,6 +708,7 @@ class TablesDB extends Service
         $apiParams['tableId'] = $tableId;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -737,6 +753,7 @@ class TablesDB extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -791,6 +808,7 @@ class TablesDB extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -843,6 +861,7 @@ class TablesDB extends Service
         $apiParams['newKey'] = $newKey;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -893,6 +912,7 @@ class TablesDB extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -940,6 +960,7 @@ class TablesDB extends Service
         $apiParams['newKey'] = $newKey;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -989,6 +1010,7 @@ class TablesDB extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1036,6 +1058,7 @@ class TablesDB extends Service
         $apiParams['newKey'] = $newKey;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1086,6 +1109,7 @@ class TablesDB extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1134,6 +1158,7 @@ class TablesDB extends Service
         $apiParams['newKey'] = $newKey;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1186,6 +1211,7 @@ class TablesDB extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1236,6 +1262,7 @@ class TablesDB extends Service
         $apiParams['newKey'] = $newKey;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1291,6 +1318,7 @@ class TablesDB extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1343,6 +1371,7 @@ class TablesDB extends Service
         $apiParams['newKey'] = $newKey;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1398,6 +1427,7 @@ class TablesDB extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1450,6 +1480,7 @@ class TablesDB extends Service
         $apiParams['newKey'] = $newKey;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1500,6 +1531,7 @@ class TablesDB extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1548,6 +1580,7 @@ class TablesDB extends Service
         $apiParams['newKey'] = $newKey;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1592,6 +1625,7 @@ class TablesDB extends Service
         $apiParams['default'] = $xdefault;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1639,6 +1673,7 @@ class TablesDB extends Service
         $apiParams['newKey'] = $newKey;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1694,6 +1729,7 @@ class TablesDB extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1742,6 +1778,7 @@ class TablesDB extends Service
         $apiParams['newKey'] = $newKey;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1797,6 +1834,7 @@ class TablesDB extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1845,6 +1883,7 @@ class TablesDB extends Service
         $apiParams['newKey'] = $newKey;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1889,6 +1928,7 @@ class TablesDB extends Service
         $apiParams['default'] = $xdefault;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1936,6 +1976,7 @@ class TablesDB extends Service
         $apiParams['newKey'] = $newKey;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1980,6 +2021,7 @@ class TablesDB extends Service
         $apiParams['default'] = $xdefault;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -2027,6 +2069,7 @@ class TablesDB extends Service
         $apiParams['newKey'] = $newKey;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -2085,6 +2128,7 @@ class TablesDB extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -2145,6 +2189,7 @@ class TablesDB extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -2198,6 +2243,7 @@ class TablesDB extends Service
         $apiParams['newKey'] = $newKey;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -2253,6 +2299,7 @@ class TablesDB extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -2301,6 +2348,7 @@ class TablesDB extends Service
         $apiParams['newKey'] = $newKey;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -2351,6 +2399,7 @@ class TablesDB extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -2399,6 +2448,7 @@ class TablesDB extends Service
         $apiParams['newKey'] = $newKey;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -2456,6 +2506,7 @@ class TablesDB extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -2506,6 +2557,7 @@ class TablesDB extends Service
         $apiParams['newKey'] = $newKey;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -2546,6 +2598,7 @@ class TablesDB extends Service
         $apiParams['key'] = $key;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -2625,6 +2678,7 @@ class TablesDB extends Service
         $apiParams['key'] = $key;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -2667,6 +2721,7 @@ class TablesDB extends Service
         $apiParams['newKey'] = $newKey;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -2715,6 +2770,7 @@ class TablesDB extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -2770,6 +2826,7 @@ class TablesDB extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -2810,6 +2867,7 @@ class TablesDB extends Service
         $apiParams['key'] = $key;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -2849,6 +2907,7 @@ class TablesDB extends Service
         $apiParams['key'] = $key;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -2904,6 +2963,7 @@ class TablesDB extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -2952,6 +3012,7 @@ class TablesDB extends Service
         $apiParams['transactionId'] = $transactionId;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -2997,6 +3058,7 @@ class TablesDB extends Service
         $apiParams['transactionId'] = $transactionId;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -3043,6 +3105,7 @@ class TablesDB extends Service
         $apiParams['transactionId'] = $transactionId;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -3094,6 +3157,7 @@ class TablesDB extends Service
         $apiParams['transactionId'] = $transactionId;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -3140,6 +3204,7 @@ class TablesDB extends Service
         $apiParams['transactionId'] = $transactionId;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -3191,6 +3256,7 @@ class TablesDB extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -3242,6 +3308,7 @@ class TablesDB extends Service
         $apiParams['transactionId'] = $transactionId;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -3292,6 +3359,7 @@ class TablesDB extends Service
         $apiParams['transactionId'] = $transactionId;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -3334,6 +3402,7 @@ class TablesDB extends Service
         $apiParams['transactionId'] = $transactionId;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -3381,6 +3450,7 @@ class TablesDB extends Service
         $apiParams['transactionId'] = $transactionId;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -3432,6 +3502,7 @@ class TablesDB extends Service
         $apiParams['transactionId'] = $transactionId;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(

@@ -321,7 +321,7 @@ PATCH https://cloud.appwrite.io/v1/account/password
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | password | string | New user password. Must be at least 8 chars. |  |
-| oldPassword | string | Current user password. Must be at least 8 chars. |  |
+| oldPassword | string | Current user password. Max length: 256 chars. |  |
 
 
 ```http request

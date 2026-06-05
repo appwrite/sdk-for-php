@@ -50,6 +50,7 @@ class Storage extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -129,6 +130,7 @@ class Storage extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -166,6 +168,7 @@ class Storage extends Service
         $apiParams['bucketId'] = $bucketId;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -245,6 +248,7 @@ class Storage extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -281,6 +285,7 @@ class Storage extends Service
         $apiParams['bucketId'] = $bucketId;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -329,6 +334,7 @@ class Storage extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -390,6 +396,7 @@ class Storage extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'multipart/form-data';
         $size = 0;
         $mimeType = null;
@@ -436,7 +443,10 @@ class Storage extends Service
         } catch(\Exception $e) {
         }
 
-        $apiHeaders = ['content-type' => 'multipart/form-data'];
+        $apiHeaders = [
+            'content-type' => 'multipart/form-data',
+            'X-Appwrite-Project' => $this->client->getConfig('project'),
+        ];
         $handle = null;
 
         if(!empty($file->getPath())) {
@@ -666,6 +676,7 @@ class Storage extends Service
         $apiParams['fileId'] = $fileId;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -711,6 +722,7 @@ class Storage extends Service
         $apiParams['permissions'] = $permissions;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -750,6 +762,7 @@ class Storage extends Service
         $apiParams['fileId'] = $fileId;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -791,6 +804,7 @@ class Storage extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -888,6 +902,7 @@ class Storage extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -928,6 +943,7 @@ class Storage extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,

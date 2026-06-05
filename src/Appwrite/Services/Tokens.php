@@ -46,6 +46,7 @@ class Tokens extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -86,6 +87,7 @@ class Tokens extends Service
         $apiParams['expire'] = $expire;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -122,6 +124,7 @@ class Tokens extends Service
         $apiParams['tokenId'] = $tokenId;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -160,6 +163,7 @@ class Tokens extends Service
         $apiParams['expire'] = $expire;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -196,6 +200,7 @@ class Tokens extends Service
         $apiParams['tokenId'] = $tokenId;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(

@@ -56,6 +56,9 @@ final class AccountTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->account->get();
 
@@ -97,6 +100,9 @@ final class AccountTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->account->create(
             "<USER_ID>",
@@ -142,6 +148,9 @@ final class AccountTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->account->updateEmail(
             "email@example.com",
@@ -174,6 +183,9 @@ final class AccountTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->account->listIdentities();
 
@@ -187,6 +199,9 @@ final class AccountTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->account->deleteIdentity(
             "<IDENTITY_ID>"
@@ -204,6 +219,9 @@ final class AccountTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->account->createJWT();
 
@@ -245,6 +263,9 @@ final class AccountTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->account->listLogs();
 
@@ -286,6 +307,9 @@ final class AccountTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->account->updateMFA(
             true
@@ -304,6 +328,9 @@ final class AccountTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->account->createMFAAuthenticator(
             AuthenticatorType::TOTP()
@@ -347,6 +374,9 @@ final class AccountTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->account->updateMFAAuthenticator(
             AuthenticatorType::TOTP(),
@@ -363,6 +393,9 @@ final class AccountTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->account->deleteMFAAuthenticator(
             AuthenticatorType::TOTP()
@@ -383,6 +416,9 @@ final class AccountTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->account->createMFAChallenge(
             AuthenticationFactor::EMAIL()
@@ -428,6 +464,9 @@ final class AccountTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->account->updateMFAChallenge(
             "<CHALLENGE_ID>",
@@ -449,6 +488,9 @@ final class AccountTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->account->listMFAFactors();
 
@@ -464,6 +506,9 @@ final class AccountTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->account->getMFARecoveryCodes();
 
@@ -479,6 +524,9 @@ final class AccountTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->account->createMFARecoveryCodes();
 
@@ -494,6 +542,9 @@ final class AccountTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->account->updateMFARecoveryCodes();
 
@@ -535,6 +586,9 @@ final class AccountTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->account->updateName(
             "<NAME>"
@@ -578,6 +632,9 @@ final class AccountTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->account->updatePassword(
             ""
@@ -621,6 +678,9 @@ final class AccountTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->account->updatePhone(
             "+12065550100",
@@ -637,6 +697,9 @@ final class AccountTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->account->getPrefs();
 
@@ -678,6 +741,9 @@ final class AccountTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->account->updatePrefs(
             array()
@@ -700,6 +766,9 @@ final class AccountTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->account->createRecovery(
             "email@example.com",
@@ -723,6 +792,9 @@ final class AccountTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->account->updateRecovery(
             "<USER_ID>",
@@ -775,6 +847,9 @@ final class AccountTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->account->listSessions();
 
@@ -788,6 +863,9 @@ final class AccountTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->account->deleteSessions();
 
@@ -831,6 +909,9 @@ final class AccountTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->account->createAnonymousSession();
 
@@ -874,6 +955,9 @@ final class AccountTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->account->createEmailPasswordSession(
             "email@example.com",
@@ -920,6 +1004,9 @@ final class AccountTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->account->updateMagicURLSession(
             "<USER_ID>",
@@ -966,6 +1053,9 @@ final class AccountTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->account->updatePhoneSession(
             "<USER_ID>",
@@ -1012,6 +1102,9 @@ final class AccountTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->account->createSession(
             "<USER_ID>",
@@ -1058,6 +1151,9 @@ final class AccountTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->account->getSession(
             "<SESSION_ID>"
@@ -1103,6 +1199,9 @@ final class AccountTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->account->updateSession(
             "<SESSION_ID>"
@@ -1118,6 +1217,9 @@ final class AccountTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->account->deleteSession(
             "<SESSION_ID>"
@@ -1161,6 +1263,9 @@ final class AccountTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->account->updateStatus();
 
@@ -1181,6 +1286,9 @@ final class AccountTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->account->createEmailToken(
             "<USER_ID>",
@@ -1204,6 +1312,9 @@ final class AccountTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->account->createMagicURLToken(
             "<USER_ID>",
@@ -1220,6 +1331,9 @@ final class AccountTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->account->createOAuth2Token(
             OAuthProvider::AMAZON()
@@ -1242,6 +1356,9 @@ final class AccountTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->account->createPhoneToken(
             "<USER_ID>",
@@ -1265,6 +1382,9 @@ final class AccountTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->account->createEmailVerification(
             "https://example.com"
@@ -1287,6 +1407,9 @@ final class AccountTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->account->createVerification(
             "https://example.com"
@@ -1309,6 +1432,9 @@ final class AccountTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->account->updateEmailVerification(
             "<USER_ID>",
@@ -1332,6 +1458,9 @@ final class AccountTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->account->updateVerification(
             "<USER_ID>",
@@ -1355,6 +1484,9 @@ final class AccountTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->account->createPhoneVerification();
 
@@ -1375,6 +1507,9 @@ final class AccountTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->account->updatePhoneVerification(
             "<USER_ID>",

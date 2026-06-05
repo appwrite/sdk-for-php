@@ -63,6 +63,9 @@ final class ActivitiesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->activities->listEvents();
 
@@ -109,6 +112,9 @@ final class ActivitiesTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->activities->getEvent(
             "<EVENT_ID>"

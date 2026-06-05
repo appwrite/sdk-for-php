@@ -43,6 +43,9 @@ final class MessagingTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->messaging->listMessages();
 
@@ -67,6 +70,9 @@ final class MessagingTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->messaging->createEmail(
             "<MESSAGE_ID>",
@@ -95,6 +101,9 @@ final class MessagingTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->messaging->updateEmail(
             "<MESSAGE_ID>"
@@ -121,6 +130,9 @@ final class MessagingTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->messaging->createPush(
             "<MESSAGE_ID>"
@@ -147,6 +159,9 @@ final class MessagingTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->messaging->updatePush(
             "<MESSAGE_ID>"
@@ -173,6 +188,9 @@ final class MessagingTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->messaging->createSMS(
             "<MESSAGE_ID>",
@@ -200,6 +218,9 @@ final class MessagingTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->messaging->updateSMS(
             "<MESSAGE_ID>"
@@ -226,6 +247,9 @@ final class MessagingTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->messaging->getMessage(
             "<MESSAGE_ID>"
@@ -241,6 +265,9 @@ final class MessagingTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->messaging->delete(
             "<MESSAGE_ID>"
@@ -284,6 +311,9 @@ final class MessagingTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->messaging->listMessageLogs(
             "<MESSAGE_ID>"
@@ -313,6 +343,9 @@ final class MessagingTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->messaging->listTargets(
             "<MESSAGE_ID>"
@@ -342,6 +375,9 @@ final class MessagingTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->messaging->listProviders();
 
@@ -364,6 +400,9 @@ final class MessagingTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->messaging->createAPNSProvider(
             "<PROVIDER_ID>",
@@ -389,6 +428,9 @@ final class MessagingTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->messaging->updateAPNSProvider(
             "<PROVIDER_ID>"
@@ -413,6 +455,9 @@ final class MessagingTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->messaging->createFCMProvider(
             "<PROVIDER_ID>",
@@ -438,6 +483,9 @@ final class MessagingTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->messaging->updateFCMProvider(
             "<PROVIDER_ID>"
@@ -462,6 +510,9 @@ final class MessagingTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->messaging->createMailgunProvider(
             "<PROVIDER_ID>",
@@ -487,6 +538,9 @@ final class MessagingTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->messaging->updateMailgunProvider(
             "<PROVIDER_ID>"
@@ -511,6 +565,9 @@ final class MessagingTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->messaging->createMsg91Provider(
             "<PROVIDER_ID>",
@@ -536,6 +593,9 @@ final class MessagingTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->messaging->updateMsg91Provider(
             "<PROVIDER_ID>"
@@ -560,6 +620,9 @@ final class MessagingTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->messaging->createResendProvider(
             "<PROVIDER_ID>",
@@ -585,6 +648,9 @@ final class MessagingTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->messaging->updateResendProvider(
             "<PROVIDER_ID>"
@@ -609,6 +675,9 @@ final class MessagingTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->messaging->createSendgridProvider(
             "<PROVIDER_ID>",
@@ -634,8 +703,66 @@ final class MessagingTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->messaging->updateSendgridProvider(
+            "<PROVIDER_ID>"
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\Provider::class, $response);
+    }
+
+    public function testMethodCreateSesProvider(): void
+    {
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "name" => "Mailgun",
+            "provider" => "mailgun",
+            "enabled" => true,
+            "type" => "sms",
+            "credentials" => array()
+        );
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->messaging->createSesProvider(
+            "<PROVIDER_ID>",
+            "<NAME>"
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\Provider::class, $response);
+    }
+
+    public function testMethodUpdateSesProvider(): void
+    {
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "name" => "Mailgun",
+            "provider" => "mailgun",
+            "enabled" => true,
+            "type" => "sms",
+            "credentials" => array()
+        );
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->messaging->updateSesProvider(
             "<PROVIDER_ID>"
         );
 
@@ -658,6 +785,9 @@ final class MessagingTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->messaging->createSMTPProvider(
             "<PROVIDER_ID>",
@@ -684,6 +814,9 @@ final class MessagingTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->messaging->updateSMTPProvider(
             "<PROVIDER_ID>"
@@ -708,6 +841,9 @@ final class MessagingTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->messaging->createTelesignProvider(
             "<PROVIDER_ID>",
@@ -733,6 +869,9 @@ final class MessagingTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->messaging->updateTelesignProvider(
             "<PROVIDER_ID>"
@@ -757,6 +896,9 @@ final class MessagingTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->messaging->createTextmagicProvider(
             "<PROVIDER_ID>",
@@ -782,6 +924,9 @@ final class MessagingTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->messaging->updateTextmagicProvider(
             "<PROVIDER_ID>"
@@ -806,6 +951,9 @@ final class MessagingTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->messaging->createTwilioProvider(
             "<PROVIDER_ID>",
@@ -831,6 +979,9 @@ final class MessagingTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->messaging->updateTwilioProvider(
             "<PROVIDER_ID>"
@@ -855,6 +1006,9 @@ final class MessagingTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->messaging->createVonageProvider(
             "<PROVIDER_ID>",
@@ -880,6 +1034,9 @@ final class MessagingTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->messaging->updateVonageProvider(
             "<PROVIDER_ID>"
@@ -904,6 +1061,9 @@ final class MessagingTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->messaging->getProvider(
             "<PROVIDER_ID>"
@@ -919,6 +1079,9 @@ final class MessagingTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->messaging->deleteProvider(
             "<PROVIDER_ID>"
@@ -962,6 +1125,9 @@ final class MessagingTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->messaging->listProviderLogs(
             "<PROVIDER_ID>"
@@ -1005,6 +1171,9 @@ final class MessagingTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->messaging->listSubscriberLogs(
             "<SUBSCRIBER_ID>"
@@ -1034,6 +1203,9 @@ final class MessagingTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->messaging->listTopics();
 
@@ -1056,6 +1228,9 @@ final class MessagingTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->messaging->createTopic(
             "<TOPIC_ID>",
@@ -1081,6 +1256,9 @@ final class MessagingTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->messaging->getTopic(
             "<TOPIC_ID>"
@@ -1105,6 +1283,9 @@ final class MessagingTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->messaging->updateTopic(
             "<TOPIC_ID>"
@@ -1120,6 +1301,9 @@ final class MessagingTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->messaging->deleteTopic(
             "<TOPIC_ID>"
@@ -1163,6 +1347,9 @@ final class MessagingTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->messaging->listTopicLogs(
             "<TOPIC_ID>"
@@ -1202,6 +1389,9 @@ final class MessagingTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->messaging->listSubscribers(
             "<TOPIC_ID>"
@@ -1236,6 +1426,9 @@ final class MessagingTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->messaging->createSubscriber(
             "<TOPIC_ID>",
@@ -1272,6 +1465,9 @@ final class MessagingTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->messaging->getSubscriber(
             "<TOPIC_ID>",
@@ -1288,6 +1484,9 @@ final class MessagingTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->messaging->deleteSubscriber(
             "<TOPIC_ID>",

@@ -42,6 +42,9 @@ final class OrganizationTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->organization->listKeys();
 
@@ -65,6 +68,9 @@ final class OrganizationTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->organization->createKey(
             "<KEY_ID>",
@@ -92,6 +98,9 @@ final class OrganizationTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->organization->getKey(
             "<KEY_ID>"
@@ -117,6 +126,9 @@ final class OrganizationTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->organization->updateKey(
             "<KEY_ID>",
@@ -134,6 +146,9 @@ final class OrganizationTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->organization->deleteKey(
             "<KEY_ID>"
@@ -153,6 +168,7 @@ final class OrganizationTest extends TestCase
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
                     "name" => "New Project",
                     "teamId" => "1592981250",
+                    "region" => "fra",
                     "devKeys" => array(
                         array(
                             "\$id" => "5e5ea5c16897e",
@@ -197,7 +213,6 @@ final class OrganizationTest extends TestCase
                             "enabled" => true
                         )
                     ),
-                    "region" => "fra",
                     "blocks" => array(
                         array(
                             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
@@ -210,7 +225,16 @@ final class OrganizationTest extends TestCase
                             "billingPlan" => "pro"
                         )
                     ),
-                    "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
+                    "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "oAuth2ServerEnabled" => true,
+                    "oAuth2ServerAuthorizationUrl" => "https://cloud.appwrite.io/oauth2/.well-known/openid-configuration",
+                    "oAuth2ServerScopes" => array(),
+                    "oAuth2ServerAccessTokenDuration" => 3600,
+                    "oAuth2ServerRefreshTokenDuration" => 86400,
+                    "oAuth2ServerPublicAccessTokenDuration" => 3600,
+                    "oAuth2ServerPublicRefreshTokenDuration" => 2592000,
+                    "oAuth2ServerConfidentialPkce" => true,
+                    "oAuth2ServerDiscoveryUrl" => "https://auth.example.com/.well-known/openid-configuration"
                 )
             )
         );
@@ -218,6 +242,9 @@ final class OrganizationTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->organization->listProjects();
 
@@ -232,6 +259,7 @@ final class OrganizationTest extends TestCase
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "New Project",
             "teamId" => "1592981250",
+            "region" => "fra",
             "devKeys" => array(
                 array(
                     "\$id" => "5e5ea5c16897e",
@@ -276,7 +304,6 @@ final class OrganizationTest extends TestCase
                     "enabled" => true
                 )
             ),
-            "region" => "fra",
             "blocks" => array(
                 array(
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
@@ -289,12 +316,24 @@ final class OrganizationTest extends TestCase
                     "billingPlan" => "pro"
                 )
             ),
-            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00",
+            "oAuth2ServerEnabled" => true,
+            "oAuth2ServerAuthorizationUrl" => "https://cloud.appwrite.io/oauth2/.well-known/openid-configuration",
+            "oAuth2ServerScopes" => array(),
+            "oAuth2ServerAccessTokenDuration" => 3600,
+            "oAuth2ServerRefreshTokenDuration" => 86400,
+            "oAuth2ServerPublicAccessTokenDuration" => 3600,
+            "oAuth2ServerPublicRefreshTokenDuration" => 2592000,
+            "oAuth2ServerConfidentialPkce" => true,
+            "oAuth2ServerDiscoveryUrl" => "https://auth.example.com/.well-known/openid-configuration"
         );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->organization->createProject(
             "",
@@ -312,6 +351,7 @@ final class OrganizationTest extends TestCase
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "New Project",
             "teamId" => "1592981250",
+            "region" => "fra",
             "devKeys" => array(
                 array(
                     "\$id" => "5e5ea5c16897e",
@@ -356,7 +396,6 @@ final class OrganizationTest extends TestCase
                     "enabled" => true
                 )
             ),
-            "region" => "fra",
             "blocks" => array(
                 array(
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
@@ -369,12 +408,24 @@ final class OrganizationTest extends TestCase
                     "billingPlan" => "pro"
                 )
             ),
-            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00",
+            "oAuth2ServerEnabled" => true,
+            "oAuth2ServerAuthorizationUrl" => "https://cloud.appwrite.io/oauth2/.well-known/openid-configuration",
+            "oAuth2ServerScopes" => array(),
+            "oAuth2ServerAccessTokenDuration" => 3600,
+            "oAuth2ServerRefreshTokenDuration" => 86400,
+            "oAuth2ServerPublicAccessTokenDuration" => 3600,
+            "oAuth2ServerPublicRefreshTokenDuration" => 2592000,
+            "oAuth2ServerConfidentialPkce" => true,
+            "oAuth2ServerDiscoveryUrl" => "https://auth.example.com/.well-known/openid-configuration"
         );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->organization->getProject(
             "<PROJECT_ID>"
@@ -391,6 +442,7 @@ final class OrganizationTest extends TestCase
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "New Project",
             "teamId" => "1592981250",
+            "region" => "fra",
             "devKeys" => array(
                 array(
                     "\$id" => "5e5ea5c16897e",
@@ -435,7 +487,6 @@ final class OrganizationTest extends TestCase
                     "enabled" => true
                 )
             ),
-            "region" => "fra",
             "blocks" => array(
                 array(
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
@@ -448,12 +499,24 @@ final class OrganizationTest extends TestCase
                     "billingPlan" => "pro"
                 )
             ),
-            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00",
+            "oAuth2ServerEnabled" => true,
+            "oAuth2ServerAuthorizationUrl" => "https://cloud.appwrite.io/oauth2/.well-known/openid-configuration",
+            "oAuth2ServerScopes" => array(),
+            "oAuth2ServerAccessTokenDuration" => 3600,
+            "oAuth2ServerRefreshTokenDuration" => 86400,
+            "oAuth2ServerPublicAccessTokenDuration" => 3600,
+            "oAuth2ServerPublicRefreshTokenDuration" => 2592000,
+            "oAuth2ServerConfidentialPkce" => true,
+            "oAuth2ServerDiscoveryUrl" => "https://auth.example.com/.well-known/openid-configuration"
         );
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->organization->updateProject(
             "<PROJECT_ID>",
@@ -470,6 +533,9 @@ final class OrganizationTest extends TestCase
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
             ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
 
         $response = $this->organization->deleteProject(
             "<PROJECT_ID>"

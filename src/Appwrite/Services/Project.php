@@ -41,6 +41,7 @@ class Project extends Service
         $apiParams = [];
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -74,6 +75,7 @@ class Project extends Service
         $apiParams = [];
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -109,6 +111,7 @@ class Project extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -153,6 +156,7 @@ class Project extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -198,6 +202,7 @@ class Project extends Service
         $apiParams['expire'] = $expire;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -240,6 +245,7 @@ class Project extends Service
         $apiParams['duration'] = $duration;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -276,6 +282,7 @@ class Project extends Service
         $apiParams['keyId'] = $keyId;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -318,6 +325,7 @@ class Project extends Service
         $apiParams['expire'] = $expire;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -355,6 +363,7 @@ class Project extends Service
         $apiParams['keyId'] = $keyId;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -388,6 +397,7 @@ class Project extends Service
         $apiParams['labels'] = $labels;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -433,6 +443,7 @@ class Project extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -471,6 +482,7 @@ class Project extends Service
         $apiParams['otp'] = $otp;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -508,6 +520,7 @@ class Project extends Service
         $apiParams['number'] = $number;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -546,6 +559,7 @@ class Project extends Service
         $apiParams['otp'] = $otp;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -583,6 +597,7 @@ class Project extends Service
         $apiParams['number'] = $number;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -625,6 +640,7 @@ class Project extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -638,6 +654,60 @@ class Project extends Service
         }
 
         return \Appwrite\Models\OAuth2ProviderList::from($response);
+
+    }
+
+    /**
+     * Update the OAuth2 server (OIDC provider) configuration.
+     *
+     * @param bool $enabled
+     * @param string $authorizationUrl
+     * @param ?array $scopes
+     * @param ?int $accessTokenDuration
+     * @param ?int $refreshTokenDuration
+     * @param ?int $publicAccessTokenDuration
+     * @param ?int $publicRefreshTokenDuration
+     * @param ?bool $confidentialPkce
+     * @throws AppwriteException
+     * @return \Appwrite\Models\Project
+     */
+    public function updateOAuth2Server(bool $enabled, string $authorizationUrl, ?array $scopes = null, ?int $accessTokenDuration = null, ?int $refreshTokenDuration = null, ?int $publicAccessTokenDuration = null, ?int $publicRefreshTokenDuration = null, ?bool $confidentialPkce = null): \Appwrite\Models\Project
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/project/oauth2-server'
+        );
+
+        $apiParams = [];
+        $apiParams['enabled'] = $enabled;
+        $apiParams['authorizationUrl'] = $authorizationUrl;
+
+        if (!is_null($scopes)) {
+            $apiParams['scopes'] = $scopes;
+        }
+        $apiParams['accessTokenDuration'] = $accessTokenDuration;
+        $apiParams['refreshTokenDuration'] = $refreshTokenDuration;
+        $apiParams['publicAccessTokenDuration'] = $publicAccessTokenDuration;
+        $apiParams['publicRefreshTokenDuration'] = $publicRefreshTokenDuration;
+        $apiParams['confidentialPkce'] = $confidentialPkce;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PUT,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Project::from($response);
 
     }
 
@@ -664,6 +734,7 @@ class Project extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -708,6 +779,7 @@ class Project extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -750,6 +822,7 @@ class Project extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -792,6 +865,7 @@ class Project extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -832,6 +906,7 @@ class Project extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -872,6 +947,7 @@ class Project extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -912,6 +988,7 @@ class Project extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -952,6 +1029,7 @@ class Project extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -992,6 +1070,7 @@ class Project extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1032,6 +1111,7 @@ class Project extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1072,6 +1152,7 @@ class Project extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1112,6 +1193,7 @@ class Project extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1152,6 +1234,7 @@ class Project extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1192,6 +1275,7 @@ class Project extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1232,6 +1316,7 @@ class Project extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1274,6 +1359,7 @@ class Project extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1314,6 +1400,7 @@ class Project extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1356,6 +1443,7 @@ class Project extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1398,6 +1486,7 @@ class Project extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1442,6 +1531,7 @@ class Project extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1482,6 +1572,7 @@ class Project extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1522,6 +1613,7 @@ class Project extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1564,6 +1656,7 @@ class Project extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1604,6 +1697,7 @@ class Project extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1652,6 +1746,7 @@ class Project extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1696,6 +1791,7 @@ class Project extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1736,6 +1832,7 @@ class Project extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1776,6 +1873,7 @@ class Project extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1816,6 +1914,7 @@ class Project extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1856,6 +1955,7 @@ class Project extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1896,6 +1996,7 @@ class Project extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1936,6 +2037,7 @@ class Project extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -1976,6 +2078,7 @@ class Project extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -2016,6 +2119,7 @@ class Project extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -2056,6 +2160,7 @@ class Project extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -2096,6 +2201,7 @@ class Project extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -2136,6 +2242,7 @@ class Project extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -2176,6 +2283,7 @@ class Project extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -2216,6 +2324,7 @@ class Project extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -2256,6 +2365,7 @@ class Project extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -2296,6 +2406,7 @@ class Project extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -2336,6 +2447,7 @@ class Project extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -2373,6 +2485,7 @@ class Project extends Service
         $apiParams['providerId'] = $providerId;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -2577,6 +2690,7 @@ class Project extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -2618,6 +2732,7 @@ class Project extends Service
         $apiParams['applicationId'] = $applicationId;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -2659,6 +2774,7 @@ class Project extends Service
         $apiParams['applicationId'] = $applicationId;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -2701,6 +2817,7 @@ class Project extends Service
         $apiParams['bundleIdentifier'] = $bundleIdentifier;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -2742,6 +2859,7 @@ class Project extends Service
         $apiParams['bundleIdentifier'] = $bundleIdentifier;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -2784,6 +2902,7 @@ class Project extends Service
         $apiParams['packageName'] = $packageName;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -2825,6 +2944,7 @@ class Project extends Service
         $apiParams['packageName'] = $packageName;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -2867,6 +2987,7 @@ class Project extends Service
         $apiParams['hostname'] = $hostname;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -2908,6 +3029,7 @@ class Project extends Service
         $apiParams['hostname'] = $hostname;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -2950,6 +3072,7 @@ class Project extends Service
         $apiParams['packageIdentifierName'] = $packageIdentifierName;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -2991,6 +3114,7 @@ class Project extends Service
         $apiParams['packageIdentifierName'] = $packageIdentifierName;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -3028,6 +3152,7 @@ class Project extends Service
         $apiParams['platformId'] = $platformId;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -3084,6 +3209,7 @@ class Project extends Service
         $apiParams['platformId'] = $platformId;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -3124,6 +3250,7 @@ class Project extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -3160,6 +3287,7 @@ class Project extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -3197,6 +3325,7 @@ class Project extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -3234,6 +3363,7 @@ class Project extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -3295,6 +3425,7 @@ class Project extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -3333,6 +3464,7 @@ class Project extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -3377,6 +3509,7 @@ class Project extends Service
         $apiParams['total'] = $total;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -3416,6 +3549,7 @@ class Project extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -3430,6 +3564,66 @@ class Project extends Service
         }
 
         return \Appwrite\Models\Project::from($response);
+
+    }
+
+    /**
+     * Update the password strength requirements for users in the project.
+     *
+     * @param ?int $min
+     * @param ?bool $uppercase
+     * @param ?bool $lowercase
+     * @param ?bool $number
+     * @param ?bool $symbols
+     * @throws AppwriteException
+     * @return \Appwrite\Models\PolicyPasswordStrength
+     */
+    public function updatePasswordStrengthPolicy(?int $min = null, ?bool $uppercase = null, ?bool $lowercase = null, ?bool $number = null, ?bool $symbols = null): \Appwrite\Models\PolicyPasswordStrength
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/project/policies/password-strength'
+        );
+
+        $apiParams = [];
+
+        if (!is_null($min)) {
+            $apiParams['min'] = $min;
+        }
+
+        if (!is_null($uppercase)) {
+            $apiParams['uppercase'] = $uppercase;
+        }
+
+        if (!is_null($lowercase)) {
+            $apiParams['lowercase'] = $lowercase;
+        }
+
+        if (!is_null($number)) {
+            $apiParams['number'] = $number;
+        }
+
+        if (!is_null($symbols)) {
+            $apiParams['symbols'] = $symbols;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\PolicyPasswordStrength::from($response);
 
     }
 
@@ -3456,6 +3650,7 @@ class Project extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -3493,6 +3688,7 @@ class Project extends Service
         $apiParams['duration'] = $duration;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -3531,6 +3727,7 @@ class Project extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -3568,6 +3765,7 @@ class Project extends Service
         $apiParams['total'] = $total;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -3606,6 +3804,7 @@ class Project extends Service
         $apiParams['total'] = $total;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -3629,9 +3828,9 @@ class Project extends Service
      *
      * @param ProjectPolicyId $policyId
      * @throws AppwriteException
-     * @return \Appwrite\Models\PolicyPasswordDictionary|\Appwrite\Models\PolicyPasswordHistory|\Appwrite\Models\PolicyPasswordPersonalData|\Appwrite\Models\PolicySessionAlert|\Appwrite\Models\PolicySessionDuration|\Appwrite\Models\PolicySessionInvalidation|\Appwrite\Models\PolicySessionLimit|\Appwrite\Models\PolicyUserLimit|\Appwrite\Models\PolicyMembershipPrivacy|\Appwrite\Models\PolicyDenyAliasedEmail|\Appwrite\Models\PolicyDenyDisposableEmail|\Appwrite\Models\PolicyDenyFreeEmail
+     * @return \Appwrite\Models\PolicyPasswordDictionary|\Appwrite\Models\PolicyPasswordHistory|\Appwrite\Models\PolicyPasswordStrength|\Appwrite\Models\PolicyPasswordPersonalData|\Appwrite\Models\PolicySessionAlert|\Appwrite\Models\PolicySessionDuration|\Appwrite\Models\PolicySessionInvalidation|\Appwrite\Models\PolicySessionLimit|\Appwrite\Models\PolicyUserLimit|\Appwrite\Models\PolicyMembershipPrivacy|\Appwrite\Models\PolicyDenyAliasedEmail|\Appwrite\Models\PolicyDenyDisposableEmail|\Appwrite\Models\PolicyDenyFreeEmail
      */
-    public function getPolicy(ProjectPolicyId $policyId): \Appwrite\Models\PolicyPasswordDictionary|\Appwrite\Models\PolicyPasswordHistory|\Appwrite\Models\PolicyPasswordPersonalData|\Appwrite\Models\PolicySessionAlert|\Appwrite\Models\PolicySessionDuration|\Appwrite\Models\PolicySessionInvalidation|\Appwrite\Models\PolicySessionLimit|\Appwrite\Models\PolicyUserLimit|\Appwrite\Models\PolicyMembershipPrivacy|\Appwrite\Models\PolicyDenyAliasedEmail|\Appwrite\Models\PolicyDenyDisposableEmail|\Appwrite\Models\PolicyDenyFreeEmail
+    public function getPolicy(ProjectPolicyId $policyId): \Appwrite\Models\PolicyPasswordDictionary|\Appwrite\Models\PolicyPasswordHistory|\Appwrite\Models\PolicyPasswordStrength|\Appwrite\Models\PolicyPasswordPersonalData|\Appwrite\Models\PolicySessionAlert|\Appwrite\Models\PolicySessionDuration|\Appwrite\Models\PolicySessionInvalidation|\Appwrite\Models\PolicySessionLimit|\Appwrite\Models\PolicyUserLimit|\Appwrite\Models\PolicyMembershipPrivacy|\Appwrite\Models\PolicyDenyAliasedEmail|\Appwrite\Models\PolicyDenyDisposableEmail|\Appwrite\Models\PolicyDenyFreeEmail
     {
         $apiPath = str_replace(
             ['{policyId}'],
@@ -3643,6 +3842,7 @@ class Project extends Service
         $apiParams['policyId'] = $policyId;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -3661,6 +3861,10 @@ class Project extends Service
 
         if (($response['$id'] ?? null) === 'password-history') {
             return \Appwrite\Models\PolicyPasswordHistory::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'password-strength') {
+            return \Appwrite\Models\PolicyPasswordStrength::from($response);
         }
 
         if (($response['$id'] ?? null) === 'password-personal-data') {
@@ -3729,6 +3933,7 @@ class Project extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -3768,6 +3973,7 @@ class Project extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -3824,6 +4030,7 @@ class Project extends Service
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -3860,6 +4067,7 @@ class Project extends Service
         $apiParams['emails'] = $emails;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -3902,6 +4110,7 @@ class Project extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -3955,6 +4164,7 @@ class Project extends Service
         $apiParams['replyToName'] = $replyToName;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -3998,6 +4208,7 @@ class Project extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -4041,6 +4252,7 @@ class Project extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -4086,6 +4298,7 @@ class Project extends Service
         }
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -4122,6 +4335,7 @@ class Project extends Service
         $apiParams['variableId'] = $variableId;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -4163,6 +4377,7 @@ class Project extends Service
         $apiParams['secret'] = $secret;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
@@ -4199,6 +4414,7 @@ class Project extends Service
         $apiParams['variableId'] = $variableId;
 
         $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
         $response = $this->client->call(
