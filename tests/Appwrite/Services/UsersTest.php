@@ -800,6 +800,7 @@ final class UsersTest extends TestCase
                     "joined" => "2020-10-15T06:38:00.000+00:00",
                     "confirm" => true,
                     "mfa" => true,
+                    "userAccessedAt" => "2020-10-15T06:38:00.000+00:00",
                     "roles" => array()
                 )
             )
@@ -1056,7 +1057,7 @@ final class UsersTest extends TestCase
 
         $response = $this->users->updatePassword(
             "<USER_ID>",
-            ""
+            "password"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\User::class, $response);

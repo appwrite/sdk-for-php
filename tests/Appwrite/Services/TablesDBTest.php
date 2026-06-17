@@ -44,6 +44,7 @@ final class TablesDBTest extends TestCase
                             "resources" => array(),
                             "retention" => 7,
                             "schedule" => "0 * * * *",
+                            "type" => "full",
                             "enabled" => true
                         )
                     ),
@@ -96,6 +97,7 @@ final class TablesDBTest extends TestCase
                     "resources" => array(),
                     "retention" => 7,
                     "schedule" => "0 * * * *",
+                    "type" => "full",
                     "enabled" => true
                 )
             ),
@@ -293,6 +295,7 @@ final class TablesDBTest extends TestCase
                     "resources" => array(),
                     "retention" => 7,
                     "schedule" => "0 * * * *",
+                    "type" => "full",
                     "enabled" => true
                 )
             ),
@@ -345,6 +348,7 @@ final class TablesDBTest extends TestCase
                     "resources" => array(),
                     "retention" => 7,
                     "schedule" => "0 * * * *",
+                    "type" => "full",
                     "enabled" => true
                 )
             ),

@@ -30,18 +30,6 @@ readonly class ActivityEvent
      * @param string $projectId project id.
      * @param string $teamId team id.
      * @param string $hostname hostname.
-     * @param string $osCode operating system code name. view list of [available options](https://github.com/appwrite/appwrite/blob/master/docs/lists/os.json).
-     * @param string $osName operating system name.
-     * @param string $osVersion operating system version.
-     * @param string $clientType client type.
-     * @param string $clientCode client code name. view list of [available options](https://github.com/appwrite/appwrite/blob/master/docs/lists/clients.json).
-     * @param string $clientName client name.
-     * @param string $clientVersion client version.
-     * @param string $clientEngine client engine name.
-     * @param string $clientEngineVersion client engine name.
-     * @param string $deviceName device name.
-     * @param string $deviceBrand device brand name.
-     * @param string $deviceModel device model name.
      * @param string $countryCode country two-character iso 3166-1 alpha code.
      * @param string $countryName country name.
      */
@@ -64,18 +52,6 @@ readonly class ActivityEvent
         public string $projectId,
         public string $teamId,
         public string $hostname,
-        public string $osCode,
-        public string $osName,
-        public string $osVersion,
-        public string $clientType,
-        public string $clientCode,
-        public string $clientName,
-        public string $clientVersion,
-        public string $clientEngine,
-        public string $clientEngineVersion,
-        public string $deviceName,
-        public string $deviceBrand,
-        public string $deviceModel,
         public string $countryCode,
         public string $countryName
     ) {
@@ -140,42 +116,6 @@ readonly class ActivityEvent
         if (!array_key_exists('hostname', $data)) {
             throw new \InvalidArgumentException('Missing required field "hostname" for ' . static::class . '.');
         }
-        if (!array_key_exists('osCode', $data)) {
-            throw new \InvalidArgumentException('Missing required field "osCode" for ' . static::class . '.');
-        }
-        if (!array_key_exists('osName', $data)) {
-            throw new \InvalidArgumentException('Missing required field "osName" for ' . static::class . '.');
-        }
-        if (!array_key_exists('osVersion', $data)) {
-            throw new \InvalidArgumentException('Missing required field "osVersion" for ' . static::class . '.');
-        }
-        if (!array_key_exists('clientType', $data)) {
-            throw new \InvalidArgumentException('Missing required field "clientType" for ' . static::class . '.');
-        }
-        if (!array_key_exists('clientCode', $data)) {
-            throw new \InvalidArgumentException('Missing required field "clientCode" for ' . static::class . '.');
-        }
-        if (!array_key_exists('clientName', $data)) {
-            throw new \InvalidArgumentException('Missing required field "clientName" for ' . static::class . '.');
-        }
-        if (!array_key_exists('clientVersion', $data)) {
-            throw new \InvalidArgumentException('Missing required field "clientVersion" for ' . static::class . '.');
-        }
-        if (!array_key_exists('clientEngine', $data)) {
-            throw new \InvalidArgumentException('Missing required field "clientEngine" for ' . static::class . '.');
-        }
-        if (!array_key_exists('clientEngineVersion', $data)) {
-            throw new \InvalidArgumentException('Missing required field "clientEngineVersion" for ' . static::class . '.');
-        }
-        if (!array_key_exists('deviceName', $data)) {
-            throw new \InvalidArgumentException('Missing required field "deviceName" for ' . static::class . '.');
-        }
-        if (!array_key_exists('deviceBrand', $data)) {
-            throw new \InvalidArgumentException('Missing required field "deviceBrand" for ' . static::class . '.');
-        }
-        if (!array_key_exists('deviceModel', $data)) {
-            throw new \InvalidArgumentException('Missing required field "deviceModel" for ' . static::class . '.');
-        }
         if (!array_key_exists('countryCode', $data)) {
             throw new \InvalidArgumentException('Missing required field "countryCode" for ' . static::class . '.');
         }
@@ -202,18 +142,6 @@ readonly class ActivityEvent
             projectId: $data['projectId'],
             teamId: $data['teamId'],
             hostname: $data['hostname'],
-            osCode: $data['osCode'],
-            osName: $data['osName'],
-            osVersion: $data['osVersion'],
-            clientType: $data['clientType'],
-            clientCode: $data['clientCode'],
-            clientName: $data['clientName'],
-            clientVersion: $data['clientVersion'],
-            clientEngine: $data['clientEngine'],
-            clientEngineVersion: $data['clientEngineVersion'],
-            deviceName: $data['deviceName'],
-            deviceBrand: $data['deviceBrand'],
-            deviceModel: $data['deviceModel'],
             countryCode: $data['countryCode'],
             countryName: $data['countryName']
         );
@@ -243,18 +171,6 @@ readonly class ActivityEvent
             'projectId' => static::serializeValue($this->projectId),
             'teamId' => static::serializeValue($this->teamId),
             'hostname' => static::serializeValue($this->hostname),
-            'osCode' => static::serializeValue($this->osCode),
-            'osName' => static::serializeValue($this->osName),
-            'osVersion' => static::serializeValue($this->osVersion),
-            'clientType' => static::serializeValue($this->clientType),
-            'clientCode' => static::serializeValue($this->clientCode),
-            'clientName' => static::serializeValue($this->clientName),
-            'clientVersion' => static::serializeValue($this->clientVersion),
-            'clientEngine' => static::serializeValue($this->clientEngine),
-            'clientEngineVersion' => static::serializeValue($this->clientEngineVersion),
-            'deviceName' => static::serializeValue($this->deviceName),
-            'deviceBrand' => static::serializeValue($this->deviceBrand),
-            'deviceModel' => static::serializeValue($this->deviceModel),
             'countryCode' => static::serializeValue($this->countryCode),
             'countryName' => static::serializeValue($this->countryName)
         ];

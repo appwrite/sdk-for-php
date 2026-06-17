@@ -31,6 +31,11 @@ readonly class User
      * @param string|null $password hashed user password.
      * @param string|null $hash password hashing algorithm.
      * @param array|null $hashOptions password hashing algorithm configuration.
+     * @param string|null $emailCanonical canonical form of the user email address.
+     * @param bool|null $emailIsFree whether the user email is from a free email provider.
+     * @param bool|null $emailIsDisposable whether the user email is from a disposable email provider.
+     * @param bool|null $emailIsCorporate whether the user email is from a corporate domain.
+     * @param bool|null $emailIsCanonical whether the user email is in its canonical form.
      * @param bool|null $impersonator whether the user can impersonate other users.
      * @param string|null $impersonatorUserId id of the original actor performing the impersonation. present only when the current request is impersonating another user. internal audit logs attribute the action to this user, while the impersonated target is recorded only in internal audit payload data.
      */
@@ -54,6 +59,11 @@ readonly class User
         public ?string $password = null,
         public ?string $hash = null,
         public ?array $hashOptions = null,
+        public ?string $emailCanonical = null,
+        public ?bool $emailIsFree = null,
+        public ?bool $emailIsDisposable = null,
+        public ?bool $emailIsCorporate = null,
+        public ?bool $emailIsCanonical = null,
         public ?bool $impersonator = null,
         public ?string $impersonatorUserId = null
     ) {
@@ -138,6 +148,11 @@ readonly class User
             password: array_key_exists('password', $data) ? $data['password'] : null,
             hash: array_key_exists('hash', $data) ? $data['hash'] : null,
             hashOptions: array_key_exists('hashOptions', $data) ? $data['hashOptions'] : null,
+            emailCanonical: array_key_exists('emailCanonical', $data) ? $data['emailCanonical'] : null,
+            emailIsFree: array_key_exists('emailIsFree', $data) ? $data['emailIsFree'] : null,
+            emailIsDisposable: array_key_exists('emailIsDisposable', $data) ? $data['emailIsDisposable'] : null,
+            emailIsCorporate: array_key_exists('emailIsCorporate', $data) ? $data['emailIsCorporate'] : null,
+            emailIsCanonical: array_key_exists('emailIsCanonical', $data) ? $data['emailIsCanonical'] : null,
             impersonator: array_key_exists('impersonator', $data) ? $data['impersonator'] : null,
             impersonatorUserId: array_key_exists('impersonatorUserId', $data) ? $data['impersonatorUserId'] : null
         );
@@ -163,6 +178,11 @@ readonly class User
             'email' => static::serializeValue($this->email),
             'phone' => static::serializeValue($this->phone),
             'emailVerification' => static::serializeValue($this->emailVerification),
+            'emailCanonical' => static::serializeValue($this->emailCanonical),
+            'emailIsFree' => static::serializeValue($this->emailIsFree),
+            'emailIsDisposable' => static::serializeValue($this->emailIsDisposable),
+            'emailIsCorporate' => static::serializeValue($this->emailIsCorporate),
+            'emailIsCanonical' => static::serializeValue($this->emailIsCanonical),
             'phoneVerification' => static::serializeValue($this->phoneVerification),
             'mfa' => static::serializeValue($this->mfa),
             'prefs' => static::serializeValue($this->prefs),

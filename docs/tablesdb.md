@@ -30,6 +30,7 @@ POST https://cloud.appwrite.io/v1/tablesdb
 | databaseId | string | Unique Id. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
 | name | string | Database name. Max length: 128 chars. |  |
 | enabled | boolean | Is the database enabled? When set to 'disabled', users cannot access the database but Server SDKs with an API key can still read and write to the database. No data is lost when this is toggled. | 1 |
+| dedicatedDatabaseId | string | Optional dedicated database (compute) ID to attach this database to. Leave empty to create a database on the shared pool. |  |
 
 
 ```http request

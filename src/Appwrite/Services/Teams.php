@@ -48,6 +48,7 @@ class Teams extends Service
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = 'application/json';
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -94,6 +95,7 @@ class Teams extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         $response = $this->client->call(
             Client::METHOD_POST,
@@ -130,6 +132,7 @@ class Teams extends Service
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = 'application/json';
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -169,6 +172,7 @@ class Teams extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         $response = $this->client->call(
             Client::METHOD_PUT,
@@ -256,6 +260,7 @@ class Teams extends Service
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = 'application/json';
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -340,6 +345,7 @@ class Teams extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         $response = $this->client->call(
             Client::METHOD_POST,
@@ -380,6 +386,7 @@ class Teams extends Service
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = 'application/json';
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -424,6 +431,7 @@ class Teams extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         $response = $this->client->call(
             Client::METHOD_PATCH,
@@ -510,6 +518,7 @@ class Teams extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         $response = $this->client->call(
             Client::METHOD_PATCH,
@@ -548,6 +557,7 @@ class Teams extends Service
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = 'application/json';
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -589,6 +599,7 @@ class Teams extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         $response = $this->client->call(
             Client::METHOD_PUT,

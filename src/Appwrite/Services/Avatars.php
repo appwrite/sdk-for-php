@@ -65,6 +65,7 @@ class Avatars extends Service
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = 'image/png';
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -120,6 +121,7 @@ class Avatars extends Service
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = 'image/png';
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -155,6 +157,7 @@ class Avatars extends Service
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = 'image/*';
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -211,6 +214,7 @@ class Avatars extends Service
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = 'image/png';
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -263,6 +267,7 @@ class Avatars extends Service
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = 'image/*';
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -328,6 +333,7 @@ class Avatars extends Service
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = 'image/png';
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -377,6 +383,7 @@ class Avatars extends Service
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = 'image/png';
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -513,6 +520,7 @@ class Avatars extends Service
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = 'image/png';
 
         $response = $this->client->call(
             Client::METHOD_GET,

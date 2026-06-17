@@ -44,6 +44,7 @@ class Organization extends Service
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = 'application/json';
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -87,6 +88,7 @@ class Organization extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         $response = $this->client->call(
             Client::METHOD_POST,
@@ -124,6 +126,7 @@ class Organization extends Service
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = 'application/json';
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -168,6 +171,7 @@ class Organization extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         $response = $this->client->call(
             Client::METHOD_PUT,
@@ -252,6 +256,7 @@ class Organization extends Service
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = 'application/json';
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -296,6 +301,7 @@ class Organization extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         $response = $this->client->call(
             Client::METHOD_POST,
@@ -371,6 +377,7 @@ class Organization extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         $response = $this->client->call(
             Client::METHOD_PATCH,

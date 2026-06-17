@@ -24,6 +24,7 @@ class ProjectServiceId implements JsonSerializable
     private static ProjectServiceId $MIGRATIONS;
     private static ProjectServiceId $MESSAGING;
     private static ProjectServiceId $ADVISOR;
+    private static ProjectServiceId $OAUTH2;
 
     private string $value;
 
@@ -168,6 +169,13 @@ class ProjectServiceId implements JsonSerializable
         }
         return self::$ADVISOR;
     }
+    public static function OAUTH2(): ProjectServiceId
+    {
+        if (!isset(self::$OAUTH2)) {
+            self::$OAUTH2 = new ProjectServiceId('oauth2');
+        }
+        return self::$OAUTH2;
+    }
 
     public static function from(string $value): self
     {
@@ -190,6 +198,7 @@ class ProjectServiceId implements JsonSerializable
             'migrations' => self::MIGRATIONS(),
             'messaging' => self::MESSAGING(),
             'advisor' => self::ADVISOR(),
+            'oauth2' => self::OAUTH2(),
             default => throw new \InvalidArgumentException('Unknown ProjectServiceId value: ' . $value),
         };
     }

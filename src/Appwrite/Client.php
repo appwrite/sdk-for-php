@@ -37,11 +37,11 @@ class Client
      */
     protected array $headers = [
         'content-type' => '',
-        'user-agent' => 'AppwritePHPSDK/25.1.0 ()',
+        'user-agent' => 'AppwritePHPSDK/26.0.0 ()',
         'x-sdk-name'=> 'PHP',
         'x-sdk-platform'=> 'server',
         'x-sdk-language'=> 'php',
-        'x-sdk-version'=> '25.1.0',
+        'x-sdk-version'=> '26.0.0',
     ];
 
     /**
@@ -427,10 +427,8 @@ class Client
             }
         }
         
-        switch(substr($contentType, 0, strpos($contentType, ';'))) {
-            case 'application/json':
-                $responseBody = json_decode($responseBody, true);
-            break;
+        if (str_starts_with($contentType, 'application/json')) {
+            $responseBody = json_decode($responseBody, true);
         }
 
         if (curl_errno($ch)) {

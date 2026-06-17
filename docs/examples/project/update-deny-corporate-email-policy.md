@@ -2,18 +2,15 @@
 <?php
 
 use Appwrite\Client;
-use Appwrite\Services\TablesDB;
+use Appwrite\Services\Project;
 
 $client = (new Client())
     ->setEndpoint('https://<REGION>.cloud.appwrite.io/v1') // Your API Endpoint
     ->setProject('<YOUR_PROJECT_ID>') // Your project ID
     ->setKey('<YOUR_API_KEY>'); // Your secret API key
 
-$tablesDB = new TablesDB($client);
+$project = new Project($client);
 
-$result = $tablesDB->create(
-    databaseId: '<DATABASE_ID>',
-    name: '<NAME>',
-    enabled: false, // optional
-    dedicatedDatabaseId: '<DEDICATED_DATABASE_ID>' // optional
+$result = $project->updateDenyCorporateEmailPolicy(
+    enabled: false
 );```

@@ -1,5 +1,18 @@
 # Change Log
 
+## 26.0.0
+
+* Breaking: Removed client, OS, and device fields (`osCode`, `clientName`, `deviceModel`, etc.) from `ActivityEvent`
+* Breaking: Inserted `authorizationDetailsTypes` mid-signature in `project.updateOAuth2Server`
+* Added: OAuth2 device flow options `verificationUrl`, `userCodeLength`, `userCodeFormat`, and `deviceCodeDuration` to `updateOAuth2Server`
+* Added: `updateDenyCorporateEmailPolicy` and `PolicyDenyCorporateEmail` to `project`
+* Added: `deny-corporate-email` to `ProjectPolicyId`
+* Added: `oauth2` to `ProjectServiceId` and `dedicatedDatabases.execute` to `ProjectKeyScopes`
+* Added: `emailCanonical`, `emailIsFree`, `emailIsDisposable`, `emailIsCorporate`, and `emailIsCanonical` to `User`
+* Added: `userAccessedAt` to `Membership` and `PolicyMembershipPrivacy`
+* Added: `type` to `BackupPolicy`
+* Updated: Send an `accept` header on all requests
+
 ## 25.1.0
 
 * Added: `createSesProvider` and `updateSesProvider` to `messaging`
