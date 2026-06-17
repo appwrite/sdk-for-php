@@ -670,8 +670,9 @@ class Sites extends Service
 
 
         $apiHeaders = [
-            'content-type' => 'multipart/form-data',
             'X-Appwrite-Project' => $this->client->getConfig('project'),
+            'content-type' => 'multipart/form-data',
+            'accept' => 'application/json',
         ];
         $handle = null;
 

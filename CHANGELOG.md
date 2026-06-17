@@ -11,7 +11,7 @@
 * Added: `emailCanonical`, `emailIsFree`, `emailIsDisposable`, `emailIsCorporate`, and `emailIsCanonical` to `User`
 * Added: `userAccessedAt` to `Membership` and `PolicyMembershipPrivacy`
 * Added: `type` to `BackupPolicy`
-* Updated: Send an `accept` header on all requests
+* Updated: Send an `accept` header on all requests, including chunked uploads
 
 ## 25.1.0
 
