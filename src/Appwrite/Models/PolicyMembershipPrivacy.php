@@ -18,6 +18,7 @@ readonly class PolicyMembershipPrivacy
      * @param bool $userPhone whether user phone is visible in memberships.
      * @param bool $userName whether user name is visible in memberships.
      * @param bool $userMFA whether user mfa status is visible in memberships.
+     * @param bool $userAccessedAt whether user last access time is visible in memberships.
      */
     public function __construct(
         public string $id,
@@ -25,7 +26,8 @@ readonly class PolicyMembershipPrivacy
         public bool $userEmail,
         public bool $userPhone,
         public bool $userName,
-        public bool $userMFA
+        public bool $userMFA,
+        public bool $userAccessedAt
     ) {
     }
 
@@ -52,6 +54,9 @@ readonly class PolicyMembershipPrivacy
         if (!array_key_exists('userMFA', $data)) {
             throw new \InvalidArgumentException('Missing required field "userMFA" for ' . static::class . '.');
         }
+        if (!array_key_exists('userAccessedAt', $data)) {
+            throw new \InvalidArgumentException('Missing required field "userAccessedAt" for ' . static::class . '.');
+        }
 
         return new static(
             id: $data['$id'],
@@ -59,7 +64,8 @@ readonly class PolicyMembershipPrivacy
             userEmail: $data['userEmail'],
             userPhone: $data['userPhone'],
             userName: $data['userName'],
-            userMFA: $data['userMFA']
+            userMFA: $data['userMFA'],
+            userAccessedAt: $data['userAccessedAt']
         );
     }
 
@@ -74,7 +80,8 @@ readonly class PolicyMembershipPrivacy
             'userEmail' => static::serializeValue($this->userEmail),
             'userPhone' => static::serializeValue($this->userPhone),
             'userName' => static::serializeValue($this->userName),
-            'userMFA' => static::serializeValue($this->userMFA)
+            'userMFA' => static::serializeValue($this->userMFA),
+            'userAccessedAt' => static::serializeValue($this->userAccessedAt)
         ];
 
         return $result;

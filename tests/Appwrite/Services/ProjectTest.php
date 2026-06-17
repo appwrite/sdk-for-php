@@ -57,7 +57,7 @@ final class ProjectTest extends TestCase
             "smtpHost" => "mail.appwrite.io",
             "smtpPort" => 25,
             "smtpUsername" => "emailuser",
-            "smtpPassword" => "[SMTPPASSWORD]",
+            "smtpPassword" => "smtp-password",
             "smtpSecure" => "tls",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -97,11 +97,16 @@ final class ProjectTest extends TestCase
             "oAuth2ServerEnabled" => true,
             "oAuth2ServerAuthorizationUrl" => "https://cloud.appwrite.io/oauth2/.well-known/openid-configuration",
             "oAuth2ServerScopes" => array(),
+            "oAuth2ServerAuthorizationDetailsTypes" => array(),
             "oAuth2ServerAccessTokenDuration" => 3600,
             "oAuth2ServerRefreshTokenDuration" => 86400,
             "oAuth2ServerPublicAccessTokenDuration" => 3600,
             "oAuth2ServerPublicRefreshTokenDuration" => 2592000,
             "oAuth2ServerConfidentialPkce" => true,
+            "oAuth2ServerVerificationUrl" => "https://cloud.appwrite.io/device",
+            "oAuth2ServerUserCodeLength" => 8,
+            "oAuth2ServerUserCodeFormat" => "alphanumeric",
+            "oAuth2ServerDeviceCodeDuration" => 600,
             "oAuth2ServerDiscoveryUrl" => "https://auth.example.com/.well-known/openid-configuration"
         );
 
@@ -162,7 +167,7 @@ final class ProjectTest extends TestCase
             "smtpHost" => "mail.appwrite.io",
             "smtpPort" => 25,
             "smtpUsername" => "emailuser",
-            "smtpPassword" => "[SMTPPASSWORD]",
+            "smtpPassword" => "smtp-password",
             "smtpSecure" => "tls",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -202,11 +207,16 @@ final class ProjectTest extends TestCase
             "oAuth2ServerEnabled" => true,
             "oAuth2ServerAuthorizationUrl" => "https://cloud.appwrite.io/oauth2/.well-known/openid-configuration",
             "oAuth2ServerScopes" => array(),
+            "oAuth2ServerAuthorizationDetailsTypes" => array(),
             "oAuth2ServerAccessTokenDuration" => 3600,
             "oAuth2ServerRefreshTokenDuration" => 86400,
             "oAuth2ServerPublicAccessTokenDuration" => 3600,
             "oAuth2ServerPublicRefreshTokenDuration" => 2592000,
             "oAuth2ServerConfidentialPkce" => true,
+            "oAuth2ServerVerificationUrl" => "https://cloud.appwrite.io/device",
+            "oAuth2ServerUserCodeLength" => 8,
+            "oAuth2ServerUserCodeFormat" => "alphanumeric",
+            "oAuth2ServerDeviceCodeDuration" => 600,
             "oAuth2ServerDiscoveryUrl" => "https://auth.example.com/.well-known/openid-configuration"
         );
 
@@ -420,7 +430,7 @@ final class ProjectTest extends TestCase
             "smtpHost" => "mail.appwrite.io",
             "smtpPort" => 25,
             "smtpUsername" => "emailuser",
-            "smtpPassword" => "[SMTPPASSWORD]",
+            "smtpPassword" => "smtp-password",
             "smtpSecure" => "tls",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -460,11 +470,16 @@ final class ProjectTest extends TestCase
             "oAuth2ServerEnabled" => true,
             "oAuth2ServerAuthorizationUrl" => "https://cloud.appwrite.io/oauth2/.well-known/openid-configuration",
             "oAuth2ServerScopes" => array(),
+            "oAuth2ServerAuthorizationDetailsTypes" => array(),
             "oAuth2ServerAccessTokenDuration" => 3600,
             "oAuth2ServerRefreshTokenDuration" => 86400,
             "oAuth2ServerPublicAccessTokenDuration" => 3600,
             "oAuth2ServerPublicRefreshTokenDuration" => 2592000,
             "oAuth2ServerConfidentialPkce" => true,
+            "oAuth2ServerVerificationUrl" => "https://cloud.appwrite.io/device",
+            "oAuth2ServerUserCodeLength" => 8,
+            "oAuth2ServerUserCodeFormat" => "alphanumeric",
+            "oAuth2ServerDeviceCodeDuration" => 600,
             "oAuth2ServerDiscoveryUrl" => "https://auth.example.com/.well-known/openid-configuration"
         );
 
@@ -645,7 +660,7 @@ final class ProjectTest extends TestCase
             "smtpHost" => "mail.appwrite.io",
             "smtpPort" => 25,
             "smtpUsername" => "emailuser",
-            "smtpPassword" => "[SMTPPASSWORD]",
+            "smtpPassword" => "smtp-password",
             "smtpSecure" => "tls",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -685,11 +700,16 @@ final class ProjectTest extends TestCase
             "oAuth2ServerEnabled" => true,
             "oAuth2ServerAuthorizationUrl" => "https://cloud.appwrite.io/oauth2/.well-known/openid-configuration",
             "oAuth2ServerScopes" => array(),
+            "oAuth2ServerAuthorizationDetailsTypes" => array(),
             "oAuth2ServerAccessTokenDuration" => 3600,
             "oAuth2ServerRefreshTokenDuration" => 86400,
             "oAuth2ServerPublicAccessTokenDuration" => 3600,
             "oAuth2ServerPublicRefreshTokenDuration" => 2592000,
             "oAuth2ServerConfidentialPkce" => true,
+            "oAuth2ServerVerificationUrl" => "https://cloud.appwrite.io/device",
+            "oAuth2ServerUserCodeLength" => 8,
+            "oAuth2ServerUserCodeFormat" => "alphanumeric",
+            "oAuth2ServerDeviceCodeDuration" => 600,
             "oAuth2ServerDiscoveryUrl" => "https://auth.example.com/.well-known/openid-configuration"
         );
 
@@ -2020,7 +2040,7 @@ final class ProjectTest extends TestCase
             "smtpHost" => "mail.appwrite.io",
             "smtpPort" => 25,
             "smtpUsername" => "emailuser",
-            "smtpPassword" => "[SMTPPASSWORD]",
+            "smtpPassword" => "smtp-password",
             "smtpSecure" => "tls",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -2060,11 +2080,16 @@ final class ProjectTest extends TestCase
             "oAuth2ServerEnabled" => true,
             "oAuth2ServerAuthorizationUrl" => "https://cloud.appwrite.io/oauth2/.well-known/openid-configuration",
             "oAuth2ServerScopes" => array(),
+            "oAuth2ServerAuthorizationDetailsTypes" => array(),
             "oAuth2ServerAccessTokenDuration" => 3600,
             "oAuth2ServerRefreshTokenDuration" => 86400,
             "oAuth2ServerPublicAccessTokenDuration" => 3600,
             "oAuth2ServerPublicRefreshTokenDuration" => 2592000,
             "oAuth2ServerConfidentialPkce" => true,
+            "oAuth2ServerVerificationUrl" => "https://cloud.appwrite.io/device",
+            "oAuth2ServerUserCodeLength" => 8,
+            "oAuth2ServerUserCodeFormat" => "alphanumeric",
+            "oAuth2ServerDeviceCodeDuration" => 600,
             "oAuth2ServerDiscoveryUrl" => "https://auth.example.com/.well-known/openid-configuration"
         );
 
@@ -2076,6 +2101,102 @@ final class ProjectTest extends TestCase
             ->andReturn('');
 
         $response = $this->project->updateDenyAliasedEmailPolicy(
+            true
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
+    }
+
+    public function testMethodUpdateDenyCorporateEmailPolicy(): void
+    {
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "name" => "New Project",
+            "teamId" => "1592981250",
+            "region" => "fra",
+            "devKeys" => array(
+                array(
+                    "\$id" => "5e5ea5c16897e",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "name" => "Dev API Key",
+                    "expire" => "2020-10-15T06:38:00.000+00:00",
+                    "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
+                    "accessedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "sdks" => array()
+                )
+            ),
+            "smtpEnabled" => true,
+            "smtpSenderName" => "John Appwrite",
+            "smtpSenderEmail" => "john@appwrite.io",
+            "smtpReplyToName" => "Support Team",
+            "smtpReplyToEmail" => "support@appwrite.io",
+            "smtpHost" => "mail.appwrite.io",
+            "smtpPort" => 25,
+            "smtpUsername" => "emailuser",
+            "smtpPassword" => "smtp-password",
+            "smtpSecure" => "tls",
+            "pingCount" => 1,
+            "pingedAt" => "2020-10-15T06:38:00.000+00:00",
+            "labels" => array(),
+            "status" => "active",
+            "authMethods" => array(
+                array(
+                    "\$id" => "email-password",
+                    "enabled" => true
+                )
+            ),
+            "services" => array(
+                array(
+                    "\$id" => "account",
+                    "enabled" => true
+                )
+            ),
+            "protocols" => array(
+                array(
+                    "\$id" => "rest",
+                    "enabled" => true
+                )
+            ),
+            "blocks" => array(
+                array(
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "resourceType" => "project",
+                    "resourceId" => "5e5ea5c16897e",
+                    "projectName" => "My Project",
+                    "region" => "fra",
+                    "organizationName" => "Acme Inc.",
+                    "organizationId" => "5e5ea5c16897e",
+                    "billingPlan" => "pro"
+                )
+            ),
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00",
+            "oAuth2ServerEnabled" => true,
+            "oAuth2ServerAuthorizationUrl" => "https://cloud.appwrite.io/oauth2/.well-known/openid-configuration",
+            "oAuth2ServerScopes" => array(),
+            "oAuth2ServerAuthorizationDetailsTypes" => array(),
+            "oAuth2ServerAccessTokenDuration" => 3600,
+            "oAuth2ServerRefreshTokenDuration" => 86400,
+            "oAuth2ServerPublicAccessTokenDuration" => 3600,
+            "oAuth2ServerPublicRefreshTokenDuration" => 2592000,
+            "oAuth2ServerConfidentialPkce" => true,
+            "oAuth2ServerVerificationUrl" => "https://cloud.appwrite.io/device",
+            "oAuth2ServerUserCodeLength" => 8,
+            "oAuth2ServerUserCodeFormat" => "alphanumeric",
+            "oAuth2ServerDeviceCodeDuration" => 600,
+            "oAuth2ServerDiscoveryUrl" => "https://auth.example.com/.well-known/openid-configuration"
+        );
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->project->updateDenyCorporateEmailPolicy(
             true
         );
 
@@ -2111,7 +2232,7 @@ final class ProjectTest extends TestCase
             "smtpHost" => "mail.appwrite.io",
             "smtpPort" => 25,
             "smtpUsername" => "emailuser",
-            "smtpPassword" => "[SMTPPASSWORD]",
+            "smtpPassword" => "smtp-password",
             "smtpSecure" => "tls",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -2151,11 +2272,16 @@ final class ProjectTest extends TestCase
             "oAuth2ServerEnabled" => true,
             "oAuth2ServerAuthorizationUrl" => "https://cloud.appwrite.io/oauth2/.well-known/openid-configuration",
             "oAuth2ServerScopes" => array(),
+            "oAuth2ServerAuthorizationDetailsTypes" => array(),
             "oAuth2ServerAccessTokenDuration" => 3600,
             "oAuth2ServerRefreshTokenDuration" => 86400,
             "oAuth2ServerPublicAccessTokenDuration" => 3600,
             "oAuth2ServerPublicRefreshTokenDuration" => 2592000,
             "oAuth2ServerConfidentialPkce" => true,
+            "oAuth2ServerVerificationUrl" => "https://cloud.appwrite.io/device",
+            "oAuth2ServerUserCodeLength" => 8,
+            "oAuth2ServerUserCodeFormat" => "alphanumeric",
+            "oAuth2ServerDeviceCodeDuration" => 600,
             "oAuth2ServerDiscoveryUrl" => "https://auth.example.com/.well-known/openid-configuration"
         );
 
@@ -2202,7 +2328,7 @@ final class ProjectTest extends TestCase
             "smtpHost" => "mail.appwrite.io",
             "smtpPort" => 25,
             "smtpUsername" => "emailuser",
-            "smtpPassword" => "[SMTPPASSWORD]",
+            "smtpPassword" => "smtp-password",
             "smtpSecure" => "tls",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -2242,11 +2368,16 @@ final class ProjectTest extends TestCase
             "oAuth2ServerEnabled" => true,
             "oAuth2ServerAuthorizationUrl" => "https://cloud.appwrite.io/oauth2/.well-known/openid-configuration",
             "oAuth2ServerScopes" => array(),
+            "oAuth2ServerAuthorizationDetailsTypes" => array(),
             "oAuth2ServerAccessTokenDuration" => 3600,
             "oAuth2ServerRefreshTokenDuration" => 86400,
             "oAuth2ServerPublicAccessTokenDuration" => 3600,
             "oAuth2ServerPublicRefreshTokenDuration" => 2592000,
             "oAuth2ServerConfidentialPkce" => true,
+            "oAuth2ServerVerificationUrl" => "https://cloud.appwrite.io/device",
+            "oAuth2ServerUserCodeLength" => 8,
+            "oAuth2ServerUserCodeFormat" => "alphanumeric",
+            "oAuth2ServerDeviceCodeDuration" => 600,
             "oAuth2ServerDiscoveryUrl" => "https://auth.example.com/.well-known/openid-configuration"
         );
 
@@ -2293,7 +2424,7 @@ final class ProjectTest extends TestCase
             "smtpHost" => "mail.appwrite.io",
             "smtpPort" => 25,
             "smtpUsername" => "emailuser",
-            "smtpPassword" => "[SMTPPASSWORD]",
+            "smtpPassword" => "smtp-password",
             "smtpSecure" => "tls",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -2333,11 +2464,16 @@ final class ProjectTest extends TestCase
             "oAuth2ServerEnabled" => true,
             "oAuth2ServerAuthorizationUrl" => "https://cloud.appwrite.io/oauth2/.well-known/openid-configuration",
             "oAuth2ServerScopes" => array(),
+            "oAuth2ServerAuthorizationDetailsTypes" => array(),
             "oAuth2ServerAccessTokenDuration" => 3600,
             "oAuth2ServerRefreshTokenDuration" => 86400,
             "oAuth2ServerPublicAccessTokenDuration" => 3600,
             "oAuth2ServerPublicRefreshTokenDuration" => 2592000,
             "oAuth2ServerConfidentialPkce" => true,
+            "oAuth2ServerVerificationUrl" => "https://cloud.appwrite.io/device",
+            "oAuth2ServerUserCodeLength" => 8,
+            "oAuth2ServerUserCodeFormat" => "alphanumeric",
+            "oAuth2ServerDeviceCodeDuration" => 600,
             "oAuth2ServerDiscoveryUrl" => "https://auth.example.com/.well-known/openid-configuration"
         );
 
@@ -2382,7 +2518,7 @@ final class ProjectTest extends TestCase
             "smtpHost" => "mail.appwrite.io",
             "smtpPort" => 25,
             "smtpUsername" => "emailuser",
-            "smtpPassword" => "[SMTPPASSWORD]",
+            "smtpPassword" => "smtp-password",
             "smtpSecure" => "tls",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -2422,11 +2558,16 @@ final class ProjectTest extends TestCase
             "oAuth2ServerEnabled" => true,
             "oAuth2ServerAuthorizationUrl" => "https://cloud.appwrite.io/oauth2/.well-known/openid-configuration",
             "oAuth2ServerScopes" => array(),
+            "oAuth2ServerAuthorizationDetailsTypes" => array(),
             "oAuth2ServerAccessTokenDuration" => 3600,
             "oAuth2ServerRefreshTokenDuration" => 86400,
             "oAuth2ServerPublicAccessTokenDuration" => 3600,
             "oAuth2ServerPublicRefreshTokenDuration" => 2592000,
             "oAuth2ServerConfidentialPkce" => true,
+            "oAuth2ServerVerificationUrl" => "https://cloud.appwrite.io/device",
+            "oAuth2ServerUserCodeLength" => 8,
+            "oAuth2ServerUserCodeFormat" => "alphanumeric",
+            "oAuth2ServerDeviceCodeDuration" => 600,
             "oAuth2ServerDiscoveryUrl" => "https://auth.example.com/.well-known/openid-configuration"
         );
 
@@ -2473,7 +2614,7 @@ final class ProjectTest extends TestCase
             "smtpHost" => "mail.appwrite.io",
             "smtpPort" => 25,
             "smtpUsername" => "emailuser",
-            "smtpPassword" => "[SMTPPASSWORD]",
+            "smtpPassword" => "smtp-password",
             "smtpSecure" => "tls",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -2513,11 +2654,16 @@ final class ProjectTest extends TestCase
             "oAuth2ServerEnabled" => true,
             "oAuth2ServerAuthorizationUrl" => "https://cloud.appwrite.io/oauth2/.well-known/openid-configuration",
             "oAuth2ServerScopes" => array(),
+            "oAuth2ServerAuthorizationDetailsTypes" => array(),
             "oAuth2ServerAccessTokenDuration" => 3600,
             "oAuth2ServerRefreshTokenDuration" => 86400,
             "oAuth2ServerPublicAccessTokenDuration" => 3600,
             "oAuth2ServerPublicRefreshTokenDuration" => 2592000,
             "oAuth2ServerConfidentialPkce" => true,
+            "oAuth2ServerVerificationUrl" => "https://cloud.appwrite.io/device",
+            "oAuth2ServerUserCodeLength" => 8,
+            "oAuth2ServerUserCodeFormat" => "alphanumeric",
+            "oAuth2ServerDeviceCodeDuration" => 600,
             "oAuth2ServerDiscoveryUrl" => "https://auth.example.com/.well-known/openid-configuration"
         );
 
@@ -2564,7 +2710,7 @@ final class ProjectTest extends TestCase
             "smtpHost" => "mail.appwrite.io",
             "smtpPort" => 25,
             "smtpUsername" => "emailuser",
-            "smtpPassword" => "[SMTPPASSWORD]",
+            "smtpPassword" => "smtp-password",
             "smtpSecure" => "tls",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -2604,11 +2750,16 @@ final class ProjectTest extends TestCase
             "oAuth2ServerEnabled" => true,
             "oAuth2ServerAuthorizationUrl" => "https://cloud.appwrite.io/oauth2/.well-known/openid-configuration",
             "oAuth2ServerScopes" => array(),
+            "oAuth2ServerAuthorizationDetailsTypes" => array(),
             "oAuth2ServerAccessTokenDuration" => 3600,
             "oAuth2ServerRefreshTokenDuration" => 86400,
             "oAuth2ServerPublicAccessTokenDuration" => 3600,
             "oAuth2ServerPublicRefreshTokenDuration" => 2592000,
             "oAuth2ServerConfidentialPkce" => true,
+            "oAuth2ServerVerificationUrl" => "https://cloud.appwrite.io/device",
+            "oAuth2ServerUserCodeLength" => 8,
+            "oAuth2ServerUserCodeFormat" => "alphanumeric",
+            "oAuth2ServerDeviceCodeDuration" => 600,
             "oAuth2ServerDiscoveryUrl" => "https://auth.example.com/.well-known/openid-configuration"
         );
 
@@ -2678,7 +2829,7 @@ final class ProjectTest extends TestCase
             "smtpHost" => "mail.appwrite.io",
             "smtpPort" => 25,
             "smtpUsername" => "emailuser",
-            "smtpPassword" => "[SMTPPASSWORD]",
+            "smtpPassword" => "smtp-password",
             "smtpSecure" => "tls",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -2718,11 +2869,16 @@ final class ProjectTest extends TestCase
             "oAuth2ServerEnabled" => true,
             "oAuth2ServerAuthorizationUrl" => "https://cloud.appwrite.io/oauth2/.well-known/openid-configuration",
             "oAuth2ServerScopes" => array(),
+            "oAuth2ServerAuthorizationDetailsTypes" => array(),
             "oAuth2ServerAccessTokenDuration" => 3600,
             "oAuth2ServerRefreshTokenDuration" => 86400,
             "oAuth2ServerPublicAccessTokenDuration" => 3600,
             "oAuth2ServerPublicRefreshTokenDuration" => 2592000,
             "oAuth2ServerConfidentialPkce" => true,
+            "oAuth2ServerVerificationUrl" => "https://cloud.appwrite.io/device",
+            "oAuth2ServerUserCodeLength" => 8,
+            "oAuth2ServerUserCodeFormat" => "alphanumeric",
+            "oAuth2ServerDeviceCodeDuration" => 600,
             "oAuth2ServerDiscoveryUrl" => "https://auth.example.com/.well-known/openid-configuration"
         );
 
@@ -2769,7 +2925,7 @@ final class ProjectTest extends TestCase
             "smtpHost" => "mail.appwrite.io",
             "smtpPort" => 25,
             "smtpUsername" => "emailuser",
-            "smtpPassword" => "[SMTPPASSWORD]",
+            "smtpPassword" => "smtp-password",
             "smtpSecure" => "tls",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -2809,11 +2965,16 @@ final class ProjectTest extends TestCase
             "oAuth2ServerEnabled" => true,
             "oAuth2ServerAuthorizationUrl" => "https://cloud.appwrite.io/oauth2/.well-known/openid-configuration",
             "oAuth2ServerScopes" => array(),
+            "oAuth2ServerAuthorizationDetailsTypes" => array(),
             "oAuth2ServerAccessTokenDuration" => 3600,
             "oAuth2ServerRefreshTokenDuration" => 86400,
             "oAuth2ServerPublicAccessTokenDuration" => 3600,
             "oAuth2ServerPublicRefreshTokenDuration" => 2592000,
             "oAuth2ServerConfidentialPkce" => true,
+            "oAuth2ServerVerificationUrl" => "https://cloud.appwrite.io/device",
+            "oAuth2ServerUserCodeLength" => 8,
+            "oAuth2ServerUserCodeFormat" => "alphanumeric",
+            "oAuth2ServerDeviceCodeDuration" => 600,
             "oAuth2ServerDiscoveryUrl" => "https://auth.example.com/.well-known/openid-configuration"
         );
 
@@ -2860,7 +3021,7 @@ final class ProjectTest extends TestCase
             "smtpHost" => "mail.appwrite.io",
             "smtpPort" => 25,
             "smtpUsername" => "emailuser",
-            "smtpPassword" => "[SMTPPASSWORD]",
+            "smtpPassword" => "smtp-password",
             "smtpSecure" => "tls",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -2900,11 +3061,16 @@ final class ProjectTest extends TestCase
             "oAuth2ServerEnabled" => true,
             "oAuth2ServerAuthorizationUrl" => "https://cloud.appwrite.io/oauth2/.well-known/openid-configuration",
             "oAuth2ServerScopes" => array(),
+            "oAuth2ServerAuthorizationDetailsTypes" => array(),
             "oAuth2ServerAccessTokenDuration" => 3600,
             "oAuth2ServerRefreshTokenDuration" => 86400,
             "oAuth2ServerPublicAccessTokenDuration" => 3600,
             "oAuth2ServerPublicRefreshTokenDuration" => 2592000,
             "oAuth2ServerConfidentialPkce" => true,
+            "oAuth2ServerVerificationUrl" => "https://cloud.appwrite.io/device",
+            "oAuth2ServerUserCodeLength" => 8,
+            "oAuth2ServerUserCodeFormat" => "alphanumeric",
+            "oAuth2ServerDeviceCodeDuration" => 600,
             "oAuth2ServerDiscoveryUrl" => "https://auth.example.com/.well-known/openid-configuration"
         );
 
@@ -2951,7 +3117,7 @@ final class ProjectTest extends TestCase
             "smtpHost" => "mail.appwrite.io",
             "smtpPort" => 25,
             "smtpUsername" => "emailuser",
-            "smtpPassword" => "[SMTPPASSWORD]",
+            "smtpPassword" => "smtp-password",
             "smtpSecure" => "tls",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -2991,11 +3157,16 @@ final class ProjectTest extends TestCase
             "oAuth2ServerEnabled" => true,
             "oAuth2ServerAuthorizationUrl" => "https://cloud.appwrite.io/oauth2/.well-known/openid-configuration",
             "oAuth2ServerScopes" => array(),
+            "oAuth2ServerAuthorizationDetailsTypes" => array(),
             "oAuth2ServerAccessTokenDuration" => 3600,
             "oAuth2ServerRefreshTokenDuration" => 86400,
             "oAuth2ServerPublicAccessTokenDuration" => 3600,
             "oAuth2ServerPublicRefreshTokenDuration" => 2592000,
             "oAuth2ServerConfidentialPkce" => true,
+            "oAuth2ServerVerificationUrl" => "https://cloud.appwrite.io/device",
+            "oAuth2ServerUserCodeLength" => 8,
+            "oAuth2ServerUserCodeFormat" => "alphanumeric",
+            "oAuth2ServerDeviceCodeDuration" => 600,
             "oAuth2ServerDiscoveryUrl" => "https://auth.example.com/.well-known/openid-configuration"
         );
 
@@ -3042,7 +3213,7 @@ final class ProjectTest extends TestCase
             "smtpHost" => "mail.appwrite.io",
             "smtpPort" => 25,
             "smtpUsername" => "emailuser",
-            "smtpPassword" => "[SMTPPASSWORD]",
+            "smtpPassword" => "smtp-password",
             "smtpSecure" => "tls",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -3082,11 +3253,16 @@ final class ProjectTest extends TestCase
             "oAuth2ServerEnabled" => true,
             "oAuth2ServerAuthorizationUrl" => "https://cloud.appwrite.io/oauth2/.well-known/openid-configuration",
             "oAuth2ServerScopes" => array(),
+            "oAuth2ServerAuthorizationDetailsTypes" => array(),
             "oAuth2ServerAccessTokenDuration" => 3600,
             "oAuth2ServerRefreshTokenDuration" => 86400,
             "oAuth2ServerPublicAccessTokenDuration" => 3600,
             "oAuth2ServerPublicRefreshTokenDuration" => 2592000,
             "oAuth2ServerConfidentialPkce" => true,
+            "oAuth2ServerVerificationUrl" => "https://cloud.appwrite.io/device",
+            "oAuth2ServerUserCodeLength" => 8,
+            "oAuth2ServerUserCodeFormat" => "alphanumeric",
+            "oAuth2ServerDeviceCodeDuration" => 600,
             "oAuth2ServerDiscoveryUrl" => "https://auth.example.com/.well-known/openid-configuration"
         );
 
@@ -3112,7 +3288,7 @@ final class ProjectTest extends TestCase
                 "enabled" => true
             ),
             array(
-                "\$id" => "deny-free-email"
+                "\$id" => "deny-corporate-email"
             )
         );
 
@@ -3127,7 +3303,7 @@ final class ProjectTest extends TestCase
             ProjectPolicyId::PASSWORDDICTIONARY()
         );
 
-        $this->assertInstanceOf(\Appwrite\Models\PolicyDenyFreeEmail::class, $response);
+        $this->assertInstanceOf(\Appwrite\Models\PolicyDenyCorporateEmail::class, $response);
     }
 
     public function testMethodUpdateProtocol(): void
@@ -3159,7 +3335,7 @@ final class ProjectTest extends TestCase
             "smtpHost" => "mail.appwrite.io",
             "smtpPort" => 25,
             "smtpUsername" => "emailuser",
-            "smtpPassword" => "[SMTPPASSWORD]",
+            "smtpPassword" => "smtp-password",
             "smtpSecure" => "tls",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -3199,11 +3375,16 @@ final class ProjectTest extends TestCase
             "oAuth2ServerEnabled" => true,
             "oAuth2ServerAuthorizationUrl" => "https://cloud.appwrite.io/oauth2/.well-known/openid-configuration",
             "oAuth2ServerScopes" => array(),
+            "oAuth2ServerAuthorizationDetailsTypes" => array(),
             "oAuth2ServerAccessTokenDuration" => 3600,
             "oAuth2ServerRefreshTokenDuration" => 86400,
             "oAuth2ServerPublicAccessTokenDuration" => 3600,
             "oAuth2ServerPublicRefreshTokenDuration" => 2592000,
             "oAuth2ServerConfidentialPkce" => true,
+            "oAuth2ServerVerificationUrl" => "https://cloud.appwrite.io/device",
+            "oAuth2ServerUserCodeLength" => 8,
+            "oAuth2ServerUserCodeFormat" => "alphanumeric",
+            "oAuth2ServerDeviceCodeDuration" => 600,
             "oAuth2ServerDiscoveryUrl" => "https://auth.example.com/.well-known/openid-configuration"
         );
 
@@ -3251,7 +3432,7 @@ final class ProjectTest extends TestCase
             "smtpHost" => "mail.appwrite.io",
             "smtpPort" => 25,
             "smtpUsername" => "emailuser",
-            "smtpPassword" => "[SMTPPASSWORD]",
+            "smtpPassword" => "smtp-password",
             "smtpSecure" => "tls",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -3291,11 +3472,16 @@ final class ProjectTest extends TestCase
             "oAuth2ServerEnabled" => true,
             "oAuth2ServerAuthorizationUrl" => "https://cloud.appwrite.io/oauth2/.well-known/openid-configuration",
             "oAuth2ServerScopes" => array(),
+            "oAuth2ServerAuthorizationDetailsTypes" => array(),
             "oAuth2ServerAccessTokenDuration" => 3600,
             "oAuth2ServerRefreshTokenDuration" => 86400,
             "oAuth2ServerPublicAccessTokenDuration" => 3600,
             "oAuth2ServerPublicRefreshTokenDuration" => 2592000,
             "oAuth2ServerConfidentialPkce" => true,
+            "oAuth2ServerVerificationUrl" => "https://cloud.appwrite.io/device",
+            "oAuth2ServerUserCodeLength" => 8,
+            "oAuth2ServerUserCodeFormat" => "alphanumeric",
+            "oAuth2ServerDeviceCodeDuration" => 600,
             "oAuth2ServerDiscoveryUrl" => "https://auth.example.com/.well-known/openid-configuration"
         );
 
@@ -3343,7 +3529,7 @@ final class ProjectTest extends TestCase
             "smtpHost" => "mail.appwrite.io",
             "smtpPort" => 25,
             "smtpUsername" => "emailuser",
-            "smtpPassword" => "[SMTPPASSWORD]",
+            "smtpPassword" => "smtp-password",
             "smtpSecure" => "tls",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -3383,11 +3569,16 @@ final class ProjectTest extends TestCase
             "oAuth2ServerEnabled" => true,
             "oAuth2ServerAuthorizationUrl" => "https://cloud.appwrite.io/oauth2/.well-known/openid-configuration",
             "oAuth2ServerScopes" => array(),
+            "oAuth2ServerAuthorizationDetailsTypes" => array(),
             "oAuth2ServerAccessTokenDuration" => 3600,
             "oAuth2ServerRefreshTokenDuration" => 86400,
             "oAuth2ServerPublicAccessTokenDuration" => 3600,
             "oAuth2ServerPublicRefreshTokenDuration" => 2592000,
             "oAuth2ServerConfidentialPkce" => true,
+            "oAuth2ServerVerificationUrl" => "https://cloud.appwrite.io/device",
+            "oAuth2ServerUserCodeLength" => 8,
+            "oAuth2ServerUserCodeFormat" => "alphanumeric",
+            "oAuth2ServerDeviceCodeDuration" => 600,
             "oAuth2ServerDiscoveryUrl" => "https://auth.example.com/.well-known/openid-configuration"
         );
 

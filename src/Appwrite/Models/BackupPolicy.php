@@ -20,6 +20,7 @@ readonly class BackupPolicy
      * @param array $resources the resources that are backed up by this policy.
      * @param int $retention how many days to keep the backup before it will be automatically deleted.
      * @param string $schedule policy backup schedule in cron format.
+     * @param string $type backup type. possible values: full (complete database snapshot), incremental (changes since last backup).
      * @param bool $enabled is this policy enabled.
      * @param string|null $resourceId the resource id to backup. set only if this policy should backup a single resource.
      * @param string|null $resourceType the resource type to backup. set only if this policy should backup a single resource.
@@ -33,6 +34,7 @@ readonly class BackupPolicy
         public array $resources,
         public int $retention,
         public string $schedule,
+        public string $type,
         public bool $enabled,
         public ?string $resourceId = null,
         public ?string $resourceType = null
@@ -68,6 +70,9 @@ readonly class BackupPolicy
         if (!array_key_exists('schedule', $data)) {
             throw new \InvalidArgumentException('Missing required field "schedule" for ' . static::class . '.');
         }
+        if (!array_key_exists('type', $data)) {
+            throw new \InvalidArgumentException('Missing required field "type" for ' . static::class . '.');
+        }
         if (!array_key_exists('enabled', $data)) {
             throw new \InvalidArgumentException('Missing required field "enabled" for ' . static::class . '.');
         }
@@ -81,6 +86,7 @@ readonly class BackupPolicy
             resources: $data['resources'],
             retention: $data['retention'],
             schedule: $data['schedule'],
+            type: $data['type'],
             enabled: $data['enabled'],
             resourceId: array_key_exists('resourceId', $data) ? $data['resourceId'] : null,
             resourceType: array_key_exists('resourceType', $data) ? $data['resourceType'] : null
@@ -103,6 +109,7 @@ readonly class BackupPolicy
             'resourceType' => static::serializeValue($this->resourceType),
             'retention' => static::serializeValue($this->retention),
             'schedule' => static::serializeValue($this->schedule),
+            'type' => static::serializeValue($this->type),
             'enabled' => static::serializeValue($this->enabled)
         ];
 

@@ -14,5 +14,5 @@ $account = new Account($client);
 $result = $account->updateRecovery(
     userId: '<USER_ID>',
     secret: '<SECRET>',
-    password: ''
+    password: 'password'
 );```

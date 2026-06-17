@@ -18,7 +18,7 @@ $result = $messaging->updateSMTPProvider(
     host: '<HOST>', // optional
     port: 1, // optional
     username: '<USERNAME>', // optional
-    password: '<PASSWORD>', // optional
+    password: 'password', // optional
     encryption: SmtpEncryption::NONE(), // optional
     autoTLS: false, // optional
     mailer: '<MAILER>', // optional

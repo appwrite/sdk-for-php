@@ -96,6 +96,7 @@ class ProjectKeyScopes implements JsonSerializable
     private static ProjectKeyScopes $ARCHIVESWRITE;
     private static ProjectKeyScopes $RESTORATIONSREAD;
     private static ProjectKeyScopes $RESTORATIONSWRITE;
+    private static ProjectKeyScopes $DEDICATEDDATABASESEXECUTE;
     private static ProjectKeyScopes $DOMAINSREAD;
     private static ProjectKeyScopes $DOMAINSWRITE;
     private static ProjectKeyScopes $EVENTSREAD;
@@ -750,6 +751,13 @@ class ProjectKeyScopes implements JsonSerializable
         }
         return self::$RESTORATIONSWRITE;
     }
+    public static function DEDICATEDDATABASESEXECUTE(): ProjectKeyScopes
+    {
+        if (!isset(self::$DEDICATEDDATABASESEXECUTE)) {
+            self::$DEDICATEDDATABASESEXECUTE = new ProjectKeyScopes('dedicatedDatabases.execute');
+        }
+        return self::$DEDICATEDDATABASESEXECUTE;
+    }
     public static function DOMAINSREAD(): ProjectKeyScopes
     {
         if (!isset(self::$DOMAINSREAD)) {
@@ -886,6 +894,7 @@ class ProjectKeyScopes implements JsonSerializable
             'archives.write' => self::ARCHIVESWRITE(),
             'restorations.read' => self::RESTORATIONSREAD(),
             'restorations.write' => self::RESTORATIONSWRITE(),
+            'dedicatedDatabases.execute' => self::DEDICATEDDATABASESEXECUTE(),
             'domains.read' => self::DOMAINSREAD(),
             'domains.write' => self::DOMAINSWRITE(),
             'events.read' => self::EVENTSREAD(),

@@ -25,6 +25,7 @@ readonly class Membership
      * @param string $joined date, the user has accepted the invitation to join the team in iso 8601 format.
      * @param bool $confirm user confirmation status, true if the user has joined the team or false otherwise.
      * @param bool $mfa multi factor authentication status, true if the user has mfa enabled or false otherwise. hide this attribute by toggling membership privacy in the console.
+     * @param string $userAccessedAt most recent access date in iso 8601 format. show this attribute by toggling membership privacy in the console.
      * @param array $roles user list of roles
      */
     public function __construct(
@@ -41,6 +42,7 @@ readonly class Membership
         public string $joined,
         public bool $confirm,
         public bool $mfa,
+        public string $userAccessedAt,
         public array $roles
     ) {
     }
@@ -89,6 +91,9 @@ readonly class Membership
         if (!array_key_exists('mfa', $data)) {
             throw new \InvalidArgumentException('Missing required field "mfa" for ' . static::class . '.');
         }
+        if (!array_key_exists('userAccessedAt', $data)) {
+            throw new \InvalidArgumentException('Missing required field "userAccessedAt" for ' . static::class . '.');
+        }
         if (!array_key_exists('roles', $data)) {
             throw new \InvalidArgumentException('Missing required field "roles" for ' . static::class . '.');
         }
@@ -107,6 +112,7 @@ readonly class Membership
             joined: $data['joined'],
             confirm: $data['confirm'],
             mfa: $data['mfa'],
+            userAccessedAt: $data['userAccessedAt'],
             roles: $data['roles']
         );
     }
@@ -130,6 +136,7 @@ readonly class Membership
             'joined' => static::serializeValue($this->joined),
             'confirm' => static::serializeValue($this->confirm),
             'mfa' => static::serializeValue($this->mfa),
+            'userAccessedAt' => static::serializeValue($this->userAccessedAt),
             'roles' => static::serializeValue($this->roles)
         ];
 

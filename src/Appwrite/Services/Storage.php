@@ -51,6 +51,7 @@ class Storage extends Service
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = 'application/json';
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -132,6 +133,7 @@ class Storage extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         $response = $this->client->call(
             Client::METHOD_POST,
@@ -169,6 +171,7 @@ class Storage extends Service
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = 'application/json';
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -250,6 +253,7 @@ class Storage extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         $response = $this->client->call(
             Client::METHOD_PUT,
@@ -335,6 +339,7 @@ class Storage extends Service
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = 'application/json';
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -398,6 +403,7 @@ class Storage extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'multipart/form-data';
+        $apiHeaders['accept'] = 'application/json';
         $size = 0;
         $mimeType = null;
         $postedName = null;
@@ -409,6 +415,7 @@ class Storage extends Service
                 $apiParams['file'] = new \CURLFile('data://' . $mimeType . ';base64,' . base64_encode($file->getData()), $mimeType, $postedName);
                 $response = $this->client->call(Client::METHOD_POST, $apiPath, [
                             'content-type' => 'multipart/form-data',
+                        'accept' => 'application/json',
                         ], $apiParams);
                 if (!is_array($response)) {
                     throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
@@ -425,6 +432,7 @@ class Storage extends Service
                 $apiParams['file'] = new \CURLFile($file->getPath(), $mimeType, $postedName);
                 $response = $this->client->call(Client::METHOD_POST, $apiPath, [
                             'content-type' => 'multipart/form-data',
+                        'accept' => 'application/json',
                         ], $apiParams);
                 if (!is_array($response)) {
                     throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
@@ -444,8 +452,9 @@ class Storage extends Service
         }
 
         $apiHeaders = [
-            'content-type' => 'multipart/form-data',
             'X-Appwrite-Project' => $this->client->getConfig('project'),
+            'content-type' => 'multipart/form-data',
+            'accept' => 'application/json',
         ];
         $handle = null;
 
@@ -677,6 +686,7 @@ class Storage extends Service
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = 'application/json';
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -724,6 +734,7 @@ class Storage extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         $response = $this->client->call(
             Client::METHOD_PUT,
@@ -805,6 +816,7 @@ class Storage extends Service
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = '*/*';
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -903,6 +915,7 @@ class Storage extends Service
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = 'image/*';
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -944,6 +957,7 @@ class Storage extends Service
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = '*/*';
 
         $response = $this->client->call(
             Client::METHOD_GET,

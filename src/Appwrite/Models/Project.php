@@ -41,11 +41,16 @@ readonly class Project
      * @param bool $oAuth2ServerEnabled oauth2 server status
      * @param string $oAuth2ServerAuthorizationUrl oauth2 server authorization url
      * @param array $oAuth2ServerScopes oauth2 server allowed scopes
+     * @param array $oAuth2ServerAuthorizationDetailsTypes oauth2 server accepted rfc 9396 authorization_details types
      * @param int $oAuth2ServerAccessTokenDuration oauth2 server access token duration in seconds for confidential clients
      * @param int $oAuth2ServerRefreshTokenDuration oauth2 server refresh token duration in seconds for confidential clients
      * @param int $oAuth2ServerPublicAccessTokenDuration oauth2 server access token duration in seconds for public clients (spas, mobile, native)
      * @param int $oAuth2ServerPublicRefreshTokenDuration oauth2 server refresh token duration in seconds for public clients (spas, mobile, native)
      * @param bool $oAuth2ServerConfidentialPkce when enabled, pkce is required for confidential clients (server-side flows using client_secret). pkce is always required for public clients regardless of this setting.
+     * @param string $oAuth2ServerVerificationUrl url to your application page where users enter the device flow user code. empty when the device authorization grant is not configured.
+     * @param int $oAuth2ServerUserCodeLength number of characters in the device flow user code, excluding the formatting separator.
+     * @param string $oAuth2ServerUserCodeFormat character set for device flow user codes: `numeric`, `alphabetic`, or `alphanumeric`.
+     * @param int $oAuth2ServerDeviceCodeDuration lifetime in seconds of device flow device codes and user codes.
      * @param string $oAuth2ServerDiscoveryUrl oauth2 server discovery url
      * @param BillingLimits|null $billingLimits billing limits reached
      */
@@ -79,11 +84,16 @@ readonly class Project
         public bool $oAuth2ServerEnabled,
         public string $oAuth2ServerAuthorizationUrl,
         public array $oAuth2ServerScopes,
+        public array $oAuth2ServerAuthorizationDetailsTypes,
         public int $oAuth2ServerAccessTokenDuration,
         public int $oAuth2ServerRefreshTokenDuration,
         public int $oAuth2ServerPublicAccessTokenDuration,
         public int $oAuth2ServerPublicRefreshTokenDuration,
         public bool $oAuth2ServerConfidentialPkce,
+        public string $oAuth2ServerVerificationUrl,
+        public int $oAuth2ServerUserCodeLength,
+        public string $oAuth2ServerUserCodeFormat,
+        public int $oAuth2ServerDeviceCodeDuration,
         public string $oAuth2ServerDiscoveryUrl,
         public ?BillingLimits $billingLimits = null
     ) {
@@ -181,6 +191,9 @@ readonly class Project
         if (!array_key_exists('oAuth2ServerScopes', $data)) {
             throw new \InvalidArgumentException('Missing required field "oAuth2ServerScopes" for ' . static::class . '.');
         }
+        if (!array_key_exists('oAuth2ServerAuthorizationDetailsTypes', $data)) {
+            throw new \InvalidArgumentException('Missing required field "oAuth2ServerAuthorizationDetailsTypes" for ' . static::class . '.');
+        }
         if (!array_key_exists('oAuth2ServerAccessTokenDuration', $data)) {
             throw new \InvalidArgumentException('Missing required field "oAuth2ServerAccessTokenDuration" for ' . static::class . '.');
         }
@@ -195,6 +208,18 @@ readonly class Project
         }
         if (!array_key_exists('oAuth2ServerConfidentialPkce', $data)) {
             throw new \InvalidArgumentException('Missing required field "oAuth2ServerConfidentialPkce" for ' . static::class . '.');
+        }
+        if (!array_key_exists('oAuth2ServerVerificationUrl', $data)) {
+            throw new \InvalidArgumentException('Missing required field "oAuth2ServerVerificationUrl" for ' . static::class . '.');
+        }
+        if (!array_key_exists('oAuth2ServerUserCodeLength', $data)) {
+            throw new \InvalidArgumentException('Missing required field "oAuth2ServerUserCodeLength" for ' . static::class . '.');
+        }
+        if (!array_key_exists('oAuth2ServerUserCodeFormat', $data)) {
+            throw new \InvalidArgumentException('Missing required field "oAuth2ServerUserCodeFormat" for ' . static::class . '.');
+        }
+        if (!array_key_exists('oAuth2ServerDeviceCodeDuration', $data)) {
+            throw new \InvalidArgumentException('Missing required field "oAuth2ServerDeviceCodeDuration" for ' . static::class . '.');
         }
         if (!array_key_exists('oAuth2ServerDiscoveryUrl', $data)) {
             throw new \InvalidArgumentException('Missing required field "oAuth2ServerDiscoveryUrl" for ' . static::class . '.');
@@ -255,11 +280,16 @@ readonly class Project
             oAuth2ServerEnabled: $data['oAuth2ServerEnabled'],
             oAuth2ServerAuthorizationUrl: $data['oAuth2ServerAuthorizationUrl'],
             oAuth2ServerScopes: $data['oAuth2ServerScopes'],
+            oAuth2ServerAuthorizationDetailsTypes: $data['oAuth2ServerAuthorizationDetailsTypes'],
             oAuth2ServerAccessTokenDuration: $data['oAuth2ServerAccessTokenDuration'],
             oAuth2ServerRefreshTokenDuration: $data['oAuth2ServerRefreshTokenDuration'],
             oAuth2ServerPublicAccessTokenDuration: $data['oAuth2ServerPublicAccessTokenDuration'],
             oAuth2ServerPublicRefreshTokenDuration: $data['oAuth2ServerPublicRefreshTokenDuration'],
             oAuth2ServerConfidentialPkce: $data['oAuth2ServerConfidentialPkce'],
+            oAuth2ServerVerificationUrl: $data['oAuth2ServerVerificationUrl'],
+            oAuth2ServerUserCodeLength: $data['oAuth2ServerUserCodeLength'],
+            oAuth2ServerUserCodeFormat: $data['oAuth2ServerUserCodeFormat'],
+            oAuth2ServerDeviceCodeDuration: $data['oAuth2ServerDeviceCodeDuration'],
             oAuth2ServerDiscoveryUrl: $data['oAuth2ServerDiscoveryUrl'],
             billingLimits: array_key_exists('billingLimits', $data) ? static::hydrateTypedValue(BillingLimits::class, $data['billingLimits'], true) : null
         );
@@ -301,11 +331,16 @@ readonly class Project
             'oAuth2ServerEnabled' => static::serializeValue($this->oAuth2ServerEnabled),
             'oAuth2ServerAuthorizationUrl' => static::serializeValue($this->oAuth2ServerAuthorizationUrl),
             'oAuth2ServerScopes' => static::serializeValue($this->oAuth2ServerScopes),
+            'oAuth2ServerAuthorizationDetailsTypes' => static::serializeValue($this->oAuth2ServerAuthorizationDetailsTypes),
             'oAuth2ServerAccessTokenDuration' => static::serializeValue($this->oAuth2ServerAccessTokenDuration),
             'oAuth2ServerRefreshTokenDuration' => static::serializeValue($this->oAuth2ServerRefreshTokenDuration),
             'oAuth2ServerPublicAccessTokenDuration' => static::serializeValue($this->oAuth2ServerPublicAccessTokenDuration),
             'oAuth2ServerPublicRefreshTokenDuration' => static::serializeValue($this->oAuth2ServerPublicRefreshTokenDuration),
             'oAuth2ServerConfidentialPkce' => static::serializeValue($this->oAuth2ServerConfidentialPkce),
+            'oAuth2ServerVerificationUrl' => static::serializeValue($this->oAuth2ServerVerificationUrl),
+            'oAuth2ServerUserCodeLength' => static::serializeValue($this->oAuth2ServerUserCodeLength),
+            'oAuth2ServerUserCodeFormat' => static::serializeValue($this->oAuth2ServerUserCodeFormat),
+            'oAuth2ServerDeviceCodeDuration' => static::serializeValue($this->oAuth2ServerDeviceCodeDuration),
             'oAuth2ServerDiscoveryUrl' => static::serializeValue($this->oAuth2ServerDiscoveryUrl)
         ];
 

@@ -141,6 +141,7 @@ final class BackupsTest extends TestCase
                     "resources" => array(),
                     "retention" => 7,
                     "schedule" => "0 * * * *",
+                    "type" => "full",
                     "enabled" => true
                 )
             )
@@ -169,6 +170,7 @@ final class BackupsTest extends TestCase
             "resources" => array(),
             "retention" => 7,
             "schedule" => "0 * * * *",
+            "type" => "full",
             "enabled" => true
         );
 
@@ -200,6 +202,7 @@ final class BackupsTest extends TestCase
             "resources" => array(),
             "retention" => 7,
             "schedule" => "0 * * * *",
+            "type" => "full",
             "enabled" => true
         );
 
@@ -228,6 +231,7 @@ final class BackupsTest extends TestCase
             "resources" => array(),
             "retention" => 7,
             "schedule" => "0 * * * *",
+            "type" => "full",
             "enabled" => true
         );
 

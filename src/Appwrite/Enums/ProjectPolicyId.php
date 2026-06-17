@@ -19,6 +19,7 @@ class ProjectPolicyId implements JsonSerializable
     private static ProjectPolicyId $DENYALIASEDEMAIL;
     private static ProjectPolicyId $DENYDISPOSABLEEMAIL;
     private static ProjectPolicyId $DENYFREEEMAIL;
+    private static ProjectPolicyId $DENYCORPORATEEMAIL;
 
     private string $value;
 
@@ -128,6 +129,13 @@ class ProjectPolicyId implements JsonSerializable
         }
         return self::$DENYFREEEMAIL;
     }
+    public static function DENYCORPORATEEMAIL(): ProjectPolicyId
+    {
+        if (!isset(self::$DENYCORPORATEEMAIL)) {
+            self::$DENYCORPORATEEMAIL = new ProjectPolicyId('deny-corporate-email');
+        }
+        return self::$DENYCORPORATEEMAIL;
+    }
 
     public static function from(string $value): self
     {
@@ -145,6 +153,7 @@ class ProjectPolicyId implements JsonSerializable
             'deny-aliased-email' => self::DENYALIASEDEMAIL(),
             'deny-disposable-email' => self::DENYDISPOSABLEEMAIL(),
             'deny-free-email' => self::DENYFREEEMAIL(),
+            'deny-corporate-email' => self::DENYCORPORATEEMAIL(),
             default => throw new \InvalidArgumentException('Unknown ProjectPolicyId value: ' . $value),
         };
     }

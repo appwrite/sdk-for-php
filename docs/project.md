@@ -227,11 +227,16 @@ PUT https://cloud.appwrite.io/v1/project/oauth2-server
 | enabled | boolean | Enable or disable the OAuth2 server. |  |
 | authorizationUrl | string | URL to your application with consent screen. |  |
 | scopes | array | List of allowed OAuth2 scopes. Maximum of 100 scopes are allowed, each up to 128 characters long. | [] |
+| authorizationDetailsTypes | array | List of accepted `authorization_details` types. Maximum of 100 types are allowed, each up to 128 characters long. | [] |
 | accessTokenDuration | integer | Access token duration in seconds for confidential clients (server-side apps that authenticate with a client secret). Leave empty to use default 8 hours. |  |
 | refreshTokenDuration | integer | Refresh token duration in seconds for confidential clients (server-side apps that authenticate with a client secret). Leave empty to use default 1 year. |  |
 | publicAccessTokenDuration | integer | Access token duration in seconds for public clients (SPAs, mobile, and native apps that cannot keep a client secret). Leave empty to use default 1 hour. |  |
 | publicRefreshTokenDuration | integer | Refresh token duration in seconds for public clients (SPAs, mobile, and native apps that cannot keep a client secret). Leave empty to use default 30 days. |  |
 | confidentialPkce | boolean | When enabled, PKCE is required for confidential clients (server-side flows using client_secret). PKCE is always required for public clients regardless of this setting. |  |
+| verificationUrl | string | URL to your application page where users enter the device flow user code. Required to enable the Device Authorization Grant. |  |
+| userCodeLength | integer | Number of characters in the device flow user code, excluding the formatting separator. Shorter codes are easier to type but weaker; pair short codes with short expiry. Leave empty to use default 8. |  |
+| userCodeFormat | string | Character set for device flow user codes: `numeric` (digits only — best for numeric keypads and TV remotes), `alphabetic` (letters only), or `alphanumeric` (letters and digits — highest entropy per character). Defaults to `alphanumeric`. | alphanumeric |
+| deviceCodeDuration | integer | Lifetime in seconds of device flow device codes and user codes. Device codes are intentionally short-lived. Leave empty to use default 600. |  |
 
 
 ```http request
@@ -1111,6 +1116,19 @@ PATCH https://cloud.appwrite.io/v1/project/policies/deny-aliased-email
 
 
 ```http request
+PATCH https://cloud.appwrite.io/v1/project/policies/deny-corporate-email
+```
+
+** Configures if only corporate email addresses (non-free and non-disposable domains) are allowed during new user sign-ups and email updates. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| enabled | boolean | Set whether or not to restrict sign-ups and email updates to corporate email addresses only. |  |
+
+
+```http request
 PATCH https://cloud.appwrite.io/v1/project/policies/deny-disposable-email
 ```
 
@@ -1151,6 +1169,7 @@ PATCH https://cloud.appwrite.io/v1/project/policies/membership-privacy
 | userPhone | boolean | Set to true if you want make user phone number visible to all team members, or false to hide it. |  |
 | userName | boolean | Set to true if you want make user name visible to all team members, or false to hide it. |  |
 | userMFA | boolean | Set to true if you want make user MFA status visible to all team members, or false to hide it. |  |
+| userAccessedAt | boolean | Set to true if you want make user last access time visible to all team members, or false to hide it. |  |
 
 
 ```http request
@@ -1286,7 +1305,7 @@ GET https://cloud.appwrite.io/v1/project/policies/{policyId}
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| policyId | string | **Required** Policy ID. Can be one of: password-dictionary, password-history, password-strength, password-personal-data, session-alert, session-duration, session-invalidation, session-limit, user-limit, membership-privacy, deny-aliased-email, deny-disposable-email, deny-free-email. |  |
+| policyId | string | **Required** Policy ID. Can be one of: password-dictionary, password-history, password-strength, password-personal-data, session-alert, session-duration, session-invalidation, session-limit, user-limit, membership-privacy, deny-aliased-email, deny-disposable-email, deny-free-email, deny-corporate-email. |  |
 
 
 ```http request
@@ -1313,7 +1332,7 @@ PATCH https://cloud.appwrite.io/v1/project/services/{serviceId}
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| serviceId | string | **Required** Service name. Can be one of: account, avatars, databases, tablesdb, locale, health, project, storage, teams, users, vcs, sites, functions, proxy, graphql, migrations, messaging, advisor |  |
+| serviceId | string | **Required** Service name. Can be one of: account, avatars, databases, tablesdb, locale, health, project, storage, teams, users, vcs, sites, functions, proxy, graphql, migrations, messaging, advisor, oauth2 |  |
 | enabled | boolean | Service status. |  |
 
 

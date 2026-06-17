@@ -107,7 +107,7 @@ final class AccountTest extends TestCase
         $response = $this->account->create(
             "<USER_ID>",
             "email@example.com",
-            ""
+            "password"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\User::class, $response);
@@ -637,7 +637,7 @@ final class AccountTest extends TestCase
             ->andReturn('');
 
         $response = $this->account->updatePassword(
-            ""
+            "password"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\User::class, $response);
@@ -799,7 +799,7 @@ final class AccountTest extends TestCase
         $response = $this->account->updateRecovery(
             "<USER_ID>",
             "<SECRET>",
-            ""
+            "password"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Token::class, $response);
