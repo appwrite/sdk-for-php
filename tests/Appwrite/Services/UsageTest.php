@@ -21,19 +21,12 @@ final class UsageTest extends TestCase
     public function testMethodListEvents(): void
     {
         $data = array(
-            "total" => 5,
-            "events" => array(
+            "metric" => "executions",
+            "interval" => "1d",
+            "groups" => array(
                 array(
-                    "metric" => "bandwidth",
-                    "value" => 5000,
                     "time" => "2026-04-09T12:00:00.000+00:00",
-                    "path" => "/v1/storage/files",
-                    "method" => "POST",
-                    "status" => "201",
-                    "resourceType" => "bucket",
-                    "resourceId" => "abc123",
-                    "countryCode" => "US",
-                    "userAgent" => "AppwriteSDK/1.0"
+                    "value" => 5000
                 )
             )
         );
@@ -45,7 +38,9 @@ final class UsageTest extends TestCase
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->usage->listEvents();
+        $response = $this->usage->listEvents(
+            "<METRIC>"
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\UsageEventList::class, $response);
     }
@@ -53,14 +48,12 @@ final class UsageTest extends TestCase
     public function testMethodListGauges(): void
     {
         $data = array(
-            "total" => 5,
-            "gauges" => array(
+            "metric" => "files.storage",
+            "interval" => "1d",
+            "groups" => array(
                 array(
-                    "metric" => "users",
-                    "value" => 1500,
                     "time" => "2026-04-09T12:00:00.000+00:00",
-                    "resourceType" => "dedicatedDatabases",
-                    "resourceId" => "production"
+                    "value" => 5000
                 )
             )
         );
@@ -72,7 +65,9 @@ final class UsageTest extends TestCase
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->usage->listGauges();
+        $response = $this->usage->listGauges(
+            "<METRIC>"
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\UsageGaugeList::class, $response);
     }

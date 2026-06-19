@@ -1,5 +1,13 @@
 # Change Log
 
+## 26.1.0
+
+* Updated: Reworked `usage.listEvents` into an aggregation query with `metric`, `interval`, `dimensions`, and `orderBy`
+* Updated: Reworked `usage.listGauges` into an aggregation query with `metric`, `teamId`, `interval`, and `dimensions`
+* Added: Unified `UsageGroup` model for aggregated usage results
+* Updated: `UsageEventList` and `UsageGaugeList` now expose `groups`
+* Fixed: Made `Project` OAuth2 server fields optional and nullable
+
 ## 26.0.0
 
 * Breaking: Removed client, OS, and device fields (`osCode`, `clientName`, `deviceModel`, etc.) from `ActivityEvent`

@@ -3,7 +3,7 @@
 namespace Appwrite\Models;
 
 /**
- * Usage gauges list
+ * usageGaugeList
  */
 readonly class UsageGaugeList
 {
@@ -12,12 +12,14 @@ readonly class UsageGaugeList
     /**
      * UsageGaugeList constructor.
      *
-     * @param int $total total number of gauges that matched your query.
-     * @param list<UsageGauge> $gauges list of gauges.
+     * @param string $metric metric key the groups describe.
+     * @param string $interval time interval size (1h or 1d).
+     * @param list<UsageGroup> $groups aggregated groups ordered by time ascending. each group carries the latest snapshot in its interval (argmax over time).
      */
     public function __construct(
-        public int $total,
-        public array $gauges
+        public string $metric,
+        public string $interval,
+        public array $groups
     ) {
     }
 
@@ -26,21 +28,25 @@ readonly class UsageGaugeList
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('total', $data)) {
-            throw new \InvalidArgumentException('Missing required field "total" for ' . static::class . '.');
+        if (!array_key_exists('metric', $data)) {
+            throw new \InvalidArgumentException('Missing required field "metric" for ' . static::class . '.');
         }
-        if (!array_key_exists('gauges', $data)) {
-            throw new \InvalidArgumentException('Missing required field "gauges" for ' . static::class . '.');
+        if (!array_key_exists('interval', $data)) {
+            throw new \InvalidArgumentException('Missing required field "interval" for ' . static::class . '.');
+        }
+        if (!array_key_exists('groups', $data)) {
+            throw new \InvalidArgumentException('Missing required field "groups" for ' . static::class . '.');
         }
 
         return new static(
-            total: $data['total'],
-            gauges: is_array($data['gauges'])
+            metric: $data['metric'],
+            interval: $data['interval'],
+            groups: is_array($data['groups'])
                 ? array_map(
-                    static fn (mixed $item): mixed => static::hydrateTypedValue(UsageGauge::class, $item),
-                    $data['gauges']
+                    static fn (mixed $item): mixed => static::hydrateTypedValue(UsageGroup::class, $item),
+                    $data['groups']
                 )
-                : $data['gauges']
+                : $data['groups']
         );
     }
 
@@ -50,8 +56,9 @@ readonly class UsageGaugeList
     public function toArray(): array
     {
         $result = [
-            'total' => static::serializeValue($this->total),
-            'gauges' => static::serializeValue($this->gauges)
+            'metric' => static::serializeValue($this->metric),
+            'interval' => static::serializeValue($this->interval),
+            'groups' => static::serializeValue($this->groups)
         ];
 
         return $result;

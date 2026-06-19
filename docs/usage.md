@@ -5,26 +5,56 @@
 GET https://cloud.appwrite.io/v1/usage/events
 ```
 
-** Query usage event metrics from the usage database. Returns individual event rows with full metadata. Pass Query objects as JSON strings to filter, paginate, and order results. Supported query methods: equal, greaterThanEqual, lessThanEqual, orderAsc, orderDesc, limit, offset. Supported filter attributes: metric, path, method, status, resource, resourceId, country, userAgent, time (these match the underlying column names — note that the response surfaces `resource` as `resourceType` and `country` as `countryCode`). When no time filter is supplied the endpoint defaults to the last 7 days. Default `limit(100)` is applied if none is given; user-supplied limits are capped at 500. The `total` field is capped at 5000 to keep counts predictable — pass `total=false` to skip the count entirely. **
+** Aggregate usage event metrics. `metric` is required.
+
+**Two response shapes**:
+- Omit `interval` for a flat top-N table — one row per dimension combination, no time axis. Useful for &quot;top 10 paths by bandwidth in the last 7 days&quot;.
+- Pass `interval` (`1m`, `15m`, `30m`, `1h`, `1d`) for a time series — one row per (time bucket × dimension combination).
+
+`dimensions[]` breaks each row down by one or more attributes (service, path, status, country, …). `resource` and `resourceId` filter the underlying events. `orderBy=value`+`orderDir=desc`+`limit=N` returns the top-N by aggregated value. When `startAt` is omitted, the default window adapts to `interval` (or 7d when interval is omitted). **
 
 ### Parameters
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| queries | array | Array of query strings as JSON. Supported: equal("metric", [...]), equal("path", [...]), equal("method", [...]), equal("status", [...]), equal("resource", [...]), equal("resourceId", [...]), equal("country", [...]), equal("userAgent", [...]), greaterThanEqual("time", "..."), lessThanEqual("time", "..."), orderAsc("time"), orderDesc("time"), limit(N), offset(N). | [] |
-| total | boolean | When set to false, the total count returned will be 0 and will not be calculated. | 1 |
+| metric | string | **Required** Metric name (required). Example: executions, network.requests. |  |
+| resource | string | Resource type filter (singular form). Common values: function, site, database, bucket, file, webhook, team, user, project. |  |
+| resourceId | string | Resource id filter. |  |
+| interval | string | Time interval size. Omit (null) for a flat aggregate over the whole window. Allowed: 1m, 15m, 30m, 1h, 1d. |  |
+| dimensions | array | Break-down dimensions (max 10). Allowed: path, method, status, service, country, region, hostname, osName, clientType, clientName, deviceName, teamId, resourceId. | [] |
+| startAt | string | Range start in ISO 8601. Defaults adapt to interval (7d for the no-interval aggregate). |  |
+| endAt | string | Range end in ISO 8601. Defaults to the current time. |  |
+| orderBy | string | Column to order by. Allowed: time, value. Default time when an interval is set; otherwise value. | time |
+| orderDir | string | Sort direction: asc or desc. Default desc — paired with the default limit, returns the most recent / highest-value groups first. | desc |
+| limit | integer | Maximum rows to return (1-5000). | 500 |
+| offset | integer | Pagination offset (0-100000). | 0 |
 
 
 ```http request
 GET https://cloud.appwrite.io/v1/usage/gauges
 ```
 
-** Query usage gauge metrics (point-in-time resource snapshots) from the usage database. Returns individual gauge snapshots with metric, value, timestamp, resourceType, and resourceId. Pass Query objects as JSON strings to filter, paginate, and order results. Supported query methods: equal, greaterThanEqual, lessThanEqual, orderAsc, orderDesc, limit, offset. Supported filter attributes: metric, time. Use `orderDesc(&quot;time&quot;), limit(1)` to fetch the most recent snapshot. When no time filter is supplied the endpoint defaults to the last 7 days. Default `limit(100)` is applied if none is given; user-supplied limits are capped at 500. The `total` field is capped at 5000 to keep counts predictable — pass `total=false` to skip the count entirely. **
+** Aggregate usage gauge snapshots. Gauges are point-in-time values (storage totals, resource counts, …); each group carries the latest snapshot in its interval via `argMax(value, time)`. `metric` is required.
+
+**Two response shapes**:
+- Omit `interval` for a flat top-N table — `argMax(value, time)` per dimension combination over the whole window, no time axis. Useful for &quot;top 10 resources by current storage&quot;.
+- Pass `interval` (`1m`, `15m`, `30m`, `1h`, `1d`) for a time series — one snapshot per (time bucket × dimension combination).
+
+`dimensions[]` breaks each row down further — only `resourceId` and `teamId` are supported on gauges. `resourceId` and `teamId` parameters filter the underlying rows. `orderBy=value`+`orderDir=desc`+`limit=N` returns the top-N. When `startAt` is omitted, the default window adapts to interval (or 7d when interval is omitted). **
 
 ### Parameters
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| queries | array | Array of query strings as JSON. Supported: equal("metric", [...]), greaterThanEqual("time", "..."), lessThanEqual("time", "..."), orderAsc("time"), orderDesc("time"), limit(N), offset(N). | [] |
-| total | boolean | When set to false, the total count returned will be 0 and will not be calculated. | 1 |
+| metric | string | **Required** Metric name (required). Example: files.storage, deployments.storage. |  |
+| resourceId | string | Resource id filter. |  |
+| teamId | string | Team id filter. |  |
+| interval | string | Time interval size. Omit (null) for a flat aggregate over the whole window. Allowed: 1m, 15m, 30m, 1h, 1d. |  |
+| dimensions | array | Break-down dimensions. Allowed: resourceId, teamId. | [] |
+| startAt | string | Range start in ISO 8601. Defaults to endAt - 7d. |  |
+| endAt | string | Range end in ISO 8601. Defaults to the current time. |  |
+| orderBy | string | Column to order by. Allowed: time, value. Default time. | time |
+| orderDir | string | Sort direction: asc or desc. Default desc — paired with the default limit, this returns the most recent groups first. Pass asc for chronological charting. | desc |
+| limit | integer | Maximum rows to return (1-5000). | 500 |
+| offset | integer | Pagination offset (0-100000). | 0 |
 

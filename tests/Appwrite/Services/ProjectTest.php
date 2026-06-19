@@ -93,21 +93,7 @@ final class ProjectTest extends TestCase
                     "billingPlan" => "pro"
                 )
             ),
-            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00",
-            "oAuth2ServerEnabled" => true,
-            "oAuth2ServerAuthorizationUrl" => "https://cloud.appwrite.io/oauth2/.well-known/openid-configuration",
-            "oAuth2ServerScopes" => array(),
-            "oAuth2ServerAuthorizationDetailsTypes" => array(),
-            "oAuth2ServerAccessTokenDuration" => 3600,
-            "oAuth2ServerRefreshTokenDuration" => 86400,
-            "oAuth2ServerPublicAccessTokenDuration" => 3600,
-            "oAuth2ServerPublicRefreshTokenDuration" => 2592000,
-            "oAuth2ServerConfidentialPkce" => true,
-            "oAuth2ServerVerificationUrl" => "https://cloud.appwrite.io/device",
-            "oAuth2ServerUserCodeLength" => 8,
-            "oAuth2ServerUserCodeFormat" => "alphanumeric",
-            "oAuth2ServerDeviceCodeDuration" => 600,
-            "oAuth2ServerDiscoveryUrl" => "https://auth.example.com/.well-known/openid-configuration"
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
         );
 
         $this->client
@@ -203,21 +189,7 @@ final class ProjectTest extends TestCase
                     "billingPlan" => "pro"
                 )
             ),
-            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00",
-            "oAuth2ServerEnabled" => true,
-            "oAuth2ServerAuthorizationUrl" => "https://cloud.appwrite.io/oauth2/.well-known/openid-configuration",
-            "oAuth2ServerScopes" => array(),
-            "oAuth2ServerAuthorizationDetailsTypes" => array(),
-            "oAuth2ServerAccessTokenDuration" => 3600,
-            "oAuth2ServerRefreshTokenDuration" => 86400,
-            "oAuth2ServerPublicAccessTokenDuration" => 3600,
-            "oAuth2ServerPublicRefreshTokenDuration" => 2592000,
-            "oAuth2ServerConfidentialPkce" => true,
-            "oAuth2ServerVerificationUrl" => "https://cloud.appwrite.io/device",
-            "oAuth2ServerUserCodeLength" => 8,
-            "oAuth2ServerUserCodeFormat" => "alphanumeric",
-            "oAuth2ServerDeviceCodeDuration" => 600,
-            "oAuth2ServerDiscoveryUrl" => "https://auth.example.com/.well-known/openid-configuration"
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
         );
 
         $this->client
@@ -466,21 +438,7 @@ final class ProjectTest extends TestCase
                     "billingPlan" => "pro"
                 )
             ),
-            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00",
-            "oAuth2ServerEnabled" => true,
-            "oAuth2ServerAuthorizationUrl" => "https://cloud.appwrite.io/oauth2/.well-known/openid-configuration",
-            "oAuth2ServerScopes" => array(),
-            "oAuth2ServerAuthorizationDetailsTypes" => array(),
-            "oAuth2ServerAccessTokenDuration" => 3600,
-            "oAuth2ServerRefreshTokenDuration" => 86400,
-            "oAuth2ServerPublicAccessTokenDuration" => 3600,
-            "oAuth2ServerPublicRefreshTokenDuration" => 2592000,
-            "oAuth2ServerConfidentialPkce" => true,
-            "oAuth2ServerVerificationUrl" => "https://cloud.appwrite.io/device",
-            "oAuth2ServerUserCodeLength" => 8,
-            "oAuth2ServerUserCodeFormat" => "alphanumeric",
-            "oAuth2ServerDeviceCodeDuration" => 600,
-            "oAuth2ServerDiscoveryUrl" => "https://auth.example.com/.well-known/openid-configuration"
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
         );
 
         $this->client
@@ -696,21 +654,7 @@ final class ProjectTest extends TestCase
                     "billingPlan" => "pro"
                 )
             ),
-            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00",
-            "oAuth2ServerEnabled" => true,
-            "oAuth2ServerAuthorizationUrl" => "https://cloud.appwrite.io/oauth2/.well-known/openid-configuration",
-            "oAuth2ServerScopes" => array(),
-            "oAuth2ServerAuthorizationDetailsTypes" => array(),
-            "oAuth2ServerAccessTokenDuration" => 3600,
-            "oAuth2ServerRefreshTokenDuration" => 86400,
-            "oAuth2ServerPublicAccessTokenDuration" => 3600,
-            "oAuth2ServerPublicRefreshTokenDuration" => 2592000,
-            "oAuth2ServerConfidentialPkce" => true,
-            "oAuth2ServerVerificationUrl" => "https://cloud.appwrite.io/device",
-            "oAuth2ServerUserCodeLength" => 8,
-            "oAuth2ServerUserCodeFormat" => "alphanumeric",
-            "oAuth2ServerDeviceCodeDuration" => 600,
-            "oAuth2ServerDiscoveryUrl" => "https://auth.example.com/.well-known/openid-configuration"
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
         );
 
         $this->client
@@ -2076,21 +2020,7 @@ final class ProjectTest extends TestCase
                     "billingPlan" => "pro"
                 )
             ),
-            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00",
-            "oAuth2ServerEnabled" => true,
-            "oAuth2ServerAuthorizationUrl" => "https://cloud.appwrite.io/oauth2/.well-known/openid-configuration",
-            "oAuth2ServerScopes" => array(),
-            "oAuth2ServerAuthorizationDetailsTypes" => array(),
-            "oAuth2ServerAccessTokenDuration" => 3600,
-            "oAuth2ServerRefreshTokenDuration" => 86400,
-            "oAuth2ServerPublicAccessTokenDuration" => 3600,
-            "oAuth2ServerPublicRefreshTokenDuration" => 2592000,
-            "oAuth2ServerConfidentialPkce" => true,
-            "oAuth2ServerVerificationUrl" => "https://cloud.appwrite.io/device",
-            "oAuth2ServerUserCodeLength" => 8,
-            "oAuth2ServerUserCodeFormat" => "alphanumeric",
-            "oAuth2ServerDeviceCodeDuration" => 600,
-            "oAuth2ServerDiscoveryUrl" => "https://auth.example.com/.well-known/openid-configuration"
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
         );
 
         $this->client
@@ -2172,21 +2102,7 @@ final class ProjectTest extends TestCase
                     "billingPlan" => "pro"
                 )
             ),
-            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00",
-            "oAuth2ServerEnabled" => true,
-            "oAuth2ServerAuthorizationUrl" => "https://cloud.appwrite.io/oauth2/.well-known/openid-configuration",
-            "oAuth2ServerScopes" => array(),
-            "oAuth2ServerAuthorizationDetailsTypes" => array(),
-            "oAuth2ServerAccessTokenDuration" => 3600,
-            "oAuth2ServerRefreshTokenDuration" => 86400,
-            "oAuth2ServerPublicAccessTokenDuration" => 3600,
-            "oAuth2ServerPublicRefreshTokenDuration" => 2592000,
-            "oAuth2ServerConfidentialPkce" => true,
-            "oAuth2ServerVerificationUrl" => "https://cloud.appwrite.io/device",
-            "oAuth2ServerUserCodeLength" => 8,
-            "oAuth2ServerUserCodeFormat" => "alphanumeric",
-            "oAuth2ServerDeviceCodeDuration" => 600,
-            "oAuth2ServerDiscoveryUrl" => "https://auth.example.com/.well-known/openid-configuration"
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
         );
 
         $this->client
@@ -2268,21 +2184,7 @@ final class ProjectTest extends TestCase
                     "billingPlan" => "pro"
                 )
             ),
-            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00",
-            "oAuth2ServerEnabled" => true,
-            "oAuth2ServerAuthorizationUrl" => "https://cloud.appwrite.io/oauth2/.well-known/openid-configuration",
-            "oAuth2ServerScopes" => array(),
-            "oAuth2ServerAuthorizationDetailsTypes" => array(),
-            "oAuth2ServerAccessTokenDuration" => 3600,
-            "oAuth2ServerRefreshTokenDuration" => 86400,
-            "oAuth2ServerPublicAccessTokenDuration" => 3600,
-            "oAuth2ServerPublicRefreshTokenDuration" => 2592000,
-            "oAuth2ServerConfidentialPkce" => true,
-            "oAuth2ServerVerificationUrl" => "https://cloud.appwrite.io/device",
-            "oAuth2ServerUserCodeLength" => 8,
-            "oAuth2ServerUserCodeFormat" => "alphanumeric",
-            "oAuth2ServerDeviceCodeDuration" => 600,
-            "oAuth2ServerDiscoveryUrl" => "https://auth.example.com/.well-known/openid-configuration"
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
         );
 
         $this->client
@@ -2364,21 +2266,7 @@ final class ProjectTest extends TestCase
                     "billingPlan" => "pro"
                 )
             ),
-            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00",
-            "oAuth2ServerEnabled" => true,
-            "oAuth2ServerAuthorizationUrl" => "https://cloud.appwrite.io/oauth2/.well-known/openid-configuration",
-            "oAuth2ServerScopes" => array(),
-            "oAuth2ServerAuthorizationDetailsTypes" => array(),
-            "oAuth2ServerAccessTokenDuration" => 3600,
-            "oAuth2ServerRefreshTokenDuration" => 86400,
-            "oAuth2ServerPublicAccessTokenDuration" => 3600,
-            "oAuth2ServerPublicRefreshTokenDuration" => 2592000,
-            "oAuth2ServerConfidentialPkce" => true,
-            "oAuth2ServerVerificationUrl" => "https://cloud.appwrite.io/device",
-            "oAuth2ServerUserCodeLength" => 8,
-            "oAuth2ServerUserCodeFormat" => "alphanumeric",
-            "oAuth2ServerDeviceCodeDuration" => 600,
-            "oAuth2ServerDiscoveryUrl" => "https://auth.example.com/.well-known/openid-configuration"
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
         );
 
         $this->client
@@ -2460,21 +2348,7 @@ final class ProjectTest extends TestCase
                     "billingPlan" => "pro"
                 )
             ),
-            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00",
-            "oAuth2ServerEnabled" => true,
-            "oAuth2ServerAuthorizationUrl" => "https://cloud.appwrite.io/oauth2/.well-known/openid-configuration",
-            "oAuth2ServerScopes" => array(),
-            "oAuth2ServerAuthorizationDetailsTypes" => array(),
-            "oAuth2ServerAccessTokenDuration" => 3600,
-            "oAuth2ServerRefreshTokenDuration" => 86400,
-            "oAuth2ServerPublicAccessTokenDuration" => 3600,
-            "oAuth2ServerPublicRefreshTokenDuration" => 2592000,
-            "oAuth2ServerConfidentialPkce" => true,
-            "oAuth2ServerVerificationUrl" => "https://cloud.appwrite.io/device",
-            "oAuth2ServerUserCodeLength" => 8,
-            "oAuth2ServerUserCodeFormat" => "alphanumeric",
-            "oAuth2ServerDeviceCodeDuration" => 600,
-            "oAuth2ServerDiscoveryUrl" => "https://auth.example.com/.well-known/openid-configuration"
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
         );
 
         $this->client
@@ -2554,21 +2428,7 @@ final class ProjectTest extends TestCase
                     "billingPlan" => "pro"
                 )
             ),
-            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00",
-            "oAuth2ServerEnabled" => true,
-            "oAuth2ServerAuthorizationUrl" => "https://cloud.appwrite.io/oauth2/.well-known/openid-configuration",
-            "oAuth2ServerScopes" => array(),
-            "oAuth2ServerAuthorizationDetailsTypes" => array(),
-            "oAuth2ServerAccessTokenDuration" => 3600,
-            "oAuth2ServerRefreshTokenDuration" => 86400,
-            "oAuth2ServerPublicAccessTokenDuration" => 3600,
-            "oAuth2ServerPublicRefreshTokenDuration" => 2592000,
-            "oAuth2ServerConfidentialPkce" => true,
-            "oAuth2ServerVerificationUrl" => "https://cloud.appwrite.io/device",
-            "oAuth2ServerUserCodeLength" => 8,
-            "oAuth2ServerUserCodeFormat" => "alphanumeric",
-            "oAuth2ServerDeviceCodeDuration" => 600,
-            "oAuth2ServerDiscoveryUrl" => "https://auth.example.com/.well-known/openid-configuration"
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
         );
 
         $this->client
@@ -2650,21 +2510,7 @@ final class ProjectTest extends TestCase
                     "billingPlan" => "pro"
                 )
             ),
-            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00",
-            "oAuth2ServerEnabled" => true,
-            "oAuth2ServerAuthorizationUrl" => "https://cloud.appwrite.io/oauth2/.well-known/openid-configuration",
-            "oAuth2ServerScopes" => array(),
-            "oAuth2ServerAuthorizationDetailsTypes" => array(),
-            "oAuth2ServerAccessTokenDuration" => 3600,
-            "oAuth2ServerRefreshTokenDuration" => 86400,
-            "oAuth2ServerPublicAccessTokenDuration" => 3600,
-            "oAuth2ServerPublicRefreshTokenDuration" => 2592000,
-            "oAuth2ServerConfidentialPkce" => true,
-            "oAuth2ServerVerificationUrl" => "https://cloud.appwrite.io/device",
-            "oAuth2ServerUserCodeLength" => 8,
-            "oAuth2ServerUserCodeFormat" => "alphanumeric",
-            "oAuth2ServerDeviceCodeDuration" => 600,
-            "oAuth2ServerDiscoveryUrl" => "https://auth.example.com/.well-known/openid-configuration"
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
         );
 
         $this->client
@@ -2746,21 +2592,7 @@ final class ProjectTest extends TestCase
                     "billingPlan" => "pro"
                 )
             ),
-            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00",
-            "oAuth2ServerEnabled" => true,
-            "oAuth2ServerAuthorizationUrl" => "https://cloud.appwrite.io/oauth2/.well-known/openid-configuration",
-            "oAuth2ServerScopes" => array(),
-            "oAuth2ServerAuthorizationDetailsTypes" => array(),
-            "oAuth2ServerAccessTokenDuration" => 3600,
-            "oAuth2ServerRefreshTokenDuration" => 86400,
-            "oAuth2ServerPublicAccessTokenDuration" => 3600,
-            "oAuth2ServerPublicRefreshTokenDuration" => 2592000,
-            "oAuth2ServerConfidentialPkce" => true,
-            "oAuth2ServerVerificationUrl" => "https://cloud.appwrite.io/device",
-            "oAuth2ServerUserCodeLength" => 8,
-            "oAuth2ServerUserCodeFormat" => "alphanumeric",
-            "oAuth2ServerDeviceCodeDuration" => 600,
-            "oAuth2ServerDiscoveryUrl" => "https://auth.example.com/.well-known/openid-configuration"
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
         );
 
         $this->client
@@ -2865,21 +2697,7 @@ final class ProjectTest extends TestCase
                     "billingPlan" => "pro"
                 )
             ),
-            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00",
-            "oAuth2ServerEnabled" => true,
-            "oAuth2ServerAuthorizationUrl" => "https://cloud.appwrite.io/oauth2/.well-known/openid-configuration",
-            "oAuth2ServerScopes" => array(),
-            "oAuth2ServerAuthorizationDetailsTypes" => array(),
-            "oAuth2ServerAccessTokenDuration" => 3600,
-            "oAuth2ServerRefreshTokenDuration" => 86400,
-            "oAuth2ServerPublicAccessTokenDuration" => 3600,
-            "oAuth2ServerPublicRefreshTokenDuration" => 2592000,
-            "oAuth2ServerConfidentialPkce" => true,
-            "oAuth2ServerVerificationUrl" => "https://cloud.appwrite.io/device",
-            "oAuth2ServerUserCodeLength" => 8,
-            "oAuth2ServerUserCodeFormat" => "alphanumeric",
-            "oAuth2ServerDeviceCodeDuration" => 600,
-            "oAuth2ServerDiscoveryUrl" => "https://auth.example.com/.well-known/openid-configuration"
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
         );
 
         $this->client
@@ -2961,21 +2779,7 @@ final class ProjectTest extends TestCase
                     "billingPlan" => "pro"
                 )
             ),
-            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00",
-            "oAuth2ServerEnabled" => true,
-            "oAuth2ServerAuthorizationUrl" => "https://cloud.appwrite.io/oauth2/.well-known/openid-configuration",
-            "oAuth2ServerScopes" => array(),
-            "oAuth2ServerAuthorizationDetailsTypes" => array(),
-            "oAuth2ServerAccessTokenDuration" => 3600,
-            "oAuth2ServerRefreshTokenDuration" => 86400,
-            "oAuth2ServerPublicAccessTokenDuration" => 3600,
-            "oAuth2ServerPublicRefreshTokenDuration" => 2592000,
-            "oAuth2ServerConfidentialPkce" => true,
-            "oAuth2ServerVerificationUrl" => "https://cloud.appwrite.io/device",
-            "oAuth2ServerUserCodeLength" => 8,
-            "oAuth2ServerUserCodeFormat" => "alphanumeric",
-            "oAuth2ServerDeviceCodeDuration" => 600,
-            "oAuth2ServerDiscoveryUrl" => "https://auth.example.com/.well-known/openid-configuration"
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
         );
 
         $this->client
@@ -3057,21 +2861,7 @@ final class ProjectTest extends TestCase
                     "billingPlan" => "pro"
                 )
             ),
-            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00",
-            "oAuth2ServerEnabled" => true,
-            "oAuth2ServerAuthorizationUrl" => "https://cloud.appwrite.io/oauth2/.well-known/openid-configuration",
-            "oAuth2ServerScopes" => array(),
-            "oAuth2ServerAuthorizationDetailsTypes" => array(),
-            "oAuth2ServerAccessTokenDuration" => 3600,
-            "oAuth2ServerRefreshTokenDuration" => 86400,
-            "oAuth2ServerPublicAccessTokenDuration" => 3600,
-            "oAuth2ServerPublicRefreshTokenDuration" => 2592000,
-            "oAuth2ServerConfidentialPkce" => true,
-            "oAuth2ServerVerificationUrl" => "https://cloud.appwrite.io/device",
-            "oAuth2ServerUserCodeLength" => 8,
-            "oAuth2ServerUserCodeFormat" => "alphanumeric",
-            "oAuth2ServerDeviceCodeDuration" => 600,
-            "oAuth2ServerDiscoveryUrl" => "https://auth.example.com/.well-known/openid-configuration"
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
         );
 
         $this->client
@@ -3153,21 +2943,7 @@ final class ProjectTest extends TestCase
                     "billingPlan" => "pro"
                 )
             ),
-            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00",
-            "oAuth2ServerEnabled" => true,
-            "oAuth2ServerAuthorizationUrl" => "https://cloud.appwrite.io/oauth2/.well-known/openid-configuration",
-            "oAuth2ServerScopes" => array(),
-            "oAuth2ServerAuthorizationDetailsTypes" => array(),
-            "oAuth2ServerAccessTokenDuration" => 3600,
-            "oAuth2ServerRefreshTokenDuration" => 86400,
-            "oAuth2ServerPublicAccessTokenDuration" => 3600,
-            "oAuth2ServerPublicRefreshTokenDuration" => 2592000,
-            "oAuth2ServerConfidentialPkce" => true,
-            "oAuth2ServerVerificationUrl" => "https://cloud.appwrite.io/device",
-            "oAuth2ServerUserCodeLength" => 8,
-            "oAuth2ServerUserCodeFormat" => "alphanumeric",
-            "oAuth2ServerDeviceCodeDuration" => 600,
-            "oAuth2ServerDiscoveryUrl" => "https://auth.example.com/.well-known/openid-configuration"
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
         );
 
         $this->client
@@ -3249,21 +3025,7 @@ final class ProjectTest extends TestCase
                     "billingPlan" => "pro"
                 )
             ),
-            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00",
-            "oAuth2ServerEnabled" => true,
-            "oAuth2ServerAuthorizationUrl" => "https://cloud.appwrite.io/oauth2/.well-known/openid-configuration",
-            "oAuth2ServerScopes" => array(),
-            "oAuth2ServerAuthorizationDetailsTypes" => array(),
-            "oAuth2ServerAccessTokenDuration" => 3600,
-            "oAuth2ServerRefreshTokenDuration" => 86400,
-            "oAuth2ServerPublicAccessTokenDuration" => 3600,
-            "oAuth2ServerPublicRefreshTokenDuration" => 2592000,
-            "oAuth2ServerConfidentialPkce" => true,
-            "oAuth2ServerVerificationUrl" => "https://cloud.appwrite.io/device",
-            "oAuth2ServerUserCodeLength" => 8,
-            "oAuth2ServerUserCodeFormat" => "alphanumeric",
-            "oAuth2ServerDeviceCodeDuration" => 600,
-            "oAuth2ServerDiscoveryUrl" => "https://auth.example.com/.well-known/openid-configuration"
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
         );
 
         $this->client
@@ -3371,21 +3133,7 @@ final class ProjectTest extends TestCase
                     "billingPlan" => "pro"
                 )
             ),
-            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00",
-            "oAuth2ServerEnabled" => true,
-            "oAuth2ServerAuthorizationUrl" => "https://cloud.appwrite.io/oauth2/.well-known/openid-configuration",
-            "oAuth2ServerScopes" => array(),
-            "oAuth2ServerAuthorizationDetailsTypes" => array(),
-            "oAuth2ServerAccessTokenDuration" => 3600,
-            "oAuth2ServerRefreshTokenDuration" => 86400,
-            "oAuth2ServerPublicAccessTokenDuration" => 3600,
-            "oAuth2ServerPublicRefreshTokenDuration" => 2592000,
-            "oAuth2ServerConfidentialPkce" => true,
-            "oAuth2ServerVerificationUrl" => "https://cloud.appwrite.io/device",
-            "oAuth2ServerUserCodeLength" => 8,
-            "oAuth2ServerUserCodeFormat" => "alphanumeric",
-            "oAuth2ServerDeviceCodeDuration" => 600,
-            "oAuth2ServerDiscoveryUrl" => "https://auth.example.com/.well-known/openid-configuration"
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
         );
 
         $this->client
@@ -3468,21 +3216,7 @@ final class ProjectTest extends TestCase
                     "billingPlan" => "pro"
                 )
             ),
-            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00",
-            "oAuth2ServerEnabled" => true,
-            "oAuth2ServerAuthorizationUrl" => "https://cloud.appwrite.io/oauth2/.well-known/openid-configuration",
-            "oAuth2ServerScopes" => array(),
-            "oAuth2ServerAuthorizationDetailsTypes" => array(),
-            "oAuth2ServerAccessTokenDuration" => 3600,
-            "oAuth2ServerRefreshTokenDuration" => 86400,
-            "oAuth2ServerPublicAccessTokenDuration" => 3600,
-            "oAuth2ServerPublicRefreshTokenDuration" => 2592000,
-            "oAuth2ServerConfidentialPkce" => true,
-            "oAuth2ServerVerificationUrl" => "https://cloud.appwrite.io/device",
-            "oAuth2ServerUserCodeLength" => 8,
-            "oAuth2ServerUserCodeFormat" => "alphanumeric",
-            "oAuth2ServerDeviceCodeDuration" => 600,
-            "oAuth2ServerDiscoveryUrl" => "https://auth.example.com/.well-known/openid-configuration"
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
         );
 
         $this->client
@@ -3565,21 +3299,7 @@ final class ProjectTest extends TestCase
                     "billingPlan" => "pro"
                 )
             ),
-            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00",
-            "oAuth2ServerEnabled" => true,
-            "oAuth2ServerAuthorizationUrl" => "https://cloud.appwrite.io/oauth2/.well-known/openid-configuration",
-            "oAuth2ServerScopes" => array(),
-            "oAuth2ServerAuthorizationDetailsTypes" => array(),
-            "oAuth2ServerAccessTokenDuration" => 3600,
-            "oAuth2ServerRefreshTokenDuration" => 86400,
-            "oAuth2ServerPublicAccessTokenDuration" => 3600,
-            "oAuth2ServerPublicRefreshTokenDuration" => 2592000,
-            "oAuth2ServerConfidentialPkce" => true,
-            "oAuth2ServerVerificationUrl" => "https://cloud.appwrite.io/device",
-            "oAuth2ServerUserCodeLength" => 8,
-            "oAuth2ServerUserCodeFormat" => "alphanumeric",
-            "oAuth2ServerDeviceCodeDuration" => 600,
-            "oAuth2ServerDiscoveryUrl" => "https://auth.example.com/.well-known/openid-configuration"
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
         );
 
         $this->client
