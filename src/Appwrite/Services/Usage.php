@@ -15,25 +15,36 @@ class Usage extends Service
     }
 
     /**
-     * Query usage event metrics from the usage database. Returns individual event
-     * rows with full metadata. Pass Query objects as JSON strings to filter,
-     * paginate, and order results. Supported query methods: equal,
-     * greaterThanEqual, lessThanEqual, orderAsc, orderDesc, limit, offset.
-     * Supported filter attributes: metric, path, method, status, resource,
-     * resourceId, country, userAgent, time (these match the underlying column
-     * names — note that the response surfaces `resource` as `resourceType` and
-     * `country` as `countryCode`). When no time filter is supplied the endpoint
-     * defaults to the last 7 days. Default `limit(100)` is applied if none is
-     * given; user-supplied limits are capped at 500. The `total` field is capped
-     * at 5000 to keep counts predictable — pass `total=false` to skip the count
-     * entirely.
+     * Aggregate usage event metrics. `metric` is required.
+     * 
+     * **Two response shapes**:
+     * - Omit `interval` for a flat top-N table — one row per dimension
+     * combination, no time axis. Useful for "top 10 paths by bandwidth in the
+     * last 7 days".
+     * - Pass `interval` (`1m`, `15m`, `30m`, `1h`, `1d`) for a time series —
+     * one row per (time bucket × dimension combination).
+     * 
+     * `dimensions[]` breaks each row down by one or more attributes (service,
+     * path, status, country, …). `resource` and `resourceId` filter the
+     * underlying events. `orderBy=value`+`orderDir=desc`+`limit=N` returns the
+     * top-N by aggregated value. When `startAt` is omitted, the default window
+     * adapts to `interval` (or 7d when interval is omitted).
      *
-     * @param ?array $queries
-     * @param ?bool $total
+     * @param string $metric
+     * @param ?string $resource
+     * @param ?string $resourceId
+     * @param ?string $interval
+     * @param ?array $dimensions
+     * @param ?string $startAt
+     * @param ?string $endAt
+     * @param ?string $orderBy
+     * @param ?string $orderDir
+     * @param ?int $limit
+     * @param ?int $offset
      * @throws AppwriteException
      * @return \Appwrite\Models\UsageEventList
      */
-    public function listEvents(?array $queries = null, ?bool $total = null): \Appwrite\Models\UsageEventList
+    public function listEvents(string $metric, ?string $resource = null, ?string $resourceId = null, ?string $interval = null, ?array $dimensions = null, ?string $startAt = null, ?string $endAt = null, ?string $orderBy = null, ?string $orderDir = null, ?int $limit = null, ?int $offset = null): \Appwrite\Models\UsageEventList
     {
         $apiPath = str_replace(
             [],
@@ -42,13 +53,46 @@ class Usage extends Service
         );
 
         $apiParams = [];
+        $apiParams['metric'] = $metric;
 
-        if (!is_null($queries)) {
-            $apiParams['queries'] = $queries;
+        if (!is_null($resource)) {
+            $apiParams['resource'] = $resource;
         }
 
-        if (!is_null($total)) {
-            $apiParams['total'] = $total;
+        if (!is_null($resourceId)) {
+            $apiParams['resourceId'] = $resourceId;
+        }
+
+        if (!is_null($interval)) {
+            $apiParams['interval'] = $interval;
+        }
+
+        if (!is_null($dimensions)) {
+            $apiParams['dimensions'] = $dimensions;
+        }
+
+        if (!is_null($startAt)) {
+            $apiParams['startAt'] = $startAt;
+        }
+
+        if (!is_null($endAt)) {
+            $apiParams['endAt'] = $endAt;
+        }
+
+        if (!is_null($orderBy)) {
+            $apiParams['orderBy'] = $orderBy;
+        }
+
+        if (!is_null($orderDir)) {
+            $apiParams['orderDir'] = $orderDir;
+        }
+
+        if (!is_null($limit)) {
+            $apiParams['limit'] = $limit;
+        }
+
+        if (!is_null($offset)) {
+            $apiParams['offset'] = $offset;
         }
 
         $apiHeaders = [];
@@ -71,24 +115,38 @@ class Usage extends Service
     }
 
     /**
-     * Query usage gauge metrics (point-in-time resource snapshots) from the usage
-     * database. Returns individual gauge snapshots with metric, value, timestamp,
-     * resourceType, and resourceId. Pass Query objects as JSON strings to filter,
-     * paginate, and order results. Supported query methods: equal,
-     * greaterThanEqual, lessThanEqual, orderAsc, orderDesc, limit, offset.
-     * Supported filter attributes: metric, time. Use `orderDesc("time"),
-     * limit(1)` to fetch the most recent snapshot. When no time filter is
-     * supplied the endpoint defaults to the last 7 days. Default `limit(100)` is
-     * applied if none is given; user-supplied limits are capped at 500. The
-     * `total` field is capped at 5000 to keep counts predictable — pass
-     * `total=false` to skip the count entirely.
+     * Aggregate usage gauge snapshots. Gauges are point-in-time values (storage
+     * totals, resource counts, …); each group carries the latest snapshot in
+     * its interval via `argMax(value, time)`. `metric` is required.
+     * 
+     * **Two response shapes**:
+     * - Omit `interval` for a flat top-N table — `argMax(value, time)` per
+     * dimension combination over the whole window, no time axis. Useful for "top
+     * 10 resources by current storage".
+     * - Pass `interval` (`1m`, `15m`, `30m`, `1h`, `1d`) for a time series —
+     * one snapshot per (time bucket × dimension combination).
+     * 
+     * `dimensions[]` breaks each row down further — only `resourceId` and
+     * `teamId` are supported on gauges. `resourceId` and `teamId` parameters
+     * filter the underlying rows. `orderBy=value`+`orderDir=desc`+`limit=N`
+     * returns the top-N. When `startAt` is omitted, the default window adapts to
+     * interval (or 7d when interval is omitted).
      *
-     * @param ?array $queries
-     * @param ?bool $total
+     * @param string $metric
+     * @param ?string $resourceId
+     * @param ?string $teamId
+     * @param ?string $interval
+     * @param ?array $dimensions
+     * @param ?string $startAt
+     * @param ?string $endAt
+     * @param ?string $orderBy
+     * @param ?string $orderDir
+     * @param ?int $limit
+     * @param ?int $offset
      * @throws AppwriteException
      * @return \Appwrite\Models\UsageGaugeList
      */
-    public function listGauges(?array $queries = null, ?bool $total = null): \Appwrite\Models\UsageGaugeList
+    public function listGauges(string $metric, ?string $resourceId = null, ?string $teamId = null, ?string $interval = null, ?array $dimensions = null, ?string $startAt = null, ?string $endAt = null, ?string $orderBy = null, ?string $orderDir = null, ?int $limit = null, ?int $offset = null): \Appwrite\Models\UsageGaugeList
     {
         $apiPath = str_replace(
             [],
@@ -97,13 +155,46 @@ class Usage extends Service
         );
 
         $apiParams = [];
+        $apiParams['metric'] = $metric;
 
-        if (!is_null($queries)) {
-            $apiParams['queries'] = $queries;
+        if (!is_null($resourceId)) {
+            $apiParams['resourceId'] = $resourceId;
         }
 
-        if (!is_null($total)) {
-            $apiParams['total'] = $total;
+        if (!is_null($teamId)) {
+            $apiParams['teamId'] = $teamId;
+        }
+
+        if (!is_null($interval)) {
+            $apiParams['interval'] = $interval;
+        }
+
+        if (!is_null($dimensions)) {
+            $apiParams['dimensions'] = $dimensions;
+        }
+
+        if (!is_null($startAt)) {
+            $apiParams['startAt'] = $startAt;
+        }
+
+        if (!is_null($endAt)) {
+            $apiParams['endAt'] = $endAt;
+        }
+
+        if (!is_null($orderBy)) {
+            $apiParams['orderBy'] = $orderBy;
+        }
+
+        if (!is_null($orderDir)) {
+            $apiParams['orderDir'] = $orderDir;
+        }
+
+        if (!is_null($limit)) {
+            $apiParams['limit'] = $limit;
+        }
+
+        if (!is_null($offset)) {
+            $apiParams['offset'] = $offset;
         }
 
         $apiHeaders = [];

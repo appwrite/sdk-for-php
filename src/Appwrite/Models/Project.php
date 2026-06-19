@@ -38,21 +38,21 @@ readonly class Project
      * @param list<ProjectProtocol> $protocols list of protocols.
      * @param list<Block> $blocks project blocks information
      * @param string $consoleAccessedAt last time the project was accessed via console. used with plan's projectinactivitydays to determine if project is paused.
-     * @param bool $oAuth2ServerEnabled oauth2 server status
-     * @param string $oAuth2ServerAuthorizationUrl oauth2 server authorization url
-     * @param array $oAuth2ServerScopes oauth2 server allowed scopes
-     * @param array $oAuth2ServerAuthorizationDetailsTypes oauth2 server accepted rfc 9396 authorization_details types
-     * @param int $oAuth2ServerAccessTokenDuration oauth2 server access token duration in seconds for confidential clients
-     * @param int $oAuth2ServerRefreshTokenDuration oauth2 server refresh token duration in seconds for confidential clients
-     * @param int $oAuth2ServerPublicAccessTokenDuration oauth2 server access token duration in seconds for public clients (spas, mobile, native)
-     * @param int $oAuth2ServerPublicRefreshTokenDuration oauth2 server refresh token duration in seconds for public clients (spas, mobile, native)
-     * @param bool $oAuth2ServerConfidentialPkce when enabled, pkce is required for confidential clients (server-side flows using client_secret). pkce is always required for public clients regardless of this setting.
-     * @param string $oAuth2ServerVerificationUrl url to your application page where users enter the device flow user code. empty when the device authorization grant is not configured.
-     * @param int $oAuth2ServerUserCodeLength number of characters in the device flow user code, excluding the formatting separator.
-     * @param string $oAuth2ServerUserCodeFormat character set for device flow user codes: `numeric`, `alphabetic`, or `alphanumeric`.
-     * @param int $oAuth2ServerDeviceCodeDuration lifetime in seconds of device flow device codes and user codes.
-     * @param string $oAuth2ServerDiscoveryUrl oauth2 server discovery url
      * @param BillingLimits|null $billingLimits billing limits reached
+     * @param bool|null $oAuth2ServerEnabled oauth2 server status
+     * @param string|null $oAuth2ServerAuthorizationUrl oauth2 server authorization url
+     * @param array|null $oAuth2ServerScopes oauth2 server allowed scopes
+     * @param array|null $oAuth2ServerAuthorizationDetailsTypes oauth2 server accepted rfc 9396 authorization_details types
+     * @param int|null $oAuth2ServerAccessTokenDuration oauth2 server access token duration in seconds for confidential clients
+     * @param int|null $oAuth2ServerRefreshTokenDuration oauth2 server refresh token duration in seconds for confidential clients
+     * @param int|null $oAuth2ServerPublicAccessTokenDuration oauth2 server access token duration in seconds for public clients (spas, mobile, native)
+     * @param int|null $oAuth2ServerPublicRefreshTokenDuration oauth2 server refresh token duration in seconds for public clients (spas, mobile, native)
+     * @param bool|null $oAuth2ServerConfidentialPkce when enabled, pkce is required for confidential clients (server-side flows using client_secret). pkce is always required for public clients regardless of this setting.
+     * @param string|null $oAuth2ServerVerificationUrl url to your application page where users enter the device flow user code. empty when the device authorization grant is not configured.
+     * @param int|null $oAuth2ServerUserCodeLength number of characters in the device flow user code, excluding the formatting separator.
+     * @param string|null $oAuth2ServerUserCodeFormat character set for device flow user codes: `numeric`, `alphabetic`, or `alphanumeric`.
+     * @param int|null $oAuth2ServerDeviceCodeDuration lifetime in seconds of device flow device codes and user codes.
+     * @param string|null $oAuth2ServerDiscoveryUrl oauth2 server discovery url
      */
     public function __construct(
         public string $id,
@@ -81,21 +81,21 @@ readonly class Project
         public array $protocols,
         public array $blocks,
         public string $consoleAccessedAt,
-        public bool $oAuth2ServerEnabled,
-        public string $oAuth2ServerAuthorizationUrl,
-        public array $oAuth2ServerScopes,
-        public array $oAuth2ServerAuthorizationDetailsTypes,
-        public int $oAuth2ServerAccessTokenDuration,
-        public int $oAuth2ServerRefreshTokenDuration,
-        public int $oAuth2ServerPublicAccessTokenDuration,
-        public int $oAuth2ServerPublicRefreshTokenDuration,
-        public bool $oAuth2ServerConfidentialPkce,
-        public string $oAuth2ServerVerificationUrl,
-        public int $oAuth2ServerUserCodeLength,
-        public string $oAuth2ServerUserCodeFormat,
-        public int $oAuth2ServerDeviceCodeDuration,
-        public string $oAuth2ServerDiscoveryUrl,
-        public ?BillingLimits $billingLimits = null
+        public ?BillingLimits $billingLimits = null,
+        public ?bool $oAuth2ServerEnabled = null,
+        public ?string $oAuth2ServerAuthorizationUrl = null,
+        public ?array $oAuth2ServerScopes = null,
+        public ?array $oAuth2ServerAuthorizationDetailsTypes = null,
+        public ?int $oAuth2ServerAccessTokenDuration = null,
+        public ?int $oAuth2ServerRefreshTokenDuration = null,
+        public ?int $oAuth2ServerPublicAccessTokenDuration = null,
+        public ?int $oAuth2ServerPublicRefreshTokenDuration = null,
+        public ?bool $oAuth2ServerConfidentialPkce = null,
+        public ?string $oAuth2ServerVerificationUrl = null,
+        public ?int $oAuth2ServerUserCodeLength = null,
+        public ?string $oAuth2ServerUserCodeFormat = null,
+        public ?int $oAuth2ServerDeviceCodeDuration = null,
+        public ?string $oAuth2ServerDiscoveryUrl = null
     ) {
     }
 
@@ -182,48 +182,6 @@ readonly class Project
         if (!array_key_exists('consoleAccessedAt', $data)) {
             throw new \InvalidArgumentException('Missing required field "consoleAccessedAt" for ' . static::class . '.');
         }
-        if (!array_key_exists('oAuth2ServerEnabled', $data)) {
-            throw new \InvalidArgumentException('Missing required field "oAuth2ServerEnabled" for ' . static::class . '.');
-        }
-        if (!array_key_exists('oAuth2ServerAuthorizationUrl', $data)) {
-            throw new \InvalidArgumentException('Missing required field "oAuth2ServerAuthorizationUrl" for ' . static::class . '.');
-        }
-        if (!array_key_exists('oAuth2ServerScopes', $data)) {
-            throw new \InvalidArgumentException('Missing required field "oAuth2ServerScopes" for ' . static::class . '.');
-        }
-        if (!array_key_exists('oAuth2ServerAuthorizationDetailsTypes', $data)) {
-            throw new \InvalidArgumentException('Missing required field "oAuth2ServerAuthorizationDetailsTypes" for ' . static::class . '.');
-        }
-        if (!array_key_exists('oAuth2ServerAccessTokenDuration', $data)) {
-            throw new \InvalidArgumentException('Missing required field "oAuth2ServerAccessTokenDuration" for ' . static::class . '.');
-        }
-        if (!array_key_exists('oAuth2ServerRefreshTokenDuration', $data)) {
-            throw new \InvalidArgumentException('Missing required field "oAuth2ServerRefreshTokenDuration" for ' . static::class . '.');
-        }
-        if (!array_key_exists('oAuth2ServerPublicAccessTokenDuration', $data)) {
-            throw new \InvalidArgumentException('Missing required field "oAuth2ServerPublicAccessTokenDuration" for ' . static::class . '.');
-        }
-        if (!array_key_exists('oAuth2ServerPublicRefreshTokenDuration', $data)) {
-            throw new \InvalidArgumentException('Missing required field "oAuth2ServerPublicRefreshTokenDuration" for ' . static::class . '.');
-        }
-        if (!array_key_exists('oAuth2ServerConfidentialPkce', $data)) {
-            throw new \InvalidArgumentException('Missing required field "oAuth2ServerConfidentialPkce" for ' . static::class . '.');
-        }
-        if (!array_key_exists('oAuth2ServerVerificationUrl', $data)) {
-            throw new \InvalidArgumentException('Missing required field "oAuth2ServerVerificationUrl" for ' . static::class . '.');
-        }
-        if (!array_key_exists('oAuth2ServerUserCodeLength', $data)) {
-            throw new \InvalidArgumentException('Missing required field "oAuth2ServerUserCodeLength" for ' . static::class . '.');
-        }
-        if (!array_key_exists('oAuth2ServerUserCodeFormat', $data)) {
-            throw new \InvalidArgumentException('Missing required field "oAuth2ServerUserCodeFormat" for ' . static::class . '.');
-        }
-        if (!array_key_exists('oAuth2ServerDeviceCodeDuration', $data)) {
-            throw new \InvalidArgumentException('Missing required field "oAuth2ServerDeviceCodeDuration" for ' . static::class . '.');
-        }
-        if (!array_key_exists('oAuth2ServerDiscoveryUrl', $data)) {
-            throw new \InvalidArgumentException('Missing required field "oAuth2ServerDiscoveryUrl" for ' . static::class . '.');
-        }
 
         return new static(
             id: $data['$id'],
@@ -277,21 +235,21 @@ readonly class Project
                 )
                 : $data['blocks'],
             consoleAccessedAt: $data['consoleAccessedAt'],
-            oAuth2ServerEnabled: $data['oAuth2ServerEnabled'],
-            oAuth2ServerAuthorizationUrl: $data['oAuth2ServerAuthorizationUrl'],
-            oAuth2ServerScopes: $data['oAuth2ServerScopes'],
-            oAuth2ServerAuthorizationDetailsTypes: $data['oAuth2ServerAuthorizationDetailsTypes'],
-            oAuth2ServerAccessTokenDuration: $data['oAuth2ServerAccessTokenDuration'],
-            oAuth2ServerRefreshTokenDuration: $data['oAuth2ServerRefreshTokenDuration'],
-            oAuth2ServerPublicAccessTokenDuration: $data['oAuth2ServerPublicAccessTokenDuration'],
-            oAuth2ServerPublicRefreshTokenDuration: $data['oAuth2ServerPublicRefreshTokenDuration'],
-            oAuth2ServerConfidentialPkce: $data['oAuth2ServerConfidentialPkce'],
-            oAuth2ServerVerificationUrl: $data['oAuth2ServerVerificationUrl'],
-            oAuth2ServerUserCodeLength: $data['oAuth2ServerUserCodeLength'],
-            oAuth2ServerUserCodeFormat: $data['oAuth2ServerUserCodeFormat'],
-            oAuth2ServerDeviceCodeDuration: $data['oAuth2ServerDeviceCodeDuration'],
-            oAuth2ServerDiscoveryUrl: $data['oAuth2ServerDiscoveryUrl'],
-            billingLimits: array_key_exists('billingLimits', $data) ? static::hydrateTypedValue(BillingLimits::class, $data['billingLimits'], true) : null
+            billingLimits: array_key_exists('billingLimits', $data) ? static::hydrateTypedValue(BillingLimits::class, $data['billingLimits'], true) : null,
+            oAuth2ServerEnabled: array_key_exists('oAuth2ServerEnabled', $data) ? $data['oAuth2ServerEnabled'] : null,
+            oAuth2ServerAuthorizationUrl: array_key_exists('oAuth2ServerAuthorizationUrl', $data) ? $data['oAuth2ServerAuthorizationUrl'] : null,
+            oAuth2ServerScopes: array_key_exists('oAuth2ServerScopes', $data) ? $data['oAuth2ServerScopes'] : null,
+            oAuth2ServerAuthorizationDetailsTypes: array_key_exists('oAuth2ServerAuthorizationDetailsTypes', $data) ? $data['oAuth2ServerAuthorizationDetailsTypes'] : null,
+            oAuth2ServerAccessTokenDuration: array_key_exists('oAuth2ServerAccessTokenDuration', $data) ? $data['oAuth2ServerAccessTokenDuration'] : null,
+            oAuth2ServerRefreshTokenDuration: array_key_exists('oAuth2ServerRefreshTokenDuration', $data) ? $data['oAuth2ServerRefreshTokenDuration'] : null,
+            oAuth2ServerPublicAccessTokenDuration: array_key_exists('oAuth2ServerPublicAccessTokenDuration', $data) ? $data['oAuth2ServerPublicAccessTokenDuration'] : null,
+            oAuth2ServerPublicRefreshTokenDuration: array_key_exists('oAuth2ServerPublicRefreshTokenDuration', $data) ? $data['oAuth2ServerPublicRefreshTokenDuration'] : null,
+            oAuth2ServerConfidentialPkce: array_key_exists('oAuth2ServerConfidentialPkce', $data) ? $data['oAuth2ServerConfidentialPkce'] : null,
+            oAuth2ServerVerificationUrl: array_key_exists('oAuth2ServerVerificationUrl', $data) ? $data['oAuth2ServerVerificationUrl'] : null,
+            oAuth2ServerUserCodeLength: array_key_exists('oAuth2ServerUserCodeLength', $data) ? $data['oAuth2ServerUserCodeLength'] : null,
+            oAuth2ServerUserCodeFormat: array_key_exists('oAuth2ServerUserCodeFormat', $data) ? $data['oAuth2ServerUserCodeFormat'] : null,
+            oAuth2ServerDeviceCodeDuration: array_key_exists('oAuth2ServerDeviceCodeDuration', $data) ? $data['oAuth2ServerDeviceCodeDuration'] : null,
+            oAuth2ServerDiscoveryUrl: array_key_exists('oAuth2ServerDiscoveryUrl', $data) ? $data['oAuth2ServerDiscoveryUrl'] : null
         );
     }
 
