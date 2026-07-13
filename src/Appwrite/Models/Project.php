@@ -33,6 +33,7 @@ readonly class Project
      * @param string $pingedAt last ping datetime in iso 8601 format.
      * @param array $labels labels for the project.
      * @param string $status project status
+     * @param array $onboarding stage progress (completed or skipped) with timestamps and actor types, keyed by stage id.
      * @param list<ProjectAuthMethod> $authMethods list of auth methods.
      * @param list<ProjectService> $services list of services.
      * @param list<ProjectProtocol> $protocols list of protocols.
@@ -42,6 +43,7 @@ readonly class Project
      * @param bool|null $oAuth2ServerEnabled oauth2 server status
      * @param string|null $oAuth2ServerAuthorizationUrl oauth2 server authorization url
      * @param array|null $oAuth2ServerScopes oauth2 server allowed scopes
+     * @param array|null $oAuth2ServerDefaultScopes oauth2 server scopes used when an authorization request omits the scope parameter
      * @param array|null $oAuth2ServerAuthorizationDetailsTypes oauth2 server accepted rfc 9396 authorization_details types
      * @param int|null $oAuth2ServerAccessTokenDuration oauth2 server access token duration in seconds for confidential clients
      * @param int|null $oAuth2ServerRefreshTokenDuration oauth2 server refresh token duration in seconds for confidential clients
@@ -76,6 +78,7 @@ readonly class Project
         public string $pingedAt,
         public array $labels,
         public string $status,
+        public array $onboarding,
         public array $authMethods,
         public array $services,
         public array $protocols,
@@ -85,6 +88,7 @@ readonly class Project
         public ?bool $oAuth2ServerEnabled = null,
         public ?string $oAuth2ServerAuthorizationUrl = null,
         public ?array $oAuth2ServerScopes = null,
+        public ?array $oAuth2ServerDefaultScopes = null,
         public ?array $oAuth2ServerAuthorizationDetailsTypes = null,
         public ?int $oAuth2ServerAccessTokenDuration = null,
         public ?int $oAuth2ServerRefreshTokenDuration = null,
@@ -167,6 +171,9 @@ readonly class Project
         if (!array_key_exists('status', $data)) {
             throw new \InvalidArgumentException('Missing required field "status" for ' . static::class . '.');
         }
+        if (!array_key_exists('onboarding', $data)) {
+            throw new \InvalidArgumentException('Missing required field "onboarding" for ' . static::class . '.');
+        }
         if (!array_key_exists('authMethods', $data)) {
             throw new \InvalidArgumentException('Missing required field "authMethods" for ' . static::class . '.');
         }
@@ -210,6 +217,7 @@ readonly class Project
             pingedAt: $data['pingedAt'],
             labels: $data['labels'],
             status: $data['status'],
+            onboarding: $data['onboarding'],
             authMethods: is_array($data['authMethods'])
                 ? array_map(
                     static fn (mixed $item): mixed => static::hydrateTypedValue(ProjectAuthMethod::class, $item),
@@ -239,6 +247,7 @@ readonly class Project
             oAuth2ServerEnabled: array_key_exists('oAuth2ServerEnabled', $data) ? $data['oAuth2ServerEnabled'] : null,
             oAuth2ServerAuthorizationUrl: array_key_exists('oAuth2ServerAuthorizationUrl', $data) ? $data['oAuth2ServerAuthorizationUrl'] : null,
             oAuth2ServerScopes: array_key_exists('oAuth2ServerScopes', $data) ? $data['oAuth2ServerScopes'] : null,
+            oAuth2ServerDefaultScopes: array_key_exists('oAuth2ServerDefaultScopes', $data) ? $data['oAuth2ServerDefaultScopes'] : null,
             oAuth2ServerAuthorizationDetailsTypes: array_key_exists('oAuth2ServerAuthorizationDetailsTypes', $data) ? $data['oAuth2ServerAuthorizationDetailsTypes'] : null,
             oAuth2ServerAccessTokenDuration: array_key_exists('oAuth2ServerAccessTokenDuration', $data) ? $data['oAuth2ServerAccessTokenDuration'] : null,
             oAuth2ServerRefreshTokenDuration: array_key_exists('oAuth2ServerRefreshTokenDuration', $data) ? $data['oAuth2ServerRefreshTokenDuration'] : null,
@@ -280,6 +289,7 @@ readonly class Project
             'pingedAt' => static::serializeValue($this->pingedAt),
             'labels' => static::serializeValue($this->labels),
             'status' => static::serializeValue($this->status),
+            'onboarding' => static::serializeValue($this->onboarding),
             'authMethods' => static::serializeValue($this->authMethods),
             'services' => static::serializeValue($this->services),
             'protocols' => static::serializeValue($this->protocols),
@@ -289,6 +299,7 @@ readonly class Project
             'oAuth2ServerEnabled' => static::serializeValue($this->oAuth2ServerEnabled),
             'oAuth2ServerAuthorizationUrl' => static::serializeValue($this->oAuth2ServerAuthorizationUrl),
             'oAuth2ServerScopes' => static::serializeValue($this->oAuth2ServerScopes),
+            'oAuth2ServerDefaultScopes' => static::serializeValue($this->oAuth2ServerDefaultScopes),
             'oAuth2ServerAuthorizationDetailsTypes' => static::serializeValue($this->oAuth2ServerAuthorizationDetailsTypes),
             'oAuth2ServerAccessTokenDuration' => static::serializeValue($this->oAuth2ServerAccessTokenDuration),
             'oAuth2ServerRefreshTokenDuration' => static::serializeValue($this->oAuth2ServerRefreshTokenDuration),

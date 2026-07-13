@@ -64,6 +64,12 @@ GET https://cloud.appwrite.io/v1/sites/specifications
 
 ** List allowed site specifications for this instance. **
 
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| type | string | Specification type to list. Can be one of: runtimes, builds. | runtimes |
+
 
 ```http request
 GET https://cloud.appwrite.io/v1/sites/{siteId}
@@ -108,7 +114,7 @@ PUT https://cloud.appwrite.io/v1/sites/{siteId}
 | providerRootDirectory | string | Path to site code in the linked repo. |  |
 | providerBranches | array | List of branch name patterns to trigger automatic deployments. Supports wildcards. Leave empty to deploy on all branches. |  |
 | providerPaths | array | List of file path patterns to trigger automatic deployments. Supports wildcards. Leave empty to deploy on all file changes. |  |
-| buildSpecification | string | Build specification for the site deployments. | [] |
+| buildSpecification | string | Build specification for the site deployments. |  |
 | runtimeSpecification | string | Runtime specification for the SSR executions. | [] |
 | deploymentRetention | integer | Days to keep non-active deployments before deletion. Value 0 means all deployments will be kept. | 0 |
 

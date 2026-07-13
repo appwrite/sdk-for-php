@@ -2,6 +2,8 @@
 
 namespace Appwrite;
 
+use Ahc\Jwt\JWT;
+
 class Client
 {
     const METHOD_GET = 'GET';
@@ -15,6 +17,7 @@ class Client
     const METHOD_TRACE = 'TRACE';
 
     const CHUNK_SIZE = 5 * 1024 * 1024;
+    const JWT_MAX_AGE_SECONDS = 3600;
 
     /**
      * Is Self Signed Certificates Allowed?
@@ -37,11 +40,11 @@ class Client
      */
     protected array $headers = [
         'content-type' => '',
-        'user-agent' => 'AppwritePHPSDK/26.1.0 ()',
+        'user-agent' => 'AppwritePHPSDK/27.0.0 ()',
         'x-sdk-name'=> 'PHP',
         'x-sdk-platform'=> 'server',
         'x-sdk-language'=> 'php',
-        'x-sdk-version'=> '26.1.0',
+        'x-sdk-version'=> '27.0.0',
     ];
 
     /**
@@ -50,6 +53,27 @@ class Client
      * @var array
      */
     protected array $config = [];
+
+    /**
+     * API key for JWT generation
+     *
+     * @var string|null
+     */
+    protected ?string $key = null;
+
+    /**
+     * Cached authorization header value
+     *
+     * @var string|null
+     */
+    protected ?string $authorization = null;
+
+    /**
+     * Authorization header expiry time
+     *
+     * @var \DateTime|null
+     */
+    protected ?\DateTime $authorizationExpiresAt = null;
 
     /**
      * Timeout in seconds
@@ -120,6 +144,26 @@ class Client
     {
         $this->addHeader('X-Appwrite-JWT', $value);
         $this->config['jwt'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Set Bearer
+     *
+     * The OAuth access token to authenticate with
+     *
+     * @param string $value
+     *
+     * @return Client
+     */
+    public function setBearer(string $value): Client
+    {
+        $this->addHeader('Authorization', "Bearer {$value}");
+        $this->config['bearer'] = $value;
+        $this->key = null;
+        $this->authorization = null;
+        $this->authorizationExpiresAt = null;
 
         return $this;
     }
@@ -258,6 +302,25 @@ class Client
         return $this;
     }
 
+    /**
+     * Set Signing Key
+     *
+     * Set a secret key used to self-sign short-lived JWTs for the Authorization header
+     *
+     * @param string $key
+     *
+     * @return Client
+     */
+    public function setSigningKey(string $key): Client
+    {
+        $this->key = $key;
+        $this->authorization = null;
+        $this->authorizationExpiresAt = null;
+        unset($this->headers['authorization'], $this->config['bearer']);
+
+        return $this;
+    }
+
 
     public function getConfig(string $key): string
     {
@@ -335,6 +398,25 @@ class Client
     }
 
     /**
+     * Get authorization header, generating a new JWT if needed
+     *
+     * @return string
+     */
+    private function getAuthorization(): string
+    {
+        if (\is_string($this->authorization) && $this->authorizationExpiresAt > new \DateTime()) {
+            return $this->authorization;
+        }
+
+        $jwt = new JWT($this->key, maxAge: self::JWT_MAX_AGE_SECONDS);
+        $this->authorization = "Bearer {$jwt->encode([])}";
+
+        $this->authorizationExpiresAt = (new \DateTime())->modify('+' . (self::JWT_MAX_AGE_SECONDS - 5) . ' seconds');
+
+        return $this->authorization;
+    }
+
+    /**
      * Call
      *
      * Make an API call
@@ -354,6 +436,9 @@ class Client
         ?string $responseType = null
     )
     {
+        if ($this->key !== null) {
+            $this->headers['authorization'] = $this->getAuthorization();
+        }
         $headers = array_merge($this->headers, $headers);
         $querySeparator = str_contains($path, '?') ? '&' : '?';
         $ch = curl_init($this->endpoint . $path . (($method == self::METHOD_GET && !empty($params)) ? $querySeparator . http_build_query($params) : ''));

@@ -3,6 +3,7 @@
 
 use Appwrite\Client;
 use Appwrite\Services\Project;
+use Appwrite\Enums\ProjectOAuth2OidcPrompt;
 
 $client = (new Client())
     ->setEndpoint('https://<REGION>.cloud.appwrite.io/v1') // Your API Endpoint
@@ -18,5 +19,7 @@ $result = $project->updateOAuth2Oidc(
     authorizationURL: 'https://example.com', // optional
     tokenURL: 'https://example.com', // optional
     userInfoURL: 'https://example.com', // optional
+    prompt: [ProjectOAuth2OidcPrompt::NONE()], // optional
+    maxAge: 0, // optional
     enabled: false // optional
 );```

@@ -8,6 +8,7 @@ class OAuthProvider implements JsonSerializable
 {
     private static OAuthProvider $AMAZON;
     private static OAuthProvider $APPLE;
+    private static OAuthProvider $APPWRITE;
     private static OAuthProvider $AUTH0;
     private static OAuthProvider $AUTHENTIK;
     private static OAuthProvider $AUTODESK;
@@ -80,6 +81,13 @@ class OAuthProvider implements JsonSerializable
             self::$APPLE = new OAuthProvider('apple');
         }
         return self::$APPLE;
+    }
+    public static function APPWRITE(): OAuthProvider
+    {
+        if (!isset(self::$APPWRITE)) {
+            self::$APPWRITE = new OAuthProvider('appwrite');
+        }
+        return self::$APPWRITE;
     }
     public static function AUTH0(): OAuthProvider
     {
@@ -374,6 +382,7 @@ class OAuthProvider implements JsonSerializable
         return match ($value) {
             'amazon' => self::AMAZON(),
             'apple' => self::APPLE(),
+            'appwrite' => self::APPWRITE(),
             'auth0' => self::AUTH0(),
             'authentik' => self::AUTHENTIK(),
             'autodesk' => self::AUTODESK(),

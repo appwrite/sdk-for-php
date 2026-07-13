@@ -1,5 +1,26 @@
 # Change Log
 
+## 27.0.0
+
+* Breaking: Removed `Health` service with its models and enums
+* Breaking: Removed `Usage` service and usage models
+* Breaking: Removed `Messaging` methods `listMessageLogs`, `listProviderLogs`, `listSubscriberLogs`, `listTopicLogs`
+* Breaking: Renamed `TablesDB::create` parameter `dedicatedDatabaseId` to `specification`
+* Breaking: Removed `countryCode` and `countryName` from `ActivityEvent` model
+* Added: `Organization` service `get`, `update`, `delete`, and membership CRUD methods
+* Added: `Client::setSigningKey` and `Client::setBearer` for JWT and bearer authentication
+* Added: vector query helpers `Query::vectorDot`, `Query::vectorCosine`, `Query::vectorEuclidean`
+* Added: `appwrite` OAuth2 provider and `Project::updateOAuth2Appwrite` method
+* Added: `prompt` and `maxAge` parameters to `updateOAuth2Oidc`, `defaultScopes` to `updateOAuth2Server`
+* Added: `newSpecification` parameter to `Backups::createRestoration`
+* Added: `type` parameter to `Functions` and `Sites` `listSpecifications`
+* Added: `token` parameter to `Functions::getDeploymentDownload`
+* Added: `mode` to `Block`, `status` to `Database`, geolocation/ISP fields to `Locale` models
+* Added: `onboarding` and `oAuth2ServerDefaultScopes` to `Project` model
+* Added: organization membership, organization, and `project.oauth2`/`stages` key scopes
+* Added: billing plan models, `BillingPlanGroup`, `DatabaseStatus`, OIDC prompt enums
+* Updated: deprecated `Databases` transaction and text attribute methods in favor of `TablesDB`
+
 ## 26.1.0
 
 * Updated: Reworked `usage.listEvents` into an aggregation query with `metric`, `interval`, `dimensions`, and `orderBy`

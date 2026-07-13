@@ -17,7 +17,7 @@ readonly class Log
      * @param string $userEmail user email of the actor recorded for this log. during impersonation, this is the original impersonator.
      * @param string $userName user name of the actor recorded for this log. during impersonation, this is the original impersonator.
      * @param string $mode api mode when event triggered.
-     * @param string $userType user type who triggered the audit log. possible values: user, admin, guest, keyproject, keyaccount, keyorganization.
+     * @param string $userType user type who triggered the audit log. possible values: user, admin, guest, hidden, keyproject, keyaccount, keyorganization.
      * @param string $ip ip session in use when the session was created.
      * @param string $time log creation date in iso 8601 format.
      * @param string $osCode operating system code name. view list of [available options](https://github.com/appwrite/appwrite/blob/master/docs/lists/os.json).

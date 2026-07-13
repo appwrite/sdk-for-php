@@ -133,7 +133,10 @@ DELETE https://cloud.appwrite.io/v1/backups/policies/{policyId}
 POST https://cloud.appwrite.io/v1/backups/restoration
 ```
 
-** Create and trigger a new restoration for a backup on a project. **
+** Create and trigger a new restoration for a backup on a project.
+
+When restoring a DocumentsDB or VectorsDB database to a new resource, pass `newSpecification` to provision the restored database on a different specification than the archived one (for example, restoring onto a larger or smaller dedicated database). Use `serverless` to restore onto the shared pool, or a dedicated specification slug to restore onto a dedicated database of that size. The specification must be permitted by the organization&#039;s plan. `newSpecification` is not supported for legacy/TablesDB databases or for bucket restores.
+ **
 
 ### Parameters
 
@@ -143,6 +146,7 @@ POST https://cloud.appwrite.io/v1/backups/restoration
 | services | array | Array of services to restore |  |
 | newResourceId | string | Unique Id. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
 | newResourceName | string | Database name. Max length: 128 chars. |  |
+| newSpecification | string | Specification to provision the restored database on, when restoring a DocumentsDB or VectorsDB database to a new resource. Defaults to the archived database's specification. Use `serverless` for the shared pool or a dedicated specification slug. |  |
 
 
 ```http request

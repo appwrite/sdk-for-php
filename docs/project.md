@@ -57,7 +57,7 @@ You can also create an ephemeral API key if you need a short-lived key instead. 
 | --- | --- | --- | --- |
 | keyId | string | Key ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
 | name | string | Key name. Max length: 128 chars. |  |
-| scopes | array | Key scopes list. Maximum of 100 scopes are allowed. |  |
+| scopes | array | Key scopes list. Maximum of 200 scopes are allowed. |  |
 | expire | string | Expiration time in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. Use null for unlimited expiration. |  |
 
 
@@ -73,7 +73,7 @@ You can also create a standard API key if you need a longer-lived key instead. *
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| scopes | array | Key scopes list. Maximum of 100 scopes are allowed. |  |
+| scopes | array | Key scopes list. Maximum of 200 scopes are allowed. |  |
 | duration | integer | Time in seconds before ephemeral key expires. Maximum duration is 3600 seconds. |  |
 
 
@@ -102,7 +102,7 @@ PUT https://cloud.appwrite.io/v1/project/keys/{keyId}
 | --- | --- | --- | --- |
 | keyId | string | **Required** Key ID. |  |
 | name | string | Key name. Max length: 128 chars. |  |
-| scopes | array | Key scopes list. Maximum of 100 scopes are allowed. |  |
+| scopes | array | Key scopes list. Maximum of 200 scopes are allowed. |  |
 | expire | string | Expiration time in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. Use null for unlimited expiration. |  |
 
 
@@ -237,6 +237,7 @@ PUT https://cloud.appwrite.io/v1/project/oauth2-server
 | userCodeLength | integer | Number of characters in the device flow user code, excluding the formatting separator. Shorter codes are easier to type but weaker; pair short codes with short expiry. Leave empty to use default 8. |  |
 | userCodeFormat | string | Character set for device flow user codes: `numeric` (digits only — best for numeric keypads and TV remotes), `alphabetic` (letters only), or `alphanumeric` (letters and digits — highest entropy per character). Defaults to `alphanumeric`. | alphanumeric |
 | deviceCodeDuration | integer | Lifetime in seconds of device flow device codes and user codes. Device codes are intentionally short-lived. Leave empty to use default 600. |  |
+| defaultScopes | array | List of OAuth2 scopes used when an authorization request omits the scope parameter. Every default scope must also be allowed by the OAuth2 server. Maximum of 100 scopes are allowed, each up to 128 characters long. | [] |
 
 
 ```http request
@@ -268,6 +269,21 @@ PATCH https://cloud.appwrite.io/v1/project/oauth2/apple
 | keyId | string | 'Key ID' of Apple OAuth2 app. For example: P4000000N8 |  |
 | teamId | string | 'Team ID' of Apple OAuth2 app. For example: D4000000R6 |  |
 | p8File | string | Contents of the Apple OAuth2 app .p8 private key file. The secret key wrapped by the PEM markers is 200 characters long. For example: -----BEGIN PRIVATE KEY-----MIGTAg...jy2Xbna-----END PRIVATE KEY----- |  |
+| enabled | boolean | OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid. |  |
+
+
+```http request
+PATCH https://cloud.appwrite.io/v1/project/oauth2/appwrite
+```
+
+** Update the project OAuth2 Appwrite configuration. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| clientId | string | 'Client ID' of Appwrite OAuth2 app. For example: 6a42000000000000b5a0 |  |
+| clientSecret | string | 'Client Secret' of Appwrite OAuth2 app. For example: b86afd000000000000000000000000000000000000000000000000000ced5f93 |  |
 | enabled | boolean | OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid. |  |
 
 
@@ -625,6 +641,8 @@ PATCH https://cloud.appwrite.io/v1/project/oauth2/oidc
 | authorizationURL | string | OpenID Connect authorization endpoint URL. Required when wellKnownURL is not provided. For example: https://myoauth.com/oauth2/authorize |  |
 | tokenURL | string | OpenID Connect token endpoint URL. Required when wellKnownURL is not provided. For example: https://myoauth.com/oauth2/token |  |
 | userInfoURL | string | OpenID Connect user info endpoint URL. Required when wellKnownURL is not provided. For example: https://myoauth.com/oauth2/userinfo |  |
+| prompt | array | Array of OpenID Connect prompt values controlling the authentication and consent screens. If "none" is included, it must be the only element. "none" means: don't display any authentication or consent screens. "login" means: prompt the user to re-authenticate. "consent" means: prompt the user for consent. "select_account" means: prompt the user to select an account. |  |
+| maxAge | integer | Maximum authentication age in seconds. When set, the user must have authenticated within this many seconds, otherwise they are prompted to re-authenticate. |  |
 | enabled | boolean | OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid. |  |
 
 

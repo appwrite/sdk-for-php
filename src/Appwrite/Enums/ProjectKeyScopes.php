@@ -18,10 +18,12 @@ class ProjectKeyScopes implements JsonSerializable
     private static ProjectKeyScopes $POLICIESWRITE;
     private static ProjectKeyScopes $PROJECTPOLICIESREAD;
     private static ProjectKeyScopes $PROJECTPOLICIESWRITE;
+    private static ProjectKeyScopes $PROJECTOAUTH2READ;
+    private static ProjectKeyScopes $PROJECTOAUTH2WRITE;
     private static ProjectKeyScopes $TEMPLATESREAD;
     private static ProjectKeyScopes $TEMPLATESWRITE;
-    private static ProjectKeyScopes $OAUTH2READ;
-    private static ProjectKeyScopes $OAUTH2WRITE;
+    private static ProjectKeyScopes $STAGESREAD;
+    private static ProjectKeyScopes $STAGESWRITE;
     private static ProjectKeyScopes $USERSREAD;
     private static ProjectKeyScopes $USERSWRITE;
     private static ProjectKeyScopes $SESSIONSREAD;
@@ -102,6 +104,8 @@ class ProjectKeyScopes implements JsonSerializable
     private static ProjectKeyScopes $EVENTSREAD;
     private static ProjectKeyScopes $APPSREAD;
     private static ProjectKeyScopes $APPSWRITE;
+    private static ProjectKeyScopes $OAUTH2READ;
+    private static ProjectKeyScopes $OAUTH2WRITE;
     private static ProjectKeyScopes $USAGEREAD;
 
     private string $value;
@@ -205,6 +209,20 @@ class ProjectKeyScopes implements JsonSerializable
         }
         return self::$PROJECTPOLICIESWRITE;
     }
+    public static function PROJECTOAUTH2READ(): ProjectKeyScopes
+    {
+        if (!isset(self::$PROJECTOAUTH2READ)) {
+            self::$PROJECTOAUTH2READ = new ProjectKeyScopes('project.oauth2.read');
+        }
+        return self::$PROJECTOAUTH2READ;
+    }
+    public static function PROJECTOAUTH2WRITE(): ProjectKeyScopes
+    {
+        if (!isset(self::$PROJECTOAUTH2WRITE)) {
+            self::$PROJECTOAUTH2WRITE = new ProjectKeyScopes('project.oauth2.write');
+        }
+        return self::$PROJECTOAUTH2WRITE;
+    }
     public static function TEMPLATESREAD(): ProjectKeyScopes
     {
         if (!isset(self::$TEMPLATESREAD)) {
@@ -219,19 +237,19 @@ class ProjectKeyScopes implements JsonSerializable
         }
         return self::$TEMPLATESWRITE;
     }
-    public static function OAUTH2READ(): ProjectKeyScopes
+    public static function STAGESREAD(): ProjectKeyScopes
     {
-        if (!isset(self::$OAUTH2READ)) {
-            self::$OAUTH2READ = new ProjectKeyScopes('oauth2.read');
+        if (!isset(self::$STAGESREAD)) {
+            self::$STAGESREAD = new ProjectKeyScopes('stages.read');
         }
-        return self::$OAUTH2READ;
+        return self::$STAGESREAD;
     }
-    public static function OAUTH2WRITE(): ProjectKeyScopes
+    public static function STAGESWRITE(): ProjectKeyScopes
     {
-        if (!isset(self::$OAUTH2WRITE)) {
-            self::$OAUTH2WRITE = new ProjectKeyScopes('oauth2.write');
+        if (!isset(self::$STAGESWRITE)) {
+            self::$STAGESWRITE = new ProjectKeyScopes('stages.write');
         }
-        return self::$OAUTH2WRITE;
+        return self::$STAGESWRITE;
     }
     public static function USERSREAD(): ProjectKeyScopes
     {
@@ -793,6 +811,20 @@ class ProjectKeyScopes implements JsonSerializable
         }
         return self::$APPSWRITE;
     }
+    public static function OAUTH2READ(): ProjectKeyScopes
+    {
+        if (!isset(self::$OAUTH2READ)) {
+            self::$OAUTH2READ = new ProjectKeyScopes('oauth2.read');
+        }
+        return self::$OAUTH2READ;
+    }
+    public static function OAUTH2WRITE(): ProjectKeyScopes
+    {
+        if (!isset(self::$OAUTH2WRITE)) {
+            self::$OAUTH2WRITE = new ProjectKeyScopes('oauth2.write');
+        }
+        return self::$OAUTH2WRITE;
+    }
     public static function USAGEREAD(): ProjectKeyScopes
     {
         if (!isset(self::$USAGEREAD)) {
@@ -816,10 +848,12 @@ class ProjectKeyScopes implements JsonSerializable
             'policies.write' => self::POLICIESWRITE(),
             'project.policies.read' => self::PROJECTPOLICIESREAD(),
             'project.policies.write' => self::PROJECTPOLICIESWRITE(),
+            'project.oauth2.read' => self::PROJECTOAUTH2READ(),
+            'project.oauth2.write' => self::PROJECTOAUTH2WRITE(),
             'templates.read' => self::TEMPLATESREAD(),
             'templates.write' => self::TEMPLATESWRITE(),
-            'oauth2.read' => self::OAUTH2READ(),
-            'oauth2.write' => self::OAUTH2WRITE(),
+            'stages.read' => self::STAGESREAD(),
+            'stages.write' => self::STAGESWRITE(),
             'users.read' => self::USERSREAD(),
             'users.write' => self::USERSWRITE(),
             'sessions.read' => self::SESSIONSREAD(),
@@ -900,6 +934,8 @@ class ProjectKeyScopes implements JsonSerializable
             'events.read' => self::EVENTSREAD(),
             'apps.read' => self::APPSREAD(),
             'apps.write' => self::APPSWRITE(),
+            'oauth2.read' => self::OAUTH2READ(),
+            'oauth2.write' => self::OAUTH2WRITE(),
             'usage.read' => self::USAGEREAD(),
             default => throw new \InvalidArgumentException('Unknown ProjectKeyScopes value: ' . $value),
         };

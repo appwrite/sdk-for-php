@@ -234,21 +234,6 @@ DELETE https://cloud.appwrite.io/v1/messaging/messages/{messageId}
 
 
 ```http request
-GET https://cloud.appwrite.io/v1/messaging/messages/{messageId}/logs
-```
-
-** Get the message activity logs listed by its unique ID. **
-
-### Parameters
-
-| Field Name | Type | Description | Default |
-| --- | --- | --- | --- |
-| messageId | string | **Required** Message ID. |  |
-| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Only supported methods are limit and offset | [] |
-| total | boolean | When set to false, the total count returned will be 0 and will not be calculated. | 1 |
-
-
-```http request
 GET https://cloud.appwrite.io/v1/messaging/messages/{messageId}/targets
 ```
 
@@ -902,36 +887,6 @@ DELETE https://cloud.appwrite.io/v1/messaging/providers/{providerId}
 
 
 ```http request
-GET https://cloud.appwrite.io/v1/messaging/providers/{providerId}/logs
-```
-
-** Get the provider activity logs listed by its unique ID. **
-
-### Parameters
-
-| Field Name | Type | Description | Default |
-| --- | --- | --- | --- |
-| providerId | string | **Required** Provider ID. |  |
-| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Only supported methods are limit and offset | [] |
-| total | boolean | When set to false, the total count returned will be 0 and will not be calculated. | 1 |
-
-
-```http request
-GET https://cloud.appwrite.io/v1/messaging/subscribers/{subscriberId}/logs
-```
-
-** Get the subscriber activity logs listed by its unique ID. **
-
-### Parameters
-
-| Field Name | Type | Description | Default |
-| --- | --- | --- | --- |
-| subscriberId | string | **Required** Subscriber ID. |  |
-| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Only supported methods are limit and offset | [] |
-| total | boolean | When set to false, the total count returned will be 0 and will not be calculated. | 1 |
-
-
-```http request
 GET https://cloud.appwrite.io/v1/messaging/topics
 ```
 
@@ -1002,21 +957,6 @@ DELETE https://cloud.appwrite.io/v1/messaging/topics/{topicId}
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | topicId | string | **Required** Topic ID. |  |
-
-
-```http request
-GET https://cloud.appwrite.io/v1/messaging/topics/{topicId}/logs
-```
-
-** Get the topic activity logs listed by its unique ID. **
-
-### Parameters
-
-| Field Name | Type | Description | Default |
-| --- | --- | --- | --- |
-| topicId | string | **Required** Topic ID. |  |
-| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Only supported methods are limit and offset | [] |
-| total | boolean | When set to false, the total count returned will be 0 and will not be calculated. | 1 |
 
 
 ```http request

@@ -2,6 +2,8 @@
 
 namespace Appwrite\Models;
 
+use Appwrite\Enums\OAuth2OidcPrompt;
+
 /**
  * OAuth2Oidc
  */
@@ -20,6 +22,8 @@ readonly class OAuth2Oidc
      * @param string $authorizationURL openid connect authorization endpoint url.
      * @param string $tokenURL openid connect token endpoint url.
      * @param string $userInfoURL openid connect user info endpoint url.
+     * @param list<OAuth2OidcPrompt> $prompt openid connect prompt values controlling the authentication and consent screens.
+     * @param int|null $maxAge maximum authentication age in seconds. when set, the user must have authenticated within this many seconds.
      */
     public function __construct(
         public string $id,
@@ -29,7 +33,9 @@ readonly class OAuth2Oidc
         public string $wellKnownURL,
         public string $authorizationURL,
         public string $tokenURL,
-        public string $userInfoURL
+        public string $userInfoURL,
+        public array $prompt,
+        public ?int $maxAge = null
     ) {
     }
 
@@ -62,6 +68,9 @@ readonly class OAuth2Oidc
         if (!array_key_exists('userInfoURL', $data)) {
             throw new \InvalidArgumentException('Missing required field "userInfoURL" for ' . static::class . '.');
         }
+        if (!array_key_exists('prompt', $data)) {
+            throw new \InvalidArgumentException('Missing required field "prompt" for ' . static::class . '.');
+        }
 
         return new static(
             id: $data['$id'],
@@ -71,7 +80,14 @@ readonly class OAuth2Oidc
             wellKnownURL: $data['wellKnownURL'],
             authorizationURL: $data['authorizationURL'],
             tokenURL: $data['tokenURL'],
-            userInfoURL: $data['userInfoURL']
+            userInfoURL: $data['userInfoURL'],
+            prompt: is_array($data['prompt'])
+                ? array_map(
+                    static fn (mixed $item): mixed => static::hydrateTypedValue(OAuth2OidcPrompt::class, $item),
+                    $data['prompt']
+                )
+                : $data['prompt'],
+            maxAge: array_key_exists('maxAge', $data) ? $data['maxAge'] : null
         );
     }
 
@@ -88,7 +104,9 @@ readonly class OAuth2Oidc
             'wellKnownURL' => static::serializeValue($this->wellKnownURL),
             'authorizationURL' => static::serializeValue($this->authorizationURL),
             'tokenURL' => static::serializeValue($this->tokenURL),
-            'userInfoURL' => static::serializeValue($this->userInfoURL)
+            'userInfoURL' => static::serializeValue($this->userInfoURL),
+            'prompt' => static::serializeValue($this->prompt),
+            'maxAge' => static::serializeValue($this->maxAge)
         ];
 
         return $result;

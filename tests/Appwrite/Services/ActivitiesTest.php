@@ -41,9 +41,7 @@ final class ActivitiesTest extends TestCase
                     "time" => "2020-10-15T06:38:00.000+00:00",
                     "projectId" => "610fc2f985ee0",
                     "teamId" => "610fc2f985ee0",
-                    "hostname" => "appwrite.io",
-                    "countryCode" => "US",
-                    "countryName" => "United States"
+                    "hostname" => "appwrite.io"
                 )
             )
         );
@@ -80,9 +78,7 @@ final class ActivitiesTest extends TestCase
             "time" => "2020-10-15T06:38:00.000+00:00",
             "projectId" => "610fc2f985ee0",
             "teamId" => "610fc2f985ee0",
-            "hostname" => "appwrite.io",
-            "countryCode" => "US",
-            "countryName" => "United States"
+            "hostname" => "appwrite.io"
         );
 
         $this->client

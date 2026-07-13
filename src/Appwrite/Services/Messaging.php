@@ -600,53 +600,6 @@ class Messaging extends Service
     }
 
     /**
-     * Get the message activity logs listed by its unique ID.
-     *
-     * @param string $messageId
-     * @param ?array $queries
-     * @param ?bool $total
-     * @throws AppwriteException
-     * @return \Appwrite\Models\LogList
-     */
-    public function listMessageLogs(string $messageId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\LogList
-    {
-        $apiPath = str_replace(
-            ['{messageId}'],
-            [$messageId],
-            '/messaging/messages/{messageId}/logs'
-        );
-
-        $apiParams = [];
-        $apiParams['messageId'] = $messageId;
-
-        if (!is_null($queries)) {
-            $apiParams['queries'] = $queries;
-        }
-
-        if (!is_null($total)) {
-            $apiParams['total'] = $total;
-        }
-
-        $apiHeaders = [];
-        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
-        $apiHeaders['accept'] = 'application/json';
-
-        $response = $this->client->call(
-            Client::METHOD_GET,
-            $apiPath,
-            $apiHeaders,
-            $apiParams
-        );
-
-        if (!is_array($response)) {
-            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
-        }
-
-        return \Appwrite\Models\LogList::from($response);
-
-    }
-
-    /**
      * Get a list of the targets associated with a message.
      *
      * @param string $messageId
@@ -2395,100 +2348,6 @@ class Messaging extends Service
     }
 
     /**
-     * Get the provider activity logs listed by its unique ID.
-     *
-     * @param string $providerId
-     * @param ?array $queries
-     * @param ?bool $total
-     * @throws AppwriteException
-     * @return \Appwrite\Models\LogList
-     */
-    public function listProviderLogs(string $providerId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\LogList
-    {
-        $apiPath = str_replace(
-            ['{providerId}'],
-            [$providerId],
-            '/messaging/providers/{providerId}/logs'
-        );
-
-        $apiParams = [];
-        $apiParams['providerId'] = $providerId;
-
-        if (!is_null($queries)) {
-            $apiParams['queries'] = $queries;
-        }
-
-        if (!is_null($total)) {
-            $apiParams['total'] = $total;
-        }
-
-        $apiHeaders = [];
-        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
-        $apiHeaders['accept'] = 'application/json';
-
-        $response = $this->client->call(
-            Client::METHOD_GET,
-            $apiPath,
-            $apiHeaders,
-            $apiParams
-        );
-
-        if (!is_array($response)) {
-            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
-        }
-
-        return \Appwrite\Models\LogList::from($response);
-
-    }
-
-    /**
-     * Get the subscriber activity logs listed by its unique ID.
-     *
-     * @param string $subscriberId
-     * @param ?array $queries
-     * @param ?bool $total
-     * @throws AppwriteException
-     * @return \Appwrite\Models\LogList
-     */
-    public function listSubscriberLogs(string $subscriberId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\LogList
-    {
-        $apiPath = str_replace(
-            ['{subscriberId}'],
-            [$subscriberId],
-            '/messaging/subscribers/{subscriberId}/logs'
-        );
-
-        $apiParams = [];
-        $apiParams['subscriberId'] = $subscriberId;
-
-        if (!is_null($queries)) {
-            $apiParams['queries'] = $queries;
-        }
-
-        if (!is_null($total)) {
-            $apiParams['total'] = $total;
-        }
-
-        $apiHeaders = [];
-        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
-        $apiHeaders['accept'] = 'application/json';
-
-        $response = $this->client->call(
-            Client::METHOD_GET,
-            $apiPath,
-            $apiHeaders,
-            $apiParams
-        );
-
-        if (!is_array($response)) {
-            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
-        }
-
-        return \Appwrite\Models\LogList::from($response);
-
-    }
-
-    /**
      * Get a list of all topics from the current Appwrite project.
      *
      * @param ?array $queries
@@ -2694,53 +2553,6 @@ class Messaging extends Service
         );
 
         return $response;
-
-    }
-
-    /**
-     * Get the topic activity logs listed by its unique ID.
-     *
-     * @param string $topicId
-     * @param ?array $queries
-     * @param ?bool $total
-     * @throws AppwriteException
-     * @return \Appwrite\Models\LogList
-     */
-    public function listTopicLogs(string $topicId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\LogList
-    {
-        $apiPath = str_replace(
-            ['{topicId}'],
-            [$topicId],
-            '/messaging/topics/{topicId}/logs'
-        );
-
-        $apiParams = [];
-        $apiParams['topicId'] = $topicId;
-
-        if (!is_null($queries)) {
-            $apiParams['queries'] = $queries;
-        }
-
-        if (!is_null($total)) {
-            $apiParams['total'] = $total;
-        }
-
-        $apiHeaders = [];
-        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
-        $apiHeaders['accept'] = 'application/json';
-
-        $response = $this->client->call(
-            Client::METHOD_GET,
-            $apiPath,
-            $apiHeaders,
-            $apiParams
-        );
-
-        if (!is_array($response)) {
-            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
-        }
-
-        return \Appwrite\Models\LogList::from($response);
 
     }
 

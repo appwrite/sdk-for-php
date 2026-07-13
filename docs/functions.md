@@ -37,7 +37,7 @@ POST https://cloud.appwrite.io/v1/functions
 | logging | boolean | When disabled, executions will exclude logs and errors, and will be slightly faster. | 1 |
 | entrypoint | string | Entrypoint File. This path is relative to the "providerRootDirectory". |  |
 | commands | string | Build Commands. |  |
-| scopes | array | List of scopes allowed for API key auto-generated for every execution. Maximum of 100 scopes are allowed. | [] |
+| scopes | array | List of scopes allowed for API key auto-generated for every execution. Maximum of 200 scopes are allowed. | [] |
 | installationId | string | Appwrite Installation ID for VCS (Version Control System) deployment. |  |
 | providerRepositoryId | string | Repository ID of the repo linked to the function. |  |
 | providerBranch | string | Production branch for the repo linked to the function. |  |
@@ -62,6 +62,12 @@ GET https://cloud.appwrite.io/v1/functions/specifications
 ```
 
 ** List allowed function specifications for this instance. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| type | string | Specification type to list. Can be one of: runtimes, builds. | runtimes |
 
 
 ```http request
@@ -98,7 +104,7 @@ PUT https://cloud.appwrite.io/v1/functions/{functionId}
 | logging | boolean | When disabled, executions will exclude logs and errors, and will be slightly faster. | 1 |
 | entrypoint | string | Entrypoint File. This path is relative to the "providerRootDirectory". |  |
 | commands | string | Build Commands. |  |
-| scopes | array | List of scopes allowed for API Key auto-generated for every execution. Maximum of 100 scopes are allowed. | [] |
+| scopes | array | List of scopes allowed for API Key auto-generated for every execution. Maximum of 200 scopes are allowed. | [] |
 | installationId | string | Appwrite Installation ID for VCS (Version Controle System) deployment. |  |
 | providerRepositoryId | string | Repository ID of the repo linked to the function |  |
 | providerBranch | string | Production branch for the repo linked to the function |  |
@@ -106,7 +112,7 @@ PUT https://cloud.appwrite.io/v1/functions/{functionId}
 | providerRootDirectory | string | Path to function code in the linked repo. |  |
 | providerBranches | array | List of branch name patterns to trigger automatic deployments. Supports wildcards. Leave empty to deploy on all branches. |  |
 | providerPaths | array | List of file path patterns to trigger automatic deployments. Supports wildcards. Leave empty to deploy on all file changes. |  |
-| buildSpecification | string | Build specification for the function deployments. | [] |
+| buildSpecification | string | Build specification for the function deployments. |  |
 | runtimeSpecification | string | Runtime specification for the function executions. | [] |
 | deploymentRetention | integer | Days to keep non-active deployments before deletion. Value 0 means all deployments will be kept. | 0 |
 
@@ -270,6 +276,7 @@ GET https://cloud.appwrite.io/v1/functions/{functionId}/deployments/{deploymentI
 | functionId | string | **Required** Function ID. |  |
 | deploymentId | string | **Required** Deployment ID. |  |
 | type | string | Deployment file to download. Can be: "source", "output". | source |
+| token | string | Presigned source-download token for accessing this deployment without a session (jobs-service). |  |
 
 
 ```http request

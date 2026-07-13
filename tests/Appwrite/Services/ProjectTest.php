@@ -9,6 +9,7 @@ use PHPUnit\Framework\TestCase;
 use Appwrite\Enums\ProjectAuthMethodId;
 use Appwrite\Enums\ProjectKeyScopes;
 use Appwrite\Enums\ProjectOAuth2GooglePrompt;
+use Appwrite\Enums\ProjectOAuth2OidcPrompt;
 use Appwrite\Enums\ProjectOAuthProviderId;
 use Appwrite\Enums\ProjectPolicyId;
 use Appwrite\Enums\ProjectProtocolId;
@@ -63,6 +64,7 @@ final class ProjectTest extends TestCase
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
             "labels" => array(),
             "status" => "active",
+            "onboarding" => array(),
             "authMethods" => array(
                 array(
                     "\$id" => "email-password",
@@ -86,6 +88,7 @@ final class ProjectTest extends TestCase
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
+                    "mode" => "readOnly",
                     "projectName" => "My Project",
                     "region" => "fra",
                     "organizationName" => "Acme Inc.",
@@ -159,6 +162,7 @@ final class ProjectTest extends TestCase
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
             "labels" => array(),
             "status" => "active",
+            "onboarding" => array(),
             "authMethods" => array(
                 array(
                     "\$id" => "email-password",
@@ -182,6 +186,7 @@ final class ProjectTest extends TestCase
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
+                    "mode" => "readOnly",
                     "projectName" => "My Project",
                     "region" => "fra",
                     "organizationName" => "Acme Inc.",
@@ -408,6 +413,7 @@ final class ProjectTest extends TestCase
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
             "labels" => array(),
             "status" => "active",
+            "onboarding" => array(),
             "authMethods" => array(
                 array(
                     "\$id" => "email-password",
@@ -431,6 +437,7 @@ final class ProjectTest extends TestCase
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
+                    "mode" => "readOnly",
                     "projectName" => "My Project",
                     "region" => "fra",
                     "organizationName" => "Acme Inc.",
@@ -624,6 +631,7 @@ final class ProjectTest extends TestCase
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
             "labels" => array(),
             "status" => "active",
+            "onboarding" => array(),
             "authMethods" => array(
                 array(
                     "\$id" => "email-password",
@@ -647,6 +655,7 @@ final class ProjectTest extends TestCase
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
+                    "mode" => "readOnly",
                     "projectName" => "My Project",
                     "region" => "fra",
                     "organizationName" => "Acme Inc.",
@@ -714,6 +723,27 @@ final class ProjectTest extends TestCase
         $response = $this->project->updateOAuth2Apple();
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Apple::class, $response);
+    }
+
+    public function testMethodUpdateOAuth2Appwrite(): void
+    {
+        $data = array(
+            "\$id" => "github",
+            "enabled" => true,
+            "clientId" => "6a42000000000000b5a0",
+            "clientSecret" => "b86afd000000000000000000000000000000000000000000000000000ced5f93"
+        );
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->project->updateOAuth2Appwrite();
+
+        $this->assertInstanceOf(\Appwrite\Models\OAuth2Appwrite::class, $response);
     }
 
     public function testMethodUpdateOAuth2Auth0(): void
@@ -1196,7 +1226,8 @@ final class ProjectTest extends TestCase
             "wellKnownURL" => "https://myoauth.com/.well-known/openid-configuration",
             "authorizationURL" => "https://myoauth.com/oauth2/authorize",
             "tokenURL" => "https://myoauth.com/oauth2/token",
-            "userInfoURL" => "https://myoauth.com/oauth2/userinfo"
+            "userInfoURL" => "https://myoauth.com/oauth2/userinfo",
+            "prompt" => array()
         );
 
         $this->client
@@ -1990,6 +2021,7 @@ final class ProjectTest extends TestCase
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
             "labels" => array(),
             "status" => "active",
+            "onboarding" => array(),
             "authMethods" => array(
                 array(
                     "\$id" => "email-password",
@@ -2013,6 +2045,7 @@ final class ProjectTest extends TestCase
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
+                    "mode" => "readOnly",
                     "projectName" => "My Project",
                     "region" => "fra",
                     "organizationName" => "Acme Inc.",
@@ -2072,6 +2105,7 @@ final class ProjectTest extends TestCase
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
             "labels" => array(),
             "status" => "active",
+            "onboarding" => array(),
             "authMethods" => array(
                 array(
                     "\$id" => "email-password",
@@ -2095,6 +2129,7 @@ final class ProjectTest extends TestCase
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
+                    "mode" => "readOnly",
                     "projectName" => "My Project",
                     "region" => "fra",
                     "organizationName" => "Acme Inc.",
@@ -2154,6 +2189,7 @@ final class ProjectTest extends TestCase
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
             "labels" => array(),
             "status" => "active",
+            "onboarding" => array(),
             "authMethods" => array(
                 array(
                     "\$id" => "email-password",
@@ -2177,6 +2213,7 @@ final class ProjectTest extends TestCase
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
+                    "mode" => "readOnly",
                     "projectName" => "My Project",
                     "region" => "fra",
                     "organizationName" => "Acme Inc.",
@@ -2236,6 +2273,7 @@ final class ProjectTest extends TestCase
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
             "labels" => array(),
             "status" => "active",
+            "onboarding" => array(),
             "authMethods" => array(
                 array(
                     "\$id" => "email-password",
@@ -2259,6 +2297,7 @@ final class ProjectTest extends TestCase
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
+                    "mode" => "readOnly",
                     "projectName" => "My Project",
                     "region" => "fra",
                     "organizationName" => "Acme Inc.",
@@ -2318,6 +2357,7 @@ final class ProjectTest extends TestCase
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
             "labels" => array(),
             "status" => "active",
+            "onboarding" => array(),
             "authMethods" => array(
                 array(
                     "\$id" => "email-password",
@@ -2341,6 +2381,7 @@ final class ProjectTest extends TestCase
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
+                    "mode" => "readOnly",
                     "projectName" => "My Project",
                     "region" => "fra",
                     "organizationName" => "Acme Inc.",
@@ -2398,6 +2439,7 @@ final class ProjectTest extends TestCase
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
             "labels" => array(),
             "status" => "active",
+            "onboarding" => array(),
             "authMethods" => array(
                 array(
                     "\$id" => "email-password",
@@ -2421,6 +2463,7 @@ final class ProjectTest extends TestCase
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
+                    "mode" => "readOnly",
                     "projectName" => "My Project",
                     "region" => "fra",
                     "organizationName" => "Acme Inc.",
@@ -2480,6 +2523,7 @@ final class ProjectTest extends TestCase
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
             "labels" => array(),
             "status" => "active",
+            "onboarding" => array(),
             "authMethods" => array(
                 array(
                     "\$id" => "email-password",
@@ -2503,6 +2547,7 @@ final class ProjectTest extends TestCase
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
+                    "mode" => "readOnly",
                     "projectName" => "My Project",
                     "region" => "fra",
                     "organizationName" => "Acme Inc.",
@@ -2562,6 +2607,7 @@ final class ProjectTest extends TestCase
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
             "labels" => array(),
             "status" => "active",
+            "onboarding" => array(),
             "authMethods" => array(
                 array(
                     "\$id" => "email-password",
@@ -2585,6 +2631,7 @@ final class ProjectTest extends TestCase
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
+                    "mode" => "readOnly",
                     "projectName" => "My Project",
                     "region" => "fra",
                     "organizationName" => "Acme Inc.",
@@ -2667,6 +2714,7 @@ final class ProjectTest extends TestCase
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
             "labels" => array(),
             "status" => "active",
+            "onboarding" => array(),
             "authMethods" => array(
                 array(
                     "\$id" => "email-password",
@@ -2690,6 +2738,7 @@ final class ProjectTest extends TestCase
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
+                    "mode" => "readOnly",
                     "projectName" => "My Project",
                     "region" => "fra",
                     "organizationName" => "Acme Inc.",
@@ -2749,6 +2798,7 @@ final class ProjectTest extends TestCase
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
             "labels" => array(),
             "status" => "active",
+            "onboarding" => array(),
             "authMethods" => array(
                 array(
                     "\$id" => "email-password",
@@ -2772,6 +2822,7 @@ final class ProjectTest extends TestCase
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
+                    "mode" => "readOnly",
                     "projectName" => "My Project",
                     "region" => "fra",
                     "organizationName" => "Acme Inc.",
@@ -2831,6 +2882,7 @@ final class ProjectTest extends TestCase
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
             "labels" => array(),
             "status" => "active",
+            "onboarding" => array(),
             "authMethods" => array(
                 array(
                     "\$id" => "email-password",
@@ -2854,6 +2906,7 @@ final class ProjectTest extends TestCase
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
+                    "mode" => "readOnly",
                     "projectName" => "My Project",
                     "region" => "fra",
                     "organizationName" => "Acme Inc.",
@@ -2913,6 +2966,7 @@ final class ProjectTest extends TestCase
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
             "labels" => array(),
             "status" => "active",
+            "onboarding" => array(),
             "authMethods" => array(
                 array(
                     "\$id" => "email-password",
@@ -2936,6 +2990,7 @@ final class ProjectTest extends TestCase
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
+                    "mode" => "readOnly",
                     "projectName" => "My Project",
                     "region" => "fra",
                     "organizationName" => "Acme Inc.",
@@ -2995,6 +3050,7 @@ final class ProjectTest extends TestCase
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
             "labels" => array(),
             "status" => "active",
+            "onboarding" => array(),
             "authMethods" => array(
                 array(
                     "\$id" => "email-password",
@@ -3018,6 +3074,7 @@ final class ProjectTest extends TestCase
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
+                    "mode" => "readOnly",
                     "projectName" => "My Project",
                     "region" => "fra",
                     "organizationName" => "Acme Inc.",
@@ -3103,6 +3160,7 @@ final class ProjectTest extends TestCase
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
             "labels" => array(),
             "status" => "active",
+            "onboarding" => array(),
             "authMethods" => array(
                 array(
                     "\$id" => "email-password",
@@ -3126,6 +3184,7 @@ final class ProjectTest extends TestCase
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
+                    "mode" => "readOnly",
                     "projectName" => "My Project",
                     "region" => "fra",
                     "organizationName" => "Acme Inc.",
@@ -3186,6 +3245,7 @@ final class ProjectTest extends TestCase
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
             "labels" => array(),
             "status" => "active",
+            "onboarding" => array(),
             "authMethods" => array(
                 array(
                     "\$id" => "email-password",
@@ -3209,6 +3269,7 @@ final class ProjectTest extends TestCase
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
+                    "mode" => "readOnly",
                     "projectName" => "My Project",
                     "region" => "fra",
                     "organizationName" => "Acme Inc.",
@@ -3269,6 +3330,7 @@ final class ProjectTest extends TestCase
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
             "labels" => array(),
             "status" => "active",
+            "onboarding" => array(),
             "authMethods" => array(
                 array(
                     "\$id" => "email-password",
@@ -3292,6 +3354,7 @@ final class ProjectTest extends TestCase
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
+                    "mode" => "readOnly",
                     "projectName" => "My Project",
                     "region" => "fra",
                     "organizationName" => "Acme Inc.",

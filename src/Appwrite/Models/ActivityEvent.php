@@ -30,8 +30,6 @@ readonly class ActivityEvent
      * @param string $projectId project id.
      * @param string $teamId team id.
      * @param string $hostname hostname.
-     * @param string $countryCode country two-character iso 3166-1 alpha code.
-     * @param string $countryName country name.
      */
     public function __construct(
         public string $id,
@@ -51,9 +49,7 @@ readonly class ActivityEvent
         public string $time,
         public string $projectId,
         public string $teamId,
-        public string $hostname,
-        public string $countryCode,
-        public string $countryName
+        public string $hostname
     ) {
     }
 
@@ -116,12 +112,6 @@ readonly class ActivityEvent
         if (!array_key_exists('hostname', $data)) {
             throw new \InvalidArgumentException('Missing required field "hostname" for ' . static::class . '.');
         }
-        if (!array_key_exists('countryCode', $data)) {
-            throw new \InvalidArgumentException('Missing required field "countryCode" for ' . static::class . '.');
-        }
-        if (!array_key_exists('countryName', $data)) {
-            throw new \InvalidArgumentException('Missing required field "countryName" for ' . static::class . '.');
-        }
 
         return new static(
             id: $data['$id'],
@@ -141,9 +131,7 @@ readonly class ActivityEvent
             time: $data['time'],
             projectId: $data['projectId'],
             teamId: $data['teamId'],
-            hostname: $data['hostname'],
-            countryCode: $data['countryCode'],
-            countryName: $data['countryName']
+            hostname: $data['hostname']
         );
     }
 
@@ -170,9 +158,7 @@ readonly class ActivityEvent
             'time' => static::serializeValue($this->time),
             'projectId' => static::serializeValue($this->projectId),
             'teamId' => static::serializeValue($this->teamId),
-            'hostname' => static::serializeValue($this->hostname),
-            'countryCode' => static::serializeValue($this->countryCode),
-            'countryName' => static::serializeValue($this->countryName)
+            'hostname' => static::serializeValue($this->hostname)
         ];
 
         return $result;
