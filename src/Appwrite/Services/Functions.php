@@ -249,10 +249,11 @@ class Functions extends Service
     /**
      * List allowed function specifications for this instance.
      *
+     * @param ?string $type
      * @throws AppwriteException
      * @return \Appwrite\Models\SpecificationList
      */
-    public function listSpecifications(): \Appwrite\Models\SpecificationList
+    public function listSpecifications(?string $type = null): \Appwrite\Models\SpecificationList
     {
         $apiPath = str_replace(
             [],
@@ -261,6 +262,10 @@ class Functions extends Service
         );
 
         $apiParams = [];
+
+        if (!is_null($type)) {
+            $apiParams['type'] = $type;
+        }
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -416,10 +421,7 @@ class Functions extends Service
         }
         $apiParams['providerBranches'] = $providerBranches;
         $apiParams['providerPaths'] = $providerPaths;
-
-        if (!is_null($buildSpecification)) {
-            $apiParams['buildSpecification'] = $buildSpecification;
-        }
+        $apiParams['buildSpecification'] = $buildSpecification;
 
         if (!is_null($runtimeSpecification)) {
             $apiParams['runtimeSpecification'] = $runtimeSpecification;
@@ -1111,10 +1113,11 @@ class Functions extends Service
      * @param string $functionId
      * @param string $deploymentId
      * @param ?DeploymentDownloadType $type
+     * @param ?string $token
      * @throws AppwriteException
      * @return string
      */
-    public function getDeploymentDownload(string $functionId, string $deploymentId, ?DeploymentDownloadType $type = null): string
+    public function getDeploymentDownload(string $functionId, string $deploymentId, ?DeploymentDownloadType $type = null, ?string $token = null): string
     {
         $apiPath = str_replace(
             ['{functionId}', '{deploymentId}'],
@@ -1128,6 +1131,10 @@ class Functions extends Service
 
         if (!is_null($type)) {
             $apiParams['type'] = $type;
+        }
+
+        if (!is_null($token)) {
+            $apiParams['token'] = $token;
         }
 
         $apiHeaders = [];

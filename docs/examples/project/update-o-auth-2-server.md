@@ -24,5 +24,6 @@ $result = $project->updateOAuth2Server(
     verificationUrl: 'https://example.com', // optional
     userCodeLength: 6, // optional
     userCodeFormat: 'numeric', // optional
-    deviceCodeDuration: 60 // optional
+    deviceCodeDuration: 60, // optional
+    defaultScopes: [] // optional
 );```

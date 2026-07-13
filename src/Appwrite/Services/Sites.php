@@ -249,10 +249,11 @@ class Sites extends Service
     /**
      * List allowed site specifications for this instance.
      *
+     * @param ?string $type
      * @throws AppwriteException
      * @return \Appwrite\Models\SpecificationList
      */
-    public function listSpecifications(): \Appwrite\Models\SpecificationList
+    public function listSpecifications(?string $type = null): \Appwrite\Models\SpecificationList
     {
         $apiPath = str_replace(
             [],
@@ -261,6 +262,10 @@ class Sites extends Service
         );
 
         $apiParams = [];
+
+        if (!is_null($type)) {
+            $apiParams['type'] = $type;
+        }
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -421,10 +426,7 @@ class Sites extends Service
         }
         $apiParams['providerBranches'] = $providerBranches;
         $apiParams['providerPaths'] = $providerPaths;
-
-        if (!is_null($buildSpecification)) {
-            $apiParams['buildSpecification'] = $buildSpecification;
-        }
+        $apiParams['buildSpecification'] = $buildSpecification;
 
         if (!is_null($runtimeSpecification)) {
             $apiParams['runtimeSpecification'] = $runtimeSpecification;

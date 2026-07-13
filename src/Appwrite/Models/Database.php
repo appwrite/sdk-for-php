@@ -3,6 +3,7 @@
 namespace Appwrite\Models;
 
 use Appwrite\Enums\DatabaseType;
+use Appwrite\Enums\DatabaseStatus;
 
 /**
  * Database
@@ -22,6 +23,7 @@ readonly class Database
      * @param DatabaseType $type database type.
      * @param list<BackupPolicy> $policies database backup policies.
      * @param list<BackupArchive> $archives database backup archives.
+     * @param DatabaseStatus|null $status database status. possible values: `provisioning`, `ready` or `failed`
      */
     public function __construct(
         public string $id,
@@ -31,7 +33,8 @@ readonly class Database
         public bool $enabled,
         public DatabaseType $type,
         public array $policies,
-        public array $archives
+        public array $archives,
+        public ?DatabaseStatus $status = null
     ) {
     }
 
@@ -83,7 +86,8 @@ readonly class Database
                     static fn (mixed $item): mixed => static::hydrateTypedValue(BackupArchive::class, $item),
                     $data['archives']
                 )
-                : $data['archives']
+                : $data['archives'],
+            status: array_key_exists('status', $data) ? static::hydrateTypedValue(DatabaseStatus::class, $data['status'], true) : null
         );
     }
 
@@ -99,6 +103,7 @@ readonly class Database
             '$updatedAt' => static::serializeValue($this->updatedAt),
             'enabled' => static::serializeValue($this->enabled),
             'type' => static::serializeValue($this->type),
+            'status' => static::serializeValue($this->status),
             'policies' => static::serializeValue($this->policies),
             'archives' => static::serializeValue($this->archives)
         ];

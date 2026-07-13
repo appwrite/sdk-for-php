@@ -127,6 +127,9 @@ class Databases extends Service
      * @param ?array $queries
      * @throws AppwriteException
      * @return \Appwrite\Models\TransactionList
+     *
+     * @deprecated This API has been deprecated since 1.8.0. Please use `listTransactions` instead.
+     * @see TablesDB::listTransactions
      */
     public function listTransactions(?array $queries = null): \Appwrite\Models\TransactionList
     {
@@ -167,6 +170,9 @@ class Databases extends Service
      * @param ?int $ttl
      * @throws AppwriteException
      * @return \Appwrite\Models\Transaction
+     *
+     * @deprecated This API has been deprecated since 1.8.0. Please use `createTransaction` instead.
+     * @see TablesDB::createTransaction
      */
     public function createTransaction(?int $ttl = null): \Appwrite\Models\Transaction
     {
@@ -208,6 +214,9 @@ class Databases extends Service
      * @param string $transactionId
      * @throws AppwriteException
      * @return \Appwrite\Models\Transaction
+     *
+     * @deprecated This API has been deprecated since 1.8.0. Please use `getTransaction` instead.
+     * @see TablesDB::getTransaction
      */
     public function getTransaction(string $transactionId): \Appwrite\Models\Transaction
     {
@@ -247,6 +256,9 @@ class Databases extends Service
      * @param ?bool $rollback
      * @throws AppwriteException
      * @return \Appwrite\Models\Transaction
+     *
+     * @deprecated This API has been deprecated since 1.8.0. Please use `updateTransaction` instead.
+     * @see TablesDB::updateTransaction
      */
     public function updateTransaction(string $transactionId, ?bool $commit = null, ?bool $rollback = null): \Appwrite\Models\Transaction
     {
@@ -293,6 +305,9 @@ class Databases extends Service
      * @param string $transactionId
      * @throws AppwriteException
      * @return string
+     *
+     * @deprecated This API has been deprecated since 1.8.0. Please use `deleteTransaction` instead.
+     * @see TablesDB::deleteTransaction
      */
     public function deleteTransaction(string $transactionId): string
     {
@@ -327,6 +342,9 @@ class Databases extends Service
      * @param ?array $operations
      * @throws AppwriteException
      * @return \Appwrite\Models\Transaction
+     *
+     * @deprecated This API has been deprecated since 1.8.0. Please use `createOperations` instead.
+     * @see TablesDB::createOperations
      */
     public function createOperations(string $transactionId, ?array $operations = null): \Appwrite\Models\Transaction
     {
@@ -1824,6 +1842,9 @@ class Databases extends Service
      * @param ?bool $encrypt
      * @throws AppwriteException
      * @return \Appwrite\Models\AttributeLongtext
+     *
+     * @deprecated This API has been deprecated since 1.8.0. Please use `createLongtextColumn` instead.
+     * @see TablesDB::createLongtextColumn
      */
     public function createLongtextAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): \Appwrite\Models\AttributeLongtext
     {
@@ -1881,6 +1902,9 @@ class Databases extends Service
      * @param ?string $newKey
      * @throws AppwriteException
      * @return \Appwrite\Models\AttributeLongtext
+     *
+     * @deprecated This API has been deprecated since 1.8.0. Please use `updateLongtextColumn` instead.
+     * @see TablesDB::updateLongtextColumn
      */
     public function updateLongtextAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\AttributeLongtext
     {
@@ -1931,6 +1955,9 @@ class Databases extends Service
      * @param ?bool $encrypt
      * @throws AppwriteException
      * @return \Appwrite\Models\AttributeMediumtext
+     *
+     * @deprecated This API has been deprecated since 1.8.0. Please use `createMediumtextColumn` instead.
+     * @see TablesDB::createMediumtextColumn
      */
     public function createMediumtextAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): \Appwrite\Models\AttributeMediumtext
     {
@@ -1988,6 +2015,9 @@ class Databases extends Service
      * @param ?string $newKey
      * @throws AppwriteException
      * @return \Appwrite\Models\AttributeMediumtext
+     *
+     * @deprecated This API has been deprecated since 1.8.0. Please use `updateMediumtextColumn` instead.
+     * @see TablesDB::updateMediumtextColumn
      */
     public function updateMediumtextAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\AttributeMediumtext
     {
@@ -2474,6 +2504,9 @@ class Databases extends Service
      * @param ?bool $encrypt
      * @throws AppwriteException
      * @return \Appwrite\Models\AttributeText
+     *
+     * @deprecated This API has been deprecated since 1.8.0. Please use `createTextColumn` instead.
+     * @see TablesDB::createTextColumn
      */
     public function createTextAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): \Appwrite\Models\AttributeText
     {
@@ -2531,6 +2564,9 @@ class Databases extends Service
      * @param ?string $newKey
      * @throws AppwriteException
      * @return \Appwrite\Models\AttributeText
+     *
+     * @deprecated This API has been deprecated since 1.8.0. Please use `updateTextColumn` instead.
+     * @see TablesDB::updateTextColumn
      */
     public function updateTextAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\AttributeText
     {
@@ -2690,6 +2726,9 @@ class Databases extends Service
      * @param ?bool $encrypt
      * @throws AppwriteException
      * @return \Appwrite\Models\AttributeVarchar
+     *
+     * @deprecated This API has been deprecated since 1.8.0. Please use `createVarcharColumn` instead.
+     * @see TablesDB::createVarcharColumn
      */
     public function createVarcharAttribute(string $databaseId, string $collectionId, string $key, int $size, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): \Appwrite\Models\AttributeVarchar
     {
@@ -2749,6 +2788,9 @@ class Databases extends Service
      * @param ?string $newKey
      * @throws AppwriteException
      * @return \Appwrite\Models\AttributeVarchar
+     *
+     * @deprecated This API has been deprecated since 1.8.0. Please use `updateVarcharColumn` instead.
+     * @see TablesDB::updateVarcharColumn
      */
     public function updateVarcharAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?int $size = null, ?string $newKey = null): \Appwrite\Models\AttributeVarchar
     {

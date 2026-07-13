@@ -11,5 +11,6 @@ $client = (new Client())
 
 $sites = new Sites($client);
 
-$result = $sites->listSpecifications();
-```
+$result = $sites->listSpecifications(
+    type: 'runtimes' // optional
+);```

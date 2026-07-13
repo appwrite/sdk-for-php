@@ -15,6 +15,7 @@ readonly class Block
      * @param string $createdAt block creation date in iso 8601 format.
      * @param string $resourceType resource type that is blocked
      * @param string $resourceId resource identifier that is blocked
+     * @param string $mode block mode. full blocks reads and writes; readonly blocks writes only.
      * @param string $projectName name of the project this block applies to.
      * @param string $region region of the project this block applies to.
      * @param string $organizationName name of the organization that owns the project.
@@ -27,6 +28,7 @@ readonly class Block
         public string $createdAt,
         public string $resourceType,
         public string $resourceId,
+        public string $mode,
         public string $projectName,
         public string $region,
         public string $organizationName,
@@ -51,6 +53,9 @@ readonly class Block
         if (!array_key_exists('resourceId', $data)) {
             throw new \InvalidArgumentException('Missing required field "resourceId" for ' . static::class . '.');
         }
+        if (!array_key_exists('mode', $data)) {
+            throw new \InvalidArgumentException('Missing required field "mode" for ' . static::class . '.');
+        }
         if (!array_key_exists('projectName', $data)) {
             throw new \InvalidArgumentException('Missing required field "projectName" for ' . static::class . '.');
         }
@@ -71,6 +76,7 @@ readonly class Block
             createdAt: $data['$createdAt'],
             resourceType: $data['resourceType'],
             resourceId: $data['resourceId'],
+            mode: $data['mode'],
             projectName: $data['projectName'],
             region: $data['region'],
             organizationName: $data['organizationName'],
@@ -90,6 +96,7 @@ readonly class Block
             '$createdAt' => static::serializeValue($this->createdAt),
             'resourceType' => static::serializeValue($this->resourceType),
             'resourceId' => static::serializeValue($this->resourceId),
+            'mode' => static::serializeValue($this->mode),
             'reason' => static::serializeValue($this->reason),
             'expiredAt' => static::serializeValue($this->expiredAt),
             'projectName' => static::serializeValue($this->projectName),

@@ -12,6 +12,10 @@ class OrganizationKeyScopes implements JsonSerializable
     private static OrganizationKeyScopes $DEVKEYSWRITE;
     private static OrganizationKeyScopes $ORGANIZATIONKEYSREAD;
     private static OrganizationKeyScopes $ORGANIZATIONKEYSWRITE;
+    private static OrganizationKeyScopes $ORGANIZATIONMEMBERSHIPSREAD;
+    private static OrganizationKeyScopes $ORGANIZATIONMEMBERSHIPSWRITE;
+    private static OrganizationKeyScopes $ORGANIZATIONREAD;
+    private static OrganizationKeyScopes $ORGANIZATIONWRITE;
     private static OrganizationKeyScopes $DOMAINSREAD;
     private static OrganizationKeyScopes $DOMAINSWRITE;
     private static OrganizationKeyScopes $KEYSREAD;
@@ -76,6 +80,34 @@ class OrganizationKeyScopes implements JsonSerializable
         }
         return self::$ORGANIZATIONKEYSWRITE;
     }
+    public static function ORGANIZATIONMEMBERSHIPSREAD(): OrganizationKeyScopes
+    {
+        if (!isset(self::$ORGANIZATIONMEMBERSHIPSREAD)) {
+            self::$ORGANIZATIONMEMBERSHIPSREAD = new OrganizationKeyScopes('organization.memberships.read');
+        }
+        return self::$ORGANIZATIONMEMBERSHIPSREAD;
+    }
+    public static function ORGANIZATIONMEMBERSHIPSWRITE(): OrganizationKeyScopes
+    {
+        if (!isset(self::$ORGANIZATIONMEMBERSHIPSWRITE)) {
+            self::$ORGANIZATIONMEMBERSHIPSWRITE = new OrganizationKeyScopes('organization.memberships.write');
+        }
+        return self::$ORGANIZATIONMEMBERSHIPSWRITE;
+    }
+    public static function ORGANIZATIONREAD(): OrganizationKeyScopes
+    {
+        if (!isset(self::$ORGANIZATIONREAD)) {
+            self::$ORGANIZATIONREAD = new OrganizationKeyScopes('organization.read');
+        }
+        return self::$ORGANIZATIONREAD;
+    }
+    public static function ORGANIZATIONWRITE(): OrganizationKeyScopes
+    {
+        if (!isset(self::$ORGANIZATIONWRITE)) {
+            self::$ORGANIZATIONWRITE = new OrganizationKeyScopes('organization.write');
+        }
+        return self::$ORGANIZATIONWRITE;
+    }
     public static function DOMAINSREAD(): OrganizationKeyScopes
     {
         if (!isset(self::$DOMAINSREAD)) {
@@ -114,6 +146,10 @@ class OrganizationKeyScopes implements JsonSerializable
             'devKeys.write' => self::DEVKEYSWRITE(),
             'organization.keys.read' => self::ORGANIZATIONKEYSREAD(),
             'organization.keys.write' => self::ORGANIZATIONKEYSWRITE(),
+            'organization.memberships.read' => self::ORGANIZATIONMEMBERSHIPSREAD(),
+            'organization.memberships.write' => self::ORGANIZATIONMEMBERSHIPSWRITE(),
+            'organization.read' => self::ORGANIZATIONREAD(),
+            'organization.write' => self::ORGANIZATIONWRITE(),
             'domains.read' => self::DOMAINSREAD(),
             'domains.write' => self::DOMAINSWRITE(),
             'keys.read' => self::KEYSREAD(),

@@ -276,52 +276,6 @@ final class MessagingTest extends TestCase
         $this->assertSame($data, $response);
     }
 
-    public function testMethodListMessageLogs(): void
-    {
-        $data = array(
-            "total" => 5,
-            "logs" => array(
-                array(
-                    "event" => "account.sessions.create",
-                    "userId" => "610fc2f985ee0",
-                    "userEmail" => "john@appwrite.io",
-                    "userName" => "John Doe",
-                    "mode" => "admin",
-                    "userType" => "user",
-                    "ip" => "127.0.0.1",
-                    "time" => "2020-10-15T06:38:00.000+00:00",
-                    "osCode" => "Mac",
-                    "osName" => "Mac",
-                    "osVersion" => "Mac",
-                    "clientType" => "browser",
-                    "clientCode" => "CM",
-                    "clientName" => "Chrome Mobile iOS",
-                    "clientVersion" => "84.0",
-                    "clientEngine" => "WebKit",
-                    "clientEngineVersion" => "605.1.15",
-                    "deviceName" => "smartphone",
-                    "deviceBrand" => "Google",
-                    "deviceModel" => "Nexus 5",
-                    "countryCode" => "US",
-                    "countryName" => "United States"
-                )
-            )
-        );
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-        $this->client
-            ->allows()->getConfig(Mockery::any())
-            ->andReturn('');
-
-        $response = $this->messaging->listMessageLogs(
-            "<MESSAGE_ID>"
-        );
-
-        $this->assertInstanceOf(\Appwrite\Models\LogList::class, $response);
-    }
-
     public function testMethodListTargets(): void
     {
         $data = array(
@@ -1090,98 +1044,6 @@ final class MessagingTest extends TestCase
         $this->assertSame($data, $response);
     }
 
-    public function testMethodListProviderLogs(): void
-    {
-        $data = array(
-            "total" => 5,
-            "logs" => array(
-                array(
-                    "event" => "account.sessions.create",
-                    "userId" => "610fc2f985ee0",
-                    "userEmail" => "john@appwrite.io",
-                    "userName" => "John Doe",
-                    "mode" => "admin",
-                    "userType" => "user",
-                    "ip" => "127.0.0.1",
-                    "time" => "2020-10-15T06:38:00.000+00:00",
-                    "osCode" => "Mac",
-                    "osName" => "Mac",
-                    "osVersion" => "Mac",
-                    "clientType" => "browser",
-                    "clientCode" => "CM",
-                    "clientName" => "Chrome Mobile iOS",
-                    "clientVersion" => "84.0",
-                    "clientEngine" => "WebKit",
-                    "clientEngineVersion" => "605.1.15",
-                    "deviceName" => "smartphone",
-                    "deviceBrand" => "Google",
-                    "deviceModel" => "Nexus 5",
-                    "countryCode" => "US",
-                    "countryName" => "United States"
-                )
-            )
-        );
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-        $this->client
-            ->allows()->getConfig(Mockery::any())
-            ->andReturn('');
-
-        $response = $this->messaging->listProviderLogs(
-            "<PROVIDER_ID>"
-        );
-
-        $this->assertInstanceOf(\Appwrite\Models\LogList::class, $response);
-    }
-
-    public function testMethodListSubscriberLogs(): void
-    {
-        $data = array(
-            "total" => 5,
-            "logs" => array(
-                array(
-                    "event" => "account.sessions.create",
-                    "userId" => "610fc2f985ee0",
-                    "userEmail" => "john@appwrite.io",
-                    "userName" => "John Doe",
-                    "mode" => "admin",
-                    "userType" => "user",
-                    "ip" => "127.0.0.1",
-                    "time" => "2020-10-15T06:38:00.000+00:00",
-                    "osCode" => "Mac",
-                    "osName" => "Mac",
-                    "osVersion" => "Mac",
-                    "clientType" => "browser",
-                    "clientCode" => "CM",
-                    "clientName" => "Chrome Mobile iOS",
-                    "clientVersion" => "84.0",
-                    "clientEngine" => "WebKit",
-                    "clientEngineVersion" => "605.1.15",
-                    "deviceName" => "smartphone",
-                    "deviceBrand" => "Google",
-                    "deviceModel" => "Nexus 5",
-                    "countryCode" => "US",
-                    "countryName" => "United States"
-                )
-            )
-        );
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-        $this->client
-            ->allows()->getConfig(Mockery::any())
-            ->andReturn('');
-
-        $response = $this->messaging->listSubscriberLogs(
-            "<SUBSCRIBER_ID>"
-        );
-
-        $this->assertInstanceOf(\Appwrite\Models\LogList::class, $response);
-    }
-
     public function testMethodListTopics(): void
     {
         $data = array(
@@ -1310,52 +1172,6 @@ final class MessagingTest extends TestCase
         );
 
         $this->assertSame($data, $response);
-    }
-
-    public function testMethodListTopicLogs(): void
-    {
-        $data = array(
-            "total" => 5,
-            "logs" => array(
-                array(
-                    "event" => "account.sessions.create",
-                    "userId" => "610fc2f985ee0",
-                    "userEmail" => "john@appwrite.io",
-                    "userName" => "John Doe",
-                    "mode" => "admin",
-                    "userType" => "user",
-                    "ip" => "127.0.0.1",
-                    "time" => "2020-10-15T06:38:00.000+00:00",
-                    "osCode" => "Mac",
-                    "osName" => "Mac",
-                    "osVersion" => "Mac",
-                    "clientType" => "browser",
-                    "clientCode" => "CM",
-                    "clientName" => "Chrome Mobile iOS",
-                    "clientVersion" => "84.0",
-                    "clientEngine" => "WebKit",
-                    "clientEngineVersion" => "605.1.15",
-                    "deviceName" => "smartphone",
-                    "deviceBrand" => "Google",
-                    "deviceModel" => "Nexus 5",
-                    "countryCode" => "US",
-                    "countryName" => "United States"
-                )
-            )
-        );
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-        $this->client
-            ->allows()->getConfig(Mockery::any())
-            ->andReturn('');
-
-        $response = $this->messaging->listTopicLogs(
-            "<TOPIC_ID>"
-        );
-
-        $this->assertInstanceOf(\Appwrite\Models\LogList::class, $response);
     }
 
     public function testMethodListSubscribers(): void

@@ -76,11 +76,11 @@ class TablesDB extends Service
      * @param string $databaseId
      * @param string $name
      * @param ?bool $enabled
-     * @param ?string $dedicatedDatabaseId
+     * @param ?string $specification
      * @throws AppwriteException
      * @return \Appwrite\Models\Database
      */
-    public function create(string $databaseId, string $name, ?bool $enabled = null, ?string $dedicatedDatabaseId = null): \Appwrite\Models\Database
+    public function create(string $databaseId, string $name, ?bool $enabled = null, ?string $specification = null): \Appwrite\Models\Database
     {
         $apiPath = str_replace(
             [],
@@ -96,8 +96,8 @@ class TablesDB extends Service
             $apiParams['enabled'] = $enabled;
         }
 
-        if (!is_null($dedicatedDatabaseId)) {
-            $apiParams['dedicatedDatabaseId'] = $dedicatedDatabaseId;
+        if (!is_null($specification)) {
+            $apiParams['specification'] = $specification;
         }
 
         $apiHeaders = [];

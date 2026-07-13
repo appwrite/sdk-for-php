@@ -9,6 +9,7 @@ use Appwrite\InputFile;
 use Appwrite\Enums\ProjectAuthMethodId;
 use Appwrite\Enums\ProjectKeyScopes;
 use Appwrite\Enums\ProjectOAuth2GooglePrompt;
+use Appwrite\Enums\ProjectOAuth2OidcPrompt;
 use Appwrite\Enums\ProjectOAuthProviderId;
 use Appwrite\Enums\ProjectPolicyId;
 use Appwrite\Enums\ProjectProtocolId;
@@ -685,10 +686,11 @@ class Project extends Service
      * @param ?int $userCodeLength
      * @param ?string $userCodeFormat
      * @param ?int $deviceCodeDuration
+     * @param ?array $defaultScopes
      * @throws AppwriteException
      * @return \Appwrite\Models\Project
      */
-    public function updateOAuth2Server(bool $enabled, string $authorizationUrl, ?array $scopes = null, ?array $authorizationDetailsTypes = null, ?int $accessTokenDuration = null, ?int $refreshTokenDuration = null, ?int $publicAccessTokenDuration = null, ?int $publicRefreshTokenDuration = null, ?bool $confidentialPkce = null, ?string $verificationUrl = null, ?int $userCodeLength = null, ?string $userCodeFormat = null, ?int $deviceCodeDuration = null): \Appwrite\Models\Project
+    public function updateOAuth2Server(bool $enabled, string $authorizationUrl, ?array $scopes = null, ?array $authorizationDetailsTypes = null, ?int $accessTokenDuration = null, ?int $refreshTokenDuration = null, ?int $publicAccessTokenDuration = null, ?int $publicRefreshTokenDuration = null, ?bool $confidentialPkce = null, ?string $verificationUrl = null, ?int $userCodeLength = null, ?string $userCodeFormat = null, ?int $deviceCodeDuration = null, ?array $defaultScopes = null): \Appwrite\Models\Project
     {
         $apiPath = str_replace(
             [],
@@ -722,6 +724,10 @@ class Project extends Service
             $apiParams['userCodeFormat'] = $userCodeFormat;
         }
         $apiParams['deviceCodeDuration'] = $deviceCodeDuration;
+
+        if (!is_null($defaultScopes)) {
+            $apiParams['defaultScopes'] = $defaultScopes;
+        }
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -828,6 +834,48 @@ class Project extends Service
         }
 
         return \Appwrite\Models\OAuth2Apple::from($response);
+
+    }
+
+    /**
+     * Update the project OAuth2 Appwrite configuration.
+     *
+     * @param ?string $clientId
+     * @param ?string $clientSecret
+     * @param ?bool $enabled
+     * @throws AppwriteException
+     * @return \Appwrite\Models\OAuth2Appwrite
+     */
+    public function updateOAuth2Appwrite(?string $clientId = null, ?string $clientSecret = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Appwrite
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/project/oauth2/appwrite'
+        );
+
+        $apiParams = [];
+        $apiParams['clientId'] = $clientId;
+        $apiParams['clientSecret'] = $clientSecret;
+        $apiParams['enabled'] = $enabled;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\OAuth2Appwrite::from($response);
 
     }
 
@@ -1780,11 +1828,13 @@ class Project extends Service
      * @param ?string $authorizationURL
      * @param ?string $tokenURL
      * @param ?string $userInfoURL
+     * @param ?array $prompt
+     * @param ?int $maxAge
      * @param ?bool $enabled
      * @throws AppwriteException
      * @return \Appwrite\Models\OAuth2Oidc
      */
-    public function updateOAuth2Oidc(?string $clientId = null, ?string $clientSecret = null, ?string $wellKnownURL = null, ?string $authorizationURL = null, ?string $tokenURL = null, ?string $userInfoURL = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Oidc
+    public function updateOAuth2Oidc(?string $clientId = null, ?string $clientSecret = null, ?string $wellKnownURL = null, ?string $authorizationURL = null, ?string $tokenURL = null, ?string $userInfoURL = null, ?array $prompt = null, ?int $maxAge = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Oidc
     {
         $apiPath = str_replace(
             [],
@@ -1799,6 +1849,8 @@ class Project extends Service
         $apiParams['authorizationURL'] = $authorizationURL;
         $apiParams['tokenURL'] = $tokenURL;
         $apiParams['userInfoURL'] = $userInfoURL;
+        $apiParams['prompt'] = $prompt;
+        $apiParams['maxAge'] = $maxAge;
         $apiParams['enabled'] = $enabled;
 
         $apiHeaders = [];

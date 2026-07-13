@@ -8,6 +8,7 @@ class ProjectOAuthProviderId implements JsonSerializable
 {
     private static ProjectOAuthProviderId $AMAZON;
     private static ProjectOAuthProviderId $APPLE;
+    private static ProjectOAuthProviderId $APPWRITE;
     private static ProjectOAuthProviderId $AUTH0;
     private static ProjectOAuthProviderId $AUTHENTIK;
     private static ProjectOAuthProviderId $AUTODESK;
@@ -80,6 +81,13 @@ class ProjectOAuthProviderId implements JsonSerializable
             self::$APPLE = new ProjectOAuthProviderId('apple');
         }
         return self::$APPLE;
+    }
+    public static function APPWRITE(): ProjectOAuthProviderId
+    {
+        if (!isset(self::$APPWRITE)) {
+            self::$APPWRITE = new ProjectOAuthProviderId('appwrite');
+        }
+        return self::$APPWRITE;
     }
     public static function AUTH0(): ProjectOAuthProviderId
     {
@@ -374,6 +382,7 @@ class ProjectOAuthProviderId implements JsonSerializable
         return match ($value) {
             'amazon' => self::AMAZON(),
             'apple' => self::APPLE(),
+            'appwrite' => self::APPWRITE(),
             'auth0' => self::AUTH0(),
             'authentik' => self::AUTHENTIK(),
             'autodesk' => self::AUTODESK(),
