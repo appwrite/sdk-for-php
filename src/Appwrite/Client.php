@@ -159,7 +159,7 @@ class Client
      */
     public function setBearer(string $value): Client
     {
-        $this->addHeader('Authorization', $value);
+        $this->addHeader('Authorization', "Bearer {$value}");
         $this->config['bearer'] = $value;
         $this->key = null;
         $this->authorization = null;
