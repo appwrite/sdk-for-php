@@ -31,6 +31,14 @@ POST https://cloud.appwrite.io/v1/tablesdb
 | name | string | Database name. Max length: 128 chars. |  |
 | enabled | boolean | Is the database enabled? When set to 'disabled', users cannot access the database but Server SDKs with an API key can still read and write to the database. No data is lost when this is toggled. | 1 |
 | specification | string | Database specification. Defaults to `serverless`, which creates the database on the shared pool. Any other value provisions a dedicated database on that specification. | serverless |
+| replicas | integer | Number of high availability replicas (0-5) for the dedicated database backing this database. Requires a dedicated `specification`; must be 0 for a serverless database. High availability is enabled when greater than 0. | 0 |
+
+
+```http request
+GET https://cloud.appwrite.io/v1/tablesdb/specifications
+```
+
+** List the dedicated database specifications available on the current plan. Each specification reports its resource limits, pricing, and whether it is enabled for the organization. **
 
 
 ```http request
@@ -140,6 +148,7 @@ PUT https://cloud.appwrite.io/v1/tablesdb/{databaseId}
 | databaseId | string | **Required** Database ID. |  |
 | name | string | Database name. Max length: 128 chars. |  |
 | enabled | boolean | Is database enabled? When set to 'disabled', users cannot access the database but Server SDKs with an API key can still read and write to the database. No data is lost when this is toggled. | 1 |
+| replicas | integer | Number of high availability replicas (0-5) for the dedicated database backing this database. Only valid when the database is backed by a dedicated specification. High availability is enabled when greater than 0. |  |
 
 
 ```http request
@@ -147,6 +156,46 @@ DELETE https://cloud.appwrite.io/v1/tablesdb/{databaseId}
 ```
 
 ** Delete a database by its unique ID. Only API keys with with databases.write scope can delete a database. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| databaseId | string | **Required** Database ID. |  |
+
+
+```http request
+POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/failovers
+```
+
+** Trigger a manual failover for a dedicated database with high availability enabled. Promotes a replica to primary. The failover runs asynchronously; poll the database document for status updates. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| databaseId | string | **Required** Database ID. |  |
+| targetReplicaId | string | Target replica ID to promote. If not specified, the healthiest replica is selected. |  |
+
+
+```http request
+GET https://cloud.appwrite.io/v1/tablesdb/{databaseId}/replicas
+```
+
+** Get high availability status for a dedicated database. Returns replica statuses, replication lag, and sync mode. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| databaseId | string | **Required** Database ID. |  |
+
+
+```http request
+GET https://cloud.appwrite.io/v1/tablesdb/{databaseId}/status
+```
+
+** Get real-time health and status information for a dedicated database. Returns health status, readiness, uptime, connection info, replica status, and volume information. **
 
 ### Parameters
 

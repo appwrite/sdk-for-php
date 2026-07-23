@@ -15,5 +15,6 @@ $sites = new Sites($client);
 $result = $sites->getDeploymentDownload(
     siteId: '<SITE_ID>',
     deploymentId: '<DEPLOYMENT_ID>',
-    type: DeploymentDownloadType::SOURCE() // optional
+    type: DeploymentDownloadType::SOURCE(), // optional
+    token: '<TOKEN>' // optional
 );```

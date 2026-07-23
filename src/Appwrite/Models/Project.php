@@ -39,6 +39,7 @@ readonly class Project
      * @param list<ProjectProtocol> $protocols list of protocols.
      * @param list<Block> $blocks project blocks information
      * @param string $consoleAccessedAt last time the project was accessed via console. used with plan's projectinactivitydays to determine if project is paused.
+     * @param bool $wafEnabled whether waf enforcement is enabled for the project.
      * @param BillingLimits|null $billingLimits billing limits reached
      * @param bool|null $oAuth2ServerEnabled oauth2 server status
      * @param string|null $oAuth2ServerAuthorizationUrl oauth2 server authorization url
@@ -49,6 +50,7 @@ readonly class Project
      * @param int|null $oAuth2ServerRefreshTokenDuration oauth2 server refresh token duration in seconds for confidential clients
      * @param int|null $oAuth2ServerPublicAccessTokenDuration oauth2 server access token duration in seconds for public clients (spas, mobile, native)
      * @param int|null $oAuth2ServerPublicRefreshTokenDuration oauth2 server refresh token duration in seconds for public clients (spas, mobile, native)
+     * @param int|null $oAuth2ServerInstallationAccessTokenDuration oauth2 server access token duration in seconds for app installation access tokens
      * @param bool|null $oAuth2ServerConfidentialPkce when enabled, pkce is required for confidential clients (server-side flows using client_secret). pkce is always required for public clients regardless of this setting.
      * @param string|null $oAuth2ServerVerificationUrl url to your application page where users enter the device flow user code. empty when the device authorization grant is not configured.
      * @param int|null $oAuth2ServerUserCodeLength number of characters in the device flow user code, excluding the formatting separator.
@@ -84,6 +86,7 @@ readonly class Project
         public array $protocols,
         public array $blocks,
         public string $consoleAccessedAt,
+        public bool $wafEnabled,
         public ?BillingLimits $billingLimits = null,
         public ?bool $oAuth2ServerEnabled = null,
         public ?string $oAuth2ServerAuthorizationUrl = null,
@@ -94,6 +97,7 @@ readonly class Project
         public ?int $oAuth2ServerRefreshTokenDuration = null,
         public ?int $oAuth2ServerPublicAccessTokenDuration = null,
         public ?int $oAuth2ServerPublicRefreshTokenDuration = null,
+        public ?int $oAuth2ServerInstallationAccessTokenDuration = null,
         public ?bool $oAuth2ServerConfidentialPkce = null,
         public ?string $oAuth2ServerVerificationUrl = null,
         public ?int $oAuth2ServerUserCodeLength = null,
@@ -189,6 +193,9 @@ readonly class Project
         if (!array_key_exists('consoleAccessedAt', $data)) {
             throw new \InvalidArgumentException('Missing required field "consoleAccessedAt" for ' . static::class . '.');
         }
+        if (!array_key_exists('wafEnabled', $data)) {
+            throw new \InvalidArgumentException('Missing required field "wafEnabled" for ' . static::class . '.');
+        }
 
         return new static(
             id: $data['$id'],
@@ -243,6 +250,7 @@ readonly class Project
                 )
                 : $data['blocks'],
             consoleAccessedAt: $data['consoleAccessedAt'],
+            wafEnabled: $data['wafEnabled'],
             billingLimits: array_key_exists('billingLimits', $data) ? static::hydrateTypedValue(BillingLimits::class, $data['billingLimits'], true) : null,
             oAuth2ServerEnabled: array_key_exists('oAuth2ServerEnabled', $data) ? $data['oAuth2ServerEnabled'] : null,
             oAuth2ServerAuthorizationUrl: array_key_exists('oAuth2ServerAuthorizationUrl', $data) ? $data['oAuth2ServerAuthorizationUrl'] : null,
@@ -253,6 +261,7 @@ readonly class Project
             oAuth2ServerRefreshTokenDuration: array_key_exists('oAuth2ServerRefreshTokenDuration', $data) ? $data['oAuth2ServerRefreshTokenDuration'] : null,
             oAuth2ServerPublicAccessTokenDuration: array_key_exists('oAuth2ServerPublicAccessTokenDuration', $data) ? $data['oAuth2ServerPublicAccessTokenDuration'] : null,
             oAuth2ServerPublicRefreshTokenDuration: array_key_exists('oAuth2ServerPublicRefreshTokenDuration', $data) ? $data['oAuth2ServerPublicRefreshTokenDuration'] : null,
+            oAuth2ServerInstallationAccessTokenDuration: array_key_exists('oAuth2ServerInstallationAccessTokenDuration', $data) ? $data['oAuth2ServerInstallationAccessTokenDuration'] : null,
             oAuth2ServerConfidentialPkce: array_key_exists('oAuth2ServerConfidentialPkce', $data) ? $data['oAuth2ServerConfidentialPkce'] : null,
             oAuth2ServerVerificationUrl: array_key_exists('oAuth2ServerVerificationUrl', $data) ? $data['oAuth2ServerVerificationUrl'] : null,
             oAuth2ServerUserCodeLength: array_key_exists('oAuth2ServerUserCodeLength', $data) ? $data['oAuth2ServerUserCodeLength'] : null,
@@ -295,6 +304,7 @@ readonly class Project
             'protocols' => static::serializeValue($this->protocols),
             'blocks' => static::serializeValue($this->blocks),
             'consoleAccessedAt' => static::serializeValue($this->consoleAccessedAt),
+            'wafEnabled' => static::serializeValue($this->wafEnabled),
             'billingLimits' => static::serializeValue($this->billingLimits),
             'oAuth2ServerEnabled' => static::serializeValue($this->oAuth2ServerEnabled),
             'oAuth2ServerAuthorizationUrl' => static::serializeValue($this->oAuth2ServerAuthorizationUrl),
@@ -305,6 +315,7 @@ readonly class Project
             'oAuth2ServerRefreshTokenDuration' => static::serializeValue($this->oAuth2ServerRefreshTokenDuration),
             'oAuth2ServerPublicAccessTokenDuration' => static::serializeValue($this->oAuth2ServerPublicAccessTokenDuration),
             'oAuth2ServerPublicRefreshTokenDuration' => static::serializeValue($this->oAuth2ServerPublicRefreshTokenDuration),
+            'oAuth2ServerInstallationAccessTokenDuration' => static::serializeValue($this->oAuth2ServerInstallationAccessTokenDuration),
             'oAuth2ServerConfidentialPkce' => static::serializeValue($this->oAuth2ServerConfidentialPkce),
             'oAuth2ServerVerificationUrl' => static::serializeValue($this->oAuth2ServerVerificationUrl),
             'oAuth2ServerUserCodeLength' => static::serializeValue($this->oAuth2ServerUserCodeLength),

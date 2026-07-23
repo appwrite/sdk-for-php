@@ -25,6 +25,89 @@ POST https://cloud.appwrite.io/v1/account
 
 
 ```http request
+GET https://cloud.appwrite.io/v1/account/consents
+```
+
+** Get a list of the OAuth2 consents the current user has given to third-party apps. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. | [] |
+| total | boolean | When set to false, the total count returned will be 0 and will not be calculated. | 1 |
+
+
+```http request
+GET https://cloud.appwrite.io/v1/account/consents/{consentId}
+```
+
+** Get an OAuth2 consent the current user has given to a third-party app by its unique ID. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| consentId | string | **Required** Consent unique ID. |  |
+
+
+```http request
+DELETE https://cloud.appwrite.io/v1/account/consents/{consentId}
+```
+
+** Delete an OAuth2 consent by its unique ID. All token families issued under the consent are revoked, and the app must ask for consent again to regain access. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| consentId | string | **Required** Consent unique ID. |  |
+
+
+```http request
+GET https://cloud.appwrite.io/v1/account/consents/{consentId}/tokens
+```
+
+** Get a list of the token families issued under an OAuth2 consent. Each entry represents one authorized device or session; the token secrets themselves are never returned. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| consentId | string | **Required** Consent unique ID. |  |
+| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. | [] |
+| total | boolean | When set to false, the total count returned will be 0 and will not be calculated. | 1 |
+
+
+```http request
+GET https://cloud.appwrite.io/v1/account/consents/{consentId}/tokens/{tokenId}
+```
+
+** Get a token family issued under an OAuth2 consent by its unique ID. The token secrets themselves are never returned. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| consentId | string | **Required** Consent unique ID. |  |
+| tokenId | string | **Required** Token unique ID. |  |
+
+
+```http request
+DELETE https://cloud.appwrite.io/v1/account/consents/{consentId}/tokens/{tokenId}
+```
+
+** Delete a token family issued under an OAuth2 consent by its unique ID. The access and refresh tokens of the family stop working immediately; other token families and the consent itself are unaffected. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| consentId | string | **Required** Consent unique ID. |  |
+| tokenId | string | **Required** Token unique ID. |  |
+
+
+```http request
 PATCH https://cloud.appwrite.io/v1/account/email
 ```
 

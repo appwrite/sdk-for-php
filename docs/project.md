@@ -232,6 +232,7 @@ PUT https://cloud.appwrite.io/v1/project/oauth2-server
 | refreshTokenDuration | integer | Refresh token duration in seconds for confidential clients (server-side apps that authenticate with a client secret). Leave empty to use default 1 year. |  |
 | publicAccessTokenDuration | integer | Access token duration in seconds for public clients (SPAs, mobile, and native apps that cannot keep a client secret). Leave empty to use default 1 hour. |  |
 | publicRefreshTokenDuration | integer | Refresh token duration in seconds for public clients (SPAs, mobile, and native apps that cannot keep a client secret). Leave empty to use default 30 days. |  |
+| installationAccessTokenDuration | integer | Access token duration in seconds for app installation access tokens. Leave empty to use default 1 hour. |  |
 | confidentialPkce | boolean | When enabled, PKCE is required for confidential clients (server-side flows using client_secret). PKCE is always required for public clients regardless of this setting. |  |
 | verificationUrl | string | URL to your application page where users enter the device flow user code. Required to enable the Device Authorization Grant. |  |
 | userCodeLength | integer | Number of characters in the device flow user code, excluding the formatting separator. Shorter codes are easier to type but weaker; pair short codes with short expiry. Leave empty to use default 8. |  |

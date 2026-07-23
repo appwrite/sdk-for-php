@@ -422,10 +422,7 @@ class Functions extends Service
         $apiParams['providerBranches'] = $providerBranches;
         $apiParams['providerPaths'] = $providerPaths;
         $apiParams['buildSpecification'] = $buildSpecification;
-
-        if (!is_null($runtimeSpecification)) {
-            $apiParams['runtimeSpecification'] = $runtimeSpecification;
-        }
+        $apiParams['runtimeSpecification'] = $runtimeSpecification;
 
         if (!is_null($deploymentRetention)) {
             $apiParams['deploymentRetention'] = $deploymentRetention;

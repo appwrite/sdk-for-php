@@ -33,35 +33,7 @@ final class TablesDBTest extends TestCase
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
                     "enabled" => true,
-                    "type" => "legacy",
-                    "policies" => array(
-                        array(
-                            "\$id" => "5e5ea5c16897e",
-                            "name" => "Hourly backups",
-                            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-                            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-                            "services" => array(),
-                            "resources" => array(),
-                            "retention" => 7,
-                            "schedule" => "0 * * * *",
-                            "type" => "full",
-                            "enabled" => true
-                        )
-                    ),
-                    "archives" => array(
-                        array(
-                            "\$id" => "5e5ea5c16897e",
-                            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-                            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-                            "policyId" => "did8jx6ws45jana098ab7",
-                            "size" => 100000,
-                            "status" => "completed",
-                            "startedAt" => "2020-10-15T06:38:00.000+00:00",
-                            "migrationId" => "did8jx6ws45jana098ab7",
-                            "services" => array(),
-                            "resources" => array()
-                        )
-                    )
+                    "type" => "legacy"
                 )
             )
         );
@@ -86,35 +58,7 @@ final class TablesDBTest extends TestCase
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "enabled" => true,
-            "type" => "legacy",
-            "policies" => array(
-                array(
-                    "\$id" => "5e5ea5c16897e",
-                    "name" => "Hourly backups",
-                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "services" => array(),
-                    "resources" => array(),
-                    "retention" => 7,
-                    "schedule" => "0 * * * *",
-                    "type" => "full",
-                    "enabled" => true
-                )
-            ),
-            "archives" => array(
-                array(
-                    "\$id" => "5e5ea5c16897e",
-                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "policyId" => "did8jx6ws45jana098ab7",
-                    "size" => 100000,
-                    "status" => "completed",
-                    "startedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "migrationId" => "did8jx6ws45jana098ab7",
-                    "services" => array(),
-                    "resources" => array()
-                )
-            )
+            "type" => "legacy"
         );
 
         $this->client
@@ -130,6 +74,44 @@ final class TablesDBTest extends TestCase
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Database::class, $response);
+    }
+
+    public function testMethodListSpecifications(): void
+    {
+        $data = array(
+            "specifications" => array(
+                array(
+                    "slug" => "s-2vcpu-2gb",
+                    "name" => "Standard",
+                    "price" => 20,
+                    "cpu" => 2000,
+                    "memory" => 2048,
+                    "maxConnections" => 200,
+                    "includedStorage" => 25,
+                    "includedBandwidth" => 200,
+                    "enabled" => true
+                )
+            ),
+            "total" => 9,
+            "pricing" => array(
+                "storageOverageRate" => 0.125,
+                "bandwidthOverageRate" => 0.08,
+                "replicaRate" => 1,
+                "crossRegionReplicaRate" => 1,
+                "pitrRate" => 0.2
+            )
+        );
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->tablesDB->listSpecifications();
+
+        $this->assertInstanceOf(\Appwrite\Models\DedicatedDatabaseSpecificationList::class, $response);
     }
 
     public function testMethodListTransactions(): void
@@ -284,35 +266,7 @@ final class TablesDBTest extends TestCase
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "enabled" => true,
-            "type" => "legacy",
-            "policies" => array(
-                array(
-                    "\$id" => "5e5ea5c16897e",
-                    "name" => "Hourly backups",
-                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "services" => array(),
-                    "resources" => array(),
-                    "retention" => 7,
-                    "schedule" => "0 * * * *",
-                    "type" => "full",
-                    "enabled" => true
-                )
-            ),
-            "archives" => array(
-                array(
-                    "\$id" => "5e5ea5c16897e",
-                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "policyId" => "did8jx6ws45jana098ab7",
-                    "size" => 100000,
-                    "status" => "completed",
-                    "startedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "migrationId" => "did8jx6ws45jana098ab7",
-                    "services" => array(),
-                    "resources" => array()
-                )
-            )
+            "type" => "legacy"
         );
 
         $this->client
@@ -337,35 +291,7 @@ final class TablesDBTest extends TestCase
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "enabled" => true,
-            "type" => "legacy",
-            "policies" => array(
-                array(
-                    "\$id" => "5e5ea5c16897e",
-                    "name" => "Hourly backups",
-                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "services" => array(),
-                    "resources" => array(),
-                    "retention" => 7,
-                    "schedule" => "0 * * * *",
-                    "type" => "full",
-                    "enabled" => true
-                )
-            ),
-            "archives" => array(
-                array(
-                    "\$id" => "5e5ea5c16897e",
-                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "policyId" => "did8jx6ws45jana098ab7",
-                    "size" => 100000,
-                    "status" => "completed",
-                    "startedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "migrationId" => "did8jx6ws45jana098ab7",
-                    "services" => array(),
-                    "resources" => array()
-                )
-            )
+            "type" => "legacy"
         );
 
         $this->client
@@ -398,6 +324,144 @@ final class TablesDBTest extends TestCase
         );
 
         $this->assertSame($data, $response);
+    }
+
+    public function testMethodCreateFailover(): void
+    {
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "projectId" => "5e5ea5c16897e",
+            "name" => "My Production Database",
+            "api" => "postgresql",
+            "engine" => "postgresql",
+            "version" => "16",
+            "specification" => "s-2vcpu-2gb",
+            "backend" => "edge",
+            "hostname" => "db-myproject-mydb.fra.appwrite.center",
+            "connectionPort" => 5432,
+            "connectionUser" => "appwrite_user",
+            "connectionPassword" => "••••••••",
+            "connectionString" => "postgresql://user:pass@db-myproject-mydb.fra.appwrite.center:5432/postgres?sslmode=require",
+            "ssl" => true,
+            "status" => "ready",
+            "containerStatus" => "active",
+            "lifecycleState" => "active",
+            "idleTimeoutMinutes" => 15,
+            "cpu" => 2000,
+            "memory" => 4096,
+            "storage" => 100,
+            "storageClass" => "ssd",
+            "storageMaxGb" => 100,
+            "nodePool" => "db-pool-4vcpu-8gb",
+            "replicas" => 2,
+            "syncMode" => "async",
+            "crossRegionReplicas" => 1,
+            "networkMaxConnections" => 500,
+            "networkIdleTimeoutSeconds" => 900,
+            "networkIPAllowlist" => array(),
+            "backupEnabled" => true,
+            "pitr" => true,
+            "pitrRetentionDays" => 14,
+            "storageAutoscaling" => true,
+            "storageAutoscalingThresholdPercent" => 85,
+            "storageAutoscalingMaxGb" => 500,
+            "maintenanceWindowDay" => "sun",
+            "maintenanceWindowHourUtc" => 3,
+            "metricsEnabled" => true,
+            "sqlApiEnabled" => true,
+            "sqlApiAllowedStatements" => array(),
+            "sqlApiMaxRows" => 10000,
+            "sqlApiMaxBytes" => 10485760,
+            "sqlApiTimeoutSeconds" => 30,
+            "error" => "[ERROR]"
+        );
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->tablesDB->createFailover(
+            "<DATABASE_ID>"
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\DedicatedDatabase::class, $response);
+    }
+
+    public function testMethodGetReplicas(): void
+    {
+        $data = array(
+            "replicas" => 2,
+            "syncMode" => "async",
+            "members" => array(
+                array(
+                    "\$id" => "1",
+                    "role" => "replica",
+                    "status" => "active",
+                    "lagSeconds" => 0.5
+                )
+            )
+        );
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->tablesDB->getReplicas(
+            "<DATABASE_ID>"
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\DedicatedDatabaseReplicas::class, $response);
+    }
+
+    public function testMethodGetStatus(): void
+    {
+        $data = array(
+            "health" => "healthy",
+            "ready" => true,
+            "engine" => "postgresql",
+            "version" => "17",
+            "uptime" => 86400,
+            "connections" => array(
+                "current" => 12,
+                "max" => 100
+            ),
+            "replicas" => array(
+                array(
+                    "index" => 0,
+                    "role" => "primary",
+                    "healthy" => true
+                )
+            ),
+            "volumes" => array(
+                array(
+                    "path" => "/var/lib/postgresql/data",
+                    "usedPercent" => "45%",
+                    "available" => "55GB",
+                    "mounted" => true
+                )
+            )
+        );
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->tablesDB->getStatus(
+            "<DATABASE_ID>"
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\DatabaseStatus::class, $response);
     }
 
     public function testMethodListTables(): void

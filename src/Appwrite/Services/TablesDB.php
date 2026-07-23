@@ -77,10 +77,11 @@ class TablesDB extends Service
      * @param string $name
      * @param ?bool $enabled
      * @param ?string $specification
+     * @param ?int $replicas
      * @throws AppwriteException
      * @return \Appwrite\Models\Database
      */
-    public function create(string $databaseId, string $name, ?bool $enabled = null, ?string $specification = null): \Appwrite\Models\Database
+    public function create(string $databaseId, string $name, ?bool $enabled = null, ?string $specification = null, ?int $replicas = null): \Appwrite\Models\Database
     {
         $apiPath = str_replace(
             [],
@@ -100,6 +101,10 @@ class TablesDB extends Service
             $apiParams['specification'] = $specification;
         }
 
+        if (!is_null($replicas)) {
+            $apiParams['replicas'] = $replicas;
+        }
+
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
@@ -117,6 +122,43 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\Database::from($response);
+
+    }
+
+    /**
+     * List the dedicated database specifications available on the current plan.
+     * Each specification reports its resource limits, pricing, and whether it is
+     * enabled for the organization.
+     *
+     * @throws AppwriteException
+     * @return \Appwrite\Models\DedicatedDatabaseSpecificationList
+     */
+    public function listSpecifications(): \Appwrite\Models\DedicatedDatabaseSpecificationList
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/tablesdb/specifications'
+        );
+
+        $apiParams = [];
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\DedicatedDatabaseSpecificationList::from($response);
 
     }
 
@@ -406,10 +448,11 @@ class TablesDB extends Service
      * @param string $databaseId
      * @param ?string $name
      * @param ?bool $enabled
+     * @param ?int $replicas
      * @throws AppwriteException
      * @return \Appwrite\Models\Database
      */
-    public function update(string $databaseId, ?string $name = null, ?bool $enabled = null): \Appwrite\Models\Database
+    public function update(string $databaseId, ?string $name = null, ?bool $enabled = null, ?int $replicas = null): \Appwrite\Models\Database
     {
         $apiPath = str_replace(
             ['{databaseId}'],
@@ -427,6 +470,7 @@ class TablesDB extends Service
         if (!is_null($enabled)) {
             $apiParams['enabled'] = $enabled;
         }
+        $apiParams['replicas'] = $replicas;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -479,6 +523,125 @@ class TablesDB extends Service
         );
 
         return $response;
+
+    }
+
+    /**
+     * Trigger a manual failover for a dedicated database with high availability
+     * enabled. Promotes a replica to primary. The failover runs asynchronously;
+     * poll the database document for status updates.
+     *
+     * @param string $databaseId
+     * @param ?string $targetReplicaId
+     * @throws AppwriteException
+     * @return \Appwrite\Models\DedicatedDatabase
+     */
+    public function createFailover(string $databaseId, ?string $targetReplicaId = null): \Appwrite\Models\DedicatedDatabase
+    {
+        $apiPath = str_replace(
+            ['{databaseId}'],
+            [$databaseId],
+            '/tablesdb/{databaseId}/failovers'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['targetReplicaId'] = $targetReplicaId;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\DedicatedDatabase::from($response);
+
+    }
+
+    /**
+     * Get high availability status for a dedicated database. Returns replica
+     * statuses, replication lag, and sync mode.
+     *
+     * @param string $databaseId
+     * @throws AppwriteException
+     * @return \Appwrite\Models\DedicatedDatabaseReplicas
+     */
+    public function getReplicas(string $databaseId): \Appwrite\Models\DedicatedDatabaseReplicas
+    {
+        $apiPath = str_replace(
+            ['{databaseId}'],
+            [$databaseId],
+            '/tablesdb/{databaseId}/replicas'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\DedicatedDatabaseReplicas::from($response);
+
+    }
+
+    /**
+     * Get real-time health and status information for a dedicated database.
+     * Returns health status, readiness, uptime, connection info, replica status,
+     * and volume information.
+     *
+     * @param string $databaseId
+     * @throws AppwriteException
+     * @return \Appwrite\Models\DatabaseStatus
+     */
+    public function getStatus(string $databaseId): \Appwrite\Models\DatabaseStatus
+    {
+        $apiPath = str_replace(
+            ['{databaseId}'],
+            [$databaseId],
+            '/tablesdb/{databaseId}/status'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\DatabaseStatus::from($response);
 
     }
 

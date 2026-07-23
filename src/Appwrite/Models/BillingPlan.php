@@ -26,6 +26,7 @@ readonly class BillingPlan
      * @param int $screenshotsGenerated screenshots generated
      * @param int $members members
      * @param int $webhooks webhooks
+     * @param int $wafRules maximum waf rules per project
      * @param int $projects projects
      * @param int $platforms platforms
      * @param int $users users
@@ -96,6 +97,7 @@ readonly class BillingPlan
         public int $screenshotsGenerated,
         public int $members,
         public int $webhooks,
+        public int $wafRules,
         public int $projects,
         public int $platforms,
         public int $users,
@@ -195,6 +197,9 @@ readonly class BillingPlan
         }
         if (!array_key_exists('webhooks', $data)) {
             throw new \InvalidArgumentException('Missing required field "webhooks" for ' . static::class . '.');
+        }
+        if (!array_key_exists('wafRules', $data)) {
+            throw new \InvalidArgumentException('Missing required field "wafRules" for ' . static::class . '.');
         }
         if (!array_key_exists('projects', $data)) {
             throw new \InvalidArgumentException('Missing required field "projects" for ' . static::class . '.');
@@ -366,6 +371,7 @@ readonly class BillingPlan
             screenshotsGenerated: $data['screenshotsGenerated'],
             members: $data['members'],
             webhooks: $data['webhooks'],
+            wafRules: $data['wafRules'],
             projects: $data['projects'],
             platforms: $data['platforms'],
             users: $data['users'],
@@ -443,6 +449,7 @@ readonly class BillingPlan
             'screenshotsGenerated' => static::serializeValue($this->screenshotsGenerated),
             'members' => static::serializeValue($this->members),
             'webhooks' => static::serializeValue($this->webhooks),
+            'wafRules' => static::serializeValue($this->wafRules),
             'projects' => static::serializeValue($this->projects),
             'platforms' => static::serializeValue($this->platforms),
             'users' => static::serializeValue($this->users),

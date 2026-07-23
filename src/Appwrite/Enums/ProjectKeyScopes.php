@@ -101,11 +101,14 @@ class ProjectKeyScopes implements JsonSerializable
     private static ProjectKeyScopes $DEDICATEDDATABASESEXECUTE;
     private static ProjectKeyScopes $DOMAINSREAD;
     private static ProjectKeyScopes $DOMAINSWRITE;
+    private static ProjectKeyScopes $WAFRULESREAD;
+    private static ProjectKeyScopes $WAFRULESWRITE;
     private static ProjectKeyScopes $EVENTSREAD;
     private static ProjectKeyScopes $APPSREAD;
     private static ProjectKeyScopes $APPSWRITE;
     private static ProjectKeyScopes $OAUTH2READ;
     private static ProjectKeyScopes $OAUTH2WRITE;
+    private static ProjectKeyScopes $OAUTH2INTROSPECT;
     private static ProjectKeyScopes $USAGEREAD;
 
     private string $value;
@@ -790,6 +793,20 @@ class ProjectKeyScopes implements JsonSerializable
         }
         return self::$DOMAINSWRITE;
     }
+    public static function WAFRULESREAD(): ProjectKeyScopes
+    {
+        if (!isset(self::$WAFRULESREAD)) {
+            self::$WAFRULESREAD = new ProjectKeyScopes('wafRules.read');
+        }
+        return self::$WAFRULESREAD;
+    }
+    public static function WAFRULESWRITE(): ProjectKeyScopes
+    {
+        if (!isset(self::$WAFRULESWRITE)) {
+            self::$WAFRULESWRITE = new ProjectKeyScopes('wafRules.write');
+        }
+        return self::$WAFRULESWRITE;
+    }
     public static function EVENTSREAD(): ProjectKeyScopes
     {
         if (!isset(self::$EVENTSREAD)) {
@@ -824,6 +841,13 @@ class ProjectKeyScopes implements JsonSerializable
             self::$OAUTH2WRITE = new ProjectKeyScopes('oauth2.write');
         }
         return self::$OAUTH2WRITE;
+    }
+    public static function OAUTH2INTROSPECT(): ProjectKeyScopes
+    {
+        if (!isset(self::$OAUTH2INTROSPECT)) {
+            self::$OAUTH2INTROSPECT = new ProjectKeyScopes('oauth2.introspect');
+        }
+        return self::$OAUTH2INTROSPECT;
     }
     public static function USAGEREAD(): ProjectKeyScopes
     {
@@ -931,11 +955,14 @@ class ProjectKeyScopes implements JsonSerializable
             'dedicatedDatabases.execute' => self::DEDICATEDDATABASESEXECUTE(),
             'domains.read' => self::DOMAINSREAD(),
             'domains.write' => self::DOMAINSWRITE(),
+            'wafRules.read' => self::WAFRULESREAD(),
+            'wafRules.write' => self::WAFRULESWRITE(),
             'events.read' => self::EVENTSREAD(),
             'apps.read' => self::APPSREAD(),
             'apps.write' => self::APPSWRITE(),
             'oauth2.read' => self::OAUTH2READ(),
             'oauth2.write' => self::OAUTH2WRITE(),
+            'oauth2.introspect' => self::OAUTH2INTROSPECT(),
             'usage.read' => self::USAGEREAD(),
             default => throw new \InvalidArgumentException('Unknown ProjectKeyScopes value: ' . $value),
         };
