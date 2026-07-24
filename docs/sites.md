@@ -274,6 +274,7 @@ GET https://cloud.appwrite.io/v1/sites/{siteId}/deployments/{deploymentId}/downl
 | siteId | string | **Required** Site ID. |  |
 | deploymentId | string | **Required** Deployment ID. |  |
 | type | string | Deployment file to download. Can be: "source", "output". | source |
+| token | string | Presigned source-download token for accessing this deployment without a session (jobs-service). |  |
 
 
 ```http request

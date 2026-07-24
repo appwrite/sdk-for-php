@@ -26,10 +26,21 @@ readonly class ActivityEvent
      * @param string $ip ip address.
      * @param string $mode api mode when event triggered.
      * @param string $country location.
+     * @param string $continentCode continent code.
+     * @param string $city city name.
+     * @param string $subdivisions region/state chain.
+     * @param string $isp internet service provider.
+     * @param string $autonomousSystemNumber autonomous system number (asn).
+     * @param string $autonomousSystemOrganization organization that owns the asn.
+     * @param string $connectionType connection type (e.g. cable, cellular, corporate).
+     * @param string $connectionUsageType user type (e.g. residential, business, hosting).
+     * @param string $connectionOrganization registered organization of the ip.
      * @param string $time log creation date in iso 8601 format.
      * @param string $projectId project id.
      * @param string $teamId team id.
      * @param string $hostname hostname.
+     * @param string $sdk name of the sdk that triggered the event.
+     * @param string $sdkVersion version of the sdk that triggered the event.
      */
     public function __construct(
         public string $id,
@@ -46,10 +57,21 @@ readonly class ActivityEvent
         public string $ip,
         public string $mode,
         public string $country,
+        public string $continentCode,
+        public string $city,
+        public string $subdivisions,
+        public string $isp,
+        public string $autonomousSystemNumber,
+        public string $autonomousSystemOrganization,
+        public string $connectionType,
+        public string $connectionUsageType,
+        public string $connectionOrganization,
         public string $time,
         public string $projectId,
         public string $teamId,
-        public string $hostname
+        public string $hostname,
+        public string $sdk,
+        public string $sdkVersion
     ) {
     }
 
@@ -100,6 +122,33 @@ readonly class ActivityEvent
         if (!array_key_exists('country', $data)) {
             throw new \InvalidArgumentException('Missing required field "country" for ' . static::class . '.');
         }
+        if (!array_key_exists('continentCode', $data)) {
+            throw new \InvalidArgumentException('Missing required field "continentCode" for ' . static::class . '.');
+        }
+        if (!array_key_exists('city', $data)) {
+            throw new \InvalidArgumentException('Missing required field "city" for ' . static::class . '.');
+        }
+        if (!array_key_exists('subdivisions', $data)) {
+            throw new \InvalidArgumentException('Missing required field "subdivisions" for ' . static::class . '.');
+        }
+        if (!array_key_exists('isp', $data)) {
+            throw new \InvalidArgumentException('Missing required field "isp" for ' . static::class . '.');
+        }
+        if (!array_key_exists('autonomousSystemNumber', $data)) {
+            throw new \InvalidArgumentException('Missing required field "autonomousSystemNumber" for ' . static::class . '.');
+        }
+        if (!array_key_exists('autonomousSystemOrganization', $data)) {
+            throw new \InvalidArgumentException('Missing required field "autonomousSystemOrganization" for ' . static::class . '.');
+        }
+        if (!array_key_exists('connectionType', $data)) {
+            throw new \InvalidArgumentException('Missing required field "connectionType" for ' . static::class . '.');
+        }
+        if (!array_key_exists('connectionUsageType', $data)) {
+            throw new \InvalidArgumentException('Missing required field "connectionUsageType" for ' . static::class . '.');
+        }
+        if (!array_key_exists('connectionOrganization', $data)) {
+            throw new \InvalidArgumentException('Missing required field "connectionOrganization" for ' . static::class . '.');
+        }
         if (!array_key_exists('time', $data)) {
             throw new \InvalidArgumentException('Missing required field "time" for ' . static::class . '.');
         }
@@ -111,6 +160,12 @@ readonly class ActivityEvent
         }
         if (!array_key_exists('hostname', $data)) {
             throw new \InvalidArgumentException('Missing required field "hostname" for ' . static::class . '.');
+        }
+        if (!array_key_exists('sdk', $data)) {
+            throw new \InvalidArgumentException('Missing required field "sdk" for ' . static::class . '.');
+        }
+        if (!array_key_exists('sdkVersion', $data)) {
+            throw new \InvalidArgumentException('Missing required field "sdkVersion" for ' . static::class . '.');
         }
 
         return new static(
@@ -128,10 +183,21 @@ readonly class ActivityEvent
             ip: $data['ip'],
             mode: $data['mode'],
             country: $data['country'],
+            continentCode: $data['continentCode'],
+            city: $data['city'],
+            subdivisions: $data['subdivisions'],
+            isp: $data['isp'],
+            autonomousSystemNumber: $data['autonomousSystemNumber'],
+            autonomousSystemOrganization: $data['autonomousSystemOrganization'],
+            connectionType: $data['connectionType'],
+            connectionUsageType: $data['connectionUsageType'],
+            connectionOrganization: $data['connectionOrganization'],
             time: $data['time'],
             projectId: $data['projectId'],
             teamId: $data['teamId'],
-            hostname: $data['hostname']
+            hostname: $data['hostname'],
+            sdk: $data['sdk'],
+            sdkVersion: $data['sdkVersion']
         );
     }
 
@@ -155,10 +221,21 @@ readonly class ActivityEvent
             'ip' => static::serializeValue($this->ip),
             'mode' => static::serializeValue($this->mode),
             'country' => static::serializeValue($this->country),
+            'continentCode' => static::serializeValue($this->continentCode),
+            'city' => static::serializeValue($this->city),
+            'subdivisions' => static::serializeValue($this->subdivisions),
+            'isp' => static::serializeValue($this->isp),
+            'autonomousSystemNumber' => static::serializeValue($this->autonomousSystemNumber),
+            'autonomousSystemOrganization' => static::serializeValue($this->autonomousSystemOrganization),
+            'connectionType' => static::serializeValue($this->connectionType),
+            'connectionUsageType' => static::serializeValue($this->connectionUsageType),
+            'connectionOrganization' => static::serializeValue($this->connectionOrganization),
             'time' => static::serializeValue($this->time),
             'projectId' => static::serializeValue($this->projectId),
             'teamId' => static::serializeValue($this->teamId),
-            'hostname' => static::serializeValue($this->hostname)
+            'hostname' => static::serializeValue($this->hostname),
+            'sdk' => static::serializeValue($this->sdk),
+            'sdkVersion' => static::serializeValue($this->sdkVersion)
         ];
 
         return $result;

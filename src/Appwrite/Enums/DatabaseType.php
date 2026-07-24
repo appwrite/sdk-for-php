@@ -10,6 +10,9 @@ class DatabaseType implements JsonSerializable
     private static DatabaseType $TABLESDB;
     private static DatabaseType $DOCUMENTSDB;
     private static DatabaseType $VECTORSDB;
+    private static DatabaseType $MYSQL;
+    private static DatabaseType $POSTGRESQL;
+    private static DatabaseType $MONGODB;
 
     private string $value;
 
@@ -56,6 +59,27 @@ class DatabaseType implements JsonSerializable
         }
         return self::$VECTORSDB;
     }
+    public static function MYSQL(): DatabaseType
+    {
+        if (!isset(self::$MYSQL)) {
+            self::$MYSQL = new DatabaseType('mysql');
+        }
+        return self::$MYSQL;
+    }
+    public static function POSTGRESQL(): DatabaseType
+    {
+        if (!isset(self::$POSTGRESQL)) {
+            self::$POSTGRESQL = new DatabaseType('postgresql');
+        }
+        return self::$POSTGRESQL;
+    }
+    public static function MONGODB(): DatabaseType
+    {
+        if (!isset(self::$MONGODB)) {
+            self::$MONGODB = new DatabaseType('mongodb');
+        }
+        return self::$MONGODB;
+    }
 
     public static function from(string $value): self
     {
@@ -64,6 +88,9 @@ class DatabaseType implements JsonSerializable
             'tablesdb' => self::TABLESDB(),
             'documentsdb' => self::DOCUMENTSDB(),
             'vectorsdb' => self::VECTORSDB(),
+            'mysql' => self::MYSQL(),
+            'postgresql' => self::POSTGRESQL(),
+            'mongodb' => self::MONGODB(),
             default => throw new \InvalidArgumentException('Unknown DatabaseType value: ' . $value),
         };
     }

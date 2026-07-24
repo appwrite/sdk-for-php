@@ -1,5 +1,15 @@
 # Change Log
 
+## 27.1.0
+
+* Added: `Apps` service for managing OAuth2 applications, keys, and installations
+* Added: `OAuth2` service with authorize, grant, device authorization, and consent flows
+* Added: `Account` OAuth2 consent methods `listConsents`, `getConsent`, `deleteConsent`, and consent token methods
+* Added: app installation management methods to `Organization` and `Teams` services
+* Added: `installationAccessTokenDuration` parameter to `Project::updateOAuth2Server`
+* Added: `token` parameter to `Sites::getDeploymentDownload`
+* Added: `oauth2.introspect` and organization installation key scopes
+
 ## 27.0.0
 
 * Breaking: Removed `Health` service with its models and enums

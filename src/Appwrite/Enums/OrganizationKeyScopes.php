@@ -12,6 +12,8 @@ class OrganizationKeyScopes implements JsonSerializable
     private static OrganizationKeyScopes $DEVKEYSWRITE;
     private static OrganizationKeyScopes $ORGANIZATIONKEYSREAD;
     private static OrganizationKeyScopes $ORGANIZATIONKEYSWRITE;
+    private static OrganizationKeyScopes $ORGANIZATIONINSTALLATIONSREAD;
+    private static OrganizationKeyScopes $ORGANIZATIONINSTALLATIONSWRITE;
     private static OrganizationKeyScopes $ORGANIZATIONMEMBERSHIPSREAD;
     private static OrganizationKeyScopes $ORGANIZATIONMEMBERSHIPSWRITE;
     private static OrganizationKeyScopes $ORGANIZATIONREAD;
@@ -80,6 +82,20 @@ class OrganizationKeyScopes implements JsonSerializable
         }
         return self::$ORGANIZATIONKEYSWRITE;
     }
+    public static function ORGANIZATIONINSTALLATIONSREAD(): OrganizationKeyScopes
+    {
+        if (!isset(self::$ORGANIZATIONINSTALLATIONSREAD)) {
+            self::$ORGANIZATIONINSTALLATIONSREAD = new OrganizationKeyScopes('organization.installations.read');
+        }
+        return self::$ORGANIZATIONINSTALLATIONSREAD;
+    }
+    public static function ORGANIZATIONINSTALLATIONSWRITE(): OrganizationKeyScopes
+    {
+        if (!isset(self::$ORGANIZATIONINSTALLATIONSWRITE)) {
+            self::$ORGANIZATIONINSTALLATIONSWRITE = new OrganizationKeyScopes('organization.installations.write');
+        }
+        return self::$ORGANIZATIONINSTALLATIONSWRITE;
+    }
     public static function ORGANIZATIONMEMBERSHIPSREAD(): OrganizationKeyScopes
     {
         if (!isset(self::$ORGANIZATIONMEMBERSHIPSREAD)) {
@@ -146,6 +162,8 @@ class OrganizationKeyScopes implements JsonSerializable
             'devKeys.write' => self::DEVKEYSWRITE(),
             'organization.keys.read' => self::ORGANIZATIONKEYSREAD(),
             'organization.keys.write' => self::ORGANIZATIONKEYSWRITE(),
+            'organization.installations.read' => self::ORGANIZATIONINSTALLATIONSREAD(),
+            'organization.installations.write' => self::ORGANIZATIONINSTALLATIONSWRITE(),
             'organization.memberships.read' => self::ORGANIZATIONMEMBERSHIPSREAD(),
             'organization.memberships.write' => self::ORGANIZATIONMEMBERSHIPSWRITE(),
             'organization.read' => self::ORGANIZATIONREAD(),

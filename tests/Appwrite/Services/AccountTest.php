@@ -113,6 +113,170 @@ final class AccountTest extends TestCase
         $this->assertInstanceOf(\Appwrite\Models\User::class, $response);
     }
 
+    public function testMethodListConsents(): void
+    {
+        $data = array(
+            "total" => 5,
+            "consents" => array(
+                array(
+                    "\$id" => "5e5ea5c16897e",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "userId" => "5e5ea5c16897e",
+                    "appId" => "5e5ea5c16897e",
+                    "cimdUrl" => "https://example.com/.well-known/client-metadata.json",
+                    "scopes" => array(),
+                    "resources" => array(),
+                    "authorizationDetails" => "[{\"type\":\"calendar\",\"identifier\":\"primary\",\"actions\":[\"read_events\",\"create_event\"]}]",
+                    "expire" => "2020-10-15T06:38:00.000+00:00"
+                )
+            )
+        );
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->account->listConsents();
+
+        $this->assertInstanceOf(\Appwrite\Models\Oauth2ConsentList::class, $response);
+    }
+
+    public function testMethodGetConsent(): void
+    {
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "userId" => "5e5ea5c16897e",
+            "appId" => "5e5ea5c16897e",
+            "cimdUrl" => "https://example.com/.well-known/client-metadata.json",
+            "scopes" => array(),
+            "resources" => array(),
+            "authorizationDetails" => "[{\"type\":\"calendar\",\"identifier\":\"primary\",\"actions\":[\"read_events\",\"create_event\"]}]",
+            "expire" => "2020-10-15T06:38:00.000+00:00"
+        );
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->account->getConsent(
+            "<CONSENT_ID>"
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\Oauth2Consent::class, $response);
+    }
+
+    public function testMethodDeleteConsent(): void
+    {
+        $data = '';
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->account->deleteConsent(
+            "<CONSENT_ID>"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodListConsentTokens(): void
+    {
+        $data = array(
+            "total" => 5,
+            "tokens" => array(
+                array(
+                    "\$id" => "5e5ea5c16897e",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "consentId" => "5e5ea5c16897e",
+                    "userId" => "5e5ea5c16897e",
+                    "appId" => "5e5ea5c16897e",
+                    "cimdUrl" => "https://example.com/.well-known/client-metadata.json",
+                    "scopes" => array(),
+                    "resources" => array(),
+                    "authorizationDetails" => "[{\"type\":\"calendar\",\"identifier\":\"primary\",\"actions\":[\"read_events\",\"create_event\"]}]",
+                    "expire" => "2020-10-15T06:38:00.000+00:00"
+                )
+            )
+        );
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->account->listConsentTokens(
+            "<CONSENT_ID>"
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\Oauth2ConsentTokenList::class, $response);
+    }
+
+    public function testMethodGetConsentToken(): void
+    {
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "consentId" => "5e5ea5c16897e",
+            "userId" => "5e5ea5c16897e",
+            "appId" => "5e5ea5c16897e",
+            "cimdUrl" => "https://example.com/.well-known/client-metadata.json",
+            "scopes" => array(),
+            "resources" => array(),
+            "authorizationDetails" => "[{\"type\":\"calendar\",\"identifier\":\"primary\",\"actions\":[\"read_events\",\"create_event\"]}]",
+            "expire" => "2020-10-15T06:38:00.000+00:00"
+        );
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->account->getConsentToken(
+            "<CONSENT_ID>",
+            "<TOKEN_ID>"
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\Oauth2ConsentToken::class, $response);
+    }
+
+    public function testMethodDeleteConsentToken(): void
+    {
+        $data = '';
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->account->deleteConsentToken(
+            "<CONSENT_ID>",
+            "<TOKEN_ID>"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
     public function testMethodUpdateEmail(): void
     {
         $data = array(

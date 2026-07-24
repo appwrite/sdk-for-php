@@ -46,6 +46,7 @@ final class OrganizationTest extends TestCase
                 "screenshotsGenerated" => 50,
                 "members" => 25,
                 "webhooks" => 25,
+                "wafRules" => 2,
                 "projects" => 2,
                 "platforms" => 3,
                 "users" => 25,
@@ -276,6 +277,7 @@ final class OrganizationTest extends TestCase
                 "screenshotsGenerated" => 50,
                 "members" => 25,
                 "webhooks" => 25,
+                "wafRules" => 2,
                 "projects" => 2,
                 "platforms" => 3,
                 "users" => 25,
@@ -494,6 +496,139 @@ final class OrganizationTest extends TestCase
             ->andReturn('');
 
         $response = $this->organization->delete();
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodListInstallations(): void
+    {
+        $data = array(
+            "total" => 5,
+            "installations" => array(
+                array(
+                    "\$id" => "5e5ea5c16897e",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "appId" => "5e5ea5c16897e",
+                    "teamId" => "5e5ea5c16897e",
+                    "scopes" => array(),
+                    "authorizationDetails" => array(),
+                    "createdById" => "5e5ea5c16897e",
+                    "createdByName" => "Walter White"
+                )
+            )
+        );
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->organization->listInstallations();
+
+        $this->assertInstanceOf(\Appwrite\Models\AppInstallationList::class, $response);
+    }
+
+    public function testMethodCreateInstallation(): void
+    {
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "appId" => "5e5ea5c16897e",
+            "teamId" => "5e5ea5c16897e",
+            "scopes" => array(),
+            "authorizationDetails" => array(),
+            "createdById" => "5e5ea5c16897e",
+            "createdByName" => "Walter White"
+        );
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->organization->createInstallation(
+            "<APP_ID>"
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\AppInstallation::class, $response);
+    }
+
+    public function testMethodGetInstallation(): void
+    {
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "appId" => "5e5ea5c16897e",
+            "teamId" => "5e5ea5c16897e",
+            "scopes" => array(),
+            "authorizationDetails" => array(),
+            "createdById" => "5e5ea5c16897e",
+            "createdByName" => "Walter White"
+        );
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->organization->getInstallation(
+            "<INSTALLATION_ID>"
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\AppInstallation::class, $response);
+    }
+
+    public function testMethodUpdateInstallation(): void
+    {
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "appId" => "5e5ea5c16897e",
+            "teamId" => "5e5ea5c16897e",
+            "scopes" => array(),
+            "authorizationDetails" => array(),
+            "createdById" => "5e5ea5c16897e",
+            "createdByName" => "Walter White"
+        );
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->organization->updateInstallation(
+            "<INSTALLATION_ID>"
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\AppInstallation::class, $response);
+    }
+
+    public function testMethodDeleteInstallation(): void
+    {
+        $data = '';
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->organization->deleteInstallation(
+            "<INSTALLATION_ID>"
+        );
 
         $this->assertSame($data, $response);
     }
@@ -863,7 +998,8 @@ final class OrganizationTest extends TestCase
                             "billingPlan" => "pro"
                         )
                     ),
-                    "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
+                    "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "wafEnabled" => true
                 )
             )
         );
@@ -947,7 +1083,8 @@ final class OrganizationTest extends TestCase
                     "billingPlan" => "pro"
                 )
             ),
-            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00",
+            "wafEnabled" => true
         );
 
         $this->client
@@ -1032,7 +1169,8 @@ final class OrganizationTest extends TestCase
                     "billingPlan" => "pro"
                 )
             ),
-            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00",
+            "wafEnabled" => true
         );
 
         $this->client
@@ -1116,7 +1254,8 @@ final class OrganizationTest extends TestCase
                     "billingPlan" => "pro"
                 )
             ),
-            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00",
+            "wafEnabled" => true
         );
 
         $this->client

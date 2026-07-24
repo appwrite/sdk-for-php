@@ -224,6 +224,224 @@ class Teams extends Service
     }
 
     /**
+     * List app installations on a team. Any team member can read installations.
+     *
+     * @param string $teamId
+     * @param ?array $queries
+     * @param ?bool $total
+     * @throws AppwriteException
+     * @return \Appwrite\Models\AppInstallationList
+     */
+    public function listInstallations(string $teamId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\AppInstallationList
+    {
+        $apiPath = str_replace(
+            ['{teamId}'],
+            [$teamId],
+            '/teams/{teamId}/installations'
+        );
+
+        $apiParams = [];
+        $apiParams['teamId'] = $teamId;
+
+        if (!is_null($queries)) {
+            $apiParams['queries'] = $queries;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\AppInstallationList::from($response);
+
+    }
+
+    /**
+     * Install an app on a team. When authenticated as a user, only team members
+     * with the owner role can install apps. Requests using an API key or in admin
+     * mode can install apps on any team. The installation is granted the scopes
+     * the app currently requests.
+     *
+     * @param string $teamId
+     * @param string $appId
+     * @param ?string $authorizationDetails
+     * @throws AppwriteException
+     * @return \Appwrite\Models\AppInstallation
+     */
+    public function createInstallation(string $teamId, string $appId, ?string $authorizationDetails = null): \Appwrite\Models\AppInstallation
+    {
+        $apiPath = str_replace(
+            ['{teamId}'],
+            [$teamId],
+            '/teams/{teamId}/installations'
+        );
+
+        $apiParams = [];
+        $apiParams['teamId'] = $teamId;
+        $apiParams['appId'] = $appId;
+
+        if (!is_null($authorizationDetails)) {
+            $apiParams['authorizationDetails'] = $authorizationDetails;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\AppInstallation::from($response);
+
+    }
+
+    /**
+     * Get an app installation on a team by its unique ID. Any team member can
+     * read installations.
+     *
+     * @param string $teamId
+     * @param string $installationId
+     * @throws AppwriteException
+     * @return \Appwrite\Models\AppInstallation
+     */
+    public function getInstallation(string $teamId, string $installationId): \Appwrite\Models\AppInstallation
+    {
+        $apiPath = str_replace(
+            ['{teamId}', '{installationId}'],
+            [$teamId, $installationId],
+            '/teams/{teamId}/installations/{installationId}'
+        );
+
+        $apiParams = [];
+        $apiParams['teamId'] = $teamId;
+        $apiParams['installationId'] = $installationId;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\AppInstallation::from($response);
+
+    }
+
+    /**
+     * Update an app installation on a team. Only team members with the owner role
+     * can update installations. The installation's granted scopes are refreshed
+     * to the scopes the app currently requests; previously issued installation
+     * access tokens are revoked.
+     *
+     * @param string $teamId
+     * @param string $installationId
+     * @param ?string $authorizationDetails
+     * @throws AppwriteException
+     * @return \Appwrite\Models\AppInstallation
+     */
+    public function updateInstallation(string $teamId, string $installationId, ?string $authorizationDetails = null): \Appwrite\Models\AppInstallation
+    {
+        $apiPath = str_replace(
+            ['{teamId}', '{installationId}'],
+            [$teamId, $installationId],
+            '/teams/{teamId}/installations/{installationId}'
+        );
+
+        $apiParams = [];
+        $apiParams['teamId'] = $teamId;
+        $apiParams['installationId'] = $installationId;
+        $apiParams['authorizationDetails'] = $authorizationDetails;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PUT,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\AppInstallation::from($response);
+
+    }
+
+    /**
+     * Uninstall an app from a team by its installation ID. Only team members with
+     * the owner role can remove installations. Previously issued installation
+     * access tokens are revoked.
+     *
+     * @param string $teamId
+     * @param string $installationId
+     * @throws AppwriteException
+     * @return string
+     */
+    public function deleteInstallation(string $teamId, string $installationId): string
+    {
+        $apiPath = str_replace(
+            ['{teamId}', '{installationId}'],
+            [$teamId, $installationId],
+            '/teams/{teamId}/installations/{installationId}'
+        );
+
+        $apiParams = [];
+        $apiParams['teamId'] = $teamId;
+        $apiParams['installationId'] = $installationId;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_DELETE,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        return $response;
+
+    }
+
+    /**
      * Use this endpoint to list a team's members using the team's ID. All team
      * members have read access to this endpoint. Hide sensitive attributes from
      * the response by toggling membership privacy in the Console.

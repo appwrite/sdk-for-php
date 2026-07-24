@@ -29,6 +29,74 @@ DELETE https://cloud.appwrite.io/v1/organization
 
 
 ```http request
+GET https://cloud.appwrite.io/v1/organization/installations
+```
+
+** List app installations on the organization. Any organization member can read installations. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. | [] |
+| total | boolean | When set to false, the total count returned will be 0 and will not be calculated. | 1 |
+
+
+```http request
+POST https://cloud.appwrite.io/v1/organization/installations
+```
+
+** Install an app on the organization. Only organization members with the owner role can install apps. The installation is granted the scopes the app currently requests. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| appId | string | Application unique ID. |  |
+| authorizationDetails | string | Authorization details granted to the installation as a JSON array of objects, each with a `type` and app-defined fields. The Appwrite Console stores authorized project IDs here. |  |
+
+
+```http request
+GET https://cloud.appwrite.io/v1/organization/installations/{installationId}
+```
+
+** Get an app installation on the organization by its unique ID. Any organization member can read installations. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| installationId | string | **Required** Installation unique ID. |  |
+
+
+```http request
+PUT https://cloud.appwrite.io/v1/organization/installations/{installationId}
+```
+
+** Update an app installation on the organization. Only organization members with the owner role can update installations. The installation&#039;s granted scopes are refreshed to the scopes the app currently requests; previously issued installation access tokens are revoked. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| installationId | string | **Required** Installation unique ID. |  |
+| authorizationDetails | string | Authorization details granted to the installation as a JSON array of objects, each with a `type` and app-defined fields. Omit to keep the current value. |  |
+
+
+```http request
+DELETE https://cloud.appwrite.io/v1/organization/installations/{installationId}
+```
+
+** Uninstall an app from the organization by its installation ID. Only organization members with the owner role can remove installations. Previously issued installation access tokens are revoked. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| installationId | string | **Required** Installation unique ID. |  |
+
+
+```http request
 GET https://cloud.appwrite.io/v1/organization/keys
 ```
 

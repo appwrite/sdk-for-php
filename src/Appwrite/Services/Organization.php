@@ -122,6 +122,214 @@ class Organization extends Service
     }
 
     /**
+     * List app installations on the organization. Any organization member can
+     * read installations.
+     *
+     * @param ?array $queries
+     * @param ?bool $total
+     * @throws AppwriteException
+     * @return \Appwrite\Models\AppInstallationList
+     */
+    public function listInstallations(?array $queries = null, ?bool $total = null): \Appwrite\Models\AppInstallationList
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/organization/installations'
+        );
+
+        $apiParams = [];
+
+        if (!is_null($queries)) {
+            $apiParams['queries'] = $queries;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\AppInstallationList::from($response);
+
+    }
+
+    /**
+     * Install an app on the organization. Only organization members with the
+     * owner role can install apps. The installation is granted the scopes the app
+     * currently requests.
+     *
+     * @param string $appId
+     * @param ?string $authorizationDetails
+     * @throws AppwriteException
+     * @return \Appwrite\Models\AppInstallation
+     */
+    public function createInstallation(string $appId, ?string $authorizationDetails = null): \Appwrite\Models\AppInstallation
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/organization/installations'
+        );
+
+        $apiParams = [];
+        $apiParams['appId'] = $appId;
+
+        if (!is_null($authorizationDetails)) {
+            $apiParams['authorizationDetails'] = $authorizationDetails;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\AppInstallation::from($response);
+
+    }
+
+    /**
+     * Get an app installation on the organization by its unique ID. Any
+     * organization member can read installations.
+     *
+     * @param string $installationId
+     * @throws AppwriteException
+     * @return \Appwrite\Models\AppInstallation
+     */
+    public function getInstallation(string $installationId): \Appwrite\Models\AppInstallation
+    {
+        $apiPath = str_replace(
+            ['{installationId}'],
+            [$installationId],
+            '/organization/installations/{installationId}'
+        );
+
+        $apiParams = [];
+        $apiParams['installationId'] = $installationId;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\AppInstallation::from($response);
+
+    }
+
+    /**
+     * Update an app installation on the organization. Only organization members
+     * with the owner role can update installations. The installation's granted
+     * scopes are refreshed to the scopes the app currently requests; previously
+     * issued installation access tokens are revoked.
+     *
+     * @param string $installationId
+     * @param ?string $authorizationDetails
+     * @throws AppwriteException
+     * @return \Appwrite\Models\AppInstallation
+     */
+    public function updateInstallation(string $installationId, ?string $authorizationDetails = null): \Appwrite\Models\AppInstallation
+    {
+        $apiPath = str_replace(
+            ['{installationId}'],
+            [$installationId],
+            '/organization/installations/{installationId}'
+        );
+
+        $apiParams = [];
+        $apiParams['installationId'] = $installationId;
+        $apiParams['authorizationDetails'] = $authorizationDetails;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PUT,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\AppInstallation::from($response);
+
+    }
+
+    /**
+     * Uninstall an app from the organization by its installation ID. Only
+     * organization members with the owner role can remove installations.
+     * Previously issued installation access tokens are revoked.
+     *
+     * @param string $installationId
+     * @throws AppwriteException
+     * @return string
+     */
+    public function deleteInstallation(string $installationId): string
+    {
+        $apiPath = str_replace(
+            ['{installationId}'],
+            [$installationId],
+            '/organization/installations/{installationId}'
+        );
+
+        $apiParams = [];
+        $apiParams['installationId'] = $installationId;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_DELETE,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        return $response;
+
+    }
+
+    /**
      * Get a list of all API keys from the current organization.
      *
      * @param ?array $queries

@@ -1114,10 +1114,11 @@ class Sites extends Service
      * @param string $siteId
      * @param string $deploymentId
      * @param ?DeploymentDownloadType $type
+     * @param ?string $token
      * @throws AppwriteException
      * @return string
      */
-    public function getDeploymentDownload(string $siteId, string $deploymentId, ?DeploymentDownloadType $type = null): string
+    public function getDeploymentDownload(string $siteId, string $deploymentId, ?DeploymentDownloadType $type = null, ?string $token = null): string
     {
         $apiPath = str_replace(
             ['{siteId}', '{deploymentId}'],
@@ -1131,6 +1132,10 @@ class Sites extends Service
 
         if (!is_null($type)) {
             $apiParams['type'] = $type;
+        }
+
+        if (!is_null($token)) {
+            $apiParams['token'] = $token;
         }
 
         $apiHeaders = [];

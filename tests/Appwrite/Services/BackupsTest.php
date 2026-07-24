@@ -280,7 +280,7 @@ final class BackupsTest extends TestCase
             "migrationId" => "did8jx6ws45jana098ab7",
             "services" => array(),
             "resources" => array(),
-            "options" => "{databases.database[{oldId, newId, newName, newSpecification}]}"
+            "options" => "{databases.database[{oldId, newId, newName}]}"
         );
 
         $this->client
@@ -314,7 +314,7 @@ final class BackupsTest extends TestCase
                     "migrationId" => "did8jx6ws45jana098ab7",
                     "services" => array(),
                     "resources" => array(),
-                    "options" => "{databases.database[{oldId, newId, newName, newSpecification}]}"
+                    "options" => "{databases.database[{oldId, newId, newName}]}"
                 )
             )
         );
@@ -344,7 +344,7 @@ final class BackupsTest extends TestCase
             "migrationId" => "did8jx6ws45jana098ab7",
             "services" => array(),
             "resources" => array(),
-            "options" => "{databases.database[{oldId, newId, newName, newSpecification}]}"
+            "options" => "{databases.database[{oldId, newId, newName}]}"
         );
 
         $this->client

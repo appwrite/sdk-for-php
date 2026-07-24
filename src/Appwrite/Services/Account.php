@@ -106,6 +106,253 @@ class Account extends Service
     }
 
     /**
+     * Get a list of the OAuth2 consents the current user has given to third-party
+     * apps.
+     *
+     * @param ?array $queries
+     * @param ?bool $total
+     * @throws AppwriteException
+     * @return \Appwrite\Models\Oauth2ConsentList
+     */
+    public function listConsents(?array $queries = null, ?bool $total = null): \Appwrite\Models\Oauth2ConsentList
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/account/consents'
+        );
+
+        $apiParams = [];
+
+        if (!is_null($queries)) {
+            $apiParams['queries'] = $queries;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Oauth2ConsentList::from($response);
+
+    }
+
+    /**
+     * Get an OAuth2 consent the current user has given to a third-party app by
+     * its unique ID.
+     *
+     * @param string $consentId
+     * @throws AppwriteException
+     * @return \Appwrite\Models\Oauth2Consent
+     */
+    public function getConsent(string $consentId): \Appwrite\Models\Oauth2Consent
+    {
+        $apiPath = str_replace(
+            ['{consentId}'],
+            [$consentId],
+            '/account/consents/{consentId}'
+        );
+
+        $apiParams = [];
+        $apiParams['consentId'] = $consentId;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Oauth2Consent::from($response);
+
+    }
+
+    /**
+     * Delete an OAuth2 consent by its unique ID. All token families issued under
+     * the consent are revoked, and the app must ask for consent again to regain
+     * access.
+     *
+     * @param string $consentId
+     * @throws AppwriteException
+     * @return string
+     */
+    public function deleteConsent(string $consentId): string
+    {
+        $apiPath = str_replace(
+            ['{consentId}'],
+            [$consentId],
+            '/account/consents/{consentId}'
+        );
+
+        $apiParams = [];
+        $apiParams['consentId'] = $consentId;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_DELETE,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        return $response;
+
+    }
+
+    /**
+     * Get a list of the token families issued under an OAuth2 consent. Each entry
+     * represents one authorized device or session; the token secrets themselves
+     * are never returned.
+     *
+     * @param string $consentId
+     * @param ?array $queries
+     * @param ?bool $total
+     * @throws AppwriteException
+     * @return \Appwrite\Models\Oauth2ConsentTokenList
+     */
+    public function listConsentTokens(string $consentId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\Oauth2ConsentTokenList
+    {
+        $apiPath = str_replace(
+            ['{consentId}'],
+            [$consentId],
+            '/account/consents/{consentId}/tokens'
+        );
+
+        $apiParams = [];
+        $apiParams['consentId'] = $consentId;
+
+        if (!is_null($queries)) {
+            $apiParams['queries'] = $queries;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Oauth2ConsentTokenList::from($response);
+
+    }
+
+    /**
+     * Get a token family issued under an OAuth2 consent by its unique ID. The
+     * token secrets themselves are never returned.
+     *
+     * @param string $consentId
+     * @param string $tokenId
+     * @throws AppwriteException
+     * @return \Appwrite\Models\Oauth2ConsentToken
+     */
+    public function getConsentToken(string $consentId, string $tokenId): \Appwrite\Models\Oauth2ConsentToken
+    {
+        $apiPath = str_replace(
+            ['{consentId}', '{tokenId}'],
+            [$consentId, $tokenId],
+            '/account/consents/{consentId}/tokens/{tokenId}'
+        );
+
+        $apiParams = [];
+        $apiParams['consentId'] = $consentId;
+        $apiParams['tokenId'] = $tokenId;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Oauth2ConsentToken::from($response);
+
+    }
+
+    /**
+     * Delete a token family issued under an OAuth2 consent by its unique ID. The
+     * access and refresh tokens of the family stop working immediately; other
+     * token families and the consent itself are unaffected.
+     *
+     * @param string $consentId
+     * @param string $tokenId
+     * @throws AppwriteException
+     * @return string
+     */
+    public function deleteConsentToken(string $consentId, string $tokenId): string
+    {
+        $apiPath = str_replace(
+            ['{consentId}', '{tokenId}'],
+            [$consentId, $tokenId],
+            '/account/consents/{consentId}/tokens/{tokenId}'
+        );
+
+        $apiParams = [];
+        $apiParams['consentId'] = $consentId;
+        $apiParams['tokenId'] = $tokenId;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_DELETE,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        return $response;
+
+    }
+
+    /**
      * Update currently logged in user account email address. After changing user
      * address, the user confirmation status will get reset. A new confirmation
      * email is not sent automatically however you can use the send confirmation

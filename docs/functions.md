@@ -113,7 +113,7 @@ PUT https://cloud.appwrite.io/v1/functions/{functionId}
 | providerBranches | array | List of branch name patterns to trigger automatic deployments. Supports wildcards. Leave empty to deploy on all branches. |  |
 | providerPaths | array | List of file path patterns to trigger automatic deployments. Supports wildcards. Leave empty to deploy on all file changes. |  |
 | buildSpecification | string | Build specification for the function deployments. |  |
-| runtimeSpecification | string | Runtime specification for the function executions. | [] |
+| runtimeSpecification | string | Runtime specification for the function executions. |  |
 | deploymentRetention | integer | Days to keep non-active deployments before deletion. Value 0 means all deployments will be kept. | 0 |
 
 

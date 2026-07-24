@@ -681,6 +681,7 @@ class Project extends Service
      * @param ?int $refreshTokenDuration
      * @param ?int $publicAccessTokenDuration
      * @param ?int $publicRefreshTokenDuration
+     * @param ?int $installationAccessTokenDuration
      * @param ?bool $confidentialPkce
      * @param ?string $verificationUrl
      * @param ?int $userCodeLength
@@ -690,7 +691,7 @@ class Project extends Service
      * @throws AppwriteException
      * @return \Appwrite\Models\Project
      */
-    public function updateOAuth2Server(bool $enabled, string $authorizationUrl, ?array $scopes = null, ?array $authorizationDetailsTypes = null, ?int $accessTokenDuration = null, ?int $refreshTokenDuration = null, ?int $publicAccessTokenDuration = null, ?int $publicRefreshTokenDuration = null, ?bool $confidentialPkce = null, ?string $verificationUrl = null, ?int $userCodeLength = null, ?string $userCodeFormat = null, ?int $deviceCodeDuration = null, ?array $defaultScopes = null): \Appwrite\Models\Project
+    public function updateOAuth2Server(bool $enabled, string $authorizationUrl, ?array $scopes = null, ?array $authorizationDetailsTypes = null, ?int $accessTokenDuration = null, ?int $refreshTokenDuration = null, ?int $publicAccessTokenDuration = null, ?int $publicRefreshTokenDuration = null, ?int $installationAccessTokenDuration = null, ?bool $confidentialPkce = null, ?string $verificationUrl = null, ?int $userCodeLength = null, ?string $userCodeFormat = null, ?int $deviceCodeDuration = null, ?array $defaultScopes = null): \Appwrite\Models\Project
     {
         $apiPath = str_replace(
             [],
@@ -713,6 +714,7 @@ class Project extends Service
         $apiParams['refreshTokenDuration'] = $refreshTokenDuration;
         $apiParams['publicAccessTokenDuration'] = $publicAccessTokenDuration;
         $apiParams['publicRefreshTokenDuration'] = $publicRefreshTokenDuration;
+        $apiParams['installationAccessTokenDuration'] = $installationAccessTokenDuration;
         $apiParams['confidentialPkce'] = $confidentialPkce;
 
         if (!is_null($verificationUrl)) {
