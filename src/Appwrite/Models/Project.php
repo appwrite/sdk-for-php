@@ -45,6 +45,7 @@ readonly class Project
      * @param string|null $oAuth2ServerAuthorizationUrl oauth2 server authorization url
      * @param array|null $oAuth2ServerScopes oauth2 server allowed scopes
      * @param array|null $oAuth2ServerDefaultScopes oauth2 server scopes used when an authorization request omits the scope parameter
+     * @param array|null $oAuth2ServerInstallationScopes scopes an application may request when installed on a team
      * @param array|null $oAuth2ServerAuthorizationDetailsTypes oauth2 server accepted rfc 9396 authorization_details types
      * @param int|null $oAuth2ServerAccessTokenDuration oauth2 server access token duration in seconds for confidential clients
      * @param int|null $oAuth2ServerRefreshTokenDuration oauth2 server refresh token duration in seconds for confidential clients
@@ -92,6 +93,7 @@ readonly class Project
         public ?string $oAuth2ServerAuthorizationUrl = null,
         public ?array $oAuth2ServerScopes = null,
         public ?array $oAuth2ServerDefaultScopes = null,
+        public ?array $oAuth2ServerInstallationScopes = null,
         public ?array $oAuth2ServerAuthorizationDetailsTypes = null,
         public ?int $oAuth2ServerAccessTokenDuration = null,
         public ?int $oAuth2ServerRefreshTokenDuration = null,
@@ -256,6 +258,7 @@ readonly class Project
             oAuth2ServerAuthorizationUrl: array_key_exists('oAuth2ServerAuthorizationUrl', $data) ? $data['oAuth2ServerAuthorizationUrl'] : null,
             oAuth2ServerScopes: array_key_exists('oAuth2ServerScopes', $data) ? $data['oAuth2ServerScopes'] : null,
             oAuth2ServerDefaultScopes: array_key_exists('oAuth2ServerDefaultScopes', $data) ? $data['oAuth2ServerDefaultScopes'] : null,
+            oAuth2ServerInstallationScopes: array_key_exists('oAuth2ServerInstallationScopes', $data) ? $data['oAuth2ServerInstallationScopes'] : null,
             oAuth2ServerAuthorizationDetailsTypes: array_key_exists('oAuth2ServerAuthorizationDetailsTypes', $data) ? $data['oAuth2ServerAuthorizationDetailsTypes'] : null,
             oAuth2ServerAccessTokenDuration: array_key_exists('oAuth2ServerAccessTokenDuration', $data) ? $data['oAuth2ServerAccessTokenDuration'] : null,
             oAuth2ServerRefreshTokenDuration: array_key_exists('oAuth2ServerRefreshTokenDuration', $data) ? $data['oAuth2ServerRefreshTokenDuration'] : null,
@@ -310,6 +313,7 @@ readonly class Project
             'oAuth2ServerAuthorizationUrl' => static::serializeValue($this->oAuth2ServerAuthorizationUrl),
             'oAuth2ServerScopes' => static::serializeValue($this->oAuth2ServerScopes),
             'oAuth2ServerDefaultScopes' => static::serializeValue($this->oAuth2ServerDefaultScopes),
+            'oAuth2ServerInstallationScopes' => static::serializeValue($this->oAuth2ServerInstallationScopes),
             'oAuth2ServerAuthorizationDetailsTypes' => static::serializeValue($this->oAuth2ServerAuthorizationDetailsTypes),
             'oAuth2ServerAccessTokenDuration' => static::serializeValue($this->oAuth2ServerAccessTokenDuration),
             'oAuth2ServerRefreshTokenDuration' => static::serializeValue($this->oAuth2ServerRefreshTokenDuration),

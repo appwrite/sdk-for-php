@@ -70,7 +70,7 @@ GET https://cloud.appwrite.io/v1/apps/{appId}
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| appId | string | **Required** Application unique ID or HTTPS client ID metadata document URL. |  |
+| appId | string | **Required** Application unique ID. |  |
 
 
 ```http request
@@ -101,7 +101,7 @@ PUT https://cloud.appwrite.io/v1/apps/{appId}
 | postLogoutRedirectUris | array | Post-logout redirect URIs for OpenID Connect RP-Initiated Logout. Each must be an https URL, an http loopback URL, or a private-use scheme URI, and must not contain a fragment. After ending the user session, the logout endpoint only redirects to URIs in this list. | [] |
 | type | string | OAuth2 client type. Use `public` for SPAs, mobile, and native apps that cannot keep a `client_secret` — PKCE is then required at the token endpoint. Use `confidential` for server-side clients that present a `client_secret`. Defaults to `confidential`. | confidential |
 | deviceFlow | boolean | Allow this client to use the OAuth2 Device Authorization Grant (RFC 8628) for input-constrained devices such as TVs and CLIs. Defaults to false. |  |
-| installationScopes | array | Scopes the application requests when installed on a team. Organization-level and project-level scopes only; use the list scopes endpoint with `type=installation` to discover available values. Maximum of 100 scopes are allowed. | [] |
+| installationScopes | array | Scopes the application requests when installed on a team. Only scopes allowed by the project's OAuth2 server installation scopes configuration are accepted; use the list installation scopes endpoint to discover available values. Maximum of 100 scopes are allowed. | [] |
 | installationRedirectUrl | string | URL users are redirected to after creating or updating an installation of this application. Must be an https URL, an http loopback URL (localhost, 127.0.0.1, [::1]), or a private-use scheme URI, and must not contain a fragment. Leave empty for no redirect. |  |
 
 
@@ -122,7 +122,7 @@ DELETE https://cloud.appwrite.io/v1/apps/{appId}
 GET https://cloud.appwrite.io/v1/apps/{appId}/installations
 ```
 
-** List installations of an application. Requires an app key sent in the `X-Appwrite-Key` header alongside the `X-Appwrite-App` header. **
+** List installations of an application. Requires an app key sent in the `X-Appwrite-Key` header alongside the `X-Appwrite-App` header, or a caller with update access to the app. **
 
 ### Parameters
 
@@ -137,7 +137,21 @@ GET https://cloud.appwrite.io/v1/apps/{appId}/installations
 GET https://cloud.appwrite.io/v1/apps/{appId}/installations/{installationId}
 ```
 
-** Get an installation of an application by its unique ID. Requires an app key sent in the `X-Appwrite-Key` header alongside the `X-Appwrite-App` header. **
+** Get an installation of an application by its unique ID. Requires an app key sent in the `X-Appwrite-Key` header alongside the `X-Appwrite-App` header, or a caller with update access to the app. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| appId | string | **Required** Application unique ID. |  |
+| installationId | string | **Required** Installation unique ID. |  |
+
+
+```http request
+DELETE https://cloud.appwrite.io/v1/apps/{appId}/installations/{installationId}
+```
+
+** Delete an installation of an application by its unique ID. Requires a caller with update access to the app. Previously issued installation access tokens are revoked. **
 
 ### Parameters
 
@@ -151,7 +165,7 @@ GET https://cloud.appwrite.io/v1/apps/{appId}/installations/{installationId}
 POST https://cloud.appwrite.io/v1/apps/{appId}/installations/{installationId}/tokens
 ```
 
-** Create a token for an installation of an application. Requires an app key sent in the `X-Appwrite-Key` header alongside the `X-Appwrite-App` header. The returned token carries the scopes and authorization details granted to the installation, and can be used as an `Authorization: Bearer` header everywhere OAuth2 access tokens are accepted. Multiple tokens can be active for the same installation at once; each token stays valid until it expires or the installation is updated or deleted. **
+** Create a token for an installation of an application. Requires an app key sent in the `X-Appwrite-Key` header alongside the `X-Appwrite-App` header, or a caller with update access to the app. The returned token carries the scopes and authorization details granted to the installation, and can be used as an `Authorization: Bearer` header everywhere OAuth2 access tokens are accepted. Multiple tokens can be active for the same installation at once; each token stays valid until it expires or the installation is updated or deleted. **
 
 ### Parameters
 

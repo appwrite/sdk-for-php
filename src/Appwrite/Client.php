@@ -40,11 +40,11 @@ class Client
      */
     protected array $headers = [
         'content-type' => '',
-        'user-agent' => 'AppwritePHPSDK/27.1.0 ()',
+        'user-agent' => 'AppwritePHPSDK/28.0.0 ()',
         'x-sdk-name'=> 'PHP',
         'x-sdk-platform'=> 'server',
         'x-sdk-language'=> 'php',
-        'x-sdk-version'=> '27.1.0',
+        'x-sdk-version'=> '28.0.0',
     ];
 
     /**
@@ -94,7 +94,7 @@ class Client
      */
     public function __construct()
     {
-        $this->headers['X-Appwrite-Response-Format'] = '1.9.5';
+        $this->headers['X-Appwrite-Response-Format'] = '1.9.6';
  
     }
 
@@ -127,6 +127,23 @@ class Client
     {
         $this->addHeader('X-Appwrite-Key', $value);
         $this->config['key'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Set Organization
+     *
+     * Your organization ID
+     *
+     * @param string $value
+     *
+     * @return Client
+     */
+    public function setOrganization(string $value): Client
+    {
+        $this->addHeader('X-Appwrite-Organization', $value);
+        $this->config['organization'] = $value;
 
         return $this;
     }

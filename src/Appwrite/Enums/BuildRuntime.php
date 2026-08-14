@@ -16,6 +16,7 @@ class BuildRuntime implements JsonSerializable
     private static BuildRuntime $NODE23;
     private static BuildRuntime $NODE24;
     private static BuildRuntime $NODE25;
+    private static BuildRuntime $NODE26;
     private static BuildRuntime $PHP80;
     private static BuildRuntime $PHP81;
     private static BuildRuntime $PHP82;
@@ -184,6 +185,13 @@ class BuildRuntime implements JsonSerializable
             self::$NODE25 = new BuildRuntime('node-25');
         }
         return self::$NODE25;
+    }
+    public static function NODE26(): BuildRuntime
+    {
+        if (!isset(self::$NODE26)) {
+            self::$NODE26 = new BuildRuntime('node-26');
+        }
+        return self::$NODE26;
     }
     public static function PHP80(): BuildRuntime
     {
@@ -766,6 +774,7 @@ class BuildRuntime implements JsonSerializable
             'node-23' => self::NODE23(),
             'node-24' => self::NODE24(),
             'node-25' => self::NODE25(),
+            'node-26' => self::NODE26(),
             'php-8.0' => self::PHP80(),
             'php-8.1' => self::PHP81(),
             'php-8.2' => self::PHP82(),

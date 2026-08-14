@@ -6,6 +6,7 @@ use Appwrite\Client;
 use Appwrite\InputFile;
 use Mockery;
 use PHPUnit\Framework\TestCase;
+use Appwrite\Enums\InvalidationType;
 use Appwrite\Enums\StatusCode;
 use Appwrite\Enums\ProxyResourceType;
 
@@ -18,6 +19,30 @@ final class ProxyTest extends TestCase
     {
         $this->client = Mockery::mock(Client::class);
         $this->proxy = new Proxy($this->client);
+    }
+
+    public function testMethodCreateInvalidation(): void
+    {
+        $data = array(
+            "domain" => "appwrite.company.com",
+            "type" => "tag",
+            "reference" => "products",
+            "status" => "success"
+        );
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->proxy->createInvalidation(
+            "",
+            InvalidationType::TAG()
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\ProxyInvalidation::class, $response);
     }
 
     public function testMethodListRules(): void

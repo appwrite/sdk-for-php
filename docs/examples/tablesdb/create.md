@@ -16,5 +16,6 @@ $result = $tablesDB->create(
     name: '<NAME>',
     enabled: false, // optional
     specification: 'serverless', // optional
-    replicas: 0 // optional
+    replicas: 0, // optional
+    syncMode: 'async' // optional
 );```

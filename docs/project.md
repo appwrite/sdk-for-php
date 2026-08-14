@@ -44,24 +44,6 @@ GET https://cloud.appwrite.io/v1/project/keys
 
 
 ```http request
-POST https://cloud.appwrite.io/v1/project/keys
-```
-
-** Create a new API key. It&#039;s recommended to have multiple API keys with strict scopes for separate functions within your project.
-
-You can also create an ephemeral API key if you need a short-lived key instead. **
-
-### Parameters
-
-| Field Name | Type | Description | Default |
-| --- | --- | --- | --- |
-| keyId | string | Key ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
-| name | string | Key name. Max length: 128 chars. |  |
-| scopes | array | Key scopes list. Maximum of 200 scopes are allowed. |  |
-| expire | string | Expiration time in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. Use null for unlimited expiration. |  |
-
-
-```http request
 POST https://cloud.appwrite.io/v1/project/keys/ephemeral
 ```
 
@@ -239,6 +221,7 @@ PUT https://cloud.appwrite.io/v1/project/oauth2-server
 | userCodeFormat | string | Character set for device flow user codes: `numeric` (digits only — best for numeric keypads and TV remotes), `alphabetic` (letters only), or `alphanumeric` (letters and digits — highest entropy per character). Defaults to `alphanumeric`. | alphanumeric |
 | deviceCodeDuration | integer | Lifetime in seconds of device flow device codes and user codes. Device codes are intentionally short-lived. Leave empty to use default 600. |  |
 | defaultScopes | array | List of OAuth2 scopes used when an authorization request omits the scope parameter. Every default scope must also be allowed by the OAuth2 server. Maximum of 100 scopes are allowed, each up to 128 characters long. | [] |
+| installationScopes | array | List of scopes an application may request when installed on a team. Omitting the parameter clears the list, so no installation scopes can be granted. Maximum of 100 scopes are allowed, each up to 128 characters long. | [] |
 
 
 ```http request
@@ -1192,6 +1175,22 @@ PATCH https://cloud.appwrite.io/v1/project/policies/membership-privacy
 
 
 ```http request
+PATCH https://cloud.appwrite.io/v1/project/policies/mfa-factors
+```
+
+** Updating this policy allows you to control which factors users can use to complete an MFA challenge. Disabled factors cannot be used to create a challenge and are reported as unavailable when listing factors. The custom factor is disabled by default; enable it to deliver challenge codes through your own channel. Recovery codes always remain available as a fallback. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| totp | boolean | Set to true to allow TOTP to complete an MFA challenge, or false to disable it. |  |
+| email | boolean | Set to true to allow email to complete an MFA challenge, or false to disable it. |  |
+| phone | boolean | Set to true to allow phone (SMS) to complete an MFA challenge, or false to disable it. |  |
+| custom | boolean | Set to true to allow the custom factor to complete an MFA challenge, or false to disable it. |  |
+
+
+```http request
 PATCH https://cloud.appwrite.io/v1/project/policies/password-dictionary
 ```
 
@@ -1216,7 +1215,7 @@ Keep in mind, while password history policy is disabled, the history is not bein
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| total | integer | Set the password history length per user. Value can be between 1 and 5000, or null to disable the limit. |  |
+| total | integer | Set the password history length per user. Value can be between 1 and 20, or null to disable the limit. |  |
 
 
 ```http request
@@ -1272,7 +1271,7 @@ PATCH https://cloud.appwrite.io/v1/project/policies/session-duration
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| duration | integer | Maximum session length in seconds. Minium allowed value is 5 second, and maximum is 1 year, which is 31536000 seconds. |  |
+| duration | integer | Maximum session length in seconds. Minium allowed value is 60 seconds, and maximum is 1 year, which is 31536000 seconds. |  |
 
 
 ```http request
@@ -1298,7 +1297,7 @@ PATCH https://cloud.appwrite.io/v1/project/policies/session-limit
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| total | integer | Set the maximum number of sessions allowed per user. Value can be between 1 and 5000, or null to disable the limit. |  |
+| total | integer | Set the maximum number of sessions allowed per user. Value can be between 1 and 100. |  |
 
 
 ```http request
@@ -1311,7 +1310,7 @@ PATCH https://cloud.appwrite.io/v1/project/policies/user-limit
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| total | integer | Set the maximum number of users allowed in the project. Value can be between 1 and 5000, or null to disable the limit. |  |
+| total | integer | Set the maximum number of users allowed in the project. Value can be between 0 and 10000. Use 0 or null to disable the limit. |  |
 
 
 ```http request
@@ -1324,7 +1323,7 @@ GET https://cloud.appwrite.io/v1/project/policies/{policyId}
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| policyId | string | **Required** Policy ID. Can be one of: password-dictionary, password-history, password-strength, password-personal-data, session-alert, session-duration, session-invalidation, session-limit, user-limit, membership-privacy, deny-aliased-email, deny-disposable-email, deny-free-email, deny-corporate-email. |  |
+| policyId | string | **Required** Policy ID. Can be one of: password-dictionary, password-history, password-strength, password-personal-data, session-alert, session-duration, session-invalidation, session-limit, user-limit, membership-privacy, mfa-factors, deny-aliased-email, deny-disposable-email, deny-free-email, deny-corporate-email. |  |
 
 
 ```http request

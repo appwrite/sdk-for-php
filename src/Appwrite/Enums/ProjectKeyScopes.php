@@ -40,6 +40,7 @@ class ProjectKeyScopes implements JsonSerializable
     private static ProjectKeyScopes $INDEXESWRITE;
     private static ProjectKeyScopes $ROWSREAD;
     private static ProjectKeyScopes $ROWSWRITE;
+    private static ProjectKeyScopes $EMBEDDINGSWRITE;
     private static ProjectKeyScopes $COLLECTIONSREAD;
     private static ProjectKeyScopes $COLLECTIONSWRITE;
     private static ProjectKeyScopes $ATTRIBUTESREAD;
@@ -104,6 +105,7 @@ class ProjectKeyScopes implements JsonSerializable
     private static ProjectKeyScopes $WAFRULESREAD;
     private static ProjectKeyScopes $WAFRULESWRITE;
     private static ProjectKeyScopes $EVENTSREAD;
+    private static ProjectKeyScopes $PROXYINVALIDATIONSWRITE;
     private static ProjectKeyScopes $APPSREAD;
     private static ProjectKeyScopes $APPSWRITE;
     private static ProjectKeyScopes $OAUTH2READ;
@@ -365,6 +367,13 @@ class ProjectKeyScopes implements JsonSerializable
             self::$ROWSWRITE = new ProjectKeyScopes('rows.write');
         }
         return self::$ROWSWRITE;
+    }
+    public static function EMBEDDINGSWRITE(): ProjectKeyScopes
+    {
+        if (!isset(self::$EMBEDDINGSWRITE)) {
+            self::$EMBEDDINGSWRITE = new ProjectKeyScopes('embeddings.write');
+        }
+        return self::$EMBEDDINGSWRITE;
     }
     public static function COLLECTIONSREAD(): ProjectKeyScopes
     {
@@ -814,6 +823,13 @@ class ProjectKeyScopes implements JsonSerializable
         }
         return self::$EVENTSREAD;
     }
+    public static function PROXYINVALIDATIONSWRITE(): ProjectKeyScopes
+    {
+        if (!isset(self::$PROXYINVALIDATIONSWRITE)) {
+            self::$PROXYINVALIDATIONSWRITE = new ProjectKeyScopes('proxy.invalidations.write');
+        }
+        return self::$PROXYINVALIDATIONSWRITE;
+    }
     public static function APPSREAD(): ProjectKeyScopes
     {
         if (!isset(self::$APPSREAD)) {
@@ -894,6 +910,7 @@ class ProjectKeyScopes implements JsonSerializable
             'indexes.write' => self::INDEXESWRITE(),
             'rows.read' => self::ROWSREAD(),
             'rows.write' => self::ROWSWRITE(),
+            'embeddings.write' => self::EMBEDDINGSWRITE(),
             'collections.read' => self::COLLECTIONSREAD(),
             'collections.write' => self::COLLECTIONSWRITE(),
             'attributes.read' => self::ATTRIBUTESREAD(),
@@ -958,6 +975,7 @@ class ProjectKeyScopes implements JsonSerializable
             'wafRules.read' => self::WAFRULESREAD(),
             'wafRules.write' => self::WAFRULESWRITE(),
             'events.read' => self::EVENTSREAD(),
+            'proxy.invalidations.write' => self::PROXYINVALIDATIONSWRITE(),
             'apps.read' => self::APPSREAD(),
             'apps.write' => self::APPSWRITE(),
             'oauth2.read' => self::OAUTH2READ(),

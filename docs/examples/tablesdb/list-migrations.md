@@ -2,15 +2,15 @@
 <?php
 
 use Appwrite\Client;
-use Appwrite\Services\Account;
+use Appwrite\Services\TablesDB;
 
 $client = (new Client())
     ->setEndpoint('https://<REGION>.cloud.appwrite.io/v1') // Your API Endpoint
     ->setProject('<YOUR_PROJECT_ID>') // Your project ID
-    ->setSession(''); // The user session to authenticate with
+    ->setKey('<YOUR_API_KEY>'); // Your secret API key
 
-$account = new Account($client);
+$tablesDB = new TablesDB($client);
 
-$result = $account->createJWT(
-    duration: 0 // optional
+$result = $tablesDB->listMigrations(
+    databaseId: '<DATABASE_ID>'
 );```

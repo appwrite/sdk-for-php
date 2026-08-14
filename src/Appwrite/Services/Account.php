@@ -478,51 +478,6 @@ class Account extends Service
     }
 
     /**
-     * Use this endpoint to create a JSON Web Token. You can use the resulting JWT
-     * to authenticate on behalf of the current user when working with the
-     * Appwrite server-side API and SDKs. The JWT secret is valid for 15 minutes
-     * from its creation and will be invalid if the user will logout in that time
-     * frame.
-     *
-     * @param ?int $duration
-     * @throws AppwriteException
-     * @return \Appwrite\Models\Jwt
-     */
-    public function createJWT(?int $duration = null): \Appwrite\Models\Jwt
-    {
-        $apiPath = str_replace(
-            [],
-            [],
-            '/account/jwts'
-        );
-
-        $apiParams = [];
-
-        if (!is_null($duration)) {
-            $apiParams['duration'] = $duration;
-        }
-
-        $apiHeaders = [];
-        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
-        $apiHeaders['content-type'] = 'application/json';
-        $apiHeaders['accept'] = 'application/json';
-
-        $response = $this->client->call(
-            Client::METHOD_POST,
-            $apiPath,
-            $apiHeaders,
-            $apiParams
-        );
-
-        if (!is_array($response)) {
-            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
-        }
-
-        return \Appwrite\Models\Jwt::from($response);
-
-    }
-
-    /**
      * Get the list of latest security activity logs for the currently logged in
      * user. Each log returns user IP address, location and date and time of log.
      *

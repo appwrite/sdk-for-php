@@ -18,5 +18,6 @@ $result = $storage->createFile(
     bucketId: '<BUCKET_ID>',
     fileId: '<FILE_ID>',
     file: InputFile::withPath('file.png'),
-    permissions: [Permission::read(Role::any())] // optional
+    permissions: [Permission::read(Role::any())], // optional
+    folder: '' // optional
 );```

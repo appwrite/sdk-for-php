@@ -6,6 +6,7 @@ use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
 use Appwrite\InputFile;
+use Appwrite\Enums\InvalidationType;
 use Appwrite\Enums\StatusCode;
 use Appwrite\Enums\ProxyResourceType;
 
@@ -14,6 +15,55 @@ class Proxy extends Service
     public function __construct(Client $client)
     {
         parent::__construct($client);
+    }
+
+    /**
+     * Create a new CDN cache invalidation for a domain. Executes a hard purge of
+     * cached content.
+     * 
+     * Depending on type, the invalidation purges a single cache tag, a single URL
+     * path, or all cached content for the domain.
+     *
+     * @param string $domain
+     * @param InvalidationType $type
+     * @param ?string $reference
+     * @throws AppwriteException
+     * @return \Appwrite\Models\ProxyInvalidation
+     */
+    public function createInvalidation(string $domain, InvalidationType $type, ?string $reference = null): \Appwrite\Models\ProxyInvalidation
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/proxy/invalidations'
+        );
+
+        $apiParams = [];
+        $apiParams['domain'] = $domain;
+        $apiParams['type'] = $type;
+
+        if (!is_null($reference)) {
+            $apiParams['reference'] = $reference;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\ProxyInvalidation::from($response);
+
     }
 
     /**

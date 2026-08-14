@@ -380,10 +380,11 @@ class Storage extends Service
      * @param string $fileId
      * @param InputFile $file
      * @param ?array $permissions
+     * @param ?string $folder
      * @throws AppwriteException
      * @return \Appwrite\Models\File
      */
-    public function createFile(string $bucketId, string $fileId, InputFile $file, ?array $permissions = null, ?callable $onProgress = null): \Appwrite\Models\File
+    public function createFile(string $bucketId, string $fileId, InputFile $file, ?array $permissions = null, ?string $folder = null, ?callable $onProgress = null): \Appwrite\Models\File
     {
         $apiPath = str_replace(
             ['{bucketId}'],
@@ -398,6 +399,10 @@ class Storage extends Service
 
         if (!is_null($permissions)) {
             $apiParams['permissions'] = $permissions;
+        }
+
+        if (!is_null($folder)) {
+            $apiParams['folder'] = $folder;
         }
 
         $apiHeaders = [];

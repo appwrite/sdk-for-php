@@ -22,7 +22,7 @@ readonly class Database
      * @param bool $enabled if database is enabled. can be 'enabled' or 'disabled'. when disabled, the database is inaccessible to users, but remains accessible to server sdks using api keys.
      * @param DatabaseType $type database type.
      * @param DatabaseStatus|null $status dedicated database lifecycle status. null when the database has no valid dedicated backing.
-     * @param string|null $engine underlying engine of the dedicated backing: postgresql, mysql, mariadb, or mongodb. a managed product (tablesdb, documentsdb, vectorsdb) reports the engine it runs on, so its type and engine can differ. null when the database has no dedicated backing.
+     * @param string|null $engine underlying engine of the dedicated backing: postgresql, mysql, or mongodb. a managed product (tablesdb, documentsdb, vectorsdb) reports the engine it runs on, so its type and engine can differ. null when the database has no dedicated backing.
      * @param string|null $specification compute specification identifier of the dedicated backing, e.g. s-2vcpu-2gb. null when the database has no dedicated backing.
      * @param int|null $replicas number of secondary high availability replicas, excluding the primary. null when backing configuration is unavailable.
      * @param list<BackupPolicy>|null $policies database backup policies.

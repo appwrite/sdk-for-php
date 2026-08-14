@@ -18,12 +18,12 @@ readonly class DedicatedDatabase
      * @param string $projectId project id that owns this database.
      * @param string $name database display name.
      * @param string $api product api that owns this database: tablesdb, documentsdb, vectorsdb, mysql, postgresql, or mongodb.
-     * @param string $engine database engine: postgresql, mysql, mariadb, or mongodb.
+     * @param string $engine database engine: postgresql, mysql, or mongodb. null until the backing reports one.
      * @param string $version database engine version.
      * @param string $specification specification identifier.
      * @param string $backend database backend provider. possible values: prisma, edge.
      * @param string $hostname database hostname for connections.
-     * @param int $connectionPort database port for connections.
+     * @param int $connectionPort database port for connections. derived from the engine when the backing has not reported one yet.
      * @param string $connectionUser database username for connections.
      * @param string $connectionPassword database password for connections.
      * @param string $connectionString full database connection string (uri format).
@@ -40,8 +40,7 @@ readonly class DedicatedDatabase
      * @param string $nodePool kubernetes node pool where the database is scheduled.
      * @param int $replicas number of high availability replicas. high availability is enabled when greater than 0.
      * @param string $syncMode replication sync mode: async, sync, or quorum.
-     * @param int $crossRegionReplicas number of cross-region replicas. cross-region availability is enabled when greater than 0.
-     * @param int $networkMaxConnections maximum concurrent connections.
+     * @param int $networkMaxConnections maximum concurrent client connections. this is the limit a client pool may reach; the engine's own max_connections reported by the status endpoint is a smaller backend limit the pooler multiplexes onto and does not constrain a client pool.
      * @param int $networkIdleTimeoutSeconds connection idle timeout in seconds.
      * @param array $networkIPAllowlist ip addresses/cidr ranges allowed to connect.
      * @param bool $backupEnabled whether automatic backups are enabled.
@@ -91,7 +90,6 @@ readonly class DedicatedDatabase
         public string $nodePool,
         public int $replicas,
         public string $syncMode,
-        public int $crossRegionReplicas,
         public int $networkMaxConnections,
         public int $networkIdleTimeoutSeconds,
         public array $networkIPAllowlist,
@@ -204,9 +202,6 @@ readonly class DedicatedDatabase
         if (!array_key_exists('syncMode', $data)) {
             throw new \InvalidArgumentException('Missing required field "syncMode" for ' . static::class . '.');
         }
-        if (!array_key_exists('crossRegionReplicas', $data)) {
-            throw new \InvalidArgumentException('Missing required field "crossRegionReplicas" for ' . static::class . '.');
-        }
         if (!array_key_exists('networkMaxConnections', $data)) {
             throw new \InvalidArgumentException('Missing required field "networkMaxConnections" for ' . static::class . '.');
         }
@@ -291,7 +286,6 @@ readonly class DedicatedDatabase
             nodePool: $data['nodePool'],
             replicas: $data['replicas'],
             syncMode: $data['syncMode'],
-            crossRegionReplicas: $data['crossRegionReplicas'],
             networkMaxConnections: $data['networkMaxConnections'],
             networkIdleTimeoutSeconds: $data['networkIdleTimeoutSeconds'],
             networkIPAllowlist: $data['networkIPAllowlist'],
@@ -351,7 +345,6 @@ readonly class DedicatedDatabase
             'nodePool' => static::serializeValue($this->nodePool),
             'replicas' => static::serializeValue($this->replicas),
             'syncMode' => static::serializeValue($this->syncMode),
-            'crossRegionReplicas' => static::serializeValue($this->crossRegionReplicas),
             'networkMaxConnections' => static::serializeValue($this->networkMaxConnections),
             'networkIdleTimeoutSeconds' => static::serializeValue($this->networkIdleTimeoutSeconds),
             'networkIPAllowlist' => static::serializeValue($this->networkIPAllowlist),

@@ -15,14 +15,12 @@ readonly class DedicatedDatabaseSpecificationPricing
      * @param float $storageOverageRate price per gb of storage above the included amount, per month, in usd.
      * @param float $bandwidthOverageRate price per gb of bandwidth above the included amount, per month, in usd.
      * @param float $replicaRate high availability replica price as a fraction of the specification cost.
-     * @param float $crossRegionReplicaRate cross-region replica price as a fraction of the specification cost.
      * @param float $pitrRate point-in-time recovery price as a fraction of the specification cost.
      */
     public function __construct(
         public float $storageOverageRate,
         public float $bandwidthOverageRate,
         public float $replicaRate,
-        public float $crossRegionReplicaRate,
         public float $pitrRate
     ) {
     }
@@ -41,9 +39,6 @@ readonly class DedicatedDatabaseSpecificationPricing
         if (!array_key_exists('replicaRate', $data)) {
             throw new \InvalidArgumentException('Missing required field "replicaRate" for ' . static::class . '.');
         }
-        if (!array_key_exists('crossRegionReplicaRate', $data)) {
-            throw new \InvalidArgumentException('Missing required field "crossRegionReplicaRate" for ' . static::class . '.');
-        }
         if (!array_key_exists('pitrRate', $data)) {
             throw new \InvalidArgumentException('Missing required field "pitrRate" for ' . static::class . '.');
         }
@@ -52,7 +47,6 @@ readonly class DedicatedDatabaseSpecificationPricing
             storageOverageRate: $data['storageOverageRate'],
             bandwidthOverageRate: $data['bandwidthOverageRate'],
             replicaRate: $data['replicaRate'],
-            crossRegionReplicaRate: $data['crossRegionReplicaRate'],
             pitrRate: $data['pitrRate']
         );
     }
@@ -66,7 +60,6 @@ readonly class DedicatedDatabaseSpecificationPricing
             'storageOverageRate' => static::serializeValue($this->storageOverageRate),
             'bandwidthOverageRate' => static::serializeValue($this->bandwidthOverageRate),
             'replicaRate' => static::serializeValue($this->replicaRate),
-            'crossRegionReplicaRate' => static::serializeValue($this->crossRegionReplicaRate),
             'pitrRate' => static::serializeValue($this->pitrRate)
         ];
 

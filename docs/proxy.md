@@ -2,6 +2,23 @@
 
 
 ```http request
+POST https://cloud.appwrite.io/v1/proxy/invalidations
+```
+
+** Create a new CDN cache invalidation for a domain. Executes a hard purge of cached content.
+
+Depending on type, the invalidation purges a single cache tag, a single URL path, or all cached content for the domain. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| domain | string | Domain name. |  |
+| type | string | Type of reference passed. Allowed values are: tag, path, all |  |
+| reference | string | Reference to invalidate. Depending on type this can be: cache tag name (up to 128 characters), URL path (up to 2048 characters). Not required when type is all. |  |
+
+
+```http request
 GET https://cloud.appwrite.io/v1/proxy/rules
 ```
 

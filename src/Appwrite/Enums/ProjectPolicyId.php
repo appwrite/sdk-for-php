@@ -16,6 +16,7 @@ class ProjectPolicyId implements JsonSerializable
     private static ProjectPolicyId $SESSIONLIMIT;
     private static ProjectPolicyId $USERLIMIT;
     private static ProjectPolicyId $MEMBERSHIPPRIVACY;
+    private static ProjectPolicyId $MFAFACTORS;
     private static ProjectPolicyId $DENYALIASEDEMAIL;
     private static ProjectPolicyId $DENYDISPOSABLEEMAIL;
     private static ProjectPolicyId $DENYFREEEMAIL;
@@ -108,6 +109,13 @@ class ProjectPolicyId implements JsonSerializable
         }
         return self::$MEMBERSHIPPRIVACY;
     }
+    public static function MFAFACTORS(): ProjectPolicyId
+    {
+        if (!isset(self::$MFAFACTORS)) {
+            self::$MFAFACTORS = new ProjectPolicyId('mfa-factors');
+        }
+        return self::$MFAFACTORS;
+    }
     public static function DENYALIASEDEMAIL(): ProjectPolicyId
     {
         if (!isset(self::$DENYALIASEDEMAIL)) {
@@ -150,6 +158,7 @@ class ProjectPolicyId implements JsonSerializable
             'session-limit' => self::SESSIONLIMIT(),
             'user-limit' => self::USERLIMIT(),
             'membership-privacy' => self::MEMBERSHIPPRIVACY(),
+            'mfa-factors' => self::MFAFACTORS(),
             'deny-aliased-email' => self::DENYALIASEDEMAIL(),
             'deny-disposable-email' => self::DENYDISPOSABLEEMAIL(),
             'deny-free-email' => self::DENYFREEEMAIL(),

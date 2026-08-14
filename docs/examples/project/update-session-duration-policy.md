@@ -12,5 +12,5 @@ $client = (new Client())
 $project = new Project($client);
 
 $result = $project->updateSessionDurationPolicy(
-    duration: 5
+    duration: 60
 );```
