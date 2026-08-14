@@ -248,7 +248,7 @@ POST https://cloud.appwrite.io/v1/users/{userId}/jwts
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | userId | string | **Required** User ID. |  |
-| sessionId | string | Session ID. Use the string 'recent' to use the most recent session. Defaults to the most recent session. |  |
+| sessionId | string | Session ID. Use the string 'recent' to use the most recent session. Defaults to the most recent session. | recent |
 | duration | integer | Time in seconds before JWT expires. Default duration is 900 seconds, and maximum is 3600 seconds. | 900 |
 
 
@@ -353,6 +353,20 @@ DELETE https://cloud.appwrite.io/v1/users/{userId}/mfa/authenticators/{type}
 | --- | --- | --- | --- |
 | userId | string | **Required** User ID. |  |
 | type | string | **Required** Type of authenticator. |  |
+
+
+```http request
+GET https://cloud.appwrite.io/v1/users/{userId}/mfa/challenges/{challengeId}
+```
+
+** Get a custom MFA challenge for a user, including the code to be delivered through your own channel. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| userId | string | **Required** User ID. |  |
+| challengeId | string | **Required** ID of the challenge. |  |
 
 
 ```http request

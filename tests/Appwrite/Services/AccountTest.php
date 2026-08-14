@@ -374,24 +374,6 @@ final class AccountTest extends TestCase
         $this->assertSame($data, $response);
     }
 
-    public function testMethodCreateJWT(): void
-    {
-        $data = array(
-            "jwt" => "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
-        );
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-        $this->client
-            ->allows()->getConfig(Mockery::any())
-            ->andReturn('');
-
-        $response = $this->account->createJWT();
-
-        $this->assertInstanceOf(\Appwrite\Models\Jwt::class, $response);
-    }
-
     public function testMethodListLogs(): void
     {
         $data = array(
@@ -646,7 +628,8 @@ final class AccountTest extends TestCase
             "totp" => true,
             "phone" => true,
             "email" => true,
-            "recoveryCode" => true
+            "recoveryCode" => true,
+            "custom" => true
         );
 
         $this->client

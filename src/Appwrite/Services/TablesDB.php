@@ -78,10 +78,11 @@ class TablesDB extends Service
      * @param ?bool $enabled
      * @param ?string $specification
      * @param ?int $replicas
+     * @param ?string $syncMode
      * @throws AppwriteException
      * @return \Appwrite\Models\Database
      */
-    public function create(string $databaseId, string $name, ?bool $enabled = null, ?string $specification = null, ?int $replicas = null): \Appwrite\Models\Database
+    public function create(string $databaseId, string $name, ?bool $enabled = null, ?string $specification = null, ?int $replicas = null, ?string $syncMode = null): \Appwrite\Models\Database
     {
         $apiPath = str_replace(
             [],
@@ -104,6 +105,7 @@ class TablesDB extends Service
         if (!is_null($replicas)) {
             $apiParams['replicas'] = $replicas;
         }
+        $apiParams['syncMode'] = $syncMode;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -448,11 +450,13 @@ class TablesDB extends Service
      * @param string $databaseId
      * @param ?string $name
      * @param ?bool $enabled
+     * @param ?string $specification
      * @param ?int $replicas
+     * @param ?string $syncMode
      * @throws AppwriteException
      * @return \Appwrite\Models\Database
      */
-    public function update(string $databaseId, ?string $name = null, ?bool $enabled = null, ?int $replicas = null): \Appwrite\Models\Database
+    public function update(string $databaseId, ?string $name = null, ?bool $enabled = null, ?string $specification = null, ?int $replicas = null, ?string $syncMode = null): \Appwrite\Models\Database
     {
         $apiPath = str_replace(
             ['{databaseId}'],
@@ -470,7 +474,9 @@ class TablesDB extends Service
         if (!is_null($enabled)) {
             $apiParams['enabled'] = $enabled;
         }
+        $apiParams['specification'] = $specification;
         $apiParams['replicas'] = $replicas;
+        $apiParams['syncMode'] = $syncMode;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -529,7 +535,9 @@ class TablesDB extends Service
     /**
      * Trigger a manual failover for a dedicated database with high availability
      * enabled. Promotes a replica to primary. The failover runs asynchronously;
-     * poll the database document for status updates.
+     * poll the database document for status updates. A database left
+     * mid-operation by a failover that did not finish also accepts this call as a
+     * repair, provided `targetReplicaId` names the member to promote.
      *
      * @param string $databaseId
      * @param ?string $targetReplicaId
@@ -565,6 +573,267 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\DedicatedDatabase::from($response);
+
+    }
+
+    /**
+     * List the dedicated migrations for a TablesDB database. A database has at
+     * most one in-flight migration.
+     *
+     * @param string $databaseId
+     * @throws AppwriteException
+     * @return \Appwrite\Models\DatabaseMigrationList
+     */
+    public function listMigrations(string $databaseId): \Appwrite\Models\DatabaseMigrationList
+    {
+        $apiPath = str_replace(
+            ['{databaseId}'],
+            [$databaseId],
+            '/tablesdb/{databaseId}/migrations'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\DatabaseMigrationList::from($response);
+
+    }
+
+    /**
+     * Start migrating a serverless TablesDB database onto a dedicated MySQL
+     * compute. Data is copied to the target while the source stays live, with a
+     * brief read-only window during cutover.
+     *
+     * @param string $databaseId
+     * @param string $specification
+     * @param ?bool $autoCutover
+     * @throws AppwriteException
+     * @return \Appwrite\Models\DatabaseMigration
+     */
+    public function createMigration(string $databaseId, string $specification, ?bool $autoCutover = null): \Appwrite\Models\DatabaseMigration
+    {
+        $apiPath = str_replace(
+            ['{databaseId}'],
+            [$databaseId],
+            '/tablesdb/{databaseId}/migrations'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['specification'] = $specification;
+
+        if (!is_null($autoCutover)) {
+            $apiParams['autoCutover'] = $autoCutover;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\DatabaseMigration::from($response);
+
+    }
+
+    /**
+     * Get a single dedicated migration for a TablesDB database by its ID.
+     *
+     * @param string $databaseId
+     * @param string $migrationId
+     * @throws AppwriteException
+     * @return \Appwrite\Models\DatabaseMigration
+     */
+    public function getMigration(string $databaseId, string $migrationId): \Appwrite\Models\DatabaseMigration
+    {
+        $apiPath = str_replace(
+            ['{databaseId}', '{migrationId}'],
+            [$databaseId, $migrationId],
+            '/tablesdb/{databaseId}/migrations/{migrationId}'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['migrationId'] = $migrationId;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\DatabaseMigration::from($response);
+
+    }
+
+    /**
+     * Abort an in-flight TablesDB dedicated migration. Only allowed before
+     * cutover; once the migration has cut over it cannot be aborted.
+     *
+     * @param string $databaseId
+     * @param string $migrationId
+     * @throws AppwriteException
+     * @return string
+     */
+    public function deleteMigration(string $databaseId, string $migrationId): string
+    {
+        $apiPath = str_replace(
+            ['{databaseId}', '{migrationId}'],
+            [$databaseId, $migrationId],
+            '/tablesdb/{databaseId}/migrations/{migrationId}'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['migrationId'] = $migrationId;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_DELETE,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        return $response;
+
+    }
+
+    /**
+     * Cut a verified TablesDB migration over to its dedicated compute. Only
+     * applies to a migration created with `autoCutover` disabled, which waits at
+     * `ready_to_cutover` until this is called. The routing flip happens shortly
+     * after this returns, with a brief read-only window. One call buys one
+     * attempt: a cutover that fails a check returns the migration to `verifying`
+     * and parks it again, so call this once more to retry.
+     *
+     * @param string $databaseId
+     * @param string $migrationId
+     * @throws AppwriteException
+     * @return \Appwrite\Models\DatabaseMigration
+     */
+    public function cutoverMigration(string $databaseId, string $migrationId): \Appwrite\Models\DatabaseMigration
+    {
+        $apiPath = str_replace(
+            ['{databaseId}', '{migrationId}'],
+            [$databaseId, $migrationId],
+            '/tablesdb/{databaseId}/migrations/{migrationId}/cutover'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['migrationId'] = $migrationId;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\DatabaseMigration::from($response);
+
+    }
+
+    /**
+     * List the lifecycle operations recorded for a dedicated database, newest
+     * first. Every provision, update, restore, backup and replication action is
+     * recorded here with its outcome, including an attempt that was abandoned
+     * because another worker took over the database.
+     *
+     * @param string $databaseId
+     * @param ?string $status
+     * @param ?int $limit
+     * @param ?int $offset
+     * @throws AppwriteException
+     * @return \Appwrite\Models\DedicatedDatabaseOperationList
+     */
+    public function listOperations(string $databaseId, ?string $status = null, ?int $limit = null, ?int $offset = null): \Appwrite\Models\DedicatedDatabaseOperationList
+    {
+        $apiPath = str_replace(
+            ['{databaseId}'],
+            [$databaseId],
+            '/tablesdb/{databaseId}/operations'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+
+        if (!is_null($status)) {
+            $apiParams['status'] = $status;
+        }
+
+        if (!is_null($limit)) {
+            $apiParams['limit'] = $limit;
+        }
+
+        if (!is_null($offset)) {
+            $apiParams['offset'] = $offset;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\DedicatedDatabaseOperationList::from($response);
 
     }
 

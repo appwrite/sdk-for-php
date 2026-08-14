@@ -12,8 +12,8 @@ readonly class DatabaseStatusReplica
     /**
      * DatabaseStatusReplica constructor.
      *
-     * @param int $index statefulset pod index (0 = primary, 1+ = replicas).
-     * @param string $role replica role: primary or replica.
+     * @param int $index member index within the database. read `role` for which member accepts writes: a failover moves the primary without renumbering the indexes.
+     * @param string $role member role. possible values: primary (accepts reads and writes), replica (read-only follower), unknown (placement not established; reported while a transition is moving or restarting the topology, so no member can be named the write target).
      * @param bool $healthy whether the replica is healthy.
      * @param float|null $lagSeconds replication lag in seconds (null for primary).
      */

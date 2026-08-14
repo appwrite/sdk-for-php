@@ -18,7 +18,6 @@ readonly class Organization
      * @param string $name team name.
      * @param int $total total number of team members.
      * @param Preferences $prefs team preferences as a key-value object
-     * @param int $billingBudget project budget limit
      * @param array $budgetAlerts project budget limit
      * @param string $billingPlan organization's billing plan id.
      * @param string $billingPlanId organization's billing plan id.
@@ -27,26 +26,27 @@ readonly class Organization
      * @param string $billingStartDate billing cycle start date.
      * @param string $billingCurrentInvoiceDate current invoice cycle start date.
      * @param string $billingNextInvoiceDate next invoice cycle start date.
-     * @param string $billingTrialStartDate start date of trial.
      * @param int $billingTrialDays number of trial days.
      * @param string $billingAggregationId current active aggregation id.
      * @param string $billingInvoiceId current active aggregation id.
      * @param string $paymentMethodId default payment method.
-     * @param string $billingAddressId default payment method.
-     * @param string $backupPaymentMethodId backup payment method.
      * @param string $status team status.
-     * @param string $remarks remarks on team status.
-     * @param string $agreementBAA organization agreements
-     * @param string $programManagerName program manager's name.
-     * @param string $programManagerCalendar program manager's calendar link.
-     * @param string $programDiscordChannelName program's discord channel name.
-     * @param string $programDiscordChannelUrl program's discord channel url.
-     * @param string $billingPlanDowngrade billing plan selected for downgrade.
-     * @param string $billingTaxId tax id
      * @param bool $markedForDeletion marked for deletion
      * @param string $platform product with which the organization is associated (appwrite or imagine)
      * @param array $projects selected projects
+     * @param int|null $billingBudget project budget limit. null when no budget is set.
+     * @param string|null $billingTrialStartDate start date of trial.
+     * @param string|null $billingAddressId default payment method.
+     * @param string|null $backupPaymentMethodId backup payment method.
+     * @param string|null $remarks remarks on team status.
+     * @param string|null $agreementBAA organization agreements
+     * @param string|null $programManagerName program manager's name.
+     * @param string|null $programManagerCalendar program manager's calendar link.
+     * @param string|null $programDiscordChannelName program's discord channel name.
+     * @param string|null $programDiscordChannelUrl program's discord channel url.
      * @param BillingLimits|null $billingLimits billing limits reached
+     * @param string|null $billingPlanDowngrade billing plan selected for downgrade.
+     * @param string|null $billingTaxId tax id
      */
     public function __construct(
         public string $id,
@@ -55,7 +55,6 @@ readonly class Organization
         public string $name,
         public int $total,
         public Preferences $prefs,
-        public int $billingBudget,
         public array $budgetAlerts,
         public string $billingPlan,
         public string $billingPlanId,
@@ -64,26 +63,27 @@ readonly class Organization
         public string $billingStartDate,
         public string $billingCurrentInvoiceDate,
         public string $billingNextInvoiceDate,
-        public string $billingTrialStartDate,
         public int $billingTrialDays,
         public string $billingAggregationId,
         public string $billingInvoiceId,
         public string $paymentMethodId,
-        public string $billingAddressId,
-        public string $backupPaymentMethodId,
         public string $status,
-        public string $remarks,
-        public string $agreementBAA,
-        public string $programManagerName,
-        public string $programManagerCalendar,
-        public string $programDiscordChannelName,
-        public string $programDiscordChannelUrl,
-        public string $billingPlanDowngrade,
-        public string $billingTaxId,
         public bool $markedForDeletion,
         public string $platform,
         public array $projects,
-        public ?BillingLimits $billingLimits = null
+        public ?int $billingBudget = null,
+        public ?string $billingTrialStartDate = null,
+        public ?string $billingAddressId = null,
+        public ?string $backupPaymentMethodId = null,
+        public ?string $remarks = null,
+        public ?string $agreementBAA = null,
+        public ?string $programManagerName = null,
+        public ?string $programManagerCalendar = null,
+        public ?string $programDiscordChannelName = null,
+        public ?string $programDiscordChannelUrl = null,
+        public ?BillingLimits $billingLimits = null,
+        public ?string $billingPlanDowngrade = null,
+        public ?string $billingTaxId = null
     ) {
     }
 
@@ -110,9 +110,6 @@ readonly class Organization
         if (!array_key_exists('prefs', $data)) {
             throw new \InvalidArgumentException('Missing required field "prefs" for ' . static::class . '.');
         }
-        if (!array_key_exists('billingBudget', $data)) {
-            throw new \InvalidArgumentException('Missing required field "billingBudget" for ' . static::class . '.');
-        }
         if (!array_key_exists('budgetAlerts', $data)) {
             throw new \InvalidArgumentException('Missing required field "budgetAlerts" for ' . static::class . '.');
         }
@@ -137,9 +134,6 @@ readonly class Organization
         if (!array_key_exists('billingNextInvoiceDate', $data)) {
             throw new \InvalidArgumentException('Missing required field "billingNextInvoiceDate" for ' . static::class . '.');
         }
-        if (!array_key_exists('billingTrialStartDate', $data)) {
-            throw new \InvalidArgumentException('Missing required field "billingTrialStartDate" for ' . static::class . '.');
-        }
         if (!array_key_exists('billingTrialDays', $data)) {
             throw new \InvalidArgumentException('Missing required field "billingTrialDays" for ' . static::class . '.');
         }
@@ -152,38 +146,8 @@ readonly class Organization
         if (!array_key_exists('paymentMethodId', $data)) {
             throw new \InvalidArgumentException('Missing required field "paymentMethodId" for ' . static::class . '.');
         }
-        if (!array_key_exists('billingAddressId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "billingAddressId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('backupPaymentMethodId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "backupPaymentMethodId" for ' . static::class . '.');
-        }
         if (!array_key_exists('status', $data)) {
             throw new \InvalidArgumentException('Missing required field "status" for ' . static::class . '.');
-        }
-        if (!array_key_exists('remarks', $data)) {
-            throw new \InvalidArgumentException('Missing required field "remarks" for ' . static::class . '.');
-        }
-        if (!array_key_exists('agreementBAA', $data)) {
-            throw new \InvalidArgumentException('Missing required field "agreementBAA" for ' . static::class . '.');
-        }
-        if (!array_key_exists('programManagerName', $data)) {
-            throw new \InvalidArgumentException('Missing required field "programManagerName" for ' . static::class . '.');
-        }
-        if (!array_key_exists('programManagerCalendar', $data)) {
-            throw new \InvalidArgumentException('Missing required field "programManagerCalendar" for ' . static::class . '.');
-        }
-        if (!array_key_exists('programDiscordChannelName', $data)) {
-            throw new \InvalidArgumentException('Missing required field "programDiscordChannelName" for ' . static::class . '.');
-        }
-        if (!array_key_exists('programDiscordChannelUrl', $data)) {
-            throw new \InvalidArgumentException('Missing required field "programDiscordChannelUrl" for ' . static::class . '.');
-        }
-        if (!array_key_exists('billingPlanDowngrade', $data)) {
-            throw new \InvalidArgumentException('Missing required field "billingPlanDowngrade" for ' . static::class . '.');
-        }
-        if (!array_key_exists('billingTaxId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "billingTaxId" for ' . static::class . '.');
         }
         if (!array_key_exists('markedForDeletion', $data)) {
             throw new \InvalidArgumentException('Missing required field "markedForDeletion" for ' . static::class . '.');
@@ -202,7 +166,6 @@ readonly class Organization
             name: $data['name'],
             total: $data['total'],
             prefs: static::hydrateTypedValue(Preferences::class, $data['prefs']),
-            billingBudget: $data['billingBudget'],
             budgetAlerts: $data['budgetAlerts'],
             billingPlan: $data['billingPlan'],
             billingPlanId: $data['billingPlanId'],
@@ -211,26 +174,27 @@ readonly class Organization
             billingStartDate: $data['billingStartDate'],
             billingCurrentInvoiceDate: $data['billingCurrentInvoiceDate'],
             billingNextInvoiceDate: $data['billingNextInvoiceDate'],
-            billingTrialStartDate: $data['billingTrialStartDate'],
             billingTrialDays: $data['billingTrialDays'],
             billingAggregationId: $data['billingAggregationId'],
             billingInvoiceId: $data['billingInvoiceId'],
             paymentMethodId: $data['paymentMethodId'],
-            billingAddressId: $data['billingAddressId'],
-            backupPaymentMethodId: $data['backupPaymentMethodId'],
             status: $data['status'],
-            remarks: $data['remarks'],
-            agreementBAA: $data['agreementBAA'],
-            programManagerName: $data['programManagerName'],
-            programManagerCalendar: $data['programManagerCalendar'],
-            programDiscordChannelName: $data['programDiscordChannelName'],
-            programDiscordChannelUrl: $data['programDiscordChannelUrl'],
-            billingPlanDowngrade: $data['billingPlanDowngrade'],
-            billingTaxId: $data['billingTaxId'],
             markedForDeletion: $data['markedForDeletion'],
             platform: $data['platform'],
             projects: $data['projects'],
-            billingLimits: array_key_exists('billingLimits', $data) ? static::hydrateTypedValue(BillingLimits::class, $data['billingLimits'], true) : null
+            billingBudget: array_key_exists('billingBudget', $data) ? $data['billingBudget'] : null,
+            billingTrialStartDate: array_key_exists('billingTrialStartDate', $data) ? $data['billingTrialStartDate'] : null,
+            billingAddressId: array_key_exists('billingAddressId', $data) ? $data['billingAddressId'] : null,
+            backupPaymentMethodId: array_key_exists('backupPaymentMethodId', $data) ? $data['backupPaymentMethodId'] : null,
+            remarks: array_key_exists('remarks', $data) ? $data['remarks'] : null,
+            agreementBAA: array_key_exists('agreementBAA', $data) ? $data['agreementBAA'] : null,
+            programManagerName: array_key_exists('programManagerName', $data) ? $data['programManagerName'] : null,
+            programManagerCalendar: array_key_exists('programManagerCalendar', $data) ? $data['programManagerCalendar'] : null,
+            programDiscordChannelName: array_key_exists('programDiscordChannelName', $data) ? $data['programDiscordChannelName'] : null,
+            programDiscordChannelUrl: array_key_exists('programDiscordChannelUrl', $data) ? $data['programDiscordChannelUrl'] : null,
+            billingLimits: array_key_exists('billingLimits', $data) ? static::hydrateTypedValue(BillingLimits::class, $data['billingLimits'], true) : null,
+            billingPlanDowngrade: array_key_exists('billingPlanDowngrade', $data) ? $data['billingPlanDowngrade'] : null,
+            billingTaxId: array_key_exists('billingTaxId', $data) ? $data['billingTaxId'] : null
         );
     }
 

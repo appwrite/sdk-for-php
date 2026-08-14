@@ -17,11 +17,11 @@ class Activities extends Service
     /**
      * List all events for selected filters.
      *
-     * @param ?string $queries
+     * @param ?array $queries
      * @throws AppwriteException
      * @return \Appwrite\Models\ActivityEventList
      */
-    public function listEvents(?string $queries = null): \Appwrite\Models\ActivityEventList
+    public function listEvents(?array $queries = null): \Appwrite\Models\ActivityEventList
     {
         $apiPath = str_replace(
             [],

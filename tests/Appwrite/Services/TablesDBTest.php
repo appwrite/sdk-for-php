@@ -97,7 +97,6 @@ final class TablesDBTest extends TestCase
                 "storageOverageRate" => 0.125,
                 "bandwidthOverageRate" => 0.08,
                 "replicaRate" => 1,
-                "crossRegionReplicaRate" => 1,
                 "pitrRate" => 0.2
             )
         );
@@ -357,7 +356,6 @@ final class TablesDBTest extends TestCase
             "nodePool" => "db-pool-4vcpu-8gb",
             "replicas" => 2,
             "syncMode" => "async",
-            "crossRegionReplicas" => 1,
             "networkMaxConnections" => 500,
             "networkIdleTimeoutSeconds" => 900,
             "networkIPAllowlist" => array(),
@@ -392,17 +390,218 @@ final class TablesDBTest extends TestCase
         $this->assertInstanceOf(\Appwrite\Models\DedicatedDatabase::class, $response);
     }
 
+    public function testMethodListMigrations(): void
+    {
+        $data = array(
+            "total" => 5,
+            "migrations" => array(
+                array(
+                    "\$id" => "5e5ea5c16897e",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "projectId" => "5e5ea5c16897e",
+                    "databaseId" => "5e5ea5c16897e",
+                    "specification" => "s-2vcpu-4gb",
+                    "phase" => "pending",
+                    "attempt" => 0,
+                    "lastError" => "[LASTERROR]",
+                    "lagDocuments" => 0,
+                    "verifiedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "cutoverAt" => "2020-10-15T06:38:00.000+00:00",
+                    "soakUntil" => "2020-10-15T06:38:00.000+00:00",
+                    "autoCutover" => true,
+                    "cutoverRequested" => true,
+                    "paused" => true
+                )
+            )
+        );
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->tablesDB->listMigrations(
+            "<DATABASE_ID>"
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\DatabaseMigrationList::class, $response);
+    }
+
+    public function testMethodCreateMigration(): void
+    {
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "projectId" => "5e5ea5c16897e",
+            "databaseId" => "5e5ea5c16897e",
+            "specification" => "s-2vcpu-4gb",
+            "phase" => "pending",
+            "attempt" => 0,
+            "lastError" => "[LASTERROR]",
+            "lagDocuments" => 0,
+            "verifiedAt" => "2020-10-15T06:38:00.000+00:00",
+            "cutoverAt" => "2020-10-15T06:38:00.000+00:00",
+            "soakUntil" => "2020-10-15T06:38:00.000+00:00",
+            "autoCutover" => true,
+            "cutoverRequested" => true,
+            "paused" => true
+        );
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->tablesDB->createMigration(
+            "<DATABASE_ID>",
+            "s-1vcpu-1gb"
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\DatabaseMigration::class, $response);
+    }
+
+    public function testMethodGetMigration(): void
+    {
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "projectId" => "5e5ea5c16897e",
+            "databaseId" => "5e5ea5c16897e",
+            "specification" => "s-2vcpu-4gb",
+            "phase" => "pending",
+            "attempt" => 0,
+            "lastError" => "[LASTERROR]",
+            "lagDocuments" => 0,
+            "verifiedAt" => "2020-10-15T06:38:00.000+00:00",
+            "cutoverAt" => "2020-10-15T06:38:00.000+00:00",
+            "soakUntil" => "2020-10-15T06:38:00.000+00:00",
+            "autoCutover" => true,
+            "cutoverRequested" => true,
+            "paused" => true
+        );
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->tablesDB->getMigration(
+            "<DATABASE_ID>",
+            "<MIGRATION_ID>"
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\DatabaseMigration::class, $response);
+    }
+
+    public function testMethodDeleteMigration(): void
+    {
+        $data = '';
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->tablesDB->deleteMigration(
+            "<DATABASE_ID>",
+            "<MIGRATION_ID>"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
+    public function testMethodCutoverMigration(): void
+    {
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "projectId" => "5e5ea5c16897e",
+            "databaseId" => "5e5ea5c16897e",
+            "specification" => "s-2vcpu-4gb",
+            "phase" => "pending",
+            "attempt" => 0,
+            "lastError" => "[LASTERROR]",
+            "lagDocuments" => 0,
+            "verifiedAt" => "2020-10-15T06:38:00.000+00:00",
+            "cutoverAt" => "2020-10-15T06:38:00.000+00:00",
+            "soakUntil" => "2020-10-15T06:38:00.000+00:00",
+            "autoCutover" => true,
+            "cutoverRequested" => true,
+            "paused" => true
+        );
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->tablesDB->cutoverMigration(
+            "<DATABASE_ID>",
+            "<MIGRATION_ID>"
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\DatabaseMigration::class, $response);
+    }
+
+    public function testMethodListOperations(): void
+    {
+        $data = array(
+            "total" => 5,
+            "operations" => array(
+                array(
+                    "\$id" => "5e5ea5c16897e",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "databaseId" => "5e5ea5c16897e",
+                    "type" => "update",
+                    "status" => "completed",
+                    "attempts" => 1,
+                    "errorCode" => "Interrupted",
+                    "errorMessage" => "[ERRORMESSAGE]"
+                )
+            )
+        );
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->tablesDB->listOperations(
+            "<DATABASE_ID>"
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\DedicatedDatabaseOperationList::class, $response);
+    }
+
     public function testMethodGetReplicas(): void
     {
         $data = array(
             "replicas" => 2,
             "syncMode" => "async",
+            "syncDegraded" => true,
+            "syncAcknowledgements" => 1,
+            "syncStandbyCount" => 2,
             "members" => array(
                 array(
                     "\$id" => "1",
                     "role" => "replica",
-                    "status" => "active",
-                    "lagSeconds" => 0.5
+                    "status" => "active"
                 )
             )
         );
@@ -433,6 +632,10 @@ final class TablesDBTest extends TestCase
                 "current" => 12,
                 "max" => 100
             ),
+            "syncMode" => "async",
+            "syncDegraded" => true,
+            "syncAcknowledgements" => 1,
+            "syncStandbyCount" => 2,
             "replicas" => array(
                 array(
                     "index" => 0,

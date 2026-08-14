@@ -12,12 +12,12 @@ readonly class BillingPlanAddon
     /**
      * BillingPlanAddon constructor.
      *
-     * @param BillingPlanAddonDetails $seats addon seats
-     * @param BillingPlanAddonDetails $projects addon projects
+     * @param BillingPlanAddonDetails|null $seats addon seats
+     * @param BillingPlanAddonDetails|null $projects addon projects
      */
     public function __construct(
-        public BillingPlanAddonDetails $seats,
-        public BillingPlanAddonDetails $projects
+        public ?BillingPlanAddonDetails $seats = null,
+        public ?BillingPlanAddonDetails $projects = null
     ) {
     }
 
@@ -26,16 +26,10 @@ readonly class BillingPlanAddon
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('seats', $data)) {
-            throw new \InvalidArgumentException('Missing required field "seats" for ' . static::class . '.');
-        }
-        if (!array_key_exists('projects', $data)) {
-            throw new \InvalidArgumentException('Missing required field "projects" for ' . static::class . '.');
-        }
 
         return new static(
-            seats: static::hydrateTypedValue(BillingPlanAddonDetails::class, $data['seats']),
-            projects: static::hydrateTypedValue(BillingPlanAddonDetails::class, $data['projects'])
+            seats: array_key_exists('seats', $data) ? static::hydrateTypedValue(BillingPlanAddonDetails::class, $data['seats'], true) : null,
+            projects: array_key_exists('projects', $data) ? static::hydrateTypedValue(BillingPlanAddonDetails::class, $data['projects'], true) : null
         );
     }
 

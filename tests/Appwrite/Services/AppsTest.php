@@ -382,6 +382,25 @@ final class AppsTest extends TestCase
         $this->assertInstanceOf(\Appwrite\Models\AppInstallation::class, $response);
     }
 
+    public function testMethodDeleteInstallation(): void
+    {
+        $data = '';
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->apps->deleteInstallation(
+            "<APP_ID>",
+            "<INSTALLATION_ID>"
+        );
+
+        $this->assertSame($data, $response);
+    }
+
     public function testMethodCreateInstallationToken(): void
     {
         $data = array(

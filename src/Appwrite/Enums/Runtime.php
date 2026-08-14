@@ -16,6 +16,7 @@ class Runtime implements JsonSerializable
     private static Runtime $NODE23;
     private static Runtime $NODE24;
     private static Runtime $NODE25;
+    private static Runtime $NODE26;
     private static Runtime $PHP80;
     private static Runtime $PHP81;
     private static Runtime $PHP82;
@@ -184,6 +185,13 @@ class Runtime implements JsonSerializable
             self::$NODE25 = new Runtime('node-25');
         }
         return self::$NODE25;
+    }
+    public static function NODE26(): Runtime
+    {
+        if (!isset(self::$NODE26)) {
+            self::$NODE26 = new Runtime('node-26');
+        }
+        return self::$NODE26;
     }
     public static function PHP80(): Runtime
     {
@@ -766,6 +774,7 @@ class Runtime implements JsonSerializable
             'node-23' => self::NODE23(),
             'node-24' => self::NODE24(),
             'node-25' => self::NODE25(),
+            'node-26' => self::NODE26(),
             'php-8.0' => self::PHP80(),
             'php-8.1' => self::PHP81(),
             'php-8.2' => self::PHP82(),

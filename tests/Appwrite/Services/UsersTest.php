@@ -886,13 +886,39 @@ final class UsersTest extends TestCase
         $this->assertSame($data, $response);
     }
 
+    public function testMethodGetMFAChallenge(): void
+    {
+        $data = array(
+            "\$id" => "bb8ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "userId" => "5e5ea5c168bb8",
+            "expire" => "2020-10-15T06:38:00.000+00:00",
+            "code" => "446372"
+        );
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->users->getMFAChallenge(
+            "<USER_ID>",
+            "<CHALLENGE_ID>"
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\MfaChallengeSecret::class, $response);
+    }
+
     public function testMethodListMFAFactors(): void
     {
         $data = array(
             "totp" => true,
             "phone" => true,
             "email" => true,
-            "recoveryCode" => true
+            "recoveryCode" => true,
+            "custom" => true
         );
 
         $this->client

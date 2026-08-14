@@ -67,7 +67,7 @@ GET https://cloud.appwrite.io/v1/functions/specifications
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| type | string | Specification type to list. Can be one of: runtimes, builds. | runtimes |
+| type | string | Specification type to list. Can be one of: runtimes, builds. Defaults to runtimes. | runtimes |
 
 
 ```http request

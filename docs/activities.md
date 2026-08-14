@@ -11,7 +11,7 @@ GET https://cloud.appwrite.io/v1/activities/events
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| queries | string | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/databases#querying-documents). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on attributes such as userId, teamId, etc. | [] |
+| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/databases#querying-documents). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on attributes such as userId, teamId, etc. | [] |
 
 
 ```http request

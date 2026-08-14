@@ -386,9 +386,10 @@ class Backups extends Service
      * Create and trigger a new restoration for a backup on a project.
      * 
      * For a backup of one database, the restoration resolves its destination
-     * before it is queued. Pass `newResourceId` to restore into that database ID,
-     * including the archived database ID to overwrite it. When `newResourceId` is
-     * omitted, a new database ID is generated and returned in `options`.
+     * before it is queued. When `newResourceId` is omitted, the archived database
+     * is restored in place and its own ID is returned in `options`. Pass a
+     * different `newResourceId` to restore alongside it as a new database
+     * instead.
      * 
      * The restoration migration records the archived database in `resourceId` and
      * `resourceType`, and the resolved database in `destinationResourceId` and
@@ -405,9 +406,14 @@ class Backups extends Service
      * operational `resourceType` of a table migration is not rewritten to
      * `tablesdb`.
      * 
-     * When restoring a DocumentsDB or VectorsDB database to a new resource from a
-     * dedicated source, the restore provisions a fresh dedicated backing database
-     * at the source database's own specification.
+     * When restoring a DocumentsDB or VectorsDB database from a dedicated source,
+     * the restore provisions a fresh dedicated backing database at the source
+     * database's own specification and lands the data there. An in-place restore
+     * swaps the database onto that backing only once the restore has succeeded,
+     * and retires the backing it displaced only once that swap is confirmed, so
+     * the source keeps serving its own data until the restored data is in place
+     * and any failure leaves it untouched. A serverless source has no dedicated
+     * backing to clone and restores onto the archived database instead.
      * 
      *
      * @param string $archiveId

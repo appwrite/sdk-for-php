@@ -32,6 +32,7 @@ POST https://cloud.appwrite.io/v1/tablesdb
 | enabled | boolean | Is the database enabled? When set to 'disabled', users cannot access the database but Server SDKs with an API key can still read and write to the database. No data is lost when this is toggled. | 1 |
 | specification | string | Database specification. Defaults to `serverless`, which creates the database on the shared pool. Any other value provisions a dedicated database on that specification. | serverless |
 | replicas | integer | Number of high availability replicas (0-5) for the dedicated database backing this database. Requires a dedicated `specification`; must be 0 for a serverless database. High availability is enabled when greater than 0. | 0 |
+| syncMode | string | Replication sync mode for the dedicated database backing this database. Requires a dedicated `specification`; the mode is only in force once there is at least one replica. Allowed values: async, sync, quorum. |  |
 
 
 ```http request
@@ -148,7 +149,9 @@ PUT https://cloud.appwrite.io/v1/tablesdb/{databaseId}
 | databaseId | string | **Required** Database ID. |  |
 | name | string | Database name. Max length: 128 chars. |  |
 | enabled | boolean | Is database enabled? When set to 'disabled', users cannot access the database but Server SDKs with an API key can still read and write to the database. No data is lost when this is toggled. | 1 |
+| specification | string | Database specification. Resizing between dedicated specifications changes cpu, memory, storage and the connection ceiling via a rolling cutover with zero downtime. Moving a `serverless` database onto a dedicated specification is a data migration, not a resize. |  |
 | replicas | integer | Number of high availability replicas (0-5) for the dedicated database backing this database. Only valid when the database is backed by a dedicated specification. High availability is enabled when greater than 0. |  |
+| syncMode | string | Replication sync mode for the dedicated database backing this database. Only valid when the database is backed by a dedicated specification; the mode is only in force once there is at least one replica. Allowed values: async, sync, quorum. |  |
 
 
 ```http request
@@ -168,7 +171,7 @@ DELETE https://cloud.appwrite.io/v1/tablesdb/{databaseId}
 POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/failovers
 ```
 
-** Trigger a manual failover for a dedicated database with high availability enabled. Promotes a replica to primary. The failover runs asynchronously; poll the database document for status updates. **
+** Trigger a manual failover for a dedicated database with high availability enabled. Promotes a replica to primary. The failover runs asynchronously; poll the database document for status updates. A database left mid-operation by a failover that did not finish also accepts this call as a repair, provided `targetReplicaId` names the member to promote. **
 
 ### Parameters
 
@@ -176,6 +179,92 @@ POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/failovers
 | --- | --- | --- | --- |
 | databaseId | string | **Required** Database ID. |  |
 | targetReplicaId | string | Target replica ID to promote. If not specified, the healthiest replica is selected. |  |
+
+
+```http request
+GET https://cloud.appwrite.io/v1/tablesdb/{databaseId}/migrations
+```
+
+** List the dedicated migrations for a TablesDB database. A database has at most one in-flight migration. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| databaseId | string | **Required** Database ID. |  |
+
+
+```http request
+POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/migrations
+```
+
+** Start migrating a serverless TablesDB database onto a dedicated MySQL compute. Data is copied to the target while the source stays live, with a brief read-only window during cutover. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| databaseId | string | **Required** Database ID. |  |
+| specification | string | Dedicated compute specification to provision as the migration target (e.g. s-2vcpu-4gb). The migration always targets a dedicated compute, so `serverless` is not accepted. |  |
+| autoCutover | boolean | Whether to cut over automatically once the copy is verified. When disabled the migration parks at ready_to_cutover and holds there until the cutover is performed manually. | 1 |
+
+
+```http request
+GET https://cloud.appwrite.io/v1/tablesdb/{databaseId}/migrations/{migrationId}
+```
+
+** Get a single dedicated migration for a TablesDB database by its ID. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| databaseId | string | **Required** Database ID. |  |
+| migrationId | string | **Required** Migration ID. |  |
+
+
+```http request
+DELETE https://cloud.appwrite.io/v1/tablesdb/{databaseId}/migrations/{migrationId}
+```
+
+** Abort an in-flight TablesDB dedicated migration. Only allowed before cutover; once the migration has cut over it cannot be aborted. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| databaseId | string | **Required** Database ID. |  |
+| migrationId | string | **Required** Migration ID. |  |
+
+
+```http request
+POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/migrations/{migrationId}/cutover
+```
+
+** Cut a verified TablesDB migration over to its dedicated compute. Only applies to a migration created with `autoCutover` disabled, which waits at `ready_to_cutover` until this is called. The routing flip happens shortly after this returns, with a brief read-only window. One call buys one attempt: a cutover that fails a check returns the migration to `verifying` and parks it again, so call this once more to retry. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| databaseId | string | **Required** Database ID. |  |
+| migrationId | string | **Required** Migration ID. |  |
+
+
+```http request
+GET https://cloud.appwrite.io/v1/tablesdb/{databaseId}/operations
+```
+
+** List the lifecycle operations recorded for a dedicated database, newest first. Every provision, update, restore, backup and replication action is recorded here with its outcome, including an attempt that was abandoned because another worker took over the database. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| databaseId | string | **Required** Database ID. |  |
+| status | string | Filter by operation status. |  |
+| limit | integer | Maximum number of operations to return. | 25 |
+| offset | integer | Number of operations to skip. | 0 |
 
 
 ```http request
@@ -236,7 +325,7 @@ POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables
 | permissions | array | An array of permissions strings. By default, no user is granted with any permissions. [Learn more about permissions](https://appwrite.io/docs/permissions). |  |
 | rowSecurity | boolean | Enables configuring permissions for individual rows. A user needs one of row or table level permissions to access a row. [Learn more about permissions](https://appwrite.io/docs/permissions). |  |
 | enabled | boolean | Is table enabled? When set to 'disabled', users cannot access the table but Server SDKs with and API key can still read and write to the table. No data is lost when this is toggled. | 1 |
-| columns | array | Array of column definitions to create. Each column should contain: key (string), type (string: string, integer, float, boolean, datetime, relationship), size (integer, required for string type), required (boolean, optional), default (mixed, optional), array (boolean, optional), and type-specific options. | [] |
+| columns | array | Array of column definitions to create. Each column should contain: key (string), type (string: string, varchar, text, mediumtext, longtext, integer, bigint, double, boolean, datetime, point, linestring, polygon, email, url, ip, enum), size (integer, required for string and varchar types), required (boolean, optional), default (mixed, optional), array (boolean, optional), and type-specific options. | [] |
 | indexes | array | Array of index definitions to create. Each index should contain: key (string), type (string: key, fulltext, unique, spatial), attributes (array of column keys), orders (array of ASC/DESC, optional), and lengths (array of integers, optional). | [] |
 
 
@@ -814,11 +903,11 @@ POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/columns
 | databaseId | string | **Required** Database ID. |  |
 | tableId | string | **Required** Table ID. |  |
 | relatedTableId | string | Related Table ID. |  |
-| type | string | Relation type |  |
+| type | string | Relationship type. Possible values are: oneToOne, oneToMany, manyToOne, manyToMany. |  |
 | twoWay | boolean | Is Two Way? |  |
 | key | string | Column Key. |  |
 | twoWayKey | string | Two Way Column Key. |  |
-| onDelete | string | Constraints option | restrict |
+| onDelete | string | Delete constraint. Possible values are: cascade, restrict, setNull. | restrict |
 
 
 ```http request
@@ -1024,7 +1113,7 @@ PATCH https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/column
 | databaseId | string | **Required** Database ID. |  |
 | tableId | string | **Required** Table ID. |  |
 | key | string | **Required** Column Key. |  |
-| onDelete | string | Constraints option |  |
+| onDelete | string | Delete constraint. Possible values are: cascade, restrict, setNull. |  |
 | newKey | string | New Column Key. |  |
 
 

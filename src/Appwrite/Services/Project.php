@@ -177,54 +177,6 @@ class Project extends Service
     }
 
     /**
-     * Create a new API key. It's recommended to have multiple API keys with
-     * strict scopes for separate functions within your project.
-     * 
-     * You can also create an ephemeral API key if you need a short-lived key
-     * instead.
-     *
-     * @param string $keyId
-     * @param string $name
-     * @param array $scopes
-     * @param ?string $expire
-     * @throws AppwriteException
-     * @return \Appwrite\Models\Key
-     */
-    public function createKey(string $keyId, string $name, array $scopes, ?string $expire = null): \Appwrite\Models\Key
-    {
-        $apiPath = str_replace(
-            [],
-            [],
-            '/project/keys'
-        );
-
-        $apiParams = [];
-        $apiParams['keyId'] = $keyId;
-        $apiParams['name'] = $name;
-        $apiParams['scopes'] = $scopes;
-        $apiParams['expire'] = $expire;
-
-        $apiHeaders = [];
-        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
-        $apiHeaders['content-type'] = 'application/json';
-        $apiHeaders['accept'] = 'application/json';
-
-        $response = $this->client->call(
-            Client::METHOD_POST,
-            $apiPath,
-            $apiHeaders,
-            $apiParams
-        );
-
-        if (!is_array($response)) {
-            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
-        }
-
-        return \Appwrite\Models\Key::from($response);
-
-    }
-
-    /**
      * Create a new ephemeral API key. It's recommended to have multiple API keys
      * with strict scopes for separate functions within your project.
      * 
@@ -688,10 +640,11 @@ class Project extends Service
      * @param ?string $userCodeFormat
      * @param ?int $deviceCodeDuration
      * @param ?array $defaultScopes
+     * @param ?array $installationScopes
      * @throws AppwriteException
      * @return \Appwrite\Models\Project
      */
-    public function updateOAuth2Server(bool $enabled, string $authorizationUrl, ?array $scopes = null, ?array $authorizationDetailsTypes = null, ?int $accessTokenDuration = null, ?int $refreshTokenDuration = null, ?int $publicAccessTokenDuration = null, ?int $publicRefreshTokenDuration = null, ?int $installationAccessTokenDuration = null, ?bool $confidentialPkce = null, ?string $verificationUrl = null, ?int $userCodeLength = null, ?string $userCodeFormat = null, ?int $deviceCodeDuration = null, ?array $defaultScopes = null): \Appwrite\Models\Project
+    public function updateOAuth2Server(bool $enabled, string $authorizationUrl, ?array $scopes = null, ?array $authorizationDetailsTypes = null, ?int $accessTokenDuration = null, ?int $refreshTokenDuration = null, ?int $publicAccessTokenDuration = null, ?int $publicRefreshTokenDuration = null, ?int $installationAccessTokenDuration = null, ?bool $confidentialPkce = null, ?string $verificationUrl = null, ?int $userCodeLength = null, ?string $userCodeFormat = null, ?int $deviceCodeDuration = null, ?array $defaultScopes = null, ?array $installationScopes = null): \Appwrite\Models\Project
     {
         $apiPath = str_replace(
             [],
@@ -729,6 +682,10 @@ class Project extends Service
 
         if (!is_null($defaultScopes)) {
             $apiParams['defaultScopes'] = $defaultScopes;
+        }
+
+        if (!is_null($installationScopes)) {
+            $apiParams['installationScopes'] = $installationScopes;
         }
 
         $apiHeaders = [];
@@ -3634,6 +3591,66 @@ class Project extends Service
     }
 
     /**
+     * Updating this policy allows you to control which factors users can use to
+     * complete an MFA challenge. Disabled factors cannot be used to create a
+     * challenge and are reported as unavailable when listing factors. The custom
+     * factor is disabled by default; enable it to deliver challenge codes through
+     * your own channel. Recovery codes always remain available as a fallback.
+     *
+     * @param ?bool $totp
+     * @param ?bool $email
+     * @param ?bool $phone
+     * @param ?bool $custom
+     * @throws AppwriteException
+     * @return \Appwrite\Models\Project
+     */
+    public function updateMFAFactorsPolicy(?bool $totp = null, ?bool $email = null, ?bool $phone = null, ?bool $custom = null): \Appwrite\Models\Project
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/project/policies/mfa-factors'
+        );
+
+        $apiParams = [];
+
+        if (!is_null($totp)) {
+            $apiParams['totp'] = $totp;
+        }
+
+        if (!is_null($email)) {
+            $apiParams['email'] = $email;
+        }
+
+        if (!is_null($phone)) {
+            $apiParams['phone'] = $phone;
+        }
+
+        if (!is_null($custom)) {
+            $apiParams['custom'] = $custom;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Project::from($response);
+
+    }
+
+    /**
      * Updating this policy allows you to control if new passwords are checked
      * against most common passwords dictionary. When enabled, and user changes
      * their password, password must not be contained in the dictionary.
@@ -3946,11 +3963,11 @@ class Project extends Service
      * Update the maximum number of sessions allowed per user. When the limit is
      * hit, the oldest session will be deleted to make room for new one.
      *
-     * @param ?int $total
+     * @param int $total
      * @throws AppwriteException
      * @return \Appwrite\Models\Project
      */
-    public function updateSessionLimitPolicy(?int $total): \Appwrite\Models\Project
+    public function updateSessionLimitPolicy(int $total): \Appwrite\Models\Project
     {
         $apiPath = str_replace(
             [],
@@ -4027,9 +4044,9 @@ class Project extends Service
      *
      * @param ProjectPolicyId $policyId
      * @throws AppwriteException
-     * @return \Appwrite\Models\PolicyPasswordDictionary|\Appwrite\Models\PolicyPasswordHistory|\Appwrite\Models\PolicyPasswordStrength|\Appwrite\Models\PolicyPasswordPersonalData|\Appwrite\Models\PolicySessionAlert|\Appwrite\Models\PolicySessionDuration|\Appwrite\Models\PolicySessionInvalidation|\Appwrite\Models\PolicySessionLimit|\Appwrite\Models\PolicyUserLimit|\Appwrite\Models\PolicyMembershipPrivacy|\Appwrite\Models\PolicyDenyAliasedEmail|\Appwrite\Models\PolicyDenyDisposableEmail|\Appwrite\Models\PolicyDenyFreeEmail|\Appwrite\Models\PolicyDenyCorporateEmail
+     * @return \Appwrite\Models\PolicyPasswordDictionary|\Appwrite\Models\PolicyPasswordHistory|\Appwrite\Models\PolicyPasswordStrength|\Appwrite\Models\PolicyPasswordPersonalData|\Appwrite\Models\PolicySessionAlert|\Appwrite\Models\PolicySessionDuration|\Appwrite\Models\PolicySessionInvalidation|\Appwrite\Models\PolicySessionLimit|\Appwrite\Models\PolicyUserLimit|\Appwrite\Models\PolicyMembershipPrivacy|\Appwrite\Models\PolicyMfaFactors|\Appwrite\Models\PolicyDenyAliasedEmail|\Appwrite\Models\PolicyDenyDisposableEmail|\Appwrite\Models\PolicyDenyFreeEmail|\Appwrite\Models\PolicyDenyCorporateEmail
      */
-    public function getPolicy(ProjectPolicyId $policyId): \Appwrite\Models\PolicyPasswordDictionary|\Appwrite\Models\PolicyPasswordHistory|\Appwrite\Models\PolicyPasswordStrength|\Appwrite\Models\PolicyPasswordPersonalData|\Appwrite\Models\PolicySessionAlert|\Appwrite\Models\PolicySessionDuration|\Appwrite\Models\PolicySessionInvalidation|\Appwrite\Models\PolicySessionLimit|\Appwrite\Models\PolicyUserLimit|\Appwrite\Models\PolicyMembershipPrivacy|\Appwrite\Models\PolicyDenyAliasedEmail|\Appwrite\Models\PolicyDenyDisposableEmail|\Appwrite\Models\PolicyDenyFreeEmail|\Appwrite\Models\PolicyDenyCorporateEmail
+    public function getPolicy(ProjectPolicyId $policyId): \Appwrite\Models\PolicyPasswordDictionary|\Appwrite\Models\PolicyPasswordHistory|\Appwrite\Models\PolicyPasswordStrength|\Appwrite\Models\PolicyPasswordPersonalData|\Appwrite\Models\PolicySessionAlert|\Appwrite\Models\PolicySessionDuration|\Appwrite\Models\PolicySessionInvalidation|\Appwrite\Models\PolicySessionLimit|\Appwrite\Models\PolicyUserLimit|\Appwrite\Models\PolicyMembershipPrivacy|\Appwrite\Models\PolicyMfaFactors|\Appwrite\Models\PolicyDenyAliasedEmail|\Appwrite\Models\PolicyDenyDisposableEmail|\Appwrite\Models\PolicyDenyFreeEmail|\Appwrite\Models\PolicyDenyCorporateEmail
     {
         $apiPath = str_replace(
             ['{policyId}'],
@@ -4093,6 +4110,10 @@ class Project extends Service
 
         if (($response['$id'] ?? null) === 'membership-privacy') {
             return \Appwrite\Models\PolicyMembershipPrivacy::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'mfa-factors') {
+            return \Appwrite\Models\PolicyMfaFactors::from($response);
         }
 
         if (($response['$id'] ?? null) === 'deny-aliased-email') {

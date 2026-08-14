@@ -151,19 +151,6 @@ DELETE https://cloud.appwrite.io/v1/account/identities/{identityId}
 
 
 ```http request
-POST https://cloud.appwrite.io/v1/account/jwts
-```
-
-** Use this endpoint to create a JSON Web Token. You can use the resulting JWT to authenticate on behalf of the current user when working with the Appwrite server-side API and SDKs. The JWT secret is valid for 15 minutes from its creation and will be invalid if the user will logout in that time frame. **
-
-### Parameters
-
-| Field Name | Type | Description | Default |
-| --- | --- | --- | --- |
-| duration | integer | Time in seconds before JWT expires. Default duration is 900 seconds, and maximum is 3600 seconds. | 900 |
-
-
-```http request
 GET https://cloud.appwrite.io/v1/account/logs
 ```
 
@@ -280,7 +267,7 @@ POST https://cloud.appwrite.io/v1/account/mfa/challenges
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| factor | string | Factor used for verification. Must be one of following: `email`, `phone`, `totp`, `recoveryCode`. |  |
+| factor | string | Factor used for verification. Must be one of following: `email`, `phone`, `totp`, `recoveryCode`, `custom`. |  |
 
 
 ```http request
@@ -293,7 +280,7 @@ POST https://cloud.appwrite.io/v1/account/mfa/challenges
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| factor | string | Factor used for verification. Must be one of following: `email`, `phone`, `totp`, `recoveryCode`. |  |
+| factor | string | Factor used for verification. Must be one of following: `email`, `phone`, `totp`, `recoveryCode`, `custom`. |  |
 
 
 ```http request
@@ -561,7 +548,7 @@ GET https://cloud.appwrite.io/v1/account/sessions/{sessionId}
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| sessionId | string | **Required** Session ID. Use the string 'current' to get the current device session. |  |
+| sessionId | string | **Required** Session ID. Use the string 'current' to get the current device session. | current |
 
 
 ```http request
@@ -574,7 +561,7 @@ PATCH https://cloud.appwrite.io/v1/account/sessions/{sessionId}
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| sessionId | string | **Required** Session ID. Use the string 'current' to update the current device session. |  |
+| sessionId | string | **Required** Session ID. Use the string 'current' to update the current device session. | current |
 
 
 ```http request
@@ -587,7 +574,7 @@ DELETE https://cloud.appwrite.io/v1/account/sessions/{sessionId}
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| sessionId | string | **Required** Session ID. Use the string 'current' to delete the current device session. |  |
+| sessionId | string | **Required** Session ID. Use the string 'current' to delete the current device session. | current |
 
 
 ```http request

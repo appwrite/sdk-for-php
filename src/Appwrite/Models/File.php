@@ -18,6 +18,8 @@ readonly class File
      * @param string $updatedAt file update date in iso 8601 format.
      * @param array $permissions file permissions. [learn more about permissions](https://appwrite.io/docs/permissions).
      * @param string $name file name.
+     * @param string $folder virtual folder containing the file, with a trailing slash. empty for the bucket root.
+     * @param string $key full virtual path of the file: the folder followed by the file name.
      * @param string $signature file md5 signature.
      * @param string $mimeType file mime type.
      * @param int $sizeOriginal file original size in bytes.
@@ -34,6 +36,8 @@ readonly class File
         public string $updatedAt,
         public array $permissions,
         public string $name,
+        public string $folder,
+        public string $key,
         public string $signature,
         public string $mimeType,
         public int $sizeOriginal,
@@ -68,6 +72,12 @@ readonly class File
         if (!array_key_exists('name', $data)) {
             throw new \InvalidArgumentException('Missing required field "name" for ' . static::class . '.');
         }
+        if (!array_key_exists('folder', $data)) {
+            throw new \InvalidArgumentException('Missing required field "folder" for ' . static::class . '.');
+        }
+        if (!array_key_exists('key', $data)) {
+            throw new \InvalidArgumentException('Missing required field "key" for ' . static::class . '.');
+        }
         if (!array_key_exists('signature', $data)) {
             throw new \InvalidArgumentException('Missing required field "signature" for ' . static::class . '.');
         }
@@ -100,6 +110,8 @@ readonly class File
             updatedAt: $data['$updatedAt'],
             permissions: $data['$permissions'],
             name: $data['name'],
+            folder: $data['folder'],
+            key: $data['key'],
             signature: $data['signature'],
             mimeType: $data['mimeType'],
             sizeOriginal: $data['sizeOriginal'],
@@ -123,6 +135,8 @@ readonly class File
             '$updatedAt' => static::serializeValue($this->updatedAt),
             '$permissions' => static::serializeValue($this->permissions),
             'name' => static::serializeValue($this->name),
+            'folder' => static::serializeValue($this->folder),
+            'key' => static::serializeValue($this->key),
             'signature' => static::serializeValue($this->signature),
             'mimeType' => static::serializeValue($this->mimeType),
             'sizeOriginal' => static::serializeValue($this->sizeOriginal),

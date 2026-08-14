@@ -24,7 +24,6 @@ readonly class BillingPlan
      * @param int $storage storage
      * @param int $imageTransformations image transformations
      * @param int $screenshotsGenerated screenshots generated
-     * @param int $members members
      * @param int $webhooks webhooks
      * @param int $wafRules maximum waf rules per project
      * @param int $projects projects
@@ -48,7 +47,6 @@ readonly class BillingPlan
      * @param int $topics topics for messaging
      * @param int $authPhone sms authentications per month
      * @param int $domains custom domains
-     * @param int $activityLogs activity log days
      * @param int $usageLogs usage history days
      * @param int $projectInactivityDays number of days of console inactivity before a project is paused. 0 means pausing is disabled.
      * @param int $alertLimit alert threshold percentage
@@ -71,15 +69,17 @@ readonly class BillingPlan
      * @param bool $supportsFreeEmailValidation does plan support blocking free email addresses.
      * @param bool $supportsCorporateEmailValidation does plan support restricting sign-ups to corporate email addresses only.
      * @param bool $supportsProjectSpecificRoles does plan support project-specific member roles.
-     * @param bool $backupsEnabled does plan support backup policies.
      * @param bool $usagePerProject whether usage addons are calculated per project.
      * @param BillingPlanSupportedAddons $supportedAddons supported addons for this plan
-     * @param int $backupPolicies how many policies does plan support
      * @param int $deploymentSize maximum function and site deployment size in mb
      * @param int $buildSize maximum function and site deployment size in mb
      * @param bool $databasesAllowEncrypt does the plan support encrypted string attributes or not.
      * @param BillingPlanGroup $group group of this billing plan for variants
+     * @param int|null $members members
+     * @param int|null $activityLogs activity log days
      * @param array|null $usageLogsIntervals usage log time intervals allowed for this plan (e.g. 15m, 1h, 1d).
+     * @param bool|null $backupsEnabled does plan support backup policies.
+     * @param int|null $backupPolicies how many policies does plan support
      * @param BillingPlanLimits|null $limits plan specific limits
      * @param Program|null $program details of the program this plan is a part of.
      * @param BillingPlanDedicatedDatabaseLimits|null $dedicatedDatabases dedicated database limits available to this plan.
@@ -95,7 +95,6 @@ readonly class BillingPlan
         public int $storage,
         public int $imageTransformations,
         public int $screenshotsGenerated,
-        public int $members,
         public int $webhooks,
         public int $wafRules,
         public int $projects,
@@ -119,7 +118,6 @@ readonly class BillingPlan
         public int $topics,
         public int $authPhone,
         public int $domains,
-        public int $activityLogs,
         public int $usageLogs,
         public int $projectInactivityDays,
         public int $alertLimit,
@@ -142,15 +140,17 @@ readonly class BillingPlan
         public bool $supportsFreeEmailValidation,
         public bool $supportsCorporateEmailValidation,
         public bool $supportsProjectSpecificRoles,
-        public bool $backupsEnabled,
         public bool $usagePerProject,
         public BillingPlanSupportedAddons $supportedAddons,
-        public int $backupPolicies,
         public int $deploymentSize,
         public int $buildSize,
         public bool $databasesAllowEncrypt,
         public BillingPlanGroup $group,
+        public ?int $members = null,
+        public ?int $activityLogs = null,
         public ?array $usageLogsIntervals = null,
+        public ?bool $backupsEnabled = null,
+        public ?int $backupPolicies = null,
         public ?BillingPlanLimits $limits = null,
         public ?Program $program = null,
         public ?BillingPlanDedicatedDatabaseLimits $dedicatedDatabases = null
@@ -191,9 +191,6 @@ readonly class BillingPlan
         }
         if (!array_key_exists('screenshotsGenerated', $data)) {
             throw new \InvalidArgumentException('Missing required field "screenshotsGenerated" for ' . static::class . '.');
-        }
-        if (!array_key_exists('members', $data)) {
-            throw new \InvalidArgumentException('Missing required field "members" for ' . static::class . '.');
         }
         if (!array_key_exists('webhooks', $data)) {
             throw new \InvalidArgumentException('Missing required field "webhooks" for ' . static::class . '.');
@@ -264,9 +261,6 @@ readonly class BillingPlan
         if (!array_key_exists('domains', $data)) {
             throw new \InvalidArgumentException('Missing required field "domains" for ' . static::class . '.');
         }
-        if (!array_key_exists('activityLogs', $data)) {
-            throw new \InvalidArgumentException('Missing required field "activityLogs" for ' . static::class . '.');
-        }
         if (!array_key_exists('usageLogs', $data)) {
             throw new \InvalidArgumentException('Missing required field "usageLogs" for ' . static::class . '.');
         }
@@ -333,17 +327,11 @@ readonly class BillingPlan
         if (!array_key_exists('supportsProjectSpecificRoles', $data)) {
             throw new \InvalidArgumentException('Missing required field "supportsProjectSpecificRoles" for ' . static::class . '.');
         }
-        if (!array_key_exists('backupsEnabled', $data)) {
-            throw new \InvalidArgumentException('Missing required field "backupsEnabled" for ' . static::class . '.');
-        }
         if (!array_key_exists('usagePerProject', $data)) {
             throw new \InvalidArgumentException('Missing required field "usagePerProject" for ' . static::class . '.');
         }
         if (!array_key_exists('supportedAddons', $data)) {
             throw new \InvalidArgumentException('Missing required field "supportedAddons" for ' . static::class . '.');
-        }
-        if (!array_key_exists('backupPolicies', $data)) {
-            throw new \InvalidArgumentException('Missing required field "backupPolicies" for ' . static::class . '.');
         }
         if (!array_key_exists('deploymentSize', $data)) {
             throw new \InvalidArgumentException('Missing required field "deploymentSize" for ' . static::class . '.');
@@ -369,7 +357,6 @@ readonly class BillingPlan
             storage: $data['storage'],
             imageTransformations: $data['imageTransformations'],
             screenshotsGenerated: $data['screenshotsGenerated'],
-            members: $data['members'],
             webhooks: $data['webhooks'],
             wafRules: $data['wafRules'],
             projects: $data['projects'],
@@ -393,7 +380,6 @@ readonly class BillingPlan
             topics: $data['topics'],
             authPhone: $data['authPhone'],
             domains: $data['domains'],
-            activityLogs: $data['activityLogs'],
             usageLogs: $data['usageLogs'],
             projectInactivityDays: $data['projectInactivityDays'],
             alertLimit: $data['alertLimit'],
@@ -416,15 +402,17 @@ readonly class BillingPlan
             supportsFreeEmailValidation: $data['supportsFreeEmailValidation'],
             supportsCorporateEmailValidation: $data['supportsCorporateEmailValidation'],
             supportsProjectSpecificRoles: $data['supportsProjectSpecificRoles'],
-            backupsEnabled: $data['backupsEnabled'],
             usagePerProject: $data['usagePerProject'],
             supportedAddons: static::hydrateTypedValue(BillingPlanSupportedAddons::class, $data['supportedAddons']),
-            backupPolicies: $data['backupPolicies'],
             deploymentSize: $data['deploymentSize'],
             buildSize: $data['buildSize'],
             databasesAllowEncrypt: $data['databasesAllowEncrypt'],
             group: static::hydrateTypedValue(BillingPlanGroup::class, $data['group']),
+            members: array_key_exists('members', $data) ? $data['members'] : null,
+            activityLogs: array_key_exists('activityLogs', $data) ? $data['activityLogs'] : null,
             usageLogsIntervals: array_key_exists('usageLogsIntervals', $data) ? $data['usageLogsIntervals'] : null,
+            backupsEnabled: array_key_exists('backupsEnabled', $data) ? $data['backupsEnabled'] : null,
+            backupPolicies: array_key_exists('backupPolicies', $data) ? $data['backupPolicies'] : null,
             limits: array_key_exists('limits', $data) ? static::hydrateTypedValue(BillingPlanLimits::class, $data['limits'], true) : null,
             program: array_key_exists('program', $data) ? static::hydrateTypedValue(Program::class, $data['program'], true) : null,
             dedicatedDatabases: array_key_exists('dedicatedDatabases', $data) ? static::hydrateTypedValue(BillingPlanDedicatedDatabaseLimits::class, $data['dedicatedDatabases'], true) : null

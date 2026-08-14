@@ -10,6 +10,7 @@ class AuthenticationFactor implements JsonSerializable
     private static AuthenticationFactor $PHONE;
     private static AuthenticationFactor $TOTP;
     private static AuthenticationFactor $RECOVERYCODE;
+    private static AuthenticationFactor $CUSTOM;
 
     private string $value;
 
@@ -56,6 +57,13 @@ class AuthenticationFactor implements JsonSerializable
         }
         return self::$RECOVERYCODE;
     }
+    public static function CUSTOM(): AuthenticationFactor
+    {
+        if (!isset(self::$CUSTOM)) {
+            self::$CUSTOM = new AuthenticationFactor('custom');
+        }
+        return self::$CUSTOM;
+    }
 
     public static function from(string $value): self
     {
@@ -64,6 +72,7 @@ class AuthenticationFactor implements JsonSerializable
             'phone' => self::PHONE(),
             'totp' => self::TOTP(),
             'recoverycode' => self::RECOVERYCODE(),
+            'custom' => self::CUSTOM(),
             default => throw new \InvalidArgumentException('Unknown AuthenticationFactor value: ' . $value),
         };
     }

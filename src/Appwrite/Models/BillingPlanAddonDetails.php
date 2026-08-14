@@ -16,20 +16,20 @@ readonly class BillingPlanAddonDetails
      * @param int $planIncluded addon plan included value
      * @param int $limit addon limit
      * @param string $type addon type
-     * @param string $currency price currency
      * @param float $price price
      * @param int $value resource value
      * @param string $invoiceDesc description on invoice
+     * @param string|null $currency price currency
      */
     public function __construct(
         public bool $supported,
         public int $planIncluded,
         public int $limit,
         public string $type,
-        public string $currency,
         public float $price,
         public int $value,
-        public string $invoiceDesc
+        public string $invoiceDesc,
+        public ?string $currency = null
     ) {
     }
 
@@ -50,9 +50,6 @@ readonly class BillingPlanAddonDetails
         if (!array_key_exists('type', $data)) {
             throw new \InvalidArgumentException('Missing required field "type" for ' . static::class . '.');
         }
-        if (!array_key_exists('currency', $data)) {
-            throw new \InvalidArgumentException('Missing required field "currency" for ' . static::class . '.');
-        }
         if (!array_key_exists('price', $data)) {
             throw new \InvalidArgumentException('Missing required field "price" for ' . static::class . '.');
         }
@@ -68,10 +65,10 @@ readonly class BillingPlanAddonDetails
             planIncluded: $data['planIncluded'],
             limit: $data['limit'],
             type: $data['type'],
-            currency: $data['currency'],
             price: $data['price'],
             value: $data['value'],
-            invoiceDesc: $data['invoiceDesc']
+            invoiceDesc: $data['invoiceDesc'],
+            currency: array_key_exists('currency', $data) ? $data['currency'] : null
         );
     }
 

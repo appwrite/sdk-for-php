@@ -1005,6 +1005,46 @@ class Users extends Service
     }
 
     /**
+     * Get a custom MFA challenge for a user, including the code to be delivered
+     * through your own channel.
+     *
+     * @param string $userId
+     * @param string $challengeId
+     * @throws AppwriteException
+     * @return \Appwrite\Models\MfaChallengeSecret
+     */
+    public function getMFAChallenge(string $userId, string $challengeId): \Appwrite\Models\MfaChallengeSecret
+    {
+        $apiPath = str_replace(
+            ['{userId}', '{challengeId}'],
+            [$userId, $challengeId],
+            '/users/{userId}/mfa/challenges/{challengeId}'
+        );
+
+        $apiParams = [];
+        $apiParams['userId'] = $userId;
+        $apiParams['challengeId'] = $challengeId;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\MfaChallengeSecret::from($response);
+
+    }
+
+    /**
      * List the factors available on the account to be used as a MFA challange.
      *
      * @param string $userId

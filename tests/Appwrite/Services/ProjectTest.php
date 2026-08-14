@@ -245,36 +245,6 @@ final class ProjectTest extends TestCase
         $this->assertInstanceOf(\Appwrite\Models\KeyList::class, $response);
     }
 
-    public function testMethodCreateKey(): void
-    {
-        $data = array(
-            "\$id" => "5e5ea5c16897e",
-            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "name" => "My API Key",
-            "expire" => "2020-10-15T06:38:00.000+00:00",
-            "scopes" => array(),
-            "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
-            "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-            "sdks" => array()
-        );
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-        $this->client
-            ->allows()->getConfig(Mockery::any())
-            ->andReturn('');
-
-        $response = $this->project->createKey(
-            "<KEY_ID>",
-            "<NAME>",
-            array(ProjectKeyScopes::PROJECTREAD())
-        );
-
-        $this->assertInstanceOf(\Appwrite\Models\Key::class, $response);
-    }
-
     public function testMethodCreateEphemeralKey(): void
     {
         $data = array(
@@ -2409,6 +2379,89 @@ final class ProjectTest extends TestCase
             ->andReturn('');
 
         $response = $this->project->updateMembershipPrivacyPolicy();
+
+        $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
+    }
+
+    public function testMethodUpdateMFAFactorsPolicy(): void
+    {
+        $data = array(
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "name" => "New Project",
+            "teamId" => "1592981250",
+            "region" => "fra",
+            "devKeys" => array(
+                array(
+                    "\$id" => "5e5ea5c16897e",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "name" => "Dev API Key",
+                    "expire" => "2020-10-15T06:38:00.000+00:00",
+                    "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
+                    "accessedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "sdks" => array()
+                )
+            ),
+            "smtpEnabled" => true,
+            "smtpSenderName" => "John Appwrite",
+            "smtpSenderEmail" => "john@appwrite.io",
+            "smtpReplyToName" => "Support Team",
+            "smtpReplyToEmail" => "support@appwrite.io",
+            "smtpHost" => "mail.appwrite.io",
+            "smtpPort" => 25,
+            "smtpUsername" => "emailuser",
+            "smtpPassword" => "smtp-password",
+            "smtpSecure" => "tls",
+            "pingCount" => 1,
+            "pingedAt" => "2020-10-15T06:38:00.000+00:00",
+            "labels" => array(),
+            "status" => "active",
+            "onboarding" => array(),
+            "authMethods" => array(
+                array(
+                    "\$id" => "email-password",
+                    "enabled" => true
+                )
+            ),
+            "services" => array(
+                array(
+                    "\$id" => "account",
+                    "enabled" => true
+                )
+            ),
+            "protocols" => array(
+                array(
+                    "\$id" => "rest",
+                    "enabled" => true
+                )
+            ),
+            "blocks" => array(
+                array(
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "resourceType" => "project",
+                    "resourceId" => "5e5ea5c16897e",
+                    "mode" => "readOnly",
+                    "projectName" => "My Project",
+                    "region" => "fra",
+                    "organizationName" => "Acme Inc.",
+                    "organizationId" => "5e5ea5c16897e",
+                    "billingPlan" => "pro"
+                )
+            ),
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00",
+            "wafEnabled" => true
+        );
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->project->updateMFAFactorsPolicy();
 
         $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
     }
