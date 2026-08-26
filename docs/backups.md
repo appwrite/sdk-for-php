@@ -32,7 +32,7 @@ POST https://cloud.appwrite.io/v1/backups/archives
 GET https://cloud.appwrite.io/v1/backups/archives/{archiveId}
 ```
 
-** Get a backup archive using it&#039;s ID. **
+** Get a backup archive using it's ID. **
 
 ### Parameters
 
@@ -90,7 +90,7 @@ POST https://cloud.appwrite.io/v1/backups/policies
 GET https://cloud.appwrite.io/v1/backups/policies/{policyId}
 ```
 
-** Get a backup policy using it&#039;s ID. **
+** Get a backup policy using it's ID. **
 
 ### Parameters
 
@@ -103,7 +103,7 @@ GET https://cloud.appwrite.io/v1/backups/policies/{policyId}
 PATCH https://cloud.appwrite.io/v1/backups/policies/{policyId}
 ```
 
-** Update an existing policy using it&#039;s ID. **
+** Update an existing policy using it's ID. **
 
 ### Parameters
 
@@ -120,7 +120,7 @@ PATCH https://cloud.appwrite.io/v1/backups/policies/{policyId}
 DELETE https://cloud.appwrite.io/v1/backups/policies/{policyId}
 ```
 
-** Delete a policy using it&#039;s ID. **
+** Delete a policy using it's ID. **
 
 ### Parameters
 
@@ -141,7 +141,7 @@ The restoration migration records the archived database in `resourceId` and `res
 
 To list every migration related to one database, use its canonical type in a nested `OR(AND(...), AND(...), AND(...))` across the root, parent, and destination relation pairs: `(resourceType, resourceId)`, `(parentResourceType, parentResourceId)`, and `(destinationResourceType, destinationResourceId)`. Legacy and TablesDB databases use `database`; the operational `resourceType` of a table migration is not rewritten to `tablesdb`.
 
-When restoring a DocumentsDB or VectorsDB database from a dedicated source, the restore provisions a fresh dedicated backing database at the source database&#039;s own specification and lands the data there. An in-place restore swaps the database onto that backing only once the restore has succeeded, and retires the backing it displaced only once that swap is confirmed, so the source keeps serving its own data until the restored data is in place and any failure leaves it untouched. A serverless source has no dedicated backing to clone and restores onto the archived database instead.
+When restoring a DocumentsDB or VectorsDB database from a dedicated source, the restore provisions a fresh dedicated backing database at the source database's own specification and lands the data there. An in-place restore swaps the database onto that backing only once the restore has succeeded, and retires the backing it displaced only once that swap is confirmed, so the source keeps serving its own data until the restored data is in place and any failure leaves it untouched. A serverless source has no dedicated backing to clone and restores onto the archived database instead.
  **
 
 ### Parameters

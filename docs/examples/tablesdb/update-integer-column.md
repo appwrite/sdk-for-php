@@ -21,5 +21,4 @@ $result = $tablesDB->updateIntegerColumn(
     max: null, // optional
     newKey: '' // optional
 );
-
 ```

@@ -15,5 +15,4 @@ $result = $webhooks->updateSecret(
     webhookId: '<WEBHOOK_ID>',
     secret: '<SECRET>' // optional
 );
-
 ```

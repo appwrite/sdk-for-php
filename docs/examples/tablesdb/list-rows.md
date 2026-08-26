@@ -19,5 +19,4 @@ $result = $tablesDB->listRows(
     total: false, // optional
     ttl: 0 // optional
 );
-
 ```

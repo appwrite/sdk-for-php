@@ -15,5 +15,4 @@ $result = $users->updateImpersonator(
     userId: '<USER_ID>',
     impersonator: false
 );
-
 ```

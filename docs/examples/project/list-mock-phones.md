@@ -15,5 +15,4 @@ $result = $project->listMockPhones(
     queries: [], // optional
     total: false // optional
 );
-
 ```

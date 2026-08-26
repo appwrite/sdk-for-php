@@ -17,5 +17,4 @@ $result = $tablesDB->createRows(
     rows: [],
     transactionId: '<TRANSACTION_ID>' // optional
 );
-
 ```

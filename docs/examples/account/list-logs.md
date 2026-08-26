@@ -15,5 +15,4 @@ $result = $account->listLogs(
     queries: [], // optional
     total: false // optional
 );
-
 ```

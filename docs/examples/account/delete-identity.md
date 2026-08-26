@@ -14,5 +14,4 @@ $account = new Account($client);
 $result = $account->deleteIdentity(
     identityId: '<IDENTITY_ID>'
 );
-
 ```

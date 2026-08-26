@@ -16,5 +16,4 @@ $result = $apps->listKeys(
     queries: [], // optional
     total: false // optional
 );
-
 ```

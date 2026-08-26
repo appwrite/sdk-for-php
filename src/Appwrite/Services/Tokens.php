@@ -127,7 +127,7 @@ class Tokens extends Service
     }
 
     /**
-     * Update a token by its unique ID. Use this endpoint to update a token&#039;s
+     * Update a token by its unique ID. Use this endpoint to update a token's
      * expiry date.
      *
      * @throws AppwriteException

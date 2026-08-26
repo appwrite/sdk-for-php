@@ -16,5 +16,4 @@ $result = $tablesDB->deleteIndex(
     tableId: '<TABLE_ID>',
     key: ''
 );
-
 ```

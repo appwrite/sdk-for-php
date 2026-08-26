@@ -23,5 +23,4 @@ $result = $databases->createCollection(
     attributes: [], // optional
     indexes: [] // optional
 );
-
 ```

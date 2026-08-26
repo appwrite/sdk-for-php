@@ -1187,7 +1187,7 @@ DELETE https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/index
 GET https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/rows
 ```
 
-** Get a list of all the user&#039;s rows in a given table. You can use the query params to filter your results. **
+** Get a list of all the user's rows in a given table. You can use the query params to filter your results. **
 
 ### Parameters
 

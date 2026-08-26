@@ -17,5 +17,4 @@ $result = $avatars->getInitials(
     height: 0, // optional
     background: '' // optional
 );
-
 ```

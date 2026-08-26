@@ -14,5 +14,4 @@ $account = new Account($client);
 $result = $account->createEmailVerification(
     url: 'https://example.com'
 );
-
 ```

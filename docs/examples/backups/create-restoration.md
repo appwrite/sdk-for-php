@@ -18,5 +18,4 @@ $result = $backups->createRestoration(
     newResourceId: '<NEW_RESOURCE_ID>', // optional
     newResourceName: '<NEW_RESOURCE_NAME>' // optional
 );
-
 ```

@@ -18,5 +18,4 @@ $result = $sites->createVariable(
     value: '<VALUE>',
     secret: false // optional
 );
-
 ```

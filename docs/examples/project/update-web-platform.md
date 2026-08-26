@@ -16,5 +16,4 @@ $result = $project->updateWebPlatform(
     name: '<NAME>',
     hostname: 'app.example.com'
 );
-
 ```

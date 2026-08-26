@@ -19,5 +19,4 @@ $result = $databases->updateBooleanAttribute(
     default: false,
     newKey: '' // optional
 );
-
 ```

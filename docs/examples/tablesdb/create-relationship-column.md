@@ -23,5 +23,4 @@ $result = $tablesDB->createRelationshipColumn(
     twoWayKey: '', // optional
     onDelete: RelationMutate::CASCADE() // optional
 );
-
 ```

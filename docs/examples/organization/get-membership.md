@@ -14,5 +14,4 @@ $organization = new Organization($client);
 $result = $organization->getMembership(
     membershipId: '<MEMBERSHIP_ID>'
 );
-
 ```

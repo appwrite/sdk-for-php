@@ -14,5 +14,4 @@ $backups = new Backups($client);
 $result = $backups->deletePolicy(
     policyId: '<POLICY_ID>'
 );
-
 ```

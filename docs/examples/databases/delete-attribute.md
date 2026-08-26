@@ -16,5 +16,4 @@ $result = $databases->deleteAttribute(
     collectionId: '<COLLECTION_ID>',
     key: ''
 );
-
 ```

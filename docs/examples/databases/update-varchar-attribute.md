@@ -20,5 +20,4 @@ $result = $databases->updateVarcharAttribute(
     size: 1, // optional
     newKey: '' // optional
 );
-
 ```

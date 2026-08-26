@@ -14,5 +14,4 @@ $project = new Project($client);
 $result = $project->getMockPhone(
     number: '+12065550100'
 );
-
 ```

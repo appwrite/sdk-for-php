@@ -17,5 +17,4 @@ $result = $users->createMD5User(
     password: 'password',
     name: '<NAME>' // optional
 );
-
 ```

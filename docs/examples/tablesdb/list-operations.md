@@ -17,5 +17,4 @@ $result = $tablesDB->listOperations(
     limit: 1, // optional
     offset: 0 // optional
 );
-
 ```

@@ -16,5 +16,4 @@ $result = $users->listTargets(
     queries: [], // optional
     total: false // optional
 );
-
 ```

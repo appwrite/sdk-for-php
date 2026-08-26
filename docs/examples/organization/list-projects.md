@@ -16,5 +16,4 @@ $result = $organization->listProjects(
     search: '<SEARCH>', // optional
     total: false // optional
 );
-
 ```

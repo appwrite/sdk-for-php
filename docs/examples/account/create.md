@@ -17,5 +17,4 @@ $result = $account->create(
     password: 'password',
     name: '<NAME>' // optional
 );
-
 ```

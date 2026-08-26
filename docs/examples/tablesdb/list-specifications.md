@@ -12,6 +12,4 @@ $client = (new Client())
 $tablesDB = new TablesDB($client);
 
 $result = $tablesDB->listSpecifications();
-
-
 ```

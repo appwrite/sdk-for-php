@@ -14,5 +14,4 @@ $project = new Project($client);
 $result = $project->updatePasswordPersonalDataPolicy(
     enabled: false
 );
-
 ```

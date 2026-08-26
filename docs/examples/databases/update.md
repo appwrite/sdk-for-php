@@ -16,5 +16,4 @@ $result = $databases->update(
     name: '<NAME>', // optional
     enabled: false // optional
 );
-
 ```

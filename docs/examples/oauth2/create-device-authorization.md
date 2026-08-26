@@ -18,5 +18,4 @@ $result = $oauth2->createDeviceAuthorization(
     resource: '', // optional
     audience: '<AUDIENCE>' // optional
 );
-
 ```

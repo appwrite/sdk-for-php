@@ -29,5 +29,4 @@ $result = $project->updateOAuth2Server(
     defaultScopes: [], // optional
     installationScopes: [] // optional
 );
-
 ```

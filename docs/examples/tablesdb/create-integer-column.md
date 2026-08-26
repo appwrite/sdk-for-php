@@ -21,5 +21,4 @@ $result = $tablesDB->createIntegerColumn(
     default: null, // optional
     array: false // optional
 );
-
 ```

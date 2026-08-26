@@ -14,5 +14,4 @@ $presences = new Presences($client);
 $result = $presences->get(
     presenceId: '<PRESENCE_ID>'
 );
-
 ```

@@ -16,5 +16,4 @@ $result = $messaging->createSubscriber(
     subscriberId: '<SUBSCRIBER_ID>',
     targetId: '<TARGET_ID>'
 );
-
 ```

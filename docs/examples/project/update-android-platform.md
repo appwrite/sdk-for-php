@@ -16,5 +16,4 @@ $result = $project->updateAndroidPlatform(
     name: '<NAME>',
     applicationId: '<APPLICATION_ID>'
 );
-
 ```

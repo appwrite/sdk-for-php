@@ -15,5 +15,4 @@ $result = $teams->updatePrefs(
     teamId: '<TEAM_ID>',
     prefs: []
 );
-
 ```

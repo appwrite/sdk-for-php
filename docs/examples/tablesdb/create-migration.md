@@ -16,5 +16,4 @@ $result = $tablesDB->createMigration(
     specification: 's-1vcpu-1gb',
     autoCutover: false // optional
 );
-
 ```

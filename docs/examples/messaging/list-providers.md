@@ -16,5 +16,4 @@ $result = $messaging->listProviders(
     search: '<SEARCH>', // optional
     total: false // optional
 );
-
 ```

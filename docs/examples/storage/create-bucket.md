@@ -27,5 +27,4 @@ $result = $storage->createBucket(
     antivirus: false, // optional
     transformations: false // optional
 );
-
 ```

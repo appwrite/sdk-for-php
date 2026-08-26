@@ -20,5 +20,4 @@ $result = $tablesDB->updateVarcharColumn(
     size: 1, // optional
     newKey: '' // optional
 );
-
 ```

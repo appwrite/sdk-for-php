@@ -16,5 +16,4 @@ $result = $tablesDB->list(
     search: '<SEARCH>', // optional
     total: false // optional
 );
-
 ```

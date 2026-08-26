@@ -20,5 +20,4 @@ $result = $users->createTarget(
     providerId: '<PROVIDER_ID>', // optional
     name: '<NAME>' // optional
 );
-
 ```

@@ -16,5 +16,4 @@ $result = $databases->list(
     search: '<SEARCH>', // optional
     total: false // optional
 );
-
 ```

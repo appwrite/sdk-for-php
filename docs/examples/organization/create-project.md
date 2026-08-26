@@ -17,5 +17,4 @@ $result = $organization->createProject(
     name: '<NAME>',
     region: Region::FRA() // optional
 );
-
 ```

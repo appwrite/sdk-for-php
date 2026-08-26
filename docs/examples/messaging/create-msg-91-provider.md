@@ -19,5 +19,4 @@ $result = $messaging->createMsg91Provider(
     authKey: '<AUTH_KEY>', // optional
     enabled: false // optional
 );
-
 ```

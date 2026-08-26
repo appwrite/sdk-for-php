@@ -17,5 +17,4 @@ $result = $project->updateOAuth2Microsoft(
     tenant: '<TENANT>', // optional
     enabled: false // optional
 );
-
 ```

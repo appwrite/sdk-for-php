@@ -20,5 +20,4 @@ $result = $databases->updateStringAttribute(
     size: 1, // optional
     newKey: '' // optional
 );
-
 ```

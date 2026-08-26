@@ -12,6 +12,4 @@ $client = (new Client())
 $project = new Project($client);
 
 $result = $project->get();
-
-
 ```

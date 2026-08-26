@@ -27,5 +27,4 @@ $result = $storage->updateBucket(
     antivirus: false, // optional
     transformations: false // optional
 );
-
 ```

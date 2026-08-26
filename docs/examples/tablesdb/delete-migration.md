@@ -15,5 +15,4 @@ $result = $tablesDB->deleteMigration(
     databaseId: '<DATABASE_ID>',
     migrationId: '<MIGRATION_ID>'
 );
-
 ```

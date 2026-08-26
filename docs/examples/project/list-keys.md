@@ -15,5 +15,4 @@ $result = $project->listKeys(
     queries: [], // optional
     total: false // optional
 );
-
 ```

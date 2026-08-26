@@ -18,5 +18,4 @@ $result = $account->createOAuth2Token(
     failure: 'https://example.com', // optional
     scopes: [] // optional
 );
-
 ```

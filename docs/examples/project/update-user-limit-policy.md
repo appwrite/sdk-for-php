@@ -14,5 +14,4 @@ $project = new Project($client);
 $result = $project->updateUserLimitPolicy(
     total: 0
 );
-
 ```

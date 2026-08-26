@@ -16,5 +16,4 @@ $result = $project->updateOAuth2Etsy(
     sharedSecret: '<SHARED_SECRET>', // optional
     enabled: false // optional
 );
-
 ```

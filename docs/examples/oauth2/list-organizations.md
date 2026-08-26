@@ -16,5 +16,4 @@ $result = $oauth2->listOrganizations(
     offset: 0, // optional
     search: '<SEARCH>' // optional
 );
-
 ```

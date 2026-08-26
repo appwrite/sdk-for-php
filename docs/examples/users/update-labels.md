@@ -15,5 +15,4 @@ $result = $users->updateLabels(
     userId: '<USER_ID>',
     labels: []
 );
-
 ```

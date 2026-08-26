@@ -19,5 +19,4 @@ $result = $messaging->createTwilioProvider(
     authToken: '<AUTH_TOKEN>', // optional
     enabled: false // optional
 );
-
 ```

@@ -19,5 +19,4 @@ $result = $tablesDB->create(
     replicas: 0, // optional
     syncMode: 'async' // optional
 );
-
 ```

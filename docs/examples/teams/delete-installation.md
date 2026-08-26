@@ -15,5 +15,4 @@ $result = $teams->deleteInstallation(
     teamId: '<TEAM_ID>',
     installationId: '<INSTALLATION_ID>'
 );
-
 ```

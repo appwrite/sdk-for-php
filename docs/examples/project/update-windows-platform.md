@@ -16,5 +16,4 @@ $result = $project->updateWindowsPlatform(
     name: '<NAME>',
     packageIdentifierName: '<PACKAGE_IDENTIFIER_NAME>'
 );
-
 ```

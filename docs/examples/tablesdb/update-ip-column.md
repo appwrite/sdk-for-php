@@ -19,5 +19,4 @@ $result = $tablesDB->updateIpColumn(
     default: '',
     newKey: '' // optional
 );
-
 ```

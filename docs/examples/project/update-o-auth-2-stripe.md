@@ -16,5 +16,4 @@ $result = $project->updateOAuth2Stripe(
     apiSecretKey: '<API_SECRET_KEY>', // optional
     enabled: false // optional
 );
-
 ```

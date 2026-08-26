@@ -24,5 +24,4 @@ $result = $databases->updateDocuments(
     queries: [], // optional
     transactionId: '<TRANSACTION_ID>' // optional
 );
-
 ```

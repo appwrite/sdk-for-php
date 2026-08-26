@@ -16,5 +16,4 @@ $result = $users->listLogs(
     queries: [], // optional
     total: false // optional
 );
-
 ```

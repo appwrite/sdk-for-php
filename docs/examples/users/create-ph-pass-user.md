@@ -17,5 +17,4 @@ $result = $users->createPHPassUser(
     password: 'password',
     name: '<NAME>' // optional
 );
-
 ```

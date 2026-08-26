@@ -21,5 +21,4 @@ $result = $sites->createTemplateDeployment(
     reference: '<REFERENCE>',
     activate: false // optional
 );
-
 ```

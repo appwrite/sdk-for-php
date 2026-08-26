@@ -16,5 +16,4 @@ $result = $project->createWebPlatform(
     name: '<NAME>',
     hostname: 'app.example.com'
 );
-
 ```

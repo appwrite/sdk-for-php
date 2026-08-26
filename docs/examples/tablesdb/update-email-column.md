@@ -19,5 +19,4 @@ $result = $tablesDB->updateEmailColumn(
     default: 'email@example.com',
     newKey: '' // optional
 );
-
 ```

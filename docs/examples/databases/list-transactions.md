@@ -14,5 +14,4 @@ $databases = new Databases($client);
 $result = $databases->listTransactions(
     queries: [] // optional
 );
-
 ```

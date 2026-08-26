@@ -41,5 +41,4 @@ $result = $sites->create(
     deploymentRetention: 0, // optional
     scopes: [ProjectKeyScopes::PROJECTREAD()] // optional
 );
-
 ```

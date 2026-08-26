@@ -19,5 +19,4 @@ $result = $messaging->createTextmagicProvider(
     apiKey: '<API_KEY>', // optional
     enabled: false // optional
 );
-
 ```

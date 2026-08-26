@@ -20,5 +20,4 @@ $result = $tablesDB->createTextColumn(
     array: false, // optional
     encrypt: false // optional
 );
-
 ```

@@ -23,5 +23,4 @@ $result = $project->updateOAuth2Oidc(
     maxAge: 0, // optional
     enabled: false // optional
 );
-
 ```

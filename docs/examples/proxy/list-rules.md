@@ -15,5 +15,4 @@ $result = $proxy->listRules(
     queries: [], // optional
     total: false // optional
 );
-
 ```

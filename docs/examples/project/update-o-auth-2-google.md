@@ -18,5 +18,4 @@ $result = $project->updateOAuth2Google(
     prompt: [ProjectOAuth2GooglePrompt::NONE()], // optional
     enabled: false // optional
 );
-
 ```

@@ -16,5 +16,4 @@ $result = $sites->listVariables(
     queries: [], // optional
     total: false // optional
 );
-
 ```

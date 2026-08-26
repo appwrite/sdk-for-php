@@ -16,5 +16,4 @@ $result = $sites->listLogs(
     queries: [], // optional
     total: false // optional
 );
-
 ```

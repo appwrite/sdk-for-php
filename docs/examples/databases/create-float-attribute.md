@@ -21,5 +21,4 @@ $result = $databases->createFloatAttribute(
     default: null, // optional
     array: false // optional
 );
-
 ```

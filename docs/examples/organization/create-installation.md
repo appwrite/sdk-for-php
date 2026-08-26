@@ -15,5 +15,4 @@ $result = $organization->createInstallation(
     appId: '<APP_ID>',
     authorizationDetails: '<AUTHORIZATION_DETAILS>' // optional
 );
-
 ```

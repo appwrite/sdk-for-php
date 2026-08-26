@@ -19,5 +19,4 @@ $result = $databases->updateTextAttribute(
     default: '<DEFAULT>',
     newKey: '' // optional
 );
-
 ```

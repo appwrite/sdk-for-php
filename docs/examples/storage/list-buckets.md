@@ -16,5 +16,4 @@ $result = $storage->listBuckets(
     search: '<SEARCH>', // optional
     total: false // optional
 );
-
 ```

@@ -17,5 +17,4 @@ $result = $proxy->createInvalidation(
     type: InvalidationType::TAG(),
     reference: '<REFERENCE>' // optional
 );
-
 ```

@@ -17,5 +17,4 @@ $result = $messaging->createFCMProvider(
     serviceAccountJSON: [], // optional
     enabled: false // optional
 );
-
 ```

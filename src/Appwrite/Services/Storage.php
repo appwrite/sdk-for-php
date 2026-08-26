@@ -321,11 +321,11 @@ class Storage extends Service
      * The `content-range` header values should always be in bytes.
      *
      * When the first request is sent, the server will return the **File** object,
-     * and the subsequent part request must include the file&#039;s **id** in
+     * and the subsequent part request must include the file's **id** in
      * `x-appwrite-id` header to allow the server to know that the partial upload
      * is for the existing file and not for a new one.
      *
-     * If you&#039;re creating a new file using one of the Appwrite SDKs, all the
+     * If you're creating a new file using one of the Appwrite SDKs, all the
      * chunking logic will be managed by the SDK internally.
      *
      * @throws AppwriteException
@@ -623,7 +623,7 @@ class Storage extends Service
 
     /**
      * Get a file content by its unique ID. The endpoint response return with a
-     * &#039;Content-Disposition: attachment&#039; header that tells the browser to start
+     * 'Content-Disposition: attachment' header that tells the browser to start
      * downloading the file to user downloads directory.
      *
      * @throws AppwriteException
@@ -739,7 +739,7 @@ class Storage extends Service
 
     /**
      * Get a file content by its unique ID. This endpoint is similar to the
-     * download method but returns with no  &#039;Content-Disposition: attachment&#039;
+     * download method but returns with no  'Content-Disposition: attachment'
      * header.
      *
      * @throws AppwriteException

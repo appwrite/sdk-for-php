@@ -23,5 +23,4 @@ $result = $project->updateEmailTemplate(
     replyToEmail: 'email@example.com', // optional
     replyToName: '<REPLY_TO_NAME>' // optional
 );
-
 ```

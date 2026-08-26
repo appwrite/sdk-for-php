@@ -16,5 +16,4 @@ $result = $tablesDB->getColumn(
     tableId: '<TABLE_ID>',
     key: ''
 );
-
 ```

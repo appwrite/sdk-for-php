@@ -16,5 +16,4 @@ $result = $account->updateRecovery(
     secret: '<SECRET>',
     password: 'password'
 );
-
 ```

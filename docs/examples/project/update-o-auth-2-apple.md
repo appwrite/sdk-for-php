@@ -18,5 +18,4 @@ $result = $project->updateOAuth2Apple(
     p8File: '<P8_FILE>', // optional
     enabled: false // optional
 );
-
 ```

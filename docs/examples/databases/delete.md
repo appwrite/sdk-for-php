@@ -14,5 +14,4 @@ $databases = new Databases($client);
 $result = $databases->delete(
     databaseId: '<DATABASE_ID>'
 );
-
 ```

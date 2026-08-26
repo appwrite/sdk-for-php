@@ -16,5 +16,4 @@ $result = $oauth2->listProjects(
     offset: 0, // optional
     search: '<SEARCH>' // optional
 );
-
 ```

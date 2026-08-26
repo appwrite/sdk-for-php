@@ -366,7 +366,7 @@ class Oauth2 extends Service
 
     /**
      * List the organizations the OAuth2 access token can access. Resolves the
-     * token&#039;s `organization` authorization details, expanding the `*` wildcard
+     * token's `organization` authorization details, expanding the `*` wildcard
      * into the concrete set of organizations the user can see.
      *
      * @throws AppwriteException
@@ -485,7 +485,7 @@ class Oauth2 extends Service
     }
 
     /**
-     * List the projects the OAuth2 access token can access. Resolves the token&#039;s
+     * List the projects the OAuth2 access token can access. Resolves the token's
      * `project` authorization details, expanding the `*` wildcard into the
      * concrete set of projects the user can see.
      *

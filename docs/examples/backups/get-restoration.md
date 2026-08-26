@@ -14,5 +14,4 @@ $backups = new Backups($client);
 $result = $backups->getRestoration(
     restorationId: '<RESTORATION_ID>'
 );
-
 ```

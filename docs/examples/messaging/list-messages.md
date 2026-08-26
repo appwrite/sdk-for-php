@@ -16,5 +16,4 @@ $result = $messaging->listMessages(
     search: '<SEARCH>', // optional
     total: false // optional
 );
-
 ```

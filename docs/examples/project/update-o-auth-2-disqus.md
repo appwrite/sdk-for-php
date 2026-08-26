@@ -16,5 +16,4 @@ $result = $project->updateOAuth2Disqus(
     secretKey: '<SECRET_KEY>', // optional
     enabled: false // optional
 );
-
 ```

@@ -15,5 +15,4 @@ $result = $project->listOAuth2Providers(
     queries: [], // optional
     total: false // optional
 );
-
 ```

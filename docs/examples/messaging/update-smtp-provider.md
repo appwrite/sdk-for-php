@@ -28,5 +28,4 @@ $result = $messaging->updateSMTPProvider(
     replyToEmail: '<REPLY_TO_EMAIL>', // optional
     enabled: false // optional
 );
-
 ```

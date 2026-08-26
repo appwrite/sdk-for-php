@@ -16,5 +16,4 @@ $result = $oauth2->approve(
     authorizationDetails: '<AUTHORIZATION_DETAILS>', // optional
     scope: '<SCOPE>' // optional
 );
-
 ```

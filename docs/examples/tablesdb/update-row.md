@@ -27,5 +27,4 @@ $result = $tablesDB->updateRow(
     permissions: [Permission::read(Role::any())], // optional
     transactionId: '<TRANSACTION_ID>' // optional
 );
-
 ```

@@ -15,5 +15,4 @@ $result = $users->listSessions(
     userId: '<USER_ID>',
     total: false // optional
 );
-
 ```

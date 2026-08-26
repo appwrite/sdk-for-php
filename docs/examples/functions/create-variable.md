@@ -18,5 +18,4 @@ $result = $functions->createVariable(
     value: '<VALUE>',
     secret: false // optional
 );
-
 ```

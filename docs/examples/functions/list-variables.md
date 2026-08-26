@@ -16,5 +16,4 @@ $result = $functions->listVariables(
     queries: [], // optional
     total: false // optional
 );
-
 ```

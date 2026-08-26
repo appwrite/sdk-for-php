@@ -18,5 +18,4 @@ $result = $functions->updateVariable(
     value: '<VALUE>', // optional
     secret: false // optional
 );
-
 ```

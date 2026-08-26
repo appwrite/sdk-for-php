@@ -16,5 +16,4 @@ $result = $databases->create(
     name: '<NAME>',
     enabled: false // optional
 );
-
 ```

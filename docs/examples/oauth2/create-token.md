@@ -23,5 +23,4 @@ $result = $oauth2->createToken(
     resource: '', // optional
     audience: '<AUDIENCE>' // optional
 );
-
 ```

@@ -41,5 +41,4 @@ $result = $sites->update(
     deploymentRetention: 0, // optional
     scopes: [ProjectKeyScopes::PROJECTREAD()] // optional
 );
-
 ```

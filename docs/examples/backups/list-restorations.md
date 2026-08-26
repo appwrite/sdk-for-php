@@ -14,5 +14,4 @@ $backups = new Backups($client);
 $result = $backups->listRestorations(
     queries: [] // optional
 );
-
 ```

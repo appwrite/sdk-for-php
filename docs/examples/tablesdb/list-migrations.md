@@ -14,5 +14,4 @@ $tablesDB = new TablesDB($client);
 $result = $tablesDB->listMigrations(
     databaseId: '<DATABASE_ID>'
 );
-
 ```

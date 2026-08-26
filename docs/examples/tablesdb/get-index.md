@@ -16,5 +16,4 @@ $result = $tablesDB->getIndex(
     tableId: '<TABLE_ID>',
     key: ''
 );
-
 ```

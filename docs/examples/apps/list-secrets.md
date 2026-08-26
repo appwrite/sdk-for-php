@@ -16,5 +16,4 @@ $result = $apps->listSecrets(
     queries: [], // optional
     total: false // optional
 );
-
 ```

@@ -16,5 +16,4 @@ $result = $project->updateOAuth2Appwrite(
     clientSecret: '<CLIENT_SECRET>', // optional
     enabled: false // optional
 );
-
 ```

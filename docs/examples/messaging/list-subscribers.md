@@ -17,5 +17,4 @@ $result = $messaging->listSubscribers(
     search: '<SEARCH>', // optional
     total: false // optional
 );
-
 ```

@@ -15,5 +15,4 @@ $result = $advisor->listReports(
     queries: [], // optional
     total: false // optional
 );
-
 ```

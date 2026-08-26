@@ -16,5 +16,4 @@ $result = $organization->listMemberships(
     search: '<SEARCH>', // optional
     total: false // optional
 );
-
 ```

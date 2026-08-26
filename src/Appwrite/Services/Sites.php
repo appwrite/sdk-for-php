@@ -19,7 +19,7 @@ use Utopia\Psr7\Request\Multipart\Part;
 class Sites extends Service
 {
     /**
-     * Get a list of all the project&#039;s sites. You can use the query params to
+     * Get a list of all the project's sites. You can use the query params to
      * filter your results.
      *
      * @throws AppwriteException
@@ -462,7 +462,7 @@ class Sites extends Service
     }
 
     /**
-     * Get a list of all the site&#039;s code deployments. You can use the query params
+     * Get a list of all the site's code deployments. You can use the query params
      * to filter your results.
      *
      * @throws AppwriteException
@@ -510,8 +510,8 @@ class Sites extends Service
 
     /**
      * Create a new site code deployment. Use this endpoint to upload a new
-     * version of your site code. To activate your newly uploaded code, you&#039;ll
-     * need to update the site&#039;s deployment to use your new deployment ID.
+     * version of your site code. To activate your newly uploaded code, you'll
+     * need to update the site's deployment to use your new deployment ID.
      *
      * @throws AppwriteException
      */
@@ -697,7 +697,7 @@ class Sites extends Service
      * you to rebuild a deployment with the updated site configuration, including
      * its commands and output directory if they have been modified. The build
      * process will be queued and executed asynchronously. The original
-     * deployment&#039;s code will be preserved and used for the new build.
+     * deployment's code will be preserved and used for the new build.
      *
      * @throws AppwriteException
      */
@@ -889,7 +889,7 @@ class Sites extends Service
 
     /**
      * Get a site deployment content by its unique ID. The endpoint response
-     * return with a &#039;Content-Disposition: attachment&#039; header that tells the
+     * return with a 'Content-Disposition: attachment' header that tells the
      * browser to start downloading the file to user downloads directory.
      *
      * @throws AppwriteException
@@ -928,9 +928,9 @@ class Sites extends Service
 
     /**
      * Cancel an ongoing site deployment build. If the build is already in
-     * progress, it will be stopped and marked as canceled. If the build hasn&#039;t
+     * progress, it will be stopped and marked as canceled. If the build hasn't
      * started yet, it will be marked as canceled without executing. You cannot
-     * cancel builds that have already completed (status &#039;ready&#039;) or failed. The
+     * cancel builds that have already completed (status 'ready') or failed. The
      * response includes the final build status and details.
      *
      * @throws AppwriteException

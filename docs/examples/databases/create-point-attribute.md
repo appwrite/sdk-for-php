@@ -18,5 +18,4 @@ $result = $databases->createPointAttribute(
     required: false,
     default: [1, 2] // optional
 );
-
 ```

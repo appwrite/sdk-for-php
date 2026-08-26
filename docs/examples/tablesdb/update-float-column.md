@@ -21,5 +21,4 @@ $result = $tablesDB->updateFloatColumn(
     max: null, // optional
     newKey: '' // optional
 );
-
 ```

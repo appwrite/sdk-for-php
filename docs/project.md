@@ -47,7 +47,7 @@ GET https://cloud.appwrite.io/v1/project/keys
 POST https://cloud.appwrite.io/v1/project/keys/ephemeral
 ```
 
-** Create a new ephemeral API key. It&#039;s recommended to have multiple API keys with strict scopes for separate functions within your project.
+** Create a new ephemeral API key. It's recommended to have multiple API keys with strict scopes for separate functions within your project.
 
 You can also create a standard API key if you need a longer-lived key instead. **
 
@@ -146,7 +146,7 @@ POST https://cloud.appwrite.io/v1/project/mock-phones
 GET https://cloud.appwrite.io/v1/project/mock-phones/{number}
 ```
 
-** Get a mock phone by its unique number. This endpoint returns the mock phone&#039;s OTP. **
+** Get a mock phone by its unique number. This endpoint returns the mock phone's OTP. **
 
 ### Parameters
 
@@ -159,7 +159,7 @@ GET https://cloud.appwrite.io/v1/project/mock-phones/{number}
 PUT https://cloud.appwrite.io/v1/project/mock-phones/{number}
 ```
 
-** Update a mock phone by its unique number. Use this endpoint to update the mock phone&#039;s OTP. **
+** Update a mock phone by its unique number. Use this endpoint to update the mock phone's OTP. **
 
 ### Parameters
 
@@ -186,7 +186,7 @@ DELETE https://cloud.appwrite.io/v1/project/mock-phones/{number}
 GET https://cloud.appwrite.io/v1/project/oauth2
 ```
 
-** Get a list of all OAuth2 providers supported by the server, along with the project&#039;s configuration for each. Credential fields are write-only and always returned empty. **
+** Get a list of all OAuth2 providers supported by the server, along with the project's configuration for each. Credential fields are write-only and always returned empty. **
 
 ### Parameters
 
@@ -948,7 +948,7 @@ POST https://cloud.appwrite.io/v1/project/platforms/android
 PUT https://cloud.appwrite.io/v1/project/platforms/android/{platformId}
 ```
 
-** Update an Android platform by its unique ID. Use this endpoint to update the platform&#039;s name or application ID. **
+** Update an Android platform by its unique ID. Use this endpoint to update the platform's name or application ID. **
 
 ### Parameters
 
@@ -978,7 +978,7 @@ POST https://cloud.appwrite.io/v1/project/platforms/apple
 PUT https://cloud.appwrite.io/v1/project/platforms/apple/{platformId}
 ```
 
-** Update an Apple platform by its unique ID. Use this endpoint to update the platform&#039;s name or bundle identifier. **
+** Update an Apple platform by its unique ID. Use this endpoint to update the platform's name or bundle identifier. **
 
 ### Parameters
 
@@ -1008,7 +1008,7 @@ POST https://cloud.appwrite.io/v1/project/platforms/linux
 PUT https://cloud.appwrite.io/v1/project/platforms/linux/{platformId}
 ```
 
-** Update a Linux platform by its unique ID. Use this endpoint to update the platform&#039;s name or package name. **
+** Update a Linux platform by its unique ID. Use this endpoint to update the platform's name or package name. **
 
 ### Parameters
 
@@ -1038,7 +1038,7 @@ POST https://cloud.appwrite.io/v1/project/platforms/web
 PUT https://cloud.appwrite.io/v1/project/platforms/web/{platformId}
 ```
 
-** Update a web platform by its unique ID. Use this endpoint to update the platform&#039;s name or hostname. **
+** Update a web platform by its unique ID. Use this endpoint to update the platform's name or hostname. **
 
 ### Parameters
 
@@ -1068,7 +1068,7 @@ POST https://cloud.appwrite.io/v1/project/platforms/windows
 PUT https://cloud.appwrite.io/v1/project/platforms/windows/{platformId}
 ```
 
-** Update a Windows platform by its unique ID. Use this endpoint to update the platform&#039;s name or package identifier name. **
+** Update a Windows platform by its unique ID. Use this endpoint to update the platform's name or package identifier name. **
 
 ### Parameters
 
@@ -1083,7 +1083,7 @@ PUT https://cloud.appwrite.io/v1/project/platforms/windows/{platformId}
 GET https://cloud.appwrite.io/v1/project/platforms/{platformId}
 ```
 
-** Get a platform by its unique ID. This endpoint returns the platform&#039;s details, including its name, type, and key configurations. **
+** Get a platform by its unique ID. This endpoint returns the platform's details, including its name, type, and key configurations. **
 
 ### Parameters
 
@@ -1373,7 +1373,7 @@ PATCH https://cloud.appwrite.io/v1/project/services/{serviceId}
 PATCH https://cloud.appwrite.io/v1/project/smtp
 ```
 
-** Update the SMTP configuration for your project. Use this endpoint to configure your project&#039;s SMTP provider with your custom settings for sending transactional emails. **
+** Update the SMTP configuration for your project. Use this endpoint to configure your project's SMTP provider with your custom settings for sending transactional emails. **
 
 ### Parameters
 

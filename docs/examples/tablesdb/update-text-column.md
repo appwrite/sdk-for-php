@@ -19,5 +19,4 @@ $result = $tablesDB->updateTextColumn(
     default: '<DEFAULT>',
     newKey: '' // optional
 );
-
 ```

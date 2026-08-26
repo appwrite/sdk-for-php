@@ -19,5 +19,4 @@ $result = $databases->updatePointAttribute(
     default: [1, 2], // optional
     newKey: '' // optional
 );
-
 ```

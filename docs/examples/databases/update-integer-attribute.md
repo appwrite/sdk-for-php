@@ -21,5 +21,4 @@ $result = $databases->updateIntegerAttribute(
     max: null, // optional
     newKey: '' // optional
 );
-
 ```

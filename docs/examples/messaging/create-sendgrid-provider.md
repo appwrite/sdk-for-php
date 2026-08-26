@@ -21,5 +21,4 @@ $result = $messaging->createSendgridProvider(
     replyToEmail: 'email@example.com', // optional
     enabled: false // optional
 );
-
 ```

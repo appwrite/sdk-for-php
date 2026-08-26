@@ -16,5 +16,4 @@ $result = $project->createLinuxPlatform(
     name: '<NAME>',
     packageName: '<PACKAGE_NAME>'
 );
-
 ```

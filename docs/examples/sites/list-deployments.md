@@ -17,5 +17,4 @@ $result = $sites->listDeployments(
     search: '<SEARCH>', // optional
     total: false // optional
 );
-
 ```

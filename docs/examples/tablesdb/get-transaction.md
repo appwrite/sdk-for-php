@@ -14,5 +14,4 @@ $tablesDB = new TablesDB($client);
 $result = $tablesDB->getTransaction(
     transactionId: '<TRANSACTION_ID>'
 );
-
 ```

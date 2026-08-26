@@ -18,7 +18,7 @@ use Utopia\Psr7\Request\Multipart\Part;
 class Functions extends Service
 {
     /**
-     * Get a list of all the project&#039;s functions. You can use the query params to
+     * Get a list of all the project's functions. You can use the query params to
      * filter your results.
      *
      * @throws AppwriteException
@@ -450,7 +450,7 @@ class Functions extends Service
     }
 
     /**
-     * Get a list of all the function&#039;s code deployments. You can use the query
+     * Get a list of all the function's code deployments. You can use the query
      * params to filter your results.
      *
      * @throws AppwriteException
@@ -498,15 +498,15 @@ class Functions extends Service
 
     /**
      * Create a new function code deployment. Use this endpoint to upload a new
-     * version of your code function. To execute your newly uploaded code, you&#039;ll
-     * need to update the function&#039;s deployment to use your new deployment UID.
+     * version of your code function. To execute your newly uploaded code, you'll
+     * need to update the function's deployment to use your new deployment UID.
      *
      * This endpoint accepts a tar.gz file compressed with your code. Make sure to
      * include any dependencies your code has within the compressed file. You can
      * learn more about code packaging in the [Appwrite Cloud Functions
      * tutorial](https://appwrite.io/docs/functions).
      *
-     * Use the &quot;command&quot; param to set the entrypoint used to execute your code.
+     * Use the "command" param to set the entrypoint used to execute your code.
      *
      * @throws AppwriteException
      */
@@ -685,7 +685,7 @@ class Functions extends Service
      * allows you to rebuild a deployment with the updated function configuration,
      * including its entrypoint and build commands if they have been modified. The
      * build process will be queued and executed asynchronously. The original
-     * deployment&#039;s code will be preserved and used for the new build.
+     * deployment's code will be preserved and used for the new build.
      *
      * @throws AppwriteException
      */
@@ -881,7 +881,7 @@ class Functions extends Service
 
     /**
      * Get a function deployment content by its unique ID. The endpoint response
-     * return with a &#039;Content-Disposition: attachment&#039; header that tells the
+     * return with a 'Content-Disposition: attachment' header that tells the
      * browser to start downloading the file to user downloads directory.
      *
      * @throws AppwriteException
@@ -920,9 +920,9 @@ class Functions extends Service
 
     /**
      * Cancel an ongoing function deployment build. If the build is already in
-     * progress, it will be stopped and marked as canceled. If the build hasn&#039;t
+     * progress, it will be stopped and marked as canceled. If the build hasn't
      * started yet, it will be marked as canceled without executing. You cannot
-     * cancel builds that have already completed (status &#039;ready&#039;) or failed. The
+     * cancel builds that have already completed (status 'ready') or failed. The
      * response includes the final build status and details.
      *
      * @throws AppwriteException

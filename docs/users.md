@@ -5,7 +5,7 @@
 GET https://cloud.appwrite.io/v1/users
 ```
 
-** Get a list of all the project&#039;s users. You can use the query params to filter your results. **
+** Get a list of all the project's users. You can use the query params to filter your results. **
 
 ### Parameters
 
@@ -199,7 +199,7 @@ GET https://cloud.appwrite.io/v1/users/{userId}
 DELETE https://cloud.appwrite.io/v1/users/{userId}
 ```
 
-** Delete a user by its unique ID, thereby releasing it&#039;s ID. Since ID is released and can be reused, all user-related resources like documents or storage files should be deleted before user deletion. If you want to keep ID reserved, use the [updateStatus](https://appwrite.io/docs/server/users#usersUpdateStatus) endpoint instead. **
+** Delete a user by its unique ID, thereby releasing it's ID. Since ID is released and can be reused, all user-related resources like documents or storage files should be deleted before user deletion. If you want to keep ID reserved, use the [updateStatus](https://appwrite.io/docs/server/users#usersUpdateStatus) endpoint instead. **
 
 ### Parameters
 
@@ -258,7 +258,7 @@ PUT https://cloud.appwrite.io/v1/users/{userId}/labels
 
 ** Update the user labels by its unique ID. 
 
-Labels can be used to grant access to resources. While teams are a way for user&#039;s to share access to a resource, labels can be defined by the developer to grant access without an invitation. See the [Permissions docs](https://appwrite.io/docs/permissions) for more info. **
+Labels can be used to grant access to resources. While teams are a way for user's to share access to a resource, labels can be defined by the developer to grant access without an invitation. See the [Permissions docs](https://appwrite.io/docs/permissions) for more info. **
 
 ### Parameters
 
@@ -575,7 +575,7 @@ If you want to generate a token for a custom authentication flow, use the [POST 
 DELETE https://cloud.appwrite.io/v1/users/{userId}/sessions
 ```
 
-** Delete all user&#039;s sessions by using the user&#039;s unique ID. **
+** Delete all user's sessions by using the user's unique ID. **
 
 ### Parameters
 
@@ -602,7 +602,7 @@ DELETE https://cloud.appwrite.io/v1/users/{userId}/sessions/{sessionId}
 PATCH https://cloud.appwrite.io/v1/users/{userId}/status
 ```
 
-** Update the user status by its unique ID. Use this endpoint as an alternative to deleting a user if you want to keep user&#039;s ID reserved. **
+** Update the user status by its unique ID. Use this endpoint as an alternative to deleting a user if you want to keep user's ID reserved. **
 
 ### Parameters
 
@@ -649,7 +649,7 @@ POST https://cloud.appwrite.io/v1/users/{userId}/targets
 GET https://cloud.appwrite.io/v1/users/{userId}/targets/{targetId}
 ```
 
-** Get a user&#039;s push notification target by ID. **
+** Get a user's push notification target by ID. **
 
 ### Parameters
 

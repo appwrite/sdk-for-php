@@ -18,5 +18,4 @@ $result = $avatars->getFlag(
     height: 0, // optional
     quality: -1 // optional
 );
-
 ```

@@ -14,5 +14,4 @@ $webhooks = new Webhooks($client);
 $result = $webhooks->delete(
     webhookId: '<WEBHOOK_ID>'
 );
-
 ```

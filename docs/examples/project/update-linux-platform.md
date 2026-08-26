@@ -16,5 +16,4 @@ $result = $project->updateLinuxPlatform(
     name: '<NAME>',
     packageName: '<PACKAGE_NAME>'
 );
-
 ```

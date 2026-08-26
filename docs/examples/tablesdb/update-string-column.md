@@ -20,5 +20,4 @@ $result = $tablesDB->updateStringColumn(
     size: 1, // optional
     newKey: '' // optional
 );
-
 ```

@@ -18,5 +18,4 @@ $result = $account->updatePrefs(
         'darkTheme' => true
     ]
 );
-
 ```

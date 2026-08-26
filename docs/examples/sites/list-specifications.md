@@ -14,5 +14,4 @@ $sites = new Sites($client);
 $result = $sites->listSpecifications(
     type: 'runtimes' // optional
 );
-
 ```

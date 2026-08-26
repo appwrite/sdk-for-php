@@ -16,5 +16,4 @@ $result = $advisor->listInsights(
     queries: [], // optional
     total: false // optional
 );
-
 ```

@@ -156,7 +156,7 @@ class Project extends Service
     }
 
     /**
-     * Create a new ephemeral API key. It&#039;s recommended to have multiple API keys
+     * Create a new ephemeral API key. It's recommended to have multiple API keys
      * with strict scopes for separate functions within your project.
      *
      * You can also create a standard API key if you need a longer-lived key
@@ -414,7 +414,7 @@ class Project extends Service
 
     /**
      * Get a mock phone by its unique number. This endpoint returns the mock
-     * phone&#039;s OTP.
+     * phone's OTP.
      *
      * @throws AppwriteException
      */
@@ -449,7 +449,7 @@ class Project extends Service
 
     /**
      * Update a mock phone by its unique number. Use this endpoint to update the
-     * mock phone&#039;s OTP.
+     * mock phone's OTP.
      *
      * @throws AppwriteException
      */
@@ -515,7 +515,7 @@ class Project extends Service
 
     /**
      * Get a list of all OAuth2 providers supported by the server, along with the
-     * project&#039;s configuration for each. Credential fields are write-only and
+     * project's configuration for each. Credential fields are write-only and
      * always returned empty.
      *
      * @throws AppwriteException
@@ -2552,7 +2552,7 @@ class Project extends Service
 
     /**
      * Update an Android platform by its unique ID. Use this endpoint to update
-     * the platform&#039;s name or application ID.
+     * the platform's name or application ID.
      *
      * @throws AppwriteException
      */
@@ -2629,7 +2629,7 @@ class Project extends Service
 
     /**
      * Update an Apple platform by its unique ID. Use this endpoint to update the
-     * platform&#039;s name or bundle identifier.
+     * platform's name or bundle identifier.
      *
      * @throws AppwriteException
      */
@@ -2706,7 +2706,7 @@ class Project extends Service
 
     /**
      * Update a Linux platform by its unique ID. Use this endpoint to update the
-     * platform&#039;s name or package name.
+     * platform's name or package name.
      *
      * @throws AppwriteException
      */
@@ -2783,7 +2783,7 @@ class Project extends Service
 
     /**
      * Update a web platform by its unique ID. Use this endpoint to update the
-     * platform&#039;s name or hostname.
+     * platform's name or hostname.
      *
      * @throws AppwriteException
      */
@@ -2860,7 +2860,7 @@ class Project extends Service
 
     /**
      * Update a Windows platform by its unique ID. Use this endpoint to update the
-     * platform&#039;s name or package identifier name.
+     * platform's name or package identifier name.
      *
      * @throws AppwriteException
      */
@@ -2897,7 +2897,7 @@ class Project extends Service
     }
 
     /**
-     * Get a platform by its unique ID. This endpoint returns the platform&#039;s
+     * Get a platform by its unique ID. This endpoint returns the platform's
      * details, including its name, type, and key configurations.
      *
      * @throws AppwriteException
@@ -3807,7 +3807,7 @@ class Project extends Service
 
     /**
      * Update the SMTP configuration for your project. Use this endpoint to
-     * configure your project&#039;s SMTP provider with your custom settings for
+     * configure your project's SMTP provider with your custom settings for
      * sending transactional emails.
      *
      * @throws AppwriteException

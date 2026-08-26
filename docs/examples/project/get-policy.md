@@ -15,5 +15,4 @@ $project = new Project($client);
 $result = $project->getPolicy(
     policyId: ProjectPolicyId::PASSWORDDICTIONARY()
 );
-
 ```

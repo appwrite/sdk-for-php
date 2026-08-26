@@ -20,5 +20,4 @@ $result = $tablesDB->createMediumtextColumn(
     array: false, // optional
     encrypt: false // optional
 );
-
 ```

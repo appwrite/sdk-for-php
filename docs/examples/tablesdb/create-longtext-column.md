@@ -20,5 +20,4 @@ $result = $tablesDB->createLongtextColumn(
     array: false, // optional
     encrypt: false // optional
 );
-
 ```

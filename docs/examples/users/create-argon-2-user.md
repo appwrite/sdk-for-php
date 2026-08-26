@@ -17,5 +17,4 @@ $result = $users->createArgon2User(
     password: 'password',
     name: '<NAME>' // optional
 );
-
 ```

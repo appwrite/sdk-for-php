@@ -19,5 +19,4 @@ $result = $databases->listDocuments(
     total: false, // optional
     ttl: 0 // optional
 );
-
 ```

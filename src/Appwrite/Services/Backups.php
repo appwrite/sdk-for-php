@@ -84,7 +84,7 @@ class Backups extends Service
     }
 
     /**
-     * Get a backup archive using it&#039;s ID.
+     * Get a backup archive using it's ID.
      *
      * @throws AppwriteException
      */
@@ -231,7 +231,7 @@ class Backups extends Service
     }
 
     /**
-     * Get a backup policy using it&#039;s ID.
+     * Get a backup policy using it's ID.
      *
      * @throws AppwriteException
      */
@@ -265,7 +265,7 @@ class Backups extends Service
     }
 
     /**
-     * Update an existing policy using it&#039;s ID.
+     * Update an existing policy using it's ID.
      *
      * @throws AppwriteException
      */
@@ -307,7 +307,7 @@ class Backups extends Service
     }
 
     /**
-     * Delete a policy using it&#039;s ID.
+     * Delete a policy using it's ID.
      *
      * @throws AppwriteException
      */
@@ -361,7 +361,7 @@ class Backups extends Service
      *
      * When restoring a DocumentsDB or VectorsDB database from a dedicated source,
      * the restore provisions a fresh dedicated backing database at the source
-     * database&#039;s own specification and lands the data there. An in-place restore
+     * database's own specification and lands the data there. An in-place restore
      * swaps the database onto that backing only once the restore has succeeded,
      * and retires the backing it displaced only once that swap is confirmed, so
      * the source keeps serving its own data until the restored data is in place

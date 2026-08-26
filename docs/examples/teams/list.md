@@ -16,5 +16,4 @@ $result = $teams->list(
     search: '<SEARCH>', // optional
     total: false // optional
 );
-
 ```

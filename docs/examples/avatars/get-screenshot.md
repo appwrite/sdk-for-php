@@ -40,5 +40,4 @@ $result = $avatars->getScreenshot(
     quality: 85, // optional
     output: ImageFormat::JPEG() // optional
 );
-
 ```

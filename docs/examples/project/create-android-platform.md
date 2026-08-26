@@ -16,5 +16,4 @@ $result = $project->createAndroidPlatform(
     name: '<NAME>',
     applicationId: '<APPLICATION_ID>'
 );
-
 ```

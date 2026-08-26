@@ -19,5 +19,4 @@ $result = $tablesDB->update(
     replicas: 0, // optional
     syncMode: 'async' // optional
 );
-
 ```

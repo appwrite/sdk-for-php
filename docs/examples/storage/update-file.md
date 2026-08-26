@@ -19,5 +19,4 @@ $result = $storage->updateFile(
     name: '<NAME>', // optional
     permissions: [Permission::read(Role::any())] // optional
 );
-
 ```

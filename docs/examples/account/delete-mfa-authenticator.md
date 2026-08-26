@@ -15,5 +15,4 @@ $account = new Account($client);
 $result = $account->deleteMFAAuthenticator(
     type: AuthenticatorType::TOTP()
 );
-
 ```

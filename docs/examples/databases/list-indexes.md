@@ -17,5 +17,4 @@ $result = $databases->listIndexes(
     queries: [], // optional
     total: false // optional
 );
-
 ```

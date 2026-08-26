@@ -20,5 +20,4 @@ $result = $tablesDB->incrementRowColumn(
     max: null, // optional
     transactionId: '<TRANSACTION_ID>' // optional
 );
-
 ```

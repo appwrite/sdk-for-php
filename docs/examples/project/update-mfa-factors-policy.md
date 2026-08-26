@@ -17,5 +17,4 @@ $result = $project->updateMFAFactorsPolicy(
     phone: false, // optional
     custom: false // optional
 );
-
 ```

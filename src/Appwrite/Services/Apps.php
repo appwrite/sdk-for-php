@@ -590,7 +590,7 @@ class Apps extends Service
     /**
      * Create a new app key for an application. App keys carry no scopes; send one
      * in the `X-Appwrite-Key` header alongside the `X-Appwrite-App` header to
-     * list the application&#039;s installations and create installation access tokens.
+     * list the application's installations and create installation access tokens.
      *
      * @throws AppwriteException
      */

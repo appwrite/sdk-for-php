@@ -21,5 +21,4 @@ $result = $messaging->createAPNSProvider(
     sandbox: false, // optional
     enabled: false // optional
 );
-
 ```

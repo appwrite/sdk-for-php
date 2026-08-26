@@ -16,5 +16,4 @@ $result = $tablesDB->deleteColumn(
     tableId: '<TABLE_ID>',
     key: ''
 );
-
 ```

@@ -33,5 +33,4 @@ $result = $apps->update(
     installationScopes: [], // optional
     installationRedirectUrl: 'https://example.com' // optional
 );
-
 ```

@@ -21,5 +21,4 @@ $result = $messaging->updateAPNSProvider(
     bundleId: '<BUNDLE_ID>', // optional
     sandbox: false // optional
 );
-
 ```

@@ -14,5 +14,4 @@ $apps = new Apps($client);
 $result = $apps->createSecret(
     appId: '<APP_ID>'
 );
-
 ```

@@ -17,5 +17,4 @@ $result = $databases->listAttributes(
     queries: [], // optional
     total: false // optional
 );
-
 ```

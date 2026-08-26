@@ -12,6 +12,4 @@ $client = (new Client())
 $sites = new Sites($client);
 
 $result = $sites->listFrameworks();
-
-
 ```

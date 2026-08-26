@@ -21,5 +21,4 @@ $result = $databases->createVarcharAttribute(
     array: false, // optional
     encrypt: false // optional
 );
-
 ```

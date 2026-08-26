@@ -14,5 +14,4 @@ $organization = new Organization($client);
 $result = $organization->getInstallation(
     installationId: '<INSTALLATION_ID>'
 );
-
 ```

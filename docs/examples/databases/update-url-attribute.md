@@ -19,5 +19,4 @@ $result = $databases->updateUrlAttribute(
     default: 'https://example.com',
     newKey: '' // optional
 );
-
 ```

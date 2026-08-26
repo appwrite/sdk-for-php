@@ -19,5 +19,4 @@ $result = $databases->createUrlAttribute(
     default: 'https://example.com', // optional
     array: false // optional
 );
-
 ```

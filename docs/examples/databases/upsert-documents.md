@@ -17,5 +17,4 @@ $result = $databases->upsertDocuments(
     documents: [],
     transactionId: '<TRANSACTION_ID>' // optional
 );
-
 ```

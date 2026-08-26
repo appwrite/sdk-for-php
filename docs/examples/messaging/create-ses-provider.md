@@ -23,5 +23,4 @@ $result = $messaging->createSesProvider(
     replyToEmail: 'email@example.com', // optional
     enabled: false // optional
 );
-
 ```

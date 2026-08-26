@@ -16,5 +16,4 @@ $result = $teams->updateMembership(
     membershipId: '<MEMBERSHIP_ID>',
     roles: []
 );
-
 ```

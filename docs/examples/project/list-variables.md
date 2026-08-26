@@ -15,5 +15,4 @@ $result = $project->listVariables(
     queries: [], // optional
     total: false // optional
 );
-
 ```

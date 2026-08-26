@@ -15,5 +15,4 @@ $result = $account->listIdentities(
     queries: [], // optional
     total: false // optional
 );
-
 ```

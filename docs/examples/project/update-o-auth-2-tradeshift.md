@@ -16,5 +16,4 @@ $result = $project->updateOAuth2Tradeshift(
     oauth2ClientSecret: '<OAUTH2_CLIENT_SECRET>', // optional
     enabled: false // optional
 );
-
 ```

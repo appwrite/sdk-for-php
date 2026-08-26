@@ -21,5 +21,4 @@ $result = $backups->createPolicy(
     resourceId: '<RESOURCE_ID>', // optional
     enabled: false // optional
 );
-
 ```

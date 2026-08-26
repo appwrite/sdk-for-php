@@ -16,5 +16,4 @@ $result = $tablesDB->updateTransaction(
     commit: false, // optional
     rollback: false // optional
 );
-
 ```

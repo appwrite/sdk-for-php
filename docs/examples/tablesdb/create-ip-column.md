@@ -19,5 +19,4 @@ $result = $tablesDB->createIpColumn(
     default: '', // optional
     array: false // optional
 );
-
 ```

@@ -18,5 +18,4 @@ $result = $backups->updatePolicy(
     schedule: '', // optional
     enabled: false // optional
 );
-
 ```

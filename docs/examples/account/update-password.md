@@ -15,5 +15,4 @@ $result = $account->updatePassword(
     password: 'password',
     oldPassword: 'password' // optional
 );
-
 ```

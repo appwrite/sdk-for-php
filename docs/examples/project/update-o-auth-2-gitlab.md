@@ -17,5 +17,4 @@ $result = $project->updateOAuth2Gitlab(
     endpoint: 'https://example.com', // optional
     enabled: false // optional
 );
-
 ```

@@ -17,5 +17,4 @@ $result = $project->updateOAuth2FusionAuth(
     endpoint: '<ENDPOINT>', // optional
     enabled: false // optional
 );
-
 ```

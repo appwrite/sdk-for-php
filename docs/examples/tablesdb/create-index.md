@@ -22,5 +22,4 @@ $result = $tablesDB->createIndex(
     orders: [OrderBy::ASC()], // optional
     lengths: [] // optional
 );
-
 ```

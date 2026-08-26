@@ -16,5 +16,4 @@ $result = $apps->listInstallations(
     queries: [], // optional
     total: false // optional
 );
-
 ```

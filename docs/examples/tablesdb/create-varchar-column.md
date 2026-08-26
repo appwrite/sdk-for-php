@@ -21,5 +21,4 @@ $result = $tablesDB->createVarcharColumn(
     array: false, // optional
     encrypt: false // optional
 );
-
 ```

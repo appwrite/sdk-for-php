@@ -20,5 +20,4 @@ $result = $databases->decrementDocumentAttribute(
     min: null, // optional
     transactionId: '<TRANSACTION_ID>' // optional
 );
-
 ```

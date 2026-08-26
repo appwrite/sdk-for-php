@@ -19,5 +19,4 @@ $result = $messaging->updateTelesignProvider(
     apiKey: '<API_KEY>', // optional
     from: '<FROM>' // optional
 );
-
 ```

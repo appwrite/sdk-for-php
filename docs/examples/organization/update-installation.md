@@ -15,5 +15,4 @@ $result = $organization->updateInstallation(
     installationId: '<INSTALLATION_ID>',
     authorizationDetails: '<AUTHORIZATION_DETAILS>' // optional
 );
-
 ```

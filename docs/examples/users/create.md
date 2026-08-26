@@ -18,5 +18,4 @@ $result = $users->create(
     password: 'password', // optional
     name: '<NAME>' // optional
 );
-
 ```

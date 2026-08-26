@@ -16,5 +16,4 @@ $result = $messaging->listTargets(
     queries: [], // optional
     total: false // optional
 );
-
 ```

@@ -16,5 +16,4 @@ $result = $account->createEmailToken(
     email: 'email@example.com',
     phrase: false // optional
 );
-
 ```

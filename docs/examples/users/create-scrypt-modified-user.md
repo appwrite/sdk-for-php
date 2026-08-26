@@ -20,5 +20,4 @@ $result = $users->createScryptModifiedUser(
     passwordSignerKey: '<PASSWORD_SIGNER_KEY>',
     name: '<NAME>' // optional
 );
-
 ```

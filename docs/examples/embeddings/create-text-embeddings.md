@@ -16,5 +16,4 @@ $result = $embeddings->createTextEmbeddings(
     texts: [],
     model: EmbeddingModel::NOMICEMBEDTEXT() // optional
 );
-
 ```

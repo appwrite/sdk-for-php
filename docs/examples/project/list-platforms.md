@@ -15,5 +15,4 @@ $result = $project->listPlatforms(
     queries: [], // optional
     total: false // optional
 );
-
 ```

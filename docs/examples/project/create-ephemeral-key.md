@@ -16,5 +16,4 @@ $result = $project->createEphemeralKey(
     scopes: [ProjectKeyScopes::PROJECTREAD()],
     duration: 600
 );
-
 ```

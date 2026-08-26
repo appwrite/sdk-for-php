@@ -133,7 +133,7 @@ class Teams extends Service
     }
 
     /**
-     * Update the team&#039;s name by its unique ID.
+     * Update the team's name by its unique ID.
      *
      * @throws AppwriteException
      */
@@ -320,7 +320,7 @@ class Teams extends Service
 
     /**
      * Update an app installation on a team. Only team members with the owner role
-     * can update installations. The installation&#039;s granted scopes are refreshed
+     * can update installations. The installation's granted scopes are refreshed
      * to the scopes the app currently requests; previously issued installation
      * access tokens are revoked.
      *
@@ -391,7 +391,7 @@ class Teams extends Service
     }
 
     /**
-     * Use this endpoint to list a team&#039;s members using the team&#039;s ID. All team
+     * Use this endpoint to list a team's members using the team's ID. All team
      * members have read access to this endpoint. Hide sensitive attributes from
      * the response by toggling membership privacy in the Console.
      *
@@ -443,11 +443,11 @@ class Teams extends Service
      * invite unregistered users using an email or phone number. If initiated from
      * a Client SDK, Appwrite will send an email or sms with a link to join the
      * team to the invited user, and an account will be created for them if one
-     * doesn&#039;t exist. If initiated from a Server SDK, the new member will be added
+     * doesn't exist. If initiated from a Server SDK, the new member will be added
      * automatically to the team.
      *
      * You only need to provide one of a user ID, email, or phone number. Appwrite
-     * will prioritize accepting the user ID &gt; email &gt; phone number if you provide
+     * will prioritize accepting the user ID > email > phone number if you provide
      * more than one of these parameters.
      *
      * Use the `url` parameter to redirect the user from the invitation email to
@@ -664,7 +664,7 @@ class Teams extends Service
     }
 
     /**
-     * Get the team&#039;s shared preferences by its unique ID. If a preference doesn&#039;t
+     * Get the team's shared preferences by its unique ID. If a preference doesn't
      * need to be shared by all team members, prefer storing them in [user
      * preferences](https://appwrite.io/docs/references/cloud/client-web/account#getPrefs).
      *
@@ -700,7 +700,7 @@ class Teams extends Service
     }
 
     /**
-     * Update the team&#039;s preferences by its unique ID. The object you pass is
+     * Update the team's preferences by its unique ID. The object you pass is
      * stored as is and replaces any previous value. The maximum allowed prefs
      * size is 64kB and throws an error if exceeded.
      *

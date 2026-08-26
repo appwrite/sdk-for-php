@@ -18,5 +18,4 @@ $result = $functions->createVcsDeployment(
     reference: '<REFERENCE>',
     activate: false // optional
 );
-
 ```

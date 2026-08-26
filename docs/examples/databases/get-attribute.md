@@ -16,5 +16,4 @@ $result = $databases->getAttribute(
     collectionId: '<COLLECTION_ID>',
     key: ''
 );
-
 ```

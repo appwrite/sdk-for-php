@@ -16,5 +16,4 @@ $result = $avatars->getImage(
     width: 0, // optional
     height: 0 // optional
 );
-
 ```

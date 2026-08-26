@@ -14,5 +14,4 @@ $project = new Project($client);
 $result = $project->deleteMockPhone(
     number: '+12065550100'
 );
-
 ```

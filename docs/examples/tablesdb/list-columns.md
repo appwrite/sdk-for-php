@@ -17,5 +17,4 @@ $result = $tablesDB->listColumns(
     queries: [], // optional
     total: false // optional
 );
-
 ```

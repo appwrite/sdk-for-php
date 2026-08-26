@@ -16,5 +16,4 @@ $result = $project->updateOAuth2Podio(
     clientSecret: '<CLIENT_SECRET>', // optional
     enabled: false // optional
 );
-
 ```

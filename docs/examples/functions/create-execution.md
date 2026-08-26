@@ -21,5 +21,4 @@ $result = $functions->createExecution(
     headers: [], // optional
     scheduledAt: '<SCHEDULED_AT>' // optional
 );
-
 ```

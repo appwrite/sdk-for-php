@@ -16,5 +16,4 @@ $result = $project->updateOAuth2Box(
     clientSecret: '<CLIENT_SECRET>', // optional
     enabled: false // optional
 );
-
 ```

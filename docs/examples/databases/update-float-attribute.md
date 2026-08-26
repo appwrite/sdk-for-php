@@ -21,5 +21,4 @@ $result = $databases->updateFloatAttribute(
     max: null, // optional
     newKey: '' // optional
 );
-
 ```

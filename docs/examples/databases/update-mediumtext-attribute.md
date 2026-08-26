@@ -19,5 +19,4 @@ $result = $databases->updateMediumtextAttribute(
     default: '<DEFAULT>',
     newKey: '' // optional
 );
-
 ```

@@ -18,5 +18,4 @@ $result = $tablesDB->createPointColumn(
     required: false,
     default: [1, 2] // optional
 );
-
 ```

@@ -16,5 +16,4 @@ $result = $presences->list(
     total: false, // optional
     ttl: 0 // optional
 );
-
 ```

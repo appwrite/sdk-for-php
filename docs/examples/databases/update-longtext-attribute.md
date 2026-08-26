@@ -19,5 +19,4 @@ $result = $databases->updateLongtextAttribute(
     default: '<DEFAULT>',
     newKey: '' // optional
 );
-
 ```

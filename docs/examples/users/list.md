@@ -16,5 +16,4 @@ $result = $users->list(
     search: '<SEARCH>', // optional
     total: false // optional
 );
-
 ```

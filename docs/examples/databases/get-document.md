@@ -18,5 +18,4 @@ $result = $databases->getDocument(
     queries: [], // optional
     transactionId: '<TRANSACTION_ID>' // optional
 );
-
 ```

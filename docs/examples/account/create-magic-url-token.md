@@ -17,5 +17,4 @@ $result = $account->createMagicURLToken(
     url: 'https://example.com', // optional
     phrase: false // optional
 );
-
 ```

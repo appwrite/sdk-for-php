@@ -16,5 +16,4 @@ $result = $project->updateOAuth2Dailymotion(
     apiSecret: '<API_SECRET>', // optional
     enabled: false // optional
 );
-
 ```

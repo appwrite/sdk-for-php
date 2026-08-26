@@ -24,5 +24,4 @@ $result = $project->updateSMTP(
     secure: ProjectSMTPSecure::TLS(), // optional
     enabled: false // optional
 );
-
 ```

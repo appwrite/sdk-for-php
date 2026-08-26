@@ -17,5 +17,4 @@ $result = $teams->updateMembershipStatus(
     userId: '<USER_ID>',
     secret: '<SECRET>'
 );
-
 ```

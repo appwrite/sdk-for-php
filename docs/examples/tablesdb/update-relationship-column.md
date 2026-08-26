@@ -19,5 +19,4 @@ $result = $tablesDB->updateRelationshipColumn(
     onDelete: RelationMutate::CASCADE(), // optional
     newKey: '' // optional
 );
-
 ```

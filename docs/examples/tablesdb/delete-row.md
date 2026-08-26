@@ -17,5 +17,4 @@ $result = $tablesDB->deleteRow(
     rowId: '<ROW_ID>',
     transactionId: '<TRANSACTION_ID>' // optional
 );
-
 ```

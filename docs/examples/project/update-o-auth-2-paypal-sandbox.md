@@ -16,5 +16,4 @@ $result = $project->updateOAuth2PaypalSandbox(
     secretKey: '<SECRET_KEY>', // optional
     enabled: false // optional
 );
-
 ```

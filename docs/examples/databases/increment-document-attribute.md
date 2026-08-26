@@ -20,5 +20,4 @@ $result = $databases->incrementDocumentAttribute(
     max: null, // optional
     transactionId: '<TRANSACTION_ID>' // optional
 );
-
 ```

@@ -14,5 +14,4 @@ $account = new Account($client);
 $result = $account->deleteConsent(
     consentId: '<CONSENT_ID>'
 );
-
 ```

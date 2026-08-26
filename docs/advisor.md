@@ -5,7 +5,7 @@
 GET https://cloud.appwrite.io/v1/reports
 ```
 
-** Get a list of all the project&#039;s analyzer reports. You can use the query params to filter your results.
+** Get a list of all the project's analyzer reports. You can use the query params to filter your results.
  **
 
 ### Parameters
@@ -20,7 +20,7 @@ GET https://cloud.appwrite.io/v1/reports
 GET https://cloud.appwrite.io/v1/reports/{reportId}
 ```
 
-** Get an analyzer report by its unique ID. The response includes the report&#039;s metadata and the nested insights it produced.
+** Get an analyzer report by its unique ID. The response includes the report's metadata and the nested insights it produced.
  **
 
 ### Parameters

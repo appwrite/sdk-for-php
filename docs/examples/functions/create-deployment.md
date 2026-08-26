@@ -19,5 +19,4 @@ $result = $functions->createDeployment(
     entrypoint: '<ENTRYPOINT>', // optional
     commands: '<COMMANDS>' // optional
 );
-
 ```

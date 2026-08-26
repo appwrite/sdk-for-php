@@ -20,5 +20,4 @@ $result = $sites->createDeployment(
     outputDirectory: '<OUTPUT_DIRECTORY>', // optional
     activate: false // optional
 );
-
 ```

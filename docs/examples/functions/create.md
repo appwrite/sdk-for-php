@@ -37,5 +37,4 @@ $result = $functions->create(
     runtimeSpecification: '', // optional
     deploymentRetention: 0 // optional
 );
-
 ```

@@ -19,5 +19,4 @@ $result = $tablesDB->updateBooleanColumn(
     default: false,
     newKey: '' // optional
 );
-
 ```

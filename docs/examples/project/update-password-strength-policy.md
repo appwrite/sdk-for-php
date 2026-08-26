@@ -18,5 +18,4 @@ $result = $project->updatePasswordStrengthPolicy(
     number: false, // optional
     symbols: false // optional
 );
-
 ```

@@ -15,5 +15,4 @@ $result = $apps->updateLabels(
     appId: '<APP_ID>',
     labels: []
 );
-
 ```

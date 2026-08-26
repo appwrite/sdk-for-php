@@ -37,5 +37,4 @@ $result = $functions->update(
     runtimeSpecification: '', // optional
     deploymentRetention: 0 // optional
 );
-
 ```

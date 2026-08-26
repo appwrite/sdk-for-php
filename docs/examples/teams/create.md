@@ -16,5 +16,4 @@ $result = $teams->create(
     name: '<NAME>',
     roles: [] // optional
 );
-
 ```

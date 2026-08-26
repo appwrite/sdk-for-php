@@ -18,5 +18,4 @@ $result = $functions->getDeploymentDownload(
     type: DeploymentDownloadType::SOURCE(), // optional
     token: '<TOKEN>' // optional
 );
-
 ```

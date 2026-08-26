@@ -16,5 +16,4 @@ $result = $storage->getFileDownload(
     fileId: '<FILE_ID>',
     token: '<TOKEN>' // optional
 );
-
 ```

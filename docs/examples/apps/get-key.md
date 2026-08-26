@@ -15,5 +15,4 @@ $result = $apps->getKey(
     appId: '<APP_ID>',
     keyId: '<KEY_ID>'
 );
-
 ```

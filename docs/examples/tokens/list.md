@@ -17,5 +17,4 @@ $result = $tokens->list(
     queries: [], // optional
     total: false // optional
 );
-
 ```

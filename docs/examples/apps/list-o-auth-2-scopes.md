@@ -12,6 +12,4 @@ $client = (new Client())
 $apps = new Apps($client);
 
 $result = $apps->listOAuth2Scopes();
-
-
 ```

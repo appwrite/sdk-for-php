@@ -27,5 +27,4 @@ $result = $oauth2->authorize(
     audience: '<AUDIENCE>', // optional
     requestUri: '<REQUEST_URI>' // optional
 );
-
 ```

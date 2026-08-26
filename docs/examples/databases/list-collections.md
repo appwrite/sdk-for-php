@@ -17,5 +17,4 @@ $result = $databases->listCollections(
     search: '<SEARCH>', // optional
     total: false // optional
 );
-
 ```

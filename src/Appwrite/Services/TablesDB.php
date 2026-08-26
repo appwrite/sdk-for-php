@@ -2904,7 +2904,7 @@ class TablesDB extends Service
     }
 
     /**
-     * Get a list of all the user&#039;s rows in a given table. You can use the query
+     * Get a list of all the user's rows in a given table. You can use the query
      * params to filter your results.
      *
      * @throws AppwriteException

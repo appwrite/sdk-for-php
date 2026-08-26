@@ -19,5 +19,4 @@ $result = $project->updateMembershipPrivacyPolicy(
     userMFA: false, // optional
     userAccessedAt: false // optional
 );
-
 ```

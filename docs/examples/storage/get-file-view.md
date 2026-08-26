@@ -16,5 +16,4 @@ $result = $storage->getFileView(
     fileId: '<FILE_ID>',
     token: '<TOKEN>' // optional
 );
-
 ```

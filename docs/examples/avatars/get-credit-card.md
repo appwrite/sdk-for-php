@@ -18,5 +18,4 @@ $result = $avatars->getCreditCard(
     height: 0, // optional
     quality: -1 // optional
 );
-
 ```

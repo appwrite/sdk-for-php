@@ -45,7 +45,7 @@ class Organization extends Service
     }
 
     /**
-     * Update the current organization&#039;s name.
+     * Update the current organization's name.
      *
      * @throws AppwriteException
      */
@@ -227,7 +227,7 @@ class Organization extends Service
 
     /**
      * Update an app installation on the organization. Only organization members
-     * with the owner role can update installations. The installation&#039;s granted
+     * with the owner role can update installations. The installation's granted
      * scopes are refreshed to the scopes the app currently requests; previously
      * issued installation access tokens are revoked.
      *
@@ -524,8 +524,8 @@ class Organization extends Service
 
     /**
      * Invite a new member to join the current organization. An email with a link
-     * to join the organization will be sent to the new member&#039;s email address. If
-     * member doesn&#039;t exist in the project it will be automatically created.
+     * to join the organization will be sent to the new member's email address. If
+     * member doesn't exist in the project it will be automatically created.
      *
      * @throws AppwriteException
      */

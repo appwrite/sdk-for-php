@@ -20,5 +20,4 @@ $result = $databases->createLongtextAttribute(
     array: false, // optional
     encrypt: false // optional
 );
-
 ```

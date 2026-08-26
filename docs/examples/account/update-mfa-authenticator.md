@@ -16,5 +16,4 @@ $result = $account->updateMFAAuthenticator(
     type: AuthenticatorType::TOTP(),
     otp: '<OTP>'
 );
-
 ```

@@ -21,5 +21,4 @@ $result = $databases->updateBigIntAttribute(
     max: null, // optional
     newKey: '' // optional
 );
-
 ```

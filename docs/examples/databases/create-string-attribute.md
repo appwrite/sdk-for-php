@@ -21,5 +21,4 @@ $result = $databases->createStringAttribute(
     array: false, // optional
     encrypt: false // optional
 );
-
 ```

@@ -16,5 +16,4 @@ $result = $project->updateOAuth2Facebook(
     appSecret: '<APP_SECRET>', // optional
     enabled: false // optional
 );
-
 ```

@@ -15,5 +15,4 @@ $result = $organization->listKeys(
     queries: [], // optional
     total: false // optional
 );
-
 ```

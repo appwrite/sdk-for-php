@@ -22,5 +22,4 @@ $result = $tablesDB->updateTable(
     enabled: false, // optional
     purge: false // optional
 );
-
 ```

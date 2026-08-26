@@ -25,5 +25,4 @@ $result = $databases->createOperations(
 	    }
 	] // optional
 );
-
 ```

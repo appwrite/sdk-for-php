@@ -27,5 +27,4 @@ $result = $databases->updateDocument(
     permissions: [Permission::read(Role::any())], // optional
     transactionId: '<TRANSACTION_ID>' // optional
 );
-
 ```

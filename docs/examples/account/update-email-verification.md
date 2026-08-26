@@ -15,5 +15,4 @@ $result = $account->updateEmailVerification(
     userId: '<USER_ID>',
     secret: '<SECRET>'
 );
-
 ```

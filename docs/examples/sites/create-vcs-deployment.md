@@ -18,5 +18,4 @@ $result = $sites->createVcsDeployment(
     reference: '<REFERENCE>',
     activate: false // optional
 );
-
 ```

@@ -14,5 +14,4 @@ $users = new Users($client);
 $result = $users->delete(
     userId: '<USER_ID>'
 );
-
 ```

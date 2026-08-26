@@ -19,5 +19,4 @@ $result = $databases->updateEmailAttribute(
     default: 'email@example.com',
     newKey: '' // optional
 );
-
 ```

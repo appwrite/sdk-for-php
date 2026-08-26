@@ -16,5 +16,4 @@ $result = $sites->list(
     search: '<SEARCH>', // optional
     total: false // optional
 );
-
 ```

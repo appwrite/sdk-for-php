@@ -17,5 +17,4 @@ $result = $users->createBcryptUser(
     password: 'password',
     name: '<NAME>' // optional
 );
-
 ```

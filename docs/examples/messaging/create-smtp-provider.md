@@ -28,5 +28,4 @@ $result = $messaging->createSMTPProvider(
     replyToEmail: 'email@example.com', // optional
     enabled: false // optional
 );
-
 ```

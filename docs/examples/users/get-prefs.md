@@ -14,5 +14,4 @@ $users = new Users($client);
 $result = $users->getPrefs(
     userId: '<USER_ID>'
 );
-
 ```

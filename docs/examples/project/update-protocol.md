@@ -16,5 +16,4 @@ $result = $project->updateProtocol(
     protocolId: ProjectProtocolId::REST(),
     enabled: false
 );
-
 ```

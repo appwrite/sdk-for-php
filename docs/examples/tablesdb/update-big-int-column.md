@@ -21,5 +21,4 @@ $result = $tablesDB->updateBigIntColumn(
     max: null, // optional
     newKey: '' // optional
 );
-
 ```

@@ -16,5 +16,4 @@ $result = $databases->deleteIndex(
     collectionId: '<COLLECTION_ID>',
     key: ''
 );
-
 ```

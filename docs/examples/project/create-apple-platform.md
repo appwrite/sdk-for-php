@@ -16,5 +16,4 @@ $result = $project->createApplePlatform(
     name: '<NAME>',
     bundleIdentifier: '<BUNDLE_IDENTIFIER>'
 );
-
 ```

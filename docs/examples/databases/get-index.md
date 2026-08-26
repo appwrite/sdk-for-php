@@ -16,5 +16,4 @@ $result = $databases->getIndex(
     collectionId: '<COLLECTION_ID>',
     key: ''
 );
-
 ```

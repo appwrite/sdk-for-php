@@ -14,5 +14,4 @@ $backups = new Backups($client);
 $result = $backups->deleteArchive(
     archiveId: '<ARCHIVE_ID>'
 );
-
 ```

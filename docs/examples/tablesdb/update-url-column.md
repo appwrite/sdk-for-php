@@ -19,5 +19,4 @@ $result = $tablesDB->updateUrlColumn(
     default: 'https://example.com',
     newKey: '' // optional
 );
-
 ```

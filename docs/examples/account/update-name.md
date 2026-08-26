@@ -14,5 +14,4 @@ $account = new Account($client);
 $result = $account->updateName(
     name: '<NAME>'
 );
-
 ```

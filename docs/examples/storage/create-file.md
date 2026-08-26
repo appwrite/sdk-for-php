@@ -21,5 +21,4 @@ $result = $storage->createFile(
     permissions: [Permission::read(Role::any())], // optional
     folder: '' // optional
 );
-
 ```

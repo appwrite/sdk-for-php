@@ -20,5 +20,4 @@ $result = $databases->createTextAttribute(
     array: false, // optional
     encrypt: false // optional
 );
-
 ```

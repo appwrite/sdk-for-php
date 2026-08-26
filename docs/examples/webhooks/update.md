@@ -21,5 +21,4 @@ $result = $webhooks->update(
     authUsername: '<AUTH_USERNAME>', // optional
     authPassword: 'password' // optional
 );
-
 ```

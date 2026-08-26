@@ -22,5 +22,4 @@ $result = $presences->update(
     permissions: [Permission::read(Role::any())], // optional
     purge: false // optional
 );
-
 ```

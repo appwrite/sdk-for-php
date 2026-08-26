@@ -14,5 +14,4 @@ $messaging = new Messaging($client);
 $result = $messaging->deleteTopic(
     topicId: '<TOPIC_ID>'
 );
-
 ```

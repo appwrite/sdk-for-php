@@ -21,5 +21,4 @@ $result = $messaging->createResendProvider(
     replyToEmail: 'email@example.com', // optional
     enabled: false // optional
 );
-
 ```

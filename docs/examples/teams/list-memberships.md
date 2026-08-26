@@ -17,5 +17,4 @@ $result = $teams->listMemberships(
     search: '<SEARCH>', // optional
     total: false // optional
 );
-
 ```

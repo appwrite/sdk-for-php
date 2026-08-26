@@ -16,5 +16,4 @@ $result = $functions->createDuplicateDeployment(
     deploymentId: '<DEPLOYMENT_ID>',
     buildId: '<BUILD_ID>' // optional
 );
-
 ```

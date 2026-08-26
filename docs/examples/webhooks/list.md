@@ -15,5 +15,4 @@ $result = $webhooks->list(
     queries: [], // optional
     total: false // optional
 );
-
 ```

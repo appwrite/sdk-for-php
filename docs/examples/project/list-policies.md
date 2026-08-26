@@ -15,5 +15,4 @@ $result = $project->listPolicies(
     queries: [], // optional
     total: false // optional
 );
-
 ```

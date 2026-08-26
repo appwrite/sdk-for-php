@@ -20,5 +20,4 @@ $result = $databases->createMediumtextAttribute(
     array: false, // optional
     encrypt: false // optional
 );
-
 ```

@@ -17,5 +17,4 @@ $result = $databases->createDocuments(
     documents: [],
     transactionId: '<TRANSACTION_ID>' // optional
 );
-
 ```

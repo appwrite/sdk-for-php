@@ -14,5 +14,4 @@ $oauth2 = new Oauth2($client);
 $result = $oauth2->getGrant(
     grantId: '<GRANT_ID>'
 );
-
 ```

@@ -16,5 +16,4 @@ $result = $messaging->updateTopic(
     name: '<NAME>', // optional
     subscribe: ["any"] // optional
 );
-
 ```

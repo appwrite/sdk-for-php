@@ -17,5 +17,4 @@ $result = $databases->deleteDocuments(
     queries: [], // optional
     transactionId: '<TRANSACTION_ID>' // optional
 );
-
 ```

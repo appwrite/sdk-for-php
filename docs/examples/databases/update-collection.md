@@ -22,5 +22,4 @@ $result = $databases->updateCollection(
     enabled: false, // optional
     purge: false // optional
 );
-
 ```

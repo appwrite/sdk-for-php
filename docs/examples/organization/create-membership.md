@@ -19,5 +19,4 @@ $result = $organization->createMembership(
     url: 'https://example.com', // optional
     name: '<NAME>' // optional
 );
-
 ```

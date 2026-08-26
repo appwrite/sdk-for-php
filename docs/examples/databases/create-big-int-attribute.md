@@ -21,5 +21,4 @@ $result = $databases->createBigIntAttribute(
     default: null, // optional
     array: false // optional
 );
-
 ```

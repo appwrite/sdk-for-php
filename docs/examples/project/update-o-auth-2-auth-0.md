@@ -17,5 +17,4 @@ $result = $project->updateOAuth2Auth0(
     endpoint: '<ENDPOINT>', // optional
     enabled: false // optional
 );
-
 ```

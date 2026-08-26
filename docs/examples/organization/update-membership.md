@@ -15,5 +15,4 @@ $result = $organization->updateMembership(
     membershipId: '<MEMBERSHIP_ID>',
     roles: []
 );
-
 ```

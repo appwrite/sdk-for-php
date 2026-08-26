@@ -752,7 +752,7 @@ class Account extends Service
     }
 
     /**
-     * Generate recovery codes as backup for MFA flow. It&#039;s recommended to
+     * Generate recovery codes as backup for MFA flow. It's recommended to
      * generate and show then immediately after user successfully adds their
      * authehticator. Recovery codes can be used as a MFA verification type in
      * [createMfaChallenge](/docs/references/cloud/client-web/account#createMfaChallenge)
@@ -903,7 +903,7 @@ class Account extends Service
     }
 
     /**
-     * Update the currently logged in user&#039;s phone number. After updating the
+     * Update the currently logged in user's phone number. After updating the
      * phone number, the phone verification status will be reset. A confirmation
      * SMS is not sent automatically, however you can use the [POST
      * /account/verification/phone](https://appwrite.io/docs/references/cloud/client-web/account#createPhoneVerification)
@@ -1019,7 +1019,7 @@ class Account extends Service
      * attached to the URL query string. Use the query string params to submit a
      * request to the [PUT
      * /account/recovery](https://appwrite.io/docs/references/cloud/client-web/account#updateRecovery)
-     * endpoint to complete the process. The verification link sent to the user&#039;s
+     * endpoint to complete the process. The verification link sent to the user's
      * email address is valid for 1 hour.
      *
      * @throws AppwriteException
@@ -1365,8 +1365,8 @@ class Account extends Service
     }
 
     /**
-     * Use this endpoint to get a logged in user&#039;s session using a Session ID.
-     * Inputting &#039;current&#039; will return the current session being used.
+     * Use this endpoint to get a logged in user's session using a Session ID.
+     * Inputting 'current' will return the current session being used.
      *
      * @throws AppwriteException
      */
@@ -1400,7 +1400,7 @@ class Account extends Service
     }
 
     /**
-     * Use this endpoint to extend a session&#039;s length. Extending a session is
+     * Use this endpoint to extend a session's length. Extending a session is
      * useful when session expiry is short. If the session was created using an
      * OAuth provider, this endpoint refreshes the access token from the provider.
      *
@@ -1437,8 +1437,8 @@ class Account extends Service
     }
 
     /**
-     * Logout the user. Use &#039;current&#039; as the session ID to logout on this device,
-     * use a session ID to logout on another device. If you&#039;re looking to logout
+     * Logout the user. Use 'current' as the session ID to logout on this device,
+     * use a session ID to logout on another device. If you're looking to logout
      * the user on all devices, use [Delete
      * Sessions](https://appwrite.io/docs/references/cloud/client-web/account#deleteSessions)
      * instead.
@@ -1512,7 +1512,7 @@ class Account extends Service
      * email with the one-time password. Use the returned user ID and secret and
      * submit a request to the [POST
      * /v1/account/sessions/token](https://appwrite.io/docs/references/cloud/client-web/account#createSession)
-     * endpoint to complete the login process. The secret sent to the user&#039;s email
+     * endpoint to complete the login process. The secret sent to the user's email
      * is valid for 15 minutes.
      *
      * A user is limited to 10 active sessions at a time by default. [Learn more
@@ -1564,7 +1564,7 @@ class Account extends Service
      * query string. Use the query string parameters to submit a request to the
      * [POST
      * /v1/account/sessions/token](https://appwrite.io/docs/references/cloud/client-web/account#createSession)
-     * endpoint to complete the login process. The link sent to the user&#039;s email
+     * endpoint to complete the login process. The link sent to the user's email
      * address is valid for 1 hour.
      *
      * A user is limited to 10 active sessions at a time by default. [Learn more
@@ -1615,7 +1615,7 @@ class Account extends Service
     /**
      * Allow the user to login to their account using the OAuth2 provider of their
      * choice. Each OAuth2 provider should be enabled from the Appwrite console
-     * first. Use the success and failure arguments to provide a redirect URL&#039;s
+     * first. Use the success and failure arguments to provide a redirect URL's
      * back to your app when login is completed.
      *
      * If authentication succeeds, `userId` and `secret` of a token will be
@@ -1671,7 +1671,7 @@ class Account extends Service
      * provided user ID has not be registered, a new user will be created. Use the
      * returned user ID and secret and submit a request to the [POST
      * /v1/account/sessions/token](https://appwrite.io/docs/references/cloud/client-web/account#createSession)
-     * endpoint to complete the login process. The secret sent to the user&#039;s phone
+     * endpoint to complete the login process. The secret sent to the user's phone
      * is valid for 15 minutes.
      *
      * A user is limited to 10 active sessions at a time by default. [Learn more
@@ -1720,7 +1720,7 @@ class Account extends Service
      * verification process by verifying both the **userId** and **secret**
      * parameters. Learn more about how to [complete the verification
      * process](https://appwrite.io/docs/references/cloud/client-web/account#updateVerification).
-     * The verification link sent to the user&#039;s email address is valid for 7 days.
+     * The verification link sent to the user's email address is valid for 7 days.
      *
      * Please note that in order to avoid a [Redirect
      * Attack](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.md),
@@ -1768,7 +1768,7 @@ class Account extends Service
      * verification process by verifying both the **userId** and **secret**
      * parameters. Learn more about how to [complete the verification
      * process](https://appwrite.io/docs/references/cloud/client-web/account#updateVerification).
-     * The verification link sent to the user&#039;s email address is valid for 7 days.
+     * The verification link sent to the user's email address is valid for 7 days.
      *
      * Please note that in order to avoid a [Redirect
      * Attack](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.md),
@@ -1893,12 +1893,12 @@ class Account extends Service
 
     /**
      * Use this endpoint to send a verification SMS to the currently logged in
-     * user. This endpoint is meant for use after updating a user&#039;s phone number
+     * user. This endpoint is meant for use after updating a user's phone number
      * using the
      * [accountUpdatePhone](https://appwrite.io/docs/references/cloud/client-web/account#updatePhone)
      * endpoint. Learn more about how to [complete the verification
      * process](https://appwrite.io/docs/references/cloud/client-web/account#updatePhoneVerification).
-     * The verification code sent to the user&#039;s phone number is valid for 15
+     * The verification code sent to the user's phone number is valid for 15
      * minutes.
      *
      * @throws AppwriteException
@@ -1934,7 +1934,7 @@ class Account extends Service
 
     /**
      * Use this endpoint to complete the user phone verification process. Use the
-     * **userId** and **secret** that were sent to your user&#039;s phone number to
+     * **userId** and **secret** that were sent to your user's phone number to
      * verify the user email ownership. If confirmed this route will return a 200
      * status code.
      *

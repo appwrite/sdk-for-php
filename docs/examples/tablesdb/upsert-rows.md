@@ -17,5 +17,4 @@ $result = $tablesDB->upsertRows(
     rows: [],
     transactionId: '<TRANSACTION_ID>' // optional
 );
-
 ```

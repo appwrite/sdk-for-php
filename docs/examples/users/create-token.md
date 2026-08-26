@@ -16,5 +16,4 @@ $result = $users->createToken(
     length: 4, // optional
     expire: 60 // optional
 );
-
 ```

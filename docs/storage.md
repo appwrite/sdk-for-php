@@ -112,9 +112,9 @@ POST https://cloud.appwrite.io/v1/storage/buckets/{bucketId}/files
 
 Larger files should be uploaded using multiple requests with the [content-range](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Range) header to send a partial request with a maximum supported chunk of `5MB`. The `content-range` header values should always be in bytes.
 
-When the first request is sent, the server will return the **File** object, and the subsequent part request must include the file&#039;s **id** in `x-appwrite-id` header to allow the server to know that the partial upload is for the existing file and not for a new one.
+When the first request is sent, the server will return the **File** object, and the subsequent part request must include the file's **id** in `x-appwrite-id` header to allow the server to know that the partial upload is for the existing file and not for a new one.
 
-If you&#039;re creating a new file using one of the Appwrite SDKs, all the chunking logic will be managed by the SDK internally.
+If you're creating a new file using one of the Appwrite SDKs, all the chunking logic will be managed by the SDK internally.
  **
 
 ### Parameters
@@ -176,7 +176,7 @@ DELETE https://cloud.appwrite.io/v1/storage/buckets/{bucketId}/files/{fileId}
 GET https://cloud.appwrite.io/v1/storage/buckets/{bucketId}/files/{fileId}/download
 ```
 
-** Get a file content by its unique ID. The endpoint response return with a &#039;Content-Disposition: attachment&#039; header that tells the browser to start downloading the file to user downloads directory. **
+** Get a file content by its unique ID. The endpoint response return with a 'Content-Disposition: attachment' header that tells the browser to start downloading the file to user downloads directory. **
 
 ### Parameters
 
@@ -217,7 +217,7 @@ GET https://cloud.appwrite.io/v1/storage/buckets/{bucketId}/files/{fileId}/previ
 GET https://cloud.appwrite.io/v1/storage/buckets/{bucketId}/files/{fileId}/view
 ```
 
-** Get a file content by its unique ID. This endpoint is similar to the download method but returns with no  &#039;Content-Disposition: attachment&#039; header. **
+** Get a file content by its unique ID. This endpoint is similar to the download method but returns with no  'Content-Disposition: attachment' header. **
 
 ### Parameters
 

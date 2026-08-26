@@ -16,5 +16,4 @@ $result = $teams->listInstallations(
     queries: [], // optional
     total: false // optional
 );
-
 ```

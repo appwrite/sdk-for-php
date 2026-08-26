@@ -22,5 +22,4 @@ $result = $users->createScryptUser(
     passwordLength: null,
     name: '<NAME>' // optional
 );
-
 ```

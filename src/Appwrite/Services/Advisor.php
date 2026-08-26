@@ -11,7 +11,7 @@ use Appwrite\Service;
 class Advisor extends Service
 {
     /**
-     * Get a list of all the project&#039;s analyzer reports. You can use the query
+     * Get a list of all the project's analyzer reports. You can use the query
      * params to filter your results.
      *
      * @throws AppwriteException
@@ -53,7 +53,7 @@ class Advisor extends Service
     }
 
     /**
-     * Get an analyzer report by its unique ID. The response includes the report&#039;s
+     * Get an analyzer report by its unique ID. The response includes the report's
      * metadata and the nested insights it produced.
      *
      * @throws AppwriteException

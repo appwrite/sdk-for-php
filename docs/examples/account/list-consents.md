@@ -15,5 +15,4 @@ $result = $account->listConsents(
     queries: [], // optional
     total: false // optional
 );
-
 ```

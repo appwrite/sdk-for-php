@@ -14,5 +14,4 @@ $tokens = new Tokens($client);
 $result = $tokens->delete(
     tokenId: '<TOKEN_ID>'
 );
-
 ```

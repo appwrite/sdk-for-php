@@ -21,5 +21,4 @@ $result = $tablesDB->createStringColumn(
     array: false, // optional
     encrypt: false // optional
 );
-
 ```

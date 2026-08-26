@@ -16,5 +16,4 @@ $result = $project->createWindowsPlatform(
     name: '<NAME>',
     packageIdentifierName: '<PACKAGE_IDENTIFIER_NAME>'
 );
-
 ```

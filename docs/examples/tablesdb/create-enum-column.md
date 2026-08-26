@@ -20,5 +20,4 @@ $result = $tablesDB->createEnumColumn(
     default: '<DEFAULT>', // optional
     array: false // optional
 );
-
 ```

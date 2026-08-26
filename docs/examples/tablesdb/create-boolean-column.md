@@ -19,5 +19,4 @@ $result = $tablesDB->createBooleanColumn(
     default: false, // optional
     array: false // optional
 );
-
 ```

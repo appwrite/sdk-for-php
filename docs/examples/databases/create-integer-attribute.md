@@ -21,5 +21,4 @@ $result = $databases->createIntegerAttribute(
     default: null, // optional
     array: false // optional
 );
-
 ```

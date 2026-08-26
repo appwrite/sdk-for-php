@@ -14,5 +14,4 @@ $tablesDB = new TablesDB($client);
 $result = $tablesDB->createTransaction(
     ttl: 60 // optional
 );
-
 ```

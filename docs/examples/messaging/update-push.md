@@ -33,5 +33,4 @@ $result = $messaging->updatePush(
     critical: false, // optional
     priority: MessagePriority::NORMAL() // optional
 );
-
 ```

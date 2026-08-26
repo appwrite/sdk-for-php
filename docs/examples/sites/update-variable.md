@@ -18,5 +18,4 @@ $result = $sites->updateVariable(
     value: '<VALUE>', // optional
     secret: false // optional
 );
-
 ```

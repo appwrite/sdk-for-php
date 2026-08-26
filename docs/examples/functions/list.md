@@ -16,5 +16,4 @@ $result = $functions->list(
     search: '<SEARCH>', // optional
     total: false // optional
 );
-
 ```

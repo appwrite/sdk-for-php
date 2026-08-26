@@ -16,5 +16,4 @@ $result = $functions->listExecutions(
     queries: [], // optional
     total: false // optional
 );
-
 ```

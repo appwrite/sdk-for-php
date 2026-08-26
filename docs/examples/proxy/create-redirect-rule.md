@@ -20,5 +20,4 @@ $result = $proxy->createRedirectRule(
     resourceId: '<RESOURCE_ID>',
     resourceType: ProxyResourceType::SITE()
 );
-
 ```

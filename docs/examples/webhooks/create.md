@@ -22,5 +22,4 @@ $result = $webhooks->create(
     authPassword: 'password', // optional
     secret: '<SECRET>' // optional
 );
-
 ```

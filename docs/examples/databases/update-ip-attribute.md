@@ -19,5 +19,4 @@ $result = $databases->updateIpAttribute(
     default: '',
     newKey: '' // optional
 );
-
 ```

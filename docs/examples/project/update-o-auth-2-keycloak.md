@@ -18,5 +18,4 @@ $result = $project->updateOAuth2Keycloak(
     realmName: '<REALM_NAME>', // optional
     enabled: false // optional
 );
-
 ```

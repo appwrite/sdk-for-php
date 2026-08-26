@@ -27,5 +27,4 @@ $result = $databases->upsertDocument(
     permissions: [Permission::read(Role::any())], // optional
     transactionId: '<TRANSACTION_ID>' // optional
 );
-
 ```

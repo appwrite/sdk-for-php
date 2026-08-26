@@ -16,5 +16,4 @@ $result = $project->updateAuthMethod(
     methodId: ProjectAuthMethodId::EMAILPASSWORD(),
     enabled: false
 );
-
 ```

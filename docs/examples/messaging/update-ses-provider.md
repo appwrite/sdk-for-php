@@ -23,5 +23,4 @@ $result = $messaging->updateSesProvider(
     replyToName: '<REPLY_TO_NAME>', // optional
     replyToEmail: '<REPLY_TO_EMAIL>' // optional
 );
-
 ```

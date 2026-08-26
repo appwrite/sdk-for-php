@@ -19,5 +19,4 @@ $result = $messaging->createVonageProvider(
     apiSecret: '<API_SECRET>', // optional
     enabled: false // optional
 );
-
 ```

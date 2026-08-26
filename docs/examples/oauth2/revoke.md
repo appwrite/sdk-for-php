@@ -17,5 +17,4 @@ $result = $oauth2->revoke(
     clientId: '<CLIENT_ID>', // optional
     clientSecret: '<CLIENT_SECRET>' // optional
 );
-
 ```

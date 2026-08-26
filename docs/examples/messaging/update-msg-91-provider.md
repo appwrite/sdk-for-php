@@ -19,5 +19,4 @@ $result = $messaging->updateMsg91Provider(
     senderId: '<SENDER_ID>', // optional
     authKey: '<AUTH_KEY>' // optional
 );
-
 ```

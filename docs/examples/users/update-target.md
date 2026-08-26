@@ -18,5 +18,4 @@ $result = $users->updateTarget(
     providerId: '<PROVIDER_ID>', // optional
     name: '<NAME>' // optional
 );
-
 ```
