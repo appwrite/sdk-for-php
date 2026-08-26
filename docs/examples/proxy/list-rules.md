@@ -14,4 +14,6 @@ $proxy = new Proxy($client);
 $result = $proxy->listRules(
     queries: [], // optional
     total: false // optional
-);```
+);
+
+```

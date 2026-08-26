@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Mock Numbers List
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class MockNumberList
 {
@@ -49,11 +53,9 @@ readonly class MockNumberList
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'total' => static::serializeValue($this->total),
             'mockNumbers' => static::serializeValue($this->mockNumbers)
         ];
-
-        return $result;
     }
 }

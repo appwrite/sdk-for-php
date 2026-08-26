@@ -1,11 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 use Appwrite\Enums\ProjectProtocolId;
 
 /**
  * ProjectProtocol
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class ProjectProtocol
 {
@@ -46,11 +50,9 @@ readonly class ProjectProtocol
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             'enabled' => static::serializeValue($this->enabled)
         ];
-
-        return $result;
     }
 }

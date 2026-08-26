@@ -13,4 +13,6 @@ $sites = new Sites($client);
 
 $result = $sites->get(
     siteId: '<SITE_ID>'
-);```
+);
+
+```

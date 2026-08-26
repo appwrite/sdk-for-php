@@ -1,11 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 use Appwrite\Enums\AttributeStatus;
 
 /**
  * AttributeEmail
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class AttributeEmail
 {
@@ -78,8 +82,8 @@ readonly class AttributeEmail
             createdAt: $data['$createdAt'],
             updatedAt: $data['$updatedAt'],
             format: $data['format'],
-            array: array_key_exists('array', $data) ? $data['array'] : null,
-            default: array_key_exists('default', $data) ? $data['default'] : null
+            array: $data['array'] ?? null,
+            default: $data['default'] ?? null
         );
     }
 
@@ -88,7 +92,7 @@ readonly class AttributeEmail
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'key' => static::serializeValue($this->key),
             'type' => static::serializeValue($this->type),
             'status' => static::serializeValue($this->status),
@@ -100,7 +104,5 @@ readonly class AttributeEmail
             'format' => static::serializeValue($this->format),
             'default' => static::serializeValue($this->default)
         ];
-
-        return $result;
     }
 }

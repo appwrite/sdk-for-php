@@ -20,4 +20,6 @@ $result = $databases->createFloatAttribute(
     max: null, // optional
     default: null, // optional
     array: false // optional
-);```
+);
+
+```

@@ -1,25 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Services;
 
 use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
-use Appwrite\InputFile;
 
 class Graphql extends Service
 {
-    public function __construct(Client $client)
-    {
-        parent::__construct($client);
-    }
-
     /**
      * Execute a GraphQL mutation.
      *
-     * @param array $query
      * @throws AppwriteException
-     * @return array
      */
     public function query(array $query): array
     {
@@ -38,23 +32,18 @@ class Graphql extends Service
         $apiHeaders['content-type'] = 'application/json';
         $apiHeaders['accept'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 
     /**
      * Execute a GraphQL mutation.
      *
-     * @param array $query
      * @throws AppwriteException
-     * @return array
      */
     public function mutation(array $query): array
     {
@@ -73,14 +62,11 @@ class Graphql extends Service
         $apiHeaders['content-type'] = 'application/json';
         $apiHeaders['accept'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 }

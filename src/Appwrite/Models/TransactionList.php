@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Transaction List
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class TransactionList
 {
@@ -49,11 +53,9 @@ readonly class TransactionList
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'total' => static::serializeValue($this->total),
             'transactions' => static::serializeValue($this->transactions)
         ];
-
-        return $result;
     }
 }

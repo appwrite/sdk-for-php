@@ -1,11 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 use Appwrite\Enums\ColumnStatus;
 
 /**
  * ColumnVarchar
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class ColumnVarchar
 {
@@ -80,9 +84,9 @@ readonly class ColumnVarchar
             createdAt: $data['$createdAt'],
             updatedAt: $data['$updatedAt'],
             size: $data['size'],
-            array: array_key_exists('array', $data) ? $data['array'] : null,
-            default: array_key_exists('default', $data) ? $data['default'] : null,
-            encrypt: array_key_exists('encrypt', $data) ? $data['encrypt'] : null
+            array: $data['array'] ?? null,
+            default: $data['default'] ?? null,
+            encrypt: $data['encrypt'] ?? null
         );
     }
 
@@ -91,7 +95,7 @@ readonly class ColumnVarchar
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'key' => static::serializeValue($this->key),
             'type' => static::serializeValue($this->type),
             'status' => static::serializeValue($this->status),
@@ -104,7 +108,5 @@ readonly class ColumnVarchar
             'default' => static::serializeValue($this->default),
             'encrypt' => static::serializeValue($this->encrypt)
         ];
-
-        return $result;
     }
 }

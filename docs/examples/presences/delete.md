@@ -13,4 +13,6 @@ $presences = new Presences($client);
 
 $result = $presences->delete(
     presenceId: '<PRESENCE_ID>'
-);```
+);
+
+```

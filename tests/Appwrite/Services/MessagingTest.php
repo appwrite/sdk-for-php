@@ -1,18 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Services;
 
 use Appwrite\Client;
-use Appwrite\InputFile;
 use Mockery;
+use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
-use Appwrite\Enums\MessagePriority;
-use Appwrite\Enums\SmtpEncryption;
 
 final class MessagingTest extends TestCase
 {
-    private $client;
-    private $messaging;
+    private Client&MockInterface $client;
+    private Messaging $messaging;
 
     protected function setUp(): void
     {
@@ -22,23 +22,23 @@ final class MessagingTest extends TestCase
 
     public function testMethodListMessages(): void
     {
-        $data = array(
+        $data = [
             "total" => 5,
-            "messages" => array(
-                array(
+            "messages" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
                     "providerType" => "email",
-                    "topics" => array(),
-                    "users" => array(),
-                    "targets" => array(),
+                    "topics" => [],
+                    "users" => [],
+                    "targets" => [],
                     "deliveredTotal" => 1,
-                    "data" => array(),
+                    "data" => [],
                     "status" => "draft"
-                )
-            )
-        );
+                ]
+            ]
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -51,21 +51,20 @@ final class MessagingTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\MessageList::class, $response);
     }
-
     public function testMethodCreateEmail(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "providerType" => "email",
-            "topics" => array(),
-            "users" => array(),
-            "targets" => array(),
+            "topics" => [],
+            "users" => [],
+            "targets" => [],
             "deliveredTotal" => 1,
-            "data" => array(),
+            "data" => [],
             "status" => "draft"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -82,21 +81,20 @@ final class MessagingTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Message::class, $response);
     }
-
     public function testMethodUpdateEmail(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "providerType" => "email",
-            "topics" => array(),
-            "users" => array(),
-            "targets" => array(),
+            "topics" => [],
+            "users" => [],
+            "targets" => [],
             "deliveredTotal" => 1,
-            "data" => array(),
+            "data" => [],
             "status" => "draft"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -111,21 +109,20 @@ final class MessagingTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Message::class, $response);
     }
-
     public function testMethodCreatePush(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "providerType" => "email",
-            "topics" => array(),
-            "users" => array(),
-            "targets" => array(),
+            "topics" => [],
+            "users" => [],
+            "targets" => [],
             "deliveredTotal" => 1,
-            "data" => array(),
+            "data" => [],
             "status" => "draft"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -140,21 +137,20 @@ final class MessagingTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Message::class, $response);
     }
-
     public function testMethodUpdatePush(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "providerType" => "email",
-            "topics" => array(),
-            "users" => array(),
-            "targets" => array(),
+            "topics" => [],
+            "users" => [],
+            "targets" => [],
             "deliveredTotal" => 1,
-            "data" => array(),
+            "data" => [],
             "status" => "draft"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -169,21 +165,20 @@ final class MessagingTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Message::class, $response);
     }
-
     public function testMethodCreateSMS(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "providerType" => "email",
-            "topics" => array(),
-            "users" => array(),
-            "targets" => array(),
+            "topics" => [],
+            "users" => [],
+            "targets" => [],
             "deliveredTotal" => 1,
-            "data" => array(),
+            "data" => [],
             "status" => "draft"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -199,21 +194,20 @@ final class MessagingTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Message::class, $response);
     }
-
     public function testMethodUpdateSMS(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "providerType" => "email",
-            "topics" => array(),
-            "users" => array(),
-            "targets" => array(),
+            "topics" => [],
+            "users" => [],
+            "targets" => [],
             "deliveredTotal" => 1,
-            "data" => array(),
+            "data" => [],
             "status" => "draft"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -228,21 +222,20 @@ final class MessagingTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Message::class, $response);
     }
-
     public function testMethodGetMessage(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "providerType" => "email",
-            "topics" => array(),
-            "users" => array(),
-            "targets" => array(),
+            "topics" => [],
+            "users" => [],
+            "targets" => [],
             "deliveredTotal" => 1,
-            "data" => array(),
+            "data" => [],
             "status" => "draft"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -257,7 +250,6 @@ final class MessagingTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Message::class, $response);
     }
-
     public function testMethodDelete(): void
     {
         $data = '';
@@ -275,13 +267,12 @@ final class MessagingTest extends TestCase
 
         $this->assertSame($data, $response);
     }
-
     public function testMethodListTargets(): void
     {
-        $data = array(
+        $data = [
             "total" => 5,
-            "targets" => array(
-                array(
+            "targets" => [
+                [
                     "\$id" => "259125845563242502",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -290,9 +281,9 @@ final class MessagingTest extends TestCase
                     "providerType" => "email",
                     "identifier" => "token",
                     "expired" => true
-                )
-            )
-        );
+                ]
+            ]
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -307,13 +298,12 @@ final class MessagingTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\TargetList::class, $response);
     }
-
     public function testMethodListProviders(): void
     {
-        $data = array(
+        $data = [
             "total" => 5,
-            "providers" => array(
-                array(
+            "providers" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -321,10 +311,10 @@ final class MessagingTest extends TestCase
                     "provider" => "mailgun",
                     "enabled" => true,
                     "type" => "sms",
-                    "credentials" => array()
-                )
-            )
-        );
+                    "credentials" => []
+                ]
+            ]
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -337,10 +327,9 @@ final class MessagingTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\ProviderList::class, $response);
     }
-
     public function testMethodCreateAPNSProvider(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -348,8 +337,8 @@ final class MessagingTest extends TestCase
             "provider" => "mailgun",
             "enabled" => true,
             "type" => "sms",
-            "credentials" => array()
-        );
+            "credentials" => []
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -365,10 +354,9 @@ final class MessagingTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Provider::class, $response);
     }
-
     public function testMethodUpdateAPNSProvider(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -376,8 +364,8 @@ final class MessagingTest extends TestCase
             "provider" => "mailgun",
             "enabled" => true,
             "type" => "sms",
-            "credentials" => array()
-        );
+            "credentials" => []
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -392,10 +380,9 @@ final class MessagingTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Provider::class, $response);
     }
-
     public function testMethodCreateFCMProvider(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -403,8 +390,8 @@ final class MessagingTest extends TestCase
             "provider" => "mailgun",
             "enabled" => true,
             "type" => "sms",
-            "credentials" => array()
-        );
+            "credentials" => []
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -420,10 +407,9 @@ final class MessagingTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Provider::class, $response);
     }
-
     public function testMethodUpdateFCMProvider(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -431,8 +417,8 @@ final class MessagingTest extends TestCase
             "provider" => "mailgun",
             "enabled" => true,
             "type" => "sms",
-            "credentials" => array()
-        );
+            "credentials" => []
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -447,10 +433,9 @@ final class MessagingTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Provider::class, $response);
     }
-
     public function testMethodCreateMailgunProvider(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -458,8 +443,8 @@ final class MessagingTest extends TestCase
             "provider" => "mailgun",
             "enabled" => true,
             "type" => "sms",
-            "credentials" => array()
-        );
+            "credentials" => []
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -475,10 +460,9 @@ final class MessagingTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Provider::class, $response);
     }
-
     public function testMethodUpdateMailgunProvider(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -486,8 +470,8 @@ final class MessagingTest extends TestCase
             "provider" => "mailgun",
             "enabled" => true,
             "type" => "sms",
-            "credentials" => array()
-        );
+            "credentials" => []
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -502,10 +486,9 @@ final class MessagingTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Provider::class, $response);
     }
-
     public function testMethodCreateMsg91Provider(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -513,8 +496,8 @@ final class MessagingTest extends TestCase
             "provider" => "mailgun",
             "enabled" => true,
             "type" => "sms",
-            "credentials" => array()
-        );
+            "credentials" => []
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -530,10 +513,9 @@ final class MessagingTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Provider::class, $response);
     }
-
     public function testMethodUpdateMsg91Provider(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -541,8 +523,8 @@ final class MessagingTest extends TestCase
             "provider" => "mailgun",
             "enabled" => true,
             "type" => "sms",
-            "credentials" => array()
-        );
+            "credentials" => []
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -557,10 +539,9 @@ final class MessagingTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Provider::class, $response);
     }
-
     public function testMethodCreateResendProvider(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -568,8 +549,8 @@ final class MessagingTest extends TestCase
             "provider" => "mailgun",
             "enabled" => true,
             "type" => "sms",
-            "credentials" => array()
-        );
+            "credentials" => []
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -585,10 +566,9 @@ final class MessagingTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Provider::class, $response);
     }
-
     public function testMethodUpdateResendProvider(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -596,8 +576,8 @@ final class MessagingTest extends TestCase
             "provider" => "mailgun",
             "enabled" => true,
             "type" => "sms",
-            "credentials" => array()
-        );
+            "credentials" => []
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -612,10 +592,9 @@ final class MessagingTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Provider::class, $response);
     }
-
     public function testMethodCreateSendgridProvider(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -623,8 +602,8 @@ final class MessagingTest extends TestCase
             "provider" => "mailgun",
             "enabled" => true,
             "type" => "sms",
-            "credentials" => array()
-        );
+            "credentials" => []
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -640,10 +619,9 @@ final class MessagingTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Provider::class, $response);
     }
-
     public function testMethodUpdateSendgridProvider(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -651,8 +629,8 @@ final class MessagingTest extends TestCase
             "provider" => "mailgun",
             "enabled" => true,
             "type" => "sms",
-            "credentials" => array()
-        );
+            "credentials" => []
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -667,10 +645,9 @@ final class MessagingTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Provider::class, $response);
     }
-
     public function testMethodCreateSesProvider(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -678,8 +655,8 @@ final class MessagingTest extends TestCase
             "provider" => "mailgun",
             "enabled" => true,
             "type" => "sms",
-            "credentials" => array()
-        );
+            "credentials" => []
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -695,10 +672,9 @@ final class MessagingTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Provider::class, $response);
     }
-
     public function testMethodUpdateSesProvider(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -706,8 +682,8 @@ final class MessagingTest extends TestCase
             "provider" => "mailgun",
             "enabled" => true,
             "type" => "sms",
-            "credentials" => array()
-        );
+            "credentials" => []
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -722,10 +698,9 @@ final class MessagingTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Provider::class, $response);
     }
-
     public function testMethodCreateSMTPProvider(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -733,8 +708,8 @@ final class MessagingTest extends TestCase
             "provider" => "mailgun",
             "enabled" => true,
             "type" => "sms",
-            "credentials" => array()
-        );
+            "credentials" => []
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -751,10 +726,9 @@ final class MessagingTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Provider::class, $response);
     }
-
     public function testMethodUpdateSMTPProvider(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -762,8 +736,8 @@ final class MessagingTest extends TestCase
             "provider" => "mailgun",
             "enabled" => true,
             "type" => "sms",
-            "credentials" => array()
-        );
+            "credentials" => []
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -778,10 +752,9 @@ final class MessagingTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Provider::class, $response);
     }
-
     public function testMethodCreateTelesignProvider(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -789,8 +762,8 @@ final class MessagingTest extends TestCase
             "provider" => "mailgun",
             "enabled" => true,
             "type" => "sms",
-            "credentials" => array()
-        );
+            "credentials" => []
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -806,10 +779,9 @@ final class MessagingTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Provider::class, $response);
     }
-
     public function testMethodUpdateTelesignProvider(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -817,8 +789,8 @@ final class MessagingTest extends TestCase
             "provider" => "mailgun",
             "enabled" => true,
             "type" => "sms",
-            "credentials" => array()
-        );
+            "credentials" => []
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -833,10 +805,9 @@ final class MessagingTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Provider::class, $response);
     }
-
     public function testMethodCreateTextmagicProvider(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -844,8 +815,8 @@ final class MessagingTest extends TestCase
             "provider" => "mailgun",
             "enabled" => true,
             "type" => "sms",
-            "credentials" => array()
-        );
+            "credentials" => []
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -861,10 +832,9 @@ final class MessagingTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Provider::class, $response);
     }
-
     public function testMethodUpdateTextmagicProvider(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -872,8 +842,8 @@ final class MessagingTest extends TestCase
             "provider" => "mailgun",
             "enabled" => true,
             "type" => "sms",
-            "credentials" => array()
-        );
+            "credentials" => []
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -888,10 +858,9 @@ final class MessagingTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Provider::class, $response);
     }
-
     public function testMethodCreateTwilioProvider(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -899,8 +868,8 @@ final class MessagingTest extends TestCase
             "provider" => "mailgun",
             "enabled" => true,
             "type" => "sms",
-            "credentials" => array()
-        );
+            "credentials" => []
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -916,10 +885,9 @@ final class MessagingTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Provider::class, $response);
     }
-
     public function testMethodUpdateTwilioProvider(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -927,8 +895,8 @@ final class MessagingTest extends TestCase
             "provider" => "mailgun",
             "enabled" => true,
             "type" => "sms",
-            "credentials" => array()
-        );
+            "credentials" => []
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -943,10 +911,9 @@ final class MessagingTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Provider::class, $response);
     }
-
     public function testMethodCreateVonageProvider(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -954,8 +921,8 @@ final class MessagingTest extends TestCase
             "provider" => "mailgun",
             "enabled" => true,
             "type" => "sms",
-            "credentials" => array()
-        );
+            "credentials" => []
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -971,10 +938,9 @@ final class MessagingTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Provider::class, $response);
     }
-
     public function testMethodUpdateVonageProvider(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -982,8 +948,8 @@ final class MessagingTest extends TestCase
             "provider" => "mailgun",
             "enabled" => true,
             "type" => "sms",
-            "credentials" => array()
-        );
+            "credentials" => []
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -998,10 +964,9 @@ final class MessagingTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Provider::class, $response);
     }
-
     public function testMethodGetProvider(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -1009,8 +974,8 @@ final class MessagingTest extends TestCase
             "provider" => "mailgun",
             "enabled" => true,
             "type" => "sms",
-            "credentials" => array()
-        );
+            "credentials" => []
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1025,7 +990,6 @@ final class MessagingTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Provider::class, $response);
     }
-
     public function testMethodDeleteProvider(): void
     {
         $data = '';
@@ -1043,13 +1007,12 @@ final class MessagingTest extends TestCase
 
         $this->assertSame($data, $response);
     }
-
     public function testMethodListTopics(): void
     {
-        $data = array(
+        $data = [
             "total" => 5,
-            "topics" => array(
-                array(
+            "topics" => [
+                [
                     "\$id" => "259125845563242502",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -1057,10 +1020,10 @@ final class MessagingTest extends TestCase
                     "emailTotal" => 100,
                     "smsTotal" => 100,
                     "pushTotal" => 100,
-                    "subscribe" => array()
-                )
-            )
-        );
+                    "subscribe" => []
+                ]
+            ]
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1073,10 +1036,9 @@ final class MessagingTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\TopicList::class, $response);
     }
-
     public function testMethodCreateTopic(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "259125845563242502",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -1084,8 +1046,8 @@ final class MessagingTest extends TestCase
             "emailTotal" => 100,
             "smsTotal" => 100,
             "pushTotal" => 100,
-            "subscribe" => array()
-        );
+            "subscribe" => []
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1101,10 +1063,9 @@ final class MessagingTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Topic::class, $response);
     }
-
     public function testMethodGetTopic(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "259125845563242502",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -1112,8 +1073,8 @@ final class MessagingTest extends TestCase
             "emailTotal" => 100,
             "smsTotal" => 100,
             "pushTotal" => 100,
-            "subscribe" => array()
-        );
+            "subscribe" => []
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1128,10 +1089,9 @@ final class MessagingTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Topic::class, $response);
     }
-
     public function testMethodUpdateTopic(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "259125845563242502",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -1139,8 +1099,8 @@ final class MessagingTest extends TestCase
             "emailTotal" => 100,
             "smsTotal" => 100,
             "pushTotal" => 100,
-            "subscribe" => array()
-        );
+            "subscribe" => []
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1155,7 +1115,6 @@ final class MessagingTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Topic::class, $response);
     }
-
     public function testMethodDeleteTopic(): void
     {
         $data = '';
@@ -1173,18 +1132,17 @@ final class MessagingTest extends TestCase
 
         $this->assertSame($data, $response);
     }
-
     public function testMethodListSubscribers(): void
     {
-        $data = array(
+        $data = [
             "total" => 5,
-            "subscribers" => array(
-                array(
+            "subscribers" => [
+                [
                     "\$id" => "259125845563242502",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
                     "targetId" => "259125845563242502",
-                    "target" => array(
+                    "target" => [
                         "\$id" => "259125845563242502",
                         "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                         "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -1193,14 +1151,14 @@ final class MessagingTest extends TestCase
                         "providerType" => "email",
                         "identifier" => "token",
                         "expired" => true
-                    ),
+                    ],
                     "userId" => "5e5ea5c16897e",
                     "userName" => "Aegon Targaryen",
                     "topicId" => "259125845563242502",
                     "providerType" => "email"
-                )
-            )
-        );
+                ]
+            ]
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1215,15 +1173,14 @@ final class MessagingTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\SubscriberList::class, $response);
     }
-
     public function testMethodCreateSubscriber(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "259125845563242502",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "targetId" => "259125845563242502",
-            "target" => array(
+            "target" => [
                 "\$id" => "259125845563242502",
                 "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                 "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -1232,12 +1189,12 @@ final class MessagingTest extends TestCase
                 "providerType" => "email",
                 "identifier" => "token",
                 "expired" => true
-            ),
+            ],
             "userId" => "5e5ea5c16897e",
             "userName" => "Aegon Targaryen",
             "topicId" => "259125845563242502",
             "providerType" => "email"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1254,15 +1211,14 @@ final class MessagingTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Subscriber::class, $response);
     }
-
     public function testMethodGetSubscriber(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "259125845563242502",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "targetId" => "259125845563242502",
-            "target" => array(
+            "target" => [
                 "\$id" => "259125845563242502",
                 "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                 "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -1271,12 +1227,12 @@ final class MessagingTest extends TestCase
                 "providerType" => "email",
                 "identifier" => "token",
                 "expired" => true
-            ),
+            ],
             "userId" => "5e5ea5c16897e",
             "userName" => "Aegon Targaryen",
             "topicId" => "259125845563242502",
             "providerType" => "email"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1292,7 +1248,6 @@ final class MessagingTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Subscriber::class, $response);
     }
-
     public function testMethodDeleteSubscriber(): void
     {
         $data = '';
@@ -1311,5 +1266,4 @@ final class MessagingTest extends TestCase
 
         $this->assertSame($data, $response);
     }
-
 }

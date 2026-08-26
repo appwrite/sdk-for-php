@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Bucket
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class Bucket
 {
@@ -116,7 +120,7 @@ readonly class Bucket
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             '$createdAt' => static::serializeValue($this->createdAt),
             '$updatedAt' => static::serializeValue($this->updatedAt),
@@ -132,7 +136,5 @@ readonly class Bucket
             'transformations' => static::serializeValue($this->transformations),
             'totalSize' => static::serializeValue($this->totalSize)
         ];
-
-        return $result;
     }
 }

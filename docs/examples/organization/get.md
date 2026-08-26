@@ -12,4 +12,6 @@ $client = (new Client())
 $organization = new Organization($client);
 
 $result = $organization->get();
+
+
 ```

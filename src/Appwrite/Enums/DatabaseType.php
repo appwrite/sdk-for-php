@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Enums;
 
 use JsonSerializable;
+use Stringable;
 
-class DatabaseType implements JsonSerializable
+class DatabaseType implements JsonSerializable, Stringable
 {
     private static DatabaseType $LEGACY;
     private static DatabaseType $TABLESDB;
@@ -14,11 +17,8 @@ class DatabaseType implements JsonSerializable
     private static DatabaseType $POSTGRESQL;
     private static DatabaseType $MONGODB;
 
-    private string $value;
-
-    private function __construct(string $value)
+    private function __construct(private readonly string $value)
     {
-        $this->value = $value;
     }
 
     public function __toString(): string

@@ -14,4 +14,6 @@ $account = new Account($client);
 $result = $account->updateVerification(
     userId: '<USER_ID>',
     secret: '<SECRET>'
-);```
+);
+
+```

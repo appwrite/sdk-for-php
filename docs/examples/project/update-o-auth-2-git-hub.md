@@ -15,4 +15,6 @@ $result = $project->updateOAuth2GitHub(
     clientId: '<CLIENT_ID>', // optional
     clientSecret: '<CLIENT_SECRET>', // optional
     enabled: false // optional
-);```
+);
+
+```

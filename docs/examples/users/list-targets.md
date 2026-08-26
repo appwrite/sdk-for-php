@@ -15,4 +15,6 @@ $result = $users->listTargets(
     userId: '<USER_ID>',
     queries: [], // optional
     total: false // optional
-);```
+);
+
+```

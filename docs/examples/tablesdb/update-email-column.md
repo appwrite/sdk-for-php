@@ -18,4 +18,6 @@ $result = $tablesDB->updateEmailColumn(
     required: false,
     default: 'email@example.com',
     newKey: '' // optional
-);```
+);
+
+```

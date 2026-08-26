@@ -15,4 +15,6 @@ $result = $proxy->createFunctionRule(
     domain: '',
     functionId: '<FUNCTION_ID>',
     branch: '<BRANCH>' // optional
-);```
+);
+
+```

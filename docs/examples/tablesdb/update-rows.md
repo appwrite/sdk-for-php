@@ -23,4 +23,6 @@ $result = $tablesDB->updateRows(
     ], // optional
     queries: [], // optional
     transactionId: '<TRANSACTION_ID>' // optional
-);```
+);
+
+```

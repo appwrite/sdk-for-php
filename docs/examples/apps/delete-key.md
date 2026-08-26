@@ -14,4 +14,6 @@ $apps = new Apps($client);
 $result = $apps->deleteKey(
     appId: '<APP_ID>',
     keyId: '<KEY_ID>'
-);```
+);
+
+```

@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * SpecificationPricing
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class DedicatedDatabaseSpecificationPricing
 {
@@ -56,13 +60,11 @@ readonly class DedicatedDatabaseSpecificationPricing
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'storageOverageRate' => static::serializeValue($this->storageOverageRate),
             'bandwidthOverageRate' => static::serializeValue($this->bandwidthOverageRate),
             'replicaRate' => static::serializeValue($this->replicaRate),
             'pitrRate' => static::serializeValue($this->pitrRate)
         ];
-
-        return $result;
     }
 }

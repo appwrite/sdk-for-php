@@ -18,4 +18,6 @@ $result = $databases->updateEmailAttribute(
     required: false,
     default: 'email@example.com',
     newKey: '' // optional
-);```
+);
+
+```

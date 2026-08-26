@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * OAuth2Bitbucket
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class OAuth2Bitbucket
 {
@@ -56,13 +60,11 @@ readonly class OAuth2Bitbucket
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             'enabled' => static::serializeValue($this->enabled),
             'key' => static::serializeValue($this->key),
             'secret' => static::serializeValue($this->secret)
         ];
-
-        return $result;
     }
 }

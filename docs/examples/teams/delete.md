@@ -13,4 +13,6 @@ $teams = new Teams($client);
 
 $result = $teams->delete(
     teamId: '<TEAM_ID>'
-);```
+);
+
+```

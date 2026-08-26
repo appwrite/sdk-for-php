@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Language
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class Language
 {
@@ -50,12 +54,10 @@ readonly class Language
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'name' => static::serializeValue($this->name),
             'code' => static::serializeValue($this->code),
             'nativeName' => static::serializeValue($this->nativeName)
         ];
-
-        return $result;
     }
 }

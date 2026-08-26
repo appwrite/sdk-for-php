@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Backup policy list
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class BackupPolicyList
 {
@@ -49,11 +53,9 @@ readonly class BackupPolicyList
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'total' => static::serializeValue($this->total),
             'policies' => static::serializeValue($this->policies)
         ];
-
-        return $result;
     }
 }

@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * AppInstallation
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class AppInstallation
 {
@@ -80,7 +84,7 @@ readonly class AppInstallation
             authorizationDetails: $data['authorizationDetails'],
             createdById: $data['createdById'],
             createdByName: $data['createdByName'],
-            lastAccessedAt: array_key_exists('lastAccessedAt', $data) ? $data['lastAccessedAt'] : null
+            lastAccessedAt: $data['lastAccessedAt'] ?? null
         );
     }
 
@@ -89,7 +93,7 @@ readonly class AppInstallation
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             '$createdAt' => static::serializeValue($this->createdAt),
             '$updatedAt' => static::serializeValue($this->updatedAt),
@@ -101,7 +105,5 @@ readonly class AppInstallation
             'createdByName' => static::serializeValue($this->createdByName),
             'lastAccessedAt' => static::serializeValue($this->lastAccessedAt)
         ];
-
-        return $result;
     }
 }

@@ -1,11 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 use Appwrite\Enums\DeploymentStatus;
 
 /**
  * Deployment
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class Deployment
 {
@@ -196,7 +200,7 @@ readonly class Deployment
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             '$createdAt' => static::serializeValue($this->createdAt),
             '$updatedAt' => static::serializeValue($this->updatedAt),
@@ -225,7 +229,5 @@ readonly class Deployment
             'providerBranch' => static::serializeValue($this->providerBranch),
             'providerBranchUrl' => static::serializeValue($this->providerBranchUrl)
         ];
-
-        return $result;
     }
 }

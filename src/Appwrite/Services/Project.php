@@ -1,15 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Services;
 
 use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
-use Appwrite\InputFile;
 use Appwrite\Enums\ProjectAuthMethodId;
-use Appwrite\Enums\ProjectKeyScopes;
-use Appwrite\Enums\ProjectOAuth2GooglePrompt;
-use Appwrite\Enums\ProjectOAuth2OidcPrompt;
 use Appwrite\Enums\ProjectOAuthProviderId;
 use Appwrite\Enums\ProjectPolicyId;
 use Appwrite\Enums\ProjectProtocolId;
@@ -20,16 +18,10 @@ use Appwrite\Enums\ProjectEmailTemplateLocale;
 
 class Project extends Service
 {
-    public function __construct(Client $client)
-    {
-        parent::__construct($client);
-    }
-
     /**
      * Get a project.
      *
      * @throws AppwriteException
-     * @return \Appwrite\Models\Project
      */
     public function get(): \Appwrite\Models\Project
     {
@@ -56,14 +48,12 @@ class Project extends Service
         }
 
         return \Appwrite\Models\Project::from($response);
-
     }
 
     /**
      * Delete a project.
      *
      * @throws AppwriteException
-     * @return string
      */
     public function delete(): string
     {
@@ -79,31 +69,25 @@ class Project extends Service
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 
     /**
      * Update properties of a specific auth method. Use this endpoint to enable or
-     * disable a method in your project. 
+     * disable a method in your project.
      *
-     * @param ProjectAuthMethodId $methodId
-     * @param bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\Project
      */
     public function updateAuthMethod(ProjectAuthMethodId $methodId, bool $enabled): \Appwrite\Models\Project
     {
         $apiPath = str_replace(
             ['{methodId}'],
-            [$methodId],
+            [(string) $methodId],
             '/project/auth-methods/{methodId}'
         );
 
@@ -128,16 +112,12 @@ class Project extends Service
         }
 
         return \Appwrite\Models\Project::from($response);
-
     }
 
     /**
      * Get a list of all API keys from the current project.
      *
-     * @param ?array $queries
-     * @param ?bool $total
      * @throws AppwriteException
-     * @return \Appwrite\Models\KeyList
      */
     public function listKeys(?array $queries = null, ?bool $total = null): \Appwrite\Models\KeyList
     {
@@ -173,20 +153,16 @@ class Project extends Service
         }
 
         return \Appwrite\Models\KeyList::from($response);
-
     }
 
     /**
-     * Create a new ephemeral API key. It's recommended to have multiple API keys
+     * Create a new ephemeral API key. It&#039;s recommended to have multiple API keys
      * with strict scopes for separate functions within your project.
-     * 
+     *
      * You can also create a standard API key if you need a longer-lived key
      * instead.
      *
-     * @param array $scopes
-     * @param int $duration
      * @throws AppwriteException
-     * @return \Appwrite\Models\EphemeralKey
      */
     public function createEphemeralKey(array $scopes, int $duration): \Appwrite\Models\EphemeralKey
     {
@@ -217,15 +193,12 @@ class Project extends Service
         }
 
         return \Appwrite\Models\EphemeralKey::from($response);
-
     }
 
     /**
-     * Get a key by its unique ID. 
+     * Get a key by its unique ID.
      *
-     * @param string $keyId
      * @throws AppwriteException
-     * @return \Appwrite\Models\Key
      */
     public function getKey(string $keyId): \Appwrite\Models\Key
     {
@@ -254,19 +227,13 @@ class Project extends Service
         }
 
         return \Appwrite\Models\Key::from($response);
-
     }
 
     /**
      * Update a key by its unique ID. Use this endpoint to update the name,
      * scopes, or expiration time of an API key.
      *
-     * @param string $keyId
-     * @param string $name
-     * @param array $scopes
-     * @param ?string $expire
      * @throws AppwriteException
-     * @return \Appwrite\Models\Key
      */
     public function updateKey(string $keyId, string $name, array $scopes, ?string $expire = null): \Appwrite\Models\Key
     {
@@ -299,16 +266,13 @@ class Project extends Service
         }
 
         return \Appwrite\Models\Key::from($response);
-
     }
 
     /**
      * Delete a key by its unique ID. Once deleted, the key can no longer be used
      * to authenticate API calls.
      *
-     * @param string $keyId
      * @throws AppwriteException
-     * @return string
      */
     public function deleteKey(string $keyId): string
     {
@@ -325,24 +289,19 @@ class Project extends Service
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 
     /**
      * Update the project labels. Labels can be used to easily filter projects in
      * an organization.
      *
-     * @param array $labels
      * @throws AppwriteException
-     * @return \Appwrite\Models\Project
      */
     public function updateLabels(array $labels): \Appwrite\Models\Project
     {
@@ -372,17 +331,13 @@ class Project extends Service
         }
 
         return \Appwrite\Models\Project::from($response);
-
     }
 
     /**
      * Get a list of all mock phones in the project. This endpoint returns an
      * array of all mock phones and their OTPs.
      *
-     * @param ?array $queries
-     * @param ?bool $total
      * @throws AppwriteException
-     * @return \Appwrite\Models\MockNumberList
      */
     public function listMockPhones(?array $queries = null, ?bool $total = null): \Appwrite\Models\MockNumberList
     {
@@ -418,17 +373,13 @@ class Project extends Service
         }
 
         return \Appwrite\Models\MockNumberList::from($response);
-
     }
 
     /**
      * Create a new mock phone for your project. Use this endpoint to register a
      * mock phone number and its sign-in OTP for your testers.
      *
-     * @param string $number
-     * @param string $otp
      * @throws AppwriteException
-     * @return \Appwrite\Models\MockNumber
      */
     public function createMockPhone(string $number, string $otp): \Appwrite\Models\MockNumber
     {
@@ -459,16 +410,13 @@ class Project extends Service
         }
 
         return \Appwrite\Models\MockNumber::from($response);
-
     }
 
     /**
      * Get a mock phone by its unique number. This endpoint returns the mock
-     * phone's OTP.
+     * phone&#039;s OTP.
      *
-     * @param string $number
      * @throws AppwriteException
-     * @return \Appwrite\Models\MockNumber
      */
     public function getMockPhone(string $number): \Appwrite\Models\MockNumber
     {
@@ -497,17 +445,13 @@ class Project extends Service
         }
 
         return \Appwrite\Models\MockNumber::from($response);
-
     }
 
     /**
      * Update a mock phone by its unique number. Use this endpoint to update the
-     * mock phone's OTP.
+     * mock phone&#039;s OTP.
      *
-     * @param string $number
-     * @param string $otp
      * @throws AppwriteException
-     * @return \Appwrite\Models\MockNumber
      */
     public function updateMockPhone(string $number, string $otp): \Appwrite\Models\MockNumber
     {
@@ -538,16 +482,13 @@ class Project extends Service
         }
 
         return \Appwrite\Models\MockNumber::from($response);
-
     }
 
     /**
      * Delete a mock phone by its unique number. This endpoint removes the mock
      * phone and its OTP configuration from the project.
      *
-     * @param string $number
      * @throws AppwriteException
-     * @return string
      */
     public function deleteMockPhone(string $number): string
     {
@@ -564,26 +505,20 @@ class Project extends Service
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 
     /**
      * Get a list of all OAuth2 providers supported by the server, along with the
-     * project's configuration for each. Credential fields are write-only and
+     * project&#039;s configuration for each. Credential fields are write-only and
      * always returned empty.
      *
-     * @param ?array $queries
-     * @param ?bool $total
      * @throws AppwriteException
-     * @return \Appwrite\Models\OAuth2ProviderList
      */
     public function listOAuth2Providers(?array $queries = null, ?bool $total = null): \Appwrite\Models\OAuth2ProviderList
     {
@@ -619,30 +554,12 @@ class Project extends Service
         }
 
         return \Appwrite\Models\OAuth2ProviderList::from($response);
-
     }
 
     /**
      * Update the OAuth2 server (OIDC provider) configuration.
      *
-     * @param bool $enabled
-     * @param string $authorizationUrl
-     * @param ?array $scopes
-     * @param ?array $authorizationDetailsTypes
-     * @param ?int $accessTokenDuration
-     * @param ?int $refreshTokenDuration
-     * @param ?int $publicAccessTokenDuration
-     * @param ?int $publicRefreshTokenDuration
-     * @param ?int $installationAccessTokenDuration
-     * @param ?bool $confidentialPkce
-     * @param ?string $verificationUrl
-     * @param ?int $userCodeLength
-     * @param ?string $userCodeFormat
-     * @param ?int $deviceCodeDuration
-     * @param ?array $defaultScopes
-     * @param ?array $installationScopes
      * @throws AppwriteException
-     * @return \Appwrite\Models\Project
      */
     public function updateOAuth2Server(bool $enabled, string $authorizationUrl, ?array $scopes = null, ?array $authorizationDetailsTypes = null, ?int $accessTokenDuration = null, ?int $refreshTokenDuration = null, ?int $publicAccessTokenDuration = null, ?int $publicRefreshTokenDuration = null, ?int $installationAccessTokenDuration = null, ?bool $confidentialPkce = null, ?string $verificationUrl = null, ?int $userCodeLength = null, ?string $userCodeFormat = null, ?int $deviceCodeDuration = null, ?array $defaultScopes = null, ?array $installationScopes = null): \Appwrite\Models\Project
     {
@@ -705,17 +622,12 @@ class Project extends Service
         }
 
         return \Appwrite\Models\Project::from($response);
-
     }
 
     /**
      * Update the project OAuth2 Amazon configuration.
      *
-     * @param ?string $clientId
-     * @param ?string $clientSecret
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\OAuth2Amazon
      */
     public function updateOAuth2Amazon(?string $clientId = null, ?string $clientSecret = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Amazon
     {
@@ -747,19 +659,12 @@ class Project extends Service
         }
 
         return \Appwrite\Models\OAuth2Amazon::from($response);
-
     }
 
     /**
      * Update the project OAuth2 Apple configuration.
      *
-     * @param ?string $serviceId
-     * @param ?string $keyId
-     * @param ?string $teamId
-     * @param ?string $p8File
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\OAuth2Apple
      */
     public function updateOAuth2Apple(?string $serviceId = null, ?string $keyId = null, ?string $teamId = null, ?string $p8File = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Apple
     {
@@ -793,17 +698,12 @@ class Project extends Service
         }
 
         return \Appwrite\Models\OAuth2Apple::from($response);
-
     }
 
     /**
      * Update the project OAuth2 Appwrite configuration.
      *
-     * @param ?string $clientId
-     * @param ?string $clientSecret
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\OAuth2Appwrite
      */
     public function updateOAuth2Appwrite(?string $clientId = null, ?string $clientSecret = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Appwrite
     {
@@ -835,18 +735,12 @@ class Project extends Service
         }
 
         return \Appwrite\Models\OAuth2Appwrite::from($response);
-
     }
 
     /**
      * Update the project OAuth2 Auth0 configuration.
      *
-     * @param ?string $clientId
-     * @param ?string $clientSecret
-     * @param ?string $endpoint
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\OAuth2Auth0
      */
     public function updateOAuth2Auth0(?string $clientId = null, ?string $clientSecret = null, ?string $endpoint = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Auth0
     {
@@ -879,18 +773,12 @@ class Project extends Service
         }
 
         return \Appwrite\Models\OAuth2Auth0::from($response);
-
     }
 
     /**
      * Update the project OAuth2 Authentik configuration.
      *
-     * @param ?string $clientId
-     * @param ?string $clientSecret
-     * @param ?string $endpoint
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\OAuth2Authentik
      */
     public function updateOAuth2Authentik(?string $clientId = null, ?string $clientSecret = null, ?string $endpoint = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Authentik
     {
@@ -923,17 +811,12 @@ class Project extends Service
         }
 
         return \Appwrite\Models\OAuth2Authentik::from($response);
-
     }
 
     /**
      * Update the project OAuth2 Autodesk configuration.
      *
-     * @param ?string $clientId
-     * @param ?string $clientSecret
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\OAuth2Autodesk
      */
     public function updateOAuth2Autodesk(?string $clientId = null, ?string $clientSecret = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Autodesk
     {
@@ -965,17 +848,12 @@ class Project extends Service
         }
 
         return \Appwrite\Models\OAuth2Autodesk::from($response);
-
     }
 
     /**
      * Update the project OAuth2 Bitbucket configuration.
      *
-     * @param ?string $key
-     * @param ?string $secret
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\OAuth2Bitbucket
      */
     public function updateOAuth2Bitbucket(?string $key = null, ?string $secret = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Bitbucket
     {
@@ -1007,17 +885,12 @@ class Project extends Service
         }
 
         return \Appwrite\Models\OAuth2Bitbucket::from($response);
-
     }
 
     /**
      * Update the project OAuth2 Bitly configuration.
      *
-     * @param ?string $clientId
-     * @param ?string $clientSecret
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\OAuth2Bitly
      */
     public function updateOAuth2Bitly(?string $clientId = null, ?string $clientSecret = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Bitly
     {
@@ -1049,17 +922,12 @@ class Project extends Service
         }
 
         return \Appwrite\Models\OAuth2Bitly::from($response);
-
     }
 
     /**
      * Update the project OAuth2 Box configuration.
      *
-     * @param ?string $clientId
-     * @param ?string $clientSecret
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\OAuth2Box
      */
     public function updateOAuth2Box(?string $clientId = null, ?string $clientSecret = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Box
     {
@@ -1091,17 +959,12 @@ class Project extends Service
         }
 
         return \Appwrite\Models\OAuth2Box::from($response);
-
     }
 
     /**
      * Update the project OAuth2 Dailymotion configuration.
      *
-     * @param ?string $apiKey
-     * @param ?string $apiSecret
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\OAuth2Dailymotion
      */
     public function updateOAuth2Dailymotion(?string $apiKey = null, ?string $apiSecret = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Dailymotion
     {
@@ -1133,17 +996,12 @@ class Project extends Service
         }
 
         return \Appwrite\Models\OAuth2Dailymotion::from($response);
-
     }
 
     /**
      * Update the project OAuth2 Discord configuration.
      *
-     * @param ?string $clientId
-     * @param ?string $clientSecret
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\OAuth2Discord
      */
     public function updateOAuth2Discord(?string $clientId = null, ?string $clientSecret = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Discord
     {
@@ -1175,17 +1033,12 @@ class Project extends Service
         }
 
         return \Appwrite\Models\OAuth2Discord::from($response);
-
     }
 
     /**
      * Update the project OAuth2 Disqus configuration.
      *
-     * @param ?string $publicKey
-     * @param ?string $secretKey
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\OAuth2Disqus
      */
     public function updateOAuth2Disqus(?string $publicKey = null, ?string $secretKey = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Disqus
     {
@@ -1217,17 +1070,12 @@ class Project extends Service
         }
 
         return \Appwrite\Models\OAuth2Disqus::from($response);
-
     }
 
     /**
      * Update the project OAuth2 Dropbox configuration.
      *
-     * @param ?string $appKey
-     * @param ?string $appSecret
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\OAuth2Dropbox
      */
     public function updateOAuth2Dropbox(?string $appKey = null, ?string $appSecret = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Dropbox
     {
@@ -1259,17 +1107,12 @@ class Project extends Service
         }
 
         return \Appwrite\Models\OAuth2Dropbox::from($response);
-
     }
 
     /**
      * Update the project OAuth2 Etsy configuration.
      *
-     * @param ?string $keyString
-     * @param ?string $sharedSecret
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\OAuth2Etsy
      */
     public function updateOAuth2Etsy(?string $keyString = null, ?string $sharedSecret = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Etsy
     {
@@ -1301,17 +1144,12 @@ class Project extends Service
         }
 
         return \Appwrite\Models\OAuth2Etsy::from($response);
-
     }
 
     /**
      * Update the project OAuth2 Facebook configuration.
      *
-     * @param ?string $appId
-     * @param ?string $appSecret
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\OAuth2Facebook
      */
     public function updateOAuth2Facebook(?string $appId = null, ?string $appSecret = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Facebook
     {
@@ -1343,17 +1181,12 @@ class Project extends Service
         }
 
         return \Appwrite\Models\OAuth2Facebook::from($response);
-
     }
 
     /**
      * Update the project OAuth2 Figma configuration.
      *
-     * @param ?string $clientId
-     * @param ?string $clientSecret
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\OAuth2Figma
      */
     public function updateOAuth2Figma(?string $clientId = null, ?string $clientSecret = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Figma
     {
@@ -1385,18 +1218,12 @@ class Project extends Service
         }
 
         return \Appwrite\Models\OAuth2Figma::from($response);
-
     }
 
     /**
      * Update the project OAuth2 FusionAuth configuration.
      *
-     * @param ?string $clientId
-     * @param ?string $clientSecret
-     * @param ?string $endpoint
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\OAuth2FusionAuth
      */
     public function updateOAuth2FusionAuth(?string $clientId = null, ?string $clientSecret = null, ?string $endpoint = null, ?bool $enabled = null): \Appwrite\Models\OAuth2FusionAuth
     {
@@ -1429,17 +1256,12 @@ class Project extends Service
         }
 
         return \Appwrite\Models\OAuth2FusionAuth::from($response);
-
     }
 
     /**
      * Update the project OAuth2 GitHub configuration.
      *
-     * @param ?string $clientId
-     * @param ?string $clientSecret
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\OAuth2Github
      */
     public function updateOAuth2GitHub(?string $clientId = null, ?string $clientSecret = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Github
     {
@@ -1471,18 +1293,12 @@ class Project extends Service
         }
 
         return \Appwrite\Models\OAuth2Github::from($response);
-
     }
 
     /**
      * Update the project OAuth2 Gitlab configuration.
      *
-     * @param ?string $applicationId
-     * @param ?string $secret
-     * @param ?string $endpoint
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\OAuth2Gitlab
      */
     public function updateOAuth2Gitlab(?string $applicationId = null, ?string $secret = null, ?string $endpoint = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Gitlab
     {
@@ -1515,18 +1331,12 @@ class Project extends Service
         }
 
         return \Appwrite\Models\OAuth2Gitlab::from($response);
-
     }
 
     /**
      * Update the project OAuth2 Google configuration.
      *
-     * @param ?string $clientId
-     * @param ?string $clientSecret
-     * @param ?array $prompt
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\OAuth2Google
      */
     public function updateOAuth2Google(?string $clientId = null, ?string $clientSecret = null, ?array $prompt = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Google
     {
@@ -1559,19 +1369,49 @@ class Project extends Service
         }
 
         return \Appwrite\Models\OAuth2Google::from($response);
+    }
 
+    /**
+     * Update the project OAuth2 Hugging Face configuration.
+     *
+     * @throws AppwriteException
+     */
+    public function updateOAuth2HuggingFace(?string $clientId = null, ?string $clientSecret = null, ?bool $enabled = null): \Appwrite\Models\OAuth2HuggingFace
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/project/oauth2/huggingface'
+        );
+
+        $apiParams = [];
+        $apiParams['clientId'] = $clientId;
+        $apiParams['clientSecret'] = $clientSecret;
+        $apiParams['enabled'] = $enabled;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\OAuth2HuggingFace::from($response);
     }
 
     /**
      * Update the project OAuth2 Keycloak configuration.
      *
-     * @param ?string $clientId
-     * @param ?string $clientSecret
-     * @param ?string $endpoint
-     * @param ?string $realmName
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\OAuth2Keycloak
      */
     public function updateOAuth2Keycloak(?string $clientId = null, ?string $clientSecret = null, ?string $endpoint = null, ?string $realmName = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Keycloak
     {
@@ -1605,17 +1445,12 @@ class Project extends Service
         }
 
         return \Appwrite\Models\OAuth2Keycloak::from($response);
-
     }
 
     /**
      * Update the project OAuth2 Kick configuration.
      *
-     * @param ?string $clientId
-     * @param ?string $clientSecret
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\OAuth2Kick
      */
     public function updateOAuth2Kick(?string $clientId = null, ?string $clientSecret = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Kick
     {
@@ -1647,17 +1482,12 @@ class Project extends Service
         }
 
         return \Appwrite\Models\OAuth2Kick::from($response);
-
     }
 
     /**
      * Update the project OAuth2 Linkedin configuration.
      *
-     * @param ?string $clientId
-     * @param ?string $primaryClientSecret
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\OAuth2Linkedin
      */
     public function updateOAuth2Linkedin(?string $clientId = null, ?string $primaryClientSecret = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Linkedin
     {
@@ -1689,18 +1519,12 @@ class Project extends Service
         }
 
         return \Appwrite\Models\OAuth2Linkedin::from($response);
-
     }
 
     /**
      * Update the project OAuth2 Microsoft configuration.
      *
-     * @param ?string $applicationId
-     * @param ?string $applicationSecret
-     * @param ?string $tenant
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\OAuth2Microsoft
      */
     public function updateOAuth2Microsoft(?string $applicationId = null, ?string $applicationSecret = null, ?string $tenant = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Microsoft
     {
@@ -1733,17 +1557,12 @@ class Project extends Service
         }
 
         return \Appwrite\Models\OAuth2Microsoft::from($response);
-
     }
 
     /**
      * Update the project OAuth2 Notion configuration.
      *
-     * @param ?string $oauthClientId
-     * @param ?string $oauthClientSecret
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\OAuth2Notion
      */
     public function updateOAuth2Notion(?string $oauthClientId = null, ?string $oauthClientSecret = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Notion
     {
@@ -1775,23 +1594,12 @@ class Project extends Service
         }
 
         return \Appwrite\Models\OAuth2Notion::from($response);
-
     }
 
     /**
      * Update the project OAuth2 Oidc configuration.
      *
-     * @param ?string $clientId
-     * @param ?string $clientSecret
-     * @param ?string $wellKnownURL
-     * @param ?string $authorizationURL
-     * @param ?string $tokenURL
-     * @param ?string $userInfoURL
-     * @param ?array $prompt
-     * @param ?int $maxAge
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\OAuth2Oidc
      */
     public function updateOAuth2Oidc(?string $clientId = null, ?string $clientSecret = null, ?string $wellKnownURL = null, ?string $authorizationURL = null, ?string $tokenURL = null, ?string $userInfoURL = null, ?array $prompt = null, ?int $maxAge = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Oidc
     {
@@ -1829,19 +1637,12 @@ class Project extends Service
         }
 
         return \Appwrite\Models\OAuth2Oidc::from($response);
-
     }
 
     /**
      * Update the project OAuth2 Okta configuration.
      *
-     * @param ?string $clientId
-     * @param ?string $clientSecret
-     * @param ?string $domain
-     * @param ?string $authorizationServerId
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\OAuth2Okta
      */
     public function updateOAuth2Okta(?string $clientId = null, ?string $clientSecret = null, ?string $domain = null, ?string $authorizationServerId = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Okta
     {
@@ -1875,17 +1676,12 @@ class Project extends Service
         }
 
         return \Appwrite\Models\OAuth2Okta::from($response);
-
     }
 
     /**
      * Update the project OAuth2 Paypal configuration.
      *
-     * @param ?string $clientId
-     * @param ?string $secretKey
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\OAuth2Paypal
      */
     public function updateOAuth2Paypal(?string $clientId = null, ?string $secretKey = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Paypal
     {
@@ -1917,17 +1713,12 @@ class Project extends Service
         }
 
         return \Appwrite\Models\OAuth2Paypal::from($response);
-
     }
 
     /**
      * Update the project OAuth2 PaypalSandbox configuration.
      *
-     * @param ?string $clientId
-     * @param ?string $secretKey
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\OAuth2Paypal
      */
     public function updateOAuth2PaypalSandbox(?string $clientId = null, ?string $secretKey = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Paypal
     {
@@ -1959,17 +1750,12 @@ class Project extends Service
         }
 
         return \Appwrite\Models\OAuth2Paypal::from($response);
-
     }
 
     /**
      * Update the project OAuth2 Podio configuration.
      *
-     * @param ?string $clientId
-     * @param ?string $clientSecret
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\OAuth2Podio
      */
     public function updateOAuth2Podio(?string $clientId = null, ?string $clientSecret = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Podio
     {
@@ -2001,17 +1787,12 @@ class Project extends Service
         }
 
         return \Appwrite\Models\OAuth2Podio::from($response);
-
     }
 
     /**
      * Update the project OAuth2 Salesforce configuration.
      *
-     * @param ?string $customerKey
-     * @param ?string $customerSecret
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\OAuth2Salesforce
      */
     public function updateOAuth2Salesforce(?string $customerKey = null, ?string $customerSecret = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Salesforce
     {
@@ -2043,17 +1824,12 @@ class Project extends Service
         }
 
         return \Appwrite\Models\OAuth2Salesforce::from($response);
-
     }
 
     /**
      * Update the project OAuth2 Slack configuration.
      *
-     * @param ?string $clientId
-     * @param ?string $clientSecret
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\OAuth2Slack
      */
     public function updateOAuth2Slack(?string $clientId = null, ?string $clientSecret = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Slack
     {
@@ -2085,17 +1861,12 @@ class Project extends Service
         }
 
         return \Appwrite\Models\OAuth2Slack::from($response);
-
     }
 
     /**
      * Update the project OAuth2 Spotify configuration.
      *
-     * @param ?string $clientId
-     * @param ?string $clientSecret
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\OAuth2Spotify
      */
     public function updateOAuth2Spotify(?string $clientId = null, ?string $clientSecret = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Spotify
     {
@@ -2127,17 +1898,12 @@ class Project extends Service
         }
 
         return \Appwrite\Models\OAuth2Spotify::from($response);
-
     }
 
     /**
      * Update the project OAuth2 Stripe configuration.
      *
-     * @param ?string $clientId
-     * @param ?string $apiSecretKey
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\OAuth2Stripe
      */
     public function updateOAuth2Stripe(?string $clientId = null, ?string $apiSecretKey = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Stripe
     {
@@ -2169,17 +1935,12 @@ class Project extends Service
         }
 
         return \Appwrite\Models\OAuth2Stripe::from($response);
-
     }
 
     /**
      * Update the project OAuth2 Tradeshift configuration.
      *
-     * @param ?string $oauth2ClientId
-     * @param ?string $oauth2ClientSecret
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\OAuth2Tradeshift
      */
     public function updateOAuth2Tradeshift(?string $oauth2ClientId = null, ?string $oauth2ClientSecret = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Tradeshift
     {
@@ -2211,17 +1972,12 @@ class Project extends Service
         }
 
         return \Appwrite\Models\OAuth2Tradeshift::from($response);
-
     }
 
     /**
      * Update the project OAuth2 Tradeshift Sandbox configuration.
      *
-     * @param ?string $oauth2ClientId
-     * @param ?string $oauth2ClientSecret
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\OAuth2Tradeshift
      */
     public function updateOAuth2TradeshiftSandbox(?string $oauth2ClientId = null, ?string $oauth2ClientSecret = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Tradeshift
     {
@@ -2253,17 +2009,12 @@ class Project extends Service
         }
 
         return \Appwrite\Models\OAuth2Tradeshift::from($response);
-
     }
 
     /**
      * Update the project OAuth2 Twitch configuration.
      *
-     * @param ?string $clientId
-     * @param ?string $clientSecret
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\OAuth2Twitch
      */
     public function updateOAuth2Twitch(?string $clientId = null, ?string $clientSecret = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Twitch
     {
@@ -2295,17 +2046,12 @@ class Project extends Service
         }
 
         return \Appwrite\Models\OAuth2Twitch::from($response);
-
     }
 
     /**
      * Update the project OAuth2 WordPress configuration.
      *
-     * @param ?string $clientId
-     * @param ?string $clientSecret
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\OAuth2WordPress
      */
     public function updateOAuth2WordPress(?string $clientId = null, ?string $clientSecret = null, ?bool $enabled = null): \Appwrite\Models\OAuth2WordPress
     {
@@ -2337,17 +2083,12 @@ class Project extends Service
         }
 
         return \Appwrite\Models\OAuth2WordPress::from($response);
-
     }
 
     /**
      * Update the project OAuth2 X configuration.
      *
-     * @param ?string $customerKey
-     * @param ?string $secretKey
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\OAuth2X
      */
     public function updateOAuth2X(?string $customerKey = null, ?string $secretKey = null, ?bool $enabled = null): \Appwrite\Models\OAuth2X
     {
@@ -2379,17 +2120,12 @@ class Project extends Service
         }
 
         return \Appwrite\Models\OAuth2X::from($response);
-
     }
 
     /**
      * Update the project OAuth2 Yahoo configuration.
      *
-     * @param ?string $clientId
-     * @param ?string $clientSecret
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\OAuth2Yahoo
      */
     public function updateOAuth2Yahoo(?string $clientId = null, ?string $clientSecret = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Yahoo
     {
@@ -2421,17 +2157,12 @@ class Project extends Service
         }
 
         return \Appwrite\Models\OAuth2Yahoo::from($response);
-
     }
 
     /**
      * Update the project OAuth2 Yandex configuration.
      *
-     * @param ?string $clientId
-     * @param ?string $clientSecret
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\OAuth2Yandex
      */
     public function updateOAuth2Yandex(?string $clientId = null, ?string $clientSecret = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Yandex
     {
@@ -2463,17 +2194,12 @@ class Project extends Service
         }
 
         return \Appwrite\Models\OAuth2Yandex::from($response);
-
     }
 
     /**
      * Update the project OAuth2 Zoho configuration.
      *
-     * @param ?string $clientId
-     * @param ?string $clientSecret
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\OAuth2Zoho
      */
     public function updateOAuth2Zoho(?string $clientId = null, ?string $clientSecret = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Zoho
     {
@@ -2505,17 +2231,12 @@ class Project extends Service
         }
 
         return \Appwrite\Models\OAuth2Zoho::from($response);
-
     }
 
     /**
      * Update the project OAuth2 Zoom configuration.
      *
-     * @param ?string $clientId
-     * @param ?string $clientSecret
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\OAuth2Zoom
      */
     public function updateOAuth2Zoom(?string $clientId = null, ?string $clientSecret = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Zoom
     {
@@ -2547,22 +2268,19 @@ class Project extends Service
         }
 
         return \Appwrite\Models\OAuth2Zoom::from($response);
-
     }
 
     /**
      * Get a single OAuth2 provider configuration. Credential fields (client
      * secret, p8 file, key/team IDs) are write-only and always returned empty.
      *
-     * @param ProjectOAuthProviderId $providerId
      * @throws AppwriteException
-     * @return \Appwrite\Models\OAuth2Github|\Appwrite\Models\OAuth2Discord|\Appwrite\Models\OAuth2Figma|\Appwrite\Models\OAuth2Dropbox|\Appwrite\Models\OAuth2Dailymotion|\Appwrite\Models\OAuth2Bitbucket|\Appwrite\Models\OAuth2Bitly|\Appwrite\Models\OAuth2Box|\Appwrite\Models\OAuth2Autodesk|\Appwrite\Models\OAuth2Google|\Appwrite\Models\OAuth2Zoom|\Appwrite\Models\OAuth2Zoho|\Appwrite\Models\OAuth2Yandex|\Appwrite\Models\OAuth2X|\Appwrite\Models\OAuth2WordPress|\Appwrite\Models\OAuth2Twitch|\Appwrite\Models\OAuth2Stripe|\Appwrite\Models\OAuth2Spotify|\Appwrite\Models\OAuth2Slack|\Appwrite\Models\OAuth2Podio|\Appwrite\Models\OAuth2Notion|\Appwrite\Models\OAuth2Salesforce|\Appwrite\Models\OAuth2Yahoo|\Appwrite\Models\OAuth2Linkedin|\Appwrite\Models\OAuth2Disqus|\Appwrite\Models\OAuth2Amazon|\Appwrite\Models\OAuth2Etsy|\Appwrite\Models\OAuth2Facebook|\Appwrite\Models\OAuth2Tradeshift|\Appwrite\Models\OAuth2Paypal|\Appwrite\Models\OAuth2Gitlab|\Appwrite\Models\OAuth2Authentik|\Appwrite\Models\OAuth2Auth0|\Appwrite\Models\OAuth2FusionAuth|\Appwrite\Models\OAuth2Keycloak|\Appwrite\Models\OAuth2Oidc|\Appwrite\Models\OAuth2Apple|\Appwrite\Models\OAuth2Okta|\Appwrite\Models\OAuth2Kick|\Appwrite\Models\OAuth2Microsoft
      */
-    public function getOAuth2Provider(ProjectOAuthProviderId $providerId): \Appwrite\Models\OAuth2Github|\Appwrite\Models\OAuth2Discord|\Appwrite\Models\OAuth2Figma|\Appwrite\Models\OAuth2Dropbox|\Appwrite\Models\OAuth2Dailymotion|\Appwrite\Models\OAuth2Bitbucket|\Appwrite\Models\OAuth2Bitly|\Appwrite\Models\OAuth2Box|\Appwrite\Models\OAuth2Autodesk|\Appwrite\Models\OAuth2Google|\Appwrite\Models\OAuth2Zoom|\Appwrite\Models\OAuth2Zoho|\Appwrite\Models\OAuth2Yandex|\Appwrite\Models\OAuth2X|\Appwrite\Models\OAuth2WordPress|\Appwrite\Models\OAuth2Twitch|\Appwrite\Models\OAuth2Stripe|\Appwrite\Models\OAuth2Spotify|\Appwrite\Models\OAuth2Slack|\Appwrite\Models\OAuth2Podio|\Appwrite\Models\OAuth2Notion|\Appwrite\Models\OAuth2Salesforce|\Appwrite\Models\OAuth2Yahoo|\Appwrite\Models\OAuth2Linkedin|\Appwrite\Models\OAuth2Disqus|\Appwrite\Models\OAuth2Amazon|\Appwrite\Models\OAuth2Etsy|\Appwrite\Models\OAuth2Facebook|\Appwrite\Models\OAuth2Tradeshift|\Appwrite\Models\OAuth2Paypal|\Appwrite\Models\OAuth2Gitlab|\Appwrite\Models\OAuth2Authentik|\Appwrite\Models\OAuth2Auth0|\Appwrite\Models\OAuth2FusionAuth|\Appwrite\Models\OAuth2Keycloak|\Appwrite\Models\OAuth2Oidc|\Appwrite\Models\OAuth2Apple|\Appwrite\Models\OAuth2Okta|\Appwrite\Models\OAuth2Kick|\Appwrite\Models\OAuth2Microsoft
+    public function getOAuth2Provider(ProjectOAuthProviderId $providerId): \Appwrite\Models\OAuth2Github|\Appwrite\Models\OAuth2Discord|\Appwrite\Models\OAuth2Figma|\Appwrite\Models\OAuth2Dropbox|\Appwrite\Models\OAuth2Dailymotion|\Appwrite\Models\OAuth2Bitbucket|\Appwrite\Models\OAuth2Bitly|\Appwrite\Models\OAuth2Box|\Appwrite\Models\OAuth2Autodesk|\Appwrite\Models\OAuth2Google|\Appwrite\Models\OAuth2Zoom|\Appwrite\Models\OAuth2Zoho|\Appwrite\Models\OAuth2Yandex|\Appwrite\Models\OAuth2X|\Appwrite\Models\OAuth2WordPress|\Appwrite\Models\OAuth2Twitch|\Appwrite\Models\OAuth2Stripe|\Appwrite\Models\OAuth2Spotify|\Appwrite\Models\OAuth2Slack|\Appwrite\Models\OAuth2Podio|\Appwrite\Models\OAuth2Notion|\Appwrite\Models\OAuth2Salesforce|\Appwrite\Models\OAuth2Yahoo|\Appwrite\Models\OAuth2HuggingFace|\Appwrite\Models\OAuth2Linkedin|\Appwrite\Models\OAuth2Disqus|\Appwrite\Models\OAuth2Amazon|\Appwrite\Models\OAuth2Etsy|\Appwrite\Models\OAuth2Facebook|\Appwrite\Models\OAuth2Tradeshift|\Appwrite\Models\OAuth2Paypal|\Appwrite\Models\OAuth2Gitlab|\Appwrite\Models\OAuth2Authentik|\Appwrite\Models\OAuth2Auth0|\Appwrite\Models\OAuth2FusionAuth|\Appwrite\Models\OAuth2Keycloak|\Appwrite\Models\OAuth2Oidc|\Appwrite\Models\OAuth2Apple|\Appwrite\Models\OAuth2Okta|\Appwrite\Models\OAuth2Kick|\Appwrite\Models\OAuth2Microsoft
     {
         $apiPath = str_replace(
             ['{providerId}'],
-            [$providerId],
+            [(string) $providerId],
             '/project/oauth2/{providerId}'
         );
 
@@ -2676,6 +2394,10 @@ class Project extends Service
             return \Appwrite\Models\OAuth2Yahoo::from($response);
         }
 
+        if (($response['$id'] ?? null) === 'huggingface') {
+            return \Appwrite\Models\OAuth2HuggingFace::from($response);
+        }
+
         if (($response['$id'] ?? null) === 'linkedin') {
             return \Appwrite\Models\OAuth2Linkedin::from($response);
         }
@@ -2745,17 +2467,13 @@ class Project extends Service
         }
 
         throw new \UnexpectedValueException('Unable to match response to any expected response model.');
-
     }
 
     /**
      * Get a list of all platforms in the project. This endpoint returns an array
      * of all platforms and their configurations.
      *
-     * @param ?array $queries
-     * @param ?bool $total
      * @throws AppwriteException
-     * @return \Appwrite\Models\PlatformList
      */
     public function listPlatforms(?array $queries = null, ?bool $total = null): \Appwrite\Models\PlatformList
     {
@@ -2791,7 +2509,6 @@ class Project extends Service
         }
 
         return \Appwrite\Models\PlatformList::from($response);
-
     }
 
     /**
@@ -2799,11 +2516,7 @@ class Project extends Service
      * register a new Android platform where your users will run your application
      * which will interact with the Appwrite API.
      *
-     * @param string $platformId
-     * @param string $name
-     * @param string $applicationId
      * @throws AppwriteException
-     * @return \Appwrite\Models\PlatformAndroid
      */
     public function createAndroidPlatform(string $platformId, string $name, string $applicationId): \Appwrite\Models\PlatformAndroid
     {
@@ -2835,18 +2548,13 @@ class Project extends Service
         }
 
         return \Appwrite\Models\PlatformAndroid::from($response);
-
     }
 
     /**
      * Update an Android platform by its unique ID. Use this endpoint to update
-     * the platform's name or application ID.
+     * the platform&#039;s name or application ID.
      *
-     * @param string $platformId
-     * @param string $name
-     * @param string $applicationId
      * @throws AppwriteException
-     * @return \Appwrite\Models\PlatformAndroid
      */
     public function updateAndroidPlatform(string $platformId, string $name, string $applicationId): \Appwrite\Models\PlatformAndroid
     {
@@ -2878,7 +2586,6 @@ class Project extends Service
         }
 
         return \Appwrite\Models\PlatformAndroid::from($response);
-
     }
 
     /**
@@ -2886,11 +2593,7 @@ class Project extends Service
      * a new Apple platform where your users will run your application which will
      * interact with the Appwrite API.
      *
-     * @param string $platformId
-     * @param string $name
-     * @param string $bundleIdentifier
      * @throws AppwriteException
-     * @return \Appwrite\Models\PlatformApple
      */
     public function createApplePlatform(string $platformId, string $name, string $bundleIdentifier): \Appwrite\Models\PlatformApple
     {
@@ -2922,18 +2625,13 @@ class Project extends Service
         }
 
         return \Appwrite\Models\PlatformApple::from($response);
-
     }
 
     /**
      * Update an Apple platform by its unique ID. Use this endpoint to update the
-     * platform's name or bundle identifier.
+     * platform&#039;s name or bundle identifier.
      *
-     * @param string $platformId
-     * @param string $name
-     * @param string $bundleIdentifier
      * @throws AppwriteException
-     * @return \Appwrite\Models\PlatformApple
      */
     public function updateApplePlatform(string $platformId, string $name, string $bundleIdentifier): \Appwrite\Models\PlatformApple
     {
@@ -2965,7 +2663,6 @@ class Project extends Service
         }
 
         return \Appwrite\Models\PlatformApple::from($response);
-
     }
 
     /**
@@ -2973,11 +2670,7 @@ class Project extends Service
      * a new Linux platform where your users will run your application which will
      * interact with the Appwrite API.
      *
-     * @param string $platformId
-     * @param string $name
-     * @param string $packageName
      * @throws AppwriteException
-     * @return \Appwrite\Models\PlatformLinux
      */
     public function createLinuxPlatform(string $platformId, string $name, string $packageName): \Appwrite\Models\PlatformLinux
     {
@@ -3009,18 +2702,13 @@ class Project extends Service
         }
 
         return \Appwrite\Models\PlatformLinux::from($response);
-
     }
 
     /**
      * Update a Linux platform by its unique ID. Use this endpoint to update the
-     * platform's name or package name.
+     * platform&#039;s name or package name.
      *
-     * @param string $platformId
-     * @param string $name
-     * @param string $packageName
      * @throws AppwriteException
-     * @return \Appwrite\Models\PlatformLinux
      */
     public function updateLinuxPlatform(string $platformId, string $name, string $packageName): \Appwrite\Models\PlatformLinux
     {
@@ -3052,7 +2740,6 @@ class Project extends Service
         }
 
         return \Appwrite\Models\PlatformLinux::from($response);
-
     }
 
     /**
@@ -3060,11 +2747,7 @@ class Project extends Service
      * new platform where your users will run your application which will interact
      * with the Appwrite API.
      *
-     * @param string $platformId
-     * @param string $name
-     * @param string $hostname
      * @throws AppwriteException
-     * @return \Appwrite\Models\PlatformWeb
      */
     public function createWebPlatform(string $platformId, string $name, string $hostname): \Appwrite\Models\PlatformWeb
     {
@@ -3096,18 +2779,13 @@ class Project extends Service
         }
 
         return \Appwrite\Models\PlatformWeb::from($response);
-
     }
 
     /**
      * Update a web platform by its unique ID. Use this endpoint to update the
-     * platform's name or hostname.
+     * platform&#039;s name or hostname.
      *
-     * @param string $platformId
-     * @param string $name
-     * @param string $hostname
      * @throws AppwriteException
-     * @return \Appwrite\Models\PlatformWeb
      */
     public function updateWebPlatform(string $platformId, string $name, string $hostname): \Appwrite\Models\PlatformWeb
     {
@@ -3139,7 +2817,6 @@ class Project extends Service
         }
 
         return \Appwrite\Models\PlatformWeb::from($response);
-
     }
 
     /**
@@ -3147,11 +2824,7 @@ class Project extends Service
      * register a new Windows platform where your users will run your application
      * which will interact with the Appwrite API.
      *
-     * @param string $platformId
-     * @param string $name
-     * @param string $packageIdentifierName
      * @throws AppwriteException
-     * @return \Appwrite\Models\PlatformWindows
      */
     public function createWindowsPlatform(string $platformId, string $name, string $packageIdentifierName): \Appwrite\Models\PlatformWindows
     {
@@ -3183,18 +2856,13 @@ class Project extends Service
         }
 
         return \Appwrite\Models\PlatformWindows::from($response);
-
     }
 
     /**
      * Update a Windows platform by its unique ID. Use this endpoint to update the
-     * platform's name or package identifier name.
+     * platform&#039;s name or package identifier name.
      *
-     * @param string $platformId
-     * @param string $name
-     * @param string $packageIdentifierName
      * @throws AppwriteException
-     * @return \Appwrite\Models\PlatformWindows
      */
     public function updateWindowsPlatform(string $platformId, string $name, string $packageIdentifierName): \Appwrite\Models\PlatformWindows
     {
@@ -3226,16 +2894,13 @@ class Project extends Service
         }
 
         return \Appwrite\Models\PlatformWindows::from($response);
-
     }
 
     /**
-     * Get a platform by its unique ID. This endpoint returns the platform's
+     * Get a platform by its unique ID. This endpoint returns the platform&#039;s
      * details, including its name, type, and key configurations.
      *
-     * @param string $platformId
      * @throws AppwriteException
-     * @return \Appwrite\Models\PlatformWeb|\Appwrite\Models\PlatformApple|\Appwrite\Models\PlatformAndroid|\Appwrite\Models\PlatformWindows|\Appwrite\Models\PlatformLinux
      */
     public function getPlatform(string $platformId): \Appwrite\Models\PlatformWeb|\Appwrite\Models\PlatformApple|\Appwrite\Models\PlatformAndroid|\Appwrite\Models\PlatformWindows|\Appwrite\Models\PlatformLinux
     {
@@ -3284,16 +2949,13 @@ class Project extends Service
         }
 
         throw new \UnexpectedValueException('Unable to match response to any expected response model.');
-
     }
 
     /**
      * Delete a platform by its unique ID. This endpoint removes the platform and
      * all its configurations from the project.
      *
-     * @param string $platformId
      * @throws AppwriteException
-     * @return string
      */
     public function deletePlatform(string $platformId): string
     {
@@ -3310,24 +2972,18 @@ class Project extends Service
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 
     /**
      * Get a list of all project policies and their current configuration.
      *
-     * @param ?array $queries
-     * @param ?bool $total
      * @throws AppwriteException
-     * @return \Appwrite\Models\PolicyList
      */
     public function listPolicies(?array $queries = null, ?bool $total = null): \Appwrite\Models\PolicyList
     {
@@ -3363,16 +3019,13 @@ class Project extends Service
         }
 
         return \Appwrite\Models\PolicyList::from($response);
-
     }
 
     /**
      * Configures if aliased emails such as subaddresses and emails with suffixes
      * are denied during new users sign-ups and email updates.
      *
-     * @param bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\Project
      */
     public function updateDenyAliasedEmailPolicy(bool $enabled): \Appwrite\Models\Project
     {
@@ -3402,16 +3055,13 @@ class Project extends Service
         }
 
         return \Appwrite\Models\Project::from($response);
-
     }
 
     /**
      * Configures if only corporate email addresses (non-free and non-disposable
      * domains) are allowed during new user sign-ups and email updates.
      *
-     * @param bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\Project
      */
     public function updateDenyCorporateEmailPolicy(bool $enabled): \Appwrite\Models\Project
     {
@@ -3441,16 +3091,13 @@ class Project extends Service
         }
 
         return \Appwrite\Models\Project::from($response);
-
     }
 
     /**
      * Configures if disposable emails from known temporary domains are denied
      * during new users sign-ups and email updates.
      *
-     * @param bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\Project
      */
     public function updateDenyDisposableEmailPolicy(bool $enabled): \Appwrite\Models\Project
     {
@@ -3480,16 +3127,13 @@ class Project extends Service
         }
 
         return \Appwrite\Models\Project::from($response);
-
     }
 
     /**
      * Configures if emails from free providers such as Gmail or Yahoo are denied
      * during new users sign-ups and email updates.
      *
-     * @param bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\Project
      */
     public function updateDenyFreeEmailPolicy(bool $enabled): \Appwrite\Models\Project
     {
@@ -3519,7 +3163,6 @@ class Project extends Service
         }
 
         return \Appwrite\Models\Project::from($response);
-
     }
 
     /**
@@ -3527,14 +3170,7 @@ class Project extends Service
      * members information. When enabled, all team members can see ID, name,
      * email, phone number, and MFA status of other members..
      *
-     * @param ?bool $userId
-     * @param ?bool $userEmail
-     * @param ?bool $userPhone
-     * @param ?bool $userName
-     * @param ?bool $userMFA
-     * @param ?bool $userAccessedAt
      * @throws AppwriteException
-     * @return \Appwrite\Models\Project
      */
     public function updateMembershipPrivacyPolicy(?bool $userId = null, ?bool $userEmail = null, ?bool $userPhone = null, ?bool $userName = null, ?bool $userMFA = null, ?bool $userAccessedAt = null): \Appwrite\Models\Project
     {
@@ -3587,7 +3223,6 @@ class Project extends Service
         }
 
         return \Appwrite\Models\Project::from($response);
-
     }
 
     /**
@@ -3597,12 +3232,7 @@ class Project extends Service
      * factor is disabled by default; enable it to deliver challenge codes through
      * your own channel. Recovery codes always remain available as a fallback.
      *
-     * @param ?bool $totp
-     * @param ?bool $email
-     * @param ?bool $phone
-     * @param ?bool $custom
      * @throws AppwriteException
-     * @return \Appwrite\Models\Project
      */
     public function updateMFAFactorsPolicy(?bool $totp = null, ?bool $email = null, ?bool $phone = null, ?bool $custom = null): \Appwrite\Models\Project
     {
@@ -3647,7 +3277,6 @@ class Project extends Service
         }
 
         return \Appwrite\Models\Project::from($response);
-
     }
 
     /**
@@ -3655,9 +3284,7 @@ class Project extends Service
      * against most common passwords dictionary. When enabled, and user changes
      * their password, password must not be contained in the dictionary.
      *
-     * @param bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\Project
      */
     public function updatePasswordDictionaryPolicy(bool $enabled): \Appwrite\Models\Project
     {
@@ -3687,7 +3314,6 @@ class Project extends Service
         }
 
         return \Appwrite\Models\Project::from($response);
-
     }
 
     /**
@@ -3695,15 +3321,13 @@ class Project extends Service
      * configured, previous password hashes are stored, and users cannot choose a
      * new password that is already stored in the passwird history list, when
      * updating an user password, or setting new one through password recovery.
-     * 
+     *
      * Keep in mind, while password history policy is disabled, the history is not
      * being stored. Enabling the policy will not have any history on existing
      * users, and it will only start to collect and enforce the policy on password
      * changes since the policy is enabled.
      *
-     * @param ?int $total
      * @throws AppwriteException
-     * @return \Appwrite\Models\Project
      */
     public function updatePasswordHistoryPolicy(?int $total): \Appwrite\Models\Project
     {
@@ -3733,7 +3357,6 @@ class Project extends Service
         }
 
         return \Appwrite\Models\Project::from($response);
-
     }
 
     /**
@@ -3742,9 +3365,7 @@ class Project extends Service
      * password, the password must not contain user ID, name, email or phone
      * number.
      *
-     * @param bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\Project
      */
     public function updatePasswordPersonalDataPolicy(bool $enabled): \Appwrite\Models\Project
     {
@@ -3774,19 +3395,12 @@ class Project extends Service
         }
 
         return \Appwrite\Models\Project::from($response);
-
     }
 
     /**
      * Update the password strength requirements for users in the project.
      *
-     * @param ?int $min
-     * @param ?bool $uppercase
-     * @param ?bool $lowercase
-     * @param ?bool $number
-     * @param ?bool $symbols
      * @throws AppwriteException
-     * @return \Appwrite\Models\PolicyPasswordStrength
      */
     public function updatePasswordStrengthPolicy(?int $min = null, ?bool $uppercase = null, ?bool $lowercase = null, ?bool $number = null, ?bool $symbols = null): \Appwrite\Models\PolicyPasswordStrength
     {
@@ -3835,7 +3449,6 @@ class Project extends Service
         }
 
         return \Appwrite\Models\PolicyPasswordStrength::from($response);
-
     }
 
     /**
@@ -3845,9 +3458,7 @@ class Project extends Service
      * session after a new sign up does not trigger an alert, even if the policy
      * is enabled.
      *
-     * @param bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\Project
      */
     public function updateSessionAlertPolicy(bool $enabled): \Appwrite\Models\Project
     {
@@ -3877,16 +3488,13 @@ class Project extends Service
         }
 
         return \Appwrite\Models\Project::from($response);
-
     }
 
     /**
      * Update maximum duration how long sessions created within a project should
      * stay active for.
      *
-     * @param int $duration
      * @throws AppwriteException
-     * @return \Appwrite\Models\Project
      */
     public function updateSessionDurationPolicy(int $duration): \Appwrite\Models\Project
     {
@@ -3916,7 +3524,6 @@ class Project extends Service
         }
 
         return \Appwrite\Models\Project::from($response);
-
     }
 
     /**
@@ -3924,9 +3531,7 @@ class Project extends Service
      * invalidated when a password of a user is changed. When enabled, and user
      * changes their password, they will be logged out of all their devices.
      *
-     * @param bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\Project
      */
     public function updateSessionInvalidationPolicy(bool $enabled): \Appwrite\Models\Project
     {
@@ -3956,16 +3561,13 @@ class Project extends Service
         }
 
         return \Appwrite\Models\Project::from($response);
-
     }
 
     /**
      * Update the maximum number of sessions allowed per user. When the limit is
      * hit, the oldest session will be deleted to make room for new one.
      *
-     * @param int $total
      * @throws AppwriteException
-     * @return \Appwrite\Models\Project
      */
     public function updateSessionLimitPolicy(int $total): \Appwrite\Models\Project
     {
@@ -3995,7 +3597,6 @@ class Project extends Service
         }
 
         return \Appwrite\Models\Project::from($response);
-
     }
 
     /**
@@ -4003,9 +3604,7 @@ class Project extends Service
      * amount of existing users already exceeded the limit, all users remain
      * active, but new user sign up will be prohibited.
      *
-     * @param ?int $total
      * @throws AppwriteException
-     * @return \Appwrite\Models\Project
      */
     public function updateUserLimitPolicy(?int $total): \Appwrite\Models\Project
     {
@@ -4035,22 +3634,19 @@ class Project extends Service
         }
 
         return \Appwrite\Models\Project::from($response);
-
     }
 
     /**
      * Get a policy by its unique ID. This endpoint returns the current
      * configuration for the requested project policy.
      *
-     * @param ProjectPolicyId $policyId
      * @throws AppwriteException
-     * @return \Appwrite\Models\PolicyPasswordDictionary|\Appwrite\Models\PolicyPasswordHistory|\Appwrite\Models\PolicyPasswordStrength|\Appwrite\Models\PolicyPasswordPersonalData|\Appwrite\Models\PolicySessionAlert|\Appwrite\Models\PolicySessionDuration|\Appwrite\Models\PolicySessionInvalidation|\Appwrite\Models\PolicySessionLimit|\Appwrite\Models\PolicyUserLimit|\Appwrite\Models\PolicyMembershipPrivacy|\Appwrite\Models\PolicyMfaFactors|\Appwrite\Models\PolicyDenyAliasedEmail|\Appwrite\Models\PolicyDenyDisposableEmail|\Appwrite\Models\PolicyDenyFreeEmail|\Appwrite\Models\PolicyDenyCorporateEmail
      */
     public function getPolicy(ProjectPolicyId $policyId): \Appwrite\Models\PolicyPasswordDictionary|\Appwrite\Models\PolicyPasswordHistory|\Appwrite\Models\PolicyPasswordStrength|\Appwrite\Models\PolicyPasswordPersonalData|\Appwrite\Models\PolicySessionAlert|\Appwrite\Models\PolicySessionDuration|\Appwrite\Models\PolicySessionInvalidation|\Appwrite\Models\PolicySessionLimit|\Appwrite\Models\PolicyUserLimit|\Appwrite\Models\PolicyMembershipPrivacy|\Appwrite\Models\PolicyMfaFactors|\Appwrite\Models\PolicyDenyAliasedEmail|\Appwrite\Models\PolicyDenyDisposableEmail|\Appwrite\Models\PolicyDenyFreeEmail|\Appwrite\Models\PolicyDenyCorporateEmail
     {
         $apiPath = str_replace(
             ['{policyId}'],
-            [$policyId],
+            [(string) $policyId],
             '/project/policies/{policyId}'
         );
 
@@ -4133,23 +3729,19 @@ class Project extends Service
         }
 
         throw new \UnexpectedValueException('Unable to match response to any expected response model.');
-
     }
 
     /**
      * Update properties of a specific protocol. Use this endpoint to enable or
-     * disable a protocol in your project. 
+     * disable a protocol in your project.
      *
-     * @param ProjectProtocolId $protocolId
-     * @param bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\Project
      */
     public function updateProtocol(ProjectProtocolId $protocolId, bool $enabled): \Appwrite\Models\Project
     {
         $apiPath = str_replace(
             ['{protocolId}'],
-            [$protocolId],
+            [(string) $protocolId],
             '/project/protocols/{protocolId}'
         );
 
@@ -4174,23 +3766,19 @@ class Project extends Service
         }
 
         return \Appwrite\Models\Project::from($response);
-
     }
 
     /**
      * Update properties of a specific service. Use this endpoint to enable or
-     * disable a service in your project. 
+     * disable a service in your project.
      *
-     * @param ProjectServiceId $serviceId
-     * @param bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\Project
      */
     public function updateService(ProjectServiceId $serviceId, bool $enabled): \Appwrite\Models\Project
     {
         $apiPath = str_replace(
             ['{serviceId}'],
-            [$serviceId],
+            [(string) $serviceId],
             '/project/services/{serviceId}'
         );
 
@@ -4215,26 +3803,14 @@ class Project extends Service
         }
 
         return \Appwrite\Models\Project::from($response);
-
     }
 
     /**
      * Update the SMTP configuration for your project. Use this endpoint to
-     * configure your project's SMTP provider with your custom settings for
+     * configure your project&#039;s SMTP provider with your custom settings for
      * sending transactional emails.
      *
-     * @param ?string $host
-     * @param ?int $port
-     * @param ?string $username
-     * @param ?string $password
-     * @param ?string $senderEmail
-     * @param ?string $senderName
-     * @param ?string $replyToEmail
-     * @param ?string $replyToName
-     * @param ?ProjectSMTPSecure $secure
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\Project
      */
     public function updateSMTP(?string $host = null, ?int $port = null, ?string $username = null, ?string $password = null, ?string $senderEmail = null, ?string $senderName = null, ?string $replyToEmail = null, ?string $replyToName = null, ?ProjectSMTPSecure $secure = null, ?bool $enabled = null): \Appwrite\Models\Project
     {
@@ -4273,15 +3849,12 @@ class Project extends Service
         }
 
         return \Appwrite\Models\Project::from($response);
-
     }
 
     /**
-     * Send a test email to verify SMTP configuration. 
+     * Send a test email to verify SMTP configuration.
      *
-     * @param array $emails
      * @throws AppwriteException
-     * @return string
      */
     public function createSMTPTest(array $emails): string
     {
@@ -4298,15 +3871,12 @@ class Project extends Service
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 
     /**
@@ -4314,10 +3884,7 @@ class Project extends Service
      * endpoint returns an array of all configured email templates and their
      * locales.
      *
-     * @param ?array $queries
-     * @param ?bool $total
      * @throws AppwriteException
-     * @return \Appwrite\Models\EmailTemplateList
      */
     public function listEmailTemplates(?array $queries = null, ?bool $total = null): \Appwrite\Models\EmailTemplateList
     {
@@ -4353,23 +3920,13 @@ class Project extends Service
         }
 
         return \Appwrite\Models\EmailTemplateList::from($response);
-
     }
 
     /**
      * Update a custom email template for the specified locale and type. Use this
      * endpoint to modify the content of your email templates.
      *
-     * @param ProjectEmailTemplateId $templateId
-     * @param ?ProjectEmailTemplateLocale $locale
-     * @param ?string $subject
-     * @param ?string $message
-     * @param ?string $senderName
-     * @param ?string $senderEmail
-     * @param ?string $replyToEmail
-     * @param ?string $replyToName
      * @throws AppwriteException
-     * @return \Appwrite\Models\EmailTemplate
      */
     public function updateEmailTemplate(ProjectEmailTemplateId $templateId, ?ProjectEmailTemplateLocale $locale = null, ?string $subject = null, ?string $message = null, ?string $senderName = null, ?string $senderEmail = null, ?string $replyToEmail = null, ?string $replyToName = null): \Appwrite\Models\EmailTemplate
     {
@@ -4409,7 +3966,6 @@ class Project extends Service
         }
 
         return \Appwrite\Models\EmailTemplate::from($response);
-
     }
 
     /**
@@ -4417,16 +3973,13 @@ class Project extends Service
      * endpoint returns the template content, subject, and other configuration
      * details.
      *
-     * @param ProjectEmailTemplateId $templateId
-     * @param ?ProjectEmailTemplateLocale $locale
      * @throws AppwriteException
-     * @return \Appwrite\Models\EmailTemplate
      */
     public function getEmailTemplate(ProjectEmailTemplateId $templateId, ?ProjectEmailTemplateLocale $locale = null): \Appwrite\Models\EmailTemplate
     {
         $apiPath = str_replace(
             ['{templateId}'],
-            [$templateId],
+            [(string) $templateId],
             '/project/templates/email/{templateId}'
         );
 
@@ -4453,16 +4006,12 @@ class Project extends Service
         }
 
         return \Appwrite\Models\EmailTemplate::from($response);
-
     }
 
     /**
      * Get a list of all project environment variables.
      *
-     * @param ?array $queries
-     * @param ?bool $total
      * @throws AppwriteException
-     * @return \Appwrite\Models\VariableList
      */
     public function listVariables(?array $queries = null, ?bool $total = null): \Appwrite\Models\VariableList
     {
@@ -4498,19 +4047,13 @@ class Project extends Service
         }
 
         return \Appwrite\Models\VariableList::from($response);
-
     }
 
     /**
      * Create a new project environment variable. These variables can be accessed
      * by all functions and sites in the project.
      *
-     * @param string $variableId
-     * @param string $key
-     * @param string $value
-     * @param ?bool $secret
      * @throws AppwriteException
-     * @return \Appwrite\Models\Variable
      */
     public function createVariable(string $variableId, string $key, string $value, ?bool $secret = null): \Appwrite\Models\Variable
     {
@@ -4546,15 +4089,12 @@ class Project extends Service
         }
 
         return \Appwrite\Models\Variable::from($response);
-
     }
 
     /**
-     * Get a variable by its unique ID. 
+     * Get a variable by its unique ID.
      *
-     * @param string $variableId
      * @throws AppwriteException
-     * @return \Appwrite\Models\Variable
      */
     public function getVariable(string $variableId): \Appwrite\Models\Variable
     {
@@ -4583,18 +4123,12 @@ class Project extends Service
         }
 
         return \Appwrite\Models\Variable::from($response);
-
     }
 
     /**
      * Update variable by its unique ID.
      *
-     * @param string $variableId
-     * @param ?string $key
-     * @param ?string $value
-     * @param ?bool $secret
      * @throws AppwriteException
-     * @return \Appwrite\Models\Variable
      */
     public function updateVariable(string $variableId, ?string $key = null, ?string $value = null, ?bool $secret = null): \Appwrite\Models\Variable
     {
@@ -4627,15 +4161,12 @@ class Project extends Service
         }
 
         return \Appwrite\Models\Variable::from($response);
-
     }
 
     /**
-     * Delete a variable by its unique ID. 
+     * Delete a variable by its unique ID.
      *
-     * @param string $variableId
      * @throws AppwriteException
-     * @return string
      */
     public function deleteVariable(string $variableId): string
     {
@@ -4652,14 +4183,11 @@ class Project extends Service
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 }

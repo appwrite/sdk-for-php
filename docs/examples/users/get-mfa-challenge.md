@@ -14,4 +14,6 @@ $users = new Users($client);
 $result = $users->getMFAChallenge(
     userId: '<USER_ID>',
     challengeId: '<CHALLENGE_ID>'
-);```
+);
+
+```

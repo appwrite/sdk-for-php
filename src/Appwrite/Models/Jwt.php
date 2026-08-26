@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * JWT
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class Jwt
 {
@@ -38,10 +42,8 @@ readonly class Jwt
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'jwt' => static::serializeValue($this->jwt)
         ];
-
-        return $result;
     }
 }

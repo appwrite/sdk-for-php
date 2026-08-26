@@ -1,16 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Services;
 
 use Appwrite\Client;
-use Appwrite\InputFile;
 use Mockery;
+use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
 
 final class GraphqlTest extends TestCase
 {
-    private $client;
-    private $graphql;
+    private Client&MockInterface $client;
+    private Graphql $graphql;
 
     protected function setUp(): void
     {
@@ -20,7 +22,7 @@ final class GraphqlTest extends TestCase
 
     public function testMethodQuery(): void
     {
-        $data = array();
+        $data = [];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -30,15 +32,14 @@ final class GraphqlTest extends TestCase
             ->andReturn('');
 
         $response = $this->graphql->query(
-            array()
+            []
         );
 
         $this->assertSame($data, $response);
     }
-
     public function testMethodMutation(): void
     {
-        $data = array();
+        $data = [];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -48,10 +49,9 @@ final class GraphqlTest extends TestCase
             ->andReturn('');
 
         $response = $this->graphql->mutation(
-            array()
+            []
         );
 
         $this->assertSame($data, $response);
     }
-
 }

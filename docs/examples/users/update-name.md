@@ -14,4 +14,6 @@ $users = new Users($client);
 $result = $users->updateName(
     userId: '<USER_ID>',
     name: '<NAME>'
-);```
+);
+
+```

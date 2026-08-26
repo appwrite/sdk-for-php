@@ -1,26 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Services;
 
 use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
-use Appwrite\InputFile;
-use Appwrite\Enums\BackupServices;
 
 class Backups extends Service
 {
-    public function __construct(Client $client)
-    {
-        parent::__construct($client);
-    }
-
     /**
      * List all archives for a project.
      *
-     * @param ?array $queries
      * @throws AppwriteException
-     * @return \Appwrite\Models\BackupArchiveList
      */
     public function listArchives(?array $queries = null): \Appwrite\Models\BackupArchiveList
     {
@@ -52,16 +45,12 @@ class Backups extends Service
         }
 
         return \Appwrite\Models\BackupArchiveList::from($response);
-
     }
 
     /**
      * Create a new archive asynchronously for a project.
      *
-     * @param array $services
-     * @param ?string $resourceId
      * @throws AppwriteException
-     * @return \Appwrite\Models\BackupArchive
      */
     public function createArchive(array $services, ?string $resourceId = null): \Appwrite\Models\BackupArchive
     {
@@ -92,15 +81,12 @@ class Backups extends Service
         }
 
         return \Appwrite\Models\BackupArchive::from($response);
-
     }
 
     /**
-     * Get a backup archive using it's ID.
+     * Get a backup archive using it&#039;s ID.
      *
-     * @param string $archiveId
      * @throws AppwriteException
-     * @return \Appwrite\Models\BackupArchive
      */
     public function getArchive(string $archiveId): \Appwrite\Models\BackupArchive
     {
@@ -129,15 +115,12 @@ class Backups extends Service
         }
 
         return \Appwrite\Models\BackupArchive::from($response);
-
     }
 
     /**
      * Delete an existing archive for a project.
      *
-     * @param string $archiveId
      * @throws AppwriteException
-     * @return string
      */
     public function deleteArchive(string $archiveId): string
     {
@@ -155,23 +138,18 @@ class Backups extends Service
         $apiHeaders['content-type'] = 'application/json';
         $apiHeaders['accept'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 
     /**
      * List all policies for a project.
      *
-     * @param ?array $queries
      * @throws AppwriteException
-     * @return \Appwrite\Models\BackupPolicyList
      */
     public function listPolicies(?array $queries = null): \Appwrite\Models\BackupPolicyList
     {
@@ -203,21 +181,12 @@ class Backups extends Service
         }
 
         return \Appwrite\Models\BackupPolicyList::from($response);
-
     }
 
     /**
      * Create a new backup policy.
      *
-     * @param string $policyId
-     * @param array $services
-     * @param int $retention
-     * @param string $schedule
-     * @param ?string $name
-     * @param ?string $resourceId
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\BackupPolicy
      */
     public function createPolicy(string $policyId, array $services, int $retention, string $schedule, ?string $name = null, ?string $resourceId = null, ?bool $enabled = null): \Appwrite\Models\BackupPolicy
     {
@@ -259,15 +228,12 @@ class Backups extends Service
         }
 
         return \Appwrite\Models\BackupPolicy::from($response);
-
     }
 
     /**
-     * Get a backup policy using it's ID.
+     * Get a backup policy using it&#039;s ID.
      *
-     * @param string $policyId
      * @throws AppwriteException
-     * @return \Appwrite\Models\BackupPolicy
      */
     public function getPolicy(string $policyId): \Appwrite\Models\BackupPolicy
     {
@@ -296,19 +262,12 @@ class Backups extends Service
         }
 
         return \Appwrite\Models\BackupPolicy::from($response);
-
     }
 
     /**
-     * Update an existing policy using it's ID.
+     * Update an existing policy using it&#039;s ID.
      *
-     * @param string $policyId
-     * @param ?string $name
-     * @param ?int $retention
-     * @param ?string $schedule
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\BackupPolicy
      */
     public function updatePolicy(string $policyId, ?string $name = null, ?int $retention = null, ?string $schedule = null, ?bool $enabled = null): \Appwrite\Models\BackupPolicy
     {
@@ -345,15 +304,12 @@ class Backups extends Service
         }
 
         return \Appwrite\Models\BackupPolicy::from($response);
-
     }
 
     /**
-     * Delete a policy using it's ID.
+     * Delete a policy using it&#039;s ID.
      *
-     * @param string $policyId
      * @throws AppwriteException
-     * @return string
      */
     public function deletePolicy(string $policyId): string
     {
@@ -371,33 +327,30 @@ class Backups extends Service
         $apiHeaders['content-type'] = 'application/json';
         $apiHeaders['accept'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 
     /**
      * Create and trigger a new restoration for a backup on a project.
-     * 
+     *
      * For a backup of one database, the restoration resolves its destination
      * before it is queued. When `newResourceId` is omitted, the archived database
      * is restored in place and its own ID is returned in `options`. Pass a
      * different `newResourceId` to restore alongside it as a new database
      * instead.
-     * 
+     *
      * The restoration migration records the archived database in `resourceId` and
      * `resourceType`, and the resolved database in `destinationResourceId` and
      * `destinationResourceType`. Database types are stored canonically as
      * `database`, `documentsdb`, or `vectorsdb`. Project-wide restorations leave
      * these fields empty because they do not have a single source or destination
      * database.
-     * 
+     *
      * To list every migration related to one database, use its canonical type in
      * a nested `OR(AND(...), AND(...), AND(...))` across the root, parent, and
      * destination relation pairs: `(resourceType, resourceId)`,
@@ -405,23 +358,17 @@ class Backups extends Service
      * destinationResourceId)`. Legacy and TablesDB databases use `database`; the
      * operational `resourceType` of a table migration is not rewritten to
      * `tablesdb`.
-     * 
+     *
      * When restoring a DocumentsDB or VectorsDB database from a dedicated source,
      * the restore provisions a fresh dedicated backing database at the source
-     * database's own specification and lands the data there. An in-place restore
+     * database&#039;s own specification and lands the data there. An in-place restore
      * swaps the database onto that backing only once the restore has succeeded,
      * and retires the backing it displaced only once that swap is confirmed, so
      * the source keeps serving its own data until the restored data is in place
      * and any failure leaves it untouched. A serverless source has no dedicated
      * backing to clone and restores onto the archived database instead.
-     * 
      *
-     * @param string $archiveId
-     * @param array $services
-     * @param ?string $newResourceId
-     * @param ?string $newResourceName
      * @throws AppwriteException
-     * @return \Appwrite\Models\BackupRestoration
      */
     public function createRestoration(string $archiveId, array $services, ?string $newResourceId = null, ?string $newResourceName = null): \Appwrite\Models\BackupRestoration
     {
@@ -460,15 +407,12 @@ class Backups extends Service
         }
 
         return \Appwrite\Models\BackupRestoration::from($response);
-
     }
 
     /**
      * List all backup restorations for a project.
      *
-     * @param ?array $queries
      * @throws AppwriteException
-     * @return \Appwrite\Models\BackupRestorationList
      */
     public function listRestorations(?array $queries = null): \Appwrite\Models\BackupRestorationList
     {
@@ -500,15 +444,12 @@ class Backups extends Service
         }
 
         return \Appwrite\Models\BackupRestorationList::from($response);
-
     }
 
     /**
      * Get the current status of a backup restoration.
      *
-     * @param string $restorationId
      * @throws AppwriteException
-     * @return \Appwrite\Models\BackupRestoration
      */
     public function getRestoration(string $restorationId): \Appwrite\Models\BackupRestoration
     {
@@ -537,6 +478,5 @@ class Backups extends Service
         }
 
         return \Appwrite\Models\BackupRestoration::from($response);
-
     }
 }

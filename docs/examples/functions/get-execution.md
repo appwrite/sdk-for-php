@@ -14,4 +14,6 @@ $functions = new Functions($client);
 $result = $functions->getExecution(
     functionId: '<FUNCTION_ID>',
     executionId: '<EXECUTION_ID>'
-);```
+);
+
+```

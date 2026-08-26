@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Attributes List
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class AttributeList
 {
@@ -44,11 +48,9 @@ readonly class AttributeList
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'total' => static::serializeValue($this->total),
             'attributes' => static::serializeValue($this->attributes)
         ];
-
-        return $result;
     }
 }

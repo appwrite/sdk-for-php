@@ -15,4 +15,6 @@ $result = $project->updateOAuth2Dropbox(
     appKey: '<APP_KEY>', // optional
     appSecret: '<APP_SECRET>', // optional
     enabled: false // optional
-);```
+);
+
+```

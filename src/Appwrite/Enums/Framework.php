@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Enums;
 
 use JsonSerializable;
+use Stringable;
 
-class Framework implements JsonSerializable
+class Framework implements JsonSerializable, Stringable
 {
     private static Framework $ANALOG;
     private static Framework $ANGULAR;
@@ -22,11 +25,8 @@ class Framework implements JsonSerializable
     private static Framework $VITE;
     private static Framework $OTHER;
 
-    private string $value;
-
-    private function __construct(string $value)
+    private function __construct(private readonly string $value)
     {
-        $this->value = $value;
     }
 
     public function __toString(): string

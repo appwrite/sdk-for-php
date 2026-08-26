@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Runtimes List
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class RuntimeList
 {
@@ -49,11 +53,9 @@ readonly class RuntimeList
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'total' => static::serializeValue($this->total),
             'runtimes' => static::serializeValue($this->runtimes)
         ];
-
-        return $result;
     }
 }

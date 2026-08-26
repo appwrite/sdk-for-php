@@ -14,4 +14,6 @@ $apps = new Apps($client);
 $result = $apps->list(
     queries: [], // optional
     total: false // optional
-);```
+);
+
+```

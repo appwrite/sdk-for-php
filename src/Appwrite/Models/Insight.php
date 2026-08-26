@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Insight
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class Insight
 {
@@ -119,9 +123,9 @@ readonly class Insight
                     $data['ctas']
                 )
                 : $data['ctas'],
-            analyzedAt: array_key_exists('analyzedAt', $data) ? $data['analyzedAt'] : null,
-            dismissedAt: array_key_exists('dismissedAt', $data) ? $data['dismissedAt'] : null,
-            dismissedBy: array_key_exists('dismissedBy', $data) ? $data['dismissedBy'] : null
+            analyzedAt: $data['analyzedAt'] ?? null,
+            dismissedAt: $data['dismissedAt'] ?? null,
+            dismissedBy: $data['dismissedBy'] ?? null
         );
     }
 
@@ -130,7 +134,7 @@ readonly class Insight
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             '$createdAt' => static::serializeValue($this->createdAt),
             '$updatedAt' => static::serializeValue($this->updatedAt),
@@ -149,7 +153,5 @@ readonly class Insight
             'dismissedAt' => static::serializeValue($this->dismissedAt),
             'dismissedBy' => static::serializeValue($this->dismissedBy)
         ];
-
-        return $result;
     }
 }

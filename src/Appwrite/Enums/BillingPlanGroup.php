@@ -1,20 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Enums;
 
 use JsonSerializable;
+use Stringable;
 
-class BillingPlanGroup implements JsonSerializable
+class BillingPlanGroup implements JsonSerializable, Stringable
 {
     private static BillingPlanGroup $STARTER;
     private static BillingPlanGroup $PRO;
     private static BillingPlanGroup $SCALE;
 
-    private string $value;
-
-    private function __construct(string $value)
+    private function __construct(private readonly string $value)
     {
-        $this->value = $value;
     }
 
     public function __toString(): string

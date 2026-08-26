@@ -1,17 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Services;
 
 use Appwrite\Client;
-use Appwrite\InputFile;
 use Mockery;
+use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
 use Appwrite\Enums\BackupServices;
 
 final class BackupsTest extends TestCase
 {
-    private $client;
-    private $backups;
+    private Client&MockInterface $client;
+    private Backups $backups;
 
     protected function setUp(): void
     {
@@ -21,10 +23,10 @@ final class BackupsTest extends TestCase
 
     public function testMethodListArchives(): void
     {
-        $data = array(
+        $data = [
             "total" => 5,
-            "archives" => array(
-                array(
+            "archives" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -33,11 +35,11 @@ final class BackupsTest extends TestCase
                     "status" => "completed",
                     "startedAt" => "2020-10-15T06:38:00.000+00:00",
                     "migrationId" => "did8jx6ws45jana098ab7",
-                    "services" => array(),
-                    "resources" => array()
-                )
-            )
-        );
+                    "services" => [],
+                    "resources" => []
+                ]
+            ]
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -50,10 +52,9 @@ final class BackupsTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\BackupArchiveList::class, $response);
     }
-
     public function testMethodCreateArchive(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -62,9 +63,9 @@ final class BackupsTest extends TestCase
             "status" => "completed",
             "startedAt" => "2020-10-15T06:38:00.000+00:00",
             "migrationId" => "did8jx6ws45jana098ab7",
-            "services" => array(),
-            "resources" => array()
-        );
+            "services" => [],
+            "resources" => []
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -74,15 +75,14 @@ final class BackupsTest extends TestCase
             ->andReturn('');
 
         $response = $this->backups->createArchive(
-            array(BackupServices::DATABASES())
+            [BackupServices::DATABASES()]
         );
 
         $this->assertInstanceOf(\Appwrite\Models\BackupArchive::class, $response);
     }
-
     public function testMethodGetArchive(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -91,9 +91,9 @@ final class BackupsTest extends TestCase
             "status" => "completed",
             "startedAt" => "2020-10-15T06:38:00.000+00:00",
             "migrationId" => "did8jx6ws45jana098ab7",
-            "services" => array(),
-            "resources" => array()
-        );
+            "services" => [],
+            "resources" => []
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -108,7 +108,6 @@ final class BackupsTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\BackupArchive::class, $response);
     }
-
     public function testMethodDeleteArchive(): void
     {
         $data = '';
@@ -126,26 +125,25 @@ final class BackupsTest extends TestCase
 
         $this->assertSame($data, $response);
     }
-
     public function testMethodListPolicies(): void
     {
-        $data = array(
+        $data = [
             "total" => 5,
-            "policies" => array(
-                array(
+            "policies" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "name" => "Hourly backups",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "services" => array(),
-                    "resources" => array(),
+                    "services" => [],
+                    "resources" => [],
                     "retention" => 7,
                     "schedule" => "0 * * * *",
                     "type" => "full",
                     "enabled" => true
-                )
-            )
-        );
+                ]
+            ]
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -158,21 +156,20 @@ final class BackupsTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\BackupPolicyList::class, $response);
     }
-
     public function testMethodCreatePolicy(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "name" => "Hourly backups",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "services" => array(),
-            "resources" => array(),
+            "services" => [],
+            "resources" => [],
             "retention" => 7,
             "schedule" => "0 * * * *",
             "type" => "full",
             "enabled" => true
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -183,28 +180,27 @@ final class BackupsTest extends TestCase
 
         $response = $this->backups->createPolicy(
             "<POLICY_ID>",
-            array(BackupServices::DATABASES()),
+            [BackupServices::DATABASES()],
             1,
             ""
         );
 
         $this->assertInstanceOf(\Appwrite\Models\BackupPolicy::class, $response);
     }
-
     public function testMethodGetPolicy(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "name" => "Hourly backups",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "services" => array(),
-            "resources" => array(),
+            "services" => [],
+            "resources" => [],
             "retention" => 7,
             "schedule" => "0 * * * *",
             "type" => "full",
             "enabled" => true
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -219,21 +215,20 @@ final class BackupsTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\BackupPolicy::class, $response);
     }
-
     public function testMethodUpdatePolicy(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "name" => "Hourly backups",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "services" => array(),
-            "resources" => array(),
+            "services" => [],
+            "resources" => [],
             "retention" => 7,
             "schedule" => "0 * * * *",
             "type" => "full",
             "enabled" => true
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -248,7 +243,6 @@ final class BackupsTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\BackupPolicy::class, $response);
     }
-
     public function testMethodDeletePolicy(): void
     {
         $data = '';
@@ -266,10 +260,9 @@ final class BackupsTest extends TestCase
 
         $this->assertSame($data, $response);
     }
-
     public function testMethodCreateRestoration(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -278,10 +271,10 @@ final class BackupsTest extends TestCase
             "status" => "completed",
             "startedAt" => "2020-10-15T06:38:00.000+00:00",
             "migrationId" => "did8jx6ws45jana098ab7",
-            "services" => array(),
-            "resources" => array(),
+            "services" => [],
+            "resources" => [],
             "options" => "{databases.database[{oldId, newId, newName}]}"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -292,18 +285,17 @@ final class BackupsTest extends TestCase
 
         $response = $this->backups->createRestoration(
             "<ARCHIVE_ID>",
-            array(BackupServices::DATABASES())
+            [BackupServices::DATABASES()]
         );
 
         $this->assertInstanceOf(\Appwrite\Models\BackupRestoration::class, $response);
     }
-
     public function testMethodListRestorations(): void
     {
-        $data = array(
+        $data = [
             "total" => 5,
-            "restorations" => array(
-                array(
+            "restorations" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -312,12 +304,12 @@ final class BackupsTest extends TestCase
                     "status" => "completed",
                     "startedAt" => "2020-10-15T06:38:00.000+00:00",
                     "migrationId" => "did8jx6ws45jana098ab7",
-                    "services" => array(),
-                    "resources" => array(),
+                    "services" => [],
+                    "resources" => [],
                     "options" => "{databases.database[{oldId, newId, newName}]}"
-                )
-            )
-        );
+                ]
+            ]
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -330,10 +322,9 @@ final class BackupsTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\BackupRestorationList::class, $response);
     }
-
     public function testMethodGetRestoration(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -342,10 +333,10 @@ final class BackupsTest extends TestCase
             "status" => "completed",
             "startedAt" => "2020-10-15T06:38:00.000+00:00",
             "migrationId" => "did8jx6ws45jana098ab7",
-            "services" => array(),
-            "resources" => array(),
+            "services" => [],
+            "resources" => [],
             "options" => "{databases.database[{oldId, newId, newName}]}"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -360,5 +351,4 @@ final class BackupsTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\BackupRestoration::class, $response);
     }
-
 }

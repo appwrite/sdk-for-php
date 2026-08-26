@@ -1,16 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Services;
 
 use Appwrite\Client;
-use Appwrite\InputFile;
 use Mockery;
+use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
 
 final class TokensTest extends TestCase
 {
-    private $client;
-    private $tokens;
+    private Client&MockInterface $client;
+    private Tokens $tokens;
 
     protected function setUp(): void
     {
@@ -20,10 +22,10 @@ final class TokensTest extends TestCase
 
     public function testMethodList(): void
     {
-        $data = array(
+        $data = [
             "total" => 5,
-            "tokens" => array(
-                array(
+            "tokens" => [
+                [
                     "\$id" => "bb8ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceId" => "5e5ea5c168bb8:5e5ea5c168bb8",
@@ -31,9 +33,9 @@ final class TokensTest extends TestCase
                     "expire" => "2020-10-15T06:38:00.000+00:00",
                     "secret" => "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
                     "accessedAt" => "2020-10-15T06:38:00.000+00:00"
-                )
-            )
-        );
+                ]
+            ]
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -49,10 +51,9 @@ final class TokensTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\ResourceTokenList::class, $response);
     }
-
     public function testMethodCreateFileToken(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "bb8ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "resourceId" => "5e5ea5c168bb8:5e5ea5c168bb8",
@@ -60,7 +61,7 @@ final class TokensTest extends TestCase
             "expire" => "2020-10-15T06:38:00.000+00:00",
             "secret" => "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
             "accessedAt" => "2020-10-15T06:38:00.000+00:00"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -76,10 +77,9 @@ final class TokensTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\ResourceToken::class, $response);
     }
-
     public function testMethodGet(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "bb8ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "resourceId" => "5e5ea5c168bb8:5e5ea5c168bb8",
@@ -87,7 +87,7 @@ final class TokensTest extends TestCase
             "expire" => "2020-10-15T06:38:00.000+00:00",
             "secret" => "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
             "accessedAt" => "2020-10-15T06:38:00.000+00:00"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -102,10 +102,9 @@ final class TokensTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\ResourceToken::class, $response);
     }
-
     public function testMethodUpdate(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "bb8ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "resourceId" => "5e5ea5c168bb8:5e5ea5c168bb8",
@@ -113,7 +112,7 @@ final class TokensTest extends TestCase
             "expire" => "2020-10-15T06:38:00.000+00:00",
             "secret" => "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
             "accessedAt" => "2020-10-15T06:38:00.000+00:00"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -128,7 +127,6 @@ final class TokensTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\ResourceToken::class, $response);
     }
-
     public function testMethodDelete(): void
     {
         $data = '';
@@ -146,5 +144,4 @@ final class TokensTest extends TestCase
 
         $this->assertSame($data, $response);
     }
-
 }

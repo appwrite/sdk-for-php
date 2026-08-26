@@ -14,4 +14,6 @@ $project = new Project($client);
 $result = $project->listVariables(
     queries: [], // optional
     total: false // optional
-);```
+);
+
+```

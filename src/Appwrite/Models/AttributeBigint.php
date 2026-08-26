@@ -1,11 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 use Appwrite\Enums\AttributeStatus;
 
 /**
  * AttributeBigInt
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class AttributeBigint
 {
@@ -76,10 +80,10 @@ readonly class AttributeBigint
             required: $data['required'],
             createdAt: $data['$createdAt'],
             updatedAt: $data['$updatedAt'],
-            array: array_key_exists('array', $data) ? $data['array'] : null,
-            min: array_key_exists('min', $data) ? $data['min'] : null,
-            max: array_key_exists('max', $data) ? $data['max'] : null,
-            default: array_key_exists('default', $data) ? $data['default'] : null
+            array: $data['array'] ?? null,
+            min: $data['min'] ?? null,
+            max: $data['max'] ?? null,
+            default: $data['default'] ?? null
         );
     }
 
@@ -88,7 +92,7 @@ readonly class AttributeBigint
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'key' => static::serializeValue($this->key),
             'type' => static::serializeValue($this->type),
             'status' => static::serializeValue($this->status),
@@ -101,7 +105,5 @@ readonly class AttributeBigint
             'max' => static::serializeValue($this->max),
             'default' => static::serializeValue($this->default)
         ];
-
-        return $result;
     }
 }

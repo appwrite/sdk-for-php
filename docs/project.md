@@ -532,6 +532,21 @@ PATCH https://cloud.appwrite.io/v1/project/oauth2/google
 
 
 ```http request
+PATCH https://cloud.appwrite.io/v1/project/oauth2/huggingface
+```
+
+** Update the project OAuth2 Hugging Face configuration. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| clientId | string | 'Client ID' of Hugging Face OAuth2 app. For example: 2ab9cff9-d711-40ad-a91e-b08a49c42d24 |  |
+| clientSecret | string | 'Client Secret' of Hugging Face OAuth2 app. For example: oauth_app_secret_wcLhRtl000000000000000000000xbNdLt |  |
+| enabled | boolean | OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid. |  |
+
+
+```http request
 PATCH https://cloud.appwrite.io/v1/project/oauth2/keycloak
 ```
 

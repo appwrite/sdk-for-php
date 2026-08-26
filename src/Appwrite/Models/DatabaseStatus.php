@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Status
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class DatabaseStatus
 {
@@ -110,8 +114,8 @@ readonly class DatabaseStatus
                     $data['volumes']
                 )
                 : $data['volumes'],
-            effectiveSyncMode: array_key_exists('effectiveSyncMode', $data) ? $data['effectiveSyncMode'] : null,
-            syncStateConfirmed: array_key_exists('syncStateConfirmed', $data) ? $data['syncStateConfirmed'] : null
+            effectiveSyncMode: $data['effectiveSyncMode'] ?? null,
+            syncStateConfirmed: $data['syncStateConfirmed'] ?? null
         );
     }
 
@@ -120,7 +124,7 @@ readonly class DatabaseStatus
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'health' => static::serializeValue($this->health),
             'ready' => static::serializeValue($this->ready),
             'engine' => static::serializeValue($this->engine),
@@ -136,7 +140,5 @@ readonly class DatabaseStatus
             'replicas' => static::serializeValue($this->replicas),
             'volumes' => static::serializeValue($this->volumes)
         ];
-
-        return $result;
     }
 }

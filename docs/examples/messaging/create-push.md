@@ -32,4 +32,6 @@ $result = $messaging->createPush(
     contentAvailable: false, // optional
     critical: false, // optional
     priority: MessagePriority::NORMAL() // optional
-);```
+);
+
+```

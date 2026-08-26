@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Currency
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class Currency
 {
@@ -74,7 +78,7 @@ readonly class Currency
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'symbol' => static::serializeValue($this->symbol),
             'name' => static::serializeValue($this->name),
             'symbolNative' => static::serializeValue($this->symbolNative),
@@ -83,7 +87,5 @@ readonly class Currency
             'code' => static::serializeValue($this->code),
             'namePlural' => static::serializeValue($this->namePlural)
         ];
-
-        return $result;
     }
 }

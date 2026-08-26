@@ -13,4 +13,6 @@ $tablesDB = new TablesDB($client);
 
 $result = $tablesDB->getStatus(
     databaseId: '<DATABASE_ID>'
-);```
+);
+
+```

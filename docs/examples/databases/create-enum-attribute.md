@@ -19,4 +19,6 @@ $result = $databases->createEnumAttribute(
     required: false,
     default: '<DEFAULT>', // optional
     array: false // optional
-);```
+);
+
+```

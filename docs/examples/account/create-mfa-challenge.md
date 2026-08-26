@@ -14,4 +14,6 @@ $account = new Account($client);
 
 $result = $account->createMFAChallenge(
     factor: AuthenticationFactor::EMAIL()
-);```
+);
+
+```

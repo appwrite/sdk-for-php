@@ -16,4 +16,6 @@ $result = $oauth2->revoke(
     tokenTypeHint: 'access_token', // optional
     clientId: '<CLIENT_ID>', // optional
     clientSecret: '<CLIENT_SECRET>' // optional
-);```
+);
+
+```

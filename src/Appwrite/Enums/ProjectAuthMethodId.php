@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Enums;
 
 use JsonSerializable;
+use Stringable;
 
-class ProjectAuthMethodId implements JsonSerializable
+class ProjectAuthMethodId implements JsonSerializable, Stringable
 {
     private static ProjectAuthMethodId $EMAILPASSWORD;
     private static ProjectAuthMethodId $MAGICURL;
@@ -14,11 +17,8 @@ class ProjectAuthMethodId implements JsonSerializable
     private static ProjectAuthMethodId $JWT;
     private static ProjectAuthMethodId $PHONE;
 
-    private string $value;
-
-    private function __construct(string $value)
+    private function __construct(private readonly string $value)
     {
-        $this->value = $value;
     }
 
     public function __toString(): string

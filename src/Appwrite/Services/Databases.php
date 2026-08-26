@@ -1,32 +1,23 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Services;
 
 use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
-use Appwrite\InputFile;
 use Appwrite\Enums\RelationshipType;
 use Appwrite\Enums\RelationMutate;
 use Appwrite\Enums\DatabasesIndexType;
-use Appwrite\Enums\OrderBy;
 
 class Databases extends Service
 {
-    public function __construct(Client $client)
-    {
-        parent::__construct($client);
-    }
-
     /**
      * Get a list of all databases from the current Appwrite project. You can use
      * the search parameter to filter your results.
      *
-     * @param ?array $queries
-     * @param ?string $search
-     * @param ?bool $total
      * @throws AppwriteException
-     * @return \Appwrite\Models\DatabaseList
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `list` instead.
      * @see TablesDB::list
@@ -69,18 +60,12 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\DatabaseList::from($response);
-
     }
 
     /**
      * Create a new Database.
-     * 
      *
-     * @param string $databaseId
-     * @param string $name
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\Database
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `create` instead.
      * @see TablesDB::create
@@ -118,15 +103,12 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\Database::from($response);
-
     }
 
     /**
      * List transactions across all databases.
      *
-     * @param ?array $queries
      * @throws AppwriteException
-     * @return \Appwrite\Models\TransactionList
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `listTransactions` instead.
      * @see TablesDB::listTransactions
@@ -161,15 +143,12 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\TransactionList::from($response);
-
     }
 
     /**
      * Create a new transaction.
      *
-     * @param ?int $ttl
      * @throws AppwriteException
-     * @return \Appwrite\Models\Transaction
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createTransaction` instead.
      * @see TablesDB::createTransaction
@@ -205,15 +184,12 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\Transaction::from($response);
-
     }
 
     /**
      * Get a transaction by its unique ID.
      *
-     * @param string $transactionId
      * @throws AppwriteException
-     * @return \Appwrite\Models\Transaction
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `getTransaction` instead.
      * @see TablesDB::getTransaction
@@ -245,17 +221,12 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\Transaction::from($response);
-
     }
 
     /**
      * Update a transaction, to either commit or roll back its operations.
      *
-     * @param string $transactionId
-     * @param ?bool $commit
-     * @param ?bool $rollback
      * @throws AppwriteException
-     * @return \Appwrite\Models\Transaction
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateTransaction` instead.
      * @see TablesDB::updateTransaction
@@ -296,15 +267,12 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\Transaction::from($response);
-
     }
 
     /**
      * Delete a transaction by its unique ID.
      *
-     * @param string $transactionId
      * @throws AppwriteException
-     * @return string
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `deleteTransaction` instead.
      * @see TablesDB::deleteTransaction
@@ -324,24 +292,18 @@ class Databases extends Service
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 
     /**
      * Create multiple operations in a single transaction.
      *
-     * @param string $transactionId
-     * @param ?array $operations
      * @throws AppwriteException
-     * @return \Appwrite\Models\Transaction
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createOperations` instead.
      * @see TablesDB::createOperations
@@ -378,16 +340,13 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\Transaction::from($response);
-
     }
 
     /**
      * Get a database by its unique ID. This endpoint response returns a JSON
      * object with the database metadata.
      *
-     * @param string $databaseId
      * @throws AppwriteException
-     * @return \Appwrite\Models\Database
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `get` instead.
      * @see TablesDB::get
@@ -419,17 +378,12 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\Database::from($response);
-
     }
 
     /**
      * Update a database by its unique ID.
      *
-     * @param string $databaseId
-     * @param ?string $name
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\Database
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `update` instead.
      * @see TablesDB::update
@@ -470,16 +424,13 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\Database::from($response);
-
     }
 
     /**
      * Delete a database by its unique ID. Only API keys with with databases.write
      * scope can delete a database.
      *
-     * @param string $databaseId
      * @throws AppwriteException
-     * @return string
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `delete` instead.
      * @see TablesDB::delete
@@ -499,27 +450,19 @@ class Databases extends Service
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 
     /**
      * Get a list of all collections that belong to the provided databaseId. You
      * can use the search parameter to filter your results.
      *
-     * @param string $databaseId
-     * @param ?array $queries
-     * @param ?string $search
-     * @param ?bool $total
      * @throws AppwriteException
-     * @return \Appwrite\Models\CollectionList
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `listTables` instead.
      * @see TablesDB::listTables
@@ -563,7 +506,6 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\CollectionList::from($response);
-
     }
 
     /**
@@ -572,16 +514,7 @@ class Databases extends Service
      * integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
      * API or directly from your database console.
      *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param string $name
-     * @param ?array $permissions
-     * @param ?bool $documentSecurity
-     * @param ?bool $enabled
-     * @param ?array $attributes
-     * @param ?array $indexes
      * @throws AppwriteException
-     * @return \Appwrite\Models\Collection
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createTable` instead.
      * @see TablesDB::createTable
@@ -633,17 +566,13 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\Collection::from($response);
-
     }
 
     /**
      * Get a collection by its unique ID. This endpoint response returns a JSON
      * object with the collection metadata.
      *
-     * @param string $databaseId
-     * @param string $collectionId
      * @throws AppwriteException
-     * @return \Appwrite\Models\Collection
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `getTable` instead.
      * @see TablesDB::getTable
@@ -676,21 +605,12 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\Collection::from($response);
-
     }
 
     /**
      * Update a collection by its unique ID.
      *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param ?string $name
-     * @param ?array $permissions
-     * @param ?bool $documentSecurity
-     * @param ?bool $enabled
-     * @param ?bool $purge
      * @throws AppwriteException
-     * @return \Appwrite\Models\Collection
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateTable` instead.
      * @see TablesDB::updateTable
@@ -741,17 +661,13 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\Collection::from($response);
-
     }
 
     /**
      * Delete a collection by its unique ID. Only users with write permissions
      * have access to delete this resource.
      *
-     * @param string $databaseId
-     * @param string $collectionId
      * @throws AppwriteException
-     * @return string
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `deleteTable` instead.
      * @see TablesDB::deleteTable
@@ -772,26 +688,18 @@ class Databases extends Service
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 
     /**
      * List attributes in the collection.
      *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param ?array $queries
-     * @param ?bool $total
      * @throws AppwriteException
-     * @return \Appwrite\Models\AttributeList
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `listColumns` instead.
      * @see TablesDB::listColumns
@@ -832,24 +740,13 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\AttributeList::from($response);
-
     }
 
     /**
      * Create a bigint attribute. Optionally, minimum and maximum values can be
      * provided.
-     * 
      *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param string $key
-     * @param bool $required
-     * @param ?int $min
-     * @param ?int $max
-     * @param ?int $xdefault
-     * @param ?bool $xarray
      * @throws AppwriteException
-     * @return \Appwrite\Models\AttributeBigint
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createBigIntColumn` instead.
      * @see TablesDB::createBigIntColumn
@@ -892,24 +789,13 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\AttributeBigint::from($response);
-
     }
 
     /**
      * Update a bigint attribute. Changing the `default` value will not update
      * already existing documents.
-     * 
      *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param string $key
-     * @param bool $required
-     * @param ?int $xdefault
-     * @param ?int $min
-     * @param ?int $max
-     * @param ?string $newKey
      * @throws AppwriteException
-     * @return \Appwrite\Models\AttributeBigint
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateBigIntColumn` instead.
      * @see TablesDB::updateBigIntColumn
@@ -949,21 +835,12 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\AttributeBigint::from($response);
-
     }
 
     /**
      * Create a boolean attribute.
-     * 
      *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param string $key
-     * @param bool $required
-     * @param ?bool $xdefault
-     * @param ?bool $xarray
      * @throws AppwriteException
-     * @return \Appwrite\Models\AttributeBoolean
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createBooleanColumn` instead.
      * @see TablesDB::createBooleanColumn
@@ -1004,21 +881,13 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\AttributeBoolean::from($response);
-
     }
 
     /**
      * Update a boolean attribute. Changing the `default` value will not update
      * already existing documents.
      *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param string $key
-     * @param bool $required
-     * @param ?bool $xdefault
-     * @param ?string $newKey
      * @throws AppwriteException
-     * @return \Appwrite\Models\AttributeBoolean
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateBooleanColumn` instead.
      * @see TablesDB::updateBooleanColumn
@@ -1056,20 +925,12 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\AttributeBoolean::from($response);
-
     }
 
     /**
      * Create a date time attribute according to the ISO 8601 standard.
      *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param string $key
-     * @param bool $required
-     * @param ?string $xdefault
-     * @param ?bool $xarray
      * @throws AppwriteException
-     * @return \Appwrite\Models\AttributeDatetime
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createDatetimeColumn` instead.
      * @see TablesDB::createDatetimeColumn
@@ -1110,21 +971,13 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\AttributeDatetime::from($response);
-
     }
 
     /**
      * Update a date time attribute. Changing the `default` value will not update
      * already existing documents.
      *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param string $key
-     * @param bool $required
-     * @param ?string $xdefault
-     * @param ?string $newKey
      * @throws AppwriteException
-     * @return \Appwrite\Models\AttributeDatetime
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateDatetimeColumn` instead.
      * @see TablesDB::updateDatetimeColumn
@@ -1162,21 +1015,12 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\AttributeDatetime::from($response);
-
     }
 
     /**
      * Create an email attribute.
-     * 
      *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param string $key
-     * @param bool $required
-     * @param ?string $xdefault
-     * @param ?bool $xarray
      * @throws AppwriteException
-     * @return \Appwrite\Models\AttributeEmail
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createEmailColumn` instead.
      * @see TablesDB::createEmailColumn
@@ -1217,22 +1061,13 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\AttributeEmail::from($response);
-
     }
 
     /**
      * Update an email attribute. Changing the `default` value will not update
      * already existing documents.
-     * 
      *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param string $key
-     * @param bool $required
-     * @param ?string $xdefault
-     * @param ?string $newKey
      * @throws AppwriteException
-     * @return \Appwrite\Models\AttributeEmail
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateEmailColumn` instead.
      * @see TablesDB::updateEmailColumn
@@ -1270,23 +1105,13 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\AttributeEmail::from($response);
-
     }
 
     /**
      * Create an enum attribute. The `elements` param acts as a white-list of
-     * accepted values for this attribute. 
-     * 
+     * accepted values for this attribute.
      *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param string $key
-     * @param array $elements
-     * @param bool $required
-     * @param ?string $xdefault
-     * @param ?bool $xarray
      * @throws AppwriteException
-     * @return \Appwrite\Models\AttributeEnum
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createEnumColumn` instead.
      * @see TablesDB::createEnumColumn
@@ -1328,23 +1153,13 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\AttributeEnum::from($response);
-
     }
 
     /**
      * Update an enum attribute. Changing the `default` value will not update
      * already existing documents.
-     * 
      *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param string $key
-     * @param array $elements
-     * @param bool $required
-     * @param ?string $xdefault
-     * @param ?string $newKey
      * @throws AppwriteException
-     * @return \Appwrite\Models\AttributeEnum
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateEnumColumn` instead.
      * @see TablesDB::updateEnumColumn
@@ -1383,24 +1198,13 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\AttributeEnum::from($response);
-
     }
 
     /**
      * Create a float attribute. Optionally, minimum and maximum values can be
      * provided.
-     * 
      *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param string $key
-     * @param bool $required
-     * @param ?float $min
-     * @param ?float $max
-     * @param ?float $xdefault
-     * @param ?bool $xarray
      * @throws AppwriteException
-     * @return \Appwrite\Models\AttributeFloat
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createFloatColumn` instead.
      * @see TablesDB::createFloatColumn
@@ -1443,24 +1247,13 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\AttributeFloat::from($response);
-
     }
 
     /**
      * Update a float attribute. Changing the `default` value will not update
      * already existing documents.
-     * 
      *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param string $key
-     * @param bool $required
-     * @param ?float $xdefault
-     * @param ?float $min
-     * @param ?float $max
-     * @param ?string $newKey
      * @throws AppwriteException
-     * @return \Appwrite\Models\AttributeFloat
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateFloatColumn` instead.
      * @see TablesDB::updateFloatColumn
@@ -1500,24 +1293,13 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\AttributeFloat::from($response);
-
     }
 
     /**
      * Create an integer attribute. Optionally, minimum and maximum values can be
      * provided.
-     * 
      *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param string $key
-     * @param bool $required
-     * @param ?int $min
-     * @param ?int $max
-     * @param ?int $xdefault
-     * @param ?bool $xarray
      * @throws AppwriteException
-     * @return \Appwrite\Models\AttributeInteger
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createIntegerColumn` instead.
      * @see TablesDB::createIntegerColumn
@@ -1560,24 +1342,13 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\AttributeInteger::from($response);
-
     }
 
     /**
      * Update an integer attribute. Changing the `default` value will not update
      * already existing documents.
-     * 
      *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param string $key
-     * @param bool $required
-     * @param ?int $xdefault
-     * @param ?int $min
-     * @param ?int $max
-     * @param ?string $newKey
      * @throws AppwriteException
-     * @return \Appwrite\Models\AttributeInteger
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateIntegerColumn` instead.
      * @see TablesDB::updateIntegerColumn
@@ -1617,21 +1388,12 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\AttributeInteger::from($response);
-
     }
 
     /**
      * Create IP address attribute.
-     * 
      *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param string $key
-     * @param bool $required
-     * @param ?string $xdefault
-     * @param ?bool $xarray
      * @throws AppwriteException
-     * @return \Appwrite\Models\AttributeIp
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createIpColumn` instead.
      * @see TablesDB::createIpColumn
@@ -1672,22 +1434,13 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\AttributeIp::from($response);
-
     }
 
     /**
      * Update an ip attribute. Changing the `default` value will not update
      * already existing documents.
-     * 
      *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param string $key
-     * @param bool $required
-     * @param ?string $xdefault
-     * @param ?string $newKey
      * @throws AppwriteException
-     * @return \Appwrite\Models\AttributeIp
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateIpColumn` instead.
      * @see TablesDB::updateIpColumn
@@ -1725,19 +1478,12 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\AttributeIp::from($response);
-
     }
 
     /**
      * Create a geometric line attribute.
      *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param string $key
-     * @param bool $required
-     * @param ?array $xdefault
      * @throws AppwriteException
-     * @return \Appwrite\Models\AttributeLine
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createLineColumn` instead.
      * @see TablesDB::createLineColumn
@@ -1774,21 +1520,13 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\AttributeLine::from($response);
-
     }
 
     /**
      * Update a line attribute. Changing the `default` value will not update
      * already existing documents.
      *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param string $key
-     * @param bool $required
-     * @param ?array $xdefault
-     * @param ?string $newKey
      * @throws AppwriteException
-     * @return \Appwrite\Models\AttributeLine
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateLineColumn` instead.
      * @see TablesDB::updateLineColumn
@@ -1826,22 +1564,12 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\AttributeLine::from($response);
-
     }
 
     /**
      * Create a longtext attribute.
-     * 
      *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param string $key
-     * @param bool $required
-     * @param ?string $xdefault
-     * @param ?bool $xarray
-     * @param ?bool $encrypt
      * @throws AppwriteException
-     * @return \Appwrite\Models\AttributeLongtext
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createLongtextColumn` instead.
      * @see TablesDB::createLongtextColumn
@@ -1886,22 +1614,13 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\AttributeLongtext::from($response);
-
     }
 
     /**
      * Update a longtext attribute. Changing the `default` value will not update
      * already existing documents.
-     * 
      *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param string $key
-     * @param bool $required
-     * @param ?string $xdefault
-     * @param ?string $newKey
      * @throws AppwriteException
-     * @return \Appwrite\Models\AttributeLongtext
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateLongtextColumn` instead.
      * @see TablesDB::updateLongtextColumn
@@ -1939,22 +1658,12 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\AttributeLongtext::from($response);
-
     }
 
     /**
      * Create a mediumtext attribute.
-     * 
      *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param string $key
-     * @param bool $required
-     * @param ?string $xdefault
-     * @param ?bool $xarray
-     * @param ?bool $encrypt
      * @throws AppwriteException
-     * @return \Appwrite\Models\AttributeMediumtext
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createMediumtextColumn` instead.
      * @see TablesDB::createMediumtextColumn
@@ -1999,22 +1708,13 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\AttributeMediumtext::from($response);
-
     }
 
     /**
      * Update a mediumtext attribute. Changing the `default` value will not update
      * already existing documents.
-     * 
      *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param string $key
-     * @param bool $required
-     * @param ?string $xdefault
-     * @param ?string $newKey
      * @throws AppwriteException
-     * @return \Appwrite\Models\AttributeMediumtext
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateMediumtextColumn` instead.
      * @see TablesDB::updateMediumtextColumn
@@ -2052,19 +1752,12 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\AttributeMediumtext::from($response);
-
     }
 
     /**
      * Create a geometric point attribute.
      *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param string $key
-     * @param bool $required
-     * @param ?array $xdefault
      * @throws AppwriteException
-     * @return \Appwrite\Models\AttributePoint
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createPointColumn` instead.
      * @see TablesDB::createPointColumn
@@ -2101,21 +1794,13 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\AttributePoint::from($response);
-
     }
 
     /**
      * Update a point attribute. Changing the `default` value will not update
      * already existing documents.
      *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param string $key
-     * @param bool $required
-     * @param ?array $xdefault
-     * @param ?string $newKey
      * @throws AppwriteException
-     * @return \Appwrite\Models\AttributePoint
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updatePointColumn` instead.
      * @see TablesDB::updatePointColumn
@@ -2153,19 +1838,12 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\AttributePoint::from($response);
-
     }
 
     /**
      * Create a geometric polygon attribute.
      *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param string $key
-     * @param bool $required
-     * @param ?array $xdefault
      * @throws AppwriteException
-     * @return \Appwrite\Models\AttributePolygon
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createPolygonColumn` instead.
      * @see TablesDB::createPolygonColumn
@@ -2202,21 +1880,13 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\AttributePolygon::from($response);
-
     }
 
     /**
      * Update a polygon attribute. Changing the `default` value will not update
      * already existing documents.
      *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param string $key
-     * @param bool $required
-     * @param ?array $xdefault
-     * @param ?string $newKey
      * @throws AppwriteException
-     * @return \Appwrite\Models\AttributePolygon
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updatePolygonColumn` instead.
      * @see TablesDB::updatePolygonColumn
@@ -2254,24 +1924,13 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\AttributePolygon::from($response);
-
     }
 
     /**
      * Create relationship attribute. [Learn more about relationship
      * attributes](https://appwrite.io/docs/databases-relationships#relationship-attributes).
-     * 
      *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param string $relatedCollectionId
-     * @param RelationshipType $type
-     * @param ?bool $twoWay
-     * @param ?string $key
-     * @param ?string $twoWayKey
-     * @param ?RelationMutate $onDelete
      * @throws AppwriteException
-     * @return \Appwrite\Models\AttributeRelationship
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createRelationshipColumn` instead.
      * @see TablesDB::createRelationshipColumn
@@ -2317,21 +1976,13 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\AttributeRelationship::from($response);
-
     }
 
     /**
      * Update relationship attribute. [Learn more about relationship
      * attributes](https://appwrite.io/docs/databases-relationships#relationship-attributes).
-     * 
      *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param string $key
-     * @param ?RelationMutate $onDelete
-     * @param ?string $newKey
      * @throws AppwriteException
-     * @return \Appwrite\Models\AttributeRelationship
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateRelationshipColumn` instead.
      * @see TablesDB::updateRelationshipColumn
@@ -2371,23 +2022,12 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\AttributeRelationship::from($response);
-
     }
 
     /**
      * Create a string attribute.
-     * 
      *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param string $key
-     * @param int $size
-     * @param bool $required
-     * @param ?string $xdefault
-     * @param ?bool $xarray
-     * @param ?bool $encrypt
      * @throws AppwriteException
-     * @return \Appwrite\Models\AttributeString
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createStringColumn` instead.
      * @see TablesDB::createStringColumn
@@ -2433,23 +2073,13 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\AttributeString::from($response);
-
     }
 
     /**
      * Update a string attribute. Changing the `default` value will not update
      * already existing documents.
-     * 
      *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param string $key
-     * @param bool $required
-     * @param ?string $xdefault
-     * @param ?int $size
-     * @param ?string $newKey
      * @throws AppwriteException
-     * @return \Appwrite\Models\AttributeString
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateStringColumn` instead.
      * @see TablesDB::updateStringColumn
@@ -2488,22 +2118,12 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\AttributeString::from($response);
-
     }
 
     /**
      * Create a text attribute.
-     * 
      *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param string $key
-     * @param bool $required
-     * @param ?string $xdefault
-     * @param ?bool $xarray
-     * @param ?bool $encrypt
      * @throws AppwriteException
-     * @return \Appwrite\Models\AttributeText
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createTextColumn` instead.
      * @see TablesDB::createTextColumn
@@ -2548,22 +2168,13 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\AttributeText::from($response);
-
     }
 
     /**
      * Update a text attribute. Changing the `default` value will not update
      * already existing documents.
-     * 
      *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param string $key
-     * @param bool $required
-     * @param ?string $xdefault
-     * @param ?string $newKey
      * @throws AppwriteException
-     * @return \Appwrite\Models\AttributeText
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateTextColumn` instead.
      * @see TablesDB::updateTextColumn
@@ -2601,21 +2212,12 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\AttributeText::from($response);
-
     }
 
     /**
      * Create a URL attribute.
-     * 
      *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param string $key
-     * @param bool $required
-     * @param ?string $xdefault
-     * @param ?bool $xarray
      * @throws AppwriteException
-     * @return \Appwrite\Models\AttributeUrl
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createUrlColumn` instead.
      * @see TablesDB::createUrlColumn
@@ -2656,22 +2258,13 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\AttributeUrl::from($response);
-
     }
 
     /**
      * Update an url attribute. Changing the `default` value will not update
      * already existing documents.
-     * 
      *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param string $key
-     * @param bool $required
-     * @param ?string $xdefault
-     * @param ?string $newKey
      * @throws AppwriteException
-     * @return \Appwrite\Models\AttributeUrl
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateUrlColumn` instead.
      * @see TablesDB::updateUrlColumn
@@ -2709,23 +2302,12 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\AttributeUrl::from($response);
-
     }
 
     /**
      * Create a varchar attribute.
-     * 
      *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param string $key
-     * @param int $size
-     * @param bool $required
-     * @param ?string $xdefault
-     * @param ?bool $xarray
-     * @param ?bool $encrypt
      * @throws AppwriteException
-     * @return \Appwrite\Models\AttributeVarchar
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createVarcharColumn` instead.
      * @see TablesDB::createVarcharColumn
@@ -2771,23 +2353,13 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\AttributeVarchar::from($response);
-
     }
 
     /**
      * Update a varchar attribute. Changing the `default` value will not update
      * already existing documents.
-     * 
      *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param string $key
-     * @param bool $required
-     * @param ?string $xdefault
-     * @param ?int $size
-     * @param ?string $newKey
      * @throws AppwriteException
-     * @return \Appwrite\Models\AttributeVarchar
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateVarcharColumn` instead.
      * @see TablesDB::updateVarcharColumn
@@ -2826,17 +2398,12 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\AttributeVarchar::from($response);
-
     }
 
     /**
      * Get attribute by ID.
      *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param string $key
      * @throws AppwriteException
-     * @return \Appwrite\Models\AttributeBoolean|\Appwrite\Models\AttributeInteger|\Appwrite\Models\AttributeFloat|\Appwrite\Models\AttributeEmail|\Appwrite\Models\AttributeEnum|\Appwrite\Models\AttributeUrl|\Appwrite\Models\AttributeIp|\Appwrite\Models\AttributeDatetime|\Appwrite\Models\AttributeRelationship|\Appwrite\Models\AttributeString
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `getColumn` instead.
      * @see TablesDB::getColumn
@@ -2910,17 +2477,12 @@ class Databases extends Service
         }
 
         throw new \UnexpectedValueException('Unable to match response to any expected response model.');
-
     }
 
     /**
      * Deletes an attribute.
      *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param string $key
      * @throws AppwriteException
-     * @return string
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `deleteColumn` instead.
      * @see TablesDB::deleteColumn
@@ -2942,29 +2504,19 @@ class Databases extends Service
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 
     /**
-     * Get a list of all the user's documents in a given collection. You can use
+     * Get a list of all the user&#039;s documents in a given collection. You can use
      * the query params to filter your results.
      *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param ?array $queries
-     * @param ?string $transactionId
-     * @param ?bool $total
-     * @param ?int $ttl
      * @throws AppwriteException
-     * @return \Appwrite\Models\DocumentList
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `listRows` instead.
      * @see TablesDB::listRows
@@ -3013,7 +2565,6 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\DocumentList::from($response);
-
     }
 
     /**
@@ -3022,14 +2573,7 @@ class Databases extends Service
      * integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
      * API or directly from your database console.
      *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param string $documentId
-     * @param array $data
-     * @param ?array $permissions
-     * @param ?string $transactionId
      * @throws AppwriteException
-     * @return \Appwrite\Models\Document
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createRow` instead.
      * @see TablesDB::createRow
@@ -3067,7 +2611,6 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\Document::from($response);
-
     }
 
     /**
@@ -3076,12 +2619,7 @@ class Databases extends Service
      * integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
      * API or directly from your database console.
      *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param array $documents
-     * @param ?string $transactionId
      * @throws AppwriteException
-     * @return \Appwrite\Models\DocumentList
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createRows` instead.
      * @see TablesDB::createRows
@@ -3117,7 +2655,6 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\DocumentList::from($response);
-
     }
 
     /**
@@ -3125,14 +2662,8 @@ class Databases extends Service
      * new collection resource using either a [server
      * integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
      * API or directly from your database console.
-     * 
      *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param array $documents
-     * @param ?string $transactionId
      * @throws AppwriteException
-     * @return \Appwrite\Models\DocumentList
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `upsertRows` instead.
      * @see TablesDB::upsertRows
@@ -3168,7 +2699,6 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\DocumentList::from($response);
-
     }
 
     /**
@@ -3176,13 +2706,7 @@ class Databases extends Service
      * then all documents are updated. You can pass only specific fields to be
      * updated.
      *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param ?array $data
-     * @param ?array $queries
-     * @param ?string $transactionId
      * @throws AppwriteException
-     * @return \Appwrite\Models\DocumentList
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateRows` instead.
      * @see TablesDB::updateRows
@@ -3225,19 +2749,13 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\DocumentList::from($response);
-
     }
 
     /**
      * Bulk delete documents using queries, if no queries are passed then all
      * documents are deleted.
      *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param ?array $queries
-     * @param ?string $transactionId
      * @throws AppwriteException
-     * @return \Appwrite\Models\DocumentList
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `deleteRows` instead.
      * @see TablesDB::deleteRows
@@ -3279,20 +2797,13 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\DocumentList::from($response);
-
     }
 
     /**
      * Get a document by its unique ID. This endpoint response returns a JSON
      * object with the document data.
      *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param string $documentId
-     * @param ?array $queries
-     * @param ?string $transactionId
      * @throws AppwriteException
-     * @return \Appwrite\Models\Document
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `getRow` instead.
      * @see TablesDB::getRow
@@ -3334,7 +2845,6 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\Document::from($response);
-
     }
 
     /**
@@ -3343,14 +2853,7 @@ class Databases extends Service
      * integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
      * API or directly from your database console.
      *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param string $documentId
-     * @param ?array $data
-     * @param ?array $permissions
-     * @param ?string $transactionId
      * @throws AppwriteException
-     * @return \Appwrite\Models\Document
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `upsertRow` instead.
      * @see TablesDB::upsertRow
@@ -3391,21 +2894,13 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\Document::from($response);
-
     }
 
     /**
      * Update a document by its unique ID. Using the patch method you can pass
      * only specific fields that will get updated.
      *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param string $documentId
-     * @param ?array $data
-     * @param ?array $permissions
-     * @param ?string $transactionId
      * @throws AppwriteException
-     * @return \Appwrite\Models\Document
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateRow` instead.
      * @see TablesDB::updateRow
@@ -3446,18 +2941,12 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\Document::from($response);
-
     }
 
     /**
      * Delete a document by its unique ID.
      *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param string $documentId
-     * @param ?string $transactionId
      * @throws AppwriteException
-     * @return string
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `deleteRow` instead.
      * @see TablesDB::deleteRow
@@ -3483,29 +2972,18 @@ class Databases extends Service
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 
     /**
      * Decrement a specific attribute of a document by a given value.
      *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param string $documentId
-     * @param string $attribute
-     * @param ?float $value
-     * @param ?float $min
-     * @param ?string $transactionId
      * @throws AppwriteException
-     * @return \Appwrite\Models\Document
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `decrementRowColumn` instead.
      * @see TablesDB::decrementRowColumn
@@ -3547,21 +3025,12 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\Document::from($response);
-
     }
 
     /**
      * Increment a specific attribute of a document by a given value.
      *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param string $documentId
-     * @param string $attribute
-     * @param ?float $value
-     * @param ?float $max
-     * @param ?string $transactionId
      * @throws AppwriteException
-     * @return \Appwrite\Models\Document
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `incrementRowColumn` instead.
      * @see TablesDB::incrementRowColumn
@@ -3603,18 +3072,12 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\Document::from($response);
-
     }
 
     /**
      * List indexes in the collection.
      *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param ?array $queries
-     * @param ?bool $total
      * @throws AppwriteException
-     * @return \Appwrite\Models\IndexList
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `listIndexes` instead.
      * @see TablesDB::listIndexes
@@ -3655,7 +3118,6 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\IndexList::from($response);
-
     }
 
     /**
@@ -3663,15 +3125,7 @@ class Databases extends Service
      * the attributes you will query in a single request.
      * Attributes can be `key`, `fulltext`, and `unique`.
      *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param string $key
-     * @param DatabasesIndexType $type
-     * @param array $attributes
-     * @param ?array $orders
-     * @param ?array $lengths
      * @throws AppwriteException
-     * @return \Appwrite\Models\Index
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createIndex` instead.
      * @see TablesDB::createIndex
@@ -3716,17 +3170,12 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\Index::from($response);
-
     }
 
     /**
      * Get an index by its unique ID.
      *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param string $key
      * @throws AppwriteException
-     * @return \Appwrite\Models\Index
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `getIndex` instead.
      * @see TablesDB::getIndex
@@ -3760,17 +3209,12 @@ class Databases extends Service
         }
 
         return \Appwrite\Models\Index::from($response);
-
     }
 
     /**
      * Delete an index.
      *
-     * @param string $databaseId
-     * @param string $collectionId
-     * @param string $key
      * @throws AppwriteException
-     * @return string
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `deleteIndex` instead.
      * @see TablesDB::deleteIndex
@@ -3792,14 +3236,11 @@ class Databases extends Service
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 }

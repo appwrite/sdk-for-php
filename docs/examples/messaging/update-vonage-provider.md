@@ -18,4 +18,6 @@ $result = $messaging->updateVonageProvider(
     apiKey: '<API_KEY>', // optional
     apiSecret: '<API_SECRET>', // optional
     from: '<FROM>' // optional
-);```
+);
+
+```

@@ -1,19 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Services;
 
 use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
-use Appwrite\InputFile;
 
 class Oauth2 extends Service
 {
-    public function __construct(Client $client)
-    {
-        parent::__construct($client);
-    }
-
     /**
      * Approve an OAuth2 grant after the user gives consent. Returns the
      * `redirectUrl` the end user should be sent to. The consent screen may
@@ -21,11 +17,7 @@ class Oauth2 extends Service
      * resources the user selected. You can pass Accept header of
      * `application/json` to receive a JSON response instead of a redirect.
      *
-     * @param string $grantId
-     * @param ?string $authorizationDetails
-     * @param ?string $scope
      * @throws AppwriteException
-     * @return \Appwrite\Models\Oauth2Approve
      */
     public function approve(string $grantId, ?string $authorizationDetails = null, ?string $scope = null): \Appwrite\Models\Oauth2Approve
     {
@@ -62,7 +54,6 @@ class Oauth2 extends Service
         }
 
         return \Appwrite\Models\Oauth2Approve::from($response);
-
     }
 
     /**
@@ -72,22 +63,7 @@ class Oauth2 extends Service
      * Accept header of `application/json` to receive a JSON response instead of a
      * redirect.
      *
-     * @param ?string $clientId
-     * @param ?string $redirectUri
-     * @param ?string $responseType
-     * @param ?string $scope
-     * @param ?string $state
-     * @param ?string $nonce
-     * @param ?string $codeChallenge
-     * @param ?string $codeChallengeMethod
-     * @param ?string $prompt
-     * @param ?int $maxAge
-     * @param ?string $authorizationDetails
-     * @param ?string $resource
-     * @param ?string $audience
-     * @param ?string $requestUri
      * @throws AppwriteException
-     * @return \Appwrite\Models\Oauth2Authorize
      */
     public function authorize(?string $clientId = null, ?string $redirectUri = null, ?string $responseType = null, ?string $scope = null, ?string $state = null, ?string $nonce = null, ?string $codeChallenge = null, ?string $codeChallengeMethod = null, ?string $prompt = null, ?int $maxAge = null, ?string $authorizationDetails = null, ?string $resource = null, ?string $audience = null, ?string $requestUri = null): \Appwrite\Models\Oauth2Authorize
     {
@@ -170,7 +146,6 @@ class Oauth2 extends Service
         }
 
         return \Appwrite\Models\Oauth2Authorize::from($response);
-
     }
 
     /**
@@ -180,22 +155,7 @@ class Oauth2 extends Service
      * Accept header of `application/json` to receive a JSON response instead of a
      * redirect.
      *
-     * @param ?string $clientId
-     * @param ?string $redirectUri
-     * @param ?string $responseType
-     * @param ?string $scope
-     * @param ?string $state
-     * @param ?string $nonce
-     * @param ?string $codeChallenge
-     * @param ?string $codeChallengeMethod
-     * @param ?string $prompt
-     * @param ?int $maxAge
-     * @param ?string $authorizationDetails
-     * @param ?string $resource
-     * @param ?string $audience
-     * @param ?string $requestUri
      * @throws AppwriteException
-     * @return \Appwrite\Models\Oauth2Authorize
      */
     public function authorizePost(?string $clientId = null, ?string $redirectUri = null, ?string $responseType = null, ?string $scope = null, ?string $state = null, ?string $nonce = null, ?string $codeChallenge = null, ?string $codeChallengeMethod = null, ?string $prompt = null, ?int $maxAge = null, ?string $authorizationDetails = null, ?string $resource = null, ?string $audience = null, ?string $requestUri = null): \Appwrite\Models\Oauth2Authorize
     {
@@ -276,20 +236,13 @@ class Oauth2 extends Service
         }
 
         return \Appwrite\Models\Oauth2Authorize::from($response);
-
     }
 
     /**
      * Start the OAuth2 Device Authorization Grant. Returns the device code, user
      * code, verification URL, expiration, and polling interval.
      *
-     * @param ?string $clientId
-     * @param ?string $scope
-     * @param ?string $authorizationDetails
-     * @param ?string $resource
-     * @param ?string $audience
      * @throws AppwriteException
-     * @return \Appwrite\Models\Oauth2DeviceAuthorization
      */
     public function createDeviceAuthorization(?string $clientId = null, ?string $scope = null, ?string $authorizationDetails = null, ?string $resource = null, ?string $audience = null): \Appwrite\Models\Oauth2DeviceAuthorization
     {
@@ -337,7 +290,6 @@ class Oauth2 extends Service
         }
 
         return \Appwrite\Models\Oauth2DeviceAuthorization::from($response);
-
     }
 
     /**
@@ -346,9 +298,7 @@ class Oauth2 extends Service
      * grant endpoint to render the consent screen, then to the approve or reject
      * endpoint to complete the flow.
      *
-     * @param string $userCode
      * @throws AppwriteException
-     * @return \Appwrite\Models\Oauth2Grant
      */
     public function createGrant(string $userCode): \Appwrite\Models\Oauth2Grant
     {
@@ -377,7 +327,6 @@ class Oauth2 extends Service
         }
 
         return \Appwrite\Models\Oauth2Grant::from($response);
-
     }
 
     /**
@@ -385,9 +334,7 @@ class Oauth2 extends Service
      * details of the authorization the user is being asked to approve. A grant
      * can only be read by the user it belongs to, or by server SDK.
      *
-     * @param string $grantId
      * @throws AppwriteException
-     * @return \Appwrite\Models\Oauth2Grant
      */
     public function getGrant(string $grantId): \Appwrite\Models\Oauth2Grant
     {
@@ -415,19 +362,14 @@ class Oauth2 extends Service
         }
 
         return \Appwrite\Models\Oauth2Grant::from($response);
-
     }
 
     /**
      * List the organizations the OAuth2 access token can access. Resolves the
-     * token's `organization` authorization details, expanding the `*` wildcard
+     * token&#039;s `organization` authorization details, expanding the `*` wildcard
      * into the concrete set of organizations the user can see.
      *
-     * @param ?int $limit
-     * @param ?int $offset
-     * @param ?string $search
      * @throws AppwriteException
-     * @return \Appwrite\Models\Oauth2OrganizationList
      */
     public function listOrganizations(?int $limit = null, ?int $offset = null, ?string $search = null): \Appwrite\Models\Oauth2OrganizationList
     {
@@ -466,28 +408,13 @@ class Oauth2 extends Service
         }
 
         return \Appwrite\Models\Oauth2OrganizationList::from($response);
-
     }
 
     /**
      * Store an OAuth2 authorization request server-side and receive a short-lived
      * request_uri handle for the authorize endpoint.
      *
-     * @param string $clientId
-     * @param string $redirectUri
-     * @param string $responseType
-     * @param ?string $scope
-     * @param ?string $state
-     * @param ?string $nonce
-     * @param ?string $codeChallenge
-     * @param ?string $codeChallengeMethod
-     * @param ?string $prompt
-     * @param ?int $maxAge
-     * @param ?string $authorizationDetails
-     * @param ?string $resource
-     * @param ?string $audience
      * @throws AppwriteException
-     * @return \Appwrite\Models\Oauth2PAR
      */
     public function createPAR(string $clientId, string $redirectUri, string $responseType, ?string $scope = null, ?string $state = null, ?string $nonce = null, ?string $codeChallenge = null, ?string $codeChallengeMethod = null, ?string $prompt = null, ?int $maxAge = null, ?string $authorizationDetails = null, ?string $resource = null, ?string $audience = null): \Appwrite\Models\Oauth2PAR
     {
@@ -555,19 +482,14 @@ class Oauth2 extends Service
         }
 
         return \Appwrite\Models\Oauth2PAR::from($response);
-
     }
 
     /**
-     * List the projects the OAuth2 access token can access. Resolves the token's
+     * List the projects the OAuth2 access token can access. Resolves the token&#039;s
      * `project` authorization details, expanding the `*` wildcard into the
      * concrete set of projects the user can see.
      *
-     * @param ?int $limit
-     * @param ?int $offset
-     * @param ?string $search
      * @throws AppwriteException
-     * @return \Appwrite\Models\Oauth2ProjectList
      */
     public function listProjects(?int $limit = null, ?int $offset = null, ?string $search = null): \Appwrite\Models\Oauth2ProjectList
     {
@@ -606,7 +528,6 @@ class Oauth2 extends Service
         }
 
         return \Appwrite\Models\Oauth2ProjectList::from($response);
-
     }
 
     /**
@@ -615,9 +536,7 @@ class Oauth2 extends Service
      * You can pass Accept header of `application/json` to receive a JSON response
      * instead of a redirect.
      *
-     * @param string $grantId
      * @throws AppwriteException
-     * @return \Appwrite\Models\Oauth2Reject
      */
     public function reject(string $grantId): \Appwrite\Models\Oauth2Reject
     {
@@ -646,18 +565,12 @@ class Oauth2 extends Service
         }
 
         return \Appwrite\Models\Oauth2Reject::from($response);
-
     }
 
     /**
      * Revoke an OAuth2 access token or refresh token.
      *
-     * @param string $token
-     * @param ?string $tokenTypeHint
-     * @param ?string $clientId
-     * @param ?string $clientSecret
      * @throws AppwriteException
-     * @return array
      */
     public function revoke(string $token, ?string $tokenTypeHint = null, ?string $clientId = null, ?string $clientSecret = null): array
     {
@@ -686,33 +599,19 @@ class Oauth2 extends Service
         $apiHeaders['content-type'] = 'application/json';
         $apiHeaders['accept'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 
     /**
      * Exchange an OAuth2 authorization code, refresh token, or device code for
      * access and refresh tokens.
      *
-     * @param string $grantType
-     * @param ?string $code
-     * @param ?string $refreshToken
-     * @param ?string $deviceCode
-     * @param ?string $clientId
-     * @param ?string $clientSecret
-     * @param ?string $codeVerifier
-     * @param ?string $redirectUri
-     * @param ?string $resource
-     * @param ?string $audience
      * @throws AppwriteException
-     * @return \Appwrite\Models\Oauth2Token
      */
     public function createToken(string $grantType, ?string $code = null, ?string $refreshToken = null, ?string $deviceCode = null, ?string $clientId = null, ?string $clientSecret = null, ?string $codeVerifier = null, ?string $redirectUri = null, ?string $resource = null, ?string $audience = null): \Appwrite\Models\Oauth2Token
     {
@@ -777,6 +676,5 @@ class Oauth2 extends Service
         }
 
         return \Appwrite\Models\Oauth2Token::from($response);
-
     }
 }

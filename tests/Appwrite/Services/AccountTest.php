@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Services;
 
 use Appwrite\Client;
-use Appwrite\InputFile;
 use Mockery;
+use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
 use Appwrite\Enums\AuthenticatorType;
 use Appwrite\Enums\AuthenticationFactor;
@@ -12,8 +14,8 @@ use Appwrite\Enums\OAuthProvider;
 
 final class AccountTest extends TestCase
 {
-    private $client;
-    private $account;
+    private Client&MockInterface $client;
+    private Account $account;
 
     protected function setUp(): void
     {
@@ -23,23 +25,23 @@ final class AccountTest extends TestCase
 
     public function testMethodGet(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "John Doe",
             "registration" => "2020-10-15T06:38:00.000+00:00",
             "status" => true,
-            "labels" => array(),
+            "labels" => [],
             "passwordUpdate" => "2020-10-15T06:38:00.000+00:00",
             "email" => "john@appwrite.io",
             "phone" => "+4930901820",
             "emailVerification" => true,
             "phoneVerification" => true,
             "mfa" => true,
-            "prefs" => array(),
-            "targets" => array(
-                array(
+            "prefs" => [],
+            "targets" => [
+                [
                     "\$id" => "259125845563242502",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -48,10 +50,10 @@ final class AccountTest extends TestCase
                     "providerType" => "email",
                     "identifier" => "token",
                     "expired" => true
-                )
-            ),
+                ]
+            ],
             "accessedAt" => "2020-10-15T06:38:00.000+00:00"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -64,26 +66,25 @@ final class AccountTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\User::class, $response);
     }
-
     public function testMethodCreate(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "John Doe",
             "registration" => "2020-10-15T06:38:00.000+00:00",
             "status" => true,
-            "labels" => array(),
+            "labels" => [],
             "passwordUpdate" => "2020-10-15T06:38:00.000+00:00",
             "email" => "john@appwrite.io",
             "phone" => "+4930901820",
             "emailVerification" => true,
             "phoneVerification" => true,
             "mfa" => true,
-            "prefs" => array(),
-            "targets" => array(
-                array(
+            "prefs" => [],
+            "targets" => [
+                [
                     "\$id" => "259125845563242502",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -92,10 +93,10 @@ final class AccountTest extends TestCase
                     "providerType" => "email",
                     "identifier" => "token",
                     "expired" => true
-                )
-            ),
+                ]
+            ],
             "accessedAt" => "2020-10-15T06:38:00.000+00:00"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -112,26 +113,25 @@ final class AccountTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\User::class, $response);
     }
-
     public function testMethodListConsents(): void
     {
-        $data = array(
+        $data = [
             "total" => 5,
-            "consents" => array(
-                array(
+            "consents" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
                     "userId" => "5e5ea5c16897e",
                     "appId" => "5e5ea5c16897e",
                     "cimdUrl" => "https://example.com/.well-known/client-metadata.json",
-                    "scopes" => array(),
-                    "resources" => array(),
+                    "scopes" => [],
+                    "resources" => [],
                     "authorizationDetails" => "[{\"type\":\"calendar\",\"identifier\":\"primary\",\"actions\":[\"read_events\",\"create_event\"]}]",
                     "expire" => "2020-10-15T06:38:00.000+00:00"
-                )
-            )
-        );
+                ]
+            ]
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -144,21 +144,20 @@ final class AccountTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Oauth2ConsentList::class, $response);
     }
-
     public function testMethodGetConsent(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "userId" => "5e5ea5c16897e",
             "appId" => "5e5ea5c16897e",
             "cimdUrl" => "https://example.com/.well-known/client-metadata.json",
-            "scopes" => array(),
-            "resources" => array(),
+            "scopes" => [],
+            "resources" => [],
             "authorizationDetails" => "[{\"type\":\"calendar\",\"identifier\":\"primary\",\"actions\":[\"read_events\",\"create_event\"]}]",
             "expire" => "2020-10-15T06:38:00.000+00:00"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -173,7 +172,6 @@ final class AccountTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Oauth2Consent::class, $response);
     }
-
     public function testMethodDeleteConsent(): void
     {
         $data = '';
@@ -191,13 +189,12 @@ final class AccountTest extends TestCase
 
         $this->assertSame($data, $response);
     }
-
     public function testMethodListConsentTokens(): void
     {
-        $data = array(
+        $data = [
             "total" => 5,
-            "tokens" => array(
-                array(
+            "tokens" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -205,13 +202,13 @@ final class AccountTest extends TestCase
                     "userId" => "5e5ea5c16897e",
                     "appId" => "5e5ea5c16897e",
                     "cimdUrl" => "https://example.com/.well-known/client-metadata.json",
-                    "scopes" => array(),
-                    "resources" => array(),
+                    "scopes" => [],
+                    "resources" => [],
                     "authorizationDetails" => "[{\"type\":\"calendar\",\"identifier\":\"primary\",\"actions\":[\"read_events\",\"create_event\"]}]",
                     "expire" => "2020-10-15T06:38:00.000+00:00"
-                )
-            )
-        );
+                ]
+            ]
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -226,10 +223,9 @@ final class AccountTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Oauth2ConsentTokenList::class, $response);
     }
-
     public function testMethodGetConsentToken(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -237,11 +233,11 @@ final class AccountTest extends TestCase
             "userId" => "5e5ea5c16897e",
             "appId" => "5e5ea5c16897e",
             "cimdUrl" => "https://example.com/.well-known/client-metadata.json",
-            "scopes" => array(),
-            "resources" => array(),
+            "scopes" => [],
+            "resources" => [],
             "authorizationDetails" => "[{\"type\":\"calendar\",\"identifier\":\"primary\",\"actions\":[\"read_events\",\"create_event\"]}]",
             "expire" => "2020-10-15T06:38:00.000+00:00"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -257,7 +253,6 @@ final class AccountTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Oauth2ConsentToken::class, $response);
     }
-
     public function testMethodDeleteConsentToken(): void
     {
         $data = '';
@@ -276,26 +271,25 @@ final class AccountTest extends TestCase
 
         $this->assertSame($data, $response);
     }
-
     public function testMethodUpdateEmail(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "John Doe",
             "registration" => "2020-10-15T06:38:00.000+00:00",
             "status" => true,
-            "labels" => array(),
+            "labels" => [],
             "passwordUpdate" => "2020-10-15T06:38:00.000+00:00",
             "email" => "john@appwrite.io",
             "phone" => "+4930901820",
             "emailVerification" => true,
             "phoneVerification" => true,
             "mfa" => true,
-            "prefs" => array(),
-            "targets" => array(
-                array(
+            "prefs" => [],
+            "targets" => [
+                [
                     "\$id" => "259125845563242502",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -304,10 +298,10 @@ final class AccountTest extends TestCase
                     "providerType" => "email",
                     "identifier" => "token",
                     "expired" => true
-                )
-            ),
+                ]
+            ],
             "accessedAt" => "2020-10-15T06:38:00.000+00:00"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -323,13 +317,12 @@ final class AccountTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\User::class, $response);
     }
-
     public function testMethodListIdentities(): void
     {
-        $data = array(
+        $data = [
             "total" => 5,
-            "identities" => array(
-                array(
+            "identities" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -340,9 +333,9 @@ final class AccountTest extends TestCase
                     "providerAccessToken" => "MTQ0NjJkZmQ5OTM2NDE1ZTZjNGZmZjI3",
                     "providerAccessTokenExpiry" => "2020-10-15T06:38:00.000+00:00",
                     "providerRefreshToken" => "MTQ0NjJkZmQ5OTM2NDE1ZTZjNGZmZjI3"
-                )
-            )
-        );
+                ]
+            ]
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -355,7 +348,6 @@ final class AccountTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\IdentityList::class, $response);
     }
-
     public function testMethodDeleteIdentity(): void
     {
         $data = '';
@@ -373,13 +365,12 @@ final class AccountTest extends TestCase
 
         $this->assertSame($data, $response);
     }
-
     public function testMethodListLogs(): void
     {
-        $data = array(
+        $data = [
             "total" => 5,
-            "logs" => array(
-                array(
+            "logs" => [
+                [
                     "event" => "account.sessions.create",
                     "userId" => "610fc2f985ee0",
                     "userEmail" => "john@appwrite.io",
@@ -402,9 +393,9 @@ final class AccountTest extends TestCase
                     "deviceModel" => "Nexus 5",
                     "countryCode" => "US",
                     "countryName" => "United States"
-                )
-            )
-        );
+                ]
+            ]
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -417,26 +408,25 @@ final class AccountTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\LogList::class, $response);
     }
-
     public function testMethodUpdateMFA(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "John Doe",
             "registration" => "2020-10-15T06:38:00.000+00:00",
             "status" => true,
-            "labels" => array(),
+            "labels" => [],
             "passwordUpdate" => "2020-10-15T06:38:00.000+00:00",
             "email" => "john@appwrite.io",
             "phone" => "+4930901820",
             "emailVerification" => true,
             "phoneVerification" => true,
             "mfa" => true,
-            "prefs" => array(),
-            "targets" => array(
-                array(
+            "prefs" => [],
+            "targets" => [
+                [
                     "\$id" => "259125845563242502",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -445,10 +435,10 @@ final class AccountTest extends TestCase
                     "providerType" => "email",
                     "identifier" => "token",
                     "expired" => true
-                )
-            ),
+                ]
+            ],
             "accessedAt" => "2020-10-15T06:38:00.000+00:00"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -463,13 +453,12 @@ final class AccountTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\User::class, $response);
     }
-
     public function testMethodCreateMFAAuthenticator(): void
     {
-        $data = array(
+        $data = [
             "secret" => "[SHARED_SECRET]",
             "uri" => "otpauth://totp/appwrite:user@example.com?secret=[SHARED_SECRET]&issuer=appwrite"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -484,26 +473,25 @@ final class AccountTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\MfaType::class, $response);
     }
-
     public function testMethodUpdateMFAAuthenticator(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "John Doe",
             "registration" => "2020-10-15T06:38:00.000+00:00",
             "status" => true,
-            "labels" => array(),
+            "labels" => [],
             "passwordUpdate" => "2020-10-15T06:38:00.000+00:00",
             "email" => "john@appwrite.io",
             "phone" => "+4930901820",
             "emailVerification" => true,
             "phoneVerification" => true,
             "mfa" => true,
-            "prefs" => array(),
-            "targets" => array(
-                array(
+            "prefs" => [],
+            "targets" => [
+                [
                     "\$id" => "259125845563242502",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -512,10 +500,10 @@ final class AccountTest extends TestCase
                     "providerType" => "email",
                     "identifier" => "token",
                     "expired" => true
-                )
-            ),
+                ]
+            ],
             "accessedAt" => "2020-10-15T06:38:00.000+00:00"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -531,7 +519,6 @@ final class AccountTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\User::class, $response);
     }
-
     public function testMethodDeleteMFAAuthenticator(): void
     {
         $data = '';
@@ -549,15 +536,14 @@ final class AccountTest extends TestCase
 
         $this->assertSame($data, $response);
     }
-
     public function testMethodCreateMFAChallenge(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "bb8ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "userId" => "5e5ea5c168bb8",
             "expire" => "2020-10-15T06:38:00.000+00:00"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -572,10 +558,9 @@ final class AccountTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\MfaChallenge::class, $response);
     }
-
     public function testMethodUpdateMFAChallenge(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -602,10 +587,10 @@ final class AccountTest extends TestCase
             "countryCode" => "US",
             "countryName" => "United States",
             "current" => true,
-            "factors" => array(),
+            "factors" => [],
             "secret" => "5e5bb8c16897e",
             "mfaUpdatedAt" => "2020-10-15T06:38:00.000+00:00"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -621,16 +606,15 @@ final class AccountTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Session::class, $response);
     }
-
     public function testMethodListMFAFactors(): void
     {
-        $data = array(
+        $data = [
             "totp" => true,
             "phone" => true,
             "email" => true,
             "recoveryCode" => true,
             "custom" => true
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -643,12 +627,11 @@ final class AccountTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\MfaFactors::class, $response);
     }
-
     public function testMethodGetMFARecoveryCodes(): void
     {
-        $data = array(
-            "recoveryCodes" => array()
-        );
+        $data = [
+            "recoveryCodes" => []
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -661,12 +644,11 @@ final class AccountTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\MfaRecoveryCodes::class, $response);
     }
-
     public function testMethodCreateMFARecoveryCodes(): void
     {
-        $data = array(
-            "recoveryCodes" => array()
-        );
+        $data = [
+            "recoveryCodes" => []
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -679,12 +661,11 @@ final class AccountTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\MfaRecoveryCodes::class, $response);
     }
-
     public function testMethodUpdateMFARecoveryCodes(): void
     {
-        $data = array(
-            "recoveryCodes" => array()
-        );
+        $data = [
+            "recoveryCodes" => []
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -697,26 +678,25 @@ final class AccountTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\MfaRecoveryCodes::class, $response);
     }
-
     public function testMethodUpdateName(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "John Doe",
             "registration" => "2020-10-15T06:38:00.000+00:00",
             "status" => true,
-            "labels" => array(),
+            "labels" => [],
             "passwordUpdate" => "2020-10-15T06:38:00.000+00:00",
             "email" => "john@appwrite.io",
             "phone" => "+4930901820",
             "emailVerification" => true,
             "phoneVerification" => true,
             "mfa" => true,
-            "prefs" => array(),
-            "targets" => array(
-                array(
+            "prefs" => [],
+            "targets" => [
+                [
                     "\$id" => "259125845563242502",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -725,10 +705,10 @@ final class AccountTest extends TestCase
                     "providerType" => "email",
                     "identifier" => "token",
                     "expired" => true
-                )
-            ),
+                ]
+            ],
             "accessedAt" => "2020-10-15T06:38:00.000+00:00"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -743,26 +723,25 @@ final class AccountTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\User::class, $response);
     }
-
     public function testMethodUpdatePassword(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "John Doe",
             "registration" => "2020-10-15T06:38:00.000+00:00",
             "status" => true,
-            "labels" => array(),
+            "labels" => [],
             "passwordUpdate" => "2020-10-15T06:38:00.000+00:00",
             "email" => "john@appwrite.io",
             "phone" => "+4930901820",
             "emailVerification" => true,
             "phoneVerification" => true,
             "mfa" => true,
-            "prefs" => array(),
-            "targets" => array(
-                array(
+            "prefs" => [],
+            "targets" => [
+                [
                     "\$id" => "259125845563242502",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -771,10 +750,10 @@ final class AccountTest extends TestCase
                     "providerType" => "email",
                     "identifier" => "token",
                     "expired" => true
-                )
-            ),
+                ]
+            ],
             "accessedAt" => "2020-10-15T06:38:00.000+00:00"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -789,26 +768,25 @@ final class AccountTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\User::class, $response);
     }
-
     public function testMethodUpdatePhone(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "John Doe",
             "registration" => "2020-10-15T06:38:00.000+00:00",
             "status" => true,
-            "labels" => array(),
+            "labels" => [],
             "passwordUpdate" => "2020-10-15T06:38:00.000+00:00",
             "email" => "john@appwrite.io",
             "phone" => "+4930901820",
             "emailVerification" => true,
             "phoneVerification" => true,
             "mfa" => true,
-            "prefs" => array(),
-            "targets" => array(
-                array(
+            "prefs" => [],
+            "targets" => [
+                [
                     "\$id" => "259125845563242502",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -817,10 +795,10 @@ final class AccountTest extends TestCase
                     "providerType" => "email",
                     "identifier" => "token",
                     "expired" => true
-                )
-            ),
+                ]
+            ],
             "accessedAt" => "2020-10-15T06:38:00.000+00:00"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -836,10 +814,9 @@ final class AccountTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\User::class, $response);
     }
-
     public function testMethodGetPrefs(): void
     {
-        $data = array();
+        $data = [];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -852,26 +829,25 @@ final class AccountTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Preferences::class, $response);
     }
-
     public function testMethodUpdatePrefs(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "John Doe",
             "registration" => "2020-10-15T06:38:00.000+00:00",
             "status" => true,
-            "labels" => array(),
+            "labels" => [],
             "passwordUpdate" => "2020-10-15T06:38:00.000+00:00",
             "email" => "john@appwrite.io",
             "phone" => "+4930901820",
             "emailVerification" => true,
             "phoneVerification" => true,
             "mfa" => true,
-            "prefs" => array(),
-            "targets" => array(
-                array(
+            "prefs" => [],
+            "targets" => [
+                [
                     "\$id" => "259125845563242502",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -880,10 +856,10 @@ final class AccountTest extends TestCase
                     "providerType" => "email",
                     "identifier" => "token",
                     "expired" => true
-                )
-            ),
+                ]
+            ],
             "accessedAt" => "2020-10-15T06:38:00.000+00:00"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -893,22 +869,21 @@ final class AccountTest extends TestCase
             ->andReturn('');
 
         $response = $this->account->updatePrefs(
-            array()
+            []
         );
 
         $this->assertInstanceOf(\Appwrite\Models\User::class, $response);
     }
-
     public function testMethodCreateRecovery(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "bb8ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "userId" => "5e5ea5c168bb8",
             "secret" => "[SECRET]",
             "expire" => "2020-10-15T06:38:00.000+00:00",
             "phrase" => "Golden Fox"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -924,17 +899,16 @@ final class AccountTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Token::class, $response);
     }
-
     public function testMethodUpdateRecovery(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "bb8ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "userId" => "5e5ea5c168bb8",
             "secret" => "[SECRET]",
             "expire" => "2020-10-15T06:38:00.000+00:00",
             "phrase" => "Golden Fox"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -951,13 +925,12 @@ final class AccountTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Token::class, $response);
     }
-
     public function testMethodListSessions(): void
     {
-        $data = array(
+        $data = [
             "total" => 5,
-            "sessions" => array(
-                array(
+            "sessions" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -984,12 +957,12 @@ final class AccountTest extends TestCase
                     "countryCode" => "US",
                     "countryName" => "United States",
                     "current" => true,
-                    "factors" => array(),
+                    "factors" => [],
                     "secret" => "5e5bb8c16897e",
                     "mfaUpdatedAt" => "2020-10-15T06:38:00.000+00:00"
-                )
-            )
-        );
+                ]
+            ]
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1002,7 +975,6 @@ final class AccountTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\SessionList::class, $response);
     }
-
     public function testMethodDeleteSessions(): void
     {
         $data = '';
@@ -1018,10 +990,9 @@ final class AccountTest extends TestCase
 
         $this->assertSame($data, $response);
     }
-
     public function testMethodCreateAnonymousSession(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -1048,10 +1019,10 @@ final class AccountTest extends TestCase
             "countryCode" => "US",
             "countryName" => "United States",
             "current" => true,
-            "factors" => array(),
+            "factors" => [],
             "secret" => "5e5bb8c16897e",
             "mfaUpdatedAt" => "2020-10-15T06:38:00.000+00:00"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1064,10 +1035,9 @@ final class AccountTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Session::class, $response);
     }
-
     public function testMethodCreateEmailPasswordSession(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -1094,10 +1064,10 @@ final class AccountTest extends TestCase
             "countryCode" => "US",
             "countryName" => "United States",
             "current" => true,
-            "factors" => array(),
+            "factors" => [],
             "secret" => "5e5bb8c16897e",
             "mfaUpdatedAt" => "2020-10-15T06:38:00.000+00:00"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1113,10 +1083,9 @@ final class AccountTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Session::class, $response);
     }
-
     public function testMethodUpdateMagicURLSession(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -1143,10 +1112,10 @@ final class AccountTest extends TestCase
             "countryCode" => "US",
             "countryName" => "United States",
             "current" => true,
-            "factors" => array(),
+            "factors" => [],
             "secret" => "5e5bb8c16897e",
             "mfaUpdatedAt" => "2020-10-15T06:38:00.000+00:00"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1162,10 +1131,9 @@ final class AccountTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Session::class, $response);
     }
-
     public function testMethodUpdatePhoneSession(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -1192,10 +1160,10 @@ final class AccountTest extends TestCase
             "countryCode" => "US",
             "countryName" => "United States",
             "current" => true,
-            "factors" => array(),
+            "factors" => [],
             "secret" => "5e5bb8c16897e",
             "mfaUpdatedAt" => "2020-10-15T06:38:00.000+00:00"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1211,10 +1179,9 @@ final class AccountTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Session::class, $response);
     }
-
     public function testMethodCreateSession(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -1241,10 +1208,10 @@ final class AccountTest extends TestCase
             "countryCode" => "US",
             "countryName" => "United States",
             "current" => true,
-            "factors" => array(),
+            "factors" => [],
             "secret" => "5e5bb8c16897e",
             "mfaUpdatedAt" => "2020-10-15T06:38:00.000+00:00"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1260,10 +1227,9 @@ final class AccountTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Session::class, $response);
     }
-
     public function testMethodGetSession(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -1290,10 +1256,10 @@ final class AccountTest extends TestCase
             "countryCode" => "US",
             "countryName" => "United States",
             "current" => true,
-            "factors" => array(),
+            "factors" => [],
             "secret" => "5e5bb8c16897e",
             "mfaUpdatedAt" => "2020-10-15T06:38:00.000+00:00"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1308,10 +1274,9 @@ final class AccountTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Session::class, $response);
     }
-
     public function testMethodUpdateSession(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -1338,10 +1303,10 @@ final class AccountTest extends TestCase
             "countryCode" => "US",
             "countryName" => "United States",
             "current" => true,
-            "factors" => array(),
+            "factors" => [],
             "secret" => "5e5bb8c16897e",
             "mfaUpdatedAt" => "2020-10-15T06:38:00.000+00:00"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1356,7 +1321,6 @@ final class AccountTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Session::class, $response);
     }
-
     public function testMethodDeleteSession(): void
     {
         $data = '';
@@ -1374,26 +1338,25 @@ final class AccountTest extends TestCase
 
         $this->assertSame($data, $response);
     }
-
     public function testMethodUpdateStatus(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "John Doe",
             "registration" => "2020-10-15T06:38:00.000+00:00",
             "status" => true,
-            "labels" => array(),
+            "labels" => [],
             "passwordUpdate" => "2020-10-15T06:38:00.000+00:00",
             "email" => "john@appwrite.io",
             "phone" => "+4930901820",
             "emailVerification" => true,
             "phoneVerification" => true,
             "mfa" => true,
-            "prefs" => array(),
-            "targets" => array(
-                array(
+            "prefs" => [],
+            "targets" => [
+                [
                     "\$id" => "259125845563242502",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -1402,10 +1365,10 @@ final class AccountTest extends TestCase
                     "providerType" => "email",
                     "identifier" => "token",
                     "expired" => true
-                )
-            ),
+                ]
+            ],
             "accessedAt" => "2020-10-15T06:38:00.000+00:00"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1418,17 +1381,16 @@ final class AccountTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\User::class, $response);
     }
-
     public function testMethodCreateEmailToken(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "bb8ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "userId" => "5e5ea5c168bb8",
             "secret" => "[SECRET]",
             "expire" => "2020-10-15T06:38:00.000+00:00",
             "phrase" => "Golden Fox"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1444,17 +1406,16 @@ final class AccountTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Token::class, $response);
     }
-
     public function testMethodCreateMagicURLToken(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "bb8ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "userId" => "5e5ea5c168bb8",
             "secret" => "[SECRET]",
             "expire" => "2020-10-15T06:38:00.000+00:00",
             "phrase" => "Golden Fox"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1470,7 +1431,6 @@ final class AccountTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Token::class, $response);
     }
-
     public function testMethodCreateOAuth2Token(): void
     {
         $data = '';
@@ -1488,17 +1448,16 @@ final class AccountTest extends TestCase
 
         $this->assertSame($data, $response);
     }
-
     public function testMethodCreatePhoneToken(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "bb8ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "userId" => "5e5ea5c168bb8",
             "secret" => "[SECRET]",
             "expire" => "2020-10-15T06:38:00.000+00:00",
             "phrase" => "Golden Fox"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1514,17 +1473,16 @@ final class AccountTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Token::class, $response);
     }
-
     public function testMethodCreateEmailVerification(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "bb8ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "userId" => "5e5ea5c168bb8",
             "secret" => "[SECRET]",
             "expire" => "2020-10-15T06:38:00.000+00:00",
             "phrase" => "Golden Fox"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1539,17 +1497,16 @@ final class AccountTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Token::class, $response);
     }
-
     public function testMethodCreateVerification(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "bb8ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "userId" => "5e5ea5c168bb8",
             "secret" => "[SECRET]",
             "expire" => "2020-10-15T06:38:00.000+00:00",
             "phrase" => "Golden Fox"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1564,17 +1521,16 @@ final class AccountTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Token::class, $response);
     }
-
     public function testMethodUpdateEmailVerification(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "bb8ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "userId" => "5e5ea5c168bb8",
             "secret" => "[SECRET]",
             "expire" => "2020-10-15T06:38:00.000+00:00",
             "phrase" => "Golden Fox"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1590,17 +1546,16 @@ final class AccountTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Token::class, $response);
     }
-
     public function testMethodUpdateVerification(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "bb8ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "userId" => "5e5ea5c168bb8",
             "secret" => "[SECRET]",
             "expire" => "2020-10-15T06:38:00.000+00:00",
             "phrase" => "Golden Fox"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1616,17 +1571,16 @@ final class AccountTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Token::class, $response);
     }
-
     public function testMethodCreatePhoneVerification(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "bb8ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "userId" => "5e5ea5c168bb8",
             "secret" => "[SECRET]",
             "expire" => "2020-10-15T06:38:00.000+00:00",
             "phrase" => "Golden Fox"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1639,17 +1593,16 @@ final class AccountTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Token::class, $response);
     }
-
     public function testMethodUpdatePhoneVerification(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "bb8ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "userId" => "5e5ea5c168bb8",
             "secret" => "[SECRET]",
             "expire" => "2020-10-15T06:38:00.000+00:00",
             "phrase" => "Golden Fox"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1665,5 +1618,4 @@ final class AccountTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Token::class, $response);
     }
-
 }

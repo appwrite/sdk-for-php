@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Enums;
 
 use JsonSerializable;
+use Stringable;
 
-class CreditCard implements JsonSerializable
+class CreditCard implements JsonSerializable, Stringable
 {
     private static CreditCard $AMERICANEXPRESS;
     private static CreditCard $ARGENCARD;
@@ -24,11 +27,8 @@ class CreditCard implements JsonSerializable
     private static CreditCard $MAESTRO;
     private static CreditCard $RUPAY;
 
-    private string $value;
-
-    private function __construct(string $value)
+    private function __construct(private readonly string $value)
     {
-        $this->value = $value;
     }
 
     public function __toString(): string

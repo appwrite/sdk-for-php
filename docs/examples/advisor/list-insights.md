@@ -15,4 +15,6 @@ $result = $advisor->listInsights(
     reportId: '<REPORT_ID>',
     queries: [], // optional
     total: false // optional
-);```
+);
+
+```

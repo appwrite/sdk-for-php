@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Provider
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class Provider
 {
@@ -74,7 +78,7 @@ readonly class Provider
             enabled: $data['enabled'],
             type: $data['type'],
             credentials: $data['credentials'],
-            options: array_key_exists('options', $data) ? $data['options'] : null
+            options: $data['options'] ?? null
         );
     }
 
@@ -83,7 +87,7 @@ readonly class Provider
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             '$createdAt' => static::serializeValue($this->createdAt),
             '$updatedAt' => static::serializeValue($this->updatedAt),
@@ -94,7 +98,5 @@ readonly class Provider
             'credentials' => static::serializeValue($this->credentials),
             'options' => static::serializeValue($this->options)
         ];
-
-        return $result;
     }
 }

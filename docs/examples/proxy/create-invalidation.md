@@ -16,4 +16,6 @@ $result = $proxy->createInvalidation(
     domain: '',
     type: InvalidationType::TAG(),
     reference: '<REFERENCE>' // optional
-);```
+);
+
+```

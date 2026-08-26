@@ -14,4 +14,6 @@ $apps = new Apps($client);
 $result = $apps->getInstallation(
     appId: '<APP_ID>',
     installationId: '<INSTALLATION_ID>'
-);```
+);
+
+```

@@ -19,4 +19,6 @@ $result = $tablesDB->decrementRowColumn(
     value: null, // optional
     min: null, // optional
     transactionId: '<TRANSACTION_ID>' // optional
-);```
+);
+
+```

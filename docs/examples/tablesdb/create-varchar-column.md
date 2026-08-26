@@ -20,4 +20,6 @@ $result = $tablesDB->createVarcharColumn(
     default: '<DEFAULT>', // optional
     array: false, // optional
     encrypt: false // optional
-);```
+);
+
+```

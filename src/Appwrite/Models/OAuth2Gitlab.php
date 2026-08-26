@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * OAuth2Gitlab
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class OAuth2Gitlab
 {
@@ -62,14 +66,12 @@ readonly class OAuth2Gitlab
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             'enabled' => static::serializeValue($this->enabled),
             'applicationId' => static::serializeValue($this->applicationId),
             'secret' => static::serializeValue($this->secret),
             'endpoint' => static::serializeValue($this->endpoint)
         ];
-
-        return $result;
     }
 }

@@ -18,4 +18,6 @@ $result = $tablesDB->updateTextColumn(
     required: false,
     default: '<DEFAULT>',
     newKey: '' // optional
-);```
+);
+
+```

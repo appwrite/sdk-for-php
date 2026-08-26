@@ -1,27 +1,22 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Services;
 
 use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
-use Appwrite\InputFile;
 use Appwrite\Enums\AuthenticatorType;
 use Appwrite\Enums\AuthenticationFactor;
 use Appwrite\Enums\OAuthProvider;
 
 class Account extends Service
 {
-    public function __construct(Client $client)
-    {
-        parent::__construct($client);
-    }
-
     /**
      * Get the currently logged in user.
      *
      * @throws AppwriteException
-     * @return \Appwrite\Models\User
      */
     public function get(): \Appwrite\Models\User
     {
@@ -49,7 +44,6 @@ class Account extends Service
         }
 
         return \Appwrite\Models\User::from($response);
-
     }
 
     /**
@@ -61,12 +55,7 @@ class Account extends Service
      * login to their new account, you need to create a new [account
      * session](https://appwrite.io/docs/references/cloud/client-web/account#createEmailSession).
      *
-     * @param string $userId
-     * @param string $email
-     * @param string $password
-     * @param ?string $name
      * @throws AppwriteException
-     * @return \Appwrite\Models\User
      */
     public function create(string $userId, string $email, string $password, ?string $name = null): \Appwrite\Models\User
     {
@@ -102,17 +91,13 @@ class Account extends Service
         }
 
         return \Appwrite\Models\User::from($response);
-
     }
 
     /**
      * Get a list of the OAuth2 consents the current user has given to third-party
      * apps.
      *
-     * @param ?array $queries
-     * @param ?bool $total
      * @throws AppwriteException
-     * @return \Appwrite\Models\Oauth2ConsentList
      */
     public function listConsents(?array $queries = null, ?bool $total = null): \Appwrite\Models\Oauth2ConsentList
     {
@@ -148,16 +133,13 @@ class Account extends Service
         }
 
         return \Appwrite\Models\Oauth2ConsentList::from($response);
-
     }
 
     /**
      * Get an OAuth2 consent the current user has given to a third-party app by
      * its unique ID.
      *
-     * @param string $consentId
      * @throws AppwriteException
-     * @return \Appwrite\Models\Oauth2Consent
      */
     public function getConsent(string $consentId): \Appwrite\Models\Oauth2Consent
     {
@@ -186,7 +168,6 @@ class Account extends Service
         }
 
         return \Appwrite\Models\Oauth2Consent::from($response);
-
     }
 
     /**
@@ -194,9 +175,7 @@ class Account extends Service
      * the consent are revoked, and the app must ask for consent again to regain
      * access.
      *
-     * @param string $consentId
      * @throws AppwriteException
-     * @return string
      */
     public function deleteConsent(string $consentId): string
     {
@@ -214,15 +193,12 @@ class Account extends Service
         $apiHeaders['content-type'] = 'application/json';
         $apiHeaders['accept'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 
     /**
@@ -230,11 +206,7 @@ class Account extends Service
      * represents one authorized device or session; the token secrets themselves
      * are never returned.
      *
-     * @param string $consentId
-     * @param ?array $queries
-     * @param ?bool $total
      * @throws AppwriteException
-     * @return \Appwrite\Models\Oauth2ConsentTokenList
      */
     public function listConsentTokens(string $consentId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\Oauth2ConsentTokenList
     {
@@ -271,17 +243,13 @@ class Account extends Service
         }
 
         return \Appwrite\Models\Oauth2ConsentTokenList::from($response);
-
     }
 
     /**
      * Get a token family issued under an OAuth2 consent by its unique ID. The
      * token secrets themselves are never returned.
      *
-     * @param string $consentId
-     * @param string $tokenId
      * @throws AppwriteException
-     * @return \Appwrite\Models\Oauth2ConsentToken
      */
     public function getConsentToken(string $consentId, string $tokenId): \Appwrite\Models\Oauth2ConsentToken
     {
@@ -311,7 +279,6 @@ class Account extends Service
         }
 
         return \Appwrite\Models\Oauth2ConsentToken::from($response);
-
     }
 
     /**
@@ -319,10 +286,7 @@ class Account extends Service
      * access and refresh tokens of the family stop working immediately; other
      * token families and the consent itself are unaffected.
      *
-     * @param string $consentId
-     * @param string $tokenId
      * @throws AppwriteException
-     * @return string
      */
     public function deleteConsentToken(string $consentId, string $tokenId): string
     {
@@ -341,15 +305,12 @@ class Account extends Service
         $apiHeaders['content-type'] = 'application/json';
         $apiHeaders['accept'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 
     /**
@@ -360,12 +321,8 @@ class Account extends Service
      * user password is required to complete this request.
      * This endpoint can also be used to convert an anonymous account to a normal
      * one, by passing an email address and a new password.
-     * 
      *
-     * @param string $email
-     * @param string $password
      * @throws AppwriteException
-     * @return \Appwrite\Models\User
      */
     public function updateEmail(string $email, string $password): \Appwrite\Models\User
     {
@@ -396,16 +353,12 @@ class Account extends Service
         }
 
         return \Appwrite\Models\User::from($response);
-
     }
 
     /**
      * Get the list of identities for the currently logged in user.
      *
-     * @param ?array $queries
-     * @param ?bool $total
      * @throws AppwriteException
-     * @return \Appwrite\Models\IdentityList
      */
     public function listIdentities(?array $queries = null, ?bool $total = null): \Appwrite\Models\IdentityList
     {
@@ -441,15 +394,12 @@ class Account extends Service
         }
 
         return \Appwrite\Models\IdentityList::from($response);
-
     }
 
     /**
      * Delete an identity by its unique ID.
      *
-     * @param string $identityId
      * @throws AppwriteException
-     * @return string
      */
     public function deleteIdentity(string $identityId): string
     {
@@ -466,25 +416,19 @@ class Account extends Service
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 
     /**
      * Get the list of latest security activity logs for the currently logged in
      * user. Each log returns user IP address, location and date and time of log.
      *
-     * @param ?array $queries
-     * @param ?bool $total
      * @throws AppwriteException
-     * @return \Appwrite\Models\LogList
      */
     public function listLogs(?array $queries = null, ?bool $total = null): \Appwrite\Models\LogList
     {
@@ -520,15 +464,12 @@ class Account extends Service
         }
 
         return \Appwrite\Models\LogList::from($response);
-
     }
 
     /**
      * Enable or disable MFA on an account.
      *
-     * @param bool $mfa
      * @throws AppwriteException
-     * @return \Appwrite\Models\User
      */
     public function updateMFA(bool $mfa): \Appwrite\Models\User
     {
@@ -558,7 +499,6 @@ class Account extends Service
         }
 
         return \Appwrite\Models\User::from($response);
-
     }
 
     /**
@@ -567,15 +507,13 @@ class Account extends Service
      * authenticator](/docs/references/cloud/client-web/account#updateMfaAuthenticator)
      * method.
      *
-     * @param AuthenticatorType $type
      * @throws AppwriteException
-     * @return \Appwrite\Models\MfaType
      */
     public function createMFAAuthenticator(AuthenticatorType $type): \Appwrite\Models\MfaType
     {
         $apiPath = str_replace(
             ['{type}'],
-            [$type],
+            [(string) $type],
             '/account/mfa/authenticators/{type}'
         );
 
@@ -599,7 +537,6 @@ class Account extends Service
         }
 
         return \Appwrite\Models\MfaType::from($response);
-
     }
 
     /**
@@ -607,16 +544,13 @@ class Account extends Service
      * authenticator](/docs/references/cloud/client-web/account#createMfaAuthenticator)
      * method.
      *
-     * @param AuthenticatorType $type
-     * @param string $otp
      * @throws AppwriteException
-     * @return \Appwrite\Models\User
      */
     public function updateMFAAuthenticator(AuthenticatorType $type, string $otp): \Appwrite\Models\User
     {
         $apiPath = str_replace(
             ['{type}'],
-            [$type],
+            [(string) $type],
             '/account/mfa/authenticators/{type}'
         );
 
@@ -641,21 +575,18 @@ class Account extends Service
         }
 
         return \Appwrite\Models\User::from($response);
-
     }
 
     /**
      * Delete an authenticator for a user by ID.
      *
-     * @param AuthenticatorType $type
      * @throws AppwriteException
-     * @return string
      */
     public function deleteMFAAuthenticator(AuthenticatorType $type): string
     {
         $apiPath = str_replace(
             ['{type}'],
-            [$type],
+            [(string) $type],
             '/account/mfa/authenticators/{type}'
         );
 
@@ -666,15 +597,12 @@ class Account extends Service
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 
     /**
@@ -682,9 +610,7 @@ class Account extends Service
      * [updateMfaChallenge](/docs/references/cloud/client-web/account#updateMfaChallenge)
      * method.
      *
-     * @param AuthenticationFactor $factor
      * @throws AppwriteException
-     * @return \Appwrite\Models\MfaChallenge
      */
     public function createMFAChallenge(AuthenticationFactor $factor): \Appwrite\Models\MfaChallenge
     {
@@ -714,7 +640,6 @@ class Account extends Service
         }
 
         return \Appwrite\Models\MfaChallenge::from($response);
-
     }
 
     /**
@@ -724,10 +649,7 @@ class Account extends Service
      * [createMfaChallenge](/docs/references/cloud/client-web/account#createMfaChallenge)
      * method.
      *
-     * @param string $challengeId
-     * @param string $otp
      * @throws AppwriteException
-     * @return \Appwrite\Models\Session
      */
     public function updateMFAChallenge(string $challengeId, string $otp): \Appwrite\Models\Session
     {
@@ -758,14 +680,12 @@ class Account extends Service
         }
 
         return \Appwrite\Models\Session::from($response);
-
     }
 
     /**
      * List the factors available on the account to be used as a MFA challange.
      *
      * @throws AppwriteException
-     * @return \Appwrite\Models\MfaFactors
      */
     public function listMFAFactors(): \Appwrite\Models\MfaFactors
     {
@@ -793,7 +713,6 @@ class Account extends Service
         }
 
         return \Appwrite\Models\MfaFactors::from($response);
-
     }
 
     /**
@@ -803,7 +722,6 @@ class Account extends Service
      * method. An OTP challenge is required to read recovery codes.
      *
      * @throws AppwriteException
-     * @return \Appwrite\Models\MfaRecoveryCodes
      */
     public function getMFARecoveryCodes(): \Appwrite\Models\MfaRecoveryCodes
     {
@@ -831,18 +749,16 @@ class Account extends Service
         }
 
         return \Appwrite\Models\MfaRecoveryCodes::from($response);
-
     }
 
     /**
-     * Generate recovery codes as backup for MFA flow. It's recommended to
+     * Generate recovery codes as backup for MFA flow. It&#039;s recommended to
      * generate and show then immediately after user successfully adds their
      * authehticator. Recovery codes can be used as a MFA verification type in
      * [createMfaChallenge](/docs/references/cloud/client-web/account#createMfaChallenge)
      * method.
      *
      * @throws AppwriteException
-     * @return \Appwrite\Models\MfaRecoveryCodes
      */
     public function createMFARecoveryCodes(): \Appwrite\Models\MfaRecoveryCodes
     {
@@ -871,7 +787,6 @@ class Account extends Service
         }
 
         return \Appwrite\Models\MfaRecoveryCodes::from($response);
-
     }
 
     /**
@@ -881,7 +796,6 @@ class Account extends Service
      * method. An OTP challenge is required to regenreate recovery codes.
      *
      * @throws AppwriteException
-     * @return \Appwrite\Models\MfaRecoveryCodes
      */
     public function updateMFARecoveryCodes(): \Appwrite\Models\MfaRecoveryCodes
     {
@@ -910,15 +824,12 @@ class Account extends Service
         }
 
         return \Appwrite\Models\MfaRecoveryCodes::from($response);
-
     }
 
     /**
      * Update currently logged in user account name.
      *
-     * @param string $name
      * @throws AppwriteException
-     * @return \Appwrite\Models\User
      */
     public function updateName(string $name): \Appwrite\Models\User
     {
@@ -948,7 +859,6 @@ class Account extends Service
         }
 
         return \Appwrite\Models\User::from($response);
-
     }
 
     /**
@@ -956,10 +866,7 @@ class Account extends Service
      * to pass in the new password, and the old password. For users created with
      * OAuth, Team Invites and Magic URL, oldPassword is optional.
      *
-     * @param string $password
-     * @param ?string $oldPassword
      * @throws AppwriteException
-     * @return \Appwrite\Models\User
      */
     public function updatePassword(string $password, ?string $oldPassword = null): \Appwrite\Models\User
     {
@@ -993,20 +900,16 @@ class Account extends Service
         }
 
         return \Appwrite\Models\User::from($response);
-
     }
 
     /**
-     * Update the currently logged in user's phone number. After updating the
+     * Update the currently logged in user&#039;s phone number. After updating the
      * phone number, the phone verification status will be reset. A confirmation
      * SMS is not sent automatically, however you can use the [POST
      * /account/verification/phone](https://appwrite.io/docs/references/cloud/client-web/account#createPhoneVerification)
      * endpoint to send a confirmation SMS.
      *
-     * @param string $phone
-     * @param string $password
      * @throws AppwriteException
-     * @return \Appwrite\Models\User
      */
     public function updatePhone(string $phone, string $password): \Appwrite\Models\User
     {
@@ -1037,14 +940,12 @@ class Account extends Service
         }
 
         return \Appwrite\Models\User::from($response);
-
     }
 
     /**
      * Get the preferences as a key-value object for the currently logged in user.
      *
      * @throws AppwriteException
-     * @return \Appwrite\Models\Preferences
      */
     public function getPrefs(): \Appwrite\Models\Preferences
     {
@@ -1072,7 +973,6 @@ class Account extends Service
         }
 
         return \Appwrite\Models\Preferences::from($response);
-
     }
 
     /**
@@ -1080,9 +980,7 @@ class Account extends Service
      * stored as is, and replaces any previous value. The maximum allowed prefs
      * size is 64kB and throws error if exceeded.
      *
-     * @param array $prefs
      * @throws AppwriteException
-     * @return \Appwrite\Models\User
      */
     public function updatePrefs(array $prefs): \Appwrite\Models\User
     {
@@ -1112,7 +1010,6 @@ class Account extends Service
         }
 
         return \Appwrite\Models\User::from($response);
-
     }
 
     /**
@@ -1122,13 +1019,10 @@ class Account extends Service
      * attached to the URL query string. Use the query string params to submit a
      * request to the [PUT
      * /account/recovery](https://appwrite.io/docs/references/cloud/client-web/account#updateRecovery)
-     * endpoint to complete the process. The verification link sent to the user's
+     * endpoint to complete the process. The verification link sent to the user&#039;s
      * email address is valid for 1 hour.
      *
-     * @param string $email
-     * @param string $url
      * @throws AppwriteException
-     * @return \Appwrite\Models\Token
      */
     public function createRecovery(string $email, string $url): \Appwrite\Models\Token
     {
@@ -1159,7 +1053,6 @@ class Account extends Service
         }
 
         return \Appwrite\Models\Token::from($response);
-
     }
 
     /**
@@ -1168,17 +1061,13 @@ class Account extends Service
      * the redirect URL you have provided when sending your request to the [POST
      * /account/recovery](https://appwrite.io/docs/references/cloud/client-web/account#createRecovery)
      * endpoint.
-     * 
+     *
      * Please note that in order to avoid a [Redirect
      * Attack](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.md)
      * the only valid redirect URLs are the ones from domains you have set when
      * adding your platforms in the console interface.
      *
-     * @param string $userId
-     * @param string $secret
-     * @param string $password
      * @throws AppwriteException
-     * @return \Appwrite\Models\Token
      */
     public function updateRecovery(string $userId, string $secret, string $password): \Appwrite\Models\Token
     {
@@ -1210,7 +1099,6 @@ class Account extends Service
         }
 
         return \Appwrite\Models\Token::from($response);
-
     }
 
     /**
@@ -1218,7 +1106,6 @@ class Account extends Service
      * logged in user.
      *
      * @throws AppwriteException
-     * @return \Appwrite\Models\SessionList
      */
     public function listSessions(): \Appwrite\Models\SessionList
     {
@@ -1246,7 +1133,6 @@ class Account extends Service
         }
 
         return \Appwrite\Models\SessionList::from($response);
-
     }
 
     /**
@@ -1254,7 +1140,6 @@ class Account extends Service
      * from the end client.
      *
      * @throws AppwriteException
-     * @return string
      */
     public function deleteSessions(): string
     {
@@ -1270,15 +1155,12 @@ class Account extends Service
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 
     /**
@@ -1291,7 +1173,6 @@ class Account extends Service
      * session](https://appwrite.io/docs/references/cloud/client-web/account#CreateOAuth2Session).
      *
      * @throws AppwriteException
-     * @return \Appwrite\Models\Session
      */
     public function createAnonymousSession(): \Appwrite\Models\Session
     {
@@ -1320,21 +1201,17 @@ class Account extends Service
         }
 
         return \Appwrite\Models\Session::from($response);
-
     }
 
     /**
      * Allow the user to login into their account by providing a valid email and
      * password combination. This route will create a new session for the user.
-     * 
+     *
      * A user is limited to 10 active sessions at a time by default. [Learn more
      * about session
      * limits](https://appwrite.io/docs/authentication-security#limits).
      *
-     * @param string $email
-     * @param string $password
      * @throws AppwriteException
-     * @return \Appwrite\Models\Session
      */
     public function createEmailPasswordSession(string $email, string $password): \Appwrite\Models\Session
     {
@@ -1365,7 +1242,6 @@ class Account extends Service
         }
 
         return \Appwrite\Models\Session::from($response);
-
     }
 
     /**
@@ -1373,10 +1249,7 @@ class Account extends Service
      * and **secret** parameters from the successful response of authentication
      * flows initiated by token creation. For example, magic URL and phone login.
      *
-     * @param string $userId
-     * @param string $secret
      * @throws AppwriteException
-     * @return \Appwrite\Models\Session
      *
      * @deprecated This API has been deprecated since 1.6.0. Please use `createSession` instead.
      * @see Account::createSession
@@ -1410,7 +1283,6 @@ class Account extends Service
         }
 
         return \Appwrite\Models\Session::from($response);
-
     }
 
     /**
@@ -1418,10 +1290,7 @@ class Account extends Service
      * and **secret** parameters from the successful response of authentication
      * flows initiated by token creation. For example, magic URL and phone login.
      *
-     * @param string $userId
-     * @param string $secret
      * @throws AppwriteException
-     * @return \Appwrite\Models\Session
      *
      * @deprecated This API has been deprecated since 1.6.0. Please use `createSession` instead.
      * @see Account::createSession
@@ -1455,7 +1324,6 @@ class Account extends Service
         }
 
         return \Appwrite\Models\Session::from($response);
-
     }
 
     /**
@@ -1463,10 +1331,7 @@ class Account extends Service
      * and **secret** parameters from the successful response of authentication
      * flows initiated by token creation. For example, magic URL and phone login.
      *
-     * @param string $userId
-     * @param string $secret
      * @throws AppwriteException
-     * @return \Appwrite\Models\Session
      */
     public function createSession(string $userId, string $secret): \Appwrite\Models\Session
     {
@@ -1497,16 +1362,13 @@ class Account extends Service
         }
 
         return \Appwrite\Models\Session::from($response);
-
     }
 
     /**
-     * Use this endpoint to get a logged in user's session using a Session ID.
-     * Inputting 'current' will return the current session being used.
+     * Use this endpoint to get a logged in user&#039;s session using a Session ID.
+     * Inputting &#039;current&#039; will return the current session being used.
      *
-     * @param string $sessionId
      * @throws AppwriteException
-     * @return \Appwrite\Models\Session
      */
     public function getSession(string $sessionId): \Appwrite\Models\Session
     {
@@ -1535,17 +1397,14 @@ class Account extends Service
         }
 
         return \Appwrite\Models\Session::from($response);
-
     }
 
     /**
-     * Use this endpoint to extend a session's length. Extending a session is
+     * Use this endpoint to extend a session&#039;s length. Extending a session is
      * useful when session expiry is short. If the session was created using an
      * OAuth provider, this endpoint refreshes the access token from the provider.
      *
-     * @param string $sessionId
      * @throws AppwriteException
-     * @return \Appwrite\Models\Session
      */
     public function updateSession(string $sessionId): \Appwrite\Models\Session
     {
@@ -1575,19 +1434,16 @@ class Account extends Service
         }
 
         return \Appwrite\Models\Session::from($response);
-
     }
 
     /**
-     * Logout the user. Use 'current' as the session ID to logout on this device,
-     * use a session ID to logout on another device. If you're looking to logout
+     * Logout the user. Use &#039;current&#039; as the session ID to logout on this device,
+     * use a session ID to logout on another device. If you&#039;re looking to logout
      * the user on all devices, use [Delete
      * Sessions](https://appwrite.io/docs/references/cloud/client-web/account#deleteSessions)
      * instead.
      *
-     * @param string $sessionId
      * @throws AppwriteException
-     * @return string
      */
     public function deleteSession(string $sessionId): string
     {
@@ -1604,15 +1460,12 @@ class Account extends Service
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 
     /**
@@ -1621,7 +1474,6 @@ class Account extends Service
      * completely delete a user, use the Users API instead.
      *
      * @throws AppwriteException
-     * @return \Appwrite\Models\User
      */
     public function updateStatus(): \Appwrite\Models\User
     {
@@ -1650,7 +1502,6 @@ class Account extends Service
         }
 
         return \Appwrite\Models\User::from($response);
-
     }
 
     /**
@@ -1661,19 +1512,14 @@ class Account extends Service
      * email with the one-time password. Use the returned user ID and secret and
      * submit a request to the [POST
      * /v1/account/sessions/token](https://appwrite.io/docs/references/cloud/client-web/account#createSession)
-     * endpoint to complete the login process. The secret sent to the user's email
+     * endpoint to complete the login process. The secret sent to the user&#039;s email
      * is valid for 15 minutes.
-     * 
+     *
      * A user is limited to 10 active sessions at a time by default. [Learn more
      * about session
      * limits](https://appwrite.io/docs/authentication-security#limits).
-     * 
      *
-     * @param string $userId
-     * @param string $email
-     * @param ?bool $phrase
      * @throws AppwriteException
-     * @return \Appwrite\Models\Token
      */
     public function createEmailToken(string $userId, string $email, ?bool $phrase = null): \Appwrite\Models\Token
     {
@@ -1708,7 +1554,6 @@ class Account extends Service
         }
 
         return \Appwrite\Models\Token::from($response);
-
     }
 
     /**
@@ -1719,20 +1564,14 @@ class Account extends Service
      * query string. Use the query string parameters to submit a request to the
      * [POST
      * /v1/account/sessions/token](https://appwrite.io/docs/references/cloud/client-web/account#createSession)
-     * endpoint to complete the login process. The link sent to the user's email
+     * endpoint to complete the login process. The link sent to the user&#039;s email
      * address is valid for 1 hour.
-     * 
+     *
      * A user is limited to 10 active sessions at a time by default. [Learn more
      * about session
      * limits](https://appwrite.io/docs/authentication-security#limits).
-     * 
      *
-     * @param string $userId
-     * @param string $email
-     * @param ?string $url
-     * @param ?bool $phrase
      * @throws AppwriteException
-     * @return \Appwrite\Models\Token
      */
     public function createMagicURLToken(string $userId, string $email, ?string $url = null, ?bool $phrase = null): \Appwrite\Models\Token
     {
@@ -1771,37 +1610,31 @@ class Account extends Service
         }
 
         return \Appwrite\Models\Token::from($response);
-
     }
 
     /**
      * Allow the user to login to their account using the OAuth2 provider of their
      * choice. Each OAuth2 provider should be enabled from the Appwrite console
-     * first. Use the success and failure arguments to provide a redirect URL's
-     * back to your app when login is completed. 
-     * 
+     * first. Use the success and failure arguments to provide a redirect URL&#039;s
+     * back to your app when login is completed.
+     *
      * If authentication succeeds, `userId` and `secret` of a token will be
      * appended to the success URL as query parameters. These can be used to
      * create a new session using the [Create
      * session](https://appwrite.io/docs/references/cloud/client-web/account#createSession)
      * endpoint.
-     * 
+     *
      * A user is limited to 10 active sessions at a time by default. [Learn more
      * about session
      * limits](https://appwrite.io/docs/authentication-security#limits).
      *
-     * @param OAuthProvider $provider
-     * @param ?string $success
-     * @param ?string $failure
-     * @param ?array $scopes
      * @throws AppwriteException
-     * @return string
      */
     public function createOAuth2Token(OAuthProvider $provider, ?string $success = null, ?string $failure = null, ?array $scopes = null): string
     {
         $apiPath = str_replace(
             ['{provider}'],
-            [$provider],
+            [(string) $provider],
             '/account/tokens/oauth2/{provider}'
         );
 
@@ -1824,15 +1657,13 @@ class Account extends Service
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['accept'] = 'text/html';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
-            $apiParams, 'location'
+            $apiParams,
+            'location'
         );
-
-        return $response;
-
     }
 
     /**
@@ -1840,17 +1671,14 @@ class Account extends Service
      * provided user ID has not be registered, a new user will be created. Use the
      * returned user ID and secret and submit a request to the [POST
      * /v1/account/sessions/token](https://appwrite.io/docs/references/cloud/client-web/account#createSession)
-     * endpoint to complete the login process. The secret sent to the user's phone
+     * endpoint to complete the login process. The secret sent to the user&#039;s phone
      * is valid for 15 minutes.
-     * 
+     *
      * A user is limited to 10 active sessions at a time by default. [Learn more
      * about session
      * limits](https://appwrite.io/docs/authentication-security#limits).
      *
-     * @param string $userId
-     * @param string $phone
      * @throws AppwriteException
-     * @return \Appwrite\Models\Token
      */
     public function createPhoneToken(string $userId, string $phone): \Appwrite\Models\Token
     {
@@ -1881,7 +1709,6 @@ class Account extends Service
         }
 
         return \Appwrite\Models\Token::from($response);
-
     }
 
     /**
@@ -1893,17 +1720,14 @@ class Account extends Service
      * verification process by verifying both the **userId** and **secret**
      * parameters. Learn more about how to [complete the verification
      * process](https://appwrite.io/docs/references/cloud/client-web/account#updateVerification).
-     * The verification link sent to the user's email address is valid for 7 days.
-     * 
+     * The verification link sent to the user&#039;s email address is valid for 7 days.
+     *
      * Please note that in order to avoid a [Redirect
      * Attack](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.md),
      * the only valid redirect URLs are the ones from domains you have set when
      * adding your platforms in the console interface.
-     * 
      *
-     * @param string $url
      * @throws AppwriteException
-     * @return \Appwrite\Models\Token
      */
     public function createEmailVerification(string $url): \Appwrite\Models\Token
     {
@@ -1933,7 +1757,6 @@ class Account extends Service
         }
 
         return \Appwrite\Models\Token::from($response);
-
     }
 
     /**
@@ -1945,17 +1768,14 @@ class Account extends Service
      * verification process by verifying both the **userId** and **secret**
      * parameters. Learn more about how to [complete the verification
      * process](https://appwrite.io/docs/references/cloud/client-web/account#updateVerification).
-     * The verification link sent to the user's email address is valid for 7 days.
-     * 
+     * The verification link sent to the user&#039;s email address is valid for 7 days.
+     *
      * Please note that in order to avoid a [Redirect
      * Attack](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.md),
      * the only valid redirect URLs are the ones from domains you have set when
      * adding your platforms in the console interface.
-     * 
      *
-     * @param string $url
      * @throws AppwriteException
-     * @return \Appwrite\Models\Token
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `createEmailVerification` instead.
      * @see Account::createEmailVerification
@@ -1988,7 +1808,6 @@ class Account extends Service
         }
 
         return \Appwrite\Models\Token::from($response);
-
     }
 
     /**
@@ -1997,10 +1816,7 @@ class Account extends Service
      * to verify the user email ownership. If confirmed this route will return a
      * 200 status code.
      *
-     * @param string $userId
-     * @param string $secret
      * @throws AppwriteException
-     * @return \Appwrite\Models\Token
      */
     public function updateEmailVerification(string $userId, string $secret): \Appwrite\Models\Token
     {
@@ -2031,7 +1847,6 @@ class Account extends Service
         }
 
         return \Appwrite\Models\Token::from($response);
-
     }
 
     /**
@@ -2040,10 +1855,7 @@ class Account extends Service
      * to verify the user email ownership. If confirmed this route will return a
      * 200 status code.
      *
-     * @param string $userId
-     * @param string $secret
      * @throws AppwriteException
-     * @return \Appwrite\Models\Token
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateEmailVerification` instead.
      * @see Account::updateEmailVerification
@@ -2077,21 +1889,19 @@ class Account extends Service
         }
 
         return \Appwrite\Models\Token::from($response);
-
     }
 
     /**
      * Use this endpoint to send a verification SMS to the currently logged in
-     * user. This endpoint is meant for use after updating a user's phone number
+     * user. This endpoint is meant for use after updating a user&#039;s phone number
      * using the
      * [accountUpdatePhone](https://appwrite.io/docs/references/cloud/client-web/account#updatePhone)
      * endpoint. Learn more about how to [complete the verification
      * process](https://appwrite.io/docs/references/cloud/client-web/account#updatePhoneVerification).
-     * The verification code sent to the user's phone number is valid for 15
+     * The verification code sent to the user&#039;s phone number is valid for 15
      * minutes.
      *
      * @throws AppwriteException
-     * @return \Appwrite\Models\Token
      */
     public function createPhoneVerification(): \Appwrite\Models\Token
     {
@@ -2120,19 +1930,15 @@ class Account extends Service
         }
 
         return \Appwrite\Models\Token::from($response);
-
     }
 
     /**
      * Use this endpoint to complete the user phone verification process. Use the
-     * **userId** and **secret** that were sent to your user's phone number to
+     * **userId** and **secret** that were sent to your user&#039;s phone number to
      * verify the user email ownership. If confirmed this route will return a 200
      * status code.
      *
-     * @param string $userId
-     * @param string $secret
      * @throws AppwriteException
-     * @return \Appwrite\Models\Token
      */
     public function updatePhoneVerification(string $userId, string $secret): \Appwrite\Models\Token
     {
@@ -2163,6 +1969,5 @@ class Account extends Service
         }
 
         return \Appwrite\Models\Token::from($response);
-
     }
 }

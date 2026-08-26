@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * AlgoScrypt
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class AlgoScrypt
 {
@@ -62,14 +66,12 @@ readonly class AlgoScrypt
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'type' => static::serializeValue($this->type),
             'costCpu' => static::serializeValue($this->costCpu),
             'costMemory' => static::serializeValue($this->costMemory),
             'costParallel' => static::serializeValue($this->costParallel),
             'length' => static::serializeValue($this->length)
         ];
-
-        return $result;
     }
 }

@@ -16,4 +16,6 @@ $result = $project->updateVariable(
     key: '<KEY>', // optional
     value: '<VALUE>', // optional
     secret: false // optional
-);```
+);
+
+```

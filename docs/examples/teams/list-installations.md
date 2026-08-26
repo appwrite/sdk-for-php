@@ -15,4 +15,6 @@ $result = $teams->listInstallations(
     teamId: '<TEAM_ID>',
     queries: [], // optional
     total: false // optional
-);```
+);
+
+```

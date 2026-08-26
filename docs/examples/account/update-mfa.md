@@ -13,4 +13,6 @@ $account = new Account($client);
 
 $result = $account->updateMFA(
     mfa: false
-);```
+);
+
+```

@@ -14,4 +14,6 @@ $functions = new Functions($client);
 $result = $functions->getVariable(
     functionId: '<FUNCTION_ID>',
     variableId: '<VARIABLE_ID>'
-);```
+);
+
+```

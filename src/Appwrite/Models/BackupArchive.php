@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Archive
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class BackupArchive
 {
@@ -88,8 +92,8 @@ readonly class BackupArchive
             migrationId: $data['migrationId'],
             services: $data['services'],
             resources: $data['resources'],
-            resourceId: array_key_exists('resourceId', $data) ? $data['resourceId'] : null,
-            resourceType: array_key_exists('resourceType', $data) ? $data['resourceType'] : null
+            resourceId: $data['resourceId'] ?? null,
+            resourceType: $data['resourceType'] ?? null
         );
     }
 
@@ -98,7 +102,7 @@ readonly class BackupArchive
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             '$createdAt' => static::serializeValue($this->createdAt),
             '$updatedAt' => static::serializeValue($this->updatedAt),
@@ -112,7 +116,5 @@ readonly class BackupArchive
             'resourceId' => static::serializeValue($this->resourceId),
             'resourceType' => static::serializeValue($this->resourceType)
         ];
-
-        return $result;
     }
 }

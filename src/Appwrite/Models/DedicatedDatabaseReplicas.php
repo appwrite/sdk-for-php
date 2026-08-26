@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Replicas
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class DedicatedDatabaseReplicas
 {
@@ -69,8 +73,8 @@ readonly class DedicatedDatabaseReplicas
                     $data['members']
                 )
                 : $data['members'],
-            effectiveSyncMode: array_key_exists('effectiveSyncMode', $data) ? $data['effectiveSyncMode'] : null,
-            syncStateConfirmed: array_key_exists('syncStateConfirmed', $data) ? $data['syncStateConfirmed'] : null
+            effectiveSyncMode: $data['effectiveSyncMode'] ?? null,
+            syncStateConfirmed: $data['syncStateConfirmed'] ?? null
         );
     }
 
@@ -79,7 +83,7 @@ readonly class DedicatedDatabaseReplicas
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'replicas' => static::serializeValue($this->replicas),
             'syncMode' => static::serializeValue($this->syncMode),
             'effectiveSyncMode' => static::serializeValue($this->effectiveSyncMode),
@@ -89,7 +93,5 @@ readonly class DedicatedDatabaseReplicas
             'syncStateConfirmed' => static::serializeValue($this->syncStateConfirmed),
             'members' => static::serializeValue($this->members)
         ];
-
-        return $result;
     }
 }

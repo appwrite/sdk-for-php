@@ -20,4 +20,6 @@ $result = $storage->createFile(
     file: InputFile::withPath('file.png'),
     permissions: [Permission::read(Role::any())], // optional
     folder: '' // optional
-);```
+);
+
+```

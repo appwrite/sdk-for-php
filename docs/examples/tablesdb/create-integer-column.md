@@ -20,4 +20,6 @@ $result = $tablesDB->createIntegerColumn(
     max: null, // optional
     default: null, // optional
     array: false // optional
-);```
+);
+
+```

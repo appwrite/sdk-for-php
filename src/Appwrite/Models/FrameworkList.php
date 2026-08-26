@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Frameworks List
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class FrameworkList
 {
@@ -49,11 +53,9 @@ readonly class FrameworkList
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'total' => static::serializeValue($this->total),
             'frameworks' => static::serializeValue($this->frameworks)
         ];
-
-        return $result;
     }
 }

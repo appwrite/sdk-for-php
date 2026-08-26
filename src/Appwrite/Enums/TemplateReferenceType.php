@@ -1,20 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Enums;
 
 use JsonSerializable;
+use Stringable;
 
-class TemplateReferenceType implements JsonSerializable
+class TemplateReferenceType implements JsonSerializable, Stringable
 {
     private static TemplateReferenceType $COMMIT;
     private static TemplateReferenceType $BRANCH;
     private static TemplateReferenceType $TAG;
 
-    private string $value;
-
-    private function __construct(string $value)
+    private function __construct(private readonly string $value)
     {
-        $this->value = $value;
     }
 
     public function __toString(): string

@@ -13,4 +13,6 @@ $messaging = new Messaging($client);
 
 $result = $messaging->getTopic(
     topicId: '<TOPIC_ID>'
-);```
+);
+
+```

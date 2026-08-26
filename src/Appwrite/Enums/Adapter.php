@@ -1,19 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Enums;
 
 use JsonSerializable;
+use Stringable;
 
-class Adapter implements JsonSerializable
+class Adapter implements JsonSerializable, Stringable
 {
     private static Adapter $STATIC;
     private static Adapter $SSR;
 
-    private string $value;
-
-    private function __construct(string $value)
+    private function __construct(private readonly string $value)
     {
-        $this->value = $value;
     }
 
     public function __toString(): string

@@ -15,4 +15,6 @@ $result = $teams->create(
     teamId: '<TEAM_ID>',
     name: '<NAME>',
     roles: [] // optional
-);```
+);
+
+```

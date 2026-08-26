@@ -20,4 +20,6 @@ $result = $databases->updateFloatAttribute(
     min: null, // optional
     max: null, // optional
     newKey: '' // optional
-);```
+);
+
+```

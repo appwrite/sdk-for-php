@@ -1,11 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 use Appwrite\Enums\PlatformType;
 
 /**
  * Platform Apple
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class PlatformApple
 {
@@ -70,7 +74,7 @@ readonly class PlatformApple
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             '$createdAt' => static::serializeValue($this->createdAt),
             '$updatedAt' => static::serializeValue($this->updatedAt),
@@ -78,7 +82,5 @@ readonly class PlatformApple
             'type' => static::serializeValue($this->type),
             'bundleIdentifier' => static::serializeValue($this->bundleIdentifier)
         ];
-
-        return $result;
     }
 }

@@ -13,4 +13,6 @@ $project = new Project($client);
 
 $result = $project->getKey(
     keyId: '<KEY_ID>'
-);```
+);
+
+```

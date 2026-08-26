@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * OAuth2Microsoft
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class OAuth2Microsoft
 {
@@ -62,14 +66,12 @@ readonly class OAuth2Microsoft
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             'enabled' => static::serializeValue($this->enabled),
             'applicationId' => static::serializeValue($this->applicationId),
             'applicationSecret' => static::serializeValue($this->applicationSecret),
             'tenant' => static::serializeValue($this->tenant)
         ];
-
-        return $result;
     }
 }

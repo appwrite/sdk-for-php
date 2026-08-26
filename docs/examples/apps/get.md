@@ -13,4 +13,6 @@ $apps = new Apps($client);
 
 $result = $apps->get(
     appId: '<APP_ID>'
-);```
+);
+
+```

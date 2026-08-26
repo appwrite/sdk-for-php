@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * File
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class File
 {
@@ -128,7 +132,7 @@ readonly class File
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             'bucketId' => static::serializeValue($this->bucketId),
             '$createdAt' => static::serializeValue($this->createdAt),
@@ -146,7 +150,5 @@ readonly class File
             'encryption' => static::serializeValue($this->encryption),
             'compression' => static::serializeValue($this->compression)
         ];
-
-        return $result;
     }
 }

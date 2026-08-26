@@ -16,4 +16,6 @@ $result = $users->createMD5User(
     email: 'email@example.com',
     password: 'password',
     name: '<NAME>' // optional
-);```
+);
+
+```

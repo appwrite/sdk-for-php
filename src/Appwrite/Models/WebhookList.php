@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Webhooks List
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class WebhookList
 {
@@ -49,11 +53,9 @@ readonly class WebhookList
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'total' => static::serializeValue($this->total),
             'webhooks' => static::serializeValue($this->webhooks)
         ];
-
-        return $result;
     }
 }

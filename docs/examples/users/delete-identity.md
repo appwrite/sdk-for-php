@@ -13,4 +13,6 @@ $users = new Users($client);
 
 $result = $users->deleteIdentity(
     identityId: '<IDENTITY_ID>'
-);```
+);
+
+```

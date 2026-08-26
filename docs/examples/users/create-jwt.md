@@ -15,4 +15,6 @@ $result = $users->createJWT(
     userId: '<USER_ID>',
     sessionId: '<SESSION_ID>', // optional
     duration: 0 // optional
-);```
+);
+
+```

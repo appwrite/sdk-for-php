@@ -28,4 +28,6 @@ $result = $storage->getFilePreview(
     background: '', // optional
     output: ImageFormat::JPG(), // optional
     token: '<TOKEN>' // optional
-);```
+);
+
+```

@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * OAuth2 Authorize
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class Oauth2Authorize
 {
@@ -44,11 +48,9 @@ readonly class Oauth2Authorize
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'grantId' => static::serializeValue($this->grantId),
             'redirectUrl' => static::serializeValue($this->redirectUrl)
         ];
-
-        return $result;
     }
 }

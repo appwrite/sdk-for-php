@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Provider list
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class ProviderList
 {
@@ -49,11 +53,9 @@ readonly class ProviderList
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'total' => static::serializeValue($this->total),
             'providers' => static::serializeValue($this->providers)
         ];
-
-        return $result;
     }
 }

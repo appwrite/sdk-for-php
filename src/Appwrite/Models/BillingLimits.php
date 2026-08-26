@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Limits
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class BillingLimits
 {
@@ -40,14 +44,14 @@ readonly class BillingLimits
     {
 
         return new static(
-            bandwidth: array_key_exists('bandwidth', $data) ? $data['bandwidth'] : null,
-            storage: array_key_exists('storage', $data) ? $data['storage'] : null,
-            users: array_key_exists('users', $data) ? $data['users'] : null,
-            executions: array_key_exists('executions', $data) ? $data['executions'] : null,
-            gBHours: array_key_exists('GBHours', $data) ? $data['GBHours'] : null,
-            imageTransformations: array_key_exists('imageTransformations', $data) ? $data['imageTransformations'] : null,
-            authPhone: array_key_exists('authPhone', $data) ? $data['authPhone'] : null,
-            budgetLimit: array_key_exists('budgetLimit', $data) ? $data['budgetLimit'] : null
+            bandwidth: $data['bandwidth'] ?? null,
+            storage: $data['storage'] ?? null,
+            users: $data['users'] ?? null,
+            executions: $data['executions'] ?? null,
+            gBHours: $data['GBHours'] ?? null,
+            imageTransformations: $data['imageTransformations'] ?? null,
+            authPhone: $data['authPhone'] ?? null,
+            budgetLimit: $data['budgetLimit'] ?? null
         );
     }
 
@@ -56,7 +60,7 @@ readonly class BillingLimits
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'bandwidth' => static::serializeValue($this->bandwidth),
             'storage' => static::serializeValue($this->storage),
             'users' => static::serializeValue($this->users),
@@ -66,7 +70,5 @@ readonly class BillingLimits
             'authPhone' => static::serializeValue($this->authPhone),
             'budgetLimit' => static::serializeValue($this->budgetLimit)
         ];
-
-        return $result;
     }
 }

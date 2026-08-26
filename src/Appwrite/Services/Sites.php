@@ -1,34 +1,28 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Services;
 
 use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
-use Appwrite\InputFile;
 use Appwrite\Enums\Framework;
 use Appwrite\Enums\BuildRuntime;
 use Appwrite\Enums\Adapter;
+use Appwrite\InputFile;
 use Appwrite\Enums\TemplateReferenceType;
 use Appwrite\Enums\VCSReferenceType;
 use Appwrite\Enums\DeploymentDownloadType;
+use Utopia\Psr7\Request\Multipart\Part;
 
 class Sites extends Service
 {
-    public function __construct(Client $client)
-    {
-        parent::__construct($client);
-    }
-
     /**
-     * Get a list of all the project's sites. You can use the query params to
+     * Get a list of all the project&#039;s sites. You can use the query params to
      * filter your results.
      *
-     * @param ?array $queries
-     * @param ?string $search
-     * @param ?bool $total
      * @throws AppwriteException
-     * @return \Appwrite\Models\SiteList
      */
     public function list(?array $queries = null, ?string $search = null, ?bool $total = null): \Appwrite\Models\SiteList
     {
@@ -68,39 +62,14 @@ class Sites extends Service
         }
 
         return \Appwrite\Models\SiteList::from($response);
-
     }
 
     /**
      * Create a new site.
      *
-     * @param string $siteId
-     * @param string $name
-     * @param Framework $framework
-     * @param BuildRuntime $buildRuntime
-     * @param ?bool $enabled
-     * @param ?bool $logging
-     * @param ?int $timeout
-     * @param ?string $installCommand
-     * @param ?string $buildCommand
-     * @param ?string $startCommand
-     * @param ?string $outputDirectory
-     * @param ?Adapter $adapter
-     * @param ?string $installationId
-     * @param ?string $fallbackFile
-     * @param ?string $providerRepositoryId
-     * @param ?string $providerBranch
-     * @param ?bool $providerSilentMode
-     * @param ?string $providerRootDirectory
-     * @param ?array $providerBranches
-     * @param ?array $providerPaths
-     * @param ?string $buildSpecification
-     * @param ?string $runtimeSpecification
-     * @param ?int $deploymentRetention
      * @throws AppwriteException
-     * @return \Appwrite\Models\Site
      */
-    public function create(string $siteId, string $name, Framework $framework, BuildRuntime $buildRuntime, ?bool $enabled = null, ?bool $logging = null, ?int $timeout = null, ?string $installCommand = null, ?string $buildCommand = null, ?string $startCommand = null, ?string $outputDirectory = null, ?Adapter $adapter = null, ?string $installationId = null, ?string $fallbackFile = null, ?string $providerRepositoryId = null, ?string $providerBranch = null, ?bool $providerSilentMode = null, ?string $providerRootDirectory = null, ?array $providerBranches = null, ?array $providerPaths = null, ?string $buildSpecification = null, ?string $runtimeSpecification = null, ?int $deploymentRetention = null): \Appwrite\Models\Site
+    public function create(string $siteId, string $name, Framework $framework, BuildRuntime $buildRuntime, ?bool $enabled = null, ?bool $logging = null, ?int $timeout = null, ?string $installCommand = null, ?string $buildCommand = null, ?string $startCommand = null, ?string $outputDirectory = null, ?Adapter $adapter = null, ?string $installationId = null, ?string $fallbackFile = null, ?string $providerRepositoryId = null, ?string $providerBranch = null, ?bool $providerSilentMode = null, ?string $providerRootDirectory = null, ?array $providerBranches = null, ?array $providerPaths = null, ?string $buildSpecification = null, ?string $runtimeSpecification = null, ?int $deploymentRetention = null, ?array $scopes = null): \Appwrite\Models\Site
     {
         $apiPath = str_replace(
             [],
@@ -190,6 +159,10 @@ class Sites extends Service
             $apiParams['deploymentRetention'] = $deploymentRetention;
         }
 
+        if (!is_null($scopes)) {
+            $apiParams['scopes'] = $scopes;
+        }
+
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
@@ -207,7 +180,6 @@ class Sites extends Service
         }
 
         return \Appwrite\Models\Site::from($response);
-
     }
 
     /**
@@ -215,7 +187,6 @@ class Sites extends Service
      * instance.
      *
      * @throws AppwriteException
-     * @return \Appwrite\Models\FrameworkList
      */
     public function listFrameworks(): \Appwrite\Models\FrameworkList
     {
@@ -243,15 +214,12 @@ class Sites extends Service
         }
 
         return \Appwrite\Models\FrameworkList::from($response);
-
     }
 
     /**
      * List allowed site specifications for this instance.
      *
-     * @param ?string $type
      * @throws AppwriteException
-     * @return \Appwrite\Models\SpecificationList
      */
     public function listSpecifications(?string $type = null): \Appwrite\Models\SpecificationList
     {
@@ -283,15 +251,12 @@ class Sites extends Service
         }
 
         return \Appwrite\Models\SpecificationList::from($response);
-
     }
 
     /**
      * Get a site by its unique ID.
      *
-     * @param string $siteId
      * @throws AppwriteException
-     * @return \Appwrite\Models\Site
      */
     public function get(string $siteId): \Appwrite\Models\Site
     {
@@ -320,39 +285,14 @@ class Sites extends Service
         }
 
         return \Appwrite\Models\Site::from($response);
-
     }
 
     /**
      * Update site by its unique ID.
      *
-     * @param string $siteId
-     * @param string $name
-     * @param Framework $framework
-     * @param ?bool $enabled
-     * @param ?bool $logging
-     * @param ?int $timeout
-     * @param ?string $installCommand
-     * @param ?string $buildCommand
-     * @param ?string $startCommand
-     * @param ?string $outputDirectory
-     * @param ?BuildRuntime $buildRuntime
-     * @param ?Adapter $adapter
-     * @param ?string $fallbackFile
-     * @param ?string $installationId
-     * @param ?string $providerRepositoryId
-     * @param ?string $providerBranch
-     * @param ?bool $providerSilentMode
-     * @param ?string $providerRootDirectory
-     * @param ?array $providerBranches
-     * @param ?array $providerPaths
-     * @param ?string $buildSpecification
-     * @param ?string $runtimeSpecification
-     * @param ?int $deploymentRetention
      * @throws AppwriteException
-     * @return \Appwrite\Models\Site
      */
-    public function update(string $siteId, string $name, Framework $framework, ?bool $enabled = null, ?bool $logging = null, ?int $timeout = null, ?string $installCommand = null, ?string $buildCommand = null, ?string $startCommand = null, ?string $outputDirectory = null, ?BuildRuntime $buildRuntime = null, ?Adapter $adapter = null, ?string $fallbackFile = null, ?string $installationId = null, ?string $providerRepositoryId = null, ?string $providerBranch = null, ?bool $providerSilentMode = null, ?string $providerRootDirectory = null, ?array $providerBranches = null, ?array $providerPaths = null, ?string $buildSpecification = null, ?string $runtimeSpecification = null, ?int $deploymentRetention = null): \Appwrite\Models\Site
+    public function update(string $siteId, string $name, Framework $framework, ?bool $enabled = null, ?bool $logging = null, ?int $timeout = null, ?string $installCommand = null, ?string $buildCommand = null, ?string $startCommand = null, ?string $outputDirectory = null, ?BuildRuntime $buildRuntime = null, ?Adapter $adapter = null, ?string $fallbackFile = null, ?string $installationId = null, ?string $providerRepositoryId = null, ?string $providerBranch = null, ?bool $providerSilentMode = null, ?string $providerRootDirectory = null, ?array $providerBranches = null, ?array $providerPaths = null, ?string $buildSpecification = null, ?string $runtimeSpecification = null, ?int $deploymentRetention = null, ?array $scopes = null): \Appwrite\Models\Site
     {
         $apiPath = str_replace(
             ['{siteId}'],
@@ -435,6 +375,7 @@ class Sites extends Service
         if (!is_null($deploymentRetention)) {
             $apiParams['deploymentRetention'] = $deploymentRetention;
         }
+        $apiParams['scopes'] = $scopes;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -453,15 +394,12 @@ class Sites extends Service
         }
 
         return \Appwrite\Models\Site::from($response);
-
     }
 
     /**
      * Delete a site by its unique ID.
      *
-     * @param string $siteId
      * @throws AppwriteException
-     * @return string
      */
     public function delete(string $siteId): string
     {
@@ -478,25 +416,19 @@ class Sites extends Service
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 
     /**
      * Update the site active deployment. Use this endpoint to switch the code
      * deployment that should be used when visitor opens your site.
      *
-     * @param string $siteId
-     * @param string $deploymentId
      * @throws AppwriteException
-     * @return \Appwrite\Models\Site
      */
     public function updateSiteDeployment(string $siteId, string $deploymentId): \Appwrite\Models\Site
     {
@@ -527,19 +459,13 @@ class Sites extends Service
         }
 
         return \Appwrite\Models\Site::from($response);
-
     }
 
     /**
-     * Get a list of all the site's code deployments. You can use the query params
+     * Get a list of all the site&#039;s code deployments. You can use the query params
      * to filter your results.
      *
-     * @param string $siteId
-     * @param ?array $queries
-     * @param ?string $search
-     * @param ?bool $total
      * @throws AppwriteException
-     * @return \Appwrite\Models\DeploymentList
      */
     public function listDeployments(string $siteId, ?array $queries = null, ?string $search = null, ?bool $total = null): \Appwrite\Models\DeploymentList
     {
@@ -580,22 +506,14 @@ class Sites extends Service
         }
 
         return \Appwrite\Models\DeploymentList::from($response);
-
     }
 
     /**
      * Create a new site code deployment. Use this endpoint to upload a new
-     * version of your site code. To activate your newly uploaded code, you'll
-     * need to update the site's deployment to use your new deployment ID.
+     * version of your site code. To activate your newly uploaded code, you&#039;ll
+     * need to update the site&#039;s deployment to use your new deployment ID.
      *
-     * @param string $siteId
-     * @param InputFile $code
-     * @param ?string $installCommand
-     * @param ?string $buildCommand
-     * @param ?string $outputDirectory
-     * @param ?bool $activate
      * @throws AppwriteException
-     * @return \Appwrite\Models\Deployment
      */
     public function createDeployment(string $siteId, InputFile $code, ?string $installCommand = null, ?string $buildCommand = null, ?string $outputDirectory = null, ?bool $activate = null, ?callable $onProgress = null): \Appwrite\Models\Deployment
     {
@@ -632,12 +550,12 @@ class Sites extends Service
         $size = 0;
         $mimeType = null;
         $postedName = null;
-        if(empty($code->getPath() ?? null)) {
+        if (empty($code->getPath() ?? null)) {
             $size = strlen($code->getData());
             $mimeType = $code->getMimeType();
             $postedName = $code->getFilename();
             if ($size <= Client::CHUNK_SIZE) {
-                $apiParams['code'] = new \CURLFile('data://' . $mimeType . ';base64,' . base64_encode($code->getData()), $mimeType, $postedName);
+                $apiParams['code'] = Part::body('code', $code->getData(), $postedName, $mimeType);
                 $response = $this->client->call(Client::METHOD_POST, $apiPath, [
                             'content-type' => 'multipart/form-data',
                         'accept' => 'application/json',
@@ -654,7 +572,7 @@ class Sites extends Service
             $postedName = $code->getFilename() ?? basename($code->getPath());
             //send single file if size is less than or equal to 5MB
             if ($size <= Client::CHUNK_SIZE) {
-                $apiParams['code'] = new \CURLFile($code->getPath(), $mimeType, $postedName);
+                $apiParams['code'] = Part::file('code', $code->getPath(), $postedName, $mimeType);
                 $response = $this->client->call(Client::METHOD_POST, $apiPath, [
                             'content-type' => 'multipart/form-data',
                         'accept' => 'application/json',
@@ -667,7 +585,6 @@ class Sites extends Service
             }
         }
 
-        $id = '';
         $counter = 0;
 
 
@@ -678,12 +595,12 @@ class Sites extends Service
         ];
         $handle = null;
 
-        if(!empty($code->getPath())) {
+        if (!empty($code->getPath())) {
             $handle = @fopen($code->getPath(), "rb");
         }
 
         $uploadId = '';
-                $totalChunks = (int) ceil($size / Client::CHUNK_SIZE);
+        $totalChunks = (int) ceil($size / Client::CHUNK_SIZE);
         $chunks = [];
         $start = $counter * Client::CHUNK_SIZE;
         while ($start < $size) {
@@ -696,8 +613,8 @@ class Sites extends Service
             $start += Client::CHUNK_SIZE;
         }
 
-        $readChunk = function(int $start, int $end) use ($handle, $code) {
-            if(!empty($handle)) {
+        $readChunk = function (int $start, int $end) use ($handle, $code): string|false {
+            if (!empty($handle)) {
                 fseek($handle, $start);
                 return @fread($handle, $end - $start);
             }
@@ -705,173 +622,67 @@ class Sites extends Service
             return substr($code->getData(), $start, $end - $start);
         };
 
-        $uploadChunk = function(array $chunk, string $currentUploadId = '') use ($readChunk, $apiPath, $apiHeaders, $apiParams, $mimeType, $postedName, $size) {
+        $uploadChunk = function (array $chunk, string $currentUploadId = '') use ($readChunk, $apiPath, $apiHeaders, $apiParams, $mimeType, $postedName, $size) {
             $chunkParams = $apiParams;
             $chunkHeaders = $apiHeaders;
             $data = $readChunk($chunk['start'], $chunk['end']);
-            $chunkParams['code'] = new \CURLFile('data://' . $mimeType . ';base64,' . base64_encode($data), $mimeType, $postedName);
+            if (!is_string($data)) {
+                throw new AppwriteException('Failed to read upload chunk');
+            }
+            $chunkParams['code'] = Part::body('code', $data, $postedName, $mimeType);
             $chunkHeaders['content-range'] = 'bytes ' . $chunk['start'] . '-' . ($chunk['end'] - 1) . '/' . $size;
-            if(!empty($currentUploadId)) {
+            if (!empty($currentUploadId)) {
                 $chunkHeaders['x-appwrite-id'] = $currentUploadId;
             }
 
             return $this->client->call(Client::METHOD_POST, $apiPath, $chunkHeaders, $chunkParams);
         };
 
-        $isUploadComplete = function($chunkResponse) use ($totalChunks): bool {
-            if(!is_array($chunkResponse) || !isset($chunkResponse['chunksUploaded'])) {
+        $isUploadComplete = function ($chunkResponse) use ($totalChunks): bool {
+            if (!is_array($chunkResponse) || !isset($chunkResponse['chunksUploaded'])) {
                 return false;
             }
 
             return (int) $chunkResponse['chunksUploaded'] >= (int) ($chunkResponse['chunksTotal'] ?? $totalChunks);
         };
 
-        if (!empty($chunks)) {
-            $response = $uploadChunk($chunks[0], $uploadId);
-            if(empty($uploadId)) {
-                $uploadId = $response['$id'];
+        $response = $uploadChunk($chunks[0], $uploadId);
+        $uploadId = $response['$id'];
+        $completedCount = $chunks[0]['index'] + 1;
+        $uploadedSize = $chunks[0]['end'];
+        if ($onProgress !== null) {
+            $onProgress([
+                '$id' => $response['$id'],
+                'progress' => $uploadedSize / $size * 100,
+                'sizeUploaded' => $uploadedSize,
+                'chunksTotal' => $totalChunks,
+                'chunksUploaded' => $completedCount,
+            ]);
+        }
+
+        $remainingChunks = array_slice($chunks, 1);
+        $completedResponse = $isUploadComplete($response) ? $response : null;
+
+        foreach ($remainingChunks as $chunk) {
+            $response = $uploadChunk($chunk, $uploadId);
+            $completedCount++;
+            $uploadedSize += $chunk['end'] - $chunk['start'];
+            if ($isUploadComplete($response)) {
+                $completedResponse = $response;
             }
-            $completedCount = $chunks[0]['index'] + 1;
-            $uploadedSize = $chunks[0]['end'];
-            if($onProgress !== null) {
+            if ($onProgress !== null) {
                 $onProgress([
-                    '$id' => $response['$id'],
+                    '$id' => $uploadId,
                     'progress' => $uploadedSize / $size * 100,
                     'sizeUploaded' => $uploadedSize,
                     'chunksTotal' => $totalChunks,
                     'chunksUploaded' => $completedCount,
                 ]);
             }
-
-            $remainingChunks = array_slice($chunks, 1);
-            $clientConfig = \Closure::bind(function() {
-                if (property_exists($this, 'key') && $this->key !== null) {
-                    $this->headers['authorization'] = $this->getAuthorization();
-                }
-
-                return [$this->endpoint, $this->headers, $this->selfSigned, $this->timeout, $this->connectTimeout];
-            }, $this->client, Client::class);
-            $flattenParams = \Closure::bind(function(array $params): array {
-                return $this->flatten($params);
-            }, $this->client, Client::class);
-            [$endpoint, $globalHeaders, $selfSigned, $timeout, $connectTimeout] = $clientConfig();
-            $responseHeaders = [];
-            $lastResponse = $response;
-            $completedResponse = null;
-
-            $makeHandle = function(array $chunk) use ($readChunk, $apiPath, $apiHeaders, $apiParams, $mimeType, $postedName, $size, $uploadId, $endpoint, $globalHeaders, $selfSigned, $timeout, $connectTimeout, $flattenParams, &$responseHeaders) {
-                $chunkParams = $apiParams;
-                $chunkHeaders = array_merge($globalHeaders, $apiHeaders);
-                $data = $readChunk($chunk['start'], $chunk['end']);
-                $chunkParams['code'] = new \CURLFile('data://' . $mimeType . ';base64,' . base64_encode($data), $mimeType, $postedName);
-                $chunkHeaders['content-range'] = 'bytes ' . $chunk['start'] . '-' . ($chunk['end'] - 1) . '/' . $size;
-                if(!empty($uploadId)) {
-                    $chunkHeaders['x-appwrite-id'] = $uploadId;
-                }
-
-                $headers = [];
-                foreach ($chunkHeaders as $key => $value) {
-                    $headers[] = $key . ':' . $value;
-                }
-
-                $ch = curl_init($endpoint . $apiPath);
-                $responseHeaders[spl_object_id($ch)] = [];
-                curl_setopt($ch, CURLOPT_CUSTOMREQUEST, Client::METHOD_POST);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-                curl_setopt($ch, CURLOPT_USERAGENT, php_uname('s') . '-' . php_uname('r') . ':php-' . phpversion());
-                curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-                curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-                curl_setopt($ch, CURLOPT_POSTFIELDS, $flattenParams($chunkParams));
-                curl_setopt($ch, CURLOPT_HEADERFUNCTION, function($curl, $header) use (&$responseHeaders) {
-                    $length = strlen($header);
-                    $header = explode(':', strtolower($header), 2);
-                    if (count($header) >= 2) {
-                        $responseHeaders[spl_object_id($curl)][strtolower(trim($header[0]))] = trim($header[1]);
-                    }
-
-                    return $length;
-                });
-                if($selfSigned) {
-                    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-                    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-                }
-                if($timeout !== null) {
-                    curl_setopt($ch, CURLOPT_TIMEOUT, $timeout);
-                }
-                if($connectTimeout !== null) {
-                    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $connectTimeout);
-                }
-
-                return $ch;
-            };
-
-            $nextChunk = 0;
-            while ($nextChunk < count($remainingChunks)) {
-                $multiHandle = curl_multi_init();
-                $handles = [];
-                for ($i = 0; $i < 8 && $nextChunk < count($remainingChunks); $i++, $nextChunk++) {
-                    $chunk = $remainingChunks[$nextChunk];
-                    $ch = $makeHandle($chunk);
-                    $handles[spl_object_id($ch)] = ['handle' => $ch, 'chunk' => $chunk];
-                    curl_multi_add_handle($multiHandle, $ch);
-                }
-
-                try {
-                    do {
-                        $status = curl_multi_exec($multiHandle, $active);
-                        if ($active) {
-                            curl_multi_select($multiHandle);
-                        }
-                    } while ($active && ($status == CURLM_OK || $status == CURLM_CALL_MULTI_PERFORM));
-
-                    foreach ($handles as $handleInfo) {
-                        $ch = $handleInfo['handle'];
-                        $body = curl_multi_getcontent($ch);
-                        $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-                        $contentType = $responseHeaders[spl_object_id($ch)]['content-type'] ?? '';
-
-                        if (curl_errno($ch)) {
-                            throw new AppwriteException(curl_error($ch), $statusCode, '', $body);
-                        }
-
-                        $chunkResponse = str_starts_with($contentType, 'application/json') ? json_decode($body, true) : $body;
-
-                        if($statusCode >= 400) {
-                            if(is_array($chunkResponse)) {
-                                throw new AppwriteException($chunkResponse['message'], $statusCode, $chunkResponse['type'] ?? '', json_encode($chunkResponse));
-                            }
-
-                            throw new AppwriteException($chunkResponse, $statusCode, '', $chunkResponse);
-                        }
-
-                        $completedCount++;
-                        $uploadedSize += $handleInfo['chunk']['end'] - $handleInfo['chunk']['start'];
-                        $lastResponse = $chunkResponse;
-                        if($isUploadComplete($chunkResponse)) {
-                            $completedResponse = $chunkResponse;
-                        }
-                        if($onProgress !== null) {
-                            $onProgress([
-                                '$id' => $uploadId,
-                                'progress' => $uploadedSize / $size * 100,
-                                'sizeUploaded' => $uploadedSize,
-                                'chunksTotal' => $totalChunks,
-                                'chunksUploaded' => $completedCount,
-                            ]);
-                        }
-                    }
-                } finally {
-                    foreach ($handles as $handleInfo) {
-                        curl_multi_remove_handle($multiHandle, $handleInfo['handle']);
-                        curl_close($handleInfo['handle']);
-                    }
-                    curl_multi_close($multiHandle);
-                }
-            }
-            $response = $completedResponse ?? $lastResponse;
-
         }
-        if(!empty($handle)) {
+
+        $response = $completedResponse ?? $response;
+        if (!empty($handle)) {
             @fclose($handle);
         }
         if (!is_array($response)) {
@@ -879,7 +690,6 @@ class Sites extends Service
         }
 
         return \Appwrite\Models\Deployment::from($response);
-
     }
 
     /**
@@ -887,12 +697,9 @@ class Sites extends Service
      * you to rebuild a deployment with the updated site configuration, including
      * its commands and output directory if they have been modified. The build
      * process will be queued and executed asynchronously. The original
-     * deployment's code will be preserved and used for the new build.
+     * deployment&#039;s code will be preserved and used for the new build.
      *
-     * @param string $siteId
-     * @param string $deploymentId
      * @throws AppwriteException
-     * @return \Appwrite\Models\Deployment
      */
     public function createDuplicateDeployment(string $siteId, string $deploymentId): \Appwrite\Models\Deployment
     {
@@ -923,25 +730,16 @@ class Sites extends Service
         }
 
         return \Appwrite\Models\Deployment::from($response);
-
     }
 
     /**
      * Create a deployment based on a template.
-     * 
+     *
      * Use this endpoint with combination of
      * [listTemplates](https://appwrite.io/docs/products/sites/templates) to find
      * the template details.
      *
-     * @param string $siteId
-     * @param string $repository
-     * @param string $owner
-     * @param string $rootDirectory
-     * @param TemplateReferenceType $type
-     * @param string $reference
-     * @param ?bool $activate
      * @throws AppwriteException
-     * @return \Appwrite\Models\Deployment
      */
     public function createTemplateDeployment(string $siteId, string $repository, string $owner, string $rootDirectory, TemplateReferenceType $type, string $reference, ?bool $activate = null): \Appwrite\Models\Deployment
     {
@@ -980,20 +778,14 @@ class Sites extends Service
         }
 
         return \Appwrite\Models\Deployment::from($response);
-
     }
 
     /**
      * Create a deployment when a site is connected to VCS.
-     * 
+     *
      * This endpoint lets you create deployment from a branch, commit, or a tag.
      *
-     * @param string $siteId
-     * @param VCSReferenceType $type
-     * @param string $reference
-     * @param ?bool $activate
      * @throws AppwriteException
-     * @return \Appwrite\Models\Deployment
      */
     public function createVcsDeployment(string $siteId, VCSReferenceType $type, string $reference, ?bool $activate = null): \Appwrite\Models\Deployment
     {
@@ -1029,16 +821,12 @@ class Sites extends Service
         }
 
         return \Appwrite\Models\Deployment::from($response);
-
     }
 
     /**
      * Get a site deployment by its unique ID.
      *
-     * @param string $siteId
-     * @param string $deploymentId
      * @throws AppwriteException
-     * @return \Appwrite\Models\Deployment
      */
     public function getDeployment(string $siteId, string $deploymentId): \Appwrite\Models\Deployment
     {
@@ -1068,16 +856,12 @@ class Sites extends Service
         }
 
         return \Appwrite\Models\Deployment::from($response);
-
     }
 
     /**
      * Delete a site deployment by its unique ID.
      *
-     * @param string $siteId
-     * @param string $deploymentId
      * @throws AppwriteException
-     * @return string
      */
     public function deleteDeployment(string $siteId, string $deploymentId): string
     {
@@ -1095,28 +879,20 @@ class Sites extends Service
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 
     /**
      * Get a site deployment content by its unique ID. The endpoint response
-     * return with a 'Content-Disposition: attachment' header that tells the
+     * return with a &#039;Content-Disposition: attachment&#039; header that tells the
      * browser to start downloading the file to user downloads directory.
      *
-     * @param string $siteId
-     * @param string $deploymentId
-     * @param ?DeploymentDownloadType $type
-     * @param ?string $token
      * @throws AppwriteException
-     * @return string
      */
     public function getDeploymentDownload(string $siteId, string $deploymentId, ?DeploymentDownloadType $type = null, ?string $token = null): string
     {
@@ -1142,28 +918,22 @@ class Sites extends Service
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['accept'] = '*/*';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_GET,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 
     /**
      * Cancel an ongoing site deployment build. If the build is already in
-     * progress, it will be stopped and marked as canceled. If the build hasn't
+     * progress, it will be stopped and marked as canceled. If the build hasn&#039;t
      * started yet, it will be marked as canceled without executing. You cannot
-     * cancel builds that have already completed (status 'ready') or failed. The
+     * cancel builds that have already completed (status &#039;ready&#039;) or failed. The
      * response includes the final build status and details.
      *
-     * @param string $siteId
-     * @param string $deploymentId
      * @throws AppwriteException
-     * @return \Appwrite\Models\Deployment
      */
     public function updateDeploymentStatus(string $siteId, string $deploymentId): \Appwrite\Models\Deployment
     {
@@ -1194,18 +964,13 @@ class Sites extends Service
         }
 
         return \Appwrite\Models\Deployment::from($response);
-
     }
 
     /**
      * Get a list of all site logs. You can use the query params to filter your
      * results.
      *
-     * @param string $siteId
-     * @param ?array $queries
-     * @param ?bool $total
      * @throws AppwriteException
-     * @return \Appwrite\Models\ExecutionList
      */
     public function listLogs(string $siteId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\ExecutionList
     {
@@ -1242,16 +1007,12 @@ class Sites extends Service
         }
 
         return \Appwrite\Models\ExecutionList::from($response);
-
     }
 
     /**
      * Get a site request log by its unique ID.
      *
-     * @param string $siteId
-     * @param string $logId
      * @throws AppwriteException
-     * @return \Appwrite\Models\Execution
      */
     public function getLog(string $siteId, string $logId): \Appwrite\Models\Execution
     {
@@ -1281,16 +1042,12 @@ class Sites extends Service
         }
 
         return \Appwrite\Models\Execution::from($response);
-
     }
 
     /**
      * Delete a site log by its unique ID.
      *
-     * @param string $siteId
-     * @param string $logId
      * @throws AppwriteException
-     * @return string
      */
     public function deleteLog(string $siteId, string $logId): string
     {
@@ -1309,25 +1066,18 @@ class Sites extends Service
         $apiHeaders['content-type'] = 'application/json';
         $apiHeaders['accept'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 
     /**
      * Get a list of all variables of a specific site.
      *
-     * @param string $siteId
-     * @param ?array $queries
-     * @param ?bool $total
      * @throws AppwriteException
-     * @return \Appwrite\Models\VariableList
      */
     public function listVariables(string $siteId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\VariableList
     {
@@ -1364,20 +1114,13 @@ class Sites extends Service
         }
 
         return \Appwrite\Models\VariableList::from($response);
-
     }
 
     /**
      * Create a new site variable. These variables can be accessed during build
      * and runtime (server-side rendering) as environment variables.
      *
-     * @param string $siteId
-     * @param string $variableId
-     * @param string $key
-     * @param string $value
-     * @param ?bool $secret
      * @throws AppwriteException
-     * @return \Appwrite\Models\Variable
      */
     public function createVariable(string $siteId, string $variableId, string $key, string $value, ?bool $secret = null): \Appwrite\Models\Variable
     {
@@ -1414,16 +1157,12 @@ class Sites extends Service
         }
 
         return \Appwrite\Models\Variable::from($response);
-
     }
 
     /**
      * Get a variable by its unique ID.
      *
-     * @param string $siteId
-     * @param string $variableId
      * @throws AppwriteException
-     * @return \Appwrite\Models\Variable
      */
     public function getVariable(string $siteId, string $variableId): \Appwrite\Models\Variable
     {
@@ -1453,19 +1192,12 @@ class Sites extends Service
         }
 
         return \Appwrite\Models\Variable::from($response);
-
     }
 
     /**
      * Update variable by its unique ID.
      *
-     * @param string $siteId
-     * @param string $variableId
-     * @param ?string $key
-     * @param ?string $value
-     * @param ?bool $secret
      * @throws AppwriteException
-     * @return \Appwrite\Models\Variable
      */
     public function updateVariable(string $siteId, string $variableId, ?string $key = null, ?string $value = null, ?bool $secret = null): \Appwrite\Models\Variable
     {
@@ -1499,16 +1231,12 @@ class Sites extends Service
         }
 
         return \Appwrite\Models\Variable::from($response);
-
     }
 
     /**
      * Delete a variable by its unique ID.
      *
-     * @param string $siteId
-     * @param string $variableId
      * @throws AppwriteException
-     * @return string
      */
     public function deleteVariable(string $siteId, string $variableId): string
     {
@@ -1526,14 +1254,11 @@ class Sites extends Service
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 }

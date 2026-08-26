@@ -1,28 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Services;
 
 use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
-use Appwrite\InputFile;
 
 class Advisor extends Service
 {
-    public function __construct(Client $client)
-    {
-        parent::__construct($client);
-    }
-
     /**
-     * Get a list of all the project's analyzer reports. You can use the query
+     * Get a list of all the project&#039;s analyzer reports. You can use the query
      * params to filter your results.
-     * 
      *
-     * @param ?array $queries
-     * @param ?bool $total
      * @throws AppwriteException
-     * @return \Appwrite\Models\ReportList
      */
     public function listReports(?array $queries = null, ?bool $total = null): \Appwrite\Models\ReportList
     {
@@ -58,17 +50,13 @@ class Advisor extends Service
         }
 
         return \Appwrite\Models\ReportList::from($response);
-
     }
 
     /**
-     * Get an analyzer report by its unique ID. The response includes the report's
+     * Get an analyzer report by its unique ID. The response includes the report&#039;s
      * metadata and the nested insights it produced.
-     * 
      *
-     * @param string $reportId
      * @throws AppwriteException
-     * @return \Appwrite\Models\Report
      */
     public function getReport(string $reportId): \Appwrite\Models\Report
     {
@@ -97,17 +85,13 @@ class Advisor extends Service
         }
 
         return \Appwrite\Models\Report::from($response);
-
     }
 
     /**
      * Delete an analyzer report by its unique ID. Nested insights and CTA
      * metadata are removed asynchronously by the deletes worker.
-     * 
      *
-     * @param string $reportId
      * @throws AppwriteException
-     * @return string
      */
     public function deleteReport(string $reportId): string
     {
@@ -124,27 +108,19 @@ class Advisor extends Service
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 
     /**
      * List the insights produced under a single analyzer report. You can use the
      * query params to filter your results further.
-     * 
      *
-     * @param string $reportId
-     * @param ?array $queries
-     * @param ?bool $total
      * @throws AppwriteException
-     * @return \Appwrite\Models\InsightList
      */
     public function listInsights(string $reportId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\InsightList
     {
@@ -181,17 +157,12 @@ class Advisor extends Service
         }
 
         return \Appwrite\Models\InsightList::from($response);
-
     }
 
     /**
      * Get an insight by its unique ID, scoped to its parent report.
-     * 
      *
-     * @param string $reportId
-     * @param string $insightId
      * @throws AppwriteException
-     * @return \Appwrite\Models\Insight
      */
     public function getInsight(string $reportId, string $insightId): \Appwrite\Models\Insight
     {
@@ -221,6 +192,5 @@ class Advisor extends Service
         }
 
         return \Appwrite\Models\Insight::from($response);
-
     }
 }

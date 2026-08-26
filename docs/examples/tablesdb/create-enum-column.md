@@ -19,4 +19,6 @@ $result = $tablesDB->createEnumColumn(
     required: false,
     default: '<DEFAULT>', // optional
     array: false // optional
-);```
+);
+
+```

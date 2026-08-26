@@ -16,4 +16,6 @@ $result = $databases->deleteDocuments(
     collectionId: '<COLLECTION_ID>',
     queries: [], // optional
     transactionId: '<TRANSACTION_ID>' // optional
-);```
+);
+
+```

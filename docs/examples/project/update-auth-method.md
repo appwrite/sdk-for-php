@@ -15,4 +15,6 @@ $project = new Project($client);
 $result = $project->updateAuthMethod(
     methodId: ProjectAuthMethodId::EMAILPASSWORD(),
     enabled: false
-);```
+);
+
+```

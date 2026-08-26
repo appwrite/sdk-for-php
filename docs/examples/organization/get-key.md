@@ -13,4 +13,6 @@ $organization = new Organization($client);
 
 $result = $organization->getKey(
     keyId: '<KEY_ID>'
-);```
+);
+
+```

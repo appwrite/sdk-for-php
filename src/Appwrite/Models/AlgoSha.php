@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * AlgoSHA
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class AlgoSha
 {
@@ -38,10 +42,8 @@ readonly class AlgoSha
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'type' => static::serializeValue($this->type)
         ];
-
-        return $result;
     }
 }

@@ -17,4 +17,6 @@ $result = $project->updateOAuth2Okta(
     domain: '', // optional
     authorizationServerId: '<AUTHORIZATION_SERVER_ID>', // optional
     enabled: false // optional
-);```
+);
+
+```

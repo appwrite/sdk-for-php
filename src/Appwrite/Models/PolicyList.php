@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Policies List
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class PolicyList
 {
@@ -44,11 +48,9 @@ readonly class PolicyList
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'total' => static::serializeValue($this->total),
             'policies' => static::serializeValue($this->policies)
         ];
-
-        return $result;
     }
 }

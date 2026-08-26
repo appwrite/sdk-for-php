@@ -15,4 +15,6 @@ $result = $presences->list(
     queries: [], // optional
     total: false, // optional
     ttl: 0 // optional
-);```
+);
+
+```

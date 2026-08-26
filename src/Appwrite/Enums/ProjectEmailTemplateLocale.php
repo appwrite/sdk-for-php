@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Enums;
 
 use JsonSerializable;
+use Stringable;
 
-class ProjectEmailTemplateLocale implements JsonSerializable
+class ProjectEmailTemplateLocale implements JsonSerializable, Stringable
 {
     private static ProjectEmailTemplateLocale $AF;
     private static ProjectEmailTemplateLocale $ARAE;
@@ -138,11 +141,8 @@ class ProjectEmailTemplateLocale implements JsonSerializable
     private static ProjectEmailTemplateLocale $ZHTW;
     private static ProjectEmailTemplateLocale $ZU;
 
-    private string $value;
-
-    private function __construct(string $value)
+    private function __construct(private readonly string $value)
     {
-        $this->value = $value;
     }
 
     public function __toString(): string

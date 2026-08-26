@@ -26,4 +26,6 @@ $result = $storage->updateBucket(
     encryption: false, // optional
     antivirus: false, // optional
     transformations: false // optional
-);```
+);
+
+```

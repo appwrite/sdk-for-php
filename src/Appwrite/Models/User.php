@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * User
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class User
 {
@@ -145,16 +149,16 @@ readonly class User
                 )
                 : $data['targets'],
             accessedAt: $data['accessedAt'],
-            password: array_key_exists('password', $data) ? $data['password'] : null,
-            hash: array_key_exists('hash', $data) ? $data['hash'] : null,
-            hashOptions: array_key_exists('hashOptions', $data) ? $data['hashOptions'] : null,
-            emailCanonical: array_key_exists('emailCanonical', $data) ? $data['emailCanonical'] : null,
-            emailIsFree: array_key_exists('emailIsFree', $data) ? $data['emailIsFree'] : null,
-            emailIsDisposable: array_key_exists('emailIsDisposable', $data) ? $data['emailIsDisposable'] : null,
-            emailIsCorporate: array_key_exists('emailIsCorporate', $data) ? $data['emailIsCorporate'] : null,
-            emailIsCanonical: array_key_exists('emailIsCanonical', $data) ? $data['emailIsCanonical'] : null,
-            impersonator: array_key_exists('impersonator', $data) ? $data['impersonator'] : null,
-            impersonatorUserId: array_key_exists('impersonatorUserId', $data) ? $data['impersonatorUserId'] : null
+            password: $data['password'] ?? null,
+            hash: $data['hash'] ?? null,
+            hashOptions: $data['hashOptions'] ?? null,
+            emailCanonical: $data['emailCanonical'] ?? null,
+            emailIsFree: $data['emailIsFree'] ?? null,
+            emailIsDisposable: $data['emailIsDisposable'] ?? null,
+            emailIsCorporate: $data['emailIsCorporate'] ?? null,
+            emailIsCanonical: $data['emailIsCanonical'] ?? null,
+            impersonator: $data['impersonator'] ?? null,
+            impersonatorUserId: $data['impersonatorUserId'] ?? null
         );
     }
 
@@ -163,7 +167,7 @@ readonly class User
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             '$createdAt' => static::serializeValue($this->createdAt),
             '$updatedAt' => static::serializeValue($this->updatedAt),
@@ -191,7 +195,5 @@ readonly class User
             'impersonator' => static::serializeValue($this->impersonator),
             'impersonatorUserId' => static::serializeValue($this->impersonatorUserId)
         ];
-
-        return $result;
     }
 }

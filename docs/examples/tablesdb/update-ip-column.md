@@ -18,4 +18,6 @@ $result = $tablesDB->updateIpColumn(
     required: false,
     default: '',
     newKey: '' // optional
-);```
+);
+
+```

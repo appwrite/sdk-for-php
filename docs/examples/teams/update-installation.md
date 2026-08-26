@@ -15,4 +15,6 @@ $result = $teams->updateInstallation(
     teamId: '<TEAM_ID>',
     installationId: '<INSTALLATION_ID>',
     authorizationDetails: '<AUTHORIZATION_DETAILS>' // optional
-);```
+);
+
+```

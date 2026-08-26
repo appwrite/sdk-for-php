@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * OAuth2 Reject
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class Oauth2Reject
 {
@@ -38,10 +42,8 @@ readonly class Oauth2Reject
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'redirectUrl' => static::serializeValue($this->redirectUrl)
         ];
-
-        return $result;
     }
 }

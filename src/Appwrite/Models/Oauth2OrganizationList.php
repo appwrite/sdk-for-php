@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * OAuth2 accessible organizations list
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class Oauth2OrganizationList
 {
@@ -49,11 +53,9 @@ readonly class Oauth2OrganizationList
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'total' => static::serializeValue($this->total),
             'organizations' => static::serializeValue($this->organizations)
         ];
-
-        return $result;
     }
 }

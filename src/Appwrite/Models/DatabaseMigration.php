@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Database Migration
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class DatabaseMigration
 {
@@ -22,6 +26,7 @@ readonly class DatabaseMigration
      * @param int $attempt number of times a migration step has failed and been recorded.
      * @param string $lastError reason the most recent migration step failed, empty while none has.
      * @param int $lagDocuments number of documents still pending replication to the target.
+     * @param int $changelogWatermark highest source changelog sequence applied to the target so far.
      * @param string $verifiedAt time the migrated data was verified against the source in iso 8601 format.
      * @param string $cutoverAt time routing was flipped to the target in iso 8601 format.
      * @param string $soakUntil time the post-cutover soak window ends in iso 8601 format.
@@ -40,6 +45,7 @@ readonly class DatabaseMigration
         public int $attempt,
         public string $lastError,
         public int $lagDocuments,
+        public int $changelogWatermark,
         public string $verifiedAt,
         public string $cutoverAt,
         public string $soakUntil,
@@ -84,6 +90,9 @@ readonly class DatabaseMigration
         if (!array_key_exists('lagDocuments', $data)) {
             throw new \InvalidArgumentException('Missing required field "lagDocuments" for ' . static::class . '.');
         }
+        if (!array_key_exists('changelogWatermark', $data)) {
+            throw new \InvalidArgumentException('Missing required field "changelogWatermark" for ' . static::class . '.');
+        }
         if (!array_key_exists('verifiedAt', $data)) {
             throw new \InvalidArgumentException('Missing required field "verifiedAt" for ' . static::class . '.');
         }
@@ -114,6 +123,7 @@ readonly class DatabaseMigration
             attempt: $data['attempt'],
             lastError: $data['lastError'],
             lagDocuments: $data['lagDocuments'],
+            changelogWatermark: $data['changelogWatermark'],
             verifiedAt: $data['verifiedAt'],
             cutoverAt: $data['cutoverAt'],
             soakUntil: $data['soakUntil'],
@@ -128,7 +138,7 @@ readonly class DatabaseMigration
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             '$createdAt' => static::serializeValue($this->createdAt),
             '$updatedAt' => static::serializeValue($this->updatedAt),
@@ -139,6 +149,7 @@ readonly class DatabaseMigration
             'attempt' => static::serializeValue($this->attempt),
             'lastError' => static::serializeValue($this->lastError),
             'lagDocuments' => static::serializeValue($this->lagDocuments),
+            'changelogWatermark' => static::serializeValue($this->changelogWatermark),
             'verifiedAt' => static::serializeValue($this->verifiedAt),
             'cutoverAt' => static::serializeValue($this->cutoverAt),
             'soakUntil' => static::serializeValue($this->soakUntil),
@@ -146,7 +157,5 @@ readonly class DatabaseMigration
             'cutoverRequested' => static::serializeValue($this->cutoverRequested),
             'paused' => static::serializeValue($this->paused)
         ];
-
-        return $result;
     }
 }

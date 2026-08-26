@@ -19,4 +19,6 @@ $result = $databases->createTextAttribute(
     default: '<DEFAULT>', // optional
     array: false, // optional
     encrypt: false // optional
-);```
+);
+
+```

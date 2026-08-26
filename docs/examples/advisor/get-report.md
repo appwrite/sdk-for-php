@@ -13,4 +13,6 @@ $advisor = new Advisor($client);
 
 $result = $advisor->getReport(
     reportId: '<REPORT_ID>'
-);```
+);
+
+```

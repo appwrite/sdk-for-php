@@ -16,4 +16,6 @@ $result = $tablesDB->listOperations(
     status: 'running', // optional
     limit: 1, // optional
     offset: 0 // optional
-);```
+);
+
+```

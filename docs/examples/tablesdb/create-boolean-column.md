@@ -18,4 +18,6 @@ $result = $tablesDB->createBooleanColumn(
     required: false,
     default: false, // optional
     array: false // optional
-);```
+);
+
+```

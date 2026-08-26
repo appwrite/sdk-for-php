@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Project
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class Project
 {
@@ -39,7 +43,7 @@ readonly class Project
      * @param list<ProjectProtocol> $protocols list of protocols.
      * @param list<Block> $blocks project blocks information
      * @param string $consoleAccessedAt last time the project was accessed via console. used with plan's projectinactivitydays to determine if project is paused.
-     * @param bool $wafEnabled whether waf enforcement is enabled for the project.
+     * @param bool|null $wafEnabled whether waf enforcement is enabled for the project.
      * @param BillingLimits|null $billingLimits billing limits reached
      * @param bool|null $oAuth2ServerEnabled oauth2 server status
      * @param string|null $oAuth2ServerAuthorizationUrl oauth2 server authorization url
@@ -87,7 +91,7 @@ readonly class Project
         public array $protocols,
         public array $blocks,
         public string $consoleAccessedAt,
-        public bool $wafEnabled,
+        public ?bool $wafEnabled = null,
         public ?BillingLimits $billingLimits = null,
         public ?bool $oAuth2ServerEnabled = null,
         public ?string $oAuth2ServerAuthorizationUrl = null,
@@ -195,9 +199,6 @@ readonly class Project
         if (!array_key_exists('consoleAccessedAt', $data)) {
             throw new \InvalidArgumentException('Missing required field "consoleAccessedAt" for ' . static::class . '.');
         }
-        if (!array_key_exists('wafEnabled', $data)) {
-            throw new \InvalidArgumentException('Missing required field "wafEnabled" for ' . static::class . '.');
-        }
 
         return new static(
             id: $data['$id'],
@@ -252,25 +253,25 @@ readonly class Project
                 )
                 : $data['blocks'],
             consoleAccessedAt: $data['consoleAccessedAt'],
-            wafEnabled: $data['wafEnabled'],
+            wafEnabled: $data['wafEnabled'] ?? null,
             billingLimits: array_key_exists('billingLimits', $data) ? static::hydrateTypedValue(BillingLimits::class, $data['billingLimits'], true) : null,
-            oAuth2ServerEnabled: array_key_exists('oAuth2ServerEnabled', $data) ? $data['oAuth2ServerEnabled'] : null,
-            oAuth2ServerAuthorizationUrl: array_key_exists('oAuth2ServerAuthorizationUrl', $data) ? $data['oAuth2ServerAuthorizationUrl'] : null,
-            oAuth2ServerScopes: array_key_exists('oAuth2ServerScopes', $data) ? $data['oAuth2ServerScopes'] : null,
-            oAuth2ServerDefaultScopes: array_key_exists('oAuth2ServerDefaultScopes', $data) ? $data['oAuth2ServerDefaultScopes'] : null,
-            oAuth2ServerInstallationScopes: array_key_exists('oAuth2ServerInstallationScopes', $data) ? $data['oAuth2ServerInstallationScopes'] : null,
-            oAuth2ServerAuthorizationDetailsTypes: array_key_exists('oAuth2ServerAuthorizationDetailsTypes', $data) ? $data['oAuth2ServerAuthorizationDetailsTypes'] : null,
-            oAuth2ServerAccessTokenDuration: array_key_exists('oAuth2ServerAccessTokenDuration', $data) ? $data['oAuth2ServerAccessTokenDuration'] : null,
-            oAuth2ServerRefreshTokenDuration: array_key_exists('oAuth2ServerRefreshTokenDuration', $data) ? $data['oAuth2ServerRefreshTokenDuration'] : null,
-            oAuth2ServerPublicAccessTokenDuration: array_key_exists('oAuth2ServerPublicAccessTokenDuration', $data) ? $data['oAuth2ServerPublicAccessTokenDuration'] : null,
-            oAuth2ServerPublicRefreshTokenDuration: array_key_exists('oAuth2ServerPublicRefreshTokenDuration', $data) ? $data['oAuth2ServerPublicRefreshTokenDuration'] : null,
-            oAuth2ServerInstallationAccessTokenDuration: array_key_exists('oAuth2ServerInstallationAccessTokenDuration', $data) ? $data['oAuth2ServerInstallationAccessTokenDuration'] : null,
-            oAuth2ServerConfidentialPkce: array_key_exists('oAuth2ServerConfidentialPkce', $data) ? $data['oAuth2ServerConfidentialPkce'] : null,
-            oAuth2ServerVerificationUrl: array_key_exists('oAuth2ServerVerificationUrl', $data) ? $data['oAuth2ServerVerificationUrl'] : null,
-            oAuth2ServerUserCodeLength: array_key_exists('oAuth2ServerUserCodeLength', $data) ? $data['oAuth2ServerUserCodeLength'] : null,
-            oAuth2ServerUserCodeFormat: array_key_exists('oAuth2ServerUserCodeFormat', $data) ? $data['oAuth2ServerUserCodeFormat'] : null,
-            oAuth2ServerDeviceCodeDuration: array_key_exists('oAuth2ServerDeviceCodeDuration', $data) ? $data['oAuth2ServerDeviceCodeDuration'] : null,
-            oAuth2ServerDiscoveryUrl: array_key_exists('oAuth2ServerDiscoveryUrl', $data) ? $data['oAuth2ServerDiscoveryUrl'] : null
+            oAuth2ServerEnabled: $data['oAuth2ServerEnabled'] ?? null,
+            oAuth2ServerAuthorizationUrl: $data['oAuth2ServerAuthorizationUrl'] ?? null,
+            oAuth2ServerScopes: $data['oAuth2ServerScopes'] ?? null,
+            oAuth2ServerDefaultScopes: $data['oAuth2ServerDefaultScopes'] ?? null,
+            oAuth2ServerInstallationScopes: $data['oAuth2ServerInstallationScopes'] ?? null,
+            oAuth2ServerAuthorizationDetailsTypes: $data['oAuth2ServerAuthorizationDetailsTypes'] ?? null,
+            oAuth2ServerAccessTokenDuration: $data['oAuth2ServerAccessTokenDuration'] ?? null,
+            oAuth2ServerRefreshTokenDuration: $data['oAuth2ServerRefreshTokenDuration'] ?? null,
+            oAuth2ServerPublicAccessTokenDuration: $data['oAuth2ServerPublicAccessTokenDuration'] ?? null,
+            oAuth2ServerPublicRefreshTokenDuration: $data['oAuth2ServerPublicRefreshTokenDuration'] ?? null,
+            oAuth2ServerInstallationAccessTokenDuration: $data['oAuth2ServerInstallationAccessTokenDuration'] ?? null,
+            oAuth2ServerConfidentialPkce: $data['oAuth2ServerConfidentialPkce'] ?? null,
+            oAuth2ServerVerificationUrl: $data['oAuth2ServerVerificationUrl'] ?? null,
+            oAuth2ServerUserCodeLength: $data['oAuth2ServerUserCodeLength'] ?? null,
+            oAuth2ServerUserCodeFormat: $data['oAuth2ServerUserCodeFormat'] ?? null,
+            oAuth2ServerDeviceCodeDuration: $data['oAuth2ServerDeviceCodeDuration'] ?? null,
+            oAuth2ServerDiscoveryUrl: $data['oAuth2ServerDiscoveryUrl'] ?? null
         );
     }
 
@@ -279,7 +280,7 @@ readonly class Project
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             '$createdAt' => static::serializeValue($this->createdAt),
             '$updatedAt' => static::serializeValue($this->updatedAt),
@@ -327,7 +328,5 @@ readonly class Project
             'oAuth2ServerDeviceCodeDuration' => static::serializeValue($this->oAuth2ServerDeviceCodeDuration),
             'oAuth2ServerDiscoveryUrl' => static::serializeValue($this->oAuth2ServerDiscoveryUrl)
         ];
-
-        return $result;
     }
 }

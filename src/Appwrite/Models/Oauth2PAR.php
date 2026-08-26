@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * OAuth2 PAR
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class Oauth2PAR
 {
@@ -44,11 +48,9 @@ readonly class Oauth2PAR
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'request_uri' => static::serializeValue($this->requestUri),
             'expires_in' => static::serializeValue($this->expiresIn)
         ];
-
-        return $result;
     }
 }

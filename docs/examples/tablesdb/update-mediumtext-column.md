@@ -18,4 +18,6 @@ $result = $tablesDB->updateMediumtextColumn(
     required: false,
     default: '<DEFAULT>',
     newKey: '' // optional
-);```
+);
+
+```

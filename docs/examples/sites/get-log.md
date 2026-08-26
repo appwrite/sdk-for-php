@@ -14,4 +14,6 @@ $sites = new Sites($client);
 $result = $sites->getLog(
     siteId: '<SITE_ID>',
     logId: '<LOG_ID>'
-);```
+);
+
+```

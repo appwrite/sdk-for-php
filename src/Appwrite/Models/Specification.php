@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Specification
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class Specification
 {
@@ -56,13 +60,11 @@ readonly class Specification
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'memory' => static::serializeValue($this->memory),
             'cpus' => static::serializeValue($this->cpus),
             'enabled' => static::serializeValue($this->enabled),
             'slug' => static::serializeValue($this->slug)
         ];
-
-        return $result;
     }
 }

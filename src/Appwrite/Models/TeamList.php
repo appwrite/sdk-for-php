@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Teams List
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class TeamList
 {
@@ -49,11 +53,9 @@ readonly class TeamList
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'total' => static::serializeValue($this->total),
             'teams' => static::serializeValue($this->teams)
         ];
-
-        return $result;
     }
 }

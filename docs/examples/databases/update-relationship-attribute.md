@@ -18,4 +18,6 @@ $result = $databases->updateRelationshipAttribute(
     key: '',
     onDelete: RelationMutate::CASCADE(), // optional
     newKey: '' // optional
-);```
+);
+
+```

@@ -16,4 +16,6 @@ $result = $project->updateOAuth2Microsoft(
     applicationSecret: '<APPLICATION_SECRET>', // optional
     tenant: '<TENANT>', // optional
     enabled: false // optional
-);```
+);
+
+```

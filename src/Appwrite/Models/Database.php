@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 use Appwrite\Enums\DatabaseType;
@@ -7,6 +9,8 @@ use Appwrite\Enums\DatabaseStatus;
 
 /**
  * Database
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class Database
 {
@@ -25,6 +29,9 @@ readonly class Database
      * @param string|null $engine underlying engine of the dedicated backing: postgresql, mysql, or mongodb. a managed product (tablesdb, documentsdb, vectorsdb) reports the engine it runs on, so its type and engine can differ. null when the database has no dedicated backing.
      * @param string|null $specification compute specification identifier of the dedicated backing, e.g. s-2vcpu-2gb. null when the database has no dedicated backing.
      * @param int|null $replicas number of secondary high availability replicas, excluding the primary. null when backing configuration is unavailable.
+     * @param string|null $error error message when the dedicated backing failed. null when the database has no dedicated backing or has not failed.
+     * @param string|null $containerStatus container status of the dedicated backing: active or inactive. null when the database has no dedicated backing or the runtime has not reported one.
+     * @param string|null $lifecycleState idle-lifecycle state of the dedicated backing: active, warm, cold, or hibernated. null when the database has no dedicated backing or the runtime has not reported one.
      * @param list<BackupPolicy>|null $policies database backup policies.
      * @param list<BackupArchive>|null $archives database backup archives.
      */
@@ -39,6 +46,9 @@ readonly class Database
         public ?string $engine = null,
         public ?string $specification = null,
         public ?int $replicas = null,
+        public ?string $error = null,
+        public ?string $containerStatus = null,
+        public ?string $lifecycleState = null,
         public ?array $policies = null,
         public ?array $archives = null
     ) {
@@ -76,9 +86,12 @@ readonly class Database
             enabled: $data['enabled'],
             type: static::hydrateTypedValue(DatabaseType::class, $data['type']),
             status: array_key_exists('status', $data) ? static::hydrateTypedValue(DatabaseStatus::class, $data['status'], true) : null,
-            engine: array_key_exists('engine', $data) ? $data['engine'] : null,
-            specification: array_key_exists('specification', $data) ? $data['specification'] : null,
-            replicas: array_key_exists('replicas', $data) ? $data['replicas'] : null,
+            engine: $data['engine'] ?? null,
+            specification: $data['specification'] ?? null,
+            replicas: $data['replicas'] ?? null,
+            error: $data['error'] ?? null,
+            containerStatus: $data['containerStatus'] ?? null,
+            lifecycleState: $data['lifecycleState'] ?? null,
             policies: array_key_exists('policies', $data)
                 ? (
                     is_array($data['policies'])
@@ -107,7 +120,7 @@ readonly class Database
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             'name' => static::serializeValue($this->name),
             '$createdAt' => static::serializeValue($this->createdAt),
@@ -118,10 +131,11 @@ readonly class Database
             'engine' => static::serializeValue($this->engine),
             'specification' => static::serializeValue($this->specification),
             'replicas' => static::serializeValue($this->replicas),
+            'error' => static::serializeValue($this->error),
+            'containerStatus' => static::serializeValue($this->containerStatus),
+            'lifecycleState' => static::serializeValue($this->lifecycleState),
             'policies' => static::serializeValue($this->policies),
             'archives' => static::serializeValue($this->archives)
         ];
-
-        return $result;
     }
 }

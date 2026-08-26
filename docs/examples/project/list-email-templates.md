@@ -14,4 +14,6 @@ $project = new Project($client);
 $result = $project->listEmailTemplates(
     queries: [], // optional
     total: false // optional
-);```
+);
+
+```

@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * OAuth2Notion
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class OAuth2Notion
 {
@@ -56,13 +60,11 @@ readonly class OAuth2Notion
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             'enabled' => static::serializeValue($this->enabled),
             'oauthClientId' => static::serializeValue($this->oauthClientId),
             'oauthClientSecret' => static::serializeValue($this->oauthClientSecret)
         ];
-
-        return $result;
     }
 }

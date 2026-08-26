@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * usageBillingPlan
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class UsageBillingPlan
 {
@@ -89,7 +93,7 @@ readonly class UsageBillingPlan
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'bandwidth' => static::serializeValue($this->bandwidth),
             'executions' => static::serializeValue($this->executions),
             'member' => static::serializeValue($this->member),
@@ -102,7 +106,5 @@ readonly class UsageBillingPlan
             'imageTransformations' => static::serializeValue($this->imageTransformations),
             'credits' => static::serializeValue($this->credits)
         ];
-
-        return $result;
     }
 }

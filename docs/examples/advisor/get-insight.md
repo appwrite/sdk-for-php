@@ -14,4 +14,6 @@ $advisor = new Advisor($client);
 $result = $advisor->getInsight(
     reportId: '<REPORT_ID>',
     insightId: '<INSIGHT_ID>'
-);```
+);
+
+```

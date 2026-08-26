@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Enums;
 
 use JsonSerializable;
+use Stringable;
 
-class OAuthProvider implements JsonSerializable
+class OAuthProvider implements JsonSerializable, Stringable
 {
     private static OAuthProvider $AMAZON;
     private static OAuthProvider $APPLE;
@@ -26,6 +29,7 @@ class OAuthProvider implements JsonSerializable
     private static OAuthProvider $GITHUB;
     private static OAuthProvider $GITLAB;
     private static OAuthProvider $GOOGLE;
+    private static OAuthProvider $HUGGINGFACE;
     private static OAuthProvider $KEYCLOAK;
     private static OAuthProvider $KICK;
     private static OAuthProvider $LINKEDIN;
@@ -51,11 +55,8 @@ class OAuthProvider implements JsonSerializable
     private static OAuthProvider $ZOHO;
     private static OAuthProvider $ZOOM;
 
-    private string $value;
-
-    private function __construct(string $value)
+    private function __construct(private readonly string $value)
     {
-        $this->value = $value;
     }
 
     public function __toString(): string
@@ -207,6 +208,13 @@ class OAuthProvider implements JsonSerializable
             self::$GOOGLE = new OAuthProvider('google');
         }
         return self::$GOOGLE;
+    }
+    public static function HUGGINGFACE(): OAuthProvider
+    {
+        if (!isset(self::$HUGGINGFACE)) {
+            self::$HUGGINGFACE = new OAuthProvider('huggingface');
+        }
+        return self::$HUGGINGFACE;
     }
     public static function KEYCLOAK(): OAuthProvider
     {
@@ -400,6 +408,7 @@ class OAuthProvider implements JsonSerializable
             'github' => self::GITHUB(),
             'gitlab' => self::GITLAB(),
             'google' => self::GOOGLE(),
+            'huggingface' => self::HUGGINGFACE(),
             'keycloak' => self::KEYCLOAK(),
             'kick' => self::KICK(),
             'linkedin' => self::LINKEDIN(),

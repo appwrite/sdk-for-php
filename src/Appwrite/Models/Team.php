@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Team
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class Team
 {
@@ -68,7 +72,7 @@ readonly class Team
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             '$createdAt' => static::serializeValue($this->createdAt),
             '$updatedAt' => static::serializeValue($this->updatedAt),
@@ -76,7 +80,5 @@ readonly class Team
             'total' => static::serializeValue($this->total),
             'prefs' => static::serializeValue($this->prefs)
         ];
-
-        return $result;
     }
 }

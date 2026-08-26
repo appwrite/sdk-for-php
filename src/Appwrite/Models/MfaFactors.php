@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * MFAFactors
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class MfaFactors
 {
@@ -62,14 +66,12 @@ readonly class MfaFactors
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'totp' => static::serializeValue($this->totp),
             'phone' => static::serializeValue($this->phone),
             'email' => static::serializeValue($this->email),
             'recoveryCode' => static::serializeValue($this->recoveryCode),
             'custom' => static::serializeValue($this->custom)
         ];
-
-        return $result;
     }
 }

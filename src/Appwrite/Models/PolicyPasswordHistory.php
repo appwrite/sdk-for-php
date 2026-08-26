@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Policy Password History
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class PolicyPasswordHistory
 {
@@ -44,11 +48,9 @@ readonly class PolicyPasswordHistory
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             'total' => static::serializeValue($this->total)
         ];
-
-        return $result;
     }
 }

@@ -19,4 +19,6 @@ $result = $users->createTarget(
     identifier: '<IDENTIFIER>',
     providerId: '<PROVIDER_ID>', // optional
     name: '<NAME>' // optional
-);```
+);
+
+```

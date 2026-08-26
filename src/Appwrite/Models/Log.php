@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Log
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class Log
 {
@@ -164,7 +168,7 @@ readonly class Log
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'event' => static::serializeValue($this->event),
             'userId' => static::serializeValue($this->userId),
             'userEmail' => static::serializeValue($this->userEmail),
@@ -188,7 +192,5 @@ readonly class Log
             'countryCode' => static::serializeValue($this->countryCode),
             'countryName' => static::serializeValue($this->countryName)
         ];
-
-        return $result;
     }
 }

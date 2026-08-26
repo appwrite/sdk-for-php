@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Mock Number
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class MockNumber
 {
@@ -13,7 +17,7 @@ readonly class MockNumber
      * MockNumber constructor.
      *
      * @param string $number mock phone number for testing phone authentication. useful for testing phone authentication without sending an sms.
-     * @param string $otp mock otp for the number. 
+     * @param string $otp mock otp for the number.
      * @param string $createdAt attribute creation date in iso 8601 format.
      * @param string $updatedAt attribute update date in iso 8601 format.
      */
@@ -56,13 +60,11 @@ readonly class MockNumber
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'number' => static::serializeValue($this->number),
             'otp' => static::serializeValue($this->otp),
             '$createdAt' => static::serializeValue($this->createdAt),
             '$updatedAt' => static::serializeValue($this->updatedAt)
         ];
-
-        return $result;
     }
 }

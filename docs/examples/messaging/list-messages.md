@@ -15,4 +15,6 @@ $result = $messaging->listMessages(
     queries: [], // optional
     search: '<SEARCH>', // optional
     total: false // optional
-);```
+);
+
+```

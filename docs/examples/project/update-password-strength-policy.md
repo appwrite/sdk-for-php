@@ -17,4 +17,6 @@ $result = $project->updatePasswordStrengthPolicy(
     lowercase: false, // optional
     number: false, // optional
     symbols: false // optional
-);```
+);
+
+```

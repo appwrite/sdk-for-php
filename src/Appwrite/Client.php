@@ -1,101 +1,116 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite;
 
 use Ahc\Jwt\JWT;
+use Psr\Http\Client\ClientExceptionInterface;
+use Utopia\Client as HttpClient;
+use Utopia\Client\Adapter\Curl\Client as CurlAdapter;
+use Utopia\Psr7\Request\Factory as RequestFactory;
+use Utopia\Psr7\Request\Multipart\Part;
 
 class Client
 {
-    const METHOD_GET = 'GET';
-    const METHOD_POST = 'POST';
-    const METHOD_PUT = 'PUT';
-    const METHOD_PATCH = 'PATCH';
-    const METHOD_DELETE = 'DELETE';
-    const METHOD_HEAD = 'HEAD';
-    const METHOD_OPTIONS = 'OPTIONS';
-    const METHOD_CONNECT = 'CONNECT';
-    const METHOD_TRACE = 'TRACE';
+    public const METHOD_GET = 'GET';
+    public const METHOD_POST = 'POST';
+    public const METHOD_PUT = 'PUT';
+    public const METHOD_PATCH = 'PATCH';
+    public const METHOD_DELETE = 'DELETE';
+    public const METHOD_HEAD = 'HEAD';
+    public const METHOD_OPTIONS = 'OPTIONS';
+    public const METHOD_CONNECT = 'CONNECT';
+    public const METHOD_TRACE = 'TRACE';
 
-    const CHUNK_SIZE = 5 * 1024 * 1024;
-    const JWT_MAX_AGE_SECONDS = 3600;
+    public const CHUNK_SIZE = 5 * 1024 * 1024;
+    public const JWT_MAX_AGE_SECONDS = 3600;
 
     /**
      * Is Self Signed Certificates Allowed?
      *
-     * @var bool
      */
     protected bool $selfSigned = false;
 
     /**
      * Service host name
      *
-     * @var string
      */
     protected string $endpoint = 'https://cloud.appwrite.io/v1';
 
     /**
      * Global Headers
      *
-     * @var array
      */
     protected array $headers = [
-        'content-type' => '',
-        'user-agent' => 'AppwritePHPSDK/28.0.0 ()',
-        'x-sdk-name'=> 'PHP',
-        'x-sdk-platform'=> 'server',
-        'x-sdk-language'=> 'php',
-        'x-sdk-version'=> '28.0.0',
+        'user-agent' => 'AppwritePHPSDK/29.0.0 ()',
+        'x-sdk-name' => 'PHP',
+        'x-sdk-platform' => 'server',
+        'x-sdk-language' => 'php',
+        'x-sdk-version' => '29.0.0',
     ];
 
     /**
      * Auth/config values used by generated service methods.
      *
-     * @var array
      */
     protected array $config = [];
 
     /**
      * API key for JWT generation
      *
-     * @var string|null
      */
     protected ?string $key = null;
 
     /**
      * Cached authorization header value
      *
-     * @var string|null
      */
     protected ?string $authorization = null;
 
     /**
      * Authorization header expiry time
      *
-     * @var \DateTime|null
      */
     protected ?\DateTime $authorizationExpiresAt = null;
 
     /**
      * Timeout in seconds
      *
-     * @var int|null
      */
     protected ?int $timeout = null;
 
     /**
      * Connect timeout in seconds
      *
-     * @var int|null
      */
     protected ?int $connectTimeout = null;
+
+    /**
+     * Reused Utopia HTTP client (follows redirects).
+     *
+     */
+    protected ?HttpClient $httpClient = null;
+
+    /**
+     * Reused Utopia HTTP client that does not follow redirects.
+     *
+     */
+    protected ?HttpClient $httpClientNoRedirect = null;
+
+    /**
+     * PSR-7 request factory.
+     *
+     */
+    protected RequestFactory $requestFactory;
 
     /**
      * Client constructor.
      */
     public function __construct()
     {
+        $this->requestFactory = new RequestFactory();
         $this->headers['X-Appwrite-Response-Format'] = '1.9.6';
- 
     }
 
     /**
@@ -103,9 +118,7 @@ class Client
      *
      * Your project ID
      *
-     * @param string $value
      *
-     * @return Client
      */
     public function setProject(string $value): Client
     {
@@ -119,9 +132,7 @@ class Client
      *
      * Your secret API key
      *
-     * @param string $value
      *
-     * @return Client
      */
     public function setKey(string $value): Client
     {
@@ -136,9 +147,7 @@ class Client
      *
      * Your organization ID
      *
-     * @param string $value
      *
-     * @return Client
      */
     public function setOrganization(string $value): Client
     {
@@ -153,9 +162,7 @@ class Client
      *
      * Your secret JSON Web Token
      *
-     * @param string $value
      *
-     * @return Client
      */
     public function setJWT(string $value): Client
     {
@@ -170,9 +177,7 @@ class Client
      *
      * The OAuth access token to authenticate with
      *
-     * @param string $value
      *
-     * @return Client
      */
     public function setBearer(string $value): Client
     {
@@ -188,9 +193,7 @@ class Client
     /**
      * Set Locale
      *
-     * @param string $value
      *
-     * @return Client
      */
     public function setLocale(string $value): Client
     {
@@ -205,9 +208,7 @@ class Client
      *
      * The user session to authenticate with
      *
-     * @param string $value
      *
-     * @return Client
      */
     public function setSession(string $value): Client
     {
@@ -222,9 +223,7 @@ class Client
      *
      * The user agent string of the client that made the request
      *
-     * @param string $value
      *
-     * @return Client
      */
     public function setForwardedUserAgent(string $value): Client
     {
@@ -239,9 +238,7 @@ class Client
      *
      * Your secret dev API key
      *
-     * @param string $value
      *
-     * @return Client
      */
     public function setDevKey(string $value): Client
     {
@@ -256,9 +253,7 @@ class Client
      *
      * The user cookie to authenticate with. Used by SDKs that forward an incoming Cookie header in server-side runtimes.
      *
-     * @param string $value
      *
-     * @return Client
      */
     public function setCookie(string $value): Client
     {
@@ -273,9 +268,7 @@ class Client
      *
      * Impersonate a user by ID
      *
-     * @param string $value
      *
-     * @return Client
      */
     public function setImpersonateUserId(string $value): Client
     {
@@ -290,9 +283,7 @@ class Client
      *
      * Impersonate a user by email
      *
-     * @param string $value
      *
-     * @return Client
      */
     public function setImpersonateUserEmail(string $value): Client
     {
@@ -307,9 +298,7 @@ class Client
      *
      * Impersonate a user by phone
      *
-     * @param string $value
      *
-     * @return Client
      */
     public function setImpersonateUserPhone(string $value): Client
     {
@@ -324,9 +313,7 @@ class Client
      *
      * Set a secret key used to self-sign short-lived JWTs for the Authorization header
      *
-     * @param string $key
      *
-     * @return Client
      */
     public function setSigningKey(string $key): Client
     {
@@ -345,19 +332,16 @@ class Client
     }
 
     /***
-     * @param bool $status
-     * @return $this
      */
     public function setSelfSigned(bool $status = true): Client
     {
         $this->selfSigned = $status;
+        $this->resetHttpClient();
 
         return $this;
     }
 
     /***
-     * @param $endpoint
-     * @return $this
      */
     public function setEndpoint(string $endpoint): Client
     {
@@ -366,36 +350,36 @@ class Client
         }
 
         $this->endpoint = $endpoint;
+        $this->resetHttpClient();
+
         return $this;
     }
 
     /**
      * Set Timeout
      *
-     * @param int $timeout Timeout in seconds
-     * @return Client
      */
     public function setTimeout(int $timeout): Client
     {
         $this->timeout = $timeout;
+        $this->resetHttpClient();
+
         return $this;
     }
 
     /**
      * Set Connect Timeout
      *
-     * @param int $connectTimeout Connect timeout in seconds
-     * @return Client
      */
     public function setConnectTimeout(int $connectTimeout): Client
     {
         $this->connectTimeout = $connectTimeout;
+        $this->resetHttpClient();
+
         return $this;
     }
 
     /**
-     * @param $key
-     * @param $value
      */
     public function addHeader(string $key, string $value): Client
     {
@@ -407,7 +391,6 @@ class Client
     /**
      * Get the request headers.
      *
-     * @return array
      */
     public function getHeaders(): array
     {
@@ -417,7 +400,6 @@ class Client
     /**
      * Get authorization header, generating a new JWT if needed
      *
-     * @return string
      */
     private function getAuthorization(): string
     {
@@ -428,7 +410,7 @@ class Client
         $jwt = new JWT($this->key, maxAge: self::JWT_MAX_AGE_SECONDS);
         $this->authorization = "Bearer {$jwt->encode([])}";
 
-        $this->authorizationExpiresAt = (new \DateTime())->modify('+' . (self::JWT_MAX_AGE_SECONDS - 5) . ' seconds');
+        $this->authorizationExpiresAt = new \DateTime()->modify('+' . (self::JWT_MAX_AGE_SECONDS - 5) . ' seconds');
 
         return $this->authorization;
     }
@@ -438,11 +420,6 @@ class Client
      *
      * Make an API call
      *
-     * @param string $method
-     * @param string $path
-     * @param array $params
-     * @param array $headers
-     * @return array|string
      * @throws AppwriteException
      */
     public function call(
@@ -451,102 +428,74 @@ class Client
         array $headers = [],
         array $params = [],
         ?string $responseType = null
-    )
-    {
+    ) {
         if ($this->key !== null) {
             $this->headers['authorization'] = $this->getAuthorization();
         }
         $headers = array_merge($this->headers, $headers);
-        $querySeparator = str_contains($path, '?') ? '&' : '?';
-        $ch = curl_init($this->endpoint . $path . (($method == self::METHOD_GET && !empty($params)) ? $querySeparator . http_build_query($params) : ''));
-        $responseHeaders = [];
+        $contentType = strtolower((string) ($headers['content-type'] ?? ''));
+        if ($contentType === '') {
+            unset($headers['content-type']);
+        }
+        $uri = $this->endpoint . $path;
 
-        switch ($headers['content-type']) {
-            case 'application/json':
-                $query = json_encode($this->prepareParams($params));
-                break;
+        try {
+            $request = match (true) {
+                $method === self::METHOD_GET => $this->requestFactory->query(
+                    $method,
+                    $uri,
+                    $params,
+                    $headers
+                ),
+                $contentType === 'application/json' => $this->requestFactory->json(
+                    $method,
+                    $uri,
+                    $this->prepareParams($params),
+                    $headers
+                ),
+                $contentType === 'multipart/form-data' => $this->requestFactory->multipart(
+                    $method,
+                    $uri,
+                    $this->toMultipartParts($params),
+                    $headers
+                ),
+                default => $this->requestFactory->form(
+                    $method,
+                    $uri,
+                    $params,
+                    $headers
+                ),
+            };
 
-            case 'multipart/form-data':
-                $query = $this->flatten($params);
-                break;
-
-            default:
-                $query = http_build_query($params);
-                break;
+            $response = $this->getHttpClient($responseType !== 'location')->sendRequest($request);
+        } catch (ClientExceptionInterface|\JsonException $e) {
+            throw new AppwriteException($e->getMessage(), (int) $e->getCode());
         }
 
-        foreach ($headers as $i => $header) {
-            $headers[] = $i . ':' . $header;
-            unset($headers[$i]);
-        }
+        $responseStatus = $response->getStatusCode();
+        $responseContentType = $response->getHeaderLine('content-type');
+        $responseBody = (string) $response->getBody();
 
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_USERAGENT, php_uname('s') . '-' . php_uname('r') . ':php-' . phpversion());
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, $responseType !== 'location');
-        curl_setopt($ch, CURLOPT_HEADERFUNCTION, function($curl, $header) use (&$responseHeaders) {
-            $len = strlen($header);
-            $header = explode(':', strtolower($header), 2);
-
-            if (count($header) < 2) { // ignore invalid headers
-                return $len;
-            }
-
-            $responseHeaders[strtolower(trim($header[0]))] = trim($header[1]);
-
-            return $len;
-        });
-
-        if($method != self::METHOD_GET) {
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $query);
-        }
-
-        // Allow self signed certificates
-        if($this->selfSigned) {
-            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        }
-
-        // Set timeout if configured
-        if($this->timeout !== null) {
-            curl_setopt($ch, CURLOPT_TIMEOUT, $this->timeout);
-        }
-
-        // Set connect timeout if configured
-        if($this->connectTimeout !== null) {
-            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $this->connectTimeout);
-        }
-
-        $responseBody   = curl_exec($ch);
-        $contentType    = $responseHeaders['content-type'] ?? '';
-        $responseStatus = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-
-        $warnings = $responseHeaders['x-appwrite-warning'] ?? '';
+        $warnings = $response->getHeaderLine('x-appwrite-warning');
         if ($warnings) {
-            foreach(explode(';', $warnings) as $warning) {
+            foreach (explode(';', $warnings) as $warning) {
                 \trigger_error($warning, E_USER_WARNING);
             }
         }
-        
-        if (str_starts_with($contentType, 'application/json')) {
+
+        if (str_starts_with($responseContentType, 'application/json')) {
             $responseBody = json_decode($responseBody, true);
         }
 
-        if (curl_errno($ch)) {
-            throw new AppwriteException(curl_error($ch), $responseStatus, $responseBody['type'] ?? '', $responseBody);
-        }
-
-        if($responseStatus >= 400) {
-            if(is_array($responseBody)) {
+        if ($responseStatus >= 400) {
+            if (is_array($responseBody)) {
                 throw new AppwriteException($responseBody['message'], $responseStatus, $responseBody['type'] ?? '', json_encode($responseBody));
-            } else {
-                throw new AppwriteException($responseBody, $responseStatus, '', $responseBody);
             }
+            throw new AppwriteException($responseBody, $responseStatus, '', $responseBody);
         }
 
         if ($responseType === 'location') {
-            return $responseHeaders['location'];
+            return $response->getHeaderLine('location');
         }
 
         return $responseBody;
@@ -555,20 +504,17 @@ class Client
     /**
      * Flatten params array to PHP multiple format
      *
-     * @param array $data
-     * @param string $prefix
-     * @return array
      */
-    protected function flatten(array $data, string $prefix = ''): array {
+    protected function flatten(array $data, string $prefix = ''): array
+    {
         $output = [];
 
-        foreach($data as $key => $value) {
+        foreach ($data as $key => $value) {
             $finalKey = $prefix ? "{$prefix}[{$key}]" : $key;
 
             if (is_array($value)) {
                 $output = array_merge($output, $this->flatten($value, $finalKey));
-            }
-            else {
+            } else {
                 $output[$finalKey] = $value;
             }
         }
@@ -579,13 +525,11 @@ class Client
     /**
      * Prepare params for JSON encoding by converting model objects to arrays
      *
-     * @param mixed $data
-     * @return mixed
      */
     protected function prepareParams($data)
     {
         if (is_array($data)) {
-            return array_map([$this, 'prepareParams'], $data);
+            return array_map($this->prepareParams(...), $data);
         }
 
         if (is_object($data) && method_exists($data, 'toArray')) {
@@ -593,5 +537,83 @@ class Client
         }
 
         return $data;
+    }
+
+    /**
+     * Convert flattened params into Utopia multipart parts.
+     *
+     * @param array<array-key, mixed> $data
+     * @return array<array-key, scalar|Part>
+     */
+    protected function toMultipartParts(array $data): array
+    {
+        $parts = [];
+
+        foreach ($this->flatten($data) as $name => $value) {
+            $name = (string) $name;
+
+            if ($value instanceof Part) {
+                $parts[$name] = $value;
+                continue;
+            }
+
+            if ($value instanceof \CURLFile) {
+                $path = $value->getFilename();
+                $filename = $value->getPostFilename() !== '' ? $value->getPostFilename() : null;
+                $mimeType = $value->getMimeType() !== '' ? $value->getMimeType() : null;
+
+                if (is_file($path)) {
+                    $parts[$name] = Part::file($name, $path, $filename, $mimeType);
+                } else {
+                    $contents = @file_get_contents($path);
+                    $parts[$name] = Part::body($name, $contents === false ? '' : $contents, $filename, $mimeType);
+                }
+
+                continue;
+            }
+
+            $parts[$name] = $value;
+        }
+
+        return $parts;
+    }
+
+    protected function getHttpClient(bool $followRedirects): HttpClient
+    {
+        if ($followRedirects) {
+            return $this->httpClient ??= $this->createHttpClient(true);
+        }
+
+        return $this->httpClientNoRedirect ??= $this->createHttpClient(false);
+    }
+
+    protected function resetHttpClient(): void
+    {
+        $this->httpClient = null;
+        $this->httpClientNoRedirect = null;
+    }
+
+    protected function createHttpClient(bool $followRedirects): HttpClient
+    {
+        $adapter = new CurlAdapter(options: [
+            CURLOPT_TIMEOUT_MS => 0,
+            CURLOPT_USERAGENT => php_uname('s') . '-' . php_uname('r') . ':php-' . phpversion(),
+        ])->withConnectionReuse();
+
+        $client = new HttpClient($adapter)->withFollowRedirects($followRedirects);
+
+        if ($this->selfSigned) {
+            $client = $client->withSslVerification(false);
+        }
+
+        if ($this->timeout !== null) {
+            $client = $client->withTimeout($this->timeout);
+        }
+
+        if ($this->connectTimeout !== null) {
+            return $client->withConnectTimeout($this->connectTimeout);
+        }
+
+        return $client;
     }
 }

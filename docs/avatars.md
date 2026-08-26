@@ -113,6 +113,23 @@ When one dimension is specified and the other is 0, the image is scaled with pre
 
 
 ```http request
+GET https://cloud.appwrite.io/v1/avatars/photo
+```
+
+** Returns the best available profile photo for the currently authenticated user. The endpoint tries each source in priority order and returns the first successful result: OAuth2 identity photo, Gravatar, Libravatar, Appwrite Initials, built-in static fallback. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| width | integer | Output image width in pixels. Pass an integer between 0 and 2000. Defaults to 256. | 256 |
+| height | integer | Output image height in pixels. Pass an integer between 0 and 2000. Defaults to 256. | 256 |
+| quality | integer | Output image quality between 0 and 100. Defaults to 100. | 100 |
+| output | string | Output image format. Defaults to 'png'. | png |
+| rating | string | Maximum image rating to fetch from Gravatar/Libravatar. Defaults to 'g'. | g |
+
+
+```http request
 GET https://cloud.appwrite.io/v1/avatars/qr
 ```
 

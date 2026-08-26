@@ -1,29 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Services;
 
 use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
-use Appwrite\InputFile;
 use Appwrite\Enums\MessagePriority;
 use Appwrite\Enums\SmtpEncryption;
 
 class Messaging extends Service
 {
-    public function __construct(Client $client)
-    {
-        parent::__construct($client);
-    }
-
     /**
      * Get a list of all messages from the current Appwrite project.
      *
-     * @param ?array $queries
-     * @param ?string $search
-     * @param ?bool $total
      * @throws AppwriteException
-     * @return \Appwrite\Models\MessageList
      */
     public function listMessages(?array $queries = null, ?string $search = null, ?bool $total = null): \Appwrite\Models\MessageList
     {
@@ -63,26 +55,12 @@ class Messaging extends Service
         }
 
         return \Appwrite\Models\MessageList::from($response);
-
     }
 
     /**
      * Create a new email message.
      *
-     * @param string $messageId
-     * @param string $subject
-     * @param string $content
-     * @param ?array $topics
-     * @param ?array $users
-     * @param ?array $targets
-     * @param ?array $cc
-     * @param ?array $bcc
-     * @param ?array $attachments
-     * @param ?bool $draft
-     * @param ?bool $html
-     * @param ?string $scheduledAt
      * @throws AppwriteException
-     * @return \Appwrite\Models\Message
      */
     public function createEmail(string $messageId, string $subject, string $content, ?array $topics = null, ?array $users = null, ?array $targets = null, ?array $cc = null, ?array $bcc = null, ?array $attachments = null, ?bool $draft = null, ?bool $html = null, ?string $scheduledAt = null): \Appwrite\Models\Message
     {
@@ -147,29 +125,14 @@ class Messaging extends Service
         }
 
         return \Appwrite\Models\Message::from($response);
-
     }
 
     /**
      * Update an email message by its unique ID. This endpoint only works on
      * messages that are in draft status. Messages that are already processing,
      * sent, or failed cannot be updated.
-     * 
      *
-     * @param string $messageId
-     * @param ?array $topics
-     * @param ?array $users
-     * @param ?array $targets
-     * @param ?string $subject
-     * @param ?string $content
-     * @param ?bool $draft
-     * @param ?bool $html
-     * @param ?array $cc
-     * @param ?array $bcc
-     * @param ?string $scheduledAt
-     * @param ?array $attachments
      * @throws AppwriteException
-     * @return \Appwrite\Models\Message
      */
     public function updateEmail(string $messageId, ?array $topics = null, ?array $users = null, ?array $targets = null, ?string $subject = null, ?string $content = null, ?bool $draft = null, ?bool $html = null, ?array $cc = null, ?array $bcc = null, ?string $scheduledAt = null, ?array $attachments = null): \Appwrite\Models\Message
     {
@@ -210,33 +173,12 @@ class Messaging extends Service
         }
 
         return \Appwrite\Models\Message::from($response);
-
     }
 
     /**
      * Create a new push notification.
      *
-     * @param string $messageId
-     * @param ?string $title
-     * @param ?string $body
-     * @param ?array $topics
-     * @param ?array $users
-     * @param ?array $targets
-     * @param ?array $data
-     * @param ?string $action
-     * @param ?string $image
-     * @param ?string $icon
-     * @param ?string $sound
-     * @param ?string $color
-     * @param ?string $tag
-     * @param ?int $badge
-     * @param ?bool $draft
-     * @param ?string $scheduledAt
-     * @param ?bool $contentAvailable
-     * @param ?bool $critical
-     * @param ?MessagePriority $priority
      * @throws AppwriteException
-     * @return \Appwrite\Models\Message
      */
     public function createPush(string $messageId, ?string $title = null, ?string $body = null, ?array $topics = null, ?array $users = null, ?array $targets = null, ?array $data = null, ?string $action = null, ?string $image = null, ?string $icon = null, ?string $sound = null, ?string $color = null, ?string $tag = null, ?int $badge = null, ?bool $draft = null, ?string $scheduledAt = null, ?bool $contentAvailable = null, ?bool $critical = null, ?MessagePriority $priority = null): \Appwrite\Models\Message
     {
@@ -332,36 +274,14 @@ class Messaging extends Service
         }
 
         return \Appwrite\Models\Message::from($response);
-
     }
 
     /**
      * Update a push notification by its unique ID. This endpoint only works on
      * messages that are in draft status. Messages that are already processing,
      * sent, or failed cannot be updated.
-     * 
      *
-     * @param string $messageId
-     * @param ?array $topics
-     * @param ?array $users
-     * @param ?array $targets
-     * @param ?string $title
-     * @param ?string $body
-     * @param ?array $data
-     * @param ?string $action
-     * @param ?string $image
-     * @param ?string $icon
-     * @param ?string $sound
-     * @param ?string $color
-     * @param ?string $tag
-     * @param ?int $badge
-     * @param ?bool $draft
-     * @param ?string $scheduledAt
-     * @param ?bool $contentAvailable
-     * @param ?bool $critical
-     * @param ?MessagePriority $priority
      * @throws AppwriteException
-     * @return \Appwrite\Models\Message
      */
     public function updatePush(string $messageId, ?array $topics = null, ?array $users = null, ?array $targets = null, ?string $title = null, ?string $body = null, ?array $data = null, ?string $action = null, ?string $image = null, ?string $icon = null, ?string $sound = null, ?string $color = null, ?string $tag = null, ?int $badge = null, ?bool $draft = null, ?string $scheduledAt = null, ?bool $contentAvailable = null, ?bool $critical = null, ?MessagePriority $priority = null): \Appwrite\Models\Message
     {
@@ -409,21 +329,12 @@ class Messaging extends Service
         }
 
         return \Appwrite\Models\Message::from($response);
-
     }
 
     /**
      * Create a new SMS message.
      *
-     * @param string $messageId
-     * @param string $content
-     * @param ?array $topics
-     * @param ?array $users
-     * @param ?array $targets
-     * @param ?bool $draft
-     * @param ?string $scheduledAt
      * @throws AppwriteException
-     * @return \Appwrite\Models\Message
      */
     public function createSMS(string $messageId, string $content, ?array $topics = null, ?array $users = null, ?array $targets = null, ?bool $draft = null, ?string $scheduledAt = null): \Appwrite\Models\Message
     {
@@ -471,24 +382,14 @@ class Messaging extends Service
         }
 
         return \Appwrite\Models\Message::from($response);
-
     }
 
     /**
      * Update an SMS message by its unique ID. This endpoint only works on
      * messages that are in draft status. Messages that are already processing,
      * sent, or failed cannot be updated.
-     * 
      *
-     * @param string $messageId
-     * @param ?array $topics
-     * @param ?array $users
-     * @param ?array $targets
-     * @param ?string $content
-     * @param ?bool $draft
-     * @param ?string $scheduledAt
      * @throws AppwriteException
-     * @return \Appwrite\Models\Message
      */
     public function updateSMS(string $messageId, ?array $topics = null, ?array $users = null, ?array $targets = null, ?string $content = null, ?bool $draft = null, ?string $scheduledAt = null): \Appwrite\Models\Message
     {
@@ -524,16 +425,12 @@ class Messaging extends Service
         }
 
         return \Appwrite\Models\Message::from($response);
-
     }
 
     /**
      * Get a message by its unique ID.
-     * 
      *
-     * @param string $messageId
      * @throws AppwriteException
-     * @return \Appwrite\Models\Message
      */
     public function getMessage(string $messageId): \Appwrite\Models\Message
     {
@@ -562,16 +459,13 @@ class Messaging extends Service
         }
 
         return \Appwrite\Models\Message::from($response);
-
     }
 
     /**
      * Delete a message. If the message is not a draft or scheduled, but has been
      * sent, this will not recall the message.
      *
-     * @param string $messageId
      * @throws AppwriteException
-     * @return string
      */
     public function delete(string $messageId): string
     {
@@ -588,25 +482,18 @@ class Messaging extends Service
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 
     /**
      * Get a list of the targets associated with a message.
      *
-     * @param string $messageId
-     * @param ?array $queries
-     * @param ?bool $total
      * @throws AppwriteException
-     * @return \Appwrite\Models\TargetList
      */
     public function listTargets(string $messageId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\TargetList
     {
@@ -643,17 +530,12 @@ class Messaging extends Service
         }
 
         return \Appwrite\Models\TargetList::from($response);
-
     }
 
     /**
      * Get a list of all providers from the current Appwrite project.
      *
-     * @param ?array $queries
-     * @param ?string $search
-     * @param ?bool $total
      * @throws AppwriteException
-     * @return \Appwrite\Models\ProviderList
      */
     public function listProviders(?array $queries = null, ?string $search = null, ?bool $total = null): \Appwrite\Models\ProviderList
     {
@@ -693,22 +575,12 @@ class Messaging extends Service
         }
 
         return \Appwrite\Models\ProviderList::from($response);
-
     }
 
     /**
      * Create a new Apple Push Notification service provider.
      *
-     * @param string $providerId
-     * @param string $name
-     * @param ?string $authKey
-     * @param ?string $authKeyId
-     * @param ?string $teamId
-     * @param ?string $bundleId
-     * @param ?bool $sandbox
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\Provider
      */
     public function createAPNSProvider(string $providerId, string $name, ?string $authKey = null, ?string $authKeyId = null, ?string $teamId = null, ?string $bundleId = null, ?bool $sandbox = null, ?bool $enabled = null): \Appwrite\Models\Provider
     {
@@ -760,22 +632,12 @@ class Messaging extends Service
         }
 
         return \Appwrite\Models\Provider::from($response);
-
     }
 
     /**
      * Update a Apple Push Notification service provider by its unique ID.
      *
-     * @param string $providerId
-     * @param ?string $name
-     * @param ?bool $enabled
-     * @param ?string $authKey
-     * @param ?string $authKeyId
-     * @param ?string $teamId
-     * @param ?string $bundleId
-     * @param ?bool $sandbox
      * @throws AppwriteException
-     * @return \Appwrite\Models\Provider
      */
     public function updateAPNSProvider(string $providerId, ?string $name = null, ?bool $enabled = null, ?string $authKey = null, ?string $authKeyId = null, ?string $teamId = null, ?string $bundleId = null, ?bool $sandbox = null): \Appwrite\Models\Provider
     {
@@ -827,18 +689,12 @@ class Messaging extends Service
         }
 
         return \Appwrite\Models\Provider::from($response);
-
     }
 
     /**
      * Create a new Firebase Cloud Messaging provider.
      *
-     * @param string $providerId
-     * @param string $name
-     * @param ?array $serviceAccountJSON
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\Provider
      */
     public function createFCMProvider(string $providerId, string $name, ?array $serviceAccountJSON = null, ?bool $enabled = null): \Appwrite\Models\Provider
     {
@@ -871,18 +727,12 @@ class Messaging extends Service
         }
 
         return \Appwrite\Models\Provider::from($response);
-
     }
 
     /**
      * Update a Firebase Cloud Messaging provider by its unique ID.
      *
-     * @param string $providerId
-     * @param ?string $name
-     * @param ?bool $enabled
-     * @param ?array $serviceAccountJSON
      * @throws AppwriteException
-     * @return \Appwrite\Models\Provider
      */
     public function updateFCMProvider(string $providerId, ?string $name = null, ?bool $enabled = null, ?array $serviceAccountJSON = null): \Appwrite\Models\Provider
     {
@@ -918,24 +768,12 @@ class Messaging extends Service
         }
 
         return \Appwrite\Models\Provider::from($response);
-
     }
 
     /**
      * Create a new Mailgun provider.
      *
-     * @param string $providerId
-     * @param string $name
-     * @param ?string $apiKey
-     * @param ?string $domain
-     * @param ?bool $isEuRegion
-     * @param ?string $fromName
-     * @param ?string $fromEmail
-     * @param ?string $replyToName
-     * @param ?string $replyToEmail
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\Provider
      */
     public function createMailgunProvider(string $providerId, string $name, ?string $apiKey = null, ?string $domain = null, ?bool $isEuRegion = null, ?string $fromName = null, ?string $fromEmail = null, ?string $replyToName = null, ?string $replyToEmail = null, ?bool $enabled = null): \Appwrite\Models\Provider
     {
@@ -992,24 +830,12 @@ class Messaging extends Service
         }
 
         return \Appwrite\Models\Provider::from($response);
-
     }
 
     /**
      * Update a Mailgun provider by its unique ID.
      *
-     * @param string $providerId
-     * @param ?string $name
-     * @param ?string $apiKey
-     * @param ?string $domain
-     * @param ?bool $isEuRegion
-     * @param ?bool $enabled
-     * @param ?string $fromName
-     * @param ?string $fromEmail
-     * @param ?string $replyToName
-     * @param ?string $replyToEmail
      * @throws AppwriteException
-     * @return \Appwrite\Models\Provider
      */
     public function updateMailgunProvider(string $providerId, ?string $name = null, ?string $apiKey = null, ?string $domain = null, ?bool $isEuRegion = null, ?bool $enabled = null, ?string $fromName = null, ?string $fromEmail = null, ?string $replyToName = null, ?string $replyToEmail = null): \Appwrite\Models\Provider
     {
@@ -1069,20 +895,12 @@ class Messaging extends Service
         }
 
         return \Appwrite\Models\Provider::from($response);
-
     }
 
     /**
      * Create a new MSG91 provider.
      *
-     * @param string $providerId
-     * @param string $name
-     * @param ?string $templateId
-     * @param ?string $senderId
-     * @param ?string $authKey
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\Provider
      */
     public function createMsg91Provider(string $providerId, string $name, ?string $templateId = null, ?string $senderId = null, ?string $authKey = null, ?bool $enabled = null): \Appwrite\Models\Provider
     {
@@ -1126,20 +944,12 @@ class Messaging extends Service
         }
 
         return \Appwrite\Models\Provider::from($response);
-
     }
 
     /**
      * Update a MSG91 provider by its unique ID.
      *
-     * @param string $providerId
-     * @param ?string $name
-     * @param ?bool $enabled
-     * @param ?string $templateId
-     * @param ?string $senderId
-     * @param ?string $authKey
      * @throws AppwriteException
-     * @return \Appwrite\Models\Provider
      */
     public function updateMsg91Provider(string $providerId, ?string $name = null, ?bool $enabled = null, ?string $templateId = null, ?string $senderId = null, ?string $authKey = null): \Appwrite\Models\Provider
     {
@@ -1186,22 +996,12 @@ class Messaging extends Service
         }
 
         return \Appwrite\Models\Provider::from($response);
-
     }
 
     /**
      * Create a new Resend provider.
      *
-     * @param string $providerId
-     * @param string $name
-     * @param ?string $apiKey
-     * @param ?string $fromName
-     * @param ?string $fromEmail
-     * @param ?string $replyToName
-     * @param ?string $replyToEmail
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\Provider
      */
     public function createResendProvider(string $providerId, string $name, ?string $apiKey = null, ?string $fromName = null, ?string $fromEmail = null, ?string $replyToName = null, ?string $replyToEmail = null, ?bool $enabled = null): \Appwrite\Models\Provider
     {
@@ -1253,22 +1053,12 @@ class Messaging extends Service
         }
 
         return \Appwrite\Models\Provider::from($response);
-
     }
 
     /**
      * Update a Resend provider by its unique ID.
      *
-     * @param string $providerId
-     * @param ?string $name
-     * @param ?bool $enabled
-     * @param ?string $apiKey
-     * @param ?string $fromName
-     * @param ?string $fromEmail
-     * @param ?string $replyToName
-     * @param ?string $replyToEmail
      * @throws AppwriteException
-     * @return \Appwrite\Models\Provider
      */
     public function updateResendProvider(string $providerId, ?string $name = null, ?bool $enabled = null, ?string $apiKey = null, ?string $fromName = null, ?string $fromEmail = null, ?string $replyToName = null, ?string $replyToEmail = null): \Appwrite\Models\Provider
     {
@@ -1323,22 +1113,12 @@ class Messaging extends Service
         }
 
         return \Appwrite\Models\Provider::from($response);
-
     }
 
     /**
      * Create a new Sendgrid provider.
      *
-     * @param string $providerId
-     * @param string $name
-     * @param ?string $apiKey
-     * @param ?string $fromName
-     * @param ?string $fromEmail
-     * @param ?string $replyToName
-     * @param ?string $replyToEmail
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\Provider
      */
     public function createSendgridProvider(string $providerId, string $name, ?string $apiKey = null, ?string $fromName = null, ?string $fromEmail = null, ?string $replyToName = null, ?string $replyToEmail = null, ?bool $enabled = null): \Appwrite\Models\Provider
     {
@@ -1390,22 +1170,12 @@ class Messaging extends Service
         }
 
         return \Appwrite\Models\Provider::from($response);
-
     }
 
     /**
      * Update a Sendgrid provider by its unique ID.
      *
-     * @param string $providerId
-     * @param ?string $name
-     * @param ?bool $enabled
-     * @param ?string $apiKey
-     * @param ?string $fromName
-     * @param ?string $fromEmail
-     * @param ?string $replyToName
-     * @param ?string $replyToEmail
      * @throws AppwriteException
-     * @return \Appwrite\Models\Provider
      */
     public function updateSendgridProvider(string $providerId, ?string $name = null, ?bool $enabled = null, ?string $apiKey = null, ?string $fromName = null, ?string $fromEmail = null, ?string $replyToName = null, ?string $replyToEmail = null): \Appwrite\Models\Provider
     {
@@ -1460,24 +1230,12 @@ class Messaging extends Service
         }
 
         return \Appwrite\Models\Provider::from($response);
-
     }
 
     /**
      * Create a new Amazon SES provider.
      *
-     * @param string $providerId
-     * @param string $name
-     * @param ?string $accessKey
-     * @param ?string $secretKey
-     * @param ?string $region
-     * @param ?string $fromName
-     * @param ?string $fromEmail
-     * @param ?string $replyToName
-     * @param ?string $replyToEmail
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\Provider
      */
     public function createSesProvider(string $providerId, string $name, ?string $accessKey = null, ?string $secretKey = null, ?string $region = null, ?string $fromName = null, ?string $fromEmail = null, ?string $replyToName = null, ?string $replyToEmail = null, ?bool $enabled = null): \Appwrite\Models\Provider
     {
@@ -1537,24 +1295,12 @@ class Messaging extends Service
         }
 
         return \Appwrite\Models\Provider::from($response);
-
     }
 
     /**
      * Update an Amazon SES provider by its unique ID.
      *
-     * @param string $providerId
-     * @param ?string $name
-     * @param ?bool $enabled
-     * @param ?string $accessKey
-     * @param ?string $secretKey
-     * @param ?string $region
-     * @param ?string $fromName
-     * @param ?string $fromEmail
-     * @param ?string $replyToName
-     * @param ?string $replyToEmail
      * @throws AppwriteException
-     * @return \Appwrite\Models\Provider
      */
     public function updateSesProvider(string $providerId, ?string $name = null, ?bool $enabled = null, ?string $accessKey = null, ?string $secretKey = null, ?string $region = null, ?string $fromName = null, ?string $fromEmail = null, ?string $replyToName = null, ?string $replyToEmail = null): \Appwrite\Models\Provider
     {
@@ -1617,28 +1363,12 @@ class Messaging extends Service
         }
 
         return \Appwrite\Models\Provider::from($response);
-
     }
 
     /**
      * Create a new SMTP provider.
      *
-     * @param string $providerId
-     * @param string $name
-     * @param string $host
-     * @param ?int $port
-     * @param ?string $username
-     * @param ?string $password
-     * @param ?SmtpEncryption $encryption
-     * @param ?bool $autoTLS
-     * @param ?string $mailer
-     * @param ?string $fromName
-     * @param ?string $fromEmail
-     * @param ?string $replyToName
-     * @param ?string $replyToEmail
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\Provider
      */
     public function createSMTPProvider(string $providerId, string $name, string $host, ?int $port = null, ?string $username = null, ?string $password = null, ?SmtpEncryption $encryption = null, ?bool $autoTLS = null, ?string $mailer = null, ?string $fromName = null, ?string $fromEmail = null, ?string $replyToName = null, ?string $replyToEmail = null, ?bool $enabled = null): \Appwrite\Models\Provider
     {
@@ -1711,28 +1441,12 @@ class Messaging extends Service
         }
 
         return \Appwrite\Models\Provider::from($response);
-
     }
 
     /**
      * Update a SMTP provider by its unique ID.
      *
-     * @param string $providerId
-     * @param ?string $name
-     * @param ?string $host
-     * @param ?int $port
-     * @param ?string $username
-     * @param ?string $password
-     * @param ?SmtpEncryption $encryption
-     * @param ?bool $autoTLS
-     * @param ?string $mailer
-     * @param ?string $fromName
-     * @param ?string $fromEmail
-     * @param ?string $replyToName
-     * @param ?string $replyToEmail
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\Provider
      */
     public function updateSMTPProvider(string $providerId, ?string $name = null, ?string $host = null, ?int $port = null, ?string $username = null, ?string $password = null, ?SmtpEncryption $encryption = null, ?bool $autoTLS = null, ?string $mailer = null, ?string $fromName = null, ?string $fromEmail = null, ?string $replyToName = null, ?string $replyToEmail = null, ?bool $enabled = null): \Appwrite\Models\Provider
     {
@@ -1805,20 +1519,12 @@ class Messaging extends Service
         }
 
         return \Appwrite\Models\Provider::from($response);
-
     }
 
     /**
      * Create a new Telesign provider.
      *
-     * @param string $providerId
-     * @param string $name
-     * @param ?string $from
-     * @param ?string $customerId
-     * @param ?string $apiKey
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\Provider
      */
     public function createTelesignProvider(string $providerId, string $name, ?string $from = null, ?string $customerId = null, ?string $apiKey = null, ?bool $enabled = null): \Appwrite\Models\Provider
     {
@@ -1862,20 +1568,12 @@ class Messaging extends Service
         }
 
         return \Appwrite\Models\Provider::from($response);
-
     }
 
     /**
      * Update a Telesign provider by its unique ID.
      *
-     * @param string $providerId
-     * @param ?string $name
-     * @param ?bool $enabled
-     * @param ?string $customerId
-     * @param ?string $apiKey
-     * @param ?string $from
      * @throws AppwriteException
-     * @return \Appwrite\Models\Provider
      */
     public function updateTelesignProvider(string $providerId, ?string $name = null, ?bool $enabled = null, ?string $customerId = null, ?string $apiKey = null, ?string $from = null): \Appwrite\Models\Provider
     {
@@ -1922,20 +1620,12 @@ class Messaging extends Service
         }
 
         return \Appwrite\Models\Provider::from($response);
-
     }
 
     /**
      * Create a new Textmagic provider.
      *
-     * @param string $providerId
-     * @param string $name
-     * @param ?string $from
-     * @param ?string $username
-     * @param ?string $apiKey
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\Provider
      */
     public function createTextmagicProvider(string $providerId, string $name, ?string $from = null, ?string $username = null, ?string $apiKey = null, ?bool $enabled = null): \Appwrite\Models\Provider
     {
@@ -1979,20 +1669,12 @@ class Messaging extends Service
         }
 
         return \Appwrite\Models\Provider::from($response);
-
     }
 
     /**
      * Update a Textmagic provider by its unique ID.
      *
-     * @param string $providerId
-     * @param ?string $name
-     * @param ?bool $enabled
-     * @param ?string $username
-     * @param ?string $apiKey
-     * @param ?string $from
      * @throws AppwriteException
-     * @return \Appwrite\Models\Provider
      */
     public function updateTextmagicProvider(string $providerId, ?string $name = null, ?bool $enabled = null, ?string $username = null, ?string $apiKey = null, ?string $from = null): \Appwrite\Models\Provider
     {
@@ -2039,20 +1721,12 @@ class Messaging extends Service
         }
 
         return \Appwrite\Models\Provider::from($response);
-
     }
 
     /**
      * Create a new Twilio provider.
      *
-     * @param string $providerId
-     * @param string $name
-     * @param ?string $from
-     * @param ?string $accountSid
-     * @param ?string $authToken
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\Provider
      */
     public function createTwilioProvider(string $providerId, string $name, ?string $from = null, ?string $accountSid = null, ?string $authToken = null, ?bool $enabled = null): \Appwrite\Models\Provider
     {
@@ -2096,20 +1770,12 @@ class Messaging extends Service
         }
 
         return \Appwrite\Models\Provider::from($response);
-
     }
 
     /**
      * Update a Twilio provider by its unique ID.
      *
-     * @param string $providerId
-     * @param ?string $name
-     * @param ?bool $enabled
-     * @param ?string $accountSid
-     * @param ?string $authToken
-     * @param ?string $from
      * @throws AppwriteException
-     * @return \Appwrite\Models\Provider
      */
     public function updateTwilioProvider(string $providerId, ?string $name = null, ?bool $enabled = null, ?string $accountSid = null, ?string $authToken = null, ?string $from = null): \Appwrite\Models\Provider
     {
@@ -2156,20 +1822,12 @@ class Messaging extends Service
         }
 
         return \Appwrite\Models\Provider::from($response);
-
     }
 
     /**
      * Create a new Vonage provider.
      *
-     * @param string $providerId
-     * @param string $name
-     * @param ?string $from
-     * @param ?string $apiKey
-     * @param ?string $apiSecret
-     * @param ?bool $enabled
      * @throws AppwriteException
-     * @return \Appwrite\Models\Provider
      */
     public function createVonageProvider(string $providerId, string $name, ?string $from = null, ?string $apiKey = null, ?string $apiSecret = null, ?bool $enabled = null): \Appwrite\Models\Provider
     {
@@ -2213,20 +1871,12 @@ class Messaging extends Service
         }
 
         return \Appwrite\Models\Provider::from($response);
-
     }
 
     /**
      * Update a Vonage provider by its unique ID.
      *
-     * @param string $providerId
-     * @param ?string $name
-     * @param ?bool $enabled
-     * @param ?string $apiKey
-     * @param ?string $apiSecret
-     * @param ?string $from
      * @throws AppwriteException
-     * @return \Appwrite\Models\Provider
      */
     public function updateVonageProvider(string $providerId, ?string $name = null, ?bool $enabled = null, ?string $apiKey = null, ?string $apiSecret = null, ?string $from = null): \Appwrite\Models\Provider
     {
@@ -2273,16 +1923,12 @@ class Messaging extends Service
         }
 
         return \Appwrite\Models\Provider::from($response);
-
     }
 
     /**
      * Get a provider by its unique ID.
-     * 
      *
-     * @param string $providerId
      * @throws AppwriteException
-     * @return \Appwrite\Models\Provider
      */
     public function getProvider(string $providerId): \Appwrite\Models\Provider
     {
@@ -2311,15 +1957,12 @@ class Messaging extends Service
         }
 
         return \Appwrite\Models\Provider::from($response);
-
     }
 
     /**
      * Delete a provider by its unique ID.
      *
-     * @param string $providerId
      * @throws AppwriteException
-     * @return string
      */
     public function deleteProvider(string $providerId): string
     {
@@ -2336,25 +1979,18 @@ class Messaging extends Service
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 
     /**
      * Get a list of all topics from the current Appwrite project.
      *
-     * @param ?array $queries
-     * @param ?string $search
-     * @param ?bool $total
      * @throws AppwriteException
-     * @return \Appwrite\Models\TopicList
      */
     public function listTopics(?array $queries = null, ?string $search = null, ?bool $total = null): \Appwrite\Models\TopicList
     {
@@ -2394,17 +2030,12 @@ class Messaging extends Service
         }
 
         return \Appwrite\Models\TopicList::from($response);
-
     }
 
     /**
      * Create a new topic.
      *
-     * @param string $topicId
-     * @param string $name
-     * @param ?array $subscribe
      * @throws AppwriteException
-     * @return \Appwrite\Models\Topic
      */
     public function createTopic(string $topicId, string $name, ?array $subscribe = null): \Appwrite\Models\Topic
     {
@@ -2439,16 +2070,12 @@ class Messaging extends Service
         }
 
         return \Appwrite\Models\Topic::from($response);
-
     }
 
     /**
      * Get a topic by its unique ID.
-     * 
      *
-     * @param string $topicId
      * @throws AppwriteException
-     * @return \Appwrite\Models\Topic
      */
     public function getTopic(string $topicId): \Appwrite\Models\Topic
     {
@@ -2477,18 +2104,12 @@ class Messaging extends Service
         }
 
         return \Appwrite\Models\Topic::from($response);
-
     }
 
     /**
      * Update a topic by its unique ID.
-     * 
      *
-     * @param string $topicId
-     * @param ?string $name
-     * @param ?array $subscribe
      * @throws AppwriteException
-     * @return \Appwrite\Models\Topic
      */
     public function updateTopic(string $topicId, ?string $name = null, ?array $subscribe = null): \Appwrite\Models\Topic
     {
@@ -2520,15 +2141,12 @@ class Messaging extends Service
         }
 
         return \Appwrite\Models\Topic::from($response);
-
     }
 
     /**
      * Delete a topic by its unique ID.
      *
-     * @param string $topicId
      * @throws AppwriteException
-     * @return string
      */
     public function deleteTopic(string $topicId): string
     {
@@ -2545,26 +2163,18 @@ class Messaging extends Service
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 
     /**
      * Get a list of all subscribers from the current Appwrite project.
      *
-     * @param string $topicId
-     * @param ?array $queries
-     * @param ?string $search
-     * @param ?bool $total
      * @throws AppwriteException
-     * @return \Appwrite\Models\SubscriberList
      */
     public function listSubscribers(string $topicId, ?array $queries = null, ?string $search = null, ?bool $total = null): \Appwrite\Models\SubscriberList
     {
@@ -2605,17 +2215,12 @@ class Messaging extends Service
         }
 
         return \Appwrite\Models\SubscriberList::from($response);
-
     }
 
     /**
      * Create a new subscriber.
      *
-     * @param string $topicId
-     * @param string $subscriberId
-     * @param string $targetId
      * @throws AppwriteException
-     * @return \Appwrite\Models\Subscriber
      */
     public function createSubscriber(string $topicId, string $subscriberId, string $targetId): \Appwrite\Models\Subscriber
     {
@@ -2647,17 +2252,12 @@ class Messaging extends Service
         }
 
         return \Appwrite\Models\Subscriber::from($response);
-
     }
 
     /**
      * Get a subscriber by its unique ID.
-     * 
      *
-     * @param string $topicId
-     * @param string $subscriberId
      * @throws AppwriteException
-     * @return \Appwrite\Models\Subscriber
      */
     public function getSubscriber(string $topicId, string $subscriberId): \Appwrite\Models\Subscriber
     {
@@ -2687,16 +2287,12 @@ class Messaging extends Service
         }
 
         return \Appwrite\Models\Subscriber::from($response);
-
     }
 
     /**
      * Delete a subscriber by its unique ID.
      *
-     * @param string $topicId
-     * @param string $subscriberId
      * @throws AppwriteException
-     * @return string
      */
     public function deleteSubscriber(string $topicId, string $subscriberId): string
     {
@@ -2714,14 +2310,11 @@ class Messaging extends Service
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 }

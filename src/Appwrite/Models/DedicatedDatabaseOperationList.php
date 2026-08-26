@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * OperationList
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class DedicatedDatabaseOperationList
 {
@@ -49,11 +53,9 @@ readonly class DedicatedDatabaseOperationList
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'total' => static::serializeValue($this->total),
             'operations' => static::serializeValue($this->operations)
         ];
-
-        return $result;
     }
 }

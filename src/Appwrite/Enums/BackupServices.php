@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Enums;
 
 use JsonSerializable;
+use Stringable;
 
-class BackupServices implements JsonSerializable
+class BackupServices implements JsonSerializable, Stringable
 {
     private static BackupServices $DATABASES;
     private static BackupServices $TABLESDB;
@@ -14,11 +17,8 @@ class BackupServices implements JsonSerializable
     private static BackupServices $FUNCTIONS;
     private static BackupServices $STORAGE;
 
-    private string $value;
-
-    private function __construct(string $value)
+    private function __construct(private readonly string $value)
     {
-        $this->value = $value;
     }
 
     public function __toString(): string

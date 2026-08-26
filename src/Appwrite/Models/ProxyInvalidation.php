@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Invalidation
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class ProxyInvalidation
 {
@@ -56,13 +60,11 @@ readonly class ProxyInvalidation
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'domain' => static::serializeValue($this->domain),
             'type' => static::serializeValue($this->type),
             'reference' => static::serializeValue($this->reference),
             'status' => static::serializeValue($this->status)
         ];
-
-        return $result;
     }
 }

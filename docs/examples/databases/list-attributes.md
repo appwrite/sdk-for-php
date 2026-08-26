@@ -16,4 +16,6 @@ $result = $databases->listAttributes(
     collectionId: '<COLLECTION_ID>',
     queries: [], // optional
     total: false // optional
-);```
+);
+
+```

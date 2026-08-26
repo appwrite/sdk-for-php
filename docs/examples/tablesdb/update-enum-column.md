@@ -19,4 +19,6 @@ $result = $tablesDB->updateEnumColumn(
     required: false,
     default: '<DEFAULT>',
     newKey: '' // optional
-);```
+);
+
+```

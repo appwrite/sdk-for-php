@@ -15,4 +15,6 @@ $result = $project->createWebPlatform(
     platformId: '<PLATFORM_ID>',
     name: '<NAME>',
     hostname: 'app.example.com'
-);```
+);
+
+```

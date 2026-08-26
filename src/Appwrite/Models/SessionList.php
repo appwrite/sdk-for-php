@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Sessions List
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class SessionList
 {
@@ -49,11 +53,9 @@ readonly class SessionList
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'total' => static::serializeValue($this->total),
             'sessions' => static::serializeValue($this->sessions)
         ];
-
-        return $result;
     }
 }

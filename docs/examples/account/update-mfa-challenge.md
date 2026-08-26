@@ -14,4 +14,6 @@ $account = new Account($client);
 $result = $account->updateMFAChallenge(
     challengeId: '<CHALLENGE_ID>',
     otp: '<OTP>'
-);```
+);
+
+```

@@ -13,4 +13,6 @@ $sites = new Sites($client);
 
 $result = $sites->delete(
     siteId: '<SITE_ID>'
-);```
+);
+
+```

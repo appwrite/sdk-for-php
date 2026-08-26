@@ -16,4 +16,6 @@ $result = $storage->listFiles(
     queries: [], // optional
     search: '<SEARCH>', // optional
     total: false // optional
-);```
+);
+
+```

@@ -20,4 +20,6 @@ $result = $tablesDB->updateIntegerColumn(
     min: null, // optional
     max: null, // optional
     newKey: '' // optional
-);```
+);
+
+```

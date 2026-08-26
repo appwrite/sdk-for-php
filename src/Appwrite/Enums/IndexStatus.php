@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Enums;
 
 use JsonSerializable;
+use Stringable;
 
-class IndexStatus implements JsonSerializable
+class IndexStatus implements JsonSerializable, Stringable
 {
     private static IndexStatus $AVAILABLE;
     private static IndexStatus $PROCESSING;
@@ -12,11 +15,8 @@ class IndexStatus implements JsonSerializable
     private static IndexStatus $STUCK;
     private static IndexStatus $FAILED;
 
-    private string $value;
-
-    private function __construct(string $value)
+    private function __construct(private readonly string $value)
     {
-        $this->value = $value;
     }
 
     public function __toString(): string

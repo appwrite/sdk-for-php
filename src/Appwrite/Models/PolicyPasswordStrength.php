@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Policy Password Strength
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class PolicyPasswordStrength
 {
@@ -68,7 +72,7 @@ readonly class PolicyPasswordStrength
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             'min' => static::serializeValue($this->min),
             'uppercase' => static::serializeValue($this->uppercase),
@@ -76,7 +80,5 @@ readonly class PolicyPasswordStrength
             'number' => static::serializeValue($this->number),
             'symbols' => static::serializeValue($this->symbols)
         ];
-
-        return $result;
     }
 }

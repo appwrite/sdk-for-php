@@ -1,12 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
+use Appwrite\Enums\ExecutionResourceType;
 use Appwrite\Enums\ExecutionTrigger;
 use Appwrite\Enums\ExecutionStatus;
 
 /**
  * Execution
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class Execution
 {
@@ -19,18 +24,19 @@ readonly class Execution
      * @param string $createdAt execution creation date in iso 8601 format.
      * @param string $updatedAt execution update date in iso 8601 format.
      * @param array $permissions execution roles.
-     * @param string $functionId function id.
-     * @param string $deploymentId function's deployment id used to create the execution.
-     * @param ExecutionTrigger $trigger the trigger that caused the function to execute. possible values can be: `http`, `schedule`, or `event`.
-     * @param ExecutionStatus $status the status of the function execution. possible values can be: `waiting`, `processing`, `completed`, `failed`, or `scheduled`.
+     * @param string $resourceId function or site id.
+     * @param ExecutionResourceType $resourceType execution resource type.
+     * @param string $deploymentId deployment id used to create the execution.
+     * @param ExecutionTrigger $trigger the trigger that caused the resource to execute. possible values can be: `http`, `schedule`, or `event`.
+     * @param ExecutionStatus $status the status of the resource execution. possible values can be: `waiting`, `processing`, `completed`, `failed`, or `scheduled`.
      * @param string $requestMethod http request method type.
      * @param string $requestPath http request path and query.
      * @param list<Headers> $requestHeaders http request headers as a key-value object. this will return only whitelisted headers. all headers are returned if execution is created as synchronous.
      * @param int $responseStatusCode http response status code.
      * @param string $responseBody http response body. this will return empty unless execution is created as synchronous.
      * @param list<Headers> $responseHeaders http response headers as a key-value object. this will return only whitelisted headers. all headers are returned if execution is created as synchronous.
-     * @param string $logs function logs. includes the last 4,000 characters. this will return an empty string unless the response is returned using an api key or as part of a webhook payload.
-     * @param string $errors function errors. includes the last 4,000 characters. this will return an empty string unless the response is returned using an api key or as part of a webhook payload.
+     * @param string $logs resource logs. includes the last 4,000 characters. this will return an empty string unless the response is returned using an api key or as part of a webhook payload.
+     * @param string $errors resource errors. includes the last 4,000 characters. this will return an empty string unless the response is returned using an api key or as part of a webhook payload.
      * @param float $duration resource(function/site) execution duration in seconds.
      * @param string|null $scheduledAt the scheduled time for execution. if left empty, execution will be queued immediately.
      */
@@ -39,7 +45,8 @@ readonly class Execution
         public string $createdAt,
         public string $updatedAt,
         public array $permissions,
-        public string $functionId,
+        public string $resourceId,
+        public ExecutionResourceType $resourceType,
         public string $deploymentId,
         public ExecutionTrigger $trigger,
         public ExecutionStatus $status,
@@ -73,8 +80,11 @@ readonly class Execution
         if (!array_key_exists('$permissions', $data)) {
             throw new \InvalidArgumentException('Missing required field "$permissions" for ' . static::class . '.');
         }
-        if (!array_key_exists('functionId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "functionId" for ' . static::class . '.');
+        if (!array_key_exists('resourceId', $data)) {
+            throw new \InvalidArgumentException('Missing required field "resourceId" for ' . static::class . '.');
+        }
+        if (!array_key_exists('resourceType', $data)) {
+            throw new \InvalidArgumentException('Missing required field "resourceType" for ' . static::class . '.');
         }
         if (!array_key_exists('deploymentId', $data)) {
             throw new \InvalidArgumentException('Missing required field "deploymentId" for ' . static::class . '.');
@@ -118,7 +128,8 @@ readonly class Execution
             createdAt: $data['$createdAt'],
             updatedAt: $data['$updatedAt'],
             permissions: $data['$permissions'],
-            functionId: $data['functionId'],
+            resourceId: $data['resourceId'],
+            resourceType: static::hydrateTypedValue(ExecutionResourceType::class, $data['resourceType']),
             deploymentId: $data['deploymentId'],
             trigger: static::hydrateTypedValue(ExecutionTrigger::class, $data['trigger']),
             status: static::hydrateTypedValue(ExecutionStatus::class, $data['status']),
@@ -141,7 +152,7 @@ readonly class Execution
             logs: $data['logs'],
             errors: $data['errors'],
             duration: $data['duration'],
-            scheduledAt: array_key_exists('scheduledAt', $data) ? $data['scheduledAt'] : null
+            scheduledAt: $data['scheduledAt'] ?? null
         );
     }
 
@@ -150,12 +161,13 @@ readonly class Execution
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             '$createdAt' => static::serializeValue($this->createdAt),
             '$updatedAt' => static::serializeValue($this->updatedAt),
             '$permissions' => static::serializeValue($this->permissions),
-            'functionId' => static::serializeValue($this->functionId),
+            'resourceId' => static::serializeValue($this->resourceId),
+            'resourceType' => static::serializeValue($this->resourceType),
             'deploymentId' => static::serializeValue($this->deploymentId),
             'trigger' => static::serializeValue($this->trigger),
             'status' => static::serializeValue($this->status),
@@ -170,7 +182,5 @@ readonly class Execution
             'duration' => static::serializeValue($this->duration),
             'scheduledAt' => static::serializeValue($this->scheduledAt)
         ];
-
-        return $result;
     }
 }

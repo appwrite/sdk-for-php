@@ -1,20 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Enums;
 
 use JsonSerializable;
+use Stringable;
 
-class ProjectProtocolId implements JsonSerializable
+class ProjectProtocolId implements JsonSerializable, Stringable
 {
     private static ProjectProtocolId $REST;
     private static ProjectProtocolId $GRAPHQL;
     private static ProjectProtocolId $WEBSOCKET;
 
-    private string $value;
-
-    private function __construct(string $value)
+    private function __construct(private readonly string $value)
     {
-        $this->value = $value;
     }
 
     public function __toString(): string

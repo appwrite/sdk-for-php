@@ -1,11 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 use Appwrite\Enums\PlatformType;
 
 /**
  * Platform Windows
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class PlatformWindows
 {
@@ -70,7 +74,7 @@ readonly class PlatformWindows
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             '$createdAt' => static::serializeValue($this->createdAt),
             '$updatedAt' => static::serializeValue($this->updatedAt),
@@ -78,7 +82,5 @@ readonly class PlatformWindows
             'type' => static::serializeValue($this->type),
             'packageIdentifierName' => static::serializeValue($this->packageIdentifierName)
         ];
-
-        return $result;
     }
 }

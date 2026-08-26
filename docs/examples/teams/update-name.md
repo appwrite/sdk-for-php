@@ -14,4 +14,6 @@ $teams = new Teams($client);
 $result = $teams->updateName(
     teamId: '<TEAM_ID>',
     name: '<NAME>'
-);```
+);
+
+```

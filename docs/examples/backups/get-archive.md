@@ -13,4 +13,6 @@ $backups = new Backups($client);
 
 $result = $backups->getArchive(
     archiveId: '<ARCHIVE_ID>'
-);```
+);
+
+```

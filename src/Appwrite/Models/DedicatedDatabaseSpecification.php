@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Specification
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class DedicatedDatabaseSpecification
 {
@@ -86,7 +90,7 @@ readonly class DedicatedDatabaseSpecification
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'slug' => static::serializeValue($this->slug),
             'name' => static::serializeValue($this->name),
             'price' => static::serializeValue($this->price),
@@ -97,7 +101,5 @@ readonly class DedicatedDatabaseSpecification
             'includedBandwidth' => static::serializeValue($this->includedBandwidth),
             'enabled' => static::serializeValue($this->enabled)
         ];
-
-        return $result;
     }
 }

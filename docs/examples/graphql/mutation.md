@@ -13,4 +13,6 @@ $graphql = new Graphql($client);
 
 $result = $graphql->mutation(
     query: []
-);```
+);
+
+```

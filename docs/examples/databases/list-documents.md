@@ -18,4 +18,6 @@ $result = $databases->listDocuments(
     transactionId: '<TRANSACTION_ID>', // optional
     total: false, // optional
     ttl: 0 // optional
-);```
+);
+
+```

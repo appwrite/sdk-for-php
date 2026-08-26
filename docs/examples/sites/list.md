@@ -15,4 +15,6 @@ $result = $sites->list(
     queries: [], // optional
     search: '<SEARCH>', // optional
     total: false // optional
-);```
+);
+
+```

@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * App
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class App
 {
@@ -193,7 +197,7 @@ readonly class App
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             '$createdAt' => static::serializeValue($this->createdAt),
             '$updatedAt' => static::serializeValue($this->updatedAt),
@@ -221,7 +225,5 @@ readonly class App
             'installationRedirectUrl' => static::serializeValue($this->installationRedirectUrl),
             'secrets' => static::serializeValue($this->secrets)
         ];
-
-        return $result;
     }
 }

@@ -12,4 +12,6 @@ $client = (new Client())
 $apps = new Apps($client);
 
 $result = $apps->listInstallationScopes();
+
+
 ```

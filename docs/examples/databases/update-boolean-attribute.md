@@ -18,4 +18,6 @@ $result = $databases->updateBooleanAttribute(
     required: false,
     default: false,
     newKey: '' // optional
-);```
+);
+
+```

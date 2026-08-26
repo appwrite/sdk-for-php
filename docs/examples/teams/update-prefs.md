@@ -14,4 +14,6 @@ $teams = new Teams($client);
 $result = $teams->updatePrefs(
     teamId: '<TEAM_ID>',
     prefs: []
-);```
+);
+
+```

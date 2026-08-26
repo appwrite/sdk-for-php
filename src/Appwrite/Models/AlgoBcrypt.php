@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * AlgoBcrypt
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class AlgoBcrypt
 {
@@ -38,10 +42,8 @@ readonly class AlgoBcrypt
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'type' => static::serializeValue($this->type)
         ];
-
-        return $result;
     }
 }

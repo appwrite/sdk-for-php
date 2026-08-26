@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Indexes List
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class IndexList
 {
@@ -49,11 +53,9 @@ readonly class IndexList
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'total' => static::serializeValue($this->total),
             'indexes' => static::serializeValue($this->indexes)
         ];
-
-        return $result;
     }
 }

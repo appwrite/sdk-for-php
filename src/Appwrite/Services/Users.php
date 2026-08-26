@@ -1,31 +1,23 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Services;
 
 use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
-use Appwrite\InputFile;
 use Appwrite\Enums\PasswordHash;
 use Appwrite\Enums\AuthenticatorType;
 use Appwrite\Enums\MessagingProviderType;
 
 class Users extends Service
 {
-    public function __construct(Client $client)
-    {
-        parent::__construct($client);
-    }
-
     /**
-     * Get a list of all the project's users. You can use the query params to
+     * Get a list of all the project&#039;s users. You can use the query params to
      * filter your results.
      *
-     * @param ?array $queries
-     * @param ?string $search
-     * @param ?bool $total
      * @throws AppwriteException
-     * @return \Appwrite\Models\UserList
      */
     public function list(?array $queries = null, ?string $search = null, ?bool $total = null): \Appwrite\Models\UserList
     {
@@ -65,19 +57,12 @@ class Users extends Service
         }
 
         return \Appwrite\Models\UserList::from($response);
-
     }
 
     /**
      * Create a new user.
      *
-     * @param string $userId
-     * @param ?string $email
-     * @param ?string $phone
-     * @param ?string $password
-     * @param ?string $name
      * @throws AppwriteException
-     * @return \Appwrite\Models\User
      */
     public function create(string $userId, ?string $email = null, ?string $phone = null, ?string $password = null, ?string $name = null): \Appwrite\Models\User
     {
@@ -117,7 +102,6 @@ class Users extends Service
         }
 
         return \Appwrite\Models\User::from($response);
-
     }
 
     /**
@@ -126,12 +110,7 @@ class Users extends Service
      * /users](https://appwrite.io/docs/server/users#usersCreate) endpoint to
      * create users with a plain text password.
      *
-     * @param string $userId
-     * @param string $email
-     * @param string $password
-     * @param ?string $name
      * @throws AppwriteException
-     * @return \Appwrite\Models\User
      */
     public function createArgon2User(string $userId, string $email, string $password, ?string $name = null): \Appwrite\Models\User
     {
@@ -167,7 +146,6 @@ class Users extends Service
         }
 
         return \Appwrite\Models\User::from($response);
-
     }
 
     /**
@@ -176,12 +154,7 @@ class Users extends Service
      * /users](https://appwrite.io/docs/server/users#usersCreate) endpoint to
      * create users with a plain text password.
      *
-     * @param string $userId
-     * @param string $email
-     * @param string $password
-     * @param ?string $name
      * @throws AppwriteException
-     * @return \Appwrite\Models\User
      */
     public function createBcryptUser(string $userId, string $email, string $password, ?string $name = null): \Appwrite\Models\User
     {
@@ -217,17 +190,12 @@ class Users extends Service
         }
 
         return \Appwrite\Models\User::from($response);
-
     }
 
     /**
      * Get identities for all users.
      *
-     * @param ?array $queries
-     * @param ?string $search
-     * @param ?bool $total
      * @throws AppwriteException
-     * @return \Appwrite\Models\IdentityList
      */
     public function listIdentities(?array $queries = null, ?string $search = null, ?bool $total = null): \Appwrite\Models\IdentityList
     {
@@ -267,15 +235,12 @@ class Users extends Service
         }
 
         return \Appwrite\Models\IdentityList::from($response);
-
     }
 
     /**
      * Delete an identity by its unique ID.
      *
-     * @param string $identityId
      * @throws AppwriteException
-     * @return string
      */
     public function deleteIdentity(string $identityId): string
     {
@@ -292,15 +257,12 @@ class Users extends Service
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 
     /**
@@ -309,12 +271,7 @@ class Users extends Service
      * /users](https://appwrite.io/docs/server/users#usersCreate) endpoint to
      * create users with a plain text password.
      *
-     * @param string $userId
-     * @param string $email
-     * @param string $password
-     * @param ?string $name
      * @throws AppwriteException
-     * @return \Appwrite\Models\User
      */
     public function createMD5User(string $userId, string $email, string $password, ?string $name = null): \Appwrite\Models\User
     {
@@ -350,7 +307,6 @@ class Users extends Service
         }
 
         return \Appwrite\Models\User::from($response);
-
     }
 
     /**
@@ -359,12 +315,7 @@ class Users extends Service
      * /users](https://appwrite.io/docs/server/users#usersCreate) endpoint to
      * create users with a plain text password.
      *
-     * @param string $userId
-     * @param string $email
-     * @param string $password
-     * @param ?string $name
      * @throws AppwriteException
-     * @return \Appwrite\Models\User
      */
     public function createPHPassUser(string $userId, string $email, string $password, ?string $name = null): \Appwrite\Models\User
     {
@@ -400,7 +351,6 @@ class Users extends Service
         }
 
         return \Appwrite\Models\User::from($response);
-
     }
 
     /**
@@ -409,17 +359,7 @@ class Users extends Service
      * /users](https://appwrite.io/docs/server/users#usersCreate) endpoint to
      * create users with a plain text password.
      *
-     * @param string $userId
-     * @param string $email
-     * @param string $password
-     * @param string $passwordSalt
-     * @param int $passwordCpu
-     * @param int $passwordMemory
-     * @param int $passwordParallel
-     * @param int $passwordLength
-     * @param ?string $name
      * @throws AppwriteException
-     * @return \Appwrite\Models\User
      */
     public function createScryptUser(string $userId, string $email, string $password, string $passwordSalt, int $passwordCpu, int $passwordMemory, int $passwordParallel, int $passwordLength, ?string $name = null): \Appwrite\Models\User
     {
@@ -460,7 +400,6 @@ class Users extends Service
         }
 
         return \Appwrite\Models\User::from($response);
-
     }
 
     /**
@@ -470,15 +409,7 @@ class Users extends Service
      * /users](https://appwrite.io/docs/server/users#usersCreate) endpoint to
      * create users with a plain text password.
      *
-     * @param string $userId
-     * @param string $email
-     * @param string $password
-     * @param string $passwordSalt
-     * @param string $passwordSaltSeparator
-     * @param string $passwordSignerKey
-     * @param ?string $name
      * @throws AppwriteException
-     * @return \Appwrite\Models\User
      */
     public function createScryptModifiedUser(string $userId, string $email, string $password, string $passwordSalt, string $passwordSaltSeparator, string $passwordSignerKey, ?string $name = null): \Appwrite\Models\User
     {
@@ -517,7 +448,6 @@ class Users extends Service
         }
 
         return \Appwrite\Models\User::from($response);
-
     }
 
     /**
@@ -526,13 +456,7 @@ class Users extends Service
      * the [POST /users](https://appwrite.io/docs/server/users#usersCreate)
      * endpoint to create users with a plain text password.
      *
-     * @param string $userId
-     * @param string $email
-     * @param string $password
-     * @param ?PasswordHash $passwordVersion
-     * @param ?string $name
      * @throws AppwriteException
-     * @return \Appwrite\Models\User
      */
     public function createSHAUser(string $userId, string $email, string $password, ?PasswordHash $passwordVersion = null, ?string $name = null): \Appwrite\Models\User
     {
@@ -572,15 +496,12 @@ class Users extends Service
         }
 
         return \Appwrite\Models\User::from($response);
-
     }
 
     /**
      * Get a user by its unique ID.
      *
-     * @param string $userId
      * @throws AppwriteException
-     * @return \Appwrite\Models\User
      */
     public function get(string $userId): \Appwrite\Models\User
     {
@@ -609,20 +530,17 @@ class Users extends Service
         }
 
         return \Appwrite\Models\User::from($response);
-
     }
 
     /**
-     * Delete a user by its unique ID, thereby releasing it's ID. Since ID is
+     * Delete a user by its unique ID, thereby releasing it&#039;s ID. Since ID is
      * released and can be reused, all user-related resources like documents or
      * storage files should be deleted before user deletion. If you want to keep
      * ID reserved, use the
      * [updateStatus](https://appwrite.io/docs/server/users#usersUpdateStatus)
      * endpoint instead.
      *
-     * @param string $userId
      * @throws AppwriteException
-     * @return string
      */
     public function delete(string $userId): string
     {
@@ -639,24 +557,18 @@ class Users extends Service
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 
     /**
      * Update the user email by its unique ID.
      *
-     * @param string $userId
-     * @param string $email
      * @throws AppwriteException
-     * @return \Appwrite\Models\User
      */
     public function updateEmail(string $userId, string $email): \Appwrite\Models\User
     {
@@ -687,7 +599,6 @@ class Users extends Service
         }
 
         return \Appwrite\Models\User::from($response);
-
     }
 
     /**
@@ -696,12 +607,8 @@ class Users extends Service
      * behavior, while internal audit logs still attribute the action to the
      * original impersonator and store the impersonated target details only in
      * internal audit payload data.
-     * 
      *
-     * @param string $userId
-     * @param bool $impersonator
      * @throws AppwriteException
-     * @return \Appwrite\Models\User
      */
     public function updateImpersonator(string $userId, bool $impersonator): \Appwrite\Models\User
     {
@@ -732,7 +639,6 @@ class Users extends Service
         }
 
         return \Appwrite\Models\User::from($response);
-
     }
 
     /**
@@ -740,11 +646,7 @@ class Users extends Service
      * can use the resulting JWT to authenticate on behalf of the user. The JWT
      * secret will become invalid if the session it uses gets deleted.
      *
-     * @param string $userId
-     * @param ?string $sessionId
-     * @param ?int $duration
      * @throws AppwriteException
-     * @return \Appwrite\Models\Jwt
      */
     public function createJWT(string $userId, ?string $sessionId = null, ?int $duration = null): \Appwrite\Models\Jwt
     {
@@ -782,21 +684,17 @@ class Users extends Service
         }
 
         return \Appwrite\Models\Jwt::from($response);
-
     }
 
     /**
-     * Update the user labels by its unique ID. 
-     * 
+     * Update the user labels by its unique ID.
+     *
      * Labels can be used to grant access to resources. While teams are a way for
-     * user's to share access to a resource, labels can be defined by the
+     * user&#039;s to share access to a resource, labels can be defined by the
      * developer to grant access without an invitation. See the [Permissions
      * docs](https://appwrite.io/docs/permissions) for more info.
      *
-     * @param string $userId
-     * @param array $labels
      * @throws AppwriteException
-     * @return \Appwrite\Models\User
      */
     public function updateLabels(string $userId, array $labels): \Appwrite\Models\User
     {
@@ -827,17 +725,12 @@ class Users extends Service
         }
 
         return \Appwrite\Models\User::from($response);
-
     }
 
     /**
      * Get the user activity logs list by its unique ID.
      *
-     * @param string $userId
-     * @param ?array $queries
-     * @param ?bool $total
      * @throws AppwriteException
-     * @return \Appwrite\Models\LogList
      */
     public function listLogs(string $userId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\LogList
     {
@@ -874,18 +767,12 @@ class Users extends Service
         }
 
         return \Appwrite\Models\LogList::from($response);
-
     }
 
     /**
      * Get the user membership list by its unique ID.
      *
-     * @param string $userId
-     * @param ?array $queries
-     * @param ?string $search
-     * @param ?bool $total
      * @throws AppwriteException
-     * @return \Appwrite\Models\MembershipList
      */
     public function listMemberships(string $userId, ?array $queries = null, ?string $search = null, ?bool $total = null): \Appwrite\Models\MembershipList
     {
@@ -926,16 +813,12 @@ class Users extends Service
         }
 
         return \Appwrite\Models\MembershipList::from($response);
-
     }
 
     /**
      * Enable or disable MFA on a user account.
      *
-     * @param string $userId
-     * @param bool $mfa
      * @throws AppwriteException
-     * @return \Appwrite\Models\User
      */
     public function updateMFA(string $userId, bool $mfa): \Appwrite\Models\User
     {
@@ -966,22 +849,18 @@ class Users extends Service
         }
 
         return \Appwrite\Models\User::from($response);
-
     }
 
     /**
      * Delete an authenticator app.
      *
-     * @param string $userId
-     * @param AuthenticatorType $type
      * @throws AppwriteException
-     * @return string
      */
     public function deleteMFAAuthenticator(string $userId, AuthenticatorType $type): string
     {
         $apiPath = str_replace(
             ['{userId}', '{type}'],
-            [$userId, $type],
+            [$userId, (string) $type],
             '/users/{userId}/mfa/authenticators/{type}'
         );
 
@@ -993,25 +872,19 @@ class Users extends Service
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 
     /**
      * Get a custom MFA challenge for a user, including the code to be delivered
      * through your own channel.
      *
-     * @param string $userId
-     * @param string $challengeId
      * @throws AppwriteException
-     * @return \Appwrite\Models\MfaChallengeSecret
      */
     public function getMFAChallenge(string $userId, string $challengeId): \Appwrite\Models\MfaChallengeSecret
     {
@@ -1041,15 +914,12 @@ class Users extends Service
         }
 
         return \Appwrite\Models\MfaChallengeSecret::from($response);
-
     }
 
     /**
      * List the factors available on the account to be used as a MFA challange.
      *
-     * @param string $userId
      * @throws AppwriteException
-     * @return \Appwrite\Models\MfaFactors
      */
     public function listMFAFactors(string $userId): \Appwrite\Models\MfaFactors
     {
@@ -1078,7 +948,6 @@ class Users extends Service
         }
 
         return \Appwrite\Models\MfaFactors::from($response);
-
     }
 
     /**
@@ -1087,9 +956,7 @@ class Users extends Service
      * [createMfaRecoveryCodes](/docs/references/cloud/client-web/account#createMfaRecoveryCodes)
      * method.
      *
-     * @param string $userId
      * @throws AppwriteException
-     * @return \Appwrite\Models\MfaRecoveryCodes
      */
     public function getMFARecoveryCodes(string $userId): \Appwrite\Models\MfaRecoveryCodes
     {
@@ -1118,7 +985,6 @@ class Users extends Service
         }
 
         return \Appwrite\Models\MfaRecoveryCodes::from($response);
-
     }
 
     /**
@@ -1127,9 +993,7 @@ class Users extends Service
      * [createMfaRecoveryCodes](/docs/references/cloud/client-web/account#createMfaRecoveryCodes)
      * method.
      *
-     * @param string $userId
      * @throws AppwriteException
-     * @return \Appwrite\Models\MfaRecoveryCodes
      */
     public function updateMFARecoveryCodes(string $userId): \Appwrite\Models\MfaRecoveryCodes
     {
@@ -1159,7 +1023,6 @@ class Users extends Service
         }
 
         return \Appwrite\Models\MfaRecoveryCodes::from($response);
-
     }
 
     /**
@@ -1168,9 +1031,7 @@ class Users extends Service
      * [createMfaChallenge](/docs/references/cloud/client-web/account#createMfaChallenge)
      * method by client SDK.
      *
-     * @param string $userId
      * @throws AppwriteException
-     * @return \Appwrite\Models\MfaRecoveryCodes
      */
     public function createMFARecoveryCodes(string $userId): \Appwrite\Models\MfaRecoveryCodes
     {
@@ -1200,16 +1061,12 @@ class Users extends Service
         }
 
         return \Appwrite\Models\MfaRecoveryCodes::from($response);
-
     }
 
     /**
      * Update the user name by its unique ID.
      *
-     * @param string $userId
-     * @param string $name
      * @throws AppwriteException
-     * @return \Appwrite\Models\User
      */
     public function updateName(string $userId, string $name): \Appwrite\Models\User
     {
@@ -1240,16 +1097,12 @@ class Users extends Service
         }
 
         return \Appwrite\Models\User::from($response);
-
     }
 
     /**
      * Update the user password by its unique ID.
      *
-     * @param string $userId
-     * @param string $password
      * @throws AppwriteException
-     * @return \Appwrite\Models\User
      */
     public function updatePassword(string $userId, string $password): \Appwrite\Models\User
     {
@@ -1280,16 +1133,12 @@ class Users extends Service
         }
 
         return \Appwrite\Models\User::from($response);
-
     }
 
     /**
      * Update the user phone by its unique ID.
      *
-     * @param string $userId
-     * @param string $number
      * @throws AppwriteException
-     * @return \Appwrite\Models\User
      */
     public function updatePhone(string $userId, string $number): \Appwrite\Models\User
     {
@@ -1320,15 +1169,12 @@ class Users extends Service
         }
 
         return \Appwrite\Models\User::from($response);
-
     }
 
     /**
      * Get the user preferences by its unique ID.
      *
-     * @param string $userId
      * @throws AppwriteException
-     * @return \Appwrite\Models\Preferences
      */
     public function getPrefs(string $userId): \Appwrite\Models\Preferences
     {
@@ -1357,7 +1203,6 @@ class Users extends Service
         }
 
         return \Appwrite\Models\Preferences::from($response);
-
     }
 
     /**
@@ -1365,10 +1210,7 @@ class Users extends Service
      * as is, and replaces any previous value. The maximum allowed prefs size is
      * 64kB and throws error if exceeded.
      *
-     * @param string $userId
-     * @param array $prefs
      * @throws AppwriteException
-     * @return \Appwrite\Models\Preferences
      */
     public function updatePrefs(string $userId, array $prefs): \Appwrite\Models\Preferences
     {
@@ -1399,16 +1241,12 @@ class Users extends Service
         }
 
         return \Appwrite\Models\Preferences::from($response);
-
     }
 
     /**
      * Get the user sessions list by its unique ID.
      *
-     * @param string $userId
-     * @param ?bool $total
      * @throws AppwriteException
-     * @return \Appwrite\Models\SessionList
      */
     public function listSessions(string $userId, ?bool $total = null): \Appwrite\Models\SessionList
     {
@@ -1441,20 +1279,17 @@ class Users extends Service
         }
 
         return \Appwrite\Models\SessionList::from($response);
-
     }
 
     /**
      * Creates a session for a user. Returns an immediately usable session object.
-     * 
+     *
      * If you want to generate a token for a custom authentication flow, use the
      * [POST
      * /users/{userId}/tokens](https://appwrite.io/docs/server/users#createToken)
      * endpoint.
      *
-     * @param string $userId
      * @throws AppwriteException
-     * @return \Appwrite\Models\Session
      */
     public function createSession(string $userId): \Appwrite\Models\Session
     {
@@ -1484,15 +1319,12 @@ class Users extends Service
         }
 
         return \Appwrite\Models\Session::from($response);
-
     }
 
     /**
-     * Delete all user's sessions by using the user's unique ID.
+     * Delete all user&#039;s sessions by using the user&#039;s unique ID.
      *
-     * @param string $userId
      * @throws AppwriteException
-     * @return string
      */
     public function deleteSessions(string $userId): string
     {
@@ -1509,24 +1341,18 @@ class Users extends Service
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 
     /**
      * Delete a user sessions by its unique ID.
      *
-     * @param string $userId
-     * @param string $sessionId
      * @throws AppwriteException
-     * @return string
      */
     public function deleteSession(string $userId, string $sessionId): string
     {
@@ -1544,25 +1370,19 @@ class Users extends Service
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 
     /**
      * Update the user status by its unique ID. Use this endpoint as an
-     * alternative to deleting a user if you want to keep user's ID reserved.
+     * alternative to deleting a user if you want to keep user&#039;s ID reserved.
      *
-     * @param string $userId
-     * @param bool $status
      * @throws AppwriteException
-     * @return \Appwrite\Models\User
      */
     public function updateStatus(string $userId, bool $status): \Appwrite\Models\User
     {
@@ -1593,17 +1413,12 @@ class Users extends Service
         }
 
         return \Appwrite\Models\User::from($response);
-
     }
 
     /**
      * List the messaging targets that are associated with a user.
      *
-     * @param string $userId
-     * @param ?array $queries
-     * @param ?bool $total
      * @throws AppwriteException
-     * @return \Appwrite\Models\TargetList
      */
     public function listTargets(string $userId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\TargetList
     {
@@ -1640,20 +1455,12 @@ class Users extends Service
         }
 
         return \Appwrite\Models\TargetList::from($response);
-
     }
 
     /**
      * Create a messaging target.
      *
-     * @param string $userId
-     * @param string $targetId
-     * @param MessagingProviderType $providerType
-     * @param string $identifier
-     * @param ?string $providerId
-     * @param ?string $name
      * @throws AppwriteException
-     * @return \Appwrite\Models\Target
      */
     public function createTarget(string $userId, string $targetId, MessagingProviderType $providerType, string $identifier, ?string $providerId = null, ?string $name = null): \Appwrite\Models\Target
     {
@@ -1694,16 +1501,12 @@ class Users extends Service
         }
 
         return \Appwrite\Models\Target::from($response);
-
     }
 
     /**
-     * Get a user's push notification target by ID.
+     * Get a user&#039;s push notification target by ID.
      *
-     * @param string $userId
-     * @param string $targetId
      * @throws AppwriteException
-     * @return \Appwrite\Models\Target
      */
     public function getTarget(string $userId, string $targetId): \Appwrite\Models\Target
     {
@@ -1733,19 +1536,12 @@ class Users extends Service
         }
 
         return \Appwrite\Models\Target::from($response);
-
     }
 
     /**
      * Update a messaging target.
      *
-     * @param string $userId
-     * @param string $targetId
-     * @param ?string $identifier
-     * @param ?string $providerId
-     * @param ?string $name
      * @throws AppwriteException
-     * @return \Appwrite\Models\Target
      */
     public function updateTarget(string $userId, string $targetId, ?string $identifier = null, ?string $providerId = null, ?string $name = null): \Appwrite\Models\Target
     {
@@ -1788,16 +1584,12 @@ class Users extends Service
         }
 
         return \Appwrite\Models\Target::from($response);
-
     }
 
     /**
      * Delete a messaging target.
      *
-     * @param string $userId
-     * @param string $targetId
      * @throws AppwriteException
-     * @return string
      */
     public function deleteTarget(string $userId, string $targetId): string
     {
@@ -1815,15 +1607,12 @@ class Users extends Service
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 
     /**
@@ -1831,13 +1620,8 @@ class Users extends Service
      * and secret and submit a request to the [PUT
      * /account/sessions/token](https://appwrite.io/docs/references/cloud/client-web/account#createSession)
      * endpoint to complete the login process.
-     * 
      *
-     * @param string $userId
-     * @param ?int $length
-     * @param ?int $expire
      * @throws AppwriteException
-     * @return \Appwrite\Models\Token
      */
     public function createToken(string $userId, ?int $length = null, ?int $expire = null): \Appwrite\Models\Token
     {
@@ -1875,16 +1659,12 @@ class Users extends Service
         }
 
         return \Appwrite\Models\Token::from($response);
-
     }
 
     /**
      * Update the user email verification status by its unique ID.
      *
-     * @param string $userId
-     * @param bool $emailVerification
      * @throws AppwriteException
-     * @return \Appwrite\Models\User
      */
     public function updateEmailVerification(string $userId, bool $emailVerification): \Appwrite\Models\User
     {
@@ -1915,16 +1695,12 @@ class Users extends Service
         }
 
         return \Appwrite\Models\User::from($response);
-
     }
 
     /**
      * Update the user phone verification status by its unique ID.
      *
-     * @param string $userId
-     * @param bool $phoneVerification
      * @throws AppwriteException
-     * @return \Appwrite\Models\User
      */
     public function updatePhoneVerification(string $userId, bool $phoneVerification): \Appwrite\Models\User
     {
@@ -1955,6 +1731,5 @@ class Users extends Service
         }
 
         return \Appwrite\Models\User::from($response);
-
     }
 }

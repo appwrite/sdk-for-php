@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * App scopes list
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class AppScopeList
 {
@@ -49,11 +53,9 @@ readonly class AppScopeList
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'total' => static::serializeValue($this->total),
             'scopes' => static::serializeValue($this->scopes)
         ];
-
-        return $result;
     }
 }

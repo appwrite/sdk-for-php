@@ -1,19 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Enums;
 
 use JsonSerializable;
+use Stringable;
 
-class BrowserTheme implements JsonSerializable
+class BrowserTheme implements JsonSerializable, Stringable
 {
     private static BrowserTheme $LIGHT;
     private static BrowserTheme $DARK;
 
-    private string $value;
-
-    private function __construct(string $value)
+    private function __construct(private readonly string $value)
     {
-        $this->value = $value;
     }
 
     public function __toString(): string

@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Email Templates List
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class EmailTemplateList
 {
@@ -49,11 +53,9 @@ readonly class EmailTemplateList
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'total' => static::serializeValue($this->total),
             'templates' => static::serializeValue($this->templates)
         ];
-
-        return $result;
     }
 }

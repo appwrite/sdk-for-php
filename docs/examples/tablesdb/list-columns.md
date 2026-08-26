@@ -16,4 +16,6 @@ $result = $tablesDB->listColumns(
     tableId: '<TABLE_ID>',
     queries: [], // optional
     total: false // optional
-);```
+);
+
+```

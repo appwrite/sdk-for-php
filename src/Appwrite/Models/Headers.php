@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Headers
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class Headers
 {
@@ -44,11 +48,9 @@ readonly class Headers
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'name' => static::serializeValue($this->name),
             'value' => static::serializeValue($this->value)
         ];
-
-        return $result;
     }
 }

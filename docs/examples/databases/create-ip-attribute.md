@@ -18,4 +18,6 @@ $result = $databases->createIpAttribute(
     required: false,
     default: '', // optional
     array: false // optional
-);```
+);
+
+```

@@ -13,4 +13,6 @@ $advisor = new Advisor($client);
 
 $result = $advisor->deleteReport(
     reportId: '<REPORT_ID>'
-);```
+);
+
+```

@@ -13,4 +13,6 @@ $project = new Project($client);
 
 $result = $project->updatePasswordDictionaryPolicy(
     enabled: false
-);```
+);
+
+```

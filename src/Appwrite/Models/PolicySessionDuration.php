@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Policy Session Duration
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class PolicySessionDuration
 {
@@ -44,11 +48,9 @@ readonly class PolicySessionDuration
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             'duration' => static::serializeValue($this->duration)
         ];
-
-        return $result;
     }
 }

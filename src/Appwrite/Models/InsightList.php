@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Insights List
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class InsightList
 {
@@ -49,11 +53,9 @@ readonly class InsightList
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'total' => static::serializeValue($this->total),
             'insights' => static::serializeValue($this->insights)
         ];
-
-        return $result;
     }
 }

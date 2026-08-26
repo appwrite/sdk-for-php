@@ -21,4 +21,6 @@ $result = $presences->update(
     metadata: [], // optional
     permissions: [Permission::read(Role::any())], // optional
     purge: false // optional
-);```
+);
+
+```

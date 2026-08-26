@@ -19,4 +19,6 @@ $result = $tablesDB->updateStringColumn(
     default: '<DEFAULT>',
     size: 1, // optional
     newKey: '' // optional
-);```
+);
+
+```

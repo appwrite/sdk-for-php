@@ -20,4 +20,6 @@ $result = $tablesDB->updateFloatColumn(
     min: null, // optional
     max: null, // optional
     newKey: '' // optional
-);```
+);
+
+```

@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * MFAType
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class MfaType
 {
@@ -44,11 +48,9 @@ readonly class MfaType
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'secret' => static::serializeValue($this->secret),
             'uri' => static::serializeValue($this->uri)
         ];
-
-        return $result;
     }
 }

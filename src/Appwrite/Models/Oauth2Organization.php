@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * OAuth2 Organization
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class Oauth2Organization
 {
@@ -38,10 +42,8 @@ readonly class Oauth2Organization
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id)
         ];
-
-        return $result;
     }
 }

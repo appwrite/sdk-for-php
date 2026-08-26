@@ -15,4 +15,6 @@ $result = $tablesDB->createMigration(
     databaseId: '<DATABASE_ID>',
     specification: 's-1vcpu-1gb',
     autoCutover: false // optional
-);```
+);
+
+```

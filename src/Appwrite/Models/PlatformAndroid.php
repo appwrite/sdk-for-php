@@ -1,11 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 use Appwrite\Enums\PlatformType;
 
 /**
  * Platform Android
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class PlatformAndroid
 {
@@ -70,7 +74,7 @@ readonly class PlatformAndroid
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             '$createdAt' => static::serializeValue($this->createdAt),
             '$updatedAt' => static::serializeValue($this->updatedAt),
@@ -78,7 +82,5 @@ readonly class PlatformAndroid
             'type' => static::serializeValue($this->type),
             'applicationId' => static::serializeValue($this->applicationId)
         ];
-
-        return $result;
     }
 }

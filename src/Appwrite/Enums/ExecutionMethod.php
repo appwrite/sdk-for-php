@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Enums;
 
 use JsonSerializable;
+use Stringable;
 
-class ExecutionMethod implements JsonSerializable
+class ExecutionMethod implements JsonSerializable, Stringable
 {
     private static ExecutionMethod $GET;
     private static ExecutionMethod $POST;
@@ -14,11 +17,8 @@ class ExecutionMethod implements JsonSerializable
     private static ExecutionMethod $OPTIONS;
     private static ExecutionMethod $HEAD;
 
-    private string $value;
-
-    private function __construct(string $value)
+    private function __construct(private readonly string $value)
     {
-        $this->value = $value;
     }
 
     public function __toString(): string

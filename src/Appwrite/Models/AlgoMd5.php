@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * AlgoMD5
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class AlgoMd5
 {
@@ -38,10 +42,8 @@ readonly class AlgoMd5
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'type' => static::serializeValue($this->type)
         ];
-
-        return $result;
     }
 }

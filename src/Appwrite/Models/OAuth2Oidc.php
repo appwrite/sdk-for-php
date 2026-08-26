@@ -1,11 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 use Appwrite\Enums\OAuth2OidcPrompt;
 
 /**
  * OAuth2Oidc
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class OAuth2Oidc
 {
@@ -87,7 +91,7 @@ readonly class OAuth2Oidc
                     $data['prompt']
                 )
                 : $data['prompt'],
-            maxAge: array_key_exists('maxAge', $data) ? $data['maxAge'] : null
+            maxAge: $data['maxAge'] ?? null
         );
     }
 
@@ -96,7 +100,7 @@ readonly class OAuth2Oidc
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             'enabled' => static::serializeValue($this->enabled),
             'clientId' => static::serializeValue($this->clientId),
@@ -108,7 +112,5 @@ readonly class OAuth2Oidc
             'prompt' => static::serializeValue($this->prompt),
             'maxAge' => static::serializeValue($this->maxAge)
         ];
-
-        return $result;
     }
 }

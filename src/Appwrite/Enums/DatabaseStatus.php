@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Enums;
 
 use JsonSerializable;
+use Stringable;
 
-class DatabaseStatus implements JsonSerializable
+class DatabaseStatus implements JsonSerializable, Stringable
 {
     private static DatabaseStatus $PROVISIONING;
     private static DatabaseStatus $READY;
@@ -21,11 +24,8 @@ class DatabaseStatus implements JsonSerializable
     private static DatabaseStatus $RESUMING;
     private static DatabaseStatus $FAILINGOVER;
 
-    private string $value;
-
-    private function __construct(string $value)
+    private function __construct(private readonly string $value)
     {
-        $this->value = $value;
     }
 
     public function __toString(): string

@@ -22,4 +22,6 @@ $result = $project->updateOAuth2Oidc(
     prompt: [ProjectOAuth2OidcPrompt::NONE()], // optional
     maxAge: 0, // optional
     enabled: false // optional
-);```
+);
+
+```

@@ -15,4 +15,6 @@ $result = $sites->listLogs(
     siteId: '<SITE_ID>',
     queries: [], // optional
     total: false // optional
-);```
+);
+
+```

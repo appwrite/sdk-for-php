@@ -14,4 +14,6 @@ $sites = new Sites($client);
 $result = $sites->deleteDeployment(
     siteId: '<SITE_ID>',
     deploymentId: '<DEPLOYMENT_ID>'
-);```
+);
+
+```

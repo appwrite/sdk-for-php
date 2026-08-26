@@ -15,4 +15,6 @@ $result = $messaging->listProviders(
     queries: [], // optional
     search: '<SEARCH>', // optional
     total: false // optional
-);```
+);
+
+```

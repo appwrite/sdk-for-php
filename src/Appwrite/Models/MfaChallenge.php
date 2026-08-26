@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * MFA Challenge
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class MfaChallenge
 {
@@ -56,13 +60,11 @@ readonly class MfaChallenge
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             '$createdAt' => static::serializeValue($this->createdAt),
             'userId' => static::serializeValue($this->userId),
             'expire' => static::serializeValue($this->expire)
         ];
-
-        return $result;
     }
 }

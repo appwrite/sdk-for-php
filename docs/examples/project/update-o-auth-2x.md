@@ -15,4 +15,6 @@ $result = $project->updateOAuth2X(
     customerKey: '<CUSTOMER_KEY>', // optional
     secretKey: '<SECRET_KEY>', // optional
     enabled: false // optional
-);```
+);
+
+```

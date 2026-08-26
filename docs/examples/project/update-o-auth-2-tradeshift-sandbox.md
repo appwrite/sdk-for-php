@@ -15,4 +15,6 @@ $result = $project->updateOAuth2TradeshiftSandbox(
     oauth2ClientId: '<OAUTH2_CLIENT_ID>', // optional
     oauth2ClientSecret: '<OAUTH2_CLIENT_SECRET>', // optional
     enabled: false // optional
-);```
+);
+
+```

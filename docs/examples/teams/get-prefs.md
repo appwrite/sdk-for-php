@@ -13,4 +13,6 @@ $teams = new Teams($client);
 
 $result = $teams->getPrefs(
     teamId: '<TEAM_ID>'
-);```
+);
+
+```

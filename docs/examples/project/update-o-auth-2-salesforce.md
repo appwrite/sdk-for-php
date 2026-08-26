@@ -15,4 +15,6 @@ $result = $project->updateOAuth2Salesforce(
     customerKey: '<CUSTOMER_KEY>', // optional
     customerSecret: '<CUSTOMER_SECRET>', // optional
     enabled: false // optional
-);```
+);
+
+```

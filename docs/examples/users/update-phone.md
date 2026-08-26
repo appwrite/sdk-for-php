@@ -14,4 +14,6 @@ $users = new Users($client);
 $result = $users->updatePhone(
     userId: '<USER_ID>',
     number: '+12065550100'
-);```
+);
+
+```

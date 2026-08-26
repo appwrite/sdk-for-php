@@ -1,20 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Enums;
 
 use JsonSerializable;
+use Stringable;
 
-class RelationMutate implements JsonSerializable
+class RelationMutate implements JsonSerializable, Stringable
 {
     private static RelationMutate $CASCADE;
     private static RelationMutate $RESTRICT;
     private static RelationMutate $SETNULL;
 
-    private string $value;
-
-    private function __construct(string $value)
+    private function __construct(private readonly string $value)
     {
-        $this->value = $value;
     }
 
     public function __toString(): string

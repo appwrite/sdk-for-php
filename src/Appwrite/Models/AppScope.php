@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * AppScope
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class AppScope
 {
@@ -62,14 +66,12 @@ readonly class AppScope
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'value' => static::serializeValue($this->value),
             'description' => static::serializeValue($this->description),
             'type' => static::serializeValue($this->type),
             'category' => static::serializeValue($this->category),
             'deprecated' => static::serializeValue($this->deprecated)
         ];
-
-        return $result;
     }
 }

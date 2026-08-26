@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Files List
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class FileList
 {
@@ -49,11 +53,9 @@ readonly class FileList
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'total' => static::serializeValue($this->total),
             'files' => static::serializeValue($this->files)
         ];
-
-        return $result;
     }
 }

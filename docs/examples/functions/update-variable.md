@@ -17,4 +17,6 @@ $result = $functions->updateVariable(
     key: '<KEY>', // optional
     value: '<VALUE>', // optional
     secret: false // optional
-);```
+);
+
+```

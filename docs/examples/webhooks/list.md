@@ -14,4 +14,6 @@ $webhooks = new Webhooks($client);
 $result = $webhooks->list(
     queries: [], // optional
     total: false // optional
-);```
+);
+
+```

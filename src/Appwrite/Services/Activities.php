@@ -1,25 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Services;
 
 use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
-use Appwrite\InputFile;
 
 class Activities extends Service
 {
-    public function __construct(Client $client)
-    {
-        parent::__construct($client);
-    }
-
     /**
      * List all events for selected filters.
      *
-     * @param ?array $queries
      * @throws AppwriteException
-     * @return \Appwrite\Models\ActivityEventList
      */
     public function listEvents(?array $queries = null): \Appwrite\Models\ActivityEventList
     {
@@ -51,16 +45,12 @@ class Activities extends Service
         }
 
         return \Appwrite\Models\ActivityEventList::from($response);
-
     }
 
     /**
      * Get event by ID.
-     * 
      *
-     * @param string $eventId
      * @throws AppwriteException
-     * @return \Appwrite\Models\ActivityEvent
      */
     public function getEvent(string $eventId): \Appwrite\Models\ActivityEvent
     {
@@ -89,6 +79,5 @@ class Activities extends Service
         }
 
         return \Appwrite\Models\ActivityEvent::from($response);
-
     }
 }

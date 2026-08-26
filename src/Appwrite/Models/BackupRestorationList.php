@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Backup restoration list
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class BackupRestorationList
 {
@@ -49,11 +53,9 @@ readonly class BackupRestorationList
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'total' => static::serializeValue($this->total),
             'restorations' => static::serializeValue($this->restorations)
         ];
-
-        return $result;
     }
 }

@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * OAuth2Tradeshift
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class OAuth2Tradeshift
 {
@@ -56,13 +60,11 @@ readonly class OAuth2Tradeshift
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             'enabled' => static::serializeValue($this->enabled),
             'oauth2ClientId' => static::serializeValue($this->oauth2ClientId),
             'oauth2ClientSecret' => static::serializeValue($this->oauth2ClientSecret)
         ];
-
-        return $result;
     }
 }

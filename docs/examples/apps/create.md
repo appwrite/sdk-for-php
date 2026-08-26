@@ -31,4 +31,6 @@ $result = $apps->create(
     type: 'public', // optional
     deviceFlow: false, // optional
     teamId: '<TEAM_ID>' // optional
-);```
+);
+
+```

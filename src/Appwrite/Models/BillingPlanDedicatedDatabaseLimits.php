@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * dedicatedDatabaseLimits
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class BillingPlanDedicatedDatabaseLimits
 {
@@ -62,25 +66,25 @@ readonly class BillingPlanDedicatedDatabaseLimits
     {
 
         return new static(
-            minCpu: array_key_exists('minCpu', $data) ? $data['minCpu'] : null,
-            maxCpu: array_key_exists('maxCpu', $data) ? $data['maxCpu'] : null,
-            minMemoryMb: array_key_exists('minMemoryMb', $data) ? $data['minMemoryMb'] : null,
-            maxMemoryMb: array_key_exists('maxMemoryMb', $data) ? $data['maxMemoryMb'] : null,
-            minStorageGb: array_key_exists('minStorageGb', $data) ? $data['minStorageGb'] : null,
-            maxStorageGb: array_key_exists('maxStorageGb', $data) ? $data['maxStorageGb'] : null,
-            maxReplicas: array_key_exists('maxReplicas', $data) ? $data['maxReplicas'] : null,
-            maxConnections: array_key_exists('maxConnections', $data) ? $data['maxConnections'] : null,
-            maxIpAllowlistSize: array_key_exists('maxIpAllowlistSize', $data) ? $data['maxIpAllowlistSize'] : null,
-            maxExtensions: array_key_exists('maxExtensions', $data) ? $data['maxExtensions'] : null,
-            maxBackupRetentionDays: array_key_exists('maxBackupRetentionDays', $data) ? $data['maxBackupRetentionDays'] : null,
-            maxPitrRetentionDays: array_key_exists('maxPitrRetentionDays', $data) ? $data['maxPitrRetentionDays'] : null,
-            maxSqlApiMaxRows: array_key_exists('maxSqlApiMaxRows', $data) ? $data['maxSqlApiMaxRows'] : null,
-            maxSqlApiMaxBytes: array_key_exists('maxSqlApiMaxBytes', $data) ? $data['maxSqlApiMaxBytes'] : null,
-            maxSqlApiTimeoutSeconds: array_key_exists('maxSqlApiTimeoutSeconds', $data) ? $data['maxSqlApiTimeoutSeconds'] : null,
-            maxSqlApiAllowedStatements: array_key_exists('maxSqlApiAllowedStatements', $data) ? $data['maxSqlApiAllowedStatements'] : null,
-            allowedSqlStatements: array_key_exists('allowedSqlStatements', $data) ? $data['allowedSqlStatements'] : null,
-            allowedStorageClasses: array_key_exists('allowedStorageClasses', $data) ? $data['allowedStorageClasses'] : null,
-            allowedSyncModes: array_key_exists('allowedSyncModes', $data) ? $data['allowedSyncModes'] : null
+            minCpu: $data['minCpu'] ?? null,
+            maxCpu: $data['maxCpu'] ?? null,
+            minMemoryMb: $data['minMemoryMb'] ?? null,
+            maxMemoryMb: $data['maxMemoryMb'] ?? null,
+            minStorageGb: $data['minStorageGb'] ?? null,
+            maxStorageGb: $data['maxStorageGb'] ?? null,
+            maxReplicas: $data['maxReplicas'] ?? null,
+            maxConnections: $data['maxConnections'] ?? null,
+            maxIpAllowlistSize: $data['maxIpAllowlistSize'] ?? null,
+            maxExtensions: $data['maxExtensions'] ?? null,
+            maxBackupRetentionDays: $data['maxBackupRetentionDays'] ?? null,
+            maxPitrRetentionDays: $data['maxPitrRetentionDays'] ?? null,
+            maxSqlApiMaxRows: $data['maxSqlApiMaxRows'] ?? null,
+            maxSqlApiMaxBytes: $data['maxSqlApiMaxBytes'] ?? null,
+            maxSqlApiTimeoutSeconds: $data['maxSqlApiTimeoutSeconds'] ?? null,
+            maxSqlApiAllowedStatements: $data['maxSqlApiAllowedStatements'] ?? null,
+            allowedSqlStatements: $data['allowedSqlStatements'] ?? null,
+            allowedStorageClasses: $data['allowedStorageClasses'] ?? null,
+            allowedSyncModes: $data['allowedSyncModes'] ?? null
         );
     }
 
@@ -89,7 +93,7 @@ readonly class BillingPlanDedicatedDatabaseLimits
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'minCpu' => static::serializeValue($this->minCpu),
             'maxCpu' => static::serializeValue($this->maxCpu),
             'minMemoryMb' => static::serializeValue($this->minMemoryMb),
@@ -110,7 +114,5 @@ readonly class BillingPlanDedicatedDatabaseLimits
             'allowedStorageClasses' => static::serializeValue($this->allowedStorageClasses),
             'allowedSyncModes' => static::serializeValue($this->allowedSyncModes)
         ];
-
-        return $result;
     }
 }

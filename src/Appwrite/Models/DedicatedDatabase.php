@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * DedicatedDatabase
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class DedicatedDatabase
 {
@@ -304,8 +308,8 @@ readonly class DedicatedDatabase
             sqlApiMaxBytes: $data['sqlApiMaxBytes'],
             sqlApiTimeoutSeconds: $data['sqlApiTimeoutSeconds'],
             error: $data['error'],
-            lastAccessedAt: array_key_exists('lastAccessedAt', $data) ? $data['lastAccessedAt'] : null,
-            idleUntil: array_key_exists('idleUntil', $data) ? $data['idleUntil'] : null
+            lastAccessedAt: $data['lastAccessedAt'] ?? null,
+            idleUntil: $data['idleUntil'] ?? null
         );
     }
 
@@ -314,7 +318,7 @@ readonly class DedicatedDatabase
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             '$createdAt' => static::serializeValue($this->createdAt),
             '$updatedAt' => static::serializeValue($this->updatedAt),
@@ -364,7 +368,5 @@ readonly class DedicatedDatabase
             'sqlApiTimeoutSeconds' => static::serializeValue($this->sqlApiTimeoutSeconds),
             'error' => static::serializeValue($this->error)
         ];
-
-        return $result;
     }
 }

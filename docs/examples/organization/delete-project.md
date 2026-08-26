@@ -13,4 +13,6 @@ $organization = new Organization($client);
 
 $result = $organization->deleteProject(
     projectId: '<PROJECT_ID>'
-);```
+);
+
+```

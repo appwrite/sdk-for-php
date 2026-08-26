@@ -1,15 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Preferences
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class Preferences
 {
     use ArraySerializable;
-
-    private const ADDITIONAL_PROPERTIES = true;
 
     /**
      * Preferences constructor.

@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Enums;
 
 use JsonSerializable;
+use Stringable;
 
-class ExecutionStatus implements JsonSerializable
+class ExecutionStatus implements JsonSerializable, Stringable
 {
     private static ExecutionStatus $WAITING;
     private static ExecutionStatus $PROCESSING;
@@ -12,11 +15,8 @@ class ExecutionStatus implements JsonSerializable
     private static ExecutionStatus $FAILED;
     private static ExecutionStatus $SCHEDULED;
 
-    private string $value;
-
-    private function __construct(string $value)
+    private function __construct(private readonly string $value)
     {
-        $this->value = $value;
     }
 
     public function __toString(): string

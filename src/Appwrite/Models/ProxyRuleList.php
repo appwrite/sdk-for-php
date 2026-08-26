@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Rule List
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class ProxyRuleList
 {
@@ -49,11 +53,9 @@ readonly class ProxyRuleList
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'total' => static::serializeValue($this->total),
             'rules' => static::serializeValue($this->rules)
         ];
-
-        return $result;
     }
 }

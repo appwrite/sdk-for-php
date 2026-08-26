@@ -1,19 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Enums;
 
 use JsonSerializable;
+use Stringable;
 
-class ProxyResourceType implements JsonSerializable
+class ProxyResourceType implements JsonSerializable, Stringable
 {
     private static ProxyResourceType $SITE;
     private static ProxyResourceType $FUNCTIONMODEL;
 
-    private string $value;
-
-    private function __construct(string $value)
+    private function __construct(private readonly string $value)
     {
-        $this->value = $value;
     }
 
     public function __toString(): string

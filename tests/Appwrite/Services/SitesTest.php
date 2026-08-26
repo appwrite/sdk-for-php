@@ -1,22 +1,23 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Services;
 
 use Appwrite\Client;
-use Appwrite\InputFile;
 use Mockery;
+use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
 use Appwrite\Enums\Framework;
 use Appwrite\Enums\BuildRuntime;
-use Appwrite\Enums\Adapter;
+use Appwrite\InputFile;
 use Appwrite\Enums\TemplateReferenceType;
 use Appwrite\Enums\VCSReferenceType;
-use Appwrite\Enums\DeploymentDownloadType;
 
 final class SitesTest extends TestCase
 {
-    private $client;
-    private $sites;
+    private Client&MockInterface $client;
+    private Sites $sites;
 
     protected function setUp(): void
     {
@@ -26,10 +27,10 @@ final class SitesTest extends TestCase
 
     public function testMethodList(): void
     {
-        $data = array(
+        $data = [
             "total" => 5,
-            "sites" => array(
-                array(
+            "sites" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -46,8 +47,9 @@ final class SitesTest extends TestCase
                     "latestDeploymentId" => "5e5ea5c16897e",
                     "latestDeploymentCreatedAt" => "2020-10-15T06:38:00.000+00:00",
                     "latestDeploymentStatus" => "ready",
-                    "vars" => array(
-                        array(
+                    "scopes" => [],
+                    "vars" => [
+                        [
                             "\$id" => "5e5ea5c16897e",
                             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -56,8 +58,8 @@ final class SitesTest extends TestCase
                             "secret" => true,
                             "resourceType" => "function",
                             "resourceId" => "myAwesomeFunction"
-                        )
-                    ),
+                        ]
+                    ],
                     "timeout" => 300,
                     "installCommand" => "npm install",
                     "buildCommand" => "npm run build",
@@ -68,16 +70,16 @@ final class SitesTest extends TestCase
                     "providerBranch" => "main",
                     "providerRootDirectory" => "sites/helloWorld",
                     "providerSilentMode" => true,
-                    "providerBranches" => array(),
-                    "providerPaths" => array(),
+                    "providerBranches" => [],
+                    "providerPaths" => [],
                     "buildSpecification" => "s-1vcpu-512mb",
                     "runtimeSpecification" => "s-1vcpu-512mb",
                     "buildRuntime" => "node-22",
                     "adapter" => "static",
                     "fallbackFile" => "index.html"
-                )
-            )
-        );
+                ]
+            ]
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -90,10 +92,9 @@ final class SitesTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\SiteList::class, $response);
     }
-
     public function testMethodCreate(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -110,8 +111,9 @@ final class SitesTest extends TestCase
             "latestDeploymentId" => "5e5ea5c16897e",
             "latestDeploymentCreatedAt" => "2020-10-15T06:38:00.000+00:00",
             "latestDeploymentStatus" => "ready",
-            "vars" => array(
-                array(
+            "scopes" => [],
+            "vars" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -120,8 +122,8 @@ final class SitesTest extends TestCase
                     "secret" => true,
                     "resourceType" => "function",
                     "resourceId" => "myAwesomeFunction"
-                )
-            ),
+                ]
+            ],
             "timeout" => 300,
             "installCommand" => "npm install",
             "buildCommand" => "npm run build",
@@ -132,14 +134,14 @@ final class SitesTest extends TestCase
             "providerBranch" => "main",
             "providerRootDirectory" => "sites/helloWorld",
             "providerSilentMode" => true,
-            "providerBranches" => array(),
-            "providerPaths" => array(),
+            "providerBranches" => [],
+            "providerPaths" => [],
             "buildSpecification" => "s-1vcpu-512mb",
             "runtimeSpecification" => "s-1vcpu-512mb",
             "buildRuntime" => "node-22",
             "adapter" => "static",
             "fallbackFile" => "index.html"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -157,29 +159,28 @@ final class SitesTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Site::class, $response);
     }
-
     public function testMethodListFrameworks(): void
     {
-        $data = array(
+        $data = [
             "total" => 5,
-            "frameworks" => array(
-                array(
+            "frameworks" => [
+                [
                     "key" => "sveltekit",
                     "name" => "SvelteKit",
                     "buildRuntime" => "node-22",
-                    "runtimes" => array(),
-                    "adapters" => array(
-                        array(
+                    "runtimes" => [],
+                    "adapters" => [
+                        [
                             "key" => "static",
                             "installCommand" => "npm install",
                             "buildCommand" => "npm run build",
                             "outputDirectory" => "./dist",
                             "fallbackFile" => "index.html"
-                        )
-                    )
-                )
-            )
-        );
+                        ]
+                    ]
+                ]
+            ]
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -192,20 +193,19 @@ final class SitesTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\FrameworkList::class, $response);
     }
-
     public function testMethodListSpecifications(): void
     {
-        $data = array(
+        $data = [
             "total" => 5,
-            "specifications" => array(
-                array(
+            "specifications" => [
+                [
                     "memory" => 512,
                     "cpus" => 1,
                     "enabled" => true,
                     "slug" => "s-1vcpu-512mb"
-                )
-            )
-        );
+                ]
+            ]
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -218,10 +218,9 @@ final class SitesTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\SpecificationList::class, $response);
     }
-
     public function testMethodGet(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -238,8 +237,9 @@ final class SitesTest extends TestCase
             "latestDeploymentId" => "5e5ea5c16897e",
             "latestDeploymentCreatedAt" => "2020-10-15T06:38:00.000+00:00",
             "latestDeploymentStatus" => "ready",
-            "vars" => array(
-                array(
+            "scopes" => [],
+            "vars" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -248,8 +248,8 @@ final class SitesTest extends TestCase
                     "secret" => true,
                     "resourceType" => "function",
                     "resourceId" => "myAwesomeFunction"
-                )
-            ),
+                ]
+            ],
             "timeout" => 300,
             "installCommand" => "npm install",
             "buildCommand" => "npm run build",
@@ -260,14 +260,14 @@ final class SitesTest extends TestCase
             "providerBranch" => "main",
             "providerRootDirectory" => "sites/helloWorld",
             "providerSilentMode" => true,
-            "providerBranches" => array(),
-            "providerPaths" => array(),
+            "providerBranches" => [],
+            "providerPaths" => [],
             "buildSpecification" => "s-1vcpu-512mb",
             "runtimeSpecification" => "s-1vcpu-512mb",
             "buildRuntime" => "node-22",
             "adapter" => "static",
             "fallbackFile" => "index.html"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -282,10 +282,9 @@ final class SitesTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Site::class, $response);
     }
-
     public function testMethodUpdate(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -302,8 +301,9 @@ final class SitesTest extends TestCase
             "latestDeploymentId" => "5e5ea5c16897e",
             "latestDeploymentCreatedAt" => "2020-10-15T06:38:00.000+00:00",
             "latestDeploymentStatus" => "ready",
-            "vars" => array(
-                array(
+            "scopes" => [],
+            "vars" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -312,8 +312,8 @@ final class SitesTest extends TestCase
                     "secret" => true,
                     "resourceType" => "function",
                     "resourceId" => "myAwesomeFunction"
-                )
-            ),
+                ]
+            ],
             "timeout" => 300,
             "installCommand" => "npm install",
             "buildCommand" => "npm run build",
@@ -324,14 +324,14 @@ final class SitesTest extends TestCase
             "providerBranch" => "main",
             "providerRootDirectory" => "sites/helloWorld",
             "providerSilentMode" => true,
-            "providerBranches" => array(),
-            "providerPaths" => array(),
+            "providerBranches" => [],
+            "providerPaths" => [],
             "buildSpecification" => "s-1vcpu-512mb",
             "runtimeSpecification" => "s-1vcpu-512mb",
             "buildRuntime" => "node-22",
             "adapter" => "static",
             "fallbackFile" => "index.html"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -348,7 +348,6 @@ final class SitesTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Site::class, $response);
     }
-
     public function testMethodDelete(): void
     {
         $data = '';
@@ -366,10 +365,9 @@ final class SitesTest extends TestCase
 
         $this->assertSame($data, $response);
     }
-
     public function testMethodUpdateSiteDeployment(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -386,8 +384,9 @@ final class SitesTest extends TestCase
             "latestDeploymentId" => "5e5ea5c16897e",
             "latestDeploymentCreatedAt" => "2020-10-15T06:38:00.000+00:00",
             "latestDeploymentStatus" => "ready",
-            "vars" => array(
-                array(
+            "scopes" => [],
+            "vars" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -396,8 +395,8 @@ final class SitesTest extends TestCase
                     "secret" => true,
                     "resourceType" => "function",
                     "resourceId" => "myAwesomeFunction"
-                )
-            ),
+                ]
+            ],
             "timeout" => 300,
             "installCommand" => "npm install",
             "buildCommand" => "npm run build",
@@ -408,14 +407,14 @@ final class SitesTest extends TestCase
             "providerBranch" => "main",
             "providerRootDirectory" => "sites/helloWorld",
             "providerSilentMode" => true,
-            "providerBranches" => array(),
-            "providerPaths" => array(),
+            "providerBranches" => [],
+            "providerPaths" => [],
             "buildSpecification" => "s-1vcpu-512mb",
             "runtimeSpecification" => "s-1vcpu-512mb",
             "buildRuntime" => "node-22",
             "adapter" => "static",
             "fallbackFile" => "index.html"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -431,13 +430,12 @@ final class SitesTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Site::class, $response);
     }
-
     public function testMethodListDeployments(): void
     {
-        $data = array(
+        $data = [
             "total" => 5,
-            "deployments" => array(
-                array(
+            "deployments" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -465,9 +463,9 @@ final class SitesTest extends TestCase
                     "providerCommitUrl" => "https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb",
                     "providerBranch" => "0.7.x",
                     "providerBranchUrl" => "https://github.com/vermakhushboo/appwrite/tree/0.7.x"
-                )
-            )
-        );
+                ]
+            ]
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -482,10 +480,9 @@ final class SitesTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\DeploymentList::class, $response);
     }
-
     public function testMethodCreateDeployment(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -513,7 +510,7 @@ final class SitesTest extends TestCase
             "providerCommitUrl" => "https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb",
             "providerBranch" => "0.7.x",
             "providerBranchUrl" => "https://github.com/vermakhushboo/appwrite/tree/0.7.x"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -529,10 +526,9 @@ final class SitesTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Deployment::class, $response);
     }
-
     public function testMethodCreateDuplicateDeployment(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -560,7 +556,7 @@ final class SitesTest extends TestCase
             "providerCommitUrl" => "https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb",
             "providerBranch" => "0.7.x",
             "providerBranchUrl" => "https://github.com/vermakhushboo/appwrite/tree/0.7.x"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -576,10 +572,9 @@ final class SitesTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Deployment::class, $response);
     }
-
     public function testMethodCreateTemplateDeployment(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -607,7 +602,7 @@ final class SitesTest extends TestCase
             "providerCommitUrl" => "https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb",
             "providerBranch" => "0.7.x",
             "providerBranchUrl" => "https://github.com/vermakhushboo/appwrite/tree/0.7.x"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -627,10 +622,9 @@ final class SitesTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Deployment::class, $response);
     }
-
     public function testMethodCreateVcsDeployment(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -658,7 +652,7 @@ final class SitesTest extends TestCase
             "providerCommitUrl" => "https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb",
             "providerBranch" => "0.7.x",
             "providerBranchUrl" => "https://github.com/vermakhushboo/appwrite/tree/0.7.x"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -675,10 +669,9 @@ final class SitesTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Deployment::class, $response);
     }
-
     public function testMethodGetDeployment(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -706,7 +699,7 @@ final class SitesTest extends TestCase
             "providerCommitUrl" => "https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb",
             "providerBranch" => "0.7.x",
             "providerBranchUrl" => "https://github.com/vermakhushboo/appwrite/tree/0.7.x"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -722,7 +715,6 @@ final class SitesTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Deployment::class, $response);
     }
-
     public function testMethodDeleteDeployment(): void
     {
         $data = '';
@@ -741,7 +733,6 @@ final class SitesTest extends TestCase
 
         $this->assertSame($data, $response);
     }
-
     public function testMethodGetDeploymentDownload(): void
     {
         $data = '';
@@ -760,10 +751,9 @@ final class SitesTest extends TestCase
 
         $this->assertSame($data, $response);
     }
-
     public function testMethodUpdateDeploymentStatus(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -791,7 +781,7 @@ final class SitesTest extends TestCase
             "providerCommitUrl" => "https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb",
             "providerBranch" => "0.7.x",
             "providerBranchUrl" => "https://github.com/vermakhushboo/appwrite/tree/0.7.x"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -807,43 +797,43 @@ final class SitesTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Deployment::class, $response);
     }
-
     public function testMethodListLogs(): void
     {
-        $data = array(
+        $data = [
             "total" => 5,
-            "executions" => array(
-                array(
+            "executions" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "\$permissions" => array(),
-                    "functionId" => "5e5ea6g16897e",
+                    "\$permissions" => [],
+                    "resourceId" => "5e5ea6g16897e",
+                    "resourceType" => "functions",
                     "deploymentId" => "5e5ea5c16897e",
                     "trigger" => "http",
                     "status" => "waiting",
                     "requestMethod" => "GET",
                     "requestPath" => "/articles?id=5",
-                    "requestHeaders" => array(
-                        array(
+                    "requestHeaders" => [
+                        [
                             "name" => "Content-Type",
                             "value" => "application/json"
-                        )
-                    ),
+                        ]
+                    ],
                     "responseStatusCode" => 200,
                     "responseBody" => "[RESPONSEBODY]",
-                    "responseHeaders" => array(
-                        array(
+                    "responseHeaders" => [
+                        [
                             "name" => "Content-Type",
                             "value" => "application/json"
-                        )
-                    ),
+                        ]
+                    ],
                     "logs" => "[LOGS]",
                     "errors" => "[ERRORS]",
                     "duration" => 0.4
-                )
-            )
-        );
+                ]
+            ]
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -858,38 +848,38 @@ final class SitesTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\ExecutionList::class, $response);
     }
-
     public function testMethodGetLog(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$permissions" => array(),
-            "functionId" => "5e5ea6g16897e",
+            "\$permissions" => [],
+            "resourceId" => "5e5ea6g16897e",
+            "resourceType" => "functions",
             "deploymentId" => "5e5ea5c16897e",
             "trigger" => "http",
             "status" => "waiting",
             "requestMethod" => "GET",
             "requestPath" => "/articles?id=5",
-            "requestHeaders" => array(
-                array(
+            "requestHeaders" => [
+                [
                     "name" => "Content-Type",
                     "value" => "application/json"
-                )
-            ),
+                ]
+            ],
             "responseStatusCode" => 200,
             "responseBody" => "[RESPONSEBODY]",
-            "responseHeaders" => array(
-                array(
+            "responseHeaders" => [
+                [
                     "name" => "Content-Type",
                     "value" => "application/json"
-                )
-            ),
+                ]
+            ],
             "logs" => "[LOGS]",
             "errors" => "[ERRORS]",
             "duration" => 0.4
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -905,7 +895,6 @@ final class SitesTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Execution::class, $response);
     }
-
     public function testMethodDeleteLog(): void
     {
         $data = '';
@@ -924,13 +913,12 @@ final class SitesTest extends TestCase
 
         $this->assertSame($data, $response);
     }
-
     public function testMethodListVariables(): void
     {
-        $data = array(
+        $data = [
             "total" => 5,
-            "variables" => array(
-                array(
+            "variables" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -939,9 +927,9 @@ final class SitesTest extends TestCase
                     "secret" => true,
                     "resourceType" => "function",
                     "resourceId" => "myAwesomeFunction"
-                )
-            )
-        );
+                ]
+            ]
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -956,10 +944,9 @@ final class SitesTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\VariableList::class, $response);
     }
-
     public function testMethodCreateVariable(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -968,7 +955,7 @@ final class SitesTest extends TestCase
             "secret" => true,
             "resourceType" => "function",
             "resourceId" => "myAwesomeFunction"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -986,10 +973,9 @@ final class SitesTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Variable::class, $response);
     }
-
     public function testMethodGetVariable(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -998,7 +984,7 @@ final class SitesTest extends TestCase
             "secret" => true,
             "resourceType" => "function",
             "resourceId" => "myAwesomeFunction"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1014,10 +1000,9 @@ final class SitesTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Variable::class, $response);
     }
-
     public function testMethodUpdateVariable(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -1026,7 +1011,7 @@ final class SitesTest extends TestCase
             "secret" => true,
             "resourceType" => "function",
             "resourceId" => "myAwesomeFunction"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1042,7 +1027,6 @@ final class SitesTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Variable::class, $response);
     }
-
     public function testMethodDeleteVariable(): void
     {
         $data = '';
@@ -1061,5 +1045,4 @@ final class SitesTest extends TestCase
 
         $this->assertSame($data, $response);
     }
-
 }

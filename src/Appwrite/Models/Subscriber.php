@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Subscriber
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class Subscriber
 {
@@ -86,7 +90,7 @@ readonly class Subscriber
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             '$createdAt' => static::serializeValue($this->createdAt),
             '$updatedAt' => static::serializeValue($this->updatedAt),
@@ -97,7 +101,5 @@ readonly class Subscriber
             'topicId' => static::serializeValue($this->topicId),
             'providerType' => static::serializeValue($this->providerType)
         ];
-
-        return $result;
     }
 }

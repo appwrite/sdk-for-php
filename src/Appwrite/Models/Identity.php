@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Identity
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class Identity
 {
@@ -92,7 +96,7 @@ readonly class Identity
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             '$createdAt' => static::serializeValue($this->createdAt),
             '$updatedAt' => static::serializeValue($this->updatedAt),
@@ -104,7 +108,5 @@ readonly class Identity
             'providerAccessTokenExpiry' => static::serializeValue($this->providerAccessTokenExpiry),
             'providerRefreshToken' => static::serializeValue($this->providerRefreshToken)
         ];
-
-        return $result;
     }
 }

@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Presence
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class Presence
 {
@@ -66,9 +70,9 @@ readonly class Presence
             permissions: $data['$permissions'],
             userId: $data['userId'],
             source: $data['source'],
-            status: array_key_exists('status', $data) ? $data['status'] : null,
-            expiresAt: array_key_exists('expiresAt', $data) ? $data['expiresAt'] : null,
-            metadata: array_key_exists('metadata', $data) ? $data['metadata'] : null
+            status: $data['status'] ?? null,
+            expiresAt: $data['expiresAt'] ?? null,
+            metadata: $data['metadata'] ?? null
         );
     }
 
@@ -77,7 +81,7 @@ readonly class Presence
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             '$createdAt' => static::serializeValue($this->createdAt),
             '$updatedAt' => static::serializeValue($this->updatedAt),
@@ -88,7 +92,5 @@ readonly class Presence
             'expiresAt' => static::serializeValue($this->expiresAt),
             'metadata' => static::serializeValue($this->metadata)
         ];
-
-        return $result;
     }
 }

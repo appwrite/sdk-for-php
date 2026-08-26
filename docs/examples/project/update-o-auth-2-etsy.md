@@ -15,4 +15,6 @@ $result = $project->updateOAuth2Etsy(
     keyString: '<KEY_STRING>', // optional
     sharedSecret: '<SHARED_SECRET>', // optional
     enabled: false // optional
-);```
+);
+
+```

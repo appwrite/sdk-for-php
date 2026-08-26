@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Databases List
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class DatabaseList
 {
@@ -49,11 +53,9 @@ readonly class DatabaseList
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'total' => static::serializeValue($this->total),
             'databases' => static::serializeValue($this->databases)
         ];
-
-        return $result;
     }
 }

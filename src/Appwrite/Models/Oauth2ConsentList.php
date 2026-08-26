@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * OAuth2 consents list
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class Oauth2ConsentList
 {
@@ -49,11 +53,9 @@ readonly class Oauth2ConsentList
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'total' => static::serializeValue($this->total),
             'consents' => static::serializeValue($this->consents)
         ];
-
-        return $result;
     }
 }

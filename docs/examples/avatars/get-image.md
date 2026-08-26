@@ -15,4 +15,6 @@ $result = $avatars->getImage(
     url: 'https://example.com',
     width: 0, // optional
     height: 0 // optional
-);```
+);
+
+```

@@ -18,4 +18,6 @@ $result = $tablesDB->createEmailColumn(
     required: false,
     default: 'email@example.com', // optional
     array: false // optional
-);```
+);
+
+```

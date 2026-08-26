@@ -20,4 +20,6 @@ $result = $tablesDB->createBigIntColumn(
     max: null, // optional
     default: null, // optional
     array: false // optional
-);```
+);
+
+```

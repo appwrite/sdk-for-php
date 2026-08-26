@@ -16,4 +16,6 @@ $result = $project->updateOAuth2Auth0(
     clientSecret: '<CLIENT_SECRET>', // optional
     endpoint: '<ENDPOINT>', // optional
     enabled: false // optional
-);```
+);
+
+```

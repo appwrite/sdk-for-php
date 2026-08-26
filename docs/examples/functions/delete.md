@@ -13,4 +13,6 @@ $functions = new Functions($client);
 
 $result = $functions->delete(
     functionId: '<FUNCTION_ID>'
-);```
+);
+
+```

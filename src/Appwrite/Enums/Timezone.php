@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Enums;
 
 use JsonSerializable;
+use Stringable;
 
-class Timezone implements JsonSerializable
+class Timezone implements JsonSerializable, Stringable
 {
     private static Timezone $AFRICAABIDJAN;
     private static Timezone $AFRICAACCRA;
@@ -426,11 +429,8 @@ class Timezone implements JsonSerializable
     private static Timezone $PACIFICWALLIS;
     private static Timezone $UTC;
 
-    private string $value;
-
-    private function __construct(string $value)
+    private function __construct(private readonly string $value)
     {
-        $this->value = $value;
     }
 
     public function __toString(): string

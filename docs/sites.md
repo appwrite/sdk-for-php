@@ -49,6 +49,7 @@ POST https://cloud.appwrite.io/v1/sites
 | buildSpecification | string | Build specification for the site deployments. | [] |
 | runtimeSpecification | string | Runtime specification for the SSR executions. | [] |
 | deploymentRetention | integer | Days to keep non-active deployments before deletion. Value 0 means all deployments will be kept. | 0 |
+| scopes | array | List of scopes allowed for API key auto-generated for every site build and SSR execution. Maximum of 200 scopes are allowed. | [] |
 
 
 ```http request
@@ -117,6 +118,7 @@ PUT https://cloud.appwrite.io/v1/sites/{siteId}
 | buildSpecification | string | Build specification for the site deployments. |  |
 | runtimeSpecification | string | Runtime specification for the SSR executions. | [] |
 | deploymentRetention | integer | Days to keep non-active deployments before deletion. Value 0 means all deployments will be kept. | 0 |
+| scopes | array | List of scopes allowed for API key auto-generated for every site build and SSR execution. Maximum of 200 scopes are allowed. |  |
 
 
 ```http request

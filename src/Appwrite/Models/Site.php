@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Site
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class Site
 {
@@ -28,6 +32,7 @@ readonly class Site
      * @param string $latestDeploymentId site's latest deployment id.
      * @param string $latestDeploymentCreatedAt latest deployment creation date in iso 8601 format.
      * @param string $latestDeploymentStatus status of latest deployment. possible values are "waiting", "processing", "building", "ready", and "failed".
+     * @param array $scopes allowed permission scopes.
      * @param list<Variable> $vars site variables.
      * @param int $timeout site request timeout in seconds.
      * @param string $installCommand the install command used to install the site dependencies.
@@ -64,6 +69,7 @@ readonly class Site
         public string $latestDeploymentId,
         public string $latestDeploymentCreatedAt,
         public string $latestDeploymentStatus,
+        public array $scopes,
         public array $vars,
         public int $timeout,
         public string $installCommand,
@@ -138,6 +144,9 @@ readonly class Site
         if (!array_key_exists('latestDeploymentStatus', $data)) {
             throw new \InvalidArgumentException('Missing required field "latestDeploymentStatus" for ' . static::class . '.');
         }
+        if (!array_key_exists('scopes', $data)) {
+            throw new \InvalidArgumentException('Missing required field "scopes" for ' . static::class . '.');
+        }
         if (!array_key_exists('vars', $data)) {
             throw new \InvalidArgumentException('Missing required field "vars" for ' . static::class . '.');
         }
@@ -210,6 +219,7 @@ readonly class Site
             latestDeploymentId: $data['latestDeploymentId'],
             latestDeploymentCreatedAt: $data['latestDeploymentCreatedAt'],
             latestDeploymentStatus: $data['latestDeploymentStatus'],
+            scopes: $data['scopes'],
             vars: is_array($data['vars'])
                 ? array_map(
                     static fn (mixed $item): mixed => static::hydrateTypedValue(Variable::class, $item),
@@ -241,7 +251,7 @@ readonly class Site
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             '$createdAt' => static::serializeValue($this->createdAt),
             '$updatedAt' => static::serializeValue($this->updatedAt),
@@ -258,6 +268,7 @@ readonly class Site
             'latestDeploymentId' => static::serializeValue($this->latestDeploymentId),
             'latestDeploymentCreatedAt' => static::serializeValue($this->latestDeploymentCreatedAt),
             'latestDeploymentStatus' => static::serializeValue($this->latestDeploymentStatus),
+            'scopes' => static::serializeValue($this->scopes),
             'vars' => static::serializeValue($this->vars),
             'timeout' => static::serializeValue($this->timeout),
             'installCommand' => static::serializeValue($this->installCommand),
@@ -277,7 +288,5 @@ readonly class Site
             'adapter' => static::serializeValue($this->adapter),
             'fallbackFile' => static::serializeValue($this->fallbackFile)
         ];
-
-        return $result;
     }
 }

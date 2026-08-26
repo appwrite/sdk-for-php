@@ -13,4 +13,6 @@ $project = new Project($client);
 
 $result = $project->updateSessionDurationPolicy(
     duration: 60
-);```
+);
+
+```

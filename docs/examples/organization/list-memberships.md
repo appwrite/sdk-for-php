@@ -15,4 +15,6 @@ $result = $organization->listMemberships(
     queries: [], // optional
     search: '<SEARCH>', // optional
     total: false // optional
-);```
+);
+
+```

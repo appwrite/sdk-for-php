@@ -13,4 +13,6 @@ $webhooks = new Webhooks($client);
 
 $result = $webhooks->get(
     webhookId: '<WEBHOOK_ID>'
-);```
+);
+
+```

@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Restoration
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class BackupRestoration
 {
@@ -22,7 +26,7 @@ readonly class BackupRestoration
      * @param string $migrationId migration id.
      * @param array $services the services that are backed up by this policy.
      * @param array $resources the resources that are backed up by this policy.
-     * @param string $options optional data in key-value object. 
+     * @param string $options optional data in key-value object.
      */
     public function __construct(
         public string $id,
@@ -98,7 +102,7 @@ readonly class BackupRestoration
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             '$createdAt' => static::serializeValue($this->createdAt),
             '$updatedAt' => static::serializeValue($this->updatedAt),
@@ -111,7 +115,5 @@ readonly class BackupRestoration
             'resources' => static::serializeValue($this->resources),
             'options' => static::serializeValue($this->options)
         ];
-
-        return $result;
     }
 }

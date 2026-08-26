@@ -1,11 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 use Appwrite\Enums\BillingPlanGroup;
 
 /**
  * billingPlan
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class BillingPlan
 {
@@ -64,6 +68,7 @@ readonly class BillingPlan
      * @param bool $supportsMockNumbers does plan support mock numbers
      * @param bool $supportsOrganizationRoles does plan support organization roles
      * @param bool $supportsCredits does plan support credit
+     * @param bool $supportsDedicatedDatabases does plan support dedicated databases.
      * @param bool $supportsDisposableEmailValidation does plan support blocking disposable email addresses.
      * @param bool $supportsCanonicalEmailValidation does plan support requiring canonical email addresses.
      * @param bool $supportsFreeEmailValidation does plan support blocking free email addresses.
@@ -75,6 +80,7 @@ readonly class BillingPlan
      * @param int $buildSize maximum function and site deployment size in mb
      * @param bool $databasesAllowEncrypt does the plan support encrypted string attributes or not.
      * @param BillingPlanGroup $group group of this billing plan for variants
+     * @param float $databaseComputeCredit included monthly dedicated-database compute credit in usd. resets each billing cycle with no roll-over.
      * @param int|null $members members
      * @param int|null $activityLogs activity log days
      * @param array|null $usageLogsIntervals usage log time intervals allowed for this plan (e.g. 15m, 1h, 1d).
@@ -135,6 +141,7 @@ readonly class BillingPlan
         public bool $supportsMockNumbers,
         public bool $supportsOrganizationRoles,
         public bool $supportsCredits,
+        public bool $supportsDedicatedDatabases,
         public bool $supportsDisposableEmailValidation,
         public bool $supportsCanonicalEmailValidation,
         public bool $supportsFreeEmailValidation,
@@ -146,6 +153,7 @@ readonly class BillingPlan
         public int $buildSize,
         public bool $databasesAllowEncrypt,
         public BillingPlanGroup $group,
+        public float $databaseComputeCredit,
         public ?int $members = null,
         public ?int $activityLogs = null,
         public ?array $usageLogsIntervals = null,
@@ -312,6 +320,9 @@ readonly class BillingPlan
         if (!array_key_exists('supportsCredits', $data)) {
             throw new \InvalidArgumentException('Missing required field "supportsCredits" for ' . static::class . '.');
         }
+        if (!array_key_exists('supportsDedicatedDatabases', $data)) {
+            throw new \InvalidArgumentException('Missing required field "supportsDedicatedDatabases" for ' . static::class . '.');
+        }
         if (!array_key_exists('supportsDisposableEmailValidation', $data)) {
             throw new \InvalidArgumentException('Missing required field "supportsDisposableEmailValidation" for ' . static::class . '.');
         }
@@ -344,6 +355,9 @@ readonly class BillingPlan
         }
         if (!array_key_exists('group', $data)) {
             throw new \InvalidArgumentException('Missing required field "group" for ' . static::class . '.');
+        }
+        if (!array_key_exists('databaseComputeCredit', $data)) {
+            throw new \InvalidArgumentException('Missing required field "databaseComputeCredit" for ' . static::class . '.');
         }
 
         return new static(
@@ -397,6 +411,7 @@ readonly class BillingPlan
             supportsMockNumbers: $data['supportsMockNumbers'],
             supportsOrganizationRoles: $data['supportsOrganizationRoles'],
             supportsCredits: $data['supportsCredits'],
+            supportsDedicatedDatabases: $data['supportsDedicatedDatabases'],
             supportsDisposableEmailValidation: $data['supportsDisposableEmailValidation'],
             supportsCanonicalEmailValidation: $data['supportsCanonicalEmailValidation'],
             supportsFreeEmailValidation: $data['supportsFreeEmailValidation'],
@@ -408,11 +423,12 @@ readonly class BillingPlan
             buildSize: $data['buildSize'],
             databasesAllowEncrypt: $data['databasesAllowEncrypt'],
             group: static::hydrateTypedValue(BillingPlanGroup::class, $data['group']),
-            members: array_key_exists('members', $data) ? $data['members'] : null,
-            activityLogs: array_key_exists('activityLogs', $data) ? $data['activityLogs'] : null,
-            usageLogsIntervals: array_key_exists('usageLogsIntervals', $data) ? $data['usageLogsIntervals'] : null,
-            backupsEnabled: array_key_exists('backupsEnabled', $data) ? $data['backupsEnabled'] : null,
-            backupPolicies: array_key_exists('backupPolicies', $data) ? $data['backupPolicies'] : null,
+            databaseComputeCredit: $data['databaseComputeCredit'],
+            members: $data['members'] ?? null,
+            activityLogs: $data['activityLogs'] ?? null,
+            usageLogsIntervals: $data['usageLogsIntervals'] ?? null,
+            backupsEnabled: $data['backupsEnabled'] ?? null,
+            backupPolicies: $data['backupPolicies'] ?? null,
             limits: array_key_exists('limits', $data) ? static::hydrateTypedValue(BillingPlanLimits::class, $data['limits'], true) : null,
             program: array_key_exists('program', $data) ? static::hydrateTypedValue(Program::class, $data['program'], true) : null,
             dedicatedDatabases: array_key_exists('dedicatedDatabases', $data) ? static::hydrateTypedValue(BillingPlanDedicatedDatabaseLimits::class, $data['dedicatedDatabases'], true) : null
@@ -424,7 +440,7 @@ readonly class BillingPlan
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             'name' => static::serializeValue($this->name),
             'desc' => static::serializeValue($this->desc),
@@ -478,6 +494,7 @@ readonly class BillingPlan
             'supportsMockNumbers' => static::serializeValue($this->supportsMockNumbers),
             'supportsOrganizationRoles' => static::serializeValue($this->supportsOrganizationRoles),
             'supportsCredits' => static::serializeValue($this->supportsCredits),
+            'supportsDedicatedDatabases' => static::serializeValue($this->supportsDedicatedDatabases),
             'supportsDisposableEmailValidation' => static::serializeValue($this->supportsDisposableEmailValidation),
             'supportsCanonicalEmailValidation' => static::serializeValue($this->supportsCanonicalEmailValidation),
             'supportsFreeEmailValidation' => static::serializeValue($this->supportsFreeEmailValidation),
@@ -493,9 +510,8 @@ readonly class BillingPlan
             'limits' => static::serializeValue($this->limits),
             'group' => static::serializeValue($this->group),
             'program' => static::serializeValue($this->program),
+            'databaseComputeCredit' => static::serializeValue($this->databaseComputeCredit),
             'dedicatedDatabases' => static::serializeValue($this->dedicatedDatabases)
         ];
-
-        return $result;
     }
 }

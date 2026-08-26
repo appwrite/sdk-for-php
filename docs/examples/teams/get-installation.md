@@ -14,4 +14,6 @@ $teams = new Teams($client);
 $result = $teams->getInstallation(
     teamId: '<TEAM_ID>',
     installationId: '<INSTALLATION_ID>'
-);```
+);
+
+```

@@ -23,4 +23,6 @@ $result = $databases->updateDocuments(
     ], // optional
     queries: [], // optional
     transactionId: '<TRANSACTION_ID>' // optional
-);```
+);
+
+```

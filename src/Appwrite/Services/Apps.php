@@ -1,26 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Services;
 
 use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
-use Appwrite\InputFile;
 
 class Apps extends Service
 {
-    public function __construct(Client $client)
-    {
-        parent::__construct($client);
-    }
-
     /**
      * List applications.
      *
-     * @param ?array $queries
-     * @param ?bool $total
      * @throws AppwriteException
-     * @return \Appwrite\Models\AppsList
      */
     public function list(?array $queries = null, ?bool $total = null): \Appwrite\Models\AppsList
     {
@@ -56,33 +49,12 @@ class Apps extends Service
         }
 
         return \Appwrite\Models\AppsList::from($response);
-
     }
 
     /**
      * Create a new application.
      *
-     * @param string $appId
-     * @param string $name
-     * @param array $redirectUris
-     * @param ?string $description
-     * @param ?string $clientUri
-     * @param ?string $logoUri
-     * @param ?string $privacyPolicyUrl
-     * @param ?string $termsUrl
-     * @param ?array $contacts
-     * @param ?string $tagline
-     * @param ?array $tags
-     * @param ?array $images
-     * @param ?string $supportUrl
-     * @param ?string $dataDeletionUrl
-     * @param ?array $postLogoutRedirectUris
-     * @param ?bool $enabled
-     * @param ?string $type
-     * @param ?bool $deviceFlow
-     * @param ?string $teamId
      * @throws AppwriteException
-     * @return \Appwrite\Models\App
      */
     public function create(string $appId, string $name, array $redirectUris, ?string $description = null, ?string $clientUri = null, ?string $logoUri = null, ?string $privacyPolicyUrl = null, ?string $termsUrl = null, ?array $contacts = null, ?string $tagline = null, ?array $tags = null, ?array $images = null, ?string $supportUrl = null, ?string $dataDeletionUrl = null, ?array $postLogoutRedirectUris = null, ?bool $enabled = null, ?string $type = null, ?bool $deviceFlow = null, ?string $teamId = null): \Appwrite\Models\App
     {
@@ -178,14 +150,12 @@ class Apps extends Service
         }
 
         return \Appwrite\Models\App::from($response);
-
     }
 
     /**
      * List scopes an application can request when installed on a team.
      *
      * @throws AppwriteException
-     * @return \Appwrite\Models\AppScopeList
      */
     public function listInstallationScopes(): \Appwrite\Models\AppScopeList
     {
@@ -213,14 +183,12 @@ class Apps extends Service
         }
 
         return \Appwrite\Models\AppScopeList::from($response);
-
     }
 
     /**
      * List scopes an application can request during the OAuth2 flow.
      *
      * @throws AppwriteException
-     * @return \Appwrite\Models\AppScopeList
      */
     public function listOAuth2Scopes(): \Appwrite\Models\AppScopeList
     {
@@ -248,15 +216,12 @@ class Apps extends Service
         }
 
         return \Appwrite\Models\AppScopeList::from($response);
-
     }
 
     /**
      * Get an application by its unique ID.
      *
-     * @param string $appId
      * @throws AppwriteException
-     * @return \Appwrite\Models\App
      */
     public function get(string $appId): \Appwrite\Models\App
     {
@@ -285,34 +250,12 @@ class Apps extends Service
         }
 
         return \Appwrite\Models\App::from($response);
-
     }
 
     /**
      * Update an application by its unique ID.
      *
-     * @param string $appId
-     * @param string $name
-     * @param ?string $description
-     * @param ?string $clientUri
-     * @param ?string $logoUri
-     * @param ?string $privacyPolicyUrl
-     * @param ?string $termsUrl
-     * @param ?array $contacts
-     * @param ?string $tagline
-     * @param ?array $tags
-     * @param ?array $images
-     * @param ?string $supportUrl
-     * @param ?string $dataDeletionUrl
-     * @param ?bool $enabled
-     * @param ?array $redirectUris
-     * @param ?array $postLogoutRedirectUris
-     * @param ?string $type
-     * @param ?bool $deviceFlow
-     * @param ?array $installationScopes
-     * @param ?string $installationRedirectUrl
      * @throws AppwriteException
-     * @return \Appwrite\Models\App
      */
     public function update(string $appId, string $name, ?string $description = null, ?string $clientUri = null, ?string $logoUri = null, ?string $privacyPolicyUrl = null, ?string $termsUrl = null, ?array $contacts = null, ?string $tagline = null, ?array $tags = null, ?array $images = null, ?string $supportUrl = null, ?string $dataDeletionUrl = null, ?bool $enabled = null, ?array $redirectUris = null, ?array $postLogoutRedirectUris = null, ?string $type = null, ?bool $deviceFlow = null, ?array $installationScopes = null, ?string $installationRedirectUrl = null): \Appwrite\Models\App
     {
@@ -415,15 +358,12 @@ class Apps extends Service
         }
 
         return \Appwrite\Models\App::from($response);
-
     }
 
     /**
      * Delete an application by its unique ID.
      *
-     * @param string $appId
      * @throws AppwriteException
-     * @return string
      */
     public function delete(string $appId): string
     {
@@ -441,15 +381,12 @@ class Apps extends Service
         $apiHeaders['content-type'] = 'application/json';
         $apiHeaders['accept'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 
     /**
@@ -457,11 +394,7 @@ class Apps extends Service
      * `X-Appwrite-Key` header alongside the `X-Appwrite-App` header, or a caller
      * with update access to the app.
      *
-     * @param string $appId
-     * @param ?array $queries
-     * @param ?bool $total
      * @throws AppwriteException
-     * @return \Appwrite\Models\AppInstallationList
      */
     public function listInstallations(string $appId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\AppInstallationList
     {
@@ -498,7 +431,6 @@ class Apps extends Service
         }
 
         return \Appwrite\Models\AppInstallationList::from($response);
-
     }
 
     /**
@@ -506,10 +438,7 @@ class Apps extends Service
      * sent in the `X-Appwrite-Key` header alongside the `X-Appwrite-App` header,
      * or a caller with update access to the app.
      *
-     * @param string $appId
-     * @param string $installationId
      * @throws AppwriteException
-     * @return \Appwrite\Models\AppInstallation
      */
     public function getInstallation(string $appId, string $installationId): \Appwrite\Models\AppInstallation
     {
@@ -539,7 +468,6 @@ class Apps extends Service
         }
 
         return \Appwrite\Models\AppInstallation::from($response);
-
     }
 
     /**
@@ -547,10 +475,7 @@ class Apps extends Service
      * caller with update access to the app. Previously issued installation access
      * tokens are revoked.
      *
-     * @param string $appId
-     * @param string $installationId
      * @throws AppwriteException
-     * @return string
      */
     public function deleteInstallation(string $appId, string $installationId): string
     {
@@ -569,15 +494,12 @@ class Apps extends Service
         $apiHeaders['content-type'] = 'application/json';
         $apiHeaders['accept'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 
     /**
@@ -590,10 +512,7 @@ class Apps extends Service
      * once; each token stays valid until it expires or the installation is
      * updated or deleted.
      *
-     * @param string $appId
-     * @param string $installationId
      * @throws AppwriteException
-     * @return \Appwrite\Models\Oauth2Token
      */
     public function createInstallationToken(string $appId, string $installationId): \Appwrite\Models\Oauth2Token
     {
@@ -624,17 +543,12 @@ class Apps extends Service
         }
 
         return \Appwrite\Models\Oauth2Token::from($response);
-
     }
 
     /**
      * List app keys for an application.
      *
-     * @param string $appId
-     * @param ?array $queries
-     * @param ?bool $total
      * @throws AppwriteException
-     * @return \Appwrite\Models\AppKeyList
      */
     public function listKeys(string $appId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\AppKeyList
     {
@@ -671,17 +585,14 @@ class Apps extends Service
         }
 
         return \Appwrite\Models\AppKeyList::from($response);
-
     }
 
     /**
      * Create a new app key for an application. App keys carry no scopes; send one
      * in the `X-Appwrite-Key` header alongside the `X-Appwrite-App` header to
-     * list the application's installations and create installation access tokens.
+     * list the application&#039;s installations and create installation access tokens.
      *
-     * @param string $appId
      * @throws AppwriteException
-     * @return \Appwrite\Models\AppKey
      */
     public function createKey(string $appId): \Appwrite\Models\AppKey
     {
@@ -711,16 +622,12 @@ class Apps extends Service
         }
 
         return \Appwrite\Models\AppKey::from($response);
-
     }
 
     /**
      * Get an app key by its unique ID.
      *
-     * @param string $appId
-     * @param string $keyId
      * @throws AppwriteException
-     * @return \Appwrite\Models\AppKey
      */
     public function getKey(string $appId, string $keyId): \Appwrite\Models\AppKey
     {
@@ -750,16 +657,12 @@ class Apps extends Service
         }
 
         return \Appwrite\Models\AppKey::from($response);
-
     }
 
     /**
      * Delete an app key by its unique ID.
      *
-     * @param string $appId
-     * @param string $keyId
      * @throws AppwriteException
-     * @return string
      */
     public function deleteKey(string $appId, string $keyId): string
     {
@@ -778,15 +681,12 @@ class Apps extends Service
         $apiHeaders['content-type'] = 'application/json';
         $apiHeaders['accept'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 
     /**
@@ -794,10 +694,7 @@ class Apps extends Service
      * a server SDK using a project API key can set them. Replaces the previous
      * labels.
      *
-     * @param string $appId
-     * @param array $labels
      * @throws AppwriteException
-     * @return \Appwrite\Models\App
      */
     public function updateLabels(string $appId, array $labels): \Appwrite\Models\App
     {
@@ -828,17 +725,12 @@ class Apps extends Service
         }
 
         return \Appwrite\Models\App::from($response);
-
     }
 
     /**
      * List client secrets for an application.
      *
-     * @param string $appId
-     * @param ?array $queries
-     * @param ?bool $total
      * @throws AppwriteException
-     * @return \Appwrite\Models\AppSecretList
      */
     public function listSecrets(string $appId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\AppSecretList
     {
@@ -875,15 +767,12 @@ class Apps extends Service
         }
 
         return \Appwrite\Models\AppSecretList::from($response);
-
     }
 
     /**
      * Create a new client secret for an application.
      *
-     * @param string $appId
      * @throws AppwriteException
-     * @return \Appwrite\Models\AppSecretPlaintext
      */
     public function createSecret(string $appId): \Appwrite\Models\AppSecretPlaintext
     {
@@ -913,16 +802,12 @@ class Apps extends Service
         }
 
         return \Appwrite\Models\AppSecretPlaintext::from($response);
-
     }
 
     /**
      * Get an application client secret by its unique ID.
      *
-     * @param string $appId
-     * @param string $secretId
      * @throws AppwriteException
-     * @return \Appwrite\Models\AppSecret
      */
     public function getSecret(string $appId, string $secretId): \Appwrite\Models\AppSecret
     {
@@ -952,16 +837,12 @@ class Apps extends Service
         }
 
         return \Appwrite\Models\AppSecret::from($response);
-
     }
 
     /**
      * Delete an application client secret by its unique ID.
      *
-     * @param string $appId
-     * @param string $secretId
      * @throws AppwriteException
-     * @return string
      */
     public function deleteSecret(string $appId, string $secretId): string
     {
@@ -980,24 +861,18 @@ class Apps extends Service
         $apiHeaders['content-type'] = 'application/json';
         $apiHeaders['accept'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 
     /**
      * Transfer an application to another team by its unique ID.
      *
-     * @param string $appId
-     * @param string $teamId
      * @throws AppwriteException
-     * @return \Appwrite\Models\App
      */
     public function updateTeam(string $appId, string $teamId): \Appwrite\Models\App
     {
@@ -1028,15 +903,12 @@ class Apps extends Service
         }
 
         return \Appwrite\Models\App::from($response);
-
     }
 
     /**
      * Revoke all tokens for an application by its unique ID.
      *
-     * @param string $appId
      * @throws AppwriteException
-     * @return string
      */
     public function deleteTokens(string $appId): string
     {
@@ -1054,14 +926,11 @@ class Apps extends Service
         $apiHeaders['content-type'] = 'application/json';
         $apiHeaders['accept'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 }

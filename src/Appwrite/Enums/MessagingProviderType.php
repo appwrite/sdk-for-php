@@ -1,20 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Enums;
 
 use JsonSerializable;
+use Stringable;
 
-class MessagingProviderType implements JsonSerializable
+class MessagingProviderType implements JsonSerializable, Stringable
 {
     private static MessagingProviderType $EMAIL;
     private static MessagingProviderType $SMS;
     private static MessagingProviderType $PUSH;
 
-    private string $value;
-
-    private function __construct(string $value)
+    private function __construct(private readonly string $value)
     {
-        $this->value = $value;
     }
 
     public function __toString(): string

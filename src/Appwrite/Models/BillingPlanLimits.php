@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * PlanLimits
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class BillingPlanLimits
 {
@@ -28,8 +32,8 @@ readonly class BillingPlanLimits
     {
 
         return new static(
-            credits: array_key_exists('credits', $data) ? $data['credits'] : null,
-            dailyCredits: array_key_exists('dailyCredits', $data) ? $data['dailyCredits'] : null
+            credits: $data['credits'] ?? null,
+            dailyCredits: $data['dailyCredits'] ?? null
         );
     }
 
@@ -38,11 +42,9 @@ readonly class BillingPlanLimits
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'credits' => static::serializeValue($this->credits),
             'dailyCredits' => static::serializeValue($this->dailyCredits)
         ];
-
-        return $result;
     }
 }

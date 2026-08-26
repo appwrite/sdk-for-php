@@ -13,4 +13,6 @@ $tablesDB = new TablesDB($client);
 
 $result = $tablesDB->getReplicas(
     databaseId: '<DATABASE_ID>'
-);```
+);
+
+```

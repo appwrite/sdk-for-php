@@ -13,4 +13,6 @@ $users = new Users($client);
 
 $result = $users->listMFAFactors(
     userId: '<USER_ID>'
-);```
+);
+
+```

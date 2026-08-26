@@ -15,4 +15,6 @@ $result = $users->listIdentities(
     queries: [], // optional
     search: '<SEARCH>', // optional
     total: false // optional
-);```
+);
+
+```

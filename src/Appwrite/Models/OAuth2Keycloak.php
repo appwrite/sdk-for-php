@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * OAuth2Keycloak
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class OAuth2Keycloak
 {
@@ -68,7 +72,7 @@ readonly class OAuth2Keycloak
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             'enabled' => static::serializeValue($this->enabled),
             'clientId' => static::serializeValue($this->clientId),
@@ -76,7 +80,5 @@ readonly class OAuth2Keycloak
             'endpoint' => static::serializeValue($this->endpoint),
             'realmName' => static::serializeValue($this->realmName)
         ];
-
-        return $result;
     }
 }

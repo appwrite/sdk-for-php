@@ -14,4 +14,6 @@ $project = new Project($client);
 $result = $project->createMockPhone(
     number: '+12065550100',
     otp: '<OTP>'
-);```
+);
+
+```

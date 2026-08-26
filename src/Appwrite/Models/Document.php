@@ -1,15 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Document
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class Document
 {
     use ArraySerializable;
-
-    private const ADDITIONAL_PROPERTIES = true;
 
     /**
      * Document constructor.

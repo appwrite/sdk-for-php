@@ -16,4 +16,6 @@ $result = $messaging->updateFCMProvider(
     name: '<NAME>', // optional
     enabled: false, // optional
     serviceAccountJSON: [] // optional
-);```
+);
+
+```

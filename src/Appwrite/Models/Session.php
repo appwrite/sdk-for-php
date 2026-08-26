@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Session
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class Session
 {
@@ -206,7 +210,7 @@ readonly class Session
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             '$createdAt' => static::serializeValue($this->createdAt),
             '$updatedAt' => static::serializeValue($this->updatedAt),
@@ -237,7 +241,5 @@ readonly class Session
             'secret' => static::serializeValue($this->secret),
             'mfaUpdatedAt' => static::serializeValue($this->mfaUpdatedAt)
         ];
-
-        return $result;
     }
 }

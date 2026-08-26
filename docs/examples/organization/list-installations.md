@@ -14,4 +14,6 @@ $organization = new Organization($client);
 $result = $organization->listInstallations(
     queries: [], // optional
     total: false // optional
-);```
+);
+
+```

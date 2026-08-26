@@ -1,11 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 use Appwrite\Enums\AttributeStatus;
 
 /**
  * AttributeRelationship
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class AttributeRelationship
 {
@@ -106,7 +110,7 @@ readonly class AttributeRelationship
             twoWayKey: $data['twoWayKey'],
             onDelete: $data['onDelete'],
             side: $data['side'],
-            array: array_key_exists('array', $data) ? $data['array'] : null
+            array: $data['array'] ?? null
         );
     }
 
@@ -115,7 +119,7 @@ readonly class AttributeRelationship
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'key' => static::serializeValue($this->key),
             'type' => static::serializeValue($this->type),
             'status' => static::serializeValue($this->status),
@@ -131,7 +135,5 @@ readonly class AttributeRelationship
             'onDelete' => static::serializeValue($this->onDelete),
             'side' => static::serializeValue($this->side)
         ];
-
-        return $result;
     }
 }

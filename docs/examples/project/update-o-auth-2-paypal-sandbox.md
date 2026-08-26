@@ -15,4 +15,6 @@ $result = $project->updateOAuth2PaypalSandbox(
     clientId: '<CLIENT_ID>', // optional
     secretKey: '<SECRET_KEY>', // optional
     enabled: false // optional
-);```
+);
+
+```

@@ -20,4 +20,6 @@ $result = $databases->createVarcharAttribute(
     default: '<DEFAULT>', // optional
     array: false, // optional
     encrypt: false // optional
-);```
+);
+
+```

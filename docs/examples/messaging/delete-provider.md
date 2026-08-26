@@ -13,4 +13,6 @@ $messaging = new Messaging($client);
 
 $result = $messaging->deleteProvider(
     providerId: '<PROVIDER_ID>'
-);```
+);
+
+```

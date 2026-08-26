@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Addon
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class BillingPlanAddon
 {
@@ -38,11 +42,9 @@ readonly class BillingPlanAddon
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'seats' => static::serializeValue($this->seats),
             'projects' => static::serializeValue($this->projects)
         ];
-
-        return $result;
     }
 }

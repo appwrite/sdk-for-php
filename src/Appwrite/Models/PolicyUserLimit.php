@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Policy User Limit
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class PolicyUserLimit
 {
@@ -44,11 +48,9 @@ readonly class PolicyUserLimit
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             'total' => static::serializeValue($this->total)
         ];
-
-        return $result;
     }
 }

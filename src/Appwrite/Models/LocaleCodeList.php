@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Locale codes list
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class LocaleCodeList
 {
@@ -49,11 +53,9 @@ readonly class LocaleCodeList
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'total' => static::serializeValue($this->total),
             'localeCodes' => static::serializeValue($this->localeCodes)
         ];
-
-        return $result;
     }
 }

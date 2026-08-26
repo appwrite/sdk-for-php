@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Enums;
 
 use JsonSerializable;
+use Stringable;
 
-class DeploymentStatus implements JsonSerializable
+class DeploymentStatus implements JsonSerializable, Stringable
 {
     private static DeploymentStatus $WAITING;
     private static DeploymentStatus $PROCESSING;
@@ -13,11 +16,8 @@ class DeploymentStatus implements JsonSerializable
     private static DeploymentStatus $CANCELED;
     private static DeploymentStatus $FAILED;
 
-    private string $value;
-
-    private function __construct(string $value)
+    private function __construct(private readonly string $value)
     {
-        $this->value = $value;
     }
 
     public function __toString(): string

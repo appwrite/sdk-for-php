@@ -18,4 +18,6 @@ $result = $messaging->updateTextmagicProvider(
     username: '<USERNAME>', // optional
     apiKey: '<API_KEY>', // optional
     from: '<FROM>' // optional
-);```
+);
+
+```

@@ -1,21 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Enums;
 
 use JsonSerializable;
+use Stringable;
 
-class OAuth2OidcPrompt implements JsonSerializable
+class OAuth2OidcPrompt implements JsonSerializable, Stringable
 {
     private static OAuth2OidcPrompt $NONE;
     private static OAuth2OidcPrompt $LOGIN;
     private static OAuth2OidcPrompt $CONSENT;
     private static OAuth2OidcPrompt $SELECTACCOUNT;
 
-    private string $value;
-
-    private function __construct(string $value)
+    private function __construct(private readonly string $value)
     {
-        $this->value = $value;
     }
 
     public function __toString(): string
