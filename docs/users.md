@@ -248,7 +248,7 @@ POST https://cloud.appwrite.io/v1/users/{userId}/jwts
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | userId | string | **Required** User ID. |  |
-| sessionId | string | Session ID. Use the string 'recent' to use the most recent session. Defaults to the most recent session. | recent |
+| sessionId | string | Session ID. Use the string 'recent()' to use the most recent session, which is also the default. | recent() |
 | duration | integer | Time in seconds before JWT expires. Default duration is 900 seconds, and maximum is 3600 seconds. | 900 |
 
 

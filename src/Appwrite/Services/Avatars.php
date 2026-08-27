@@ -295,14 +295,22 @@ class Avatars extends Service
     }
 
     /**
-     * Returns the best available profile photo for the currently authenticated
-     * user. The endpoint tries each source in priority order and returns the
-     * first successful result: OAuth2 identity photo, Gravatar, Libravatar,
-     * Appwrite Initials, built-in static fallback.
+     * Returns the best available profile photo for a user. The endpoint tries
+     * each source in priority order and returns the first successful result:
+     * OAuth2 identity photo, Gravatar, Libravatar, Appwrite Initials, built-in
+     * static fallback.
+     *
+     * The photo resolves for the currently authenticated user unless `userId`
+     * points at another user. Passing `emailHash` and/or `name` resolves the
+     * avatar from those values alone: the hash is looked up on Gravatar and
+     * Libravatar, the name is rendered as initials, and the user's own identity
+     * photos, email, and name leave the chain so they never shadow the avatar
+     * being asked for. Emails are only ever accepted pre-hashed, so no address
+     * ends up in a URL.
      *
      * @throws AppwriteException
      */
-    public function getPhoto(?int $width = null, ?int $height = null, ?int $quality = null, ?string $output = null, ?string $rating = null): string
+    public function getPhoto(?int $width = null, ?int $height = null, ?int $quality = null, ?string $output = null, ?string $rating = null, ?string $userId = null, ?string $emailHash = null, ?string $name = null): string
     {
         $apiPath = str_replace(
             [],
@@ -330,6 +338,18 @@ class Avatars extends Service
 
         if (!is_null($rating)) {
             $apiParams['rating'] = $rating;
+        }
+
+        if (!is_null($userId)) {
+            $apiParams['userId'] = $userId;
+        }
+
+        if (!is_null($emailHash)) {
+            $apiParams['emailHash'] = $emailHash;
+        }
+
+        if (!is_null($name)) {
+            $apiParams['name'] = $name;
         }
 
         $apiHeaders = [];

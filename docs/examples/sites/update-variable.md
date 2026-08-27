@@ -14,7 +14,7 @@ $sites = new Sites($client);
 $result = $sites->updateVariable(
     siteId: '<SITE_ID>',
     variableId: '<VARIABLE_ID>',
-    key: '<KEY>', // optional
+    key: '', // optional
     value: '<VALUE>', // optional
     secret: false // optional
 );

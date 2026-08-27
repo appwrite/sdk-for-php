@@ -1477,7 +1477,7 @@ POST https://cloud.appwrite.io/v1/project/variables
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | variableId | string | Variable unique ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
-| key | string | Variable key. Max length: 255 chars. |  |
+| key | string | Variable key. Letters, digits and underscores only, must not start with a digit. Max length: 255 chars. |  |
 | value | string | Variable value. Max length: 8192 chars. |  |
 | secret | boolean | Secret variables can be updated or deleted, but only projects can read them during build and runtime. | 1 |
 
@@ -1506,7 +1506,7 @@ PUT https://cloud.appwrite.io/v1/project/variables/{variableId}
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | variableId | string | **Required** Variable unique ID. |  |
-| key | string | Variable key. Max length: 255 chars. |  |
+| key | string | Variable key. Letters, digits and underscores only, must not start with a digit. Max length: 255 chars. |  |
 | value | string | Variable value. Max length: 8192 chars. |  |
 | secret | boolean | Secret variables can be updated or deleted, but only projects can read them during build and runtime. |  |
 

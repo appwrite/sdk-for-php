@@ -967,7 +967,7 @@ final class SitesTest extends TestCase
         $response = $this->sites->createVariable(
             "<SITE_ID>",
             "<VARIABLE_ID>",
-            "<KEY>",
+            "",
             "<VALUE>"
         );
 

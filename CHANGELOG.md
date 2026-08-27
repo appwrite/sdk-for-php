@@ -7,7 +7,7 @@
 * Breaking: `Execution.functionId` replaced by `resourceId` and `resourceType`
 * Breaking: removed `dedicatedDatabases.execute` from `ProjectKeyScopes`
 * Breaking: `Project.wafEnabled` is now nullable
-* Added: `avatars.getPhoto`
+* Added: `avatars.getPhoto`, with `userId`, `emailHash`, and `name` to resolve an avatar for someone other than the caller
 * Added: `project.updateOAuth2HuggingFace`, the `OAuth2HuggingFace` model, and the `huggingface` OAuth provider
 * Added: `scopes` parameter to `sites.create` and `sites.update`, and `Site.scopes`
 * Added: `ExecutionResourceType` enum and the `bun-1.4` runtime
