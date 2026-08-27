@@ -29,23 +29,20 @@ class ProjectProtocolId implements JsonSerializable, Stringable
 
     public static function REST(): ProjectProtocolId
     {
-        if (!isset(self::$REST)) {
-            self::$REST = new ProjectProtocolId('rest');
-        }
+        self::$REST ??= new ProjectProtocolId('rest');
+
         return self::$REST;
     }
     public static function GRAPHQL(): ProjectProtocolId
     {
-        if (!isset(self::$GRAPHQL)) {
-            self::$GRAPHQL = new ProjectProtocolId('graphql');
-        }
+        self::$GRAPHQL ??= new ProjectProtocolId('graphql');
+
         return self::$GRAPHQL;
     }
     public static function WEBSOCKET(): ProjectProtocolId
     {
-        if (!isset(self::$WEBSOCKET)) {
-            self::$WEBSOCKET = new ProjectProtocolId('websocket');
-        }
+        self::$WEBSOCKET ??= new ProjectProtocolId('websocket');
+
         return self::$WEBSOCKET;
     }
 

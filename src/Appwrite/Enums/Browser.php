@@ -40,100 +40,86 @@ class Browser implements JsonSerializable, Stringable
 
     public static function AVANTBROWSER(): Browser
     {
-        if (!isset(self::$AVANTBROWSER)) {
-            self::$AVANTBROWSER = new Browser('aa');
-        }
+        self::$AVANTBROWSER ??= new Browser('aa');
+
         return self::$AVANTBROWSER;
     }
     public static function ANDROIDWEBVIEWBETA(): Browser
     {
-        if (!isset(self::$ANDROIDWEBVIEWBETA)) {
-            self::$ANDROIDWEBVIEWBETA = new Browser('an');
-        }
+        self::$ANDROIDWEBVIEWBETA ??= new Browser('an');
+
         return self::$ANDROIDWEBVIEWBETA;
     }
     public static function GOOGLECHROME(): Browser
     {
-        if (!isset(self::$GOOGLECHROME)) {
-            self::$GOOGLECHROME = new Browser('ch');
-        }
+        self::$GOOGLECHROME ??= new Browser('ch');
+
         return self::$GOOGLECHROME;
     }
     public static function GOOGLECHROMEIOS(): Browser
     {
-        if (!isset(self::$GOOGLECHROMEIOS)) {
-            self::$GOOGLECHROMEIOS = new Browser('ci');
-        }
+        self::$GOOGLECHROMEIOS ??= new Browser('ci');
+
         return self::$GOOGLECHROMEIOS;
     }
     public static function GOOGLECHROMEMOBILE(): Browser
     {
-        if (!isset(self::$GOOGLECHROMEMOBILE)) {
-            self::$GOOGLECHROMEMOBILE = new Browser('cm');
-        }
+        self::$GOOGLECHROMEMOBILE ??= new Browser('cm');
+
         return self::$GOOGLECHROMEMOBILE;
     }
     public static function CHROMIUM(): Browser
     {
-        if (!isset(self::$CHROMIUM)) {
-            self::$CHROMIUM = new Browser('cr');
-        }
+        self::$CHROMIUM ??= new Browser('cr');
+
         return self::$CHROMIUM;
     }
     public static function MOZILLAFIREFOX(): Browser
     {
-        if (!isset(self::$MOZILLAFIREFOX)) {
-            self::$MOZILLAFIREFOX = new Browser('ff');
-        }
+        self::$MOZILLAFIREFOX ??= new Browser('ff');
+
         return self::$MOZILLAFIREFOX;
     }
     public static function SAFARI(): Browser
     {
-        if (!isset(self::$SAFARI)) {
-            self::$SAFARI = new Browser('sf');
-        }
+        self::$SAFARI ??= new Browser('sf');
+
         return self::$SAFARI;
     }
     public static function MOBILESAFARI(): Browser
     {
-        if (!isset(self::$MOBILESAFARI)) {
-            self::$MOBILESAFARI = new Browser('mf');
-        }
+        self::$MOBILESAFARI ??= new Browser('mf');
+
         return self::$MOBILESAFARI;
     }
     public static function MICROSOFTEDGE(): Browser
     {
-        if (!isset(self::$MICROSOFTEDGE)) {
-            self::$MICROSOFTEDGE = new Browser('ps');
-        }
+        self::$MICROSOFTEDGE ??= new Browser('ps');
+
         return self::$MICROSOFTEDGE;
     }
     public static function MICROSOFTEDGEIOS(): Browser
     {
-        if (!isset(self::$MICROSOFTEDGEIOS)) {
-            self::$MICROSOFTEDGEIOS = new Browser('oi');
-        }
+        self::$MICROSOFTEDGEIOS ??= new Browser('oi');
+
         return self::$MICROSOFTEDGEIOS;
     }
     public static function OPERAMINI(): Browser
     {
-        if (!isset(self::$OPERAMINI)) {
-            self::$OPERAMINI = new Browser('om');
-        }
+        self::$OPERAMINI ??= new Browser('om');
+
         return self::$OPERAMINI;
     }
     public static function OPERA(): Browser
     {
-        if (!isset(self::$OPERA)) {
-            self::$OPERA = new Browser('op');
-        }
+        self::$OPERA ??= new Browser('op');
+
         return self::$OPERA;
     }
     public static function OPERANEXT(): Browser
     {
-        if (!isset(self::$OPERANEXT)) {
-            self::$OPERANEXT = new Browser('on');
-        }
+        self::$OPERANEXT ??= new Browser('on');
+
         return self::$OPERANEXT;
     }
 

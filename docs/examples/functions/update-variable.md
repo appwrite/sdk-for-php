@@ -14,7 +14,7 @@ $functions = new Functions($client);
 $result = $functions->updateVariable(
     functionId: '<FUNCTION_ID>',
     variableId: '<VARIABLE_ID>',
-    key: '', // optional
+    key: '<KEY>', // optional
     value: '<VALUE>', // optional
     secret: false // optional
 );

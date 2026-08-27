@@ -28,16 +28,14 @@ class ProxyRuleDeploymentResourceType implements JsonSerializable, Stringable
 
     public static function FUNCTION(): ProxyRuleDeploymentResourceType
     {
-        if (!isset(self::$FUNCTION)) {
-            self::$FUNCTION = new ProxyRuleDeploymentResourceType('function');
-        }
+        self::$FUNCTION ??= new ProxyRuleDeploymentResourceType('function');
+
         return self::$FUNCTION;
     }
     public static function SITE(): ProxyRuleDeploymentResourceType
     {
-        if (!isset(self::$SITE)) {
-            self::$SITE = new ProxyRuleDeploymentResourceType('site');
-        }
+        self::$SITE ??= new ProxyRuleDeploymentResourceType('site');
+
         return self::$SITE;
     }
 

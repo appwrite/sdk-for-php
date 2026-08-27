@@ -29,23 +29,20 @@ class Compression implements JsonSerializable, Stringable
 
     public static function NONE(): Compression
     {
-        if (!isset(self::$NONE)) {
-            self::$NONE = new Compression('none');
-        }
+        self::$NONE ??= new Compression('none');
+
         return self::$NONE;
     }
     public static function GZIP(): Compression
     {
-        if (!isset(self::$GZIP)) {
-            self::$GZIP = new Compression('gzip');
-        }
+        self::$GZIP ??= new Compression('gzip');
+
         return self::$GZIP;
     }
     public static function ZSTD(): Compression
     {
-        if (!isset(self::$ZSTD)) {
-            self::$ZSTD = new Compression('zstd');
-        }
+        self::$ZSTD ??= new Compression('zstd');
+
         return self::$ZSTD;
     }
 

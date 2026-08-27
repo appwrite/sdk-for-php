@@ -29,23 +29,20 @@ class TemplateReferenceType implements JsonSerializable, Stringable
 
     public static function COMMIT(): TemplateReferenceType
     {
-        if (!isset(self::$COMMIT)) {
-            self::$COMMIT = new TemplateReferenceType('commit');
-        }
+        self::$COMMIT ??= new TemplateReferenceType('commit');
+
         return self::$COMMIT;
     }
     public static function BRANCH(): TemplateReferenceType
     {
-        if (!isset(self::$BRANCH)) {
-            self::$BRANCH = new TemplateReferenceType('branch');
-        }
+        self::$BRANCH ??= new TemplateReferenceType('branch');
+
         return self::$BRANCH;
     }
     public static function TAG(): TemplateReferenceType
     {
-        if (!isset(self::$TAG)) {
-            self::$TAG = new TemplateReferenceType('tag');
-        }
+        self::$TAG ??= new TemplateReferenceType('tag');
+
         return self::$TAG;
     }
 

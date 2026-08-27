@@ -31,37 +31,32 @@ class AuthenticationFactor implements JsonSerializable, Stringable
 
     public static function EMAIL(): AuthenticationFactor
     {
-        if (!isset(self::$EMAIL)) {
-            self::$EMAIL = new AuthenticationFactor('email');
-        }
+        self::$EMAIL ??= new AuthenticationFactor('email');
+
         return self::$EMAIL;
     }
     public static function PHONE(): AuthenticationFactor
     {
-        if (!isset(self::$PHONE)) {
-            self::$PHONE = new AuthenticationFactor('phone');
-        }
+        self::$PHONE ??= new AuthenticationFactor('phone');
+
         return self::$PHONE;
     }
     public static function TOTP(): AuthenticationFactor
     {
-        if (!isset(self::$TOTP)) {
-            self::$TOTP = new AuthenticationFactor('totp');
-        }
+        self::$TOTP ??= new AuthenticationFactor('totp');
+
         return self::$TOTP;
     }
     public static function RECOVERYCODE(): AuthenticationFactor
     {
-        if (!isset(self::$RECOVERYCODE)) {
-            self::$RECOVERYCODE = new AuthenticationFactor('recoverycode');
-        }
+        self::$RECOVERYCODE ??= new AuthenticationFactor('recoverycode');
+
         return self::$RECOVERYCODE;
     }
     public static function CUSTOM(): AuthenticationFactor
     {
-        if (!isset(self::$CUSTOM)) {
-            self::$CUSTOM = new AuthenticationFactor('custom');
-        }
+        self::$CUSTOM ??= new AuthenticationFactor('custom');
+
         return self::$CUSTOM;
     }
 

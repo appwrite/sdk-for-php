@@ -28,16 +28,14 @@ class MessagePriority implements JsonSerializable, Stringable
 
     public static function NORMAL(): MessagePriority
     {
-        if (!isset(self::$NORMAL)) {
-            self::$NORMAL = new MessagePriority('normal');
-        }
+        self::$NORMAL ??= new MessagePriority('normal');
+
         return self::$NORMAL;
     }
     public static function HIGH(): MessagePriority
     {
-        if (!isset(self::$HIGH)) {
-            self::$HIGH = new MessagePriority('high');
-        }
+        self::$HIGH ??= new MessagePriority('high');
+
         return self::$HIGH;
     }
 

@@ -33,51 +33,44 @@ class ProjectAuthMethodId implements JsonSerializable, Stringable
 
     public static function EMAILPASSWORD(): ProjectAuthMethodId
     {
-        if (!isset(self::$EMAILPASSWORD)) {
-            self::$EMAILPASSWORD = new ProjectAuthMethodId('email-password');
-        }
+        self::$EMAILPASSWORD ??= new ProjectAuthMethodId('email-password');
+
         return self::$EMAILPASSWORD;
     }
     public static function MAGICURL(): ProjectAuthMethodId
     {
-        if (!isset(self::$MAGICURL)) {
-            self::$MAGICURL = new ProjectAuthMethodId('magic-url');
-        }
+        self::$MAGICURL ??= new ProjectAuthMethodId('magic-url');
+
         return self::$MAGICURL;
     }
     public static function EMAILOTP(): ProjectAuthMethodId
     {
-        if (!isset(self::$EMAILOTP)) {
-            self::$EMAILOTP = new ProjectAuthMethodId('email-otp');
-        }
+        self::$EMAILOTP ??= new ProjectAuthMethodId('email-otp');
+
         return self::$EMAILOTP;
     }
     public static function ANONYMOUS(): ProjectAuthMethodId
     {
-        if (!isset(self::$ANONYMOUS)) {
-            self::$ANONYMOUS = new ProjectAuthMethodId('anonymous');
-        }
+        self::$ANONYMOUS ??= new ProjectAuthMethodId('anonymous');
+
         return self::$ANONYMOUS;
     }
     public static function INVITES(): ProjectAuthMethodId
     {
-        if (!isset(self::$INVITES)) {
-            self::$INVITES = new ProjectAuthMethodId('invites');
-        }
+        self::$INVITES ??= new ProjectAuthMethodId('invites');
+
         return self::$INVITES;
     }
     public static function JWT(): ProjectAuthMethodId
     {
-        if (!isset(self::$JWT)) {
-            self::$JWT = new ProjectAuthMethodId('jwt');
-        }
+        self::$JWT ??= new ProjectAuthMethodId('jwt');
+
         return self::$JWT;
     }
     public static function PHONE(): ProjectAuthMethodId
     {
-        if (!isset(self::$PHONE)) {
-            self::$PHONE = new ProjectAuthMethodId('phone');
-        }
+        self::$PHONE ??= new ProjectAuthMethodId('phone');
+
         return self::$PHONE;
     }
 

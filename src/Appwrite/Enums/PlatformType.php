@@ -31,37 +31,32 @@ class PlatformType implements JsonSerializable, Stringable
 
     public static function WINDOWS(): PlatformType
     {
-        if (!isset(self::$WINDOWS)) {
-            self::$WINDOWS = new PlatformType('windows');
-        }
+        self::$WINDOWS ??= new PlatformType('windows');
+
         return self::$WINDOWS;
     }
     public static function APPLE(): PlatformType
     {
-        if (!isset(self::$APPLE)) {
-            self::$APPLE = new PlatformType('apple');
-        }
+        self::$APPLE ??= new PlatformType('apple');
+
         return self::$APPLE;
     }
     public static function ANDROID(): PlatformType
     {
-        if (!isset(self::$ANDROID)) {
-            self::$ANDROID = new PlatformType('android');
-        }
+        self::$ANDROID ??= new PlatformType('android');
+
         return self::$ANDROID;
     }
     public static function LINUX(): PlatformType
     {
-        if (!isset(self::$LINUX)) {
-            self::$LINUX = new PlatformType('linux');
-        }
+        self::$LINUX ??= new PlatformType('linux');
+
         return self::$LINUX;
     }
     public static function WEB(): PlatformType
     {
-        if (!isset(self::$WEB)) {
-            self::$WEB = new PlatformType('web');
-        }
+        self::$WEB ??= new PlatformType('web');
+
         return self::$WEB;
     }
 

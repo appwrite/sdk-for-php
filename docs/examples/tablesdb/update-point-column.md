@@ -14,9 +14,9 @@ $tablesDB = new TablesDB($client);
 $result = $tablesDB->updatePointColumn(
     databaseId: '<DATABASE_ID>',
     tableId: '<TABLE_ID>',
-    key: '',
+    key: '<KEY>',
     required: false,
     default: [1, 2], // optional
-    newKey: '' // optional
+    newKey: '<NEW_KEY>' // optional
 );
 ```

@@ -28,16 +28,14 @@ class ProxyResourceType implements JsonSerializable, Stringable
 
     public static function SITE(): ProxyResourceType
     {
-        if (!isset(self::$SITE)) {
-            self::$SITE = new ProxyResourceType('site');
-        }
+        self::$SITE ??= new ProxyResourceType('site');
+
         return self::$SITE;
     }
     public static function FUNCTIONMODEL(): ProxyResourceType
     {
-        if (!isset(self::$FUNCTIONMODEL)) {
-            self::$FUNCTIONMODEL = new ProxyResourceType('function');
-        }
+        self::$FUNCTIONMODEL ??= new ProxyResourceType('function');
+
         return self::$FUNCTIONMODEL;
     }
 

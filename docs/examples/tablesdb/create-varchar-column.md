@@ -14,10 +14,10 @@ $tablesDB = new TablesDB($client);
 $result = $tablesDB->createVarcharColumn(
     databaseId: '<DATABASE_ID>',
     tableId: '<TABLE_ID>',
-    key: '',
+    key: '<KEY>',
     size: 1,
     required: false,
-    default: '<DEFAULT>', // optional
+    default: 'Hello World', // optional
     array: false, // optional
     encrypt: false // optional
 );

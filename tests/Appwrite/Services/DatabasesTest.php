@@ -515,7 +515,7 @@ final class DatabasesTest extends TestCase
         $response = $this->databases->createBigIntAttribute(
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
-            "",
+            "<KEY>",
             true
         );
 
@@ -543,7 +543,7 @@ final class DatabasesTest extends TestCase
         $response = $this->databases->updateBigIntAttribute(
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
-            "",
+            "<KEY>",
             true,
             1
         );
@@ -572,7 +572,7 @@ final class DatabasesTest extends TestCase
         $response = $this->databases->createBooleanAttribute(
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
-            "",
+            "<KEY>",
             true
         );
 
@@ -600,7 +600,7 @@ final class DatabasesTest extends TestCase
         $response = $this->databases->updateBooleanAttribute(
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
-            "",
+            "<KEY>",
             true,
             true
         );
@@ -630,7 +630,7 @@ final class DatabasesTest extends TestCase
         $response = $this->databases->createDatetimeAttribute(
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
-            "",
+            "<KEY>",
             true
         );
 
@@ -659,7 +659,7 @@ final class DatabasesTest extends TestCase
         $response = $this->databases->updateDatetimeAttribute(
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
-            "",
+            "<KEY>",
             true,
             "2020-10-15T06:38:00.000+00:00"
         );
@@ -689,7 +689,7 @@ final class DatabasesTest extends TestCase
         $response = $this->databases->createEmailAttribute(
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
-            "",
+            "<KEY>",
             true
         );
 
@@ -718,7 +718,7 @@ final class DatabasesTest extends TestCase
         $response = $this->databases->updateEmailAttribute(
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
-            "",
+            "<KEY>",
             true,
             "email@example.com"
         );
@@ -749,7 +749,7 @@ final class DatabasesTest extends TestCase
         $response = $this->databases->createEnumAttribute(
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
-            "",
+            "<KEY>",
             [],
             true
         );
@@ -780,10 +780,10 @@ final class DatabasesTest extends TestCase
         $response = $this->databases->updateEnumAttribute(
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
-            "",
+            "<KEY>",
             [],
             true,
-            "<DEFAULT>"
+            "active"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\AttributeEnum::class, $response);
@@ -810,7 +810,7 @@ final class DatabasesTest extends TestCase
         $response = $this->databases->createFloatAttribute(
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
-            "",
+            "<KEY>",
             true
         );
 
@@ -838,7 +838,7 @@ final class DatabasesTest extends TestCase
         $response = $this->databases->updateFloatAttribute(
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
-            "",
+            "<KEY>",
             true,
             1.0
         );
@@ -867,7 +867,7 @@ final class DatabasesTest extends TestCase
         $response = $this->databases->createIntegerAttribute(
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
-            "",
+            "<KEY>",
             true
         );
 
@@ -895,7 +895,7 @@ final class DatabasesTest extends TestCase
         $response = $this->databases->updateIntegerAttribute(
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
-            "",
+            "<KEY>",
             true,
             1
         );
@@ -925,7 +925,7 @@ final class DatabasesTest extends TestCase
         $response = $this->databases->createIpAttribute(
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
-            "",
+            "<KEY>",
             true
         );
 
@@ -954,9 +954,9 @@ final class DatabasesTest extends TestCase
         $response = $this->databases->updateIpAttribute(
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
-            "",
+            "<KEY>",
             true,
-            ""
+            "192.0.2.0"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\AttributeIp::class, $response);
@@ -983,7 +983,7 @@ final class DatabasesTest extends TestCase
         $response = $this->databases->createLineAttribute(
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
-            "",
+            "<KEY>",
             true
         );
 
@@ -1011,7 +1011,7 @@ final class DatabasesTest extends TestCase
         $response = $this->databases->updateLineAttribute(
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
-            "",
+            "<KEY>",
             true
         );
 
@@ -1039,7 +1039,7 @@ final class DatabasesTest extends TestCase
         $response = $this->databases->createLongtextAttribute(
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
-            "",
+            "<KEY>",
             true
         );
 
@@ -1067,9 +1067,9 @@ final class DatabasesTest extends TestCase
         $response = $this->databases->updateLongtextAttribute(
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
-            "",
+            "<KEY>",
             true,
-            "<DEFAULT>"
+            "Hello World"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\AttributeLongtext::class, $response);
@@ -1096,7 +1096,7 @@ final class DatabasesTest extends TestCase
         $response = $this->databases->createMediumtextAttribute(
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
-            "",
+            "<KEY>",
             true
         );
 
@@ -1124,9 +1124,9 @@ final class DatabasesTest extends TestCase
         $response = $this->databases->updateMediumtextAttribute(
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
-            "",
+            "<KEY>",
             true,
-            "<DEFAULT>"
+            "Hello World"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\AttributeMediumtext::class, $response);
@@ -1153,7 +1153,7 @@ final class DatabasesTest extends TestCase
         $response = $this->databases->createPointAttribute(
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
-            "",
+            "<KEY>",
             true
         );
 
@@ -1181,7 +1181,7 @@ final class DatabasesTest extends TestCase
         $response = $this->databases->updatePointAttribute(
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
-            "",
+            "<KEY>",
             true
         );
 
@@ -1209,7 +1209,7 @@ final class DatabasesTest extends TestCase
         $response = $this->databases->createPolygonAttribute(
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
-            "",
+            "<KEY>",
             true
         );
 
@@ -1237,7 +1237,7 @@ final class DatabasesTest extends TestCase
         $response = $this->databases->updatePolygonAttribute(
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
-            "",
+            "<KEY>",
             true
         );
 
@@ -1305,7 +1305,7 @@ final class DatabasesTest extends TestCase
         $response = $this->databases->updateRelationshipAttribute(
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
-            ""
+            "<KEY>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\AttributeRelationship::class, $response);
@@ -1333,7 +1333,7 @@ final class DatabasesTest extends TestCase
         $response = $this->databases->createStringAttribute(
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
-            "",
+            "<KEY>",
             1,
             true
         );
@@ -1363,9 +1363,9 @@ final class DatabasesTest extends TestCase
         $response = $this->databases->updateStringAttribute(
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
-            "",
+            "<KEY>",
             true,
-            "<DEFAULT>"
+            "Hello World"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\AttributeString::class, $response);
@@ -1392,7 +1392,7 @@ final class DatabasesTest extends TestCase
         $response = $this->databases->createTextAttribute(
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
-            "",
+            "<KEY>",
             true
         );
 
@@ -1420,9 +1420,9 @@ final class DatabasesTest extends TestCase
         $response = $this->databases->updateTextAttribute(
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
-            "",
+            "<KEY>",
             true,
-            "<DEFAULT>"
+            "Hello World"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\AttributeText::class, $response);
@@ -1450,7 +1450,7 @@ final class DatabasesTest extends TestCase
         $response = $this->databases->createUrlAttribute(
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
-            "",
+            "<KEY>",
             true
         );
 
@@ -1479,7 +1479,7 @@ final class DatabasesTest extends TestCase
         $response = $this->databases->updateUrlAttribute(
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
-            "",
+            "<KEY>",
             true,
             "https://example.com"
         );
@@ -1509,7 +1509,7 @@ final class DatabasesTest extends TestCase
         $response = $this->databases->createVarcharAttribute(
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
-            "",
+            "<KEY>",
             1,
             true
         );
@@ -1539,9 +1539,9 @@ final class DatabasesTest extends TestCase
         $response = $this->databases->updateVarcharAttribute(
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
-            "",
+            "<KEY>",
             true,
-            "<DEFAULT>"
+            "Hello World"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\AttributeVarchar::class, $response);
@@ -1574,7 +1574,7 @@ final class DatabasesTest extends TestCase
         $response = $this->databases->getAttribute(
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
-            ""
+            "<KEY>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\AttributeString::class, $response);
@@ -1593,7 +1593,7 @@ final class DatabasesTest extends TestCase
         $response = $this->databases->deleteAttribute(
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
-            ""
+            "<KEY>"
         );
 
         $this->assertSame($data, $response);
@@ -1906,7 +1906,7 @@ final class DatabasesTest extends TestCase
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
             "<DOCUMENT_ID>",
-            ""
+            "<ATTRIBUTE>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Document::class, $response);
@@ -1934,7 +1934,7 @@ final class DatabasesTest extends TestCase
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
             "<DOCUMENT_ID>",
-            ""
+            "<ATTRIBUTE>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Document::class, $response);
@@ -1996,7 +1996,7 @@ final class DatabasesTest extends TestCase
         $response = $this->databases->createIndex(
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
-            "",
+            "<KEY>",
             DatabasesIndexType::KEY(),
             []
         );
@@ -2027,7 +2027,7 @@ final class DatabasesTest extends TestCase
         $response = $this->databases->getIndex(
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
-            ""
+            "<KEY>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Index::class, $response);
@@ -2046,7 +2046,7 @@ final class DatabasesTest extends TestCase
         $response = $this->databases->deleteIndex(
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
-            ""
+            "<KEY>"
         );
 
         $this->assertSame($data, $response);

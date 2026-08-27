@@ -13,7 +13,7 @@ $project = new Project($client);
 
 $result = $project->updateVariable(
     variableId: '<VARIABLE_ID>',
-    key: '', // optional
+    key: '<KEY>', // optional
     value: '<VALUE>', // optional
     secret: false // optional
 );

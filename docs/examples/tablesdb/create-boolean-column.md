@@ -14,7 +14,7 @@ $tablesDB = new TablesDB($client);
 $result = $tablesDB->createBooleanColumn(
     databaseId: '<DATABASE_ID>',
     tableId: '<TABLE_ID>',
-    key: '',
+    key: '<KEY>',
     required: false,
     default: false, // optional
     array: false // optional

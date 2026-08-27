@@ -41,107 +41,92 @@ class Framework implements JsonSerializable, Stringable
 
     public static function ANALOG(): Framework
     {
-        if (!isset(self::$ANALOG)) {
-            self::$ANALOG = new Framework('analog');
-        }
+        self::$ANALOG ??= new Framework('analog');
+
         return self::$ANALOG;
     }
     public static function ANGULAR(): Framework
     {
-        if (!isset(self::$ANGULAR)) {
-            self::$ANGULAR = new Framework('angular');
-        }
+        self::$ANGULAR ??= new Framework('angular');
+
         return self::$ANGULAR;
     }
     public static function NEXTJS(): Framework
     {
-        if (!isset(self::$NEXTJS)) {
-            self::$NEXTJS = new Framework('nextjs');
-        }
+        self::$NEXTJS ??= new Framework('nextjs');
+
         return self::$NEXTJS;
     }
     public static function REACT(): Framework
     {
-        if (!isset(self::$REACT)) {
-            self::$REACT = new Framework('react');
-        }
+        self::$REACT ??= new Framework('react');
+
         return self::$REACT;
     }
     public static function NUXT(): Framework
     {
-        if (!isset(self::$NUXT)) {
-            self::$NUXT = new Framework('nuxt');
-        }
+        self::$NUXT ??= new Framework('nuxt');
+
         return self::$NUXT;
     }
     public static function VUE(): Framework
     {
-        if (!isset(self::$VUE)) {
-            self::$VUE = new Framework('vue');
-        }
+        self::$VUE ??= new Framework('vue');
+
         return self::$VUE;
     }
     public static function SVELTEKIT(): Framework
     {
-        if (!isset(self::$SVELTEKIT)) {
-            self::$SVELTEKIT = new Framework('sveltekit');
-        }
+        self::$SVELTEKIT ??= new Framework('sveltekit');
+
         return self::$SVELTEKIT;
     }
     public static function ASTRO(): Framework
     {
-        if (!isset(self::$ASTRO)) {
-            self::$ASTRO = new Framework('astro');
-        }
+        self::$ASTRO ??= new Framework('astro');
+
         return self::$ASTRO;
     }
     public static function TANSTACKSTART(): Framework
     {
-        if (!isset(self::$TANSTACKSTART)) {
-            self::$TANSTACKSTART = new Framework('tanstack-start');
-        }
+        self::$TANSTACKSTART ??= new Framework('tanstack-start');
+
         return self::$TANSTACKSTART;
     }
     public static function REMIX(): Framework
     {
-        if (!isset(self::$REMIX)) {
-            self::$REMIX = new Framework('remix');
-        }
+        self::$REMIX ??= new Framework('remix');
+
         return self::$REMIX;
     }
     public static function LYNX(): Framework
     {
-        if (!isset(self::$LYNX)) {
-            self::$LYNX = new Framework('lynx');
-        }
+        self::$LYNX ??= new Framework('lynx');
+
         return self::$LYNX;
     }
     public static function FLUTTER(): Framework
     {
-        if (!isset(self::$FLUTTER)) {
-            self::$FLUTTER = new Framework('flutter');
-        }
+        self::$FLUTTER ??= new Framework('flutter');
+
         return self::$FLUTTER;
     }
     public static function REACTNATIVE(): Framework
     {
-        if (!isset(self::$REACTNATIVE)) {
-            self::$REACTNATIVE = new Framework('react-native');
-        }
+        self::$REACTNATIVE ??= new Framework('react-native');
+
         return self::$REACTNATIVE;
     }
     public static function VITE(): Framework
     {
-        if (!isset(self::$VITE)) {
-            self::$VITE = new Framework('vite');
-        }
+        self::$VITE ??= new Framework('vite');
+
         return self::$VITE;
     }
     public static function OTHER(): Framework
     {
-        if (!isset(self::$OTHER)) {
-            self::$OTHER = new Framework('other');
-        }
+        self::$OTHER ??= new Framework('other');
+
         return self::$OTHER;
     }
 

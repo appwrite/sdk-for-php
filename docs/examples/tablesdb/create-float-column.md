@@ -14,11 +14,11 @@ $tablesDB = new TablesDB($client);
 $result = $tablesDB->createFloatColumn(
     databaseId: '<DATABASE_ID>',
     tableId: '<TABLE_ID>',
-    key: '',
+    key: '<KEY>',
     required: false,
-    min: null, // optional
-    max: null, // optional
-    default: null, // optional
+    min: 0, // optional
+    max: 100, // optional
+    default: 10.5, // optional
     array: false // optional
 );
 ```

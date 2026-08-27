@@ -14,11 +14,11 @@ $databases = new Databases($client);
 $result = $databases->updateBigIntAttribute(
     databaseId: '<DATABASE_ID>',
     collectionId: '<COLLECTION_ID>',
-    key: '',
+    key: '<KEY>',
     required: false,
-    default: null,
-    min: null, // optional
-    max: null, // optional
-    newKey: '' // optional
+    default: 0,
+    min: 0, // optional
+    max: 1000000, // optional
+    newKey: '<NEW_KEY>' // optional
 );
 ```

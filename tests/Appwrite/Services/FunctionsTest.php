@@ -991,7 +991,7 @@ final class FunctionsTest extends TestCase
         $response = $this->functions->createVariable(
             "<FUNCTION_ID>",
             "<VARIABLE_ID>",
-            "",
+            "<KEY>",
             "<VALUE>"
         );
 

@@ -40,7 +40,7 @@ final class ProxyTest extends TestCase
             ->andReturn('');
 
         $response = $this->proxy->createInvalidation(
-            "",
+            "example.com",
             InvalidationType::TAG()
         );
 
@@ -108,7 +108,7 @@ final class ProxyTest extends TestCase
             ->andReturn('');
 
         $response = $this->proxy->createAPIRule(
-            ""
+            "example.com"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\ProxyRule::class, $response);
@@ -140,7 +140,7 @@ final class ProxyTest extends TestCase
             ->andReturn('');
 
         $response = $this->proxy->createFunctionRule(
-            "",
+            "example.com",
             "<FUNCTION_ID>"
         );
 
@@ -173,7 +173,7 @@ final class ProxyTest extends TestCase
             ->andReturn('');
 
         $response = $this->proxy->createRedirectRule(
-            "",
+            "example.com",
             "https://example.com",
             StatusCode::MOVEDPERMANENTLY(),
             "<RESOURCE_ID>",
@@ -209,7 +209,7 @@ final class ProxyTest extends TestCase
             ->andReturn('');
 
         $response = $this->proxy->createSiteRule(
-            "",
+            "example.com",
             "<SITE_ID>"
         );
 

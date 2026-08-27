@@ -12,6 +12,6 @@ $client = (new Client())
 $proxy = new Proxy($client);
 
 $result = $proxy->createAPIRule(
-    domain: ''
+    domain: 'example.com'
 );
 ```

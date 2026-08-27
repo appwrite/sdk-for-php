@@ -33,51 +33,44 @@ class ProjectEmailTemplateId implements JsonSerializable, Stringable
 
     public static function VERIFICATION(): ProjectEmailTemplateId
     {
-        if (!isset(self::$VERIFICATION)) {
-            self::$VERIFICATION = new ProjectEmailTemplateId('verification');
-        }
+        self::$VERIFICATION ??= new ProjectEmailTemplateId('verification');
+
         return self::$VERIFICATION;
     }
     public static function MAGICSESSION(): ProjectEmailTemplateId
     {
-        if (!isset(self::$MAGICSESSION)) {
-            self::$MAGICSESSION = new ProjectEmailTemplateId('magicSession');
-        }
+        self::$MAGICSESSION ??= new ProjectEmailTemplateId('magicSession');
+
         return self::$MAGICSESSION;
     }
     public static function RECOVERY(): ProjectEmailTemplateId
     {
-        if (!isset(self::$RECOVERY)) {
-            self::$RECOVERY = new ProjectEmailTemplateId('recovery');
-        }
+        self::$RECOVERY ??= new ProjectEmailTemplateId('recovery');
+
         return self::$RECOVERY;
     }
     public static function INVITATION(): ProjectEmailTemplateId
     {
-        if (!isset(self::$INVITATION)) {
-            self::$INVITATION = new ProjectEmailTemplateId('invitation');
-        }
+        self::$INVITATION ??= new ProjectEmailTemplateId('invitation');
+
         return self::$INVITATION;
     }
     public static function MFACHALLENGE(): ProjectEmailTemplateId
     {
-        if (!isset(self::$MFACHALLENGE)) {
-            self::$MFACHALLENGE = new ProjectEmailTemplateId('mfaChallenge');
-        }
+        self::$MFACHALLENGE ??= new ProjectEmailTemplateId('mfaChallenge');
+
         return self::$MFACHALLENGE;
     }
     public static function SESSIONALERT(): ProjectEmailTemplateId
     {
-        if (!isset(self::$SESSIONALERT)) {
-            self::$SESSIONALERT = new ProjectEmailTemplateId('sessionAlert');
-        }
+        self::$SESSIONALERT ??= new ProjectEmailTemplateId('sessionAlert');
+
         return self::$SESSIONALERT;
     }
     public static function OTPSESSION(): ProjectEmailTemplateId
     {
-        if (!isset(self::$OTPSESSION)) {
-            self::$OTPSESSION = new ProjectEmailTemplateId('otpSession');
-        }
+        self::$OTPSESSION ??= new ProjectEmailTemplateId('otpSession');
+
         return self::$OTPSESSION;
     }
 

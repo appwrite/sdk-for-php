@@ -29,23 +29,20 @@ class SmtpEncryption implements JsonSerializable, Stringable
 
     public static function NONE(): SmtpEncryption
     {
-        if (!isset(self::$NONE)) {
-            self::$NONE = new SmtpEncryption('none');
-        }
+        self::$NONE ??= new SmtpEncryption('none');
+
         return self::$NONE;
     }
     public static function SSL(): SmtpEncryption
     {
-        if (!isset(self::$SSL)) {
-            self::$SSL = new SmtpEncryption('ssl');
-        }
+        self::$SSL ??= new SmtpEncryption('ssl');
+
         return self::$SSL;
     }
     public static function TLS(): SmtpEncryption
     {
-        if (!isset(self::$TLS)) {
-            self::$TLS = new SmtpEncryption('tls');
-        }
+        self::$TLS ??= new SmtpEncryption('tls');
+
         return self::$TLS;
     }
 

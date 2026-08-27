@@ -14,10 +14,10 @@ $tablesDB = new TablesDB($client);
 $result = $tablesDB->updateEnumColumn(
     databaseId: '<DATABASE_ID>',
     tableId: '<TABLE_ID>',
-    key: '',
-    elements: [],
+    key: '<KEY>',
+    elements: ["active", "inactive"],
     required: false,
-    default: '<DEFAULT>',
-    newKey: '' // optional
+    default: 'active',
+    newKey: '<NEW_KEY>' // optional
 );
 ```

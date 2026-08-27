@@ -43,121 +43,104 @@ class CreditCard implements JsonSerializable, Stringable
 
     public static function AMERICANEXPRESS(): CreditCard
     {
-        if (!isset(self::$AMERICANEXPRESS)) {
-            self::$AMERICANEXPRESS = new CreditCard('amex');
-        }
+        self::$AMERICANEXPRESS ??= new CreditCard('amex');
+
         return self::$AMERICANEXPRESS;
     }
     public static function ARGENCARD(): CreditCard
     {
-        if (!isset(self::$ARGENCARD)) {
-            self::$ARGENCARD = new CreditCard('argencard');
-        }
+        self::$ARGENCARD ??= new CreditCard('argencard');
+
         return self::$ARGENCARD;
     }
     public static function CABAL(): CreditCard
     {
-        if (!isset(self::$CABAL)) {
-            self::$CABAL = new CreditCard('cabal');
-        }
+        self::$CABAL ??= new CreditCard('cabal');
+
         return self::$CABAL;
     }
     public static function CENCOSUD(): CreditCard
     {
-        if (!isset(self::$CENCOSUD)) {
-            self::$CENCOSUD = new CreditCard('cencosud');
-        }
+        self::$CENCOSUD ??= new CreditCard('cencosud');
+
         return self::$CENCOSUD;
     }
     public static function DINERSCLUB(): CreditCard
     {
-        if (!isset(self::$DINERSCLUB)) {
-            self::$DINERSCLUB = new CreditCard('diners');
-        }
+        self::$DINERSCLUB ??= new CreditCard('diners');
+
         return self::$DINERSCLUB;
     }
     public static function DISCOVER(): CreditCard
     {
-        if (!isset(self::$DISCOVER)) {
-            self::$DISCOVER = new CreditCard('discover');
-        }
+        self::$DISCOVER ??= new CreditCard('discover');
+
         return self::$DISCOVER;
     }
     public static function ELO(): CreditCard
     {
-        if (!isset(self::$ELO)) {
-            self::$ELO = new CreditCard('elo');
-        }
+        self::$ELO ??= new CreditCard('elo');
+
         return self::$ELO;
     }
     public static function HIPERCARD(): CreditCard
     {
-        if (!isset(self::$HIPERCARD)) {
-            self::$HIPERCARD = new CreditCard('hipercard');
-        }
+        self::$HIPERCARD ??= new CreditCard('hipercard');
+
         return self::$HIPERCARD;
     }
     public static function JCB(): CreditCard
     {
-        if (!isset(self::$JCB)) {
-            self::$JCB = new CreditCard('jcb');
-        }
+        self::$JCB ??= new CreditCard('jcb');
+
         return self::$JCB;
     }
     public static function MASTERCARD(): CreditCard
     {
-        if (!isset(self::$MASTERCARD)) {
-            self::$MASTERCARD = new CreditCard('mastercard');
-        }
+        self::$MASTERCARD ??= new CreditCard('mastercard');
+
         return self::$MASTERCARD;
     }
     public static function NARANJA(): CreditCard
     {
-        if (!isset(self::$NARANJA)) {
-            self::$NARANJA = new CreditCard('naranja');
-        }
+        self::$NARANJA ??= new CreditCard('naranja');
+
         return self::$NARANJA;
     }
     public static function TARJETASHOPPING(): CreditCard
     {
-        if (!isset(self::$TARJETASHOPPING)) {
-            self::$TARJETASHOPPING = new CreditCard('targeta-shopping');
-        }
+        self::$TARJETASHOPPING ??= new CreditCard('targeta-shopping');
+
         return self::$TARJETASHOPPING;
     }
     public static function UNIONPAY(): CreditCard
     {
-        if (!isset(self::$UNIONPAY)) {
-            self::$UNIONPAY = new CreditCard('unionpay');
-        }
+        self::$UNIONPAY ??= new CreditCard('unionpay');
+
         return self::$UNIONPAY;
     }
     public static function VISA(): CreditCard
     {
-        if (!isset(self::$VISA)) {
-            self::$VISA = new CreditCard('visa');
-        }
+        self::$VISA ??= new CreditCard('visa');
+
         return self::$VISA;
     }
     public static function MIR(): CreditCard
     {
-        if (!isset(self::$MIR)) {
-            self::$MIR = new CreditCard('mir');
-        }
+        self::$MIR ??= new CreditCard('mir');
+
         return self::$MIR;
     }
     public static function MAESTRO(): CreditCard
     {
-        if (!isset(self::$MAESTRO)) {
-            self::$MAESTRO = new CreditCard('maestro');
-        }
+        self::$MAESTRO ??= new CreditCard('maestro');
+
         return self::$MAESTRO;
     }
     public static function RUPAY(): CreditCard
     {
-        if (!isset(self::$RUPAY)) {
-            self::$RUPAY = new CreditCard('rupay');
-        }
+        self::$RUPAY ??= new CreditCard('rupay');
+
         return self::$RUPAY;
     }
 

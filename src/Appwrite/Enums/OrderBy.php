@@ -28,16 +28,14 @@ class OrderBy implements JsonSerializable, Stringable
 
     public static function ASC(): OrderBy
     {
-        if (!isset(self::$ASC)) {
-            self::$ASC = new OrderBy('asc');
-        }
+        self::$ASC ??= new OrderBy('asc');
+
         return self::$ASC;
     }
     public static function DESC(): OrderBy
     {
-        if (!isset(self::$DESC)) {
-            self::$DESC = new OrderBy('desc');
-        }
+        self::$DESC ??= new OrderBy('desc');
+
         return self::$DESC;
     }
 

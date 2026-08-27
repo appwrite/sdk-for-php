@@ -30,30 +30,26 @@ class StatusCode implements JsonSerializable, Stringable
 
     public static function MOVEDPERMANENTLY(): StatusCode
     {
-        if (!isset(self::$MOVEDPERMANENTLY)) {
-            self::$MOVEDPERMANENTLY = new StatusCode('301');
-        }
+        self::$MOVEDPERMANENTLY ??= new StatusCode('301');
+
         return self::$MOVEDPERMANENTLY;
     }
     public static function FOUND(): StatusCode
     {
-        if (!isset(self::$FOUND)) {
-            self::$FOUND = new StatusCode('302');
-        }
+        self::$FOUND ??= new StatusCode('302');
+
         return self::$FOUND;
     }
     public static function TEMPORARYREDIRECT(): StatusCode
     {
-        if (!isset(self::$TEMPORARYREDIRECT)) {
-            self::$TEMPORARYREDIRECT = new StatusCode('307');
-        }
+        self::$TEMPORARYREDIRECT ??= new StatusCode('307');
+
         return self::$TEMPORARYREDIRECT;
     }
     public static function PERMANENTREDIRECT(): StatusCode
     {
-        if (!isset(self::$PERMANENTREDIRECT)) {
-            self::$PERMANENTREDIRECT = new StatusCode('308');
-        }
+        self::$PERMANENTREDIRECT ??= new StatusCode('308');
+
         return self::$PERMANENTREDIRECT;
     }
 

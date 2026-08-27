@@ -15,8 +15,8 @@ $tablesDB = new TablesDB($client);
 $result = $tablesDB->updateRelationshipColumn(
     databaseId: '<DATABASE_ID>',
     tableId: '<TABLE_ID>',
-    key: '',
+    key: '<KEY>',
     onDelete: RelationMutate::CASCADE(), // optional
-    newKey: '' // optional
+    newKey: '<NEW_KEY>' // optional
 );
 ```

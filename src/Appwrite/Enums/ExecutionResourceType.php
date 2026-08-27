@@ -28,16 +28,14 @@ class ExecutionResourceType implements JsonSerializable, Stringable
 
     public static function FUNCTIONS(): ExecutionResourceType
     {
-        if (!isset(self::$FUNCTIONS)) {
-            self::$FUNCTIONS = new ExecutionResourceType('functions');
-        }
+        self::$FUNCTIONS ??= new ExecutionResourceType('functions');
+
         return self::$FUNCTIONS;
     }
     public static function SITES(): ExecutionResourceType
     {
-        if (!isset(self::$SITES)) {
-            self::$SITES = new ExecutionResourceType('sites');
-        }
+        self::$SITES ??= new ExecutionResourceType('sites');
+
         return self::$SITES;
     }
 

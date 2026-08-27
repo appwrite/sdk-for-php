@@ -81,7 +81,7 @@ final class WebhooksTest extends TestCase
 
         $response = $this->webhooks->create(
             "<WEBHOOK_ID>",
-            "",
+            "https://example.com/webhook",
             "<NAME>",
             []
         );
@@ -147,7 +147,7 @@ final class WebhooksTest extends TestCase
         $response = $this->webhooks->update(
             "<WEBHOOK_ID>",
             "<NAME>",
-            "",
+            "https://example.com/webhook",
             []
         );
 

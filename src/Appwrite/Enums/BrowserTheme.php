@@ -28,16 +28,14 @@ class BrowserTheme implements JsonSerializable, Stringable
 
     public static function LIGHT(): BrowserTheme
     {
-        if (!isset(self::$LIGHT)) {
-            self::$LIGHT = new BrowserTheme('light');
-        }
+        self::$LIGHT ??= new BrowserTheme('light');
+
         return self::$LIGHT;
     }
     public static function DARK(): BrowserTheme
     {
-        if (!isset(self::$DARK)) {
-            self::$DARK = new BrowserTheme('dark');
-        }
+        self::$DARK ??= new BrowserTheme('dark');
+
         return self::$DARK;
     }
 

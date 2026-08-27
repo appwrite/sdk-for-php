@@ -31,37 +31,32 @@ class ExecutionStatus implements JsonSerializable, Stringable
 
     public static function WAITING(): ExecutionStatus
     {
-        if (!isset(self::$WAITING)) {
-            self::$WAITING = new ExecutionStatus('waiting');
-        }
+        self::$WAITING ??= new ExecutionStatus('waiting');
+
         return self::$WAITING;
     }
     public static function PROCESSING(): ExecutionStatus
     {
-        if (!isset(self::$PROCESSING)) {
-            self::$PROCESSING = new ExecutionStatus('processing');
-        }
+        self::$PROCESSING ??= new ExecutionStatus('processing');
+
         return self::$PROCESSING;
     }
     public static function COMPLETED(): ExecutionStatus
     {
-        if (!isset(self::$COMPLETED)) {
-            self::$COMPLETED = new ExecutionStatus('completed');
-        }
+        self::$COMPLETED ??= new ExecutionStatus('completed');
+
         return self::$COMPLETED;
     }
     public static function FAILED(): ExecutionStatus
     {
-        if (!isset(self::$FAILED)) {
-            self::$FAILED = new ExecutionStatus('failed');
-        }
+        self::$FAILED ??= new ExecutionStatus('failed');
+
         return self::$FAILED;
     }
     public static function SCHEDULED(): ExecutionStatus
     {
-        if (!isset(self::$SCHEDULED)) {
-            self::$SCHEDULED = new ExecutionStatus('scheduled');
-        }
+        self::$SCHEDULED ??= new ExecutionStatus('scheduled');
+
         return self::$SCHEDULED;
     }
 

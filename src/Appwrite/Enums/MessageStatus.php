@@ -31,37 +31,32 @@ class MessageStatus implements JsonSerializable, Stringable
 
     public static function DRAFT(): MessageStatus
     {
-        if (!isset(self::$DRAFT)) {
-            self::$DRAFT = new MessageStatus('draft');
-        }
+        self::$DRAFT ??= new MessageStatus('draft');
+
         return self::$DRAFT;
     }
     public static function PROCESSING(): MessageStatus
     {
-        if (!isset(self::$PROCESSING)) {
-            self::$PROCESSING = new MessageStatus('processing');
-        }
+        self::$PROCESSING ??= new MessageStatus('processing');
+
         return self::$PROCESSING;
     }
     public static function SCHEDULED(): MessageStatus
     {
-        if (!isset(self::$SCHEDULED)) {
-            self::$SCHEDULED = new MessageStatus('scheduled');
-        }
+        self::$SCHEDULED ??= new MessageStatus('scheduled');
+
         return self::$SCHEDULED;
     }
     public static function SENT(): MessageStatus
     {
-        if (!isset(self::$SENT)) {
-            self::$SENT = new MessageStatus('sent');
-        }
+        self::$SENT ??= new MessageStatus('sent');
+
         return self::$SENT;
     }
     public static function FAILED(): MessageStatus
     {
-        if (!isset(self::$FAILED)) {
-            self::$FAILED = new MessageStatus('failed');
-        }
+        self::$FAILED ??= new MessageStatus('failed');
+
         return self::$FAILED;
     }
 

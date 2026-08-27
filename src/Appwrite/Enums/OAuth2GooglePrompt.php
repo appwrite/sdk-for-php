@@ -29,23 +29,20 @@ class OAuth2GooglePrompt implements JsonSerializable, Stringable
 
     public static function NONE(): OAuth2GooglePrompt
     {
-        if (!isset(self::$NONE)) {
-            self::$NONE = new OAuth2GooglePrompt('none');
-        }
+        self::$NONE ??= new OAuth2GooglePrompt('none');
+
         return self::$NONE;
     }
     public static function CONSENT(): OAuth2GooglePrompt
     {
-        if (!isset(self::$CONSENT)) {
-            self::$CONSENT = new OAuth2GooglePrompt('consent');
-        }
+        self::$CONSENT ??= new OAuth2GooglePrompt('consent');
+
         return self::$CONSENT;
     }
     public static function SELECTACCOUNT(): OAuth2GooglePrompt
     {
-        if (!isset(self::$SELECTACCOUNT)) {
-            self::$SELECTACCOUNT = new OAuth2GooglePrompt('select_account');
-        }
+        self::$SELECTACCOUNT ??= new OAuth2GooglePrompt('select_account');
+
         return self::$SELECTACCOUNT;
     }
 

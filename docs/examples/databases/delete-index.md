@@ -14,6 +14,6 @@ $databases = new Databases($client);
 $result = $databases->deleteIndex(
     databaseId: '<DATABASE_ID>',
     collectionId: '<COLLECTION_ID>',
-    key: ''
+    key: '<KEY>'
 );
 ```

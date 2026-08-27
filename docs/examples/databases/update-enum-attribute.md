@@ -14,10 +14,10 @@ $databases = new Databases($client);
 $result = $databases->updateEnumAttribute(
     databaseId: '<DATABASE_ID>',
     collectionId: '<COLLECTION_ID>',
-    key: '',
-    elements: [],
+    key: '<KEY>',
+    elements: ["active", "inactive"],
     required: false,
-    default: '<DEFAULT>',
-    newKey: '' // optional
+    default: 'active',
+    newKey: '<NEW_KEY>' // optional
 );
 ```

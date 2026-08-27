@@ -14,9 +14,9 @@ $databases = new Databases($client);
 $result = $databases->createTextAttribute(
     databaseId: '<DATABASE_ID>',
     collectionId: '<COLLECTION_ID>',
-    key: '',
+    key: '<KEY>',
     required: false,
-    default: '<DEFAULT>', // optional
+    default: 'Hello World', // optional
     array: false, // optional
     encrypt: false // optional
 );

@@ -14,9 +14,9 @@ $databases = new Databases($client);
 $result = $databases->updateEmailAttribute(
     databaseId: '<DATABASE_ID>',
     collectionId: '<COLLECTION_ID>',
-    key: '',
+    key: '<KEY>',
     required: false,
     default: 'email@example.com',
-    newKey: '' // optional
+    newKey: '<NEW_KEY>' // optional
 );
 ```

@@ -16,7 +16,7 @@ $tablesDB = new TablesDB($client);
 $result = $tablesDB->createIndex(
     databaseId: '<DATABASE_ID>',
     tableId: '<TABLE_ID>',
-    key: '',
+    key: '<KEY>',
     type: TablesDBIndexType::KEY(),
     columns: [],
     orders: [OrderBy::ASC()], // optional

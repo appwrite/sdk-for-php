@@ -28,16 +28,14 @@ class Adapter implements JsonSerializable, Stringable
 
     public static function STATIC(): Adapter
     {
-        if (!isset(self::$STATIC)) {
-            self::$STATIC = new Adapter('static');
-        }
+        self::$STATIC ??= new Adapter('static');
+
         return self::$STATIC;
     }
     public static function SSR(): Adapter
     {
-        if (!isset(self::$SSR)) {
-            self::$SSR = new Adapter('ssr');
-        }
+        self::$SSR ??= new Adapter('ssr');
+
         return self::$SSR;
     }
 
