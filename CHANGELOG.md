@@ -1,7 +1,8 @@
 # Change Log
 
-## 29.1.0-rc.1
+## 30.0.0-rc.1
 
+* Breaking: `EmbeddingModel` no longer offers `embedding-gemma` or `bge-small`
 * Added: `documentsDB`, `vectorsDB`, `mysql`, `postgresql`, and `mongo` services, no longer hidden from server SDKs
 * Added: `DocumentsDBIndexType` and `VectorsDBIndexType` enums
 * Added: dedicated database models for branches, backups, restorations, poolers, PITR windows, extensions, and executions
