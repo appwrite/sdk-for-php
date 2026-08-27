@@ -14,4 +14,5 @@ $apps = new Apps($client);
 $result = $apps->updateTeam(
     appId: '<APP_ID>',
     teamId: '<TEAM_ID>'
-);```
+);
+```

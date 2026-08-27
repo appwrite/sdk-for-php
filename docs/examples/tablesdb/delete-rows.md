@@ -16,4 +16,5 @@ $result = $tablesDB->deleteRows(
     tableId: '<TABLE_ID>',
     queries: [], // optional
     transactionId: '<TRANSACTION_ID>' // optional
-);```
+);
+```

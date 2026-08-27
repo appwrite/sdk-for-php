@@ -13,4 +13,5 @@ $graphql = new Graphql($client);
 
 $result = $graphql->query(
     query: []
-);```
+);
+```

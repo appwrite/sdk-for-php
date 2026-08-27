@@ -1,27 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Services;
 
 use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
-use Appwrite\InputFile;
 
 class Webhooks extends Service
 {
-    public function __construct(Client $client)
-    {
-        parent::__construct($client);
-    }
-
     /**
      * Get a list of all webhooks belonging to the project. You can use the query
      * params to filter your results.
      *
-     * @param ?array $queries
-     * @param ?bool $total
      * @throws AppwriteException
-     * @return \Appwrite\Models\WebhookList
      */
     public function list(?array $queries = null, ?bool $total = null): \Appwrite\Models\WebhookList
     {
@@ -57,24 +50,13 @@ class Webhooks extends Service
         }
 
         return \Appwrite\Models\WebhookList::from($response);
-
     }
 
     /**
      * Create a new webhook. Use this endpoint to configure a URL that will
      * receive events from Appwrite when specific events occur.
      *
-     * @param string $webhookId
-     * @param string $url
-     * @param string $name
-     * @param array $events
-     * @param ?bool $enabled
-     * @param ?bool $tls
-     * @param ?string $authUsername
-     * @param ?string $authPassword
-     * @param ?string $secret
      * @throws AppwriteException
-     * @return \Appwrite\Models\Webhook
      */
     public function create(string $webhookId, string $url, string $name, array $events, ?bool $enabled = null, ?bool $tls = null, ?string $authUsername = null, ?string $authPassword = null, ?string $secret = null): \Appwrite\Models\Webhook
     {
@@ -124,16 +106,13 @@ class Webhooks extends Service
         }
 
         return \Appwrite\Models\Webhook::from($response);
-
     }
 
     /**
      * Get a webhook by its unique ID. This endpoint returns details about a
-     * specific webhook configured for a project. 
+     * specific webhook configured for a project.
      *
-     * @param string $webhookId
      * @throws AppwriteException
-     * @return \Appwrite\Models\Webhook
      */
     public function get(string $webhookId): \Appwrite\Models\Webhook
     {
@@ -162,23 +141,13 @@ class Webhooks extends Service
         }
 
         return \Appwrite\Models\Webhook::from($response);
-
     }
 
     /**
      * Update a webhook by its unique ID. Use this endpoint to update the URL,
      * events, or status of an existing webhook.
      *
-     * @param string $webhookId
-     * @param string $name
-     * @param string $url
-     * @param array $events
-     * @param ?bool $enabled
-     * @param ?bool $tls
-     * @param ?string $authUsername
-     * @param ?string $authPassword
      * @throws AppwriteException
-     * @return \Appwrite\Models\Webhook
      */
     public function update(string $webhookId, string $name, string $url, array $events, ?bool $enabled = null, ?bool $tls = null, ?string $authUsername = null, ?string $authPassword = null): \Appwrite\Models\Webhook
     {
@@ -227,16 +196,13 @@ class Webhooks extends Service
         }
 
         return \Appwrite\Models\Webhook::from($response);
-
     }
 
     /**
      * Delete a webhook by its unique ID. Once deleted, the webhook will no longer
-     * receive project events. 
+     * receive project events.
      *
-     * @param string $webhookId
      * @throws AppwriteException
-     * @return string
      */
     public function delete(string $webhookId): string
     {
@@ -253,15 +219,12 @@ class Webhooks extends Service
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 
     /**
@@ -269,10 +232,7 @@ class Webhooks extends Service
      * signing key used to sign and validate payload deliveries for a specific
      * webhook.
      *
-     * @param string $webhookId
-     * @param ?string $secret
      * @throws AppwriteException
-     * @return \Appwrite\Models\Webhook
      */
     public function updateSecret(string $webhookId, ?string $secret = null): \Appwrite\Models\Webhook
     {
@@ -303,6 +263,5 @@ class Webhooks extends Service
         }
 
         return \Appwrite\Models\Webhook::from($response);
-
     }
 }

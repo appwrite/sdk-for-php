@@ -20,4 +20,5 @@ $result = $messaging->createResendProvider(
     replyToName: '<REPLY_TO_NAME>', // optional
     replyToEmail: 'email@example.com', // optional
     enabled: false // optional
-);```
+);
+```

@@ -14,4 +14,5 @@ $storage = new Storage($client);
 $result = $storage->getFile(
     bucketId: '<BUCKET_ID>',
     fileId: '<FILE_ID>'
-);```
+);
+```

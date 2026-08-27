@@ -18,4 +18,5 @@ $result = $messaging->createTelesignProvider(
     customerId: '<CUSTOMER_ID>', // optional
     apiKey: '<API_KEY>', // optional
     enabled: false // optional
-);```
+);
+```

@@ -16,4 +16,5 @@ $result = $users->createArgon2User(
     email: 'email@example.com',
     password: 'password',
     name: '<NAME>' // optional
-);```
+);
+```

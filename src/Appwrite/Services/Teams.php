@@ -1,28 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Services;
 
 use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
-use Appwrite\InputFile;
 
 class Teams extends Service
 {
-    public function __construct(Client $client)
-    {
-        parent::__construct($client);
-    }
-
     /**
      * Get a list of all the teams in which the current user is a member. You can
      * use the parameters to filter your results.
      *
-     * @param ?array $queries
-     * @param ?string $search
-     * @param ?bool $total
      * @throws AppwriteException
-     * @return \Appwrite\Models\TeamList
      */
     public function list(?array $queries = null, ?string $search = null, ?bool $total = null): \Appwrite\Models\TeamList
     {
@@ -62,7 +54,6 @@ class Teams extends Service
         }
 
         return \Appwrite\Models\TeamList::from($response);
-
     }
 
     /**
@@ -70,11 +61,7 @@ class Teams extends Service
      * assigned as the owner of the team. Only the users with the owner role can
      * invite new members, add new owners and delete or update the team.
      *
-     * @param string $teamId
-     * @param string $name
-     * @param ?array $roles
      * @throws AppwriteException
-     * @return \Appwrite\Models\Team
      */
     public function create(string $teamId, string $name, ?array $roles = null): \Appwrite\Models\Team
     {
@@ -109,15 +96,12 @@ class Teams extends Service
         }
 
         return \Appwrite\Models\Team::from($response);
-
     }
 
     /**
      * Get a team by its ID. All team members have read access for this resource.
      *
-     * @param string $teamId
      * @throws AppwriteException
-     * @return \Appwrite\Models\Team
      */
     public function get(string $teamId): \Appwrite\Models\Team
     {
@@ -146,16 +130,12 @@ class Teams extends Service
         }
 
         return \Appwrite\Models\Team::from($response);
-
     }
 
     /**
      * Update the team's name by its unique ID.
      *
-     * @param string $teamId
-     * @param string $name
      * @throws AppwriteException
-     * @return \Appwrite\Models\Team
      */
     public function updateName(string $teamId, string $name): \Appwrite\Models\Team
     {
@@ -186,16 +166,13 @@ class Teams extends Service
         }
 
         return \Appwrite\Models\Team::from($response);
-
     }
 
     /**
      * Delete a team using its ID. Only team members with the owner role can
      * delete the team.
      *
-     * @param string $teamId
      * @throws AppwriteException
-     * @return string
      */
     public function delete(string $teamId): string
     {
@@ -212,25 +189,18 @@ class Teams extends Service
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 
     /**
      * List app installations on a team. Any team member can read installations.
      *
-     * @param string $teamId
-     * @param ?array $queries
-     * @param ?bool $total
      * @throws AppwriteException
-     * @return \Appwrite\Models\AppInstallationList
      */
     public function listInstallations(string $teamId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\AppInstallationList
     {
@@ -267,7 +237,6 @@ class Teams extends Service
         }
 
         return \Appwrite\Models\AppInstallationList::from($response);
-
     }
 
     /**
@@ -276,11 +245,7 @@ class Teams extends Service
      * mode can install apps on any team. The installation is granted the scopes
      * the app currently requests.
      *
-     * @param string $teamId
-     * @param string $appId
-     * @param ?string $authorizationDetails
      * @throws AppwriteException
-     * @return \Appwrite\Models\AppInstallation
      */
     public function createInstallation(string $teamId, string $appId, ?string $authorizationDetails = null): \Appwrite\Models\AppInstallation
     {
@@ -315,17 +280,13 @@ class Teams extends Service
         }
 
         return \Appwrite\Models\AppInstallation::from($response);
-
     }
 
     /**
      * Get an app installation on a team by its unique ID. Any team member can
      * read installations.
      *
-     * @param string $teamId
-     * @param string $installationId
      * @throws AppwriteException
-     * @return \Appwrite\Models\AppInstallation
      */
     public function getInstallation(string $teamId, string $installationId): \Appwrite\Models\AppInstallation
     {
@@ -355,7 +316,6 @@ class Teams extends Service
         }
 
         return \Appwrite\Models\AppInstallation::from($response);
-
     }
 
     /**
@@ -364,11 +324,7 @@ class Teams extends Service
      * to the scopes the app currently requests; previously issued installation
      * access tokens are revoked.
      *
-     * @param string $teamId
-     * @param string $installationId
-     * @param ?string $authorizationDetails
      * @throws AppwriteException
-     * @return \Appwrite\Models\AppInstallation
      */
     public function updateInstallation(string $teamId, string $installationId, ?string $authorizationDetails = null): \Appwrite\Models\AppInstallation
     {
@@ -400,7 +356,6 @@ class Teams extends Service
         }
 
         return \Appwrite\Models\AppInstallation::from($response);
-
     }
 
     /**
@@ -408,10 +363,7 @@ class Teams extends Service
      * the owner role can remove installations. Previously issued installation
      * access tokens are revoked.
      *
-     * @param string $teamId
-     * @param string $installationId
      * @throws AppwriteException
-     * @return string
      */
     public function deleteInstallation(string $teamId, string $installationId): string
     {
@@ -430,15 +382,12 @@ class Teams extends Service
         $apiHeaders['content-type'] = 'application/json';
         $apiHeaders['accept'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 
     /**
@@ -446,12 +395,7 @@ class Teams extends Service
      * members have read access to this endpoint. Hide sensitive attributes from
      * the response by toggling membership privacy in the Console.
      *
-     * @param string $teamId
-     * @param ?array $queries
-     * @param ?string $search
-     * @param ?bool $total
      * @throws AppwriteException
-     * @return \Appwrite\Models\MembershipList
      */
     public function listMemberships(string $teamId, ?array $queries = null, ?string $search = null, ?bool $total = null): \Appwrite\Models\MembershipList
     {
@@ -492,7 +436,6 @@ class Teams extends Service
         }
 
         return \Appwrite\Models\MembershipList::from($response);
-
     }
 
     /**
@@ -502,31 +445,22 @@ class Teams extends Service
      * team to the invited user, and an account will be created for them if one
      * doesn't exist. If initiated from a Server SDK, the new member will be added
      * automatically to the team.
-     * 
+     *
      * You only need to provide one of a user ID, email, or phone number. Appwrite
      * will prioritize accepting the user ID > email > phone number if you provide
      * more than one of these parameters.
-     * 
+     *
      * Use the `url` parameter to redirect the user from the invitation email to
      * your app. After the user is redirected, use the [Update Team Membership
      * Status](https://appwrite.io/docs/references/cloud/client-web/teams#updateMembershipStatus)
-     * endpoint to allow the user to accept the invitation to the team. 
-     * 
+     * endpoint to allow the user to accept the invitation to the team.
+     *
      * Please note that to avoid a [Redirect
      * Attack](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.md)
      * Appwrite will accept the only redirect URLs under the domains you have
      * added as a platform on the Appwrite Console.
-     * 
      *
-     * @param string $teamId
-     * @param array $roles
-     * @param ?string $email
-     * @param ?string $userId
-     * @param ?string $phone
-     * @param ?string $url
-     * @param ?string $name
      * @throws AppwriteException
-     * @return \Appwrite\Models\Membership
      */
     public function createMembership(string $teamId, array $roles, ?string $email = null, ?string $userId = null, ?string $phone = null, ?string $url = null, ?string $name = null): \Appwrite\Models\Membership
     {
@@ -577,7 +511,6 @@ class Teams extends Service
         }
 
         return \Appwrite\Models\Membership::from($response);
-
     }
 
     /**
@@ -585,10 +518,7 @@ class Teams extends Service
      * access for this resource. Hide sensitive attributes from the response by
      * toggling membership privacy in the Console.
      *
-     * @param string $teamId
-     * @param string $membershipId
      * @throws AppwriteException
-     * @return \Appwrite\Models\Membership
      */
     public function getMembership(string $teamId, string $membershipId): \Appwrite\Models\Membership
     {
@@ -618,20 +548,14 @@ class Teams extends Service
         }
 
         return \Appwrite\Models\Membership::from($response);
-
     }
 
     /**
      * Modify the roles of a team member. Only team members with the owner role
      * have access to this endpoint. Learn more about [roles and
      * permissions](https://appwrite.io/docs/permissions).
-     * 
      *
-     * @param string $teamId
-     * @param string $membershipId
-     * @param array $roles
      * @throws AppwriteException
-     * @return \Appwrite\Models\Membership
      */
     public function updateMembership(string $teamId, string $membershipId, array $roles): \Appwrite\Models\Membership
     {
@@ -663,7 +587,6 @@ class Teams extends Service
         }
 
         return \Appwrite\Models\Membership::from($response);
-
     }
 
     /**
@@ -671,10 +594,7 @@ class Teams extends Service
      * the membership of any other team member. You can also use this endpoint to
      * delete a user membership even if it is not accepted.
      *
-     * @param string $teamId
-     * @param string $membershipId
      * @throws AppwriteException
-     * @return string
      */
     public function deleteMembership(string $teamId, string $membershipId): string
     {
@@ -692,32 +612,23 @@ class Teams extends Service
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 
     /**
      * Use this endpoint to allow a user to accept an invitation to join a team
      * after being redirected back to your app from the invitation email received
      * by the user.
-     * 
+     *
      * If the request is successful, a session for the user is automatically
      * created.
-     * 
      *
-     * @param string $teamId
-     * @param string $membershipId
-     * @param string $userId
-     * @param string $secret
      * @throws AppwriteException
-     * @return \Appwrite\Models\Membership
      */
     public function updateMembershipStatus(string $teamId, string $membershipId, string $userId, string $secret): \Appwrite\Models\Membership
     {
@@ -750,7 +661,6 @@ class Teams extends Service
         }
 
         return \Appwrite\Models\Membership::from($response);
-
     }
 
     /**
@@ -758,9 +668,7 @@ class Teams extends Service
      * need to be shared by all team members, prefer storing them in [user
      * preferences](https://appwrite.io/docs/references/cloud/client-web/account#getPrefs).
      *
-     * @param string $teamId
      * @throws AppwriteException
-     * @return \Appwrite\Models\Preferences
      */
     public function getPrefs(string $teamId): \Appwrite\Models\Preferences
     {
@@ -789,7 +697,6 @@ class Teams extends Service
         }
 
         return \Appwrite\Models\Preferences::from($response);
-
     }
 
     /**
@@ -797,10 +704,7 @@ class Teams extends Service
      * stored as is and replaces any previous value. The maximum allowed prefs
      * size is 64kB and throws an error if exceeded.
      *
-     * @param string $teamId
-     * @param array $prefs
      * @throws AppwriteException
-     * @return \Appwrite\Models\Preferences
      */
     public function updatePrefs(string $teamId, array $prefs): \Appwrite\Models\Preferences
     {
@@ -831,6 +735,5 @@ class Teams extends Service
         }
 
         return \Appwrite\Models\Preferences::from($response);
-
     }
 }

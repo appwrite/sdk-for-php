@@ -36,7 +36,7 @@ GET https://cloud.appwrite.io/v1/proxy/rules
 POST https://cloud.appwrite.io/v1/proxy/rules/api
 ```
 
-** Create a new proxy rule for serving Appwrite&#039;s API on custom domain.
+** Create a new proxy rule for serving Appwrite's API on custom domain.
 
 Rule ID is automatically generated as MD5 hash of a rule domain for performance purposes. **
 

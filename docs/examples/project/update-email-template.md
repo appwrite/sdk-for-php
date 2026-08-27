@@ -22,4 +22,5 @@ $result = $project->updateEmailTemplate(
     senderEmail: 'email@example.com', // optional
     replyToEmail: 'email@example.com', // optional
     replyToName: '<REPLY_TO_NAME>' // optional
-);```
+);
+```

@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Organization
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class Organization
 {
@@ -182,19 +186,19 @@ readonly class Organization
             markedForDeletion: $data['markedForDeletion'],
             platform: $data['platform'],
             projects: $data['projects'],
-            billingBudget: array_key_exists('billingBudget', $data) ? $data['billingBudget'] : null,
-            billingTrialStartDate: array_key_exists('billingTrialStartDate', $data) ? $data['billingTrialStartDate'] : null,
-            billingAddressId: array_key_exists('billingAddressId', $data) ? $data['billingAddressId'] : null,
-            backupPaymentMethodId: array_key_exists('backupPaymentMethodId', $data) ? $data['backupPaymentMethodId'] : null,
-            remarks: array_key_exists('remarks', $data) ? $data['remarks'] : null,
-            agreementBAA: array_key_exists('agreementBAA', $data) ? $data['agreementBAA'] : null,
-            programManagerName: array_key_exists('programManagerName', $data) ? $data['programManagerName'] : null,
-            programManagerCalendar: array_key_exists('programManagerCalendar', $data) ? $data['programManagerCalendar'] : null,
-            programDiscordChannelName: array_key_exists('programDiscordChannelName', $data) ? $data['programDiscordChannelName'] : null,
-            programDiscordChannelUrl: array_key_exists('programDiscordChannelUrl', $data) ? $data['programDiscordChannelUrl'] : null,
+            billingBudget: $data['billingBudget'] ?? null,
+            billingTrialStartDate: $data['billingTrialStartDate'] ?? null,
+            billingAddressId: $data['billingAddressId'] ?? null,
+            backupPaymentMethodId: $data['backupPaymentMethodId'] ?? null,
+            remarks: $data['remarks'] ?? null,
+            agreementBAA: $data['agreementBAA'] ?? null,
+            programManagerName: $data['programManagerName'] ?? null,
+            programManagerCalendar: $data['programManagerCalendar'] ?? null,
+            programDiscordChannelName: $data['programDiscordChannelName'] ?? null,
+            programDiscordChannelUrl: $data['programDiscordChannelUrl'] ?? null,
             billingLimits: array_key_exists('billingLimits', $data) ? static::hydrateTypedValue(BillingLimits::class, $data['billingLimits'], true) : null,
-            billingPlanDowngrade: array_key_exists('billingPlanDowngrade', $data) ? $data['billingPlanDowngrade'] : null,
-            billingTaxId: array_key_exists('billingTaxId', $data) ? $data['billingTaxId'] : null
+            billingPlanDowngrade: $data['billingPlanDowngrade'] ?? null,
+            billingTaxId: $data['billingTaxId'] ?? null
         );
     }
 
@@ -203,7 +207,7 @@ readonly class Organization
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             '$createdAt' => static::serializeValue($this->createdAt),
             '$updatedAt' => static::serializeValue($this->updatedAt),
@@ -240,7 +244,5 @@ readonly class Organization
             'platform' => static::serializeValue($this->platform),
             'projects' => static::serializeValue($this->projects)
         ];
-
-        return $result;
     }
 }

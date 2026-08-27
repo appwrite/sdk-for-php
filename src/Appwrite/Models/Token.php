@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Token
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class Token
 {
@@ -68,7 +72,7 @@ readonly class Token
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             '$createdAt' => static::serializeValue($this->createdAt),
             'userId' => static::serializeValue($this->userId),
@@ -76,7 +80,5 @@ readonly class Token
             'expire' => static::serializeValue($this->expire),
             'phrase' => static::serializeValue($this->phrase)
         ];
-
-        return $result;
     }
 }

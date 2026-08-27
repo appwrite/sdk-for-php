@@ -1,20 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Enums;
 
 use JsonSerializable;
+use Stringable;
 
-class VCSReferenceType implements JsonSerializable
+class VCSReferenceType implements JsonSerializable, Stringable
 {
     private static VCSReferenceType $BRANCH;
     private static VCSReferenceType $COMMIT;
     private static VCSReferenceType $TAG;
 
-    private string $value;
-
-    private function __construct(string $value)
+    private function __construct(private readonly string $value)
     {
-        $this->value = $value;
     }
 
     public function __toString(): string

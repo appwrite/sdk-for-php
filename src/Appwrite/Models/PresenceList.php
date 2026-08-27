@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Presences List
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class PresenceList
 {
@@ -49,11 +53,9 @@ readonly class PresenceList
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'total' => static::serializeValue($this->total),
             'presences' => static::serializeValue($this->presences)
         ];
-
-        return $result;
     }
 }

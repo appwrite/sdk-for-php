@@ -22,4 +22,5 @@ $result = $tablesDB->createTable(
     enabled: false, // optional
     columns: [], // optional
     indexes: [] // optional
-);```
+);
+```

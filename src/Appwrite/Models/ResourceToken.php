@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * ResourceToken
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class ResourceToken
 {
@@ -74,7 +78,7 @@ readonly class ResourceToken
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             '$createdAt' => static::serializeValue($this->createdAt),
             'resourceId' => static::serializeValue($this->resourceId),
@@ -83,7 +87,5 @@ readonly class ResourceToken
             'secret' => static::serializeValue($this->secret),
             'accessedAt' => static::serializeValue($this->accessedAt)
         ];
-
-        return $result;
     }
 }

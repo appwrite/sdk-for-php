@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Continent
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class Continent
 {
@@ -44,11 +48,9 @@ readonly class Continent
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'name' => static::serializeValue($this->name),
             'code' => static::serializeValue($this->code)
         ];
-
-        return $result;
     }
 }

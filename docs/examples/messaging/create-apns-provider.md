@@ -20,4 +20,5 @@ $result = $messaging->createAPNSProvider(
     bundleId: '<BUNDLE_ID>', // optional
     sandbox: false, // optional
     enabled: false // optional
-);```
+);
+```

@@ -13,4 +13,5 @@ $databases = new Databases($client);
 
 $result = $databases->deleteTransaction(
     transactionId: '<TRANSACTION_ID>'
-);```
+);
+```

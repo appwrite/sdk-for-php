@@ -1,11 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 use Appwrite\Enums\MessageStatus;
 
 /**
  * Message
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class Message
 {
@@ -92,9 +96,9 @@ readonly class Message
             deliveredTotal: $data['deliveredTotal'],
             data: $data['data'],
             status: static::hydrateTypedValue(MessageStatus::class, $data['status']),
-            scheduledAt: array_key_exists('scheduledAt', $data) ? $data['scheduledAt'] : null,
-            deliveredAt: array_key_exists('deliveredAt', $data) ? $data['deliveredAt'] : null,
-            deliveryErrors: array_key_exists('deliveryErrors', $data) ? $data['deliveryErrors'] : null
+            scheduledAt: $data['scheduledAt'] ?? null,
+            deliveredAt: $data['deliveredAt'] ?? null,
+            deliveryErrors: $data['deliveryErrors'] ?? null
         );
     }
 
@@ -103,7 +107,7 @@ readonly class Message
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             '$createdAt' => static::serializeValue($this->createdAt),
             '$updatedAt' => static::serializeValue($this->updatedAt),
@@ -118,7 +122,5 @@ readonly class Message
             'data' => static::serializeValue($this->data),
             'status' => static::serializeValue($this->status)
         ];
-
-        return $result;
     }
 }

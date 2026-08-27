@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Enums;
 
 use JsonSerializable;
+use Stringable;
 
-class ProjectOAuthProviderId implements JsonSerializable
+class ProjectOAuthProviderId implements JsonSerializable, Stringable
 {
     private static ProjectOAuthProviderId $AMAZON;
     private static ProjectOAuthProviderId $APPLE;
@@ -26,6 +29,7 @@ class ProjectOAuthProviderId implements JsonSerializable
     private static ProjectOAuthProviderId $GITHUB;
     private static ProjectOAuthProviderId $GITLAB;
     private static ProjectOAuthProviderId $GOOGLE;
+    private static ProjectOAuthProviderId $HUGGINGFACE;
     private static ProjectOAuthProviderId $KEYCLOAK;
     private static ProjectOAuthProviderId $KICK;
     private static ProjectOAuthProviderId $LINKEDIN;
@@ -51,11 +55,8 @@ class ProjectOAuthProviderId implements JsonSerializable
     private static ProjectOAuthProviderId $ZOHO;
     private static ProjectOAuthProviderId $ZOOM;
 
-    private string $value;
-
-    private function __construct(string $value)
+    private function __construct(private readonly string $value)
     {
-        $this->value = $value;
     }
 
     public function __toString(): string
@@ -207,6 +208,13 @@ class ProjectOAuthProviderId implements JsonSerializable
             self::$GOOGLE = new ProjectOAuthProviderId('google');
         }
         return self::$GOOGLE;
+    }
+    public static function HUGGINGFACE(): ProjectOAuthProviderId
+    {
+        if (!isset(self::$HUGGINGFACE)) {
+            self::$HUGGINGFACE = new ProjectOAuthProviderId('huggingface');
+        }
+        return self::$HUGGINGFACE;
     }
     public static function KEYCLOAK(): ProjectOAuthProviderId
     {
@@ -400,6 +408,7 @@ class ProjectOAuthProviderId implements JsonSerializable
             'github' => self::GITHUB(),
             'gitlab' => self::GITLAB(),
             'google' => self::GOOGLE(),
+            'huggingface' => self::HUGGINGFACE(),
             'keycloak' => self::KEYCLOAK(),
             'kick' => self::KICK(),
             'linkedin' => self::LINKEDIN(),

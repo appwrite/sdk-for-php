@@ -13,4 +13,5 @@ $project = new Project($client);
 
 $result = $project->updateSessionLimitPolicy(
     total: 1
-);```
+);
+```

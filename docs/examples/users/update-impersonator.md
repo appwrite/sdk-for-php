@@ -14,4 +14,5 @@ $users = new Users($client);
 $result = $users->updateImpersonator(
     userId: '<USER_ID>',
     impersonator: false
-);```
+);
+```

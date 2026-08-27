@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * EmailTemplate
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class EmailTemplate
 {
@@ -80,7 +84,7 @@ readonly class EmailTemplate
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'templateId' => static::serializeValue($this->templateId),
             'locale' => static::serializeValue($this->locale),
             'message' => static::serializeValue($this->message),
@@ -90,7 +94,5 @@ readonly class EmailTemplate
             'replyToName' => static::serializeValue($this->replyToName),
             'subject' => static::serializeValue($this->subject)
         ];
-
-        return $result;
     }
 }

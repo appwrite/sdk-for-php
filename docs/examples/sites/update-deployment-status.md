@@ -14,4 +14,5 @@ $sites = new Sites($client);
 $result = $sites->updateDeploymentStatus(
     siteId: '<SITE_ID>',
     deploymentId: '<DEPLOYMENT_ID>'
-);```
+);
+```

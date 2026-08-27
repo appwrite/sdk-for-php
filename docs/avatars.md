@@ -95,9 +95,9 @@ This endpoint does not follow HTTP redirects. **
 GET https://cloud.appwrite.io/v1/avatars/initials
 ```
 
-** Use this endpoint to show your user initials avatar icon on your website or app. By default, this route will try to print your logged-in user name or email initials. You can also overwrite the user name if you pass the &#039;name&#039; parameter. If no name is given and no user is logged, an empty avatar will be returned.
+** Use this endpoint to show your user initials avatar icon on your website or app. By default, this route will try to print your logged-in user name or email initials. You can also overwrite the user name if you pass the 'name' parameter. If no name is given and no user is logged, an empty avatar will be returned.
 
-You can use the color and background params to change the avatar colors. By default, a random theme will be selected. The random theme will persist for the user&#039;s initials when reloading the same theme will always return for the same initials.
+You can use the color and background params to change the avatar colors. By default, a random theme will be selected. The random theme will persist for the user's initials when reloading the same theme will always return for the same initials.
 
 When one dimension is specified and the other is 0, the image is scaled with preserved aspect ratio. If both dimensions are 0, the API provides an image at source quality. If dimensions are not specified, the default size of image returned is 100x100px.
  **
@@ -110,6 +110,28 @@ When one dimension is specified and the other is 0, the image is scaled with pre
 | width | integer | Image width. Pass an integer between 0 to 2000. Defaults to 100. | 500 |
 | height | integer | Image height. Pass an integer between 0 to 2000. Defaults to 100. | 500 |
 | background | string | Changes background color. By default a random color will be picked and stay will persistent to the given name. |  |
+
+
+```http request
+GET https://cloud.appwrite.io/v1/avatars/photo
+```
+
+** Returns the best available profile photo for a user. The endpoint tries each source in priority order and returns the first successful result: OAuth2 identity photo, Gravatar, Libravatar, Appwrite Initials, built-in static fallback.
+
+The photo resolves for the currently authenticated user unless `userId` points at another user. Passing `emailHash` and/or `name` resolves the avatar from those values alone: the hash is looked up on Gravatar and Libravatar, the name is rendered as initials, and the user's own identity photos, email, and name leave the chain so they never shadow the avatar being asked for. Emails are only ever accepted pre-hashed, so no address ends up in a URL. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| width | integer | Output image width in pixels. Pass an integer between 0 and 2000. Defaults to 256. | 256 |
+| height | integer | Output image height in pixels. Pass an integer between 0 and 2000. Defaults to 256. | 256 |
+| quality | integer | Output image quality between 0 and 100. Defaults to 100. | 100 |
+| output | string | Output image format. Defaults to 'png'. | png |
+| rating | string | Maximum image rating to fetch from Gravatar/Libravatar. Defaults to 'g'. | g |
+| userId | string | User ID to resolve the photo for. Defaults to 'current()' for the currently authenticated user. | current() |
+| emailHash | string | SHA256 hash of the lowercase, trimmed email address to look up on Gravatar and Libravatar instead of the user's own photo sources. Pass the hash, never the address itself. |  |
+| name | string | Name to render initials from instead of the user's own photo sources. Max length: 128 chars. |  |
 
 
 ```http request

@@ -1,29 +1,24 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Services;
 
 use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
-use Appwrite\InputFile;
 
 class Locale extends Service
 {
-    public function __construct(Client $client)
-    {
-        parent::__construct($client);
-    }
-
     /**
      * Get the current user location based on IP. Returns an object with user
      * country code, country name, continent name, continent code, ip address and
      * suggested currency. You can use the locale header to get the data in a
      * supported language.
-     * 
+     *
      * ([IP Geolocation by DB-IP](https://db-ip.com))
      *
      * @throws AppwriteException
-     * @return \Appwrite\Models\Locale
      */
     public function get(): \Appwrite\Models\Locale
     {
@@ -51,7 +46,6 @@ class Locale extends Service
         }
 
         return \Appwrite\Models\Locale::from($response);
-
     }
 
     /**
@@ -59,7 +53,6 @@ class Locale extends Service
      * 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).
      *
      * @throws AppwriteException
-     * @return \Appwrite\Models\LocaleCodeList
      */
     public function listCodes(): \Appwrite\Models\LocaleCodeList
     {
@@ -87,7 +80,6 @@ class Locale extends Service
         }
 
         return \Appwrite\Models\LocaleCodeList::from($response);
-
     }
 
     /**
@@ -95,7 +87,6 @@ class Locale extends Service
      * supported language.
      *
      * @throws AppwriteException
-     * @return \Appwrite\Models\ContinentList
      */
     public function listContinents(): \Appwrite\Models\ContinentList
     {
@@ -123,7 +114,6 @@ class Locale extends Service
         }
 
         return \Appwrite\Models\ContinentList::from($response);
-
     }
 
     /**
@@ -131,7 +121,6 @@ class Locale extends Service
      * supported language.
      *
      * @throws AppwriteException
-     * @return \Appwrite\Models\CountryList
      */
     public function listCountries(): \Appwrite\Models\CountryList
     {
@@ -159,7 +148,6 @@ class Locale extends Service
         }
 
         return \Appwrite\Models\CountryList::from($response);
-
     }
 
     /**
@@ -167,7 +155,6 @@ class Locale extends Service
      * locale header to get the data in a supported language.
      *
      * @throws AppwriteException
-     * @return \Appwrite\Models\CountryList
      */
     public function listCountriesEU(): \Appwrite\Models\CountryList
     {
@@ -195,7 +182,6 @@ class Locale extends Service
         }
 
         return \Appwrite\Models\CountryList::from($response);
-
     }
 
     /**
@@ -203,7 +189,6 @@ class Locale extends Service
      * data in a supported language.
      *
      * @throws AppwriteException
-     * @return \Appwrite\Models\PhoneList
      */
     public function listCountriesPhones(): \Appwrite\Models\PhoneList
     {
@@ -231,7 +216,6 @@ class Locale extends Service
         }
 
         return \Appwrite\Models\PhoneList::from($response);
-
     }
 
     /**
@@ -240,7 +224,6 @@ class Locale extends Service
      * header to get the data in a supported language.
      *
      * @throws AppwriteException
-     * @return \Appwrite\Models\CurrencyList
      */
     public function listCurrencies(): \Appwrite\Models\CurrencyList
     {
@@ -268,7 +251,6 @@ class Locale extends Service
         }
 
         return \Appwrite\Models\CurrencyList::from($response);
-
     }
 
     /**
@@ -276,7 +258,6 @@ class Locale extends Service
      * in English, and name in the respective language.
      *
      * @throws AppwriteException
-     * @return \Appwrite\Models\LanguageList
      */
     public function listLanguages(): \Appwrite\Models\LanguageList
     {
@@ -304,6 +285,5 @@ class Locale extends Service
         }
 
         return \Appwrite\Models\LanguageList::from($response);
-
     }
 }

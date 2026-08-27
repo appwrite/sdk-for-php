@@ -17,4 +17,5 @@ $result = $backups->updatePolicy(
     retention: 1, // optional
     schedule: '', // optional
     enabled: false // optional
-);```
+);
+```

@@ -14,4 +14,5 @@ $organization = new Organization($client);
 $result = $organization->listKeys(
     queries: [], // optional
     total: false // optional
-);```
+);
+```

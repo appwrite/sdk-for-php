@@ -25,4 +25,5 @@ $result = $oauth2->createPAR(
     authorizationDetails: '<AUTHORIZATION_DETAILS>', // optional
     resource: '', // optional
     audience: '<AUDIENCE>' // optional
-);```
+);
+```

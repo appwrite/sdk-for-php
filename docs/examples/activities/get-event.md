@@ -13,4 +13,5 @@ $activities = new Activities($client);
 
 $result = $activities->getEvent(
     eventId: '<EVENT_ID>'
-);```
+);
+```

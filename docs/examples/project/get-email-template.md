@@ -16,4 +16,5 @@ $project = new Project($client);
 $result = $project->getEmailTemplate(
     templateId: ProjectEmailTemplateId::VERIFICATION(),
     locale: ProjectEmailTemplateLocale::AF() // optional
-);```
+);
+```

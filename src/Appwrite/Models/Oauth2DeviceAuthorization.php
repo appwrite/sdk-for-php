@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * OAuth2 Device Authorization
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class Oauth2DeviceAuthorization
 {
@@ -68,7 +72,7 @@ readonly class Oauth2DeviceAuthorization
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'device_code' => static::serializeValue($this->deviceCode),
             'user_code' => static::serializeValue($this->userCode),
             'verification_uri' => static::serializeValue($this->verificationUri),
@@ -76,7 +80,5 @@ readonly class Oauth2DeviceAuthorization
             'expires_in' => static::serializeValue($this->expiresIn),
             'interval' => static::serializeValue($this->interval)
         ];
-
-        return $result;
     }
 }

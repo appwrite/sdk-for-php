@@ -15,4 +15,5 @@ $result = $functions->listVariables(
     functionId: '<FUNCTION_ID>',
     queries: [], // optional
     total: false // optional
-);```
+);
+```

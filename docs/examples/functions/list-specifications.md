@@ -13,4 +13,5 @@ $functions = new Functions($client);
 
 $result = $functions->listSpecifications(
     type: 'runtimes' // optional
-);```
+);
+```

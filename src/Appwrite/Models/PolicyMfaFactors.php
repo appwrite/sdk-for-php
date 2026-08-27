@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Policy MFA Factors
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class PolicyMfaFactors
 {
@@ -62,14 +66,12 @@ readonly class PolicyMfaFactors
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             'totp' => static::serializeValue($this->totp),
             'email' => static::serializeValue($this->email),
             'phone' => static::serializeValue($this->phone),
             'custom' => static::serializeValue($this->custom)
         ];
-
-        return $result;
     }
 }

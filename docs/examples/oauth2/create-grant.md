@@ -13,4 +13,5 @@ $oauth2 = new Oauth2($client);
 
 $result = $oauth2->createGrant(
     userCode: '<USER_CODE>'
-);```
+);
+```

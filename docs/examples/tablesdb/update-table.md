@@ -21,4 +21,5 @@ $result = $tablesDB->updateTable(
     rowSecurity: false, // optional
     enabled: false, // optional
     purge: false // optional
-);```
+);
+```

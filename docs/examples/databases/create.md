@@ -15,4 +15,5 @@ $result = $databases->create(
     databaseId: '<DATABASE_ID>',
     name: '<NAME>',
     enabled: false // optional
-);```
+);
+```

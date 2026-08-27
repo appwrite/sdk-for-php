@@ -18,4 +18,5 @@ $result = $users->createSHAUser(
     password: 'password',
     passwordVersion: PasswordHash::SHA1(), // optional
     name: '<NAME>' // optional
-);```
+);
+```

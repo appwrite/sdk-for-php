@@ -15,4 +15,5 @@ $result = $messaging->createTopic(
     topicId: '<TOPIC_ID>',
     name: '<NAME>',
     subscribe: ["any"] // optional
-);```
+);
+```

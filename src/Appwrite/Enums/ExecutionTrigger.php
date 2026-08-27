@@ -1,20 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Enums;
 
 use JsonSerializable;
+use Stringable;
 
-class ExecutionTrigger implements JsonSerializable
+class ExecutionTrigger implements JsonSerializable, Stringable
 {
     private static ExecutionTrigger $HTTP;
     private static ExecutionTrigger $SCHEDULE;
     private static ExecutionTrigger $EVENT;
 
-    private string $value;
-
-    private function __construct(string $value)
+    private function __construct(private readonly string $value)
     {
-        $this->value = $value;
     }
 
     public function __toString(): string

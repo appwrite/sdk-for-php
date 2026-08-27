@@ -21,4 +21,5 @@ $result = $databases->createIndex(
     attributes: [],
     orders: [OrderBy::ASC()], // optional
     lengths: [] // optional
-);```
+);
+```

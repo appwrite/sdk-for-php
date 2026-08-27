@@ -13,4 +13,5 @@ $teams = new Teams($client);
 
 $result = $teams->get(
     teamId: '<TEAM_ID>'
-);```
+);
+```

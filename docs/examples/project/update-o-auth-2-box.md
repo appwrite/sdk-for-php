@@ -15,4 +15,5 @@ $result = $project->updateOAuth2Box(
     clientId: '<CLIENT_ID>', // optional
     clientSecret: '<CLIENT_SECRET>', // optional
     enabled: false // optional
-);```
+);
+```

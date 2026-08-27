@@ -14,4 +14,5 @@ $tablesDB = new TablesDB($client);
 $result = $tablesDB->createFailover(
     databaseId: '<DATABASE_ID>',
     targetReplicaId: '<TARGET_REPLICA_ID>' // optional
-);```
+);
+```

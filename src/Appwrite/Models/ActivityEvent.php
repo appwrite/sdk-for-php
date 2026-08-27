@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * ActivityEvent
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class ActivityEvent
 {
@@ -206,7 +210,7 @@ readonly class ActivityEvent
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             'actorType' => static::serializeValue($this->actorType),
             'actorId' => static::serializeValue($this->actorId),
@@ -237,7 +241,5 @@ readonly class ActivityEvent
             'sdk' => static::serializeValue($this->sdk),
             'sdkVersion' => static::serializeValue($this->sdkVersion)
         ];
-
-        return $result;
     }
 }

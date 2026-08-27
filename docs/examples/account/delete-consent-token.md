@@ -14,4 +14,5 @@ $account = new Account($client);
 $result = $account->deleteConsentToken(
     consentId: '<CONSENT_ID>',
     tokenId: '<TOKEN_ID>'
-);```
+);
+```

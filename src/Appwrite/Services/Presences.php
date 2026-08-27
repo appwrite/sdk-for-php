@@ -1,28 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Services;
 
 use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
-use Appwrite\InputFile;
 
 class Presences extends Service
 {
-    public function __construct(Client $client)
-    {
-        parent::__construct($client);
-    }
-
     /**
      * List presence logs. Expired entries are filtered out automatically.
-     * 
      *
-     * @param ?array $queries
-     * @param ?bool $total
-     * @param ?int $ttl
      * @throws AppwriteException
-     * @return \Appwrite\Models\PresenceList
      */
     public function list(?array $queries = null, ?bool $total = null, ?int $ttl = null): \Appwrite\Models\PresenceList
     {
@@ -62,17 +53,13 @@ class Presences extends Service
         }
 
         return \Appwrite\Models\PresenceList::from($response);
-
     }
 
     /**
      * Get a presence log by its unique ID. Entries whose `expiresAt` is in the
      * past are treated as not found.
-     * 
      *
-     * @param string $presenceId
      * @throws AppwriteException
-     * @return \Appwrite\Models\Presence
      */
     public function get(string $presenceId): \Appwrite\Models\Presence
     {
@@ -101,21 +88,12 @@ class Presences extends Service
         }
 
         return \Appwrite\Models\Presence::from($response);
-
     }
 
     /**
      * Create or update a presence log by its user ID.
-     * 
      *
-     * @param string $presenceId
-     * @param string $userId
-     * @param string $status
-     * @param ?array $permissions
-     * @param ?string $expiresAt
-     * @param ?array $metadata
      * @throws AppwriteException
-     * @return \Appwrite\Models\Presence
      */
     public function upsert(string $presenceId, string $userId, string $status, ?array $permissions = null, ?string $expiresAt = null, ?array $metadata = null): \Appwrite\Models\Presence
     {
@@ -159,23 +137,13 @@ class Presences extends Service
         }
 
         return \Appwrite\Models\Presence::from($response);
-
     }
 
     /**
      * Update a presence log by its unique ID. Using the patch method you can pass
      * only specific fields that will get updated.
-     * 
      *
-     * @param string $presenceId
-     * @param string $userId
-     * @param ?string $status
-     * @param ?string $expiresAt
-     * @param ?array $metadata
-     * @param ?array $permissions
-     * @param ?bool $purge
      * @throws AppwriteException
-     * @return \Appwrite\Models\Presence
      */
     public function update(string $presenceId, string $userId, ?string $status = null, ?string $expiresAt = null, ?array $metadata = null, ?array $permissions = null, ?bool $purge = null): \Appwrite\Models\Presence
     {
@@ -226,16 +194,12 @@ class Presences extends Service
         }
 
         return \Appwrite\Models\Presence::from($response);
-
     }
 
     /**
      * Delete a presence log by its unique ID.
-     * 
      *
-     * @param string $presenceId
      * @throws AppwriteException
-     * @return string
      */
     public function delete(string $presenceId): string
     {
@@ -252,14 +216,11 @@ class Presences extends Service
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 }

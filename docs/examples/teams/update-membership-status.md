@@ -16,4 +16,5 @@ $result = $teams->updateMembershipStatus(
     membershipId: '<MEMBERSHIP_ID>',
     userId: '<USER_ID>',
     secret: '<SECRET>'
-);```
+);
+```

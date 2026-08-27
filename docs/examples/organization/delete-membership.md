@@ -13,4 +13,5 @@ $organization = new Organization($client);
 
 $result = $organization->deleteMembership(
     membershipId: '<MEMBERSHIP_ID>'
-);```
+);
+```

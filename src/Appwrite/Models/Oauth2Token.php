@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * OAuth2 Token
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class Oauth2Token
 {
@@ -58,8 +62,8 @@ readonly class Oauth2Token
             expiresIn: $data['expires_in'],
             refreshToken: $data['refresh_token'],
             scope: $data['scope'],
-            authorizationDetails: array_key_exists('authorization_details', $data) ? $data['authorization_details'] : null,
-            idToken: array_key_exists('id_token', $data) ? $data['id_token'] : null
+            authorizationDetails: $data['authorization_details'] ?? null,
+            idToken: $data['id_token'] ?? null
         );
     }
 
@@ -68,7 +72,7 @@ readonly class Oauth2Token
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'access_token' => static::serializeValue($this->accessToken),
             'token_type' => static::serializeValue($this->tokenType),
             'expires_in' => static::serializeValue($this->expiresIn),
@@ -77,7 +81,5 @@ readonly class Oauth2Token
             'authorization_details' => static::serializeValue($this->authorizationDetails),
             'id_token' => static::serializeValue($this->idToken)
         ];
-
-        return $result;
     }
 }

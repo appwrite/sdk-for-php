@@ -1,34 +1,26 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Services;
 
 use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
-use Appwrite\InputFile;
 use Appwrite\Enums\InvalidationType;
 use Appwrite\Enums\StatusCode;
 use Appwrite\Enums\ProxyResourceType;
 
 class Proxy extends Service
 {
-    public function __construct(Client $client)
-    {
-        parent::__construct($client);
-    }
-
     /**
      * Create a new CDN cache invalidation for a domain. Executes a hard purge of
      * cached content.
-     * 
+     *
      * Depending on type, the invalidation purges a single cache tag, a single URL
      * path, or all cached content for the domain.
      *
-     * @param string $domain
-     * @param InvalidationType $type
-     * @param ?string $reference
      * @throws AppwriteException
-     * @return \Appwrite\Models\ProxyInvalidation
      */
     public function createInvalidation(string $domain, InvalidationType $type, ?string $reference = null): \Appwrite\Models\ProxyInvalidation
     {
@@ -63,17 +55,13 @@ class Proxy extends Service
         }
 
         return \Appwrite\Models\ProxyInvalidation::from($response);
-
     }
 
     /**
      * Get a list of all the proxy rules. You can use the query params to filter
      * your results.
      *
-     * @param ?array $queries
-     * @param ?bool $total
      * @throws AppwriteException
-     * @return \Appwrite\Models\ProxyRuleList
      */
     public function listRules(?array $queries = null, ?bool $total = null): \Appwrite\Models\ProxyRuleList
     {
@@ -109,18 +97,15 @@ class Proxy extends Service
         }
 
         return \Appwrite\Models\ProxyRuleList::from($response);
-
     }
 
     /**
      * Create a new proxy rule for serving Appwrite's API on custom domain.
-     * 
+     *
      * Rule ID is automatically generated as MD5 hash of a rule domain for
      * performance purposes.
      *
-     * @param string $domain
      * @throws AppwriteException
-     * @return \Appwrite\Models\ProxyRule
      */
     public function createAPIRule(string $domain): \Appwrite\Models\ProxyRule
     {
@@ -150,20 +135,15 @@ class Proxy extends Service
         }
 
         return \Appwrite\Models\ProxyRule::from($response);
-
     }
 
     /**
      * Create a new proxy rule for executing Appwrite Function on custom domain.
-     * 
+     *
      * Rule ID is automatically generated as MD5 hash of a rule domain for
      * performance purposes.
      *
-     * @param string $domain
-     * @param string $functionId
-     * @param ?string $branch
      * @throws AppwriteException
-     * @return \Appwrite\Models\ProxyRule
      */
     public function createFunctionRule(string $domain, string $functionId, ?string $branch = null): \Appwrite\Models\ProxyRule
     {
@@ -198,23 +178,16 @@ class Proxy extends Service
         }
 
         return \Appwrite\Models\ProxyRule::from($response);
-
     }
 
     /**
      * Create a new proxy rule for to redirect from custom domain to another
      * domain.
-     * 
+     *
      * Rule ID is automatically generated as MD5 hash of a rule domain for
      * performance purposes.
      *
-     * @param string $domain
-     * @param string $url
-     * @param StatusCode $statusCode
-     * @param string $resourceId
-     * @param ProxyResourceType $resourceType
      * @throws AppwriteException
-     * @return \Appwrite\Models\ProxyRule
      */
     public function createRedirectRule(string $domain, string $url, StatusCode $statusCode, string $resourceId, ProxyResourceType $resourceType): \Appwrite\Models\ProxyRule
     {
@@ -248,20 +221,15 @@ class Proxy extends Service
         }
 
         return \Appwrite\Models\ProxyRule::from($response);
-
     }
 
     /**
      * Create a new proxy rule for serving Appwrite Site on custom domain.
-     * 
+     *
      * Rule ID is automatically generated as MD5 hash of a rule domain for
      * performance purposes.
      *
-     * @param string $domain
-     * @param string $siteId
-     * @param ?string $branch
      * @throws AppwriteException
-     * @return \Appwrite\Models\ProxyRule
      */
     public function createSiteRule(string $domain, string $siteId, ?string $branch = null): \Appwrite\Models\ProxyRule
     {
@@ -296,15 +264,12 @@ class Proxy extends Service
         }
 
         return \Appwrite\Models\ProxyRule::from($response);
-
     }
 
     /**
      * Get a proxy rule by its unique ID.
      *
-     * @param string $ruleId
      * @throws AppwriteException
-     * @return \Appwrite\Models\ProxyRule
      */
     public function getRule(string $ruleId): \Appwrite\Models\ProxyRule
     {
@@ -333,15 +298,12 @@ class Proxy extends Service
         }
 
         return \Appwrite\Models\ProxyRule::from($response);
-
     }
 
     /**
      * Delete a proxy rule by its unique ID.
      *
-     * @param string $ruleId
      * @throws AppwriteException
-     * @return string
      */
     public function deleteRule(string $ruleId): string
     {
@@ -358,15 +320,12 @@ class Proxy extends Service
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 
     /**
@@ -375,9 +334,7 @@ class Proxy extends Service
      * verification is successful, a TLS certificate will be automatically
      * provisioned for the domain asynchronously in the background.
      *
-     * @param string $ruleId
      * @throws AppwriteException
-     * @return \Appwrite\Models\ProxyRule
      */
     public function updateRuleStatus(string $ruleId): \Appwrite\Models\ProxyRule
     {
@@ -407,6 +364,5 @@ class Proxy extends Service
         }
 
         return \Appwrite\Models\ProxyRule::from($response);
-
     }
 }

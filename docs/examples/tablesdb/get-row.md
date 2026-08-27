@@ -17,4 +17,5 @@ $result = $tablesDB->getRow(
     rowId: '<ROW_ID>',
     queries: [], // optional
     transactionId: '<TRANSACTION_ID>' // optional
-);```
+);
+```

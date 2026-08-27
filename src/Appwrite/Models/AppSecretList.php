@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * App secrets list
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class AppSecretList
 {
@@ -49,11 +53,9 @@ readonly class AppSecretList
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'total' => static::serializeValue($this->total),
             'secrets' => static::serializeValue($this->secrets)
         ];
-
-        return $result;
     }
 }

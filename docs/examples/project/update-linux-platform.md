@@ -15,4 +15,5 @@ $result = $project->updateLinuxPlatform(
     platformId: '<PLATFORM_ID>',
     name: '<NAME>',
     packageName: '<PACKAGE_NAME>'
-);```
+);
+```

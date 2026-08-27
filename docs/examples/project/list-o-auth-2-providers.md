@@ -14,4 +14,5 @@ $project = new Project($client);
 $result = $project->listOAuth2Providers(
     queries: [], // optional
     total: false // optional
-);```
+);
+```

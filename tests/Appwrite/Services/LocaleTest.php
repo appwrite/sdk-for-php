@@ -1,16 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Services;
 
 use Appwrite\Client;
-use Appwrite\InputFile;
 use Mockery;
+use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
 
 final class LocaleTest extends TestCase
 {
-    private $client;
-    private $locale;
+    private Client&MockInterface $client;
+    private Locale $locale;
 
     protected function setUp(): void
     {
@@ -20,7 +22,7 @@ final class LocaleTest extends TestCase
 
     public function testMethodGet(): void
     {
-        $data = array(
+        $data = [
             "ip" => "127.0.0.1",
             "countryCode" => "US",
             "country" => "United States",
@@ -28,7 +30,7 @@ final class LocaleTest extends TestCase
             "continent" => "North America",
             "eu" => true,
             "currency" => "USD"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -41,18 +43,17 @@ final class LocaleTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Locale::class, $response);
     }
-
     public function testMethodListCodes(): void
     {
-        $data = array(
+        $data = [
             "total" => 5,
-            "localeCodes" => array(
-                array(
+            "localeCodes" => [
+                [
                     "code" => "en-us",
                     "name" => "US"
-                )
-            )
-        );
+                ]
+            ]
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -65,18 +66,17 @@ final class LocaleTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\LocaleCodeList::class, $response);
     }
-
     public function testMethodListContinents(): void
     {
-        $data = array(
+        $data = [
             "total" => 5,
-            "continents" => array(
-                array(
+            "continents" => [
+                [
                     "name" => "Europe",
                     "code" => "EU"
-                )
-            )
-        );
+                ]
+            ]
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -89,18 +89,17 @@ final class LocaleTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\ContinentList::class, $response);
     }
-
     public function testMethodListCountries(): void
     {
-        $data = array(
+        $data = [
             "total" => 5,
-            "countries" => array(
-                array(
+            "countries" => [
+                [
                     "name" => "United States",
                     "code" => "US"
-                )
-            )
-        );
+                ]
+            ]
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -113,18 +112,17 @@ final class LocaleTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\CountryList::class, $response);
     }
-
     public function testMethodListCountriesEU(): void
     {
-        $data = array(
+        $data = [
             "total" => 5,
-            "countries" => array(
-                array(
+            "countries" => [
+                [
                     "name" => "United States",
                     "code" => "US"
-                )
-            )
-        );
+                ]
+            ]
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -137,19 +135,18 @@ final class LocaleTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\CountryList::class, $response);
     }
-
     public function testMethodListCountriesPhones(): void
     {
-        $data = array(
+        $data = [
             "total" => 5,
-            "phones" => array(
-                array(
+            "phones" => [
+                [
                     "code" => "+1",
                     "countryCode" => "US",
                     "countryName" => "United States"
-                )
-            )
-        );
+                ]
+            ]
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -162,13 +159,12 @@ final class LocaleTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\PhoneList::class, $response);
     }
-
     public function testMethodListCurrencies(): void
     {
-        $data = array(
+        $data = [
             "total" => 5,
-            "currencies" => array(
-                array(
+            "currencies" => [
+                [
                     "symbol" => "\$",
                     "name" => "US dollar",
                     "symbolNative" => "\$",
@@ -176,9 +172,9 @@ final class LocaleTest extends TestCase
                     "rounding" => 0,
                     "code" => "USD",
                     "namePlural" => "US dollars"
-                )
-            )
-        );
+                ]
+            ]
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -191,19 +187,18 @@ final class LocaleTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\CurrencyList::class, $response);
     }
-
     public function testMethodListLanguages(): void
     {
-        $data = array(
+        $data = [
             "total" => 5,
-            "languages" => array(
-                array(
+            "languages" => [
+                [
                     "name" => "Italian",
                     "code" => "it",
                     "nativeName" => "Italiano"
-                )
-            )
-        );
+                ]
+            ]
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -216,5 +211,4 @@ final class LocaleTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\LanguageList::class, $response);
     }
-
 }

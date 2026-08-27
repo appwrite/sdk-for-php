@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * backup
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class BackupPolicy
 {
@@ -88,8 +92,8 @@ readonly class BackupPolicy
             schedule: $data['schedule'],
             type: $data['type'],
             enabled: $data['enabled'],
-            resourceId: array_key_exists('resourceId', $data) ? $data['resourceId'] : null,
-            resourceType: array_key_exists('resourceType', $data) ? $data['resourceType'] : null
+            resourceId: $data['resourceId'] ?? null,
+            resourceType: $data['resourceType'] ?? null
         );
     }
 
@@ -98,7 +102,7 @@ readonly class BackupPolicy
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             'name' => static::serializeValue($this->name),
             '$createdAt' => static::serializeValue($this->createdAt),
@@ -112,7 +116,5 @@ readonly class BackupPolicy
             'type' => static::serializeValue($this->type),
             'enabled' => static::serializeValue($this->enabled)
         ];
-
-        return $result;
     }
 }

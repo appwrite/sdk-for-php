@@ -15,4 +15,5 @@ $result = $project->updateOAuth2Linkedin(
     clientId: '<CLIENT_ID>', // optional
     primaryClientSecret: '<PRIMARY_CLIENT_SECRET>', // optional
     enabled: false // optional
-);```
+);
+```

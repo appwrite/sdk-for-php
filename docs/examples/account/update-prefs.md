@@ -17,4 +17,5 @@ $result = $account->updatePrefs(
         'timezone' => 'UTC',
         'darkTheme' => true
     ]
-);```
+);
+```

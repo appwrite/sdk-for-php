@@ -15,4 +15,5 @@ $result = $project->createWindowsPlatform(
     platformId: '<PLATFORM_ID>',
     name: '<NAME>',
     packageIdentifierName: '<PACKAGE_IDENTIFIER_NAME>'
-);```
+);
+```

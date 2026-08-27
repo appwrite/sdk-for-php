@@ -15,4 +15,5 @@ $result = $project->createApplePlatform(
     platformId: '<PLATFORM_ID>',
     name: '<NAME>',
     bundleIdentifier: '<BUNDLE_IDENTIFIER>'
-);```
+);
+```

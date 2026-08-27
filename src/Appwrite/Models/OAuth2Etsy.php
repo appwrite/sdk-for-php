@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * OAuth2Etsy
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class OAuth2Etsy
 {
@@ -56,13 +60,11 @@ readonly class OAuth2Etsy
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             'enabled' => static::serializeValue($this->enabled),
             'keyString' => static::serializeValue($this->keyString),
             'sharedSecret' => static::serializeValue($this->sharedSecret)
         ];
-
-        return $result;
     }
 }

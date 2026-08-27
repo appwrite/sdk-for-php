@@ -14,4 +14,5 @@ $account = new Account($client);
 $result = $account->listLogs(
     queries: [], // optional
     total: false // optional
-);```
+);
+```

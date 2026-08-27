@@ -20,4 +20,5 @@ $result = $tablesDB->createFloatColumn(
     max: null, // optional
     default: null, // optional
     array: false // optional
-);```
+);
+```

@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Enums;
 
 use JsonSerializable;
+use Stringable;
 
-class ProjectServiceId implements JsonSerializable
+class ProjectServiceId implements JsonSerializable, Stringable
 {
     private static ProjectServiceId $ACCOUNT;
     private static ProjectServiceId $AVATARS;
@@ -26,11 +29,8 @@ class ProjectServiceId implements JsonSerializable
     private static ProjectServiceId $ADVISOR;
     private static ProjectServiceId $OAUTH2;
 
-    private string $value;
-
-    private function __construct(string $value)
+    private function __construct(private readonly string $value)
     {
-        $this->value = $value;
     }
 
     public function __toString(): string

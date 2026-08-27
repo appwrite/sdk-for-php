@@ -13,4 +13,5 @@ $organization = new Organization($client);
 
 $result = $organization->deleteInstallation(
     installationId: '<INSTALLATION_ID>'
-);```
+);
+```

@@ -20,4 +20,5 @@ $result = $sites->createTemplateDeployment(
     type: TemplateReferenceType::BRANCH(),
     reference: '<REFERENCE>',
     activate: false // optional
-);```
+);
+```

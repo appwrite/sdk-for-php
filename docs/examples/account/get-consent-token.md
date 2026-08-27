@@ -14,4 +14,5 @@ $account = new Account($client);
 $result = $account->getConsentToken(
     consentId: '<CONSENT_ID>',
     tokenId: '<TOKEN_ID>'
-);```
+);
+```

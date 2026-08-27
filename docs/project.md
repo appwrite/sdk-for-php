@@ -47,7 +47,7 @@ GET https://cloud.appwrite.io/v1/project/keys
 POST https://cloud.appwrite.io/v1/project/keys/ephemeral
 ```
 
-** Create a new ephemeral API key. It&#039;s recommended to have multiple API keys with strict scopes for separate functions within your project.
+** Create a new ephemeral API key. It's recommended to have multiple API keys with strict scopes for separate functions within your project.
 
 You can also create a standard API key if you need a longer-lived key instead. **
 
@@ -146,7 +146,7 @@ POST https://cloud.appwrite.io/v1/project/mock-phones
 GET https://cloud.appwrite.io/v1/project/mock-phones/{number}
 ```
 
-** Get a mock phone by its unique number. This endpoint returns the mock phone&#039;s OTP. **
+** Get a mock phone by its unique number. This endpoint returns the mock phone's OTP. **
 
 ### Parameters
 
@@ -159,7 +159,7 @@ GET https://cloud.appwrite.io/v1/project/mock-phones/{number}
 PUT https://cloud.appwrite.io/v1/project/mock-phones/{number}
 ```
 
-** Update a mock phone by its unique number. Use this endpoint to update the mock phone&#039;s OTP. **
+** Update a mock phone by its unique number. Use this endpoint to update the mock phone's OTP. **
 
 ### Parameters
 
@@ -186,7 +186,7 @@ DELETE https://cloud.appwrite.io/v1/project/mock-phones/{number}
 GET https://cloud.appwrite.io/v1/project/oauth2
 ```
 
-** Get a list of all OAuth2 providers supported by the server, along with the project&#039;s configuration for each. Credential fields are write-only and always returned empty. **
+** Get a list of all OAuth2 providers supported by the server, along with the project's configuration for each. Credential fields are write-only and always returned empty. **
 
 ### Parameters
 
@@ -528,6 +528,21 @@ PATCH https://cloud.appwrite.io/v1/project/oauth2/google
 | clientId | string | 'Client ID' of Google OAuth2 app. For example: 120000000095-92ifjb00000000000000000000g7ijfb.apps.googleusercontent.com |  |
 | clientSecret | string | 'Client Secret' of Google OAuth2 app. For example: GOCSPX-2k8gsR0000000000000000VNahJj |  |
 | prompt | array | Array of Google OAuth2 prompt values. If "none" is included, it must be the only element. "none" means: don't display any authentication or consent screens. Must not be specified with other values. "consent" means: prompt the user for consent. "select_account" means: prompt the user to select an account. |  |
+| enabled | boolean | OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid. |  |
+
+
+```http request
+PATCH https://cloud.appwrite.io/v1/project/oauth2/huggingface
+```
+
+** Update the project OAuth2 Hugging Face configuration. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| clientId | string | 'Client ID' of Hugging Face OAuth2 app. For example: 2ab9cff9-d711-40ad-a91e-b08a49c42d24 |  |
+| clientSecret | string | 'Client Secret' of Hugging Face OAuth2 app. For example: oauth_app_secret_wcLhRtl000000000000000000000xbNdLt |  |
 | enabled | boolean | OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid. |  |
 
 
@@ -933,7 +948,7 @@ POST https://cloud.appwrite.io/v1/project/platforms/android
 PUT https://cloud.appwrite.io/v1/project/platforms/android/{platformId}
 ```
 
-** Update an Android platform by its unique ID. Use this endpoint to update the platform&#039;s name or application ID. **
+** Update an Android platform by its unique ID. Use this endpoint to update the platform's name or application ID. **
 
 ### Parameters
 
@@ -963,7 +978,7 @@ POST https://cloud.appwrite.io/v1/project/platforms/apple
 PUT https://cloud.appwrite.io/v1/project/platforms/apple/{platformId}
 ```
 
-** Update an Apple platform by its unique ID. Use this endpoint to update the platform&#039;s name or bundle identifier. **
+** Update an Apple platform by its unique ID. Use this endpoint to update the platform's name or bundle identifier. **
 
 ### Parameters
 
@@ -993,7 +1008,7 @@ POST https://cloud.appwrite.io/v1/project/platforms/linux
 PUT https://cloud.appwrite.io/v1/project/platforms/linux/{platformId}
 ```
 
-** Update a Linux platform by its unique ID. Use this endpoint to update the platform&#039;s name or package name. **
+** Update a Linux platform by its unique ID. Use this endpoint to update the platform's name or package name. **
 
 ### Parameters
 
@@ -1023,7 +1038,7 @@ POST https://cloud.appwrite.io/v1/project/platforms/web
 PUT https://cloud.appwrite.io/v1/project/platforms/web/{platformId}
 ```
 
-** Update a web platform by its unique ID. Use this endpoint to update the platform&#039;s name or hostname. **
+** Update a web platform by its unique ID. Use this endpoint to update the platform's name or hostname. **
 
 ### Parameters
 
@@ -1053,7 +1068,7 @@ POST https://cloud.appwrite.io/v1/project/platforms/windows
 PUT https://cloud.appwrite.io/v1/project/platforms/windows/{platformId}
 ```
 
-** Update a Windows platform by its unique ID. Use this endpoint to update the platform&#039;s name or package identifier name. **
+** Update a Windows platform by its unique ID. Use this endpoint to update the platform's name or package identifier name. **
 
 ### Parameters
 
@@ -1068,7 +1083,7 @@ PUT https://cloud.appwrite.io/v1/project/platforms/windows/{platformId}
 GET https://cloud.appwrite.io/v1/project/platforms/{platformId}
 ```
 
-** Get a platform by its unique ID. This endpoint returns the platform&#039;s details, including its name, type, and key configurations. **
+** Get a platform by its unique ID. This endpoint returns the platform's details, including its name, type, and key configurations. **
 
 ### Parameters
 
@@ -1358,7 +1373,7 @@ PATCH https://cloud.appwrite.io/v1/project/services/{serviceId}
 PATCH https://cloud.appwrite.io/v1/project/smtp
 ```
 
-** Update the SMTP configuration for your project. Use this endpoint to configure your project&#039;s SMTP provider with your custom settings for sending transactional emails. **
+** Update the SMTP configuration for your project. Use this endpoint to configure your project's SMTP provider with your custom settings for sending transactional emails. **
 
 ### Parameters
 
@@ -1462,7 +1477,7 @@ POST https://cloud.appwrite.io/v1/project/variables
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | variableId | string | Variable unique ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
-| key | string | Variable key. Max length: 255 chars. |  |
+| key | string | Variable key. Letters, digits and underscores only, must not start with a digit. Max length: 255 chars. |  |
 | value | string | Variable value. Max length: 8192 chars. |  |
 | secret | boolean | Secret variables can be updated or deleted, but only projects can read them during build and runtime. | 1 |
 
@@ -1491,7 +1506,7 @@ PUT https://cloud.appwrite.io/v1/project/variables/{variableId}
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | variableId | string | **Required** Variable unique ID. |  |
-| key | string | Variable key. Max length: 255 chars. |  |
+| key | string | Variable key. Letters, digits and underscores only, must not start with a digit. Max length: 255 chars. |  |
 | value | string | Variable value. Max length: 8192 chars. |  |
 | secret | boolean | Secret variables can be updated or deleted, but only projects can read them during build and runtime. |  |
 

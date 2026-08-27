@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Block
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class Block
 {
@@ -82,8 +86,8 @@ readonly class Block
             organizationName: $data['organizationName'],
             organizationId: $data['organizationId'],
             billingPlan: $data['billingPlan'],
-            reason: array_key_exists('reason', $data) ? $data['reason'] : null,
-            expiredAt: array_key_exists('expiredAt', $data) ? $data['expiredAt'] : null
+            reason: $data['reason'] ?? null,
+            expiredAt: $data['expiredAt'] ?? null
         );
     }
 
@@ -92,7 +96,7 @@ readonly class Block
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$createdAt' => static::serializeValue($this->createdAt),
             'resourceType' => static::serializeValue($this->resourceType),
             'resourceId' => static::serializeValue($this->resourceId),
@@ -105,7 +109,5 @@ readonly class Block
             'organizationId' => static::serializeValue($this->organizationId),
             'billingPlan' => static::serializeValue($this->billingPlan)
         ];
-
-        return $result;
     }
 }

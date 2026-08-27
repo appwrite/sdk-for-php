@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Enums;
 
 use JsonSerializable;
+use Stringable;
 
-class BuildRuntime implements JsonSerializable
+class BuildRuntime implements JsonSerializable, Stringable
 {
     private static BuildRuntime $NODE145;
     private static BuildRuntime $NODE160;
@@ -84,6 +87,7 @@ class BuildRuntime implements JsonSerializable
     private static BuildRuntime $BUN11;
     private static BuildRuntime $BUN12;
     private static BuildRuntime $BUN13;
+    private static BuildRuntime $BUN14;
     private static BuildRuntime $GO123;
     private static BuildRuntime $GO124;
     private static BuildRuntime $GO125;
@@ -99,11 +103,8 @@ class BuildRuntime implements JsonSerializable
     private static BuildRuntime $FLUTTER341;
     private static BuildRuntime $FLUTTER344;
 
-    private string $value;
-
-    private function __construct(string $value)
+    private function __construct(private readonly string $value)
     {
-        $this->value = $value;
     }
 
     public function __toString(): string
@@ -662,6 +663,13 @@ class BuildRuntime implements JsonSerializable
         }
         return self::$BUN13;
     }
+    public static function BUN14(): BuildRuntime
+    {
+        if (!isset(self::$BUN14)) {
+            self::$BUN14 = new BuildRuntime('bun-1.4');
+        }
+        return self::$BUN14;
+    }
     public static function GO123(): BuildRuntime
     {
         if (!isset(self::$GO123)) {
@@ -842,6 +850,7 @@ class BuildRuntime implements JsonSerializable
             'bun-1.1' => self::BUN11(),
             'bun-1.2' => self::BUN12(),
             'bun-1.3' => self::BUN13(),
+            'bun-1.4' => self::BUN14(),
             'go-1.23' => self::GO123(),
             'go-1.24' => self::GO124(),
             'go-1.25' => self::GO125(),

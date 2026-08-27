@@ -1,16 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Services;
 
 use Appwrite\Client;
-use Appwrite\InputFile;
 use Mockery;
+use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
 
 final class ActivitiesTest extends TestCase
 {
-    private $client;
-    private $activities;
+    private Client&MockInterface $client;
+    private Activities $activities;
 
     protected function setUp(): void
     {
@@ -20,10 +22,10 @@ final class ActivitiesTest extends TestCase
 
     public function testMethodListEvents(): void
     {
-        $data = array(
+        $data = [
             "total" => 5,
-            "events" => array(
-                array(
+            "events" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "actorType" => "user",
                     "actorId" => "610fc2f985ee0",
@@ -53,9 +55,9 @@ final class ActivitiesTest extends TestCase
                     "hostname" => "appwrite.io",
                     "sdk" => "web",
                     "sdkVersion" => "14.0.0"
-                )
-            )
-        );
+                ]
+            ]
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -68,10 +70,9 @@ final class ActivitiesTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\ActivityEventList::class, $response);
     }
-
     public function testMethodGetEvent(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "actorType" => "user",
             "actorId" => "610fc2f985ee0",
@@ -101,7 +102,7 @@ final class ActivitiesTest extends TestCase
             "hostname" => "appwrite.io",
             "sdk" => "web",
             "sdkVersion" => "14.0.0"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -116,5 +117,4 @@ final class ActivitiesTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\ActivityEvent::class, $response);
     }
-
 }

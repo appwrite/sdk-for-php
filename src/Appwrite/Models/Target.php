@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Target
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class Target
 {
@@ -74,7 +78,7 @@ readonly class Target
             providerType: $data['providerType'],
             identifier: $data['identifier'],
             expired: $data['expired'],
-            providerId: array_key_exists('providerId', $data) ? $data['providerId'] : null
+            providerId: $data['providerId'] ?? null
         );
     }
 
@@ -83,7 +87,7 @@ readonly class Target
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             '$createdAt' => static::serializeValue($this->createdAt),
             '$updatedAt' => static::serializeValue($this->updatedAt),
@@ -94,7 +98,5 @@ readonly class Target
             'identifier' => static::serializeValue($this->identifier),
             'expired' => static::serializeValue($this->expired)
         ];
-
-        return $result;
     }
 }

@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Database Migrations List
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class DatabaseMigrationList
 {
@@ -49,11 +53,9 @@ readonly class DatabaseMigrationList
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'total' => static::serializeValue($this->total),
             'migrations' => static::serializeValue($this->migrations)
         ];
-
-        return $result;
     }
 }

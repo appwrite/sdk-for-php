@@ -16,4 +16,5 @@ $result = $databases->upsertDocuments(
     collectionId: '<COLLECTION_ID>',
     documents: [],
     transactionId: '<TRANSACTION_ID>' // optional
-);```
+);
+```

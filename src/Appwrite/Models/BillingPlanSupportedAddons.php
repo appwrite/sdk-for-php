@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * BillingPlanSupportedAddons
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class BillingPlanSupportedAddons
 {
@@ -50,12 +54,10 @@ readonly class BillingPlanSupportedAddons
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'baa' => static::serializeValue($this->baa),
             'premiumGeoDB' => static::serializeValue($this->premiumGeoDB),
             'premiumGeoDBOrg' => static::serializeValue($this->premiumGeoDBOrg)
         ];
-
-        return $result;
     }
 }

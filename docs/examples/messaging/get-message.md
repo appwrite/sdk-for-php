@@ -13,4 +13,5 @@ $messaging = new Messaging($client);
 
 $result = $messaging->getMessage(
     messageId: '<MESSAGE_ID>'
-);```
+);
+```

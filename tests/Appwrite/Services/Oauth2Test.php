@@ -1,16 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Services;
 
 use Appwrite\Client;
-use Appwrite\InputFile;
 use Mockery;
+use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
 
 final class Oauth2Test extends TestCase
 {
-    private $client;
-    private $oauth2;
+    private Client&MockInterface $client;
+    private Oauth2 $oauth2;
 
     protected function setUp(): void
     {
@@ -20,9 +22,9 @@ final class Oauth2Test extends TestCase
 
     public function testMethodApprove(): void
     {
-        $data = array(
+        $data = [
             "redirectUrl" => "https://example.com/callback?code=abcde&state=fghij"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -37,13 +39,12 @@ final class Oauth2Test extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Oauth2Approve::class, $response);
     }
-
     public function testMethodAuthorize(): void
     {
-        $data = array(
+        $data = [
             "grantId" => "5e5ea5c16897e",
             "redirectUrl" => "https://example.com/callback?code=abcde&state=fghij"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -56,13 +57,12 @@ final class Oauth2Test extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Oauth2Authorize::class, $response);
     }
-
     public function testMethodAuthorizePost(): void
     {
-        $data = array(
+        $data = [
             "grantId" => "5e5ea5c16897e",
             "redirectUrl" => "https://example.com/callback?code=abcde&state=fghij"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -75,17 +75,16 @@ final class Oauth2Test extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Oauth2Authorize::class, $response);
     }
-
     public function testMethodCreateDeviceAuthorization(): void
     {
-        $data = array(
+        $data = [
             "device_code" => "5f3c8d2a1b9e4f7a6c8b2d1e9f4a7b3c5d8e1f2a9b4c7d6e3f5a8b1c4d7e2f9a",
             "user_code" => "ABCD-EFGH",
             "verification_uri" => "https://cloud.appwrite.io/console/oauth2/device",
             "verification_uri_complete" => "https://cloud.appwrite.io/console/oauth2/device?user_code=ABCD-EFGH",
             "expires_in" => 900,
             "interval" => 5
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -98,23 +97,22 @@ final class Oauth2Test extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Oauth2DeviceAuthorization::class, $response);
     }
-
     public function testMethodCreateGrant(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "userId" => "5e5ea5c16897e",
             "appId" => "5e5ea5c16897e",
-            "scopes" => array(),
-            "resources" => array(),
+            "scopes" => [],
+            "resources" => [],
             "authorizationDetails" => "[{\"type\":\"calendar\",\"identifier\":\"primary\",\"actions\":[\"read_events\",\"create_event\"]}]",
             "prompt" => "login",
             "redirectUri" => "https://example.com/callback",
             "authTime" => 1592981250,
             "expire" => "2020-10-15T06:38:00.000+00:00"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -129,23 +127,22 @@ final class Oauth2Test extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Oauth2Grant::class, $response);
     }
-
     public function testMethodGetGrant(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "userId" => "5e5ea5c16897e",
             "appId" => "5e5ea5c16897e",
-            "scopes" => array(),
-            "resources" => array(),
+            "scopes" => [],
+            "resources" => [],
             "authorizationDetails" => "[{\"type\":\"calendar\",\"identifier\":\"primary\",\"actions\":[\"read_events\",\"create_event\"]}]",
             "prompt" => "login",
             "redirectUri" => "https://example.com/callback",
             "authTime" => 1592981250,
             "expire" => "2020-10-15T06:38:00.000+00:00"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -160,17 +157,16 @@ final class Oauth2Test extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Oauth2Grant::class, $response);
     }
-
     public function testMethodListOrganizations(): void
     {
-        $data = array(
+        $data = [
             "total" => 5,
-            "organizations" => array(
-                array(
+            "organizations" => [
+                [
                     "\$id" => "5e5ea5c16897e"
-                )
-            )
-        );
+                ]
+            ]
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -183,13 +179,12 @@ final class Oauth2Test extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Oauth2OrganizationList::class, $response);
     }
-
     public function testMethodCreatePAR(): void
     {
-        $data = array(
+        $data = [
             "request_uri" => "urn:appwrite:oauth2:request:5e5ea5c16897e",
             "expires_in" => 600
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -206,19 +201,18 @@ final class Oauth2Test extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Oauth2PAR::class, $response);
     }
-
     public function testMethodListProjects(): void
     {
-        $data = array(
+        $data = [
             "total" => 5,
-            "projects" => array(
-                array(
+            "projects" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "region" => "fra",
                     "endpoint" => "https://fra.cloud.appwrite.io/v1"
-                )
-            )
-        );
+                ]
+            ]
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -231,12 +225,11 @@ final class Oauth2Test extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Oauth2ProjectList::class, $response);
     }
-
     public function testMethodReject(): void
     {
-        $data = array(
+        $data = [
             "redirectUrl" => "https://example.com/callback?error=access_denied&state=fghij"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -251,10 +244,9 @@ final class Oauth2Test extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Oauth2Reject::class, $response);
     }
-
     public function testMethodRevoke(): void
     {
-        $data = array();
+        $data = [];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -269,16 +261,15 @@ final class Oauth2Test extends TestCase
 
         $this->assertSame($data, $response);
     }
-
     public function testMethodCreateToken(): void
     {
-        $data = array(
+        $data = [
             "access_token" => "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9...",
             "token_type" => "Bearer",
             "expires_in" => 3600,
             "refresh_token" => "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...",
             "scope" => "openid email profile"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -293,5 +284,4 @@ final class Oauth2Test extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Oauth2Token::class, $response);
     }
-
 }

@@ -13,4 +13,5 @@ $project = new Project($client);
 
 $result = $project->updateSessionInvalidationPolicy(
     enabled: false
-);```
+);
+```

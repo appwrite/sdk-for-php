@@ -19,4 +19,5 @@ $result = $proxy->createRedirectRule(
     statusCode: StatusCode::MOVEDPERMANENTLY(),
     resourceId: '<RESOURCE_ID>',
     resourceType: ProxyResourceType::SITE()
-);```
+);
+```

@@ -13,4 +13,5 @@ $account = new Account($client);
 
 $result = $account->deleteSession(
     sessionId: '<SESSION_ID>'
-);```
+);
+```

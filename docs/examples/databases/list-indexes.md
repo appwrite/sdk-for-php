@@ -16,4 +16,5 @@ $result = $databases->listIndexes(
     collectionId: '<COLLECTION_ID>',
     queries: [], // optional
     total: false // optional
-);```
+);
+```

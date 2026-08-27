@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Variables List
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class VariableList
 {
@@ -49,11 +53,9 @@ readonly class VariableList
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'total' => static::serializeValue($this->total),
             'variables' => static::serializeValue($this->variables)
         ];
-
-        return $result;
     }
 }

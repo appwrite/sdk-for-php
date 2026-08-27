@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Volume
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class DatabaseStatusVolume
 {
@@ -56,13 +60,11 @@ readonly class DatabaseStatusVolume
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'path' => static::serializeValue($this->path),
             'usedPercent' => static::serializeValue($this->usedPercent),
             'available' => static::serializeValue($this->available),
             'mounted' => static::serializeValue($this->mounted)
         ];
-
-        return $result;
     }
 }

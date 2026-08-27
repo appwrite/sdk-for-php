@@ -14,4 +14,5 @@ $users = new Users($client);
 $result = $users->updateMFA(
     userId: '<USER_ID>',
     mfa: false
-);```
+);
+```

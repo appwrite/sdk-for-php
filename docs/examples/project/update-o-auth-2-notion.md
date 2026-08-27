@@ -15,4 +15,5 @@ $result = $project->updateOAuth2Notion(
     oauthClientId: '<OAUTH_CLIENT_ID>', // optional
     oauthClientSecret: '<OAUTH_CLIENT_SECRET>', // optional
     enabled: false // optional
-);```
+);
+```

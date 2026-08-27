@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Tables List
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class TableList
 {
@@ -49,11 +53,9 @@ readonly class TableList
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'total' => static::serializeValue($this->total),
             'tables' => static::serializeValue($this->tables)
         ];
-
-        return $result;
     }
 }

@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Framework Adapter
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class FrameworkAdapter
 {
@@ -62,14 +66,12 @@ readonly class FrameworkAdapter
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'key' => static::serializeValue($this->key),
             'installCommand' => static::serializeValue($this->installCommand),
             'buildCommand' => static::serializeValue($this->buildCommand),
             'outputDirectory' => static::serializeValue($this->outputDirectory),
             'fallbackFile' => static::serializeValue($this->fallbackFile)
         ];
-
-        return $result;
     }
 }

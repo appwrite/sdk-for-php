@@ -13,4 +13,5 @@ $apps = new Apps($client);
 
 $result = $apps->deleteTokens(
     appId: '<APP_ID>'
-);```
+);
+```

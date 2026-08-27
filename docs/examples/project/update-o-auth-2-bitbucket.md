@@ -15,4 +15,5 @@ $result = $project->updateOAuth2Bitbucket(
     key: '<KEY>', // optional
     secret: '<SECRET>', // optional
     enabled: false // optional
-);```
+);
+```

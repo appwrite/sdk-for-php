@@ -18,4 +18,5 @@ $result = $tablesDB->updateLongtextColumn(
     required: false,
     default: '<DEFAULT>',
     newKey: '' // optional
-);```
+);
+```

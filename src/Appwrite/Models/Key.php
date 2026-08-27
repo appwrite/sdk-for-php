@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Key
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class Key
 {
@@ -86,7 +90,7 @@ readonly class Key
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             '$createdAt' => static::serializeValue($this->createdAt),
             '$updatedAt' => static::serializeValue($this->updatedAt),
@@ -97,7 +101,5 @@ readonly class Key
             'accessedAt' => static::serializeValue($this->accessedAt),
             'sdks' => static::serializeValue($this->sdks)
         ];
-
-        return $result;
     }
 }

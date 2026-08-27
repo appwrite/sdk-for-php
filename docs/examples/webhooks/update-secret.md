@@ -14,4 +14,5 @@ $webhooks = new Webhooks($client);
 $result = $webhooks->updateSecret(
     webhookId: '<WEBHOOK_ID>',
     secret: '<SECRET>' // optional
-);```
+);
+```

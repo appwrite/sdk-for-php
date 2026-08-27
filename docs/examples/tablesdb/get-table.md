@@ -14,4 +14,5 @@ $tablesDB = new TablesDB($client);
 $result = $tablesDB->getTable(
     databaseId: '<DATABASE_ID>',
     tableId: '<TABLE_ID>'
-);```
+);
+```

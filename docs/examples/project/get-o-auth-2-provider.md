@@ -14,4 +14,5 @@ $project = new Project($client);
 
 $result = $project->getOAuth2Provider(
     providerId: ProjectOAuthProviderId::AMAZON()
-);```
+);
+```

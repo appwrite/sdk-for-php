@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Logs List
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class LogList
 {
@@ -49,11 +53,9 @@ readonly class LogList
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'total' => static::serializeValue($this->total),
             'logs' => static::serializeValue($this->logs)
         ];
-
-        return $result;
     }
 }

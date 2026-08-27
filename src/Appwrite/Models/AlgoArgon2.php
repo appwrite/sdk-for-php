@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * AlgoArgon2
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class AlgoArgon2
 {
@@ -56,13 +60,11 @@ readonly class AlgoArgon2
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'type' => static::serializeValue($this->type),
             'memoryCost' => static::serializeValue($this->memoryCost),
             'timeCost' => static::serializeValue($this->timeCost),
             'threads' => static::serializeValue($this->threads)
         ];
-
-        return $result;
     }
 }

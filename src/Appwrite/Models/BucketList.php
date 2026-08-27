@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Buckets List
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class BucketList
 {
@@ -49,11 +53,9 @@ readonly class BucketList
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'total' => static::serializeValue($this->total),
             'buckets' => static::serializeValue($this->buckets)
         ];
-
-        return $result;
     }
 }

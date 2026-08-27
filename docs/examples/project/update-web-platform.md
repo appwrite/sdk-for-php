@@ -15,4 +15,5 @@ $result = $project->updateWebPlatform(
     platformId: '<PLATFORM_ID>',
     name: '<NAME>',
     hostname: 'app.example.com'
-);```
+);
+```

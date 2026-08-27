@@ -22,4 +22,5 @@ $result = $databases->createCollection(
     enabled: false, // optional
     attributes: [], // optional
     indexes: [] // optional
-);```
+);
+```

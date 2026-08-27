@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Enums;
 
 use JsonSerializable;
+use Stringable;
 
-class ProjectPolicyId implements JsonSerializable
+class ProjectPolicyId implements JsonSerializable, Stringable
 {
     private static ProjectPolicyId $PASSWORDDICTIONARY;
     private static ProjectPolicyId $PASSWORDHISTORY;
@@ -22,11 +25,8 @@ class ProjectPolicyId implements JsonSerializable
     private static ProjectPolicyId $DENYFREEEMAIL;
     private static ProjectPolicyId $DENYCORPORATEEMAIL;
 
-    private string $value;
-
-    private function __construct(string $value)
+    private function __construct(private readonly string $value)
     {
-        $this->value = $value;
     }
 
     public function __toString(): string

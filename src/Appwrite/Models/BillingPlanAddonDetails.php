@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Details
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class BillingPlanAddonDetails
 {
@@ -68,7 +72,7 @@ readonly class BillingPlanAddonDetails
             price: $data['price'],
             value: $data['value'],
             invoiceDesc: $data['invoiceDesc'],
-            currency: array_key_exists('currency', $data) ? $data['currency'] : null
+            currency: $data['currency'] ?? null
         );
     }
 
@@ -77,7 +81,7 @@ readonly class BillingPlanAddonDetails
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'supported' => static::serializeValue($this->supported),
             'planIncluded' => static::serializeValue($this->planIncluded),
             'limit' => static::serializeValue($this->limit),
@@ -87,7 +91,5 @@ readonly class BillingPlanAddonDetails
             'value' => static::serializeValue($this->value),
             'invoiceDesc' => static::serializeValue($this->invoiceDesc)
         ];
-
-        return $result;
     }
 }

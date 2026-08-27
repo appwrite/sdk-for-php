@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * InsightCTA
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class InsightCTA
 {
@@ -56,13 +60,11 @@ readonly class InsightCTA
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'label' => static::serializeValue($this->label),
             'service' => static::serializeValue($this->service),
             'method' => static::serializeValue($this->method),
             'params' => static::serializeValue($this->params)
         ];
-
-        return $result;
     }
 }

@@ -14,4 +14,5 @@ $project = new Project($client);
 $result = $project->updateMockPhone(
     number: '+12065550100',
     otp: '<OTP>'
-);```
+);
+```

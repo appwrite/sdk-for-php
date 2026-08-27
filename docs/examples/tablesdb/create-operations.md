@@ -24,4 +24,5 @@ $result = $tablesDB->createOperations(
 	        }
 	    }
 	] // optional
-);```
+);
+```

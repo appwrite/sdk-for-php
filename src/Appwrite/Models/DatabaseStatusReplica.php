@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Replica
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class DatabaseStatusReplica
 {
@@ -15,12 +19,14 @@ readonly class DatabaseStatusReplica
      * @param int $index member index within the database. read `role` for which member accepts writes: a failover moves the primary without renumbering the indexes.
      * @param string $role member role. possible values: primary (accepts reads and writes), replica (read-only follower), unknown (placement not established; reported while a transition is moving or restarting the topology, so no member can be named the write target).
      * @param bool $healthy whether the replica is healthy.
-     * @param float|null $lagSeconds replication lag in seconds (null for primary).
+     * @param bool|null $replicating whether the engine reports this member's replication stream as up. null when no reading was taken: a primary has no stream to report, and a member that is not healthy, or whose probe did not answer, has none yet. `healthy` is a reachability probe of the member itself and says nothing about replication, so a healthy member may still not be replicating.
+     * @param float|null $lagSeconds replication lag in seconds (null for primary). also null against `replicating: true`, for a member that is streaming but whose engine printed no numeric lag.
      */
     public function __construct(
         public int $index,
         public string $role,
         public bool $healthy,
+        public ?bool $replicating = null,
         public ?float $lagSeconds = null
     ) {
     }
@@ -44,7 +50,8 @@ readonly class DatabaseStatusReplica
             index: $data['index'],
             role: $data['role'],
             healthy: $data['healthy'],
-            lagSeconds: array_key_exists('lagSeconds', $data) ? $data['lagSeconds'] : null
+            replicating: $data['replicating'] ?? null,
+            lagSeconds: $data['lagSeconds'] ?? null
         );
     }
 
@@ -53,13 +60,12 @@ readonly class DatabaseStatusReplica
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'index' => static::serializeValue($this->index),
             'role' => static::serializeValue($this->role),
             'healthy' => static::serializeValue($this->healthy),
+            'replicating' => static::serializeValue($this->replicating),
             'lagSeconds' => static::serializeValue($this->lagSeconds)
         ];
-
-        return $result;
     }
 }

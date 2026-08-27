@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * AdditionalResource
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class AdditionalResource
 {
@@ -68,7 +72,7 @@ readonly class AdditionalResource
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'name' => static::serializeValue($this->name),
             'unit' => static::serializeValue($this->unit),
             'currency' => static::serializeValue($this->currency),
@@ -76,7 +80,5 @@ readonly class AdditionalResource
             'value' => static::serializeValue($this->value),
             'invoiceDesc' => static::serializeValue($this->invoiceDesc)
         ];
-
-        return $result;
     }
 }

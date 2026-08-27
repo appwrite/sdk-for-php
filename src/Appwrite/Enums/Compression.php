@@ -1,20 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Enums;
 
 use JsonSerializable;
+use Stringable;
 
-class Compression implements JsonSerializable
+class Compression implements JsonSerializable, Stringable
 {
     private static Compression $NONE;
     private static Compression $GZIP;
     private static Compression $ZSTD;
 
-    private string $value;
-
-    private function __construct(string $value)
+    private function __construct(private readonly string $value)
     {
-        $this->value = $value;
     }
 
     public function __toString(): string

@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Functions List
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class FunctionList
 {
@@ -49,11 +53,9 @@ readonly class FunctionList
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'total' => static::serializeValue($this->total),
             'functions' => static::serializeValue($this->functions)
         ];
-
-        return $result;
     }
 }

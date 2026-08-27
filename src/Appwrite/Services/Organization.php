@@ -1,26 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Services;
 
 use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
-use Appwrite\InputFile;
-use Appwrite\Enums\OrganizationKeyScopes;
 use Appwrite\Enums\Region;
 
 class Organization extends Service
 {
-    public function __construct(Client $client)
-    {
-        parent::__construct($client);
-    }
-
     /**
      * Get the current organization.
      *
      * @throws AppwriteException
-     * @return \Appwrite\Models\Organization
      */
     public function get(): \Appwrite\Models\Organization
     {
@@ -48,15 +42,12 @@ class Organization extends Service
         }
 
         return \Appwrite\Models\Organization::from($response);
-
     }
 
     /**
      * Update the current organization's name.
      *
-     * @param string $name
      * @throws AppwriteException
-     * @return \Appwrite\Models\Organization
      */
     public function update(string $name): \Appwrite\Models\Organization
     {
@@ -86,7 +77,6 @@ class Organization extends Service
         }
 
         return \Appwrite\Models\Organization::from($response);
-
     }
 
     /**
@@ -94,7 +84,6 @@ class Organization extends Service
      * organization are deleted as well.
      *
      * @throws AppwriteException
-     * @return string
      */
     public function delete(): string
     {
@@ -110,25 +99,19 @@ class Organization extends Service
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 
     /**
      * List app installations on the organization. Any organization member can
      * read installations.
      *
-     * @param ?array $queries
-     * @param ?bool $total
      * @throws AppwriteException
-     * @return \Appwrite\Models\AppInstallationList
      */
     public function listInstallations(?array $queries = null, ?bool $total = null): \Appwrite\Models\AppInstallationList
     {
@@ -164,7 +147,6 @@ class Organization extends Service
         }
 
         return \Appwrite\Models\AppInstallationList::from($response);
-
     }
 
     /**
@@ -172,10 +154,7 @@ class Organization extends Service
      * owner role can install apps. The installation is granted the scopes the app
      * currently requests.
      *
-     * @param string $appId
-     * @param ?string $authorizationDetails
      * @throws AppwriteException
-     * @return \Appwrite\Models\AppInstallation
      */
     public function createInstallation(string $appId, ?string $authorizationDetails = null): \Appwrite\Models\AppInstallation
     {
@@ -209,16 +188,13 @@ class Organization extends Service
         }
 
         return \Appwrite\Models\AppInstallation::from($response);
-
     }
 
     /**
      * Get an app installation on the organization by its unique ID. Any
      * organization member can read installations.
      *
-     * @param string $installationId
      * @throws AppwriteException
-     * @return \Appwrite\Models\AppInstallation
      */
     public function getInstallation(string $installationId): \Appwrite\Models\AppInstallation
     {
@@ -247,7 +223,6 @@ class Organization extends Service
         }
 
         return \Appwrite\Models\AppInstallation::from($response);
-
     }
 
     /**
@@ -256,10 +231,7 @@ class Organization extends Service
      * scopes are refreshed to the scopes the app currently requests; previously
      * issued installation access tokens are revoked.
      *
-     * @param string $installationId
-     * @param ?string $authorizationDetails
      * @throws AppwriteException
-     * @return \Appwrite\Models\AppInstallation
      */
     public function updateInstallation(string $installationId, ?string $authorizationDetails = null): \Appwrite\Models\AppInstallation
     {
@@ -290,7 +262,6 @@ class Organization extends Service
         }
 
         return \Appwrite\Models\AppInstallation::from($response);
-
     }
 
     /**
@@ -298,9 +269,7 @@ class Organization extends Service
      * organization members with the owner role can remove installations.
      * Previously issued installation access tokens are revoked.
      *
-     * @param string $installationId
      * @throws AppwriteException
-     * @return string
      */
     public function deleteInstallation(string $installationId): string
     {
@@ -318,24 +287,18 @@ class Organization extends Service
         $apiHeaders['content-type'] = 'application/json';
         $apiHeaders['accept'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 
     /**
      * Get a list of all API keys from the current organization.
      *
-     * @param ?array $queries
-     * @param ?bool $total
      * @throws AppwriteException
-     * @return \Appwrite\Models\KeyList
      */
     public function listKeys(?array $queries = null, ?bool $total = null): \Appwrite\Models\KeyList
     {
@@ -371,18 +334,12 @@ class Organization extends Service
         }
 
         return \Appwrite\Models\KeyList::from($response);
-
     }
 
     /**
      * Create a new organization API key.
      *
-     * @param string $keyId
-     * @param string $name
-     * @param array $scopes
-     * @param ?string $expire
      * @throws AppwriteException
-     * @return \Appwrite\Models\Key
      */
     public function createKey(string $keyId, string $name, array $scopes, ?string $expire = null): \Appwrite\Models\Key
     {
@@ -415,16 +372,13 @@ class Organization extends Service
         }
 
         return \Appwrite\Models\Key::from($response);
-
     }
 
     /**
      * Get a key by its unique ID. This endpoint returns details about a specific
      * API key in your organization including its scopes.
      *
-     * @param string $keyId
      * @throws AppwriteException
-     * @return \Appwrite\Models\Key
      */
     public function getKey(string $keyId): \Appwrite\Models\Key
     {
@@ -453,19 +407,13 @@ class Organization extends Service
         }
 
         return \Appwrite\Models\Key::from($response);
-
     }
 
     /**
      * Update a key by its unique ID. Use this endpoint to update the name,
      * scopes, or expiration time of an API key.
      *
-     * @param string $keyId
-     * @param string $name
-     * @param array $scopes
-     * @param ?string $expire
      * @throws AppwriteException
-     * @return \Appwrite\Models\Key
      */
     public function updateKey(string $keyId, string $name, array $scopes, ?string $expire = null): \Appwrite\Models\Key
     {
@@ -498,16 +446,13 @@ class Organization extends Service
         }
 
         return \Appwrite\Models\Key::from($response);
-
     }
 
     /**
      * Delete a key by its unique ID. Once deleted, the key can no longer be used
      * to authenticate API calls.
      *
-     * @param string $keyId
      * @throws AppwriteException
-     * @return string
      */
     public function deleteKey(string $keyId): string
     {
@@ -524,25 +469,18 @@ class Organization extends Service
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 
     /**
      * Get a list of all memberships from the current organization.
      *
-     * @param ?array $queries
-     * @param ?string $search
-     * @param ?bool $total
      * @throws AppwriteException
-     * @return \Appwrite\Models\MembershipList
      */
     public function listMemberships(?array $queries = null, ?string $search = null, ?bool $total = null): \Appwrite\Models\MembershipList
     {
@@ -582,7 +520,6 @@ class Organization extends Service
         }
 
         return \Appwrite\Models\MembershipList::from($response);
-
     }
 
     /**
@@ -590,14 +527,7 @@ class Organization extends Service
      * to join the organization will be sent to the new member's email address. If
      * member doesn't exist in the project it will be automatically created.
      *
-     * @param array $roles
-     * @param ?string $email
-     * @param ?string $userId
-     * @param ?string $phone
-     * @param ?string $url
-     * @param ?string $name
      * @throws AppwriteException
-     * @return \Appwrite\Models\Membership
      */
     public function createMembership(array $roles, ?string $email = null, ?string $userId = null, ?string $phone = null, ?string $url = null, ?string $name = null): \Appwrite\Models\Membership
     {
@@ -647,15 +577,12 @@ class Organization extends Service
         }
 
         return \Appwrite\Models\Membership::from($response);
-
     }
 
     /**
      * Get a membership from the current organization by its unique ID.
      *
-     * @param string $membershipId
      * @throws AppwriteException
-     * @return \Appwrite\Models\Membership
      */
     public function getMembership(string $membershipId): \Appwrite\Models\Membership
     {
@@ -684,16 +611,12 @@ class Organization extends Service
         }
 
         return \Appwrite\Models\Membership::from($response);
-
     }
 
     /**
      * Modify the roles of a member in the current organization.
      *
-     * @param string $membershipId
-     * @param array $roles
      * @throws AppwriteException
-     * @return \Appwrite\Models\Membership
      */
     public function updateMembership(string $membershipId, array $roles): \Appwrite\Models\Membership
     {
@@ -724,7 +647,6 @@ class Organization extends Service
         }
 
         return \Appwrite\Models\Membership::from($response);
-
     }
 
     /**
@@ -732,9 +654,7 @@ class Organization extends Service
      * whether they accepted the invitation or not; a pending invitation is
      * revoked.
      *
-     * @param string $membershipId
      * @throws AppwriteException
-     * @return string
      */
     public function deleteMembership(string $membershipId): string
     {
@@ -751,26 +671,19 @@ class Organization extends Service
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 
     /**
      * Get a list of all projects. You can use the query params to filter your
      * results.
      *
-     * @param ?array $queries
-     * @param ?string $search
-     * @param ?bool $total
      * @throws AppwriteException
-     * @return \Appwrite\Models\ProjectList
      */
     public function listProjects(?array $queries = null, ?string $search = null, ?bool $total = null): \Appwrite\Models\ProjectList
     {
@@ -810,17 +723,12 @@ class Organization extends Service
         }
 
         return \Appwrite\Models\ProjectList::from($response);
-
     }
 
     /**
      * Create a new project.
      *
-     * @param string $projectId
-     * @param string $name
-     * @param ?Region $region
      * @throws AppwriteException
-     * @return \Appwrite\Models\Project
      */
     public function createProject(string $projectId, string $name, ?Region $region = null): \Appwrite\Models\Project
     {
@@ -855,15 +763,12 @@ class Organization extends Service
         }
 
         return \Appwrite\Models\Project::from($response);
-
     }
 
     /**
      * Get a project.
      *
-     * @param string $projectId
      * @throws AppwriteException
-     * @return \Appwrite\Models\Project
      */
     public function getProject(string $projectId): \Appwrite\Models\Project
     {
@@ -891,16 +796,12 @@ class Organization extends Service
         }
 
         return \Appwrite\Models\Project::from($response);
-
     }
 
     /**
      * Update a project by its unique ID.
      *
-     * @param string $projectId
-     * @param string $name
      * @throws AppwriteException
-     * @return \Appwrite\Models\Project
      */
     public function updateProject(string $projectId, string $name): \Appwrite\Models\Project
     {
@@ -931,15 +832,12 @@ class Organization extends Service
         }
 
         return \Appwrite\Models\Project::from($response);
-
     }
 
     /**
      * Delete a project by its unique ID.
      *
-     * @param string $projectId
      * @throws AppwriteException
-     * @return string
      */
     public function deleteProject(string $projectId): string
     {
@@ -956,14 +854,11 @@ class Organization extends Service
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 }

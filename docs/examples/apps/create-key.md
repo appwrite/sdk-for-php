@@ -13,4 +13,5 @@ $apps = new Apps($client);
 
 $result = $apps->createKey(
     appId: '<APP_ID>'
-);```
+);
+```

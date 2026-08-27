@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Locale
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class Locale
 {
@@ -88,17 +92,17 @@ readonly class Locale
             continent: $data['continent'],
             eu: $data['eu'],
             currency: $data['currency'],
-            city: array_key_exists('city', $data) ? $data['city'] : null,
-            timeZone: array_key_exists('timeZone', $data) ? $data['timeZone'] : null,
-            postalCode: array_key_exists('postalCode', $data) ? $data['postalCode'] : null,
-            latitude: array_key_exists('latitude', $data) ? $data['latitude'] : null,
-            longitude: array_key_exists('longitude', $data) ? $data['longitude'] : null,
-            autonomousSystemNumber: array_key_exists('autonomousSystemNumber', $data) ? $data['autonomousSystemNumber'] : null,
-            autonomousSystemOrganization: array_key_exists('autonomousSystemOrganization', $data) ? $data['autonomousSystemOrganization'] : null,
-            isp: array_key_exists('isp', $data) ? $data['isp'] : null,
-            connectionType: array_key_exists('connectionType', $data) ? $data['connectionType'] : null,
-            connectionUsageType: array_key_exists('connectionUsageType', $data) ? $data['connectionUsageType'] : null,
-            connectionOrganization: array_key_exists('connectionOrganization', $data) ? $data['connectionOrganization'] : null
+            city: $data['city'] ?? null,
+            timeZone: $data['timeZone'] ?? null,
+            postalCode: $data['postalCode'] ?? null,
+            latitude: $data['latitude'] ?? null,
+            longitude: $data['longitude'] ?? null,
+            autonomousSystemNumber: $data['autonomousSystemNumber'] ?? null,
+            autonomousSystemOrganization: $data['autonomousSystemOrganization'] ?? null,
+            isp: $data['isp'] ?? null,
+            connectionType: $data['connectionType'] ?? null,
+            connectionUsageType: $data['connectionUsageType'] ?? null,
+            connectionOrganization: $data['connectionOrganization'] ?? null
         );
     }
 
@@ -107,7 +111,7 @@ readonly class Locale
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'ip' => static::serializeValue($this->ip),
             'countryCode' => static::serializeValue($this->countryCode),
             'country' => static::serializeValue($this->country),
@@ -127,7 +131,5 @@ readonly class Locale
             'connectionUsageType' => static::serializeValue($this->connectionUsageType),
             'connectionOrganization' => static::serializeValue($this->connectionOrganization)
         ];
-
-        return $result;
     }
 }

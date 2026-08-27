@@ -21,4 +21,5 @@ $result = $databases->updateCollection(
     documentSecurity: false, // optional
     enabled: false, // optional
     purge: false // optional
-);```
+);
+```

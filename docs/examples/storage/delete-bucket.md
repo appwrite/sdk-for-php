@@ -13,4 +13,5 @@ $storage = new Storage($client);
 
 $result = $storage->deleteBucket(
     bucketId: '<BUCKET_ID>'
-);```
+);
+```

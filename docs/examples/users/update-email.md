@@ -14,4 +14,5 @@ $users = new Users($client);
 $result = $users->updateEmail(
     userId: '<USER_ID>',
     email: 'email@example.com'
-);```
+);
+```

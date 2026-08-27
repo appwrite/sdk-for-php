@@ -15,4 +15,5 @@ $result = $sites->listVariables(
     siteId: '<SITE_ID>',
     queries: [], // optional
     total: false // optional
-);```
+);
+```

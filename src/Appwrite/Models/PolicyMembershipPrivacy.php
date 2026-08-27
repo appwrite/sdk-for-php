@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Policy Membership Privacy
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class PolicyMembershipPrivacy
 {
@@ -74,7 +78,7 @@ readonly class PolicyMembershipPrivacy
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             'userId' => static::serializeValue($this->userId),
             'userEmail' => static::serializeValue($this->userEmail),
@@ -83,7 +87,5 @@ readonly class PolicyMembershipPrivacy
             'userMFA' => static::serializeValue($this->userMFA),
             'userAccessedAt' => static::serializeValue($this->userAccessedAt)
         ];
-
-        return $result;
     }
 }

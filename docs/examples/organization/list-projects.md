@@ -15,4 +15,5 @@ $result = $organization->listProjects(
     queries: [], // optional
     search: '<SEARCH>', // optional
     total: false // optional
-);```
+);
+```

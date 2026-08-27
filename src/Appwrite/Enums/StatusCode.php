@@ -1,21 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Enums;
 
 use JsonSerializable;
+use Stringable;
 
-class StatusCode implements JsonSerializable
+class StatusCode implements JsonSerializable, Stringable
 {
     private static StatusCode $MOVEDPERMANENTLY;
     private static StatusCode $FOUND;
     private static StatusCode $TEMPORARYREDIRECT;
     private static StatusCode $PERMANENTREDIRECT;
 
-    private string $value;
-
-    private function __construct(string $value)
+    private function __construct(private readonly string $value)
     {
-        $this->value = $value;
     }
 
     public function __toString(): string

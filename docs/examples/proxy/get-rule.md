@@ -13,4 +13,5 @@ $proxy = new Proxy($client);
 
 $result = $proxy->getRule(
     ruleId: '<RULE_ID>'
-);```
+);
+```

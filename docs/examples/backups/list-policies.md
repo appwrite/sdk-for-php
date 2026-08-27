@@ -13,4 +13,5 @@ $backups = new Backups($client);
 
 $result = $backups->listPolicies(
     queries: [] // optional
-);```
+);
+```

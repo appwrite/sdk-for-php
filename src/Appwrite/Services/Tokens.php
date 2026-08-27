@@ -1,29 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Services;
 
 use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
-use Appwrite\InputFile;
 
 class Tokens extends Service
 {
-    public function __construct(Client $client)
-    {
-        parent::__construct($client);
-    }
-
     /**
      * List all the tokens created for a specific file or bucket. You can use the
      * query params to filter your results.
      *
-     * @param string $bucketId
-     * @param string $fileId
-     * @param ?array $queries
-     * @param ?bool $total
      * @throws AppwriteException
-     * @return \Appwrite\Models\ResourceTokenList
      */
     public function list(string $bucketId, string $fileId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\ResourceTokenList
     {
@@ -61,18 +52,13 @@ class Tokens extends Service
         }
 
         return \Appwrite\Models\ResourceTokenList::from($response);
-
     }
 
     /**
      * Create a new token. A token is linked to a file. Token can be passed as a
      * request URL search parameter.
      *
-     * @param string $bucketId
-     * @param string $fileId
-     * @param ?string $expire
      * @throws AppwriteException
-     * @return \Appwrite\Models\ResourceToken
      */
     public function createFileToken(string $bucketId, string $fileId, ?string $expire = null): \Appwrite\Models\ResourceToken
     {
@@ -104,15 +90,12 @@ class Tokens extends Service
         }
 
         return \Appwrite\Models\ResourceToken::from($response);
-
     }
 
     /**
      * Get a token by its unique ID.
      *
-     * @param string $tokenId
      * @throws AppwriteException
-     * @return \Appwrite\Models\ResourceToken
      */
     public function get(string $tokenId): \Appwrite\Models\ResourceToken
     {
@@ -141,17 +124,13 @@ class Tokens extends Service
         }
 
         return \Appwrite\Models\ResourceToken::from($response);
-
     }
 
     /**
      * Update a token by its unique ID. Use this endpoint to update a token's
      * expiry date.
      *
-     * @param string $tokenId
-     * @param ?string $expire
      * @throws AppwriteException
-     * @return \Appwrite\Models\ResourceToken
      */
     public function update(string $tokenId, ?string $expire = null): \Appwrite\Models\ResourceToken
     {
@@ -182,15 +161,12 @@ class Tokens extends Service
         }
 
         return \Appwrite\Models\ResourceToken::from($response);
-
     }
 
     /**
      * Delete a token by its unique ID.
      *
-     * @param string $tokenId
      * @throws AppwriteException
-     * @return string
      */
     public function delete(string $tokenId): string
     {
@@ -207,14 +183,11 @@ class Tokens extends Service
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 }

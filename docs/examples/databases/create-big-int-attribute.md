@@ -20,4 +20,5 @@ $result = $databases->createBigIntAttribute(
     max: null, // optional
     default: null, // optional
     array: false // optional
-);```
+);
+```

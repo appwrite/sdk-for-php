@@ -22,4 +22,5 @@ $result = $oauth2->createToken(
     redirectUri: 'https://example.com', // optional
     resource: '', // optional
     audience: '<AUDIENCE>' // optional
-);```
+);
+```

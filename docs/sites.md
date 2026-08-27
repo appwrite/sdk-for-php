@@ -5,7 +5,7 @@
 GET https://cloud.appwrite.io/v1/sites
 ```
 
-** Get a list of all the project&#039;s sites. You can use the query params to filter your results. **
+** Get a list of all the project's sites. You can use the query params to filter your results. **
 
 ### Parameters
 
@@ -49,6 +49,7 @@ POST https://cloud.appwrite.io/v1/sites
 | buildSpecification | string | Build specification for the site deployments. | [] |
 | runtimeSpecification | string | Runtime specification for the SSR executions. | [] |
 | deploymentRetention | integer | Days to keep non-active deployments before deletion. Value 0 means all deployments will be kept. | 0 |
+| scopes | array | List of scopes allowed for API key auto-generated for every site build and SSR execution. Maximum of 200 scopes are allowed. | [] |
 
 
 ```http request
@@ -117,6 +118,7 @@ PUT https://cloud.appwrite.io/v1/sites/{siteId}
 | buildSpecification | string | Build specification for the site deployments. |  |
 | runtimeSpecification | string | Runtime specification for the SSR executions. | [] |
 | deploymentRetention | integer | Days to keep non-active deployments before deletion. Value 0 means all deployments will be kept. | 0 |
+| scopes | array | List of scopes allowed for API key auto-generated for every site build and SSR execution. Maximum of 200 scopes are allowed. |  |
 
 
 ```http request
@@ -150,7 +152,7 @@ PATCH https://cloud.appwrite.io/v1/sites/{siteId}/deployment
 GET https://cloud.appwrite.io/v1/sites/{siteId}/deployments
 ```
 
-** Get a list of all the site&#039;s code deployments. You can use the query params to filter your results. **
+** Get a list of all the site's code deployments. You can use the query params to filter your results. **
 
 ### Parameters
 
@@ -166,7 +168,7 @@ GET https://cloud.appwrite.io/v1/sites/{siteId}/deployments
 POST https://cloud.appwrite.io/v1/sites/{siteId}/deployments
 ```
 
-** Create a new site code deployment. Use this endpoint to upload a new version of your site code. To activate your newly uploaded code, you&#039;ll need to update the site&#039;s deployment to use your new deployment ID. **
+** Create a new site code deployment. Use this endpoint to upload a new version of your site code. To activate your newly uploaded code, you'll need to update the site's deployment to use your new deployment ID. **
 
 ### Parameters
 
@@ -184,7 +186,7 @@ POST https://cloud.appwrite.io/v1/sites/{siteId}/deployments
 POST https://cloud.appwrite.io/v1/sites/{siteId}/deployments/duplicate
 ```
 
-** Create a new build for an existing site deployment. This endpoint allows you to rebuild a deployment with the updated site configuration, including its commands and output directory if they have been modified. The build process will be queued and executed asynchronously. The original deployment&#039;s code will be preserved and used for the new build. **
+** Create a new build for an existing site deployment. This endpoint allows you to rebuild a deployment with the updated site configuration, including its commands and output directory if they have been modified. The build process will be queued and executed asynchronously. The original deployment's code will be preserved and used for the new build. **
 
 ### Parameters
 
@@ -265,7 +267,7 @@ DELETE https://cloud.appwrite.io/v1/sites/{siteId}/deployments/{deploymentId}
 GET https://cloud.appwrite.io/v1/sites/{siteId}/deployments/{deploymentId}/download
 ```
 
-** Get a site deployment content by its unique ID. The endpoint response return with a &#039;Content-Disposition: attachment&#039; header that tells the browser to start downloading the file to user downloads directory. **
+** Get a site deployment content by its unique ID. The endpoint response return with a 'Content-Disposition: attachment' header that tells the browser to start downloading the file to user downloads directory. **
 
 ### Parameters
 
@@ -281,7 +283,7 @@ GET https://cloud.appwrite.io/v1/sites/{siteId}/deployments/{deploymentId}/downl
 PATCH https://cloud.appwrite.io/v1/sites/{siteId}/deployments/{deploymentId}/status
 ```
 
-** Cancel an ongoing site deployment build. If the build is already in progress, it will be stopped and marked as canceled. If the build hasn&#039;t started yet, it will be marked as canceled without executing. You cannot cancel builds that have already completed (status &#039;ready&#039;) or failed. The response includes the final build status and details. **
+** Cancel an ongoing site deployment build. If the build is already in progress, it will be stopped and marked as canceled. If the build hasn't started yet, it will be marked as canceled without executing. You cannot cancel builds that have already completed (status 'ready') or failed. The response includes the final build status and details. **
 
 ### Parameters
 
@@ -361,7 +363,7 @@ POST https://cloud.appwrite.io/v1/sites/{siteId}/variables
 | --- | --- | --- | --- |
 | siteId | string | **Required** Site unique ID. |  |
 | variableId | string | Variable ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
-| key | string | Variable key. Max length: 255 chars. |  |
+| key | string | Variable key. Letters, digits and underscores only, must not start with a digit. Max length: 255 chars. |  |
 | value | string | Variable value. Max length: 8192 chars. |  |
 | secret | boolean | Secret variables can be updated or deleted, but only sites can read them during build and runtime. | 1 |
 
@@ -392,7 +394,7 @@ PUT https://cloud.appwrite.io/v1/sites/{siteId}/variables/{variableId}
 | --- | --- | --- | --- |
 | siteId | string | **Required** Site unique ID. |  |
 | variableId | string | **Required** Variable unique ID. |  |
-| key | string | Variable key. Max length: 255 chars. |  |
+| key | string | Variable key. Letters, digits and underscores only, must not start with a digit. Max length: 255 chars. |  |
 | value | string | Variable value. Max length: 8192 chars. |  |
 | secret | boolean | Secret variables can be updated or deleted, but only sites can read them during build and runtime. |  |
 

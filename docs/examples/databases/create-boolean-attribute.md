@@ -18,4 +18,5 @@ $result = $databases->createBooleanAttribute(
     required: false,
     default: false, // optional
     array: false // optional
-);```
+);
+```

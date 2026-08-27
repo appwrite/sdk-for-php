@@ -26,4 +26,5 @@ $result = $storage->createBucket(
     encryption: false, // optional
     antivirus: false, // optional
     transformations: false // optional
-);```
+);
+```

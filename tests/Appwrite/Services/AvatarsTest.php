@@ -1,23 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Services;
 
 use Appwrite\Client;
-use Appwrite\InputFile;
 use Mockery;
+use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
 use Appwrite\Enums\Browser;
 use Appwrite\Enums\CreditCard;
 use Appwrite\Enums\Flag;
-use Appwrite\Enums\BrowserTheme;
-use Appwrite\Enums\Timezone;
-use Appwrite\Enums\BrowserPermission;
-use Appwrite\Enums\ImageFormat;
 
 final class AvatarsTest extends TestCase
 {
-    private $client;
-    private $avatars;
+    private Client&MockInterface $client;
+    private Avatars $avatars;
 
     protected function setUp(): void
     {
@@ -42,7 +40,6 @@ final class AvatarsTest extends TestCase
 
         $this->assertSame($data, $response);
     }
-
     public function testMethodGetCreditCard(): void
     {
         $data = '';
@@ -60,7 +57,6 @@ final class AvatarsTest extends TestCase
 
         $this->assertSame($data, $response);
     }
-
     public function testMethodGetFavicon(): void
     {
         $data = '';
@@ -78,7 +74,6 @@ final class AvatarsTest extends TestCase
 
         $this->assertSame($data, $response);
     }
-
     public function testMethodGetFlag(): void
     {
         $data = '';
@@ -96,7 +91,6 @@ final class AvatarsTest extends TestCase
 
         $this->assertSame($data, $response);
     }
-
     public function testMethodGetImage(): void
     {
         $data = '';
@@ -114,7 +108,6 @@ final class AvatarsTest extends TestCase
 
         $this->assertSame($data, $response);
     }
-
     public function testMethodGetInitials(): void
     {
         $data = '';
@@ -130,7 +123,21 @@ final class AvatarsTest extends TestCase
 
         $this->assertSame($data, $response);
     }
+    public function testMethodGetPhoto(): void
+    {
+        $data = '';
 
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->avatars->getPhoto();
+
+        $this->assertSame($data, $response);
+    }
     public function testMethodGetQR(): void
     {
         $data = '';
@@ -148,7 +155,6 @@ final class AvatarsTest extends TestCase
 
         $this->assertSame($data, $response);
     }
-
     public function testMethodGetScreenshot(): void
     {
         $data = '';
@@ -166,5 +172,4 @@ final class AvatarsTest extends TestCase
 
         $this->assertSame($data, $response);
     }
-
 }

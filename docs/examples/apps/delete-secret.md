@@ -14,4 +14,5 @@ $apps = new Apps($client);
 $result = $apps->deleteSecret(
     appId: '<APP_ID>',
     secretId: '<SECRET_ID>'
-);```
+);
+```

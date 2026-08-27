@@ -1,5 +1,23 @@
 # Change Log
 
+## 29.0.0
+
+* Breaking: requires PHP 8.5 or later, up from PHP 8.2
+* Breaking: HTTP transport rewritten on `utopia-php/client` (PSR-18), now a required dependency
+* Breaking: `Execution.functionId` replaced by `resourceId` and `resourceType`
+* Breaking: removed `dedicatedDatabases.execute` from `ProjectKeyScopes`
+* Breaking: `Project.wafEnabled` is now nullable
+* Added: `avatars.getPhoto`, with `userId`, `emailHash`, and `name` to resolve an avatar for someone other than the caller
+* Added: `project.updateOAuth2HuggingFace`, the `OAuth2HuggingFace` model, and the `huggingface` OAuth provider
+* Added: `scopes` parameter to `sites.create` and `sites.update`, and `Site.scopes`
+* Added: `ExecutionResourceType` enum and the `bun-1.4` runtime
+* Added: `Database` fields `containerStatus`, `error`, and `lifecycleState`
+* Added: `BillingPlan` fields `supportsDedicatedDatabases` and `databaseComputeCredit`
+* Added: `DatabaseMigration.changelogWatermark`, and `replicating` on `DatabaseStatusReplica` and `DedicatedDatabaseMember`
+* Updated: enums now implement `Stringable`
+* Updated: sources declare `strict_types` and ship `pint`, `phpstan`, and `rector` configs
+
+
 ## 28.0.0
 
 * Breaking: removed `account.createJWT`; use `users.createJWT` instead. A leaked JWT could mint further JWTs, letting a credential outlive its own expiry — a session cannot duplicate itself to live forever either

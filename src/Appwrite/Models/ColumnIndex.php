@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Index
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class ColumnIndex
 {
@@ -80,7 +84,7 @@ readonly class ColumnIndex
             error: $data['error'],
             columns: $data['columns'],
             lengths: $data['lengths'],
-            orders: array_key_exists('orders', $data) ? $data['orders'] : null
+            orders: $data['orders'] ?? null
         );
     }
 
@@ -89,7 +93,7 @@ readonly class ColumnIndex
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             '$createdAt' => static::serializeValue($this->createdAt),
             '$updatedAt' => static::serializeValue($this->updatedAt),
@@ -101,7 +105,5 @@ readonly class ColumnIndex
             'lengths' => static::serializeValue($this->lengths),
             'orders' => static::serializeValue($this->orders)
         ];
-
-        return $result;
     }
 }

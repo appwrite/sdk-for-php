@@ -13,4 +13,5 @@ $users = new Users($client);
 
 $result = $users->get(
     userId: '<USER_ID>'
-);```
+);
+```

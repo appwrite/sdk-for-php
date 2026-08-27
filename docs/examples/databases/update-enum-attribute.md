@@ -19,4 +19,5 @@ $result = $databases->updateEnumAttribute(
     required: false,
     default: '<DEFAULT>',
     newKey: '' // optional
-);```
+);
+```

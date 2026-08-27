@@ -1,16 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Services;
 
 use Appwrite\Client;
-use Appwrite\InputFile;
 use Mockery;
+use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
 
 final class PresencesTest extends TestCase
 {
-    private $client;
-    private $presences;
+    private Client&MockInterface $client;
+    private Presences $presences;
 
     protected function setUp(): void
     {
@@ -20,19 +22,19 @@ final class PresencesTest extends TestCase
 
     public function testMethodList(): void
     {
-        $data = array(
+        $data = [
             "total" => 5,
-            "presences" => array(
-                array(
+            "presences" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "\$permissions" => array(),
+                    "\$permissions" => [],
                     "userId" => "674af8f3e12a5f9ac0be",
                     "source" => "HTTP"
-                )
-            )
-        );
+                ]
+            ]
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -45,17 +47,16 @@ final class PresencesTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\PresenceList::class, $response);
     }
-
     public function testMethodGet(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$permissions" => array(),
+            "\$permissions" => [],
             "userId" => "674af8f3e12a5f9ac0be",
             "source" => "HTTP"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -70,17 +71,16 @@ final class PresencesTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Presence::class, $response);
     }
-
     public function testMethodUpsert(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$permissions" => array(),
+            "\$permissions" => [],
             "userId" => "674af8f3e12a5f9ac0be",
             "source" => "HTTP"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -97,17 +97,16 @@ final class PresencesTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Presence::class, $response);
     }
-
     public function testMethodUpdate(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$permissions" => array(),
+            "\$permissions" => [],
             "userId" => "674af8f3e12a5f9ac0be",
             "source" => "HTTP"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -123,7 +122,6 @@ final class PresencesTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Presence::class, $response);
     }
-
     public function testMethodDelete(): void
     {
         $data = '';
@@ -141,5 +139,4 @@ final class PresencesTest extends TestCase
 
         $this->assertSame($data, $response);
     }
-
 }

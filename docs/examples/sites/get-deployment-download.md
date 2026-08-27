@@ -17,4 +17,5 @@ $result = $sites->getDeploymentDownload(
     deploymentId: '<DEPLOYMENT_ID>',
     type: DeploymentDownloadType::SOURCE(), // optional
     token: '<TOKEN>' // optional
-);```
+);
+```

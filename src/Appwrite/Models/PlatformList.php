@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Platforms List
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class PlatformList
 {
@@ -44,11 +48,9 @@ readonly class PlatformList
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'total' => static::serializeValue($this->total),
             'platforms' => static::serializeValue($this->platforms)
         ];
-
-        return $result;
     }
 }

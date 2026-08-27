@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Program
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class Program
 {
@@ -86,7 +90,7 @@ readonly class Program
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             'title' => static::serializeValue($this->title),
             'description' => static::serializeValue($this->description),
@@ -97,7 +101,5 @@ readonly class Program
             'external' => static::serializeValue($this->external),
             'billingPlanId' => static::serializeValue($this->billingPlanId)
         ];
-
-        return $result;
     }
 }

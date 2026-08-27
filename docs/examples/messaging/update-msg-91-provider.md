@@ -18,4 +18,5 @@ $result = $messaging->updateMsg91Provider(
     templateId: '<TEMPLATE_ID>', // optional
     senderId: '<SENDER_ID>', // optional
     authKey: '<AUTH_KEY>' // optional
-);```
+);
+```

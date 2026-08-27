@@ -15,4 +15,5 @@ $project = new Project($client);
 $result = $project->updateProtocol(
     protocolId: ProjectProtocolId::REST(),
     enabled: false
-);```
+);
+```

@@ -16,4 +16,5 @@ $result = $tablesDB->listTables(
     queries: [], // optional
     search: '<SEARCH>', // optional
     total: false // optional
-);```
+);
+```

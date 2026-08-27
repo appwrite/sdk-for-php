@@ -1,21 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Enums;
 
 use JsonSerializable;
+use Stringable;
 
-class EmbeddingModel implements JsonSerializable
+class EmbeddingModel implements JsonSerializable, Stringable
 {
     private static EmbeddingModel $NOMICEMBEDTEXT;
     private static EmbeddingModel $EMBEDDINGGEMMA;
     private static EmbeddingModel $ALLMINILM;
     private static EmbeddingModel $BGESMALL;
 
-    private string $value;
-
-    private function __construct(string $value)
+    private function __construct(private readonly string $value)
     {
-        $this->value = $value;
     }
 
     public function __toString(): string

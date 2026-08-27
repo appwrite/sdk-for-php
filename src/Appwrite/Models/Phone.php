@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Phone
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class Phone
 {
@@ -50,12 +54,10 @@ readonly class Phone
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'code' => static::serializeValue($this->code),
             'countryCode' => static::serializeValue($this->countryCode),
             'countryName' => static::serializeValue($this->countryName)
         ];
-
-        return $result;
     }
 }

@@ -15,4 +15,5 @@ $result = $project->updateOAuth2Stripe(
     clientId: '<CLIENT_ID>', // optional
     apiSecretKey: '<API_SECRET_KEY>', // optional
     enabled: false // optional
-);```
+);
+```

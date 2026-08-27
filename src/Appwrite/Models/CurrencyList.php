@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Currencies List
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class CurrencyList
 {
@@ -49,11 +53,9 @@ readonly class CurrencyList
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'total' => static::serializeValue($this->total),
             'currencies' => static::serializeValue($this->currencies)
         ];
-
-        return $result;
     }
 }

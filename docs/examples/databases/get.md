@@ -13,4 +13,5 @@ $databases = new Databases($client);
 
 $result = $databases->get(
     databaseId: '<DATABASE_ID>'
-);```
+);
+```

@@ -1,21 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Enums;
 
 use JsonSerializable;
+use Stringable;
 
-class TablesDBIndexType implements JsonSerializable
+class TablesDBIndexType implements JsonSerializable, Stringable
 {
     private static TablesDBIndexType $KEY;
     private static TablesDBIndexType $FULLTEXT;
     private static TablesDBIndexType $UNIQUE;
     private static TablesDBIndexType $SPATIAL;
 
-    private string $value;
-
-    private function __construct(string $value)
+    private function __construct(private readonly string $value)
     {
-        $this->value = $value;
     }
 
     public function __toString(): string

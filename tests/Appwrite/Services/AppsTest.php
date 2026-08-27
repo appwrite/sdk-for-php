@@ -1,16 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Services;
 
 use Appwrite\Client;
-use Appwrite\InputFile;
 use Mockery;
+use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
 
 final class AppsTest extends TestCase
 {
-    private $client;
-    private $apps;
+    private Client&MockInterface $client;
+    private Apps $apps;
 
     protected function setUp(): void
     {
@@ -20,10 +22,10 @@ final class AppsTest extends TestCase
 
     public function testMethodList(): void
     {
-        $data = array(
+        $data = [
             "total" => 5,
-            "apps" => array(
-                array(
+            "apps" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -33,24 +35,24 @@ final class AppsTest extends TestCase
                     "logoUri" => "https://example.com/logo.png",
                     "privacyPolicyUrl" => "https://example.com/privacy",
                     "termsUrl" => "https://example.com/terms",
-                    "contacts" => array(),
+                    "contacts" => [],
                     "tagline" => "Automate your workspace.",
-                    "tags" => array(),
-                    "labels" => array(),
-                    "images" => array(),
+                    "tags" => [],
+                    "labels" => [],
+                    "images" => [],
                     "supportUrl" => "https://example.com/support",
                     "dataDeletionUrl" => "https://example.com/data-deletion",
-                    "redirectUris" => array(),
-                    "postLogoutRedirectUris" => array(),
+                    "redirectUris" => [],
+                    "postLogoutRedirectUris" => [],
                     "enabled" => true,
                     "type" => "confidential",
                     "deviceFlow" => true,
                     "teamId" => "5e5ea5c16897e",
                     "userId" => "5e5ea5c16897e",
-                    "installationScopes" => array(),
+                    "installationScopes" => [],
                     "installationRedirectUrl" => "https://example.com/setup",
-                    "secrets" => array(
-                        array(
+                    "secrets" => [
+                        [
                             "\$id" => "5e5ea5c16897e",
                             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -59,11 +61,11 @@ final class AppsTest extends TestCase
                             "hint" => "f5c6c7",
                             "createdById" => "5e5ea5c16897e",
                             "createdByName" => "Walter White"
-                        )
-                    )
-                )
-            )
-        );
+                        ]
+                    ]
+                ]
+            ]
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -76,10 +78,9 @@ final class AppsTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\AppsList::class, $response);
     }
-
     public function testMethodCreate(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -89,24 +90,24 @@ final class AppsTest extends TestCase
             "logoUri" => "https://example.com/logo.png",
             "privacyPolicyUrl" => "https://example.com/privacy",
             "termsUrl" => "https://example.com/terms",
-            "contacts" => array(),
+            "contacts" => [],
             "tagline" => "Automate your workspace.",
-            "tags" => array(),
-            "labels" => array(),
-            "images" => array(),
+            "tags" => [],
+            "labels" => [],
+            "images" => [],
             "supportUrl" => "https://example.com/support",
             "dataDeletionUrl" => "https://example.com/data-deletion",
-            "redirectUris" => array(),
-            "postLogoutRedirectUris" => array(),
+            "redirectUris" => [],
+            "postLogoutRedirectUris" => [],
             "enabled" => true,
             "type" => "confidential",
             "deviceFlow" => true,
             "teamId" => "5e5ea5c16897e",
             "userId" => "5e5ea5c16897e",
-            "installationScopes" => array(),
+            "installationScopes" => [],
             "installationRedirectUrl" => "https://example.com/setup",
-            "secrets" => array(
-                array(
+            "secrets" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -115,9 +116,9 @@ final class AppsTest extends TestCase
                     "hint" => "f5c6c7",
                     "createdById" => "5e5ea5c16897e",
                     "createdByName" => "Walter White"
-                )
-            )
-        );
+                ]
+            ]
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -129,26 +130,25 @@ final class AppsTest extends TestCase
         $response = $this->apps->create(
             "<APP_ID>",
             "<NAME>",
-            array()
+            []
         );
 
         $this->assertInstanceOf(\Appwrite\Models\App::class, $response);
     }
-
     public function testMethodListInstallationScopes(): void
     {
-        $data = array(
+        $data = [
             "total" => 5,
-            "scopes" => array(
-                array(
+            "scopes" => [
+                [
                     "value" => "organization:organization.read",
                     "description" => "Access to read the organization",
                     "type" => "organization",
                     "category" => "Organization",
                     "deprecated" => true
-                )
-            )
-        );
+                ]
+            ]
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -161,21 +161,20 @@ final class AppsTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\AppScopeList::class, $response);
     }
-
     public function testMethodListOAuth2Scopes(): void
     {
-        $data = array(
+        $data = [
             "total" => 5,
-            "scopes" => array(
-                array(
+            "scopes" => [
+                [
                     "value" => "organization:organization.read",
                     "description" => "Access to read the organization",
                     "type" => "organization",
                     "category" => "Organization",
                     "deprecated" => true
-                )
-            )
-        );
+                ]
+            ]
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -188,10 +187,9 @@ final class AppsTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\AppScopeList::class, $response);
     }
-
     public function testMethodGet(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -201,24 +199,24 @@ final class AppsTest extends TestCase
             "logoUri" => "https://example.com/logo.png",
             "privacyPolicyUrl" => "https://example.com/privacy",
             "termsUrl" => "https://example.com/terms",
-            "contacts" => array(),
+            "contacts" => [],
             "tagline" => "Automate your workspace.",
-            "tags" => array(),
-            "labels" => array(),
-            "images" => array(),
+            "tags" => [],
+            "labels" => [],
+            "images" => [],
             "supportUrl" => "https://example.com/support",
             "dataDeletionUrl" => "https://example.com/data-deletion",
-            "redirectUris" => array(),
-            "postLogoutRedirectUris" => array(),
+            "redirectUris" => [],
+            "postLogoutRedirectUris" => [],
             "enabled" => true,
             "type" => "confidential",
             "deviceFlow" => true,
             "teamId" => "5e5ea5c16897e",
             "userId" => "5e5ea5c16897e",
-            "installationScopes" => array(),
+            "installationScopes" => [],
             "installationRedirectUrl" => "https://example.com/setup",
-            "secrets" => array(
-                array(
+            "secrets" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -227,9 +225,9 @@ final class AppsTest extends TestCase
                     "hint" => "f5c6c7",
                     "createdById" => "5e5ea5c16897e",
                     "createdByName" => "Walter White"
-                )
-            )
-        );
+                ]
+            ]
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -244,10 +242,9 @@ final class AppsTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\App::class, $response);
     }
-
     public function testMethodUpdate(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -257,24 +254,24 @@ final class AppsTest extends TestCase
             "logoUri" => "https://example.com/logo.png",
             "privacyPolicyUrl" => "https://example.com/privacy",
             "termsUrl" => "https://example.com/terms",
-            "contacts" => array(),
+            "contacts" => [],
             "tagline" => "Automate your workspace.",
-            "tags" => array(),
-            "labels" => array(),
-            "images" => array(),
+            "tags" => [],
+            "labels" => [],
+            "images" => [],
             "supportUrl" => "https://example.com/support",
             "dataDeletionUrl" => "https://example.com/data-deletion",
-            "redirectUris" => array(),
-            "postLogoutRedirectUris" => array(),
+            "redirectUris" => [],
+            "postLogoutRedirectUris" => [],
             "enabled" => true,
             "type" => "confidential",
             "deviceFlow" => true,
             "teamId" => "5e5ea5c16897e",
             "userId" => "5e5ea5c16897e",
-            "installationScopes" => array(),
+            "installationScopes" => [],
             "installationRedirectUrl" => "https://example.com/setup",
-            "secrets" => array(
-                array(
+            "secrets" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -283,9 +280,9 @@ final class AppsTest extends TestCase
                     "hint" => "f5c6c7",
                     "createdById" => "5e5ea5c16897e",
                     "createdByName" => "Walter White"
-                )
-            )
-        );
+                ]
+            ]
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -301,7 +298,6 @@ final class AppsTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\App::class, $response);
     }
-
     public function testMethodDelete(): void
     {
         $data = '';
@@ -319,25 +315,24 @@ final class AppsTest extends TestCase
 
         $this->assertSame($data, $response);
     }
-
     public function testMethodListInstallations(): void
     {
-        $data = array(
+        $data = [
             "total" => 5,
-            "installations" => array(
-                array(
+            "installations" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
                     "appId" => "5e5ea5c16897e",
                     "teamId" => "5e5ea5c16897e",
-                    "scopes" => array(),
-                    "authorizationDetails" => array(),
+                    "scopes" => [],
+                    "authorizationDetails" => [],
                     "createdById" => "5e5ea5c16897e",
                     "createdByName" => "Walter White"
-                )
-            )
-        );
+                ]
+            ]
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -352,20 +347,19 @@ final class AppsTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\AppInstallationList::class, $response);
     }
-
     public function testMethodGetInstallation(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "appId" => "5e5ea5c16897e",
             "teamId" => "5e5ea5c16897e",
-            "scopes" => array(),
-            "authorizationDetails" => array(),
+            "scopes" => [],
+            "authorizationDetails" => [],
             "createdById" => "5e5ea5c16897e",
             "createdByName" => "Walter White"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -381,7 +375,6 @@ final class AppsTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\AppInstallation::class, $response);
     }
-
     public function testMethodDeleteInstallation(): void
     {
         $data = '';
@@ -400,16 +393,15 @@ final class AppsTest extends TestCase
 
         $this->assertSame($data, $response);
     }
-
     public function testMethodCreateInstallationToken(): void
     {
-        $data = array(
+        $data = [
             "access_token" => "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9...",
             "token_type" => "Bearer",
             "expires_in" => 3600,
             "refresh_token" => "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...",
             "scope" => "openid email profile"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -425,13 +417,12 @@ final class AppsTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Oauth2Token::class, $response);
     }
-
     public function testMethodListKeys(): void
     {
-        $data = array(
+        $data = [
             "total" => 5,
-            "keys" => array(
-                array(
+            "keys" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -440,9 +431,9 @@ final class AppsTest extends TestCase
                     "hint" => "f5c6c7",
                     "createdById" => "5e5ea5c16897e",
                     "createdByName" => "Walter White"
-                )
-            )
-        );
+                ]
+            ]
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -457,10 +448,9 @@ final class AppsTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\AppKeyList::class, $response);
     }
-
     public function testMethodCreateKey(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -469,7 +459,7 @@ final class AppsTest extends TestCase
             "hint" => "f5c6c7",
             "createdById" => "5e5ea5c16897e",
             "createdByName" => "Walter White"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -484,10 +474,9 @@ final class AppsTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\AppKey::class, $response);
     }
-
     public function testMethodGetKey(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -496,7 +485,7 @@ final class AppsTest extends TestCase
             "hint" => "f5c6c7",
             "createdById" => "5e5ea5c16897e",
             "createdByName" => "Walter White"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -512,7 +501,6 @@ final class AppsTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\AppKey::class, $response);
     }
-
     public function testMethodDeleteKey(): void
     {
         $data = '';
@@ -531,10 +519,9 @@ final class AppsTest extends TestCase
 
         $this->assertSame($data, $response);
     }
-
     public function testMethodUpdateLabels(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -544,24 +531,24 @@ final class AppsTest extends TestCase
             "logoUri" => "https://example.com/logo.png",
             "privacyPolicyUrl" => "https://example.com/privacy",
             "termsUrl" => "https://example.com/terms",
-            "contacts" => array(),
+            "contacts" => [],
             "tagline" => "Automate your workspace.",
-            "tags" => array(),
-            "labels" => array(),
-            "images" => array(),
+            "tags" => [],
+            "labels" => [],
+            "images" => [],
             "supportUrl" => "https://example.com/support",
             "dataDeletionUrl" => "https://example.com/data-deletion",
-            "redirectUris" => array(),
-            "postLogoutRedirectUris" => array(),
+            "redirectUris" => [],
+            "postLogoutRedirectUris" => [],
             "enabled" => true,
             "type" => "confidential",
             "deviceFlow" => true,
             "teamId" => "5e5ea5c16897e",
             "userId" => "5e5ea5c16897e",
-            "installationScopes" => array(),
+            "installationScopes" => [],
             "installationRedirectUrl" => "https://example.com/setup",
-            "secrets" => array(
-                array(
+            "secrets" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -570,9 +557,9 @@ final class AppsTest extends TestCase
                     "hint" => "f5c6c7",
                     "createdById" => "5e5ea5c16897e",
                     "createdByName" => "Walter White"
-                )
-            )
-        );
+                ]
+            ]
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -583,18 +570,17 @@ final class AppsTest extends TestCase
 
         $response = $this->apps->updateLabels(
             "<APP_ID>",
-            array()
+            []
         );
 
         $this->assertInstanceOf(\Appwrite\Models\App::class, $response);
     }
-
     public function testMethodListSecrets(): void
     {
-        $data = array(
+        $data = [
             "total" => 5,
-            "secrets" => array(
-                array(
+            "secrets" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -603,9 +589,9 @@ final class AppsTest extends TestCase
                     "hint" => "f5c6c7",
                     "createdById" => "5e5ea5c16897e",
                     "createdByName" => "Walter White"
-                )
-            )
-        );
+                ]
+            ]
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -620,10 +606,9 @@ final class AppsTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\AppSecretList::class, $response);
     }
-
     public function testMethodCreateSecret(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -632,7 +617,7 @@ final class AppsTest extends TestCase
             "hint" => "f5c6c7",
             "createdById" => "5e5ea5c16897e",
             "createdByName" => "Walter White"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -647,10 +632,9 @@ final class AppsTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\AppSecretPlaintext::class, $response);
     }
-
     public function testMethodGetSecret(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -659,7 +643,7 @@ final class AppsTest extends TestCase
             "hint" => "f5c6c7",
             "createdById" => "5e5ea5c16897e",
             "createdByName" => "Walter White"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -675,7 +659,6 @@ final class AppsTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\AppSecret::class, $response);
     }
-
     public function testMethodDeleteSecret(): void
     {
         $data = '';
@@ -694,10 +677,9 @@ final class AppsTest extends TestCase
 
         $this->assertSame($data, $response);
     }
-
     public function testMethodUpdateTeam(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -707,24 +689,24 @@ final class AppsTest extends TestCase
             "logoUri" => "https://example.com/logo.png",
             "privacyPolicyUrl" => "https://example.com/privacy",
             "termsUrl" => "https://example.com/terms",
-            "contacts" => array(),
+            "contacts" => [],
             "tagline" => "Automate your workspace.",
-            "tags" => array(),
-            "labels" => array(),
-            "images" => array(),
+            "tags" => [],
+            "labels" => [],
+            "images" => [],
             "supportUrl" => "https://example.com/support",
             "dataDeletionUrl" => "https://example.com/data-deletion",
-            "redirectUris" => array(),
-            "postLogoutRedirectUris" => array(),
+            "redirectUris" => [],
+            "postLogoutRedirectUris" => [],
             "enabled" => true,
             "type" => "confidential",
             "deviceFlow" => true,
             "teamId" => "5e5ea5c16897e",
             "userId" => "5e5ea5c16897e",
-            "installationScopes" => array(),
+            "installationScopes" => [],
             "installationRedirectUrl" => "https://example.com/setup",
-            "secrets" => array(
-                array(
+            "secrets" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -733,9 +715,9 @@ final class AppsTest extends TestCase
                     "hint" => "f5c6c7",
                     "createdById" => "5e5ea5c16897e",
                     "createdByName" => "Walter White"
-                )
-            )
-        );
+                ]
+            ]
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -751,7 +733,6 @@ final class AppsTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\App::class, $response);
     }
-
     public function testMethodDeleteTokens(): void
     {
         $data = '';
@@ -769,5 +750,4 @@ final class AppsTest extends TestCase
 
         $this->assertSame($data, $response);
     }
-
 }

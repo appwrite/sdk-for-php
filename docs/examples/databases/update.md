@@ -15,4 +15,5 @@ $result = $databases->update(
     databaseId: '<DATABASE_ID>',
     name: '<NAME>', // optional
     enabled: false // optional
-);```
+);
+```

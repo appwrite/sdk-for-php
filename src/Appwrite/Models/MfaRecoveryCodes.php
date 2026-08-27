@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * MFA Recovery Codes
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class MfaRecoveryCodes
 {
@@ -38,10 +42,8 @@ readonly class MfaRecoveryCodes
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'recoveryCodes' => static::serializeValue($this->recoveryCodes)
         ];
-
-        return $result;
     }
 }

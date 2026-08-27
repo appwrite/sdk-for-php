@@ -15,4 +15,5 @@ $result = $messaging->listTargets(
     messageId: '<MESSAGE_ID>',
     queries: [], // optional
     total: false // optional
-);```
+);
+```

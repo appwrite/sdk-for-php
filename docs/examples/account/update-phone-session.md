@@ -14,4 +14,5 @@ $account = new Account($client);
 $result = $account->updatePhoneSession(
     userId: '<USER_ID>',
     secret: '<SECRET>'
-);```
+);
+```

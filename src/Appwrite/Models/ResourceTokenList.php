@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Resource Tokens List
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class ResourceTokenList
 {
@@ -49,11 +53,9 @@ readonly class ResourceTokenList
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'total' => static::serializeValue($this->total),
             'tokens' => static::serializeValue($this->tokens)
         ];
-
-        return $result;
     }
 }

@@ -15,4 +15,5 @@ $result = $oauth2->approve(
     grantId: '<GRANT_ID>',
     authorizationDetails: '<AUTHORIZATION_DETAILS>', // optional
     scope: '<SCOPE>' // optional
-);```
+);
+```

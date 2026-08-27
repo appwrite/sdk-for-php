@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 use Appwrite\Enums\ProxyRuleDeploymentResourceType;
@@ -7,6 +9,8 @@ use Appwrite\Enums\ProxyRuleStatus;
 
 /**
  * Rule
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class ProxyRule
 {
@@ -122,7 +126,7 @@ readonly class ProxyRule
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             '$createdAt' => static::serializeValue($this->createdAt),
             '$updatedAt' => static::serializeValue($this->updatedAt),
@@ -139,7 +143,5 @@ readonly class ProxyRule
             'logs' => static::serializeValue($this->logs),
             'renewAt' => static::serializeValue($this->renewAt)
         ];
-
-        return $result;
     }
 }

@@ -14,4 +14,5 @@ $tablesDB = new TablesDB($client);
 $result = $tablesDB->cutoverMigration(
     databaseId: '<DATABASE_ID>',
     migrationId: '<MIGRATION_ID>'
-);```
+);
+```

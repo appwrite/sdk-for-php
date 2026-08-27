@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Executions List
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class ExecutionList
 {
@@ -49,11 +53,9 @@ readonly class ExecutionList
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'total' => static::serializeValue($this->total),
             'executions' => static::serializeValue($this->executions)
         ];
-
-        return $result;
     }
 }

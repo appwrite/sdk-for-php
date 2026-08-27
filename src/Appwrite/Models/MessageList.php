@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Message list
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class MessageList
 {
@@ -49,11 +53,9 @@ readonly class MessageList
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'total' => static::serializeValue($this->total),
             'messages' => static::serializeValue($this->messages)
         ];
-
-        return $result;
     }
 }

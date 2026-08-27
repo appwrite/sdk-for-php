@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Target list
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class TargetList
 {
@@ -49,11 +53,9 @@ readonly class TargetList
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'total' => static::serializeValue($this->total),
             'targets' => static::serializeValue($this->targets)
         ];
-
-        return $result;
     }
 }

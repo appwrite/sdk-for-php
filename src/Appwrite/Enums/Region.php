@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Enums;
 
 use JsonSerializable;
+use Stringable;
 
-class Region implements JsonSerializable
+class Region implements JsonSerializable, Stringable
 {
     private static Region $FRA;
     private static Region $NYC;
@@ -13,11 +16,8 @@ class Region implements JsonSerializable
     private static Region $SGP;
     private static Region $TOR;
 
-    private string $value;
-
-    private function __construct(string $value)
+    private function __construct(private readonly string $value)
     {
-        $this->value = $value;
     }
 
     public function __toString(): string

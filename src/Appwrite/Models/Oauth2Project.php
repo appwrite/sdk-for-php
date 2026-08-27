@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * OAuth2 Project
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class Oauth2Project
 {
@@ -50,12 +54,10 @@ readonly class Oauth2Project
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             'region' => static::serializeValue($this->region),
             'endpoint' => static::serializeValue($this->endpoint)
         ];
-
-        return $result;
     }
 }

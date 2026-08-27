@@ -1,20 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Enums;
 
 use JsonSerializable;
+use Stringable;
 
-class ProjectOAuth2GooglePrompt implements JsonSerializable
+class ProjectOAuth2GooglePrompt implements JsonSerializable, Stringable
 {
     private static ProjectOAuth2GooglePrompt $NONE;
     private static ProjectOAuth2GooglePrompt $CONSENT;
     private static ProjectOAuth2GooglePrompt $SELECTACCOUNT;
 
-    private string $value;
-
-    private function __construct(string $value)
+    private function __construct(private readonly string $value)
     {
-        $this->value = $value;
     }
 
     public function __toString(): string

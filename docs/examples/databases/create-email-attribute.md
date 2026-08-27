@@ -18,4 +18,5 @@ $result = $databases->createEmailAttribute(
     required: false,
     default: 'email@example.com', // optional
     array: false // optional
-);```
+);
+```

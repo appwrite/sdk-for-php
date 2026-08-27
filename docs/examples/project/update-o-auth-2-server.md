@@ -28,4 +28,5 @@ $result = $project->updateOAuth2Server(
     deviceCodeDuration: 60, // optional
     defaultScopes: [], // optional
     installationScopes: [] // optional
-);```
+);
+```

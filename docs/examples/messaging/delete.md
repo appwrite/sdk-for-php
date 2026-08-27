@@ -13,4 +13,5 @@ $messaging = new Messaging($client);
 
 $result = $messaging->delete(
     messageId: '<MESSAGE_ID>'
-);```
+);
+```

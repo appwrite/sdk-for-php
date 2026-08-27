@@ -1,13 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Enums;
 
 use JsonSerializable;
+use Stringable;
 
-class ProjectKeyScopes implements JsonSerializable
+class ProjectKeyScopes implements JsonSerializable, Stringable
 {
     private static ProjectKeyScopes $PROJECTREAD;
     private static ProjectKeyScopes $PROJECTWRITE;
+    private static ProjectKeyScopes $USAGEREAD;
     private static ProjectKeyScopes $KEYSREAD;
     private static ProjectKeyScopes $KEYSWRITE;
     private static ProjectKeyScopes $PLATFORMSREAD;
@@ -99,7 +103,6 @@ class ProjectKeyScopes implements JsonSerializable
     private static ProjectKeyScopes $ARCHIVESWRITE;
     private static ProjectKeyScopes $RESTORATIONSREAD;
     private static ProjectKeyScopes $RESTORATIONSWRITE;
-    private static ProjectKeyScopes $DEDICATEDDATABASESEXECUTE;
     private static ProjectKeyScopes $DOMAINSREAD;
     private static ProjectKeyScopes $DOMAINSWRITE;
     private static ProjectKeyScopes $WAFRULESREAD;
@@ -111,13 +114,9 @@ class ProjectKeyScopes implements JsonSerializable
     private static ProjectKeyScopes $OAUTH2READ;
     private static ProjectKeyScopes $OAUTH2WRITE;
     private static ProjectKeyScopes $OAUTH2INTROSPECT;
-    private static ProjectKeyScopes $USAGEREAD;
 
-    private string $value;
-
-    private function __construct(string $value)
+    private function __construct(private readonly string $value)
     {
-        $this->value = $value;
     }
 
     public function __toString(): string
@@ -143,6 +142,13 @@ class ProjectKeyScopes implements JsonSerializable
             self::$PROJECTWRITE = new ProjectKeyScopes('project.write');
         }
         return self::$PROJECTWRITE;
+    }
+    public static function USAGEREAD(): ProjectKeyScopes
+    {
+        if (!isset(self::$USAGEREAD)) {
+            self::$USAGEREAD = new ProjectKeyScopes('usage.read');
+        }
+        return self::$USAGEREAD;
     }
     public static function KEYSREAD(): ProjectKeyScopes
     {
@@ -781,13 +787,6 @@ class ProjectKeyScopes implements JsonSerializable
         }
         return self::$RESTORATIONSWRITE;
     }
-    public static function DEDICATEDDATABASESEXECUTE(): ProjectKeyScopes
-    {
-        if (!isset(self::$DEDICATEDDATABASESEXECUTE)) {
-            self::$DEDICATEDDATABASESEXECUTE = new ProjectKeyScopes('dedicatedDatabases.execute');
-        }
-        return self::$DEDICATEDDATABASESEXECUTE;
-    }
     public static function DOMAINSREAD(): ProjectKeyScopes
     {
         if (!isset(self::$DOMAINSREAD)) {
@@ -865,19 +864,13 @@ class ProjectKeyScopes implements JsonSerializable
         }
         return self::$OAUTH2INTROSPECT;
     }
-    public static function USAGEREAD(): ProjectKeyScopes
-    {
-        if (!isset(self::$USAGEREAD)) {
-            self::$USAGEREAD = new ProjectKeyScopes('usage.read');
-        }
-        return self::$USAGEREAD;
-    }
 
     public static function from(string $value): self
     {
         return match ($value) {
             'project.read' => self::PROJECTREAD(),
             'project.write' => self::PROJECTWRITE(),
+            'usage.read' => self::USAGEREAD(),
             'keys.read' => self::KEYSREAD(),
             'keys.write' => self::KEYSWRITE(),
             'platforms.read' => self::PLATFORMSREAD(),
@@ -969,7 +962,6 @@ class ProjectKeyScopes implements JsonSerializable
             'archives.write' => self::ARCHIVESWRITE(),
             'restorations.read' => self::RESTORATIONSREAD(),
             'restorations.write' => self::RESTORATIONSWRITE(),
-            'dedicatedDatabases.execute' => self::DEDICATEDDATABASESEXECUTE(),
             'domains.read' => self::DOMAINSREAD(),
             'domains.write' => self::DOMAINSWRITE(),
             'wafRules.read' => self::WAFRULESREAD(),
@@ -981,7 +973,6 @@ class ProjectKeyScopes implements JsonSerializable
             'oauth2.read' => self::OAUTH2READ(),
             'oauth2.write' => self::OAUTH2WRITE(),
             'oauth2.introspect' => self::OAUTH2INTROSPECT(),
-            'usage.read' => self::USAGEREAD(),
             default => throw new \InvalidArgumentException('Unknown ProjectKeyScopes value: ' . $value),
         };
     }

@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Framework
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class Framework
 {
@@ -67,14 +71,12 @@ readonly class Framework
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'key' => static::serializeValue($this->key),
             'name' => static::serializeValue($this->name),
             'buildRuntime' => static::serializeValue($this->buildRuntime),
             'runtimes' => static::serializeValue($this->runtimes),
             'adapters' => static::serializeValue($this->adapters)
         ];
-
-        return $result;
     }
 }

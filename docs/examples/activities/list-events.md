@@ -13,4 +13,5 @@ $activities = new Activities($client);
 
 $result = $activities->listEvents(
     queries: [] // optional
-);```
+);
+```

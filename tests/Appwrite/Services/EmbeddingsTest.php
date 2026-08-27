@@ -1,17 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Services;
 
 use Appwrite\Client;
-use Appwrite\InputFile;
 use Mockery;
+use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
-use Appwrite\Enums\EmbeddingModel;
 
 final class EmbeddingsTest extends TestCase
 {
-    private $client;
-    private $embeddings;
+    private Client&MockInterface $client;
+    private Embeddings $embeddings;
 
     protected function setUp(): void
     {
@@ -21,17 +22,17 @@ final class EmbeddingsTest extends TestCase
 
     public function testMethodCreateTextEmbeddings(): void
     {
-        $data = array(
+        $data = [
             "total" => 5,
-            "embeddings" => array(
-                array(
+            "embeddings" => [
+                [
                     "model" => "nomic-embed-text",
                     "dimension" => 768,
-                    "embedding" => array(),
+                    "embedding" => [],
                     "error" => "Error message"
-                )
-            )
-        );
+                ]
+            ]
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -41,10 +42,9 @@ final class EmbeddingsTest extends TestCase
             ->andReturn('');
 
         $response = $this->embeddings->createTextEmbeddings(
-            array()
+            []
         );
 
         $this->assertInstanceOf(\Appwrite\Models\EmbeddingList::class, $response);
     }
-
 }

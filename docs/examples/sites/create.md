@@ -6,6 +6,7 @@ use Appwrite\Services\Sites;
 use Appwrite\Enums\Framework;
 use Appwrite\Enums\BuildRuntime;
 use Appwrite\Enums\Adapter;
+use Appwrite\Enums\ProjectKeyScopes;
 
 $client = (new Client())
     ->setEndpoint('https://<REGION>.cloud.appwrite.io/v1') // Your API Endpoint
@@ -37,5 +38,7 @@ $result = $sites->create(
     providerPaths: [], // optional
     buildSpecification: '', // optional
     runtimeSpecification: '', // optional
-    deploymentRetention: 0 // optional
-);```
+    deploymentRetention: 0, // optional
+    scopes: [ProjectKeyScopes::PROJECTREAD()] // optional
+);
+```

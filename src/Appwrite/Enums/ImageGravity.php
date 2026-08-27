@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Enums;
 
 use JsonSerializable;
+use Stringable;
 
-class ImageGravity implements JsonSerializable
+class ImageGravity implements JsonSerializable, Stringable
 {
     private static ImageGravity $CENTER;
     private static ImageGravity $TOPLEFT;
@@ -16,11 +19,8 @@ class ImageGravity implements JsonSerializable
     private static ImageGravity $BOTTOM;
     private static ImageGravity $BOTTOMRIGHT;
 
-    private string $value;
-
-    private function __construct(string $value)
+    private function __construct(private readonly string $value)
     {
-        $this->value = $value;
     }
 
     public function __toString(): string

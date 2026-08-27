@@ -13,4 +13,5 @@ $account = new Account($client);
 
 $result = $account->createVerification(
     url: 'https://example.com'
-);```
+);
+```

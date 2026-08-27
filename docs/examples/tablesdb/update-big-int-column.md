@@ -20,4 +20,5 @@ $result = $tablesDB->updateBigIntColumn(
     min: null, // optional
     max: null, // optional
     newKey: '' // optional
-);```
+);
+```

@@ -23,4 +23,5 @@ $result = $project->updateSMTP(
     replyToName: '<REPLY_TO_NAME>', // optional
     secure: ProjectSMTPSecure::TLS(), // optional
     enabled: false // optional
-);```
+);
+```

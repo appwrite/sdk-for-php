@@ -15,4 +15,5 @@ $result = $apps->listInstallations(
     appId: '<APP_ID>',
     queries: [], // optional
     total: false // optional
-);```
+);
+```

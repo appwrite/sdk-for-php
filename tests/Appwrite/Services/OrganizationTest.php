@@ -1,18 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Services;
 
 use Appwrite\Client;
-use Appwrite\InputFile;
 use Mockery;
+use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
 use Appwrite\Enums\OrganizationKeyScopes;
-use Appwrite\Enums\Region;
 
 final class OrganizationTest extends TestCase
 {
-    private $client;
-    private $organization;
+    private Client&MockInterface $client;
+    private Organization $organization;
 
     protected function setUp(): void
     {
@@ -22,17 +23,17 @@ final class OrganizationTest extends TestCase
 
     public function testMethodGet(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "VIP",
             "total" => 7,
-            "prefs" => array(),
-            "budgetAlerts" => array(),
+            "prefs" => [],
+            "budgetAlerts" => [],
             "billingPlan" => "tier-1",
             "billingPlanId" => "tier-1",
-            "billingPlanDetails" => array(
+            "billingPlanDetails" => [
                 "\$id" => "tier-0",
                 "name" => "Hobby",
                 "desc" => "Hobby plan",
@@ -69,73 +70,73 @@ final class OrganizationTest extends TestCase
                 "usageLogs" => 30,
                 "projectInactivityDays" => 7,
                 "alertLimit" => 80,
-                "usage" => array(
-                    "bandwidth" => array(
+                "usage" => [
+                    "bandwidth" => [
                         "name" => "[NAME]",
                         "unit" => "GB",
                         "currency" => "USD",
                         "price" => 5,
                         "value" => 25,
                         "invoiceDesc" => "[INVOICEDESC]"
-                    ),
-                    "executions" => array(
+                    ],
+                    "executions" => [
                         "name" => "[NAME]",
                         "unit" => "GB",
                         "currency" => "USD",
                         "price" => 5,
                         "value" => 25,
                         "invoiceDesc" => "[INVOICEDESC]"
-                    ),
-                    "realtime" => array(
+                    ],
+                    "realtime" => [
                         "name" => "[NAME]",
                         "unit" => "GB",
                         "currency" => "USD",
                         "price" => 5,
                         "value" => 25,
                         "invoiceDesc" => "[INVOICEDESC]"
-                    ),
-                    "realtimeMessages" => array(
+                    ],
+                    "realtimeMessages" => [
                         "name" => "[NAME]",
                         "unit" => "GB",
                         "currency" => "USD",
                         "price" => 5,
                         "value" => 25,
                         "invoiceDesc" => "[INVOICEDESC]"
-                    ),
-                    "storage" => array(
+                    ],
+                    "storage" => [
                         "name" => "[NAME]",
                         "unit" => "GB",
                         "currency" => "USD",
                         "price" => 5,
                         "value" => 25,
                         "invoiceDesc" => "[INVOICEDESC]"
-                    ),
-                    "users" => array(
+                    ],
+                    "users" => [
                         "name" => "[NAME]",
                         "unit" => "GB",
                         "currency" => "USD",
                         "price" => 5,
                         "value" => 25,
                         "invoiceDesc" => "[INVOICEDESC]"
-                    ),
-                    "GBHours" => array(
+                    ],
+                    "GBHours" => [
                         "name" => "[NAME]",
                         "unit" => "GB",
                         "currency" => "USD",
                         "price" => 5,
                         "value" => 25,
                         "invoiceDesc" => "[INVOICEDESC]"
-                    ),
-                    "imageTransformations" => array(
+                    ],
+                    "imageTransformations" => [
                         "name" => "[NAME]",
                         "unit" => "GB",
                         "currency" => "USD",
                         "price" => 5,
                         "value" => 25,
                         "invoiceDesc" => "[INVOICEDESC]"
-                    )
-                ),
-                "addons" => array(),
+                    ]
+                ],
+                "addons" => [],
                 "budgetCapEnabled" => true,
                 "customSmtp" => true,
                 "emailBranding" => true,
@@ -148,22 +149,24 @@ final class OrganizationTest extends TestCase
                 "supportsMockNumbers" => true,
                 "supportsOrganizationRoles" => true,
                 "supportsCredits" => true,
+                "supportsDedicatedDatabases" => true,
                 "supportsDisposableEmailValidation" => true,
                 "supportsCanonicalEmailValidation" => true,
                 "supportsFreeEmailValidation" => true,
                 "supportsCorporateEmailValidation" => true,
                 "supportsProjectSpecificRoles" => true,
                 "usagePerProject" => true,
-                "supportedAddons" => array(
+                "supportedAddons" => [
                     "baa" => true,
                     "premiumGeoDB" => true,
                     "premiumGeoDBOrg" => true
-                ),
+                ],
                 "deploymentSize" => 30,
                 "buildSize" => 2000,
                 "databasesAllowEncrypt" => true,
-                "group" => "starter"
-            ),
+                "group" => "starter",
+                "databaseComputeCredit" => 10
+            ],
             "billingEmail" => "billing@org.example",
             "billingStartDate" => "2020-10-15T06:38:00.000+00:00",
             "billingCurrentInvoiceDate" => "2020-10-15T06:38:00.000+00:00",
@@ -175,8 +178,8 @@ final class OrganizationTest extends TestCase
             "status" => "active",
             "markedForDeletion" => true,
             "platform" => "imagine",
-            "projects" => array()
-        );
+            "projects" => []
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -189,20 +192,19 @@ final class OrganizationTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Organization::class, $response);
     }
-
     public function testMethodUpdate(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "VIP",
             "total" => 7,
-            "prefs" => array(),
-            "budgetAlerts" => array(),
+            "prefs" => [],
+            "budgetAlerts" => [],
             "billingPlan" => "tier-1",
             "billingPlanId" => "tier-1",
-            "billingPlanDetails" => array(
+            "billingPlanDetails" => [
                 "\$id" => "tier-0",
                 "name" => "Hobby",
                 "desc" => "Hobby plan",
@@ -239,73 +241,73 @@ final class OrganizationTest extends TestCase
                 "usageLogs" => 30,
                 "projectInactivityDays" => 7,
                 "alertLimit" => 80,
-                "usage" => array(
-                    "bandwidth" => array(
+                "usage" => [
+                    "bandwidth" => [
                         "name" => "[NAME]",
                         "unit" => "GB",
                         "currency" => "USD",
                         "price" => 5,
                         "value" => 25,
                         "invoiceDesc" => "[INVOICEDESC]"
-                    ),
-                    "executions" => array(
+                    ],
+                    "executions" => [
                         "name" => "[NAME]",
                         "unit" => "GB",
                         "currency" => "USD",
                         "price" => 5,
                         "value" => 25,
                         "invoiceDesc" => "[INVOICEDESC]"
-                    ),
-                    "realtime" => array(
+                    ],
+                    "realtime" => [
                         "name" => "[NAME]",
                         "unit" => "GB",
                         "currency" => "USD",
                         "price" => 5,
                         "value" => 25,
                         "invoiceDesc" => "[INVOICEDESC]"
-                    ),
-                    "realtimeMessages" => array(
+                    ],
+                    "realtimeMessages" => [
                         "name" => "[NAME]",
                         "unit" => "GB",
                         "currency" => "USD",
                         "price" => 5,
                         "value" => 25,
                         "invoiceDesc" => "[INVOICEDESC]"
-                    ),
-                    "storage" => array(
+                    ],
+                    "storage" => [
                         "name" => "[NAME]",
                         "unit" => "GB",
                         "currency" => "USD",
                         "price" => 5,
                         "value" => 25,
                         "invoiceDesc" => "[INVOICEDESC]"
-                    ),
-                    "users" => array(
+                    ],
+                    "users" => [
                         "name" => "[NAME]",
                         "unit" => "GB",
                         "currency" => "USD",
                         "price" => 5,
                         "value" => 25,
                         "invoiceDesc" => "[INVOICEDESC]"
-                    ),
-                    "GBHours" => array(
+                    ],
+                    "GBHours" => [
                         "name" => "[NAME]",
                         "unit" => "GB",
                         "currency" => "USD",
                         "price" => 5,
                         "value" => 25,
                         "invoiceDesc" => "[INVOICEDESC]"
-                    ),
-                    "imageTransformations" => array(
+                    ],
+                    "imageTransformations" => [
                         "name" => "[NAME]",
                         "unit" => "GB",
                         "currency" => "USD",
                         "price" => 5,
                         "value" => 25,
                         "invoiceDesc" => "[INVOICEDESC]"
-                    )
-                ),
-                "addons" => array(),
+                    ]
+                ],
+                "addons" => [],
                 "budgetCapEnabled" => true,
                 "customSmtp" => true,
                 "emailBranding" => true,
@@ -318,22 +320,24 @@ final class OrganizationTest extends TestCase
                 "supportsMockNumbers" => true,
                 "supportsOrganizationRoles" => true,
                 "supportsCredits" => true,
+                "supportsDedicatedDatabases" => true,
                 "supportsDisposableEmailValidation" => true,
                 "supportsCanonicalEmailValidation" => true,
                 "supportsFreeEmailValidation" => true,
                 "supportsCorporateEmailValidation" => true,
                 "supportsProjectSpecificRoles" => true,
                 "usagePerProject" => true,
-                "supportedAddons" => array(
+                "supportedAddons" => [
                     "baa" => true,
                     "premiumGeoDB" => true,
                     "premiumGeoDBOrg" => true
-                ),
+                ],
                 "deploymentSize" => 30,
                 "buildSize" => 2000,
                 "databasesAllowEncrypt" => true,
-                "group" => "starter"
-            ),
+                "group" => "starter",
+                "databaseComputeCredit" => 10
+            ],
             "billingEmail" => "billing@org.example",
             "billingStartDate" => "2020-10-15T06:38:00.000+00:00",
             "billingCurrentInvoiceDate" => "2020-10-15T06:38:00.000+00:00",
@@ -345,8 +349,8 @@ final class OrganizationTest extends TestCase
             "status" => "active",
             "markedForDeletion" => true,
             "platform" => "imagine",
-            "projects" => array()
-        );
+            "projects" => []
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -361,7 +365,6 @@ final class OrganizationTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Organization::class, $response);
     }
-
     public function testMethodDelete(): void
     {
         $data = '';
@@ -377,25 +380,24 @@ final class OrganizationTest extends TestCase
 
         $this->assertSame($data, $response);
     }
-
     public function testMethodListInstallations(): void
     {
-        $data = array(
+        $data = [
             "total" => 5,
-            "installations" => array(
-                array(
+            "installations" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
                     "appId" => "5e5ea5c16897e",
                     "teamId" => "5e5ea5c16897e",
-                    "scopes" => array(),
-                    "authorizationDetails" => array(),
+                    "scopes" => [],
+                    "authorizationDetails" => [],
                     "createdById" => "5e5ea5c16897e",
                     "createdByName" => "Walter White"
-                )
-            )
-        );
+                ]
+            ]
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -408,20 +410,19 @@ final class OrganizationTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\AppInstallationList::class, $response);
     }
-
     public function testMethodCreateInstallation(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "appId" => "5e5ea5c16897e",
             "teamId" => "5e5ea5c16897e",
-            "scopes" => array(),
-            "authorizationDetails" => array(),
+            "scopes" => [],
+            "authorizationDetails" => [],
             "createdById" => "5e5ea5c16897e",
             "createdByName" => "Walter White"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -436,20 +437,19 @@ final class OrganizationTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\AppInstallation::class, $response);
     }
-
     public function testMethodGetInstallation(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "appId" => "5e5ea5c16897e",
             "teamId" => "5e5ea5c16897e",
-            "scopes" => array(),
-            "authorizationDetails" => array(),
+            "scopes" => [],
+            "authorizationDetails" => [],
             "createdById" => "5e5ea5c16897e",
             "createdByName" => "Walter White"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -464,20 +464,19 @@ final class OrganizationTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\AppInstallation::class, $response);
     }
-
     public function testMethodUpdateInstallation(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "appId" => "5e5ea5c16897e",
             "teamId" => "5e5ea5c16897e",
-            "scopes" => array(),
-            "authorizationDetails" => array(),
+            "scopes" => [],
+            "authorizationDetails" => [],
             "createdById" => "5e5ea5c16897e",
             "createdByName" => "Walter White"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -492,7 +491,6 @@ final class OrganizationTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\AppInstallation::class, $response);
     }
-
     public function testMethodDeleteInstallation(): void
     {
         $data = '';
@@ -510,25 +508,24 @@ final class OrganizationTest extends TestCase
 
         $this->assertSame($data, $response);
     }
-
     public function testMethodListKeys(): void
     {
-        $data = array(
+        $data = [
             "total" => 5,
-            "keys" => array(
-                array(
+            "keys" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
                     "name" => "My API Key",
                     "expire" => "2020-10-15T06:38:00.000+00:00",
-                    "scopes" => array(),
+                    "scopes" => [],
                     "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
                     "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "sdks" => array()
-                )
-            )
-        );
+                    "sdks" => []
+                ]
+            ]
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -541,20 +538,19 @@ final class OrganizationTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\KeyList::class, $response);
     }
-
     public function testMethodCreateKey(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "My API Key",
             "expire" => "2020-10-15T06:38:00.000+00:00",
-            "scopes" => array(),
+            "scopes" => [],
             "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
             "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-            "sdks" => array()
-        );
+            "sdks" => []
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -566,25 +562,24 @@ final class OrganizationTest extends TestCase
         $response = $this->organization->createKey(
             "<KEY_ID>",
             "<NAME>",
-            array(OrganizationKeyScopes::PROJECTSREAD())
+            [OrganizationKeyScopes::PROJECTSREAD()]
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Key::class, $response);
     }
-
     public function testMethodGetKey(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "My API Key",
             "expire" => "2020-10-15T06:38:00.000+00:00",
-            "scopes" => array(),
+            "scopes" => [],
             "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
             "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-            "sdks" => array()
-        );
+            "sdks" => []
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -599,20 +594,19 @@ final class OrganizationTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Key::class, $response);
     }
-
     public function testMethodUpdateKey(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "My API Key",
             "expire" => "2020-10-15T06:38:00.000+00:00",
-            "scopes" => array(),
+            "scopes" => [],
             "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
             "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-            "sdks" => array()
-        );
+            "sdks" => []
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -624,12 +618,11 @@ final class OrganizationTest extends TestCase
         $response = $this->organization->updateKey(
             "<KEY_ID>",
             "<NAME>",
-            array(OrganizationKeyScopes::PROJECTSREAD())
+            [OrganizationKeyScopes::PROJECTSREAD()]
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Key::class, $response);
     }
-
     public function testMethodDeleteKey(): void
     {
         $data = '';
@@ -647,13 +640,12 @@ final class OrganizationTest extends TestCase
 
         $this->assertSame($data, $response);
     }
-
     public function testMethodListMemberships(): void
     {
-        $data = array(
+        $data = [
             "total" => 5,
-            "memberships" => array(
-                array(
+            "memberships" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -668,10 +660,10 @@ final class OrganizationTest extends TestCase
                     "confirm" => true,
                     "mfa" => true,
                     "userAccessedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "roles" => array()
-                )
-            )
-        );
+                    "roles" => []
+                ]
+            ]
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -684,10 +676,9 @@ final class OrganizationTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\MembershipList::class, $response);
     }
-
     public function testMethodCreateMembership(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -702,8 +693,8 @@ final class OrganizationTest extends TestCase
             "confirm" => true,
             "mfa" => true,
             "userAccessedAt" => "2020-10-15T06:38:00.000+00:00",
-            "roles" => array()
-        );
+            "roles" => []
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -713,15 +704,14 @@ final class OrganizationTest extends TestCase
             ->andReturn('');
 
         $response = $this->organization->createMembership(
-            array()
+            []
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Membership::class, $response);
     }
-
     public function testMethodGetMembership(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -736,8 +726,8 @@ final class OrganizationTest extends TestCase
             "confirm" => true,
             "mfa" => true,
             "userAccessedAt" => "2020-10-15T06:38:00.000+00:00",
-            "roles" => array()
-        );
+            "roles" => []
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -752,10 +742,9 @@ final class OrganizationTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Membership::class, $response);
     }
-
     public function testMethodUpdateMembership(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -770,8 +759,8 @@ final class OrganizationTest extends TestCase
             "confirm" => true,
             "mfa" => true,
             "userAccessedAt" => "2020-10-15T06:38:00.000+00:00",
-            "roles" => array()
-        );
+            "roles" => []
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -782,12 +771,11 @@ final class OrganizationTest extends TestCase
 
         $response = $this->organization->updateMembership(
             "<MEMBERSHIP_ID>",
-            array()
+            []
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Membership::class, $response);
     }
-
     public function testMethodDeleteMembership(): void
     {
         $data = '';
@@ -805,21 +793,20 @@ final class OrganizationTest extends TestCase
 
         $this->assertSame($data, $response);
     }
-
     public function testMethodListProjects(): void
     {
-        $data = array(
+        $data = [
             "total" => 5,
-            "projects" => array(
-                array(
+            "projects" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
                     "name" => "New Project",
                     "teamId" => "1592981250",
                     "region" => "fra",
-                    "devKeys" => array(
-                        array(
+                    "devKeys" => [
+                        [
                             "\$id" => "5e5ea5c16897e",
                             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -827,9 +814,9 @@ final class OrganizationTest extends TestCase
                             "expire" => "2020-10-15T06:38:00.000+00:00",
                             "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
                             "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-                            "sdks" => array()
-                        )
-                    ),
+                            "sdks" => []
+                        ]
+                    ],
                     "smtpEnabled" => true,
                     "smtpSenderName" => "John Appwrite",
                     "smtpSenderEmail" => "john@appwrite.io",
@@ -842,29 +829,29 @@ final class OrganizationTest extends TestCase
                     "smtpSecure" => "tls",
                     "pingCount" => 1,
                     "pingedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "labels" => array(),
+                    "labels" => [],
                     "status" => "active",
-                    "onboarding" => array(),
-                    "authMethods" => array(
-                        array(
+                    "onboarding" => [],
+                    "authMethods" => [
+                        [
                             "\$id" => "email-password",
                             "enabled" => true
-                        )
-                    ),
-                    "services" => array(
-                        array(
+                        ]
+                    ],
+                    "services" => [
+                        [
                             "\$id" => "account",
                             "enabled" => true
-                        )
-                    ),
-                    "protocols" => array(
-                        array(
+                        ]
+                    ],
+                    "protocols" => [
+                        [
                             "\$id" => "rest",
                             "enabled" => true
-                        )
-                    ),
-                    "blocks" => array(
-                        array(
+                        ]
+                    ],
+                    "blocks" => [
+                        [
                             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                             "resourceType" => "project",
                             "resourceId" => "5e5ea5c16897e",
@@ -874,13 +861,12 @@ final class OrganizationTest extends TestCase
                             "organizationName" => "Acme Inc.",
                             "organizationId" => "5e5ea5c16897e",
                             "billingPlan" => "pro"
-                        )
-                    ),
-                    "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "wafEnabled" => true
-                )
-            )
-        );
+                        ]
+                    ],
+                    "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
+                ]
+            ]
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -893,18 +879,17 @@ final class OrganizationTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\ProjectList::class, $response);
     }
-
     public function testMethodCreateProject(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "New Project",
             "teamId" => "1592981250",
             "region" => "fra",
-            "devKeys" => array(
-                array(
+            "devKeys" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -912,9 +897,9 @@ final class OrganizationTest extends TestCase
                     "expire" => "2020-10-15T06:38:00.000+00:00",
                     "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
                     "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "sdks" => array()
-                )
-            ),
+                    "sdks" => []
+                ]
+            ],
             "smtpEnabled" => true,
             "smtpSenderName" => "John Appwrite",
             "smtpSenderEmail" => "john@appwrite.io",
@@ -927,29 +912,29 @@ final class OrganizationTest extends TestCase
             "smtpSecure" => "tls",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
-            "labels" => array(),
+            "labels" => [],
             "status" => "active",
-            "onboarding" => array(),
-            "authMethods" => array(
-                array(
+            "onboarding" => [],
+            "authMethods" => [
+                [
                     "\$id" => "email-password",
                     "enabled" => true
-                )
-            ),
-            "services" => array(
-                array(
+                ]
+            ],
+            "services" => [
+                [
                     "\$id" => "account",
                     "enabled" => true
-                )
-            ),
-            "protocols" => array(
-                array(
+                ]
+            ],
+            "protocols" => [
+                [
                     "\$id" => "rest",
                     "enabled" => true
-                )
-            ),
-            "blocks" => array(
-                array(
+                ]
+            ],
+            "blocks" => [
+                [
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
@@ -959,11 +944,10 @@ final class OrganizationTest extends TestCase
                     "organizationName" => "Acme Inc.",
                     "organizationId" => "5e5ea5c16897e",
                     "billingPlan" => "pro"
-                )
-            ),
-            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00",
-            "wafEnabled" => true
-        );
+                ]
+            ],
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -979,18 +963,17 @@ final class OrganizationTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
     }
-
     public function testMethodGetProject(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "New Project",
             "teamId" => "1592981250",
             "region" => "fra",
-            "devKeys" => array(
-                array(
+            "devKeys" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -998,9 +981,9 @@ final class OrganizationTest extends TestCase
                     "expire" => "2020-10-15T06:38:00.000+00:00",
                     "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
                     "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "sdks" => array()
-                )
-            ),
+                    "sdks" => []
+                ]
+            ],
             "smtpEnabled" => true,
             "smtpSenderName" => "John Appwrite",
             "smtpSenderEmail" => "john@appwrite.io",
@@ -1013,29 +996,29 @@ final class OrganizationTest extends TestCase
             "smtpSecure" => "tls",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
-            "labels" => array(),
+            "labels" => [],
             "status" => "active",
-            "onboarding" => array(),
-            "authMethods" => array(
-                array(
+            "onboarding" => [],
+            "authMethods" => [
+                [
                     "\$id" => "email-password",
                     "enabled" => true
-                )
-            ),
-            "services" => array(
-                array(
+                ]
+            ],
+            "services" => [
+                [
                     "\$id" => "account",
                     "enabled" => true
-                )
-            ),
-            "protocols" => array(
-                array(
+                ]
+            ],
+            "protocols" => [
+                [
                     "\$id" => "rest",
                     "enabled" => true
-                )
-            ),
-            "blocks" => array(
-                array(
+                ]
+            ],
+            "blocks" => [
+                [
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
@@ -1045,11 +1028,10 @@ final class OrganizationTest extends TestCase
                     "organizationName" => "Acme Inc.",
                     "organizationId" => "5e5ea5c16897e",
                     "billingPlan" => "pro"
-                )
-            ),
-            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00",
-            "wafEnabled" => true
-        );
+                ]
+            ],
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1064,18 +1046,17 @@ final class OrganizationTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
     }
-
     public function testMethodUpdateProject(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "New Project",
             "teamId" => "1592981250",
             "region" => "fra",
-            "devKeys" => array(
-                array(
+            "devKeys" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -1083,9 +1064,9 @@ final class OrganizationTest extends TestCase
                     "expire" => "2020-10-15T06:38:00.000+00:00",
                     "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
                     "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "sdks" => array()
-                )
-            ),
+                    "sdks" => []
+                ]
+            ],
             "smtpEnabled" => true,
             "smtpSenderName" => "John Appwrite",
             "smtpSenderEmail" => "john@appwrite.io",
@@ -1098,29 +1079,29 @@ final class OrganizationTest extends TestCase
             "smtpSecure" => "tls",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
-            "labels" => array(),
+            "labels" => [],
             "status" => "active",
-            "onboarding" => array(),
-            "authMethods" => array(
-                array(
+            "onboarding" => [],
+            "authMethods" => [
+                [
                     "\$id" => "email-password",
                     "enabled" => true
-                )
-            ),
-            "services" => array(
-                array(
+                ]
+            ],
+            "services" => [
+                [
                     "\$id" => "account",
                     "enabled" => true
-                )
-            ),
-            "protocols" => array(
-                array(
+                ]
+            ],
+            "protocols" => [
+                [
                     "\$id" => "rest",
                     "enabled" => true
-                )
-            ),
-            "blocks" => array(
-                array(
+                ]
+            ],
+            "blocks" => [
+                [
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
@@ -1130,11 +1111,10 @@ final class OrganizationTest extends TestCase
                     "organizationName" => "Acme Inc.",
                     "organizationId" => "5e5ea5c16897e",
                     "billingPlan" => "pro"
-                )
-            ),
-            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00",
-            "wafEnabled" => true
-        );
+                ]
+            ],
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1150,7 +1130,6 @@ final class OrganizationTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
     }
-
     public function testMethodDeleteProject(): void
     {
         $data = '';
@@ -1168,5 +1147,4 @@ final class OrganizationTest extends TestCase
 
         $this->assertSame($data, $response);
     }
-
 }

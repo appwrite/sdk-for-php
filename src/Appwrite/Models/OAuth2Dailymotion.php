@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * OAuth2Dailymotion
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class OAuth2Dailymotion
 {
@@ -56,13 +60,11 @@ readonly class OAuth2Dailymotion
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             'enabled' => static::serializeValue($this->enabled),
             'apiKey' => static::serializeValue($this->apiKey),
             'apiSecret' => static::serializeValue($this->apiSecret)
         ];
-
-        return $result;
     }
 }

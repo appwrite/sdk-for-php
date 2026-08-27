@@ -15,4 +15,5 @@ $result = $project->updateApplePlatform(
     platformId: '<PLATFORM_ID>',
     name: '<NAME>',
     bundleIdentifier: '<BUNDLE_IDENTIFIER>'
-);```
+);
+```

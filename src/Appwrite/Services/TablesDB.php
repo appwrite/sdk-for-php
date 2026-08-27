@@ -1,32 +1,23 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Services;
 
 use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
-use Appwrite\InputFile;
 use Appwrite\Enums\RelationshipType;
 use Appwrite\Enums\RelationMutate;
 use Appwrite\Enums\TablesDBIndexType;
-use Appwrite\Enums\OrderBy;
 
 class TablesDB extends Service
 {
-    public function __construct(Client $client)
-    {
-        parent::__construct($client);
-    }
-
     /**
      * Get a list of all databases from the current Appwrite project. You can use
      * the search parameter to filter your results.
      *
-     * @param ?array $queries
-     * @param ?string $search
-     * @param ?bool $total
      * @throws AppwriteException
-     * @return \Appwrite\Models\DatabaseList
      */
     public function list(?array $queries = null, ?string $search = null, ?bool $total = null): \Appwrite\Models\DatabaseList
     {
@@ -66,21 +57,12 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\DatabaseList::from($response);
-
     }
 
     /**
      * Create a new Database.
-     * 
      *
-     * @param string $databaseId
-     * @param string $name
-     * @param ?bool $enabled
-     * @param ?string $specification
-     * @param ?int $replicas
-     * @param ?string $syncMode
      * @throws AppwriteException
-     * @return \Appwrite\Models\Database
      */
     public function create(string $databaseId, string $name, ?bool $enabled = null, ?string $specification = null, ?int $replicas = null, ?string $syncMode = null): \Appwrite\Models\Database
     {
@@ -124,7 +106,6 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\Database::from($response);
-
     }
 
     /**
@@ -133,7 +114,6 @@ class TablesDB extends Service
      * enabled for the organization.
      *
      * @throws AppwriteException
-     * @return \Appwrite\Models\DedicatedDatabaseSpecificationList
      */
     public function listSpecifications(): \Appwrite\Models\DedicatedDatabaseSpecificationList
     {
@@ -161,15 +141,12 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\DedicatedDatabaseSpecificationList::from($response);
-
     }
 
     /**
      * List transactions across all databases.
      *
-     * @param ?array $queries
      * @throws AppwriteException
-     * @return \Appwrite\Models\TransactionList
      */
     public function listTransactions(?array $queries = null): \Appwrite\Models\TransactionList
     {
@@ -201,15 +178,12 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\TransactionList::from($response);
-
     }
 
     /**
      * Create a new transaction.
      *
-     * @param ?int $ttl
      * @throws AppwriteException
-     * @return \Appwrite\Models\Transaction
      */
     public function createTransaction(?int $ttl = null): \Appwrite\Models\Transaction
     {
@@ -242,15 +216,12 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\Transaction::from($response);
-
     }
 
     /**
      * Get a transaction by its unique ID.
      *
-     * @param string $transactionId
      * @throws AppwriteException
-     * @return \Appwrite\Models\Transaction
      */
     public function getTransaction(string $transactionId): \Appwrite\Models\Transaction
     {
@@ -279,17 +250,12 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\Transaction::from($response);
-
     }
 
     /**
      * Update a transaction, to either commit or roll back its operations.
      *
-     * @param string $transactionId
-     * @param ?bool $commit
-     * @param ?bool $rollback
      * @throws AppwriteException
-     * @return \Appwrite\Models\Transaction
      */
     public function updateTransaction(string $transactionId, ?bool $commit = null, ?bool $rollback = null): \Appwrite\Models\Transaction
     {
@@ -327,15 +293,12 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\Transaction::from($response);
-
     }
 
     /**
      * Delete a transaction by its unique ID.
      *
-     * @param string $transactionId
      * @throws AppwriteException
-     * @return string
      */
     public function deleteTransaction(string $transactionId): string
     {
@@ -352,24 +315,18 @@ class TablesDB extends Service
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 
     /**
      * Create multiple operations in a single transaction.
      *
-     * @param string $transactionId
-     * @param ?array $operations
      * @throws AppwriteException
-     * @return \Appwrite\Models\Transaction
      */
     public function createOperations(string $transactionId, ?array $operations = null): \Appwrite\Models\Transaction
     {
@@ -403,16 +360,13 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\Transaction::from($response);
-
     }
 
     /**
      * Get a database by its unique ID. This endpoint response returns a JSON
      * object with the database metadata.
      *
-     * @param string $databaseId
      * @throws AppwriteException
-     * @return \Appwrite\Models\Database
      */
     public function get(string $databaseId): \Appwrite\Models\Database
     {
@@ -441,20 +395,12 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\Database::from($response);
-
     }
 
     /**
      * Update a database by its unique ID.
      *
-     * @param string $databaseId
-     * @param ?string $name
-     * @param ?bool $enabled
-     * @param ?string $specification
-     * @param ?int $replicas
-     * @param ?string $syncMode
      * @throws AppwriteException
-     * @return \Appwrite\Models\Database
      */
     public function update(string $databaseId, ?string $name = null, ?bool $enabled = null, ?string $specification = null, ?int $replicas = null, ?string $syncMode = null): \Appwrite\Models\Database
     {
@@ -495,16 +441,13 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\Database::from($response);
-
     }
 
     /**
      * Delete a database by its unique ID. Only API keys with with databases.write
      * scope can delete a database.
      *
-     * @param string $databaseId
      * @throws AppwriteException
-     * @return string
      */
     public function delete(string $databaseId): string
     {
@@ -521,28 +464,26 @@ class TablesDB extends Service
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 
     /**
      * Trigger a manual failover for a dedicated database with high availability
      * enabled. Promotes a replica to primary. The failover runs asynchronously;
      * poll the database document for status updates. A database left
-     * mid-operation by a failover that did not finish also accepts this call as a
-     * repair, provided `targetReplicaId` names the member to promote.
+     * mid-operation also accepts this call as a repair once nothing is driving
+     * the operation it is stuck in. Repairing a failover that did not finish, a
+     * `failed` database, a stranded upgrade or migrate, or a stranded compute
+     * resize additionally requires `targetReplicaId` to name the member to
+     * promote, because the default target may be the member that operation
+     * already promoted.
      *
-     * @param string $databaseId
-     * @param ?string $targetReplicaId
      * @throws AppwriteException
-     * @return \Appwrite\Models\DedicatedDatabase
      */
     public function createFailover(string $databaseId, ?string $targetReplicaId = null): \Appwrite\Models\DedicatedDatabase
     {
@@ -573,16 +514,13 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\DedicatedDatabase::from($response);
-
     }
 
     /**
      * List the dedicated migrations for a TablesDB database. A database has at
      * most one in-flight migration.
      *
-     * @param string $databaseId
      * @throws AppwriteException
-     * @return \Appwrite\Models\DatabaseMigrationList
      */
     public function listMigrations(string $databaseId): \Appwrite\Models\DatabaseMigrationList
     {
@@ -611,7 +549,6 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\DatabaseMigrationList::from($response);
-
     }
 
     /**
@@ -619,11 +556,7 @@ class TablesDB extends Service
      * compute. Data is copied to the target while the source stays live, with a
      * brief read-only window during cutover.
      *
-     * @param string $databaseId
-     * @param string $specification
-     * @param ?bool $autoCutover
      * @throws AppwriteException
-     * @return \Appwrite\Models\DatabaseMigration
      */
     public function createMigration(string $databaseId, string $specification, ?bool $autoCutover = null): \Appwrite\Models\DatabaseMigration
     {
@@ -658,16 +591,12 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\DatabaseMigration::from($response);
-
     }
 
     /**
      * Get a single dedicated migration for a TablesDB database by its ID.
      *
-     * @param string $databaseId
-     * @param string $migrationId
      * @throws AppwriteException
-     * @return \Appwrite\Models\DatabaseMigration
      */
     public function getMigration(string $databaseId, string $migrationId): \Appwrite\Models\DatabaseMigration
     {
@@ -697,17 +626,13 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\DatabaseMigration::from($response);
-
     }
 
     /**
      * Abort an in-flight TablesDB dedicated migration. Only allowed before
      * cutover; once the migration has cut over it cannot be aborted.
      *
-     * @param string $databaseId
-     * @param string $migrationId
      * @throws AppwriteException
-     * @return string
      */
     public function deleteMigration(string $databaseId, string $migrationId): string
     {
@@ -726,15 +651,12 @@ class TablesDB extends Service
         $apiHeaders['content-type'] = 'application/json';
         $apiHeaders['accept'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 
     /**
@@ -745,10 +667,7 @@ class TablesDB extends Service
      * attempt: a cutover that fails a check returns the migration to `verifying`
      * and parks it again, so call this once more to retry.
      *
-     * @param string $databaseId
-     * @param string $migrationId
      * @throws AppwriteException
-     * @return \Appwrite\Models\DatabaseMigration
      */
     public function cutoverMigration(string $databaseId, string $migrationId): \Appwrite\Models\DatabaseMigration
     {
@@ -779,7 +698,6 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\DatabaseMigration::from($response);
-
     }
 
     /**
@@ -788,12 +706,7 @@ class TablesDB extends Service
      * recorded here with its outcome, including an attempt that was abandoned
      * because another worker took over the database.
      *
-     * @param string $databaseId
-     * @param ?string $status
-     * @param ?int $limit
-     * @param ?int $offset
      * @throws AppwriteException
-     * @return \Appwrite\Models\DedicatedDatabaseOperationList
      */
     public function listOperations(string $databaseId, ?string $status = null, ?int $limit = null, ?int $offset = null): \Appwrite\Models\DedicatedDatabaseOperationList
     {
@@ -834,16 +747,13 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\DedicatedDatabaseOperationList::from($response);
-
     }
 
     /**
      * Get high availability status for a dedicated database. Returns replica
      * statuses, replication lag, and sync mode.
      *
-     * @param string $databaseId
      * @throws AppwriteException
-     * @return \Appwrite\Models\DedicatedDatabaseReplicas
      */
     public function getReplicas(string $databaseId): \Appwrite\Models\DedicatedDatabaseReplicas
     {
@@ -872,7 +782,6 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\DedicatedDatabaseReplicas::from($response);
-
     }
 
     /**
@@ -880,9 +789,7 @@ class TablesDB extends Service
      * Returns health status, readiness, uptime, connection info, replica status,
      * and volume information.
      *
-     * @param string $databaseId
      * @throws AppwriteException
-     * @return \Appwrite\Models\DatabaseStatus
      */
     public function getStatus(string $databaseId): \Appwrite\Models\DatabaseStatus
     {
@@ -911,19 +818,13 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\DatabaseStatus::from($response);
-
     }
 
     /**
      * Get a list of all tables that belong to the provided databaseId. You can
      * use the search parameter to filter your results.
      *
-     * @param string $databaseId
-     * @param ?array $queries
-     * @param ?string $search
-     * @param ?bool $total
      * @throws AppwriteException
-     * @return \Appwrite\Models\TableList
      */
     public function listTables(string $databaseId, ?array $queries = null, ?string $search = null, ?bool $total = null): \Appwrite\Models\TableList
     {
@@ -964,7 +865,6 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\TableList::from($response);
-
     }
 
     /**
@@ -973,16 +873,7 @@ class TablesDB extends Service
      * integration](https://appwrite.io/docs/references/cloud/server-dart/tablesDB#createTable)
      * API or directly from your database console.
      *
-     * @param string $databaseId
-     * @param string $tableId
-     * @param string $name
-     * @param ?array $permissions
-     * @param ?bool $rowSecurity
-     * @param ?bool $enabled
-     * @param ?array $columns
-     * @param ?array $indexes
      * @throws AppwriteException
-     * @return \Appwrite\Models\Table
      */
     public function createTable(string $databaseId, string $tableId, string $name, ?array $permissions = null, ?bool $rowSecurity = null, ?bool $enabled = null, ?array $columns = null, ?array $indexes = null): \Appwrite\Models\Table
     {
@@ -1031,17 +922,13 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\Table::from($response);
-
     }
 
     /**
      * Get a table by its unique ID. This endpoint response returns a JSON object
      * with the table metadata.
      *
-     * @param string $databaseId
-     * @param string $tableId
      * @throws AppwriteException
-     * @return \Appwrite\Models\Table
      */
     public function getTable(string $databaseId, string $tableId): \Appwrite\Models\Table
     {
@@ -1071,21 +958,12 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\Table::from($response);
-
     }
 
     /**
      * Update a table by its unique ID.
      *
-     * @param string $databaseId
-     * @param string $tableId
-     * @param ?string $name
-     * @param ?array $permissions
-     * @param ?bool $rowSecurity
-     * @param ?bool $enabled
-     * @param ?bool $purge
      * @throws AppwriteException
-     * @return \Appwrite\Models\Table
      */
     public function updateTable(string $databaseId, string $tableId, ?string $name = null, ?array $permissions = null, ?bool $rowSecurity = null, ?bool $enabled = null, ?bool $purge = null): \Appwrite\Models\Table
     {
@@ -1133,17 +1011,13 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\Table::from($response);
-
     }
 
     /**
      * Delete a table by its unique ID. Only users with write permissions have
      * access to delete this resource.
      *
-     * @param string $databaseId
-     * @param string $tableId
      * @throws AppwriteException
-     * @return string
      */
     public function deleteTable(string $databaseId, string $tableId): string
     {
@@ -1161,26 +1035,18 @@ class TablesDB extends Service
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 
     /**
      * List columns in the table.
      *
-     * @param string $databaseId
-     * @param string $tableId
-     * @param ?array $queries
-     * @param ?bool $total
      * @throws AppwriteException
-     * @return \Appwrite\Models\ColumnList
      */
     public function listColumns(string $databaseId, string $tableId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\ColumnList
     {
@@ -1218,24 +1084,13 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\ColumnList::from($response);
-
     }
 
     /**
      * Create a bigint column. Optionally, minimum and maximum values can be
      * provided.
-     * 
      *
-     * @param string $databaseId
-     * @param string $tableId
-     * @param string $key
-     * @param bool $required
-     * @param ?int $min
-     * @param ?int $max
-     * @param ?int $xdefault
-     * @param ?bool $xarray
      * @throws AppwriteException
-     * @return \Appwrite\Models\ColumnBigint
      */
     public function createBigIntColumn(string $databaseId, string $tableId, string $key, bool $required, ?int $min = null, ?int $max = null, ?int $xdefault = null, ?bool $xarray = null): \Appwrite\Models\ColumnBigint
     {
@@ -1275,24 +1130,13 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\ColumnBigint::from($response);
-
     }
 
     /**
      * Update a bigint column. Changing the `default` value will not update
      * already existing rows.
-     * 
      *
-     * @param string $databaseId
-     * @param string $tableId
-     * @param string $key
-     * @param bool $required
-     * @param ?int $xdefault
-     * @param ?int $min
-     * @param ?int $max
-     * @param ?string $newKey
      * @throws AppwriteException
-     * @return \Appwrite\Models\ColumnBigint
      */
     public function updateBigIntColumn(string $databaseId, string $tableId, string $key, bool $required, ?int $xdefault, ?int $min = null, ?int $max = null, ?string $newKey = null): \Appwrite\Models\ColumnBigint
     {
@@ -1329,21 +1173,12 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\ColumnBigint::from($response);
-
     }
 
     /**
      * Create a boolean column.
-     * 
      *
-     * @param string $databaseId
-     * @param string $tableId
-     * @param string $key
-     * @param bool $required
-     * @param ?bool $xdefault
-     * @param ?bool $xarray
      * @throws AppwriteException
-     * @return \Appwrite\Models\ColumnBoolean
      */
     public function createBooleanColumn(string $databaseId, string $tableId, string $key, bool $required, ?bool $xdefault = null, ?bool $xarray = null): \Appwrite\Models\ColumnBoolean
     {
@@ -1381,21 +1216,13 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\ColumnBoolean::from($response);
-
     }
 
     /**
      * Update a boolean column. Changing the `default` value will not update
      * already existing rows.
      *
-     * @param string $databaseId
-     * @param string $tableId
-     * @param string $key
-     * @param bool $required
-     * @param ?bool $xdefault
-     * @param ?string $newKey
      * @throws AppwriteException
-     * @return \Appwrite\Models\ColumnBoolean
      */
     public function updateBooleanColumn(string $databaseId, string $tableId, string $key, bool $required, ?bool $xdefault, ?string $newKey = null): \Appwrite\Models\ColumnBoolean
     {
@@ -1430,20 +1257,12 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\ColumnBoolean::from($response);
-
     }
 
     /**
      * Create a date time column according to the ISO 8601 standard.
      *
-     * @param string $databaseId
-     * @param string $tableId
-     * @param string $key
-     * @param bool $required
-     * @param ?string $xdefault
-     * @param ?bool $xarray
      * @throws AppwriteException
-     * @return \Appwrite\Models\ColumnDatetime
      */
     public function createDatetimeColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): \Appwrite\Models\ColumnDatetime
     {
@@ -1481,21 +1300,13 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\ColumnDatetime::from($response);
-
     }
 
     /**
      * Update a date time column. Changing the `default` value will not update
      * already existing rows.
      *
-     * @param string $databaseId
-     * @param string $tableId
-     * @param string $key
-     * @param bool $required
-     * @param ?string $xdefault
-     * @param ?string $newKey
      * @throws AppwriteException
-     * @return \Appwrite\Models\ColumnDatetime
      */
     public function updateDatetimeColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\ColumnDatetime
     {
@@ -1530,21 +1341,12 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\ColumnDatetime::from($response);
-
     }
 
     /**
      * Create an email column.
-     * 
      *
-     * @param string $databaseId
-     * @param string $tableId
-     * @param string $key
-     * @param bool $required
-     * @param ?string $xdefault
-     * @param ?bool $xarray
      * @throws AppwriteException
-     * @return \Appwrite\Models\ColumnEmail
      */
     public function createEmailColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): \Appwrite\Models\ColumnEmail
     {
@@ -1582,22 +1384,13 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\ColumnEmail::from($response);
-
     }
 
     /**
      * Update an email column. Changing the `default` value will not update
      * already existing rows.
-     * 
      *
-     * @param string $databaseId
-     * @param string $tableId
-     * @param string $key
-     * @param bool $required
-     * @param ?string $xdefault
-     * @param ?string $newKey
      * @throws AppwriteException
-     * @return \Appwrite\Models\ColumnEmail
      */
     public function updateEmailColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\ColumnEmail
     {
@@ -1632,22 +1425,13 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\ColumnEmail::from($response);
-
     }
 
     /**
      * Create an enumeration column. The `elements` param acts as a white-list of
      * accepted values for this column.
      *
-     * @param string $databaseId
-     * @param string $tableId
-     * @param string $key
-     * @param array $elements
-     * @param bool $required
-     * @param ?string $xdefault
-     * @param ?bool $xarray
      * @throws AppwriteException
-     * @return \Appwrite\Models\ColumnEnum
      */
     public function createEnumColumn(string $databaseId, string $tableId, string $key, array $elements, bool $required, ?string $xdefault = null, ?bool $xarray = null): \Appwrite\Models\ColumnEnum
     {
@@ -1686,23 +1470,13 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\ColumnEnum::from($response);
-
     }
 
     /**
      * Update an enum column. Changing the `default` value will not update already
      * existing rows.
-     * 
      *
-     * @param string $databaseId
-     * @param string $tableId
-     * @param string $key
-     * @param array $elements
-     * @param bool $required
-     * @param ?string $xdefault
-     * @param ?string $newKey
      * @throws AppwriteException
-     * @return \Appwrite\Models\ColumnEnum
      */
     public function updateEnumColumn(string $databaseId, string $tableId, string $key, array $elements, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\ColumnEnum
     {
@@ -1738,24 +1512,13 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\ColumnEnum::from($response);
-
     }
 
     /**
      * Create a float column. Optionally, minimum and maximum values can be
      * provided.
-     * 
      *
-     * @param string $databaseId
-     * @param string $tableId
-     * @param string $key
-     * @param bool $required
-     * @param ?float $min
-     * @param ?float $max
-     * @param ?float $xdefault
-     * @param ?bool $xarray
      * @throws AppwriteException
-     * @return \Appwrite\Models\ColumnFloat
      */
     public function createFloatColumn(string $databaseId, string $tableId, string $key, bool $required, ?float $min = null, ?float $max = null, ?float $xdefault = null, ?bool $xarray = null): \Appwrite\Models\ColumnFloat
     {
@@ -1795,24 +1558,13 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\ColumnFloat::from($response);
-
     }
 
     /**
      * Update a float column. Changing the `default` value will not update already
      * existing rows.
-     * 
      *
-     * @param string $databaseId
-     * @param string $tableId
-     * @param string $key
-     * @param bool $required
-     * @param ?float $xdefault
-     * @param ?float $min
-     * @param ?float $max
-     * @param ?string $newKey
      * @throws AppwriteException
-     * @return \Appwrite\Models\ColumnFloat
      */
     public function updateFloatColumn(string $databaseId, string $tableId, string $key, bool $required, ?float $xdefault, ?float $min = null, ?float $max = null, ?string $newKey = null): \Appwrite\Models\ColumnFloat
     {
@@ -1849,24 +1601,13 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\ColumnFloat::from($response);
-
     }
 
     /**
      * Create an integer column. Optionally, minimum and maximum values can be
      * provided.
-     * 
      *
-     * @param string $databaseId
-     * @param string $tableId
-     * @param string $key
-     * @param bool $required
-     * @param ?int $min
-     * @param ?int $max
-     * @param ?int $xdefault
-     * @param ?bool $xarray
      * @throws AppwriteException
-     * @return \Appwrite\Models\ColumnInteger
      */
     public function createIntegerColumn(string $databaseId, string $tableId, string $key, bool $required, ?int $min = null, ?int $max = null, ?int $xdefault = null, ?bool $xarray = null): \Appwrite\Models\ColumnInteger
     {
@@ -1906,24 +1647,13 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\ColumnInteger::from($response);
-
     }
 
     /**
      * Update an integer column. Changing the `default` value will not update
      * already existing rows.
-     * 
      *
-     * @param string $databaseId
-     * @param string $tableId
-     * @param string $key
-     * @param bool $required
-     * @param ?int $xdefault
-     * @param ?int $min
-     * @param ?int $max
-     * @param ?string $newKey
      * @throws AppwriteException
-     * @return \Appwrite\Models\ColumnInteger
      */
     public function updateIntegerColumn(string $databaseId, string $tableId, string $key, bool $required, ?int $xdefault, ?int $min = null, ?int $max = null, ?string $newKey = null): \Appwrite\Models\ColumnInteger
     {
@@ -1960,21 +1690,12 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\ColumnInteger::from($response);
-
     }
 
     /**
      * Create IP address column.
-     * 
      *
-     * @param string $databaseId
-     * @param string $tableId
-     * @param string $key
-     * @param bool $required
-     * @param ?string $xdefault
-     * @param ?bool $xarray
      * @throws AppwriteException
-     * @return \Appwrite\Models\ColumnIp
      */
     public function createIpColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): \Appwrite\Models\ColumnIp
     {
@@ -2012,22 +1733,13 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\ColumnIp::from($response);
-
     }
 
     /**
      * Update an ip column. Changing the `default` value will not update already
      * existing rows.
-     * 
      *
-     * @param string $databaseId
-     * @param string $tableId
-     * @param string $key
-     * @param bool $required
-     * @param ?string $xdefault
-     * @param ?string $newKey
      * @throws AppwriteException
-     * @return \Appwrite\Models\ColumnIp
      */
     public function updateIpColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\ColumnIp
     {
@@ -2062,19 +1774,12 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\ColumnIp::from($response);
-
     }
 
     /**
      * Create a geometric line column.
      *
-     * @param string $databaseId
-     * @param string $tableId
-     * @param string $key
-     * @param bool $required
-     * @param ?array $xdefault
      * @throws AppwriteException
-     * @return \Appwrite\Models\ColumnLine
      */
     public function createLineColumn(string $databaseId, string $tableId, string $key, bool $required, ?array $xdefault = null): \Appwrite\Models\ColumnLine
     {
@@ -2108,21 +1813,13 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\ColumnLine::from($response);
-
     }
 
     /**
      * Update a line column. Changing the `default` value will not update already
      * existing rows.
      *
-     * @param string $databaseId
-     * @param string $tableId
-     * @param string $key
-     * @param bool $required
-     * @param ?array $xdefault
-     * @param ?string $newKey
      * @throws AppwriteException
-     * @return \Appwrite\Models\ColumnLine
      */
     public function updateLineColumn(string $databaseId, string $tableId, string $key, bool $required, ?array $xdefault = null, ?string $newKey = null): \Appwrite\Models\ColumnLine
     {
@@ -2157,22 +1854,12 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\ColumnLine::from($response);
-
     }
 
     /**
      * Create a longtext column.
-     * 
      *
-     * @param string $databaseId
-     * @param string $tableId
-     * @param string $key
-     * @param bool $required
-     * @param ?string $xdefault
-     * @param ?bool $xarray
-     * @param ?bool $encrypt
      * @throws AppwriteException
-     * @return \Appwrite\Models\ColumnLongtext
      */
     public function createLongtextColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): \Appwrite\Models\ColumnLongtext
     {
@@ -2214,22 +1901,13 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\ColumnLongtext::from($response);
-
     }
 
     /**
      * Update a longtext column. Changing the `default` value will not update
      * already existing rows.
-     * 
      *
-     * @param string $databaseId
-     * @param string $tableId
-     * @param string $key
-     * @param bool $required
-     * @param ?string $xdefault
-     * @param ?string $newKey
      * @throws AppwriteException
-     * @return \Appwrite\Models\ColumnLongtext
      */
     public function updateLongtextColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\ColumnLongtext
     {
@@ -2264,22 +1942,12 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\ColumnLongtext::from($response);
-
     }
 
     /**
      * Create a mediumtext column.
-     * 
      *
-     * @param string $databaseId
-     * @param string $tableId
-     * @param string $key
-     * @param bool $required
-     * @param ?string $xdefault
-     * @param ?bool $xarray
-     * @param ?bool $encrypt
      * @throws AppwriteException
-     * @return \Appwrite\Models\ColumnMediumtext
      */
     public function createMediumtextColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): \Appwrite\Models\ColumnMediumtext
     {
@@ -2321,22 +1989,13 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\ColumnMediumtext::from($response);
-
     }
 
     /**
      * Update a mediumtext column. Changing the `default` value will not update
      * already existing rows.
-     * 
      *
-     * @param string $databaseId
-     * @param string $tableId
-     * @param string $key
-     * @param bool $required
-     * @param ?string $xdefault
-     * @param ?string $newKey
      * @throws AppwriteException
-     * @return \Appwrite\Models\ColumnMediumtext
      */
     public function updateMediumtextColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\ColumnMediumtext
     {
@@ -2371,19 +2030,12 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\ColumnMediumtext::from($response);
-
     }
 
     /**
      * Create a geometric point column.
      *
-     * @param string $databaseId
-     * @param string $tableId
-     * @param string $key
-     * @param bool $required
-     * @param ?array $xdefault
      * @throws AppwriteException
-     * @return \Appwrite\Models\ColumnPoint
      */
     public function createPointColumn(string $databaseId, string $tableId, string $key, bool $required, ?array $xdefault = null): \Appwrite\Models\ColumnPoint
     {
@@ -2417,21 +2069,13 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\ColumnPoint::from($response);
-
     }
 
     /**
      * Update a point column. Changing the `default` value will not update already
      * existing rows.
      *
-     * @param string $databaseId
-     * @param string $tableId
-     * @param string $key
-     * @param bool $required
-     * @param ?array $xdefault
-     * @param ?string $newKey
      * @throws AppwriteException
-     * @return \Appwrite\Models\ColumnPoint
      */
     public function updatePointColumn(string $databaseId, string $tableId, string $key, bool $required, ?array $xdefault = null, ?string $newKey = null): \Appwrite\Models\ColumnPoint
     {
@@ -2466,19 +2110,12 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\ColumnPoint::from($response);
-
     }
 
     /**
      * Create a geometric polygon column.
      *
-     * @param string $databaseId
-     * @param string $tableId
-     * @param string $key
-     * @param bool $required
-     * @param ?array $xdefault
      * @throws AppwriteException
-     * @return \Appwrite\Models\ColumnPolygon
      */
     public function createPolygonColumn(string $databaseId, string $tableId, string $key, bool $required, ?array $xdefault = null): \Appwrite\Models\ColumnPolygon
     {
@@ -2512,21 +2149,13 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\ColumnPolygon::from($response);
-
     }
 
     /**
      * Update a polygon column. Changing the `default` value will not update
      * already existing rows.
      *
-     * @param string $databaseId
-     * @param string $tableId
-     * @param string $key
-     * @param bool $required
-     * @param ?array $xdefault
-     * @param ?string $newKey
      * @throws AppwriteException
-     * @return \Appwrite\Models\ColumnPolygon
      */
     public function updatePolygonColumn(string $databaseId, string $tableId, string $key, bool $required, ?array $xdefault = null, ?string $newKey = null): \Appwrite\Models\ColumnPolygon
     {
@@ -2561,24 +2190,13 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\ColumnPolygon::from($response);
-
     }
 
     /**
      * Create relationship column. [Learn more about relationship
      * columns](https://appwrite.io/docs/databases-relationships#relationship-columns).
-     * 
      *
-     * @param string $databaseId
-     * @param string $tableId
-     * @param string $relatedTableId
-     * @param RelationshipType $type
-     * @param ?bool $twoWay
-     * @param ?string $key
-     * @param ?string $twoWayKey
-     * @param ?RelationMutate $onDelete
      * @throws AppwriteException
-     * @return \Appwrite\Models\ColumnRelationship
      */
     public function createRelationshipColumn(string $databaseId, string $tableId, string $relatedTableId, RelationshipType $type, ?bool $twoWay = null, ?string $key = null, ?string $twoWayKey = null, ?RelationMutate $onDelete = null): \Appwrite\Models\ColumnRelationship
     {
@@ -2621,23 +2239,12 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\ColumnRelationship::from($response);
-
     }
 
     /**
      * Create a string column.
-     * 
      *
-     * @param string $databaseId
-     * @param string $tableId
-     * @param string $key
-     * @param int $size
-     * @param bool $required
-     * @param ?string $xdefault
-     * @param ?bool $xarray
-     * @param ?bool $encrypt
      * @throws AppwriteException
-     * @return \Appwrite\Models\ColumnString
      *
      * @deprecated This API has been deprecated since 1.9.0. Please use `createTextColumn` instead.
      * @see TablesDB::createTextColumn
@@ -2683,23 +2290,13 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\ColumnString::from($response);
-
     }
 
     /**
      * Update a string column. Changing the `default` value will not update
      * already existing rows.
-     * 
      *
-     * @param string $databaseId
-     * @param string $tableId
-     * @param string $key
-     * @param bool $required
-     * @param ?string $xdefault
-     * @param ?int $size
-     * @param ?string $newKey
      * @throws AppwriteException
-     * @return \Appwrite\Models\ColumnString
      *
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateTextColumn` instead.
      * @see TablesDB::updateTextColumn
@@ -2738,22 +2335,12 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\ColumnString::from($response);
-
     }
 
     /**
      * Create a text column.
-     * 
      *
-     * @param string $databaseId
-     * @param string $tableId
-     * @param string $key
-     * @param bool $required
-     * @param ?string $xdefault
-     * @param ?bool $xarray
-     * @param ?bool $encrypt
      * @throws AppwriteException
-     * @return \Appwrite\Models\ColumnText
      */
     public function createTextColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): \Appwrite\Models\ColumnText
     {
@@ -2795,22 +2382,13 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\ColumnText::from($response);
-
     }
 
     /**
      * Update a text column. Changing the `default` value will not update already
      * existing rows.
-     * 
      *
-     * @param string $databaseId
-     * @param string $tableId
-     * @param string $key
-     * @param bool $required
-     * @param ?string $xdefault
-     * @param ?string $newKey
      * @throws AppwriteException
-     * @return \Appwrite\Models\ColumnText
      */
     public function updateTextColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\ColumnText
     {
@@ -2845,21 +2423,12 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\ColumnText::from($response);
-
     }
 
     /**
      * Create a URL column.
-     * 
      *
-     * @param string $databaseId
-     * @param string $tableId
-     * @param string $key
-     * @param bool $required
-     * @param ?string $xdefault
-     * @param ?bool $xarray
      * @throws AppwriteException
-     * @return \Appwrite\Models\ColumnUrl
      */
     public function createUrlColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): \Appwrite\Models\ColumnUrl
     {
@@ -2897,22 +2466,13 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\ColumnUrl::from($response);
-
     }
 
     /**
      * Update an url column. Changing the `default` value will not update already
      * existing rows.
-     * 
      *
-     * @param string $databaseId
-     * @param string $tableId
-     * @param string $key
-     * @param bool $required
-     * @param ?string $xdefault
-     * @param ?string $newKey
      * @throws AppwriteException
-     * @return \Appwrite\Models\ColumnUrl
      */
     public function updateUrlColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\ColumnUrl
     {
@@ -2947,23 +2507,12 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\ColumnUrl::from($response);
-
     }
 
     /**
      * Create a varchar column.
-     * 
      *
-     * @param string $databaseId
-     * @param string $tableId
-     * @param string $key
-     * @param int $size
-     * @param bool $required
-     * @param ?string $xdefault
-     * @param ?bool $xarray
-     * @param ?bool $encrypt
      * @throws AppwriteException
-     * @return \Appwrite\Models\ColumnVarchar
      */
     public function createVarcharColumn(string $databaseId, string $tableId, string $key, int $size, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): \Appwrite\Models\ColumnVarchar
     {
@@ -3006,23 +2555,13 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\ColumnVarchar::from($response);
-
     }
 
     /**
      * Update a varchar column. Changing the `default` value will not update
      * already existing rows.
-     * 
      *
-     * @param string $databaseId
-     * @param string $tableId
-     * @param string $key
-     * @param bool $required
-     * @param ?string $xdefault
-     * @param ?int $size
-     * @param ?string $newKey
      * @throws AppwriteException
-     * @return \Appwrite\Models\ColumnVarchar
      */
     public function updateVarcharColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?int $size = null, ?string $newKey = null): \Appwrite\Models\ColumnVarchar
     {
@@ -3058,17 +2597,12 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\ColumnVarchar::from($response);
-
     }
 
     /**
      * Get column by ID.
      *
-     * @param string $databaseId
-     * @param string $tableId
-     * @param string $key
      * @throws AppwriteException
-     * @return \Appwrite\Models\ColumnBoolean|\Appwrite\Models\ColumnInteger|\Appwrite\Models\ColumnFloat|\Appwrite\Models\ColumnEmail|\Appwrite\Models\ColumnEnum|\Appwrite\Models\ColumnUrl|\Appwrite\Models\ColumnIp|\Appwrite\Models\ColumnDatetime|\Appwrite\Models\ColumnRelationship|\Appwrite\Models\ColumnString
      */
     public function getColumn(string $databaseId, string $tableId, string $key): \Appwrite\Models\ColumnBoolean|\Appwrite\Models\ColumnInteger|\Appwrite\Models\ColumnFloat|\Appwrite\Models\ColumnEmail|\Appwrite\Models\ColumnEnum|\Appwrite\Models\ColumnUrl|\Appwrite\Models\ColumnIp|\Appwrite\Models\ColumnDatetime|\Appwrite\Models\ColumnRelationship|\Appwrite\Models\ColumnString
     {
@@ -3139,17 +2673,12 @@ class TablesDB extends Service
         }
 
         throw new \UnexpectedValueException('Unable to match response to any expected response model.');
-
     }
 
     /**
      * Deletes a column.
      *
-     * @param string $databaseId
-     * @param string $tableId
-     * @param string $key
      * @throws AppwriteException
-     * @return string
      */
     public function deleteColumn(string $databaseId, string $tableId, string $key): string
     {
@@ -3168,29 +2697,19 @@ class TablesDB extends Service
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 
     /**
      * Update relationship column. [Learn more about relationship
      * columns](https://appwrite.io/docs/databases-relationships#relationship-columns).
-     * 
      *
-     * @param string $databaseId
-     * @param string $tableId
-     * @param string $key
-     * @param ?RelationMutate $onDelete
-     * @param ?string $newKey
      * @throws AppwriteException
-     * @return \Appwrite\Models\ColumnRelationship
      */
     public function updateRelationshipColumn(string $databaseId, string $tableId, string $key, ?RelationMutate $onDelete = null, ?string $newKey = null): \Appwrite\Models\ColumnRelationship
     {
@@ -3224,18 +2743,12 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\ColumnRelationship::from($response);
-
     }
 
     /**
      * List indexes on the table.
      *
-     * @param string $databaseId
-     * @param string $tableId
-     * @param ?array $queries
-     * @param ?bool $total
      * @throws AppwriteException
-     * @return \Appwrite\Models\ColumnIndexList
      */
     public function listIndexes(string $databaseId, string $tableId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\ColumnIndexList
     {
@@ -3273,7 +2786,6 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\ColumnIndexList::from($response);
-
     }
 
     /**
@@ -3281,15 +2793,7 @@ class TablesDB extends Service
      * columns you will query in a single request.
      * Type can be `key`, `fulltext`, or `unique`.
      *
-     * @param string $databaseId
-     * @param string $tableId
-     * @param string $key
-     * @param TablesDBIndexType $type
-     * @param array $columns
-     * @param ?array $orders
-     * @param ?array $lengths
      * @throws AppwriteException
-     * @return \Appwrite\Models\ColumnIndex
      */
     public function createIndex(string $databaseId, string $tableId, string $key, TablesDBIndexType $type, array $columns, ?array $orders = null, ?array $lengths = null): \Appwrite\Models\ColumnIndex
     {
@@ -3331,17 +2835,12 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\ColumnIndex::from($response);
-
     }
 
     /**
      * Get index by ID.
      *
-     * @param string $databaseId
-     * @param string $tableId
-     * @param string $key
      * @throws AppwriteException
-     * @return \Appwrite\Models\ColumnIndex
      */
     public function getIndex(string $databaseId, string $tableId, string $key): \Appwrite\Models\ColumnIndex
     {
@@ -3372,17 +2871,12 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\ColumnIndex::from($response);
-
     }
 
     /**
      * Delete an index.
      *
-     * @param string $databaseId
-     * @param string $tableId
-     * @param string $key
      * @throws AppwriteException
-     * @return string
      */
     public function deleteIndex(string $databaseId, string $tableId, string $key): string
     {
@@ -3401,29 +2895,19 @@ class TablesDB extends Service
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 
     /**
      * Get a list of all the user's rows in a given table. You can use the query
      * params to filter your results.
      *
-     * @param string $databaseId
-     * @param string $tableId
-     * @param ?array $queries
-     * @param ?string $transactionId
-     * @param ?bool $total
-     * @param ?int $ttl
      * @throws AppwriteException
-     * @return \Appwrite\Models\RowList
      */
     public function listRows(string $databaseId, string $tableId, ?array $queries = null, ?string $transactionId = null, ?bool $total = null, ?int $ttl = null): \Appwrite\Models\RowList
     {
@@ -3469,7 +2953,6 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\RowList::from($response);
-
     }
 
     /**
@@ -3478,14 +2961,7 @@ class TablesDB extends Service
      * integration](https://appwrite.io/docs/references/cloud/server-dart/tablesDB#createTable)
      * API or directly from your database console.
      *
-     * @param string $databaseId
-     * @param string $tableId
-     * @param string $rowId
-     * @param array $data
-     * @param ?array $permissions
-     * @param ?string $transactionId
      * @throws AppwriteException
-     * @return \Appwrite\Models\Row
      */
     public function createRow(string $databaseId, string $tableId, string $rowId, array $data, ?array $permissions = null, ?string $transactionId = null): \Appwrite\Models\Row
     {
@@ -3520,7 +2996,6 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\Row::from($response);
-
     }
 
     /**
@@ -3529,12 +3004,7 @@ class TablesDB extends Service
      * integration](https://appwrite.io/docs/references/cloud/server-dart/tablesDB#createTable)
      * API or directly from your database console.
      *
-     * @param string $databaseId
-     * @param string $tableId
-     * @param array $rows
-     * @param ?string $transactionId
      * @throws AppwriteException
-     * @return \Appwrite\Models\RowList
      */
     public function createRows(string $databaseId, string $tableId, array $rows, ?string $transactionId = null): \Appwrite\Models\RowList
     {
@@ -3567,7 +3037,6 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\RowList::from($response);
-
     }
 
     /**
@@ -3575,14 +3044,8 @@ class TablesDB extends Service
      * table resource using either a [server
      * integration](https://appwrite.io/docs/references/cloud/server-dart/tablesDB#createTable)
      * API or directly from your database console.
-     * 
      *
-     * @param string $databaseId
-     * @param string $tableId
-     * @param array $rows
-     * @param ?string $transactionId
      * @throws AppwriteException
-     * @return \Appwrite\Models\RowList
      */
     public function upsertRows(string $databaseId, string $tableId, array $rows, ?string $transactionId = null): \Appwrite\Models\RowList
     {
@@ -3615,20 +3078,13 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\RowList::from($response);
-
     }
 
     /**
      * Update all rows that match your queries, if no queries are submitted then
      * all rows are updated. You can pass only specific fields to be updated.
      *
-     * @param string $databaseId
-     * @param string $tableId
-     * @param ?array $data
-     * @param ?array $queries
-     * @param ?string $transactionId
      * @throws AppwriteException
-     * @return \Appwrite\Models\RowList
      */
     public function updateRows(string $databaseId, string $tableId, ?array $data = null, ?array $queries = null, ?string $transactionId = null): \Appwrite\Models\RowList
     {
@@ -3668,19 +3124,13 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\RowList::from($response);
-
     }
 
     /**
      * Bulk delete rows using queries, if no queries are passed then all rows are
      * deleted.
      *
-     * @param string $databaseId
-     * @param string $tableId
-     * @param ?array $queries
-     * @param ?string $transactionId
      * @throws AppwriteException
-     * @return \Appwrite\Models\RowList
      */
     public function deleteRows(string $databaseId, string $tableId, ?array $queries = null, ?string $transactionId = null): \Appwrite\Models\RowList
     {
@@ -3719,20 +3169,13 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\RowList::from($response);
-
     }
 
     /**
      * Get a row by its unique ID. This endpoint response returns a JSON object
      * with the row data.
      *
-     * @param string $databaseId
-     * @param string $tableId
-     * @param string $rowId
-     * @param ?array $queries
-     * @param ?string $transactionId
      * @throws AppwriteException
-     * @return \Appwrite\Models\Row
      */
     public function getRow(string $databaseId, string $tableId, string $rowId, ?array $queries = null, ?string $transactionId = null): \Appwrite\Models\Row
     {
@@ -3771,7 +3214,6 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\Row::from($response);
-
     }
 
     /**
@@ -3780,14 +3222,7 @@ class TablesDB extends Service
      * integration](https://appwrite.io/docs/references/cloud/server-dart/tablesDB#createTable)
      * API or directly from your database console.
      *
-     * @param string $databaseId
-     * @param string $tableId
-     * @param string $rowId
-     * @param ?array $data
-     * @param ?array $permissions
-     * @param ?string $transactionId
      * @throws AppwriteException
-     * @return \Appwrite\Models\Row
      */
     public function upsertRow(string $databaseId, string $tableId, string $rowId, ?array $data = null, ?array $permissions = null, ?string $transactionId = null): \Appwrite\Models\Row
     {
@@ -3825,21 +3260,13 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\Row::from($response);
-
     }
 
     /**
      * Update a row by its unique ID. Using the patch method you can pass only
      * specific fields that will get updated.
      *
-     * @param string $databaseId
-     * @param string $tableId
-     * @param string $rowId
-     * @param ?array $data
-     * @param ?array $permissions
-     * @param ?string $transactionId
      * @throws AppwriteException
-     * @return \Appwrite\Models\Row
      */
     public function updateRow(string $databaseId, string $tableId, string $rowId, ?array $data = null, ?array $permissions = null, ?string $transactionId = null): \Appwrite\Models\Row
     {
@@ -3877,18 +3304,12 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\Row::from($response);
-
     }
 
     /**
      * Delete a row by its unique ID.
      *
-     * @param string $databaseId
-     * @param string $tableId
-     * @param string $rowId
-     * @param ?string $transactionId
      * @throws AppwriteException
-     * @return string
      */
     public function deleteRow(string $databaseId, string $tableId, string $rowId, ?string $transactionId = null): string
     {
@@ -3911,29 +3332,18 @@ class TablesDB extends Service
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
 
-        $response = $this->client->call(
+        return $this->client->call(
             Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams
         );
-
-        return $response;
-
     }
 
     /**
      * Decrement a specific column of a row by a given value.
      *
-     * @param string $databaseId
-     * @param string $tableId
-     * @param string $rowId
-     * @param string $column
-     * @param ?float $value
-     * @param ?float $min
-     * @param ?string $transactionId
      * @throws AppwriteException
-     * @return \Appwrite\Models\Row
      */
     public function decrementRowColumn(string $databaseId, string $tableId, string $rowId, string $column, ?float $value = null, ?float $min = null, ?string $transactionId = null): \Appwrite\Models\Row
     {
@@ -3972,21 +3382,12 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\Row::from($response);
-
     }
 
     /**
      * Increment a specific column of a row by a given value.
      *
-     * @param string $databaseId
-     * @param string $tableId
-     * @param string $rowId
-     * @param string $column
-     * @param ?float $value
-     * @param ?float $max
-     * @param ?string $transactionId
      * @throws AppwriteException
-     * @return \Appwrite\Models\Row
      */
     public function incrementRowColumn(string $databaseId, string $tableId, string $rowId, string $column, ?float $value = null, ?float $max = null, ?string $transactionId = null): \Appwrite\Models\Row
     {
@@ -4025,6 +3426,5 @@ class TablesDB extends Service
         }
 
         return \Appwrite\Models\Row::from($response);
-
     }
 }

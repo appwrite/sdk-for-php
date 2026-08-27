@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * LocaleCode
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class LocaleCode
 {
@@ -44,11 +48,9 @@ readonly class LocaleCode
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'code' => static::serializeValue($this->code),
             'name' => static::serializeValue($this->name)
         ];
-
-        return $result;
     }
 }

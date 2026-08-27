@@ -5,7 +5,7 @@
 GET https://cloud.appwrite.io/v1/functions
 ```
 
-** Get a list of all the project&#039;s functions. You can use the query params to filter your results. **
+** Get a list of all the project's functions. You can use the query params to filter your results. **
 
 ### Parameters
 
@@ -148,7 +148,7 @@ PATCH https://cloud.appwrite.io/v1/functions/{functionId}/deployment
 GET https://cloud.appwrite.io/v1/functions/{functionId}/deployments
 ```
 
-** Get a list of all the function&#039;s code deployments. You can use the query params to filter your results. **
+** Get a list of all the function's code deployments. You can use the query params to filter your results. **
 
 ### Parameters
 
@@ -164,11 +164,11 @@ GET https://cloud.appwrite.io/v1/functions/{functionId}/deployments
 POST https://cloud.appwrite.io/v1/functions/{functionId}/deployments
 ```
 
-** Create a new function code deployment. Use this endpoint to upload a new version of your code function. To execute your newly uploaded code, you&#039;ll need to update the function&#039;s deployment to use your new deployment UID.
+** Create a new function code deployment. Use this endpoint to upload a new version of your code function. To execute your newly uploaded code, you'll need to update the function's deployment to use your new deployment UID.
 
 This endpoint accepts a tar.gz file compressed with your code. Make sure to include any dependencies your code has within the compressed file. You can learn more about code packaging in the [Appwrite Cloud Functions tutorial](https://appwrite.io/docs/functions).
 
-Use the &quot;command&quot; param to set the entrypoint used to execute your code. **
+Use the "command" param to set the entrypoint used to execute your code. **
 
 ### Parameters
 
@@ -185,7 +185,7 @@ Use the &quot;command&quot; param to set the entrypoint used to execute your cod
 POST https://cloud.appwrite.io/v1/functions/{functionId}/deployments/duplicate
 ```
 
-** Create a new build for an existing function deployment. This endpoint allows you to rebuild a deployment with the updated function configuration, including its entrypoint and build commands if they have been modified. The build process will be queued and executed asynchronously. The original deployment&#039;s code will be preserved and used for the new build. **
+** Create a new build for an existing function deployment. This endpoint allows you to rebuild a deployment with the updated function configuration, including its entrypoint and build commands if they have been modified. The build process will be queued and executed asynchronously. The original deployment's code will be preserved and used for the new build. **
 
 ### Parameters
 
@@ -267,7 +267,7 @@ DELETE https://cloud.appwrite.io/v1/functions/{functionId}/deployments/{deployme
 GET https://cloud.appwrite.io/v1/functions/{functionId}/deployments/{deploymentId}/download
 ```
 
-** Get a function deployment content by its unique ID. The endpoint response return with a &#039;Content-Disposition: attachment&#039; header that tells the browser to start downloading the file to user downloads directory. **
+** Get a function deployment content by its unique ID. The endpoint response return with a 'Content-Disposition: attachment' header that tells the browser to start downloading the file to user downloads directory. **
 
 ### Parameters
 
@@ -283,7 +283,7 @@ GET https://cloud.appwrite.io/v1/functions/{functionId}/deployments/{deploymentI
 PATCH https://cloud.appwrite.io/v1/functions/{functionId}/deployments/{deploymentId}/status
 ```
 
-** Cancel an ongoing function deployment build. If the build is already in progress, it will be stopped and marked as canceled. If the build hasn&#039;t started yet, it will be marked as canceled without executing. You cannot cancel builds that have already completed (status &#039;ready&#039;) or failed. The response includes the final build status and details. **
+** Cancel an ongoing function deployment build. If the build is already in progress, it will be stopped and marked as canceled. If the build hasn't started yet, it will be marked as canceled without executing. You cannot cancel builds that have already completed (status 'ready') or failed. The response includes the final build status and details. **
 
 ### Parameters
 
@@ -382,7 +382,7 @@ POST https://cloud.appwrite.io/v1/functions/{functionId}/variables
 | --- | --- | --- | --- |
 | functionId | string | **Required** Function unique ID. |  |
 | variableId | string | Variable ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
-| key | string | Variable key. Max length: 255 chars. |  |
+| key | string | Variable key. Letters, digits and underscores only, must not start with a digit. Max length: 255 chars. |  |
 | value | string | Variable value. Max length: 8192 chars. |  |
 | secret | boolean | Secret variables can be updated or deleted, but only functions can read them during build and runtime. | 1 |
 
@@ -413,7 +413,7 @@ PUT https://cloud.appwrite.io/v1/functions/{functionId}/variables/{variableId}
 | --- | --- | --- | --- |
 | functionId | string | **Required** Function unique ID. |  |
 | variableId | string | **Required** Variable unique ID. |  |
-| key | string | Variable key. Max length: 255 chars. |  |
+| key | string | Variable key. Letters, digits and underscores only, must not start with a digit. Max length: 255 chars. |  |
 | value | string | Variable value. Max length: 8192 chars. |  |
 | secret | boolean | Secret variables can be updated or deleted, but only functions can read them during build and runtime. |  |
 

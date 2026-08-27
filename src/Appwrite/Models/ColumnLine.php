@@ -1,11 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 use Appwrite\Enums\ColumnStatus;
 
 /**
  * ColumnLine
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class ColumnLine
 {
@@ -72,8 +76,8 @@ readonly class ColumnLine
             required: $data['required'],
             createdAt: $data['$createdAt'],
             updatedAt: $data['$updatedAt'],
-            array: array_key_exists('array', $data) ? $data['array'] : null,
-            default: array_key_exists('default', $data) ? $data['default'] : null
+            array: $data['array'] ?? null,
+            default: $data['default'] ?? null
         );
     }
 
@@ -82,7 +86,7 @@ readonly class ColumnLine
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'key' => static::serializeValue($this->key),
             'type' => static::serializeValue($this->type),
             'status' => static::serializeValue($this->status),
@@ -93,7 +97,5 @@ readonly class ColumnLine
             '$updatedAt' => static::serializeValue($this->updatedAt),
             'default' => static::serializeValue($this->default)
         ];
-
-        return $result;
     }
 }

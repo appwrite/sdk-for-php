@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Report
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class Report
 {
@@ -97,7 +101,7 @@ readonly class Report
                     $data['insights']
                 )
                 : $data['insights'],
-            analyzedAt: array_key_exists('analyzedAt', $data) ? $data['analyzedAt'] : null
+            analyzedAt: $data['analyzedAt'] ?? null
         );
     }
 
@@ -106,7 +110,7 @@ readonly class Report
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             '$createdAt' => static::serializeValue($this->createdAt),
             '$updatedAt' => static::serializeValue($this->updatedAt),
@@ -120,7 +124,5 @@ readonly class Report
             'insights' => static::serializeValue($this->insights),
             'analyzedAt' => static::serializeValue($this->analyzedAt)
         ];
-
-        return $result;
     }
 }

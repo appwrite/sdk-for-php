@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Backup archive list
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class BackupArchiveList
 {
@@ -49,11 +53,9 @@ readonly class BackupArchiveList
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'total' => static::serializeValue($this->total),
             'archives' => static::serializeValue($this->archives)
         ];
-
-        return $result;
     }
 }

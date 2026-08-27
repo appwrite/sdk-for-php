@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * OAuth2Disqus
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class OAuth2Disqus
 {
@@ -56,13 +60,11 @@ readonly class OAuth2Disqus
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             'enabled' => static::serializeValue($this->enabled),
             'publicKey' => static::serializeValue($this->publicKey),
             'secretKey' => static::serializeValue($this->secretKey)
         ];
-
-        return $result;
     }
 }

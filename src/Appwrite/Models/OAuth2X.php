@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * OAuth2X
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class OAuth2X
 {
@@ -56,13 +60,11 @@ readonly class OAuth2X
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             'enabled' => static::serializeValue($this->enabled),
             'customerKey' => static::serializeValue($this->customerKey),
             'secretKey' => static::serializeValue($this->secretKey)
         ];
-
-        return $result;
     }
 }

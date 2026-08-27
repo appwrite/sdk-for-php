@@ -12,7 +12,7 @@ GET https://cloud.appwrite.io/v1/organization
 PUT https://cloud.appwrite.io/v1/organization
 ```
 
-** Update the current organization&#039;s name. **
+** Update the current organization's name. **
 
 ### Parameters
 
@@ -73,7 +73,7 @@ GET https://cloud.appwrite.io/v1/organization/installations/{installationId}
 PUT https://cloud.appwrite.io/v1/organization/installations/{installationId}
 ```
 
-** Update an app installation on the organization. Only organization members with the owner role can update installations. The installation&#039;s granted scopes are refreshed to the scopes the app currently requests; previously issued installation access tokens are revoked. **
+** Update an app installation on the organization. Only organization members with the owner role can update installations. The installation's granted scopes are refreshed to the scopes the app currently requests; previously issued installation access tokens are revoked. **
 
 ### Parameters
 
@@ -187,7 +187,7 @@ GET https://cloud.appwrite.io/v1/organization/memberships
 POST https://cloud.appwrite.io/v1/organization/memberships
 ```
 
-** Invite a new member to join the current organization. An email with a link to join the organization will be sent to the new member&#039;s email address. If member doesn&#039;t exist in the project it will be automatically created. **
+** Invite a new member to join the current organization. An email with a link to join the organization will be sent to the new member's email address. If member doesn't exist in the project it will be automatically created. **
 
 ### Parameters
 
@@ -268,7 +268,7 @@ POST https://cloud.appwrite.io/v1/organization/projects
 | --- | --- | --- | --- |
 | projectId | string | Unique Id. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, and hyphen. Can't start with a special char. Max length is 36 chars. |  |
 | name | string | Project name. Max length: 128 chars. |  |
-| region | string | Project Region. |  |
+| region | string | Project Region. | default |
 
 
 ```http request

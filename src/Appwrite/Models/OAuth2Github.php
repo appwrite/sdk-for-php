@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * OAuth2GitHub
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class OAuth2Github
 {
@@ -56,13 +60,11 @@ readonly class OAuth2Github
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             'enabled' => static::serializeValue($this->enabled),
             'clientId' => static::serializeValue($this->clientId),
             'clientSecret' => static::serializeValue($this->clientSecret)
         ];
-
-        return $result;
     }
 }

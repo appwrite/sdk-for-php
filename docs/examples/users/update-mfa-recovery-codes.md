@@ -13,4 +13,5 @@ $users = new Users($client);
 
 $result = $users->updateMFARecoveryCodes(
     userId: '<USER_ID>'
-);```
+);
+```

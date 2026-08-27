@@ -13,4 +13,5 @@ $apps = new Apps($client);
 
 $result = $apps->delete(
     appId: '<APP_ID>'
-);```
+);
+```

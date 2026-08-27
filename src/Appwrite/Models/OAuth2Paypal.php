@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * OAuth2Paypal
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class OAuth2Paypal
 {
@@ -56,13 +60,11 @@ readonly class OAuth2Paypal
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             'enabled' => static::serializeValue($this->enabled),
             'clientId' => static::serializeValue($this->clientId),
             'secretKey' => static::serializeValue($this->secretKey)
         ];
-
-        return $result;
     }
 }

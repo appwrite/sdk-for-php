@@ -13,4 +13,5 @@ $databases = new Databases($client);
 
 $result = $databases->getTransaction(
     transactionId: '<TRANSACTION_ID>'
-);```
+);
+```

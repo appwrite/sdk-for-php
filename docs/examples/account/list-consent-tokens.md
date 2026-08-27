@@ -15,4 +15,5 @@ $result = $account->listConsentTokens(
     consentId: '<CONSENT_ID>',
     queries: [], // optional
     total: false // optional
-);```
+);
+```

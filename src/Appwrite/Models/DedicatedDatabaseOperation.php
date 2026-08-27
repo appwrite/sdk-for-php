@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Operation
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class DedicatedDatabaseOperation
 {
@@ -78,9 +82,9 @@ readonly class DedicatedDatabaseOperation
             attempts: $data['attempts'],
             errorCode: $data['errorCode'],
             errorMessage: $data['errorMessage'],
-            requestedAt: array_key_exists('requestedAt', $data) ? $data['requestedAt'] : null,
-            startedAt: array_key_exists('startedAt', $data) ? $data['startedAt'] : null,
-            completedAt: array_key_exists('completedAt', $data) ? $data['completedAt'] : null
+            requestedAt: $data['requestedAt'] ?? null,
+            startedAt: $data['startedAt'] ?? null,
+            completedAt: $data['completedAt'] ?? null
         );
     }
 
@@ -89,7 +93,7 @@ readonly class DedicatedDatabaseOperation
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             '$createdAt' => static::serializeValue($this->createdAt),
             'databaseId' => static::serializeValue($this->databaseId),
@@ -102,7 +106,5 @@ readonly class DedicatedDatabaseOperation
             'errorCode' => static::serializeValue($this->errorCode),
             'errorMessage' => static::serializeValue($this->errorMessage)
         ];
-
-        return $result;
     }
 }

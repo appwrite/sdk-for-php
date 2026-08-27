@@ -15,4 +15,5 @@ $result = $storage->listBuckets(
     queries: [], // optional
     search: '<SEARCH>', // optional
     total: false // optional
-);```
+);
+```

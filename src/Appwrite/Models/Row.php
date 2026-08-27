@@ -1,15 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Row
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class Row
 {
     use ArraySerializable;
-
-    private const ADDITIONAL_PROPERTIES = true;
 
     /**
      * Row constructor.

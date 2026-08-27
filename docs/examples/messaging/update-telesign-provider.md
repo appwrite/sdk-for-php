@@ -18,4 +18,5 @@ $result = $messaging->updateTelesignProvider(
     customerId: '<CUSTOMER_ID>', // optional
     apiKey: '<API_KEY>', // optional
     from: '<FROM>' // optional
-);```
+);
+```

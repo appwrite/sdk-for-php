@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Enums;
 
 use JsonSerializable;
+use Stringable;
 
-class BrowserPermission implements JsonSerializable
+class BrowserPermission implements JsonSerializable, Stringable
 {
     private static BrowserPermission $GEOLOCATION;
     private static BrowserPermission $CAMERA;
@@ -27,11 +30,8 @@ class BrowserPermission implements JsonSerializable
     private static BrowserPermission $WEBSHARE;
     private static BrowserPermission $XRSPATIALTRACKING;
 
-    private string $value;
-
-    private function __construct(string $value)
+    private function __construct(private readonly string $value)
     {
-        $this->value = $value;
     }
 
     public function __toString(): string

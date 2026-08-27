@@ -14,7 +14,8 @@ $sites = new Sites($client);
 $result = $sites->createVariable(
     siteId: '<SITE_ID>',
     variableId: '<VARIABLE_ID>',
-    key: '<KEY>',
+    key: '',
     value: '<VALUE>',
     secret: false // optional
-);```
+);
+```

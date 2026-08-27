@@ -20,4 +20,5 @@ $result = $databases->updateIntegerAttribute(
     min: null, // optional
     max: null, // optional
     newKey: '' // optional
-);```
+);
+```

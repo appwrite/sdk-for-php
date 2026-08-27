@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Enums;
 
 use JsonSerializable;
+use Stringable;
 
-class Flag implements JsonSerializable
+class Flag implements JsonSerializable, Stringable
 {
     private static Flag $AFGHANISTAN;
     private static Flag $ANGOLA;
@@ -202,11 +205,8 @@ class Flag implements JsonSerializable
     private static Flag $ZAMBIA;
     private static Flag $ZIMBABWE;
 
-    private string $value;
-
-    private function __construct(string $value)
+    private function __construct(private readonly string $value)
     {
-        $this->value = $value;
     }
 
     public function __toString(): string

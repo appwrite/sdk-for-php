@@ -14,4 +14,5 @@ $account = new Account($client);
 $result = $account->updateMagicURLSession(
     userId: '<USER_ID>',
     secret: '<SECRET>'
-);```
+);
+```

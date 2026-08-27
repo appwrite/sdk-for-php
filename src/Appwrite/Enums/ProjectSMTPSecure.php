@@ -1,19 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Enums;
 
 use JsonSerializable;
+use Stringable;
 
-class ProjectSMTPSecure implements JsonSerializable
+class ProjectSMTPSecure implements JsonSerializable, Stringable
 {
     private static ProjectSMTPSecure $TLS;
     private static ProjectSMTPSecure $SSL;
 
-    private string $value;
-
-    private function __construct(string $value)
+    private function __construct(private readonly string $value)
     {
-        $this->value = $value;
     }
 
     public function __toString(): string

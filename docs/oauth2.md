@@ -121,7 +121,7 @@ GET https://cloud.appwrite.io/v1/oauth2/{project_id}/grants/{grant_id}
 GET https://cloud.appwrite.io/v1/oauth2/{project_id}/organizations
 ```
 
-** List the organizations the OAuth2 access token can access. Resolves the token&#039;s `organization` authorization details, expanding the `*` wildcard into the concrete set of organizations the user can see. **
+** List the organizations the OAuth2 access token can access. Resolves the token's `organization` authorization details, expanding the `*` wildcard into the concrete set of organizations the user can see. **
 
 ### Parameters
 
@@ -163,7 +163,7 @@ POST https://cloud.appwrite.io/v1/oauth2/{project_id}/par
 GET https://cloud.appwrite.io/v1/oauth2/{project_id}/projects
 ```
 
-** List the projects the OAuth2 access token can access. Resolves the token&#039;s `project` authorization details, expanding the `*` wildcard into the concrete set of projects the user can see. **
+** List the projects the OAuth2 access token can access. Resolves the token's `project` authorization details, expanding the `*` wildcard into the concrete set of projects the user can see. **
 
 ### Parameters
 

@@ -1,11 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 use Appwrite\Enums\ProjectServiceId;
 
 /**
  * ProjectService
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class ProjectService
 {
@@ -46,11 +50,9 @@ readonly class ProjectService
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             'enabled' => static::serializeValue($this->enabled)
         ];
-
-        return $result;
     }
 }

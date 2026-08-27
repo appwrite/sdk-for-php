@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Runtime
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class Runtime
 {
@@ -80,7 +84,7 @@ readonly class Runtime
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             'key' => static::serializeValue($this->key),
             'name' => static::serializeValue($this->name),
@@ -90,7 +94,5 @@ readonly class Runtime
             'logo' => static::serializeValue($this->logo),
             'supports' => static::serializeValue($this->supports)
         ];
-
-        return $result;
     }
 }

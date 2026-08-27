@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Function
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class FunctionModel
 {
@@ -229,7 +233,7 @@ readonly class FunctionModel
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             '$createdAt' => static::serializeValue($this->createdAt),
             '$updatedAt' => static::serializeValue($this->updatedAt),
@@ -263,7 +267,5 @@ readonly class FunctionModel
             'buildSpecification' => static::serializeValue($this->buildSpecification),
             'runtimeSpecification' => static::serializeValue($this->runtimeSpecification)
         ];
-
-        return $result;
     }
 }

@@ -1,11 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 use Appwrite\Enums\OAuth2GooglePrompt;
 
 /**
  * OAuth2Google
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class OAuth2Google
 {
@@ -69,14 +73,12 @@ readonly class OAuth2Google
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             'enabled' => static::serializeValue($this->enabled),
             'clientId' => static::serializeValue($this->clientId),
             'clientSecret' => static::serializeValue($this->clientSecret),
             'prompt' => static::serializeValue($this->prompt)
         ];
-
-        return $result;
     }
 }

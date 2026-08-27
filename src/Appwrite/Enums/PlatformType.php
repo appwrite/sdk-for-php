@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Enums;
 
 use JsonSerializable;
+use Stringable;
 
-class PlatformType implements JsonSerializable
+class PlatformType implements JsonSerializable, Stringable
 {
     private static PlatformType $WINDOWS;
     private static PlatformType $APPLE;
@@ -12,11 +15,8 @@ class PlatformType implements JsonSerializable
     private static PlatformType $LINUX;
     private static PlatformType $WEB;
 
-    private string $value;
-
-    private function __construct(string $value)
+    private function __construct(private readonly string $value)
     {
-        $this->value = $value;
     }
 
     public function __toString(): string

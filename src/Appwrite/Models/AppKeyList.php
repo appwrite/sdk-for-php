@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * App keys list
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class AppKeyList
 {
@@ -49,11 +53,9 @@ readonly class AppKeyList
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'total' => static::serializeValue($this->total),
             'keys' => static::serializeValue($this->keys)
         ];
-
-        return $result;
     }
 }

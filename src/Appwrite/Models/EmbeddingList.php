@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Embedding list
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class EmbeddingList
 {
@@ -49,11 +53,9 @@ readonly class EmbeddingList
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'total' => static::serializeValue($this->total),
             'embeddings' => static::serializeValue($this->embeddings)
         ];
-
-        return $result;
     }
 }

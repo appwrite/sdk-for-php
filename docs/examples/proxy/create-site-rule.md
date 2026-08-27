@@ -15,4 +15,5 @@ $result = $proxy->createSiteRule(
     domain: '',
     siteId: '<SITE_ID>',
     branch: '<BRANCH>' // optional
-);```
+);
+```

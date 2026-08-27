@@ -1,16 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Services;
 
 use Appwrite\Client;
-use Appwrite\InputFile;
 use Mockery;
+use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
 
 final class WebhooksTest extends TestCase
 {
-    private $client;
-    private $webhooks;
+    private Client&MockInterface $client;
+    private Webhooks $webhooks;
 
     protected function setUp(): void
     {
@@ -20,16 +22,16 @@ final class WebhooksTest extends TestCase
 
     public function testMethodList(): void
     {
-        $data = array(
+        $data = [
             "total" => 5,
-            "webhooks" => array(
-                array(
+            "webhooks" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
                     "name" => "My Webhook",
                     "url" => "https://example.com/webhook",
-                    "events" => array(),
+                    "events" => [],
                     "tls" => true,
                     "authUsername" => "username",
                     "authPassword" => "webhook-password",
@@ -37,9 +39,9 @@ final class WebhooksTest extends TestCase
                     "enabled" => true,
                     "logs" => "Failed to connect to remote server.",
                     "attempts" => 10
-                )
-            )
-        );
+                ]
+            ]
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -52,16 +54,15 @@ final class WebhooksTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\WebhookList::class, $response);
     }
-
     public function testMethodCreate(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "My Webhook",
             "url" => "https://example.com/webhook",
-            "events" => array(),
+            "events" => [],
             "tls" => true,
             "authUsername" => "username",
             "authPassword" => "webhook-password",
@@ -69,7 +70,7 @@ final class WebhooksTest extends TestCase
             "enabled" => true,
             "logs" => "Failed to connect to remote server.",
             "attempts" => 10
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -82,21 +83,20 @@ final class WebhooksTest extends TestCase
             "<WEBHOOK_ID>",
             "",
             "<NAME>",
-            array()
+            []
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Webhook::class, $response);
     }
-
     public function testMethodGet(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "My Webhook",
             "url" => "https://example.com/webhook",
-            "events" => array(),
+            "events" => [],
             "tls" => true,
             "authUsername" => "username",
             "authPassword" => "webhook-password",
@@ -104,7 +104,7 @@ final class WebhooksTest extends TestCase
             "enabled" => true,
             "logs" => "Failed to connect to remote server.",
             "attempts" => 10
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -119,16 +119,15 @@ final class WebhooksTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Webhook::class, $response);
     }
-
     public function testMethodUpdate(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "My Webhook",
             "url" => "https://example.com/webhook",
-            "events" => array(),
+            "events" => [],
             "tls" => true,
             "authUsername" => "username",
             "authPassword" => "webhook-password",
@@ -136,7 +135,7 @@ final class WebhooksTest extends TestCase
             "enabled" => true,
             "logs" => "Failed to connect to remote server.",
             "attempts" => 10
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -149,12 +148,11 @@ final class WebhooksTest extends TestCase
             "<WEBHOOK_ID>",
             "<NAME>",
             "",
-            array()
+            []
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Webhook::class, $response);
     }
-
     public function testMethodDelete(): void
     {
         $data = '';
@@ -172,16 +170,15 @@ final class WebhooksTest extends TestCase
 
         $this->assertSame($data, $response);
     }
-
     public function testMethodUpdateSecret(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "My Webhook",
             "url" => "https://example.com/webhook",
-            "events" => array(),
+            "events" => [],
             "tls" => true,
             "authUsername" => "username",
             "authPassword" => "webhook-password",
@@ -189,7 +186,7 @@ final class WebhooksTest extends TestCase
             "enabled" => true,
             "logs" => "Failed to connect to remote server.",
             "attempts" => 10
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -204,5 +201,4 @@ final class WebhooksTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Webhook::class, $response);
     }
-
 }

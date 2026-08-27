@@ -16,4 +16,5 @@ $result = $functions->listDeployments(
     queries: [], // optional
     search: '<SEARCH>', // optional
     total: false // optional
-);```
+);
+```

@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Connections
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class DatabaseStatusConnections
 {
@@ -44,11 +48,9 @@ readonly class DatabaseStatusConnections
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'current' => static::serializeValue($this->current),
             'max' => static::serializeValue($this->max)
         ];
-
-        return $result;
     }
 }

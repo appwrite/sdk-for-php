@@ -32,4 +32,5 @@ $result = $apps->update(
     deviceFlow: false, // optional
     installationScopes: [], // optional
     installationRedirectUrl: 'https://example.com' // optional
-);```
+);
+```

@@ -48,7 +48,7 @@ GET https://cloud.appwrite.io/v1/teams/{teamId}
 PUT https://cloud.appwrite.io/v1/teams/{teamId}
 ```
 
-** Update the team&#039;s name by its unique ID. **
+** Update the team's name by its unique ID. **
 
 ### Parameters
 
@@ -119,7 +119,7 @@ GET https://cloud.appwrite.io/v1/teams/{teamId}/installations/{installationId}
 PUT https://cloud.appwrite.io/v1/teams/{teamId}/installations/{installationId}
 ```
 
-** Update an app installation on a team. Only team members with the owner role can update installations. The installation&#039;s granted scopes are refreshed to the scopes the app currently requests; previously issued installation access tokens are revoked. **
+** Update an app installation on a team. Only team members with the owner role can update installations. The installation's granted scopes are refreshed to the scopes the app currently requests; previously issued installation access tokens are revoked. **
 
 ### Parameters
 
@@ -148,7 +148,7 @@ DELETE https://cloud.appwrite.io/v1/teams/{teamId}/installations/{installationId
 GET https://cloud.appwrite.io/v1/teams/{teamId}/memberships
 ```
 
-** Use this endpoint to list a team&#039;s members using the team&#039;s ID. All team members have read access to this endpoint. Hide sensitive attributes from the response by toggling membership privacy in the Console. **
+** Use this endpoint to list a team's members using the team's ID. All team members have read access to this endpoint. Hide sensitive attributes from the response by toggling membership privacy in the Console. **
 
 ### Parameters
 
@@ -164,9 +164,9 @@ GET https://cloud.appwrite.io/v1/teams/{teamId}/memberships
 POST https://cloud.appwrite.io/v1/teams/{teamId}/memberships
 ```
 
-** Invite a new member to join your team. Provide an ID for existing users, or invite unregistered users using an email or phone number. If initiated from a Client SDK, Appwrite will send an email or sms with a link to join the team to the invited user, and an account will be created for them if one doesn&#039;t exist. If initiated from a Server SDK, the new member will be added automatically to the team.
+** Invite a new member to join your team. Provide an ID for existing users, or invite unregistered users using an email or phone number. If initiated from a Client SDK, Appwrite will send an email or sms with a link to join the team to the invited user, and an account will be created for them if one doesn't exist. If initiated from a Server SDK, the new member will be added automatically to the team.
 
-You only need to provide one of a user ID, email, or phone number. Appwrite will prioritize accepting the user ID &gt; email &gt; phone number if you provide more than one of these parameters.
+You only need to provide one of a user ID, email, or phone number. Appwrite will prioritize accepting the user ID > email > phone number if you provide more than one of these parameters.
 
 Use the `url` parameter to redirect the user from the invitation email to your app. After the user is redirected, use the [Update Team Membership Status](https://appwrite.io/docs/references/cloud/client-web/teams#updateMembershipStatus) endpoint to allow the user to accept the invitation to the team. 
 
@@ -253,7 +253,7 @@ If the request is successful, a session for the user is automatically created.
 GET https://cloud.appwrite.io/v1/teams/{teamId}/prefs
 ```
 
-** Get the team&#039;s shared preferences by its unique ID. If a preference doesn&#039;t need to be shared by all team members, prefer storing them in [user preferences](https://appwrite.io/docs/references/cloud/client-web/account#getPrefs). **
+** Get the team's shared preferences by its unique ID. If a preference doesn't need to be shared by all team members, prefer storing them in [user preferences](https://appwrite.io/docs/references/cloud/client-web/account#getPrefs). **
 
 ### Parameters
 
@@ -266,7 +266,7 @@ GET https://cloud.appwrite.io/v1/teams/{teamId}/prefs
 PUT https://cloud.appwrite.io/v1/teams/{teamId}/prefs
 ```
 
-** Update the team&#039;s preferences by its unique ID. The object you pass is stored as is and replaces any previous value. The maximum allowed prefs size is 64kB and throws an error if exceeded. **
+** Update the team's preferences by its unique ID. The object you pass is stored as is and replaces any previous value. The maximum allowed prefs size is 64kB and throws an error if exceeded. **
 
 ### Parameters
 

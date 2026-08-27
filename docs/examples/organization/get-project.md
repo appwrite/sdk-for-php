@@ -13,4 +13,5 @@ $organization = new Organization($client);
 
 $result = $organization->getProject(
     projectId: '<PROJECT_ID>'
-);```
+);
+```

@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Embedding
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class Embedding
 {
@@ -56,13 +60,11 @@ readonly class Embedding
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'model' => static::serializeValue($this->model),
             'dimension' => static::serializeValue($this->dimension),
             'embedding' => static::serializeValue($this->embedding),
             'error' => static::serializeValue($this->error)
         ];
-
-        return $result;
     }
 }

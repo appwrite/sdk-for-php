@@ -16,4 +16,5 @@ $result = $databases->createDocuments(
     collectionId: '<COLLECTION_ID>',
     documents: [],
     transactionId: '<TRANSACTION_ID>' // optional
-);```
+);
+```

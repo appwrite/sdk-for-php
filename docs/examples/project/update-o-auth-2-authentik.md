@@ -16,4 +16,5 @@ $result = $project->updateOAuth2Authentik(
     clientSecret: '<CLIENT_SECRET>', // optional
     endpoint: '<ENDPOINT>', // optional
     enabled: false // optional
-);```
+);
+```

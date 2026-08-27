@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Policy Deny Free Email
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class PolicyDenyFreeEmail
 {
@@ -44,11 +48,9 @@ readonly class PolicyDenyFreeEmail
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             'enabled' => static::serializeValue($this->enabled)
         ];
-
-        return $result;
     }
 }

@@ -17,4 +17,5 @@ $result = $project->updateOAuth2Keycloak(
     endpoint: '<ENDPOINT>', // optional
     realmName: '<REALM_NAME>', // optional
     enabled: false // optional
-);```
+);
+```

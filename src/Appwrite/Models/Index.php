@@ -1,11 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 use Appwrite\Enums\IndexStatus;
 
 /**
  * Index
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class Index
 {
@@ -82,7 +86,7 @@ readonly class Index
             error: $data['error'],
             attributes: $data['attributes'],
             lengths: $data['lengths'],
-            orders: array_key_exists('orders', $data) ? $data['orders'] : null
+            orders: $data['orders'] ?? null
         );
     }
 
@@ -91,7 +95,7 @@ readonly class Index
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             '$createdAt' => static::serializeValue($this->createdAt),
             '$updatedAt' => static::serializeValue($this->updatedAt),
@@ -103,7 +107,5 @@ readonly class Index
             'lengths' => static::serializeValue($this->lengths),
             'orders' => static::serializeValue($this->orders)
         ];
-
-        return $result;
     }
 }

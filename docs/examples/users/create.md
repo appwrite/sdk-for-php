@@ -17,4 +17,5 @@ $result = $users->create(
     phone: '+12065550100', // optional
     password: 'password', // optional
     name: '<NAME>' // optional
-);```
+);
+```

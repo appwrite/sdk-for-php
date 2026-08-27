@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Membership
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class Membership
 {
@@ -122,7 +126,7 @@ readonly class Membership
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             '$createdAt' => static::serializeValue($this->createdAt),
             '$updatedAt' => static::serializeValue($this->updatedAt),
@@ -139,7 +143,5 @@ readonly class Membership
             'userAccessedAt' => static::serializeValue($this->userAccessedAt),
             'roles' => static::serializeValue($this->roles)
         ];
-
-        return $result;
     }
 }

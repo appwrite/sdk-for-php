@@ -15,4 +15,5 @@ $result = $project->updateOAuth2WordPress(
     clientId: '<CLIENT_ID>', // optional
     clientSecret: '<CLIENT_SECRET>', // optional
     enabled: false // optional
-);```
+);
+```

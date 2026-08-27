@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Policy Session Invalidation
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class PolicySessionInvalidation
 {
@@ -44,11 +48,9 @@ readonly class PolicySessionInvalidation
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             'enabled' => static::serializeValue($this->enabled)
         ];
-
-        return $result;
     }
 }

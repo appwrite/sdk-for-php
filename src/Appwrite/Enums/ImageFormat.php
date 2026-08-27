@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Enums;
 
 use JsonSerializable;
+use Stringable;
 
-class ImageFormat implements JsonSerializable
+class ImageFormat implements JsonSerializable, Stringable
 {
     private static ImageFormat $JPG;
     private static ImageFormat $JPEG;
@@ -14,11 +17,8 @@ class ImageFormat implements JsonSerializable
     private static ImageFormat $AVIF;
     private static ImageFormat $GIF;
 
-    private string $value;
-
-    private function __construct(string $value)
+    private function __construct(private readonly string $value)
     {
-        $this->value = $value;
     }
 
     public function __toString(): string

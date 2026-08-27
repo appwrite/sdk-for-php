@@ -14,4 +14,5 @@ $teams = new Teams($client);
 $result = $teams->deleteInstallation(
     teamId: '<TEAM_ID>',
     installationId: '<INSTALLATION_ID>'
-);```
+);
+```

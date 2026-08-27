@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Activity event list
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class ActivityEventList
 {
@@ -49,11 +53,9 @@ readonly class ActivityEventList
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'total' => static::serializeValue($this->total),
             'events' => static::serializeValue($this->events)
         ];
-
-        return $result;
     }
 }

@@ -13,4 +13,5 @@ $storage = new Storage($client);
 
 $result = $storage->getBucket(
     bucketId: '<BUCKET_ID>'
-);```
+);
+```

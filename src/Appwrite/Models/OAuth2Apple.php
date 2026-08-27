@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * OAuth2Apple
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class OAuth2Apple
 {
@@ -68,7 +72,7 @@ readonly class OAuth2Apple
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             'enabled' => static::serializeValue($this->enabled),
             'serviceId' => static::serializeValue($this->serviceId),
@@ -76,7 +80,5 @@ readonly class OAuth2Apple
             'teamId' => static::serializeValue($this->teamId),
             'p8File' => static::serializeValue($this->p8File)
         ];
-
-        return $result;
     }
 }

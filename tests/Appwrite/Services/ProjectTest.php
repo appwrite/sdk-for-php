@@ -1,27 +1,25 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Services;
 
 use Appwrite\Client;
-use Appwrite\InputFile;
 use Mockery;
+use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
 use Appwrite\Enums\ProjectAuthMethodId;
 use Appwrite\Enums\ProjectKeyScopes;
-use Appwrite\Enums\ProjectOAuth2GooglePrompt;
-use Appwrite\Enums\ProjectOAuth2OidcPrompt;
 use Appwrite\Enums\ProjectOAuthProviderId;
 use Appwrite\Enums\ProjectPolicyId;
 use Appwrite\Enums\ProjectProtocolId;
 use Appwrite\Enums\ProjectServiceId;
-use Appwrite\Enums\ProjectSMTPSecure;
 use Appwrite\Enums\ProjectEmailTemplateId;
-use Appwrite\Enums\ProjectEmailTemplateLocale;
 
 final class ProjectTest extends TestCase
 {
-    private $client;
-    private $project;
+    private Client&MockInterface $client;
+    private Project $project;
 
     protected function setUp(): void
     {
@@ -31,15 +29,15 @@ final class ProjectTest extends TestCase
 
     public function testMethodGet(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "New Project",
             "teamId" => "1592981250",
             "region" => "fra",
-            "devKeys" => array(
-                array(
+            "devKeys" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -47,9 +45,9 @@ final class ProjectTest extends TestCase
                     "expire" => "2020-10-15T06:38:00.000+00:00",
                     "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
                     "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "sdks" => array()
-                )
-            ),
+                    "sdks" => []
+                ]
+            ],
             "smtpEnabled" => true,
             "smtpSenderName" => "John Appwrite",
             "smtpSenderEmail" => "john@appwrite.io",
@@ -62,29 +60,29 @@ final class ProjectTest extends TestCase
             "smtpSecure" => "tls",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
-            "labels" => array(),
+            "labels" => [],
             "status" => "active",
-            "onboarding" => array(),
-            "authMethods" => array(
-                array(
+            "onboarding" => [],
+            "authMethods" => [
+                [
                     "\$id" => "email-password",
                     "enabled" => true
-                )
-            ),
-            "services" => array(
-                array(
+                ]
+            ],
+            "services" => [
+                [
                     "\$id" => "account",
                     "enabled" => true
-                )
-            ),
-            "protocols" => array(
-                array(
+                ]
+            ],
+            "protocols" => [
+                [
                     "\$id" => "rest",
                     "enabled" => true
-                )
-            ),
-            "blocks" => array(
-                array(
+                ]
+            ],
+            "blocks" => [
+                [
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
@@ -94,11 +92,10 @@ final class ProjectTest extends TestCase
                     "organizationName" => "Acme Inc.",
                     "organizationId" => "5e5ea5c16897e",
                     "billingPlan" => "pro"
-                )
-            ),
-            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00",
-            "wafEnabled" => true
-        );
+                ]
+            ],
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -111,7 +108,6 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
     }
-
     public function testMethodDelete(): void
     {
         $data = '';
@@ -127,18 +123,17 @@ final class ProjectTest extends TestCase
 
         $this->assertSame($data, $response);
     }
-
     public function testMethodUpdateAuthMethod(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "New Project",
             "teamId" => "1592981250",
             "region" => "fra",
-            "devKeys" => array(
-                array(
+            "devKeys" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -146,9 +141,9 @@ final class ProjectTest extends TestCase
                     "expire" => "2020-10-15T06:38:00.000+00:00",
                     "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
                     "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "sdks" => array()
-                )
-            ),
+                    "sdks" => []
+                ]
+            ],
             "smtpEnabled" => true,
             "smtpSenderName" => "John Appwrite",
             "smtpSenderEmail" => "john@appwrite.io",
@@ -161,29 +156,29 @@ final class ProjectTest extends TestCase
             "smtpSecure" => "tls",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
-            "labels" => array(),
+            "labels" => [],
             "status" => "active",
-            "onboarding" => array(),
-            "authMethods" => array(
-                array(
+            "onboarding" => [],
+            "authMethods" => [
+                [
                     "\$id" => "email-password",
                     "enabled" => true
-                )
-            ),
-            "services" => array(
-                array(
+                ]
+            ],
+            "services" => [
+                [
                     "\$id" => "account",
                     "enabled" => true
-                )
-            ),
-            "protocols" => array(
-                array(
+                ]
+            ],
+            "protocols" => [
+                [
                     "\$id" => "rest",
                     "enabled" => true
-                )
-            ),
-            "blocks" => array(
-                array(
+                ]
+            ],
+            "blocks" => [
+                [
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
@@ -193,11 +188,10 @@ final class ProjectTest extends TestCase
                     "organizationName" => "Acme Inc.",
                     "organizationId" => "5e5ea5c16897e",
                     "billingPlan" => "pro"
-                )
-            ),
-            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00",
-            "wafEnabled" => true
-        );
+                ]
+            ],
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -213,25 +207,24 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
     }
-
     public function testMethodListKeys(): void
     {
-        $data = array(
+        $data = [
             "total" => 5,
-            "keys" => array(
-                array(
+            "keys" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
                     "name" => "My API Key",
                     "expire" => "2020-10-15T06:38:00.000+00:00",
-                    "scopes" => array(),
+                    "scopes" => [],
                     "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
                     "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "sdks" => array()
-                )
-            )
-        );
+                    "sdks" => []
+                ]
+            ]
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -244,20 +237,19 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\KeyList::class, $response);
     }
-
     public function testMethodCreateEphemeralKey(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "My API Key",
             "expire" => "2020-10-15T06:38:00.000+00:00",
-            "scopes" => array(),
+            "scopes" => [],
             "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
             "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-            "sdks" => array()
-        );
+            "sdks" => []
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -267,26 +259,25 @@ final class ProjectTest extends TestCase
             ->andReturn('');
 
         $response = $this->project->createEphemeralKey(
-            array(ProjectKeyScopes::PROJECTREAD()),
+            [ProjectKeyScopes::PROJECTREAD()],
             1
         );
 
         $this->assertInstanceOf(\Appwrite\Models\EphemeralKey::class, $response);
     }
-
     public function testMethodGetKey(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "My API Key",
             "expire" => "2020-10-15T06:38:00.000+00:00",
-            "scopes" => array(),
+            "scopes" => [],
             "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
             "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-            "sdks" => array()
-        );
+            "sdks" => []
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -301,20 +292,19 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Key::class, $response);
     }
-
     public function testMethodUpdateKey(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "My API Key",
             "expire" => "2020-10-15T06:38:00.000+00:00",
-            "scopes" => array(),
+            "scopes" => [],
             "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
             "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-            "sdks" => array()
-        );
+            "sdks" => []
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -326,12 +316,11 @@ final class ProjectTest extends TestCase
         $response = $this->project->updateKey(
             "<KEY_ID>",
             "<NAME>",
-            array(ProjectKeyScopes::PROJECTREAD())
+            [ProjectKeyScopes::PROJECTREAD()]
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Key::class, $response);
     }
-
     public function testMethodDeleteKey(): void
     {
         $data = '';
@@ -349,18 +338,17 @@ final class ProjectTest extends TestCase
 
         $this->assertSame($data, $response);
     }
-
     public function testMethodUpdateLabels(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "New Project",
             "teamId" => "1592981250",
             "region" => "fra",
-            "devKeys" => array(
-                array(
+            "devKeys" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -368,9 +356,9 @@ final class ProjectTest extends TestCase
                     "expire" => "2020-10-15T06:38:00.000+00:00",
                     "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
                     "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "sdks" => array()
-                )
-            ),
+                    "sdks" => []
+                ]
+            ],
             "smtpEnabled" => true,
             "smtpSenderName" => "John Appwrite",
             "smtpSenderEmail" => "john@appwrite.io",
@@ -383,29 +371,29 @@ final class ProjectTest extends TestCase
             "smtpSecure" => "tls",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
-            "labels" => array(),
+            "labels" => [],
             "status" => "active",
-            "onboarding" => array(),
-            "authMethods" => array(
-                array(
+            "onboarding" => [],
+            "authMethods" => [
+                [
                     "\$id" => "email-password",
                     "enabled" => true
-                )
-            ),
-            "services" => array(
-                array(
+                ]
+            ],
+            "services" => [
+                [
                     "\$id" => "account",
                     "enabled" => true
-                )
-            ),
-            "protocols" => array(
-                array(
+                ]
+            ],
+            "protocols" => [
+                [
                     "\$id" => "rest",
                     "enabled" => true
-                )
-            ),
-            "blocks" => array(
-                array(
+                ]
+            ],
+            "blocks" => [
+                [
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
@@ -415,11 +403,10 @@ final class ProjectTest extends TestCase
                     "organizationName" => "Acme Inc.",
                     "organizationId" => "5e5ea5c16897e",
                     "billingPlan" => "pro"
-                )
-            ),
-            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00",
-            "wafEnabled" => true
-        );
+                ]
+            ],
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -429,25 +416,24 @@ final class ProjectTest extends TestCase
             ->andReturn('');
 
         $response = $this->project->updateLabels(
-            array()
+            []
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
     }
-
     public function testMethodListMockPhones(): void
     {
-        $data = array(
+        $data = [
             "total" => 5,
-            "mockNumbers" => array(
-                array(
+            "mockNumbers" => [
+                [
                     "number" => "+1612842323",
                     "otp" => "123456",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-                )
-            )
-        );
+                ]
+            ]
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -460,15 +446,14 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\MockNumberList::class, $response);
     }
-
     public function testMethodCreateMockPhone(): void
     {
-        $data = array(
+        $data = [
             "number" => "+1612842323",
             "otp" => "123456",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -484,15 +469,14 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\MockNumber::class, $response);
     }
-
     public function testMethodGetMockPhone(): void
     {
-        $data = array(
+        $data = [
             "number" => "+1612842323",
             "otp" => "123456",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -507,15 +491,14 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\MockNumber::class, $response);
     }
-
     public function testMethodUpdateMockPhone(): void
     {
-        $data = array(
+        $data = [
             "number" => "+1612842323",
             "otp" => "123456",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -531,7 +514,6 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\MockNumber::class, $response);
     }
-
     public function testMethodDeleteMockPhone(): void
     {
         $data = '';
@@ -549,13 +531,12 @@ final class ProjectTest extends TestCase
 
         $this->assertSame($data, $response);
     }
-
     public function testMethodListOAuth2Providers(): void
     {
-        $data = array(
+        $data = [
             "total" => 5,
-            "providers" => array()
-        );
+            "providers" => []
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -568,18 +549,17 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2ProviderList::class, $response);
     }
-
     public function testMethodUpdateOAuth2Server(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "New Project",
             "teamId" => "1592981250",
             "region" => "fra",
-            "devKeys" => array(
-                array(
+            "devKeys" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -587,9 +567,9 @@ final class ProjectTest extends TestCase
                     "expire" => "2020-10-15T06:38:00.000+00:00",
                     "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
                     "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "sdks" => array()
-                )
-            ),
+                    "sdks" => []
+                ]
+            ],
             "smtpEnabled" => true,
             "smtpSenderName" => "John Appwrite",
             "smtpSenderEmail" => "john@appwrite.io",
@@ -602,29 +582,29 @@ final class ProjectTest extends TestCase
             "smtpSecure" => "tls",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
-            "labels" => array(),
+            "labels" => [],
             "status" => "active",
-            "onboarding" => array(),
-            "authMethods" => array(
-                array(
+            "onboarding" => [],
+            "authMethods" => [
+                [
                     "\$id" => "email-password",
                     "enabled" => true
-                )
-            ),
-            "services" => array(
-                array(
+                ]
+            ],
+            "services" => [
+                [
                     "\$id" => "account",
                     "enabled" => true
-                )
-            ),
-            "protocols" => array(
-                array(
+                ]
+            ],
+            "protocols" => [
+                [
                     "\$id" => "rest",
                     "enabled" => true
-                )
-            ),
-            "blocks" => array(
-                array(
+                ]
+            ],
+            "blocks" => [
+                [
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
@@ -634,11 +614,10 @@ final class ProjectTest extends TestCase
                     "organizationName" => "Acme Inc.",
                     "organizationId" => "5e5ea5c16897e",
                     "billingPlan" => "pro"
-                )
-            ),
-            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00",
-            "wafEnabled" => true
-        );
+                ]
+            ],
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -654,15 +633,14 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
     }
-
     public function testMethodUpdateOAuth2Amazon(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "amzn1.application-oa2-client.87400c00000000000000000000063d5b2",
             "clientSecret" => "79ffe4000000000000000000000000000000000000000000000000000002de55"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -675,17 +653,16 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Amazon::class, $response);
     }
-
     public function testMethodUpdateOAuth2Apple(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "apple",
             "enabled" => true,
             "serviceId" => "ip.appwrite.app.web",
             "keyId" => "P4000000N8",
             "teamId" => "D4000000R6",
             "p8File" => "-----BEGIN PRIVATE KEY-----MIGTAg...jy2Xbna-----END PRIVATE KEY-----"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -698,15 +675,14 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Apple::class, $response);
     }
-
     public function testMethodUpdateOAuth2Appwrite(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "6a42000000000000b5a0",
             "clientSecret" => "b86afd000000000000000000000000000000000000000000000000000ced5f93"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -719,16 +695,15 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Appwrite::class, $response);
     }
-
     public function testMethodUpdateOAuth2Auth0(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "OaOkIA000000000000000000005KLSYq",
             "clientSecret" => "zXz0000-00000000000000000000000000000-00000000000000000000PJafnF",
             "endpoint" => "example.us.auth0.com"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -741,16 +716,15 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Auth0::class, $response);
     }
-
     public function testMethodUpdateOAuth2Authentik(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "dTKOPa0000000000000000000000000000e7G8hv",
             "clientSecret" => "ntQadq000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000Hp5WK",
             "endpoint" => "example.authentik.com"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -763,15 +737,14 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Authentik::class, $response);
     }
-
     public function testMethodUpdateOAuth2Autodesk(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "5zw90v00000000000000000000kVYXN7",
             "clientSecret" => "7I000000000000MW"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -784,15 +757,14 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Autodesk::class, $response);
     }
-
     public function testMethodUpdateOAuth2Bitbucket(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "github",
             "enabled" => true,
             "key" => "Knt70000000000ByRc",
             "secret" => "NMfLZJ00000000000000000000TLQdDx"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -805,15 +777,14 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Bitbucket::class, $response);
     }
-
     public function testMethodUpdateOAuth2Bitly(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "d95151000000000000000000000000000067af9b",
             "clientSecret" => "a13e250000000000000000000000000000d73095"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -826,15 +797,14 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Bitly::class, $response);
     }
-
     public function testMethodUpdateOAuth2Box(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "deglcs00000000000000000000x2og6y",
             "clientSecret" => "OKM1f100000000000000000000eshEif"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -847,15 +817,14 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Box::class, $response);
     }
-
     public function testMethodUpdateOAuth2Dailymotion(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "github",
             "enabled" => true,
             "apiKey" => "07a9000000000000067f",
             "apiSecret" => "a399a90000000000000000000000000000d90639"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -868,15 +837,14 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Dailymotion::class, $response);
     }
-
     public function testMethodUpdateOAuth2Discord(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "950722000000343754",
             "clientSecret" => "YmPXnM000000000000000000002zFg5D"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -889,15 +857,14 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Discord::class, $response);
     }
-
     public function testMethodUpdateOAuth2Disqus(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "github",
             "enabled" => true,
             "publicKey" => "cgegH70000000000000000000000000000000000000000000000000000Hr1nYX",
             "secretKey" => "W7Bykj00000000000000000000000000000000000000000000000000003o43w9"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -910,15 +877,14 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Disqus::class, $response);
     }
-
     public function testMethodUpdateOAuth2Dropbox(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "github",
             "enabled" => true,
             "appKey" => "jl000000000009t",
             "appSecret" => "g200000000000vw"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -931,15 +897,14 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Dropbox::class, $response);
     }
-
     public function testMethodUpdateOAuth2Etsy(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "github",
             "enabled" => true,
             "keyString" => "nsgzxh0000000000008j85a2",
             "sharedSecret" => "tp000000ru"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -952,15 +917,14 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Etsy::class, $response);
     }
-
     public function testMethodUpdateOAuth2Facebook(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "github",
             "enabled" => true,
             "appId" => "260600000007694",
             "appSecret" => "2d0b2800000000000000000000d38af4"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -973,15 +937,14 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Facebook::class, $response);
     }
-
     public function testMethodUpdateOAuth2Figma(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "byay5H0000000000VtiI40",
             "clientSecret" => "yEpOYn0000000000000000004iIsU5"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -994,16 +957,15 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Figma::class, $response);
     }
-
     public function testMethodUpdateOAuth2FusionAuth(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "b2222c00-0000-0000-0000-000000862097",
             "clientSecret" => "Jx4s0C0000000000000000000000000000000wGqLsc",
             "endpoint" => "example.fusionauth.io"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1016,15 +978,14 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2FusionAuth::class, $response);
     }
-
     public function testMethodUpdateOAuth2GitHub(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "e4d87900000000540733",
             "clientSecret" => "5e07c00000000000000000000000000000198bcc"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1037,16 +998,15 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Github::class, $response);
     }
-
     public function testMethodUpdateOAuth2Gitlab(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "github",
             "enabled" => true,
             "applicationId" => "d41ffe0000000000000000000000000000000000000000000000000000d5e252",
             "secret" => "gloas-838cfa0000000000000000000000000000000000000000000000000000ecbb38",
             "endpoint" => "https://gitlab.com"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1059,16 +1019,15 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Gitlab::class, $response);
     }
-
     public function testMethodUpdateOAuth2Google(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "120000000095-92ifjb00000000000000000000g7ijfb.apps.googleusercontent.com",
             "clientSecret" => "GOCSPX-2k8gsR0000000000000000VNahJj",
-            "prompt" => array()
-        );
+            "prompt" => ["none"]
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1081,17 +1040,36 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Google::class, $response);
     }
+    public function testMethodUpdateOAuth2HuggingFace(): void
+    {
+        $data = [
+            "\$id" => "github",
+            "enabled" => true,
+            "clientId" => "2ab9cff9-d711-40ad-a91e-b08a49c42d24",
+            "clientSecret" => "oauth_app_secret_wcLhRtl000000000000000000000xbNdLt"
+        ];
 
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->project->updateOAuth2HuggingFace();
+
+        $this->assertInstanceOf(\Appwrite\Models\OAuth2HuggingFace::class, $response);
+    }
     public function testMethodUpdateOAuth2Keycloak(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "appwrite-o0000000st-app",
             "clientSecret" => "jdjrJd00000000000000000000HUsaZO",
             "endpoint" => "keycloak.example.com",
             "realmName" => "appwrite-realm"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1104,15 +1082,14 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Keycloak::class, $response);
     }
-
     public function testMethodUpdateOAuth2Kick(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "01KQ7C00000000000001MFHS32",
             "clientSecret" => "34ac5600000000000000000000000000000000000000000000000000e830c8b"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1125,15 +1102,14 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Kick::class, $response);
     }
-
     public function testMethodUpdateOAuth2Linkedin(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "770000000000dv",
             "primaryClientSecret" => "WPL_AP1.2Bf0000000000000./HtlYw=="
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1146,16 +1122,15 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Linkedin::class, $response);
     }
-
     public function testMethodUpdateOAuth2Microsoft(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "github",
             "enabled" => true,
             "applicationId" => "00001111-aaaa-2222-bbbb-3333cccc4444",
             "applicationSecret" => "A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u",
             "tenant" => "common"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1168,15 +1143,14 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Microsoft::class, $response);
     }
-
     public function testMethodUpdateOAuth2Notion(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "github",
             "enabled" => true,
             "oauthClientId" => "341d8700-0000-0000-0000-000000446ee3",
             "oauthClientSecret" => "secret_dLUr4b000000000000000000000000000000lFHAa9"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1189,10 +1163,9 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Notion::class, $response);
     }
-
     public function testMethodUpdateOAuth2Oidc(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "qibI2x0000000000000000000000000006L2YFoG",
@@ -1201,8 +1174,8 @@ final class ProjectTest extends TestCase
             "authorizationURL" => "https://myoauth.com/oauth2/authorize",
             "tokenURL" => "https://myoauth.com/oauth2/token",
             "userInfoURL" => "https://myoauth.com/oauth2/userinfo",
-            "prompt" => array()
-        );
+            "prompt" => ["none"]
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1215,17 +1188,16 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Oidc::class, $response);
     }
-
     public function testMethodUpdateOAuth2Okta(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "0oa00000000000000698",
             "clientSecret" => "Kiq0000000000000000000000000000000000000-00000000000H2L5-3SJ-vRV",
             "domain" => "trial-6400025.okta.com",
             "authorizationServerId" => "aus000000000000000h7z"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1238,15 +1210,14 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Okta::class, $response);
     }
-
     public function testMethodUpdateOAuth2Paypal(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "AdhIEG7-000000000000-0000000000000000000000000000000-0000000000000000000000-2pyB",
             "secretKey" => "EH8KCXtew--000000000000000000000000000000000000000_C-1_5UP_000000000000000CB7KDp"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1259,15 +1230,14 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Paypal::class, $response);
     }
-
     public function testMethodUpdateOAuth2PaypalSandbox(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "AdhIEG7-000000000000-0000000000000000000000000000000-0000000000000000000000-2pyB",
             "secretKey" => "EH8KCXtew--000000000000000000000000000000000000000_C-1_5UP_000000000000000CB7KDp"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1280,15 +1250,14 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Paypal::class, $response);
     }
-
     public function testMethodUpdateOAuth2Podio(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "appwrite-oauth-test-app",
             "clientSecret" => "Rn247T0000000000000000000000000000000000000000000000000000W2zWTN"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1301,15 +1270,14 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Podio::class, $response);
     }
-
     public function testMethodUpdateOAuth2Salesforce(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "github",
             "enabled" => true,
             "customerKey" => "3MVG9I0000000000000000000000000000000000000000000000000000000000000000000000000C5Aejq",
             "customerSecret" => "3w000000000000e2"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1322,15 +1290,14 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Salesforce::class, $response);
     }
-
     public function testMethodUpdateOAuth2Slack(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "23000000089.15000000000023",
             "clientSecret" => "81656000000000000000000000f3d2fd"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1343,15 +1310,14 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Slack::class, $response);
     }
-
     public function testMethodUpdateOAuth2Spotify(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "6ec271000000000000000000009beace",
             "clientSecret" => "db068a000000000000000000008b5b9f"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1364,15 +1330,14 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Spotify::class, $response);
     }
-
     public function testMethodUpdateOAuth2Stripe(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "ca_UKibXX0000000000000000000006byvR",
             "apiSecretKey" => "sk_51SfOd000000000000000000000000000000000000000000000000000000000000000000000000000000000000000QGWYfp"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1385,15 +1350,14 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Stripe::class, $response);
     }
-
     public function testMethodUpdateOAuth2Tradeshift(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "github",
             "enabled" => true,
             "oauth2ClientId" => "appwrite-test-org.appwrite-test-app",
             "oauth2ClientSecret" => "7cb52700-0000-0000-0000-000000ca5b83"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1406,15 +1370,14 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Tradeshift::class, $response);
     }
-
     public function testMethodUpdateOAuth2TradeshiftSandbox(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "github",
             "enabled" => true,
             "oauth2ClientId" => "appwrite-test-org.appwrite-test-app",
             "oauth2ClientSecret" => "7cb52700-0000-0000-0000-000000ca5b83"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1427,15 +1390,14 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Tradeshift::class, $response);
     }
-
     public function testMethodUpdateOAuth2Twitch(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "vvi0in000000000000000000ikmt9p",
             "clientSecret" => "pmapue000000000000000000zylw3v"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1448,15 +1410,14 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Twitch::class, $response);
     }
-
     public function testMethodUpdateOAuth2WordPress(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "130005",
             "clientSecret" => "PlBfJS0000000000000000000000000000000000000000000000000000EdUZJk"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1469,15 +1430,14 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2WordPress::class, $response);
     }
-
     public function testMethodUpdateOAuth2X(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "github",
             "enabled" => true,
             "customerKey" => "slzZV0000000000000NFLaWT",
             "secretKey" => "tkEPkp00000000000000000000000000000000000000FTxbI9"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1490,15 +1450,14 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2X::class, $response);
     }
-
     public function testMethodUpdateOAuth2Yahoo(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "dj0yJm000000000000000000000000000000000000000000000000000000000000000000000000000000000000Z4PWRm",
             "clientSecret" => "cf978f0000000000000000000000000000c5e2e9"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1511,15 +1470,14 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Yahoo::class, $response);
     }
-
     public function testMethodUpdateOAuth2Yandex(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "6a8a6a0000000000000000000091483c",
             "clientSecret" => "bbf98500000000000000000000c75a63"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1532,15 +1490,14 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Yandex::class, $response);
     }
-
     public function testMethodUpdateOAuth2Zoho(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "1000.83C178000000000000000000RPNX0B",
             "clientSecret" => "fb5cac000000000000000000000000000000a68f6e"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1553,15 +1510,14 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Zoho::class, $response);
     }
-
     public function testMethodUpdateOAuth2Zoom(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "QMAC00000000000000w0AQ",
             "clientSecret" => "GAWsG4000000000000000000007U01ON"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1574,20 +1530,19 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Zoom::class, $response);
     }
-
     public function testMethodGetOAuth2Provider(): void
     {
         $data = array_replace(
-            array(
+            [
                 "\$id" => "github",
                 "enabled" => true,
                 "applicationId" => "00001111-aaaa-2222-bbbb-3333cccc4444",
                 "applicationSecret" => "A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u",
                 "tenant" => "common"
-            ),
-            array(
+            ],
+            [
                 "\$id" => "microsoft"
-            )
+            ]
         );
 
         $this->client
@@ -1603,13 +1558,12 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Microsoft::class, $response);
     }
-
     public function testMethodListPlatforms(): void
     {
-        $data = array(
+        $data = [
             "total" => 5,
-            "platforms" => array()
-        );
+            "platforms" => []
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1622,17 +1576,16 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\PlatformList::class, $response);
     }
-
     public function testMethodCreateAndroidPlatform(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "My Web App",
             "type" => "windows",
             "applicationId" => "com.company.appname"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1649,17 +1602,16 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\PlatformAndroid::class, $response);
     }
-
     public function testMethodUpdateAndroidPlatform(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "My Web App",
             "type" => "windows",
             "applicationId" => "com.company.appname"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1676,17 +1628,16 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\PlatformAndroid::class, $response);
     }
-
     public function testMethodCreateApplePlatform(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "My Web App",
             "type" => "windows",
             "bundleIdentifier" => "com.company.appname"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1703,17 +1654,16 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\PlatformApple::class, $response);
     }
-
     public function testMethodUpdateApplePlatform(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "My Web App",
             "type" => "windows",
             "bundleIdentifier" => "com.company.appname"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1730,17 +1680,16 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\PlatformApple::class, $response);
     }
-
     public function testMethodCreateLinuxPlatform(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "My Web App",
             "type" => "windows",
             "packageName" => "com.company.appname"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1757,17 +1706,16 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\PlatformLinux::class, $response);
     }
-
     public function testMethodUpdateLinuxPlatform(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "My Web App",
             "type" => "windows",
             "packageName" => "com.company.appname"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1784,17 +1732,16 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\PlatformLinux::class, $response);
     }
-
     public function testMethodCreateWebPlatform(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "My Web App",
             "type" => "windows",
             "hostname" => "app.example.com"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1811,17 +1758,16 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\PlatformWeb::class, $response);
     }
-
     public function testMethodUpdateWebPlatform(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "My Web App",
             "type" => "windows",
             "hostname" => "app.example.com"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1838,17 +1784,16 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\PlatformWeb::class, $response);
     }
-
     public function testMethodCreateWindowsPlatform(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "My Web App",
             "type" => "windows",
             "packageIdentifierName" => "com.company.appname"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1865,17 +1810,16 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\PlatformWindows::class, $response);
     }
-
     public function testMethodUpdateWindowsPlatform(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "My Web App",
             "type" => "windows",
             "packageIdentifierName" => "com.company.appname"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1892,21 +1836,20 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\PlatformWindows::class, $response);
     }
-
     public function testMethodGetPlatform(): void
     {
         $data = array_replace(
-            array(
+            [
                 "\$id" => "5e5ea5c16897e",
                 "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                 "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
                 "name" => "My Web App",
                 "type" => "windows",
                 "packageName" => "com.company.appname"
-            ),
-            array(
+            ],
+            [
                 "type" => "linux"
-            )
+            ]
         );
 
         $this->client
@@ -1922,7 +1865,6 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\PlatformLinux::class, $response);
     }
-
     public function testMethodDeletePlatform(): void
     {
         $data = '';
@@ -1940,13 +1882,12 @@ final class ProjectTest extends TestCase
 
         $this->assertSame($data, $response);
     }
-
     public function testMethodListPolicies(): void
     {
-        $data = array(
+        $data = [
             "total" => 10,
-            "policies" => array()
-        );
+            "policies" => []
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -1959,18 +1900,17 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\PolicyList::class, $response);
     }
-
     public function testMethodUpdateDenyAliasedEmailPolicy(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "New Project",
             "teamId" => "1592981250",
             "region" => "fra",
-            "devKeys" => array(
-                array(
+            "devKeys" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -1978,9 +1918,9 @@ final class ProjectTest extends TestCase
                     "expire" => "2020-10-15T06:38:00.000+00:00",
                     "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
                     "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "sdks" => array()
-                )
-            ),
+                    "sdks" => []
+                ]
+            ],
             "smtpEnabled" => true,
             "smtpSenderName" => "John Appwrite",
             "smtpSenderEmail" => "john@appwrite.io",
@@ -1993,29 +1933,29 @@ final class ProjectTest extends TestCase
             "smtpSecure" => "tls",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
-            "labels" => array(),
+            "labels" => [],
             "status" => "active",
-            "onboarding" => array(),
-            "authMethods" => array(
-                array(
+            "onboarding" => [],
+            "authMethods" => [
+                [
                     "\$id" => "email-password",
                     "enabled" => true
-                )
-            ),
-            "services" => array(
-                array(
+                ]
+            ],
+            "services" => [
+                [
                     "\$id" => "account",
                     "enabled" => true
-                )
-            ),
-            "protocols" => array(
-                array(
+                ]
+            ],
+            "protocols" => [
+                [
                     "\$id" => "rest",
                     "enabled" => true
-                )
-            ),
-            "blocks" => array(
-                array(
+                ]
+            ],
+            "blocks" => [
+                [
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
@@ -2025,11 +1965,10 @@ final class ProjectTest extends TestCase
                     "organizationName" => "Acme Inc.",
                     "organizationId" => "5e5ea5c16897e",
                     "billingPlan" => "pro"
-                )
-            ),
-            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00",
-            "wafEnabled" => true
-        );
+                ]
+            ],
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -2044,18 +1983,17 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
     }
-
     public function testMethodUpdateDenyCorporateEmailPolicy(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "New Project",
             "teamId" => "1592981250",
             "region" => "fra",
-            "devKeys" => array(
-                array(
+            "devKeys" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -2063,9 +2001,9 @@ final class ProjectTest extends TestCase
                     "expire" => "2020-10-15T06:38:00.000+00:00",
                     "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
                     "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "sdks" => array()
-                )
-            ),
+                    "sdks" => []
+                ]
+            ],
             "smtpEnabled" => true,
             "smtpSenderName" => "John Appwrite",
             "smtpSenderEmail" => "john@appwrite.io",
@@ -2078,29 +2016,29 @@ final class ProjectTest extends TestCase
             "smtpSecure" => "tls",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
-            "labels" => array(),
+            "labels" => [],
             "status" => "active",
-            "onboarding" => array(),
-            "authMethods" => array(
-                array(
+            "onboarding" => [],
+            "authMethods" => [
+                [
                     "\$id" => "email-password",
                     "enabled" => true
-                )
-            ),
-            "services" => array(
-                array(
+                ]
+            ],
+            "services" => [
+                [
                     "\$id" => "account",
                     "enabled" => true
-                )
-            ),
-            "protocols" => array(
-                array(
+                ]
+            ],
+            "protocols" => [
+                [
                     "\$id" => "rest",
                     "enabled" => true
-                )
-            ),
-            "blocks" => array(
-                array(
+                ]
+            ],
+            "blocks" => [
+                [
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
@@ -2110,11 +2048,10 @@ final class ProjectTest extends TestCase
                     "organizationName" => "Acme Inc.",
                     "organizationId" => "5e5ea5c16897e",
                     "billingPlan" => "pro"
-                )
-            ),
-            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00",
-            "wafEnabled" => true
-        );
+                ]
+            ],
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -2129,18 +2066,17 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
     }
-
     public function testMethodUpdateDenyDisposableEmailPolicy(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "New Project",
             "teamId" => "1592981250",
             "region" => "fra",
-            "devKeys" => array(
-                array(
+            "devKeys" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -2148,9 +2084,9 @@ final class ProjectTest extends TestCase
                     "expire" => "2020-10-15T06:38:00.000+00:00",
                     "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
                     "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "sdks" => array()
-                )
-            ),
+                    "sdks" => []
+                ]
+            ],
             "smtpEnabled" => true,
             "smtpSenderName" => "John Appwrite",
             "smtpSenderEmail" => "john@appwrite.io",
@@ -2163,29 +2099,29 @@ final class ProjectTest extends TestCase
             "smtpSecure" => "tls",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
-            "labels" => array(),
+            "labels" => [],
             "status" => "active",
-            "onboarding" => array(),
-            "authMethods" => array(
-                array(
+            "onboarding" => [],
+            "authMethods" => [
+                [
                     "\$id" => "email-password",
                     "enabled" => true
-                )
-            ),
-            "services" => array(
-                array(
+                ]
+            ],
+            "services" => [
+                [
                     "\$id" => "account",
                     "enabled" => true
-                )
-            ),
-            "protocols" => array(
-                array(
+                ]
+            ],
+            "protocols" => [
+                [
                     "\$id" => "rest",
                     "enabled" => true
-                )
-            ),
-            "blocks" => array(
-                array(
+                ]
+            ],
+            "blocks" => [
+                [
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
@@ -2195,11 +2131,10 @@ final class ProjectTest extends TestCase
                     "organizationName" => "Acme Inc.",
                     "organizationId" => "5e5ea5c16897e",
                     "billingPlan" => "pro"
-                )
-            ),
-            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00",
-            "wafEnabled" => true
-        );
+                ]
+            ],
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -2214,18 +2149,17 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
     }
-
     public function testMethodUpdateDenyFreeEmailPolicy(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "New Project",
             "teamId" => "1592981250",
             "region" => "fra",
-            "devKeys" => array(
-                array(
+            "devKeys" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -2233,9 +2167,9 @@ final class ProjectTest extends TestCase
                     "expire" => "2020-10-15T06:38:00.000+00:00",
                     "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
                     "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "sdks" => array()
-                )
-            ),
+                    "sdks" => []
+                ]
+            ],
             "smtpEnabled" => true,
             "smtpSenderName" => "John Appwrite",
             "smtpSenderEmail" => "john@appwrite.io",
@@ -2248,29 +2182,29 @@ final class ProjectTest extends TestCase
             "smtpSecure" => "tls",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
-            "labels" => array(),
+            "labels" => [],
             "status" => "active",
-            "onboarding" => array(),
-            "authMethods" => array(
-                array(
+            "onboarding" => [],
+            "authMethods" => [
+                [
                     "\$id" => "email-password",
                     "enabled" => true
-                )
-            ),
-            "services" => array(
-                array(
+                ]
+            ],
+            "services" => [
+                [
                     "\$id" => "account",
                     "enabled" => true
-                )
-            ),
-            "protocols" => array(
-                array(
+                ]
+            ],
+            "protocols" => [
+                [
                     "\$id" => "rest",
                     "enabled" => true
-                )
-            ),
-            "blocks" => array(
-                array(
+                ]
+            ],
+            "blocks" => [
+                [
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
@@ -2280,11 +2214,10 @@ final class ProjectTest extends TestCase
                     "organizationName" => "Acme Inc.",
                     "organizationId" => "5e5ea5c16897e",
                     "billingPlan" => "pro"
-                )
-            ),
-            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00",
-            "wafEnabled" => true
-        );
+                ]
+            ],
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -2299,18 +2232,17 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
     }
-
     public function testMethodUpdateMembershipPrivacyPolicy(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "New Project",
             "teamId" => "1592981250",
             "region" => "fra",
-            "devKeys" => array(
-                array(
+            "devKeys" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -2318,9 +2250,9 @@ final class ProjectTest extends TestCase
                     "expire" => "2020-10-15T06:38:00.000+00:00",
                     "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
                     "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "sdks" => array()
-                )
-            ),
+                    "sdks" => []
+                ]
+            ],
             "smtpEnabled" => true,
             "smtpSenderName" => "John Appwrite",
             "smtpSenderEmail" => "john@appwrite.io",
@@ -2333,29 +2265,29 @@ final class ProjectTest extends TestCase
             "smtpSecure" => "tls",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
-            "labels" => array(),
+            "labels" => [],
             "status" => "active",
-            "onboarding" => array(),
-            "authMethods" => array(
-                array(
+            "onboarding" => [],
+            "authMethods" => [
+                [
                     "\$id" => "email-password",
                     "enabled" => true
-                )
-            ),
-            "services" => array(
-                array(
+                ]
+            ],
+            "services" => [
+                [
                     "\$id" => "account",
                     "enabled" => true
-                )
-            ),
-            "protocols" => array(
-                array(
+                ]
+            ],
+            "protocols" => [
+                [
                     "\$id" => "rest",
                     "enabled" => true
-                )
-            ),
-            "blocks" => array(
-                array(
+                ]
+            ],
+            "blocks" => [
+                [
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
@@ -2365,11 +2297,10 @@ final class ProjectTest extends TestCase
                     "organizationName" => "Acme Inc.",
                     "organizationId" => "5e5ea5c16897e",
                     "billingPlan" => "pro"
-                )
-            ),
-            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00",
-            "wafEnabled" => true
-        );
+                ]
+            ],
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -2382,18 +2313,17 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
     }
-
     public function testMethodUpdateMFAFactorsPolicy(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "New Project",
             "teamId" => "1592981250",
             "region" => "fra",
-            "devKeys" => array(
-                array(
+            "devKeys" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -2401,9 +2331,9 @@ final class ProjectTest extends TestCase
                     "expire" => "2020-10-15T06:38:00.000+00:00",
                     "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
                     "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "sdks" => array()
-                )
-            ),
+                    "sdks" => []
+                ]
+            ],
             "smtpEnabled" => true,
             "smtpSenderName" => "John Appwrite",
             "smtpSenderEmail" => "john@appwrite.io",
@@ -2416,29 +2346,29 @@ final class ProjectTest extends TestCase
             "smtpSecure" => "tls",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
-            "labels" => array(),
+            "labels" => [],
             "status" => "active",
-            "onboarding" => array(),
-            "authMethods" => array(
-                array(
+            "onboarding" => [],
+            "authMethods" => [
+                [
                     "\$id" => "email-password",
                     "enabled" => true
-                )
-            ),
-            "services" => array(
-                array(
+                ]
+            ],
+            "services" => [
+                [
                     "\$id" => "account",
                     "enabled" => true
-                )
-            ),
-            "protocols" => array(
-                array(
+                ]
+            ],
+            "protocols" => [
+                [
                     "\$id" => "rest",
                     "enabled" => true
-                )
-            ),
-            "blocks" => array(
-                array(
+                ]
+            ],
+            "blocks" => [
+                [
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
@@ -2448,11 +2378,10 @@ final class ProjectTest extends TestCase
                     "organizationName" => "Acme Inc.",
                     "organizationId" => "5e5ea5c16897e",
                     "billingPlan" => "pro"
-                )
-            ),
-            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00",
-            "wafEnabled" => true
-        );
+                ]
+            ],
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -2465,18 +2394,17 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
     }
-
     public function testMethodUpdatePasswordDictionaryPolicy(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "New Project",
             "teamId" => "1592981250",
             "region" => "fra",
-            "devKeys" => array(
-                array(
+            "devKeys" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -2484,9 +2412,9 @@ final class ProjectTest extends TestCase
                     "expire" => "2020-10-15T06:38:00.000+00:00",
                     "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
                     "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "sdks" => array()
-                )
-            ),
+                    "sdks" => []
+                ]
+            ],
             "smtpEnabled" => true,
             "smtpSenderName" => "John Appwrite",
             "smtpSenderEmail" => "john@appwrite.io",
@@ -2499,29 +2427,29 @@ final class ProjectTest extends TestCase
             "smtpSecure" => "tls",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
-            "labels" => array(),
+            "labels" => [],
             "status" => "active",
-            "onboarding" => array(),
-            "authMethods" => array(
-                array(
+            "onboarding" => [],
+            "authMethods" => [
+                [
                     "\$id" => "email-password",
                     "enabled" => true
-                )
-            ),
-            "services" => array(
-                array(
+                ]
+            ],
+            "services" => [
+                [
                     "\$id" => "account",
                     "enabled" => true
-                )
-            ),
-            "protocols" => array(
-                array(
+                ]
+            ],
+            "protocols" => [
+                [
                     "\$id" => "rest",
                     "enabled" => true
-                )
-            ),
-            "blocks" => array(
-                array(
+                ]
+            ],
+            "blocks" => [
+                [
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
@@ -2531,11 +2459,10 @@ final class ProjectTest extends TestCase
                     "organizationName" => "Acme Inc.",
                     "organizationId" => "5e5ea5c16897e",
                     "billingPlan" => "pro"
-                )
-            ),
-            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00",
-            "wafEnabled" => true
-        );
+                ]
+            ],
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -2550,18 +2477,17 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
     }
-
     public function testMethodUpdatePasswordHistoryPolicy(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "New Project",
             "teamId" => "1592981250",
             "region" => "fra",
-            "devKeys" => array(
-                array(
+            "devKeys" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -2569,9 +2495,9 @@ final class ProjectTest extends TestCase
                     "expire" => "2020-10-15T06:38:00.000+00:00",
                     "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
                     "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "sdks" => array()
-                )
-            ),
+                    "sdks" => []
+                ]
+            ],
             "smtpEnabled" => true,
             "smtpSenderName" => "John Appwrite",
             "smtpSenderEmail" => "john@appwrite.io",
@@ -2584,29 +2510,29 @@ final class ProjectTest extends TestCase
             "smtpSecure" => "tls",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
-            "labels" => array(),
+            "labels" => [],
             "status" => "active",
-            "onboarding" => array(),
-            "authMethods" => array(
-                array(
+            "onboarding" => [],
+            "authMethods" => [
+                [
                     "\$id" => "email-password",
                     "enabled" => true
-                )
-            ),
-            "services" => array(
-                array(
+                ]
+            ],
+            "services" => [
+                [
                     "\$id" => "account",
                     "enabled" => true
-                )
-            ),
-            "protocols" => array(
-                array(
+                ]
+            ],
+            "protocols" => [
+                [
                     "\$id" => "rest",
                     "enabled" => true
-                )
-            ),
-            "blocks" => array(
-                array(
+                ]
+            ],
+            "blocks" => [
+                [
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
@@ -2616,11 +2542,10 @@ final class ProjectTest extends TestCase
                     "organizationName" => "Acme Inc.",
                     "organizationId" => "5e5ea5c16897e",
                     "billingPlan" => "pro"
-                )
-            ),
-            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00",
-            "wafEnabled" => true
-        );
+                ]
+            ],
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -2635,18 +2560,17 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
     }
-
     public function testMethodUpdatePasswordPersonalDataPolicy(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "New Project",
             "teamId" => "1592981250",
             "region" => "fra",
-            "devKeys" => array(
-                array(
+            "devKeys" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -2654,9 +2578,9 @@ final class ProjectTest extends TestCase
                     "expire" => "2020-10-15T06:38:00.000+00:00",
                     "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
                     "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "sdks" => array()
-                )
-            ),
+                    "sdks" => []
+                ]
+            ],
             "smtpEnabled" => true,
             "smtpSenderName" => "John Appwrite",
             "smtpSenderEmail" => "john@appwrite.io",
@@ -2669,29 +2593,29 @@ final class ProjectTest extends TestCase
             "smtpSecure" => "tls",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
-            "labels" => array(),
+            "labels" => [],
             "status" => "active",
-            "onboarding" => array(),
-            "authMethods" => array(
-                array(
+            "onboarding" => [],
+            "authMethods" => [
+                [
                     "\$id" => "email-password",
                     "enabled" => true
-                )
-            ),
-            "services" => array(
-                array(
+                ]
+            ],
+            "services" => [
+                [
                     "\$id" => "account",
                     "enabled" => true
-                )
-            ),
-            "protocols" => array(
-                array(
+                ]
+            ],
+            "protocols" => [
+                [
                     "\$id" => "rest",
                     "enabled" => true
-                )
-            ),
-            "blocks" => array(
-                array(
+                ]
+            ],
+            "blocks" => [
+                [
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
@@ -2701,11 +2625,10 @@ final class ProjectTest extends TestCase
                     "organizationName" => "Acme Inc.",
                     "organizationId" => "5e5ea5c16897e",
                     "billingPlan" => "pro"
-                )
-            ),
-            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00",
-            "wafEnabled" => true
-        );
+                ]
+            ],
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -2720,17 +2643,16 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
     }
-
     public function testMethodUpdatePasswordStrengthPolicy(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "password-dictionary",
             "min" => 12,
             "uppercase" => true,
             "lowercase" => true,
             "number" => true,
             "symbols" => true
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -2743,18 +2665,17 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\PolicyPasswordStrength::class, $response);
     }
-
     public function testMethodUpdateSessionAlertPolicy(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "New Project",
             "teamId" => "1592981250",
             "region" => "fra",
-            "devKeys" => array(
-                array(
+            "devKeys" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -2762,9 +2683,9 @@ final class ProjectTest extends TestCase
                     "expire" => "2020-10-15T06:38:00.000+00:00",
                     "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
                     "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "sdks" => array()
-                )
-            ),
+                    "sdks" => []
+                ]
+            ],
             "smtpEnabled" => true,
             "smtpSenderName" => "John Appwrite",
             "smtpSenderEmail" => "john@appwrite.io",
@@ -2777,29 +2698,29 @@ final class ProjectTest extends TestCase
             "smtpSecure" => "tls",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
-            "labels" => array(),
+            "labels" => [],
             "status" => "active",
-            "onboarding" => array(),
-            "authMethods" => array(
-                array(
+            "onboarding" => [],
+            "authMethods" => [
+                [
                     "\$id" => "email-password",
                     "enabled" => true
-                )
-            ),
-            "services" => array(
-                array(
+                ]
+            ],
+            "services" => [
+                [
                     "\$id" => "account",
                     "enabled" => true
-                )
-            ),
-            "protocols" => array(
-                array(
+                ]
+            ],
+            "protocols" => [
+                [
                     "\$id" => "rest",
                     "enabled" => true
-                )
-            ),
-            "blocks" => array(
-                array(
+                ]
+            ],
+            "blocks" => [
+                [
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
@@ -2809,11 +2730,10 @@ final class ProjectTest extends TestCase
                     "organizationName" => "Acme Inc.",
                     "organizationId" => "5e5ea5c16897e",
                     "billingPlan" => "pro"
-                )
-            ),
-            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00",
-            "wafEnabled" => true
-        );
+                ]
+            ],
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -2828,18 +2748,17 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
     }
-
     public function testMethodUpdateSessionDurationPolicy(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "New Project",
             "teamId" => "1592981250",
             "region" => "fra",
-            "devKeys" => array(
-                array(
+            "devKeys" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -2847,9 +2766,9 @@ final class ProjectTest extends TestCase
                     "expire" => "2020-10-15T06:38:00.000+00:00",
                     "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
                     "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "sdks" => array()
-                )
-            ),
+                    "sdks" => []
+                ]
+            ],
             "smtpEnabled" => true,
             "smtpSenderName" => "John Appwrite",
             "smtpSenderEmail" => "john@appwrite.io",
@@ -2862,29 +2781,29 @@ final class ProjectTest extends TestCase
             "smtpSecure" => "tls",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
-            "labels" => array(),
+            "labels" => [],
             "status" => "active",
-            "onboarding" => array(),
-            "authMethods" => array(
-                array(
+            "onboarding" => [],
+            "authMethods" => [
+                [
                     "\$id" => "email-password",
                     "enabled" => true
-                )
-            ),
-            "services" => array(
-                array(
+                ]
+            ],
+            "services" => [
+                [
                     "\$id" => "account",
                     "enabled" => true
-                )
-            ),
-            "protocols" => array(
-                array(
+                ]
+            ],
+            "protocols" => [
+                [
                     "\$id" => "rest",
                     "enabled" => true
-                )
-            ),
-            "blocks" => array(
-                array(
+                ]
+            ],
+            "blocks" => [
+                [
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
@@ -2894,11 +2813,10 @@ final class ProjectTest extends TestCase
                     "organizationName" => "Acme Inc.",
                     "organizationId" => "5e5ea5c16897e",
                     "billingPlan" => "pro"
-                )
-            ),
-            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00",
-            "wafEnabled" => true
-        );
+                ]
+            ],
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -2913,18 +2831,17 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
     }
-
     public function testMethodUpdateSessionInvalidationPolicy(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "New Project",
             "teamId" => "1592981250",
             "region" => "fra",
-            "devKeys" => array(
-                array(
+            "devKeys" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -2932,9 +2849,9 @@ final class ProjectTest extends TestCase
                     "expire" => "2020-10-15T06:38:00.000+00:00",
                     "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
                     "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "sdks" => array()
-                )
-            ),
+                    "sdks" => []
+                ]
+            ],
             "smtpEnabled" => true,
             "smtpSenderName" => "John Appwrite",
             "smtpSenderEmail" => "john@appwrite.io",
@@ -2947,29 +2864,29 @@ final class ProjectTest extends TestCase
             "smtpSecure" => "tls",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
-            "labels" => array(),
+            "labels" => [],
             "status" => "active",
-            "onboarding" => array(),
-            "authMethods" => array(
-                array(
+            "onboarding" => [],
+            "authMethods" => [
+                [
                     "\$id" => "email-password",
                     "enabled" => true
-                )
-            ),
-            "services" => array(
-                array(
+                ]
+            ],
+            "services" => [
+                [
                     "\$id" => "account",
                     "enabled" => true
-                )
-            ),
-            "protocols" => array(
-                array(
+                ]
+            ],
+            "protocols" => [
+                [
                     "\$id" => "rest",
                     "enabled" => true
-                )
-            ),
-            "blocks" => array(
-                array(
+                ]
+            ],
+            "blocks" => [
+                [
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
@@ -2979,11 +2896,10 @@ final class ProjectTest extends TestCase
                     "organizationName" => "Acme Inc.",
                     "organizationId" => "5e5ea5c16897e",
                     "billingPlan" => "pro"
-                )
-            ),
-            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00",
-            "wafEnabled" => true
-        );
+                ]
+            ],
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -2998,18 +2914,17 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
     }
-
     public function testMethodUpdateSessionLimitPolicy(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "New Project",
             "teamId" => "1592981250",
             "region" => "fra",
-            "devKeys" => array(
-                array(
+            "devKeys" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -3017,9 +2932,9 @@ final class ProjectTest extends TestCase
                     "expire" => "2020-10-15T06:38:00.000+00:00",
                     "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
                     "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "sdks" => array()
-                )
-            ),
+                    "sdks" => []
+                ]
+            ],
             "smtpEnabled" => true,
             "smtpSenderName" => "John Appwrite",
             "smtpSenderEmail" => "john@appwrite.io",
@@ -3032,29 +2947,29 @@ final class ProjectTest extends TestCase
             "smtpSecure" => "tls",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
-            "labels" => array(),
+            "labels" => [],
             "status" => "active",
-            "onboarding" => array(),
-            "authMethods" => array(
-                array(
+            "onboarding" => [],
+            "authMethods" => [
+                [
                     "\$id" => "email-password",
                     "enabled" => true
-                )
-            ),
-            "services" => array(
-                array(
+                ]
+            ],
+            "services" => [
+                [
                     "\$id" => "account",
                     "enabled" => true
-                )
-            ),
-            "protocols" => array(
-                array(
+                ]
+            ],
+            "protocols" => [
+                [
                     "\$id" => "rest",
                     "enabled" => true
-                )
-            ),
-            "blocks" => array(
-                array(
+                ]
+            ],
+            "blocks" => [
+                [
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
@@ -3064,11 +2979,10 @@ final class ProjectTest extends TestCase
                     "organizationName" => "Acme Inc.",
                     "organizationId" => "5e5ea5c16897e",
                     "billingPlan" => "pro"
-                )
-            ),
-            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00",
-            "wafEnabled" => true
-        );
+                ]
+            ],
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -3083,18 +2997,17 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
     }
-
     public function testMethodUpdateUserLimitPolicy(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "New Project",
             "teamId" => "1592981250",
             "region" => "fra",
-            "devKeys" => array(
-                array(
+            "devKeys" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -3102,9 +3015,9 @@ final class ProjectTest extends TestCase
                     "expire" => "2020-10-15T06:38:00.000+00:00",
                     "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
                     "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "sdks" => array()
-                )
-            ),
+                    "sdks" => []
+                ]
+            ],
             "smtpEnabled" => true,
             "smtpSenderName" => "John Appwrite",
             "smtpSenderEmail" => "john@appwrite.io",
@@ -3117,29 +3030,29 @@ final class ProjectTest extends TestCase
             "smtpSecure" => "tls",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
-            "labels" => array(),
+            "labels" => [],
             "status" => "active",
-            "onboarding" => array(),
-            "authMethods" => array(
-                array(
+            "onboarding" => [],
+            "authMethods" => [
+                [
                     "\$id" => "email-password",
                     "enabled" => true
-                )
-            ),
-            "services" => array(
-                array(
+                ]
+            ],
+            "services" => [
+                [
                     "\$id" => "account",
                     "enabled" => true
-                )
-            ),
-            "protocols" => array(
-                array(
+                ]
+            ],
+            "protocols" => [
+                [
                     "\$id" => "rest",
                     "enabled" => true
-                )
-            ),
-            "blocks" => array(
-                array(
+                ]
+            ],
+            "blocks" => [
+                [
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
@@ -3149,11 +3062,10 @@ final class ProjectTest extends TestCase
                     "organizationName" => "Acme Inc.",
                     "organizationId" => "5e5ea5c16897e",
                     "billingPlan" => "pro"
-                )
-            ),
-            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00",
-            "wafEnabled" => true
-        );
+                ]
+            ],
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -3168,17 +3080,16 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
     }
-
     public function testMethodGetPolicy(): void
     {
         $data = array_replace(
-            array(
+            [
                 "\$id" => "password-dictionary",
                 "enabled" => true
-            ),
-            array(
+            ],
+            [
                 "\$id" => "deny-corporate-email"
-            )
+            ]
         );
 
         $this->client
@@ -3194,18 +3105,17 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\PolicyDenyCorporateEmail::class, $response);
     }
-
     public function testMethodUpdateProtocol(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "New Project",
             "teamId" => "1592981250",
             "region" => "fra",
-            "devKeys" => array(
-                array(
+            "devKeys" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -3213,9 +3123,9 @@ final class ProjectTest extends TestCase
                     "expire" => "2020-10-15T06:38:00.000+00:00",
                     "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
                     "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "sdks" => array()
-                )
-            ),
+                    "sdks" => []
+                ]
+            ],
             "smtpEnabled" => true,
             "smtpSenderName" => "John Appwrite",
             "smtpSenderEmail" => "john@appwrite.io",
@@ -3228,29 +3138,29 @@ final class ProjectTest extends TestCase
             "smtpSecure" => "tls",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
-            "labels" => array(),
+            "labels" => [],
             "status" => "active",
-            "onboarding" => array(),
-            "authMethods" => array(
-                array(
+            "onboarding" => [],
+            "authMethods" => [
+                [
                     "\$id" => "email-password",
                     "enabled" => true
-                )
-            ),
-            "services" => array(
-                array(
+                ]
+            ],
+            "services" => [
+                [
                     "\$id" => "account",
                     "enabled" => true
-                )
-            ),
-            "protocols" => array(
-                array(
+                ]
+            ],
+            "protocols" => [
+                [
                     "\$id" => "rest",
                     "enabled" => true
-                )
-            ),
-            "blocks" => array(
-                array(
+                ]
+            ],
+            "blocks" => [
+                [
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
@@ -3260,11 +3170,10 @@ final class ProjectTest extends TestCase
                     "organizationName" => "Acme Inc.",
                     "organizationId" => "5e5ea5c16897e",
                     "billingPlan" => "pro"
-                )
-            ),
-            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00",
-            "wafEnabled" => true
-        );
+                ]
+            ],
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -3280,18 +3189,17 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
     }
-
     public function testMethodUpdateService(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "New Project",
             "teamId" => "1592981250",
             "region" => "fra",
-            "devKeys" => array(
-                array(
+            "devKeys" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -3299,9 +3207,9 @@ final class ProjectTest extends TestCase
                     "expire" => "2020-10-15T06:38:00.000+00:00",
                     "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
                     "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "sdks" => array()
-                )
-            ),
+                    "sdks" => []
+                ]
+            ],
             "smtpEnabled" => true,
             "smtpSenderName" => "John Appwrite",
             "smtpSenderEmail" => "john@appwrite.io",
@@ -3314,29 +3222,29 @@ final class ProjectTest extends TestCase
             "smtpSecure" => "tls",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
-            "labels" => array(),
+            "labels" => [],
             "status" => "active",
-            "onboarding" => array(),
-            "authMethods" => array(
-                array(
+            "onboarding" => [],
+            "authMethods" => [
+                [
                     "\$id" => "email-password",
                     "enabled" => true
-                )
-            ),
-            "services" => array(
-                array(
+                ]
+            ],
+            "services" => [
+                [
                     "\$id" => "account",
                     "enabled" => true
-                )
-            ),
-            "protocols" => array(
-                array(
+                ]
+            ],
+            "protocols" => [
+                [
                     "\$id" => "rest",
                     "enabled" => true
-                )
-            ),
-            "blocks" => array(
-                array(
+                ]
+            ],
+            "blocks" => [
+                [
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
@@ -3346,11 +3254,10 @@ final class ProjectTest extends TestCase
                     "organizationName" => "Acme Inc.",
                     "organizationId" => "5e5ea5c16897e",
                     "billingPlan" => "pro"
-                )
-            ),
-            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00",
-            "wafEnabled" => true
-        );
+                ]
+            ],
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -3366,18 +3273,17 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
     }
-
     public function testMethodUpdateSMTP(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "New Project",
             "teamId" => "1592981250",
             "region" => "fra",
-            "devKeys" => array(
-                array(
+            "devKeys" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -3385,9 +3291,9 @@ final class ProjectTest extends TestCase
                     "expire" => "2020-10-15T06:38:00.000+00:00",
                     "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
                     "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "sdks" => array()
-                )
-            ),
+                    "sdks" => []
+                ]
+            ],
             "smtpEnabled" => true,
             "smtpSenderName" => "John Appwrite",
             "smtpSenderEmail" => "john@appwrite.io",
@@ -3400,29 +3306,29 @@ final class ProjectTest extends TestCase
             "smtpSecure" => "tls",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
-            "labels" => array(),
+            "labels" => [],
             "status" => "active",
-            "onboarding" => array(),
-            "authMethods" => array(
-                array(
+            "onboarding" => [],
+            "authMethods" => [
+                [
                     "\$id" => "email-password",
                     "enabled" => true
-                )
-            ),
-            "services" => array(
-                array(
+                ]
+            ],
+            "services" => [
+                [
                     "\$id" => "account",
                     "enabled" => true
-                )
-            ),
-            "protocols" => array(
-                array(
+                ]
+            ],
+            "protocols" => [
+                [
                     "\$id" => "rest",
                     "enabled" => true
-                )
-            ),
-            "blocks" => array(
-                array(
+                ]
+            ],
+            "blocks" => [
+                [
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
@@ -3432,11 +3338,10 @@ final class ProjectTest extends TestCase
                     "organizationName" => "Acme Inc.",
                     "organizationId" => "5e5ea5c16897e",
                     "billingPlan" => "pro"
-                )
-            ),
-            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00",
-            "wafEnabled" => true
-        );
+                ]
+            ],
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -3449,7 +3354,6 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
     }
-
     public function testMethodCreateSMTPTest(): void
     {
         $data = '';
@@ -3462,18 +3366,17 @@ final class ProjectTest extends TestCase
             ->andReturn('');
 
         $response = $this->project->createSMTPTest(
-            array()
+            []
         );
 
         $this->assertSame($data, $response);
     }
-
     public function testMethodListEmailTemplates(): void
     {
-        $data = array(
+        $data = [
             "total" => 5,
-            "templates" => array(
-                array(
+            "templates" => [
+                [
                     "templateId" => "verification",
                     "locale" => "en_us",
                     "message" => "Click on the link to verify your account.",
@@ -3482,9 +3385,9 @@ final class ProjectTest extends TestCase
                     "replyToEmail" => "emails@appwrite.io",
                     "replyToName" => "Support Team",
                     "subject" => "Please verify your email address"
-                )
-            )
-        );
+                ]
+            ]
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -3497,10 +3400,9 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\EmailTemplateList::class, $response);
     }
-
     public function testMethodUpdateEmailTemplate(): void
     {
-        $data = array(
+        $data = [
             "templateId" => "verification",
             "locale" => "en_us",
             "message" => "Click on the link to verify your account.",
@@ -3509,7 +3411,7 @@ final class ProjectTest extends TestCase
             "replyToEmail" => "emails@appwrite.io",
             "replyToName" => "Support Team",
             "subject" => "Please verify your email address"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -3524,10 +3426,9 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\EmailTemplate::class, $response);
     }
-
     public function testMethodGetEmailTemplate(): void
     {
-        $data = array(
+        $data = [
             "templateId" => "verification",
             "locale" => "en_us",
             "message" => "Click on the link to verify your account.",
@@ -3536,7 +3437,7 @@ final class ProjectTest extends TestCase
             "replyToEmail" => "emails@appwrite.io",
             "replyToName" => "Support Team",
             "subject" => "Please verify your email address"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -3551,13 +3452,12 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\EmailTemplate::class, $response);
     }
-
     public function testMethodListVariables(): void
     {
-        $data = array(
+        $data = [
             "total" => 5,
-            "variables" => array(
-                array(
+            "variables" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -3566,9 +3466,9 @@ final class ProjectTest extends TestCase
                     "secret" => true,
                     "resourceType" => "function",
                     "resourceId" => "myAwesomeFunction"
-                )
-            )
-        );
+                ]
+            ]
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -3581,10 +3481,9 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\VariableList::class, $response);
     }
-
     public function testMethodCreateVariable(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -3593,7 +3492,7 @@ final class ProjectTest extends TestCase
             "secret" => true,
             "resourceType" => "function",
             "resourceId" => "myAwesomeFunction"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -3604,16 +3503,15 @@ final class ProjectTest extends TestCase
 
         $response = $this->project->createVariable(
             "<VARIABLE_ID>",
-            "<KEY>",
+            "",
             "<VALUE>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Variable::class, $response);
     }
-
     public function testMethodGetVariable(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -3622,7 +3520,7 @@ final class ProjectTest extends TestCase
             "secret" => true,
             "resourceType" => "function",
             "resourceId" => "myAwesomeFunction"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -3637,10 +3535,9 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Variable::class, $response);
     }
-
     public function testMethodUpdateVariable(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -3649,7 +3546,7 @@ final class ProjectTest extends TestCase
             "secret" => true,
             "resourceType" => "function",
             "resourceId" => "myAwesomeFunction"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -3664,7 +3561,6 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Variable::class, $response);
     }
-
     public function testMethodDeleteVariable(): void
     {
         $data = '';
@@ -3682,5 +3578,4 @@ final class ProjectTest extends TestCase
 
         $this->assertSame($data, $response);
     }
-
 }

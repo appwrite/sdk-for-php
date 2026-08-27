@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Policy Deny Aliased Email
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class PolicyDenyAliasedEmail
 {
@@ -44,11 +48,9 @@ readonly class PolicyDenyAliasedEmail
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             'enabled' => static::serializeValue($this->enabled)
         ];
-
-        return $result;
     }
 }

@@ -14,4 +14,5 @@ $organization = new Organization($client);
 $result = $organization->updateProject(
     projectId: '<PROJECT_ID>',
     name: '<NAME>'
-);```
+);
+```

@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Enums;
 
 use JsonSerializable;
+use Stringable;
 
-class PasswordHash implements JsonSerializable
+class PasswordHash implements JsonSerializable, Stringable
 {
     private static PasswordHash $SHA1;
     private static PasswordHash $SHA224;
@@ -18,11 +21,8 @@ class PasswordHash implements JsonSerializable
     private static PasswordHash $SHA3384;
     private static PasswordHash $SHA3512;
 
-    private string $value;
-
-    private function __construct(string $value)
+    private function __construct(private readonly string $value)
     {
-        $this->value = $value;
     }
 
     public function __toString(): string

@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Variable
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class Variable
 {
@@ -80,7 +84,7 @@ readonly class Variable
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             '$createdAt' => static::serializeValue($this->createdAt),
             '$updatedAt' => static::serializeValue($this->updatedAt),
@@ -90,7 +94,5 @@ readonly class Variable
             'resourceType' => static::serializeValue($this->resourceType),
             'resourceId' => static::serializeValue($this->resourceId)
         ];
-
-        return $result;
     }
 }

@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * OAuth2 Grant
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class Oauth2Grant
 {
@@ -104,7 +108,7 @@ readonly class Oauth2Grant
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             '$createdAt' => static::serializeValue($this->createdAt),
             '$updatedAt' => static::serializeValue($this->updatedAt),
@@ -118,7 +122,5 @@ readonly class Oauth2Grant
             'authTime' => static::serializeValue($this->authTime),
             'expire' => static::serializeValue($this->expire)
         ];
-
-        return $result;
     }
 }

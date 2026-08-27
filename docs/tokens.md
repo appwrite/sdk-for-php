@@ -49,7 +49,7 @@ GET https://cloud.appwrite.io/v1/tokens/{tokenId}
 PATCH https://cloud.appwrite.io/v1/tokens/{tokenId}
 ```
 
-** Update a token by its unique ID. Use this endpoint to update a token&#039;s expiry date. **
+** Update a token by its unique ID. Use this endpoint to update a token's expiry date. **
 
 ### Parameters
 

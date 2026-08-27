@@ -17,4 +17,5 @@ $result = $sites->createVcsDeployment(
     type: VCSReferenceType::BRANCH(),
     reference: '<REFERENCE>',
     activate: false // optional
-);```
+);
+```

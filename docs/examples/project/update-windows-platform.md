@@ -15,4 +15,5 @@ $result = $project->updateWindowsPlatform(
     platformId: '<PLATFORM_ID>',
     name: '<NAME>',
     packageIdentifierName: '<PACKAGE_IDENTIFIER_NAME>'
-);```
+);
+```

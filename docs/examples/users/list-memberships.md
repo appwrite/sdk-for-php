@@ -16,4 +16,5 @@ $result = $users->listMemberships(
     queries: [], // optional
     search: '<SEARCH>', // optional
     total: false // optional
-);```
+);
+```

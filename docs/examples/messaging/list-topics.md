@@ -15,4 +15,5 @@ $result = $messaging->listTopics(
     queries: [], // optional
     search: '<SEARCH>', // optional
     total: false // optional
-);```
+);
+```

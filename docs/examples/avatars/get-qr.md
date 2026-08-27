@@ -16,4 +16,5 @@ $result = $avatars->getQR(
     size: 1, // optional
     margin: 0, // optional
     download: false // optional
-);```
+);
+```

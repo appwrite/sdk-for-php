@@ -18,4 +18,5 @@ $result = $tablesDB->updatePointColumn(
     required: false,
     default: [1, 2], // optional
     newKey: '' // optional
-);```
+);
+```

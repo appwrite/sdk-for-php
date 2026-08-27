@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * Identities List
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class IdentityList
 {
@@ -49,11 +53,9 @@ readonly class IdentityList
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'total' => static::serializeValue($this->total),
             'identities' => static::serializeValue($this->identities)
         ];
-
-        return $result;
     }
 }

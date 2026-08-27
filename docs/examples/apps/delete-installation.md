@@ -14,4 +14,5 @@ $apps = new Apps($client);
 $result = $apps->deleteInstallation(
     appId: '<APP_ID>',
     installationId: '<INSTALLATION_ID>'
-);```
+);
+```

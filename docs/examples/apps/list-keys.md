@@ -15,4 +15,5 @@ $result = $apps->listKeys(
     appId: '<APP_ID>',
     queries: [], // optional
     total: false // optional
-);```
+);
+```

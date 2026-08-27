@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Services;
 
 use Appwrite\Client;
-use Appwrite\InputFile;
 use Mockery;
+use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
 use Appwrite\Enums\InvalidationType;
 use Appwrite\Enums\StatusCode;
@@ -12,8 +14,8 @@ use Appwrite\Enums\ProxyResourceType;
 
 final class ProxyTest extends TestCase
 {
-    private $client;
-    private $proxy;
+    private Client&MockInterface $client;
+    private Proxy $proxy;
 
     protected function setUp(): void
     {
@@ -23,12 +25,12 @@ final class ProxyTest extends TestCase
 
     public function testMethodCreateInvalidation(): void
     {
-        $data = array(
+        $data = [
             "domain" => "appwrite.company.com",
             "type" => "tag",
             "reference" => "products",
             "status" => "success"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -44,13 +46,12 @@ final class ProxyTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\ProxyInvalidation::class, $response);
     }
-
     public function testMethodListRules(): void
     {
-        $data = array(
+        $data = [
             "total" => 5,
-            "rules" => array(
-                array(
+            "rules" => [
+                [
                     "\$id" => "5e5ea5c16897e",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -65,9 +66,9 @@ final class ProxyTest extends TestCase
                     "status" => "unverified",
                     "logs" => "Verification of DNS records failed with DNS resolver 8.8.8.8. Domain stage.myapp.com does not have DNS record.",
                     "renewAt" => "datetime"
-                )
-            )
-        );
+                ]
+            ]
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -80,10 +81,9 @@ final class ProxyTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\ProxyRuleList::class, $response);
     }
-
     public function testMethodCreateAPIRule(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -98,7 +98,7 @@ final class ProxyTest extends TestCase
             "status" => "unverified",
             "logs" => "Verification of DNS records failed with DNS resolver 8.8.8.8. Domain stage.myapp.com does not have DNS record.",
             "renewAt" => "datetime"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -113,10 +113,9 @@ final class ProxyTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\ProxyRule::class, $response);
     }
-
     public function testMethodCreateFunctionRule(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -131,7 +130,7 @@ final class ProxyTest extends TestCase
             "status" => "unverified",
             "logs" => "Verification of DNS records failed with DNS resolver 8.8.8.8. Domain stage.myapp.com does not have DNS record.",
             "renewAt" => "datetime"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -147,10 +146,9 @@ final class ProxyTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\ProxyRule::class, $response);
     }
-
     public function testMethodCreateRedirectRule(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -165,7 +163,7 @@ final class ProxyTest extends TestCase
             "status" => "unverified",
             "logs" => "Verification of DNS records failed with DNS resolver 8.8.8.8. Domain stage.myapp.com does not have DNS record.",
             "renewAt" => "datetime"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -184,10 +182,9 @@ final class ProxyTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\ProxyRule::class, $response);
     }
-
     public function testMethodCreateSiteRule(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -202,7 +199,7 @@ final class ProxyTest extends TestCase
             "status" => "unverified",
             "logs" => "Verification of DNS records failed with DNS resolver 8.8.8.8. Domain stage.myapp.com does not have DNS record.",
             "renewAt" => "datetime"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -218,10 +215,9 @@ final class ProxyTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\ProxyRule::class, $response);
     }
-
     public function testMethodGetRule(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -236,7 +232,7 @@ final class ProxyTest extends TestCase
             "status" => "unverified",
             "logs" => "Verification of DNS records failed with DNS resolver 8.8.8.8. Domain stage.myapp.com does not have DNS record.",
             "renewAt" => "datetime"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -251,7 +247,6 @@ final class ProxyTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\ProxyRule::class, $response);
     }
-
     public function testMethodDeleteRule(): void
     {
         $data = '';
@@ -269,10 +264,9 @@ final class ProxyTest extends TestCase
 
         $this->assertSame($data, $response);
     }
-
     public function testMethodUpdateRuleStatus(): void
     {
-        $data = array(
+        $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
@@ -287,7 +281,7 @@ final class ProxyTest extends TestCase
             "status" => "unverified",
             "logs" => "Verification of DNS records failed with DNS resolver 8.8.8.8. Domain stage.myapp.com does not have DNS record.",
             "renewAt" => "datetime"
-        );
+        ];
 
         $this->client
             ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
@@ -302,5 +296,4 @@ final class ProxyTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\ProxyRule::class, $response);
     }
-
 }

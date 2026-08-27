@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Enums;
 
 use JsonSerializable;
+use Stringable;
 
-class Browser implements JsonSerializable
+class Browser implements JsonSerializable, Stringable
 {
     private static Browser $AVANTBROWSER;
     private static Browser $ANDROIDWEBVIEWBETA;
@@ -21,11 +24,8 @@ class Browser implements JsonSerializable
     private static Browser $OPERA;
     private static Browser $OPERANEXT;
 
-    private string $value;
-
-    private function __construct(string $value)
+    private function __construct(private readonly string $value)
     {
-        $this->value = $value;
     }
 
     public function __toString(): string

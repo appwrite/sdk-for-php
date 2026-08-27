@@ -1,21 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Enums;
 
 use JsonSerializable;
+use Stringable;
 
-class RelationshipType implements JsonSerializable
+class RelationshipType implements JsonSerializable, Stringable
 {
     private static RelationshipType $ONETOONE;
     private static RelationshipType $MANYTOONE;
     private static RelationshipType $MANYTOMANY;
     private static RelationshipType $ONETOMANY;
 
-    private string $value;
-
-    private function __construct(string $value)
+    private function __construct(private readonly string $value)
     {
-        $this->value = $value;
     }
 
     public function __toString(): string

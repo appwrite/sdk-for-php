@@ -36,4 +36,5 @@ $result = $functions->update(
     buildSpecification: '', // optional
     runtimeSpecification: '', // optional
     deploymentRetention: 0 // optional
-);```
+);
+```

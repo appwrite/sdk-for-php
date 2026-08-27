@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * OAuth2 Providers List
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class OAuth2ProviderList
 {
@@ -44,11 +48,9 @@ readonly class OAuth2ProviderList
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             'total' => static::serializeValue($this->total),
             'providers' => static::serializeValue($this->providers)
         ];
-
-        return $result;
     }
 }

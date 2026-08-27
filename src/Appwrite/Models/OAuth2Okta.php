@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Appwrite\Models;
 
 /**
  * OAuth2Okta
+ *
+ * @phpstan-consistent-constructor
  */
 readonly class OAuth2Okta
 {
@@ -68,7 +72,7 @@ readonly class OAuth2Okta
      */
     public function toArray(): array
     {
-        $result = [
+        return [
             '$id' => static::serializeValue($this->id),
             'enabled' => static::serializeValue($this->enabled),
             'clientId' => static::serializeValue($this->clientId),
@@ -76,7 +80,5 @@ readonly class OAuth2Okta
             'domain' => static::serializeValue($this->domain),
             'authorizationServerId' => static::serializeValue($this->authorizationServerId)
         ];
-
-        return $result;
     }
 }

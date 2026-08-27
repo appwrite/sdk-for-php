@@ -18,4 +18,5 @@ $result = $tablesDB->createUrlColumn(
     required: false,
     default: 'https://example.com', // optional
     array: false // optional
-);```
+);
+```

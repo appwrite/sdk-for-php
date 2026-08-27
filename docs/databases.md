@@ -983,7 +983,7 @@ DELETE https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collecti
 GET https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/documents
 ```
 
-** Get a list of all the user&#039;s documents in a given collection. You can use the query params to filter your results. **
+** Get a list of all the user's documents in a given collection. You can use the query params to filter your results. **
 
 ### Parameters
 
