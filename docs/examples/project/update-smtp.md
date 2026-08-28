@@ -13,8 +13,8 @@ $client = (new Client())
 $project = new Project($client);
 
 $result = $project->updateSMTP(
-    host: '', // optional
-    port: null, // optional
+    host: 'example.com', // optional
+    port: 587, // optional
     username: '<USERNAME>', // optional
     password: 'password', // optional
     senderEmail: 'email@example.com', // optional

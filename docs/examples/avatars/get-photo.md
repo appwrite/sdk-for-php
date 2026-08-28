@@ -17,7 +17,7 @@ $result = $avatars->getPhoto(
     quality: 0, // optional
     output: 'png', // optional
     rating: 'g', // optional
-    userId: '', // optional
+    userId: 'current()', // optional
     emailHash: '<EMAIL_HASH>', // optional
     name: '<NAME>' // optional
 );

@@ -33,51 +33,44 @@ class DatabaseType implements JsonSerializable, Stringable
 
     public static function LEGACY(): DatabaseType
     {
-        if (!isset(self::$LEGACY)) {
-            self::$LEGACY = new DatabaseType('legacy');
-        }
+        self::$LEGACY ??= new DatabaseType('legacy');
+
         return self::$LEGACY;
     }
     public static function TABLESDB(): DatabaseType
     {
-        if (!isset(self::$TABLESDB)) {
-            self::$TABLESDB = new DatabaseType('tablesdb');
-        }
+        self::$TABLESDB ??= new DatabaseType('tablesdb');
+
         return self::$TABLESDB;
     }
     public static function DOCUMENTSDB(): DatabaseType
     {
-        if (!isset(self::$DOCUMENTSDB)) {
-            self::$DOCUMENTSDB = new DatabaseType('documentsdb');
-        }
+        self::$DOCUMENTSDB ??= new DatabaseType('documentsdb');
+
         return self::$DOCUMENTSDB;
     }
     public static function VECTORSDB(): DatabaseType
     {
-        if (!isset(self::$VECTORSDB)) {
-            self::$VECTORSDB = new DatabaseType('vectorsdb');
-        }
+        self::$VECTORSDB ??= new DatabaseType('vectorsdb');
+
         return self::$VECTORSDB;
     }
     public static function MYSQL(): DatabaseType
     {
-        if (!isset(self::$MYSQL)) {
-            self::$MYSQL = new DatabaseType('mysql');
-        }
+        self::$MYSQL ??= new DatabaseType('mysql');
+
         return self::$MYSQL;
     }
     public static function POSTGRESQL(): DatabaseType
     {
-        if (!isset(self::$POSTGRESQL)) {
-            self::$POSTGRESQL = new DatabaseType('postgresql');
-        }
+        self::$POSTGRESQL ??= new DatabaseType('postgresql');
+
         return self::$POSTGRESQL;
     }
     public static function MONGODB(): DatabaseType
     {
-        if (!isset(self::$MONGODB)) {
-            self::$MONGODB = new DatabaseType('mongodb');
-        }
+        self::$MONGODB ??= new DatabaseType('mongodb');
+
         return self::$MONGODB;
     }
 

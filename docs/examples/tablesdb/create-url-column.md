@@ -14,7 +14,7 @@ $tablesDB = new TablesDB($client);
 $result = $tablesDB->createUrlColumn(
     databaseId: '<DATABASE_ID>',
     tableId: '<TABLE_ID>',
-    key: '',
+    key: '<KEY>',
     required: false,
     default: 'https://example.com', // optional
     array: false // optional

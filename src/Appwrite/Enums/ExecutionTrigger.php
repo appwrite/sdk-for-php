@@ -29,23 +29,20 @@ class ExecutionTrigger implements JsonSerializable, Stringable
 
     public static function HTTP(): ExecutionTrigger
     {
-        if (!isset(self::$HTTP)) {
-            self::$HTTP = new ExecutionTrigger('http');
-        }
+        self::$HTTP ??= new ExecutionTrigger('http');
+
         return self::$HTTP;
     }
     public static function SCHEDULE(): ExecutionTrigger
     {
-        if (!isset(self::$SCHEDULE)) {
-            self::$SCHEDULE = new ExecutionTrigger('schedule');
-        }
+        self::$SCHEDULE ??= new ExecutionTrigger('schedule');
+
         return self::$SCHEDULE;
     }
     public static function EVENT(): ExecutionTrigger
     {
-        if (!isset(self::$EVENT)) {
-            self::$EVENT = new ExecutionTrigger('event');
-        }
+        self::$EVENT ??= new ExecutionTrigger('event');
+
         return self::$EVENT;
     }
 

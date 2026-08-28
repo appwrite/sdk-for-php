@@ -33,51 +33,44 @@ class BackupServices implements JsonSerializable, Stringable
 
     public static function DATABASES(): BackupServices
     {
-        if (!isset(self::$DATABASES)) {
-            self::$DATABASES = new BackupServices('databases');
-        }
+        self::$DATABASES ??= new BackupServices('databases');
+
         return self::$DATABASES;
     }
     public static function TABLESDB(): BackupServices
     {
-        if (!isset(self::$TABLESDB)) {
-            self::$TABLESDB = new BackupServices('tablesdb');
-        }
+        self::$TABLESDB ??= new BackupServices('tablesdb');
+
         return self::$TABLESDB;
     }
     public static function DOCUMENTSDB(): BackupServices
     {
-        if (!isset(self::$DOCUMENTSDB)) {
-            self::$DOCUMENTSDB = new BackupServices('documentsdb');
-        }
+        self::$DOCUMENTSDB ??= new BackupServices('documentsdb');
+
         return self::$DOCUMENTSDB;
     }
     public static function VECTORSDB(): BackupServices
     {
-        if (!isset(self::$VECTORSDB)) {
-            self::$VECTORSDB = new BackupServices('vectorsdb');
-        }
+        self::$VECTORSDB ??= new BackupServices('vectorsdb');
+
         return self::$VECTORSDB;
     }
     public static function DEDICATEDDATABASES(): BackupServices
     {
-        if (!isset(self::$DEDICATEDDATABASES)) {
-            self::$DEDICATEDDATABASES = new BackupServices('dedicatedDatabases');
-        }
+        self::$DEDICATEDDATABASES ??= new BackupServices('dedicatedDatabases');
+
         return self::$DEDICATEDDATABASES;
     }
     public static function FUNCTIONS(): BackupServices
     {
-        if (!isset(self::$FUNCTIONS)) {
-            self::$FUNCTIONS = new BackupServices('functions');
-        }
+        self::$FUNCTIONS ??= new BackupServices('functions');
+
         return self::$FUNCTIONS;
     }
     public static function STORAGE(): BackupServices
     {
-        if (!isset(self::$STORAGE)) {
-            self::$STORAGE = new BackupServices('storage');
-        }
+        self::$STORAGE ??= new BackupServices('storage');
+
         return self::$STORAGE;
     }
 

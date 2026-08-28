@@ -21,11 +21,11 @@ $result = $storage->getFilePreview(
     gravity: ImageGravity::CENTER(), // optional
     quality: -1, // optional
     borderWidth: 0, // optional
-    borderColor: '', // optional
+    borderColor: 'FFFFFF', // optional
     borderRadius: 0, // optional
     opacity: 0, // optional
     rotation: -360, // optional
-    background: '', // optional
+    background: 'FFFFFF', // optional
     output: ImageFormat::JPG(), // optional
     token: '<TOKEN>' // optional
 );

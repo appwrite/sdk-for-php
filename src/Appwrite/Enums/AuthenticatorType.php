@@ -27,9 +27,8 @@ class AuthenticatorType implements JsonSerializable, Stringable
 
     public static function TOTP(): AuthenticatorType
     {
-        if (!isset(self::$TOTP)) {
-            self::$TOTP = new AuthenticatorType('totp');
-        }
+        self::$TOTP ??= new AuthenticatorType('totp');
+
         return self::$TOTP;
     }
 

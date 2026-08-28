@@ -37,79 +37,68 @@ class PasswordHash implements JsonSerializable, Stringable
 
     public static function SHA1(): PasswordHash
     {
-        if (!isset(self::$SHA1)) {
-            self::$SHA1 = new PasswordHash('sha1');
-        }
+        self::$SHA1 ??= new PasswordHash('sha1');
+
         return self::$SHA1;
     }
     public static function SHA224(): PasswordHash
     {
-        if (!isset(self::$SHA224)) {
-            self::$SHA224 = new PasswordHash('sha224');
-        }
+        self::$SHA224 ??= new PasswordHash('sha224');
+
         return self::$SHA224;
     }
     public static function SHA256(): PasswordHash
     {
-        if (!isset(self::$SHA256)) {
-            self::$SHA256 = new PasswordHash('sha256');
-        }
+        self::$SHA256 ??= new PasswordHash('sha256');
+
         return self::$SHA256;
     }
     public static function SHA384(): PasswordHash
     {
-        if (!isset(self::$SHA384)) {
-            self::$SHA384 = new PasswordHash('sha384');
-        }
+        self::$SHA384 ??= new PasswordHash('sha384');
+
         return self::$SHA384;
     }
     public static function SHA512224(): PasswordHash
     {
-        if (!isset(self::$SHA512224)) {
-            self::$SHA512224 = new PasswordHash('sha512/224');
-        }
+        self::$SHA512224 ??= new PasswordHash('sha512/224');
+
         return self::$SHA512224;
     }
     public static function SHA512256(): PasswordHash
     {
-        if (!isset(self::$SHA512256)) {
-            self::$SHA512256 = new PasswordHash('sha512/256');
-        }
+        self::$SHA512256 ??= new PasswordHash('sha512/256');
+
         return self::$SHA512256;
     }
     public static function SHA512(): PasswordHash
     {
-        if (!isset(self::$SHA512)) {
-            self::$SHA512 = new PasswordHash('sha512');
-        }
+        self::$SHA512 ??= new PasswordHash('sha512');
+
         return self::$SHA512;
     }
     public static function SHA3224(): PasswordHash
     {
-        if (!isset(self::$SHA3224)) {
-            self::$SHA3224 = new PasswordHash('sha3-224');
-        }
+        self::$SHA3224 ??= new PasswordHash('sha3-224');
+
         return self::$SHA3224;
     }
     public static function SHA3256(): PasswordHash
     {
-        if (!isset(self::$SHA3256)) {
-            self::$SHA3256 = new PasswordHash('sha3-256');
-        }
+        self::$SHA3256 ??= new PasswordHash('sha3-256');
+
         return self::$SHA3256;
     }
     public static function SHA3384(): PasswordHash
     {
-        if (!isset(self::$SHA3384)) {
-            self::$SHA3384 = new PasswordHash('sha3-384');
-        }
+        self::$SHA3384 ??= new PasswordHash('sha3-384');
+
         return self::$SHA3384;
     }
     public static function SHA3512(): PasswordHash
     {
-        if (!isset(self::$SHA3512)) {
-            self::$SHA3512 = new PasswordHash('sha3-512');
-        }
+        self::$SHA3512 ??= new PasswordHash('sha3-512');
+
         return self::$SHA3512;
     }
 

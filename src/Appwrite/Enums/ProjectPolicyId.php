@@ -41,107 +41,92 @@ class ProjectPolicyId implements JsonSerializable, Stringable
 
     public static function PASSWORDDICTIONARY(): ProjectPolicyId
     {
-        if (!isset(self::$PASSWORDDICTIONARY)) {
-            self::$PASSWORDDICTIONARY = new ProjectPolicyId('password-dictionary');
-        }
+        self::$PASSWORDDICTIONARY ??= new ProjectPolicyId('password-dictionary');
+
         return self::$PASSWORDDICTIONARY;
     }
     public static function PASSWORDHISTORY(): ProjectPolicyId
     {
-        if (!isset(self::$PASSWORDHISTORY)) {
-            self::$PASSWORDHISTORY = new ProjectPolicyId('password-history');
-        }
+        self::$PASSWORDHISTORY ??= new ProjectPolicyId('password-history');
+
         return self::$PASSWORDHISTORY;
     }
     public static function PASSWORDSTRENGTH(): ProjectPolicyId
     {
-        if (!isset(self::$PASSWORDSTRENGTH)) {
-            self::$PASSWORDSTRENGTH = new ProjectPolicyId('password-strength');
-        }
+        self::$PASSWORDSTRENGTH ??= new ProjectPolicyId('password-strength');
+
         return self::$PASSWORDSTRENGTH;
     }
     public static function PASSWORDPERSONALDATA(): ProjectPolicyId
     {
-        if (!isset(self::$PASSWORDPERSONALDATA)) {
-            self::$PASSWORDPERSONALDATA = new ProjectPolicyId('password-personal-data');
-        }
+        self::$PASSWORDPERSONALDATA ??= new ProjectPolicyId('password-personal-data');
+
         return self::$PASSWORDPERSONALDATA;
     }
     public static function SESSIONALERT(): ProjectPolicyId
     {
-        if (!isset(self::$SESSIONALERT)) {
-            self::$SESSIONALERT = new ProjectPolicyId('session-alert');
-        }
+        self::$SESSIONALERT ??= new ProjectPolicyId('session-alert');
+
         return self::$SESSIONALERT;
     }
     public static function SESSIONDURATION(): ProjectPolicyId
     {
-        if (!isset(self::$SESSIONDURATION)) {
-            self::$SESSIONDURATION = new ProjectPolicyId('session-duration');
-        }
+        self::$SESSIONDURATION ??= new ProjectPolicyId('session-duration');
+
         return self::$SESSIONDURATION;
     }
     public static function SESSIONINVALIDATION(): ProjectPolicyId
     {
-        if (!isset(self::$SESSIONINVALIDATION)) {
-            self::$SESSIONINVALIDATION = new ProjectPolicyId('session-invalidation');
-        }
+        self::$SESSIONINVALIDATION ??= new ProjectPolicyId('session-invalidation');
+
         return self::$SESSIONINVALIDATION;
     }
     public static function SESSIONLIMIT(): ProjectPolicyId
     {
-        if (!isset(self::$SESSIONLIMIT)) {
-            self::$SESSIONLIMIT = new ProjectPolicyId('session-limit');
-        }
+        self::$SESSIONLIMIT ??= new ProjectPolicyId('session-limit');
+
         return self::$SESSIONLIMIT;
     }
     public static function USERLIMIT(): ProjectPolicyId
     {
-        if (!isset(self::$USERLIMIT)) {
-            self::$USERLIMIT = new ProjectPolicyId('user-limit');
-        }
+        self::$USERLIMIT ??= new ProjectPolicyId('user-limit');
+
         return self::$USERLIMIT;
     }
     public static function MEMBERSHIPPRIVACY(): ProjectPolicyId
     {
-        if (!isset(self::$MEMBERSHIPPRIVACY)) {
-            self::$MEMBERSHIPPRIVACY = new ProjectPolicyId('membership-privacy');
-        }
+        self::$MEMBERSHIPPRIVACY ??= new ProjectPolicyId('membership-privacy');
+
         return self::$MEMBERSHIPPRIVACY;
     }
     public static function MFAFACTORS(): ProjectPolicyId
     {
-        if (!isset(self::$MFAFACTORS)) {
-            self::$MFAFACTORS = new ProjectPolicyId('mfa-factors');
-        }
+        self::$MFAFACTORS ??= new ProjectPolicyId('mfa-factors');
+
         return self::$MFAFACTORS;
     }
     public static function DENYALIASEDEMAIL(): ProjectPolicyId
     {
-        if (!isset(self::$DENYALIASEDEMAIL)) {
-            self::$DENYALIASEDEMAIL = new ProjectPolicyId('deny-aliased-email');
-        }
+        self::$DENYALIASEDEMAIL ??= new ProjectPolicyId('deny-aliased-email');
+
         return self::$DENYALIASEDEMAIL;
     }
     public static function DENYDISPOSABLEEMAIL(): ProjectPolicyId
     {
-        if (!isset(self::$DENYDISPOSABLEEMAIL)) {
-            self::$DENYDISPOSABLEEMAIL = new ProjectPolicyId('deny-disposable-email');
-        }
+        self::$DENYDISPOSABLEEMAIL ??= new ProjectPolicyId('deny-disposable-email');
+
         return self::$DENYDISPOSABLEEMAIL;
     }
     public static function DENYFREEEMAIL(): ProjectPolicyId
     {
-        if (!isset(self::$DENYFREEEMAIL)) {
-            self::$DENYFREEEMAIL = new ProjectPolicyId('deny-free-email');
-        }
+        self::$DENYFREEEMAIL ??= new ProjectPolicyId('deny-free-email');
+
         return self::$DENYFREEEMAIL;
     }
     public static function DENYCORPORATEEMAIL(): ProjectPolicyId
     {
-        if (!isset(self::$DENYCORPORATEEMAIL)) {
-            self::$DENYCORPORATEEMAIL = new ProjectPolicyId('deny-corporate-email');
-        }
+        self::$DENYCORPORATEEMAIL ??= new ProjectPolicyId('deny-corporate-email');
+
         return self::$DENYCORPORATEEMAIL;
     }
 

@@ -3503,7 +3503,7 @@ final class ProjectTest extends TestCase
 
         $response = $this->project->createVariable(
             "<VARIABLE_ID>",
-            "",
+            "<KEY>",
             "<VALUE>"
         );
 

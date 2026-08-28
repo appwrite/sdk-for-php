@@ -29,23 +29,20 @@ class VCSReferenceType implements JsonSerializable, Stringable
 
     public static function BRANCH(): VCSReferenceType
     {
-        if (!isset(self::$BRANCH)) {
-            self::$BRANCH = new VCSReferenceType('branch');
-        }
+        self::$BRANCH ??= new VCSReferenceType('branch');
+
         return self::$BRANCH;
     }
     public static function COMMIT(): VCSReferenceType
     {
-        if (!isset(self::$COMMIT)) {
-            self::$COMMIT = new VCSReferenceType('commit');
-        }
+        self::$COMMIT ??= new VCSReferenceType('commit');
+
         return self::$COMMIT;
     }
     public static function TAG(): VCSReferenceType
     {
-        if (!isset(self::$TAG)) {
-            self::$TAG = new VCSReferenceType('tag');
-        }
+        self::$TAG ??= new VCSReferenceType('tag');
+
         return self::$TAG;
     }
 

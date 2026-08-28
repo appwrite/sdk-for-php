@@ -19,8 +19,8 @@ $result = $databases->createRelationshipAttribute(
     relatedCollectionId: '<RELATED_COLLECTION_ID>',
     type: RelationshipType::ONETOONE(),
     twoWay: false, // optional
-    key: '', // optional
-    twoWayKey: '', // optional
+    key: '<KEY>', // optional
+    twoWayKey: '<TWO_WAY_KEY>', // optional
     onDelete: RelationMutate::CASCADE() // optional
 );
 ```

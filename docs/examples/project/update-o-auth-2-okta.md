@@ -14,7 +14,7 @@ $project = new Project($client);
 $result = $project->updateOAuth2Okta(
     clientId: '<CLIENT_ID>', // optional
     clientSecret: '<CLIENT_SECRET>', // optional
-    domain: '', // optional
+    domain: 'example.com', // optional
     authorizationServerId: '<AUTHORIZATION_SERVER_ID>', // optional
     enabled: false // optional
 );

@@ -14,6 +14,6 @@ $tablesDB = new TablesDB($client);
 $result = $tablesDB->deleteColumn(
     databaseId: '<DATABASE_ID>',
     tableId: '<TABLE_ID>',
-    key: ''
+    key: '<KEY>'
 );
 ```

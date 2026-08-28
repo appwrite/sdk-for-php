@@ -14,9 +14,9 @@ $databases = new Databases($client);
 $result = $databases->createIpAttribute(
     databaseId: '<DATABASE_ID>',
     collectionId: '<COLLECTION_ID>',
-    key: '',
+    key: '<KEY>',
     required: false,
-    default: '', // optional
+    default: '192.0.2.0', // optional
     array: false // optional
 );
 ```

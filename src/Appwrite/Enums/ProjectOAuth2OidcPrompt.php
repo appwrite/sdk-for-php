@@ -30,30 +30,26 @@ class ProjectOAuth2OidcPrompt implements JsonSerializable, Stringable
 
     public static function NONE(): ProjectOAuth2OidcPrompt
     {
-        if (!isset(self::$NONE)) {
-            self::$NONE = new ProjectOAuth2OidcPrompt('none');
-        }
+        self::$NONE ??= new ProjectOAuth2OidcPrompt('none');
+
         return self::$NONE;
     }
     public static function LOGIN(): ProjectOAuth2OidcPrompt
     {
-        if (!isset(self::$LOGIN)) {
-            self::$LOGIN = new ProjectOAuth2OidcPrompt('login');
-        }
+        self::$LOGIN ??= new ProjectOAuth2OidcPrompt('login');
+
         return self::$LOGIN;
     }
     public static function CONSENT(): ProjectOAuth2OidcPrompt
     {
-        if (!isset(self::$CONSENT)) {
-            self::$CONSENT = new ProjectOAuth2OidcPrompt('consent');
-        }
+        self::$CONSENT ??= new ProjectOAuth2OidcPrompt('consent');
+
         return self::$CONSENT;
     }
     public static function SELECTACCOUNT(): ProjectOAuth2OidcPrompt
     {
-        if (!isset(self::$SELECTACCOUNT)) {
-            self::$SELECTACCOUNT = new ProjectOAuth2OidcPrompt('select_account');
-        }
+        self::$SELECTACCOUNT ??= new ProjectOAuth2OidcPrompt('select_account');
+
         return self::$SELECTACCOUNT;
     }
 

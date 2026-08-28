@@ -16,10 +16,10 @@ $result = $users->createScryptUser(
     email: 'email@example.com',
     password: 'password',
     passwordSalt: '<PASSWORD_SALT>',
-    passwordCpu: null,
-    passwordMemory: null,
-    passwordParallel: null,
-    passwordLength: null,
+    passwordCpu: 8,
+    passwordMemory: 65536,
+    passwordParallel: 1,
+    passwordLength: 64,
     name: '<NAME>' // optional
 );
 ```

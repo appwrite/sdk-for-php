@@ -30,30 +30,26 @@ class RelationshipType implements JsonSerializable, Stringable
 
     public static function ONETOONE(): RelationshipType
     {
-        if (!isset(self::$ONETOONE)) {
-            self::$ONETOONE = new RelationshipType('oneToOne');
-        }
+        self::$ONETOONE ??= new RelationshipType('oneToOne');
+
         return self::$ONETOONE;
     }
     public static function MANYTOONE(): RelationshipType
     {
-        if (!isset(self::$MANYTOONE)) {
-            self::$MANYTOONE = new RelationshipType('manyToOne');
-        }
+        self::$MANYTOONE ??= new RelationshipType('manyToOne');
+
         return self::$MANYTOONE;
     }
     public static function MANYTOMANY(): RelationshipType
     {
-        if (!isset(self::$MANYTOMANY)) {
-            self::$MANYTOMANY = new RelationshipType('manyToMany');
-        }
+        self::$MANYTOMANY ??= new RelationshipType('manyToMany');
+
         return self::$MANYTOMANY;
     }
     public static function ONETOMANY(): RelationshipType
     {
-        if (!isset(self::$ONETOMANY)) {
-            self::$ONETOMANY = new RelationshipType('oneToMany');
-        }
+        self::$ONETOMANY ??= new RelationshipType('oneToMany');
+
         return self::$ONETOMANY;
     }
 

@@ -40,100 +40,86 @@ class DatabaseStatus implements JsonSerializable, Stringable
 
     public static function PROVISIONING(): DatabaseStatus
     {
-        if (!isset(self::$PROVISIONING)) {
-            self::$PROVISIONING = new DatabaseStatus('provisioning');
-        }
+        self::$PROVISIONING ??= new DatabaseStatus('provisioning');
+
         return self::$PROVISIONING;
     }
     public static function READY(): DatabaseStatus
     {
-        if (!isset(self::$READY)) {
-            self::$READY = new DatabaseStatus('ready');
-        }
+        self::$READY ??= new DatabaseStatus('ready');
+
         return self::$READY;
     }
     public static function INACTIVE(): DatabaseStatus
     {
-        if (!isset(self::$INACTIVE)) {
-            self::$INACTIVE = new DatabaseStatus('inactive');
-        }
+        self::$INACTIVE ??= new DatabaseStatus('inactive');
+
         return self::$INACTIVE;
     }
     public static function PAUSED(): DatabaseStatus
     {
-        if (!isset(self::$PAUSED)) {
-            self::$PAUSED = new DatabaseStatus('paused');
-        }
+        self::$PAUSED ??= new DatabaseStatus('paused');
+
         return self::$PAUSED;
     }
     public static function FAILED(): DatabaseStatus
     {
-        if (!isset(self::$FAILED)) {
-            self::$FAILED = new DatabaseStatus('failed');
-        }
+        self::$FAILED ??= new DatabaseStatus('failed');
+
         return self::$FAILED;
     }
     public static function DELETING(): DatabaseStatus
     {
-        if (!isset(self::$DELETING)) {
-            self::$DELETING = new DatabaseStatus('deleting');
-        }
+        self::$DELETING ??= new DatabaseStatus('deleting');
+
         return self::$DELETING;
     }
     public static function DELETED(): DatabaseStatus
     {
-        if (!isset(self::$DELETED)) {
-            self::$DELETED = new DatabaseStatus('deleted');
-        }
+        self::$DELETED ??= new DatabaseStatus('deleted');
+
         return self::$DELETED;
     }
     public static function RESTORING(): DatabaseStatus
     {
-        if (!isset(self::$RESTORING)) {
-            self::$RESTORING = new DatabaseStatus('restoring');
-        }
+        self::$RESTORING ??= new DatabaseStatus('restoring');
+
         return self::$RESTORING;
     }
     public static function SCALING(): DatabaseStatus
     {
-        if (!isset(self::$SCALING)) {
-            self::$SCALING = new DatabaseStatus('scaling');
-        }
+        self::$SCALING ??= new DatabaseStatus('scaling');
+
         return self::$SCALING;
     }
     public static function UPGRADING(): DatabaseStatus
     {
-        if (!isset(self::$UPGRADING)) {
-            self::$UPGRADING = new DatabaseStatus('upgrading');
-        }
+        self::$UPGRADING ??= new DatabaseStatus('upgrading');
+
         return self::$UPGRADING;
     }
     public static function MIGRATING(): DatabaseStatus
     {
-        if (!isset(self::$MIGRATING)) {
-            self::$MIGRATING = new DatabaseStatus('migrating');
-        }
+        self::$MIGRATING ??= new DatabaseStatus('migrating');
+
         return self::$MIGRATING;
     }
     public static function PAUSING(): DatabaseStatus
     {
-        if (!isset(self::$PAUSING)) {
-            self::$PAUSING = new DatabaseStatus('pausing');
-        }
+        self::$PAUSING ??= new DatabaseStatus('pausing');
+
         return self::$PAUSING;
     }
     public static function RESUMING(): DatabaseStatus
     {
-        if (!isset(self::$RESUMING)) {
-            self::$RESUMING = new DatabaseStatus('resuming');
-        }
+        self::$RESUMING ??= new DatabaseStatus('resuming');
+
         return self::$RESUMING;
     }
     public static function FAILINGOVER(): DatabaseStatus
     {
-        if (!isset(self::$FAILINGOVER)) {
-            self::$FAILINGOVER = new DatabaseStatus('failing-over');
-        }
+        self::$FAILINGOVER ??= new DatabaseStatus('failing-over');
+
         return self::$FAILINGOVER;
     }
 

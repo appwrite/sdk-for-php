@@ -28,16 +28,14 @@ class DeploymentDownloadType implements JsonSerializable, Stringable
 
     public static function SOURCE(): DeploymentDownloadType
     {
-        if (!isset(self::$SOURCE)) {
-            self::$SOURCE = new DeploymentDownloadType('source');
-        }
+        self::$SOURCE ??= new DeploymentDownloadType('source');
+
         return self::$SOURCE;
     }
     public static function OUTPUT(): DeploymentDownloadType
     {
-        if (!isset(self::$OUTPUT)) {
-            self::$OUTPUT = new DeploymentDownloadType('output');
-        }
+        self::$OUTPUT ??= new DeploymentDownloadType('output');
+
         return self::$OUTPUT;
     }
 

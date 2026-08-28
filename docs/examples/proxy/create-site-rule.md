@@ -12,7 +12,7 @@ $client = (new Client())
 $proxy = new Proxy($client);
 
 $result = $proxy->createSiteRule(
-    domain: '',
+    domain: 'example.com',
     siteId: '<SITE_ID>',
     branch: '<BRANCH>' // optional
 );

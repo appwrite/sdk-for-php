@@ -30,30 +30,26 @@ class DatabasesIndexType implements JsonSerializable, Stringable
 
     public static function KEY(): DatabasesIndexType
     {
-        if (!isset(self::$KEY)) {
-            self::$KEY = new DatabasesIndexType('key');
-        }
+        self::$KEY ??= new DatabasesIndexType('key');
+
         return self::$KEY;
     }
     public static function FULLTEXT(): DatabasesIndexType
     {
-        if (!isset(self::$FULLTEXT)) {
-            self::$FULLTEXT = new DatabasesIndexType('fulltext');
-        }
+        self::$FULLTEXT ??= new DatabasesIndexType('fulltext');
+
         return self::$FULLTEXT;
     }
     public static function UNIQUE(): DatabasesIndexType
     {
-        if (!isset(self::$UNIQUE)) {
-            self::$UNIQUE = new DatabasesIndexType('unique');
-        }
+        self::$UNIQUE ??= new DatabasesIndexType('unique');
+
         return self::$UNIQUE;
     }
     public static function SPATIAL(): DatabasesIndexType
     {
-        if (!isset(self::$SPATIAL)) {
-            self::$SPATIAL = new DatabasesIndexType('spatial');
-        }
+        self::$SPATIAL ??= new DatabasesIndexType('spatial');
+
         return self::$SPATIAL;
     }
 

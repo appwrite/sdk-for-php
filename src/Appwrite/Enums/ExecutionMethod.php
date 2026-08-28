@@ -33,51 +33,44 @@ class ExecutionMethod implements JsonSerializable, Stringable
 
     public static function GET(): ExecutionMethod
     {
-        if (!isset(self::$GET)) {
-            self::$GET = new ExecutionMethod('GET');
-        }
+        self::$GET ??= new ExecutionMethod('GET');
+
         return self::$GET;
     }
     public static function POST(): ExecutionMethod
     {
-        if (!isset(self::$POST)) {
-            self::$POST = new ExecutionMethod('POST');
-        }
+        self::$POST ??= new ExecutionMethod('POST');
+
         return self::$POST;
     }
     public static function PUT(): ExecutionMethod
     {
-        if (!isset(self::$PUT)) {
-            self::$PUT = new ExecutionMethod('PUT');
-        }
+        self::$PUT ??= new ExecutionMethod('PUT');
+
         return self::$PUT;
     }
     public static function PATCH(): ExecutionMethod
     {
-        if (!isset(self::$PATCH)) {
-            self::$PATCH = new ExecutionMethod('PATCH');
-        }
+        self::$PATCH ??= new ExecutionMethod('PATCH');
+
         return self::$PATCH;
     }
     public static function DELETE(): ExecutionMethod
     {
-        if (!isset(self::$DELETE)) {
-            self::$DELETE = new ExecutionMethod('DELETE');
-        }
+        self::$DELETE ??= new ExecutionMethod('DELETE');
+
         return self::$DELETE;
     }
     public static function OPTIONS(): ExecutionMethod
     {
-        if (!isset(self::$OPTIONS)) {
-            self::$OPTIONS = new ExecutionMethod('OPTIONS');
-        }
+        self::$OPTIONS ??= new ExecutionMethod('OPTIONS');
+
         return self::$OPTIONS;
     }
     public static function HEAD(): ExecutionMethod
     {
-        if (!isset(self::$HEAD)) {
-            self::$HEAD = new ExecutionMethod('HEAD');
-        }
+        self::$HEAD ??= new ExecutionMethod('HEAD');
+
         return self::$HEAD;
     }
 

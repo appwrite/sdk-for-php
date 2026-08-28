@@ -31,37 +31,32 @@ class AttributeStatus implements JsonSerializable, Stringable
 
     public static function AVAILABLE(): AttributeStatus
     {
-        if (!isset(self::$AVAILABLE)) {
-            self::$AVAILABLE = new AttributeStatus('available');
-        }
+        self::$AVAILABLE ??= new AttributeStatus('available');
+
         return self::$AVAILABLE;
     }
     public static function PROCESSING(): AttributeStatus
     {
-        if (!isset(self::$PROCESSING)) {
-            self::$PROCESSING = new AttributeStatus('processing');
-        }
+        self::$PROCESSING ??= new AttributeStatus('processing');
+
         return self::$PROCESSING;
     }
     public static function DELETING(): AttributeStatus
     {
-        if (!isset(self::$DELETING)) {
-            self::$DELETING = new AttributeStatus('deleting');
-        }
+        self::$DELETING ??= new AttributeStatus('deleting');
+
         return self::$DELETING;
     }
     public static function STUCK(): AttributeStatus
     {
-        if (!isset(self::$STUCK)) {
-            self::$STUCK = new AttributeStatus('stuck');
-        }
+        self::$STUCK ??= new AttributeStatus('stuck');
+
         return self::$STUCK;
     }
     public static function FAILED(): AttributeStatus
     {
-        if (!isset(self::$FAILED)) {
-            self::$FAILED = new AttributeStatus('failed');
-        }
+        self::$FAILED ??= new AttributeStatus('failed');
+
         return self::$FAILED;
     }
 

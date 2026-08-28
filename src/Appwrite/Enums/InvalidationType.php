@@ -29,23 +29,20 @@ class InvalidationType implements JsonSerializable, Stringable
 
     public static function TAG(): InvalidationType
     {
-        if (!isset(self::$TAG)) {
-            self::$TAG = new InvalidationType('tag');
-        }
+        self::$TAG ??= new InvalidationType('tag');
+
         return self::$TAG;
     }
     public static function PATH(): InvalidationType
     {
-        if (!isset(self::$PATH)) {
-            self::$PATH = new InvalidationType('path');
-        }
+        self::$PATH ??= new InvalidationType('path');
+
         return self::$PATH;
     }
     public static function ALL(): InvalidationType
     {
-        if (!isset(self::$ALL)) {
-            self::$ALL = new InvalidationType('all');
-        }
+        self::$ALL ??= new InvalidationType('all');
+
         return self::$ALL;
     }
 

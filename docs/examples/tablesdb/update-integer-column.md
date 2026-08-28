@@ -14,11 +14,11 @@ $tablesDB = new TablesDB($client);
 $result = $tablesDB->updateIntegerColumn(
     databaseId: '<DATABASE_ID>',
     tableId: '<TABLE_ID>',
-    key: '',
+    key: '<KEY>',
     required: false,
-    default: null,
-    min: null, // optional
-    max: null, // optional
-    newKey: '' // optional
+    default: 10,
+    min: 0, // optional
+    max: 100, // optional
+    newKey: '<NEW_KEY>' // optional
 );
 ```

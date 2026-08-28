@@ -888,7 +888,7 @@ final class TablesDBTest extends TestCase
         $response = $this->tablesDB->createBigIntColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
-            "",
+            "<KEY>",
             true
         );
 
@@ -916,7 +916,7 @@ final class TablesDBTest extends TestCase
         $response = $this->tablesDB->updateBigIntColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
-            "",
+            "<KEY>",
             true,
             1
         );
@@ -945,7 +945,7 @@ final class TablesDBTest extends TestCase
         $response = $this->tablesDB->createBooleanColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
-            "",
+            "<KEY>",
             true
         );
 
@@ -973,7 +973,7 @@ final class TablesDBTest extends TestCase
         $response = $this->tablesDB->updateBooleanColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
-            "",
+            "<KEY>",
             true,
             true
         );
@@ -1003,7 +1003,7 @@ final class TablesDBTest extends TestCase
         $response = $this->tablesDB->createDatetimeColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
-            "",
+            "<KEY>",
             true
         );
 
@@ -1032,7 +1032,7 @@ final class TablesDBTest extends TestCase
         $response = $this->tablesDB->updateDatetimeColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
-            "",
+            "<KEY>",
             true,
             "2020-10-15T06:38:00.000+00:00"
         );
@@ -1062,7 +1062,7 @@ final class TablesDBTest extends TestCase
         $response = $this->tablesDB->createEmailColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
-            "",
+            "<KEY>",
             true
         );
 
@@ -1091,7 +1091,7 @@ final class TablesDBTest extends TestCase
         $response = $this->tablesDB->updateEmailColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
-            "",
+            "<KEY>",
             true,
             "email@example.com"
         );
@@ -1122,7 +1122,7 @@ final class TablesDBTest extends TestCase
         $response = $this->tablesDB->createEnumColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
-            "",
+            "<KEY>",
             [],
             true
         );
@@ -1153,10 +1153,10 @@ final class TablesDBTest extends TestCase
         $response = $this->tablesDB->updateEnumColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
-            "",
+            "<KEY>",
             [],
             true,
-            "<DEFAULT>"
+            "active"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\ColumnEnum::class, $response);
@@ -1183,7 +1183,7 @@ final class TablesDBTest extends TestCase
         $response = $this->tablesDB->createFloatColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
-            "",
+            "<KEY>",
             true
         );
 
@@ -1211,7 +1211,7 @@ final class TablesDBTest extends TestCase
         $response = $this->tablesDB->updateFloatColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
-            "",
+            "<KEY>",
             true,
             1.0
         );
@@ -1240,7 +1240,7 @@ final class TablesDBTest extends TestCase
         $response = $this->tablesDB->createIntegerColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
-            "",
+            "<KEY>",
             true
         );
 
@@ -1268,7 +1268,7 @@ final class TablesDBTest extends TestCase
         $response = $this->tablesDB->updateIntegerColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
-            "",
+            "<KEY>",
             true,
             1
         );
@@ -1298,7 +1298,7 @@ final class TablesDBTest extends TestCase
         $response = $this->tablesDB->createIpColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
-            "",
+            "<KEY>",
             true
         );
 
@@ -1327,9 +1327,9 @@ final class TablesDBTest extends TestCase
         $response = $this->tablesDB->updateIpColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
-            "",
+            "<KEY>",
             true,
-            ""
+            "192.0.2.0"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\ColumnIp::class, $response);
@@ -1356,7 +1356,7 @@ final class TablesDBTest extends TestCase
         $response = $this->tablesDB->createLineColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
-            "",
+            "<KEY>",
             true
         );
 
@@ -1384,7 +1384,7 @@ final class TablesDBTest extends TestCase
         $response = $this->tablesDB->updateLineColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
-            "",
+            "<KEY>",
             true
         );
 
@@ -1412,7 +1412,7 @@ final class TablesDBTest extends TestCase
         $response = $this->tablesDB->createLongtextColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
-            "",
+            "<KEY>",
             true
         );
 
@@ -1440,9 +1440,9 @@ final class TablesDBTest extends TestCase
         $response = $this->tablesDB->updateLongtextColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
-            "",
+            "<KEY>",
             true,
-            "<DEFAULT>"
+            "Hello World"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\ColumnLongtext::class, $response);
@@ -1469,7 +1469,7 @@ final class TablesDBTest extends TestCase
         $response = $this->tablesDB->createMediumtextColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
-            "",
+            "<KEY>",
             true
         );
 
@@ -1497,9 +1497,9 @@ final class TablesDBTest extends TestCase
         $response = $this->tablesDB->updateMediumtextColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
-            "",
+            "<KEY>",
             true,
-            "<DEFAULT>"
+            "Hello World"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\ColumnMediumtext::class, $response);
@@ -1526,7 +1526,7 @@ final class TablesDBTest extends TestCase
         $response = $this->tablesDB->createPointColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
-            "",
+            "<KEY>",
             true
         );
 
@@ -1554,7 +1554,7 @@ final class TablesDBTest extends TestCase
         $response = $this->tablesDB->updatePointColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
-            "",
+            "<KEY>",
             true
         );
 
@@ -1582,7 +1582,7 @@ final class TablesDBTest extends TestCase
         $response = $this->tablesDB->createPolygonColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
-            "",
+            "<KEY>",
             true
         );
 
@@ -1610,7 +1610,7 @@ final class TablesDBTest extends TestCase
         $response = $this->tablesDB->updatePolygonColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
-            "",
+            "<KEY>",
             true
         );
 
@@ -1673,7 +1673,7 @@ final class TablesDBTest extends TestCase
         $response = $this->tablesDB->createStringColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
-            "",
+            "<KEY>",
             1,
             true
         );
@@ -1703,9 +1703,9 @@ final class TablesDBTest extends TestCase
         $response = $this->tablesDB->updateStringColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
-            "",
+            "<KEY>",
             true,
-            "<DEFAULT>"
+            "Hello World"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\ColumnString::class, $response);
@@ -1732,7 +1732,7 @@ final class TablesDBTest extends TestCase
         $response = $this->tablesDB->createTextColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
-            "",
+            "<KEY>",
             true
         );
 
@@ -1760,9 +1760,9 @@ final class TablesDBTest extends TestCase
         $response = $this->tablesDB->updateTextColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
-            "",
+            "<KEY>",
             true,
-            "<DEFAULT>"
+            "Hello World"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\ColumnText::class, $response);
@@ -1790,7 +1790,7 @@ final class TablesDBTest extends TestCase
         $response = $this->tablesDB->createUrlColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
-            "",
+            "<KEY>",
             true
         );
 
@@ -1819,7 +1819,7 @@ final class TablesDBTest extends TestCase
         $response = $this->tablesDB->updateUrlColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
-            "",
+            "<KEY>",
             true,
             "https://example.com"
         );
@@ -1849,7 +1849,7 @@ final class TablesDBTest extends TestCase
         $response = $this->tablesDB->createVarcharColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
-            "",
+            "<KEY>",
             1,
             true
         );
@@ -1879,9 +1879,9 @@ final class TablesDBTest extends TestCase
         $response = $this->tablesDB->updateVarcharColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
-            "",
+            "<KEY>",
             true,
-            "<DEFAULT>"
+            "Hello World"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\ColumnVarchar::class, $response);
@@ -1914,7 +1914,7 @@ final class TablesDBTest extends TestCase
         $response = $this->tablesDB->getColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
-            ""
+            "<KEY>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\ColumnString::class, $response);
@@ -1933,7 +1933,7 @@ final class TablesDBTest extends TestCase
         $response = $this->tablesDB->deleteColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
-            ""
+            "<KEY>"
         );
 
         $this->assertSame($data, $response);
@@ -1966,7 +1966,7 @@ final class TablesDBTest extends TestCase
         $response = $this->tablesDB->updateRelationshipColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
-            ""
+            "<KEY>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\ColumnRelationship::class, $response);
@@ -2028,7 +2028,7 @@ final class TablesDBTest extends TestCase
         $response = $this->tablesDB->createIndex(
             "<DATABASE_ID>",
             "<TABLE_ID>",
-            "",
+            "<KEY>",
             TablesDBIndexType::KEY(),
             []
         );
@@ -2059,7 +2059,7 @@ final class TablesDBTest extends TestCase
         $response = $this->tablesDB->getIndex(
             "<DATABASE_ID>",
             "<TABLE_ID>",
-            ""
+            "<KEY>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\ColumnIndex::class, $response);
@@ -2078,7 +2078,7 @@ final class TablesDBTest extends TestCase
         $response = $this->tablesDB->deleteIndex(
             "<DATABASE_ID>",
             "<TABLE_ID>",
-            ""
+            "<KEY>"
         );
 
         $this->assertSame($data, $response);
@@ -2391,7 +2391,7 @@ final class TablesDBTest extends TestCase
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "<ROW_ID>",
-            ""
+            "<COLUMN>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Row::class, $response);
@@ -2419,7 +2419,7 @@ final class TablesDBTest extends TestCase
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "<ROW_ID>",
-            ""
+            "<COLUMN>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Row::class, $response);

@@ -32,44 +32,38 @@ class DeploymentStatus implements JsonSerializable, Stringable
 
     public static function WAITING(): DeploymentStatus
     {
-        if (!isset(self::$WAITING)) {
-            self::$WAITING = new DeploymentStatus('waiting');
-        }
+        self::$WAITING ??= new DeploymentStatus('waiting');
+
         return self::$WAITING;
     }
     public static function PROCESSING(): DeploymentStatus
     {
-        if (!isset(self::$PROCESSING)) {
-            self::$PROCESSING = new DeploymentStatus('processing');
-        }
+        self::$PROCESSING ??= new DeploymentStatus('processing');
+
         return self::$PROCESSING;
     }
     public static function BUILDING(): DeploymentStatus
     {
-        if (!isset(self::$BUILDING)) {
-            self::$BUILDING = new DeploymentStatus('building');
-        }
+        self::$BUILDING ??= new DeploymentStatus('building');
+
         return self::$BUILDING;
     }
     public static function READY(): DeploymentStatus
     {
-        if (!isset(self::$READY)) {
-            self::$READY = new DeploymentStatus('ready');
-        }
+        self::$READY ??= new DeploymentStatus('ready');
+
         return self::$READY;
     }
     public static function CANCELED(): DeploymentStatus
     {
-        if (!isset(self::$CANCELED)) {
-            self::$CANCELED = new DeploymentStatus('canceled');
-        }
+        self::$CANCELED ??= new DeploymentStatus('canceled');
+
         return self::$CANCELED;
     }
     public static function FAILED(): DeploymentStatus
     {
-        if (!isset(self::$FAILED)) {
-            self::$FAILED = new DeploymentStatus('failed');
-        }
+        self::$FAILED ??= new DeploymentStatus('failed');
+
         return self::$FAILED;
     }
 

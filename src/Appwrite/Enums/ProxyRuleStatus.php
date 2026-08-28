@@ -29,23 +29,20 @@ class ProxyRuleStatus implements JsonSerializable, Stringable
 
     public static function UNVERIFIED(): ProxyRuleStatus
     {
-        if (!isset(self::$UNVERIFIED)) {
-            self::$UNVERIFIED = new ProxyRuleStatus('unverified');
-        }
+        self::$UNVERIFIED ??= new ProxyRuleStatus('unverified');
+
         return self::$UNVERIFIED;
     }
     public static function VERIFYING(): ProxyRuleStatus
     {
-        if (!isset(self::$VERIFYING)) {
-            self::$VERIFYING = new ProxyRuleStatus('verifying');
-        }
+        self::$VERIFYING ??= new ProxyRuleStatus('verifying');
+
         return self::$VERIFYING;
     }
     public static function VERIFIED(): ProxyRuleStatus
     {
-        if (!isset(self::$VERIFIED)) {
-            self::$VERIFIED = new ProxyRuleStatus('verified');
-        }
+        self::$VERIFIED ??= new ProxyRuleStatus('verified');
+
         return self::$VERIFIED;
     }
 

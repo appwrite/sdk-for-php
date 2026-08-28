@@ -33,51 +33,44 @@ class ImageFormat implements JsonSerializable, Stringable
 
     public static function JPG(): ImageFormat
     {
-        if (!isset(self::$JPG)) {
-            self::$JPG = new ImageFormat('jpg');
-        }
+        self::$JPG ??= new ImageFormat('jpg');
+
         return self::$JPG;
     }
     public static function JPEG(): ImageFormat
     {
-        if (!isset(self::$JPEG)) {
-            self::$JPEG = new ImageFormat('jpeg');
-        }
+        self::$JPEG ??= new ImageFormat('jpeg');
+
         return self::$JPEG;
     }
     public static function PNG(): ImageFormat
     {
-        if (!isset(self::$PNG)) {
-            self::$PNG = new ImageFormat('png');
-        }
+        self::$PNG ??= new ImageFormat('png');
+
         return self::$PNG;
     }
     public static function WEBP(): ImageFormat
     {
-        if (!isset(self::$WEBP)) {
-            self::$WEBP = new ImageFormat('webp');
-        }
+        self::$WEBP ??= new ImageFormat('webp');
+
         return self::$WEBP;
     }
     public static function HEIC(): ImageFormat
     {
-        if (!isset(self::$HEIC)) {
-            self::$HEIC = new ImageFormat('heic');
-        }
+        self::$HEIC ??= new ImageFormat('heic');
+
         return self::$HEIC;
     }
     public static function AVIF(): ImageFormat
     {
-        if (!isset(self::$AVIF)) {
-            self::$AVIF = new ImageFormat('avif');
-        }
+        self::$AVIF ??= new ImageFormat('avif');
+
         return self::$AVIF;
     }
     public static function GIF(): ImageFormat
     {
-        if (!isset(self::$GIF)) {
-            self::$GIF = new ImageFormat('gif');
-        }
+        self::$GIF ??= new ImageFormat('gif');
+
         return self::$GIF;
     }
 

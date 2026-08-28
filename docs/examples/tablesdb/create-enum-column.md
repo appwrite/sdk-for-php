@@ -14,10 +14,10 @@ $tablesDB = new TablesDB($client);
 $result = $tablesDB->createEnumColumn(
     databaseId: '<DATABASE_ID>',
     tableId: '<TABLE_ID>',
-    key: '',
-    elements: [],
+    key: '<KEY>',
+    elements: ["active", "inactive"],
     required: false,
-    default: '<DEFAULT>', // optional
+    default: 'active', // optional
     array: false // optional
 );
 ```

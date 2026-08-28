@@ -28,16 +28,14 @@ class ProjectSMTPSecure implements JsonSerializable, Stringable
 
     public static function TLS(): ProjectSMTPSecure
     {
-        if (!isset(self::$TLS)) {
-            self::$TLS = new ProjectSMTPSecure('tls');
-        }
+        self::$TLS ??= new ProjectSMTPSecure('tls');
+
         return self::$TLS;
     }
     public static function SSL(): ProjectSMTPSecure
     {
-        if (!isset(self::$SSL)) {
-            self::$SSL = new ProjectSMTPSecure('ssl');
-        }
+        self::$SSL ??= new ProjectSMTPSecure('ssl');
+
         return self::$SSL;
     }
 

@@ -957,7 +957,7 @@ final class OrganizationTest extends TestCase
             ->andReturn('');
 
         $response = $this->organization->createProject(
-            "",
+            "<PROJECT_ID>",
             "<NAME>"
         );
 

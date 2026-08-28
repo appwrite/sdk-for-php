@@ -29,23 +29,20 @@ class ProjectOAuth2GooglePrompt implements JsonSerializable, Stringable
 
     public static function NONE(): ProjectOAuth2GooglePrompt
     {
-        if (!isset(self::$NONE)) {
-            self::$NONE = new ProjectOAuth2GooglePrompt('none');
-        }
+        self::$NONE ??= new ProjectOAuth2GooglePrompt('none');
+
         return self::$NONE;
     }
     public static function CONSENT(): ProjectOAuth2GooglePrompt
     {
-        if (!isset(self::$CONSENT)) {
-            self::$CONSENT = new ProjectOAuth2GooglePrompt('consent');
-        }
+        self::$CONSENT ??= new ProjectOAuth2GooglePrompt('consent');
+
         return self::$CONSENT;
     }
     public static function SELECTACCOUNT(): ProjectOAuth2GooglePrompt
     {
-        if (!isset(self::$SELECTACCOUNT)) {
-            self::$SELECTACCOUNT = new ProjectOAuth2GooglePrompt('select_account');
-        }
+        self::$SELECTACCOUNT ??= new ProjectOAuth2GooglePrompt('select_account');
+
         return self::$SELECTACCOUNT;
     }
 

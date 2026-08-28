@@ -30,30 +30,26 @@ class OAuth2OidcPrompt implements JsonSerializable, Stringable
 
     public static function NONE(): OAuth2OidcPrompt
     {
-        if (!isset(self::$NONE)) {
-            self::$NONE = new OAuth2OidcPrompt('none');
-        }
+        self::$NONE ??= new OAuth2OidcPrompt('none');
+
         return self::$NONE;
     }
     public static function LOGIN(): OAuth2OidcPrompt
     {
-        if (!isset(self::$LOGIN)) {
-            self::$LOGIN = new OAuth2OidcPrompt('login');
-        }
+        self::$LOGIN ??= new OAuth2OidcPrompt('login');
+
         return self::$LOGIN;
     }
     public static function CONSENT(): OAuth2OidcPrompt
     {
-        if (!isset(self::$CONSENT)) {
-            self::$CONSENT = new OAuth2OidcPrompt('consent');
-        }
+        self::$CONSENT ??= new OAuth2OidcPrompt('consent');
+
         return self::$CONSENT;
     }
     public static function SELECTACCOUNT(): OAuth2OidcPrompt
     {
-        if (!isset(self::$SELECTACCOUNT)) {
-            self::$SELECTACCOUNT = new OAuth2OidcPrompt('select_account');
-        }
+        self::$SELECTACCOUNT ??= new OAuth2OidcPrompt('select_account');
+
         return self::$SELECTACCOUNT;
     }
 

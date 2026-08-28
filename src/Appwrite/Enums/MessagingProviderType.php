@@ -29,23 +29,20 @@ class MessagingProviderType implements JsonSerializable, Stringable
 
     public static function EMAIL(): MessagingProviderType
     {
-        if (!isset(self::$EMAIL)) {
-            self::$EMAIL = new MessagingProviderType('email');
-        }
+        self::$EMAIL ??= new MessagingProviderType('email');
+
         return self::$EMAIL;
     }
     public static function SMS(): MessagingProviderType
     {
-        if (!isset(self::$SMS)) {
-            self::$SMS = new MessagingProviderType('sms');
-        }
+        self::$SMS ??= new MessagingProviderType('sms');
+
         return self::$SMS;
     }
     public static function PUSH(): MessagingProviderType
     {
-        if (!isset(self::$PUSH)) {
-            self::$PUSH = new MessagingProviderType('push');
-        }
+        self::$PUSH ??= new MessagingProviderType('push');
+
         return self::$PUSH;
     }
 

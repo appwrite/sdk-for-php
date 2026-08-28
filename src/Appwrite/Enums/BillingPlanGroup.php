@@ -29,23 +29,20 @@ class BillingPlanGroup implements JsonSerializable, Stringable
 
     public static function STARTER(): BillingPlanGroup
     {
-        if (!isset(self::$STARTER)) {
-            self::$STARTER = new BillingPlanGroup('starter');
-        }
+        self::$STARTER ??= new BillingPlanGroup('starter');
+
         return self::$STARTER;
     }
     public static function PRO(): BillingPlanGroup
     {
-        if (!isset(self::$PRO)) {
-            self::$PRO = new BillingPlanGroup('pro');
-        }
+        self::$PRO ??= new BillingPlanGroup('pro');
+
         return self::$PRO;
     }
     public static function SCALE(): BillingPlanGroup
     {
-        if (!isset(self::$SCALE)) {
-            self::$SCALE = new BillingPlanGroup('scale');
-        }
+        self::$SCALE ??= new BillingPlanGroup('scale');
+
         return self::$SCALE;
     }
 

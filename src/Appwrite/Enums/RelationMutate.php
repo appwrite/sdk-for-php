@@ -29,23 +29,20 @@ class RelationMutate implements JsonSerializable, Stringable
 
     public static function CASCADE(): RelationMutate
     {
-        if (!isset(self::$CASCADE)) {
-            self::$CASCADE = new RelationMutate('cascade');
-        }
+        self::$CASCADE ??= new RelationMutate('cascade');
+
         return self::$CASCADE;
     }
     public static function RESTRICT(): RelationMutate
     {
-        if (!isset(self::$RESTRICT)) {
-            self::$RESTRICT = new RelationMutate('restrict');
-        }
+        self::$RESTRICT ??= new RelationMutate('restrict');
+
         return self::$RESTRICT;
     }
     public static function SETNULL(): RelationMutate
     {
-        if (!isset(self::$SETNULL)) {
-            self::$SETNULL = new RelationMutate('setNull');
-        }
+        self::$SETNULL ??= new RelationMutate('setNull');
+
         return self::$SETNULL;
     }
 
