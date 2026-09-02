@@ -24,6 +24,7 @@ $result = $documentsDB->createDocument(
         'age' => 30,
         'isAdmin' => false
     ],
-    permissions: [Permission::read(Role::any())] // optional
+    permissions: [Permission::read(Role::any())], // optional
+    transactionId: '<TRANSACTION_ID>' // optional
 );
 ```

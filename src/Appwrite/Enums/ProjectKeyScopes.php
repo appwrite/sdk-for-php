@@ -57,12 +57,16 @@ class ProjectKeyScopes implements JsonSerializable, Stringable
     private static ProjectKeyScopes $DOCUMENTSDBCOLLECTIONSWRITE;
     private static ProjectKeyScopes $DOCUMENTSDBDOCUMENTSREAD;
     private static ProjectKeyScopes $DOCUMENTSDBDOCUMENTSWRITE;
+    private static ProjectKeyScopes $DOCUMENTSDBINDEXESREAD;
+    private static ProjectKeyScopes $DOCUMENTSDBINDEXESWRITE;
     private static ProjectKeyScopes $VECTORSDBREAD;
     private static ProjectKeyScopes $VECTORSDBWRITE;
     private static ProjectKeyScopes $VECTORSDBCOLLECTIONSREAD;
     private static ProjectKeyScopes $VECTORSDBCOLLECTIONSWRITE;
     private static ProjectKeyScopes $VECTORSDBDOCUMENTSREAD;
     private static ProjectKeyScopes $VECTORSDBDOCUMENTSWRITE;
+    private static ProjectKeyScopes $VECTORSDBINDEXESREAD;
+    private static ProjectKeyScopes $VECTORSDBINDEXESWRITE;
     private static ProjectKeyScopes $BUCKETSREAD;
     private static ProjectKeyScopes $BUCKETSWRITE;
     private static ProjectKeyScopes $FILESREAD;
@@ -429,6 +433,18 @@ class ProjectKeyScopes implements JsonSerializable, Stringable
 
         return self::$DOCUMENTSDBDOCUMENTSWRITE;
     }
+    public static function DOCUMENTSDBINDEXESREAD(): ProjectKeyScopes
+    {
+        self::$DOCUMENTSDBINDEXESREAD ??= new ProjectKeyScopes('documentsdb.indexes.read');
+
+        return self::$DOCUMENTSDBINDEXESREAD;
+    }
+    public static function DOCUMENTSDBINDEXESWRITE(): ProjectKeyScopes
+    {
+        self::$DOCUMENTSDBINDEXESWRITE ??= new ProjectKeyScopes('documentsdb.indexes.write');
+
+        return self::$DOCUMENTSDBINDEXESWRITE;
+    }
     public static function VECTORSDBREAD(): ProjectKeyScopes
     {
         self::$VECTORSDBREAD ??= new ProjectKeyScopes('vectorsdb.read');
@@ -464,6 +480,18 @@ class ProjectKeyScopes implements JsonSerializable, Stringable
         self::$VECTORSDBDOCUMENTSWRITE ??= new ProjectKeyScopes('vectorsdb.documents.write');
 
         return self::$VECTORSDBDOCUMENTSWRITE;
+    }
+    public static function VECTORSDBINDEXESREAD(): ProjectKeyScopes
+    {
+        self::$VECTORSDBINDEXESREAD ??= new ProjectKeyScopes('vectorsdb.indexes.read');
+
+        return self::$VECTORSDBINDEXESREAD;
+    }
+    public static function VECTORSDBINDEXESWRITE(): ProjectKeyScopes
+    {
+        self::$VECTORSDBINDEXESWRITE ??= new ProjectKeyScopes('vectorsdb.indexes.write');
+
+        return self::$VECTORSDBINDEXESWRITE;
     }
     public static function BUCKETSREAD(): ProjectKeyScopes
     {
@@ -895,12 +923,16 @@ class ProjectKeyScopes implements JsonSerializable, Stringable
             'documentsdb.collections.write' => self::DOCUMENTSDBCOLLECTIONSWRITE(),
             'documentsdb.documents.read' => self::DOCUMENTSDBDOCUMENTSREAD(),
             'documentsdb.documents.write' => self::DOCUMENTSDBDOCUMENTSWRITE(),
+            'documentsdb.indexes.read' => self::DOCUMENTSDBINDEXESREAD(),
+            'documentsdb.indexes.write' => self::DOCUMENTSDBINDEXESWRITE(),
             'vectorsdb.read' => self::VECTORSDBREAD(),
             'vectorsdb.write' => self::VECTORSDBWRITE(),
             'vectorsdb.collections.read' => self::VECTORSDBCOLLECTIONSREAD(),
             'vectorsdb.collections.write' => self::VECTORSDBCOLLECTIONSWRITE(),
             'vectorsdb.documents.read' => self::VECTORSDBDOCUMENTSREAD(),
             'vectorsdb.documents.write' => self::VECTORSDBDOCUMENTSWRITE(),
+            'vectorsdb.indexes.read' => self::VECTORSDBINDEXESREAD(),
+            'vectorsdb.indexes.write' => self::VECTORSDBINDEXESWRITE(),
             'buckets.read' => self::BUCKETSREAD(),
             'buckets.write' => self::BUCKETSWRITE(),
             'files.read' => self::FILESREAD(),

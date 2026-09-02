@@ -281,6 +281,7 @@ POST https://cloud.appwrite.io/v1/vectorsdb/{databaseId}/collections/{collection
 | documentId | string | Document ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
 | data | object | Document data as JSON object. | {} |
 | permissions | array | An array of permissions strings. By default, only the current user is granted all permissions. [Learn more about permissions](https://appwrite.io/docs/permissions). |  |
+| transactionId | string | Transaction ID for staging the operation. |  |
 
 
 ```http request
@@ -296,6 +297,7 @@ POST https://cloud.appwrite.io/v1/vectorsdb/{databaseId}/collections/{collection
 | databaseId | string | **Required** Database ID. |  |
 | collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). Make sure to define attributes before creating documents. |  |
 | documents | array | Array of documents data as JSON objects. | [] |
+| transactionId | string | Transaction ID for staging the operation. |  |
 
 
 ```http request

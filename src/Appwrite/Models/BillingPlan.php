@@ -84,6 +84,7 @@ readonly class BillingPlan
      * @param int|null $members members
      * @param int|null $activityLogs activity log days
      * @param array|null $usageLogsIntervals usage log time intervals allowed for this plan (e.g. 15m, 1h, 1d).
+     * @param array|null $usageAggregateOnlyMetrics metrics this plan only records as a total. they cannot be broken down by dimension or filtered, because the stored events cover a fraction of the real traffic.
      * @param bool|null $backupsEnabled does plan support backup policies.
      * @param int|null $backupPolicies how many policies does plan support
      * @param BillingPlanLimits|null $limits plan specific limits
@@ -157,6 +158,7 @@ readonly class BillingPlan
         public ?int $members = null,
         public ?int $activityLogs = null,
         public ?array $usageLogsIntervals = null,
+        public ?array $usageAggregateOnlyMetrics = null,
         public ?bool $backupsEnabled = null,
         public ?int $backupPolicies = null,
         public ?BillingPlanLimits $limits = null,
@@ -427,6 +429,7 @@ readonly class BillingPlan
             members: $data['members'] ?? null,
             activityLogs: $data['activityLogs'] ?? null,
             usageLogsIntervals: $data['usageLogsIntervals'] ?? null,
+            usageAggregateOnlyMetrics: $data['usageAggregateOnlyMetrics'] ?? null,
             backupsEnabled: $data['backupsEnabled'] ?? null,
             backupPolicies: $data['backupPolicies'] ?? null,
             limits: array_key_exists('limits', $data) ? static::hydrateTypedValue(BillingPlanLimits::class, $data['limits'], true) : null,
@@ -478,6 +481,7 @@ readonly class BillingPlan
             'activityLogs' => static::serializeValue($this->activityLogs),
             'usageLogs' => static::serializeValue($this->usageLogs),
             'usageLogsIntervals' => static::serializeValue($this->usageLogsIntervals),
+            'usageAggregateOnlyMetrics' => static::serializeValue($this->usageAggregateOnlyMetrics),
             'projectInactivityDays' => static::serializeValue($this->projectInactivityDays),
             'alertLimit' => static::serializeValue($this->alertLimit),
             'usage' => static::serializeValue($this->usage),

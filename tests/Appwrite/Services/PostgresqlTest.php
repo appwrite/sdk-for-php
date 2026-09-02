@@ -40,6 +40,7 @@ final class PostgresqlTest extends TestCase
                     "connectionPort" => 5432,
                     "connectionUser" => "appwrite_user",
                     "connectionPassword" => "••••••••",
+                    "credentialGeneration" => 1,
                     "connectionString" => "postgresql://user:pass@db-myproject-mydb.fra.appwrite.center:5432/postgres?sslmode=require",
                     "ssl" => true,
                     "status" => "ready",
@@ -104,6 +105,7 @@ final class PostgresqlTest extends TestCase
             "connectionPort" => 5432,
             "connectionUser" => "appwrite_user",
             "connectionPassword" => "••••••••",
+            "credentialGeneration" => 1,
             "connectionString" => "postgresql://user:pass@db-myproject-mydb.fra.appwrite.center:5432/postgres?sslmode=require",
             "ssl" => true,
             "status" => "ready",
@@ -205,6 +207,7 @@ final class PostgresqlTest extends TestCase
             "connectionPort" => 5432,
             "connectionUser" => "appwrite_user",
             "connectionPassword" => "••••••••",
+            "credentialGeneration" => 1,
             "connectionString" => "postgresql://user:pass@db-myproject-mydb.fra.appwrite.center:5432/postgres?sslmode=require",
             "ssl" => true,
             "status" => "ready",
@@ -269,6 +272,7 @@ final class PostgresqlTest extends TestCase
             "connectionPort" => 5432,
             "connectionUser" => "appwrite_user",
             "connectionPassword" => "••••••••",
+            "credentialGeneration" => 1,
             "connectionString" => "postgresql://user:pass@db-myproject-mydb.fra.appwrite.center:5432/postgres?sslmode=require",
             "ssl" => true,
             "status" => "ready",
@@ -632,7 +636,7 @@ final class PostgresqlTest extends TestCase
                     "password" => "********",
                     "ssl" => true,
                     "engine" => "postgresql",
-                    "connectionString" => "postgresql://appwrite:****@db-myproject-mydb-a1b2c3d4.fra.appwrite.center:5432/db-myproject-mydb-a1b2c3d4?sslmode=disable"
+                    "connectionString" => "postgresql://appwrite:****@db-myproject-mydb-a1b2c3d4.fra.appwrite.center:5432/db-myproject-mydb-a1b2c3d4?sslmode=require"
                 ]
             ]
         ];
@@ -667,6 +671,7 @@ final class PostgresqlTest extends TestCase
             "connectionPort" => 5432,
             "connectionUser" => "appwrite_user",
             "connectionPassword" => "••••••••",
+            "credentialGeneration" => 1,
             "connectionString" => "postgresql://user:pass@db-myproject-mydb.fra.appwrite.center:5432/postgres?sslmode=require",
             "ssl" => true,
             "status" => "ready",
@@ -731,6 +736,7 @@ final class PostgresqlTest extends TestCase
             "connectionPort" => 5432,
             "connectionUser" => "appwrite_user",
             "connectionPassword" => "••••••••",
+            "credentialGeneration" => 1,
             "connectionString" => "postgresql://user:pass@db-myproject-mydb.fra.appwrite.center:5432/postgres?sslmode=require",
             "ssl" => true,
             "status" => "ready",
@@ -784,50 +790,12 @@ final class PostgresqlTest extends TestCase
         $data = [
             "\$id" => "5e5ea5c16897e",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "projectId" => "5e5ea5c16897e",
-            "name" => "My Production Database",
-            "api" => "postgresql",
-            "engine" => "postgresql",
-            "version" => "16",
-            "specification" => "s-2vcpu-2gb",
-            "backend" => "edge",
-            "hostname" => "db-myproject-mydb.fra.appwrite.center",
-            "connectionPort" => 5432,
-            "connectionUser" => "appwrite_user",
-            "connectionPassword" => "••••••••",
-            "connectionString" => "postgresql://user:pass@db-myproject-mydb.fra.appwrite.center:5432/postgres?sslmode=require",
-            "ssl" => true,
-            "status" => "ready",
-            "containerStatus" => "active",
-            "lifecycleState" => "active",
-            "idleTimeoutMinutes" => 15,
-            "cpu" => 2000,
-            "memory" => 4096,
-            "storage" => 100,
-            "storageClass" => "ssd",
-            "storageMaxGb" => 100,
-            "nodePool" => "db-pool-4vcpu-8gb",
-            "replicas" => 2,
-            "syncMode" => "async",
-            "networkMaxConnections" => 500,
-            "networkIdleTimeoutSeconds" => 900,
-            "networkIPAllowlist" => [],
-            "backupEnabled" => true,
-            "pitr" => true,
-            "pitrRetentionDays" => 14,
-            "storageAutoscaling" => true,
-            "storageAutoscalingThresholdPercent" => 85,
-            "storageAutoscalingMaxGb" => 500,
-            "maintenanceWindowDay" => "sun",
-            "maintenanceWindowHourUtc" => 3,
-            "metricsEnabled" => true,
-            "sqlApiEnabled" => true,
-            "sqlApiAllowedStatements" => [],
-            "sqlApiMaxRows" => 10000,
-            "sqlApiMaxBytes" => 10485760,
-            "sqlApiTimeoutSeconds" => 30,
-            "error" => "[ERROR]"
+            "databaseId" => "5e5ea5c16897e",
+            "type" => "update",
+            "status" => "completed",
+            "attempts" => 1,
+            "errorCode" => "Interrupted",
+            "errorMessage" => "[ERRORMESSAGE]"
         ];
 
         $this->client
@@ -841,7 +809,7 @@ final class PostgresqlTest extends TestCase
             "<DATABASE_ID>"
         );
 
-        $this->assertInstanceOf(\Appwrite\Models\DedicatedDatabase::class, $response);
+        $this->assertInstanceOf(\Appwrite\Models\DedicatedDatabaseOperation::class, $response);
     }
     public function testMethodCreateExecution(): void
     {
@@ -918,6 +886,7 @@ final class PostgresqlTest extends TestCase
             "connectionPort" => 5432,
             "connectionUser" => "appwrite_user",
             "connectionPassword" => "••••••••",
+            "credentialGeneration" => 1,
             "connectionString" => "postgresql://user:pass@db-myproject-mydb.fra.appwrite.center:5432/postgres?sslmode=require",
             "ssl" => true,
             "status" => "ready",
@@ -983,6 +952,7 @@ final class PostgresqlTest extends TestCase
             "connectionPort" => 5432,
             "connectionUser" => "appwrite_user",
             "connectionPassword" => "••••••••",
+            "credentialGeneration" => 1,
             "connectionString" => "postgresql://user:pass@db-myproject-mydb.fra.appwrite.center:5432/postgres?sslmode=require",
             "ssl" => true,
             "status" => "ready",
@@ -1048,6 +1018,7 @@ final class PostgresqlTest extends TestCase
             "connectionPort" => 5432,
             "connectionUser" => "appwrite_user",
             "connectionPassword" => "••••••••",
+            "credentialGeneration" => 1,
             "connectionString" => "postgresql://user:pass@db-myproject-mydb.fra.appwrite.center:5432/postgres?sslmode=require",
             "ssl" => true,
             "status" => "ready",
@@ -1112,6 +1083,7 @@ final class PostgresqlTest extends TestCase
             "connectionPort" => 5432,
             "connectionUser" => "appwrite_user",
             "connectionPassword" => "••••••••",
+            "credentialGeneration" => 1,
             "connectionString" => "postgresql://user:pass@db-myproject-mydb.fra.appwrite.center:5432/postgres?sslmode=require",
             "ssl" => true,
             "status" => "ready",
@@ -1178,6 +1150,7 @@ final class PostgresqlTest extends TestCase
             "connectionPort" => 5432,
             "connectionUser" => "appwrite_user",
             "connectionPassword" => "••••••••",
+            "credentialGeneration" => 1,
             "connectionString" => "postgresql://user:pass@db-myproject-mydb.fra.appwrite.center:5432/postgres?sslmode=require",
             "ssl" => true,
             "status" => "ready",
@@ -1522,6 +1495,7 @@ final class PostgresqlTest extends TestCase
             "connectionPort" => 5432,
             "connectionUser" => "appwrite_user",
             "connectionPassword" => "••••••••",
+            "credentialGeneration" => 1,
             "connectionString" => "postgresql://user:pass@db-myproject-mydb.fra.appwrite.center:5432/postgres?sslmode=require",
             "ssl" => true,
             "status" => "ready",

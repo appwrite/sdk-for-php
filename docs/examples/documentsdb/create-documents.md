@@ -14,6 +14,7 @@ $documentsDB = new DocumentsDB($client);
 $result = $documentsDB->createDocuments(
     databaseId: '<DATABASE_ID>',
     collectionId: '<COLLECTION_ID>',
-    documents: []
+    documents: [],
+    transactionId: '<TRANSACTION_ID>' // optional
 );
 ```

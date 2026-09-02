@@ -18,6 +18,7 @@ class ProjectOAuthProviderId implements JsonSerializable, Stringable
     private static ProjectOAuthProviderId $BITBUCKET;
     private static ProjectOAuthProviderId $BITLY;
     private static ProjectOAuthProviderId $BOX;
+    private static ProjectOAuthProviderId $CLOUDFLARE;
     private static ProjectOAuthProviderId $DAILYMOTION;
     private static ProjectOAuthProviderId $DISCORD;
     private static ProjectOAuthProviderId $DISQUS;
@@ -40,6 +41,7 @@ class ProjectOAuthProviderId implements JsonSerializable, Stringable
     private static ProjectOAuthProviderId $PAYPAL;
     private static ProjectOAuthProviderId $PAYPALSANDBOX;
     private static ProjectOAuthProviderId $PODIO;
+    private static ProjectOAuthProviderId $RESEND;
     private static ProjectOAuthProviderId $SALESFORCE;
     private static ProjectOAuthProviderId $SLACK;
     private static ProjectOAuthProviderId $SPOTIFY;
@@ -122,6 +124,12 @@ class ProjectOAuthProviderId implements JsonSerializable, Stringable
         self::$BOX ??= new ProjectOAuthProviderId('box');
 
         return self::$BOX;
+    }
+    public static function CLOUDFLARE(): ProjectOAuthProviderId
+    {
+        self::$CLOUDFLARE ??= new ProjectOAuthProviderId('cloudflare');
+
+        return self::$CLOUDFLARE;
     }
     public static function DAILYMOTION(): ProjectOAuthProviderId
     {
@@ -255,6 +263,12 @@ class ProjectOAuthProviderId implements JsonSerializable, Stringable
 
         return self::$PODIO;
     }
+    public static function RESEND(): ProjectOAuthProviderId
+    {
+        self::$RESEND ??= new ProjectOAuthProviderId('resend');
+
+        return self::$RESEND;
+    }
     public static function SALESFORCE(): ProjectOAuthProviderId
     {
         self::$SALESFORCE ??= new ProjectOAuthProviderId('salesforce');
@@ -352,6 +366,7 @@ class ProjectOAuthProviderId implements JsonSerializable, Stringable
             'bitbucket' => self::BITBUCKET(),
             'bitly' => self::BITLY(),
             'box' => self::BOX(),
+            'cloudflare' => self::CLOUDFLARE(),
             'dailymotion' => self::DAILYMOTION(),
             'discord' => self::DISCORD(),
             'disqus' => self::DISQUS(),
@@ -374,6 +389,7 @@ class ProjectOAuthProviderId implements JsonSerializable, Stringable
             'paypal' => self::PAYPAL(),
             'paypalSandbox' => self::PAYPALSANDBOX(),
             'podio' => self::PODIO(),
+            'resend' => self::RESEND(),
             'salesforce' => self::SALESFORCE(),
             'slack' => self::SLACK(),
             'spotify' => self::SPOTIFY(),

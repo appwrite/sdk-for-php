@@ -19,7 +19,7 @@ readonly class DedicatedDatabaseOperation
      * @param string $id operation id.
      * @param string $createdAt operation creation time in iso 8601 format.
      * @param string $databaseId database id the operation ran against.
-     * @param string $type operation type, such as provision, update, restore, pausing, resuming, failover, backup-create or cross-region-enable.
+     * @param string $type operation type, such as provision, update, credentials-update, restore, pausing, resuming, failover, backup-create or cross-region-enable.
      * @param string $status operation status. possible values: queued (accepted and waiting to resume), running (in progress), completed (finished successfully), failed (ended in an error).
      * @param int $attempts number of times this operation has been attempted.
      * @param string $errorCode machine-readable failure code. `interrupted` marks an attempt that ended before its outcome could be confirmed.
