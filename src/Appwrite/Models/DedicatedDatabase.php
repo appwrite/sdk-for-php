@@ -25,11 +25,12 @@ readonly class DedicatedDatabase
      * @param string $engine database engine: postgresql, mysql, or mongodb. null until the backing reports one.
      * @param string $version database engine version.
      * @param string $specification specification identifier.
-     * @param string $backend database backend provider. possible values: prisma, edge.
+     * @param string $backend database backend provider. possible values: edge.
      * @param string $hostname database hostname for connections.
      * @param int $connectionPort database port for connections. derived from the engine when the backing has not reported one yet.
      * @param string $connectionUser database username for connections.
      * @param string $connectionPassword database password for connections.
+     * @param int $credentialGeneration committed generation of the primary connection credentials. null until the rotation contract has been initialized.
      * @param string $connectionString full database connection string (uri format).
      * @param bool $ssl whether ssl/tls is required for client connections.
      * @param string $status database status. possible values: provisioning, ready, inactive, paused, failed, deleted, restoring, scaling.
@@ -80,6 +81,7 @@ readonly class DedicatedDatabase
         public int $connectionPort,
         public string $connectionUser,
         public string $connectionPassword,
+        public int $credentialGeneration,
         public string $connectionString,
         public bool $ssl,
         public string $status,
@@ -163,6 +165,9 @@ readonly class DedicatedDatabase
         }
         if (!array_key_exists('connectionPassword', $data)) {
             throw new \InvalidArgumentException('Missing required field "connectionPassword" for ' . static::class . '.');
+        }
+        if (!array_key_exists('credentialGeneration', $data)) {
+            throw new \InvalidArgumentException('Missing required field "credentialGeneration" for ' . static::class . '.');
         }
         if (!array_key_exists('connectionString', $data)) {
             throw new \InvalidArgumentException('Missing required field "connectionString" for ' . static::class . '.');
@@ -276,6 +281,7 @@ readonly class DedicatedDatabase
             connectionPort: $data['connectionPort'],
             connectionUser: $data['connectionUser'],
             connectionPassword: $data['connectionPassword'],
+            credentialGeneration: $data['credentialGeneration'],
             connectionString: $data['connectionString'],
             ssl: $data['ssl'],
             status: $data['status'],
@@ -333,6 +339,7 @@ readonly class DedicatedDatabase
             'connectionPort' => static::serializeValue($this->connectionPort),
             'connectionUser' => static::serializeValue($this->connectionUser),
             'connectionPassword' => static::serializeValue($this->connectionPassword),
+            'credentialGeneration' => static::serializeValue($this->credentialGeneration),
             'connectionString' => static::serializeValue($this->connectionString),
             'ssl' => static::serializeValue($this->ssl),
             'status' => static::serializeValue($this->status),

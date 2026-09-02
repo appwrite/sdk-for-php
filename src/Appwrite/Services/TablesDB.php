@@ -669,12 +669,12 @@ class TablesDB extends Service
      *
      * @throws AppwriteException
      */
-    public function cutoverMigration(string $databaseId, string $migrationId): \Appwrite\Models\DatabaseMigration
+    public function createCutover(string $databaseId, string $migrationId): \Appwrite\Models\DatabaseMigration
     {
         $apiPath = str_replace(
             ['{databaseId}', '{migrationId}'],
             [$databaseId, $migrationId],
-            '/tablesdb/{databaseId}/migrations/{migrationId}/cutover'
+            '/tablesdb/{databaseId}/migrations/{migrationId}/cutovers'
         );
 
         $apiParams = [];

@@ -797,14 +797,14 @@ class Postgresql extends Service
     }
 
     /**
-     * Rotate the primary connection credentials for a dedicated database.
-     * Generates a new password and updates the database atomically. Previous
-     * credentials stop working immediately. Returns the database with a refreshed
-     * connection string carrying the new password.
+     * Queue a rotation of the primary connection credentials for a dedicated
+     * database. A hibernated database is woken by the worker before rotation.
+     * List database operations until the returned operation reaches a terminal
+     * status, then fetch the database again for the refreshed connection string.
      *
      * @throws AppwriteException
      */
-    public function updateCredentials(string $databaseId): \Appwrite\Models\DedicatedDatabase
+    public function updateCredentials(string $databaseId): \Appwrite\Models\DedicatedDatabaseOperation
     {
         $apiPath = str_replace(
             ['{databaseId}'],
@@ -831,7 +831,7 @@ class Postgresql extends Service
             throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
         }
 
-        return \Appwrite\Models\DedicatedDatabase::from($response);
+        return \Appwrite\Models\DedicatedDatabaseOperation::from($response);
     }
 
     /**

@@ -18,6 +18,7 @@ class OAuthProvider implements JsonSerializable, Stringable
     private static OAuthProvider $BITBUCKET;
     private static OAuthProvider $BITLY;
     private static OAuthProvider $BOX;
+    private static OAuthProvider $CLOUDFLARE;
     private static OAuthProvider $DAILYMOTION;
     private static OAuthProvider $DISCORD;
     private static OAuthProvider $DISQUS;
@@ -40,6 +41,7 @@ class OAuthProvider implements JsonSerializable, Stringable
     private static OAuthProvider $PAYPAL;
     private static OAuthProvider $PAYPALSANDBOX;
     private static OAuthProvider $PODIO;
+    private static OAuthProvider $RESEND;
     private static OAuthProvider $SALESFORCE;
     private static OAuthProvider $SLACK;
     private static OAuthProvider $SPOTIFY;
@@ -122,6 +124,12 @@ class OAuthProvider implements JsonSerializable, Stringable
         self::$BOX ??= new OAuthProvider('box');
 
         return self::$BOX;
+    }
+    public static function CLOUDFLARE(): OAuthProvider
+    {
+        self::$CLOUDFLARE ??= new OAuthProvider('cloudflare');
+
+        return self::$CLOUDFLARE;
     }
     public static function DAILYMOTION(): OAuthProvider
     {
@@ -255,6 +263,12 @@ class OAuthProvider implements JsonSerializable, Stringable
 
         return self::$PODIO;
     }
+    public static function RESEND(): OAuthProvider
+    {
+        self::$RESEND ??= new OAuthProvider('resend');
+
+        return self::$RESEND;
+    }
     public static function SALESFORCE(): OAuthProvider
     {
         self::$SALESFORCE ??= new OAuthProvider('salesforce');
@@ -352,6 +366,7 @@ class OAuthProvider implements JsonSerializable, Stringable
             'bitbucket' => self::BITBUCKET(),
             'bitly' => self::BITLY(),
             'box' => self::BOX(),
+            'cloudflare' => self::CLOUDFLARE(),
             'dailymotion' => self::DAILYMOTION(),
             'discord' => self::DISCORD(),
             'disqus' => self::DISQUS(),
@@ -374,6 +389,7 @@ class OAuthProvider implements JsonSerializable, Stringable
             'paypal' => self::PAYPAL(),
             'paypalSandbox' => self::PAYPALSANDBOX(),
             'podio' => self::PODIO(),
+            'resend' => self::RESEND(),
             'salesforce' => self::SALESFORCE(),
             'slack' => self::SLACK(),
             'spotify' => self::SPOTIFY(),

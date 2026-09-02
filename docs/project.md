@@ -364,6 +364,21 @@ PATCH https://cloud.appwrite.io/v1/project/oauth2/box
 
 
 ```http request
+PATCH https://cloud.appwrite.io/v1/project/oauth2/cloudflare
+```
+
+** Update the project OAuth2 Cloudflare configuration. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| clientId | string | 'Client ID' of Cloudflare OAuth2 app. For example: 4b866000000000000000000000c9e4e2 |  |
+| clientSecret | string | 'Client Secret' of Cloudflare OAuth2 app. For example: cfoc_5Q6YRl0000000000000000000000000000000000003d214f |  |
+| enabled | boolean | OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid. |  |
+
+
+```http request
 PATCH https://cloud.appwrite.io/v1/project/oauth2/dailymotion
 ```
 
@@ -704,6 +719,21 @@ PATCH https://cloud.appwrite.io/v1/project/oauth2/podio
 | --- | --- | --- | --- |
 | clientId | string | 'Client ID' of Podio OAuth2 app. For example: appwrite-o0000000st-app |  |
 | clientSecret | string | 'Client Secret' of Podio OAuth2 app. For example: Rn247T0000000000000000000000000000000000000000000000000000W2zWTN |  |
+| enabled | boolean | OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid. |  |
+
+
+```http request
+PATCH https://cloud.appwrite.io/v1/project/oauth2/resend
+```
+
+** Update the project OAuth2 Resend configuration. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| clientId | string | 'Client ID' of Resend OAuth2 app. For example: f47ac10b-58cc-4372-a567-0e02b2c3d479 |  |
+| clientSecret | string | 'Client Secret' of Resend OAuth2 app. For example: 9c1e4b00000000000000000000000000000000000000000000000000a72d5f4 |  |
 | enabled | boolean | OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid. |  |
 
 

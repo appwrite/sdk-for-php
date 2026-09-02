@@ -20,14 +20,14 @@ readonly class FrameworkAdapter
      * @param string $installCommand default command to download dependencies.
      * @param string $buildCommand default command to build site into output directory.
      * @param string $outputDirectory default output directory of build.
-     * @param string $fallbackFile name of fallback file to use instead of 404 page. if null, appwrite 404 page will be displayed.
+     * @param string|null $fallbackFile name of fallback file to use instead of 404 page. if null, appwrite 404 page will be displayed.
      */
     public function __construct(
         public string $key,
         public string $installCommand,
         public string $buildCommand,
         public string $outputDirectory,
-        public string $fallbackFile
+        public ?string $fallbackFile = null
     ) {
     }
 
@@ -48,16 +48,13 @@ readonly class FrameworkAdapter
         if (!array_key_exists('outputDirectory', $data)) {
             throw new \InvalidArgumentException('Missing required field "outputDirectory" for ' . static::class . '.');
         }
-        if (!array_key_exists('fallbackFile', $data)) {
-            throw new \InvalidArgumentException('Missing required field "fallbackFile" for ' . static::class . '.');
-        }
 
         return new static(
             key: $data['key'],
             installCommand: $data['installCommand'],
             buildCommand: $data['buildCommand'],
             outputDirectory: $data['outputDirectory'],
-            fallbackFile: $data['fallbackFile']
+            fallbackFile: $data['fallbackFile'] ?? null
         );
     }
 

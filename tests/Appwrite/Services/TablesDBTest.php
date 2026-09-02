@@ -330,6 +330,7 @@ final class TablesDBTest extends TestCase
             "connectionPort" => 5432,
             "connectionUser" => "appwrite_user",
             "connectionPassword" => "••••••••",
+            "credentialGeneration" => 1,
             "connectionString" => "postgresql://user:pass@db-myproject-mydb.fra.appwrite.center:5432/postgres?sslmode=require",
             "ssl" => true,
             "status" => "ready",
@@ -507,7 +508,7 @@ final class TablesDBTest extends TestCase
 
         $this->assertSame($data, $response);
     }
-    public function testMethodCutoverMigration(): void
+    public function testMethodCreateCutover(): void
     {
         $data = [
             "\$id" => "5e5ea5c16897e",
@@ -536,7 +537,7 @@ final class TablesDBTest extends TestCase
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->tablesDB->cutoverMigration(
+        $response = $this->tablesDB->createCutover(
             "<DATABASE_ID>",
             "<MIGRATION_ID>"
         );

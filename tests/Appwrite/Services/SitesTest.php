@@ -174,8 +174,7 @@ final class SitesTest extends TestCase
                             "key" => "static",
                             "installCommand" => "npm install",
                             "buildCommand" => "npm run build",
-                            "outputDirectory" => "./dist",
-                            "fallbackFile" => "index.html"
+                            "outputDirectory" => "./dist"
                         ]
                     ]
                 ]

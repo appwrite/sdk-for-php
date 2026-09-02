@@ -817,6 +817,26 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Box::class, $response);
     }
+    public function testMethodUpdateOAuth2Cloudflare(): void
+    {
+        $data = [
+            "\$id" => "github",
+            "enabled" => true,
+            "clientId" => "4b866000000000000000000000c9e4e2",
+            "clientSecret" => "cfoc_5Q6YRl0000000000000000000000000000000000003d214f"
+        ];
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->project->updateOAuth2Cloudflare();
+
+        $this->assertInstanceOf(\Appwrite\Models\OAuth2Cloudflare::class, $response);
+    }
     public function testMethodUpdateOAuth2Dailymotion(): void
     {
         $data = [
@@ -1269,6 +1289,26 @@ final class ProjectTest extends TestCase
         $response = $this->project->updateOAuth2Podio();
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Podio::class, $response);
+    }
+    public function testMethodUpdateOAuth2Resend(): void
+    {
+        $data = [
+            "\$id" => "github",
+            "enabled" => true,
+            "clientId" => "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+            "clientSecret" => "9c1e4b00000000000000000000000000000000000000000000000000a72d5f4"
+        ];
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->project->updateOAuth2Resend();
+
+        $this->assertInstanceOf(\Appwrite\Models\OAuth2Resend::class, $response);
     }
     public function testMethodUpdateOAuth2Salesforce(): void
     {

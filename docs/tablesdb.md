@@ -238,7 +238,7 @@ DELETE https://cloud.appwrite.io/v1/tablesdb/{databaseId}/migrations/{migrationI
 
 
 ```http request
-POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/migrations/{migrationId}/cutover
+POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/migrations/{migrationId}/cutovers
 ```
 
 ** Cut a verified TablesDB migration over to its dedicated compute. Only applies to a migration created with `autoCutover` disabled, which waits at `ready_to_cutover` until this is called. The routing flip happens shortly after this returns, with a brief read-only window. One call buys one attempt: a cutover that fails a check returns the migration to `verifying` and parks it again, so call this once more to retry. **

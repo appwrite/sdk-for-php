@@ -746,7 +746,7 @@ class DocumentsDB extends Service
      *
      * @throws AppwriteException
      */
-    public function createDocument(string $databaseId, string $collectionId, string $documentId, array $data, ?array $permissions = null): \Appwrite\Models\Document
+    public function createDocument(string $databaseId, string $collectionId, string $documentId, array $data, ?array $permissions = null, ?string $transactionId = null): \Appwrite\Models\Document
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
@@ -762,6 +762,10 @@ class DocumentsDB extends Service
 
         if (!is_null($permissions)) {
             $apiParams['permissions'] = $permissions;
+        }
+
+        if (!is_null($transactionId)) {
+            $apiParams['transactionId'] = $transactionId;
         }
 
         $apiHeaders = [];
@@ -791,7 +795,7 @@ class DocumentsDB extends Service
      *
      * @throws AppwriteException
      */
-    public function createDocuments(string $databaseId, string $collectionId, array $documents): \Appwrite\Models\DocumentList
+    public function createDocuments(string $databaseId, string $collectionId, array $documents, ?string $transactionId = null): \Appwrite\Models\DocumentList
     {
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
@@ -803,6 +807,10 @@ class DocumentsDB extends Service
         $apiParams['databaseId'] = $databaseId;
         $apiParams['collectionId'] = $collectionId;
         $apiParams['documents'] = $documents;
+
+        if (!is_null($transactionId)) {
+            $apiParams['transactionId'] = $transactionId;
+        }
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
