@@ -1,5 +1,9 @@
 # Change Log
 
+## 26.1.1
+
+* Fixed: Made `Database` `policies` and `archives` optional and nullable so responses from servers without backup policies hydrate
+
 ## 26.1.0
 
 * Updated: Reworked `usage.listEvents` into an aggregation query with `metric`, `interval`, `dimensions`, and `orderBy`
