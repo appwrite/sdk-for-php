@@ -1630,7 +1630,7 @@ class Account extends Service
      *
      * @throws AppwriteException
      */
-    public function createOAuth2Token(OAuthProvider $provider, ?string $success = null, ?string $failure = null, ?array $scopes = null): string
+    public function createOAuth2Token(OAuthProvider $provider, ?string $success = null, ?string $failure = null, ?array $scopes = null, ?string $state = null): string
     {
         $apiPath = str_replace(
             ['{provider}'],
@@ -1651,6 +1651,10 @@ class Account extends Service
 
         if (!is_null($scopes)) {
             $apiParams['scopes'] = $scopes;
+        }
+
+        if (!is_null($state)) {
+            $apiParams['state'] = $state;
         }
 
         $apiHeaders = [];
