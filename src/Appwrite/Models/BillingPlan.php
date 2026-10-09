@@ -78,6 +78,7 @@ readonly class BillingPlan
      * @param BillingPlanSupportedAddons $supportedAddons supported addons for this plan
      * @param int $deploymentSize maximum function and site deployment size in mb
      * @param int $buildSize maximum function and site deployment size in mb
+     * @param int $functionsIntervalMinimum shortest function schedule interval allowed, in minutes. 0 allows every interval.
      * @param bool $databasesAllowEncrypt does the plan support encrypted string attributes or not.
      * @param BillingPlanGroup $group group of this billing plan for variants
      * @param float $databaseComputeCredit included monthly dedicated-database compute credit in usd. resets each billing cycle with no roll-over.
@@ -152,6 +153,7 @@ readonly class BillingPlan
         public BillingPlanSupportedAddons $supportedAddons,
         public int $deploymentSize,
         public int $buildSize,
+        public int $functionsIntervalMinimum,
         public bool $databasesAllowEncrypt,
         public BillingPlanGroup $group,
         public float $databaseComputeCredit,
@@ -352,6 +354,9 @@ readonly class BillingPlan
         if (!array_key_exists('buildSize', $data)) {
             throw new \InvalidArgumentException('Missing required field "buildSize" for ' . static::class . '.');
         }
+        if (!array_key_exists('functionsIntervalMinimum', $data)) {
+            throw new \InvalidArgumentException('Missing required field "functionsIntervalMinimum" for ' . static::class . '.');
+        }
         if (!array_key_exists('databasesAllowEncrypt', $data)) {
             throw new \InvalidArgumentException('Missing required field "databasesAllowEncrypt" for ' . static::class . '.');
         }
@@ -423,6 +428,7 @@ readonly class BillingPlan
             supportedAddons: static::hydrateTypedValue(BillingPlanSupportedAddons::class, $data['supportedAddons']),
             deploymentSize: $data['deploymentSize'],
             buildSize: $data['buildSize'],
+            functionsIntervalMinimum: $data['functionsIntervalMinimum'],
             databasesAllowEncrypt: $data['databasesAllowEncrypt'],
             group: static::hydrateTypedValue(BillingPlanGroup::class, $data['group']),
             databaseComputeCredit: $data['databaseComputeCredit'],
@@ -510,6 +516,7 @@ readonly class BillingPlan
             'backupPolicies' => static::serializeValue($this->backupPolicies),
             'deploymentSize' => static::serializeValue($this->deploymentSize),
             'buildSize' => static::serializeValue($this->buildSize),
+            'functionsIntervalMinimum' => static::serializeValue($this->functionsIntervalMinimum),
             'databasesAllowEncrypt' => static::serializeValue($this->databasesAllowEncrypt),
             'limits' => static::serializeValue($this->limits),
             'group' => static::serializeValue($this->group),

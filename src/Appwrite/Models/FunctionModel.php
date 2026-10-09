@@ -48,6 +48,7 @@ readonly class FunctionModel
      * @param array $providerPaths list of file path patterns that trigger automatic deployments. supports glob wildcards. empty list deploys on all file changes.
      * @param string $buildSpecification machine specification for deployment builds.
      * @param string $runtimeSpecification machine specification for executions.
+     * @param int|null $interval minutes between scheduled executions. 0 when the function has no interval.
      */
     public function __construct(
         public string $id,
@@ -81,7 +82,8 @@ readonly class FunctionModel
         public array $providerBranches,
         public array $providerPaths,
         public string $buildSpecification,
-        public string $runtimeSpecification
+        public string $runtimeSpecification,
+        public ?int $interval = null
     ) {
     }
 
@@ -224,7 +226,8 @@ readonly class FunctionModel
             providerBranches: $data['providerBranches'],
             providerPaths: $data['providerPaths'],
             buildSpecification: $data['buildSpecification'],
-            runtimeSpecification: $data['runtimeSpecification']
+            runtimeSpecification: $data['runtimeSpecification'],
+            interval: $data['interval'] ?? null
         );
     }
 
@@ -253,6 +256,7 @@ readonly class FunctionModel
             'vars' => static::serializeValue($this->vars),
             'events' => static::serializeValue($this->events),
             'schedule' => static::serializeValue($this->schedule),
+            'interval' => static::serializeValue($this->interval),
             'timeout' => static::serializeValue($this->timeout),
             'entrypoint' => static::serializeValue($this->entrypoint),
             'commands' => static::serializeValue($this->commands),
