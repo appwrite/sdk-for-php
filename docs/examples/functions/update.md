@@ -35,6 +35,7 @@ $result = $functions->update(
     providerPaths: [], // optional
     buildSpecification: 's-1vcpu-512mb', // optional
     runtimeSpecification: 's-1vcpu-512mb', // optional
-    deploymentRetention: 0 // optional
+    deploymentRetention: 0, // optional
+    interval: 0 // optional
 );
 ```

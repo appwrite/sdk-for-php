@@ -31,7 +31,7 @@ POST https://cloud.appwrite.io/v1/functions
 | runtime | string | Execution runtime. |  |
 | execute | array | An array of role strings with execution permissions. By default no user is granted with any execute permissions. [learn more about roles](https://appwrite.io/docs/permissions#permission-roles). Maximum of 100 roles are allowed, each 64 characters long. | [] |
 | events | array | Events list. Maximum of 100 events are allowed. | [] |
-| schedule | string | Schedule CRON syntax. |  |
+| schedule | string | Schedule CRON syntax. Cannot be combined with interval. |  |
 | timeout | integer | Function maximum execution time in seconds. | 15 |
 | enabled | boolean | Is function enabled? When set to 'disabled', users cannot access the function but Server SDKs with and API key can still access the function. No data is lost when this is toggled. | 1 |
 | logging | boolean | When disabled, executions will exclude logs and errors, and will be slightly faster. | 1 |
@@ -48,6 +48,7 @@ POST https://cloud.appwrite.io/v1/functions
 | buildSpecification | string | Build specification for the function deployments. | [] |
 | runtimeSpecification | string | Runtime specification for the function executions. | [] |
 | deploymentRetention | integer | Days to keep non-active deployments before deletion. Value 0 means all deployments will be kept. | 0 |
+| interval | integer | Minutes between scheduled executions. Appwrite picks when within each interval the function runs. Use 0 to disable. Cannot be combined with schedule. | 0 |
 
 
 ```http request
@@ -98,7 +99,7 @@ PUT https://cloud.appwrite.io/v1/functions/{functionId}
 | runtime | string | Execution runtime. |  |
 | execute | array | An array of role strings with execution permissions. By default no user is granted with any execute permissions. [learn more about roles](https://appwrite.io/docs/permissions#permission-roles). Maximum of 100 roles are allowed, each 64 characters long. | [] |
 | events | array | Events list. Maximum of 100 events are allowed. | [] |
-| schedule | string | Schedule CRON syntax. |  |
+| schedule | string | Schedule CRON syntax. Cannot be combined with interval. |  |
 | timeout | integer | Maximum execution time in seconds. | 15 |
 | enabled | boolean | Is function enabled? When set to 'disabled', users cannot access the function but Server SDKs with and API key can still access the function. No data is lost when this is toggled. | 1 |
 | logging | boolean | When disabled, executions will exclude logs and errors, and will be slightly faster. | 1 |
@@ -115,6 +116,7 @@ PUT https://cloud.appwrite.io/v1/functions/{functionId}
 | buildSpecification | string | Build specification for the function deployments. |  |
 | runtimeSpecification | string | Runtime specification for the function executions. |  |
 | deploymentRetention | integer | Days to keep non-active deployments before deletion. Value 0 means all deployments will be kept. | 0 |
+| interval | integer | Minutes between scheduled executions. Appwrite picks when within each interval the function runs. Use 0 to disable. Cannot be combined with schedule. When omitted, the current interval is kept unless schedule is set. |  |
 
 
 ```http request

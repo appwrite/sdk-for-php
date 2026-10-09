@@ -163,6 +163,7 @@ final class OrganizationTest extends TestCase
                 ],
                 "deploymentSize" => 30,
                 "buildSize" => 2000,
+                "functionsIntervalMinimum" => 60,
                 "databasesAllowEncrypt" => true,
                 "group" => "starter",
                 "databaseComputeCredit" => 10
@@ -334,6 +335,7 @@ final class OrganizationTest extends TestCase
                 ],
                 "deploymentSize" => 30,
                 "buildSize" => 2000,
+                "functionsIntervalMinimum" => 60,
                 "databasesAllowEncrypt" => true,
                 "group" => "starter",
                 "databaseComputeCredit" => 10
