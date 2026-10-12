@@ -18,12 +18,10 @@ readonly class DedicatedDatabaseSpecificationList
      *
      * @param list<DedicatedDatabaseSpecification> $specifications list of dedicated database specifications.
      * @param int $total total number of specifications.
-     * @param DedicatedDatabaseSpecificationPricing $pricing overage and add-on pricing shared across all specifications.
      */
     public function __construct(
         public array $specifications,
-        public int $total,
-        public DedicatedDatabaseSpecificationPricing $pricing
+        public int $total
     ) {
     }
 
@@ -39,9 +37,6 @@ readonly class DedicatedDatabaseSpecificationList
         if (!array_key_exists('specifications', $data)) {
             throw new \InvalidArgumentException('Missing required field "specifications" for ' . static::class . '.');
         }
-        if (!array_key_exists('pricing', $data)) {
-            throw new \InvalidArgumentException('Missing required field "pricing" for ' . static::class . '.');
-        }
 
         return new static(
             specifications: is_array($data['specifications'])
@@ -50,8 +45,7 @@ readonly class DedicatedDatabaseSpecificationList
                     $data['specifications']
                 )
                 : $data['specifications'],
-            total: $data['total'],
-            pricing: static::hydrateTypedValue(DedicatedDatabaseSpecificationPricing::class, $data['pricing'])
+            total: $data['total']
         );
     }
 
@@ -62,8 +56,7 @@ readonly class DedicatedDatabaseSpecificationList
     {
         return [
             'specifications' => static::serializeValue($this->specifications),
-            'total' => static::serializeValue($this->total),
-            'pricing' => static::serializeValue($this->pricing)
+            'total' => static::serializeValue($this->total)
         ];
     }
 }

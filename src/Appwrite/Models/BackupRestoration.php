@@ -22,11 +22,11 @@ readonly class BackupRestoration
      * @param string $archiveId backup archive id.
      * @param string $policyId backup policy id.
      * @param string $status the status of the restoration. possible values: pending, downloading, processing, completed, failed.
-     * @param string $startedAt the backup start time.
      * @param string $migrationId migration id.
      * @param array $services the services that are backed up by this policy.
      * @param array $resources the resources that are backed up by this policy.
-     * @param string $options optional data in key-value object.
+     * @param array $options restoration options as a key-value object.
+     * @param string|null $startedAt the restoration start time. null until the restoration starts.
      */
     public function __construct(
         public string $id,
@@ -35,11 +35,11 @@ readonly class BackupRestoration
         public string $archiveId,
         public string $policyId,
         public string $status,
-        public string $startedAt,
         public string $migrationId,
         public array $services,
         public array $resources,
-        public string $options
+        public array $options,
+        public ?string $startedAt = null
     ) {
     }
 
@@ -59,9 +59,6 @@ readonly class BackupRestoration
             'options' => [],
         ];
 
-        if (!array_key_exists('startedAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "startedAt" for ' . static::class . '.');
-        }
         if (!array_key_exists('services', $data)) {
             throw new \InvalidArgumentException('Missing required field "services" for ' . static::class . '.');
         }
@@ -76,11 +73,11 @@ readonly class BackupRestoration
             archiveId: $data['archiveId'],
             policyId: $data['policyId'],
             status: $data['status'],
-            startedAt: $data['startedAt'],
             migrationId: $data['migrationId'],
             services: $data['services'],
             resources: $data['resources'],
-            options: $data['options']
+            options: $data['options'],
+            startedAt: $data['startedAt'] ?? null
         );
     }
 

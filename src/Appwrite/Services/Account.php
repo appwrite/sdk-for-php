@@ -9,6 +9,7 @@ use Appwrite\Client;
 use Appwrite\Service;
 use Appwrite\Enums\AuthenticatorType;
 use Appwrite\Enums\AuthenticationFactor;
+use Appwrite\Enums\IdTokenProvider;
 use Appwrite\Enums\OAuthProvider;
 
 class Account extends Service
@@ -143,6 +144,10 @@ class Account extends Service
      */
     public function getConsent(string $consentId): \Appwrite\Models\Oauth2Consent
     {
+        if ($consentId === '') {
+            throw new AppwriteException('Missing required parameter: "consentId"');
+        }
+
         $apiPath = str_replace(
             ['{consentId}'],
             [$consentId],
@@ -179,6 +184,10 @@ class Account extends Service
      */
     public function deleteConsent(string $consentId): string
     {
+        if ($consentId === '') {
+            throw new AppwriteException('Missing required parameter: "consentId"');
+        }
+
         $apiPath = str_replace(
             ['{consentId}'],
             [$consentId],
@@ -210,6 +219,10 @@ class Account extends Service
      */
     public function listConsentTokens(string $consentId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\Oauth2ConsentTokenList
     {
+        if ($consentId === '') {
+            throw new AppwriteException('Missing required parameter: "consentId"');
+        }
+
         $apiPath = str_replace(
             ['{consentId}'],
             [$consentId],
@@ -253,6 +266,14 @@ class Account extends Service
      */
     public function getConsentToken(string $consentId, string $tokenId): \Appwrite\Models\Oauth2ConsentToken
     {
+        if ($consentId === '') {
+            throw new AppwriteException('Missing required parameter: "consentId"');
+        }
+
+        if ($tokenId === '') {
+            throw new AppwriteException('Missing required parameter: "tokenId"');
+        }
+
         $apiPath = str_replace(
             ['{consentId}', '{tokenId}'],
             [$consentId, $tokenId],
@@ -290,6 +311,14 @@ class Account extends Service
      */
     public function deleteConsentToken(string $consentId, string $tokenId): string
     {
+        if ($consentId === '') {
+            throw new AppwriteException('Missing required parameter: "consentId"');
+        }
+
+        if ($tokenId === '') {
+            throw new AppwriteException('Missing required parameter: "tokenId"');
+        }
+
         $apiPath = str_replace(
             ['{consentId}', '{tokenId}'],
             [$consentId, $tokenId],
@@ -403,6 +432,10 @@ class Account extends Service
      */
     public function deleteIdentity(string $identityId): string
     {
+        if ($identityId === '') {
+            throw new AppwriteException('Missing required parameter: "identityId"');
+        }
+
         $apiPath = str_replace(
             ['{identityId}'],
             [$identityId],
@@ -415,6 +448,7 @@ class Account extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_DELETE,
@@ -422,48 +456,6 @@ class Account extends Service
             $apiHeaders,
             $apiParams
         );
-    }
-
-    /**
-     * Get the list of latest security activity logs for the currently logged in
-     * user. Each log returns user IP address, location and date and time of log.
-     *
-     * @throws AppwriteException
-     */
-    public function listLogs(?array $queries = null, ?bool $total = null): \Appwrite\Models\LogList
-    {
-        $apiPath = str_replace(
-            [],
-            [],
-            '/account/logs'
-        );
-
-        $apiParams = [];
-
-        if (!is_null($queries)) {
-            $apiParams['queries'] = $queries;
-        }
-
-        if (!is_null($total)) {
-            $apiParams['total'] = $total;
-        }
-
-        $apiHeaders = [];
-        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
-        $apiHeaders['accept'] = 'application/json';
-
-        $response = $this->client->call(
-            Client::METHOD_GET,
-            $apiPath,
-            $apiHeaders,
-            $apiParams
-        );
-
-        if (!is_array($response)) {
-            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
-        }
-
-        return \Appwrite\Models\LogList::from($response);
     }
 
     /**
@@ -596,6 +588,7 @@ class Account extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_DELETE,
@@ -862,6 +855,255 @@ class Account extends Service
     }
 
     /**
+     * Get the list of verified passkeys registered by the currently logged in
+     * user.
+     *
+     * @throws AppwriteException
+     */
+    public function listPasskeys(?array $queries = null, ?bool $total = null): \Appwrite\Models\PasskeyList
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/account/passkeys'
+        );
+
+        $apiParams = [];
+
+        if (!is_null($queries)) {
+            $apiParams['queries'] = $queries;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\PasskeyList::from($response);
+    }
+
+    /**
+     * Start registering a passkey for the currently logged in user. The session
+     * must have signed in or completed an MFA challenge within the last 10
+     * minutes. Pass the returned `publicKey` options to
+     * `navigator.credentials.create()`, then complete the registration with
+     * [Update passkey
+     * verification](/docs/references/cloud/client-web/account#updatePasskeyVerification).
+     * The passkey stays pending until verified, and the challenge expires after 5
+     * minutes.
+     *
+     * @throws AppwriteException
+     */
+    public function createPasskey(?string $passkeyId = null, ?string $name = null): \Appwrite\Models\PasskeyChallenge
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/account/passkeys'
+        );
+
+        $apiParams = [];
+
+        if (!is_null($passkeyId)) {
+            $apiParams['passkeyId'] = $passkeyId;
+        }
+
+        if (!is_null($name)) {
+            $apiParams['name'] = $name;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\PasskeyChallenge::from($response);
+    }
+
+    /**
+     * Get a verified passkey of the currently logged in user by its unique ID.
+     *
+     * @throws AppwriteException
+     */
+    public function getPasskey(string $passkeyId): \Appwrite\Models\Passkey
+    {
+        if ($passkeyId === '') {
+            throw new AppwriteException('Missing required parameter: "passkeyId"');
+        }
+
+        $apiPath = str_replace(
+            ['{passkeyId}'],
+            [$passkeyId],
+            '/account/passkeys/{passkeyId}'
+        );
+
+        $apiParams = [];
+        $apiParams['passkeyId'] = $passkeyId;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Passkey::from($response);
+    }
+
+    /**
+     * Rename a passkey of the currently logged in user.
+     *
+     * @throws AppwriteException
+     */
+    public function updatePasskey(string $passkeyId, string $name): \Appwrite\Models\Passkey
+    {
+        if ($passkeyId === '') {
+            throw new AppwriteException('Missing required parameter: "passkeyId"');
+        }
+
+        $apiPath = str_replace(
+            ['{passkeyId}'],
+            [$passkeyId],
+            '/account/passkeys/{passkeyId}'
+        );
+
+        $apiParams = [];
+        $apiParams['passkeyId'] = $passkeyId;
+        $apiParams['name'] = $name;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Passkey::from($response);
+    }
+
+    /**
+     * Delete a passkey from the currently logged in user. The passkey can no
+     * longer be used to sign in, although it may remain stored on the user's
+     * device. The session must have signed in or completed an MFA challenge
+     * within the last 10 minutes.
+     *
+     * @throws AppwriteException
+     */
+    public function deletePasskey(string $passkeyId): string
+    {
+        if ($passkeyId === '') {
+            throw new AppwriteException('Missing required parameter: "passkeyId"');
+        }
+
+        $apiPath = str_replace(
+            ['{passkeyId}'],
+            [$passkeyId],
+            '/account/passkeys/{passkeyId}'
+        );
+
+        $apiParams = [];
+        $apiParams['passkeyId'] = $passkeyId;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_DELETE,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Complete a passkey registration started with [Create
+     * passkey](/docs/references/cloud/client-web/account#createPasskey). Pass the
+     * JSON form of the credential returned by `navigator.credentials.create()`,
+     * for example `credential.toJSON()`. Each registration can be verified once;
+     * a failed attempt requires starting it again.
+     *
+     * @throws AppwriteException
+     */
+    public function updatePasskeyVerification(string $passkeyId, array $credential): \Appwrite\Models\Passkey
+    {
+        if ($passkeyId === '') {
+            throw new AppwriteException('Missing required parameter: "passkeyId"');
+        }
+
+        $apiPath = str_replace(
+            ['{passkeyId}'],
+            [$passkeyId],
+            '/account/passkeys/{passkeyId}/verification'
+        );
+
+        $apiParams = [];
+        $apiParams['passkeyId'] = $passkeyId;
+        $apiParams['credential'] = $credential;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PUT,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Passkey::from($response);
+    }
+
+    /**
      * Update currently logged in user password. For validation, user is required
      * to pass in the new password, and the old password. For users created with
      * OAuth, Team Invites and Magic URL, oldPassword is optional.
@@ -1102,12 +1344,105 @@ class Account extends Service
     }
 
     /**
+     * Use this endpoint to send a 6-digit password recovery code to the user's
+     * email address. Unlike
+     * [createRecovery](https://appwrite.io/docs/references/cloud/client-web/account#createRecovery),
+     * this method requires no redirect URL, which makes it suitable for mobile
+     * and desktop apps that cannot host a recovery page. Learn more about how to
+     * [complete the recovery
+     * process](https://appwrite.io/docs/references/cloud/client-web/account#updateRecoveryOTP).
+     * The code sent to the user's email address is valid for 15 minutes.
+     *
+     * Enable the **phrase** parameter to include a randomly generated security
+     * phrase in both the email and the response. Showing that phrase in your app
+     * lets the user confirm the email genuinely came from your request, which
+     * helps protect against phishing.
+     *
+     * @throws AppwriteException
+     */
+    public function createRecoveryOTP(string $email, ?bool $phrase = null): \Appwrite\Models\Token
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/account/recovery/otp'
+        );
+
+        $apiParams = [];
+        $apiParams['email'] = $email;
+
+        if (!is_null($phrase)) {
+            $apiParams['phrase'] = $phrase;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Token::from($response);
+    }
+
+    /**
+     * Use this endpoint to complete the user password recovery process using the
+     * 6-digit code that was emailed by
+     * [createRecoveryOTP](https://appwrite.io/docs/references/cloud/client-web/account#createRecoveryOTP).
+     * Pass the **userId** of the user along with the **secret** code from the
+     * email and the new **password** to set. If confirmed, this route will return
+     * a 200 status code, the code is consumed and the user's password is updated.
+     *
+     * @throws AppwriteException
+     */
+    public function updateRecoveryOTP(string $userId, string $secret, string $password): \Appwrite\Models\Token
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/account/recovery/otp'
+        );
+
+        $apiParams = [];
+        $apiParams['userId'] = $userId;
+        $apiParams['secret'] = $secret;
+        $apiParams['password'] = $password;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PUT,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Token::from($response);
+    }
+
+    /**
      * Get the list of active sessions across different devices for the currently
      * logged in user.
      *
      * @throws AppwriteException
      */
-    public function listSessions(): \Appwrite\Models\SessionList
+    public function listSessions(?bool $total = null): \Appwrite\Models\SessionList
     {
         $apiPath = str_replace(
             [],
@@ -1116,6 +1451,10 @@ class Account extends Service
         );
 
         $apiParams = [];
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
+        }
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -1137,11 +1476,12 @@ class Account extends Service
 
     /**
      * Delete all sessions from the user account and remove any sessions cookies
-     * from the end client.
+     * from the end client. Pass `current` as false to keep the session making the
+     * request and sign out of every other session.
      *
      * @throws AppwriteException
      */
-    public function deleteSessions(): string
+    public function deleteSessions(?bool $current = null): string
     {
         $apiPath = str_replace(
             [],
@@ -1151,9 +1491,14 @@ class Account extends Service
 
         $apiParams = [];
 
+        if (!is_null($current)) {
+            $apiParams['current'] = $current;
+        }
+
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_DELETE,
@@ -1206,6 +1551,9 @@ class Account extends Service
     /**
      * Allow the user to login into their account by providing a valid email and
      * password combination. This route will create a new session for the user.
+     * Use the optional `duration` parameter to create a shorter session, for
+     * example when the user doesn't choose "remember me". It must be at least 60
+     * seconds and cannot exceed the project maximum session length.
      *
      * A user is limited to 10 active sessions at a time by default. [Learn more
      * about session
@@ -1213,7 +1561,7 @@ class Account extends Service
      *
      * @throws AppwriteException
      */
-    public function createEmailPasswordSession(string $email, string $password): \Appwrite\Models\Session
+    public function createEmailPasswordSession(string $email, string $password, ?int $duration = null): \Appwrite\Models\Session
     {
         $apiPath = str_replace(
             [],
@@ -1224,6 +1572,99 @@ class Account extends Service
         $apiParams = [];
         $apiParams['email'] = $email;
         $apiParams['password'] = $password;
+        $apiParams['duration'] = $duration;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Session::from($response);
+    }
+
+    /**
+     * Allow the user to login to their account using an OpenID Connect ID token
+     * obtained natively from the OAuth2 provider, for example via Google
+     * Credential Manager on Android or Sign in with Apple on iOS. No browser or
+     * redirect is involved: the ID token is verified against the provider's
+     * published signing keys and a session is created in a single request.
+     *
+     * Native sign-in is switched on per provider with its nativeEnabled setting.
+     * It is independent of the browser-based flow's enabled setting, which has no
+     * effect on this endpoint. The token's audience must match the provider's
+     * configured client ID or one of its native client IDs; tokens issued for any
+     * other client ID are rejected. For Sign in with Apple, register your app's
+     * bundle ID as a native client ID. For Google, the web client ID used by
+     * Credential Manager is usually the configured client ID; add your Android
+     * and iOS client IDs as native client IDs if your app requests tokens for
+     * them.
+     *
+     * Pass the raw nonce used when requesting the ID token so it can be validated
+     * against the token's nonce claim. When signing in with Apple, the nonce is
+     * required: hash it with SHA-256 before passing it to the Apple SDK, and send
+     * the raw value here - Apple tokens requested without a nonce are rejected.
+     * For Google the nonce is optional: it is validated whenever the token
+     * carries one, and ignored when the provider issued the token without one.
+     * Apple only returns the user's name on the first authorization, and never
+     * inside the ID token - capture it on the client and pass it via the name
+     * parameter.
+     *
+     * If there is already an active session, the new session will be attached to
+     * the logged-in account. If there are no active sessions, the server will
+     * attempt to look for a user with the same email address as the verified
+     * email received from the provider and attach the new session to the existing
+     * user. If no matching user is found - the server will create a new user.
+     *
+     * This flow does not return provider refresh tokens. You may pass an access
+     * token the provider handed your client, along with its lifetime, to store it
+     * on the session - but Appwrite cannot renew it once it expires. If your app
+     * needs long-lived access to provider APIs, use the browser-based OAuth2 flow
+     * instead.
+     *
+     * A user is limited to 10 active sessions at a time by default. [Learn more
+     * about session
+     * limits](https://appwrite.io/docs/authentication-security#limits).
+     *
+     * @throws AppwriteException
+     */
+    public function createIdTokenSession(IdTokenProvider $provider, string $idToken, ?string $nonce = null, ?string $accessToken = null, ?int $accessTokenExpiry = null, ?string $name = null): \Appwrite\Models\Session
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/account/sessions/id-token'
+        );
+
+        $apiParams = [];
+        $apiParams['provider'] = $provider;
+        $apiParams['idToken'] = $idToken;
+
+        if (!is_null($nonce)) {
+            $apiParams['nonce'] = $nonce;
+        }
+
+        if (!is_null($accessToken)) {
+            $apiParams['accessToken'] = $accessToken;
+        }
+
+        if (!is_null($accessTokenExpiry)) {
+            $apiParams['accessTokenExpiry'] = $accessTokenExpiry;
+        }
+
+        if (!is_null($name)) {
+            $apiParams['name'] = $name;
+        }
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -1372,6 +1813,10 @@ class Account extends Service
      */
     public function getSession(string $sessionId): \Appwrite\Models\Session
     {
+        if ($sessionId === '') {
+            throw new AppwriteException('Missing required parameter: "sessionId"');
+        }
+
         $apiPath = str_replace(
             ['{sessionId}'],
             [$sessionId],
@@ -1408,6 +1853,10 @@ class Account extends Service
      */
     public function updateSession(string $sessionId): \Appwrite\Models\Session
     {
+        if ($sessionId === '') {
+            throw new AppwriteException('Missing required parameter: "sessionId"');
+        }
+
         $apiPath = str_replace(
             ['{sessionId}'],
             [$sessionId],
@@ -1447,6 +1896,10 @@ class Account extends Service
      */
     public function deleteSession(string $sessionId): string
     {
+        if ($sessionId === '') {
+            throw new AppwriteException('Missing required parameter: "sessionId"');
+        }
+
         $apiPath = str_replace(
             ['{sessionId}'],
             [$sessionId],
@@ -1459,6 +1912,7 @@ class Account extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_DELETE,
@@ -1624,6 +2078,10 @@ class Account extends Service
      * session](https://appwrite.io/docs/references/cloud/client-web/account#createSession)
      * endpoint.
      *
+     * If there is already an active session, the OAuth2 identity is attached to
+     * the logged-in account and that session stays active until the token is
+     * exchanged for a new one.
+     *
      * A user is limited to 10 active sessions at a time by default. [Learn more
      * about session
      * limits](https://appwrite.io/docs/authentication-security#limits).
@@ -1668,6 +2126,90 @@ class Account extends Service
             $apiParams,
             'location'
         );
+    }
+
+    /**
+     * Start signing in with a passkey. No email or user ID is needed: pass the
+     * returned `publicKey` options to `navigator.credentials.get()` and the user
+     * picks one of their passkeys. Then call [Update passkey
+     * token](/docs/references/cloud/client-web/account#updatePasskeyToken) with
+     * the credential to receive a token, and exchange it with [Create
+     * session](/docs/references/cloud/client-web/account#createSession). The
+     * challenge expires after 5 minutes.
+     *
+     * @throws AppwriteException
+     */
+    public function createPasskeyToken(): \Appwrite\Models\PasskeyChallenge
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/account/tokens/passkey'
+        );
+
+        $apiParams = [];
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\PasskeyChallenge::from($response);
+    }
+
+    /**
+     * Complete a passkey sign-in started with [Create passkey
+     * token](/docs/references/cloud/client-web/account#createPasskeyToken). Pass
+     * the challenge ID and the JSON form of the credential returned by
+     * `navigator.credentials.get()`, for example `credential.toJSON()`. The
+     * returned token includes its secret and expires after 1 minute: exchange it
+     * for a session with [Create
+     * session](/docs/references/cloud/client-web/account#createSession). Passkeys
+     * require user verification, so the session also satisfies MFA. Each
+     * challenge can only be used once.
+     *
+     * @throws AppwriteException
+     */
+    public function updatePasskeyToken(string $challengeId, array $credential): \Appwrite\Models\TokenSecret
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/account/tokens/passkey'
+        );
+
+        $apiParams = [];
+        $apiParams['challengeId'] = $challengeId;
+        $apiParams['credential'] = $credential;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PUT,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\TokenSecret::from($response);
     }
 
     /**
@@ -1870,6 +2412,97 @@ class Account extends Service
             [],
             [],
             '/account/verifications/email'
+        );
+
+        $apiParams = [];
+        $apiParams['userId'] = $userId;
+        $apiParams['secret'] = $secret;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PUT,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Token::from($response);
+    }
+
+    /**
+     * Use this endpoint to send a 6-digit verification code to the currently
+     * logged in user's email address. Unlike
+     * [createEmailVerification](https://appwrite.io/docs/references/cloud/client-web/account#createEmailVerification),
+     * this method requires no redirect URL, which makes it suitable for mobile
+     * and desktop apps that cannot host a verification page. Learn more about how
+     * to [complete the verification
+     * process](https://appwrite.io/docs/references/cloud/client-web/account#updateEmailVerificationOTP).
+     * The code sent to the user's email address is valid for 15 minutes.
+     *
+     * Enable the **phrase** parameter to include a randomly generated security
+     * phrase in both the email and the response. Showing that phrase in your app
+     * lets the user confirm the email genuinely came from your request, which
+     * helps protect against phishing.
+     *
+     * @throws AppwriteException
+     */
+    public function createEmailVerificationOTP(?bool $phrase = null): \Appwrite\Models\Token
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/account/verifications/email/otp'
+        );
+
+        $apiParams = [];
+
+        if (!is_null($phrase)) {
+            $apiParams['phrase'] = $phrase;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Token::from($response);
+    }
+
+    /**
+     * Use this endpoint to complete the user email verification process using the
+     * 6-digit code that was emailed by
+     * [createEmailVerificationOTP](https://appwrite.io/docs/references/cloud/client-web/account#createEmailVerificationOTP).
+     * Pass the **userId** of the user being verified along with the **secret**
+     * code from the email. If confirmed, this route will return a 200 status code
+     * and the code is consumed.
+     *
+     * @throws AppwriteException
+     */
+    public function updateEmailVerificationOTP(string $userId, string $secret): \Appwrite\Models\Token
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/account/verifications/email/otp'
         );
 
         $apiParams = [];

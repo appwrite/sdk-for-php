@@ -33,7 +33,7 @@ readonly class ProxyRule
      * @param ProxyRuleStatus $status domain verification status. possible values are "unverified", "verifying", "verified"
      * @param string $logs logs from rule verification or certificate generation. certificate generation logs are prioritized if both are available.
      * @param string $renewAt certificate auto-renewal date in iso 8601 format.
-     * @param ProxyRuleDeploymentResourceType|null $deploymentResourceType type of deployment. possible values are "function", "site". used if rule's type is "deployment".
+     * @param ProxyRuleDeploymentResourceType|null $deploymentResourceType type of deployment resource: function, site, or dedicateddatabase.
      */
     public function __construct(
         public string $id,

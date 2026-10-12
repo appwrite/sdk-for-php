@@ -1,0 +1,166 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Appwrite\Models;
+
+/**
+ * Account
+ *
+ * @phpstan-consistent-constructor
+ */
+readonly class Account
+{
+    use ArraySerializable;
+
+    /**
+     * Account constructor.
+     *
+     * @param string $id user id.
+     * @param string $createdAt user creation date in iso 8601 format.
+     * @param string $updatedAt user update date in iso 8601 format.
+     * @param string $name user name.
+     * @param string $registration user registration date in iso 8601 format.
+     * @param bool $status user status. pass `true` for enabled and `false` for disabled.
+     * @param array $labels labels for the user.
+     * @param string $passwordUpdate password update time in iso 8601 format.
+     * @param string $email user email address.
+     * @param string $phone user phone number in e.164 format.
+     * @param bool $emailVerification email verification status.
+     * @param bool $phoneVerification phone verification status.
+     * @param bool $mfa multi factor authentication status.
+     * @param Preferences $prefs user preferences as a key-value object
+     * @param list<Target> $targets a user-owned message receiver. a single user may have multiple e.g. emails, phones, and a browser. each target is registered with a single provider.
+     * @param string $accessedAt most recent access date in iso 8601 format. this attribute is only updated again after 24 hours.
+     * @param string|null $emailCanonical canonical form of the user email address.
+     * @param bool|null $emailIsFree whether the user email is from a free email provider.
+     * @param bool|null $emailIsDisposable whether the user email is from a disposable email provider.
+     * @param bool|null $emailIsCorporate whether the user email is from a corporate domain.
+     * @param bool|null $emailIsCanonical whether the user email is in its canonical form.
+     * @param bool|null $passwordPwned whether the password was found in a known data breach the last time it was checked. null when the password has never been checked.
+     * @param bool|null $impersonator whether the user can impersonate other users.
+     * @param string|null $impersonatorUserId id of the original actor performing the impersonation. present only when the current request is impersonating another user. internal audit logs attribute the action to this user, while the impersonated target is recorded only in internal audit payload data.
+     */
+    public function __construct(
+        public string $id,
+        public string $createdAt,
+        public string $updatedAt,
+        public string $name,
+        public string $registration,
+        public bool $status,
+        public array $labels,
+        public string $passwordUpdate,
+        public string $email,
+        public string $phone,
+        public bool $emailVerification,
+        public bool $phoneVerification,
+        public bool $mfa,
+        public Preferences $prefs,
+        public array $targets,
+        public string $accessedAt,
+        public ?string $emailCanonical = null,
+        public ?bool $emailIsFree = null,
+        public ?bool $emailIsDisposable = null,
+        public ?bool $emailIsCorporate = null,
+        public ?bool $emailIsCanonical = null,
+        public ?bool $passwordPwned = null,
+        public ?bool $impersonator = null,
+        public ?string $impersonatorUserId = null
+    ) {
+    }
+
+    /**
+     * @param array<string, mixed> $data
+     */
+    public static function from(array $data): static
+    {
+        $data += [
+            '$id' => "",
+            '$createdAt' => "",
+            '$updatedAt' => "",
+            'name' => "",
+            'registration' => "",
+            'status' => true,
+            'labels' => [],
+            'passwordUpdate' => "",
+            'email' => "",
+            'phone' => "",
+            'emailVerification' => false,
+            'phoneVerification' => false,
+            'mfa' => false,
+            'accessedAt' => "",
+        ];
+
+        if (!array_key_exists('prefs', $data)) {
+            throw new \InvalidArgumentException('Missing required field "prefs" for ' . static::class . '.');
+        }
+        if (!array_key_exists('targets', $data)) {
+            throw new \InvalidArgumentException('Missing required field "targets" for ' . static::class . '.');
+        }
+
+        return new static(
+            id: $data['$id'],
+            createdAt: $data['$createdAt'],
+            updatedAt: $data['$updatedAt'],
+            name: $data['name'],
+            registration: $data['registration'],
+            status: $data['status'],
+            labels: $data['labels'],
+            passwordUpdate: $data['passwordUpdate'],
+            email: $data['email'],
+            phone: $data['phone'],
+            emailVerification: $data['emailVerification'],
+            phoneVerification: $data['phoneVerification'],
+            mfa: $data['mfa'],
+            prefs: static::hydrateTypedValue(Preferences::class, $data['prefs']),
+            targets: is_array($data['targets'])
+                ? array_map(
+                    static fn (mixed $item): mixed => static::hydrateTypedValue(Target::class, $item),
+                    $data['targets']
+                )
+                : $data['targets'],
+            accessedAt: $data['accessedAt'],
+            emailCanonical: $data['emailCanonical'] ?? null,
+            emailIsFree: $data['emailIsFree'] ?? null,
+            emailIsDisposable: $data['emailIsDisposable'] ?? null,
+            emailIsCorporate: $data['emailIsCorporate'] ?? null,
+            emailIsCanonical: $data['emailIsCanonical'] ?? null,
+            passwordPwned: $data['passwordPwned'] ?? null,
+            impersonator: $data['impersonator'] ?? null,
+            impersonatorUserId: $data['impersonatorUserId'] ?? null
+        );
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function toArray(): array
+    {
+        return [
+            '$id' => static::serializeValue($this->id),
+            '$createdAt' => static::serializeValue($this->createdAt),
+            '$updatedAt' => static::serializeValue($this->updatedAt),
+            'name' => static::serializeValue($this->name),
+            'registration' => static::serializeValue($this->registration),
+            'status' => static::serializeValue($this->status),
+            'labels' => static::serializeValue($this->labels),
+            'passwordUpdate' => static::serializeValue($this->passwordUpdate),
+            'email' => static::serializeValue($this->email),
+            'phone' => static::serializeValue($this->phone),
+            'emailVerification' => static::serializeValue($this->emailVerification),
+            'emailCanonical' => static::serializeValue($this->emailCanonical),
+            'emailIsFree' => static::serializeValue($this->emailIsFree),
+            'emailIsDisposable' => static::serializeValue($this->emailIsDisposable),
+            'emailIsCorporate' => static::serializeValue($this->emailIsCorporate),
+            'emailIsCanonical' => static::serializeValue($this->emailIsCanonical),
+            'passwordPwned' => static::serializeValue($this->passwordPwned),
+            'phoneVerification' => static::serializeValue($this->phoneVerification),
+            'mfa' => static::serializeValue($this->mfa),
+            'prefs' => static::serializeValue($this->prefs),
+            'targets' => static::serializeValue($this->targets),
+            'accessedAt' => static::serializeValue($this->accessedAt),
+            'impersonator' => static::serializeValue($this->impersonator),
+            'impersonatorUserId' => static::serializeValue($this->impersonatorUserId)
+        ];
+    }
+}

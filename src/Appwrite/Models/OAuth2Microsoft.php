@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Appwrite\Models;
 
+use Appwrite\Enums\OAuth2MicrosoftPrompt;
+
 /**
  * OAuth2Microsoft
  *
@@ -20,6 +22,7 @@ readonly class OAuth2Microsoft
      * @param bool $enabled oauth2 provider is active and can be used to create sessions.
      * @param string $applicationId microsoft oauth2 application id.
      * @param string $applicationSecret microsoft oauth2 application secret.
+     * @param list<OAuth2MicrosoftPrompt> $prompt microsoft oauth2 prompt values.
      * @param string $tenant microsoft entra id tenant identifier. use 'common', 'organizations', 'consumers' or a specific tenant id.
      */
     public function __construct(
@@ -27,6 +30,7 @@ readonly class OAuth2Microsoft
         public bool $enabled,
         public string $applicationId,
         public string $applicationSecret,
+        public array $prompt,
         public string $tenant
     ) {
     }
@@ -41,6 +45,7 @@ readonly class OAuth2Microsoft
             'enabled' => false,
             'applicationId' => "",
             'applicationSecret' => "",
+            'prompt' => [],
             'tenant' => "",
         ];
 
@@ -49,6 +54,12 @@ readonly class OAuth2Microsoft
             enabled: $data['enabled'],
             applicationId: $data['applicationId'],
             applicationSecret: $data['applicationSecret'],
+            prompt: is_array($data['prompt'])
+                ? array_map(
+                    static fn (mixed $item): mixed => static::hydrateTypedValue(OAuth2MicrosoftPrompt::class, $item),
+                    $data['prompt']
+                )
+                : $data['prompt'],
             tenant: $data['tenant']
         );
     }
@@ -63,6 +74,7 @@ readonly class OAuth2Microsoft
             'enabled' => static::serializeValue($this->enabled),
             'applicationId' => static::serializeValue($this->applicationId),
             'applicationSecret' => static::serializeValue($this->applicationSecret),
+            'prompt' => static::serializeValue($this->prompt),
             'tenant' => static::serializeValue($this->tenant)
         ];
     }

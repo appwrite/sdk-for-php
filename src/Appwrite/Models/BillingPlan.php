@@ -54,7 +54,6 @@ readonly class BillingPlan
      * @param int $usageLogs usage history days
      * @param int $projectInactivityDays number of days of console inactivity before a project is paused. 0 means pausing is disabled.
      * @param int $alertLimit alert threshold percentage
-     * @param UsageBillingPlan $usage additional resources
      * @param BillingPlanAddon $addons addons
      * @param bool $budgetCapEnabled budget cap enabled or disabled.
      * @param bool $customSmtp custom smtp
@@ -86,6 +85,8 @@ readonly class BillingPlan
      * @param int|null $activityLogs activity log days
      * @param array|null $usageLogsIntervals usage log time intervals allowed for this plan (e.g. 15m, 1h, 1d).
      * @param array|null $usageAggregateOnlyMetrics metrics this plan only records as a total. they cannot be broken down by dimension or filtered, because the stored events cover a fraction of the real traffic.
+     * @param UsageBillingPlan|null $usage additional resources. null when the plan does not support usage billing.
+     * @param array|null $eligibleCountries iso country codes eligible for this regional plan. empty means no restriction.
      * @param bool|null $backupsEnabled does plan support backup policies.
      * @param int|null $backupPolicies how many policies does plan support
      * @param BillingPlanLimits|null $limits plan specific limits
@@ -129,7 +130,6 @@ readonly class BillingPlan
         public int $usageLogs,
         public int $projectInactivityDays,
         public int $alertLimit,
-        public UsageBillingPlan $usage,
         public BillingPlanAddon $addons,
         public bool $budgetCapEnabled,
         public bool $customSmtp,
@@ -161,6 +161,8 @@ readonly class BillingPlan
         public ?int $activityLogs = null,
         public ?array $usageLogsIntervals = null,
         public ?array $usageAggregateOnlyMetrics = null,
+        public ?UsageBillingPlan $usage = null,
+        public ?array $eligibleCountries = null,
         public ?bool $backupsEnabled = null,
         public ?int $backupPolicies = null,
         public ?BillingPlanLimits $limits = null,
@@ -237,9 +239,6 @@ readonly class BillingPlan
             'databaseComputeCredit' => 0,
         ];
 
-        if (!array_key_exists('usage', $data)) {
-            throw new \InvalidArgumentException('Missing required field "usage" for ' . static::class . '.');
-        }
         if (!array_key_exists('addons', $data)) {
             throw new \InvalidArgumentException('Missing required field "addons" for ' . static::class . '.');
         }
@@ -287,7 +286,6 @@ readonly class BillingPlan
             usageLogs: $data['usageLogs'],
             projectInactivityDays: $data['projectInactivityDays'],
             alertLimit: $data['alertLimit'],
-            usage: static::hydrateTypedValue(UsageBillingPlan::class, $data['usage']),
             addons: static::hydrateTypedValue(BillingPlanAddon::class, $data['addons']),
             budgetCapEnabled: $data['budgetCapEnabled'],
             customSmtp: $data['customSmtp'],
@@ -319,6 +317,8 @@ readonly class BillingPlan
             activityLogs: $data['activityLogs'] ?? null,
             usageLogsIntervals: $data['usageLogsIntervals'] ?? null,
             usageAggregateOnlyMetrics: $data['usageAggregateOnlyMetrics'] ?? null,
+            usage: array_key_exists('usage', $data) ? static::hydrateTypedValue(UsageBillingPlan::class, $data['usage'], true) : null,
+            eligibleCountries: $data['eligibleCountries'] ?? null,
             backupsEnabled: $data['backupsEnabled'] ?? null,
             backupPolicies: $data['backupPolicies'] ?? null,
             limits: array_key_exists('limits', $data) ? static::hydrateTypedValue(BillingPlanLimits::class, $data['limits'], true) : null,
@@ -380,6 +380,7 @@ readonly class BillingPlan
             'emailBranding' => static::serializeValue($this->emailBranding),
             'requiresPaymentMethod' => static::serializeValue($this->requiresPaymentMethod),
             'requiresBillingAddress' => static::serializeValue($this->requiresBillingAddress),
+            'eligibleCountries' => static::serializeValue($this->eligibleCountries),
             'isAvailable' => static::serializeValue($this->isAvailable),
             'selfService' => static::serializeValue($this->selfService),
             'premiumSupport' => static::serializeValue($this->premiumSupport),

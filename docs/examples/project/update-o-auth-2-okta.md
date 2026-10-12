@@ -3,6 +3,7 @@
 
 use Appwrite\Client;
 use Appwrite\Services\Project;
+use Appwrite\Enums\ProjectOAuth2OktaPrompt;
 
 $client = (new Client())
     ->setEndpoint('https://<REGION>.cloud.appwrite.io/v1') // Your API Endpoint
@@ -16,6 +17,7 @@ $result = $project->updateOAuth2Okta(
     clientSecret: '<CLIENT_SECRET>', // optional
     domain: 'example.com', // optional
     authorizationServerId: '<AUTHORIZATION_SERVER_ID>', // optional
+    prompt: [ProjectOAuth2OktaPrompt::NONE()], // optional
     enabled: false // optional
 );
 ```

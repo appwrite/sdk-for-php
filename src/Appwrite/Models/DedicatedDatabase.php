@@ -21,25 +21,23 @@ readonly class DedicatedDatabase
      * @param string $updatedAt database update date in iso 8601 format.
      * @param string $projectId project id that owns this database.
      * @param string $name database display name.
-     * @param string $api product api that owns this database: tablesdb, documentsdb, vectorsdb, mysql, postgresql, or mongodb.
-     * @param string $engine database engine: postgresql, mysql, or mongodb. null until the backing reports one.
      * @param string $version database engine version.
      * @param string $specification specification identifier.
      * @param string $backend database backend provider. possible values: edge.
      * @param string $hostname database hostname for connections.
-     * @param int $connectionPort database port for connections. derived from the engine when the backing has not reported one yet.
      * @param string $connectionUser database username for connections.
      * @param string $connectionPassword database password for connections.
-     * @param int $credentialGeneration committed generation of the primary connection credentials. null until the rotation contract has been initialized.
      * @param string $connectionString full database connection string (uri format).
      * @param bool $ssl whether ssl/tls is required for client connections.
      * @param string $status database status. possible values: provisioning, ready, inactive, paused, failed, deleted, restoring, scaling.
-     * @param string $containerStatus container status for lifecycle-managed database runtimes: active or inactive.
+     * @param string $containerStatus container status for lifecycle-managed database runtimes: active, inactive, or failed (a wake was declined because the backing namespace is gone).
      * @param string $lifecycleState idle-lifecycle state of the database. possible values: active, warm, cold, hibernated.
      * @param int $idleTimeoutMinutes minutes of inactivity before container scales to zero.
      * @param int $cpu cpu allocated in millicores.
      * @param int $memory memory allocated in mb.
      * @param int $storage storage allocated in gb.
+     * @param string $storageStatus storage resize status. possible values: idle (no resize in flight), resizing (the volume is growing towards storagetargetgb).
+     * @param int $storageTargetGb size in gb the volume is growing towards while storagestatus is resizing. 0 when no resize is in flight.
      * @param string $storageClass storage class. currently always 'ssd'; digitalocean exposes a single block-storage class.
      * @param int $storageMaxGb maximum storage allowed in gb. 0 means use system default.
      * @param string $nodePool kubernetes node pool where the database is scheduled.
@@ -53,7 +51,7 @@ readonly class DedicatedDatabase
      * @param int $pitrRetentionDays number of days to retain pitr data.
      * @param bool $storageAutoscaling whether automatic storage expansion is enabled.
      * @param int $storageAutoscalingThresholdPercent storage usage percentage that triggers automatic expansion.
-     * @param int $storageAutoscalingMaxGb maximum storage size in gb for autoscaling. 0 means no limit.
+     * @param int $storageAutoscalingMaxGb maximum storage size in gb for autoscaling. defaults to 3 times the specification's storage. 0 means no limit.
      * @param string $maintenanceWindowDay day of the week for the maintenance window. possible values: sun, mon, tue, wed, thu, fri, sat.
      * @param int $maintenanceWindowHourUtc hour in utc (0-23) when the maintenance window starts.
      * @param bool $metricsEnabled whether metrics collection is enabled.
@@ -63,8 +61,13 @@ readonly class DedicatedDatabase
      * @param int $sqlApiMaxBytes maximum serialised sql api result payload in bytes. results larger than this are truncated.
      * @param int $sqlApiTimeoutSeconds maximum server-side sql api execution time in seconds before the query is cancelled.
      * @param string $error error message if status is failed.
+     * @param string|null $api product api that owns this database: tablesdb, documentsdb, vectorsdb, mysql, postgresql, or mongodb.
+     * @param string|null $engine database engine: postgresql, mysql, or mongodb. null until the backing reports one.
+     * @param int|null $connectionPort database port for connections. derived from the engine when the backing has not reported one yet.
+     * @param int|null $credentialGeneration committed generation of the primary connection credentials. null until the rotation contract has been initialized.
      * @param string|null $lastAccessedAt last activity timestamp in iso 8601 format.
      * @param string|null $idleUntil display-only timestamp when the database is expected to be considered idle (iso 8601 format). derived from last activity; lifecycle transitions are driven by lifecyclestate.
+     * @param string|null $storageResizeStartedAt time the in-flight storage resize started, in iso 8601 format.
      */
     public function __construct(
         public string $id,
@@ -72,16 +75,12 @@ readonly class DedicatedDatabase
         public string $updatedAt,
         public string $projectId,
         public string $name,
-        public string $api,
-        public string $engine,
         public string $version,
         public string $specification,
         public string $backend,
         public string $hostname,
-        public int $connectionPort,
         public string $connectionUser,
         public string $connectionPassword,
-        public int $credentialGeneration,
         public string $connectionString,
         public bool $ssl,
         public string $status,
@@ -91,6 +90,8 @@ readonly class DedicatedDatabase
         public int $cpu,
         public int $memory,
         public int $storage,
+        public string $storageStatus,
+        public int $storageTargetGb,
         public string $storageClass,
         public int $storageMaxGb,
         public string $nodePool,
@@ -114,8 +115,13 @@ readonly class DedicatedDatabase
         public int $sqlApiMaxBytes,
         public int $sqlApiTimeoutSeconds,
         public string $error,
+        public ?string $api = null,
+        public ?string $engine = null,
+        public ?int $connectionPort = null,
+        public ?int $credentialGeneration = null,
         public ?string $lastAccessedAt = null,
-        public ?string $idleUntil = null
+        public ?string $idleUntil = null,
+        public ?string $storageResizeStartedAt = null
     ) {
     }
 
@@ -145,6 +151,8 @@ readonly class DedicatedDatabase
             'cpu' => 500,
             'memory' => 512,
             'storage' => 10,
+            'storageStatus' => "idle",
+            'storageTargetGb' => 0,
             'storageClass' => "ssd",
             'storageMaxGb' => 0,
             'nodePool' => "",
@@ -170,35 +178,18 @@ readonly class DedicatedDatabase
             'error' => "",
         ];
 
-        if (!array_key_exists('api', $data)) {
-            throw new \InvalidArgumentException('Missing required field "api" for ' . static::class . '.');
-        }
-        if (!array_key_exists('engine', $data)) {
-            throw new \InvalidArgumentException('Missing required field "engine" for ' . static::class . '.');
-        }
-        if (!array_key_exists('connectionPort', $data)) {
-            throw new \InvalidArgumentException('Missing required field "connectionPort" for ' . static::class . '.');
-        }
-        if (!array_key_exists('credentialGeneration', $data)) {
-            throw new \InvalidArgumentException('Missing required field "credentialGeneration" for ' . static::class . '.');
-        }
-
         return new static(
             id: $data['$id'],
             createdAt: $data['$createdAt'],
             updatedAt: $data['$updatedAt'],
             projectId: $data['projectId'],
             name: $data['name'],
-            api: $data['api'],
-            engine: $data['engine'],
             version: $data['version'],
             specification: $data['specification'],
             backend: $data['backend'],
             hostname: $data['hostname'],
-            connectionPort: $data['connectionPort'],
             connectionUser: $data['connectionUser'],
             connectionPassword: $data['connectionPassword'],
-            credentialGeneration: $data['credentialGeneration'],
             connectionString: $data['connectionString'],
             ssl: $data['ssl'],
             status: $data['status'],
@@ -208,6 +199,8 @@ readonly class DedicatedDatabase
             cpu: $data['cpu'],
             memory: $data['memory'],
             storage: $data['storage'],
+            storageStatus: $data['storageStatus'],
+            storageTargetGb: $data['storageTargetGb'],
             storageClass: $data['storageClass'],
             storageMaxGb: $data['storageMaxGb'],
             nodePool: $data['nodePool'],
@@ -231,8 +224,13 @@ readonly class DedicatedDatabase
             sqlApiMaxBytes: $data['sqlApiMaxBytes'],
             sqlApiTimeoutSeconds: $data['sqlApiTimeoutSeconds'],
             error: $data['error'],
+            api: $data['api'] ?? null,
+            engine: $data['engine'] ?? null,
+            connectionPort: $data['connectionPort'] ?? null,
+            credentialGeneration: $data['credentialGeneration'] ?? null,
             lastAccessedAt: $data['lastAccessedAt'] ?? null,
-            idleUntil: $data['idleUntil'] ?? null
+            idleUntil: $data['idleUntil'] ?? null,
+            storageResizeStartedAt: $data['storageResizeStartedAt'] ?? null
         );
     }
 
@@ -268,6 +266,9 @@ readonly class DedicatedDatabase
             'cpu' => static::serializeValue($this->cpu),
             'memory' => static::serializeValue($this->memory),
             'storage' => static::serializeValue($this->storage),
+            'storageStatus' => static::serializeValue($this->storageStatus),
+            'storageTargetGb' => static::serializeValue($this->storageTargetGb),
+            'storageResizeStartedAt' => static::serializeValue($this->storageResizeStartedAt),
             'storageClass' => static::serializeValue($this->storageClass),
             'storageMaxGb' => static::serializeValue($this->storageMaxGb),
             'nodePool' => static::serializeValue($this->nodePool),

@@ -62,7 +62,7 @@ class Messaging extends Service
      *
      * @throws AppwriteException
      */
-    public function createEmail(string $messageId, string $subject, string $content, ?array $topics = null, ?array $users = null, ?array $targets = null, ?array $cc = null, ?array $bcc = null, ?array $attachments = null, ?bool $draft = null, ?bool $html = null, ?string $scheduledAt = null): \Appwrite\Models\Message
+    public function createEmail(string $messageId, string $subject, string $content, ?array $topics = null, ?array $users = null, ?array $targets = null, ?array $cc = null, ?array $bcc = null, ?array $attachments = null, ?string $replyToEmail = null, ?string $replyToName = null, ?bool $draft = null, ?bool $html = null, ?string $scheduledAt = null): \Appwrite\Models\Message
     {
         $apiPath = str_replace(
             [],
@@ -94,9 +94,14 @@ class Messaging extends Service
         if (!is_null($bcc)) {
             $apiParams['bcc'] = $bcc;
         }
+        $apiParams['attachments'] = $attachments;
 
-        if (!is_null($attachments)) {
-            $apiParams['attachments'] = $attachments;
+        if (!is_null($replyToEmail)) {
+            $apiParams['replyToEmail'] = $replyToEmail;
+        }
+
+        if (!is_null($replyToName)) {
+            $apiParams['replyToName'] = $replyToName;
         }
 
         if (!is_null($draft)) {
@@ -134,8 +139,12 @@ class Messaging extends Service
      *
      * @throws AppwriteException
      */
-    public function updateEmail(string $messageId, ?array $topics = null, ?array $users = null, ?array $targets = null, ?string $subject = null, ?string $content = null, ?bool $draft = null, ?bool $html = null, ?array $cc = null, ?array $bcc = null, ?string $scheduledAt = null, ?array $attachments = null): \Appwrite\Models\Message
+    public function updateEmail(string $messageId, ?string $subject = null, ?string $content = null, ?array $topics = null, ?array $users = null, ?array $targets = null, ?array $cc = null, ?array $bcc = null, ?array $attachments = null, ?string $replyToEmail = null, ?string $replyToName = null, ?bool $draft = null, ?bool $html = null, ?string $scheduledAt = null): \Appwrite\Models\Message
     {
+        if ($messageId === '') {
+            throw new AppwriteException('Missing required parameter: "messageId"');
+        }
+
         $apiPath = str_replace(
             ['{messageId}'],
             [$messageId],
@@ -144,17 +153,19 @@ class Messaging extends Service
 
         $apiParams = [];
         $apiParams['messageId'] = $messageId;
+        $apiParams['subject'] = $subject;
+        $apiParams['content'] = $content;
         $apiParams['topics'] = $topics;
         $apiParams['users'] = $users;
         $apiParams['targets'] = $targets;
-        $apiParams['subject'] = $subject;
-        $apiParams['content'] = $content;
-        $apiParams['draft'] = $draft;
-        $apiParams['html'] = $html;
         $apiParams['cc'] = $cc;
         $apiParams['bcc'] = $bcc;
-        $apiParams['scheduledAt'] = $scheduledAt;
         $apiParams['attachments'] = $attachments;
+        $apiParams['replyToEmail'] = $replyToEmail;
+        $apiParams['replyToName'] = $replyToName;
+        $apiParams['draft'] = $draft;
+        $apiParams['html'] = $html;
+        $apiParams['scheduledAt'] = $scheduledAt;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -180,7 +191,7 @@ class Messaging extends Service
      *
      * @throws AppwriteException
      */
-    public function createPush(string $messageId, ?string $title = null, ?string $body = null, ?array $topics = null, ?array $users = null, ?array $targets = null, ?array $data = null, ?string $action = null, ?string $image = null, ?string $icon = null, ?string $sound = null, ?string $color = null, ?string $tag = null, ?int $badge = null, ?bool $draft = null, ?string $scheduledAt = null, ?bool $contentAvailable = null, ?bool $critical = null, ?MessagePriority $priority = null): \Appwrite\Models\Message
+    public function createPush(string $messageId, ?string $title = null, ?string $body = null, ?array $topics = null, ?array $users = null, ?array $targets = null, ?array $data = null, ?string $action = null, ?string $image = null, ?string $icon = null, ?string $sound = null, ?string $color = null, ?string $tag = null, ?int $badge = null, ?bool $draft = null, ?string $scheduledAt = null, ?bool $contentAvailable = null, ?bool $critical = null, ?MessagePriority $priority = null, ?string $channelId = null): \Appwrite\Models\Message
     {
         $apiPath = str_replace(
             [],
@@ -257,6 +268,10 @@ class Messaging extends Service
             $apiParams['priority'] = $priority;
         }
 
+        if (!is_null($channelId)) {
+            $apiParams['channelId'] = $channelId;
+        }
+
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
@@ -283,8 +298,12 @@ class Messaging extends Service
      *
      * @throws AppwriteException
      */
-    public function updatePush(string $messageId, ?array $topics = null, ?array $users = null, ?array $targets = null, ?string $title = null, ?string $body = null, ?array $data = null, ?string $action = null, ?string $image = null, ?string $icon = null, ?string $sound = null, ?string $color = null, ?string $tag = null, ?int $badge = null, ?bool $draft = null, ?string $scheduledAt = null, ?bool $contentAvailable = null, ?bool $critical = null, ?MessagePriority $priority = null): \Appwrite\Models\Message
+    public function updatePush(string $messageId, ?string $title = null, ?string $body = null, ?array $topics = null, ?array $users = null, ?array $targets = null, ?array $data = null, ?string $action = null, ?string $image = null, ?string $icon = null, ?string $sound = null, ?string $color = null, ?string $tag = null, ?int $badge = null, ?bool $draft = null, ?string $scheduledAt = null, ?bool $contentAvailable = null, ?bool $critical = null, ?MessagePriority $priority = null, ?string $channelId = null): \Appwrite\Models\Message
     {
+        if ($messageId === '') {
+            throw new AppwriteException('Missing required parameter: "messageId"');
+        }
+
         $apiPath = str_replace(
             ['{messageId}'],
             [$messageId],
@@ -293,11 +312,11 @@ class Messaging extends Service
 
         $apiParams = [];
         $apiParams['messageId'] = $messageId;
+        $apiParams['title'] = $title;
+        $apiParams['body'] = $body;
         $apiParams['topics'] = $topics;
         $apiParams['users'] = $users;
         $apiParams['targets'] = $targets;
-        $apiParams['title'] = $title;
-        $apiParams['body'] = $body;
         $apiParams['data'] = $data;
         $apiParams['action'] = $action;
         $apiParams['image'] = $image;
@@ -311,6 +330,7 @@ class Messaging extends Service
         $apiParams['contentAvailable'] = $contentAvailable;
         $apiParams['critical'] = $critical;
         $apiParams['priority'] = $priority;
+        $apiParams['channelId'] = $channelId;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -391,8 +411,12 @@ class Messaging extends Service
      *
      * @throws AppwriteException
      */
-    public function updateSMS(string $messageId, ?array $topics = null, ?array $users = null, ?array $targets = null, ?string $content = null, ?bool $draft = null, ?string $scheduledAt = null): \Appwrite\Models\Message
+    public function updateSMS(string $messageId, ?string $content = null, ?array $topics = null, ?array $users = null, ?array $targets = null, ?bool $draft = null, ?string $scheduledAt = null): \Appwrite\Models\Message
     {
+        if ($messageId === '') {
+            throw new AppwriteException('Missing required parameter: "messageId"');
+        }
+
         $apiPath = str_replace(
             ['{messageId}'],
             [$messageId],
@@ -401,10 +425,10 @@ class Messaging extends Service
 
         $apiParams = [];
         $apiParams['messageId'] = $messageId;
+        $apiParams['content'] = $content;
         $apiParams['topics'] = $topics;
         $apiParams['users'] = $users;
         $apiParams['targets'] = $targets;
-        $apiParams['content'] = $content;
         $apiParams['draft'] = $draft;
         $apiParams['scheduledAt'] = $scheduledAt;
 
@@ -434,6 +458,10 @@ class Messaging extends Service
      */
     public function getMessage(string $messageId): \Appwrite\Models\Message
     {
+        if ($messageId === '') {
+            throw new AppwriteException('Missing required parameter: "messageId"');
+        }
+
         $apiPath = str_replace(
             ['{messageId}'],
             [$messageId],
@@ -469,6 +497,10 @@ class Messaging extends Service
      */
     public function delete(string $messageId): string
     {
+        if ($messageId === '') {
+            throw new AppwriteException('Missing required parameter: "messageId"');
+        }
+
         $apiPath = str_replace(
             ['{messageId}'],
             [$messageId],
@@ -481,6 +513,7 @@ class Messaging extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_DELETE,
@@ -497,6 +530,10 @@ class Messaging extends Service
      */
     public function listTargets(string $messageId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\TargetList
     {
+        if ($messageId === '') {
+            throw new AppwriteException('Missing required parameter: "messageId"');
+        }
+
         $apiPath = str_replace(
             ['{messageId}'],
             [$messageId],
@@ -641,6 +678,10 @@ class Messaging extends Service
      */
     public function updateAPNSProvider(string $providerId, ?string $name = null, ?bool $enabled = null, ?string $authKey = null, ?string $authKeyId = null, ?string $teamId = null, ?string $bundleId = null, ?bool $sandbox = null): \Appwrite\Models\Provider
     {
+        if ($providerId === '') {
+            throw new AppwriteException('Missing required parameter: "providerId"');
+        }
+
         $apiPath = str_replace(
             ['{providerId}'],
             [$providerId],
@@ -671,6 +712,91 @@ class Messaging extends Service
             $apiParams['bundleId'] = $bundleId;
         }
         $apiParams['sandbox'] = $sandbox;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Provider::from($response);
+    }
+
+    /**
+     * Create a new Appwrite push provider.
+     *
+     * @throws AppwriteException
+     */
+    public function createAppwriteProvider(string $providerId, string $name, ?bool $enabled = null, ?int $qos = null, ?int $expiry = null): \Appwrite\Models\Provider
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/messaging/providers/appwrite'
+        );
+
+        $apiParams = [];
+        $apiParams['providerId'] = $providerId;
+        $apiParams['name'] = $name;
+        $apiParams['enabled'] = $enabled;
+        $apiParams['qos'] = $qos;
+        $apiParams['expiry'] = $expiry;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Provider::from($response);
+    }
+
+    /**
+     * Update an Appwrite push provider by its unique ID.
+     *
+     * @throws AppwriteException
+     */
+    public function updateAppwriteProvider(string $providerId, ?string $name = null, ?bool $enabled = null, ?int $qos = null, ?int $expiry = null): \Appwrite\Models\Provider
+    {
+        if ($providerId === '') {
+            throw new AppwriteException('Missing required parameter: "providerId"');
+        }
+
+        $apiPath = str_replace(
+            ['{providerId}'],
+            [$providerId],
+            '/messaging/providers/appwrite/{providerId}'
+        );
+
+        $apiParams = [];
+        $apiParams['providerId'] = $providerId;
+
+        if (!is_null($name)) {
+            $apiParams['name'] = $name;
+        }
+        $apiParams['enabled'] = $enabled;
+        $apiParams['qos'] = $qos;
+        $apiParams['expiry'] = $expiry;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -736,6 +862,10 @@ class Messaging extends Service
      */
     public function updateFCMProvider(string $providerId, ?string $name = null, ?bool $enabled = null, ?array $serviceAccountJSON = null): \Appwrite\Models\Provider
     {
+        if ($providerId === '') {
+            throw new AppwriteException('Missing required parameter: "providerId"');
+        }
+
         $apiPath = str_replace(
             ['{providerId}'],
             [$providerId],
@@ -839,6 +969,10 @@ class Messaging extends Service
      */
     public function updateMailgunProvider(string $providerId, ?string $name = null, ?string $apiKey = null, ?string $domain = null, ?bool $isEuRegion = null, ?bool $enabled = null, ?string $fromName = null, ?string $fromEmail = null, ?string $replyToName = null, ?string $replyToEmail = null): \Appwrite\Models\Provider
     {
+        if ($providerId === '') {
+            throw new AppwriteException('Missing required parameter: "providerId"');
+        }
+
         $apiPath = str_replace(
             ['{providerId}'],
             [$providerId],
@@ -953,6 +1087,10 @@ class Messaging extends Service
      */
     public function updateMsg91Provider(string $providerId, ?string $name = null, ?bool $enabled = null, ?string $templateId = null, ?string $senderId = null, ?string $authKey = null): \Appwrite\Models\Provider
     {
+        if ($providerId === '') {
+            throw new AppwriteException('Missing required parameter: "providerId"');
+        }
+
         $apiPath = str_replace(
             ['{providerId}'],
             [$providerId],
@@ -1062,6 +1200,10 @@ class Messaging extends Service
      */
     public function updateResendProvider(string $providerId, ?string $name = null, ?bool $enabled = null, ?string $apiKey = null, ?string $fromName = null, ?string $fromEmail = null, ?string $replyToName = null, ?string $replyToEmail = null): \Appwrite\Models\Provider
     {
+        if ($providerId === '') {
+            throw new AppwriteException('Missing required parameter: "providerId"');
+        }
+
         $apiPath = str_replace(
             ['{providerId}'],
             [$providerId],
@@ -1179,6 +1321,10 @@ class Messaging extends Service
      */
     public function updateSendgridProvider(string $providerId, ?string $name = null, ?bool $enabled = null, ?string $apiKey = null, ?string $fromName = null, ?string $fromEmail = null, ?string $replyToName = null, ?string $replyToEmail = null): \Appwrite\Models\Provider
     {
+        if ($providerId === '') {
+            throw new AppwriteException('Missing required parameter: "providerId"');
+        }
+
         $apiPath = str_replace(
             ['{providerId}'],
             [$providerId],
@@ -1304,6 +1450,10 @@ class Messaging extends Service
      */
     public function updateSesProvider(string $providerId, ?string $name = null, ?bool $enabled = null, ?string $accessKey = null, ?string $secretKey = null, ?string $region = null, ?string $fromName = null, ?string $fromEmail = null, ?string $replyToName = null, ?string $replyToEmail = null): \Appwrite\Models\Provider
     {
+        if ($providerId === '') {
+            throw new AppwriteException('Missing required parameter: "providerId"');
+        }
+
         $apiPath = str_replace(
             ['{providerId}'],
             [$providerId],
@@ -1450,6 +1600,10 @@ class Messaging extends Service
      */
     public function updateSMTPProvider(string $providerId, ?string $name = null, ?string $host = null, ?int $port = null, ?string $username = null, ?string $password = null, ?SmtpEncryption $encryption = null, ?bool $autoTLS = null, ?string $mailer = null, ?string $fromName = null, ?string $fromEmail = null, ?string $replyToName = null, ?string $replyToEmail = null, ?bool $enabled = null): \Appwrite\Models\Provider
     {
+        if ($providerId === '') {
+            throw new AppwriteException('Missing required parameter: "providerId"');
+        }
+
         $apiPath = str_replace(
             ['{providerId}'],
             [$providerId],
@@ -1577,6 +1731,10 @@ class Messaging extends Service
      */
     public function updateTelesignProvider(string $providerId, ?string $name = null, ?bool $enabled = null, ?string $customerId = null, ?string $apiKey = null, ?string $from = null): \Appwrite\Models\Provider
     {
+        if ($providerId === '') {
+            throw new AppwriteException('Missing required parameter: "providerId"');
+        }
+
         $apiPath = str_replace(
             ['{providerId}'],
             [$providerId],
@@ -1678,6 +1836,10 @@ class Messaging extends Service
      */
     public function updateTextmagicProvider(string $providerId, ?string $name = null, ?bool $enabled = null, ?string $username = null, ?string $apiKey = null, ?string $from = null): \Appwrite\Models\Provider
     {
+        if ($providerId === '') {
+            throw new AppwriteException('Missing required parameter: "providerId"');
+        }
+
         $apiPath = str_replace(
             ['{providerId}'],
             [$providerId],
@@ -1779,6 +1941,10 @@ class Messaging extends Service
      */
     public function updateTwilioProvider(string $providerId, ?string $name = null, ?bool $enabled = null, ?string $accountSid = null, ?string $authToken = null, ?string $from = null): \Appwrite\Models\Provider
     {
+        if ($providerId === '') {
+            throw new AppwriteException('Missing required parameter: "providerId"');
+        }
+
         $apiPath = str_replace(
             ['{providerId}'],
             [$providerId],
@@ -1880,6 +2046,10 @@ class Messaging extends Service
      */
     public function updateVonageProvider(string $providerId, ?string $name = null, ?bool $enabled = null, ?string $apiKey = null, ?string $apiSecret = null, ?string $from = null): \Appwrite\Models\Provider
     {
+        if ($providerId === '') {
+            throw new AppwriteException('Missing required parameter: "providerId"');
+        }
+
         $apiPath = str_replace(
             ['{providerId}'],
             [$providerId],
@@ -1932,6 +2102,10 @@ class Messaging extends Service
      */
     public function getProvider(string $providerId): \Appwrite\Models\Provider
     {
+        if ($providerId === '') {
+            throw new AppwriteException('Missing required parameter: "providerId"');
+        }
+
         $apiPath = str_replace(
             ['{providerId}'],
             [$providerId],
@@ -1966,6 +2140,10 @@ class Messaging extends Service
      */
     public function deleteProvider(string $providerId): string
     {
+        if ($providerId === '') {
+            throw new AppwriteException('Missing required parameter: "providerId"');
+        }
+
         $apiPath = str_replace(
             ['{providerId}'],
             [$providerId],
@@ -1978,6 +2156,7 @@ class Messaging extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_DELETE,
@@ -2037,7 +2216,7 @@ class Messaging extends Service
      *
      * @throws AppwriteException
      */
-    public function createTopic(string $topicId, string $name, ?array $subscribe = null): \Appwrite\Models\Topic
+    public function createTopic(string $topicId, string $name, ?array $subscribe = null, ?int $qos = null, ?int $expiry = null): \Appwrite\Models\Topic
     {
         $apiPath = str_replace(
             [],
@@ -2052,6 +2231,8 @@ class Messaging extends Service
         if (!is_null($subscribe)) {
             $apiParams['subscribe'] = $subscribe;
         }
+        $apiParams['qos'] = $qos;
+        $apiParams['expiry'] = $expiry;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -2079,6 +2260,10 @@ class Messaging extends Service
      */
     public function getTopic(string $topicId): \Appwrite\Models\Topic
     {
+        if ($topicId === '') {
+            throw new AppwriteException('Missing required parameter: "topicId"');
+        }
+
         $apiPath = str_replace(
             ['{topicId}'],
             [$topicId],
@@ -2111,8 +2296,12 @@ class Messaging extends Service
      *
      * @throws AppwriteException
      */
-    public function updateTopic(string $topicId, ?string $name = null, ?array $subscribe = null): \Appwrite\Models\Topic
+    public function updateTopic(string $topicId, ?string $name = null, ?array $subscribe = null, ?int $qos = null, ?int $expiry = null): \Appwrite\Models\Topic
     {
+        if ($topicId === '') {
+            throw new AppwriteException('Missing required parameter: "topicId"');
+        }
+
         $apiPath = str_replace(
             ['{topicId}'],
             [$topicId],
@@ -2123,6 +2312,8 @@ class Messaging extends Service
         $apiParams['topicId'] = $topicId;
         $apiParams['name'] = $name;
         $apiParams['subscribe'] = $subscribe;
+        $apiParams['qos'] = $qos;
+        $apiParams['expiry'] = $expiry;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -2150,6 +2341,10 @@ class Messaging extends Service
      */
     public function deleteTopic(string $topicId): string
     {
+        if ($topicId === '') {
+            throw new AppwriteException('Missing required parameter: "topicId"');
+        }
+
         $apiPath = str_replace(
             ['{topicId}'],
             [$topicId],
@@ -2162,6 +2357,7 @@ class Messaging extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_DELETE,
@@ -2178,6 +2374,10 @@ class Messaging extends Service
      */
     public function listSubscribers(string $topicId, ?array $queries = null, ?string $search = null, ?bool $total = null): \Appwrite\Models\SubscriberList
     {
+        if ($topicId === '') {
+            throw new AppwriteException('Missing required parameter: "topicId"');
+        }
+
         $apiPath = str_replace(
             ['{topicId}'],
             [$topicId],
@@ -2224,6 +2424,10 @@ class Messaging extends Service
      */
     public function createSubscriber(string $topicId, string $subscriberId, string $targetId): \Appwrite\Models\Subscriber
     {
+        if ($topicId === '') {
+            throw new AppwriteException('Missing required parameter: "topicId"');
+        }
+
         $apiPath = str_replace(
             ['{topicId}'],
             [$topicId],
@@ -2261,6 +2465,14 @@ class Messaging extends Service
      */
     public function getSubscriber(string $topicId, string $subscriberId): \Appwrite\Models\Subscriber
     {
+        if ($topicId === '') {
+            throw new AppwriteException('Missing required parameter: "topicId"');
+        }
+
+        if ($subscriberId === '') {
+            throw new AppwriteException('Missing required parameter: "subscriberId"');
+        }
+
         $apiPath = str_replace(
             ['{topicId}', '{subscriberId}'],
             [$topicId, $subscriberId],
@@ -2296,6 +2508,14 @@ class Messaging extends Service
      */
     public function deleteSubscriber(string $topicId, string $subscriberId): string
     {
+        if ($topicId === '') {
+            throw new AppwriteException('Missing required parameter: "topicId"');
+        }
+
+        if ($subscriberId === '') {
+            throw new AppwriteException('Missing required parameter: "subscriberId"');
+        }
+
         $apiPath = str_replace(
             ['{topicId}', '{subscriberId}'],
             [$topicId, $subscriberId],
@@ -2309,6 +2529,7 @@ class Messaging extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_DELETE,

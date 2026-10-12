@@ -10,9 +10,11 @@ use Appwrite\Service;
 use Appwrite\Enums\Browser;
 use Appwrite\Enums\CreditCard;
 use Appwrite\Enums\Flag;
+use Appwrite\InputFile;
 use Appwrite\Enums\BrowserTheme;
 use Appwrite\Enums\Timezone;
 use Appwrite\Enums\ImageFormat;
+use Utopia\Psr7\Request\Multipart\Part;
 
 class Avatars extends Service
 {
@@ -296,9 +298,9 @@ class Avatars extends Service
 
     /**
      * Returns the best available profile photo for a user. The endpoint tries
-     * each source in priority order and returns the first successful result:
-     * OAuth2 identity photo, Gravatar, Libravatar, Appwrite Initials, built-in
-     * static fallback.
+     * each source in priority order and returns the first successful result: a
+     * custom uploaded photo (see avatars.updatePhoto), OAuth2 identity photo,
+     * Gravatar, Libravatar, Appwrite Initials, built-in static fallback.
      *
      * Passing `userId` — `current()` for the authenticated user — resolves
      * the photo from everything known about that user: identity photos, email,
@@ -361,6 +363,204 @@ class Avatars extends Service
 
         return $this->client->call(
             Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Update the profile photo of the currently authenticated user. The uploaded
+     * image takes priority over every other photo source, including OAuth2
+     * identity photos, Gravatar, and Libravatar. Updating an already customized
+     * photo replaces it. The image must be at most 5MB and is sent in a single
+     * request.
+     *
+     * @throws AppwriteException
+     */
+    public function updatePhoto(InputFile $file, ?callable $onProgress = null): \Appwrite\Models\Account
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/avatars/photo'
+        );
+
+        $apiParams = [];
+        $apiParams['file'] = $file;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'multipart/form-data';
+        $apiHeaders['accept'] = 'application/json';
+        if (empty($file->getPath() ?? null)) {
+            $size = strlen($file->getData());
+            $mimeType = $file->getMimeType();
+            $postedName = $file->getFilename();
+            if ($size <= Client::CHUNK_SIZE) {
+                $apiParams['file'] = Part::body('file', $file->getData(), $postedName, $mimeType);
+                $response = $this->client->call(Client::METHOD_PUT, $apiPath, [
+                            'content-type' => 'multipart/form-data',
+                        'accept' => 'application/json',
+                        ], $apiParams);
+                if (!is_array($response)) {
+                    throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+                }
+
+                return \Appwrite\Models\Account::from($response);
+            }
+        } else {
+            $size = filesize($file->getPath());
+            $mimeType = $file->getMimeType() ?? mime_content_type($file->getPath());
+            $postedName = $file->getFilename() ?? basename($file->getPath());
+            //send single file if size is less than or equal to 5MB
+            if ($size <= Client::CHUNK_SIZE) {
+                $apiParams['file'] = Part::file('file', $file->getPath(), $postedName, $mimeType);
+                $response = $this->client->call(Client::METHOD_PUT, $apiPath, [
+                            'content-type' => 'multipart/form-data',
+                        'accept' => 'application/json',
+                        ], $apiParams);
+                if (!is_array($response)) {
+                    throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+                }
+
+                return \Appwrite\Models\Account::from($response);
+            }
+        }
+
+        $counter = 0;
+
+
+        $apiHeaders = [
+            'X-Appwrite-Project' => $this->client->getConfig('project'),
+            'content-type' => 'multipart/form-data',
+            'accept' => 'application/json',
+        ];
+        $handle = null;
+
+        if (!empty($file->getPath())) {
+            $handle = @fopen($file->getPath(), "rb");
+        }
+
+        $uploadId = '';
+        $totalChunks = (int) ceil($size / Client::CHUNK_SIZE);
+        $chunks = [];
+        $start = $counter * Client::CHUNK_SIZE;
+        while ($start < $size) {
+            $chunks[] = [
+                'index' => $counter,
+                'start' => $start,
+                'end' => min($start + Client::CHUNK_SIZE, $size),
+            ];
+            $counter++;
+            $start += Client::CHUNK_SIZE;
+        }
+
+        $readChunk = function (int $start, int $end) use ($handle, $file): string|false {
+            if (!empty($handle)) {
+                fseek($handle, $start);
+                return @fread($handle, $end - $start);
+            }
+
+            return substr($file->getData(), $start, $end - $start);
+        };
+
+        $uploadChunk = function (array $chunk, string $currentUploadId = '') use ($readChunk, $apiPath, $apiHeaders, $apiParams, $mimeType, $postedName, $size) {
+            $chunkParams = $apiParams;
+            $chunkHeaders = $apiHeaders;
+            $data = $readChunk($chunk['start'], $chunk['end']);
+            if (!is_string($data)) {
+                throw new AppwriteException('Failed to read upload chunk');
+            }
+            $chunkParams['file'] = Part::body('file', $data, $postedName, $mimeType);
+            $chunkHeaders['content-range'] = 'bytes ' . $chunk['start'] . '-' . ($chunk['end'] - 1) . '/' . $size;
+            if (!empty($currentUploadId)) {
+                $chunkHeaders['x-appwrite-id'] = $currentUploadId;
+            }
+
+            return $this->client->call(Client::METHOD_PUT, $apiPath, $chunkHeaders, $chunkParams);
+        };
+
+        $isUploadComplete = function ($chunkResponse) use ($totalChunks): bool {
+            if (!is_array($chunkResponse) || !isset($chunkResponse['chunksUploaded'])) {
+                return false;
+            }
+
+            return (int) $chunkResponse['chunksUploaded'] >= (int) ($chunkResponse['chunksTotal'] ?? $totalChunks);
+        };
+
+        $response = $uploadChunk($chunks[0], $uploadId);
+        $uploadId = $response['$id'];
+        $completedCount = $chunks[0]['index'] + 1;
+        $uploadedSize = $chunks[0]['end'];
+        if ($onProgress !== null) {
+            $onProgress([
+                '$id' => $response['$id'],
+                'progress' => $uploadedSize / $size * 100,
+                'sizeUploaded' => $uploadedSize,
+                'chunksTotal' => $totalChunks,
+                'chunksUploaded' => $completedCount,
+            ]);
+        }
+
+        $remainingChunks = array_slice($chunks, 1);
+        $completedResponse = $isUploadComplete($response) ? $response : null;
+
+        foreach ($remainingChunks as $chunk) {
+            $response = $uploadChunk($chunk, $uploadId);
+            $completedCount++;
+            $uploadedSize += $chunk['end'] - $chunk['start'];
+            if ($isUploadComplete($response)) {
+                $completedResponse = $response;
+            }
+            if ($onProgress !== null) {
+                $onProgress([
+                    '$id' => $uploadId,
+                    'progress' => $uploadedSize / $size * 100,
+                    'sizeUploaded' => $uploadedSize,
+                    'chunksTotal' => $totalChunks,
+                    'chunksUploaded' => $completedCount,
+                ]);
+            }
+        }
+
+        $response = $completedResponse ?? $response;
+        if (!empty($handle)) {
+            @fclose($handle);
+        }
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Account::from($response);
+    }
+
+    /**
+     * Delete the profile photo of the currently authenticated user and store the
+     * built-in static placeholder in its place. The placeholder is the user's
+     * photo from then on, so it takes priority over every other photo source —
+     * OAuth2 identity photos, Gravatar, Libravatar, and initials — until a new
+     * photo is uploaded with avatars.updatePhoto.
+     *
+     * @throws AppwriteException
+     */
+    public function deletePhoto(): string
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/avatars/photo'
+        );
+
+        $apiParams = [];
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_DELETE,
             $apiPath,
             $apiHeaders,
             $apiParams

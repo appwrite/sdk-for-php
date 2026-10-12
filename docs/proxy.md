@@ -7,7 +7,9 @@ POST https://cloud.appwrite.io/v1/proxy/invalidations
 
 ** Create a new CDN cache invalidation for a domain. Executes a hard purge of cached content.
 
-Depending on type, the invalidation purges a single cache tag, a single URL path, or all cached content for the domain. **
+Depending on type, the invalidation purges a single cache tag, a single URL path, or all cached content for the domain.
+
+Domains that route to a function do not support cache invalidation. **
 
 ### Parameters
 

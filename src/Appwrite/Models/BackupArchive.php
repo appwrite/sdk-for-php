@@ -20,12 +20,12 @@ readonly class BackupArchive
      * @param string $createdAt archive creation time in iso 8601 format.
      * @param string $updatedAt archive update date in iso 8601 format.
      * @param string $policyId archive policy id.
-     * @param int $size archive size in bytes.
      * @param string $status the status of the archive creation. possible values: pending, processing, uploading, completed, failed, skipped.
-     * @param string $startedAt the backup start time.
      * @param string $migrationId migration id.
      * @param array $services the services that are backed up by this archive.
      * @param array $resources the resources that are backed up by this archive.
+     * @param int|null $size archive size in bytes. null until the size is known.
+     * @param string|null $startedAt the backup start time. null until the backup starts.
      * @param string|null $resourceId the resource id to backup. set only if this archive should backup a single resource.
      * @param string|null $resourceType the resource type to backup. set only if this archive should backup a single resource.
      */
@@ -34,12 +34,12 @@ readonly class BackupArchive
         public string $createdAt,
         public string $updatedAt,
         public string $policyId,
-        public int $size,
         public string $status,
-        public string $startedAt,
         public string $migrationId,
         public array $services,
         public array $resources,
+        public ?int $size = null,
+        public ?string $startedAt = null,
         public ?string $resourceId = null,
         public ?string $resourceType = null
     ) {
@@ -59,12 +59,6 @@ readonly class BackupArchive
             'migrationId' => "",
         ];
 
-        if (!array_key_exists('size', $data)) {
-            throw new \InvalidArgumentException('Missing required field "size" for ' . static::class . '.');
-        }
-        if (!array_key_exists('startedAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "startedAt" for ' . static::class . '.');
-        }
         if (!array_key_exists('services', $data)) {
             throw new \InvalidArgumentException('Missing required field "services" for ' . static::class . '.');
         }
@@ -77,12 +71,12 @@ readonly class BackupArchive
             createdAt: $data['$createdAt'],
             updatedAt: $data['$updatedAt'],
             policyId: $data['policyId'],
-            size: $data['size'],
             status: $data['status'],
-            startedAt: $data['startedAt'],
             migrationId: $data['migrationId'],
             services: $data['services'],
             resources: $data['resources'],
+            size: $data['size'] ?? null,
+            startedAt: $data['startedAt'] ?? null,
             resourceId: $data['resourceId'] ?? null,
             resourceType: $data['resourceType'] ?? null
         );

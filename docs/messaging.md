@@ -11,7 +11,7 @@ GET https://cloud.appwrite.io/v1/messaging/messages
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: scheduledAt, deliveredAt, deliveredTotal, status, description, providerType | [] |
+| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: scheduledAt, deliveredAt, deliveredTotal, status, description, providerType, users, targets | [] |
 | search | string | Search term to filter your list results. Max length: 256 chars. |  |
 | total | boolean | When set to false, the total count returned will be 0 and will not be calculated. | 1 |
 
@@ -35,6 +35,8 @@ POST https://cloud.appwrite.io/v1/messaging/messages/email
 | cc | array | Array of target IDs to be added as CC. | [] |
 | bcc | array | Array of target IDs to be added as BCC. | [] |
 | attachments | array | Array of compound ID strings of bucket IDs and file IDs to be attached to the email. They should be formatted as <BUCKET_ID>:<FILE_ID>. | [] |
+| replyToEmail | string | Email address to reply to. If not set, defaults to the sender email address. |  |
+| replyToName | string | Name of the reply to recipient. If not set, defaults to the sender name. |  |
 | draft | boolean | Is message a draft |  |
 | html | boolean | Is content of type HTML |  |
 | scheduledAt | string | Scheduled delivery time for message in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. DateTime value must be in future. |  |
@@ -52,17 +54,19 @@ PATCH https://cloud.appwrite.io/v1/messaging/messages/email/{messageId}
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | messageId | string | **Required** Message ID. |  |
+| subject | string | Email Subject. |  |
+| content | string | Email Content. |  |
 | topics | array | List of Topic IDs. |  |
 | users | array | List of User IDs. |  |
 | targets | array | List of Targets IDs. |  |
-| subject | string | Email Subject. |  |
-| content | string | Email Content. |  |
-| draft | boolean | Is message a draft |  |
-| html | boolean | Is content of type HTML |  |
 | cc | array | Array of target IDs to be added as CC. |  |
 | bcc | array | Array of target IDs to be added as BCC. |  |
-| scheduledAt | string | Scheduled delivery time for message in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. DateTime value must be in future. |  |
 | attachments | array | Array of compound ID strings of bucket IDs and file IDs to be attached to the email. They should be formatted as <BUCKET_ID>:<FILE_ID>. |  |
+| replyToEmail | string | Email address to reply to. Pass an empty string to restore the provider or sender default. |  |
+| replyToName | string | Name of the reply to recipient. Pass an empty string to restore the provider or sender default. |  |
+| draft | boolean | Is message a draft |  |
+| html | boolean | Is content of type HTML |  |
+| scheduledAt | string | Scheduled delivery time for message in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. DateTime value must be in future. |  |
 
 
 ```http request
@@ -94,6 +98,7 @@ POST https://cloud.appwrite.io/v1/messaging/messages/push
 | contentAvailable | boolean | If set to true, the notification will be delivered in the background. Available only for iOS Platform. |  |
 | critical | boolean | If set to true, the notification will be marked as critical. This requires the app to have the critical notification entitlement. Available only for iOS Platform. |  |
 | priority | string | Set the notification priority. "normal" will consider device state and may not deliver notifications immediately. "high" will always attempt to immediately deliver the notification. | high |
+| channelId | string | ID of the notification channel to deliver the notification on. The app must have already created a channel with this ID, otherwise the channel from the app manifest is used. Available only for Android Platform. |  |
 
 
 ```http request
@@ -108,11 +113,11 @@ PATCH https://cloud.appwrite.io/v1/messaging/messages/push/{messageId}
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | messageId | string | **Required** Message ID. |  |
+| title | string | Title for push notification. |  |
+| body | string | Body for push notification. |  |
 | topics | array | List of Topic IDs. |  |
 | users | array | List of User IDs. |  |
 | targets | array | List of Targets IDs. |  |
-| title | string | Title for push notification. |  |
-| body | string | Body for push notification. |  |
 | data | object | Additional Data for push notification. | {} |
 | action | string | Action for push notification. |  |
 | image | string | Image for push notification. Must be a compound bucket ID to file ID of a jpeg, png, or bmp image in Appwrite Storage. It should be formatted as <BUCKET_ID>:<FILE_ID>. |  |
@@ -126,6 +131,7 @@ PATCH https://cloud.appwrite.io/v1/messaging/messages/push/{messageId}
 | contentAvailable | boolean | If set to true, the notification will be delivered in the background. Available only for iOS Platform. |  |
 | critical | boolean | If set to true, the notification will be marked as critical. This requires the app to have the critical notification entitlement. Available only for iOS Platform. |  |
 | priority | string | Set the notification priority. "normal" will consider device battery state and may send notifications later. "high" will always attempt to immediately deliver the notification. |  |
+| channelId | string | ID of the notification channel to deliver the notification on. The app must have already created a channel with this ID, otherwise the channel from the app manifest is used. Pass an empty string to clear it. Available only for Android platforms. |  |
 
 
 ```http request
@@ -178,10 +184,10 @@ PATCH https://cloud.appwrite.io/v1/messaging/messages/sms/{messageId}
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | messageId | string | **Required** Message ID. |  |
+| content | string | Email Content. |  |
 | topics | array | List of Topic IDs. |  |
 | users | array | List of User IDs. |  |
 | targets | array | List of Targets IDs. |  |
-| content | string | Email Content. |  |
 | draft | boolean | Is message a draft |  |
 | scheduledAt | string | Scheduled delivery time for message in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. DateTime value must be in future. |  |
 
@@ -198,10 +204,10 @@ PATCH https://cloud.appwrite.io/v1/messaging/messages/sms/{messageId}
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | messageId | string | **Required** Message ID. |  |
+| content | string | Email Content. |  |
 | topics | array | List of Topic IDs. |  |
 | users | array | List of User IDs. |  |
 | targets | array | List of Targets IDs. |  |
-| content | string | Email Content. |  |
 | draft | boolean | Is message a draft |  |
 | scheduledAt | string | Scheduled delivery time for message in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. DateTime value must be in future. |  |
 
@@ -341,6 +347,40 @@ PATCH https://cloud.appwrite.io/v1/messaging/providers/apns/{providerId}
 | teamId | string | APNS team ID. |  |
 | bundleId | string | APNS bundle ID. |  |
 | sandbox | boolean | Use APNS sandbox environment. |  |
+
+
+```http request
+POST https://cloud.appwrite.io/v1/messaging/providers/appwrite
+```
+
+** Create a new Appwrite push provider. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| providerId | string | Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
+| name | string | Provider name. |  |
+| enabled | boolean | Set as enabled. |  |
+| qos | integer | Default QoS for topics on this provider (0 or 1). Null lets the subscriber choose. |  |
+| expiry | integer | Default message retention in seconds for offline delivery. Max 7 days (604800). |  |
+
+
+```http request
+PATCH https://cloud.appwrite.io/v1/messaging/providers/appwrite/{providerId}
+```
+
+** Update an Appwrite push provider by its unique ID. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| providerId | string | **Required** Provider ID. |  |
+| name | string | Provider name. |  |
+| enabled | boolean | Set as enabled. |  |
+| qos | integer | Default QoS for topics on this provider (0 or 1). Null lets the subscriber choose. |  |
+| expiry | integer | Default message retention in seconds for offline delivery. Max 7 days (604800). |  |
 
 
 ```http request
@@ -799,7 +839,7 @@ POST https://cloud.appwrite.io/v1/messaging/providers/twilio
 | --- | --- | --- | --- |
 | providerId | string | Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
 | name | string | Provider name. |  |
-| from | string | Sender Phone number. Format this number with a leading '+' and a country code, e.g., +16175551212. |  |
+| from | string | Sender phone number or alphanumeric sender ID. Format phone numbers with a leading '+' and a country code, e.g., +16175551212. |  |
 | accountSid | string | Twilio account secret ID. |  |
 | authToken | string | Twilio authentication token. |  |
 | enabled | boolean | Set as enabled. |  |
@@ -820,7 +860,7 @@ PATCH https://cloud.appwrite.io/v1/messaging/providers/twilio/{providerId}
 | enabled | boolean | Set as enabled. |  |
 | accountSid | string | Twilio account secret ID. |  |
 | authToken | string | Twilio authentication token. |  |
-| from | string | Sender number. |  |
+| from | string | Sender phone number or alphanumeric sender ID. Format phone numbers with a leading '+' and a country code, e.g., +16175551212. |  |
 
 
 ```http request
@@ -914,6 +954,8 @@ POST https://cloud.appwrite.io/v1/messaging/topics
 | topicId | string | Topic ID. Choose a custom Topic ID or a new Topic ID. |  |
 | name | string | Topic Name. |  |
 | subscribe | array | An array of role strings with subscribe permission. By default all users are granted with any subscribe permission. [learn more about roles](https://appwrite.io/docs/permissions#permission-roles). Maximum of 100 roles are allowed, each 64 characters long. | [&quot;users&quot;] |
+| qos | integer | MQTT delivery quality of service for this topic. 0 is fire-and-forget (delivered only to clients connected at publish time). 1 persists each message and replays it when a client reconnects without having acknowledged it. Null lets the subscriber choose. |  |
+| expiry | integer | Message retention in seconds for offline delivery. Max 7 days (604800). |  |
 
 
 ```http request
@@ -944,6 +986,8 @@ PATCH https://cloud.appwrite.io/v1/messaging/topics/{topicId}
 | topicId | string | **Required** Topic ID. |  |
 | name | string | Topic Name. |  |
 | subscribe | array | An array of role strings with subscribe permission. By default all users are granted with any subscribe permission. [learn more about roles](https://appwrite.io/docs/permissions#permission-roles). Maximum of 100 roles are allowed, each 64 characters long. |  |
+| qos | integer | MQTT delivery quality of service for this topic. 0 is fire-and-forget (delivered only to clients connected at publish time). 1 persists each message and replays it when a client reconnects without having acknowledged it. Null lets the subscriber choose. |  |
+| expiry | integer | Message retention in seconds for offline delivery. Max 7 days (604800). |  |
 
 
 ```http request

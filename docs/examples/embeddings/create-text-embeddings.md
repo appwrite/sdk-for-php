@@ -13,7 +13,7 @@ $client = (new Client())
 $embeddings = new Embeddings($client);
 
 $result = $embeddings->createTextEmbeddings(
-    texts: [],
+    texts: ["Appwrite helps developers build applications.", "Find documents with semantic search."],
     model: EmbeddingModel::NOMICEMBEDTEXT() // optional
 );
 ```

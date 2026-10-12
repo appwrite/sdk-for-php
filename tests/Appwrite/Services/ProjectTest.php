@@ -36,18 +36,6 @@ final class ProjectTest extends TestCase
             "name" => "New Project",
             "teamId" => "1592981250",
             "region" => "fra",
-            "devKeys" => [
-                [
-                    "\$id" => "5e5ea5c16897e",
-                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "name" => "Dev API Key",
-                    "expire" => "2020-10-15T06:38:00.000+00:00",
-                    "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
-                    "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "sdks" => []
-                ]
-            ],
             "smtpEnabled" => true,
             "smtpSenderName" => "John Appwrite",
             "smtpSenderEmail" => "john@appwrite.io",
@@ -86,12 +74,7 @@ final class ProjectTest extends TestCase
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
-                    "mode" => "readOnly",
-                    "projectName" => "My Project",
-                    "region" => "fra",
-                    "organizationName" => "Acme Inc.",
-                    "organizationId" => "5e5ea5c16897e",
-                    "billingPlan" => "pro"
+                    "mode" => "readOnly"
                 ]
             ],
             "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
@@ -132,18 +115,6 @@ final class ProjectTest extends TestCase
             "name" => "New Project",
             "teamId" => "1592981250",
             "region" => "fra",
-            "devKeys" => [
-                [
-                    "\$id" => "5e5ea5c16897e",
-                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "name" => "Dev API Key",
-                    "expire" => "2020-10-15T06:38:00.000+00:00",
-                    "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
-                    "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "sdks" => []
-                ]
-            ],
             "smtpEnabled" => true,
             "smtpSenderName" => "John Appwrite",
             "smtpSenderEmail" => "john@appwrite.io",
@@ -182,12 +153,7 @@ final class ProjectTest extends TestCase
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
-                    "mode" => "readOnly",
-                    "projectName" => "My Project",
-                    "region" => "fra",
-                    "organizationName" => "Acme Inc.",
-                    "organizationId" => "5e5ea5c16897e",
-                    "billingPlan" => "pro"
+                    "mode" => "readOnly"
                 ]
             ],
             "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
@@ -347,18 +313,6 @@ final class ProjectTest extends TestCase
             "name" => "New Project",
             "teamId" => "1592981250",
             "region" => "fra",
-            "devKeys" => [
-                [
-                    "\$id" => "5e5ea5c16897e",
-                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "name" => "Dev API Key",
-                    "expire" => "2020-10-15T06:38:00.000+00:00",
-                    "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
-                    "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "sdks" => []
-                ]
-            ],
             "smtpEnabled" => true,
             "smtpSenderName" => "John Appwrite",
             "smtpSenderEmail" => "john@appwrite.io",
@@ -397,12 +351,7 @@ final class ProjectTest extends TestCase
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
-                    "mode" => "readOnly",
-                    "projectName" => "My Project",
-                    "region" => "fra",
-                    "organizationName" => "Acme Inc.",
-                    "organizationId" => "5e5ea5c16897e",
-                    "billingPlan" => "pro"
+                    "mode" => "readOnly"
                 ]
             ],
             "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
@@ -558,18 +507,6 @@ final class ProjectTest extends TestCase
             "name" => "New Project",
             "teamId" => "1592981250",
             "region" => "fra",
-            "devKeys" => [
-                [
-                    "\$id" => "5e5ea5c16897e",
-                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "name" => "Dev API Key",
-                    "expire" => "2020-10-15T06:38:00.000+00:00",
-                    "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
-                    "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "sdks" => []
-                ]
-            ],
             "smtpEnabled" => true,
             "smtpSenderName" => "John Appwrite",
             "smtpSenderEmail" => "john@appwrite.io",
@@ -608,12 +545,7 @@ final class ProjectTest extends TestCase
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
-                    "mode" => "readOnly",
-                    "projectName" => "My Project",
-                    "region" => "fra",
-                    "organizationName" => "Acme Inc.",
-                    "organizationId" => "5e5ea5c16897e",
-                    "billingPlan" => "pro"
+                    "mode" => "readOnly"
                 ]
             ],
             "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
@@ -661,7 +593,9 @@ final class ProjectTest extends TestCase
             "serviceId" => "ip.appwrite.app.web",
             "keyId" => "P4000000N8",
             "teamId" => "D4000000R6",
-            "p8File" => "-----BEGIN PRIVATE KEY-----MIGTAg...jy2Xbna-----END PRIVATE KEY-----"
+            "p8File" => "-----BEGIN PRIVATE KEY-----MIGTAg...jy2Xbna-----END PRIVATE KEY-----",
+            "nativeEnabled" => true,
+            "nativeClientIds" => []
         ];
 
         $this->client
@@ -702,6 +636,7 @@ final class ProjectTest extends TestCase
             "enabled" => true,
             "clientId" => "OaOkIA000000000000000000005KLSYq",
             "clientSecret" => "zXz0000-00000000000000000000000000000-00000000000000000000PJafnF",
+            "prompt" => ["none"],
             "endpoint" => "example.us.auth0.com"
         ];
 
@@ -863,7 +798,8 @@ final class ProjectTest extends TestCase
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "950722000000343754",
-            "clientSecret" => "YmPXnM000000000000000000002zFg5D"
+            "clientSecret" => "YmPXnM000000000000000000002zFg5D",
+            "prompt" => ["none"]
         ];
 
         $this->client
@@ -1004,7 +940,8 @@ final class ProjectTest extends TestCase
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "e4d87900000000540733",
-            "clientSecret" => "5e07c00000000000000000000000000000198bcc"
+            "clientSecret" => "5e07c00000000000000000000000000000198bcc",
+            "prompt" => ["select_account"]
         ];
 
         $this->client
@@ -1046,7 +983,9 @@ final class ProjectTest extends TestCase
             "enabled" => true,
             "clientId" => "120000000095-92ifjb00000000000000000000g7ijfb.apps.googleusercontent.com",
             "clientSecret" => "GOCSPX-2k8gsR0000000000000000VNahJj",
-            "prompt" => ["none"]
+            "prompt" => ["none"],
+            "nativeEnabled" => true,
+            "nativeClientIds" => []
         ];
 
         $this->client
@@ -1079,6 +1018,27 @@ final class ProjectTest extends TestCase
         $response = $this->project->updateOAuth2HuggingFace();
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2HuggingFace::class, $response);
+    }
+    public function testMethodUpdateOAuth2Kakao(): void
+    {
+        $data = [
+            "\$id" => "github",
+            "enabled" => true,
+            "clientId" => "839ff5000000000000000000013206de",
+            "clientSecret" => "jLNVOK00000000000000000000yJebea",
+            "prompt" => ["none"]
+        ];
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->project->updateOAuth2Kakao();
+
+        $this->assertInstanceOf(\Appwrite\Models\OAuth2Kakao::class, $response);
     }
     public function testMethodUpdateOAuth2Keycloak(): void
     {
@@ -1149,6 +1109,7 @@ final class ProjectTest extends TestCase
             "enabled" => true,
             "applicationId" => "00001111-aaaa-2222-bbbb-3333cccc4444",
             "applicationSecret" => "A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u",
+            "prompt" => ["none"],
             "tenant" => "common"
         ];
 
@@ -1190,11 +1151,11 @@ final class ProjectTest extends TestCase
             "enabled" => true,
             "clientId" => "qibI2x0000000000000000000000000006L2YFoG",
             "clientSecret" => "Ah68ed000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000003qpcHV",
+            "prompt" => ["none"],
             "wellKnownURL" => "https://myoauth.com/.well-known/openid-configuration",
             "authorizationURL" => "https://myoauth.com/oauth2/authorize",
             "tokenURL" => "https://myoauth.com/oauth2/token",
-            "userInfoURL" => "https://myoauth.com/oauth2/userinfo",
-            "prompt" => ["none"]
+            "userInfoURL" => "https://myoauth.com/oauth2/userinfo"
         ];
 
         $this->client
@@ -1215,6 +1176,7 @@ final class ProjectTest extends TestCase
             "enabled" => true,
             "clientId" => "0oa00000000000000698",
             "clientSecret" => "Kiq0000000000000000000000000000000000000-00000000000H2L5-3SJ-vRV",
+            "prompt" => ["none"],
             "domain" => "trial-6400025.okta.com",
             "authorizationServerId" => "aus000000000000000h7z"
         ];
@@ -1316,7 +1278,8 @@ final class ProjectTest extends TestCase
             "\$id" => "github",
             "enabled" => true,
             "customerKey" => "3MVG9I0000000000000000000000000000000000000000000000000000000000000000000000000C5Aejq",
-            "customerSecret" => "3w000000000000e2"
+            "customerSecret" => "3w000000000000e2",
+            "prompt" => ["login"]
         ];
 
         $this->client
@@ -1390,6 +1353,26 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Stripe::class, $response);
     }
+    public function testMethodUpdateOAuth2TikTok(): void
+    {
+        $data = [
+            "\$id" => "github",
+            "enabled" => true,
+            "clientId" => "awz000000000tyw0",
+            "clientSecret" => "6wXewM00000000000000000000yXnite"
+        ];
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->project->updateOAuth2TikTok();
+
+        $this->assertInstanceOf(\Appwrite\Models\OAuth2TikTok::class, $response);
+    }
     public function testMethodUpdateOAuth2Tradeshift(): void
     {
         $data = [
@@ -1449,6 +1432,26 @@ final class ProjectTest extends TestCase
         $response = $this->project->updateOAuth2Twitch();
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Twitch::class, $response);
+    }
+    public function testMethodUpdateOAuth2Webflow(): void
+    {
+        $data = [
+            "\$id" => "github",
+            "enabled" => true,
+            "clientId" => "8bb20000000000000000000000000000000000000000000000000000000040dd",
+            "clientSecret" => "59bf00000000000000000000000000000000000000000000000000000000fe59"
+        ];
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->project->updateOAuth2Webflow();
+
+        $this->assertInstanceOf(\Appwrite\Models\OAuth2Webflow::class, $response);
     }
     public function testMethodUpdateOAuth2WordPress(): void
     {
@@ -1536,7 +1539,8 @@ final class ProjectTest extends TestCase
             "\$id" => "github",
             "enabled" => true,
             "clientId" => "1000.83C178000000000000000000RPNX0B",
-            "clientSecret" => "fb5cac000000000000000000000000000000a68f6e"
+            "clientSecret" => "fb5cac000000000000000000000000000000a68f6e",
+            "prompt" => ["consent"]
         ];
 
         $this->client
@@ -1576,12 +1580,12 @@ final class ProjectTest extends TestCase
             [
                 "\$id" => "github",
                 "enabled" => true,
-                "applicationId" => "00001111-aaaa-2222-bbbb-3333cccc4444",
-                "applicationSecret" => "A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u",
-                "tenant" => "common"
+                "clientId" => "839ff5000000000000000000013206de",
+                "clientSecret" => "jLNVOK00000000000000000000yJebea",
+                "prompt" => ["none"]
             ],
             [
-                "\$id" => "microsoft"
+                "\$id" => "kakao"
             ]
         );
 
@@ -1596,7 +1600,7 @@ final class ProjectTest extends TestCase
             ProjectOAuthProviderId::AMAZON()
         );
 
-        $this->assertInstanceOf(\Appwrite\Models\OAuth2Microsoft::class, $response);
+        $this->assertInstanceOf(\Appwrite\Models\OAuth2Kakao::class, $response);
     }
     public function testMethodListPlatforms(): void
     {
@@ -1624,7 +1628,8 @@ final class ProjectTest extends TestCase
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "My Web App",
             "type" => "windows",
-            "applicationId" => "com.company.appname"
+            "applicationId" => "com.company.appname",
+            "fingerprints" => []
         ];
 
         $this->client
@@ -1650,7 +1655,8 @@ final class ProjectTest extends TestCase
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "name" => "My Web App",
             "type" => "windows",
-            "applicationId" => "com.company.appname"
+            "applicationId" => "com.company.appname",
+            "fingerprints" => []
         ];
 
         $this->client
@@ -1949,18 +1955,6 @@ final class ProjectTest extends TestCase
             "name" => "New Project",
             "teamId" => "1592981250",
             "region" => "fra",
-            "devKeys" => [
-                [
-                    "\$id" => "5e5ea5c16897e",
-                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "name" => "Dev API Key",
-                    "expire" => "2020-10-15T06:38:00.000+00:00",
-                    "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
-                    "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "sdks" => []
-                ]
-            ],
             "smtpEnabled" => true,
             "smtpSenderName" => "John Appwrite",
             "smtpSenderEmail" => "john@appwrite.io",
@@ -1999,12 +1993,7 @@ final class ProjectTest extends TestCase
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
-                    "mode" => "readOnly",
-                    "projectName" => "My Project",
-                    "region" => "fra",
-                    "organizationName" => "Acme Inc.",
-                    "organizationId" => "5e5ea5c16897e",
-                    "billingPlan" => "pro"
+                    "mode" => "readOnly"
                 ]
             ],
             "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
@@ -2032,18 +2021,6 @@ final class ProjectTest extends TestCase
             "name" => "New Project",
             "teamId" => "1592981250",
             "region" => "fra",
-            "devKeys" => [
-                [
-                    "\$id" => "5e5ea5c16897e",
-                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "name" => "Dev API Key",
-                    "expire" => "2020-10-15T06:38:00.000+00:00",
-                    "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
-                    "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "sdks" => []
-                ]
-            ],
             "smtpEnabled" => true,
             "smtpSenderName" => "John Appwrite",
             "smtpSenderEmail" => "john@appwrite.io",
@@ -2082,12 +2059,7 @@ final class ProjectTest extends TestCase
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
-                    "mode" => "readOnly",
-                    "projectName" => "My Project",
-                    "region" => "fra",
-                    "organizationName" => "Acme Inc.",
-                    "organizationId" => "5e5ea5c16897e",
-                    "billingPlan" => "pro"
+                    "mode" => "readOnly"
                 ]
             ],
             "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
@@ -2115,18 +2087,6 @@ final class ProjectTest extends TestCase
             "name" => "New Project",
             "teamId" => "1592981250",
             "region" => "fra",
-            "devKeys" => [
-                [
-                    "\$id" => "5e5ea5c16897e",
-                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "name" => "Dev API Key",
-                    "expire" => "2020-10-15T06:38:00.000+00:00",
-                    "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
-                    "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "sdks" => []
-                ]
-            ],
             "smtpEnabled" => true,
             "smtpSenderName" => "John Appwrite",
             "smtpSenderEmail" => "john@appwrite.io",
@@ -2165,12 +2125,7 @@ final class ProjectTest extends TestCase
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
-                    "mode" => "readOnly",
-                    "projectName" => "My Project",
-                    "region" => "fra",
-                    "organizationName" => "Acme Inc.",
-                    "organizationId" => "5e5ea5c16897e",
-                    "billingPlan" => "pro"
+                    "mode" => "readOnly"
                 ]
             ],
             "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
@@ -2198,18 +2153,6 @@ final class ProjectTest extends TestCase
             "name" => "New Project",
             "teamId" => "1592981250",
             "region" => "fra",
-            "devKeys" => [
-                [
-                    "\$id" => "5e5ea5c16897e",
-                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "name" => "Dev API Key",
-                    "expire" => "2020-10-15T06:38:00.000+00:00",
-                    "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
-                    "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "sdks" => []
-                ]
-            ],
             "smtpEnabled" => true,
             "smtpSenderName" => "John Appwrite",
             "smtpSenderEmail" => "john@appwrite.io",
@@ -2248,12 +2191,7 @@ final class ProjectTest extends TestCase
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
-                    "mode" => "readOnly",
-                    "projectName" => "My Project",
-                    "region" => "fra",
-                    "organizationName" => "Acme Inc.",
-                    "organizationId" => "5e5ea5c16897e",
-                    "billingPlan" => "pro"
+                    "mode" => "readOnly"
                 ]
             ],
             "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
@@ -2281,18 +2219,6 @@ final class ProjectTest extends TestCase
             "name" => "New Project",
             "teamId" => "1592981250",
             "region" => "fra",
-            "devKeys" => [
-                [
-                    "\$id" => "5e5ea5c16897e",
-                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "name" => "Dev API Key",
-                    "expire" => "2020-10-15T06:38:00.000+00:00",
-                    "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
-                    "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "sdks" => []
-                ]
-            ],
             "smtpEnabled" => true,
             "smtpSenderName" => "John Appwrite",
             "smtpSenderEmail" => "john@appwrite.io",
@@ -2331,12 +2257,7 @@ final class ProjectTest extends TestCase
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
-                    "mode" => "readOnly",
-                    "projectName" => "My Project",
-                    "region" => "fra",
-                    "organizationName" => "Acme Inc.",
-                    "organizationId" => "5e5ea5c16897e",
-                    "billingPlan" => "pro"
+                    "mode" => "readOnly"
                 ]
             ],
             "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
@@ -2362,18 +2283,6 @@ final class ProjectTest extends TestCase
             "name" => "New Project",
             "teamId" => "1592981250",
             "region" => "fra",
-            "devKeys" => [
-                [
-                    "\$id" => "5e5ea5c16897e",
-                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "name" => "Dev API Key",
-                    "expire" => "2020-10-15T06:38:00.000+00:00",
-                    "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
-                    "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "sdks" => []
-                ]
-            ],
             "smtpEnabled" => true,
             "smtpSenderName" => "John Appwrite",
             "smtpSenderEmail" => "john@appwrite.io",
@@ -2412,12 +2321,7 @@ final class ProjectTest extends TestCase
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
-                    "mode" => "readOnly",
-                    "projectName" => "My Project",
-                    "region" => "fra",
-                    "organizationName" => "Acme Inc.",
-                    "organizationId" => "5e5ea5c16897e",
-                    "billingPlan" => "pro"
+                    "mode" => "readOnly"
                 ]
             ],
             "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
@@ -2434,7 +2338,7 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
     }
-    public function testMethodUpdatePasswordDictionaryPolicy(): void
+    public function testMethodUpdatePasskeyPolicy(): void
     {
         $data = [
             "\$id" => "5e5ea5c16897e",
@@ -2443,18 +2347,6 @@ final class ProjectTest extends TestCase
             "name" => "New Project",
             "teamId" => "1592981250",
             "region" => "fra",
-            "devKeys" => [
-                [
-                    "\$id" => "5e5ea5c16897e",
-                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "name" => "Dev API Key",
-                    "expire" => "2020-10-15T06:38:00.000+00:00",
-                    "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
-                    "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "sdks" => []
-                ]
-            ],
             "smtpEnabled" => true,
             "smtpSenderName" => "John Appwrite",
             "smtpSenderEmail" => "john@appwrite.io",
@@ -2493,12 +2385,73 @@ final class ProjectTest extends TestCase
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
-                    "mode" => "readOnly",
-                    "projectName" => "My Project",
-                    "region" => "fra",
-                    "organizationName" => "Acme Inc.",
-                    "organizationId" => "5e5ea5c16897e",
-                    "billingPlan" => "pro"
+                    "mode" => "readOnly"
+                ]
+            ],
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
+        ];
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->project->updatePasskeyPolicy(
+            "<RP_ID>"
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
+    }
+    public function testMethodUpdatePasswordDictionaryPolicy(): void
+    {
+        $data = [
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "name" => "New Project",
+            "teamId" => "1592981250",
+            "region" => "fra",
+            "smtpEnabled" => true,
+            "smtpSenderName" => "John Appwrite",
+            "smtpSenderEmail" => "john@appwrite.io",
+            "smtpReplyToName" => "Support Team",
+            "smtpReplyToEmail" => "support@appwrite.io",
+            "smtpHost" => "mail.appwrite.io",
+            "smtpPort" => 25,
+            "smtpUsername" => "emailuser",
+            "smtpPassword" => "smtp-password",
+            "smtpSecure" => "tls",
+            "pingCount" => 1,
+            "pingedAt" => "2020-10-15T06:38:00.000+00:00",
+            "labels" => [],
+            "status" => "active",
+            "onboarding" => [],
+            "authMethods" => [
+                [
+                    "\$id" => "email-password",
+                    "enabled" => true
+                ]
+            ],
+            "services" => [
+                [
+                    "\$id" => "account",
+                    "enabled" => true
+                ]
+            ],
+            "protocols" => [
+                [
+                    "\$id" => "rest",
+                    "enabled" => true
+                ]
+            ],
+            "blocks" => [
+                [
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "resourceType" => "project",
+                    "resourceId" => "5e5ea5c16897e",
+                    "mode" => "readOnly"
                 ]
             ],
             "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
@@ -2526,18 +2479,6 @@ final class ProjectTest extends TestCase
             "name" => "New Project",
             "teamId" => "1592981250",
             "region" => "fra",
-            "devKeys" => [
-                [
-                    "\$id" => "5e5ea5c16897e",
-                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "name" => "Dev API Key",
-                    "expire" => "2020-10-15T06:38:00.000+00:00",
-                    "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
-                    "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "sdks" => []
-                ]
-            ],
             "smtpEnabled" => true,
             "smtpSenderName" => "John Appwrite",
             "smtpSenderEmail" => "john@appwrite.io",
@@ -2576,12 +2517,7 @@ final class ProjectTest extends TestCase
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
-                    "mode" => "readOnly",
-                    "projectName" => "My Project",
-                    "region" => "fra",
-                    "organizationName" => "Acme Inc.",
-                    "organizationId" => "5e5ea5c16897e",
-                    "billingPlan" => "pro"
+                    "mode" => "readOnly"
                 ]
             ],
             "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
@@ -2609,18 +2545,6 @@ final class ProjectTest extends TestCase
             "name" => "New Project",
             "teamId" => "1592981250",
             "region" => "fra",
-            "devKeys" => [
-                [
-                    "\$id" => "5e5ea5c16897e",
-                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "name" => "Dev API Key",
-                    "expire" => "2020-10-15T06:38:00.000+00:00",
-                    "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
-                    "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "sdks" => []
-                ]
-            ],
             "smtpEnabled" => true,
             "smtpSenderName" => "John Appwrite",
             "smtpSenderEmail" => "john@appwrite.io",
@@ -2659,12 +2583,7 @@ final class ProjectTest extends TestCase
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
-                    "mode" => "readOnly",
-                    "projectName" => "My Project",
-                    "region" => "fra",
-                    "organizationName" => "Acme Inc.",
-                    "organizationId" => "5e5ea5c16897e",
-                    "billingPlan" => "pro"
+                    "mode" => "readOnly"
                 ]
             ],
             "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
@@ -2680,6 +2599,134 @@ final class ProjectTest extends TestCase
         $response = $this->project->updatePasswordPersonalDataPolicy(
             true
         );
+
+        $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
+    }
+    public function testMethodUpdatePasswordPwnedPolicy(): void
+    {
+        $data = [
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "name" => "New Project",
+            "teamId" => "1592981250",
+            "region" => "fra",
+            "smtpEnabled" => true,
+            "smtpSenderName" => "John Appwrite",
+            "smtpSenderEmail" => "john@appwrite.io",
+            "smtpReplyToName" => "Support Team",
+            "smtpReplyToEmail" => "support@appwrite.io",
+            "smtpHost" => "mail.appwrite.io",
+            "smtpPort" => 25,
+            "smtpUsername" => "emailuser",
+            "smtpPassword" => "smtp-password",
+            "smtpSecure" => "tls",
+            "pingCount" => 1,
+            "pingedAt" => "2020-10-15T06:38:00.000+00:00",
+            "labels" => [],
+            "status" => "active",
+            "onboarding" => [],
+            "authMethods" => [
+                [
+                    "\$id" => "email-password",
+                    "enabled" => true
+                ]
+            ],
+            "services" => [
+                [
+                    "\$id" => "account",
+                    "enabled" => true
+                ]
+            ],
+            "protocols" => [
+                [
+                    "\$id" => "rest",
+                    "enabled" => true
+                ]
+            ],
+            "blocks" => [
+                [
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "resourceType" => "project",
+                    "resourceId" => "5e5ea5c16897e",
+                    "mode" => "readOnly"
+                ]
+            ],
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
+        ];
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->project->updatePasswordPwnedPolicy();
+
+        $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
+    }
+    public function testMethodUpdatePasswordRotationPolicy(): void
+    {
+        $data = [
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "name" => "New Project",
+            "teamId" => "1592981250",
+            "region" => "fra",
+            "smtpEnabled" => true,
+            "smtpSenderName" => "John Appwrite",
+            "smtpSenderEmail" => "john@appwrite.io",
+            "smtpReplyToName" => "Support Team",
+            "smtpReplyToEmail" => "support@appwrite.io",
+            "smtpHost" => "mail.appwrite.io",
+            "smtpPort" => 25,
+            "smtpUsername" => "emailuser",
+            "smtpPassword" => "smtp-password",
+            "smtpSecure" => "tls",
+            "pingCount" => 1,
+            "pingedAt" => "2020-10-15T06:38:00.000+00:00",
+            "labels" => [],
+            "status" => "active",
+            "onboarding" => [],
+            "authMethods" => [
+                [
+                    "\$id" => "email-password",
+                    "enabled" => true
+                ]
+            ],
+            "services" => [
+                [
+                    "\$id" => "account",
+                    "enabled" => true
+                ]
+            ],
+            "protocols" => [
+                [
+                    "\$id" => "rest",
+                    "enabled" => true
+                ]
+            ],
+            "blocks" => [
+                [
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "resourceType" => "project",
+                    "resourceId" => "5e5ea5c16897e",
+                    "mode" => "readOnly"
+                ]
+            ],
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
+        ];
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->project->updatePasswordRotationPolicy();
 
         $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
     }
@@ -2714,18 +2761,6 @@ final class ProjectTest extends TestCase
             "name" => "New Project",
             "teamId" => "1592981250",
             "region" => "fra",
-            "devKeys" => [
-                [
-                    "\$id" => "5e5ea5c16897e",
-                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "name" => "Dev API Key",
-                    "expire" => "2020-10-15T06:38:00.000+00:00",
-                    "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
-                    "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "sdks" => []
-                ]
-            ],
             "smtpEnabled" => true,
             "smtpSenderName" => "John Appwrite",
             "smtpSenderEmail" => "john@appwrite.io",
@@ -2764,12 +2799,7 @@ final class ProjectTest extends TestCase
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
-                    "mode" => "readOnly",
-                    "projectName" => "My Project",
-                    "region" => "fra",
-                    "organizationName" => "Acme Inc.",
-                    "organizationId" => "5e5ea5c16897e",
-                    "billingPlan" => "pro"
+                    "mode" => "readOnly"
                 ]
             ],
             "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
@@ -2797,18 +2827,6 @@ final class ProjectTest extends TestCase
             "name" => "New Project",
             "teamId" => "1592981250",
             "region" => "fra",
-            "devKeys" => [
-                [
-                    "\$id" => "5e5ea5c16897e",
-                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "name" => "Dev API Key",
-                    "expire" => "2020-10-15T06:38:00.000+00:00",
-                    "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
-                    "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "sdks" => []
-                ]
-            ],
             "smtpEnabled" => true,
             "smtpSenderName" => "John Appwrite",
             "smtpSenderEmail" => "john@appwrite.io",
@@ -2847,12 +2865,7 @@ final class ProjectTest extends TestCase
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
-                    "mode" => "readOnly",
-                    "projectName" => "My Project",
-                    "region" => "fra",
-                    "organizationName" => "Acme Inc.",
-                    "organizationId" => "5e5ea5c16897e",
-                    "billingPlan" => "pro"
+                    "mode" => "readOnly"
                 ]
             ],
             "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
@@ -2880,18 +2893,6 @@ final class ProjectTest extends TestCase
             "name" => "New Project",
             "teamId" => "1592981250",
             "region" => "fra",
-            "devKeys" => [
-                [
-                    "\$id" => "5e5ea5c16897e",
-                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "name" => "Dev API Key",
-                    "expire" => "2020-10-15T06:38:00.000+00:00",
-                    "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
-                    "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "sdks" => []
-                ]
-            ],
             "smtpEnabled" => true,
             "smtpSenderName" => "John Appwrite",
             "smtpSenderEmail" => "john@appwrite.io",
@@ -2930,12 +2931,7 @@ final class ProjectTest extends TestCase
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
-                    "mode" => "readOnly",
-                    "projectName" => "My Project",
-                    "region" => "fra",
-                    "organizationName" => "Acme Inc.",
-                    "organizationId" => "5e5ea5c16897e",
-                    "billingPlan" => "pro"
+                    "mode" => "readOnly"
                 ]
             ],
             "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
@@ -2963,18 +2959,6 @@ final class ProjectTest extends TestCase
             "name" => "New Project",
             "teamId" => "1592981250",
             "region" => "fra",
-            "devKeys" => [
-                [
-                    "\$id" => "5e5ea5c16897e",
-                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "name" => "Dev API Key",
-                    "expire" => "2020-10-15T06:38:00.000+00:00",
-                    "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
-                    "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "sdks" => []
-                ]
-            ],
             "smtpEnabled" => true,
             "smtpSenderName" => "John Appwrite",
             "smtpSenderEmail" => "john@appwrite.io",
@@ -3013,12 +2997,7 @@ final class ProjectTest extends TestCase
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
-                    "mode" => "readOnly",
-                    "projectName" => "My Project",
-                    "region" => "fra",
-                    "organizationName" => "Acme Inc.",
-                    "organizationId" => "5e5ea5c16897e",
-                    "billingPlan" => "pro"
+                    "mode" => "readOnly"
                 ]
             ],
             "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
@@ -3046,18 +3025,6 @@ final class ProjectTest extends TestCase
             "name" => "New Project",
             "teamId" => "1592981250",
             "region" => "fra",
-            "devKeys" => [
-                [
-                    "\$id" => "5e5ea5c16897e",
-                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "name" => "Dev API Key",
-                    "expire" => "2020-10-15T06:38:00.000+00:00",
-                    "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
-                    "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "sdks" => []
-                ]
-            ],
             "smtpEnabled" => true,
             "smtpSenderName" => "John Appwrite",
             "smtpSenderEmail" => "john@appwrite.io",
@@ -3096,12 +3063,7 @@ final class ProjectTest extends TestCase
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
-                    "mode" => "readOnly",
-                    "projectName" => "My Project",
-                    "region" => "fra",
-                    "organizationName" => "Acme Inc.",
-                    "organizationId" => "5e5ea5c16897e",
-                    "billingPlan" => "pro"
+                    "mode" => "readOnly"
                 ]
             ],
             "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
@@ -3125,10 +3087,11 @@ final class ProjectTest extends TestCase
         $data = array_replace(
             [
                 "\$id" => "password-dictionary",
-                "enabled" => true
+                "rpId" => "example.com",
+                "origins" => []
             ],
             [
-                "\$id" => "deny-corporate-email"
+                "\$id" => "passkey"
             ]
         );
 
@@ -3143,7 +3106,7 @@ final class ProjectTest extends TestCase
             ProjectPolicyId::PASSWORDDICTIONARY()
         );
 
-        $this->assertInstanceOf(\Appwrite\Models\PolicyDenyCorporateEmail::class, $response);
+        $this->assertInstanceOf(\Appwrite\Models\PolicyPasskey::class, $response);
     }
     public function testMethodUpdateProtocol(): void
     {
@@ -3154,18 +3117,6 @@ final class ProjectTest extends TestCase
             "name" => "New Project",
             "teamId" => "1592981250",
             "region" => "fra",
-            "devKeys" => [
-                [
-                    "\$id" => "5e5ea5c16897e",
-                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "name" => "Dev API Key",
-                    "expire" => "2020-10-15T06:38:00.000+00:00",
-                    "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
-                    "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "sdks" => []
-                ]
-            ],
             "smtpEnabled" => true,
             "smtpSenderName" => "John Appwrite",
             "smtpSenderEmail" => "john@appwrite.io",
@@ -3204,12 +3155,7 @@ final class ProjectTest extends TestCase
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
-                    "mode" => "readOnly",
-                    "projectName" => "My Project",
-                    "region" => "fra",
-                    "organizationName" => "Acme Inc.",
-                    "organizationId" => "5e5ea5c16897e",
-                    "billingPlan" => "pro"
+                    "mode" => "readOnly"
                 ]
             ],
             "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
@@ -3238,18 +3184,6 @@ final class ProjectTest extends TestCase
             "name" => "New Project",
             "teamId" => "1592981250",
             "region" => "fra",
-            "devKeys" => [
-                [
-                    "\$id" => "5e5ea5c16897e",
-                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "name" => "Dev API Key",
-                    "expire" => "2020-10-15T06:38:00.000+00:00",
-                    "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
-                    "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "sdks" => []
-                ]
-            ],
             "smtpEnabled" => true,
             "smtpSenderName" => "John Appwrite",
             "smtpSenderEmail" => "john@appwrite.io",
@@ -3288,12 +3222,7 @@ final class ProjectTest extends TestCase
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
-                    "mode" => "readOnly",
-                    "projectName" => "My Project",
-                    "region" => "fra",
-                    "organizationName" => "Acme Inc.",
-                    "organizationId" => "5e5ea5c16897e",
-                    "billingPlan" => "pro"
+                    "mode" => "readOnly"
                 ]
             ],
             "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
@@ -3322,18 +3251,6 @@ final class ProjectTest extends TestCase
             "name" => "New Project",
             "teamId" => "1592981250",
             "region" => "fra",
-            "devKeys" => [
-                [
-                    "\$id" => "5e5ea5c16897e",
-                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "name" => "Dev API Key",
-                    "expire" => "2020-10-15T06:38:00.000+00:00",
-                    "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
-                    "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "sdks" => []
-                ]
-            ],
             "smtpEnabled" => true,
             "smtpSenderName" => "John Appwrite",
             "smtpSenderEmail" => "john@appwrite.io",
@@ -3372,12 +3289,7 @@ final class ProjectTest extends TestCase
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
-                    "mode" => "readOnly",
-                    "projectName" => "My Project",
-                    "region" => "fra",
-                    "organizationName" => "Acme Inc.",
-                    "organizationId" => "5e5ea5c16897e",
-                    "billingPlan" => "pro"
+                    "mode" => "readOnly"
                 ]
             ],
             "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"

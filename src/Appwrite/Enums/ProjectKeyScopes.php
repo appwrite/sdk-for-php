@@ -99,6 +99,7 @@ class ProjectKeyScopes implements JsonSerializable, Stringable
     private static ProjectKeyScopes $WEBHOOKSWRITE;
     private static ProjectKeyScopes $LOCALEREAD;
     private static ProjectKeyScopes $AVATARSREAD;
+    private static ProjectKeyScopes $AVATARSWRITE;
     private static ProjectKeyScopes $HEALTHREAD;
     private static ProjectKeyScopes $ASSISTANTREAD;
     private static ProjectKeyScopes $MIGRATIONSREAD;
@@ -113,6 +114,7 @@ class ProjectKeyScopes implements JsonSerializable, Stringable
     private static ProjectKeyScopes $REPORTSWRITE;
     private static ProjectKeyScopes $PRESENCESREAD;
     private static ProjectKeyScopes $PRESENCESWRITE;
+    private static ProjectKeyScopes $DEDICATEDDATABASESEXECUTE;
     private static ProjectKeyScopes $BACKUPSPOLICIESREAD;
     private static ProjectKeyScopes $BACKUPSPOLICIESWRITE;
     private static ProjectKeyScopes $ARCHIVESREAD;
@@ -130,6 +132,8 @@ class ProjectKeyScopes implements JsonSerializable, Stringable
     private static ProjectKeyScopes $OAUTH2READ;
     private static ProjectKeyScopes $OAUTH2WRITE;
     private static ProjectKeyScopes $OAUTH2INTROSPECT;
+    private static ProjectKeyScopes $ANALYTICSREAD;
+    private static ProjectKeyScopes $ANALYTICSWRITE;
 
     private function __construct(private readonly string $value)
     {
@@ -685,6 +689,12 @@ class ProjectKeyScopes implements JsonSerializable, Stringable
 
         return self::$AVATARSREAD;
     }
+    public static function AVATARSWRITE(): ProjectKeyScopes
+    {
+        self::$AVATARSWRITE ??= new ProjectKeyScopes('avatars.write');
+
+        return self::$AVATARSWRITE;
+    }
     public static function HEALTHREAD(): ProjectKeyScopes
     {
         self::$HEALTHREAD ??= new ProjectKeyScopes('health.read');
@@ -768,6 +778,12 @@ class ProjectKeyScopes implements JsonSerializable, Stringable
         self::$PRESENCESWRITE ??= new ProjectKeyScopes('presences.write');
 
         return self::$PRESENCESWRITE;
+    }
+    public static function DEDICATEDDATABASESEXECUTE(): ProjectKeyScopes
+    {
+        self::$DEDICATEDDATABASESEXECUTE ??= new ProjectKeyScopes('dedicatedDatabases.execute');
+
+        return self::$DEDICATEDDATABASESEXECUTE;
     }
     public static function BACKUPSPOLICIESREAD(): ProjectKeyScopes
     {
@@ -871,6 +887,18 @@ class ProjectKeyScopes implements JsonSerializable, Stringable
 
         return self::$OAUTH2INTROSPECT;
     }
+    public static function ANALYTICSREAD(): ProjectKeyScopes
+    {
+        self::$ANALYTICSREAD ??= new ProjectKeyScopes('analytics.read');
+
+        return self::$ANALYTICSREAD;
+    }
+    public static function ANALYTICSWRITE(): ProjectKeyScopes
+    {
+        self::$ANALYTICSWRITE ??= new ProjectKeyScopes('analytics.write');
+
+        return self::$ANALYTICSWRITE;
+    }
 
     public static function from(string $value): self
     {
@@ -965,6 +993,7 @@ class ProjectKeyScopes implements JsonSerializable, Stringable
             'webhooks.write' => self::WEBHOOKSWRITE(),
             'locale.read' => self::LOCALEREAD(),
             'avatars.read' => self::AVATARSREAD(),
+            'avatars.write' => self::AVATARSWRITE(),
             'health.read' => self::HEALTHREAD(),
             'assistant.read' => self::ASSISTANTREAD(),
             'migrations.read' => self::MIGRATIONSREAD(),
@@ -979,6 +1008,7 @@ class ProjectKeyScopes implements JsonSerializable, Stringable
             'reports.write' => self::REPORTSWRITE(),
             'presences.read' => self::PRESENCESREAD(),
             'presences.write' => self::PRESENCESWRITE(),
+            'dedicatedDatabases.execute' => self::DEDICATEDDATABASESEXECUTE(),
             'backups.policies.read' => self::BACKUPSPOLICIESREAD(),
             'backups.policies.write' => self::BACKUPSPOLICIESWRITE(),
             'archives.read' => self::ARCHIVESREAD(),
@@ -996,6 +1026,8 @@ class ProjectKeyScopes implements JsonSerializable, Stringable
             'oauth2.read' => self::OAUTH2READ(),
             'oauth2.write' => self::OAUTH2WRITE(),
             'oauth2.introspect' => self::OAUTH2INTROSPECT(),
+            'analytics.read' => self::ANALYTICSREAD(),
+            'analytics.write' => self::ANALYTICSWRITE(),
             default => throw new \InvalidArgumentException('Unknown ProjectKeyScopes value: ' . $value),
         };
     }

@@ -37,7 +37,7 @@ readonly class Execution
      * @param list<Headers> $responseHeaders http response headers as a key-value object. this will return only whitelisted headers. all headers are returned if execution is created as synchronous.
      * @param string $logs resource logs. includes the last 4,000 characters. this will return an empty string unless the response is returned using an api key or as part of a webhook payload.
      * @param string $errors resource errors. includes the last 4,000 characters. this will return an empty string unless the response is returned using an api key or as part of a webhook payload.
-     * @param float $duration resource(function/site) execution duration in seconds.
+     * @param float $duration total time the resource(function/site) took to respond, in seconds.
      * @param string|null $scheduledAt the scheduled time for execution. if left empty, execution will be queued immediately.
      */
     public function __construct(

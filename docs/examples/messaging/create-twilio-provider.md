@@ -14,7 +14,7 @@ $messaging = new Messaging($client);
 $result = $messaging->createTwilioProvider(
     providerId: '<PROVIDER_ID>',
     name: '<NAME>',
-    from: '+12065550100', // optional
+    from: '<FROM>', // optional
     accountSid: '<ACCOUNT_SID>', // optional
     authToken: '<AUTH_TOKEN>', // optional
     enabled: false // optional

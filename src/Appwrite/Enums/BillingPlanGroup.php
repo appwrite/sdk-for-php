@@ -9,7 +9,8 @@ use Stringable;
 
 class BillingPlanGroup implements JsonSerializable, Stringable
 {
-    private static BillingPlanGroup $STARTER;
+    private static BillingPlanGroup $FREE;
+    private static BillingPlanGroup $START;
     private static BillingPlanGroup $PRO;
     private static BillingPlanGroup $SCALE;
 
@@ -27,11 +28,17 @@ class BillingPlanGroup implements JsonSerializable, Stringable
         return $this->value;
     }
 
-    public static function STARTER(): BillingPlanGroup
+    public static function FREE(): BillingPlanGroup
     {
-        self::$STARTER ??= new BillingPlanGroup('starter');
+        self::$FREE ??= new BillingPlanGroup('free');
 
-        return self::$STARTER;
+        return self::$FREE;
+    }
+    public static function START(): BillingPlanGroup
+    {
+        self::$START ??= new BillingPlanGroup('start');
+
+        return self::$START;
     }
     public static function PRO(): BillingPlanGroup
     {
@@ -49,7 +56,8 @@ class BillingPlanGroup implements JsonSerializable, Stringable
     public static function from(string $value): self
     {
         return match ($value) {
-            'starter' => self::STARTER(),
+            'free' => self::FREE(),
+            'start' => self::START(),
             'pro' => self::PRO(),
             'scale' => self::SCALE(),
             default => throw new \InvalidArgumentException('Unknown BillingPlanGroup value: ' . $value),

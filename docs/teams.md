@@ -28,7 +28,7 @@ POST https://cloud.appwrite.io/v1/teams
 | --- | --- | --- | --- |
 | teamId | string | Team ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
 | name | string | Team name. Max length: 128 chars. |  |
-| roles | array | Array of strings. Use this param to set the roles in the team for the user who created it. The default role is **owner**. A role can be any string. Learn more about [roles and permissions](https://appwrite.io/docs/permissions). Maximum of 100 roles are allowed, each 32 characters long. | [&quot;owner&quot;] |
+| roles | array | Array of strings. Use this param to set the roles in the team for the user who created it. The default role is **owner**. A role can be any string. Learn more about [roles and permissions](https://appwrite.io/docs/permissions). Maximum of 100 roles are allowed, each 81 characters long. | [&quot;owner&quot;] |
 
 
 ```http request
@@ -178,6 +178,7 @@ Please note that to avoid a [Redirect Attack](https://github.com/OWASP/CheatShee
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | teamId | string | **Required** Team ID. |  |
+| membershipId | string | Membership ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
 | email | string | Email of the new team member. |  |
 | userId | string | ID of the user to be added to a team. |  |
 | phone | string | Phone number. Format this number with a leading '+' and a country code, e.g., +16175551212. |  |

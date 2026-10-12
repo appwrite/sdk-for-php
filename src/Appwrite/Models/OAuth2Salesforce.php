@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Appwrite\Models;
 
+use Appwrite\Enums\OAuth2SalesforcePrompt;
+
 /**
  * OAuth2Salesforce
  *
@@ -20,12 +22,14 @@ readonly class OAuth2Salesforce
      * @param bool $enabled oauth2 provider is active and can be used to create sessions.
      * @param string $customerKey salesforce oauth2 consumer key.
      * @param string $customerSecret salesforce oauth2 consumer secret.
+     * @param list<OAuth2SalesforcePrompt> $prompt salesforce oauth2 prompt values.
      */
     public function __construct(
         public string $id,
         public bool $enabled,
         public string $customerKey,
-        public string $customerSecret
+        public string $customerSecret,
+        public array $prompt
     ) {
     }
 
@@ -39,13 +43,20 @@ readonly class OAuth2Salesforce
             'enabled' => false,
             'customerKey' => "",
             'customerSecret' => "",
+            'prompt' => [],
         ];
 
         return new static(
             id: $data['$id'],
             enabled: $data['enabled'],
             customerKey: $data['customerKey'],
-            customerSecret: $data['customerSecret']
+            customerSecret: $data['customerSecret'],
+            prompt: is_array($data['prompt'])
+                ? array_map(
+                    static fn (mixed $item): mixed => static::hydrateTypedValue(OAuth2SalesforcePrompt::class, $item),
+                    $data['prompt']
+                )
+                : $data['prompt']
         );
     }
 
@@ -58,7 +69,8 @@ readonly class OAuth2Salesforce
             '$id' => static::serializeValue($this->id),
             'enabled' => static::serializeValue($this->enabled),
             'customerKey' => static::serializeValue($this->customerKey),
-            'customerSecret' => static::serializeValue($this->customerSecret)
+            'customerSecret' => static::serializeValue($this->customerSecret),
+            'prompt' => static::serializeValue($this->prompt)
         ];
     }
 }

@@ -16,6 +16,8 @@ $result = $project->updateOAuth2Apple(
     keyId: '<KEY_ID>', // optional
     teamId: '<TEAM_ID>', // optional
     p8File: '<P8_FILE>', // optional
-    enabled: false // optional
+    nativeClientIds: [], // optional
+    enabled: false, // optional
+    nativeEnabled: false // optional
 );
 ```

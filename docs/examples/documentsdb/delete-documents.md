@@ -14,7 +14,7 @@ $documentsDB = new DocumentsDB($client);
 $result = $documentsDB->deleteDocuments(
     databaseId: '<DATABASE_ID>',
     collectionId: '<COLLECTION_ID>',
-    queries: [], // optional
+    queries: ["{\"method\":\"equal\", \"attribute\":\"$id\", \"values\":[\"<DOCUMENT_ID>\"]}"], // optional
     transactionId: '<TRANSACTION_ID>' // optional
 );
 ```

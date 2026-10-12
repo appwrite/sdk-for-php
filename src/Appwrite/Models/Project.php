@@ -22,7 +22,6 @@ readonly class Project
      * @param string $name project name.
      * @param string $teamId project team id.
      * @param string $region project region
-     * @param list<DevKey> $devKeys deprecated since 1.9.5: list of dev keys.
      * @param bool $smtpEnabled status for custom smtp
      * @param string $smtpSenderName smtp sender name
      * @param string $smtpSenderEmail smtp sender email
@@ -45,6 +44,8 @@ readonly class Project
      * @param string $consoleAccessedAt last time the project was accessed via console. used with plan's projectinactivitydays to determine if project is paused.
      * @param bool|null $wafEnabled whether waf enforcement is enabled for the project.
      * @param BillingLimits|null $billingLimits billing limits reached
+     * @param string|null $firstAccessedAt first time the project received a non-console api request. empty until the project is used.
+     * @param string|null $mcpAccessedAt last time the project was accessed through the mcp server. empty if it was never accessed via mcp.
      * @param bool|null $oAuth2ServerEnabled oauth2 server status
      * @param string|null $oAuth2ServerAuthorizationUrl oauth2 server authorization url
      * @param array|null $oAuth2ServerScopes oauth2 server allowed scopes
@@ -70,7 +71,6 @@ readonly class Project
         public string $name,
         public string $teamId,
         public string $region,
-        public array $devKeys,
         public bool $smtpEnabled,
         public string $smtpSenderName,
         public string $smtpSenderEmail,
@@ -93,6 +93,8 @@ readonly class Project
         public string $consoleAccessedAt,
         public ?bool $wafEnabled = null,
         public ?BillingLimits $billingLimits = null,
+        public ?string $firstAccessedAt = null,
+        public ?string $mcpAccessedAt = null,
         public ?bool $oAuth2ServerEnabled = null,
         public ?string $oAuth2ServerAuthorizationUrl = null,
         public ?array $oAuth2ServerScopes = null,
@@ -143,9 +145,6 @@ readonly class Project
             'consoleAccessedAt' => "",
         ];
 
-        if (!array_key_exists('devKeys', $data)) {
-            throw new \InvalidArgumentException('Missing required field "devKeys" for ' . static::class . '.');
-        }
         if (!array_key_exists('authMethods', $data)) {
             throw new \InvalidArgumentException('Missing required field "authMethods" for ' . static::class . '.');
         }
@@ -166,12 +165,6 @@ readonly class Project
             name: $data['name'],
             teamId: $data['teamId'],
             region: $data['region'],
-            devKeys: is_array($data['devKeys'])
-                ? array_map(
-                    static fn (mixed $item): mixed => static::hydrateTypedValue(DevKey::class, $item),
-                    $data['devKeys']
-                )
-                : $data['devKeys'],
             smtpEnabled: $data['smtpEnabled'],
             smtpSenderName: $data['smtpSenderName'],
             smtpSenderEmail: $data['smtpSenderEmail'],
@@ -214,6 +207,8 @@ readonly class Project
             consoleAccessedAt: $data['consoleAccessedAt'],
             wafEnabled: $data['wafEnabled'] ?? null,
             billingLimits: array_key_exists('billingLimits', $data) ? static::hydrateTypedValue(BillingLimits::class, $data['billingLimits'], true) : null,
+            firstAccessedAt: $data['firstAccessedAt'] ?? null,
+            mcpAccessedAt: $data['mcpAccessedAt'] ?? null,
             oAuth2ServerEnabled: $data['oAuth2ServerEnabled'] ?? null,
             oAuth2ServerAuthorizationUrl: $data['oAuth2ServerAuthorizationUrl'] ?? null,
             oAuth2ServerScopes: $data['oAuth2ServerScopes'] ?? null,
@@ -246,7 +241,6 @@ readonly class Project
             'name' => static::serializeValue($this->name),
             'teamId' => static::serializeValue($this->teamId),
             'region' => static::serializeValue($this->region),
-            'devKeys' => static::serializeValue($this->devKeys),
             'smtpEnabled' => static::serializeValue($this->smtpEnabled),
             'smtpSenderName' => static::serializeValue($this->smtpSenderName),
             'smtpSenderEmail' => static::serializeValue($this->smtpSenderEmail),
@@ -269,6 +263,8 @@ readonly class Project
             'consoleAccessedAt' => static::serializeValue($this->consoleAccessedAt),
             'wafEnabled' => static::serializeValue($this->wafEnabled),
             'billingLimits' => static::serializeValue($this->billingLimits),
+            'firstAccessedAt' => static::serializeValue($this->firstAccessedAt),
+            'mcpAccessedAt' => static::serializeValue($this->mcpAccessedAt),
             'oAuth2ServerEnabled' => static::serializeValue($this->oAuth2ServerEnabled),
             'oAuth2ServerAuthorizationUrl' => static::serializeValue($this->oAuth2ServerAuthorizationUrl),
             'oAuth2ServerScopes' => static::serializeValue($this->oAuth2ServerScopes),

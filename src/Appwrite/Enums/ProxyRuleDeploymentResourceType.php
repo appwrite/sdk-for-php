@@ -11,6 +11,7 @@ class ProxyRuleDeploymentResourceType implements JsonSerializable, Stringable
 {
     private static ProxyRuleDeploymentResourceType $FUNCTION;
     private static ProxyRuleDeploymentResourceType $SITE;
+    private static ProxyRuleDeploymentResourceType $DEDICATEDDATABASE;
 
     private function __construct(private readonly string $value)
     {
@@ -38,12 +39,19 @@ class ProxyRuleDeploymentResourceType implements JsonSerializable, Stringable
 
         return self::$SITE;
     }
+    public static function DEDICATEDDATABASE(): ProxyRuleDeploymentResourceType
+    {
+        self::$DEDICATEDDATABASE ??= new ProxyRuleDeploymentResourceType('dedicatedDatabase');
+
+        return self::$DEDICATEDDATABASE;
+    }
 
     public static function from(string $value): self
     {
         return match ($value) {
             'function' => self::FUNCTION(),
             'site' => self::SITE(),
+            'dedicatedDatabase' => self::DEDICATEDDATABASE(),
             default => throw new \InvalidArgumentException('Unknown ProxyRuleDeploymentResourceType value: ' . $value),
         };
     }

@@ -38,7 +38,7 @@ POST https://cloud.appwrite.io/v1/vectorsdb
 GET https://cloud.appwrite.io/v1/vectorsdb/specifications
 ```
 
-** List the dedicated database specifications available on the current plan. Each specification reports its resource limits, pricing, and whether it is enabled for the organization. **
+** List the dedicated database specifications available on the current plan. Each specification reports its resource limits, its own prices and overage rates, and whether it is enabled for the organization. **
 
 
 ```http request
@@ -52,6 +52,7 @@ GET https://cloud.appwrite.io/v1/vectorsdb/transactions
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). | [] |
+| total | boolean | When set to false, the total count returned will be 0 and will not be calculated. | 1 |
 
 
 ```http request

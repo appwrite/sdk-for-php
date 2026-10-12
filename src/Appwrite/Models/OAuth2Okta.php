@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Appwrite\Models;
 
+use Appwrite\Enums\OAuth2OktaPrompt;
+
 /**
  * OAuth2Okta
  *
@@ -20,6 +22,7 @@ readonly class OAuth2Okta
      * @param bool $enabled oauth2 provider is active and can be used to create sessions.
      * @param string $clientId okta oauth2 client id.
      * @param string $clientSecret okta oauth2 client secret.
+     * @param list<OAuth2OktaPrompt> $prompt okta oauth2 prompt values.
      * @param string $domain okta oauth2 domain.
      * @param string $authorizationServerId okta oauth2 authorization server id.
      */
@@ -28,6 +31,7 @@ readonly class OAuth2Okta
         public bool $enabled,
         public string $clientId,
         public string $clientSecret,
+        public array $prompt,
         public string $domain,
         public string $authorizationServerId
     ) {
@@ -43,6 +47,7 @@ readonly class OAuth2Okta
             'enabled' => false,
             'clientId' => "",
             'clientSecret' => "",
+            'prompt' => [],
             'domain' => "",
             'authorizationServerId' => "",
         ];
@@ -52,6 +57,12 @@ readonly class OAuth2Okta
             enabled: $data['enabled'],
             clientId: $data['clientId'],
             clientSecret: $data['clientSecret'],
+            prompt: is_array($data['prompt'])
+                ? array_map(
+                    static fn (mixed $item): mixed => static::hydrateTypedValue(OAuth2OktaPrompt::class, $item),
+                    $data['prompt']
+                )
+                : $data['prompt'],
             domain: $data['domain'],
             authorizationServerId: $data['authorizationServerId']
         );
@@ -67,6 +78,7 @@ readonly class OAuth2Okta
             'enabled' => static::serializeValue($this->enabled),
             'clientId' => static::serializeValue($this->clientId),
             'clientSecret' => static::serializeValue($this->clientSecret),
+            'prompt' => static::serializeValue($this->prompt),
             'domain' => static::serializeValue($this->domain),
             'authorizationServerId' => static::serializeValue($this->authorizationServerId)
         ];

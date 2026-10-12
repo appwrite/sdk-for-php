@@ -76,10 +76,7 @@ class Users extends Service
         $apiParams['userId'] = $userId;
         $apiParams['email'] = $email;
         $apiParams['phone'] = $phone;
-
-        if (!is_null($password)) {
-            $apiParams['password'] = $password;
-        }
+        $apiParams['password'] = $password;
 
         if (!is_null($name)) {
             $apiParams['name'] = $name;
@@ -244,6 +241,10 @@ class Users extends Service
      */
     public function deleteIdentity(string $identityId): string
     {
+        if ($identityId === '') {
+            throw new AppwriteException('Missing required parameter: "identityId"');
+        }
+
         $apiPath = str_replace(
             ['{identityId}'],
             [$identityId],
@@ -256,6 +257,7 @@ class Users extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_DELETE,
@@ -505,6 +507,10 @@ class Users extends Service
      */
     public function get(string $userId): \Appwrite\Models\User
     {
+        if ($userId === '') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
         $apiPath = str_replace(
             ['{userId}'],
             [$userId],
@@ -544,6 +550,10 @@ class Users extends Service
      */
     public function delete(string $userId): string
     {
+        if ($userId === '') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
         $apiPath = str_replace(
             ['{userId}'],
             [$userId],
@@ -556,6 +566,7 @@ class Users extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_DELETE,
@@ -572,6 +583,10 @@ class Users extends Service
      */
     public function updateEmail(string $userId, string $email): \Appwrite\Models\User
     {
+        if ($userId === '') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
         $apiPath = str_replace(
             ['{userId}'],
             [$userId],
@@ -606,12 +621,19 @@ class Users extends Service
      * impersonation headers are used, the request runs as the target user for API
      * behavior, while internal audit logs still attribute the action to the
      * original impersonator and store the impersonated target details only in
-     * internal audit payload data.
+     * internal audit payload data. Account endpoints are read-only while
+     * impersonating: they report the target's account, and anything that would
+     * change it is refused, so an impersonator cannot alter the target's
+     * credentials or delete their account.
      *
      * @throws AppwriteException
      */
     public function updateImpersonator(string $userId, bool $impersonator): \Appwrite\Models\User
     {
+        if ($userId === '') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
         $apiPath = str_replace(
             ['{userId}'],
             [$userId],
@@ -650,6 +672,10 @@ class Users extends Service
      */
     public function createJWT(string $userId, ?string $sessionId = null, ?int $duration = null): \Appwrite\Models\Jwt
     {
+        if ($userId === '') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
         $apiPath = str_replace(
             ['{userId}'],
             [$userId],
@@ -698,6 +724,10 @@ class Users extends Service
      */
     public function updateLabels(string $userId, array $labels): \Appwrite\Models\User
     {
+        if ($userId === '') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
         $apiPath = str_replace(
             ['{userId}'],
             [$userId],
@@ -728,54 +758,16 @@ class Users extends Service
     }
 
     /**
-     * Get the user activity logs list by its unique ID.
-     *
-     * @throws AppwriteException
-     */
-    public function listLogs(string $userId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\LogList
-    {
-        $apiPath = str_replace(
-            ['{userId}'],
-            [$userId],
-            '/users/{userId}/logs'
-        );
-
-        $apiParams = [];
-        $apiParams['userId'] = $userId;
-
-        if (!is_null($queries)) {
-            $apiParams['queries'] = $queries;
-        }
-
-        if (!is_null($total)) {
-            $apiParams['total'] = $total;
-        }
-
-        $apiHeaders = [];
-        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
-        $apiHeaders['accept'] = 'application/json';
-
-        $response = $this->client->call(
-            Client::METHOD_GET,
-            $apiPath,
-            $apiHeaders,
-            $apiParams
-        );
-
-        if (!is_array($response)) {
-            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
-        }
-
-        return \Appwrite\Models\LogList::from($response);
-    }
-
-    /**
      * Get the user membership list by its unique ID.
      *
      * @throws AppwriteException
      */
     public function listMemberships(string $userId, ?array $queries = null, ?string $search = null, ?bool $total = null): \Appwrite\Models\MembershipList
     {
+        if ($userId === '') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
         $apiPath = str_replace(
             ['{userId}'],
             [$userId],
@@ -822,6 +814,10 @@ class Users extends Service
      */
     public function updateMFA(string $userId, bool $mfa): \Appwrite\Models\User
     {
+        if ($userId === '') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
         $apiPath = str_replace(
             ['{userId}'],
             [$userId],
@@ -858,6 +854,10 @@ class Users extends Service
      */
     public function deleteMFAAuthenticator(string $userId, AuthenticatorType $type): string
     {
+        if ($userId === '') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
         $apiPath = str_replace(
             ['{userId}', '{type}'],
             [$userId, (string) $type],
@@ -871,6 +871,7 @@ class Users extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_DELETE,
@@ -888,6 +889,14 @@ class Users extends Service
      */
     public function getMFAChallenge(string $userId, string $challengeId): \Appwrite\Models\MfaChallengeSecret
     {
+        if ($userId === '') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
+        if ($challengeId === '') {
+            throw new AppwriteException('Missing required parameter: "challengeId"');
+        }
+
         $apiPath = str_replace(
             ['{userId}', '{challengeId}'],
             [$userId, $challengeId],
@@ -923,6 +932,10 @@ class Users extends Service
      */
     public function listMFAFactors(string $userId): \Appwrite\Models\MfaFactors
     {
+        if ($userId === '') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
         $apiPath = str_replace(
             ['{userId}'],
             [$userId],
@@ -960,6 +973,10 @@ class Users extends Service
      */
     public function getMFARecoveryCodes(string $userId): \Appwrite\Models\MfaRecoveryCodes
     {
+        if ($userId === '') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
         $apiPath = str_replace(
             ['{userId}'],
             [$userId],
@@ -997,6 +1014,10 @@ class Users extends Service
      */
     public function updateMFARecoveryCodes(string $userId): \Appwrite\Models\MfaRecoveryCodes
     {
+        if ($userId === '') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
         $apiPath = str_replace(
             ['{userId}'],
             [$userId],
@@ -1035,6 +1056,10 @@ class Users extends Service
      */
     public function createMFARecoveryCodes(string $userId): \Appwrite\Models\MfaRecoveryCodes
     {
+        if ($userId === '') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
         $apiPath = str_replace(
             ['{userId}'],
             [$userId],
@@ -1070,6 +1095,10 @@ class Users extends Service
      */
     public function updateName(string $userId, string $name): \Appwrite\Models\User
     {
+        if ($userId === '') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
         $apiPath = str_replace(
             ['{userId}'],
             [$userId],
@@ -1100,12 +1129,189 @@ class Users extends Service
     }
 
     /**
+     * Get the list of verified passkeys registered by a user.
+     *
+     * @throws AppwriteException
+     */
+    public function listPasskeys(string $userId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\PasskeyList
+    {
+        if ($userId === '') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
+        $apiPath = str_replace(
+            ['{userId}'],
+            [$userId],
+            '/users/{userId}/passkeys'
+        );
+
+        $apiParams = [];
+        $apiParams['userId'] = $userId;
+
+        if (!is_null($queries)) {
+            $apiParams['queries'] = $queries;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\PasskeyList::from($response);
+    }
+
+    /**
+     * Get a verified passkey of a user by its unique ID.
+     *
+     * @throws AppwriteException
+     */
+    public function getPasskey(string $userId, string $passkeyId): \Appwrite\Models\Passkey
+    {
+        if ($userId === '') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
+        if ($passkeyId === '') {
+            throw new AppwriteException('Missing required parameter: "passkeyId"');
+        }
+
+        $apiPath = str_replace(
+            ['{userId}', '{passkeyId}'],
+            [$userId, $passkeyId],
+            '/users/{userId}/passkeys/{passkeyId}'
+        );
+
+        $apiParams = [];
+        $apiParams['userId'] = $userId;
+        $apiParams['passkeyId'] = $passkeyId;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Passkey::from($response);
+    }
+
+    /**
+     * Rename a passkey of a user.
+     *
+     * @throws AppwriteException
+     */
+    public function updatePasskey(string $userId, string $passkeyId, string $name): \Appwrite\Models\Passkey
+    {
+        if ($userId === '') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
+        if ($passkeyId === '') {
+            throw new AppwriteException('Missing required parameter: "passkeyId"');
+        }
+
+        $apiPath = str_replace(
+            ['{userId}', '{passkeyId}'],
+            [$userId, $passkeyId],
+            '/users/{userId}/passkeys/{passkeyId}'
+        );
+
+        $apiParams = [];
+        $apiParams['userId'] = $userId;
+        $apiParams['passkeyId'] = $passkeyId;
+        $apiParams['name'] = $name;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Passkey::from($response);
+    }
+
+    /**
+     * Delete a passkey from a user, for example when a device is lost. The
+     * passkey can no longer be used to sign in.
+     *
+     * @throws AppwriteException
+     */
+    public function deletePasskey(string $userId, string $passkeyId): string
+    {
+        if ($userId === '') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
+        if ($passkeyId === '') {
+            throw new AppwriteException('Missing required parameter: "passkeyId"');
+        }
+
+        $apiPath = str_replace(
+            ['{userId}', '{passkeyId}'],
+            [$userId, $passkeyId],
+            '/users/{userId}/passkeys/{passkeyId}'
+        );
+
+        $apiParams = [];
+        $apiParams['userId'] = $userId;
+        $apiParams['passkeyId'] = $passkeyId;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_DELETE,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
      * Update the user password by its unique ID.
      *
      * @throws AppwriteException
      */
     public function updatePassword(string $userId, string $password): \Appwrite\Models\User
     {
+        if ($userId === '') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
         $apiPath = str_replace(
             ['{userId}'],
             [$userId],
@@ -1142,6 +1348,10 @@ class Users extends Service
      */
     public function updatePhone(string $userId, string $number): \Appwrite\Models\User
     {
+        if ($userId === '') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
         $apiPath = str_replace(
             ['{userId}'],
             [$userId],
@@ -1178,6 +1388,10 @@ class Users extends Service
      */
     public function getPrefs(string $userId): \Appwrite\Models\Preferences
     {
+        if ($userId === '') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
         $apiPath = str_replace(
             ['{userId}'],
             [$userId],
@@ -1214,6 +1428,10 @@ class Users extends Service
      */
     public function updatePrefs(string $userId, array $prefs): \Appwrite\Models\Preferences
     {
+        if ($userId === '') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
         $apiPath = str_replace(
             ['{userId}'],
             [$userId],
@@ -1250,6 +1468,10 @@ class Users extends Service
      */
     public function listSessions(string $userId, ?bool $total = null): \Appwrite\Models\SessionList
     {
+        if ($userId === '') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
         $apiPath = str_replace(
             ['{userId}'],
             [$userId],
@@ -1293,6 +1515,10 @@ class Users extends Service
      */
     public function createSession(string $userId): \Appwrite\Models\Session
     {
+        if ($userId === '') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
         $apiPath = str_replace(
             ['{userId}'],
             [$userId],
@@ -1328,6 +1554,10 @@ class Users extends Service
      */
     public function deleteSessions(string $userId): string
     {
+        if ($userId === '') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
         $apiPath = str_replace(
             ['{userId}'],
             [$userId],
@@ -1340,6 +1570,7 @@ class Users extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_DELETE,
@@ -1356,6 +1587,14 @@ class Users extends Service
      */
     public function deleteSession(string $userId, string $sessionId): string
     {
+        if ($userId === '') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
+        if ($sessionId === '') {
+            throw new AppwriteException('Missing required parameter: "sessionId"');
+        }
+
         $apiPath = str_replace(
             ['{userId}', '{sessionId}'],
             [$userId, $sessionId],
@@ -1369,6 +1608,7 @@ class Users extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_DELETE,
@@ -1386,6 +1626,10 @@ class Users extends Service
      */
     public function updateStatus(string $userId, bool $status): \Appwrite\Models\User
     {
+        if ($userId === '') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
         $apiPath = str_replace(
             ['{userId}'],
             [$userId],
@@ -1422,6 +1666,10 @@ class Users extends Service
      */
     public function listTargets(string $userId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\TargetList
     {
+        if ($userId === '') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
         $apiPath = str_replace(
             ['{userId}'],
             [$userId],
@@ -1464,6 +1712,10 @@ class Users extends Service
      */
     public function createTarget(string $userId, string $targetId, MessagingProviderType $providerType, string $identifier, ?string $providerId = null, ?string $name = null): \Appwrite\Models\Target
     {
+        if ($userId === '') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
         $apiPath = str_replace(
             ['{userId}'],
             [$userId],
@@ -1510,6 +1762,14 @@ class Users extends Service
      */
     public function getTarget(string $userId, string $targetId): \Appwrite\Models\Target
     {
+        if ($userId === '') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
+        if ($targetId === '') {
+            throw new AppwriteException('Missing required parameter: "targetId"');
+        }
+
         $apiPath = str_replace(
             ['{userId}', '{targetId}'],
             [$userId, $targetId],
@@ -1545,6 +1805,14 @@ class Users extends Service
      */
     public function updateTarget(string $userId, string $targetId, ?string $identifier = null, ?string $providerId = null, ?string $name = null): \Appwrite\Models\Target
     {
+        if ($userId === '') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
+        if ($targetId === '') {
+            throw new AppwriteException('Missing required parameter: "targetId"');
+        }
+
         $apiPath = str_replace(
             ['{userId}', '{targetId}'],
             [$userId, $targetId],
@@ -1593,6 +1861,14 @@ class Users extends Service
      */
     public function deleteTarget(string $userId, string $targetId): string
     {
+        if ($userId === '') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
+        if ($targetId === '') {
+            throw new AppwriteException('Missing required parameter: "targetId"');
+        }
+
         $apiPath = str_replace(
             ['{userId}', '{targetId}'],
             [$userId, $targetId],
@@ -1606,6 +1882,7 @@ class Users extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_DELETE,
@@ -1625,6 +1902,10 @@ class Users extends Service
      */
     public function createToken(string $userId, ?int $length = null, ?int $expire = null): \Appwrite\Models\Token
     {
+        if ($userId === '') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
         $apiPath = str_replace(
             ['{userId}'],
             [$userId],
@@ -1668,6 +1949,10 @@ class Users extends Service
      */
     public function updateEmailVerification(string $userId, bool $emailVerification): \Appwrite\Models\User
     {
+        if ($userId === '') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
         $apiPath = str_replace(
             ['{userId}'],
             [$userId],
@@ -1704,6 +1989,10 @@ class Users extends Service
      */
     public function updatePhoneVerification(string $userId, bool $phoneVerification): \Appwrite\Models\User
     {
+        if ($userId === '') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
         $apiPath = str_replace(
             ['{userId}'],
             [$userId],

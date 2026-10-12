@@ -19,6 +19,10 @@ readonly class DedicatedDatabaseSpecification
      * @param string $slug specification slug. use this value when creating a dedicated database.
      * @param string $name human readable specification name.
      * @param float $price monthly price of the specification in usd.
+     * @param float $storageOverageRate price per gb of storage above the included amount, per month, in usd.
+     * @param float $bandwidthOverageRate price per gb of bandwidth above the included amount, per month, in usd.
+     * @param float $replicaRate high availability replica price as a fraction of the specification price.
+     * @param float $pitrRate point-in-time recovery price as a fraction of the specification price.
      * @param int $cpu allocated cpu in millicores.
      * @param int $memory allocated memory in mb.
      * @param int $maxConnections maximum number of concurrent connections.
@@ -30,6 +34,10 @@ readonly class DedicatedDatabaseSpecification
         public string $slug,
         public string $name,
         public float $price,
+        public float $storageOverageRate,
+        public float $bandwidthOverageRate,
+        public float $replicaRate,
+        public float $pitrRate,
         public int $cpu,
         public int $memory,
         public int $maxConnections,
@@ -48,6 +56,10 @@ readonly class DedicatedDatabaseSpecification
             'slug' => "",
             'name' => "",
             'price' => 0,
+            'storageOverageRate' => 0,
+            'bandwidthOverageRate' => 0,
+            'replicaRate' => 0,
+            'pitrRate' => 0,
             'cpu' => 0,
             'memory' => 0,
             'maxConnections' => 0,
@@ -60,6 +72,10 @@ readonly class DedicatedDatabaseSpecification
             slug: $data['slug'],
             name: $data['name'],
             price: $data['price'],
+            storageOverageRate: $data['storageOverageRate'],
+            bandwidthOverageRate: $data['bandwidthOverageRate'],
+            replicaRate: $data['replicaRate'],
+            pitrRate: $data['pitrRate'],
             cpu: $data['cpu'],
             memory: $data['memory'],
             maxConnections: $data['maxConnections'],
@@ -78,6 +94,10 @@ readonly class DedicatedDatabaseSpecification
             'slug' => static::serializeValue($this->slug),
             'name' => static::serializeValue($this->name),
             'price' => static::serializeValue($this->price),
+            'storageOverageRate' => static::serializeValue($this->storageOverageRate),
+            'bandwidthOverageRate' => static::serializeValue($this->bandwidthOverageRate),
+            'replicaRate' => static::serializeValue($this->replicaRate),
+            'pitrRate' => static::serializeValue($this->pitrRate),
             'cpu' => static::serializeValue($this->cpu),
             'memory' => static::serializeValue($this->memory),
             'maxConnections' => static::serializeValue($this->maxConnections),

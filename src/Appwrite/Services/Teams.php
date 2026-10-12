@@ -105,6 +105,10 @@ class Teams extends Service
      */
     public function get(string $teamId): \Appwrite\Models\Team
     {
+        if ($teamId === '') {
+            throw new AppwriteException('Missing required parameter: "teamId"');
+        }
+
         $apiPath = str_replace(
             ['{teamId}'],
             [$teamId],
@@ -139,6 +143,10 @@ class Teams extends Service
      */
     public function updateName(string $teamId, string $name): \Appwrite\Models\Team
     {
+        if ($teamId === '') {
+            throw new AppwriteException('Missing required parameter: "teamId"');
+        }
+
         $apiPath = str_replace(
             ['{teamId}'],
             [$teamId],
@@ -176,6 +184,10 @@ class Teams extends Service
      */
     public function delete(string $teamId): string
     {
+        if ($teamId === '') {
+            throw new AppwriteException('Missing required parameter: "teamId"');
+        }
+
         $apiPath = str_replace(
             ['{teamId}'],
             [$teamId],
@@ -188,6 +200,7 @@ class Teams extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_DELETE,
@@ -204,6 +217,10 @@ class Teams extends Service
      */
     public function listInstallations(string $teamId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\AppInstallationList
     {
+        if ($teamId === '') {
+            throw new AppwriteException('Missing required parameter: "teamId"');
+        }
+
         $apiPath = str_replace(
             ['{teamId}'],
             [$teamId],
@@ -249,6 +266,10 @@ class Teams extends Service
      */
     public function createInstallation(string $teamId, string $appId, ?string $authorizationDetails = null): \Appwrite\Models\AppInstallation
     {
+        if ($teamId === '') {
+            throw new AppwriteException('Missing required parameter: "teamId"');
+        }
+
         $apiPath = str_replace(
             ['{teamId}'],
             [$teamId],
@@ -290,6 +311,14 @@ class Teams extends Service
      */
     public function getInstallation(string $teamId, string $installationId): \Appwrite\Models\AppInstallation
     {
+        if ($teamId === '') {
+            throw new AppwriteException('Missing required parameter: "teamId"');
+        }
+
+        if ($installationId === '') {
+            throw new AppwriteException('Missing required parameter: "installationId"');
+        }
+
         $apiPath = str_replace(
             ['{teamId}', '{installationId}'],
             [$teamId, $installationId],
@@ -328,6 +357,14 @@ class Teams extends Service
      */
     public function updateInstallation(string $teamId, string $installationId, ?string $authorizationDetails = null): \Appwrite\Models\AppInstallation
     {
+        if ($teamId === '') {
+            throw new AppwriteException('Missing required parameter: "teamId"');
+        }
+
+        if ($installationId === '') {
+            throw new AppwriteException('Missing required parameter: "installationId"');
+        }
+
         $apiPath = str_replace(
             ['{teamId}', '{installationId}'],
             [$teamId, $installationId],
@@ -367,6 +404,14 @@ class Teams extends Service
      */
     public function deleteInstallation(string $teamId, string $installationId): string
     {
+        if ($teamId === '') {
+            throw new AppwriteException('Missing required parameter: "teamId"');
+        }
+
+        if ($installationId === '') {
+            throw new AppwriteException('Missing required parameter: "installationId"');
+        }
+
         $apiPath = str_replace(
             ['{teamId}', '{installationId}'],
             [$teamId, $installationId],
@@ -399,6 +444,10 @@ class Teams extends Service
      */
     public function listMemberships(string $teamId, ?array $queries = null, ?string $search = null, ?bool $total = null): \Appwrite\Models\MembershipList
     {
+        if ($teamId === '') {
+            throw new AppwriteException('Missing required parameter: "teamId"');
+        }
+
         $apiPath = str_replace(
             ['{teamId}'],
             [$teamId],
@@ -462,8 +511,12 @@ class Teams extends Service
      *
      * @throws AppwriteException
      */
-    public function createMembership(string $teamId, array $roles, ?string $email = null, ?string $userId = null, ?string $phone = null, ?string $url = null, ?string $name = null): \Appwrite\Models\Membership
+    public function createMembership(string $teamId, array $roles, ?string $membershipId = null, ?string $email = null, ?string $userId = null, ?string $phone = null, ?string $url = null, ?string $name = null): \Appwrite\Models\Membership
     {
+        if ($teamId === '') {
+            throw new AppwriteException('Missing required parameter: "teamId"');
+        }
+
         $apiPath = str_replace(
             ['{teamId}'],
             [$teamId],
@@ -473,6 +526,10 @@ class Teams extends Service
         $apiParams = [];
         $apiParams['teamId'] = $teamId;
         $apiParams['roles'] = $roles;
+
+        if (!is_null($membershipId)) {
+            $apiParams['membershipId'] = $membershipId;
+        }
 
         if (!is_null($email)) {
             $apiParams['email'] = $email;
@@ -522,6 +579,14 @@ class Teams extends Service
      */
     public function getMembership(string $teamId, string $membershipId): \Appwrite\Models\Membership
     {
+        if ($teamId === '') {
+            throw new AppwriteException('Missing required parameter: "teamId"');
+        }
+
+        if ($membershipId === '') {
+            throw new AppwriteException('Missing required parameter: "membershipId"');
+        }
+
         $apiPath = str_replace(
             ['{teamId}', '{membershipId}'],
             [$teamId, $membershipId],
@@ -559,6 +624,14 @@ class Teams extends Service
      */
     public function updateMembership(string $teamId, string $membershipId, array $roles): \Appwrite\Models\Membership
     {
+        if ($teamId === '') {
+            throw new AppwriteException('Missing required parameter: "teamId"');
+        }
+
+        if ($membershipId === '') {
+            throw new AppwriteException('Missing required parameter: "membershipId"');
+        }
+
         $apiPath = str_replace(
             ['{teamId}', '{membershipId}'],
             [$teamId, $membershipId],
@@ -598,6 +671,14 @@ class Teams extends Service
      */
     public function deleteMembership(string $teamId, string $membershipId): string
     {
+        if ($teamId === '') {
+            throw new AppwriteException('Missing required parameter: "teamId"');
+        }
+
+        if ($membershipId === '') {
+            throw new AppwriteException('Missing required parameter: "membershipId"');
+        }
+
         $apiPath = str_replace(
             ['{teamId}', '{membershipId}'],
             [$teamId, $membershipId],
@@ -611,6 +692,7 @@ class Teams extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_DELETE,
@@ -632,6 +714,14 @@ class Teams extends Service
      */
     public function updateMembershipStatus(string $teamId, string $membershipId, string $userId, string $secret): \Appwrite\Models\Membership
     {
+        if ($teamId === '') {
+            throw new AppwriteException('Missing required parameter: "teamId"');
+        }
+
+        if ($membershipId === '') {
+            throw new AppwriteException('Missing required parameter: "membershipId"');
+        }
+
         $apiPath = str_replace(
             ['{teamId}', '{membershipId}'],
             [$teamId, $membershipId],
@@ -672,6 +762,10 @@ class Teams extends Service
      */
     public function getPrefs(string $teamId): \Appwrite\Models\Preferences
     {
+        if ($teamId === '') {
+            throw new AppwriteException('Missing required parameter: "teamId"');
+        }
+
         $apiPath = str_replace(
             ['{teamId}'],
             [$teamId],
@@ -708,6 +802,10 @@ class Teams extends Service
      */
     public function updatePrefs(string $teamId, array $prefs): \Appwrite\Models\Preferences
     {
+        if ($teamId === '') {
+            throw new AppwriteException('Missing required parameter: "teamId"');
+        }
+
         $apiPath = str_replace(
             ['{teamId}'],
             [$teamId],

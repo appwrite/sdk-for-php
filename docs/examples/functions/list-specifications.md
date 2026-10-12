@@ -12,6 +12,7 @@ $client = (new Client())
 $functions = new Functions($client);
 
 $result = $functions->listSpecifications(
-    type: 'runtimes' // optional
+    type: 'runtimes', // optional
+    total: false // optional
 );
 ```

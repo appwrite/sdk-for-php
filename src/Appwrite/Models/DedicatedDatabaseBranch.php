@@ -21,13 +21,13 @@ readonly class DedicatedDatabaseBranch
      * @param string $namespace kubernetes namespace where the branch is deployed.
      * @param int $expiresAt unix timestamp when the branch expires.
      * @param string $host branch hostname for direct connections.
-     * @param int $port branch port. null until the backing reports one.
      * @param string $database advertised catalog the client connects to. mysql/mariadb use default; postgres uses the routing label.
      * @param string $username database username. shared with the parent database.
      * @param string $password database password. shared with the parent database.
      * @param bool $ssl whether ssl is required.
      * @param string $engine database engine. possible values: postgresql, mysql, mongodb.
      * @param string $connectionString full connection string for the branch.
+     * @param int|null $port branch port. null until the backing reports one.
      */
     public function __construct(
         public string $branchId,
@@ -35,13 +35,13 @@ readonly class DedicatedDatabaseBranch
         public string $namespace,
         public int $expiresAt,
         public string $host,
-        public int $port,
         public string $database,
         public string $username,
         public string $password,
         public bool $ssl,
         public string $engine,
-        public string $connectionString
+        public string $connectionString,
+        public ?int $port = null
     ) {
     }
 
@@ -64,23 +64,19 @@ readonly class DedicatedDatabaseBranch
             'connectionString' => "",
         ];
 
-        if (!array_key_exists('port', $data)) {
-            throw new \InvalidArgumentException('Missing required field "port" for ' . static::class . '.');
-        }
-
         return new static(
             branchId: $data['branchId'],
             branchName: $data['branchName'],
             namespace: $data['namespace'],
             expiresAt: $data['expiresAt'],
             host: $data['host'],
-            port: $data['port'],
             database: $data['database'],
             username: $data['username'],
             password: $data['password'],
             ssl: $data['ssl'],
             engine: $data['engine'],
-            connectionString: $data['connectionString']
+            connectionString: $data['connectionString'],
+            port: $data['port'] ?? null
         );
     }
 

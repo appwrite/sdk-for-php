@@ -11,5 +11,7 @@ $client = (new Client())
 
 $locale = new Locale($client);
 
-$result = $locale->listCountries();
+$result = $locale->listCountries(
+    total: false // optional
+);
 ```
