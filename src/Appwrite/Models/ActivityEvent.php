@@ -84,93 +84,37 @@ readonly class ActivityEvent
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('$id', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
-        }
-        if (!array_key_exists('actorType', $data)) {
-            throw new \InvalidArgumentException('Missing required field "actorType" for ' . static::class . '.');
-        }
-        if (!array_key_exists('actorId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "actorId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('actorEmail', $data)) {
-            throw new \InvalidArgumentException('Missing required field "actorEmail" for ' . static::class . '.');
-        }
-        if (!array_key_exists('actorName', $data)) {
-            throw new \InvalidArgumentException('Missing required field "actorName" for ' . static::class . '.');
-        }
-        if (!array_key_exists('resourceParent', $data)) {
-            throw new \InvalidArgumentException('Missing required field "resourceParent" for ' . static::class . '.');
-        }
-        if (!array_key_exists('resourceType', $data)) {
-            throw new \InvalidArgumentException('Missing required field "resourceType" for ' . static::class . '.');
-        }
-        if (!array_key_exists('resourceId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "resourceId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('resource', $data)) {
-            throw new \InvalidArgumentException('Missing required field "resource" for ' . static::class . '.');
-        }
-        if (!array_key_exists('event', $data)) {
-            throw new \InvalidArgumentException('Missing required field "event" for ' . static::class . '.');
-        }
-        if (!array_key_exists('userAgent', $data)) {
-            throw new \InvalidArgumentException('Missing required field "userAgent" for ' . static::class . '.');
-        }
-        if (!array_key_exists('ip', $data)) {
-            throw new \InvalidArgumentException('Missing required field "ip" for ' . static::class . '.');
-        }
-        if (!array_key_exists('mode', $data)) {
-            throw new \InvalidArgumentException('Missing required field "mode" for ' . static::class . '.');
-        }
-        if (!array_key_exists('country', $data)) {
-            throw new \InvalidArgumentException('Missing required field "country" for ' . static::class . '.');
-        }
-        if (!array_key_exists('continentCode', $data)) {
-            throw new \InvalidArgumentException('Missing required field "continentCode" for ' . static::class . '.');
-        }
-        if (!array_key_exists('city', $data)) {
-            throw new \InvalidArgumentException('Missing required field "city" for ' . static::class . '.');
-        }
-        if (!array_key_exists('subdivisions', $data)) {
-            throw new \InvalidArgumentException('Missing required field "subdivisions" for ' . static::class . '.');
-        }
-        if (!array_key_exists('isp', $data)) {
-            throw new \InvalidArgumentException('Missing required field "isp" for ' . static::class . '.');
-        }
-        if (!array_key_exists('autonomousSystemNumber', $data)) {
-            throw new \InvalidArgumentException('Missing required field "autonomousSystemNumber" for ' . static::class . '.');
-        }
-        if (!array_key_exists('autonomousSystemOrganization', $data)) {
-            throw new \InvalidArgumentException('Missing required field "autonomousSystemOrganization" for ' . static::class . '.');
-        }
-        if (!array_key_exists('connectionType', $data)) {
-            throw new \InvalidArgumentException('Missing required field "connectionType" for ' . static::class . '.');
-        }
-        if (!array_key_exists('connectionUsageType', $data)) {
-            throw new \InvalidArgumentException('Missing required field "connectionUsageType" for ' . static::class . '.');
-        }
-        if (!array_key_exists('connectionOrganization', $data)) {
-            throw new \InvalidArgumentException('Missing required field "connectionOrganization" for ' . static::class . '.');
-        }
-        if (!array_key_exists('time', $data)) {
-            throw new \InvalidArgumentException('Missing required field "time" for ' . static::class . '.');
-        }
-        if (!array_key_exists('projectId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "projectId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('teamId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "teamId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('hostname', $data)) {
-            throw new \InvalidArgumentException('Missing required field "hostname" for ' . static::class . '.');
-        }
-        if (!array_key_exists('sdk', $data)) {
-            throw new \InvalidArgumentException('Missing required field "sdk" for ' . static::class . '.');
-        }
-        if (!array_key_exists('sdkVersion', $data)) {
-            throw new \InvalidArgumentException('Missing required field "sdkVersion" for ' . static::class . '.');
-        }
+        $data += [
+            '$id' => "",
+            'actorType' => "",
+            'actorId' => "",
+            'actorEmail' => "",
+            'actorName' => "",
+            'resourceParent' => "",
+            'resourceType' => "",
+            'resourceId' => "",
+            'resource' => "",
+            'event' => "",
+            'userAgent' => "",
+            'ip' => "",
+            'mode' => "",
+            'country' => "",
+            'continentCode' => "",
+            'city' => "",
+            'subdivisions' => "",
+            'isp' => "",
+            'autonomousSystemNumber' => "",
+            'autonomousSystemOrganization' => "",
+            'connectionType' => "",
+            'connectionUsageType' => "",
+            'connectionOrganization' => "",
+            'time' => "",
+            'projectId' => "",
+            'teamId' => "",
+            'hostname' => "",
+            'sdk' => "",
+            'sdkVersion' => "",
+        ];
 
         return new static(
             id: $data['$id'],

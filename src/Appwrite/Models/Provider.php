@@ -44,30 +44,16 @@ readonly class Provider
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('$id', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$createdAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$createdAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$updatedAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$updatedAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('name', $data)) {
-            throw new \InvalidArgumentException('Missing required field "name" for ' . static::class . '.');
-        }
-        if (!array_key_exists('provider', $data)) {
-            throw new \InvalidArgumentException('Missing required field "provider" for ' . static::class . '.');
-        }
-        if (!array_key_exists('enabled', $data)) {
-            throw new \InvalidArgumentException('Missing required field "enabled" for ' . static::class . '.');
-        }
-        if (!array_key_exists('type', $data)) {
-            throw new \InvalidArgumentException('Missing required field "type" for ' . static::class . '.');
-        }
-        if (!array_key_exists('credentials', $data)) {
-            throw new \InvalidArgumentException('Missing required field "credentials" for ' . static::class . '.');
-        }
+        $data += [
+            '$id' => "",
+            '$createdAt' => "",
+            '$updatedAt' => "",
+            'name' => "",
+            'provider' => "",
+            'enabled' => true,
+            'type' => "",
+            'credentials' => [],
+        ];
 
         return new static(
             id: $data['$id'],

@@ -44,23 +44,16 @@ readonly class Presence
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('$id', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$createdAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$createdAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$updatedAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$updatedAt" for ' . static::class . '.');
-        }
+        $data += [
+            '$id' => "",
+            '$createdAt' => "",
+            '$updatedAt' => "",
+            'userId' => "",
+            'source' => "",
+        ];
+
         if (!array_key_exists('$permissions', $data)) {
             throw new \InvalidArgumentException('Missing required field "$permissions" for ' . static::class . '.');
-        }
-        if (!array_key_exists('userId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "userId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('source', $data)) {
-            throw new \InvalidArgumentException('Missing required field "source" for ' . static::class . '.');
         }
 
         return new static(

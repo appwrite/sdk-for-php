@@ -50,32 +50,21 @@ readonly class ColumnEnum
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('key', $data)) {
-            throw new \InvalidArgumentException('Missing required field "key" for ' . static::class . '.');
-        }
-        if (!array_key_exists('type', $data)) {
-            throw new \InvalidArgumentException('Missing required field "type" for ' . static::class . '.');
-        }
+        $data += [
+            'key' => "",
+            'type' => "",
+            'error' => "",
+            'required' => false,
+            '$createdAt' => "",
+            '$updatedAt' => "",
+            'format' => "enum",
+        ];
+
         if (!array_key_exists('status', $data)) {
             throw new \InvalidArgumentException('Missing required field "status" for ' . static::class . '.');
         }
-        if (!array_key_exists('error', $data)) {
-            throw new \InvalidArgumentException('Missing required field "error" for ' . static::class . '.');
-        }
-        if (!array_key_exists('required', $data)) {
-            throw new \InvalidArgumentException('Missing required field "required" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$createdAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$createdAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$updatedAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$updatedAt" for ' . static::class . '.');
-        }
         if (!array_key_exists('elements', $data)) {
             throw new \InvalidArgumentException('Missing required field "elements" for ' . static::class . '.');
-        }
-        if (!array_key_exists('format', $data)) {
-            throw new \InvalidArgumentException('Missing required field "format" for ' . static::class . '.');
         }
 
         return new static(

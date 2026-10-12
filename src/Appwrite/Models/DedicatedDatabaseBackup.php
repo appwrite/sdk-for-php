@@ -60,42 +60,20 @@ readonly class DedicatedDatabaseBackup
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('$id', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$createdAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$createdAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('databaseId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "databaseId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('projectId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "projectId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('policyId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "policyId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('trigger', $data)) {
-            throw new \InvalidArgumentException('Missing required field "trigger" for ' . static::class . '.');
-        }
-        if (!array_key_exists('type', $data)) {
-            throw new \InvalidArgumentException('Missing required field "type" for ' . static::class . '.');
-        }
-        if (!array_key_exists('requestedType', $data)) {
-            throw new \InvalidArgumentException('Missing required field "requestedType" for ' . static::class . '.');
-        }
-        if (!array_key_exists('fallbackReason', $data)) {
-            throw new \InvalidArgumentException('Missing required field "fallbackReason" for ' . static::class . '.');
-        }
-        if (!array_key_exists('status', $data)) {
-            throw new \InvalidArgumentException('Missing required field "status" for ' . static::class . '.');
-        }
-        if (!array_key_exists('sizeBytes', $data)) {
-            throw new \InvalidArgumentException('Missing required field "sizeBytes" for ' . static::class . '.');
-        }
-        if (!array_key_exists('error', $data)) {
-            throw new \InvalidArgumentException('Missing required field "error" for ' . static::class . '.');
-        }
+        $data += [
+            '$id' => "",
+            '$createdAt' => "",
+            'databaseId' => "",
+            'projectId' => "",
+            'policyId' => "",
+            'trigger' => "manual",
+            'type' => "full",
+            'requestedType' => "",
+            'fallbackReason' => "",
+            'status' => "pending",
+            'sizeBytes' => 0,
+            'error' => "",
+        ];
 
         return new static(
             id: $data['$id'],

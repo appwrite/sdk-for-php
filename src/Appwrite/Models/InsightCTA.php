@@ -34,18 +34,12 @@ readonly class InsightCTA
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('label', $data)) {
-            throw new \InvalidArgumentException('Missing required field "label" for ' . static::class . '.');
-        }
-        if (!array_key_exists('service', $data)) {
-            throw new \InvalidArgumentException('Missing required field "service" for ' . static::class . '.');
-        }
-        if (!array_key_exists('method', $data)) {
-            throw new \InvalidArgumentException('Missing required field "method" for ' . static::class . '.');
-        }
-        if (!array_key_exists('params', $data)) {
-            throw new \InvalidArgumentException('Missing required field "params" for ' . static::class . '.');
-        }
+        $data += [
+            'label' => "",
+            'service' => "",
+            'method' => "",
+            'params' => [],
+        ];
 
         return new static(
             label: $data['label'],

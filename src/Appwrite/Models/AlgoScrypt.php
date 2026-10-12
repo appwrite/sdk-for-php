@@ -36,21 +36,13 @@ readonly class AlgoScrypt
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('type', $data)) {
-            throw new \InvalidArgumentException('Missing required field "type" for ' . static::class . '.');
-        }
-        if (!array_key_exists('costCpu', $data)) {
-            throw new \InvalidArgumentException('Missing required field "costCpu" for ' . static::class . '.');
-        }
-        if (!array_key_exists('costMemory', $data)) {
-            throw new \InvalidArgumentException('Missing required field "costMemory" for ' . static::class . '.');
-        }
-        if (!array_key_exists('costParallel', $data)) {
-            throw new \InvalidArgumentException('Missing required field "costParallel" for ' . static::class . '.');
-        }
-        if (!array_key_exists('length', $data)) {
-            throw new \InvalidArgumentException('Missing required field "length" for ' . static::class . '.');
-        }
+        $data += [
+            'type' => "scrypt",
+            'costCpu' => 8,
+            'costMemory' => 14,
+            'costParallel' => 1,
+            'length' => 64,
+        ];
 
         return new static(
             type: $data['type'],

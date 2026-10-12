@@ -1,5 +1,9 @@
 # Change Log
 
+## 30.2.2
+
+* Fixed: a response model fills a missing field from its spec default instead of throwing `Missing required field`, so the SDK reads responses from servers that predate the field, such as `File.folder` and `File.key` from Appwrite 1.x
+
 ## 30.2.1
 
 * Fixed: requires `utopia-php/client` `^0.6` and imports `Utopia\Client\Client`, so the SDK installs and runs next to client 0.6, which dropped the `Utopia\Client` alias

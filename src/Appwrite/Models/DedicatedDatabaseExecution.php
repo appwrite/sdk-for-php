@@ -38,23 +38,16 @@ readonly class DedicatedDatabaseExecution
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('rows', $data)) {
-            throw new \InvalidArgumentException('Missing required field "rows" for ' . static::class . '.');
-        }
-        if (!array_key_exists('rowCount', $data)) {
-            throw new \InvalidArgumentException('Missing required field "rowCount" for ' . static::class . '.');
-        }
+        $data += [
+            'rows' => [],
+            'rowCount' => 0,
+            'durationMs' => 0,
+            'truncated' => false,
+            'bytes' => 0,
+        ];
+
         if (!array_key_exists('columns', $data)) {
             throw new \InvalidArgumentException('Missing required field "columns" for ' . static::class . '.');
-        }
-        if (!array_key_exists('durationMs', $data)) {
-            throw new \InvalidArgumentException('Missing required field "durationMs" for ' . static::class . '.');
-        }
-        if (!array_key_exists('truncated', $data)) {
-            throw new \InvalidArgumentException('Missing required field "truncated" for ' . static::class . '.');
-        }
-        if (!array_key_exists('bytes', $data)) {
-            throw new \InvalidArgumentException('Missing required field "bytes" for ' . static::class . '.');
         }
 
         return new static(

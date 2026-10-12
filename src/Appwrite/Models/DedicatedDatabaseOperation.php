@@ -48,30 +48,16 @@ readonly class DedicatedDatabaseOperation
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('$id', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$createdAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$createdAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('databaseId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "databaseId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('type', $data)) {
-            throw new \InvalidArgumentException('Missing required field "type" for ' . static::class . '.');
-        }
-        if (!array_key_exists('status', $data)) {
-            throw new \InvalidArgumentException('Missing required field "status" for ' . static::class . '.');
-        }
-        if (!array_key_exists('attempts', $data)) {
-            throw new \InvalidArgumentException('Missing required field "attempts" for ' . static::class . '.');
-        }
-        if (!array_key_exists('errorCode', $data)) {
-            throw new \InvalidArgumentException('Missing required field "errorCode" for ' . static::class . '.');
-        }
-        if (!array_key_exists('errorMessage', $data)) {
-            throw new \InvalidArgumentException('Missing required field "errorMessage" for ' . static::class . '.');
-        }
+        $data += [
+            '$id' => "",
+            '$createdAt' => "",
+            'databaseId' => "",
+            'type' => "",
+            'status' => "",
+            'attempts' => 0,
+            'errorCode' => "",
+            'errorMessage' => "",
+        ];
 
         return new static(
             id: $data['$id'],

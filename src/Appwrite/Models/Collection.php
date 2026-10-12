@@ -50,41 +50,26 @@ readonly class Collection
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('$id', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$createdAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$createdAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$updatedAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$updatedAt" for ' . static::class . '.');
-        }
+        $data += [
+            '$id' => "",
+            '$createdAt' => "",
+            '$updatedAt' => "",
+            'databaseId' => "",
+            'name' => "",
+            'enabled' => true,
+            'documentSecurity' => "",
+            'bytesMax' => 0,
+            'bytesUsed' => 0,
+        ];
+
         if (!array_key_exists('$permissions', $data)) {
             throw new \InvalidArgumentException('Missing required field "$permissions" for ' . static::class . '.');
-        }
-        if (!array_key_exists('databaseId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "databaseId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('name', $data)) {
-            throw new \InvalidArgumentException('Missing required field "name" for ' . static::class . '.');
-        }
-        if (!array_key_exists('enabled', $data)) {
-            throw new \InvalidArgumentException('Missing required field "enabled" for ' . static::class . '.');
-        }
-        if (!array_key_exists('documentSecurity', $data)) {
-            throw new \InvalidArgumentException('Missing required field "documentSecurity" for ' . static::class . '.');
         }
         if (!array_key_exists('attributes', $data)) {
             throw new \InvalidArgumentException('Missing required field "attributes" for ' . static::class . '.');
         }
         if (!array_key_exists('indexes', $data)) {
             throw new \InvalidArgumentException('Missing required field "indexes" for ' . static::class . '.');
-        }
-        if (!array_key_exists('bytesMax', $data)) {
-            throw new \InvalidArgumentException('Missing required field "bytesMax" for ' . static::class . '.');
-        }
-        if (!array_key_exists('bytesUsed', $data)) {
-            throw new \InvalidArgumentException('Missing required field "bytesUsed" for ' . static::class . '.');
         }
 
         return new static(

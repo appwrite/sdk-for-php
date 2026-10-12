@@ -34,18 +34,12 @@ readonly class OAuth2X
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('$id', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
-        }
-        if (!array_key_exists('enabled', $data)) {
-            throw new \InvalidArgumentException('Missing required field "enabled" for ' . static::class . '.');
-        }
-        if (!array_key_exists('customerKey', $data)) {
-            throw new \InvalidArgumentException('Missing required field "customerKey" for ' . static::class . '.');
-        }
-        if (!array_key_exists('secretKey', $data)) {
-            throw new \InvalidArgumentException('Missing required field "secretKey" for ' . static::class . '.');
-        }
+        $data += [
+            '$id' => "",
+            'enabled' => false,
+            'customerKey' => "",
+            'secretKey' => "",
+        ];
 
         return new static(
             id: $data['$id'],

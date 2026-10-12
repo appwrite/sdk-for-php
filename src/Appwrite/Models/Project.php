@@ -118,71 +118,33 @@ readonly class Project
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('$id', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$createdAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$createdAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$updatedAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$updatedAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('name', $data)) {
-            throw new \InvalidArgumentException('Missing required field "name" for ' . static::class . '.');
-        }
-        if (!array_key_exists('teamId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "teamId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('region', $data)) {
-            throw new \InvalidArgumentException('Missing required field "region" for ' . static::class . '.');
-        }
+        $data += [
+            '$id' => "",
+            '$createdAt' => "",
+            '$updatedAt' => "",
+            'name' => "",
+            'teamId' => "",
+            'region' => "fra",
+            'smtpEnabled' => false,
+            'smtpSenderName' => "",
+            'smtpSenderEmail' => "",
+            'smtpReplyToName' => "",
+            'smtpReplyToEmail' => "",
+            'smtpHost' => "",
+            'smtpPort' => 0,
+            'smtpUsername' => "",
+            'smtpPassword' => "",
+            'smtpSecure' => "",
+            'pingCount' => 0,
+            'pingedAt' => "",
+            'labels' => [],
+            'status' => "active",
+            'onboarding' => [],
+            'consoleAccessedAt' => "",
+        ];
+
         if (!array_key_exists('devKeys', $data)) {
             throw new \InvalidArgumentException('Missing required field "devKeys" for ' . static::class . '.');
-        }
-        if (!array_key_exists('smtpEnabled', $data)) {
-            throw new \InvalidArgumentException('Missing required field "smtpEnabled" for ' . static::class . '.');
-        }
-        if (!array_key_exists('smtpSenderName', $data)) {
-            throw new \InvalidArgumentException('Missing required field "smtpSenderName" for ' . static::class . '.');
-        }
-        if (!array_key_exists('smtpSenderEmail', $data)) {
-            throw new \InvalidArgumentException('Missing required field "smtpSenderEmail" for ' . static::class . '.');
-        }
-        if (!array_key_exists('smtpReplyToName', $data)) {
-            throw new \InvalidArgumentException('Missing required field "smtpReplyToName" for ' . static::class . '.');
-        }
-        if (!array_key_exists('smtpReplyToEmail', $data)) {
-            throw new \InvalidArgumentException('Missing required field "smtpReplyToEmail" for ' . static::class . '.');
-        }
-        if (!array_key_exists('smtpHost', $data)) {
-            throw new \InvalidArgumentException('Missing required field "smtpHost" for ' . static::class . '.');
-        }
-        if (!array_key_exists('smtpPort', $data)) {
-            throw new \InvalidArgumentException('Missing required field "smtpPort" for ' . static::class . '.');
-        }
-        if (!array_key_exists('smtpUsername', $data)) {
-            throw new \InvalidArgumentException('Missing required field "smtpUsername" for ' . static::class . '.');
-        }
-        if (!array_key_exists('smtpPassword', $data)) {
-            throw new \InvalidArgumentException('Missing required field "smtpPassword" for ' . static::class . '.');
-        }
-        if (!array_key_exists('smtpSecure', $data)) {
-            throw new \InvalidArgumentException('Missing required field "smtpSecure" for ' . static::class . '.');
-        }
-        if (!array_key_exists('pingCount', $data)) {
-            throw new \InvalidArgumentException('Missing required field "pingCount" for ' . static::class . '.');
-        }
-        if (!array_key_exists('pingedAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "pingedAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('labels', $data)) {
-            throw new \InvalidArgumentException('Missing required field "labels" for ' . static::class . '.');
-        }
-        if (!array_key_exists('status', $data)) {
-            throw new \InvalidArgumentException('Missing required field "status" for ' . static::class . '.');
-        }
-        if (!array_key_exists('onboarding', $data)) {
-            throw new \InvalidArgumentException('Missing required field "onboarding" for ' . static::class . '.');
         }
         if (!array_key_exists('authMethods', $data)) {
             throw new \InvalidArgumentException('Missing required field "authMethods" for ' . static::class . '.');
@@ -195,9 +157,6 @@ readonly class Project
         }
         if (!array_key_exists('blocks', $data)) {
             throw new \InvalidArgumentException('Missing required field "blocks" for ' . static::class . '.');
-        }
-        if (!array_key_exists('consoleAccessedAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "consoleAccessedAt" for ' . static::class . '.');
         }
 
         return new static(

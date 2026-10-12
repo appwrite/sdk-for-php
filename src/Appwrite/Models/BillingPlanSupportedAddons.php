@@ -32,15 +32,11 @@ readonly class BillingPlanSupportedAddons
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('baa', $data)) {
-            throw new \InvalidArgumentException('Missing required field "baa" for ' . static::class . '.');
-        }
-        if (!array_key_exists('premiumGeoDB', $data)) {
-            throw new \InvalidArgumentException('Missing required field "premiumGeoDB" for ' . static::class . '.');
-        }
-        if (!array_key_exists('premiumGeoDBOrg', $data)) {
-            throw new \InvalidArgumentException('Missing required field "premiumGeoDBOrg" for ' . static::class . '.');
-        }
+        $data += [
+            'baa' => false,
+            'premiumGeoDB' => false,
+            'premiumGeoDBOrg' => false,
+        ];
 
         return new static(
             baa: $data['baa'],

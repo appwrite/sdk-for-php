@@ -28,9 +28,9 @@ readonly class MfaRecoveryCodes
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('recoveryCodes', $data)) {
-            throw new \InvalidArgumentException('Missing required field "recoveryCodes" for ' . static::class . '.');
-        }
+        $data += [
+            'recoveryCodes' => [],
+        ];
 
         return new static(
             recoveryCodes: $data['recoveryCodes']

@@ -54,35 +54,20 @@ readonly class DatabaseStatus
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('health', $data)) {
-            throw new \InvalidArgumentException('Missing required field "health" for ' . static::class . '.');
-        }
-        if (!array_key_exists('ready', $data)) {
-            throw new \InvalidArgumentException('Missing required field "ready" for ' . static::class . '.');
-        }
-        if (!array_key_exists('engine', $data)) {
-            throw new \InvalidArgumentException('Missing required field "engine" for ' . static::class . '.');
-        }
-        if (!array_key_exists('version', $data)) {
-            throw new \InvalidArgumentException('Missing required field "version" for ' . static::class . '.');
-        }
-        if (!array_key_exists('uptime', $data)) {
-            throw new \InvalidArgumentException('Missing required field "uptime" for ' . static::class . '.');
-        }
+        $data += [
+            'health' => "unknown",
+            'ready' => false,
+            'engine' => "postgresql",
+            'version' => "",
+            'uptime' => 0,
+            'syncMode' => "async",
+            'syncDegraded' => false,
+            'syncAcknowledgements' => 0,
+            'syncStandbyCount' => 0,
+        ];
+
         if (!array_key_exists('connections', $data)) {
             throw new \InvalidArgumentException('Missing required field "connections" for ' . static::class . '.');
-        }
-        if (!array_key_exists('syncMode', $data)) {
-            throw new \InvalidArgumentException('Missing required field "syncMode" for ' . static::class . '.');
-        }
-        if (!array_key_exists('syncDegraded', $data)) {
-            throw new \InvalidArgumentException('Missing required field "syncDegraded" for ' . static::class . '.');
-        }
-        if (!array_key_exists('syncAcknowledgements', $data)) {
-            throw new \InvalidArgumentException('Missing required field "syncAcknowledgements" for ' . static::class . '.');
-        }
-        if (!array_key_exists('syncStandbyCount', $data)) {
-            throw new \InvalidArgumentException('Missing required field "syncStandbyCount" for ' . static::class . '.');
         }
         if (!array_key_exists('replicas', $data)) {
             throw new \InvalidArgumentException('Missing required field "replicas" for ' . static::class . '.');

@@ -48,33 +48,17 @@ readonly class OAuth2Oidc
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('$id', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
-        }
-        if (!array_key_exists('enabled', $data)) {
-            throw new \InvalidArgumentException('Missing required field "enabled" for ' . static::class . '.');
-        }
-        if (!array_key_exists('clientId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "clientId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('clientSecret', $data)) {
-            throw new \InvalidArgumentException('Missing required field "clientSecret" for ' . static::class . '.');
-        }
-        if (!array_key_exists('wellKnownURL', $data)) {
-            throw new \InvalidArgumentException('Missing required field "wellKnownURL" for ' . static::class . '.');
-        }
-        if (!array_key_exists('authorizationURL', $data)) {
-            throw new \InvalidArgumentException('Missing required field "authorizationURL" for ' . static::class . '.');
-        }
-        if (!array_key_exists('tokenURL', $data)) {
-            throw new \InvalidArgumentException('Missing required field "tokenURL" for ' . static::class . '.');
-        }
-        if (!array_key_exists('userInfoURL', $data)) {
-            throw new \InvalidArgumentException('Missing required field "userInfoURL" for ' . static::class . '.');
-        }
-        if (!array_key_exists('prompt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "prompt" for ' . static::class . '.');
-        }
+        $data += [
+            '$id' => "",
+            'enabled' => false,
+            'clientId' => "",
+            'clientSecret' => "",
+            'wellKnownURL' => "",
+            'authorizationURL' => "",
+            'tokenURL' => "",
+            'userInfoURL' => "",
+            'prompt' => [],
+        ];
 
         return new static(
             id: $data['$id'],

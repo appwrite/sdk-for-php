@@ -30,12 +30,10 @@ readonly class Oauth2Authorize
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('grantId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "grantId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('redirectUrl', $data)) {
-            throw new \InvalidArgumentException('Missing required field "redirectUrl" for ' . static::class . '.');
-        }
+        $data += [
+            'grantId' => "",
+            'redirectUrl' => "",
+        ];
 
         return new static(
             grantId: $data['grantId'],

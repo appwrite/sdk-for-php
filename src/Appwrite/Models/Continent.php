@@ -30,12 +30,10 @@ readonly class Continent
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('name', $data)) {
-            throw new \InvalidArgumentException('Missing required field "name" for ' . static::class . '.');
-        }
-        if (!array_key_exists('code', $data)) {
-            throw new \InvalidArgumentException('Missing required field "code" for ' . static::class . '.');
-        }
+        $data += [
+            'name' => "",
+            'code' => "",
+        ];
 
         return new static(
             name: $data['name'],

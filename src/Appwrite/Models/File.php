@@ -58,54 +58,24 @@ readonly class File
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('$id', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
-        }
-        if (!array_key_exists('bucketId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "bucketId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$createdAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$createdAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$updatedAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$updatedAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$permissions', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$permissions" for ' . static::class . '.');
-        }
-        if (!array_key_exists('name', $data)) {
-            throw new \InvalidArgumentException('Missing required field "name" for ' . static::class . '.');
-        }
-        if (!array_key_exists('folder', $data)) {
-            throw new \InvalidArgumentException('Missing required field "folder" for ' . static::class . '.');
-        }
-        if (!array_key_exists('key', $data)) {
-            throw new \InvalidArgumentException('Missing required field "key" for ' . static::class . '.');
-        }
-        if (!array_key_exists('signature', $data)) {
-            throw new \InvalidArgumentException('Missing required field "signature" for ' . static::class . '.');
-        }
-        if (!array_key_exists('mimeType', $data)) {
-            throw new \InvalidArgumentException('Missing required field "mimeType" for ' . static::class . '.');
-        }
-        if (!array_key_exists('sizeOriginal', $data)) {
-            throw new \InvalidArgumentException('Missing required field "sizeOriginal" for ' . static::class . '.');
-        }
-        if (!array_key_exists('sizeActual', $data)) {
-            throw new \InvalidArgumentException('Missing required field "sizeActual" for ' . static::class . '.');
-        }
-        if (!array_key_exists('chunksTotal', $data)) {
-            throw new \InvalidArgumentException('Missing required field "chunksTotal" for ' . static::class . '.');
-        }
-        if (!array_key_exists('chunksUploaded', $data)) {
-            throw new \InvalidArgumentException('Missing required field "chunksUploaded" for ' . static::class . '.');
-        }
-        if (!array_key_exists('encryption', $data)) {
-            throw new \InvalidArgumentException('Missing required field "encryption" for ' . static::class . '.');
-        }
-        if (!array_key_exists('compression', $data)) {
-            throw new \InvalidArgumentException('Missing required field "compression" for ' . static::class . '.');
-        }
+        $data += [
+            '$id' => "",
+            'bucketId' => "",
+            '$createdAt' => "",
+            '$updatedAt' => "",
+            '$permissions' => [],
+            'name' => "",
+            'folder' => "",
+            'key' => "",
+            'signature' => "",
+            'mimeType' => "",
+            'sizeOriginal' => 0,
+            'sizeActual' => 0,
+            'chunksTotal' => 0,
+            'chunksUploaded' => 0,
+            'encryption' => false,
+            'compression' => "none",
+        ];
 
         return new static(
             id: $data['$id'],

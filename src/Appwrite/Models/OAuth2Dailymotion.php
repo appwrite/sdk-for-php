@@ -34,18 +34,12 @@ readonly class OAuth2Dailymotion
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('$id', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
-        }
-        if (!array_key_exists('enabled', $data)) {
-            throw new \InvalidArgumentException('Missing required field "enabled" for ' . static::class . '.');
-        }
-        if (!array_key_exists('apiKey', $data)) {
-            throw new \InvalidArgumentException('Missing required field "apiKey" for ' . static::class . '.');
-        }
-        if (!array_key_exists('apiSecret', $data)) {
-            throw new \InvalidArgumentException('Missing required field "apiSecret" for ' . static::class . '.');
-        }
+        $data += [
+            '$id' => "",
+            'enabled' => false,
+            'apiKey' => "",
+            'apiSecret' => "",
+        ];
 
         return new static(
             id: $data['$id'],

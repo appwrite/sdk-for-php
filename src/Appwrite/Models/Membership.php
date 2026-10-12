@@ -56,51 +56,23 @@ readonly class Membership
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('$id', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$createdAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$createdAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$updatedAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$updatedAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('userId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "userId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('userName', $data)) {
-            throw new \InvalidArgumentException('Missing required field "userName" for ' . static::class . '.');
-        }
-        if (!array_key_exists('userEmail', $data)) {
-            throw new \InvalidArgumentException('Missing required field "userEmail" for ' . static::class . '.');
-        }
-        if (!array_key_exists('userPhone', $data)) {
-            throw new \InvalidArgumentException('Missing required field "userPhone" for ' . static::class . '.');
-        }
-        if (!array_key_exists('teamId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "teamId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('teamName', $data)) {
-            throw new \InvalidArgumentException('Missing required field "teamName" for ' . static::class . '.');
-        }
-        if (!array_key_exists('invited', $data)) {
-            throw new \InvalidArgumentException('Missing required field "invited" for ' . static::class . '.');
-        }
-        if (!array_key_exists('joined', $data)) {
-            throw new \InvalidArgumentException('Missing required field "joined" for ' . static::class . '.');
-        }
-        if (!array_key_exists('confirm', $data)) {
-            throw new \InvalidArgumentException('Missing required field "confirm" for ' . static::class . '.');
-        }
-        if (!array_key_exists('mfa', $data)) {
-            throw new \InvalidArgumentException('Missing required field "mfa" for ' . static::class . '.');
-        }
-        if (!array_key_exists('userAccessedAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "userAccessedAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('roles', $data)) {
-            throw new \InvalidArgumentException('Missing required field "roles" for ' . static::class . '.');
-        }
+        $data += [
+            '$id' => "",
+            '$createdAt' => "",
+            '$updatedAt' => "",
+            'userId' => "",
+            'userName' => "",
+            'userEmail' => "",
+            'userPhone' => "",
+            'teamId' => "",
+            'teamName' => "",
+            'invited' => "",
+            'joined' => "",
+            'confirm' => false,
+            'mfa' => false,
+            'userAccessedAt' => "",
+            'roles' => [],
+        ];
 
         return new static(
             id: $data['$id'],

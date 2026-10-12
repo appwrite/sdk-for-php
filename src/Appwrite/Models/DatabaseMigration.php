@@ -60,57 +60,25 @@ readonly class DatabaseMigration
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('$id', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$createdAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$createdAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$updatedAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$updatedAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('projectId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "projectId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('databaseId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "databaseId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('specification', $data)) {
-            throw new \InvalidArgumentException('Missing required field "specification" for ' . static::class . '.');
-        }
-        if (!array_key_exists('phase', $data)) {
-            throw new \InvalidArgumentException('Missing required field "phase" for ' . static::class . '.');
-        }
-        if (!array_key_exists('attempt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "attempt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('lastError', $data)) {
-            throw new \InvalidArgumentException('Missing required field "lastError" for ' . static::class . '.');
-        }
-        if (!array_key_exists('lagDocuments', $data)) {
-            throw new \InvalidArgumentException('Missing required field "lagDocuments" for ' . static::class . '.');
-        }
-        if (!array_key_exists('changelogWatermark', $data)) {
-            throw new \InvalidArgumentException('Missing required field "changelogWatermark" for ' . static::class . '.');
-        }
-        if (!array_key_exists('verifiedAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "verifiedAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('cutoverAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "cutoverAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('soakUntil', $data)) {
-            throw new \InvalidArgumentException('Missing required field "soakUntil" for ' . static::class . '.');
-        }
-        if (!array_key_exists('autoCutover', $data)) {
-            throw new \InvalidArgumentException('Missing required field "autoCutover" for ' . static::class . '.');
-        }
-        if (!array_key_exists('cutoverRequested', $data)) {
-            throw new \InvalidArgumentException('Missing required field "cutoverRequested" for ' . static::class . '.');
-        }
-        if (!array_key_exists('paused', $data)) {
-            throw new \InvalidArgumentException('Missing required field "paused" for ' . static::class . '.');
-        }
+        $data += [
+            '$id' => "",
+            '$createdAt' => "",
+            '$updatedAt' => "",
+            'projectId' => "",
+            'databaseId' => "",
+            'specification' => "",
+            'phase' => "pending",
+            'attempt' => 0,
+            'lastError' => "",
+            'lagDocuments' => 0,
+            'changelogWatermark' => 0,
+            'verifiedAt' => "",
+            'cutoverAt' => "",
+            'soakUntil' => "",
+            'autoCutover' => true,
+            'cutoverRequested' => false,
+            'paused' => false,
+        ];
 
         return new static(
             id: $data['$id'],

@@ -34,18 +34,12 @@ readonly class AlgoScryptModified
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('type', $data)) {
-            throw new \InvalidArgumentException('Missing required field "type" for ' . static::class . '.');
-        }
-        if (!array_key_exists('salt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "salt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('saltSeparator', $data)) {
-            throw new \InvalidArgumentException('Missing required field "saltSeparator" for ' . static::class . '.');
-        }
-        if (!array_key_exists('signerKey', $data)) {
-            throw new \InvalidArgumentException('Missing required field "signerKey" for ' . static::class . '.');
-        }
+        $data += [
+            'type' => "scryptMod",
+            'salt' => "",
+            'saltSeparator' => "",
+            'signerKey' => "",
+        ];
 
         return new static(
             type: $data['type'],

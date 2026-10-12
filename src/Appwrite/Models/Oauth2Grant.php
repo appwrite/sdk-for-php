@@ -50,42 +50,20 @@ readonly class Oauth2Grant
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('$id', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$createdAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$createdAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$updatedAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$updatedAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('userId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "userId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('appId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "appId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('scopes', $data)) {
-            throw new \InvalidArgumentException('Missing required field "scopes" for ' . static::class . '.');
-        }
-        if (!array_key_exists('resources', $data)) {
-            throw new \InvalidArgumentException('Missing required field "resources" for ' . static::class . '.');
-        }
-        if (!array_key_exists('authorizationDetails', $data)) {
-            throw new \InvalidArgumentException('Missing required field "authorizationDetails" for ' . static::class . '.');
-        }
-        if (!array_key_exists('prompt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "prompt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('redirectUri', $data)) {
-            throw new \InvalidArgumentException('Missing required field "redirectUri" for ' . static::class . '.');
-        }
-        if (!array_key_exists('authTime', $data)) {
-            throw new \InvalidArgumentException('Missing required field "authTime" for ' . static::class . '.');
-        }
-        if (!array_key_exists('expire', $data)) {
-            throw new \InvalidArgumentException('Missing required field "expire" for ' . static::class . '.');
-        }
+        $data += [
+            '$id' => "",
+            '$createdAt' => "",
+            '$updatedAt' => "",
+            'userId' => "",
+            'appId' => "",
+            'scopes' => [],
+            'resources' => [],
+            'authorizationDetails' => "[]",
+            'prompt' => "",
+            'redirectUri' => "",
+            'authTime' => 0,
+            'expire' => "",
+        ];
 
         return new static(
             id: $data['$id'],

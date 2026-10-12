@@ -44,32 +44,19 @@ readonly class Subscriber
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('$id', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$createdAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$createdAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$updatedAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$updatedAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('targetId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "targetId" for ' . static::class . '.');
-        }
+        $data += [
+            '$id' => "",
+            '$createdAt' => "",
+            '$updatedAt' => "",
+            'targetId' => "",
+            'userId' => "",
+            'userName' => "",
+            'topicId' => "",
+            'providerType' => "",
+        ];
+
         if (!array_key_exists('target', $data)) {
             throw new \InvalidArgumentException('Missing required field "target" for ' . static::class . '.');
-        }
-        if (!array_key_exists('userId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "userId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('userName', $data)) {
-            throw new \InvalidArgumentException('Missing required field "userName" for ' . static::class . '.');
-        }
-        if (!array_key_exists('topicId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "topicId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('providerType', $data)) {
-            throw new \InvalidArgumentException('Missing required field "providerType" for ' . static::class . '.');
         }
 
         return new static(

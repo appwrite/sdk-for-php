@@ -38,24 +38,14 @@ readonly class AdditionalResource
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('name', $data)) {
-            throw new \InvalidArgumentException('Missing required field "name" for ' . static::class . '.');
-        }
-        if (!array_key_exists('unit', $data)) {
-            throw new \InvalidArgumentException('Missing required field "unit" for ' . static::class . '.');
-        }
-        if (!array_key_exists('currency', $data)) {
-            throw new \InvalidArgumentException('Missing required field "currency" for ' . static::class . '.');
-        }
-        if (!array_key_exists('price', $data)) {
-            throw new \InvalidArgumentException('Missing required field "price" for ' . static::class . '.');
-        }
-        if (!array_key_exists('value', $data)) {
-            throw new \InvalidArgumentException('Missing required field "value" for ' . static::class . '.');
-        }
-        if (!array_key_exists('invoiceDesc', $data)) {
-            throw new \InvalidArgumentException('Missing required field "invoiceDesc" for ' . static::class . '.');
-        }
+        $data += [
+            'name' => "",
+            'unit' => "",
+            'currency' => "",
+            'price' => 0,
+            'value' => 0,
+            'invoiceDesc' => "",
+        ];
 
         return new static(
             name: $data['name'],

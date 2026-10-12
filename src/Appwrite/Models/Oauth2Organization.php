@@ -28,9 +28,9 @@ readonly class Oauth2Organization
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('$id', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
-        }
+        $data += [
+            '$id' => "",
+        ];
 
         return new static(
             id: $data['$id']

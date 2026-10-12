@@ -44,33 +44,17 @@ readonly class Program
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('$id', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
-        }
-        if (!array_key_exists('title', $data)) {
-            throw new \InvalidArgumentException('Missing required field "title" for ' . static::class . '.');
-        }
-        if (!array_key_exists('description', $data)) {
-            throw new \InvalidArgumentException('Missing required field "description" for ' . static::class . '.');
-        }
-        if (!array_key_exists('tag', $data)) {
-            throw new \InvalidArgumentException('Missing required field "tag" for ' . static::class . '.');
-        }
-        if (!array_key_exists('icon', $data)) {
-            throw new \InvalidArgumentException('Missing required field "icon" for ' . static::class . '.');
-        }
-        if (!array_key_exists('url', $data)) {
-            throw new \InvalidArgumentException('Missing required field "url" for ' . static::class . '.');
-        }
-        if (!array_key_exists('active', $data)) {
-            throw new \InvalidArgumentException('Missing required field "active" for ' . static::class . '.');
-        }
-        if (!array_key_exists('external', $data)) {
-            throw new \InvalidArgumentException('Missing required field "external" for ' . static::class . '.');
-        }
-        if (!array_key_exists('billingPlanId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "billingPlanId" for ' . static::class . '.');
-        }
+        $data += [
+            '$id' => "",
+            'title' => "",
+            'description' => "",
+            'tag' => "",
+            'icon' => "",
+            'url' => "",
+            'active' => true,
+            'external' => true,
+            'billingPlanId' => "",
+        ];
 
         return new static(
             id: $data['$id'],

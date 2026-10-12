@@ -30,9 +30,10 @@ readonly class BucketList
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('total', $data)) {
-            throw new \InvalidArgumentException('Missing required field "total" for ' . static::class . '.');
-        }
+        $data += [
+            'total' => 0,
+        ];
+
         if (!array_key_exists('buckets', $data)) {
             throw new \InvalidArgumentException('Missing required field "buckets" for ' . static::class . '.');
         }

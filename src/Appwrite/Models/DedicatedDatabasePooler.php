@@ -46,36 +46,18 @@ readonly class DedicatedDatabasePooler
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('enabled', $data)) {
-            throw new \InvalidArgumentException('Missing required field "enabled" for ' . static::class . '.');
-        }
-        if (!array_key_exists('mode', $data)) {
-            throw new \InvalidArgumentException('Missing required field "mode" for ' . static::class . '.');
-        }
-        if (!array_key_exists('maxConnections', $data)) {
-            throw new \InvalidArgumentException('Missing required field "maxConnections" for ' . static::class . '.');
-        }
-        if (!array_key_exists('defaultPoolSize', $data)) {
-            throw new \InvalidArgumentException('Missing required field "defaultPoolSize" for ' . static::class . '.');
-        }
-        if (!array_key_exists('port', $data)) {
-            throw new \InvalidArgumentException('Missing required field "port" for ' . static::class . '.');
-        }
-        if (!array_key_exists('readWriteSplitting', $data)) {
-            throw new \InvalidArgumentException('Missing required field "readWriteSplitting" for ' . static::class . '.');
-        }
-        if (!array_key_exists('poolerCpuRequest', $data)) {
-            throw new \InvalidArgumentException('Missing required field "poolerCpuRequest" for ' . static::class . '.');
-        }
-        if (!array_key_exists('poolerCpuLimit', $data)) {
-            throw new \InvalidArgumentException('Missing required field "poolerCpuLimit" for ' . static::class . '.');
-        }
-        if (!array_key_exists('poolerMemoryRequest', $data)) {
-            throw new \InvalidArgumentException('Missing required field "poolerMemoryRequest" for ' . static::class . '.');
-        }
-        if (!array_key_exists('poolerMemoryLimit', $data)) {
-            throw new \InvalidArgumentException('Missing required field "poolerMemoryLimit" for ' . static::class . '.');
-        }
+        $data += [
+            'enabled' => false,
+            'mode' => "transaction",
+            'maxConnections' => 100,
+            'defaultPoolSize' => 20,
+            'port' => 6432,
+            'readWriteSplitting' => false,
+            'poolerCpuRequest' => "",
+            'poolerCpuLimit' => "",
+            'poolerMemoryRequest' => "",
+            'poolerMemoryLimit' => "",
+        ];
 
         return new static(
             enabled: $data['enabled'],

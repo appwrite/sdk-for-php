@@ -38,24 +38,14 @@ readonly class Transaction
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('$id', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$createdAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$createdAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$updatedAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$updatedAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('status', $data)) {
-            throw new \InvalidArgumentException('Missing required field "status" for ' . static::class . '.');
-        }
-        if (!array_key_exists('operations', $data)) {
-            throw new \InvalidArgumentException('Missing required field "operations" for ' . static::class . '.');
-        }
-        if (!array_key_exists('expiresAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "expiresAt" for ' . static::class . '.');
-        }
+        $data += [
+            '$id' => "",
+            '$createdAt' => "",
+            '$updatedAt' => "",
+            'status' => "pending",
+            'operations' => 0,
+            'expiresAt' => "",
+        ];
 
         return new static(
             id: $data['$id'],

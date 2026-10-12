@@ -32,15 +32,11 @@ readonly class Oauth2Project
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('$id', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
-        }
-        if (!array_key_exists('region', $data)) {
-            throw new \InvalidArgumentException('Missing required field "region" for ' . static::class . '.');
-        }
-        if (!array_key_exists('endpoint', $data)) {
-            throw new \InvalidArgumentException('Missing required field "endpoint" for ' . static::class . '.');
-        }
+        $data += [
+            '$id' => "",
+            'region' => "",
+            'endpoint' => "",
+        ];
 
         return new static(
             id: $data['$id'],

@@ -92,101 +92,42 @@ readonly class FunctionModel
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('$id', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$createdAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$createdAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$updatedAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$updatedAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('execute', $data)) {
-            throw new \InvalidArgumentException('Missing required field "execute" for ' . static::class . '.');
-        }
-        if (!array_key_exists('name', $data)) {
-            throw new \InvalidArgumentException('Missing required field "name" for ' . static::class . '.');
-        }
-        if (!array_key_exists('enabled', $data)) {
-            throw new \InvalidArgumentException('Missing required field "enabled" for ' . static::class . '.');
-        }
-        if (!array_key_exists('live', $data)) {
-            throw new \InvalidArgumentException('Missing required field "live" for ' . static::class . '.');
-        }
-        if (!array_key_exists('logging', $data)) {
-            throw new \InvalidArgumentException('Missing required field "logging" for ' . static::class . '.');
-        }
-        if (!array_key_exists('runtime', $data)) {
-            throw new \InvalidArgumentException('Missing required field "runtime" for ' . static::class . '.');
-        }
-        if (!array_key_exists('deploymentRetention', $data)) {
-            throw new \InvalidArgumentException('Missing required field "deploymentRetention" for ' . static::class . '.');
-        }
-        if (!array_key_exists('deploymentId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "deploymentId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('deploymentCreatedAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "deploymentCreatedAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('latestDeploymentId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "latestDeploymentId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('latestDeploymentCreatedAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "latestDeploymentCreatedAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('latestDeploymentStatus', $data)) {
-            throw new \InvalidArgumentException('Missing required field "latestDeploymentStatus" for ' . static::class . '.');
-        }
-        if (!array_key_exists('scopes', $data)) {
-            throw new \InvalidArgumentException('Missing required field "scopes" for ' . static::class . '.');
-        }
+        $data += [
+            '$id' => "",
+            '$createdAt' => "",
+            '$updatedAt' => "",
+            'execute' => [],
+            'name' => "",
+            'enabled' => true,
+            'live' => true,
+            'logging' => true,
+            'runtime' => "",
+            'deploymentRetention' => 0,
+            'deploymentId' => "",
+            'deploymentCreatedAt' => "",
+            'latestDeploymentId' => "",
+            'latestDeploymentCreatedAt' => "",
+            'latestDeploymentStatus' => "",
+            'scopes' => [],
+            'events' => [],
+            'schedule' => "",
+            'timeout' => 15,
+            'entrypoint' => "",
+            'commands' => "",
+            'version' => "v5",
+            'installationId' => "",
+            'providerRepositoryId' => "",
+            'providerBranch' => "",
+            'providerRootDirectory' => "",
+            'providerSilentMode' => false,
+            'providerBranches' => [],
+            'providerPaths' => [],
+            'buildSpecification' => "s-1vcpu-512mb",
+            'runtimeSpecification' => "s-1vcpu-512mb",
+        ];
+
         if (!array_key_exists('vars', $data)) {
             throw new \InvalidArgumentException('Missing required field "vars" for ' . static::class . '.');
-        }
-        if (!array_key_exists('events', $data)) {
-            throw new \InvalidArgumentException('Missing required field "events" for ' . static::class . '.');
-        }
-        if (!array_key_exists('schedule', $data)) {
-            throw new \InvalidArgumentException('Missing required field "schedule" for ' . static::class . '.');
-        }
-        if (!array_key_exists('timeout', $data)) {
-            throw new \InvalidArgumentException('Missing required field "timeout" for ' . static::class . '.');
-        }
-        if (!array_key_exists('entrypoint', $data)) {
-            throw new \InvalidArgumentException('Missing required field "entrypoint" for ' . static::class . '.');
-        }
-        if (!array_key_exists('commands', $data)) {
-            throw new \InvalidArgumentException('Missing required field "commands" for ' . static::class . '.');
-        }
-        if (!array_key_exists('version', $data)) {
-            throw new \InvalidArgumentException('Missing required field "version" for ' . static::class . '.');
-        }
-        if (!array_key_exists('installationId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "installationId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('providerRepositoryId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "providerRepositoryId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('providerBranch', $data)) {
-            throw new \InvalidArgumentException('Missing required field "providerBranch" for ' . static::class . '.');
-        }
-        if (!array_key_exists('providerRootDirectory', $data)) {
-            throw new \InvalidArgumentException('Missing required field "providerRootDirectory" for ' . static::class . '.');
-        }
-        if (!array_key_exists('providerSilentMode', $data)) {
-            throw new \InvalidArgumentException('Missing required field "providerSilentMode" for ' . static::class . '.');
-        }
-        if (!array_key_exists('providerBranches', $data)) {
-            throw new \InvalidArgumentException('Missing required field "providerBranches" for ' . static::class . '.');
-        }
-        if (!array_key_exists('providerPaths', $data)) {
-            throw new \InvalidArgumentException('Missing required field "providerPaths" for ' . static::class . '.');
-        }
-        if (!array_key_exists('buildSpecification', $data)) {
-            throw new \InvalidArgumentException('Missing required field "buildSpecification" for ' . static::class . '.');
-        }
-        if (!array_key_exists('runtimeSpecification', $data)) {
-            throw new \InvalidArgumentException('Missing required field "runtimeSpecification" for ' . static::class . '.');
         }
 
         return new static(

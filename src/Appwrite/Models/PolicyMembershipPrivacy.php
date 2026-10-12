@@ -40,27 +40,15 @@ readonly class PolicyMembershipPrivacy
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('$id', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
-        }
-        if (!array_key_exists('userId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "userId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('userEmail', $data)) {
-            throw new \InvalidArgumentException('Missing required field "userEmail" for ' . static::class . '.');
-        }
-        if (!array_key_exists('userPhone', $data)) {
-            throw new \InvalidArgumentException('Missing required field "userPhone" for ' . static::class . '.');
-        }
-        if (!array_key_exists('userName', $data)) {
-            throw new \InvalidArgumentException('Missing required field "userName" for ' . static::class . '.');
-        }
-        if (!array_key_exists('userMFA', $data)) {
-            throw new \InvalidArgumentException('Missing required field "userMFA" for ' . static::class . '.');
-        }
-        if (!array_key_exists('userAccessedAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "userAccessedAt" for ' . static::class . '.');
-        }
+        $data += [
+            '$id' => "",
+            'userId' => false,
+            'userEmail' => false,
+            'userPhone' => false,
+            'userName' => false,
+            'userMFA' => false,
+            'userAccessedAt' => false,
+        ];
 
         return new static(
             id: $data['$id'],

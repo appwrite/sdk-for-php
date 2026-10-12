@@ -52,45 +52,21 @@ readonly class Webhook
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('$id', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$createdAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$createdAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$updatedAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$updatedAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('name', $data)) {
-            throw new \InvalidArgumentException('Missing required field "name" for ' . static::class . '.');
-        }
-        if (!array_key_exists('url', $data)) {
-            throw new \InvalidArgumentException('Missing required field "url" for ' . static::class . '.');
-        }
-        if (!array_key_exists('events', $data)) {
-            throw new \InvalidArgumentException('Missing required field "events" for ' . static::class . '.');
-        }
-        if (!array_key_exists('tls', $data)) {
-            throw new \InvalidArgumentException('Missing required field "tls" for ' . static::class . '.');
-        }
-        if (!array_key_exists('authUsername', $data)) {
-            throw new \InvalidArgumentException('Missing required field "authUsername" for ' . static::class . '.');
-        }
-        if (!array_key_exists('authPassword', $data)) {
-            throw new \InvalidArgumentException('Missing required field "authPassword" for ' . static::class . '.');
-        }
-        if (!array_key_exists('secret', $data)) {
-            throw new \InvalidArgumentException('Missing required field "secret" for ' . static::class . '.');
-        }
-        if (!array_key_exists('enabled', $data)) {
-            throw new \InvalidArgumentException('Missing required field "enabled" for ' . static::class . '.');
-        }
-        if (!array_key_exists('logs', $data)) {
-            throw new \InvalidArgumentException('Missing required field "logs" for ' . static::class . '.');
-        }
-        if (!array_key_exists('attempts', $data)) {
-            throw new \InvalidArgumentException('Missing required field "attempts" for ' . static::class . '.');
-        }
+        $data += [
+            '$id' => "",
+            '$createdAt' => "",
+            '$updatedAt' => "",
+            'name' => "",
+            'url' => "",
+            'events' => [],
+            'tls' => true,
+            'authUsername' => "",
+            'authPassword' => "",
+            'secret' => "",
+            'enabled' => true,
+            'logs' => "",
+            'attempts' => 0,
+        ];
 
         return new static(
             id: $data['$id'],

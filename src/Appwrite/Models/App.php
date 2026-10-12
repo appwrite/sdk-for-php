@@ -78,81 +78,34 @@ readonly class App
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('$id', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$createdAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$createdAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$updatedAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$updatedAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('name', $data)) {
-            throw new \InvalidArgumentException('Missing required field "name" for ' . static::class . '.');
-        }
-        if (!array_key_exists('description', $data)) {
-            throw new \InvalidArgumentException('Missing required field "description" for ' . static::class . '.');
-        }
-        if (!array_key_exists('clientUri', $data)) {
-            throw new \InvalidArgumentException('Missing required field "clientUri" for ' . static::class . '.');
-        }
-        if (!array_key_exists('logoUri', $data)) {
-            throw new \InvalidArgumentException('Missing required field "logoUri" for ' . static::class . '.');
-        }
-        if (!array_key_exists('privacyPolicyUrl', $data)) {
-            throw new \InvalidArgumentException('Missing required field "privacyPolicyUrl" for ' . static::class . '.');
-        }
-        if (!array_key_exists('termsUrl', $data)) {
-            throw new \InvalidArgumentException('Missing required field "termsUrl" for ' . static::class . '.');
-        }
-        if (!array_key_exists('contacts', $data)) {
-            throw new \InvalidArgumentException('Missing required field "contacts" for ' . static::class . '.');
-        }
-        if (!array_key_exists('tagline', $data)) {
-            throw new \InvalidArgumentException('Missing required field "tagline" for ' . static::class . '.');
-        }
-        if (!array_key_exists('tags', $data)) {
-            throw new \InvalidArgumentException('Missing required field "tags" for ' . static::class . '.');
-        }
-        if (!array_key_exists('labels', $data)) {
-            throw new \InvalidArgumentException('Missing required field "labels" for ' . static::class . '.');
-        }
-        if (!array_key_exists('images', $data)) {
-            throw new \InvalidArgumentException('Missing required field "images" for ' . static::class . '.');
-        }
-        if (!array_key_exists('supportUrl', $data)) {
-            throw new \InvalidArgumentException('Missing required field "supportUrl" for ' . static::class . '.');
-        }
-        if (!array_key_exists('dataDeletionUrl', $data)) {
-            throw new \InvalidArgumentException('Missing required field "dataDeletionUrl" for ' . static::class . '.');
-        }
-        if (!array_key_exists('redirectUris', $data)) {
-            throw new \InvalidArgumentException('Missing required field "redirectUris" for ' . static::class . '.');
-        }
-        if (!array_key_exists('postLogoutRedirectUris', $data)) {
-            throw new \InvalidArgumentException('Missing required field "postLogoutRedirectUris" for ' . static::class . '.');
-        }
-        if (!array_key_exists('enabled', $data)) {
-            throw new \InvalidArgumentException('Missing required field "enabled" for ' . static::class . '.');
-        }
-        if (!array_key_exists('type', $data)) {
-            throw new \InvalidArgumentException('Missing required field "type" for ' . static::class . '.');
-        }
-        if (!array_key_exists('deviceFlow', $data)) {
-            throw new \InvalidArgumentException('Missing required field "deviceFlow" for ' . static::class . '.');
-        }
-        if (!array_key_exists('teamId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "teamId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('userId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "userId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('installationScopes', $data)) {
-            throw new \InvalidArgumentException('Missing required field "installationScopes" for ' . static::class . '.');
-        }
-        if (!array_key_exists('installationRedirectUrl', $data)) {
-            throw new \InvalidArgumentException('Missing required field "installationRedirectUrl" for ' . static::class . '.');
-        }
+        $data += [
+            '$id' => "",
+            '$createdAt' => "",
+            '$updatedAt' => "",
+            'name' => "",
+            'description' => "",
+            'clientUri' => "",
+            'logoUri' => "",
+            'privacyPolicyUrl' => "",
+            'termsUrl' => "",
+            'contacts' => [],
+            'tagline' => "",
+            'tags' => [],
+            'labels' => [],
+            'images' => [],
+            'supportUrl' => "",
+            'dataDeletionUrl' => "",
+            'redirectUris' => [],
+            'postLogoutRedirectUris' => [],
+            'enabled' => true,
+            'type' => "confidential",
+            'deviceFlow' => false,
+            'teamId' => "",
+            'userId' => "",
+            'installationScopes' => [],
+            'installationRedirectUrl' => "",
+        ];
+
         if (!array_key_exists('secrets', $data)) {
             throw new \InvalidArgumentException('Missing required field "secrets" for ' . static::class . '.');
         }

@@ -62,27 +62,15 @@ readonly class Locale
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('ip', $data)) {
-            throw new \InvalidArgumentException('Missing required field "ip" for ' . static::class . '.');
-        }
-        if (!array_key_exists('countryCode', $data)) {
-            throw new \InvalidArgumentException('Missing required field "countryCode" for ' . static::class . '.');
-        }
-        if (!array_key_exists('country', $data)) {
-            throw new \InvalidArgumentException('Missing required field "country" for ' . static::class . '.');
-        }
-        if (!array_key_exists('continentCode', $data)) {
-            throw new \InvalidArgumentException('Missing required field "continentCode" for ' . static::class . '.');
-        }
-        if (!array_key_exists('continent', $data)) {
-            throw new \InvalidArgumentException('Missing required field "continent" for ' . static::class . '.');
-        }
-        if (!array_key_exists('eu', $data)) {
-            throw new \InvalidArgumentException('Missing required field "eu" for ' . static::class . '.');
-        }
-        if (!array_key_exists('currency', $data)) {
-            throw new \InvalidArgumentException('Missing required field "currency" for ' . static::class . '.');
-        }
+        $data += [
+            'ip' => "",
+            'countryCode' => "",
+            'country' => "",
+            'continentCode' => "",
+            'continent' => "",
+            'eu' => false,
+            'currency' => "",
+        ];
 
         return new static(
             ip: $data['ip'],

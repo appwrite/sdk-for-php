@@ -48,38 +48,25 @@ readonly class BackupRestoration
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('$id', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$createdAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$createdAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$updatedAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$updatedAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('archiveId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "archiveId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('policyId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "policyId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('status', $data)) {
-            throw new \InvalidArgumentException('Missing required field "status" for ' . static::class . '.');
-        }
+        $data += [
+            '$id' => "",
+            '$createdAt' => "",
+            '$updatedAt' => "",
+            'archiveId' => "",
+            'policyId' => "",
+            'status' => "",
+            'migrationId' => "",
+            'options' => [],
+        ];
+
         if (!array_key_exists('startedAt', $data)) {
             throw new \InvalidArgumentException('Missing required field "startedAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('migrationId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "migrationId" for ' . static::class . '.');
         }
         if (!array_key_exists('services', $data)) {
             throw new \InvalidArgumentException('Missing required field "services" for ' . static::class . '.');
         }
         if (!array_key_exists('resources', $data)) {
             throw new \InvalidArgumentException('Missing required field "resources" for ' . static::class . '.');
-        }
-        if (!array_key_exists('options', $data)) {
-            throw new \InvalidArgumentException('Missing required field "options" for ' . static::class . '.');
         }
 
         return new static(

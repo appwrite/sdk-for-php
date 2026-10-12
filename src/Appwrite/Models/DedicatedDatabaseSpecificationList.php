@@ -32,11 +32,12 @@ readonly class DedicatedDatabaseSpecificationList
      */
     public static function from(array $data): static
     {
+        $data += [
+            'total' => 0,
+        ];
+
         if (!array_key_exists('specifications', $data)) {
             throw new \InvalidArgumentException('Missing required field "specifications" for ' . static::class . '.');
-        }
-        if (!array_key_exists('total', $data)) {
-            throw new \InvalidArgumentException('Missing required field "total" for ' . static::class . '.');
         }
         if (!array_key_exists('pricing', $data)) {
             throw new \InvalidArgumentException('Missing required field "pricing" for ' . static::class . '.');

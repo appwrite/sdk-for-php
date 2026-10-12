@@ -36,21 +36,13 @@ readonly class OAuth2Microsoft
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('$id', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
-        }
-        if (!array_key_exists('enabled', $data)) {
-            throw new \InvalidArgumentException('Missing required field "enabled" for ' . static::class . '.');
-        }
-        if (!array_key_exists('applicationId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "applicationId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('applicationSecret', $data)) {
-            throw new \InvalidArgumentException('Missing required field "applicationSecret" for ' . static::class . '.');
-        }
-        if (!array_key_exists('tenant', $data)) {
-            throw new \InvalidArgumentException('Missing required field "tenant" for ' . static::class . '.');
-        }
+        $data += [
+            '$id' => "",
+            'enabled' => false,
+            'applicationId' => "",
+            'applicationSecret' => "",
+            'tenant' => "",
+        ];
 
         return new static(
             id: $data['$id'],

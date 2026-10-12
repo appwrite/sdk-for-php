@@ -34,18 +34,12 @@ readonly class AlgoArgon2
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('type', $data)) {
-            throw new \InvalidArgumentException('Missing required field "type" for ' . static::class . '.');
-        }
-        if (!array_key_exists('memoryCost', $data)) {
-            throw new \InvalidArgumentException('Missing required field "memoryCost" for ' . static::class . '.');
-        }
-        if (!array_key_exists('timeCost', $data)) {
-            throw new \InvalidArgumentException('Missing required field "timeCost" for ' . static::class . '.');
-        }
-        if (!array_key_exists('threads', $data)) {
-            throw new \InvalidArgumentException('Missing required field "threads" for ' . static::class . '.');
-        }
+        $data += [
+            'type' => "argon2",
+            'memoryCost' => "",
+            'timeCost' => "",
+            'threads' => "",
+        ];
 
         return new static(
             type: $data['type'],

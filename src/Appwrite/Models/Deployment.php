@@ -82,86 +82,37 @@ readonly class Deployment
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('$id', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$createdAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$createdAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$updatedAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$updatedAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('type', $data)) {
-            throw new \InvalidArgumentException('Missing required field "type" for ' . static::class . '.');
-        }
-        if (!array_key_exists('resourceId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "resourceId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('resourceType', $data)) {
-            throw new \InvalidArgumentException('Missing required field "resourceType" for ' . static::class . '.');
-        }
-        if (!array_key_exists('entrypoint', $data)) {
-            throw new \InvalidArgumentException('Missing required field "entrypoint" for ' . static::class . '.');
-        }
-        if (!array_key_exists('sourceSize', $data)) {
-            throw new \InvalidArgumentException('Missing required field "sourceSize" for ' . static::class . '.');
-        }
-        if (!array_key_exists('buildSize', $data)) {
-            throw new \InvalidArgumentException('Missing required field "buildSize" for ' . static::class . '.');
-        }
-        if (!array_key_exists('totalSize', $data)) {
-            throw new \InvalidArgumentException('Missing required field "totalSize" for ' . static::class . '.');
-        }
-        if (!array_key_exists('buildId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "buildId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('activate', $data)) {
-            throw new \InvalidArgumentException('Missing required field "activate" for ' . static::class . '.');
-        }
-        if (!array_key_exists('screenshotLight', $data)) {
-            throw new \InvalidArgumentException('Missing required field "screenshotLight" for ' . static::class . '.');
-        }
-        if (!array_key_exists('screenshotDark', $data)) {
-            throw new \InvalidArgumentException('Missing required field "screenshotDark" for ' . static::class . '.');
-        }
+        $data += [
+            '$id' => "",
+            '$createdAt' => "",
+            '$updatedAt' => "",
+            'type' => "",
+            'resourceId' => "",
+            'resourceType' => "",
+            'entrypoint' => "",
+            'sourceSize' => 0,
+            'buildSize' => 0,
+            'totalSize' => 0,
+            'buildId' => "",
+            'activate' => false,
+            'screenshotLight' => "",
+            'screenshotDark' => "",
+            'buildLogs' => "",
+            'buildDuration' => 0,
+            'providerRepositoryName' => "",
+            'providerRepositoryOwner' => "",
+            'providerRepositoryUrl' => "",
+            'providerCommitHash' => "",
+            'providerCommitAuthorUrl' => "",
+            'providerCommitAuthor' => "",
+            'providerCommitMessage' => "",
+            'providerCommitUrl' => "",
+            'providerBranch' => "",
+            'providerBranchUrl' => "",
+        ];
+
         if (!array_key_exists('status', $data)) {
             throw new \InvalidArgumentException('Missing required field "status" for ' . static::class . '.');
-        }
-        if (!array_key_exists('buildLogs', $data)) {
-            throw new \InvalidArgumentException('Missing required field "buildLogs" for ' . static::class . '.');
-        }
-        if (!array_key_exists('buildDuration', $data)) {
-            throw new \InvalidArgumentException('Missing required field "buildDuration" for ' . static::class . '.');
-        }
-        if (!array_key_exists('providerRepositoryName', $data)) {
-            throw new \InvalidArgumentException('Missing required field "providerRepositoryName" for ' . static::class . '.');
-        }
-        if (!array_key_exists('providerRepositoryOwner', $data)) {
-            throw new \InvalidArgumentException('Missing required field "providerRepositoryOwner" for ' . static::class . '.');
-        }
-        if (!array_key_exists('providerRepositoryUrl', $data)) {
-            throw new \InvalidArgumentException('Missing required field "providerRepositoryUrl" for ' . static::class . '.');
-        }
-        if (!array_key_exists('providerCommitHash', $data)) {
-            throw new \InvalidArgumentException('Missing required field "providerCommitHash" for ' . static::class . '.');
-        }
-        if (!array_key_exists('providerCommitAuthorUrl', $data)) {
-            throw new \InvalidArgumentException('Missing required field "providerCommitAuthorUrl" for ' . static::class . '.');
-        }
-        if (!array_key_exists('providerCommitAuthor', $data)) {
-            throw new \InvalidArgumentException('Missing required field "providerCommitAuthor" for ' . static::class . '.');
-        }
-        if (!array_key_exists('providerCommitMessage', $data)) {
-            throw new \InvalidArgumentException('Missing required field "providerCommitMessage" for ' . static::class . '.');
-        }
-        if (!array_key_exists('providerCommitUrl', $data)) {
-            throw new \InvalidArgumentException('Missing required field "providerCommitUrl" for ' . static::class . '.');
-        }
-        if (!array_key_exists('providerBranch', $data)) {
-            throw new \InvalidArgumentException('Missing required field "providerBranch" for ' . static::class . '.');
-        }
-        if (!array_key_exists('providerBranchUrl', $data)) {
-            throw new \InvalidArgumentException('Missing required field "providerBranchUrl" for ' . static::class . '.');
         }
 
         return new static(

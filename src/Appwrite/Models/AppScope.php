@@ -36,21 +36,13 @@ readonly class AppScope
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('value', $data)) {
-            throw new \InvalidArgumentException('Missing required field "value" for ' . static::class . '.');
-        }
-        if (!array_key_exists('description', $data)) {
-            throw new \InvalidArgumentException('Missing required field "description" for ' . static::class . '.');
-        }
-        if (!array_key_exists('type', $data)) {
-            throw new \InvalidArgumentException('Missing required field "type" for ' . static::class . '.');
-        }
-        if (!array_key_exists('category', $data)) {
-            throw new \InvalidArgumentException('Missing required field "category" for ' . static::class . '.');
-        }
-        if (!array_key_exists('deprecated', $data)) {
-            throw new \InvalidArgumentException('Missing required field "deprecated" for ' . static::class . '.');
-        }
+        $data += [
+            'value' => "",
+            'description' => "",
+            'type' => "",
+            'category' => "",
+            'deprecated' => false,
+        ];
 
         return new static(
             value: $data['value'],

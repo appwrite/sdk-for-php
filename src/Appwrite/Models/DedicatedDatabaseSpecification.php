@@ -44,33 +44,17 @@ readonly class DedicatedDatabaseSpecification
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('slug', $data)) {
-            throw new \InvalidArgumentException('Missing required field "slug" for ' . static::class . '.');
-        }
-        if (!array_key_exists('name', $data)) {
-            throw new \InvalidArgumentException('Missing required field "name" for ' . static::class . '.');
-        }
-        if (!array_key_exists('price', $data)) {
-            throw new \InvalidArgumentException('Missing required field "price" for ' . static::class . '.');
-        }
-        if (!array_key_exists('cpu', $data)) {
-            throw new \InvalidArgumentException('Missing required field "cpu" for ' . static::class . '.');
-        }
-        if (!array_key_exists('memory', $data)) {
-            throw new \InvalidArgumentException('Missing required field "memory" for ' . static::class . '.');
-        }
-        if (!array_key_exists('maxConnections', $data)) {
-            throw new \InvalidArgumentException('Missing required field "maxConnections" for ' . static::class . '.');
-        }
-        if (!array_key_exists('includedStorage', $data)) {
-            throw new \InvalidArgumentException('Missing required field "includedStorage" for ' . static::class . '.');
-        }
-        if (!array_key_exists('includedBandwidth', $data)) {
-            throw new \InvalidArgumentException('Missing required field "includedBandwidth" for ' . static::class . '.');
-        }
-        if (!array_key_exists('enabled', $data)) {
-            throw new \InvalidArgumentException('Missing required field "enabled" for ' . static::class . '.');
-        }
+        $data += [
+            'slug' => "",
+            'name' => "",
+            'price' => 0,
+            'cpu' => 0,
+            'memory' => 0,
+            'maxConnections' => 0,
+            'includedStorage' => 0,
+            'includedBandwidth' => 0,
+            'enabled' => false,
+        ];
 
         return new static(
             slug: $data['slug'],

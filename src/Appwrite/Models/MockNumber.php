@@ -34,18 +34,12 @@ readonly class MockNumber
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('number', $data)) {
-            throw new \InvalidArgumentException('Missing required field "number" for ' . static::class . '.');
-        }
-        if (!array_key_exists('otp', $data)) {
-            throw new \InvalidArgumentException('Missing required field "otp" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$createdAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$createdAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$updatedAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$updatedAt" for ' . static::class . '.');
-        }
+        $data += [
+            'number' => "",
+            'otp' => "",
+            '$createdAt' => "",
+            '$updatedAt' => "",
+        ];
 
         return new static(
             number: $data['number'],

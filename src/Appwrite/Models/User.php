@@ -78,53 +78,28 @@ readonly class User
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('$id', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$createdAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$createdAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$updatedAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$updatedAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('name', $data)) {
-            throw new \InvalidArgumentException('Missing required field "name" for ' . static::class . '.');
-        }
-        if (!array_key_exists('registration', $data)) {
-            throw new \InvalidArgumentException('Missing required field "registration" for ' . static::class . '.');
-        }
-        if (!array_key_exists('status', $data)) {
-            throw new \InvalidArgumentException('Missing required field "status" for ' . static::class . '.');
-        }
-        if (!array_key_exists('labels', $data)) {
-            throw new \InvalidArgumentException('Missing required field "labels" for ' . static::class . '.');
-        }
-        if (!array_key_exists('passwordUpdate', $data)) {
-            throw new \InvalidArgumentException('Missing required field "passwordUpdate" for ' . static::class . '.');
-        }
-        if (!array_key_exists('email', $data)) {
-            throw new \InvalidArgumentException('Missing required field "email" for ' . static::class . '.');
-        }
-        if (!array_key_exists('phone', $data)) {
-            throw new \InvalidArgumentException('Missing required field "phone" for ' . static::class . '.');
-        }
-        if (!array_key_exists('emailVerification', $data)) {
-            throw new \InvalidArgumentException('Missing required field "emailVerification" for ' . static::class . '.');
-        }
-        if (!array_key_exists('phoneVerification', $data)) {
-            throw new \InvalidArgumentException('Missing required field "phoneVerification" for ' . static::class . '.');
-        }
-        if (!array_key_exists('mfa', $data)) {
-            throw new \InvalidArgumentException('Missing required field "mfa" for ' . static::class . '.');
-        }
+        $data += [
+            '$id' => "",
+            '$createdAt' => "",
+            '$updatedAt' => "",
+            'name' => "",
+            'registration' => "",
+            'status' => true,
+            'labels' => [],
+            'passwordUpdate' => "",
+            'email' => "",
+            'phone' => "",
+            'emailVerification' => false,
+            'phoneVerification' => false,
+            'mfa' => false,
+            'accessedAt' => "",
+        ];
+
         if (!array_key_exists('prefs', $data)) {
             throw new \InvalidArgumentException('Missing required field "prefs" for ' . static::class . '.');
         }
         if (!array_key_exists('targets', $data)) {
             throw new \InvalidArgumentException('Missing required field "targets" for ' . static::class . '.');
-        }
-        if (!array_key_exists('accessedAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "accessedAt" for ' . static::class . '.');
         }
 
         return new static(

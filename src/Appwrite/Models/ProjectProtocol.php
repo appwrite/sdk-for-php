@@ -32,11 +32,12 @@ readonly class ProjectProtocol
      */
     public static function from(array $data): static
     {
+        $data += [
+            'enabled' => true,
+        ];
+
         if (!array_key_exists('$id', $data)) {
             throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
-        }
-        if (!array_key_exists('enabled', $data)) {
-            throw new \InvalidArgumentException('Missing required field "enabled" for ' . static::class . '.');
         }
 
         return new static(

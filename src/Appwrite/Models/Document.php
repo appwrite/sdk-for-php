@@ -42,24 +42,15 @@ readonly class Document
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('$id', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$sequence', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$sequence" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$collectionId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$collectionId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$databaseId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$databaseId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$createdAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$createdAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$updatedAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$updatedAt" for ' . static::class . '.');
-        }
+        $data += [
+            '$id' => "",
+            '$sequence' => "",
+            '$collectionId' => "",
+            '$databaseId' => "",
+            '$createdAt' => "",
+            '$updatedAt' => "",
+        ];
+
         if (!array_key_exists('$permissions', $data)) {
             throw new \InvalidArgumentException('Missing required field "$permissions" for ' . static::class . '.');
         }

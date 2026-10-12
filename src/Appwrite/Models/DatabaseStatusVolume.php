@@ -34,18 +34,12 @@ readonly class DatabaseStatusVolume
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('path', $data)) {
-            throw new \InvalidArgumentException('Missing required field "path" for ' . static::class . '.');
-        }
-        if (!array_key_exists('usedPercent', $data)) {
-            throw new \InvalidArgumentException('Missing required field "usedPercent" for ' . static::class . '.');
-        }
-        if (!array_key_exists('available', $data)) {
-            throw new \InvalidArgumentException('Missing required field "available" for ' . static::class . '.');
-        }
-        if (!array_key_exists('mounted', $data)) {
-            throw new \InvalidArgumentException('Missing required field "mounted" for ' . static::class . '.');
-        }
+        $data += [
+            'path' => "",
+            'usedPercent' => "0%",
+            'available' => "0GB",
+            'mounted' => false,
+        ];
 
         return new static(
             path: $data['path'],
