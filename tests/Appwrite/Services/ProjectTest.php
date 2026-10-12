@@ -2434,6 +2434,89 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
     }
+    public function testMethodUpdatePasskeyPolicy(): void
+    {
+        $data = [
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "name" => "New Project",
+            "teamId" => "1592981250",
+            "region" => "fra",
+            "devKeys" => [
+                [
+                    "\$id" => "5e5ea5c16897e",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "name" => "Dev API Key",
+                    "expire" => "2020-10-15T06:38:00.000+00:00",
+                    "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
+                    "accessedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "sdks" => []
+                ]
+            ],
+            "smtpEnabled" => true,
+            "smtpSenderName" => "John Appwrite",
+            "smtpSenderEmail" => "john@appwrite.io",
+            "smtpReplyToName" => "Support Team",
+            "smtpReplyToEmail" => "support@appwrite.io",
+            "smtpHost" => "mail.appwrite.io",
+            "smtpPort" => 25,
+            "smtpUsername" => "emailuser",
+            "smtpPassword" => "smtp-password",
+            "smtpSecure" => "tls",
+            "pingCount" => 1,
+            "pingedAt" => "2020-10-15T06:38:00.000+00:00",
+            "labels" => [],
+            "status" => "active",
+            "onboarding" => [],
+            "authMethods" => [
+                [
+                    "\$id" => "email-password",
+                    "enabled" => true
+                ]
+            ],
+            "services" => [
+                [
+                    "\$id" => "account",
+                    "enabled" => true
+                ]
+            ],
+            "protocols" => [
+                [
+                    "\$id" => "rest",
+                    "enabled" => true
+                ]
+            ],
+            "blocks" => [
+                [
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "resourceType" => "project",
+                    "resourceId" => "5e5ea5c16897e",
+                    "mode" => "readOnly",
+                    "projectName" => "My Project",
+                    "region" => "fra",
+                    "organizationName" => "Acme Inc.",
+                    "organizationId" => "5e5ea5c16897e",
+                    "billingPlan" => "pro"
+                ]
+            ],
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
+        ];
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->project->updatePasskeyPolicy(
+            "<RP_ID>"
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
+    }
     public function testMethodUpdatePasswordDictionaryPolicy(): void
     {
         $data = [

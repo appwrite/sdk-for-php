@@ -1100,6 +1100,179 @@ class Users extends Service
     }
 
     /**
+     * Get the list of verified passkeys registered by a user.
+     *
+     * @throws AppwriteException
+     */
+    public function listPasskeys(string $userId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\PasskeyList
+    {
+        if ($userId === '') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
+        $apiPath = str_replace(
+            ['{userId}'],
+            [$userId],
+            '/users/{userId}/passkeys'
+        );
+
+        $apiParams = [];
+        $apiParams['userId'] = $userId;
+
+        if (!is_null($queries)) {
+            $apiParams['queries'] = $queries;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\PasskeyList::from($response);
+    }
+
+    /**
+     * Get a verified passkey of a user by its unique ID.
+     *
+     * @throws AppwriteException
+     */
+    public function getPasskey(string $userId, string $passkeyId): \Appwrite\Models\Passkey
+    {
+        if ($userId === '') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
+        if ($passkeyId === '') {
+            throw new AppwriteException('Missing required parameter: "passkeyId"');
+        }
+
+        $apiPath = str_replace(
+            ['{userId}', '{passkeyId}'],
+            [$userId, $passkeyId],
+            '/users/{userId}/passkeys/{passkeyId}'
+        );
+
+        $apiParams = [];
+        $apiParams['userId'] = $userId;
+        $apiParams['passkeyId'] = $passkeyId;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Passkey::from($response);
+    }
+
+    /**
+     * Rename a passkey of a user.
+     *
+     * @throws AppwriteException
+     */
+    public function updatePasskey(string $userId, string $passkeyId, string $name): \Appwrite\Models\Passkey
+    {
+        if ($userId === '') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
+        if ($passkeyId === '') {
+            throw new AppwriteException('Missing required parameter: "passkeyId"');
+        }
+
+        $apiPath = str_replace(
+            ['{userId}', '{passkeyId}'],
+            [$userId, $passkeyId],
+            '/users/{userId}/passkeys/{passkeyId}'
+        );
+
+        $apiParams = [];
+        $apiParams['userId'] = $userId;
+        $apiParams['passkeyId'] = $passkeyId;
+        $apiParams['name'] = $name;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Passkey::from($response);
+    }
+
+    /**
+     * Delete a passkey from a user, for example when a device is lost. The
+     * passkey can no longer be used to sign in.
+     *
+     * @throws AppwriteException
+     */
+    public function deletePasskey(string $userId, string $passkeyId): string
+    {
+        if ($userId === '') {
+            throw new AppwriteException('Missing required parameter: "userId"');
+        }
+
+        if ($passkeyId === '') {
+            throw new AppwriteException('Missing required parameter: "passkeyId"');
+        }
+
+        $apiPath = str_replace(
+            ['{userId}', '{passkeyId}'],
+            [$userId, $passkeyId],
+            '/users/{userId}/passkeys/{passkeyId}'
+        );
+
+        $apiParams = [];
+        $apiParams['userId'] = $userId;
+        $apiParams['passkeyId'] = $passkeyId;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_DELETE,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
      * Update the user password by its unique ID.
      *
      * @throws AppwriteException

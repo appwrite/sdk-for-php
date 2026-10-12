@@ -1236,6 +1236,19 @@ PATCH https://cloud.appwrite.io/v1/project/policies/mfa-factors
 
 
 ```http request
+PATCH https://cloud.appwrite.io/v1/project/policies/passkey
+```
+
+** Set the relying party ID passkeys are bound to: the domain of your application. Passkeys work on the project's web platforms on that domain or its subdomains, and on the domain itself for Apple apps. A localhost web platform enables passkeys for local development without a relying party ID. The relying party ID cannot change while users have passkeys, and any change invalidates ceremonies in progress. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| rpId | string | Relying party ID: the domain of your application, such as `example.com`. Use `localhost` for local development, or an empty string to unset it. |  |
+
+
+```http request
 PATCH https://cloud.appwrite.io/v1/project/policies/password-dictionary
 ```
 

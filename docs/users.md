@@ -488,6 +488,64 @@ PATCH https://cloud.appwrite.io/v1/users/{userId}/name
 
 
 ```http request
+GET https://cloud.appwrite.io/v1/users/{userId}/passkeys
+```
+
+** Get the list of verified passkeys registered by a user. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| userId | string | **Required** User ID. |  |
+| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter and order on the following attributes: $id, $createdAt, $updatedAt, name, accessedAt | [] |
+| total | boolean | When set to false, the total count returned will be 0 and will not be calculated. | 1 |
+
+
+```http request
+GET https://cloud.appwrite.io/v1/users/{userId}/passkeys/{passkeyId}
+```
+
+** Get a verified passkey of a user by its unique ID. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| userId | string | **Required** User ID. |  |
+| passkeyId | string | **Required** Passkey ID. |  |
+
+
+```http request
+PATCH https://cloud.appwrite.io/v1/users/{userId}/passkeys/{passkeyId}
+```
+
+** Rename a passkey of a user. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| userId | string | **Required** User ID. |  |
+| passkeyId | string | **Required** Passkey ID. |  |
+| name | string | Passkey name. Max length: 128 chars. |  |
+
+
+```http request
+DELETE https://cloud.appwrite.io/v1/users/{userId}/passkeys/{passkeyId}
+```
+
+** Delete a passkey from a user, for example when a device is lost. The passkey can no longer be used to sign in. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| userId | string | **Required** User ID. |  |
+| passkeyId | string | **Required** Passkey ID. |  |
+
+
+```http request
 PATCH https://cloud.appwrite.io/v1/users/{userId}/password
 ```
 
