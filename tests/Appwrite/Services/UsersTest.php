@@ -1016,6 +1016,101 @@ final class UsersTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\User::class, $response);
     }
+    public function testMethodListPasskeys(): void
+    {
+        $data = [
+            "total" => 5,
+            "passkeys" => [
+                [
+                    "\$id" => "5e5ea5c16897e",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "name" => "My laptop",
+                    "accessedAt" => "2020-10-15T06:38:00.000+00:00"
+                ]
+            ]
+        ];
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->users->listPasskeys(
+            "<USER_ID>"
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\PasskeyList::class, $response);
+    }
+    public function testMethodGetPasskey(): void
+    {
+        $data = [
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "name" => "My laptop",
+            "accessedAt" => "2020-10-15T06:38:00.000+00:00"
+        ];
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->users->getPasskey(
+            "<USER_ID>",
+            "<PASSKEY_ID>"
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\Passkey::class, $response);
+    }
+    public function testMethodUpdatePasskey(): void
+    {
+        $data = [
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "name" => "My laptop",
+            "accessedAt" => "2020-10-15T06:38:00.000+00:00"
+        ];
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->users->updatePasskey(
+            "<USER_ID>",
+            "<PASSKEY_ID>",
+            "<NAME>"
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\Passkey::class, $response);
+    }
+    public function testMethodDeletePasskey(): void
+    {
+        $data = '';
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->users->deletePasskey(
+            "<USER_ID>",
+            "<PASSKEY_ID>"
+        );
+
+        $this->assertSame($data, $response);
+    }
     public function testMethodUpdatePassword(): void
     {
         $data = [

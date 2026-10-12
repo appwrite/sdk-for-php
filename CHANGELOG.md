@@ -1,5 +1,13 @@
 # Change Log
 
+## 30.3.0
+
+* Added: `account` passkey methods `listPasskeys`, `createPasskey`, `getPasskey`, `updatePasskey`, `deletePasskey` and `updatePasskeyVerification`
+* Added: `account.createPasskeyToken` and `account.updatePasskeyToken` for passkey sign-in
+* Added: `users.listPasskeys`, `users.getPasskey`, `users.updatePasskey` and `users.deletePasskey`
+* Added: `project.updatePasskeyPolicy` to configure passkey sign-in
+* Added: `Passkey`, `PasskeyList`, `PasskeyChallenge` and `TokenSecret` models
+
 ## 30.2.2
 
 * Fixed: a response model fills a missing field from its spec default instead of throwing `Missing required field`, so the SDK reads responses from servers that predate the field, such as `File.folder` and `File.key` from Appwrite 1.x

@@ -381,6 +381,88 @@ PATCH https://cloud.appwrite.io/v1/account/name
 
 
 ```http request
+GET https://cloud.appwrite.io/v1/account/passkeys
+```
+
+** Get the list of verified passkeys registered by the currently logged in user. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter and order on the following attributes: $id, $createdAt, $updatedAt, name, accessedAt | [] |
+| total | boolean | When set to false, the total count returned will be 0 and will not be calculated. | 1 |
+
+
+```http request
+POST https://cloud.appwrite.io/v1/account/passkeys
+```
+
+** Start registering a passkey for the currently logged in user. The session must have signed in or completed an MFA challenge within the last 10 minutes. Pass the returned `publicKey` options to `navigator.credentials.create()`, then complete the registration with [Update passkey verification](/docs/references/cloud/client-web/account#updatePasskeyVerification). The passkey stays pending until verified, and the challenge expires after 5 minutes. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| passkeyId | string | Passkey ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. | unique() |
+| name | string | Passkey name, shown when listing passkeys. Max length: 128 chars. |  |
+
+
+```http request
+GET https://cloud.appwrite.io/v1/account/passkeys/{passkeyId}
+```
+
+** Get a verified passkey of the currently logged in user by its unique ID. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| passkeyId | string | **Required** Passkey ID. |  |
+
+
+```http request
+PATCH https://cloud.appwrite.io/v1/account/passkeys/{passkeyId}
+```
+
+** Rename a passkey of the currently logged in user. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| passkeyId | string | **Required** Passkey ID. |  |
+| name | string | Passkey name. Max length: 128 chars. |  |
+
+
+```http request
+DELETE https://cloud.appwrite.io/v1/account/passkeys/{passkeyId}
+```
+
+** Delete a passkey from the currently logged in user. The passkey can no longer be used to sign in, although it may remain stored on the user's device. The session must have signed in or completed an MFA challenge within the last 10 minutes. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| passkeyId | string | **Required** Passkey ID. |  |
+
+
+```http request
+PUT https://cloud.appwrite.io/v1/account/passkeys/{passkeyId}/verification
+```
+
+** Complete a passkey registration started with [Create passkey](/docs/references/cloud/client-web/account#createPasskey). Pass the JSON form of the credential returned by `navigator.credentials.create()`, for example `credential.toJSON()`. Each registration can be verified once; a failed attempt requires starting it again. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| passkeyId | string | **Required** Passkey ID. |  |
+| credential | object | Registration credential returned by the authenticator, in the JSON form produced by `PublicKeyCredential.toJSON()`. | {} |
+
+
+```http request
 PATCH https://cloud.appwrite.io/v1/account/password
 ```
 
@@ -640,6 +722,27 @@ A user is limited to 10 active sessions at a time by default. [Learn more about 
 | failure | string | URL to redirect back to your app after a failed login attempt.  Only URLs from hostnames in your project's platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API. |  |
 | scopes | array | A list of custom OAuth2 scopes. Check each provider internal docs for a list of supported scopes. Maximum of 100 scopes are allowed, each 4096 characters long. | [] |
 | state | string | An opaque value your app generates and keeps, for example in a cookie. It is returned unchanged as the `state` query parameter on the success and failure URLs, so your app can check that the sign-in it receives is one it started. Printable ASCII only (RFC 6749 Appendix A.5). Max length: 256 chars. |  |
+
+
+```http request
+POST https://cloud.appwrite.io/v1/account/tokens/passkey
+```
+
+** Start signing in with a passkey. No email or user ID is needed: pass the returned `publicKey` options to `navigator.credentials.get()` and the user picks one of their passkeys. Then call [Update passkey token](/docs/references/cloud/client-web/account#updatePasskeyToken) with the credential to receive a token, and exchange it with [Create session](/docs/references/cloud/client-web/account#createSession). The challenge expires after 5 minutes. **
+
+
+```http request
+PUT https://cloud.appwrite.io/v1/account/tokens/passkey
+```
+
+** Complete a passkey sign-in started with [Create passkey token](/docs/references/cloud/client-web/account#createPasskeyToken). Pass the challenge ID and the JSON form of the credential returned by `navigator.credentials.get()`, for example `credential.toJSON()`. The returned token includes its secret and expires after 1 minute: exchange it for a session with [Create session](/docs/references/cloud/client-web/account#createSession). Passkeys require user verification, so the session also satisfies MFA. Each challenge can only be used once. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| challengeId | string | Challenge ID returned by createPasskeyToken. |  |
+| credential | object | Authentication credential returned by the authenticator, in the JSON form produced by `PublicKeyCredential.toJSON()`. | {} |
 
 
 ```http request

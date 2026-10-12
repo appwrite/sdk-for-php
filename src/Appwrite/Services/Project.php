@@ -3362,6 +3362,46 @@ class Project extends Service
     }
 
     /**
+     * Set the relying party ID passkeys are bound to: the domain of your
+     * application. Passkeys work on the project's web platforms on that domain or
+     * its subdomains, and on the domain itself for Apple apps. A localhost web
+     * platform enables passkeys for local development without a relying party ID.
+     * The relying party ID cannot change while users have passkeys, and any
+     * change invalidates ceremonies in progress.
+     *
+     * @throws AppwriteException
+     */
+    public function updatePasskeyPolicy(string $rpId): \Appwrite\Models\Project
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/project/policies/passkey'
+        );
+
+        $apiParams = [];
+        $apiParams['rpId'] = $rpId;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Project::from($response);
+    }
+
+    /**
      * Updating this policy allows you to control if new passwords are checked
      * against most common passwords dictionary. When enabled, and user changes
      * their password, password must not be contained in the dictionary.

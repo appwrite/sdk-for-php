@@ -862,6 +862,255 @@ class Account extends Service
     }
 
     /**
+     * Get the list of verified passkeys registered by the currently logged in
+     * user.
+     *
+     * @throws AppwriteException
+     */
+    public function listPasskeys(?array $queries = null, ?bool $total = null): \Appwrite\Models\PasskeyList
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/account/passkeys'
+        );
+
+        $apiParams = [];
+
+        if (!is_null($queries)) {
+            $apiParams['queries'] = $queries;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\PasskeyList::from($response);
+    }
+
+    /**
+     * Start registering a passkey for the currently logged in user. The session
+     * must have signed in or completed an MFA challenge within the last 10
+     * minutes. Pass the returned `publicKey` options to
+     * `navigator.credentials.create()`, then complete the registration with
+     * [Update passkey
+     * verification](/docs/references/cloud/client-web/account#updatePasskeyVerification).
+     * The passkey stays pending until verified, and the challenge expires after 5
+     * minutes.
+     *
+     * @throws AppwriteException
+     */
+    public function createPasskey(?string $passkeyId = null, ?string $name = null): \Appwrite\Models\PasskeyChallenge
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/account/passkeys'
+        );
+
+        $apiParams = [];
+
+        if (!is_null($passkeyId)) {
+            $apiParams['passkeyId'] = $passkeyId;
+        }
+
+        if (!is_null($name)) {
+            $apiParams['name'] = $name;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\PasskeyChallenge::from($response);
+    }
+
+    /**
+     * Get a verified passkey of the currently logged in user by its unique ID.
+     *
+     * @throws AppwriteException
+     */
+    public function getPasskey(string $passkeyId): \Appwrite\Models\Passkey
+    {
+        if ($passkeyId === '') {
+            throw new AppwriteException('Missing required parameter: "passkeyId"');
+        }
+
+        $apiPath = str_replace(
+            ['{passkeyId}'],
+            [$passkeyId],
+            '/account/passkeys/{passkeyId}'
+        );
+
+        $apiParams = [];
+        $apiParams['passkeyId'] = $passkeyId;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Passkey::from($response);
+    }
+
+    /**
+     * Rename a passkey of the currently logged in user.
+     *
+     * @throws AppwriteException
+     */
+    public function updatePasskey(string $passkeyId, string $name): \Appwrite\Models\Passkey
+    {
+        if ($passkeyId === '') {
+            throw new AppwriteException('Missing required parameter: "passkeyId"');
+        }
+
+        $apiPath = str_replace(
+            ['{passkeyId}'],
+            [$passkeyId],
+            '/account/passkeys/{passkeyId}'
+        );
+
+        $apiParams = [];
+        $apiParams['passkeyId'] = $passkeyId;
+        $apiParams['name'] = $name;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Passkey::from($response);
+    }
+
+    /**
+     * Delete a passkey from the currently logged in user. The passkey can no
+     * longer be used to sign in, although it may remain stored on the user's
+     * device. The session must have signed in or completed an MFA challenge
+     * within the last 10 minutes.
+     *
+     * @throws AppwriteException
+     */
+    public function deletePasskey(string $passkeyId): string
+    {
+        if ($passkeyId === '') {
+            throw new AppwriteException('Missing required parameter: "passkeyId"');
+        }
+
+        $apiPath = str_replace(
+            ['{passkeyId}'],
+            [$passkeyId],
+            '/account/passkeys/{passkeyId}'
+        );
+
+        $apiParams = [];
+        $apiParams['passkeyId'] = $passkeyId;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_DELETE,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Complete a passkey registration started with [Create
+     * passkey](/docs/references/cloud/client-web/account#createPasskey). Pass the
+     * JSON form of the credential returned by `navigator.credentials.create()`,
+     * for example `credential.toJSON()`. Each registration can be verified once;
+     * a failed attempt requires starting it again.
+     *
+     * @throws AppwriteException
+     */
+    public function updatePasskeyVerification(string $passkeyId, array $credential): \Appwrite\Models\Passkey
+    {
+        if ($passkeyId === '') {
+            throw new AppwriteException('Missing required parameter: "passkeyId"');
+        }
+
+        $apiPath = str_replace(
+            ['{passkeyId}'],
+            [$passkeyId],
+            '/account/passkeys/{passkeyId}/verification'
+        );
+
+        $apiParams = [];
+        $apiParams['passkeyId'] = $passkeyId;
+        $apiParams['credential'] = $credential;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PUT,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Passkey::from($response);
+    }
+
+    /**
      * Update currently logged in user password. For validation, user is required
      * to pass in the new password, and the old password. For users created with
      * OAuth, Team Invites and Magic URL, oldPassword is optional.
@@ -1668,6 +1917,90 @@ class Account extends Service
             $apiParams,
             'location'
         );
+    }
+
+    /**
+     * Start signing in with a passkey. No email or user ID is needed: pass the
+     * returned `publicKey` options to `navigator.credentials.get()` and the user
+     * picks one of their passkeys. Then call [Update passkey
+     * token](/docs/references/cloud/client-web/account#updatePasskeyToken) with
+     * the credential to receive a token, and exchange it with [Create
+     * session](/docs/references/cloud/client-web/account#createSession). The
+     * challenge expires after 5 minutes.
+     *
+     * @throws AppwriteException
+     */
+    public function createPasskeyToken(): \Appwrite\Models\PasskeyChallenge
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/account/tokens/passkey'
+        );
+
+        $apiParams = [];
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\PasskeyChallenge::from($response);
+    }
+
+    /**
+     * Complete a passkey sign-in started with [Create passkey
+     * token](/docs/references/cloud/client-web/account#createPasskeyToken). Pass
+     * the challenge ID and the JSON form of the credential returned by
+     * `navigator.credentials.get()`, for example `credential.toJSON()`. The
+     * returned token includes its secret and expires after 1 minute: exchange it
+     * for a session with [Create
+     * session](/docs/references/cloud/client-web/account#createSession). Passkeys
+     * require user verification, so the session also satisfies MFA. Each
+     * challenge can only be used once.
+     *
+     * @throws AppwriteException
+     */
+    public function updatePasskeyToken(string $challengeId, array $credential): \Appwrite\Models\TokenSecret
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/account/tokens/passkey'
+        );
+
+        $apiParams = [];
+        $apiParams['challengeId'] = $challengeId;
+        $apiParams['credential'] = $credential;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PUT,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\TokenSecret::from($response);
     }
 
     /**
