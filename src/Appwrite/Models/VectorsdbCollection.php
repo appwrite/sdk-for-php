@@ -59,7 +59,7 @@ readonly class VectorsdbCollection
             'databaseId' => "",
             'name' => "",
             'enabled' => true,
-            'documentSecurity' => "",
+            'documentSecurity' => false,
             'bytesMax' => 0,
             'bytesUsed' => 0,
             'dimension' => 0,

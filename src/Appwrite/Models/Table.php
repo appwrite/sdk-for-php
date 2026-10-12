@@ -57,7 +57,7 @@ readonly class Table
             'databaseId' => "",
             'name' => "",
             'enabled' => true,
-            'rowSecurity' => "",
+            'rowSecurity' => false,
             'bytesMax' => 0,
             'bytesUsed' => 0,
         ];

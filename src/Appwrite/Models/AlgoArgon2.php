@@ -36,9 +36,9 @@ readonly class AlgoArgon2
     {
         $data += [
             'type' => "argon2",
-            'memoryCost' => "",
-            'timeCost' => "",
-            'threads' => "",
+            'memoryCost' => 0,
+            'timeCost' => 0,
+            'threads' => 0,
         ];
 
         return new static(

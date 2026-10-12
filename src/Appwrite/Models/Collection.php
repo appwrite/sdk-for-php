@@ -57,7 +57,7 @@ readonly class Collection
             'databaseId' => "",
             'name' => "",
             'enabled' => true,
-            'documentSecurity' => "",
+            'documentSecurity' => false,
             'bytesMax' => 0,
             'bytesUsed' => 0,
         ];
