@@ -59,45 +59,22 @@ readonly class ProxyRule
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('$id', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$createdAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$createdAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$updatedAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$updatedAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('domain', $data)) {
-            throw new \InvalidArgumentException('Missing required field "domain" for ' . static::class . '.');
-        }
-        if (!array_key_exists('type', $data)) {
-            throw new \InvalidArgumentException('Missing required field "type" for ' . static::class . '.');
-        }
-        if (!array_key_exists('trigger', $data)) {
-            throw new \InvalidArgumentException('Missing required field "trigger" for ' . static::class . '.');
-        }
-        if (!array_key_exists('redirectUrl', $data)) {
-            throw new \InvalidArgumentException('Missing required field "redirectUrl" for ' . static::class . '.');
-        }
-        if (!array_key_exists('redirectStatusCode', $data)) {
-            throw new \InvalidArgumentException('Missing required field "redirectStatusCode" for ' . static::class . '.');
-        }
-        if (!array_key_exists('deploymentId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "deploymentId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('deploymentResourceId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "deploymentResourceId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('deploymentVcsProviderBranch', $data)) {
-            throw new \InvalidArgumentException('Missing required field "deploymentVcsProviderBranch" for ' . static::class . '.');
-        }
-        if (!array_key_exists('status', $data)) {
-            throw new \InvalidArgumentException('Missing required field "status" for ' . static::class . '.');
-        }
-        if (!array_key_exists('logs', $data)) {
-            throw new \InvalidArgumentException('Missing required field "logs" for ' . static::class . '.');
-        }
+        $data += [
+            '$id' => "",
+            '$createdAt' => "",
+            '$updatedAt' => "",
+            'domain' => "",
+            'type' => "",
+            'trigger' => "",
+            'redirectUrl' => "",
+            'redirectStatusCode' => 301,
+            'deploymentId' => "",
+            'deploymentResourceId' => "",
+            'deploymentVcsProviderBranch' => "",
+            'status' => "unverified",
+            'logs' => "",
+        ];
+
         if (!array_key_exists('renewAt', $data)) {
             throw new \InvalidArgumentException('Missing required field "renewAt" for ' . static::class . '.');
         }

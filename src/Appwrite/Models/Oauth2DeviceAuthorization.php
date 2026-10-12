@@ -38,24 +38,14 @@ readonly class Oauth2DeviceAuthorization
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('device_code', $data)) {
-            throw new \InvalidArgumentException('Missing required field "device_code" for ' . static::class . '.');
-        }
-        if (!array_key_exists('user_code', $data)) {
-            throw new \InvalidArgumentException('Missing required field "user_code" for ' . static::class . '.');
-        }
-        if (!array_key_exists('verification_uri', $data)) {
-            throw new \InvalidArgumentException('Missing required field "verification_uri" for ' . static::class . '.');
-        }
-        if (!array_key_exists('verification_uri_complete', $data)) {
-            throw new \InvalidArgumentException('Missing required field "verification_uri_complete" for ' . static::class . '.');
-        }
-        if (!array_key_exists('expires_in', $data)) {
-            throw new \InvalidArgumentException('Missing required field "expires_in" for ' . static::class . '.');
-        }
-        if (!array_key_exists('interval', $data)) {
-            throw new \InvalidArgumentException('Missing required field "interval" for ' . static::class . '.');
-        }
+        $data += [
+            'device_code' => "",
+            'user_code' => "",
+            'verification_uri' => "",
+            'verification_uri_complete' => "",
+            'expires_in' => 0,
+            'interval' => 0,
+        ];
 
         return new static(
             deviceCode: $data['device_code'],

@@ -54,48 +54,22 @@ readonly class Bucket
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('$id', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$createdAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$createdAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$updatedAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$updatedAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$permissions', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$permissions" for ' . static::class . '.');
-        }
-        if (!array_key_exists('fileSecurity', $data)) {
-            throw new \InvalidArgumentException('Missing required field "fileSecurity" for ' . static::class . '.');
-        }
-        if (!array_key_exists('name', $data)) {
-            throw new \InvalidArgumentException('Missing required field "name" for ' . static::class . '.');
-        }
-        if (!array_key_exists('enabled', $data)) {
-            throw new \InvalidArgumentException('Missing required field "enabled" for ' . static::class . '.');
-        }
-        if (!array_key_exists('maximumFileSize', $data)) {
-            throw new \InvalidArgumentException('Missing required field "maximumFileSize" for ' . static::class . '.');
-        }
-        if (!array_key_exists('allowedFileExtensions', $data)) {
-            throw new \InvalidArgumentException('Missing required field "allowedFileExtensions" for ' . static::class . '.');
-        }
-        if (!array_key_exists('compression', $data)) {
-            throw new \InvalidArgumentException('Missing required field "compression" for ' . static::class . '.');
-        }
-        if (!array_key_exists('encryption', $data)) {
-            throw new \InvalidArgumentException('Missing required field "encryption" for ' . static::class . '.');
-        }
-        if (!array_key_exists('antivirus', $data)) {
-            throw new \InvalidArgumentException('Missing required field "antivirus" for ' . static::class . '.');
-        }
-        if (!array_key_exists('transformations', $data)) {
-            throw new \InvalidArgumentException('Missing required field "transformations" for ' . static::class . '.');
-        }
-        if (!array_key_exists('totalSize', $data)) {
-            throw new \InvalidArgumentException('Missing required field "totalSize" for ' . static::class . '.');
-        }
+        $data += [
+            '$id' => "",
+            '$createdAt' => "",
+            '$updatedAt' => "",
+            '$permissions' => [],
+            'fileSecurity' => false,
+            'name' => "",
+            'enabled' => true,
+            'maximumFileSize' => 0,
+            'allowedFileExtensions' => [],
+            'compression' => "",
+            'encryption' => true,
+            'antivirus' => true,
+            'transformations' => true,
+            'totalSize' => 0,
+        ];
 
         return new static(
             id: $data['$id'],

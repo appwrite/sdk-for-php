@@ -42,30 +42,16 @@ readonly class EmailTemplate
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('templateId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "templateId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('locale', $data)) {
-            throw new \InvalidArgumentException('Missing required field "locale" for ' . static::class . '.');
-        }
-        if (!array_key_exists('message', $data)) {
-            throw new \InvalidArgumentException('Missing required field "message" for ' . static::class . '.');
-        }
-        if (!array_key_exists('senderName', $data)) {
-            throw new \InvalidArgumentException('Missing required field "senderName" for ' . static::class . '.');
-        }
-        if (!array_key_exists('senderEmail', $data)) {
-            throw new \InvalidArgumentException('Missing required field "senderEmail" for ' . static::class . '.');
-        }
-        if (!array_key_exists('replyToEmail', $data)) {
-            throw new \InvalidArgumentException('Missing required field "replyToEmail" for ' . static::class . '.');
-        }
-        if (!array_key_exists('replyToName', $data)) {
-            throw new \InvalidArgumentException('Missing required field "replyToName" for ' . static::class . '.');
-        }
-        if (!array_key_exists('subject', $data)) {
-            throw new \InvalidArgumentException('Missing required field "subject" for ' . static::class . '.');
-        }
+        $data += [
+            'templateId' => "",
+            'locale' => "",
+            'message' => "",
+            'senderName' => "",
+            'senderEmail' => "",
+            'replyToEmail' => "",
+            'replyToName' => "",
+            'subject' => "",
+        ];
 
         return new static(
             templateId: $data['templateId'],

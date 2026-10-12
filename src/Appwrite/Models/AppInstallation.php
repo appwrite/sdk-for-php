@@ -46,33 +46,17 @@ readonly class AppInstallation
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('$id', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$createdAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$createdAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$updatedAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$updatedAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('appId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "appId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('teamId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "teamId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('scopes', $data)) {
-            throw new \InvalidArgumentException('Missing required field "scopes" for ' . static::class . '.');
-        }
-        if (!array_key_exists('authorizationDetails', $data)) {
-            throw new \InvalidArgumentException('Missing required field "authorizationDetails" for ' . static::class . '.');
-        }
-        if (!array_key_exists('createdById', $data)) {
-            throw new \InvalidArgumentException('Missing required field "createdById" for ' . static::class . '.');
-        }
-        if (!array_key_exists('createdByName', $data)) {
-            throw new \InvalidArgumentException('Missing required field "createdByName" for ' . static::class . '.');
-        }
+        $data += [
+            '$id' => "",
+            '$createdAt' => "",
+            '$updatedAt' => "",
+            'appId' => "",
+            'teamId' => "",
+            'scopes' => [],
+            'authorizationDetails' => [],
+            'createdById' => "",
+            'createdByName' => "",
+        ];
 
         return new static(
             id: $data['$id'],

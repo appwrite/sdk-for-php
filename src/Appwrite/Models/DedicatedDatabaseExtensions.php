@@ -32,12 +32,11 @@ readonly class DedicatedDatabaseExtensions
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('installed', $data)) {
-            throw new \InvalidArgumentException('Missing required field "installed" for ' . static::class . '.');
-        }
-        if (!array_key_exists('available', $data)) {
-            throw new \InvalidArgumentException('Missing required field "available" for ' . static::class . '.');
-        }
+        $data += [
+            'installed' => [],
+            'available' => [],
+        ];
+
         if (!array_key_exists('metadata', $data)) {
             throw new \InvalidArgumentException('Missing required field "metadata" for ' . static::class . '.');
         }

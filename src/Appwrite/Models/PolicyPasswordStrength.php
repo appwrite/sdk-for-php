@@ -38,24 +38,14 @@ readonly class PolicyPasswordStrength
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('$id', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
-        }
-        if (!array_key_exists('min', $data)) {
-            throw new \InvalidArgumentException('Missing required field "min" for ' . static::class . '.');
-        }
-        if (!array_key_exists('uppercase', $data)) {
-            throw new \InvalidArgumentException('Missing required field "uppercase" for ' . static::class . '.');
-        }
-        if (!array_key_exists('lowercase', $data)) {
-            throw new \InvalidArgumentException('Missing required field "lowercase" for ' . static::class . '.');
-        }
-        if (!array_key_exists('number', $data)) {
-            throw new \InvalidArgumentException('Missing required field "number" for ' . static::class . '.');
-        }
-        if (!array_key_exists('symbols', $data)) {
-            throw new \InvalidArgumentException('Missing required field "symbols" for ' . static::class . '.');
-        }
+        $data += [
+            '$id' => "",
+            'min' => 8,
+            'uppercase' => false,
+            'lowercase' => false,
+            'number' => false,
+            'symbols' => false,
+        ];
 
         return new static(
             id: $data['$id'],

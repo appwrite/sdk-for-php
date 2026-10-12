@@ -174,197 +174,80 @@ readonly class BillingPlan
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('$id', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
-        }
-        if (!array_key_exists('name', $data)) {
-            throw new \InvalidArgumentException('Missing required field "name" for ' . static::class . '.');
-        }
-        if (!array_key_exists('desc', $data)) {
-            throw new \InvalidArgumentException('Missing required field "desc" for ' . static::class . '.');
-        }
-        if (!array_key_exists('order', $data)) {
-            throw new \InvalidArgumentException('Missing required field "order" for ' . static::class . '.');
-        }
-        if (!array_key_exists('price', $data)) {
-            throw new \InvalidArgumentException('Missing required field "price" for ' . static::class . '.');
-        }
-        if (!array_key_exists('trial', $data)) {
-            throw new \InvalidArgumentException('Missing required field "trial" for ' . static::class . '.');
-        }
-        if (!array_key_exists('bandwidth', $data)) {
-            throw new \InvalidArgumentException('Missing required field "bandwidth" for ' . static::class . '.');
-        }
-        if (!array_key_exists('storage', $data)) {
-            throw new \InvalidArgumentException('Missing required field "storage" for ' . static::class . '.');
-        }
-        if (!array_key_exists('imageTransformations', $data)) {
-            throw new \InvalidArgumentException('Missing required field "imageTransformations" for ' . static::class . '.');
-        }
-        if (!array_key_exists('screenshotsGenerated', $data)) {
-            throw new \InvalidArgumentException('Missing required field "screenshotsGenerated" for ' . static::class . '.');
-        }
-        if (!array_key_exists('webhooks', $data)) {
-            throw new \InvalidArgumentException('Missing required field "webhooks" for ' . static::class . '.');
-        }
-        if (!array_key_exists('wafRules', $data)) {
-            throw new \InvalidArgumentException('Missing required field "wafRules" for ' . static::class . '.');
-        }
-        if (!array_key_exists('projects', $data)) {
-            throw new \InvalidArgumentException('Missing required field "projects" for ' . static::class . '.');
-        }
-        if (!array_key_exists('platforms', $data)) {
-            throw new \InvalidArgumentException('Missing required field "platforms" for ' . static::class . '.');
-        }
-        if (!array_key_exists('users', $data)) {
-            throw new \InvalidArgumentException('Missing required field "users" for ' . static::class . '.');
-        }
-        if (!array_key_exists('teams', $data)) {
-            throw new \InvalidArgumentException('Missing required field "teams" for ' . static::class . '.');
-        }
-        if (!array_key_exists('databases', $data)) {
-            throw new \InvalidArgumentException('Missing required field "databases" for ' . static::class . '.');
-        }
-        if (!array_key_exists('databasesReads', $data)) {
-            throw new \InvalidArgumentException('Missing required field "databasesReads" for ' . static::class . '.');
-        }
-        if (!array_key_exists('databasesWrites', $data)) {
-            throw new \InvalidArgumentException('Missing required field "databasesWrites" for ' . static::class . '.');
-        }
-        if (!array_key_exists('databasesBatchSize', $data)) {
-            throw new \InvalidArgumentException('Missing required field "databasesBatchSize" for ' . static::class . '.');
-        }
-        if (!array_key_exists('buckets', $data)) {
-            throw new \InvalidArgumentException('Missing required field "buckets" for ' . static::class . '.');
-        }
-        if (!array_key_exists('fileSize', $data)) {
-            throw new \InvalidArgumentException('Missing required field "fileSize" for ' . static::class . '.');
-        }
-        if (!array_key_exists('functions', $data)) {
-            throw new \InvalidArgumentException('Missing required field "functions" for ' . static::class . '.');
-        }
-        if (!array_key_exists('sites', $data)) {
-            throw new \InvalidArgumentException('Missing required field "sites" for ' . static::class . '.');
-        }
-        if (!array_key_exists('executions', $data)) {
-            throw new \InvalidArgumentException('Missing required field "executions" for ' . static::class . '.');
-        }
-        if (!array_key_exists('executionsRetentionCount', $data)) {
-            throw new \InvalidArgumentException('Missing required field "executionsRetentionCount" for ' . static::class . '.');
-        }
-        if (!array_key_exists('GBHours', $data)) {
-            throw new \InvalidArgumentException('Missing required field "GBHours" for ' . static::class . '.');
-        }
-        if (!array_key_exists('realtime', $data)) {
-            throw new \InvalidArgumentException('Missing required field "realtime" for ' . static::class . '.');
-        }
-        if (!array_key_exists('realtimeMessages', $data)) {
-            throw new \InvalidArgumentException('Missing required field "realtimeMessages" for ' . static::class . '.');
-        }
-        if (!array_key_exists('messages', $data)) {
-            throw new \InvalidArgumentException('Missing required field "messages" for ' . static::class . '.');
-        }
-        if (!array_key_exists('topics', $data)) {
-            throw new \InvalidArgumentException('Missing required field "topics" for ' . static::class . '.');
-        }
-        if (!array_key_exists('authPhone', $data)) {
-            throw new \InvalidArgumentException('Missing required field "authPhone" for ' . static::class . '.');
-        }
-        if (!array_key_exists('domains', $data)) {
-            throw new \InvalidArgumentException('Missing required field "domains" for ' . static::class . '.');
-        }
-        if (!array_key_exists('usageLogs', $data)) {
-            throw new \InvalidArgumentException('Missing required field "usageLogs" for ' . static::class . '.');
-        }
-        if (!array_key_exists('projectInactivityDays', $data)) {
-            throw new \InvalidArgumentException('Missing required field "projectInactivityDays" for ' . static::class . '.');
-        }
-        if (!array_key_exists('alertLimit', $data)) {
-            throw new \InvalidArgumentException('Missing required field "alertLimit" for ' . static::class . '.');
-        }
+        $data += [
+            '$id' => "",
+            'name' => "",
+            'desc' => "",
+            'order' => 0,
+            'price' => 0,
+            'trial' => 0,
+            'bandwidth' => 0,
+            'storage' => 0,
+            'imageTransformations' => 0,
+            'screenshotsGenerated' => 0,
+            'webhooks' => 0,
+            'wafRules' => 0,
+            'projects' => 0,
+            'platforms' => 0,
+            'users' => 0,
+            'teams' => 0,
+            'databases' => 0,
+            'databasesReads' => 0,
+            'databasesWrites' => 0,
+            'databasesBatchSize' => 0,
+            'buckets' => 0,
+            'fileSize' => 0,
+            'functions' => 0,
+            'sites' => 0,
+            'executions' => 0,
+            'executionsRetentionCount' => 1000,
+            'GBHours' => 0,
+            'realtime' => 0,
+            'realtimeMessages' => 0,
+            'messages' => 0,
+            'topics' => 0,
+            'authPhone' => 0,
+            'domains' => 0,
+            'usageLogs' => 0,
+            'projectInactivityDays' => 0,
+            'alertLimit' => 80,
+            'budgetCapEnabled' => false,
+            'customSmtp' => false,
+            'emailBranding' => false,
+            'requiresPaymentMethod' => true,
+            'requiresBillingAddress' => false,
+            'isAvailable' => true,
+            'selfService' => true,
+            'premiumSupport' => true,
+            'budgeting' => true,
+            'supportsMockNumbers' => true,
+            'supportsOrganizationRoles' => true,
+            'supportsCredits' => false,
+            'supportsDedicatedDatabases' => false,
+            'supportsDisposableEmailValidation' => false,
+            'supportsCanonicalEmailValidation' => false,
+            'supportsFreeEmailValidation' => false,
+            'supportsCorporateEmailValidation' => false,
+            'supportsProjectSpecificRoles' => false,
+            'usagePerProject' => true,
+            'deploymentSize' => 0,
+            'buildSize' => 0,
+            'functionsIntervalMinimum' => 0,
+            'databasesAllowEncrypt' => false,
+            'databaseComputeCredit' => 0,
+        ];
+
         if (!array_key_exists('usage', $data)) {
             throw new \InvalidArgumentException('Missing required field "usage" for ' . static::class . '.');
         }
         if (!array_key_exists('addons', $data)) {
             throw new \InvalidArgumentException('Missing required field "addons" for ' . static::class . '.');
         }
-        if (!array_key_exists('budgetCapEnabled', $data)) {
-            throw new \InvalidArgumentException('Missing required field "budgetCapEnabled" for ' . static::class . '.');
-        }
-        if (!array_key_exists('customSmtp', $data)) {
-            throw new \InvalidArgumentException('Missing required field "customSmtp" for ' . static::class . '.');
-        }
-        if (!array_key_exists('emailBranding', $data)) {
-            throw new \InvalidArgumentException('Missing required field "emailBranding" for ' . static::class . '.');
-        }
-        if (!array_key_exists('requiresPaymentMethod', $data)) {
-            throw new \InvalidArgumentException('Missing required field "requiresPaymentMethod" for ' . static::class . '.');
-        }
-        if (!array_key_exists('requiresBillingAddress', $data)) {
-            throw new \InvalidArgumentException('Missing required field "requiresBillingAddress" for ' . static::class . '.');
-        }
-        if (!array_key_exists('isAvailable', $data)) {
-            throw new \InvalidArgumentException('Missing required field "isAvailable" for ' . static::class . '.');
-        }
-        if (!array_key_exists('selfService', $data)) {
-            throw new \InvalidArgumentException('Missing required field "selfService" for ' . static::class . '.');
-        }
-        if (!array_key_exists('premiumSupport', $data)) {
-            throw new \InvalidArgumentException('Missing required field "premiumSupport" for ' . static::class . '.');
-        }
-        if (!array_key_exists('budgeting', $data)) {
-            throw new \InvalidArgumentException('Missing required field "budgeting" for ' . static::class . '.');
-        }
-        if (!array_key_exists('supportsMockNumbers', $data)) {
-            throw new \InvalidArgumentException('Missing required field "supportsMockNumbers" for ' . static::class . '.');
-        }
-        if (!array_key_exists('supportsOrganizationRoles', $data)) {
-            throw new \InvalidArgumentException('Missing required field "supportsOrganizationRoles" for ' . static::class . '.');
-        }
-        if (!array_key_exists('supportsCredits', $data)) {
-            throw new \InvalidArgumentException('Missing required field "supportsCredits" for ' . static::class . '.');
-        }
-        if (!array_key_exists('supportsDedicatedDatabases', $data)) {
-            throw new \InvalidArgumentException('Missing required field "supportsDedicatedDatabases" for ' . static::class . '.');
-        }
-        if (!array_key_exists('supportsDisposableEmailValidation', $data)) {
-            throw new \InvalidArgumentException('Missing required field "supportsDisposableEmailValidation" for ' . static::class . '.');
-        }
-        if (!array_key_exists('supportsCanonicalEmailValidation', $data)) {
-            throw new \InvalidArgumentException('Missing required field "supportsCanonicalEmailValidation" for ' . static::class . '.');
-        }
-        if (!array_key_exists('supportsFreeEmailValidation', $data)) {
-            throw new \InvalidArgumentException('Missing required field "supportsFreeEmailValidation" for ' . static::class . '.');
-        }
-        if (!array_key_exists('supportsCorporateEmailValidation', $data)) {
-            throw new \InvalidArgumentException('Missing required field "supportsCorporateEmailValidation" for ' . static::class . '.');
-        }
-        if (!array_key_exists('supportsProjectSpecificRoles', $data)) {
-            throw new \InvalidArgumentException('Missing required field "supportsProjectSpecificRoles" for ' . static::class . '.');
-        }
-        if (!array_key_exists('usagePerProject', $data)) {
-            throw new \InvalidArgumentException('Missing required field "usagePerProject" for ' . static::class . '.');
-        }
         if (!array_key_exists('supportedAddons', $data)) {
             throw new \InvalidArgumentException('Missing required field "supportedAddons" for ' . static::class . '.');
         }
-        if (!array_key_exists('deploymentSize', $data)) {
-            throw new \InvalidArgumentException('Missing required field "deploymentSize" for ' . static::class . '.');
-        }
-        if (!array_key_exists('buildSize', $data)) {
-            throw new \InvalidArgumentException('Missing required field "buildSize" for ' . static::class . '.');
-        }
-        if (!array_key_exists('functionsIntervalMinimum', $data)) {
-            throw new \InvalidArgumentException('Missing required field "functionsIntervalMinimum" for ' . static::class . '.');
-        }
-        if (!array_key_exists('databasesAllowEncrypt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "databasesAllowEncrypt" for ' . static::class . '.');
-        }
         if (!array_key_exists('group', $data)) {
             throw new \InvalidArgumentException('Missing required field "group" for ' . static::class . '.');
-        }
-        if (!array_key_exists('databaseComputeCredit', $data)) {
-            throw new \InvalidArgumentException('Missing required field "databaseComputeCredit" for ' . static::class . '.');
         }
 
         return new static(

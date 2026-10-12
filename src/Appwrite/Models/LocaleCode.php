@@ -30,12 +30,10 @@ readonly class LocaleCode
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('code', $data)) {
-            throw new \InvalidArgumentException('Missing required field "code" for ' . static::class . '.');
-        }
-        if (!array_key_exists('name', $data)) {
-            throw new \InvalidArgumentException('Missing required field "name" for ' . static::class . '.');
-        }
+        $data += [
+            'code' => "",
+            'name' => "",
+        ];
 
         return new static(
             code: $data['code'],

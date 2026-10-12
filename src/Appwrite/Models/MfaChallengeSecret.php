@@ -36,21 +36,13 @@ readonly class MfaChallengeSecret
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('$id', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$createdAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$createdAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('userId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "userId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('expire', $data)) {
-            throw new \InvalidArgumentException('Missing required field "expire" for ' . static::class . '.');
-        }
-        if (!array_key_exists('code', $data)) {
-            throw new \InvalidArgumentException('Missing required field "code" for ' . static::class . '.');
-        }
+        $data += [
+            '$id' => "",
+            '$createdAt' => "",
+            'userId' => "",
+            'expire' => "",
+            'code' => "",
+        ];
 
         return new static(
             id: $data['$id'],

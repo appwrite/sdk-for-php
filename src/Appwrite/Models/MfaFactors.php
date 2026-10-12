@@ -36,21 +36,13 @@ readonly class MfaFactors
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('totp', $data)) {
-            throw new \InvalidArgumentException('Missing required field "totp" for ' . static::class . '.');
-        }
-        if (!array_key_exists('phone', $data)) {
-            throw new \InvalidArgumentException('Missing required field "phone" for ' . static::class . '.');
-        }
-        if (!array_key_exists('email', $data)) {
-            throw new \InvalidArgumentException('Missing required field "email" for ' . static::class . '.');
-        }
-        if (!array_key_exists('recoveryCode', $data)) {
-            throw new \InvalidArgumentException('Missing required field "recoveryCode" for ' . static::class . '.');
-        }
-        if (!array_key_exists('custom', $data)) {
-            throw new \InvalidArgumentException('Missing required field "custom" for ' . static::class . '.');
-        }
+        $data += [
+            'totp' => false,
+            'phone' => false,
+            'email' => false,
+            'recoveryCode' => false,
+            'custom' => false,
+        ];
 
         return new static(
             totp: $data['totp'],

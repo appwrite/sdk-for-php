@@ -28,9 +28,9 @@ readonly class Jwt
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('jwt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "jwt" for ' . static::class . '.');
-        }
+        $data += [
+            'jwt' => "",
+        ];
 
         return new static(
             jwt: $data['jwt']

@@ -60,45 +60,22 @@ readonly class Insight
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('$id', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$createdAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$createdAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$updatedAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$updatedAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('reportId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "reportId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('type', $data)) {
-            throw new \InvalidArgumentException('Missing required field "type" for ' . static::class . '.');
-        }
-        if (!array_key_exists('severity', $data)) {
-            throw new \InvalidArgumentException('Missing required field "severity" for ' . static::class . '.');
-        }
-        if (!array_key_exists('status', $data)) {
-            throw new \InvalidArgumentException('Missing required field "status" for ' . static::class . '.');
-        }
-        if (!array_key_exists('resourceType', $data)) {
-            throw new \InvalidArgumentException('Missing required field "resourceType" for ' . static::class . '.');
-        }
-        if (!array_key_exists('resourceId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "resourceId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('parentResourceType', $data)) {
-            throw new \InvalidArgumentException('Missing required field "parentResourceType" for ' . static::class . '.');
-        }
-        if (!array_key_exists('parentResourceId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "parentResourceId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('title', $data)) {
-            throw new \InvalidArgumentException('Missing required field "title" for ' . static::class . '.');
-        }
-        if (!array_key_exists('summary', $data)) {
-            throw new \InvalidArgumentException('Missing required field "summary" for ' . static::class . '.');
-        }
+        $data += [
+            '$id' => "",
+            '$createdAt' => "",
+            '$updatedAt' => "",
+            'reportId' => "",
+            'type' => "",
+            'severity' => "info",
+            'status' => "active",
+            'resourceType' => "",
+            'resourceId' => "",
+            'parentResourceType' => "",
+            'parentResourceId' => "",
+            'title' => "",
+            'summary' => "",
+        ];
+
         if (!array_key_exists('ctas', $data)) {
             throw new \InvalidArgumentException('Missing required field "ctas" for ' . static::class . '.');
         }

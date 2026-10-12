@@ -28,9 +28,9 @@ readonly class AlgoPhpass
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('type', $data)) {
-            throw new \InvalidArgumentException('Missing required field "type" for ' . static::class . '.');
-        }
+        $data += [
+            'type' => "phpass",
+        ];
 
         return new static(
             type: $data['type']

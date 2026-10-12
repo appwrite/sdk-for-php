@@ -42,30 +42,16 @@ readonly class Variable
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('$id', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$createdAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$createdAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$updatedAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$updatedAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('key', $data)) {
-            throw new \InvalidArgumentException('Missing required field "key" for ' . static::class . '.');
-        }
-        if (!array_key_exists('value', $data)) {
-            throw new \InvalidArgumentException('Missing required field "value" for ' . static::class . '.');
-        }
-        if (!array_key_exists('secret', $data)) {
-            throw new \InvalidArgumentException('Missing required field "secret" for ' . static::class . '.');
-        }
-        if (!array_key_exists('resourceType', $data)) {
-            throw new \InvalidArgumentException('Missing required field "resourceType" for ' . static::class . '.');
-        }
-        if (!array_key_exists('resourceId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "resourceId" for ' . static::class . '.');
-        }
+        $data += [
+            '$id' => "",
+            '$createdAt' => "",
+            '$updatedAt' => "",
+            'key' => "",
+            'value' => "",
+            'secret' => false,
+            'resourceType' => "",
+            'resourceId' => "",
+        ];
 
         return new static(
             id: $data['$id'],

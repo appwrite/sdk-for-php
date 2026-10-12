@@ -36,15 +36,11 @@ readonly class DatabaseStatusReplica
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('index', $data)) {
-            throw new \InvalidArgumentException('Missing required field "index" for ' . static::class . '.');
-        }
-        if (!array_key_exists('role', $data)) {
-            throw new \InvalidArgumentException('Missing required field "role" for ' . static::class . '.');
-        }
-        if (!array_key_exists('healthy', $data)) {
-            throw new \InvalidArgumentException('Missing required field "healthy" for ' . static::class . '.');
-        }
+        $data += [
+            'index' => 0,
+            'role' => "unknown",
+            'healthy' => false,
+        ];
 
         return new static(
             index: $data['index'],

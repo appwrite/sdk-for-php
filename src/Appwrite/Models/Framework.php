@@ -36,15 +36,12 @@ readonly class Framework
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('key', $data)) {
-            throw new \InvalidArgumentException('Missing required field "key" for ' . static::class . '.');
-        }
-        if (!array_key_exists('name', $data)) {
-            throw new \InvalidArgumentException('Missing required field "name" for ' . static::class . '.');
-        }
-        if (!array_key_exists('buildRuntime', $data)) {
-            throw new \InvalidArgumentException('Missing required field "buildRuntime" for ' . static::class . '.');
-        }
+        $data += [
+            'key' => "",
+            'name' => "",
+            'buildRuntime' => "",
+        ];
+
         if (!array_key_exists('runtimes', $data)) {
             throw new \InvalidArgumentException('Missing required field "runtimes" for ' . static::class . '.');
         }

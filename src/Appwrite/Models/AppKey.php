@@ -44,30 +44,16 @@ readonly class AppKey
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('$id', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$createdAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$createdAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$updatedAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$updatedAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('appId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "appId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('secret', $data)) {
-            throw new \InvalidArgumentException('Missing required field "secret" for ' . static::class . '.');
-        }
-        if (!array_key_exists('hint', $data)) {
-            throw new \InvalidArgumentException('Missing required field "hint" for ' . static::class . '.');
-        }
-        if (!array_key_exists('createdById', $data)) {
-            throw new \InvalidArgumentException('Missing required field "createdById" for ' . static::class . '.');
-        }
-        if (!array_key_exists('createdByName', $data)) {
-            throw new \InvalidArgumentException('Missing required field "createdByName" for ' . static::class . '.');
-        }
+        $data += [
+            '$id' => "",
+            '$createdAt' => "",
+            '$updatedAt' => "",
+            'appId' => "",
+            'secret' => "",
+            'hint' => "",
+            'createdById' => "",
+            'createdByName' => "",
+        ];
 
         return new static(
             id: $data['$id'],

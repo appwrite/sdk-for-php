@@ -34,18 +34,12 @@ readonly class OAuth2Facebook
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('$id', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
-        }
-        if (!array_key_exists('enabled', $data)) {
-            throw new \InvalidArgumentException('Missing required field "enabled" for ' . static::class . '.');
-        }
-        if (!array_key_exists('appId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "appId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('appSecret', $data)) {
-            throw new \InvalidArgumentException('Missing required field "appSecret" for ' . static::class . '.');
-        }
+        $data += [
+            '$id' => "",
+            'enabled' => false,
+            'appId' => "",
+            'appSecret' => "",
+        ];
 
         return new static(
             id: $data['$id'],

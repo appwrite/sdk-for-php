@@ -34,18 +34,12 @@ readonly class ProxyInvalidation
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('domain', $data)) {
-            throw new \InvalidArgumentException('Missing required field "domain" for ' . static::class . '.');
-        }
-        if (!array_key_exists('type', $data)) {
-            throw new \InvalidArgumentException('Missing required field "type" for ' . static::class . '.');
-        }
-        if (!array_key_exists('reference', $data)) {
-            throw new \InvalidArgumentException('Missing required field "reference" for ' . static::class . '.');
-        }
-        if (!array_key_exists('status', $data)) {
-            throw new \InvalidArgumentException('Missing required field "status" for ' . static::class . '.');
-        }
+        $data += [
+            'domain' => "",
+            'type' => "",
+            'reference' => "",
+            'status' => "",
+        ];
 
         return new static(
             domain: $data['domain'],

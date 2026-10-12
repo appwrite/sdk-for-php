@@ -34,18 +34,12 @@ readonly class PostgresExtension
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('key', $data)) {
-            throw new \InvalidArgumentException('Missing required field "key" for ' . static::class . '.');
-        }
-        if (!array_key_exists('name', $data)) {
-            throw new \InvalidArgumentException('Missing required field "name" for ' . static::class . '.');
-        }
-        if (!array_key_exists('description', $data)) {
-            throw new \InvalidArgumentException('Missing required field "description" for ' . static::class . '.');
-        }
-        if (!array_key_exists('category', $data)) {
-            throw new \InvalidArgumentException('Missing required field "category" for ' . static::class . '.');
-        }
+        $data += [
+            'key' => "",
+            'name' => "",
+            'description' => "",
+            'category' => "",
+        ];
 
         return new static(
             key: $data['key'],

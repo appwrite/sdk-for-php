@@ -50,35 +50,22 @@ readonly class BackupPolicy
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('$id', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
-        }
-        if (!array_key_exists('name', $data)) {
-            throw new \InvalidArgumentException('Missing required field "name" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$createdAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$createdAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$updatedAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$updatedAt" for ' . static::class . '.');
-        }
+        $data += [
+            '$id' => "",
+            'name' => "",
+            '$createdAt' => "",
+            '$updatedAt' => "",
+            'retention' => 1,
+            'schedule' => "0 * * * *",
+            'type' => "full",
+            'enabled' => false,
+        ];
+
         if (!array_key_exists('services', $data)) {
             throw new \InvalidArgumentException('Missing required field "services" for ' . static::class . '.');
         }
         if (!array_key_exists('resources', $data)) {
             throw new \InvalidArgumentException('Missing required field "resources" for ' . static::class . '.');
-        }
-        if (!array_key_exists('retention', $data)) {
-            throw new \InvalidArgumentException('Missing required field "retention" for ' . static::class . '.');
-        }
-        if (!array_key_exists('schedule', $data)) {
-            throw new \InvalidArgumentException('Missing required field "schedule" for ' . static::class . '.');
-        }
-        if (!array_key_exists('type', $data)) {
-            throw new \InvalidArgumentException('Missing required field "type" for ' . static::class . '.');
-        }
-        if (!array_key_exists('enabled', $data)) {
-            throw new \InvalidArgumentException('Missing required field "enabled" for ' . static::class . '.');
         }
 
         return new static(

@@ -46,36 +46,18 @@ readonly class Oauth2Consent
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('$id', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$createdAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$createdAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$updatedAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$updatedAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('userId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "userId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('appId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "appId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('cimdUrl', $data)) {
-            throw new \InvalidArgumentException('Missing required field "cimdUrl" for ' . static::class . '.');
-        }
-        if (!array_key_exists('scopes', $data)) {
-            throw new \InvalidArgumentException('Missing required field "scopes" for ' . static::class . '.');
-        }
-        if (!array_key_exists('resources', $data)) {
-            throw new \InvalidArgumentException('Missing required field "resources" for ' . static::class . '.');
-        }
-        if (!array_key_exists('authorizationDetails', $data)) {
-            throw new \InvalidArgumentException('Missing required field "authorizationDetails" for ' . static::class . '.');
-        }
-        if (!array_key_exists('expire', $data)) {
-            throw new \InvalidArgumentException('Missing required field "expire" for ' . static::class . '.');
-        }
+        $data += [
+            '$id' => "",
+            '$createdAt' => "",
+            '$updatedAt' => "",
+            'userId' => "",
+            'appId' => "",
+            'cimdUrl' => "",
+            'scopes' => [],
+            'resources' => [],
+            'authorizationDetails' => "[]",
+            'expire' => "",
+        ];
 
         return new static(
             id: $data['$id'],

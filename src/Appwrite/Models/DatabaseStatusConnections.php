@@ -30,12 +30,10 @@ readonly class DatabaseStatusConnections
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('current', $data)) {
-            throw new \InvalidArgumentException('Missing required field "current" for ' . static::class . '.');
-        }
-        if (!array_key_exists('max', $data)) {
-            throw new \InvalidArgumentException('Missing required field "max" for ' . static::class . '.');
-        }
+        $data += [
+            'current' => 0,
+            'max' => 100,
+        ];
 
         return new static(
             current: $data['current'],

@@ -38,24 +38,14 @@ readonly class OAuth2Okta
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('$id', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
-        }
-        if (!array_key_exists('enabled', $data)) {
-            throw new \InvalidArgumentException('Missing required field "enabled" for ' . static::class . '.');
-        }
-        if (!array_key_exists('clientId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "clientId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('clientSecret', $data)) {
-            throw new \InvalidArgumentException('Missing required field "clientSecret" for ' . static::class . '.');
-        }
-        if (!array_key_exists('domain', $data)) {
-            throw new \InvalidArgumentException('Missing required field "domain" for ' . static::class . '.');
-        }
-        if (!array_key_exists('authorizationServerId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "authorizationServerId" for ' . static::class . '.');
-        }
+        $data += [
+            '$id' => "",
+            'enabled' => false,
+            'clientId' => "",
+            'clientSecret' => "",
+            'domain' => "",
+            'authorizationServerId' => "",
+        ];
 
         return new static(
             id: $data['$id'],

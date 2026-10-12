@@ -36,18 +36,12 @@ readonly class FrameworkAdapter
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('key', $data)) {
-            throw new \InvalidArgumentException('Missing required field "key" for ' . static::class . '.');
-        }
-        if (!array_key_exists('installCommand', $data)) {
-            throw new \InvalidArgumentException('Missing required field "installCommand" for ' . static::class . '.');
-        }
-        if (!array_key_exists('buildCommand', $data)) {
-            throw new \InvalidArgumentException('Missing required field "buildCommand" for ' . static::class . '.');
-        }
-        if (!array_key_exists('outputDirectory', $data)) {
-            throw new \InvalidArgumentException('Missing required field "outputDirectory" for ' . static::class . '.');
-        }
+        $data += [
+            'key' => "",
+            'installCommand' => "",
+            'buildCommand' => "",
+            'outputDirectory' => "",
+        ];
 
         return new static(
             key: $data['key'],

@@ -68,26 +68,24 @@ readonly class Execution
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('$id', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$createdAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$createdAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$updatedAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$updatedAt" for ' . static::class . '.');
-        }
+        $data += [
+            '$id' => "",
+            '$createdAt' => "",
+            '$updatedAt' => "",
+            'resourceId' => "",
+            'resourceType' => "functions",
+            'deploymentId' => "",
+            'requestMethod' => "",
+            'requestPath' => "",
+            'responseStatusCode' => 0,
+            'responseBody' => "",
+            'logs' => "",
+            'errors' => "",
+            'duration' => 0,
+        ];
+
         if (!array_key_exists('$permissions', $data)) {
             throw new \InvalidArgumentException('Missing required field "$permissions" for ' . static::class . '.');
-        }
-        if (!array_key_exists('resourceId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "resourceId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('resourceType', $data)) {
-            throw new \InvalidArgumentException('Missing required field "resourceType" for ' . static::class . '.');
-        }
-        if (!array_key_exists('deploymentId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "deploymentId" for ' . static::class . '.');
         }
         if (!array_key_exists('trigger', $data)) {
             throw new \InvalidArgumentException('Missing required field "trigger" for ' . static::class . '.');
@@ -95,32 +93,11 @@ readonly class Execution
         if (!array_key_exists('status', $data)) {
             throw new \InvalidArgumentException('Missing required field "status" for ' . static::class . '.');
         }
-        if (!array_key_exists('requestMethod', $data)) {
-            throw new \InvalidArgumentException('Missing required field "requestMethod" for ' . static::class . '.');
-        }
-        if (!array_key_exists('requestPath', $data)) {
-            throw new \InvalidArgumentException('Missing required field "requestPath" for ' . static::class . '.');
-        }
         if (!array_key_exists('requestHeaders', $data)) {
             throw new \InvalidArgumentException('Missing required field "requestHeaders" for ' . static::class . '.');
         }
-        if (!array_key_exists('responseStatusCode', $data)) {
-            throw new \InvalidArgumentException('Missing required field "responseStatusCode" for ' . static::class . '.');
-        }
-        if (!array_key_exists('responseBody', $data)) {
-            throw new \InvalidArgumentException('Missing required field "responseBody" for ' . static::class . '.');
-        }
         if (!array_key_exists('responseHeaders', $data)) {
             throw new \InvalidArgumentException('Missing required field "responseHeaders" for ' . static::class . '.');
-        }
-        if (!array_key_exists('logs', $data)) {
-            throw new \InvalidArgumentException('Missing required field "logs" for ' . static::class . '.');
-        }
-        if (!array_key_exists('errors', $data)) {
-            throw new \InvalidArgumentException('Missing required field "errors" for ' . static::class . '.');
-        }
-        if (!array_key_exists('duration', $data)) {
-            throw new \InvalidArgumentException('Missing required field "duration" for ' . static::class . '.');
         }
 
         return new static(

@@ -34,18 +34,12 @@ readonly class Specification
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('memory', $data)) {
-            throw new \InvalidArgumentException('Missing required field "memory" for ' . static::class . '.');
-        }
-        if (!array_key_exists('cpus', $data)) {
-            throw new \InvalidArgumentException('Missing required field "cpus" for ' . static::class . '.');
-        }
-        if (!array_key_exists('enabled', $data)) {
-            throw new \InvalidArgumentException('Missing required field "enabled" for ' . static::class . '.');
-        }
-        if (!array_key_exists('slug', $data)) {
-            throw new \InvalidArgumentException('Missing required field "slug" for ' . static::class . '.');
-        }
+        $data += [
+            'memory' => 0,
+            'cpus' => 0,
+            'enabled' => false,
+            'slug' => "",
+        ];
 
         return new static(
             memory: $data['memory'],

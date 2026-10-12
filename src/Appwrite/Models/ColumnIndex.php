@@ -46,33 +46,17 @@ readonly class ColumnIndex
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('$id', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$createdAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$createdAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$updatedAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$updatedAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('key', $data)) {
-            throw new \InvalidArgumentException('Missing required field "key" for ' . static::class . '.');
-        }
-        if (!array_key_exists('type', $data)) {
-            throw new \InvalidArgumentException('Missing required field "type" for ' . static::class . '.');
-        }
-        if (!array_key_exists('status', $data)) {
-            throw new \InvalidArgumentException('Missing required field "status" for ' . static::class . '.');
-        }
-        if (!array_key_exists('error', $data)) {
-            throw new \InvalidArgumentException('Missing required field "error" for ' . static::class . '.');
-        }
-        if (!array_key_exists('columns', $data)) {
-            throw new \InvalidArgumentException('Missing required field "columns" for ' . static::class . '.');
-        }
-        if (!array_key_exists('lengths', $data)) {
-            throw new \InvalidArgumentException('Missing required field "lengths" for ' . static::class . '.');
-        }
+        $data += [
+            '$id' => "",
+            '$createdAt' => "",
+            '$updatedAt' => "",
+            'key' => "",
+            'type' => "",
+            'status' => "",
+            'error' => "",
+            'columns' => [],
+            'lengths' => [],
+        ];
 
         return new static(
             id: $data['$id'],

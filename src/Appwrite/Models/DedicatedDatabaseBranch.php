@@ -50,41 +50,22 @@ readonly class DedicatedDatabaseBranch
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('branchId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "branchId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('branchName', $data)) {
-            throw new \InvalidArgumentException('Missing required field "branchName" for ' . static::class . '.');
-        }
-        if (!array_key_exists('namespace', $data)) {
-            throw new \InvalidArgumentException('Missing required field "namespace" for ' . static::class . '.');
-        }
-        if (!array_key_exists('expiresAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "expiresAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('host', $data)) {
-            throw new \InvalidArgumentException('Missing required field "host" for ' . static::class . '.');
-        }
+        $data += [
+            'branchId' => "",
+            'branchName' => "",
+            'namespace' => "",
+            'expiresAt' => 0,
+            'host' => "",
+            'database' => "",
+            'username' => "",
+            'password' => "",
+            'ssl' => false,
+            'engine' => "",
+            'connectionString' => "",
+        ];
+
         if (!array_key_exists('port', $data)) {
             throw new \InvalidArgumentException('Missing required field "port" for ' . static::class . '.');
-        }
-        if (!array_key_exists('database', $data)) {
-            throw new \InvalidArgumentException('Missing required field "database" for ' . static::class . '.');
-        }
-        if (!array_key_exists('username', $data)) {
-            throw new \InvalidArgumentException('Missing required field "username" for ' . static::class . '.');
-        }
-        if (!array_key_exists('password', $data)) {
-            throw new \InvalidArgumentException('Missing required field "password" for ' . static::class . '.');
-        }
-        if (!array_key_exists('ssl', $data)) {
-            throw new \InvalidArgumentException('Missing required field "ssl" for ' . static::class . '.');
-        }
-        if (!array_key_exists('engine', $data)) {
-            throw new \InvalidArgumentException('Missing required field "engine" for ' . static::class . '.');
-        }
-        if (!array_key_exists('connectionString', $data)) {
-            throw new \InvalidArgumentException('Missing required field "connectionString" for ' . static::class . '.');
         }
 
         return new static(

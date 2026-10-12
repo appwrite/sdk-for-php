@@ -30,12 +30,10 @@ readonly class PolicySessionDuration
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('$id', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
-        }
-        if (!array_key_exists('duration', $data)) {
-            throw new \InvalidArgumentException('Missing required field "duration" for ' . static::class . '.');
-        }
+        $data += [
+            '$id' => "",
+            'duration' => 31536000,
+        ];
 
         return new static(
             id: $data['$id'],

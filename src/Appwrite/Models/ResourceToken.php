@@ -40,27 +40,15 @@ readonly class ResourceToken
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('$id', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$createdAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$createdAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('resourceId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "resourceId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('resourceType', $data)) {
-            throw new \InvalidArgumentException('Missing required field "resourceType" for ' . static::class . '.');
-        }
-        if (!array_key_exists('expire', $data)) {
-            throw new \InvalidArgumentException('Missing required field "expire" for ' . static::class . '.');
-        }
-        if (!array_key_exists('secret', $data)) {
-            throw new \InvalidArgumentException('Missing required field "secret" for ' . static::class . '.');
-        }
-        if (!array_key_exists('accessedAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "accessedAt" for ' . static::class . '.');
-        }
+        $data += [
+            '$id' => "",
+            '$createdAt' => "",
+            'resourceId' => "",
+            'resourceType' => "",
+            'expire' => "",
+            'secret' => "",
+            'accessedAt' => "",
+        ];
 
         return new static(
             id: $data['$id'],

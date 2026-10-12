@@ -34,18 +34,12 @@ readonly class OAuth2Etsy
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('$id', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
-        }
-        if (!array_key_exists('enabled', $data)) {
-            throw new \InvalidArgumentException('Missing required field "enabled" for ' . static::class . '.');
-        }
-        if (!array_key_exists('keyString', $data)) {
-            throw new \InvalidArgumentException('Missing required field "keyString" for ' . static::class . '.');
-        }
-        if (!array_key_exists('sharedSecret', $data)) {
-            throw new \InvalidArgumentException('Missing required field "sharedSecret" for ' . static::class . '.');
-        }
+        $data += [
+            '$id' => "",
+            'enabled' => false,
+            'keyString' => "",
+            'sharedSecret' => "",
+        ];
 
         return new static(
             id: $data['$id'],

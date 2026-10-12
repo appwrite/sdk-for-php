@@ -28,9 +28,9 @@ readonly class Oauth2Reject
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('redirectUrl', $data)) {
-            throw new \InvalidArgumentException('Missing required field "redirectUrl" for ' . static::class . '.');
-        }
+        $data += [
+            'redirectUrl' => "",
+        ];
 
         return new static(
             redirectUrl: $data['redirectUrl']

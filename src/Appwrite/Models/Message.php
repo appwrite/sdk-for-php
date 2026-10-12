@@ -54,18 +54,16 @@ readonly class Message
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('$id', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$createdAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$createdAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$updatedAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$updatedAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('providerType', $data)) {
-            throw new \InvalidArgumentException('Missing required field "providerType" for ' . static::class . '.');
-        }
+        $data += [
+            '$id' => "",
+            '$createdAt' => "",
+            '$updatedAt' => "",
+            'providerType' => "",
+            'deliveredTotal' => 0,
+            'data' => [],
+            'status' => "draft",
+        ];
+
         if (!array_key_exists('topics', $data)) {
             throw new \InvalidArgumentException('Missing required field "topics" for ' . static::class . '.');
         }
@@ -74,15 +72,6 @@ readonly class Message
         }
         if (!array_key_exists('targets', $data)) {
             throw new \InvalidArgumentException('Missing required field "targets" for ' . static::class . '.');
-        }
-        if (!array_key_exists('deliveredTotal', $data)) {
-            throw new \InvalidArgumentException('Missing required field "deliveredTotal" for ' . static::class . '.');
-        }
-        if (!array_key_exists('data', $data)) {
-            throw new \InvalidArgumentException('Missing required field "data" for ' . static::class . '.');
-        }
-        if (!array_key_exists('status', $data)) {
-            throw new \InvalidArgumentException('Missing required field "status" for ' . static::class . '.');
         }
 
         return new static(

@@ -50,36 +50,19 @@ readonly class Report
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('$id', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$createdAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$createdAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$updatedAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$updatedAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('appId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "appId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('type', $data)) {
-            throw new \InvalidArgumentException('Missing required field "type" for ' . static::class . '.');
-        }
-        if (!array_key_exists('title', $data)) {
-            throw new \InvalidArgumentException('Missing required field "title" for ' . static::class . '.');
-        }
-        if (!array_key_exists('summary', $data)) {
-            throw new \InvalidArgumentException('Missing required field "summary" for ' . static::class . '.');
-        }
-        if (!array_key_exists('targetType', $data)) {
-            throw new \InvalidArgumentException('Missing required field "targetType" for ' . static::class . '.');
-        }
-        if (!array_key_exists('target', $data)) {
-            throw new \InvalidArgumentException('Missing required field "target" for ' . static::class . '.');
-        }
-        if (!array_key_exists('categories', $data)) {
-            throw new \InvalidArgumentException('Missing required field "categories" for ' . static::class . '.');
-        }
+        $data += [
+            '$id' => "",
+            '$createdAt' => "",
+            '$updatedAt' => "",
+            'appId' => "",
+            'type' => "",
+            'title' => "",
+            'summary' => "",
+            'targetType' => "",
+            'target' => "",
+            'categories' => [],
+        ];
+
         if (!array_key_exists('insights', $data)) {
             throw new \InvalidArgumentException('Missing required field "insights" for ' . static::class . '.');
         }

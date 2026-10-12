@@ -30,12 +30,10 @@ readonly class DedicatedDatabasePITRWindows
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('earliest', $data)) {
-            throw new \InvalidArgumentException('Missing required field "earliest" for ' . static::class . '.');
-        }
-        if (!array_key_exists('latest', $data)) {
-            throw new \InvalidArgumentException('Missing required field "latest" for ' . static::class . '.');
-        }
+        $data += [
+            'earliest' => "",
+            'latest' => "",
+        ];
 
         return new static(
             earliest: $data['earliest'],

@@ -32,15 +32,11 @@ readonly class Phone
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('code', $data)) {
-            throw new \InvalidArgumentException('Missing required field "code" for ' . static::class . '.');
-        }
-        if (!array_key_exists('countryCode', $data)) {
-            throw new \InvalidArgumentException('Missing required field "countryCode" for ' . static::class . '.');
-        }
-        if (!array_key_exists('countryName', $data)) {
-            throw new \InvalidArgumentException('Missing required field "countryName" for ' . static::class . '.');
-        }
+        $data += [
+            'code' => "",
+            'countryCode' => "",
+            'countryName' => "",
+        ];
 
         return new static(
             code: $data['code'],

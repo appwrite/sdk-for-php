@@ -42,27 +42,16 @@ readonly class Runtime
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('$id', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
-        }
-        if (!array_key_exists('key', $data)) {
-            throw new \InvalidArgumentException('Missing required field "key" for ' . static::class . '.');
-        }
-        if (!array_key_exists('name', $data)) {
-            throw new \InvalidArgumentException('Missing required field "name" for ' . static::class . '.');
-        }
-        if (!array_key_exists('version', $data)) {
-            throw new \InvalidArgumentException('Missing required field "version" for ' . static::class . '.');
-        }
-        if (!array_key_exists('base', $data)) {
-            throw new \InvalidArgumentException('Missing required field "base" for ' . static::class . '.');
-        }
-        if (!array_key_exists('image', $data)) {
-            throw new \InvalidArgumentException('Missing required field "image" for ' . static::class . '.');
-        }
-        if (!array_key_exists('logo', $data)) {
-            throw new \InvalidArgumentException('Missing required field "logo" for ' . static::class . '.');
-        }
+        $data += [
+            '$id' => "",
+            'key' => "",
+            'name' => "",
+            'version' => "",
+            'base' => "",
+            'image' => "",
+            'logo' => "",
+        ];
+
         if (!array_key_exists('supports', $data)) {
             throw new \InvalidArgumentException('Missing required field "supports" for ' . static::class . '.');
         }

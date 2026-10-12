@@ -36,21 +36,13 @@ readonly class OAuth2Gitlab
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('$id', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
-        }
-        if (!array_key_exists('enabled', $data)) {
-            throw new \InvalidArgumentException('Missing required field "enabled" for ' . static::class . '.');
-        }
-        if (!array_key_exists('applicationId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "applicationId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('secret', $data)) {
-            throw new \InvalidArgumentException('Missing required field "secret" for ' . static::class . '.');
-        }
-        if (!array_key_exists('endpoint', $data)) {
-            throw new \InvalidArgumentException('Missing required field "endpoint" for ' . static::class . '.');
-        }
+        $data += [
+            '$id' => "",
+            'enabled' => false,
+            'applicationId' => "",
+            'secret' => "",
+            'endpoint' => "",
+        ];
 
         return new static(
             id: $data['$id'],

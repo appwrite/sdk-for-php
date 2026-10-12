@@ -48,18 +48,13 @@ readonly class Block
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('$createdAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$createdAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('resourceType', $data)) {
-            throw new \InvalidArgumentException('Missing required field "resourceType" for ' . static::class . '.');
-        }
-        if (!array_key_exists('resourceId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "resourceId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('mode', $data)) {
-            throw new \InvalidArgumentException('Missing required field "mode" for ' . static::class . '.');
-        }
+        $data += [
+            '$createdAt' => "",
+            'resourceType' => "",
+            'resourceId' => "",
+            'mode' => "full",
+        ];
+
         if (!array_key_exists('projectName', $data)) {
             throw new \InvalidArgumentException('Missing required field "projectName" for ' . static::class . '.');
         }

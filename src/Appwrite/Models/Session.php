@@ -84,93 +84,37 @@ readonly class Session
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('$id', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$createdAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$createdAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$updatedAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$updatedAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('userId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "userId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('expire', $data)) {
-            throw new \InvalidArgumentException('Missing required field "expire" for ' . static::class . '.');
-        }
-        if (!array_key_exists('provider', $data)) {
-            throw new \InvalidArgumentException('Missing required field "provider" for ' . static::class . '.');
-        }
-        if (!array_key_exists('providerUid', $data)) {
-            throw new \InvalidArgumentException('Missing required field "providerUid" for ' . static::class . '.');
-        }
-        if (!array_key_exists('providerAccessToken', $data)) {
-            throw new \InvalidArgumentException('Missing required field "providerAccessToken" for ' . static::class . '.');
-        }
-        if (!array_key_exists('providerAccessTokenExpiry', $data)) {
-            throw new \InvalidArgumentException('Missing required field "providerAccessTokenExpiry" for ' . static::class . '.');
-        }
-        if (!array_key_exists('providerRefreshToken', $data)) {
-            throw new \InvalidArgumentException('Missing required field "providerRefreshToken" for ' . static::class . '.');
-        }
-        if (!array_key_exists('ip', $data)) {
-            throw new \InvalidArgumentException('Missing required field "ip" for ' . static::class . '.');
-        }
-        if (!array_key_exists('osCode', $data)) {
-            throw new \InvalidArgumentException('Missing required field "osCode" for ' . static::class . '.');
-        }
-        if (!array_key_exists('osName', $data)) {
-            throw new \InvalidArgumentException('Missing required field "osName" for ' . static::class . '.');
-        }
-        if (!array_key_exists('osVersion', $data)) {
-            throw new \InvalidArgumentException('Missing required field "osVersion" for ' . static::class . '.');
-        }
-        if (!array_key_exists('clientType', $data)) {
-            throw new \InvalidArgumentException('Missing required field "clientType" for ' . static::class . '.');
-        }
-        if (!array_key_exists('clientCode', $data)) {
-            throw new \InvalidArgumentException('Missing required field "clientCode" for ' . static::class . '.');
-        }
-        if (!array_key_exists('clientName', $data)) {
-            throw new \InvalidArgumentException('Missing required field "clientName" for ' . static::class . '.');
-        }
-        if (!array_key_exists('clientVersion', $data)) {
-            throw new \InvalidArgumentException('Missing required field "clientVersion" for ' . static::class . '.');
-        }
-        if (!array_key_exists('clientEngine', $data)) {
-            throw new \InvalidArgumentException('Missing required field "clientEngine" for ' . static::class . '.');
-        }
-        if (!array_key_exists('clientEngineVersion', $data)) {
-            throw new \InvalidArgumentException('Missing required field "clientEngineVersion" for ' . static::class . '.');
-        }
-        if (!array_key_exists('deviceName', $data)) {
-            throw new \InvalidArgumentException('Missing required field "deviceName" for ' . static::class . '.');
-        }
-        if (!array_key_exists('deviceBrand', $data)) {
-            throw new \InvalidArgumentException('Missing required field "deviceBrand" for ' . static::class . '.');
-        }
-        if (!array_key_exists('deviceModel', $data)) {
-            throw new \InvalidArgumentException('Missing required field "deviceModel" for ' . static::class . '.');
-        }
-        if (!array_key_exists('countryCode', $data)) {
-            throw new \InvalidArgumentException('Missing required field "countryCode" for ' . static::class . '.');
-        }
-        if (!array_key_exists('countryName', $data)) {
-            throw new \InvalidArgumentException('Missing required field "countryName" for ' . static::class . '.');
-        }
-        if (!array_key_exists('current', $data)) {
-            throw new \InvalidArgumentException('Missing required field "current" for ' . static::class . '.');
-        }
-        if (!array_key_exists('factors', $data)) {
-            throw new \InvalidArgumentException('Missing required field "factors" for ' . static::class . '.');
-        }
-        if (!array_key_exists('secret', $data)) {
-            throw new \InvalidArgumentException('Missing required field "secret" for ' . static::class . '.');
-        }
-        if (!array_key_exists('mfaUpdatedAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "mfaUpdatedAt" for ' . static::class . '.');
-        }
+        $data += [
+            '$id' => "",
+            '$createdAt' => "",
+            '$updatedAt' => "",
+            'userId' => "",
+            'expire' => "",
+            'provider' => "",
+            'providerUid' => "",
+            'providerAccessToken' => "",
+            'providerAccessTokenExpiry' => "",
+            'providerRefreshToken' => "",
+            'ip' => "",
+            'osCode' => "",
+            'osName' => "",
+            'osVersion' => "",
+            'clientType' => "",
+            'clientCode' => "",
+            'clientName' => "",
+            'clientVersion' => "",
+            'clientEngine' => "",
+            'clientEngineVersion' => "",
+            'deviceName' => "",
+            'deviceBrand' => "",
+            'deviceModel' => "",
+            'countryCode' => "",
+            'countryName' => "",
+            'current' => false,
+            'factors' => [],
+            'secret' => "",
+            'mfaUpdatedAt' => "",
+        ];
 
         return new static(
             id: $data['$id'],

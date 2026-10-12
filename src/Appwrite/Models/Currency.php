@@ -40,27 +40,15 @@ readonly class Currency
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('symbol', $data)) {
-            throw new \InvalidArgumentException('Missing required field "symbol" for ' . static::class . '.');
-        }
-        if (!array_key_exists('name', $data)) {
-            throw new \InvalidArgumentException('Missing required field "name" for ' . static::class . '.');
-        }
-        if (!array_key_exists('symbolNative', $data)) {
-            throw new \InvalidArgumentException('Missing required field "symbolNative" for ' . static::class . '.');
-        }
-        if (!array_key_exists('decimalDigits', $data)) {
-            throw new \InvalidArgumentException('Missing required field "decimalDigits" for ' . static::class . '.');
-        }
-        if (!array_key_exists('rounding', $data)) {
-            throw new \InvalidArgumentException('Missing required field "rounding" for ' . static::class . '.');
-        }
-        if (!array_key_exists('code', $data)) {
-            throw new \InvalidArgumentException('Missing required field "code" for ' . static::class . '.');
-        }
-        if (!array_key_exists('namePlural', $data)) {
-            throw new \InvalidArgumentException('Missing required field "namePlural" for ' . static::class . '.');
-        }
+        $data += [
+            'symbol' => "",
+            'name' => "",
+            'symbolNative' => "",
+            'decimalDigits' => 0,
+            'rounding' => 0,
+            'code' => "",
+            'namePlural' => "",
+        ];
 
         return new static(
             symbol: $data['symbol'],

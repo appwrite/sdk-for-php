@@ -36,21 +36,13 @@ readonly class DedicatedDatabaseBackupStorage
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('provider', $data)) {
-            throw new \InvalidArgumentException('Missing required field "provider" for ' . static::class . '.');
-        }
-        if (!array_key_exists('bucket', $data)) {
-            throw new \InvalidArgumentException('Missing required field "bucket" for ' . static::class . '.');
-        }
-        if (!array_key_exists('region', $data)) {
-            throw new \InvalidArgumentException('Missing required field "region" for ' . static::class . '.');
-        }
-        if (!array_key_exists('prefix', $data)) {
-            throw new \InvalidArgumentException('Missing required field "prefix" for ' . static::class . '.');
-        }
-        if (!array_key_exists('endpoint', $data)) {
-            throw new \InvalidArgumentException('Missing required field "endpoint" for ' . static::class . '.');
-        }
+        $data += [
+            'provider' => "",
+            'bucket' => "",
+            'region' => "",
+            'prefix' => "backups/",
+            'endpoint' => "",
+        ];
 
         return new static(
             provider: $data['provider'],

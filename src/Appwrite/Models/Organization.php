@@ -96,38 +96,27 @@ readonly class Organization
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('$id', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$createdAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$createdAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$updatedAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$updatedAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('name', $data)) {
-            throw new \InvalidArgumentException('Missing required field "name" for ' . static::class . '.');
-        }
-        if (!array_key_exists('total', $data)) {
-            throw new \InvalidArgumentException('Missing required field "total" for ' . static::class . '.');
-        }
+        $data += [
+            '$id' => "",
+            '$createdAt' => "",
+            '$updatedAt' => "",
+            'name' => "",
+            'total' => 0,
+            'budgetAlerts' => [75],
+            'billingPlan' => "tier-0",
+            'billingPlanId' => "tier-0",
+            'billingEmail' => "",
+            'status' => "draft",
+            'markedForDeletion' => false,
+            'platform' => "appwrite",
+            'projects' => [],
+        ];
+
         if (!array_key_exists('prefs', $data)) {
             throw new \InvalidArgumentException('Missing required field "prefs" for ' . static::class . '.');
         }
-        if (!array_key_exists('budgetAlerts', $data)) {
-            throw new \InvalidArgumentException('Missing required field "budgetAlerts" for ' . static::class . '.');
-        }
-        if (!array_key_exists('billingPlan', $data)) {
-            throw new \InvalidArgumentException('Missing required field "billingPlan" for ' . static::class . '.');
-        }
-        if (!array_key_exists('billingPlanId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "billingPlanId" for ' . static::class . '.');
-        }
         if (!array_key_exists('billingPlanDetails', $data)) {
             throw new \InvalidArgumentException('Missing required field "billingPlanDetails" for ' . static::class . '.');
-        }
-        if (!array_key_exists('billingEmail', $data)) {
-            throw new \InvalidArgumentException('Missing required field "billingEmail" for ' . static::class . '.');
         }
         if (!array_key_exists('billingStartDate', $data)) {
             throw new \InvalidArgumentException('Missing required field "billingStartDate" for ' . static::class . '.');
@@ -149,18 +138,6 @@ readonly class Organization
         }
         if (!array_key_exists('paymentMethodId', $data)) {
             throw new \InvalidArgumentException('Missing required field "paymentMethodId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('status', $data)) {
-            throw new \InvalidArgumentException('Missing required field "status" for ' . static::class . '.');
-        }
-        if (!array_key_exists('markedForDeletion', $data)) {
-            throw new \InvalidArgumentException('Missing required field "markedForDeletion" for ' . static::class . '.');
-        }
-        if (!array_key_exists('platform', $data)) {
-            throw new \InvalidArgumentException('Missing required field "platform" for ' . static::class . '.');
-        }
-        if (!array_key_exists('projects', $data)) {
-            throw new \InvalidArgumentException('Missing required field "projects" for ' . static::class . '.');
         }
 
         return new static(

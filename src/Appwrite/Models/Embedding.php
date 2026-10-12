@@ -34,18 +34,12 @@ readonly class Embedding
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('model', $data)) {
-            throw new \InvalidArgumentException('Missing required field "model" for ' . static::class . '.');
-        }
-        if (!array_key_exists('dimension', $data)) {
-            throw new \InvalidArgumentException('Missing required field "dimension" for ' . static::class . '.');
-        }
-        if (!array_key_exists('embedding', $data)) {
-            throw new \InvalidArgumentException('Missing required field "embedding" for ' . static::class . '.');
-        }
-        if (!array_key_exists('error', $data)) {
-            throw new \InvalidArgumentException('Missing required field "error" for ' . static::class . '.');
-        }
+        $data += [
+            'model' => "",
+            'dimension' => 0,
+            'embedding' => [],
+            'error' => "",
+        ];
 
         return new static(
             model: $data['model'],

@@ -124,146 +124,63 @@ readonly class DedicatedDatabase
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('$id', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$createdAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$createdAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$updatedAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$updatedAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('projectId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "projectId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('name', $data)) {
-            throw new \InvalidArgumentException('Missing required field "name" for ' . static::class . '.');
-        }
+        $data += [
+            '$id' => "",
+            '$createdAt' => "",
+            '$updatedAt' => "",
+            'projectId' => "",
+            'name' => "",
+            'version' => "",
+            'specification' => "",
+            'backend' => "",
+            'hostname' => "",
+            'connectionUser' => "",
+            'connectionPassword' => "",
+            'connectionString' => "",
+            'ssl' => false,
+            'status' => "provisioning",
+            'containerStatus' => "",
+            'lifecycleState' => "",
+            'idleTimeoutMinutes' => 15,
+            'cpu' => 500,
+            'memory' => 512,
+            'storage' => 10,
+            'storageClass' => "ssd",
+            'storageMaxGb' => 0,
+            'nodePool' => "",
+            'replicas' => 0,
+            'syncMode' => "",
+            'networkMaxConnections' => 100,
+            'networkIdleTimeoutSeconds' => 900,
+            'networkIPAllowlist' => [],
+            'backupEnabled' => true,
+            'pitr' => true,
+            'pitrRetentionDays' => 7,
+            'storageAutoscaling' => true,
+            'storageAutoscalingThresholdPercent' => 85,
+            'storageAutoscalingMaxGb' => 0,
+            'maintenanceWindowDay' => "sun",
+            'maintenanceWindowHourUtc' => 3,
+            'metricsEnabled' => false,
+            'sqlApiEnabled' => true,
+            'sqlApiAllowedStatements' => ["SELECT", "INSERT", "UPDATE", "DELETE"],
+            'sqlApiMaxRows' => 10000,
+            'sqlApiMaxBytes' => 10485760,
+            'sqlApiTimeoutSeconds' => 30,
+            'error' => "",
+        ];
+
         if (!array_key_exists('api', $data)) {
             throw new \InvalidArgumentException('Missing required field "api" for ' . static::class . '.');
         }
         if (!array_key_exists('engine', $data)) {
             throw new \InvalidArgumentException('Missing required field "engine" for ' . static::class . '.');
         }
-        if (!array_key_exists('version', $data)) {
-            throw new \InvalidArgumentException('Missing required field "version" for ' . static::class . '.');
-        }
-        if (!array_key_exists('specification', $data)) {
-            throw new \InvalidArgumentException('Missing required field "specification" for ' . static::class . '.');
-        }
-        if (!array_key_exists('backend', $data)) {
-            throw new \InvalidArgumentException('Missing required field "backend" for ' . static::class . '.');
-        }
-        if (!array_key_exists('hostname', $data)) {
-            throw new \InvalidArgumentException('Missing required field "hostname" for ' . static::class . '.');
-        }
         if (!array_key_exists('connectionPort', $data)) {
             throw new \InvalidArgumentException('Missing required field "connectionPort" for ' . static::class . '.');
         }
-        if (!array_key_exists('connectionUser', $data)) {
-            throw new \InvalidArgumentException('Missing required field "connectionUser" for ' . static::class . '.');
-        }
-        if (!array_key_exists('connectionPassword', $data)) {
-            throw new \InvalidArgumentException('Missing required field "connectionPassword" for ' . static::class . '.');
-        }
         if (!array_key_exists('credentialGeneration', $data)) {
             throw new \InvalidArgumentException('Missing required field "credentialGeneration" for ' . static::class . '.');
-        }
-        if (!array_key_exists('connectionString', $data)) {
-            throw new \InvalidArgumentException('Missing required field "connectionString" for ' . static::class . '.');
-        }
-        if (!array_key_exists('ssl', $data)) {
-            throw new \InvalidArgumentException('Missing required field "ssl" for ' . static::class . '.');
-        }
-        if (!array_key_exists('status', $data)) {
-            throw new \InvalidArgumentException('Missing required field "status" for ' . static::class . '.');
-        }
-        if (!array_key_exists('containerStatus', $data)) {
-            throw new \InvalidArgumentException('Missing required field "containerStatus" for ' . static::class . '.');
-        }
-        if (!array_key_exists('lifecycleState', $data)) {
-            throw new \InvalidArgumentException('Missing required field "lifecycleState" for ' . static::class . '.');
-        }
-        if (!array_key_exists('idleTimeoutMinutes', $data)) {
-            throw new \InvalidArgumentException('Missing required field "idleTimeoutMinutes" for ' . static::class . '.');
-        }
-        if (!array_key_exists('cpu', $data)) {
-            throw new \InvalidArgumentException('Missing required field "cpu" for ' . static::class . '.');
-        }
-        if (!array_key_exists('memory', $data)) {
-            throw new \InvalidArgumentException('Missing required field "memory" for ' . static::class . '.');
-        }
-        if (!array_key_exists('storage', $data)) {
-            throw new \InvalidArgumentException('Missing required field "storage" for ' . static::class . '.');
-        }
-        if (!array_key_exists('storageClass', $data)) {
-            throw new \InvalidArgumentException('Missing required field "storageClass" for ' . static::class . '.');
-        }
-        if (!array_key_exists('storageMaxGb', $data)) {
-            throw new \InvalidArgumentException('Missing required field "storageMaxGb" for ' . static::class . '.');
-        }
-        if (!array_key_exists('nodePool', $data)) {
-            throw new \InvalidArgumentException('Missing required field "nodePool" for ' . static::class . '.');
-        }
-        if (!array_key_exists('replicas', $data)) {
-            throw new \InvalidArgumentException('Missing required field "replicas" for ' . static::class . '.');
-        }
-        if (!array_key_exists('syncMode', $data)) {
-            throw new \InvalidArgumentException('Missing required field "syncMode" for ' . static::class . '.');
-        }
-        if (!array_key_exists('networkMaxConnections', $data)) {
-            throw new \InvalidArgumentException('Missing required field "networkMaxConnections" for ' . static::class . '.');
-        }
-        if (!array_key_exists('networkIdleTimeoutSeconds', $data)) {
-            throw new \InvalidArgumentException('Missing required field "networkIdleTimeoutSeconds" for ' . static::class . '.');
-        }
-        if (!array_key_exists('networkIPAllowlist', $data)) {
-            throw new \InvalidArgumentException('Missing required field "networkIPAllowlist" for ' . static::class . '.');
-        }
-        if (!array_key_exists('backupEnabled', $data)) {
-            throw new \InvalidArgumentException('Missing required field "backupEnabled" for ' . static::class . '.');
-        }
-        if (!array_key_exists('pitr', $data)) {
-            throw new \InvalidArgumentException('Missing required field "pitr" for ' . static::class . '.');
-        }
-        if (!array_key_exists('pitrRetentionDays', $data)) {
-            throw new \InvalidArgumentException('Missing required field "pitrRetentionDays" for ' . static::class . '.');
-        }
-        if (!array_key_exists('storageAutoscaling', $data)) {
-            throw new \InvalidArgumentException('Missing required field "storageAutoscaling" for ' . static::class . '.');
-        }
-        if (!array_key_exists('storageAutoscalingThresholdPercent', $data)) {
-            throw new \InvalidArgumentException('Missing required field "storageAutoscalingThresholdPercent" for ' . static::class . '.');
-        }
-        if (!array_key_exists('storageAutoscalingMaxGb', $data)) {
-            throw new \InvalidArgumentException('Missing required field "storageAutoscalingMaxGb" for ' . static::class . '.');
-        }
-        if (!array_key_exists('maintenanceWindowDay', $data)) {
-            throw new \InvalidArgumentException('Missing required field "maintenanceWindowDay" for ' . static::class . '.');
-        }
-        if (!array_key_exists('maintenanceWindowHourUtc', $data)) {
-            throw new \InvalidArgumentException('Missing required field "maintenanceWindowHourUtc" for ' . static::class . '.');
-        }
-        if (!array_key_exists('metricsEnabled', $data)) {
-            throw new \InvalidArgumentException('Missing required field "metricsEnabled" for ' . static::class . '.');
-        }
-        if (!array_key_exists('sqlApiEnabled', $data)) {
-            throw new \InvalidArgumentException('Missing required field "sqlApiEnabled" for ' . static::class . '.');
-        }
-        if (!array_key_exists('sqlApiAllowedStatements', $data)) {
-            throw new \InvalidArgumentException('Missing required field "sqlApiAllowedStatements" for ' . static::class . '.');
-        }
-        if (!array_key_exists('sqlApiMaxRows', $data)) {
-            throw new \InvalidArgumentException('Missing required field "sqlApiMaxRows" for ' . static::class . '.');
-        }
-        if (!array_key_exists('sqlApiMaxBytes', $data)) {
-            throw new \InvalidArgumentException('Missing required field "sqlApiMaxBytes" for ' . static::class . '.');
-        }
-        if (!array_key_exists('sqlApiTimeoutSeconds', $data)) {
-            throw new \InvalidArgumentException('Missing required field "sqlApiTimeoutSeconds" for ' . static::class . '.');
-        }
-        if (!array_key_exists('error', $data)) {
-            throw new \InvalidArgumentException('Missing required field "error" for ' . static::class . '.');
         }
 
         return new static(

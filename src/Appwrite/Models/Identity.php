@@ -46,36 +46,18 @@ readonly class Identity
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('$id', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$createdAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$createdAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$updatedAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$updatedAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('userId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "userId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('provider', $data)) {
-            throw new \InvalidArgumentException('Missing required field "provider" for ' . static::class . '.');
-        }
-        if (!array_key_exists('providerUid', $data)) {
-            throw new \InvalidArgumentException('Missing required field "providerUid" for ' . static::class . '.');
-        }
-        if (!array_key_exists('providerEmail', $data)) {
-            throw new \InvalidArgumentException('Missing required field "providerEmail" for ' . static::class . '.');
-        }
-        if (!array_key_exists('providerAccessToken', $data)) {
-            throw new \InvalidArgumentException('Missing required field "providerAccessToken" for ' . static::class . '.');
-        }
-        if (!array_key_exists('providerAccessTokenExpiry', $data)) {
-            throw new \InvalidArgumentException('Missing required field "providerAccessTokenExpiry" for ' . static::class . '.');
-        }
-        if (!array_key_exists('providerRefreshToken', $data)) {
-            throw new \InvalidArgumentException('Missing required field "providerRefreshToken" for ' . static::class . '.');
-        }
+        $data += [
+            '$id' => "",
+            '$createdAt' => "",
+            '$updatedAt' => "",
+            'userId' => "",
+            'provider' => "",
+            'providerUid' => "",
+            'providerEmail' => "",
+            'providerAccessToken' => "",
+            'providerAccessTokenExpiry' => "",
+            'providerRefreshToken' => "",
+        ];
 
         return new static(
             id: $data['$id'],

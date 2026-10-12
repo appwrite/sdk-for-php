@@ -40,21 +40,13 @@ readonly class Oauth2Token
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('access_token', $data)) {
-            throw new \InvalidArgumentException('Missing required field "access_token" for ' . static::class . '.');
-        }
-        if (!array_key_exists('token_type', $data)) {
-            throw new \InvalidArgumentException('Missing required field "token_type" for ' . static::class . '.');
-        }
-        if (!array_key_exists('expires_in', $data)) {
-            throw new \InvalidArgumentException('Missing required field "expires_in" for ' . static::class . '.');
-        }
-        if (!array_key_exists('refresh_token', $data)) {
-            throw new \InvalidArgumentException('Missing required field "refresh_token" for ' . static::class . '.');
-        }
-        if (!array_key_exists('scope', $data)) {
-            throw new \InvalidArgumentException('Missing required field "scope" for ' . static::class . '.');
-        }
+        $data += [
+            'access_token' => "",
+            'token_type' => "Bearer",
+            'expires_in' => 0,
+            'refresh_token' => "",
+            'scope' => "",
+        ];
 
         return new static(
             accessToken: $data['access_token'],

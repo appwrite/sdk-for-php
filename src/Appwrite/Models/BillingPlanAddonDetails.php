@@ -42,27 +42,15 @@ readonly class BillingPlanAddonDetails
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('supported', $data)) {
-            throw new \InvalidArgumentException('Missing required field "supported" for ' . static::class . '.');
-        }
-        if (!array_key_exists('planIncluded', $data)) {
-            throw new \InvalidArgumentException('Missing required field "planIncluded" for ' . static::class . '.');
-        }
-        if (!array_key_exists('limit', $data)) {
-            throw new \InvalidArgumentException('Missing required field "limit" for ' . static::class . '.');
-        }
-        if (!array_key_exists('type', $data)) {
-            throw new \InvalidArgumentException('Missing required field "type" for ' . static::class . '.');
-        }
-        if (!array_key_exists('price', $data)) {
-            throw new \InvalidArgumentException('Missing required field "price" for ' . static::class . '.');
-        }
-        if (!array_key_exists('value', $data)) {
-            throw new \InvalidArgumentException('Missing required field "value" for ' . static::class . '.');
-        }
-        if (!array_key_exists('invoiceDesc', $data)) {
-            throw new \InvalidArgumentException('Missing required field "invoiceDesc" for ' . static::class . '.');
-        }
+        $data += [
+            'supported' => false,
+            'planIncluded' => 0,
+            'limit' => 0,
+            'type' => "numeric",
+            'price' => 0,
+            'value' => 0,
+            'invoiceDesc' => "",
+        ];
 
         return new static(
             supported: $data['supported'],

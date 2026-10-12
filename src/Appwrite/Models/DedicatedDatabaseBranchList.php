@@ -30,9 +30,10 @@ readonly class DedicatedDatabaseBranchList
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('total', $data)) {
-            throw new \InvalidArgumentException('Missing required field "total" for ' . static::class . '.');
-        }
+        $data += [
+            'total' => 0,
+        ];
+
         if (!array_key_exists('branches', $data)) {
             throw new \InvalidArgumentException('Missing required field "branches" for ' . static::class . '.');
         }

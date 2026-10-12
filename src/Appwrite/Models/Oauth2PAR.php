@@ -30,12 +30,10 @@ readonly class Oauth2PAR
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('request_uri', $data)) {
-            throw new \InvalidArgumentException('Missing required field "request_uri" for ' . static::class . '.');
-        }
-        if (!array_key_exists('expires_in', $data)) {
-            throw new \InvalidArgumentException('Missing required field "expires_in" for ' . static::class . '.');
-        }
+        $data += [
+            'request_uri' => "",
+            'expires_in' => 0,
+        ];
 
         return new static(
             requestUri: $data['request_uri'],
