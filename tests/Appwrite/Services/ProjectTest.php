@@ -3208,10 +3208,11 @@ final class ProjectTest extends TestCase
         $data = array_replace(
             [
                 "\$id" => "password-dictionary",
-                "enabled" => true
+                "rpId" => "example.com",
+                "origins" => []
             ],
             [
-                "\$id" => "deny-corporate-email"
+                "\$id" => "passkey"
             ]
         );
 
@@ -3226,7 +3227,7 @@ final class ProjectTest extends TestCase
             ProjectPolicyId::PASSWORDDICTIONARY()
         );
 
-        $this->assertInstanceOf(\Appwrite\Models\PolicyDenyCorporateEmail::class, $response);
+        $this->assertInstanceOf(\Appwrite\Models\PolicyPasskey::class, $response);
     }
     public function testMethodUpdateProtocol(): void
     {
