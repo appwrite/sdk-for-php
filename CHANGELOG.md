@@ -1,5 +1,9 @@
 # Change Log
 
+## 30.2.1
+
+* Fixed: requires `utopia-php/client` `^0.6` and imports `Utopia\Client\Client`, so the SDK installs and runs next to client 0.6, which dropped the `Utopia\Client` alias
+
 ## 30.2.0
 
 * Added: optional `interval` parameter on `functions.create` and `functions.update` to run a function every N minutes

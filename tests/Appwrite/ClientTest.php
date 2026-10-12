@@ -7,7 +7,7 @@ namespace Appwrite;
 use PHPUnit\Framework\TestCase;
 use ReflectionMethod;
 use ReflectionProperty;
-use Utopia\Client as HttpClient;
+use Utopia\Client\Client as HttpClient;
 
 final class ClientTest extends TestCase
 {

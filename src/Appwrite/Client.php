@@ -6,8 +6,8 @@ namespace Appwrite;
 
 use Ahc\Jwt\JWT;
 use Psr\Http\Client\ClientExceptionInterface;
-use Utopia\Client as HttpClient;
 use Utopia\Client\Adapter\Curl\Client as CurlAdapter;
+use Utopia\Client\Client as HttpClient;
 use Utopia\Psr7\Request\Factory as RequestFactory;
 use Utopia\Psr7\Request\Multipart\Part;
 
@@ -43,11 +43,11 @@ class Client
      *
      */
     protected array $headers = [
-        'user-agent' => 'AppwritePHPSDK/30.2.0 ()',
+        'user-agent' => 'AppwritePHPSDK/30.2.1 ()',
         'x-sdk-name' => 'PHP',
         'x-sdk-platform' => 'server',
         'x-sdk-language' => 'php',
-        'x-sdk-version' => '30.2.0',
+        'x-sdk-version' => '30.2.1',
     ];
 
     /**
