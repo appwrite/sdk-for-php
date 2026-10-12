@@ -3764,7 +3764,7 @@ class Project extends Service
      *
      * @throws AppwriteException
      */
-    public function getPolicy(ProjectPolicyId $policyId): \Appwrite\Models\PolicyPasswordDictionary|\Appwrite\Models\PolicyPasswordHistory|\Appwrite\Models\PolicyPasswordStrength|\Appwrite\Models\PolicyPasswordPersonalData|\Appwrite\Models\PolicySessionAlert|\Appwrite\Models\PolicySessionDuration|\Appwrite\Models\PolicySessionInvalidation|\Appwrite\Models\PolicySessionLimit|\Appwrite\Models\PolicyUserLimit|\Appwrite\Models\PolicyMembershipPrivacy|\Appwrite\Models\PolicyMfaFactors|\Appwrite\Models\PolicyDenyAliasedEmail|\Appwrite\Models\PolicyDenyDisposableEmail|\Appwrite\Models\PolicyDenyFreeEmail|\Appwrite\Models\PolicyDenyCorporateEmail
+    public function getPolicy(ProjectPolicyId $policyId): \Appwrite\Models\PolicyPasswordDictionary|\Appwrite\Models\PolicyPasswordHistory|\Appwrite\Models\PolicyPasswordStrength|\Appwrite\Models\PolicyPasswordPersonalData|\Appwrite\Models\PolicySessionAlert|\Appwrite\Models\PolicySessionDuration|\Appwrite\Models\PolicySessionInvalidation|\Appwrite\Models\PolicySessionLimit|\Appwrite\Models\PolicyUserLimit|\Appwrite\Models\PolicyMembershipPrivacy|\Appwrite\Models\PolicyMfaFactors|\Appwrite\Models\PolicyDenyAliasedEmail|\Appwrite\Models\PolicyDenyDisposableEmail|\Appwrite\Models\PolicyDenyFreeEmail|\Appwrite\Models\PolicyDenyCorporateEmail|\Appwrite\Models\PolicyPasskey
     {
         $apiPath = str_replace(
             ['{policyId}'],
@@ -3848,6 +3848,10 @@ class Project extends Service
 
         if (($response['$id'] ?? null) === 'deny-corporate-email') {
             return \Appwrite\Models\PolicyDenyCorporateEmail::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'passkey') {
+            return \Appwrite\Models\PolicyPasskey::from($response);
         }
 
         throw new \UnexpectedValueException('Unable to match response to any expected response model.');
