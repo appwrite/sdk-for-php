@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Appwrite\Models;
 
+use Appwrite\Enums\OAuth2ZohoPrompt;
+
 /**
  * OAuth2Zoho
  *
@@ -20,12 +22,14 @@ readonly class OAuth2Zoho
      * @param bool $enabled oauth2 provider is active and can be used to create sessions.
      * @param string $clientId zoho oauth2 client id.
      * @param string $clientSecret zoho oauth2 client secret.
+     * @param list<OAuth2ZohoPrompt>|null $prompt zoho oauth2 prompt values.
      */
     public function __construct(
         public string $id,
         public bool $enabled,
         public string $clientId,
-        public string $clientSecret
+        public string $clientSecret,
+        public ?array $prompt = null
     ) {
     }
 
@@ -45,7 +49,17 @@ readonly class OAuth2Zoho
             id: $data['$id'],
             enabled: $data['enabled'],
             clientId: $data['clientId'],
-            clientSecret: $data['clientSecret']
+            clientSecret: $data['clientSecret'],
+            prompt: array_key_exists('prompt', $data)
+                ? (
+                    is_array($data['prompt'])
+                        ? array_map(
+                            static fn (mixed $item): mixed => static::hydrateTypedValue(OAuth2ZohoPrompt::class, $item),
+                            $data['prompt']
+                        )
+                        : $data['prompt']
+                )
+                : null
         );
     }
 
@@ -58,7 +72,8 @@ readonly class OAuth2Zoho
             '$id' => static::serializeValue($this->id),
             'enabled' => static::serializeValue($this->enabled),
             'clientId' => static::serializeValue($this->clientId),
-            'clientSecret' => static::serializeValue($this->clientSecret)
+            'clientSecret' => static::serializeValue($this->clientSecret),
+            'prompt' => static::serializeValue($this->prompt)
         ];
     }
 }

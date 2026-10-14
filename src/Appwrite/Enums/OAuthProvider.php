@@ -31,6 +31,7 @@ class OAuthProvider implements JsonSerializable, Stringable
     private static OAuthProvider $GITLAB;
     private static OAuthProvider $GOOGLE;
     private static OAuthProvider $HUGGINGFACE;
+    private static OAuthProvider $KAKAO;
     private static OAuthProvider $KEYCLOAK;
     private static OAuthProvider $KICK;
     private static OAuthProvider $LINKEDIN;
@@ -46,9 +47,11 @@ class OAuthProvider implements JsonSerializable, Stringable
     private static OAuthProvider $SLACK;
     private static OAuthProvider $SPOTIFY;
     private static OAuthProvider $STRIPE;
+    private static OAuthProvider $TIKTOK;
     private static OAuthProvider $TRADESHIFT;
     private static OAuthProvider $TRADESHIFTBOX;
     private static OAuthProvider $TWITCH;
+    private static OAuthProvider $WEBFLOW;
     private static OAuthProvider $WORDPRESS;
     private static OAuthProvider $X;
     private static OAuthProvider $YAHOO;
@@ -203,6 +206,12 @@ class OAuthProvider implements JsonSerializable, Stringable
 
         return self::$HUGGINGFACE;
     }
+    public static function KAKAO(): OAuthProvider
+    {
+        self::$KAKAO ??= new OAuthProvider('kakao');
+
+        return self::$KAKAO;
+    }
     public static function KEYCLOAK(): OAuthProvider
     {
         self::$KEYCLOAK ??= new OAuthProvider('keycloak');
@@ -293,6 +302,12 @@ class OAuthProvider implements JsonSerializable, Stringable
 
         return self::$STRIPE;
     }
+    public static function TIKTOK(): OAuthProvider
+    {
+        self::$TIKTOK ??= new OAuthProvider('tiktok');
+
+        return self::$TIKTOK;
+    }
     public static function TRADESHIFT(): OAuthProvider
     {
         self::$TRADESHIFT ??= new OAuthProvider('tradeshift');
@@ -310,6 +325,12 @@ class OAuthProvider implements JsonSerializable, Stringable
         self::$TWITCH ??= new OAuthProvider('twitch');
 
         return self::$TWITCH;
+    }
+    public static function WEBFLOW(): OAuthProvider
+    {
+        self::$WEBFLOW ??= new OAuthProvider('webflow');
+
+        return self::$WEBFLOW;
     }
     public static function WORDPRESS(): OAuthProvider
     {
@@ -379,6 +400,7 @@ class OAuthProvider implements JsonSerializable, Stringable
             'gitlab' => self::GITLAB(),
             'google' => self::GOOGLE(),
             'huggingface' => self::HUGGINGFACE(),
+            'kakao' => self::KAKAO(),
             'keycloak' => self::KEYCLOAK(),
             'kick' => self::KICK(),
             'linkedin' => self::LINKEDIN(),
@@ -394,9 +416,11 @@ class OAuthProvider implements JsonSerializable, Stringable
             'slack' => self::SLACK(),
             'spotify' => self::SPOTIFY(),
             'stripe' => self::STRIPE(),
+            'tiktok' => self::TIKTOK(),
             'tradeshift' => self::TRADESHIFT(),
             'tradeshiftBox' => self::TRADESHIFTBOX(),
             'twitch' => self::TWITCH(),
+            'webflow' => self::WEBFLOW(),
             'wordpress' => self::WORDPRESS(),
             'x' => self::X(),
             'yahoo' => self::YAHOO(),

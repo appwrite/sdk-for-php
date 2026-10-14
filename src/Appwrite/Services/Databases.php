@@ -113,7 +113,7 @@ class Databases extends Service
      * @deprecated This API has been deprecated since 1.8.0. Please use `listTransactions` instead.
      * @see TablesDB::listTransactions
      */
-    public function listTransactions(?array $queries = null): \Appwrite\Models\TransactionList
+    public function listTransactions(?array $queries = null, ?bool $total = null): \Appwrite\Models\TransactionList
     {
         $apiPath = str_replace(
             [],
@@ -125,6 +125,10 @@ class Databases extends Service
 
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
         }
 
         $apiHeaders = [];

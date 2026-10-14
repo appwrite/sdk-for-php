@@ -11,5 +11,7 @@ $client = (new Client())
 
 $account = new Account($client);
 
-$result = $account->deleteSessions();
+$result = $account->deleteSessions(
+    current: false // optional
+);
 ```

@@ -26,6 +26,7 @@ readonly class Identity
      * @param string $providerAccessToken identity provider access token.
      * @param string $providerAccessTokenExpiry the date of when the access token expires in iso 8601 format.
      * @param string $providerRefreshToken identity provider refresh token.
+     * @param string|null $providerIdToken identity provider id token (jwt) from the most recent native sign-in. empty for identities created through the browser oauth2 flow.
      */
     public function __construct(
         public string $id,
@@ -37,7 +38,8 @@ readonly class Identity
         public string $providerEmail,
         public string $providerAccessToken,
         public string $providerAccessTokenExpiry,
-        public string $providerRefreshToken
+        public string $providerRefreshToken,
+        public ?string $providerIdToken = null
     ) {
     }
 
@@ -69,7 +71,8 @@ readonly class Identity
             providerEmail: $data['providerEmail'],
             providerAccessToken: $data['providerAccessToken'],
             providerAccessTokenExpiry: $data['providerAccessTokenExpiry'],
-            providerRefreshToken: $data['providerRefreshToken']
+            providerRefreshToken: $data['providerRefreshToken'],
+            providerIdToken: $data['providerIdToken'] ?? null
         );
     }
 
@@ -88,7 +91,8 @@ readonly class Identity
             'providerEmail' => static::serializeValue($this->providerEmail),
             'providerAccessToken' => static::serializeValue($this->providerAccessToken),
             'providerAccessTokenExpiry' => static::serializeValue($this->providerAccessTokenExpiry),
-            'providerRefreshToken' => static::serializeValue($this->providerRefreshToken)
+            'providerRefreshToken' => static::serializeValue($this->providerRefreshToken),
+            'providerIdToken' => static::serializeValue($this->providerIdToken)
         ];
     }
 }

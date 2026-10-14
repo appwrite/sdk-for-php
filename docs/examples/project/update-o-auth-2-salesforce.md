@@ -3,6 +3,7 @@
 
 use Appwrite\Client;
 use Appwrite\Services\Project;
+use Appwrite\Enums\ProjectOAuth2SalesforcePrompt;
 
 $client = (new Client())
     ->setEndpoint('https://<REGION>.cloud.appwrite.io/v1') // Your API Endpoint
@@ -14,6 +15,7 @@ $project = new Project($client);
 $result = $project->updateOAuth2Salesforce(
     customerKey: '<CUSTOMER_KEY>', // optional
     customerSecret: '<CUSTOMER_SECRET>', // optional
-    enabled: false // optional
+    enabled: false, // optional
+    prompt: [ProjectOAuth2SalesforcePrompt::LOGIN()] // optional
 );
 ```

@@ -11,6 +11,7 @@ use PHPUnit\Framework\TestCase;
 use Appwrite\Enums\Browser;
 use Appwrite\Enums\CreditCard;
 use Appwrite\Enums\Flag;
+use Appwrite\InputFile;
 
 final class AvatarsTest extends TestCase
 {
@@ -135,6 +136,66 @@ final class AvatarsTest extends TestCase
             ->andReturn('');
 
         $response = $this->avatars->getPhoto();
+
+        $this->assertSame($data, $response);
+    }
+    public function testMethodUpdatePhoto(): void
+    {
+        $data = [
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "name" => "John Doe",
+            "registration" => "2020-10-15T06:38:00.000+00:00",
+            "status" => true,
+            "labels" => [],
+            "passwordUpdate" => "2020-10-15T06:38:00.000+00:00",
+            "email" => "john@appwrite.io",
+            "phone" => "+4930901820",
+            "emailVerification" => true,
+            "phoneVerification" => true,
+            "mfa" => true,
+            "prefs" => [],
+            "targets" => [
+                [
+                    "\$id" => "259125845563242502",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "name" => "Apple iPhone 12",
+                    "userId" => "259125845563242502",
+                    "providerType" => "email",
+                    "identifier" => "token",
+                    "expired" => true
+                ]
+            ],
+            "accessedAt" => "2020-10-15T06:38:00.000+00:00"
+        ];
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->avatars->updatePhoto(
+            InputFile::withData('', 'image/png')
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\Account::class, $response);
+    }
+    public function testMethodDeletePhoto(): void
+    {
+        $data = '';
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->avatars->deletePhoto();
 
         $this->assertSame($data, $response);
     }

@@ -12,6 +12,7 @@ $client = (new Client())
 $documentsDB = new DocumentsDB($client);
 
 $result = $documentsDB->listTransactions(
-    queries: [] // optional
+    queries: [], // optional
+    total: false // optional
 );
 ```

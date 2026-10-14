@@ -31,6 +31,7 @@ class ProjectOAuthProviderId implements JsonSerializable, Stringable
     private static ProjectOAuthProviderId $GITLAB;
     private static ProjectOAuthProviderId $GOOGLE;
     private static ProjectOAuthProviderId $HUGGINGFACE;
+    private static ProjectOAuthProviderId $KAKAO;
     private static ProjectOAuthProviderId $KEYCLOAK;
     private static ProjectOAuthProviderId $KICK;
     private static ProjectOAuthProviderId $LINKEDIN;
@@ -46,9 +47,11 @@ class ProjectOAuthProviderId implements JsonSerializable, Stringable
     private static ProjectOAuthProviderId $SLACK;
     private static ProjectOAuthProviderId $SPOTIFY;
     private static ProjectOAuthProviderId $STRIPE;
+    private static ProjectOAuthProviderId $TIKTOK;
     private static ProjectOAuthProviderId $TRADESHIFT;
     private static ProjectOAuthProviderId $TRADESHIFTBOX;
     private static ProjectOAuthProviderId $TWITCH;
+    private static ProjectOAuthProviderId $WEBFLOW;
     private static ProjectOAuthProviderId $WORDPRESS;
     private static ProjectOAuthProviderId $X;
     private static ProjectOAuthProviderId $YAHOO;
@@ -203,6 +206,12 @@ class ProjectOAuthProviderId implements JsonSerializable, Stringable
 
         return self::$HUGGINGFACE;
     }
+    public static function KAKAO(): ProjectOAuthProviderId
+    {
+        self::$KAKAO ??= new ProjectOAuthProviderId('kakao');
+
+        return self::$KAKAO;
+    }
     public static function KEYCLOAK(): ProjectOAuthProviderId
     {
         self::$KEYCLOAK ??= new ProjectOAuthProviderId('keycloak');
@@ -293,6 +302,12 @@ class ProjectOAuthProviderId implements JsonSerializable, Stringable
 
         return self::$STRIPE;
     }
+    public static function TIKTOK(): ProjectOAuthProviderId
+    {
+        self::$TIKTOK ??= new ProjectOAuthProviderId('tiktok');
+
+        return self::$TIKTOK;
+    }
     public static function TRADESHIFT(): ProjectOAuthProviderId
     {
         self::$TRADESHIFT ??= new ProjectOAuthProviderId('tradeshift');
@@ -310,6 +325,12 @@ class ProjectOAuthProviderId implements JsonSerializable, Stringable
         self::$TWITCH ??= new ProjectOAuthProviderId('twitch');
 
         return self::$TWITCH;
+    }
+    public static function WEBFLOW(): ProjectOAuthProviderId
+    {
+        self::$WEBFLOW ??= new ProjectOAuthProviderId('webflow');
+
+        return self::$WEBFLOW;
     }
     public static function WORDPRESS(): ProjectOAuthProviderId
     {
@@ -379,6 +400,7 @@ class ProjectOAuthProviderId implements JsonSerializable, Stringable
             'gitlab' => self::GITLAB(),
             'google' => self::GOOGLE(),
             'huggingface' => self::HUGGINGFACE(),
+            'kakao' => self::KAKAO(),
             'keycloak' => self::KEYCLOAK(),
             'kick' => self::KICK(),
             'linkedin' => self::LINKEDIN(),
@@ -394,9 +416,11 @@ class ProjectOAuthProviderId implements JsonSerializable, Stringable
             'slack' => self::SLACK(),
             'spotify' => self::SPOTIFY(),
             'stripe' => self::STRIPE(),
+            'tiktok' => self::TIKTOK(),
             'tradeshift' => self::TRADESHIFT(),
             'tradeshiftBox' => self::TRADESHIFTBOX(),
             'twitch' => self::TWITCH(),
+            'webflow' => self::WEBFLOW(),
             'wordpress' => self::WORDPRESS(),
             'x' => self::X(),
             'yahoo' => self::YAHOO(),

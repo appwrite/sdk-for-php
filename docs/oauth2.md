@@ -118,6 +118,23 @@ GET https://cloud.appwrite.io/v1/oauth2/{project_id}/grants/{grant_id}
 
 
 ```http request
+POST https://cloud.appwrite.io/v1/oauth2/{project_id}/introspect
+```
+
+** Introspect an OAuth2 access token or refresh token. Authenticate with an API key holding the `oauth2.introspect` scope to introspect any token in the project, or with the client credentials of the app the token was issued to. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| project_id | string | **Required** Project ID in which OAuth2 client exists. |  |
+| token | string | The access token or refresh token to introspect. |  |
+| token_type_hint | string | Type of token to introspect. Can be one of: `access_token` or `refresh_token`. |  |
+| client_id | string | OAuth2 client ID. Either a registered app ID or an HTTPS client ID metadata document URL. |  |
+| client_secret | string | OAuth2 client secret. |  |
+
+
+```http request
 GET https://cloud.appwrite.io/v1/oauth2/{project_id}/organizations
 ```
 

@@ -115,6 +115,197 @@ class Project extends Service
     }
 
     /**
+     * Get a list of all environments of the project. You can use the query params
+     * to filter your results.
+     *
+     * @throws AppwriteException
+     */
+    public function listEnvironments(?array $queries = null, ?bool $total = null): \Appwrite\Models\ProjectList
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/project/environments'
+        );
+
+        $apiParams = [];
+
+        if (!is_null($queries)) {
+            $apiParams['queries'] = $queries;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\ProjectList::from($response);
+    }
+
+    /**
+     * Create a new environment of the project. An environment is a separate
+     * project in the same organization and region, with its own resources and
+     * users. Its usage is billed under the project it belongs to.
+     *
+     * @throws AppwriteException
+     */
+    public function createEnvironment(string $environmentId, string $name): \Appwrite\Models\Project
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/project/environments'
+        );
+
+        $apiParams = [];
+        $apiParams['environmentId'] = $environmentId;
+        $apiParams['name'] = $name;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Project::from($response);
+    }
+
+    /**
+     * Get an environment of the project by its unique ID.
+     *
+     * @throws AppwriteException
+     */
+    public function getEnvironment(string $environmentId): \Appwrite\Models\Project
+    {
+        if ($environmentId === '') {
+            throw new AppwriteException('Missing required parameter: "environmentId"');
+        }
+
+        $apiPath = str_replace(
+            ['{environmentId}'],
+            [$environmentId],
+            '/project/environments/{environmentId}'
+        );
+
+        $apiParams = [];
+        $apiParams['environmentId'] = $environmentId;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Project::from($response);
+    }
+
+    /**
+     * Update the name of an environment of the project.
+     *
+     * @throws AppwriteException
+     */
+    public function updateEnvironment(string $environmentId, string $name): \Appwrite\Models\Project
+    {
+        if ($environmentId === '') {
+            throw new AppwriteException('Missing required parameter: "environmentId"');
+        }
+
+        $apiPath = str_replace(
+            ['{environmentId}'],
+            [$environmentId],
+            '/project/environments/{environmentId}'
+        );
+
+        $apiParams = [];
+        $apiParams['environmentId'] = $environmentId;
+        $apiParams['name'] = $name;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Project::from($response);
+    }
+
+    /**
+     * Delete an environment of the project, with all of its resources and users.
+     *
+     * @throws AppwriteException
+     */
+    public function deleteEnvironment(string $environmentId): string
+    {
+        if ($environmentId === '') {
+            throw new AppwriteException('Missing required parameter: "environmentId"');
+        }
+
+        $apiPath = str_replace(
+            ['{environmentId}'],
+            [$environmentId],
+            '/project/environments/{environmentId}'
+        );
+
+        $apiParams = [];
+        $apiParams['environmentId'] = $environmentId;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_DELETE,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
      * Get a list of all API keys from the current project.
      *
      * @throws AppwriteException
@@ -666,7 +857,7 @@ class Project extends Service
      *
      * @throws AppwriteException
      */
-    public function updateOAuth2Apple(?string $serviceId = null, ?string $keyId = null, ?string $teamId = null, ?string $p8File = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Apple
+    public function updateOAuth2Apple(?string $serviceId = null, ?string $keyId = null, ?string $teamId = null, ?string $p8File = null, ?bool $enabled = null, ?array $nativeClientIds = null, ?bool $nativeEnabled = null): \Appwrite\Models\OAuth2Apple
     {
         $apiPath = str_replace(
             [],
@@ -680,6 +871,8 @@ class Project extends Service
         $apiParams['teamId'] = $teamId;
         $apiParams['p8File'] = $p8File;
         $apiParams['enabled'] = $enabled;
+        $apiParams['nativeClientIds'] = $nativeClientIds;
+        $apiParams['nativeEnabled'] = $nativeEnabled;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -742,7 +935,7 @@ class Project extends Service
      *
      * @throws AppwriteException
      */
-    public function updateOAuth2Auth0(?string $clientId = null, ?string $clientSecret = null, ?string $endpoint = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Auth0
+    public function updateOAuth2Auth0(?string $clientId = null, ?string $clientSecret = null, ?string $endpoint = null, ?bool $enabled = null, ?array $prompt = null): \Appwrite\Models\OAuth2Auth0
     {
         $apiPath = str_replace(
             [],
@@ -755,6 +948,7 @@ class Project extends Service
         $apiParams['clientSecret'] = $clientSecret;
         $apiParams['endpoint'] = $endpoint;
         $apiParams['enabled'] = $enabled;
+        $apiParams['prompt'] = $prompt;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -1040,7 +1234,7 @@ class Project extends Service
      *
      * @throws AppwriteException
      */
-    public function updateOAuth2Discord(?string $clientId = null, ?string $clientSecret = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Discord
+    public function updateOAuth2Discord(?string $clientId = null, ?string $clientSecret = null, ?bool $enabled = null, ?array $prompt = null): \Appwrite\Models\OAuth2Discord
     {
         $apiPath = str_replace(
             [],
@@ -1052,6 +1246,7 @@ class Project extends Service
         $apiParams['clientId'] = $clientId;
         $apiParams['clientSecret'] = $clientSecret;
         $apiParams['enabled'] = $enabled;
+        $apiParams['prompt'] = $prompt;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -1300,7 +1495,7 @@ class Project extends Service
      *
      * @throws AppwriteException
      */
-    public function updateOAuth2GitHub(?string $clientId = null, ?string $clientSecret = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Github
+    public function updateOAuth2GitHub(?string $clientId = null, ?string $clientSecret = null, ?bool $enabled = null, ?array $prompt = null): \Appwrite\Models\OAuth2Github
     {
         $apiPath = str_replace(
             [],
@@ -1312,6 +1507,7 @@ class Project extends Service
         $apiParams['clientId'] = $clientId;
         $apiParams['clientSecret'] = $clientSecret;
         $apiParams['enabled'] = $enabled;
+        $apiParams['prompt'] = $prompt;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -1375,7 +1571,7 @@ class Project extends Service
      *
      * @throws AppwriteException
      */
-    public function updateOAuth2Google(?string $clientId = null, ?string $clientSecret = null, ?array $prompt = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Google
+    public function updateOAuth2Google(?string $clientId = null, ?string $clientSecret = null, ?array $prompt = null, ?bool $enabled = null, ?array $nativeClientIds = null, ?bool $nativeEnabled = null): \Appwrite\Models\OAuth2Google
     {
         $apiPath = str_replace(
             [],
@@ -1388,6 +1584,8 @@ class Project extends Service
         $apiParams['clientSecret'] = $clientSecret;
         $apiParams['prompt'] = $prompt;
         $apiParams['enabled'] = $enabled;
+        $apiParams['nativeClientIds'] = $nativeClientIds;
+        $apiParams['nativeEnabled'] = $nativeEnabled;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -1443,6 +1641,44 @@ class Project extends Service
         }
 
         return \Appwrite\Models\OAuth2HuggingFace::from($response);
+    }
+
+    /**
+     * Update the project OAuth2 Kakao configuration.
+     *
+     * @throws AppwriteException
+     */
+    public function updateOAuth2Kakao(?string $clientId = null, ?string $clientSecret = null, ?array $prompt = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Kakao
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/project/oauth2/kakao'
+        );
+
+        $apiParams = [];
+        $apiParams['clientId'] = $clientId;
+        $apiParams['clientSecret'] = $clientSecret;
+        $apiParams['prompt'] = $prompt;
+        $apiParams['enabled'] = $enabled;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\OAuth2Kakao::from($response);
     }
 
     /**
@@ -1563,7 +1799,7 @@ class Project extends Service
      *
      * @throws AppwriteException
      */
-    public function updateOAuth2Microsoft(?string $applicationId = null, ?string $applicationSecret = null, ?string $tenant = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Microsoft
+    public function updateOAuth2Microsoft(?string $applicationId = null, ?string $applicationSecret = null, ?string $tenant = null, ?bool $enabled = null, ?array $prompt = null): \Appwrite\Models\OAuth2Microsoft
     {
         $apiPath = str_replace(
             [],
@@ -1576,6 +1812,7 @@ class Project extends Service
         $apiParams['applicationSecret'] = $applicationSecret;
         $apiParams['tenant'] = $tenant;
         $apiParams['enabled'] = $enabled;
+        $apiParams['prompt'] = $prompt;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -1681,7 +1918,7 @@ class Project extends Service
      *
      * @throws AppwriteException
      */
-    public function updateOAuth2Okta(?string $clientId = null, ?string $clientSecret = null, ?string $domain = null, ?string $authorizationServerId = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Okta
+    public function updateOAuth2Okta(?string $clientId = null, ?string $clientSecret = null, ?string $domain = null, ?string $authorizationServerId = null, ?bool $enabled = null, ?array $prompt = null): \Appwrite\Models\OAuth2Okta
     {
         $apiPath = str_replace(
             [],
@@ -1695,6 +1932,7 @@ class Project extends Service
         $apiParams['domain'] = $domain;
         $apiParams['authorizationServerId'] = $authorizationServerId;
         $apiParams['enabled'] = $enabled;
+        $apiParams['prompt'] = $prompt;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -1868,7 +2106,7 @@ class Project extends Service
      *
      * @throws AppwriteException
      */
-    public function updateOAuth2Salesforce(?string $customerKey = null, ?string $customerSecret = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Salesforce
+    public function updateOAuth2Salesforce(?string $customerKey = null, ?string $customerSecret = null, ?bool $enabled = null, ?array $prompt = null): \Appwrite\Models\OAuth2Salesforce
     {
         $apiPath = str_replace(
             [],
@@ -1880,6 +2118,7 @@ class Project extends Service
         $apiParams['customerKey'] = $customerKey;
         $apiParams['customerSecret'] = $customerSecret;
         $apiParams['enabled'] = $enabled;
+        $apiParams['prompt'] = $prompt;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -2012,6 +2251,43 @@ class Project extends Service
     }
 
     /**
+     * Update the project OAuth2 TikTok configuration.
+     *
+     * @throws AppwriteException
+     */
+    public function updateOAuth2TikTok(?string $clientId = null, ?string $clientSecret = null, ?bool $enabled = null): \Appwrite\Models\OAuth2TikTok
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/project/oauth2/tiktok'
+        );
+
+        $apiParams = [];
+        $apiParams['clientId'] = $clientId;
+        $apiParams['clientSecret'] = $clientSecret;
+        $apiParams['enabled'] = $enabled;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\OAuth2TikTok::from($response);
+    }
+
+    /**
      * Update the project OAuth2 Tradeshift configuration.
      *
      * @throws AppwriteException
@@ -2120,6 +2396,43 @@ class Project extends Service
         }
 
         return \Appwrite\Models\OAuth2Twitch::from($response);
+    }
+
+    /**
+     * Update the project OAuth2 Webflow configuration.
+     *
+     * @throws AppwriteException
+     */
+    public function updateOAuth2Webflow(?string $clientId = null, ?string $clientSecret = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Webflow
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/project/oauth2/webflow'
+        );
+
+        $apiParams = [];
+        $apiParams['clientId'] = $clientId;
+        $apiParams['clientSecret'] = $clientSecret;
+        $apiParams['enabled'] = $enabled;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\OAuth2Webflow::from($response);
     }
 
     /**
@@ -2275,7 +2588,7 @@ class Project extends Service
      *
      * @throws AppwriteException
      */
-    public function updateOAuth2Zoho(?string $clientId = null, ?string $clientSecret = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Zoho
+    public function updateOAuth2Zoho(?string $clientId = null, ?string $clientSecret = null, ?bool $enabled = null, ?array $prompt = null): \Appwrite\Models\OAuth2Zoho
     {
         $apiPath = str_replace(
             [],
@@ -2287,6 +2600,7 @@ class Project extends Service
         $apiParams['clientId'] = $clientId;
         $apiParams['clientSecret'] = $clientSecret;
         $apiParams['enabled'] = $enabled;
+        $apiParams['prompt'] = $prompt;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -2350,7 +2664,7 @@ class Project extends Service
      *
      * @throws AppwriteException
      */
-    public function getOAuth2Provider(ProjectOAuthProviderId $providerId): \Appwrite\Models\OAuth2Github|\Appwrite\Models\OAuth2Discord|\Appwrite\Models\OAuth2Figma|\Appwrite\Models\OAuth2Dropbox|\Appwrite\Models\OAuth2Dailymotion|\Appwrite\Models\OAuth2Bitbucket|\Appwrite\Models\OAuth2Bitly|\Appwrite\Models\OAuth2Box|\Appwrite\Models\OAuth2Autodesk|\Appwrite\Models\OAuth2Google|\Appwrite\Models\OAuth2Zoom|\Appwrite\Models\OAuth2Zoho|\Appwrite\Models\OAuth2Yandex|\Appwrite\Models\OAuth2X|\Appwrite\Models\OAuth2WordPress|\Appwrite\Models\OAuth2Twitch|\Appwrite\Models\OAuth2Stripe|\Appwrite\Models\OAuth2Spotify|\Appwrite\Models\OAuth2Slack|\Appwrite\Models\OAuth2Podio|\Appwrite\Models\OAuth2Notion|\Appwrite\Models\OAuth2Salesforce|\Appwrite\Models\OAuth2Yahoo|\Appwrite\Models\OAuth2HuggingFace|\Appwrite\Models\OAuth2Resend|\Appwrite\Models\OAuth2Cloudflare|\Appwrite\Models\OAuth2Linkedin|\Appwrite\Models\OAuth2Disqus|\Appwrite\Models\OAuth2Amazon|\Appwrite\Models\OAuth2Etsy|\Appwrite\Models\OAuth2Facebook|\Appwrite\Models\OAuth2Tradeshift|\Appwrite\Models\OAuth2Paypal|\Appwrite\Models\OAuth2Gitlab|\Appwrite\Models\OAuth2Authentik|\Appwrite\Models\OAuth2Auth0|\Appwrite\Models\OAuth2FusionAuth|\Appwrite\Models\OAuth2Keycloak|\Appwrite\Models\OAuth2Oidc|\Appwrite\Models\OAuth2Apple|\Appwrite\Models\OAuth2Okta|\Appwrite\Models\OAuth2Kick|\Appwrite\Models\OAuth2Microsoft
+    public function getOAuth2Provider(ProjectOAuthProviderId $providerId): \Appwrite\Models\OAuth2Github|\Appwrite\Models\OAuth2Discord|\Appwrite\Models\OAuth2Figma|\Appwrite\Models\OAuth2Dropbox|\Appwrite\Models\OAuth2Dailymotion|\Appwrite\Models\OAuth2Bitbucket|\Appwrite\Models\OAuth2Bitly|\Appwrite\Models\OAuth2Box|\Appwrite\Models\OAuth2Autodesk|\Appwrite\Models\OAuth2Google|\Appwrite\Models\OAuth2Zoom|\Appwrite\Models\OAuth2Zoho|\Appwrite\Models\OAuth2Yandex|\Appwrite\Models\OAuth2X|\Appwrite\Models\OAuth2WordPress|\Appwrite\Models\OAuth2Webflow|\Appwrite\Models\OAuth2Twitch|\Appwrite\Models\OAuth2Stripe|\Appwrite\Models\OAuth2Spotify|\Appwrite\Models\OAuth2Slack|\Appwrite\Models\OAuth2Podio|\Appwrite\Models\OAuth2Notion|\Appwrite\Models\OAuth2Salesforce|\Appwrite\Models\OAuth2Yahoo|\Appwrite\Models\OAuth2HuggingFace|\Appwrite\Models\OAuth2Resend|\Appwrite\Models\OAuth2Cloudflare|\Appwrite\Models\OAuth2Linkedin|\Appwrite\Models\OAuth2Disqus|\Appwrite\Models\OAuth2Amazon|\Appwrite\Models\OAuth2Etsy|\Appwrite\Models\OAuth2Facebook|\Appwrite\Models\OAuth2Tradeshift|\Appwrite\Models\OAuth2Paypal|\Appwrite\Models\OAuth2Gitlab|\Appwrite\Models\OAuth2Authentik|\Appwrite\Models\OAuth2Auth0|\Appwrite\Models\OAuth2FusionAuth|\Appwrite\Models\OAuth2Keycloak|\Appwrite\Models\OAuth2Oidc|\Appwrite\Models\OAuth2Apple|\Appwrite\Models\OAuth2Okta|\Appwrite\Models\OAuth2Kick|\Appwrite\Models\OAuth2Microsoft|\Appwrite\Models\OAuth2TikTok|\Appwrite\Models\OAuth2Kakao
     {
         $apiPath = str_replace(
             ['{providerId}'],
@@ -2434,6 +2748,10 @@ class Project extends Service
 
         if (($response['$id'] ?? null) === 'wordpress') {
             return \Appwrite\Models\OAuth2WordPress::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'webflow') {
+            return \Appwrite\Models\OAuth2Webflow::from($response);
         }
 
         if (($response['$id'] ?? null) === 'twitch') {
@@ -2548,6 +2866,14 @@ class Project extends Service
             return \Appwrite\Models\OAuth2Microsoft::from($response);
         }
 
+        if (($response['$id'] ?? null) === 'tiktok') {
+            return \Appwrite\Models\OAuth2TikTok::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'kakao') {
+            return \Appwrite\Models\OAuth2Kakao::from($response);
+        }
+
         throw new \UnexpectedValueException('Unable to match response to any expected response model.');
     }
 
@@ -2600,7 +2926,7 @@ class Project extends Service
      *
      * @throws AppwriteException
      */
-    public function createAndroidPlatform(string $platformId, string $name, string $applicationId): \Appwrite\Models\PlatformAndroid
+    public function createAndroidPlatform(string $platformId, string $name, string $applicationId, ?array $fingerprints = null): \Appwrite\Models\PlatformAndroid
     {
         $apiPath = str_replace(
             [],
@@ -2612,6 +2938,10 @@ class Project extends Service
         $apiParams['platformId'] = $platformId;
         $apiParams['name'] = $name;
         $apiParams['applicationId'] = $applicationId;
+
+        if (!is_null($fingerprints)) {
+            $apiParams['fingerprints'] = $fingerprints;
+        }
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -2638,7 +2968,7 @@ class Project extends Service
      *
      * @throws AppwriteException
      */
-    public function updateAndroidPlatform(string $platformId, string $name, string $applicationId): \Appwrite\Models\PlatformAndroid
+    public function updateAndroidPlatform(string $platformId, string $name, string $applicationId, ?array $fingerprints = null): \Appwrite\Models\PlatformAndroid
     {
         $apiPath = str_replace(
             ['{platformId}'],
@@ -2650,6 +2980,7 @@ class Project extends Service
         $apiParams['platformId'] = $platformId;
         $apiParams['name'] = $name;
         $apiParams['applicationId'] = $applicationId;
+        $apiParams['fingerprints'] = $fingerprints;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -3520,6 +3851,103 @@ class Project extends Service
     }
 
     /**
+     * Updating this policy allows you to control if passwords are checked against
+     * the Have I Been Pwned breach database. When enabled, every password a user
+     * signs up, signs in or resets with is checked and the result is recorded on
+     * the user as `passwordPwned`. On its own the policy only records. Enable
+     * `users` to reject a breached password when a user signs up or sets a new
+     * password, and `sessions` to refuse a sign-in with a breached password until
+     * it is reset. Only the first five characters of the password hash are ever
+     * shared with the service. Options left out keep their current value.
+     *
+     * @throws AppwriteException
+     */
+    public function updatePasswordPwnedPolicy(?bool $enabled = null, ?bool $sessions = null, ?bool $users = null): \Appwrite\Models\Project
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/project/policies/password-pwned'
+        );
+
+        $apiParams = [];
+
+        if (!is_null($enabled)) {
+            $apiParams['enabled'] = $enabled;
+        }
+
+        if (!is_null($sessions)) {
+            $apiParams['sessions'] = $sessions;
+        }
+
+        if (!is_null($users)) {
+            $apiParams['users'] = $users;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Project::from($response);
+    }
+
+    /**
+     * Require a password reset when an email/password sign-in uses a password
+     * older than the configured maximum age. Options left out keep their current
+     * value.
+     *
+     * @throws AppwriteException
+     */
+    public function updatePasswordRotationPolicy(?bool $enabled = null, ?int $maxAge = null): \Appwrite\Models\Project
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/project/policies/password-rotation'
+        );
+
+        $apiParams = [];
+
+        if (!is_null($enabled)) {
+            $apiParams['enabled'] = $enabled;
+        }
+
+        if (!is_null($maxAge)) {
+            $apiParams['maxAge'] = $maxAge;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Project::from($response);
+    }
+
+    /**
      * Update the password strength requirements for users in the project.
      *
      * @throws AppwriteException
@@ -3764,7 +4192,7 @@ class Project extends Service
      *
      * @throws AppwriteException
      */
-    public function getPolicy(ProjectPolicyId $policyId): \Appwrite\Models\PolicyPasswordDictionary|\Appwrite\Models\PolicyPasswordHistory|\Appwrite\Models\PolicyPasswordStrength|\Appwrite\Models\PolicyPasswordPersonalData|\Appwrite\Models\PolicySessionAlert|\Appwrite\Models\PolicySessionDuration|\Appwrite\Models\PolicySessionInvalidation|\Appwrite\Models\PolicySessionLimit|\Appwrite\Models\PolicyUserLimit|\Appwrite\Models\PolicyMembershipPrivacy|\Appwrite\Models\PolicyMfaFactors|\Appwrite\Models\PolicyDenyAliasedEmail|\Appwrite\Models\PolicyDenyDisposableEmail|\Appwrite\Models\PolicyDenyFreeEmail|\Appwrite\Models\PolicyDenyCorporateEmail|\Appwrite\Models\PolicyPasskey
+    public function getPolicy(ProjectPolicyId $policyId): \Appwrite\Models\PolicyPasswordDictionary|\Appwrite\Models\PolicyPasswordHistory|\Appwrite\Models\PolicyPasswordStrength|\Appwrite\Models\PolicyPasswordPersonalData|\Appwrite\Models\PolicyPasswordPwned|\Appwrite\Models\PolicyPasswordRotation|\Appwrite\Models\PolicySessionAlert|\Appwrite\Models\PolicySessionDuration|\Appwrite\Models\PolicySessionInvalidation|\Appwrite\Models\PolicySessionLimit|\Appwrite\Models\PolicyUserLimit|\Appwrite\Models\PolicyMembershipPrivacy|\Appwrite\Models\PolicyMfaFactors|\Appwrite\Models\PolicyDenyAliasedEmail|\Appwrite\Models\PolicyDenyDisposableEmail|\Appwrite\Models\PolicyDenyFreeEmail|\Appwrite\Models\PolicyDenyCorporateEmail|\Appwrite\Models\PolicyPasskey
     {
         $apiPath = str_replace(
             ['{policyId}'],
@@ -3804,6 +4232,14 @@ class Project extends Service
 
         if (($response['$id'] ?? null) === 'password-personal-data') {
             return \Appwrite\Models\PolicyPasswordPersonalData::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'password-pwned') {
+            return \Appwrite\Models\PolicyPasswordPwned::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'password-rotation') {
+            return \Appwrite\Models\PolicyPasswordRotation::from($response);
         }
 
         if (($response['$id'] ?? null) === 'session-alert') {

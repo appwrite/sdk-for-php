@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Appwrite\Models;
 
+use Appwrite\Enums\OAuth2Auth0Prompt;
+
 /**
  * OAuth2Auth0
  *
@@ -21,13 +23,15 @@ readonly class OAuth2Auth0
      * @param string $clientId auth0 oauth2 client id.
      * @param string $clientSecret auth0 oauth2 client secret.
      * @param string $endpoint auth0 oauth2 endpoint domain.
+     * @param list<OAuth2Auth0Prompt>|null $prompt auth0 oauth2 prompt values.
      */
     public function __construct(
         public string $id,
         public bool $enabled,
         public string $clientId,
         public string $clientSecret,
-        public string $endpoint
+        public string $endpoint,
+        public ?array $prompt = null
     ) {
     }
 
@@ -49,7 +53,17 @@ readonly class OAuth2Auth0
             enabled: $data['enabled'],
             clientId: $data['clientId'],
             clientSecret: $data['clientSecret'],
-            endpoint: $data['endpoint']
+            endpoint: $data['endpoint'],
+            prompt: array_key_exists('prompt', $data)
+                ? (
+                    is_array($data['prompt'])
+                        ? array_map(
+                            static fn (mixed $item): mixed => static::hydrateTypedValue(OAuth2Auth0Prompt::class, $item),
+                            $data['prompt']
+                        )
+                        : $data['prompt']
+                )
+                : null
         );
     }
 
@@ -63,6 +77,7 @@ readonly class OAuth2Auth0
             'enabled' => static::serializeValue($this->enabled),
             'clientId' => static::serializeValue($this->clientId),
             'clientSecret' => static::serializeValue($this->clientSecret),
+            'prompt' => static::serializeValue($this->prompt),
             'endpoint' => static::serializeValue($this->endpoint)
         ];
     }

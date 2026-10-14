@@ -12,6 +12,7 @@ $client = (new Client())
 $tablesDB = new TablesDB($client);
 
 $result = $tablesDB->listTransactions(
-    queries: [] // optional
+    queries: [], // optional
+    total: false // optional
 );
 ```

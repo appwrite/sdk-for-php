@@ -83,9 +83,11 @@ readonly class BillingPlan
      * @param BillingPlanGroup $group group of this billing plan for variants
      * @param float $databaseComputeCredit included monthly dedicated-database compute credit in usd. resets each billing cycle with no roll-over.
      * @param int|null $members members
+     * @param int|null $environments maximum environments per project. 0 when the plan does not offer environments.
      * @param int|null $activityLogs activity log days
      * @param array|null $usageLogsIntervals usage log time intervals allowed for this plan (e.g. 15m, 1h, 1d).
      * @param array|null $usageAggregateOnlyMetrics metrics this plan only records as a total. they cannot be broken down by dimension or filtered, because the stored events cover a fraction of the real traffic.
+     * @param array|null $eligibleCountries iso country codes eligible for this regional plan. empty means no restriction.
      * @param bool|null $backupsEnabled does plan support backup policies.
      * @param int|null $backupPolicies how many policies does plan support
      * @param BillingPlanLimits|null $limits plan specific limits
@@ -158,9 +160,11 @@ readonly class BillingPlan
         public BillingPlanGroup $group,
         public float $databaseComputeCredit,
         public ?int $members = null,
+        public ?int $environments = null,
         public ?int $activityLogs = null,
         public ?array $usageLogsIntervals = null,
         public ?array $usageAggregateOnlyMetrics = null,
+        public ?array $eligibleCountries = null,
         public ?bool $backupsEnabled = null,
         public ?int $backupPolicies = null,
         public ?BillingPlanLimits $limits = null,
@@ -316,9 +320,11 @@ readonly class BillingPlan
             group: static::hydrateTypedValue(BillingPlanGroup::class, $data['group']),
             databaseComputeCredit: $data['databaseComputeCredit'],
             members: $data['members'] ?? null,
+            environments: $data['environments'] ?? null,
             activityLogs: $data['activityLogs'] ?? null,
             usageLogsIntervals: $data['usageLogsIntervals'] ?? null,
             usageAggregateOnlyMetrics: $data['usageAggregateOnlyMetrics'] ?? null,
+            eligibleCountries: $data['eligibleCountries'] ?? null,
             backupsEnabled: $data['backupsEnabled'] ?? null,
             backupPolicies: $data['backupPolicies'] ?? null,
             limits: array_key_exists('limits', $data) ? static::hydrateTypedValue(BillingPlanLimits::class, $data['limits'], true) : null,
@@ -346,6 +352,7 @@ readonly class BillingPlan
             'members' => static::serializeValue($this->members),
             'webhooks' => static::serializeValue($this->webhooks),
             'wafRules' => static::serializeValue($this->wafRules),
+            'environments' => static::serializeValue($this->environments),
             'projects' => static::serializeValue($this->projects),
             'platforms' => static::serializeValue($this->platforms),
             'users' => static::serializeValue($this->users),
@@ -380,6 +387,7 @@ readonly class BillingPlan
             'emailBranding' => static::serializeValue($this->emailBranding),
             'requiresPaymentMethod' => static::serializeValue($this->requiresPaymentMethod),
             'requiresBillingAddress' => static::serializeValue($this->requiresBillingAddress),
+            'eligibleCountries' => static::serializeValue($this->eligibleCountries),
             'isAvailable' => static::serializeValue($this->isAvailable),
             'selfService' => static::serializeValue($this->selfService),
             'premiumSupport' => static::serializeValue($this->premiumSupport),

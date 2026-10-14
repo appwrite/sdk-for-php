@@ -25,6 +25,10 @@ readonly class DedicatedDatabaseSpecification
      * @param int $includedStorage included storage in gb before overage charges apply.
      * @param int $includedBandwidth included bandwidth in gb before overage charges apply.
      * @param bool $enabled whether the specification is available on the current plan.
+     * @param float|null $storageOverageRate price per gb of storage above the included amount, per month, in usd.
+     * @param float|null $bandwidthOverageRate price per gb of bandwidth above the included amount, per month, in usd.
+     * @param float|null $replicaRate high availability replica price as a fraction of the specification price.
+     * @param float|null $pitrRate point-in-time recovery price as a fraction of the specification price.
      */
     public function __construct(
         public string $slug,
@@ -35,7 +39,11 @@ readonly class DedicatedDatabaseSpecification
         public int $maxConnections,
         public int $includedStorage,
         public int $includedBandwidth,
-        public bool $enabled
+        public bool $enabled,
+        public ?float $storageOverageRate = null,
+        public ?float $bandwidthOverageRate = null,
+        public ?float $replicaRate = null,
+        public ?float $pitrRate = null
     ) {
     }
 
@@ -65,7 +73,11 @@ readonly class DedicatedDatabaseSpecification
             maxConnections: $data['maxConnections'],
             includedStorage: $data['includedStorage'],
             includedBandwidth: $data['includedBandwidth'],
-            enabled: $data['enabled']
+            enabled: $data['enabled'],
+            storageOverageRate: $data['storageOverageRate'] ?? null,
+            bandwidthOverageRate: $data['bandwidthOverageRate'] ?? null,
+            replicaRate: $data['replicaRate'] ?? null,
+            pitrRate: $data['pitrRate'] ?? null
         );
     }
 
@@ -78,6 +90,10 @@ readonly class DedicatedDatabaseSpecification
             'slug' => static::serializeValue($this->slug),
             'name' => static::serializeValue($this->name),
             'price' => static::serializeValue($this->price),
+            'storageOverageRate' => static::serializeValue($this->storageOverageRate),
+            'bandwidthOverageRate' => static::serializeValue($this->bandwidthOverageRate),
+            'replicaRate' => static::serializeValue($this->replicaRate),
+            'pitrRate' => static::serializeValue($this->pitrRate),
             'cpu' => static::serializeValue($this->cpu),
             'memory' => static::serializeValue($this->memory),
             'maxConnections' => static::serializeValue($this->maxConnections),

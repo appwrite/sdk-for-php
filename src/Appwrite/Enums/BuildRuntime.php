@@ -60,6 +60,7 @@ class BuildRuntime implements JsonSerializable, Stringable
     private static BuildRuntime $DART310;
     private static BuildRuntime $DART311;
     private static BuildRuntime $DART312;
+    private static BuildRuntime $DART313;
     private static BuildRuntime $DOTNET60;
     private static BuildRuntime $DOTNET70;
     private static BuildRuntime $DOTNET80;
@@ -102,6 +103,7 @@ class BuildRuntime implements JsonSerializable, Stringable
     private static BuildRuntime $FLUTTER338;
     private static BuildRuntime $FLUTTER341;
     private static BuildRuntime $FLUTTER344;
+    private static BuildRuntime $FLUTTER347;
 
     private function __construct(private readonly string $value)
     {
@@ -423,6 +425,12 @@ class BuildRuntime implements JsonSerializable, Stringable
 
         return self::$DART312;
     }
+    public static function DART313(): BuildRuntime
+    {
+        self::$DART313 ??= new BuildRuntime('dart-3.13');
+
+        return self::$DART313;
+    }
     public static function DOTNET60(): BuildRuntime
     {
         self::$DOTNET60 ??= new BuildRuntime('dotnet-6.0');
@@ -675,6 +683,12 @@ class BuildRuntime implements JsonSerializable, Stringable
 
         return self::$FLUTTER344;
     }
+    public static function FLUTTER347(): BuildRuntime
+    {
+        self::$FLUTTER347 ??= new BuildRuntime('flutter-3.47');
+
+        return self::$FLUTTER347;
+    }
 
     public static function from(string $value): self
     {
@@ -730,6 +744,7 @@ class BuildRuntime implements JsonSerializable, Stringable
             'dart-3.10' => self::DART310(),
             'dart-3.11' => self::DART311(),
             'dart-3.12' => self::DART312(),
+            'dart-3.13' => self::DART313(),
             'dotnet-6.0' => self::DOTNET60(),
             'dotnet-7.0' => self::DOTNET70(),
             'dotnet-8.0' => self::DOTNET80(),
@@ -772,6 +787,7 @@ class BuildRuntime implements JsonSerializable, Stringable
             'flutter-3.38' => self::FLUTTER338(),
             'flutter-3.41' => self::FLUTTER341(),
             'flutter-3.44' => self::FLUTTER344(),
+            'flutter-3.47' => self::FLUTTER347(),
             default => throw new \InvalidArgumentException('Unknown BuildRuntime value: ' . $value),
         };
     }

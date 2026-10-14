@@ -10,6 +10,7 @@ use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
 use Appwrite\Enums\AuthenticatorType;
 use Appwrite\Enums\AuthenticationFactor;
+use Appwrite\Enums\IdTokenProvider;
 use Appwrite\Enums\OAuthProvider;
 
 final class AccountTest extends TestCase
@@ -1060,6 +1061,56 @@ final class AccountTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Token::class, $response);
     }
+    public function testMethodCreateRecoveryOTP(): void
+    {
+        $data = [
+            "\$id" => "bb8ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "userId" => "5e5ea5c168bb8",
+            "secret" => "[SECRET]",
+            "expire" => "2020-10-15T06:38:00.000+00:00",
+            "phrase" => "Golden Fox"
+        ];
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->account->createRecoveryOTP(
+            "email@example.com"
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\Token::class, $response);
+    }
+    public function testMethodUpdateRecoveryOTP(): void
+    {
+        $data = [
+            "\$id" => "bb8ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "userId" => "5e5ea5c168bb8",
+            "secret" => "[SECRET]",
+            "expire" => "2020-10-15T06:38:00.000+00:00",
+            "phrase" => "Golden Fox"
+        ];
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->account->updateRecoveryOTP(
+            "<USER_ID>",
+            "<SECRET>",
+            "password"
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\Token::class, $response);
+    }
     public function testMethodListSessions(): void
     {
         $data = [
@@ -1214,6 +1265,54 @@ final class AccountTest extends TestCase
         $response = $this->account->createEmailPasswordSession(
             "email@example.com",
             "password"
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\Session::class, $response);
+    }
+    public function testMethodCreateIdTokenSession(): void
+    {
+        $data = [
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "userId" => "5e5bb8c16897e",
+            "expire" => "2020-10-15T06:38:00.000+00:00",
+            "provider" => "email",
+            "providerUid" => "user@example.com",
+            "providerAccessToken" => "MTQ0NjJkZmQ5OTM2NDE1ZTZjNGZmZjI3",
+            "providerAccessTokenExpiry" => "2020-10-15T06:38:00.000+00:00",
+            "providerRefreshToken" => "MTQ0NjJkZmQ5OTM2NDE1ZTZjNGZmZjI3",
+            "ip" => "127.0.0.1",
+            "osCode" => "Mac",
+            "osName" => "Mac",
+            "osVersion" => "Mac",
+            "clientType" => "browser",
+            "clientCode" => "CM",
+            "clientName" => "Chrome Mobile iOS",
+            "clientVersion" => "84.0",
+            "clientEngine" => "WebKit",
+            "clientEngineVersion" => "605.1.15",
+            "deviceName" => "smartphone",
+            "deviceBrand" => "Google",
+            "deviceModel" => "Nexus 5",
+            "countryCode" => "US",
+            "countryName" => "United States",
+            "current" => true,
+            "factors" => [],
+            "secret" => "5e5bb8c16897e",
+            "mfaUpdatedAt" => "2020-10-15T06:38:00.000+00:00"
+        ];
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->account->createIdTokenSession(
+            IdTokenProvider::APPLE(),
+            "<ID_TOKEN>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Session::class, $response);
@@ -1746,6 +1845,53 @@ final class AccountTest extends TestCase
             ->andReturn('');
 
         $response = $this->account->updateVerification(
+            "<USER_ID>",
+            "<SECRET>"
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\Token::class, $response);
+    }
+    public function testMethodCreateEmailVerificationOTP(): void
+    {
+        $data = [
+            "\$id" => "bb8ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "userId" => "5e5ea5c168bb8",
+            "secret" => "[SECRET]",
+            "expire" => "2020-10-15T06:38:00.000+00:00",
+            "phrase" => "Golden Fox"
+        ];
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->account->createEmailVerificationOTP();
+
+        $this->assertInstanceOf(\Appwrite\Models\Token::class, $response);
+    }
+    public function testMethodUpdateEmailVerificationOTP(): void
+    {
+        $data = [
+            "\$id" => "bb8ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "userId" => "5e5ea5c168bb8",
+            "secret" => "[SECRET]",
+            "expire" => "2020-10-15T06:38:00.000+00:00",
+            "phrase" => "Golden Fox"
+        ];
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->account->updateEmailVerificationOTP(
             "<USER_ID>",
             "<SECRET>"
         );

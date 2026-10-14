@@ -30,6 +30,74 @@ PATCH https://cloud.appwrite.io/v1/project/auth-methods/{methodId}
 
 
 ```http request
+GET https://cloud.appwrite.io/v1/project/environments
+```
+
+** Get a list of all environments of the project. You can use the query params to filter your results. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, teamId, labels, search, accessedAt, status, parentId | [] |
+| total | boolean | When set to false, the total count returned will be 0 and will not be calculated. | 1 |
+
+
+```http request
+POST https://cloud.appwrite.io/v1/project/environments
+```
+
+** Create a new environment of the project. An environment is a separate project in the same organization and region, with its own resources and users. Its usage is billed under the project it belongs to. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| environmentId | string | Unique Id. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, and hyphen. Can't start with a special char. Max length is 36 chars. |  |
+| name | string | Environment name. Max length: 128 chars. |  |
+
+
+```http request
+GET https://cloud.appwrite.io/v1/project/environments/{environmentId}
+```
+
+** Get an environment of the project by its unique ID. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| environmentId | string | **Required** Environment unique ID. |  |
+
+
+```http request
+PATCH https://cloud.appwrite.io/v1/project/environments/{environmentId}
+```
+
+** Update the name of an environment of the project. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| environmentId | string | **Required** Environment unique ID. |  |
+| name | string | Environment name. Max length: 128 chars. |  |
+
+
+```http request
+DELETE https://cloud.appwrite.io/v1/project/environments/{environmentId}
+```
+
+** Delete an environment of the project, with all of its resources and users. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| environmentId | string | **Required** Environment unique ID. |  |
+
+
+```http request
 GET https://cloud.appwrite.io/v1/project/keys
 ```
 
@@ -253,7 +321,9 @@ PATCH https://cloud.appwrite.io/v1/project/oauth2/apple
 | keyId | string | 'Key ID' of Apple OAuth2 app. For example: P4000000N8 |  |
 | teamId | string | 'Team ID' of Apple OAuth2 app. For example: D4000000R6 |  |
 | p8File | string | Contents of the Apple OAuth2 app .p8 private key file. The secret key wrapped by the PEM markers is 200 characters long. For example: -----BEGIN PRIVATE KEY-----MIGTAg...jy2Xbna-----END PRIVATE KEY----- |  |
-| enabled | boolean | OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid. |  |
+| enabled | boolean | Browser-based OAuth2 sign-in status. Set to true to enable new session creation through the redirect flow. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid. Has no effect on native sign-in, which is controlled by nativeEnabled only. |  |
+| nativeClientIds | array | App bundle IDs accepted as ID token audiences for native Sign in with Apple. For example: com.example.app. Together with the Services ID, these are the only client IDs whose tokens are trusted. Pass an empty array to clear the list. |  |
+| nativeEnabled | boolean | Native Sign in with Apple status. This is the only switch for creating sessions from ID tokens obtained on device and is independent of enabled. Needs a Services ID or at least one native client ID to match tokens against, but no key or team ID: this method verifies a signature rather than redeeming an authorization code. |  |
 
 
 ```http request
@@ -285,6 +355,7 @@ PATCH https://cloud.appwrite.io/v1/project/oauth2/auth0
 | clientSecret | string | 'Client Secret' of Auth0 OAuth2 app. For example: zXz0000-00000000000000000000000000000-00000000000000000000PJafnF |  |
 | endpoint | string | Domain of Auth0 instance. For example: example.us.auth0.com |  |
 | enabled | boolean | OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid. |  |
+| prompt | array | Array of Auth0 OAuth2 prompt values. If "none" is included, it must be the only element. "none" means: don't display any authentication or consent screens. "login" means: prompt the user to re-authenticate. "consent" means: prompt the user for consent. Pass an empty array to use the Auth0 default. |  |
 
 
 ```http request
@@ -406,6 +477,7 @@ PATCH https://cloud.appwrite.io/v1/project/oauth2/discord
 | clientId | string | 'Client ID' of Discord OAuth2 app. For example: 950722000000343754 |  |
 | clientSecret | string | 'Client Secret' of Discord OAuth2 app. For example: YmPXnM000000000000000000002zFg5D |  |
 | enabled | boolean | OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid. |  |
+| prompt | array | Array with at most one Discord OAuth2 prompt value. "none" means: skip the authorization screen for users who already authorized the app with the requested scopes. "consent" means: ask users who already authorized the app to approve it again. Pass an empty array to use the Discord default. |  |
 
 
 ```http request
@@ -512,6 +584,7 @@ PATCH https://cloud.appwrite.io/v1/project/oauth2/github
 | clientId | string | 'OAuth2 app Client ID, or App ID' of GitHub OAuth2 app. For example: e4d87900000000540733. Example of wrong value: 370006 |  |
 | clientSecret | string | 'Client Secret' of GitHub OAuth2 app. For example: 5e07c00000000000000000000000000000198bcc |  |
 | enabled | boolean | OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid. |  |
+| prompt | array | Array of GitHub OAuth2 prompt values. "select_account" means: prompt the user to select an account. Pass an empty array to use the GitHub default. |  |
 
 
 ```http request
@@ -543,7 +616,9 @@ PATCH https://cloud.appwrite.io/v1/project/oauth2/google
 | clientId | string | 'Client ID' of Google OAuth2 app. For example: 120000000095-92ifjb00000000000000000000g7ijfb.apps.googleusercontent.com |  |
 | clientSecret | string | 'Client Secret' of Google OAuth2 app. For example: GOCSPX-2k8gsR0000000000000000VNahJj |  |
 | prompt | array | Array of Google OAuth2 prompt values. If "none" is included, it must be the only element. "none" means: don't display any authentication or consent screens. Must not be specified with other values. "consent" means: prompt the user for consent. "select_account" means: prompt the user to select an account. |  |
-| enabled | boolean | OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid. |  |
+| enabled | boolean | Browser-based OAuth2 sign-in status. Set to true to enable new session creation through the redirect flow. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid. Has no effect on native sign-in, which is controlled by nativeEnabled only. |  |
+| nativeClientIds | array | Additional OAuth2 client IDs accepted as ID token audiences for native sign-in (Android and iOS client IDs). Together with the client ID, which is always accepted, these are the only client IDs whose tokens are trusted. Pass an empty array to clear the list. |  |
+| nativeEnabled | boolean | Native Google sign-in status. This is the only switch for creating sessions from ID tokens obtained on device and is independent of enabled. Needs a client ID or at least one native client ID to match tokens against, but no client secret: this method verifies a signature rather than redeeming an authorization code. |  |
 
 
 ```http request
@@ -558,6 +633,22 @@ PATCH https://cloud.appwrite.io/v1/project/oauth2/huggingface
 | --- | --- | --- | --- |
 | clientId | string | 'Client ID' of Hugging Face OAuth2 app. For example: 2ab9cff9-d711-40ad-a91e-b08a49c42d24 |  |
 | clientSecret | string | 'Client Secret' of Hugging Face OAuth2 app. For example: oauth_app_secret_wcLhRtl000000000000000000000xbNdLt |  |
+| enabled | boolean | OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid. |  |
+
+
+```http request
+PATCH https://cloud.appwrite.io/v1/project/oauth2/kakao
+```
+
+** Update the project OAuth2 Kakao configuration. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| clientId | string | 'REST API key' of Kakao OAuth2 app. For example: 839ff5000000000000000000013206de |  |
+| clientSecret | string | 'Client Secret' of Kakao OAuth2 app. For example: jLNVOK00000000000000000000yJebea. Generate it under Kakao Login > Security and set its status to enabled |  |
+| prompt | array | Array of Kakao OAuth2 prompt values. If "none" is included, it must be the only element. "none" means: don't display any authentication or consent screens. "login" means: prompt the user to re-authenticate. "create" means: prompt the user to sign up. "select_account" means: prompt the user to select an account. Pass an empty array to use the Kakao default. |  |
 | enabled | boolean | OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid. |  |
 
 
@@ -622,6 +713,7 @@ PATCH https://cloud.appwrite.io/v1/project/oauth2/microsoft
 | applicationSecret | string | 'Entra ID Application Secret, also known as Client Secret' of Microsoft OAuth2 app. For example: A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u |  |
 | tenant | string | Microsoft Entra ID tenant identifier. Use 'common', 'organizations', 'consumers' or a specific tenant ID. For example: common |  |
 | enabled | boolean | OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid. |  |
+| prompt | array | Array of Microsoft OAuth2 prompt values. "none" means: don't display any authentication or consent screens. "login" means: prompt the user to re-authenticate. "consent" means: prompt the user for consent. "select_account" means: prompt the user to select an account. Pass an empty array to use the Microsoft default. |  |
 
 
 ```http request
@@ -675,6 +767,7 @@ PATCH https://cloud.appwrite.io/v1/project/oauth2/okta
 | domain | string | Okta company domain. Required when enabling the provider. For example: trial-6400025.okta.com. Example of wrong value: trial-6400025-admin.okta.com, or https://trial-6400025.okta.com/ |  |
 | authorizationServerId | string | Custom Authorization Servers. Optional, can be left empty or unconfigured. For example: aus000000000000000h7z |  |
 | enabled | boolean | OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid. |  |
+| prompt | array | Array of Okta OAuth2 prompt values. If "none" is included, it must be the only element. "none" means: don't display any authentication or consent screens. "login" means: prompt the user to re-authenticate. "consent" means: prompt the user for consent. Pass an empty array to use the Okta default. |  |
 
 
 ```http request
@@ -750,6 +843,7 @@ PATCH https://cloud.appwrite.io/v1/project/oauth2/salesforce
 | customerKey | string | 'Consumer Key' of Salesforce OAuth2 app. For example: 3MVG9I0000000000000000000000000000000000000000000000000000000000000000000000000C5Aejq |  |
 | customerSecret | string | 'Consumer Secret' of Salesforce OAuth2 app. For example: 3w000000000000e2 |  |
 | enabled | boolean | OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid. |  |
+| prompt | array | Array of Salesforce OAuth2 prompt values. "login" means: prompt the user to re-authenticate. "consent" means: prompt the user for consent. Pass an empty array to use the Salesforce default. |  |
 
 
 ```http request
@@ -798,6 +892,21 @@ PATCH https://cloud.appwrite.io/v1/project/oauth2/stripe
 
 
 ```http request
+PATCH https://cloud.appwrite.io/v1/project/oauth2/tiktok
+```
+
+** Update the project OAuth2 TikTok configuration. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| clientId | string | 'Client key' of TikTok OAuth2 app. For example: awz000000000tyw0 |  |
+| clientSecret | string | 'Client secret' of TikTok OAuth2 app. For example: 6wXewM00000000000000000000yXnite |  |
+| enabled | boolean | OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid. |  |
+
+
+```http request
 PATCH https://cloud.appwrite.io/v1/project/oauth2/tradeshift
 ```
 
@@ -839,6 +948,21 @@ PATCH https://cloud.appwrite.io/v1/project/oauth2/twitch
 | --- | --- | --- | --- |
 | clientId | string | 'Client ID' of Twitch OAuth2 app. For example: vvi0in000000000000000000ikmt9p |  |
 | clientSecret | string | 'Client Secret' of Twitch OAuth2 app. For example: pmapue000000000000000000zylw3v |  |
+| enabled | boolean | OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid. |  |
+
+
+```http request
+PATCH https://cloud.appwrite.io/v1/project/oauth2/webflow
+```
+
+** Update the project OAuth2 Webflow configuration. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| clientId | string | 'Client ID' of Webflow OAuth2 app. For example: 8bb20000000000000000000000000000000000000000000000000000000040dd |  |
+| clientSecret | string | 'Client Secret' of Webflow OAuth2 app. For example: 59bf00000000000000000000000000000000000000000000000000000000fe59 |  |
 | enabled | boolean | OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid. |  |
 
 
@@ -915,6 +1039,7 @@ PATCH https://cloud.appwrite.io/v1/project/oauth2/zoho
 | clientId | string | 'Client ID' of Zoho OAuth2 app. For example: 1000.83C178000000000000000000RPNX0B |  |
 | clientSecret | string | 'Client Secret' of Zoho OAuth2 app. For example: fb5cac000000000000000000000000000000a68f6e |  |
 | enabled | boolean | OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid. |  |
+| prompt | array | Array of Zoho OAuth2 prompt values. "consent" means: prompt the user for consent. Pass an empty array to use the Zoho default. |  |
 
 
 ```http request
@@ -972,6 +1097,7 @@ POST https://cloud.appwrite.io/v1/project/platforms/android
 | platformId | string | Platform ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
 | name | string | Platform name. Max length: 128 chars. |  |
 | applicationId | string | Android application ID. Max length: 256 chars. |  |
+| fingerprints | array | SHA-256 fingerprints of the certificates your app is signed with, such as "14:6D:E9:...:2B:6A". Passkeys created in the app are accepted when its signature matches one. Find them under App signing in Play Console, or with `./gradlew signingReport`. | [] |
 
 
 ```http request
@@ -987,6 +1113,7 @@ PUT https://cloud.appwrite.io/v1/project/platforms/android/{platformId}
 | platformId | string | **Required** Platform ID. |  |
 | name | string | Platform name. Max length: 128 chars. |  |
 | applicationId | string | Android application ID. Max length: 256 chars. |  |
+| fingerprints | array | SHA-256 fingerprints of the certificates your app is signed with, such as "14:6D:E9:...:2B:6A". Passkeys created in the app are accepted when its signature matches one. Find them under App signing in Play Console, or with `./gradlew signingReport`. Omit to keep the current list, or pass an empty array to clear it. |  |
 
 
 ```http request
@@ -1287,6 +1414,35 @@ PATCH https://cloud.appwrite.io/v1/project/policies/password-personal-data
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | enabled | boolean | Toggle password personal data policy. Set to true if you want to block passwords including user's personal data, or false to allow it. When changing this policy, existing passwords remain valid. |  |
+
+
+```http request
+PATCH https://cloud.appwrite.io/v1/project/policies/password-pwned
+```
+
+** Updating this policy allows you to control if passwords are checked against the Have I Been Pwned breach database. When enabled, every password a user signs up, signs in or resets with is checked and the result is recorded on the user as `passwordPwned`. On its own the policy only records. Enable `users` to reject a breached password when a user signs up or sets a new password, and `sessions` to refuse a sign-in with a breached password until it is reset. Only the first five characters of the password hash are ever shared with the service. Options left out keep their current value. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| enabled | boolean | Toggle password pwned policy. Set to true to check passwords against known data breaches and record the result on the user, or false to never check. Default is true. On its own this only records; use `users` and `sessions` to block. When changing this policy, existing passwords remain valid. |  |
+| sessions | boolean | Whether a sign-in with a breached password is refused until the password is reset. Default is false, which allows the sign-in and only records the result. |  |
+| users | boolean | Whether a breached password is rejected when a user signs up or sets a new password. Default is false, which allows the password and only records the result. |  |
+
+
+```http request
+PATCH https://cloud.appwrite.io/v1/project/policies/password-rotation
+```
+
+** Require a password reset when an email/password sign-in uses a password older than the configured maximum age. Options left out keep their current value. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| enabled | boolean | Enable password rotation. Disabled by default. |  |
+| maxAge | integer | Maximum password age in seconds. Minimum allowed value is 86400 seconds (1 day), and maximum is 10 years, which is 315360000 seconds. Defaults to 1 year, which is 31536000 seconds. |  |
 
 
 ```http request

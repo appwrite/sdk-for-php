@@ -13,6 +13,8 @@ class ProjectPolicyId implements JsonSerializable, Stringable
     private static ProjectPolicyId $PASSWORDHISTORY;
     private static ProjectPolicyId $PASSWORDSTRENGTH;
     private static ProjectPolicyId $PASSWORDPERSONALDATA;
+    private static ProjectPolicyId $PASSWORDPWNED;
+    private static ProjectPolicyId $PASSWORDROTATION;
     private static ProjectPolicyId $SESSIONALERT;
     private static ProjectPolicyId $SESSIONDURATION;
     private static ProjectPolicyId $SESSIONINVALIDATION;
@@ -63,6 +65,18 @@ class ProjectPolicyId implements JsonSerializable, Stringable
         self::$PASSWORDPERSONALDATA ??= new ProjectPolicyId('password-personal-data');
 
         return self::$PASSWORDPERSONALDATA;
+    }
+    public static function PASSWORDPWNED(): ProjectPolicyId
+    {
+        self::$PASSWORDPWNED ??= new ProjectPolicyId('password-pwned');
+
+        return self::$PASSWORDPWNED;
+    }
+    public static function PASSWORDROTATION(): ProjectPolicyId
+    {
+        self::$PASSWORDROTATION ??= new ProjectPolicyId('password-rotation');
+
+        return self::$PASSWORDROTATION;
     }
     public static function SESSIONALERT(): ProjectPolicyId
     {
@@ -144,6 +158,8 @@ class ProjectPolicyId implements JsonSerializable, Stringable
             'password-history' => self::PASSWORDHISTORY(),
             'password-strength' => self::PASSWORDSTRENGTH(),
             'password-personal-data' => self::PASSWORDPERSONALDATA(),
+            'password-pwned' => self::PASSWORDPWNED(),
+            'password-rotation' => self::PASSWORDROTATION(),
             'session-alert' => self::SESSIONALERT(),
             'session-duration' => self::SESSIONDURATION(),
             'session-invalidation' => self::SESSIONINVALIDATION(),

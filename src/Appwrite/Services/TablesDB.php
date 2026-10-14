@@ -148,7 +148,7 @@ class TablesDB extends Service
      *
      * @throws AppwriteException
      */
-    public function listTransactions(?array $queries = null): \Appwrite\Models\TransactionList
+    public function listTransactions(?array $queries = null, ?bool $total = null): \Appwrite\Models\TransactionList
     {
         $apiPath = str_replace(
             [],
@@ -160,6 +160,10 @@ class TablesDB extends Service
 
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
         }
 
         $apiHeaders = [];

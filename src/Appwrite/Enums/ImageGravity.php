@@ -9,6 +9,7 @@ use Stringable;
 
 class ImageGravity implements JsonSerializable, Stringable
 {
+    private static ImageGravity $AUTO;
     private static ImageGravity $CENTER;
     private static ImageGravity $TOPLEFT;
     private static ImageGravity $TOP;
@@ -33,6 +34,12 @@ class ImageGravity implements JsonSerializable, Stringable
         return $this->value;
     }
 
+    public static function AUTO(): ImageGravity
+    {
+        self::$AUTO ??= new ImageGravity('auto');
+
+        return self::$AUTO;
+    }
     public static function CENTER(): ImageGravity
     {
         self::$CENTER ??= new ImageGravity('center');
@@ -91,6 +98,7 @@ class ImageGravity implements JsonSerializable, Stringable
     public static function from(string $value): self
     {
         return match ($value) {
+            'auto' => self::AUTO(),
             'center' => self::CENTER(),
             'top-left' => self::TOPLEFT(),
             'top' => self::TOP(),

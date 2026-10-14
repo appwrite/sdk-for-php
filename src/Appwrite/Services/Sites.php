@@ -188,7 +188,7 @@ class Sites extends Service
      *
      * @throws AppwriteException
      */
-    public function listFrameworks(): \Appwrite\Models\FrameworkList
+    public function listFrameworks(?bool $total = null): \Appwrite\Models\FrameworkList
     {
         $apiPath = str_replace(
             [],
@@ -197,6 +197,10 @@ class Sites extends Service
         );
 
         $apiParams = [];
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
+        }
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -221,7 +225,7 @@ class Sites extends Service
      *
      * @throws AppwriteException
      */
-    public function listSpecifications(?string $type = null): \Appwrite\Models\SpecificationList
+    public function listSpecifications(?string $type = null, ?bool $total = null): \Appwrite\Models\SpecificationList
     {
         $apiPath = str_replace(
             [],
@@ -233,6 +237,10 @@ class Sites extends Service
 
         if (!is_null($type)) {
             $apiParams['type'] = $type;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
         }
 
         $apiHeaders = [];

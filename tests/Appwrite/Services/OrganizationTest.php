@@ -9,6 +9,7 @@ use Mockery;
 use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
 use Appwrite\Enums\OrganizationKeyScopes;
+use Appwrite\Enums\ProjectKeyScopes;
 
 final class OrganizationTest extends TestCase
 {
@@ -1145,6 +1146,143 @@ final class OrganizationTest extends TestCase
 
         $response = $this->organization->deleteProject(
             "<PROJECT_ID>"
+        );
+
+        $this->assertSame($data, $response);
+    }
+    public function testMethodListProjectKeys(): void
+    {
+        $data = [
+            "total" => 5,
+            "keys" => [
+                [
+                    "\$id" => "5e5ea5c16897e",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "name" => "My API Key",
+                    "expire" => "2020-10-15T06:38:00.000+00:00",
+                    "scopes" => [],
+                    "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
+                    "accessedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "sdks" => []
+                ]
+            ]
+        ];
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->organization->listProjectKeys(
+            "<PROJECT_ID>"
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\KeyList::class, $response);
+    }
+    public function testMethodCreateEphemeralProjectKey(): void
+    {
+        $data = [
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "name" => "My API Key",
+            "expire" => "2020-10-15T06:38:00.000+00:00",
+            "scopes" => [],
+            "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
+            "accessedAt" => "2020-10-15T06:38:00.000+00:00",
+            "sdks" => []
+        ];
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->organization->createEphemeralProjectKey(
+            "<PROJECT_ID>",
+            [ProjectKeyScopes::PROJECTREAD()],
+            1
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\EphemeralKey::class, $response);
+    }
+    public function testMethodGetProjectKey(): void
+    {
+        $data = [
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "name" => "My API Key",
+            "expire" => "2020-10-15T06:38:00.000+00:00",
+            "scopes" => [],
+            "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
+            "accessedAt" => "2020-10-15T06:38:00.000+00:00",
+            "sdks" => []
+        ];
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->organization->getProjectKey(
+            "<PROJECT_ID>",
+            "<KEY_ID>"
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\Key::class, $response);
+    }
+    public function testMethodUpdateProjectKey(): void
+    {
+        $data = [
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "name" => "My API Key",
+            "expire" => "2020-10-15T06:38:00.000+00:00",
+            "scopes" => [],
+            "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
+            "accessedAt" => "2020-10-15T06:38:00.000+00:00",
+            "sdks" => []
+        ];
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->organization->updateProjectKey(
+            "<PROJECT_ID>",
+            "<KEY_ID>",
+            "<NAME>",
+            [ProjectKeyScopes::PROJECTREAD()]
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\Key::class, $response);
+    }
+    public function testMethodDeleteProjectKey(): void
+    {
+        $data = '';
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->organization->deleteProjectKey(
+            "<PROJECT_ID>",
+            "<KEY_ID>"
         );
 
         $this->assertSame($data, $response);

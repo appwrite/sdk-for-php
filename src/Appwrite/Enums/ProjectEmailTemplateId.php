@@ -16,6 +16,8 @@ class ProjectEmailTemplateId implements JsonSerializable, Stringable
     private static ProjectEmailTemplateId $MFACHALLENGE;
     private static ProjectEmailTemplateId $SESSIONALERT;
     private static ProjectEmailTemplateId $OTPSESSION;
+    private static ProjectEmailTemplateId $OTPVERIFICATION;
+    private static ProjectEmailTemplateId $OTPRECOVERY;
 
     private function __construct(private readonly string $value)
     {
@@ -73,6 +75,18 @@ class ProjectEmailTemplateId implements JsonSerializable, Stringable
 
         return self::$OTPSESSION;
     }
+    public static function OTPVERIFICATION(): ProjectEmailTemplateId
+    {
+        self::$OTPVERIFICATION ??= new ProjectEmailTemplateId('otpVerification');
+
+        return self::$OTPVERIFICATION;
+    }
+    public static function OTPRECOVERY(): ProjectEmailTemplateId
+    {
+        self::$OTPRECOVERY ??= new ProjectEmailTemplateId('otpRecovery');
+
+        return self::$OTPRECOVERY;
+    }
 
     public static function from(string $value): self
     {
@@ -84,6 +98,8 @@ class ProjectEmailTemplateId implements JsonSerializable, Stringable
             'mfaChallenge' => self::MFACHALLENGE(),
             'sessionAlert' => self::SESSIONALERT(),
             'otpSession' => self::OTPSESSION(),
+            'otpVerification' => self::OTPVERIFICATION(),
+            'otpRecovery' => self::OTPRECOVERY(),
             default => throw new \InvalidArgumentException('Unknown ProjectEmailTemplateId value: ' . $value),
         };
     }

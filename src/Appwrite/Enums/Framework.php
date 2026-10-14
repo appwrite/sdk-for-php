@@ -21,6 +21,7 @@ class Framework implements JsonSerializable, Stringable
     private static Framework $REMIX;
     private static Framework $LYNX;
     private static Framework $FLUTTER;
+    private static Framework $JASPR;
     private static Framework $REACTNATIVE;
     private static Framework $VITE;
     private static Framework $OTHER;
@@ -111,6 +112,12 @@ class Framework implements JsonSerializable, Stringable
 
         return self::$FLUTTER;
     }
+    public static function JASPR(): Framework
+    {
+        self::$JASPR ??= new Framework('jaspr');
+
+        return self::$JASPR;
+    }
     public static function REACTNATIVE(): Framework
     {
         self::$REACTNATIVE ??= new Framework('react-native');
@@ -145,6 +152,7 @@ class Framework implements JsonSerializable, Stringable
             'remix' => self::REMIX(),
             'lynx' => self::LYNX(),
             'flutter' => self::FLUTTER(),
+            'jaspr' => self::JASPR(),
             'react-native' => self::REACTNATIVE(),
             'vite' => self::VITE(),
             'other' => self::OTHER(),

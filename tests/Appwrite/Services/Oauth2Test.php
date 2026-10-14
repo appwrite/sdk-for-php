@@ -157,6 +157,25 @@ final class Oauth2Test extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Oauth2Grant::class, $response);
     }
+    public function testMethodIntrospect(): void
+    {
+        $data = [
+            "active" => true
+        ];
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->oauth2->introspect(
+            "<TOKEN>"
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\Oauth2Introspection::class, $response);
+    }
     public function testMethodListOrganizations(): void
     {
         $data = [
