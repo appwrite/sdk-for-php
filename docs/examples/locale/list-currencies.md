@@ -11,5 +11,7 @@ $client = (new Client())
 
 $locale = new Locale($client);
 
-$result = $locale->listCurrencies();
+$result = $locale->listCurrencies(
+    total: false // optional
+);
 ```

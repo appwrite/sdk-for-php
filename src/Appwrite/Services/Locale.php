@@ -54,7 +54,7 @@ class Locale extends Service
      *
      * @throws AppwriteException
      */
-    public function listCodes(): \Appwrite\Models\LocaleCodeList
+    public function listCodes(?bool $total = null): \Appwrite\Models\LocaleCodeList
     {
         $apiPath = str_replace(
             [],
@@ -63,6 +63,10 @@ class Locale extends Service
         );
 
         $apiParams = [];
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
+        }
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -88,7 +92,7 @@ class Locale extends Service
      *
      * @throws AppwriteException
      */
-    public function listContinents(): \Appwrite\Models\ContinentList
+    public function listContinents(?bool $total = null): \Appwrite\Models\ContinentList
     {
         $apiPath = str_replace(
             [],
@@ -97,6 +101,10 @@ class Locale extends Service
         );
 
         $apiParams = [];
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
+        }
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -122,7 +130,7 @@ class Locale extends Service
      *
      * @throws AppwriteException
      */
-    public function listCountries(): \Appwrite\Models\CountryList
+    public function listCountries(?bool $total = null): \Appwrite\Models\CountryList
     {
         $apiPath = str_replace(
             [],
@@ -131,6 +139,10 @@ class Locale extends Service
         );
 
         $apiParams = [];
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
+        }
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -156,7 +168,7 @@ class Locale extends Service
      *
      * @throws AppwriteException
      */
-    public function listCountriesEU(): \Appwrite\Models\CountryList
+    public function listCountriesEU(?bool $total = null): \Appwrite\Models\CountryList
     {
         $apiPath = str_replace(
             [],
@@ -165,6 +177,10 @@ class Locale extends Service
         );
 
         $apiParams = [];
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
+        }
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -190,7 +206,7 @@ class Locale extends Service
      *
      * @throws AppwriteException
      */
-    public function listCountriesPhones(): \Appwrite\Models\PhoneList
+    public function listCountriesPhones(?bool $total = null): \Appwrite\Models\PhoneList
     {
         $apiPath = str_replace(
             [],
@@ -199,6 +215,10 @@ class Locale extends Service
         );
 
         $apiParams = [];
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
+        }
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -225,7 +245,7 @@ class Locale extends Service
      *
      * @throws AppwriteException
      */
-    public function listCurrencies(): \Appwrite\Models\CurrencyList
+    public function listCurrencies(?bool $total = null): \Appwrite\Models\CurrencyList
     {
         $apiPath = str_replace(
             [],
@@ -234,6 +254,10 @@ class Locale extends Service
         );
 
         $apiParams = [];
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
+        }
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -259,7 +283,7 @@ class Locale extends Service
      *
      * @throws AppwriteException
      */
-    public function listLanguages(): \Appwrite\Models\LanguageList
+    public function listLanguages(?bool $total = null): \Appwrite\Models\LanguageList
     {
         $apiPath = str_replace(
             [],
@@ -268,6 +292,10 @@ class Locale extends Service
         );
 
         $apiParams = [];
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
+        }
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');

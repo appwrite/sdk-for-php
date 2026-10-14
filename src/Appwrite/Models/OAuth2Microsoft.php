@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Appwrite\Models;
 
+use Appwrite\Enums\OAuth2MicrosoftPrompt;
+
 /**
  * OAuth2Microsoft
  *
@@ -21,13 +23,15 @@ readonly class OAuth2Microsoft
      * @param string $applicationId microsoft oauth2 application id.
      * @param string $applicationSecret microsoft oauth2 application secret.
      * @param string $tenant microsoft entra id tenant identifier. use 'common', 'organizations', 'consumers' or a specific tenant id.
+     * @param list<OAuth2MicrosoftPrompt>|null $prompt microsoft oauth2 prompt values.
      */
     public function __construct(
         public string $id,
         public bool $enabled,
         public string $applicationId,
         public string $applicationSecret,
-        public string $tenant
+        public string $tenant,
+        public ?array $prompt = null
     ) {
     }
 
@@ -49,7 +53,17 @@ readonly class OAuth2Microsoft
             enabled: $data['enabled'],
             applicationId: $data['applicationId'],
             applicationSecret: $data['applicationSecret'],
-            tenant: $data['tenant']
+            tenant: $data['tenant'],
+            prompt: array_key_exists('prompt', $data)
+                ? (
+                    is_array($data['prompt'])
+                        ? array_map(
+                            static fn (mixed $item): mixed => static::hydrateTypedValue(OAuth2MicrosoftPrompt::class, $item),
+                            $data['prompt']
+                        )
+                        : $data['prompt']
+                )
+                : null
         );
     }
 
@@ -63,6 +77,7 @@ readonly class OAuth2Microsoft
             'enabled' => static::serializeValue($this->enabled),
             'applicationId' => static::serializeValue($this->applicationId),
             'applicationSecret' => static::serializeValue($this->applicationSecret),
+            'prompt' => static::serializeValue($this->prompt),
             'tenant' => static::serializeValue($this->tenant)
         ];
     }

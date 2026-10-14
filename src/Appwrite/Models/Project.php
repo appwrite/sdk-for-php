@@ -44,7 +44,10 @@ readonly class Project
      * @param list<Block> $blocks project blocks information
      * @param string $consoleAccessedAt last time the project was accessed via console. used with plan's projectinactivitydays to determine if project is paused.
      * @param bool|null $wafEnabled whether waf enforcement is enabled for the project.
+     * @param string|null $parentId id of the project this environment belongs to. null when the project is not an environment.
      * @param BillingLimits|null $billingLimits billing limits reached
+     * @param string|null $firstAccessedAt first time the project received a non-console api request. empty until the project is used.
+     * @param string|null $mcpAccessedAt last time the project was accessed through the mcp server. empty if it was never accessed via mcp.
      * @param bool|null $oAuth2ServerEnabled oauth2 server status
      * @param string|null $oAuth2ServerAuthorizationUrl oauth2 server authorization url
      * @param array|null $oAuth2ServerScopes oauth2 server allowed scopes
@@ -92,7 +95,10 @@ readonly class Project
         public array $blocks,
         public string $consoleAccessedAt,
         public ?bool $wafEnabled = null,
+        public ?string $parentId = null,
         public ?BillingLimits $billingLimits = null,
+        public ?string $firstAccessedAt = null,
+        public ?string $mcpAccessedAt = null,
         public ?bool $oAuth2ServerEnabled = null,
         public ?string $oAuth2ServerAuthorizationUrl = null,
         public ?array $oAuth2ServerScopes = null,
@@ -213,7 +219,10 @@ readonly class Project
                 : $data['blocks'],
             consoleAccessedAt: $data['consoleAccessedAt'],
             wafEnabled: $data['wafEnabled'] ?? null,
+            parentId: $data['parentId'] ?? null,
             billingLimits: array_key_exists('billingLimits', $data) ? static::hydrateTypedValue(BillingLimits::class, $data['billingLimits'], true) : null,
+            firstAccessedAt: $data['firstAccessedAt'] ?? null,
+            mcpAccessedAt: $data['mcpAccessedAt'] ?? null,
             oAuth2ServerEnabled: $data['oAuth2ServerEnabled'] ?? null,
             oAuth2ServerAuthorizationUrl: $data['oAuth2ServerAuthorizationUrl'] ?? null,
             oAuth2ServerScopes: $data['oAuth2ServerScopes'] ?? null,
@@ -268,7 +277,10 @@ readonly class Project
             'blocks' => static::serializeValue($this->blocks),
             'consoleAccessedAt' => static::serializeValue($this->consoleAccessedAt),
             'wafEnabled' => static::serializeValue($this->wafEnabled),
+            'parentId' => static::serializeValue($this->parentId),
             'billingLimits' => static::serializeValue($this->billingLimits),
+            'firstAccessedAt' => static::serializeValue($this->firstAccessedAt),
+            'mcpAccessedAt' => static::serializeValue($this->mcpAccessedAt),
             'oAuth2ServerEnabled' => static::serializeValue($this->oAuth2ServerEnabled),
             'oAuth2ServerAuthorizationUrl' => static::serializeValue($this->oAuth2ServerAuthorizationUrl),
             'oAuth2ServerScopes' => static::serializeValue($this->oAuth2ServerScopes),

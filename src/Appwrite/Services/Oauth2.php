@@ -365,6 +365,55 @@ class Oauth2 extends Service
     }
 
     /**
+     * Introspect an OAuth2 access token or refresh token. Authenticate with an
+     * API key holding the `oauth2.introspect` scope to introspect any token in
+     * the project, or with the client credentials of the app the token was issued
+     * to.
+     *
+     * @throws AppwriteException
+     */
+    public function introspect(string $token, ?string $tokenTypeHint = null, ?string $clientId = null, ?string $clientSecret = null): \Appwrite\Models\Oauth2Introspection
+    {
+        $apiPath = str_replace(
+            ['{project_id}'],
+            [$this->client->getConfig('project')],
+            '/oauth2/{project_id}/introspect'
+        );
+
+        $apiParams = [];
+        $apiParams['token'] = $token;
+
+        if (!is_null($tokenTypeHint)) {
+            $apiParams['token_type_hint'] = $tokenTypeHint;
+        }
+
+        if (!is_null($clientId)) {
+            $apiParams['client_id'] = $clientId;
+        }
+
+        if (!is_null($clientSecret)) {
+            $apiParams['client_secret'] = $clientSecret;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Oauth2Introspection::from($response);
+    }
+
+    /**
      * List the organizations the OAuth2 access token can access. Resolves the
      * token's `organization` authorization details, expanding the `*` wildcard
      * into the concrete set of organizations the user can see.

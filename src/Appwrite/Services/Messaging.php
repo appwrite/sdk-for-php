@@ -62,7 +62,7 @@ class Messaging extends Service
      *
      * @throws AppwriteException
      */
-    public function createEmail(string $messageId, string $subject, string $content, ?array $topics = null, ?array $users = null, ?array $targets = null, ?array $cc = null, ?array $bcc = null, ?array $attachments = null, ?bool $draft = null, ?bool $html = null, ?string $scheduledAt = null): \Appwrite\Models\Message
+    public function createEmail(string $messageId, string $subject, string $content, ?array $topics = null, ?array $users = null, ?array $targets = null, ?array $cc = null, ?array $bcc = null, ?array $attachments = null, ?bool $draft = null, ?bool $html = null, ?string $scheduledAt = null, ?string $replyToEmail = null, ?string $replyToName = null): \Appwrite\Models\Message
     {
         $apiPath = str_replace(
             [],
@@ -108,6 +108,14 @@ class Messaging extends Service
         }
         $apiParams['scheduledAt'] = $scheduledAt;
 
+        if (!is_null($replyToEmail)) {
+            $apiParams['replyToEmail'] = $replyToEmail;
+        }
+
+        if (!is_null($replyToName)) {
+            $apiParams['replyToName'] = $replyToName;
+        }
+
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
@@ -134,7 +142,7 @@ class Messaging extends Service
      *
      * @throws AppwriteException
      */
-    public function updateEmail(string $messageId, ?array $topics = null, ?array $users = null, ?array $targets = null, ?string $subject = null, ?string $content = null, ?bool $draft = null, ?bool $html = null, ?array $cc = null, ?array $bcc = null, ?string $scheduledAt = null, ?array $attachments = null): \Appwrite\Models\Message
+    public function updateEmail(string $messageId, ?array $topics = null, ?array $users = null, ?array $targets = null, ?string $subject = null, ?string $content = null, ?bool $draft = null, ?bool $html = null, ?array $cc = null, ?array $bcc = null, ?string $scheduledAt = null, ?array $attachments = null, ?string $replyToEmail = null, ?string $replyToName = null): \Appwrite\Models\Message
     {
         $apiPath = str_replace(
             ['{messageId}'],
@@ -155,6 +163,8 @@ class Messaging extends Service
         $apiParams['bcc'] = $bcc;
         $apiParams['scheduledAt'] = $scheduledAt;
         $apiParams['attachments'] = $attachments;
+        $apiParams['replyToEmail'] = $replyToEmail;
+        $apiParams['replyToName'] = $replyToName;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -180,7 +190,7 @@ class Messaging extends Service
      *
      * @throws AppwriteException
      */
-    public function createPush(string $messageId, ?string $title = null, ?string $body = null, ?array $topics = null, ?array $users = null, ?array $targets = null, ?array $data = null, ?string $action = null, ?string $image = null, ?string $icon = null, ?string $sound = null, ?string $color = null, ?string $tag = null, ?int $badge = null, ?bool $draft = null, ?string $scheduledAt = null, ?bool $contentAvailable = null, ?bool $critical = null, ?MessagePriority $priority = null): \Appwrite\Models\Message
+    public function createPush(string $messageId, ?string $title = null, ?string $body = null, ?array $topics = null, ?array $users = null, ?array $targets = null, ?array $data = null, ?string $action = null, ?string $image = null, ?string $icon = null, ?string $sound = null, ?string $color = null, ?string $tag = null, ?int $badge = null, ?bool $draft = null, ?string $scheduledAt = null, ?bool $contentAvailable = null, ?bool $critical = null, ?MessagePriority $priority = null, ?string $channelId = null): \Appwrite\Models\Message
     {
         $apiPath = str_replace(
             [],
@@ -257,6 +267,10 @@ class Messaging extends Service
             $apiParams['priority'] = $priority;
         }
 
+        if (!is_null($channelId)) {
+            $apiParams['channelId'] = $channelId;
+        }
+
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
@@ -283,7 +297,7 @@ class Messaging extends Service
      *
      * @throws AppwriteException
      */
-    public function updatePush(string $messageId, ?array $topics = null, ?array $users = null, ?array $targets = null, ?string $title = null, ?string $body = null, ?array $data = null, ?string $action = null, ?string $image = null, ?string $icon = null, ?string $sound = null, ?string $color = null, ?string $tag = null, ?int $badge = null, ?bool $draft = null, ?string $scheduledAt = null, ?bool $contentAvailable = null, ?bool $critical = null, ?MessagePriority $priority = null): \Appwrite\Models\Message
+    public function updatePush(string $messageId, ?array $topics = null, ?array $users = null, ?array $targets = null, ?string $title = null, ?string $body = null, ?array $data = null, ?string $action = null, ?string $image = null, ?string $icon = null, ?string $sound = null, ?string $color = null, ?string $tag = null, ?int $badge = null, ?bool $draft = null, ?string $scheduledAt = null, ?bool $contentAvailable = null, ?bool $critical = null, ?MessagePriority $priority = null, ?string $channelId = null): \Appwrite\Models\Message
     {
         $apiPath = str_replace(
             ['{messageId}'],
@@ -311,6 +325,7 @@ class Messaging extends Service
         $apiParams['contentAvailable'] = $contentAvailable;
         $apiParams['critical'] = $critical;
         $apiParams['priority'] = $priority;
+        $apiParams['channelId'] = $channelId;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -671,6 +686,91 @@ class Messaging extends Service
             $apiParams['bundleId'] = $bundleId;
         }
         $apiParams['sandbox'] = $sandbox;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Provider::from($response);
+    }
+
+    /**
+     * Create a new Appwrite push provider.
+     *
+     * @throws AppwriteException
+     */
+    public function createAppwriteProvider(string $providerId, string $name, ?bool $enabled = null, ?int $qos = null, ?int $expiry = null): \Appwrite\Models\Provider
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/messaging/providers/appwrite'
+        );
+
+        $apiParams = [];
+        $apiParams['providerId'] = $providerId;
+        $apiParams['name'] = $name;
+        $apiParams['enabled'] = $enabled;
+        $apiParams['qos'] = $qos;
+        $apiParams['expiry'] = $expiry;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Provider::from($response);
+    }
+
+    /**
+     * Update an Appwrite push provider by its unique ID.
+     *
+     * @throws AppwriteException
+     */
+    public function updateAppwriteProvider(string $providerId, ?string $name = null, ?bool $enabled = null, ?int $qos = null, ?int $expiry = null): \Appwrite\Models\Provider
+    {
+        if ($providerId === '') {
+            throw new AppwriteException('Missing required parameter: "providerId"');
+        }
+
+        $apiPath = str_replace(
+            ['{providerId}'],
+            [$providerId],
+            '/messaging/providers/appwrite/{providerId}'
+        );
+
+        $apiParams = [];
+        $apiParams['providerId'] = $providerId;
+
+        if (!is_null($name)) {
+            $apiParams['name'] = $name;
+        }
+        $apiParams['enabled'] = $enabled;
+        $apiParams['qos'] = $qos;
+        $apiParams['expiry'] = $expiry;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -2037,7 +2137,7 @@ class Messaging extends Service
      *
      * @throws AppwriteException
      */
-    public function createTopic(string $topicId, string $name, ?array $subscribe = null): \Appwrite\Models\Topic
+    public function createTopic(string $topicId, string $name, ?array $subscribe = null, ?int $qos = null, ?int $expiry = null): \Appwrite\Models\Topic
     {
         $apiPath = str_replace(
             [],
@@ -2052,6 +2152,8 @@ class Messaging extends Service
         if (!is_null($subscribe)) {
             $apiParams['subscribe'] = $subscribe;
         }
+        $apiParams['qos'] = $qos;
+        $apiParams['expiry'] = $expiry;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -2111,7 +2213,7 @@ class Messaging extends Service
      *
      * @throws AppwriteException
      */
-    public function updateTopic(string $topicId, ?string $name = null, ?array $subscribe = null): \Appwrite\Models\Topic
+    public function updateTopic(string $topicId, ?string $name = null, ?array $subscribe = null, ?int $qos = null, ?int $expiry = null): \Appwrite\Models\Topic
     {
         $apiPath = str_replace(
             ['{topicId}'],
@@ -2123,6 +2225,8 @@ class Messaging extends Service
         $apiParams['topicId'] = $topicId;
         $apiParams['name'] = $name;
         $apiParams['subscribe'] = $subscribe;
+        $apiParams['qos'] = $qos;
+        $apiParams['expiry'] = $expiry;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');

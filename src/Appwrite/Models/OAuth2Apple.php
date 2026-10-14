@@ -22,6 +22,8 @@ readonly class OAuth2Apple
      * @param string $keyId apple oauth2 key id.
      * @param string $teamId apple oauth2 team id.
      * @param string $p8File apple oauth2 .p8 private key file contents. the secret key wrapped by the pem markers is 200 characters long.
+     * @param bool|null $nativeEnabled native sign in with apple is active and can be used to create sessions from an id token. independent of enabled, which only controls the browser-based flow.
+     * @param array|null $nativeClientIds app bundle ids accepted as id token audiences for native sign in with apple, next to the services id.
      */
     public function __construct(
         public string $id,
@@ -29,7 +31,9 @@ readonly class OAuth2Apple
         public string $serviceId,
         public string $keyId,
         public string $teamId,
-        public string $p8File
+        public string $p8File,
+        public ?bool $nativeEnabled = null,
+        public ?array $nativeClientIds = null
     ) {
     }
 
@@ -53,7 +57,9 @@ readonly class OAuth2Apple
             serviceId: $data['serviceId'],
             keyId: $data['keyId'],
             teamId: $data['teamId'],
-            p8File: $data['p8File']
+            p8File: $data['p8File'],
+            nativeEnabled: $data['nativeEnabled'] ?? null,
+            nativeClientIds: $data['nativeClientIds'] ?? null
         );
     }
 
@@ -68,7 +74,9 @@ readonly class OAuth2Apple
             'serviceId' => static::serializeValue($this->serviceId),
             'keyId' => static::serializeValue($this->keyId),
             'teamId' => static::serializeValue($this->teamId),
-            'p8File' => static::serializeValue($this->p8File)
+            'p8File' => static::serializeValue($this->p8File),
+            'nativeEnabled' => static::serializeValue($this->nativeEnabled),
+            'nativeClientIds' => static::serializeValue($this->nativeClientIds)
         ];
     }
 }

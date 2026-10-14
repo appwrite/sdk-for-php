@@ -135,6 +135,26 @@ Passing `userId` — `current()` for the authenticated user — resolves the pho
 
 
 ```http request
+PUT https://cloud.appwrite.io/v1/avatars/photo
+```
+
+** Update the profile photo of the currently authenticated user. The uploaded image takes priority over every other photo source, including OAuth2 identity photos, Gravatar, and Libravatar. Updating an already customized photo replaces it. The image must be at most 5MB and is sent in a single request. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| file | file | Binary image file of at most 5MB. Allowed file types are png, jpg, jpeg, and webp. |  |
+
+
+```http request
+DELETE https://cloud.appwrite.io/v1/avatars/photo
+```
+
+** Delete the profile photo of the currently authenticated user and store the built-in static placeholder in its place. The placeholder is the user's photo from then on, so it takes priority over every other photo source — OAuth2 identity photos, Gravatar, Libravatar, and initials — until a new photo is uploaded with avatars.updatePhoto. **
+
+
+```http request
 GET https://cloud.appwrite.io/v1/avatars/qr
 ```
 

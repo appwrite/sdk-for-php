@@ -861,4 +861,226 @@ class Organization extends Service
             $apiParams
         );
     }
+
+    /**
+     * Get a list of all API keys of a project in your organization.
+     *
+     * @throws AppwriteException
+     */
+    public function listProjectKeys(string $projectId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\KeyList
+    {
+        if ($projectId === '') {
+            throw new AppwriteException('Missing required parameter: "projectId"');
+        }
+
+        $apiPath = str_replace(
+            ['{projectId}'],
+            [$projectId],
+            '/organization/projects/{projectId}/keys'
+        );
+
+        $apiParams = [];
+        $apiParams['projectId'] = $projectId;
+
+        if (!is_null($queries)) {
+            $apiParams['queries'] = $queries;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\KeyList::from($response);
+    }
+
+    /**
+     * Create a new ephemeral API key for a project in your organization. It's
+     * recommended to have multiple API keys with strict scopes for separate
+     * functions within your project.
+     *
+     * You can also create a standard API key if you need a longer-lived key
+     * instead.
+     *
+     * @throws AppwriteException
+     */
+    public function createEphemeralProjectKey(string $projectId, array $scopes, int $duration): \Appwrite\Models\EphemeralKey
+    {
+        if ($projectId === '') {
+            throw new AppwriteException('Missing required parameter: "projectId"');
+        }
+
+        $apiPath = str_replace(
+            ['{projectId}'],
+            [$projectId],
+            '/organization/projects/{projectId}/keys/ephemeral'
+        );
+
+        $apiParams = [];
+        $apiParams['projectId'] = $projectId;
+        $apiParams['scopes'] = $scopes;
+        $apiParams['duration'] = $duration;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\EphemeralKey::from($response);
+    }
+
+    /**
+     * Get a project key by its unique ID.
+     *
+     * @throws AppwriteException
+     */
+    public function getProjectKey(string $projectId, string $keyId): \Appwrite\Models\Key
+    {
+        if ($projectId === '') {
+            throw new AppwriteException('Missing required parameter: "projectId"');
+        }
+
+        if ($keyId === '') {
+            throw new AppwriteException('Missing required parameter: "keyId"');
+        }
+
+        $apiPath = str_replace(
+            ['{projectId}', '{keyId}'],
+            [$projectId, $keyId],
+            '/organization/projects/{projectId}/keys/{keyId}'
+        );
+
+        $apiParams = [];
+        $apiParams['projectId'] = $projectId;
+        $apiParams['keyId'] = $keyId;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Key::from($response);
+    }
+
+    /**
+     * Update a project key by its unique ID. Use this endpoint to update the
+     * name, scopes, or expiration time of an API key.
+     *
+     * @throws AppwriteException
+     */
+    public function updateProjectKey(string $projectId, string $keyId, string $name, array $scopes, ?string $expire = null): \Appwrite\Models\Key
+    {
+        if ($projectId === '') {
+            throw new AppwriteException('Missing required parameter: "projectId"');
+        }
+
+        if ($keyId === '') {
+            throw new AppwriteException('Missing required parameter: "keyId"');
+        }
+
+        $apiPath = str_replace(
+            ['{projectId}', '{keyId}'],
+            [$projectId, $keyId],
+            '/organization/projects/{projectId}/keys/{keyId}'
+        );
+
+        $apiParams = [];
+        $apiParams['projectId'] = $projectId;
+        $apiParams['keyId'] = $keyId;
+        $apiParams['name'] = $name;
+        $apiParams['scopes'] = $scopes;
+        $apiParams['expire'] = $expire;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PUT,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Key::from($response);
+    }
+
+    /**
+     * Delete a project key by its unique ID. Once deleted, the key can no longer
+     * be used to authenticate API calls.
+     *
+     * @throws AppwriteException
+     */
+    public function deleteProjectKey(string $projectId, string $keyId): string
+    {
+        if ($projectId === '') {
+            throw new AppwriteException('Missing required parameter: "projectId"');
+        }
+
+        if ($keyId === '') {
+            throw new AppwriteException('Missing required parameter: "keyId"');
+        }
+
+        $apiPath = str_replace(
+            ['{projectId}', '{keyId}'],
+            [$projectId, $keyId],
+            '/organization/projects/{projectId}/keys/{keyId}'
+        );
+
+        $apiParams = [];
+        $apiParams['projectId'] = $projectId;
+        $apiParams['keyId'] = $keyId;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_DELETE,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
 }

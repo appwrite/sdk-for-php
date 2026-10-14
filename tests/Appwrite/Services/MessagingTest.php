@@ -380,6 +380,59 @@ final class MessagingTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Provider::class, $response);
     }
+    public function testMethodCreateAppwriteProvider(): void
+    {
+        $data = [
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "name" => "Mailgun",
+            "provider" => "mailgun",
+            "enabled" => true,
+            "type" => "sms",
+            "credentials" => []
+        ];
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->messaging->createAppwriteProvider(
+            "<PROVIDER_ID>",
+            "<NAME>"
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\Provider::class, $response);
+    }
+    public function testMethodUpdateAppwriteProvider(): void
+    {
+        $data = [
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "name" => "Mailgun",
+            "provider" => "mailgun",
+            "enabled" => true,
+            "type" => "sms",
+            "credentials" => []
+        ];
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->messaging->updateAppwriteProvider(
+            "<PROVIDER_ID>"
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\Provider::class, $response);
+    }
     public function testMethodCreateFCMProvider(): void
     {
         $data = [

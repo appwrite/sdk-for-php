@@ -16,6 +16,8 @@ $result = $project->updateOAuth2Google(
     clientId: '<CLIENT_ID>', // optional
     clientSecret: '<CLIENT_SECRET>', // optional
     prompt: [ProjectOAuth2GooglePrompt::NONE()], // optional
-    enabled: false // optional
+    enabled: false, // optional
+    nativeClientIds: [], // optional
+    nativeEnabled: false // optional
 );
 ```

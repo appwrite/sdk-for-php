@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Appwrite\Models;
 
+use Appwrite\Enums\OAuth2DiscordPrompt;
+
 /**
  * OAuth2Discord
  *
@@ -20,12 +22,14 @@ readonly class OAuth2Discord
      * @param bool $enabled oauth2 provider is active and can be used to create sessions.
      * @param string $clientId discord oauth2 client id.
      * @param string $clientSecret discord oauth2 client secret.
+     * @param list<OAuth2DiscordPrompt>|null $prompt discord oauth2 prompt values.
      */
     public function __construct(
         public string $id,
         public bool $enabled,
         public string $clientId,
-        public string $clientSecret
+        public string $clientSecret,
+        public ?array $prompt = null
     ) {
     }
 
@@ -45,7 +49,17 @@ readonly class OAuth2Discord
             id: $data['$id'],
             enabled: $data['enabled'],
             clientId: $data['clientId'],
-            clientSecret: $data['clientSecret']
+            clientSecret: $data['clientSecret'],
+            prompt: array_key_exists('prompt', $data)
+                ? (
+                    is_array($data['prompt'])
+                        ? array_map(
+                            static fn (mixed $item): mixed => static::hydrateTypedValue(OAuth2DiscordPrompt::class, $item),
+                            $data['prompt']
+                        )
+                        : $data['prompt']
+                )
+                : null
         );
     }
 
@@ -58,7 +72,8 @@ readonly class OAuth2Discord
             '$id' => static::serializeValue($this->id),
             'enabled' => static::serializeValue($this->enabled),
             'clientId' => static::serializeValue($this->clientId),
-            'clientSecret' => static::serializeValue($this->clientSecret)
+            'clientSecret' => static::serializeValue($this->clientSecret),
+            'prompt' => static::serializeValue($this->prompt)
         ];
     }
 }

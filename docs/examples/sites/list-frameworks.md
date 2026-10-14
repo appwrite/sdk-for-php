@@ -11,5 +11,7 @@ $client = (new Client())
 
 $sites = new Sites($client);
 
-$result = $sites->listFrameworks();
+$result = $sites->listFrameworks(
+    total: false // optional
+);
 ```

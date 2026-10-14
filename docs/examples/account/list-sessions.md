@@ -11,5 +11,7 @@ $client = (new Client())
 
 $account = new Account($client);
 
-$result = $account->listSessions();
+$result = $account->listSessions(
+    total: false // optional
+);
 ```

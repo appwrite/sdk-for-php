@@ -462,7 +462,7 @@ class Teams extends Service
      *
      * @throws AppwriteException
      */
-    public function createMembership(string $teamId, array $roles, ?string $email = null, ?string $userId = null, ?string $phone = null, ?string $url = null, ?string $name = null): \Appwrite\Models\Membership
+    public function createMembership(string $teamId, array $roles, ?string $email = null, ?string $userId = null, ?string $phone = null, ?string $url = null, ?string $name = null, ?string $membershipId = null): \Appwrite\Models\Membership
     {
         $apiPath = str_replace(
             ['{teamId}'],
@@ -492,6 +492,10 @@ class Teams extends Service
 
         if (!is_null($name)) {
             $apiParams['name'] = $name;
+        }
+
+        if (!is_null($membershipId)) {
+            $apiParams['membershipId'] = $membershipId;
         }
 
         $apiHeaders = [];

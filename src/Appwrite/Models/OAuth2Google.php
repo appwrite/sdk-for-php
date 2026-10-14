@@ -23,13 +23,17 @@ readonly class OAuth2Google
      * @param string $clientId google oauth2 client id.
      * @param string $clientSecret google oauth2 client secret.
      * @param list<OAuth2GooglePrompt> $prompt google oauth2 prompt values.
+     * @param bool|null $nativeEnabled native google sign-in is active and can be used to create sessions from an id token. independent of enabled, which only controls the browser-based flow.
+     * @param array|null $nativeClientIds additional oauth2 client ids accepted as id token audiences for native sign-in, next to the client id.
      */
     public function __construct(
         public string $id,
         public bool $enabled,
         public string $clientId,
         public string $clientSecret,
-        public array $prompt
+        public array $prompt,
+        public ?bool $nativeEnabled = null,
+        public ?array $nativeClientIds = null
     ) {
     }
 
@@ -56,7 +60,9 @@ readonly class OAuth2Google
                     static fn (mixed $item): mixed => static::hydrateTypedValue(OAuth2GooglePrompt::class, $item),
                     $data['prompt']
                 )
-                : $data['prompt']
+                : $data['prompt'],
+            nativeEnabled: $data['nativeEnabled'] ?? null,
+            nativeClientIds: $data['nativeClientIds'] ?? null
         );
     }
 
@@ -70,7 +76,9 @@ readonly class OAuth2Google
             'enabled' => static::serializeValue($this->enabled),
             'clientId' => static::serializeValue($this->clientId),
             'clientSecret' => static::serializeValue($this->clientSecret),
-            'prompt' => static::serializeValue($this->prompt)
+            'prompt' => static::serializeValue($this->prompt),
+            'nativeEnabled' => static::serializeValue($this->nativeEnabled),
+            'nativeClientIds' => static::serializeValue($this->nativeClientIds)
         ];
     }
 }

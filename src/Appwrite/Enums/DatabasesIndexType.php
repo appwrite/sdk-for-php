@@ -13,6 +13,7 @@ class DatabasesIndexType implements JsonSerializable, Stringable
     private static DatabasesIndexType $FULLTEXT;
     private static DatabasesIndexType $UNIQUE;
     private static DatabasesIndexType $SPATIAL;
+    private static DatabasesIndexType $TRIGRAM;
 
     private function __construct(private readonly string $value)
     {
@@ -52,6 +53,12 @@ class DatabasesIndexType implements JsonSerializable, Stringable
 
         return self::$SPATIAL;
     }
+    public static function TRIGRAM(): DatabasesIndexType
+    {
+        self::$TRIGRAM ??= new DatabasesIndexType('trigram');
+
+        return self::$TRIGRAM;
+    }
 
     public static function from(string $value): self
     {
@@ -60,6 +67,7 @@ class DatabasesIndexType implements JsonSerializable, Stringable
             'fulltext' => self::FULLTEXT(),
             'unique' => self::UNIQUE(),
             'spatial' => self::SPATIAL(),
+            'trigram' => self::TRIGRAM(),
             default => throw new \InvalidArgumentException('Unknown DatabasesIndexType value: ' . $value),
         };
     }

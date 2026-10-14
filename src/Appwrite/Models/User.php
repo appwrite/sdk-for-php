@@ -40,6 +40,7 @@ readonly class User
      * @param bool|null $emailIsDisposable whether the user email is from a disposable email provider.
      * @param bool|null $emailIsCorporate whether the user email is from a corporate domain.
      * @param bool|null $emailIsCanonical whether the user email is in its canonical form.
+     * @param bool|null $passwordPwned whether the password was found in a known data breach the last time it was checked. null when the password has never been checked.
      * @param bool|null $impersonator whether the user can impersonate other users.
      * @param string|null $impersonatorUserId id of the original actor performing the impersonation. present only when the current request is impersonating another user. internal audit logs attribute the action to this user, while the impersonated target is recorded only in internal audit payload data.
      */
@@ -68,6 +69,7 @@ readonly class User
         public ?bool $emailIsDisposable = null,
         public ?bool $emailIsCorporate = null,
         public ?bool $emailIsCanonical = null,
+        public ?bool $passwordPwned = null,
         public ?bool $impersonator = null,
         public ?string $impersonatorUserId = null
     ) {
@@ -132,6 +134,7 @@ readonly class User
             emailIsDisposable: $data['emailIsDisposable'] ?? null,
             emailIsCorporate: $data['emailIsCorporate'] ?? null,
             emailIsCanonical: $data['emailIsCanonical'] ?? null,
+            passwordPwned: $data['passwordPwned'] ?? null,
             impersonator: $data['impersonator'] ?? null,
             impersonatorUserId: $data['impersonatorUserId'] ?? null
         );
@@ -162,6 +165,7 @@ readonly class User
             'emailIsDisposable' => static::serializeValue($this->emailIsDisposable),
             'emailIsCorporate' => static::serializeValue($this->emailIsCorporate),
             'emailIsCanonical' => static::serializeValue($this->emailIsCanonical),
+            'passwordPwned' => static::serializeValue($this->passwordPwned),
             'phoneVerification' => static::serializeValue($this->phoneVerification),
             'mfa' => static::serializeValue($this->mfa),
             'prefs' => static::serializeValue($this->prefs),

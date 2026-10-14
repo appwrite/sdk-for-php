@@ -24,6 +24,8 @@ readonly class Topic
      * @param int $smsTotal total count of sms subscribers subscribed to the topic.
      * @param int $pushTotal total count of push subscribers subscribed to the topic.
      * @param array $subscribe subscribe permissions.
+     * @param int|null $qos mqtt qos for delivery on this topic. null lets the subscriber choose their level.
+     * @param int|null $expiry message retention in seconds for offline delivery.
      */
     public function __construct(
         public string $id,
@@ -33,7 +35,9 @@ readonly class Topic
         public int $emailTotal,
         public int $smsTotal,
         public int $pushTotal,
-        public array $subscribe
+        public array $subscribe,
+        public ?int $qos = null,
+        public ?int $expiry = null
     ) {
     }
 
@@ -61,7 +65,9 @@ readonly class Topic
             emailTotal: $data['emailTotal'],
             smsTotal: $data['smsTotal'],
             pushTotal: $data['pushTotal'],
-            subscribe: $data['subscribe']
+            subscribe: $data['subscribe'],
+            qos: $data['qos'] ?? null,
+            expiry: $data['expiry'] ?? null
         );
     }
 
@@ -78,7 +84,9 @@ readonly class Topic
             'emailTotal' => static::serializeValue($this->emailTotal),
             'smsTotal' => static::serializeValue($this->smsTotal),
             'pushTotal' => static::serializeValue($this->pushTotal),
-            'subscribe' => static::serializeValue($this->subscribe)
+            'subscribe' => static::serializeValue($this->subscribe),
+            'qos' => static::serializeValue($this->qos),
+            'expiry' => static::serializeValue($this->expiry)
         ];
     }
 }

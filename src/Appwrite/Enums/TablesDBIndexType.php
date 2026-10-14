@@ -13,6 +13,7 @@ class TablesDBIndexType implements JsonSerializable, Stringable
     private static TablesDBIndexType $FULLTEXT;
     private static TablesDBIndexType $UNIQUE;
     private static TablesDBIndexType $SPATIAL;
+    private static TablesDBIndexType $TRIGRAM;
 
     private function __construct(private readonly string $value)
     {
@@ -52,6 +53,12 @@ class TablesDBIndexType implements JsonSerializable, Stringable
 
         return self::$SPATIAL;
     }
+    public static function TRIGRAM(): TablesDBIndexType
+    {
+        self::$TRIGRAM ??= new TablesDBIndexType('trigram');
+
+        return self::$TRIGRAM;
+    }
 
     public static function from(string $value): self
     {
@@ -60,6 +67,7 @@ class TablesDBIndexType implements JsonSerializable, Stringable
             'fulltext' => self::FULLTEXT(),
             'unique' => self::UNIQUE(),
             'spatial' => self::SPATIAL(),
+            'trigram' => self::TRIGRAM(),
             default => throw new \InvalidArgumentException('Unknown TablesDBIndexType value: ' . $value),
         };
     }

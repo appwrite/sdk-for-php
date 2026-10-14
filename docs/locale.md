@@ -16,12 +16,24 @@ GET https://cloud.appwrite.io/v1/locale/codes
 
 ** List of all locale codes in [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes). **
 
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| total | boolean | When set to false, the total count returned will be 0 and will not be calculated. | 1 |
+
 
 ```http request
 GET https://cloud.appwrite.io/v1/locale/continents
 ```
 
 ** List of all continents. You can use the locale header to get the data in a supported language. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| total | boolean | When set to false, the total count returned will be 0 and will not be calculated. | 1 |
 
 
 ```http request
@@ -30,12 +42,24 @@ GET https://cloud.appwrite.io/v1/locale/countries
 
 ** List of all countries. You can use the locale header to get the data in a supported language. **
 
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| total | boolean | When set to false, the total count returned will be 0 and will not be calculated. | 1 |
+
 
 ```http request
 GET https://cloud.appwrite.io/v1/locale/countries/eu
 ```
 
 ** List of all countries that are currently members of the EU. You can use the locale header to get the data in a supported language. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| total | boolean | When set to false, the total count returned will be 0 and will not be calculated. | 1 |
 
 
 ```http request
@@ -44,6 +68,12 @@ GET https://cloud.appwrite.io/v1/locale/countries/phones
 
 ** List of all countries phone codes. You can use the locale header to get the data in a supported language. **
 
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| total | boolean | When set to false, the total count returned will be 0 and will not be calculated. | 1 |
+
 
 ```http request
 GET https://cloud.appwrite.io/v1/locale/currencies
@@ -51,10 +81,22 @@ GET https://cloud.appwrite.io/v1/locale/currencies
 
 ** List of all currencies, including currency symbol, name, plural, and decimal digits for all major and minor currencies. You can use the locale header to get the data in a supported language. **
 
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| total | boolean | When set to false, the total count returned will be 0 and will not be calculated. | 1 |
+
 
 ```http request
 GET https://cloud.appwrite.io/v1/locale/languages
 ```
 
 ** List of all languages classified by ISO 639-1 including 2-letter code, name in English, and name in the respective language. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| total | boolean | When set to false, the total count returned will be 0 and will not be calculated. | 1 |
 

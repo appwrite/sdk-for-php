@@ -65,6 +65,9 @@ readonly class DedicatedDatabase
      * @param string $error error message if status is failed.
      * @param string|null $lastAccessedAt last activity timestamp in iso 8601 format.
      * @param string|null $idleUntil display-only timestamp when the database is expected to be considered idle (iso 8601 format). derived from last activity; lifecycle transitions are driven by lifecyclestate.
+     * @param string|null $storageStatus storage resize status. possible values: idle (no resize in flight), resizing (the volume is growing towards storagetargetgb).
+     * @param int|null $storageTargetGb size in gb the volume is growing towards while storagestatus is resizing. 0 when no resize is in flight.
+     * @param string|null $storageResizeStartedAt time the in-flight storage resize started, in iso 8601 format.
      */
     public function __construct(
         public string $id,
@@ -115,7 +118,10 @@ readonly class DedicatedDatabase
         public int $sqlApiTimeoutSeconds,
         public string $error,
         public ?string $lastAccessedAt = null,
-        public ?string $idleUntil = null
+        public ?string $idleUntil = null,
+        public ?string $storageStatus = null,
+        public ?int $storageTargetGb = null,
+        public ?string $storageResizeStartedAt = null
     ) {
     }
 
@@ -232,7 +238,10 @@ readonly class DedicatedDatabase
             sqlApiTimeoutSeconds: $data['sqlApiTimeoutSeconds'],
             error: $data['error'],
             lastAccessedAt: $data['lastAccessedAt'] ?? null,
-            idleUntil: $data['idleUntil'] ?? null
+            idleUntil: $data['idleUntil'] ?? null,
+            storageStatus: $data['storageStatus'] ?? null,
+            storageTargetGb: $data['storageTargetGb'] ?? null,
+            storageResizeStartedAt: $data['storageResizeStartedAt'] ?? null
         );
     }
 
@@ -268,6 +277,9 @@ readonly class DedicatedDatabase
             'cpu' => static::serializeValue($this->cpu),
             'memory' => static::serializeValue($this->memory),
             'storage' => static::serializeValue($this->storage),
+            'storageStatus' => static::serializeValue($this->storageStatus),
+            'storageTargetGb' => static::serializeValue($this->storageTargetGb),
+            'storageResizeStartedAt' => static::serializeValue($this->storageResizeStartedAt),
             'storageClass' => static::serializeValue($this->storageClass),
             'storageMaxGb' => static::serializeValue($this->storageMaxGb),
             'nodePool' => static::serializeValue($this->nodePool),

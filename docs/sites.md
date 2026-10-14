@@ -58,6 +58,12 @@ GET https://cloud.appwrite.io/v1/sites/frameworks
 
 ** Get a list of all frameworks that are currently available on the server instance. **
 
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| total | boolean | When set to false, the total count returned will be 0 and will not be calculated. | 1 |
+
 
 ```http request
 GET https://cloud.appwrite.io/v1/sites/specifications
@@ -70,6 +76,7 @@ GET https://cloud.appwrite.io/v1/sites/specifications
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | type | string | Specification type to list. Can be one of: runtimes, builds. Defaults to runtimes. | runtimes |
+| total | boolean | When set to false, the total count returned will be 0 and will not be calculated. | 1 |
 
 
 ```http request

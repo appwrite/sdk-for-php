@@ -188,7 +188,7 @@ class Functions extends Service
      *
      * @throws AppwriteException
      */
-    public function listRuntimes(): \Appwrite\Models\RuntimeList
+    public function listRuntimes(?bool $total = null): \Appwrite\Models\RuntimeList
     {
         $apiPath = str_replace(
             [],
@@ -197,6 +197,10 @@ class Functions extends Service
         );
 
         $apiParams = [];
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
+        }
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -221,7 +225,7 @@ class Functions extends Service
      *
      * @throws AppwriteException
      */
-    public function listSpecifications(?string $type = null): \Appwrite\Models\SpecificationList
+    public function listSpecifications(?string $type = null, ?bool $total = null): \Appwrite\Models\SpecificationList
     {
         $apiPath = str_replace(
             [],
@@ -233,6 +237,10 @@ class Functions extends Service
 
         if (!is_null($type)) {
             $apiParams['type'] = $type;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
         }
 
         $apiHeaders = [];
