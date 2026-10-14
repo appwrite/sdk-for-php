@@ -32,11 +32,8 @@ readonly class UserList
     {
         $data += [
             'total' => 0,
+            'users' => [],
         ];
-
-        if (!array_key_exists('users', $data)) {
-            throw new \InvalidArgumentException('Missing required field "users" for ' . static::class . '.');
-        }
 
         return new static(
             total: $data['total'],

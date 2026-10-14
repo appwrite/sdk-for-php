@@ -18,7 +18,7 @@ $result = $vectorsDB->createIndex(
     collectionId: '<COLLECTION_ID>',
     key: '<KEY>',
     type: VectorsDBIndexType::HNSWEUCLIDEAN(),
-    attributes: [],
+    attributes: ["embeddings"],
     orders: [OrderBy::ASC()], // optional
     lengths: [] // optional
 );

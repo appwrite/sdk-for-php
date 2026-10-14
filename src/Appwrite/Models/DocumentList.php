@@ -32,11 +32,8 @@ readonly class DocumentList
     {
         $data += [
             'total' => 0,
+            'documents' => [],
         ];
-
-        if (!array_key_exists('documents', $data)) {
-            throw new \InvalidArgumentException('Missing required field "documents" for ' . static::class . '.');
-        }
 
         return new static(
             total: $data['total'],

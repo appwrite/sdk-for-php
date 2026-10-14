@@ -32,11 +32,8 @@ readonly class PhoneList
     {
         $data += [
             'total' => 0,
+            'phones' => [],
         ];
-
-        if (!array_key_exists('phones', $data)) {
-            throw new \InvalidArgumentException('Missing required field "phones" for ' . static::class . '.');
-        }
 
         return new static(
             total: $data['total'],

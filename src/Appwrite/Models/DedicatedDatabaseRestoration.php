@@ -19,29 +19,29 @@ readonly class DedicatedDatabaseRestoration
      * @param string $id restoration id.
      * @param string $createdAt restoration creation time in iso 8601 format.
      * @param string $databaseId database id being restored into.
-     * @param string $sourceDatabaseId source database id when restoring a backup into another database.
      * @param string $projectId project id.
-     * @param string $backupId backup id used for restoration (null for pitr).
      * @param string $type restoration type. possible values: backup (restore from a specific backup snapshot), pitr (point-in-time recovery to a specific timestamp).
      * @param string $status restoration status. possible values: pending (queued for processing), running (currently in progress), completed (successfully finished), failed (encountered an error).
-     * @param string $targetTime target time for pitr restoration in iso 8601 format.
-     * @param string $startedAt restoration start time in iso 8601 format.
-     * @param string $completedAt restoration completion time in iso 8601 format.
      * @param string $error error message if restoration failed.
+     * @param string|null $sourceDatabaseId source database id when restoring a backup into another database.
+     * @param string|null $backupId backup id used for restoration (null for pitr).
+     * @param string|null $targetTime target time for pitr restoration in iso 8601 format.
+     * @param string|null $startedAt restoration start time in iso 8601 format.
+     * @param string|null $completedAt restoration completion time in iso 8601 format.
      */
     public function __construct(
         public string $id,
         public string $createdAt,
         public string $databaseId,
-        public string $sourceDatabaseId,
         public string $projectId,
-        public string $backupId,
         public string $type,
         public string $status,
-        public string $targetTime,
-        public string $startedAt,
-        public string $completedAt,
-        public string $error
+        public string $error,
+        public ?string $sourceDatabaseId = null,
+        public ?string $backupId = null,
+        public ?string $targetTime = null,
+        public ?string $startedAt = null,
+        public ?string $completedAt = null
     ) {
     }
 
@@ -60,35 +60,19 @@ readonly class DedicatedDatabaseRestoration
             'error' => "",
         ];
 
-        if (!array_key_exists('sourceDatabaseId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "sourceDatabaseId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('backupId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "backupId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('targetTime', $data)) {
-            throw new \InvalidArgumentException('Missing required field "targetTime" for ' . static::class . '.');
-        }
-        if (!array_key_exists('startedAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "startedAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('completedAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "completedAt" for ' . static::class . '.');
-        }
-
         return new static(
             id: $data['$id'],
             createdAt: $data['$createdAt'],
             databaseId: $data['databaseId'],
-            sourceDatabaseId: $data['sourceDatabaseId'],
             projectId: $data['projectId'],
-            backupId: $data['backupId'],
             type: $data['type'],
             status: $data['status'],
-            targetTime: $data['targetTime'],
-            startedAt: $data['startedAt'],
-            completedAt: $data['completedAt'],
-            error: $data['error']
+            error: $data['error'],
+            sourceDatabaseId: $data['sourceDatabaseId'] ?? null,
+            backupId: $data['backupId'] ?? null,
+            targetTime: $data['targetTime'] ?? null,
+            startedAt: $data['startedAt'] ?? null,
+            completedAt: $data['completedAt'] ?? null
         );
     }
 

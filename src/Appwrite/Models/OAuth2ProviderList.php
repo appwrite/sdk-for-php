@@ -32,11 +32,8 @@ readonly class OAuth2ProviderList
     {
         $data += [
             'total' => 0,
+            'providers' => [],
         ];
-
-        if (!array_key_exists('providers', $data)) {
-            throw new \InvalidArgumentException('Missing required field "providers" for ' . static::class . '.');
-        }
 
         return new static(
             total: $data['total'],

@@ -30,6 +30,7 @@ readonly class BillingPlan
      * @param int $screenshotsGenerated screenshots generated
      * @param int $webhooks webhooks
      * @param int $wafRules maximum waf rules per project
+     * @param int $environments maximum environments per project. 0 when the plan does not offer environments.
      * @param int $projects projects
      * @param int $platforms platforms
      * @param int $users users
@@ -54,7 +55,6 @@ readonly class BillingPlan
      * @param int $usageLogs usage history days
      * @param int $projectInactivityDays number of days of console inactivity before a project is paused. 0 means pausing is disabled.
      * @param int $alertLimit alert threshold percentage
-     * @param UsageBillingPlan $usage additional resources
      * @param BillingPlanAddon $addons addons
      * @param bool $budgetCapEnabled budget cap enabled or disabled.
      * @param bool $customSmtp custom smtp
@@ -83,10 +83,10 @@ readonly class BillingPlan
      * @param BillingPlanGroup $group group of this billing plan for variants
      * @param float $databaseComputeCredit included monthly dedicated-database compute credit in usd. resets each billing cycle with no roll-over.
      * @param int|null $members members
-     * @param int|null $environments maximum environments per project. 0 when the plan does not offer environments.
      * @param int|null $activityLogs activity log days
      * @param array|null $usageLogsIntervals usage log time intervals allowed for this plan (e.g. 15m, 1h, 1d).
      * @param array|null $usageAggregateOnlyMetrics metrics this plan only records as a total. they cannot be broken down by dimension or filtered, because the stored events cover a fraction of the real traffic.
+     * @param UsageBillingPlan|null $usage additional resources. null when the plan does not support usage billing.
      * @param array|null $eligibleCountries iso country codes eligible for this regional plan. empty means no restriction.
      * @param bool|null $backupsEnabled does plan support backup policies.
      * @param int|null $backupPolicies how many policies does plan support
@@ -107,6 +107,7 @@ readonly class BillingPlan
         public int $screenshotsGenerated,
         public int $webhooks,
         public int $wafRules,
+        public int $environments,
         public int $projects,
         public int $platforms,
         public int $users,
@@ -131,7 +132,6 @@ readonly class BillingPlan
         public int $usageLogs,
         public int $projectInactivityDays,
         public int $alertLimit,
-        public UsageBillingPlan $usage,
         public BillingPlanAddon $addons,
         public bool $budgetCapEnabled,
         public bool $customSmtp,
@@ -160,10 +160,10 @@ readonly class BillingPlan
         public BillingPlanGroup $group,
         public float $databaseComputeCredit,
         public ?int $members = null,
-        public ?int $environments = null,
         public ?int $activityLogs = null,
         public ?array $usageLogsIntervals = null,
         public ?array $usageAggregateOnlyMetrics = null,
+        public ?UsageBillingPlan $usage = null,
         public ?array $eligibleCountries = null,
         public ?bool $backupsEnabled = null,
         public ?int $backupPolicies = null,
@@ -191,6 +191,7 @@ readonly class BillingPlan
             'screenshotsGenerated' => 0,
             'webhooks' => 0,
             'wafRules' => 0,
+            'environments' => 0,
             'projects' => 0,
             'platforms' => 0,
             'users' => 0,
@@ -241,9 +242,6 @@ readonly class BillingPlan
             'databaseComputeCredit' => 0,
         ];
 
-        if (!array_key_exists('usage', $data)) {
-            throw new \InvalidArgumentException('Missing required field "usage" for ' . static::class . '.');
-        }
         if (!array_key_exists('addons', $data)) {
             throw new \InvalidArgumentException('Missing required field "addons" for ' . static::class . '.');
         }
@@ -267,6 +265,7 @@ readonly class BillingPlan
             screenshotsGenerated: $data['screenshotsGenerated'],
             webhooks: $data['webhooks'],
             wafRules: $data['wafRules'],
+            environments: $data['environments'],
             projects: $data['projects'],
             platforms: $data['platforms'],
             users: $data['users'],
@@ -291,7 +290,6 @@ readonly class BillingPlan
             usageLogs: $data['usageLogs'],
             projectInactivityDays: $data['projectInactivityDays'],
             alertLimit: $data['alertLimit'],
-            usage: static::hydrateTypedValue(UsageBillingPlan::class, $data['usage']),
             addons: static::hydrateTypedValue(BillingPlanAddon::class, $data['addons']),
             budgetCapEnabled: $data['budgetCapEnabled'],
             customSmtp: $data['customSmtp'],
@@ -320,10 +318,10 @@ readonly class BillingPlan
             group: static::hydrateTypedValue(BillingPlanGroup::class, $data['group']),
             databaseComputeCredit: $data['databaseComputeCredit'],
             members: $data['members'] ?? null,
-            environments: $data['environments'] ?? null,
             activityLogs: $data['activityLogs'] ?? null,
             usageLogsIntervals: $data['usageLogsIntervals'] ?? null,
             usageAggregateOnlyMetrics: $data['usageAggregateOnlyMetrics'] ?? null,
+            usage: array_key_exists('usage', $data) ? static::hydrateTypedValue(UsageBillingPlan::class, $data['usage'], true) : null,
             eligibleCountries: $data['eligibleCountries'] ?? null,
             backupsEnabled: $data['backupsEnabled'] ?? null,
             backupPolicies: $data['backupPolicies'] ?? null,

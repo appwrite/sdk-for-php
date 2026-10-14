@@ -54,6 +54,10 @@ class Activities extends Service
      */
     public function getEvent(string $eventId): \Appwrite\Models\ActivityEvent
     {
+        if ($eventId === '') {
+            throw new AppwriteException('Missing required parameter: "eventId"');
+        }
+
         $apiPath = str_replace(
             ['{eventId}'],
             [$eventId],

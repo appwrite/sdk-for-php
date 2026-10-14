@@ -32,11 +32,8 @@ readonly class DedicatedDatabaseOperationList
     {
         $data += [
             'total' => 0,
+            'operations' => [],
         ];
-
-        if (!array_key_exists('operations', $data)) {
-            throw new \InvalidArgumentException('Missing required field "operations" for ' . static::class . '.');
-        }
 
         return new static(
             total: $data['total'],

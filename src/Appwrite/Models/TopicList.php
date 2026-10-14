@@ -32,11 +32,8 @@ readonly class TopicList
     {
         $data += [
             'total' => 0,
+            'topics' => [],
         ];
-
-        if (!array_key_exists('topics', $data)) {
-            throw new \InvalidArgumentException('Missing required field "topics" for ' . static::class . '.');
-        }
 
         return new static(
             total: $data['total'],

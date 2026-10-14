@@ -14,7 +14,7 @@ $tablesDB = new TablesDB($client);
 $result = $tablesDB->deleteRows(
     databaseId: '<DATABASE_ID>',
     tableId: '<TABLE_ID>',
-    queries: [], // optional
+    queries: ["{\"method\":\"equal\", \"attribute\":\"$id\", \"values\":[\"<ROW_ID>\"]}"], // optional
     transactionId: '<TRANSACTION_ID>' // optional
 );
 ```

@@ -32,11 +32,8 @@ readonly class RuntimeList
     {
         $data += [
             'total' => 0,
+            'runtimes' => [],
         ];
-
-        if (!array_key_exists('runtimes', $data)) {
-            throw new \InvalidArgumentException('Missing required field "runtimes" for ' . static::class . '.');
-        }
 
         return new static(
             total: $data['total'],

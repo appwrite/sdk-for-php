@@ -55,18 +55,13 @@ readonly class BackupPolicy
             'name' => "",
             '$createdAt' => "",
             '$updatedAt' => "",
+            'services' => [],
+            'resources' => [],
             'retention' => 1,
             'schedule' => "0 * * * *",
             'type' => "full",
             'enabled' => false,
         ];
-
-        if (!array_key_exists('services', $data)) {
-            throw new \InvalidArgumentException('Missing required field "services" for ' . static::class . '.');
-        }
-        if (!array_key_exists('resources', $data)) {
-            throw new \InvalidArgumentException('Missing required field "resources" for ' . static::class . '.');
-        }
 
         return new static(
             id: $data['$id'],

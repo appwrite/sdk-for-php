@@ -30,12 +30,10 @@ readonly class PasskeyList
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('total', $data)) {
-            throw new \InvalidArgumentException('Missing required field "total" for ' . static::class . '.');
-        }
-        if (!array_key_exists('passkeys', $data)) {
-            throw new \InvalidArgumentException('Missing required field "passkeys" for ' . static::class . '.');
-        }
+        $data += [
+            'total' => 0,
+            'passkeys' => [],
+        ];
 
         return new static(
             total: $data['total'],

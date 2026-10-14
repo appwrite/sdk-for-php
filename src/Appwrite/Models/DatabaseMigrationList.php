@@ -32,11 +32,8 @@ readonly class DatabaseMigrationList
     {
         $data += [
             'total' => 0,
+            'migrations' => [],
         ];
-
-        if (!array_key_exists('migrations', $data)) {
-            throw new \InvalidArgumentException('Missing required field "migrations" for ' . static::class . '.');
-        }
 
         return new static(
             total: $data['total'],

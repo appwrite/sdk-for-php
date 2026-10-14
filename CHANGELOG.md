@@ -1,5 +1,20 @@
 # Change Log
 
+## 31.0.0
+
+* Breaking: requests send `X-Appwrite-Response-Format: 2.5.0`; responses follow the 2.5 shapes
+* Breaking: removed `Account::listLogs`, `Users::listLogs` and the `Log`/`LogList` models
+* Breaking: removed `Organization::createKey`, `listKeys`, `updateKey` and `OrganizationKeyScopes`; use project keys
+* Breaking: removed `Client::setDevKey`, the `DevKey` model and `Project::$devKeys`
+* Breaking: removed `BillingPlanGroup::STARTER()`
+* Breaking: removed the `DedicatedDatabaseSpecificationPricing` model and `DedicatedDatabaseSpecificationList::$pricing`
+* Breaking: removed `Block` fields `reason`, `projectName`, `region`, `organizationName`, `organizationId` and `billingPlan`
+* Breaking: OAuth2 `resource` params now take `?array`
+* Breaking: `Project::updateOAuth2Kakao` takes `$enabled` before `$prompt`
+* Breaking: `BackupRestoration::$options` is now an array
+* Breaking: some response fields became nullable, such as `BillingPlan::$usage` and `DedicatedDatabase::$engine`
+* Added: `Topic` helper to build MQTT topics for push messages
+
 ## 30.4.0
 
 * Added: `domains` service to manage domains, DNS records, email presets, prices, transfer status and zones

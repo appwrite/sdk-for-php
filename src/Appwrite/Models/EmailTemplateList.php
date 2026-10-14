@@ -32,11 +32,8 @@ readonly class EmailTemplateList
     {
         $data += [
             'total' => 0,
+            'templates' => [],
         ];
-
-        if (!array_key_exists('templates', $data)) {
-            throw new \InvalidArgumentException('Missing required field "templates" for ' . static::class . '.');
-        }
 
         return new static(
             total: $data['total'],

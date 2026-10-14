@@ -32,11 +32,8 @@ readonly class AppScopeList
     {
         $data += [
             'total' => 0,
+            'scopes' => [],
         ];
-
-        if (!array_key_exists('scopes', $data)) {
-            throw new \InvalidArgumentException('Missing required field "scopes" for ' . static::class . '.');
-        }
 
         return new static(
             total: $data['total'],

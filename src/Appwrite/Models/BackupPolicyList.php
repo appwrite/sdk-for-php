@@ -32,11 +32,8 @@ readonly class BackupPolicyList
     {
         $data += [
             'total' => 0,
+            'policies' => [],
         ];
-
-        if (!array_key_exists('policies', $data)) {
-            throw new \InvalidArgumentException('Missing required field "policies" for ' . static::class . '.');
-        }
 
         return new static(
             total: $data['total'],

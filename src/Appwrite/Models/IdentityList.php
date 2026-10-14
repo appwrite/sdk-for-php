@@ -32,11 +32,8 @@ readonly class IdentityList
     {
         $data += [
             'total' => 0,
+            'identities' => [],
         ];
-
-        if (!array_key_exists('identities', $data)) {
-            throw new \InvalidArgumentException('Missing required field "identities" for ' . static::class . '.');
-        }
 
         return new static(
             total: $data['total'],

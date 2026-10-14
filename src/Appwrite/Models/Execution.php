@@ -37,7 +37,7 @@ readonly class Execution
      * @param list<Headers> $responseHeaders http response headers as a key-value object. this will return only whitelisted headers. all headers are returned if execution is created as synchronous.
      * @param string $logs resource logs. includes the last 4,000 characters. this will return an empty string unless the response is returned using an api key or as part of a webhook payload.
      * @param string $errors resource errors. includes the last 4,000 characters. this will return an empty string unless the response is returned using an api key or as part of a webhook payload.
-     * @param float $duration resource(function/site) execution duration in seconds.
+     * @param float $duration total time the resource(function/site) took to respond, in seconds.
      * @param string|null $scheduledAt the scheduled time for execution. if left empty, execution will be queued immediately.
      */
     public function __construct(
@@ -72,32 +72,26 @@ readonly class Execution
             '$id' => "",
             '$createdAt' => "",
             '$updatedAt' => "",
+            '$permissions' => [],
             'resourceId' => "",
             'resourceType' => "functions",
             'deploymentId' => "",
             'requestMethod' => "",
             'requestPath' => "",
+            'requestHeaders' => [],
             'responseStatusCode' => 0,
             'responseBody' => "",
+            'responseHeaders' => [],
             'logs' => "",
             'errors' => "",
             'duration' => 0,
         ];
 
-        if (!array_key_exists('$permissions', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$permissions" for ' . static::class . '.');
-        }
         if (!array_key_exists('trigger', $data)) {
             throw new \InvalidArgumentException('Missing required field "trigger" for ' . static::class . '.');
         }
         if (!array_key_exists('status', $data)) {
             throw new \InvalidArgumentException('Missing required field "status" for ' . static::class . '.');
-        }
-        if (!array_key_exists('requestHeaders', $data)) {
-            throw new \InvalidArgumentException('Missing required field "requestHeaders" for ' . static::class . '.');
-        }
-        if (!array_key_exists('responseHeaders', $data)) {
-            throw new \InvalidArgumentException('Missing required field "responseHeaders" for ' . static::class . '.');
         }
 
         return new static(

@@ -12,6 +12,8 @@ $client = (new Client())
 $graphql = new Graphql($client);
 
 $result = $graphql->mutation(
-    query: []
+    query: [
+        'query' => 'mutation { accountUpdateName(name: "Walter") { name } }'
+    ]
 );
 ```

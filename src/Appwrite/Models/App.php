@@ -104,11 +104,8 @@ readonly class App
             'userId' => "",
             'installationScopes' => [],
             'installationRedirectUrl' => "",
+            'secrets' => [],
         ];
-
-        if (!array_key_exists('secrets', $data)) {
-            throw new \InvalidArgumentException('Missing required field "secrets" for ' . static::class . '.');
-        }
 
         return new static(
             id: $data['$id'],

@@ -30,7 +30,7 @@ readonly class Database
      * @param string|null $specification compute specification identifier of the dedicated backing, e.g. s-2vcpu-2gb. null when the database has no dedicated backing.
      * @param int|null $replicas number of secondary high availability replicas, excluding the primary. null when backing configuration is unavailable.
      * @param string|null $error error message when the dedicated backing failed. null when the database has no dedicated backing or has not failed.
-     * @param string|null $containerStatus container status of the dedicated backing: active or inactive. null when the database has no dedicated backing or the runtime has not reported one.
+     * @param string|null $containerStatus container status of the dedicated backing: active, inactive, or failed (a wake was declined because the backing namespace is gone). null when the database has no dedicated backing or the runtime has not reported one.
      * @param string|null $lifecycleState idle-lifecycle state of the dedicated backing: active, warm, cold, or hibernated. null when the database has no dedicated backing or the runtime has not reported one.
      * @param list<BackupPolicy>|null $policies database backup policies.
      * @param list<BackupArchive>|null $archives database backup archives.

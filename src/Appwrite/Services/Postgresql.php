@@ -99,10 +99,7 @@ class Postgresql extends Service
         if (!is_null($storageAutoscalingThresholdPercent)) {
             $apiParams['storageAutoscalingThresholdPercent'] = $storageAutoscalingThresholdPercent;
         }
-
-        if (!is_null($storageAutoscalingMaxGb)) {
-            $apiParams['storageAutoscalingMaxGb'] = $storageAutoscalingMaxGb;
-        }
+        $apiParams['storageAutoscalingMaxGb'] = $storageAutoscalingMaxGb;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -125,8 +122,8 @@ class Postgresql extends Service
 
     /**
      * List the dedicated database specifications available on the current plan.
-     * Each specification reports its resource limits, pricing, and whether it is
-     * enabled for the organization.
+     * Each specification reports its resource limits, its own prices and overage
+     * rates, and whether it is enabled for the organization.
      *
      * @throws AppwriteException
      */
@@ -166,6 +163,10 @@ class Postgresql extends Service
      */
     public function get(string $databaseId): \Appwrite\Models\DedicatedDatabase
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -203,6 +204,10 @@ class Postgresql extends Service
      */
     public function update(string $databaseId, ?string $name = null, ?string $status = null, ?string $specification = null, ?int $replicas = null, ?string $syncMode = null, ?int $networkIdleTimeoutSeconds = null, ?array $networkIPAllowlist = null, ?int $idleTimeoutMinutes = null, ?bool $pitr = null, ?int $pitrRetentionDays = null, ?bool $storageAutoscaling = null, ?int $storageAutoscalingThresholdPercent = null, ?int $storageAutoscalingMaxGb = null, ?float $metricsTraceSampleRate = null, ?int $metricsSlowQueryLogThresholdMs = null, ?bool $sqlApiEnabled = null, ?array $sqlApiAllowedStatements = null, ?int $sqlApiMaxRows = null, ?int $sqlApiMaxBytes = null, ?int $sqlApiTimeoutSeconds = null): \Appwrite\Models\DedicatedDatabase
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -261,6 +266,10 @@ class Postgresql extends Service
      */
     public function delete(string $databaseId): string
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -291,6 +300,10 @@ class Postgresql extends Service
      */
     public function listBackups(string $databaseId, ?array $queries = null): \Appwrite\Models\DedicatedDatabaseBackupList
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -330,6 +343,10 @@ class Postgresql extends Service
      */
     public function createBackup(string $databaseId, ?string $type = null): \Appwrite\Models\DedicatedDatabaseBackup
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -369,6 +386,10 @@ class Postgresql extends Service
      */
     public function listBackupPolicies(string $databaseId, ?array $queries = null): \Appwrite\Models\BackupPolicyList
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -407,6 +428,10 @@ class Postgresql extends Service
      */
     public function createBackupPolicy(string $databaseId, string $policyId, string $name, string $schedule, int $retention, ?string $type = null, ?bool $enabled = null): \Appwrite\Models\BackupPolicy
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -454,6 +479,14 @@ class Postgresql extends Service
      */
     public function getBackupPolicy(string $databaseId, string $policyId): \Appwrite\Models\BackupPolicy
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($policyId === '') {
+            throw new AppwriteException('Missing required parameter: "policyId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{policyId}'],
             [$databaseId, $policyId],
@@ -489,6 +522,14 @@ class Postgresql extends Service
      */
     public function updateBackupPolicy(string $databaseId, string $policyId, ?string $name = null, ?string $schedule = null, ?int $retention = null, ?bool $enabled = null): \Appwrite\Models\BackupPolicy
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($policyId === '') {
+            throw new AppwriteException('Missing required parameter: "policyId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{policyId}'],
             [$databaseId, $policyId],
@@ -533,6 +574,14 @@ class Postgresql extends Service
      */
     public function deleteBackupPolicy(string $databaseId, string $policyId): string
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($policyId === '') {
+            throw new AppwriteException('Missing required parameter: "policyId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{policyId}'],
             [$databaseId, $policyId],
@@ -565,6 +614,10 @@ class Postgresql extends Service
      */
     public function updateBackupStorage(string $databaseId, string $provider, string $bucket, string $accessKey, string $secretKey, ?string $region = null, ?string $prefix = null, ?string $endpoint = null): \Appwrite\Models\DedicatedDatabaseBackupStorage
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -617,6 +670,14 @@ class Postgresql extends Service
      */
     public function getBackup(string $databaseId, string $backupId): \Appwrite\Models\DedicatedDatabaseBackup
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($backupId === '') {
+            throw new AppwriteException('Missing required parameter: "backupId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{backupId}'],
             [$databaseId, $backupId],
@@ -653,6 +714,14 @@ class Postgresql extends Service
      */
     public function deleteBackup(string $databaseId, string $backupId): string
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($backupId === '') {
+            throw new AppwriteException('Missing required parameter: "backupId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{backupId}'],
             [$databaseId, $backupId],
@@ -684,6 +753,10 @@ class Postgresql extends Service
      */
     public function listBranches(string $databaseId): \Appwrite\Models\DedicatedDatabaseBranchList
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -722,6 +795,10 @@ class Postgresql extends Service
      */
     public function createBranch(string $databaseId, ?string $branchId = null, ?int $ttl = null): \Appwrite\Models\DedicatedDatabase
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -767,6 +844,14 @@ class Postgresql extends Service
      */
     public function deleteBranch(string $databaseId, string $branchId): \Appwrite\Models\DedicatedDatabase
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($branchId === '') {
+            throw new AppwriteException('Missing required parameter: "branchId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{branchId}'],
             [$databaseId, $branchId],
@@ -806,6 +891,10 @@ class Postgresql extends Service
      */
     public function updateCredentials(string $databaseId): \Appwrite\Models\DedicatedDatabaseOperation
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -849,6 +938,10 @@ class Postgresql extends Service
      */
     public function createExecution(string $databaseId, string $sql, ?array $bindings = null, ?int $timeoutSeconds = null): \Appwrite\Models\DedicatedDatabaseExecution
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -887,6 +980,10 @@ class Postgresql extends Service
      */
     public function listExtensions(string $databaseId): \Appwrite\Models\DedicatedDatabaseExtensions
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -922,6 +1019,10 @@ class Postgresql extends Service
      */
     public function createExtension(string $databaseId, string $name): \Appwrite\Models\DedicatedDatabase
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -959,6 +1060,14 @@ class Postgresql extends Service
      */
     public function deleteExtension(string $databaseId, string $extensionName): \Appwrite\Models\DedicatedDatabase
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($extensionName === '') {
+            throw new AppwriteException('Missing required parameter: "extensionName"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{extensionName}'],
             [$databaseId, $extensionName],
@@ -1003,6 +1112,10 @@ class Postgresql extends Service
      */
     public function createFailover(string $databaseId, ?string $targetReplicaId = null): \Appwrite\Models\DedicatedDatabase
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -1041,6 +1154,10 @@ class Postgresql extends Service
      */
     public function updateMaintenance(string $databaseId, string $day, int $hourUtc): \Appwrite\Models\DedicatedDatabase
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -1081,6 +1198,10 @@ class Postgresql extends Service
      */
     public function createMigration(string $databaseId, string $targetType, ?string $specification = null): \Appwrite\Models\DedicatedDatabase
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -1121,6 +1242,10 @@ class Postgresql extends Service
      */
     public function listOperations(string $databaseId, ?string $status = null, ?int $limit = null, ?int $offset = null): \Appwrite\Models\DedicatedDatabaseOperationList
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -1168,6 +1293,10 @@ class Postgresql extends Service
      */
     public function getPitr(string $databaseId): \Appwrite\Models\DedicatedDatabasePITRWindows
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -1203,6 +1332,10 @@ class Postgresql extends Service
      */
     public function getPooler(string $databaseId): \Appwrite\Models\DedicatedDatabasePooler
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -1238,6 +1371,10 @@ class Postgresql extends Service
      */
     public function updatePooler(string $databaseId, ?string $mode = null, ?int $maxConnections = null, ?int $defaultPoolSize = null, ?bool $readWriteSplitting = null, ?string $poolerCpuRequest = null, ?string $poolerCpuLimit = null, ?string $poolerMemoryRequest = null, ?string $poolerMemoryLimit = null): \Appwrite\Models\DedicatedDatabasePooler
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -1282,6 +1419,10 @@ class Postgresql extends Service
      */
     public function getReplicas(string $databaseId): \Appwrite\Models\DedicatedDatabaseReplicas
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -1317,6 +1458,10 @@ class Postgresql extends Service
      */
     public function listRestorations(string $databaseId, ?string $status = null, ?string $type = null, ?int $limit = null, ?int $offset = null): \Appwrite\Models\DedicatedDatabaseRestorationList
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -1370,6 +1515,10 @@ class Postgresql extends Service
      */
     public function createRestoration(string $databaseId, ?string $type = null, ?string $backupId = null, ?string $targetDatabaseId = null, ?string $targetTime = null): \Appwrite\Models\DedicatedDatabaseRestoration
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -1413,6 +1562,14 @@ class Postgresql extends Service
      */
     public function getRestoration(string $databaseId, string $restorationId): \Appwrite\Models\DedicatedDatabaseRestoration
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($restorationId === '') {
+            throw new AppwriteException('Missing required parameter: "restorationId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{restorationId}'],
             [$databaseId, $restorationId],
@@ -1450,6 +1607,10 @@ class Postgresql extends Service
      */
     public function getStatus(string $databaseId): \Appwrite\Models\DatabaseStatus
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -1485,6 +1646,10 @@ class Postgresql extends Service
      */
     public function createUpgrade(string $databaseId, string $targetVersion): \Appwrite\Models\DedicatedDatabase
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],

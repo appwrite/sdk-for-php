@@ -201,7 +201,7 @@ GET https://cloud.appwrite.io/v1/storage/buckets/{bucketId}/files/{fileId}/previ
 | fileId | string | **Required** File ID |  |
 | width | integer | Resize preview image width, Pass an integer between 0 to 4000. | 0 |
 | height | integer | Resize preview image height, Pass an integer between 0 to 4000. | 0 |
-| gravity | string | Image crop gravity. Can be one of center,top-left,top,top-right,left,right,bottom-left,bottom,bottom-right | center |
+| gravity | string | Image crop gravity. Can be one of auto,center,top-left,top,top-right,left,right,bottom-left,bottom,bottom-right | center |
 | quality | integer | Preview image quality. Pass an integer between 0 to 100. Defaults to keep existing image quality. | -1 |
 | borderWidth | integer | Preview image border in pixels. Pass an integer between 0 to 100. Defaults to 0. | 0 |
 | borderColor | string | Preview image border color. Use a valid HEX color, no # is needed for prefix. |  |

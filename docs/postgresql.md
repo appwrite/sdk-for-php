@@ -35,16 +35,16 @@ POST https://cloud.appwrite.io/v1/postgresql
 | idleTimeoutMinutes | integer | Minutes of inactivity before container scales to zero. | 15 |
 | pitr | boolean | Enable point-in-time recovery (PITR). Continuously archives changes so the database can be restored to any moment within the retention window. | 1 |
 | pitrRetentionDays | integer | Number of days to retain PITR data. | 7 |
-| storageAutoscaling | boolean | Enable automatic storage expansion when usage exceeds threshold. |  |
+| storageAutoscaling | boolean | Enable automatic storage expansion when usage exceeds threshold. | 1 |
 | storageAutoscalingThresholdPercent | integer | Storage usage percentage (50-95) that triggers automatic expansion. | 85 |
-| storageAutoscalingMaxGb | integer | Maximum storage size in GB for autoscaling. 0 means no limit. | 0 |
+| storageAutoscalingMaxGb | integer | Maximum storage size in GB for autoscaling. Defaults to 3 times the specification's storage. 0 means no limit. |  |
 
 
 ```http request
 GET https://cloud.appwrite.io/v1/postgresql/specifications
 ```
 
-** List the dedicated database specifications available on the current plan. Each specification reports its resource limits, pricing, and whether it is enabled for the organization. **
+** List the dedicated database specifications available on the current plan. Each specification reports its resource limits, its own prices and overage rates, and whether it is enabled for the organization. **
 
 
 ```http request
