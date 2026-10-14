@@ -22,18 +22,18 @@ readonly class OAuth2Okta
      * @param bool $enabled oauth2 provider is active and can be used to create sessions.
      * @param string $clientId okta oauth2 client id.
      * @param string $clientSecret okta oauth2 client secret.
+     * @param list<OAuth2OktaPrompt> $prompt okta oauth2 prompt values.
      * @param string $domain okta oauth2 domain.
      * @param string $authorizationServerId okta oauth2 authorization server id.
-     * @param list<OAuth2OktaPrompt>|null $prompt okta oauth2 prompt values.
      */
     public function __construct(
         public string $id,
         public bool $enabled,
         public string $clientId,
         public string $clientSecret,
+        public array $prompt,
         public string $domain,
-        public string $authorizationServerId,
-        public ?array $prompt = null
+        public string $authorizationServerId
     ) {
     }
 
@@ -47,6 +47,7 @@ readonly class OAuth2Okta
             'enabled' => false,
             'clientId' => "",
             'clientSecret' => "",
+            'prompt' => [],
             'domain' => "",
             'authorizationServerId' => "",
         ];
@@ -56,18 +57,14 @@ readonly class OAuth2Okta
             enabled: $data['enabled'],
             clientId: $data['clientId'],
             clientSecret: $data['clientSecret'],
-            domain: $data['domain'],
-            authorizationServerId: $data['authorizationServerId'],
-            prompt: array_key_exists('prompt', $data)
-                ? (
-                    is_array($data['prompt'])
-                        ? array_map(
-                            static fn (mixed $item): mixed => static::hydrateTypedValue(OAuth2OktaPrompt::class, $item),
-                            $data['prompt']
-                        )
-                        : $data['prompt']
+            prompt: is_array($data['prompt'])
+                ? array_map(
+                    static fn (mixed $item): mixed => static::hydrateTypedValue(OAuth2OktaPrompt::class, $item),
+                    $data['prompt']
                 )
-                : null
+                : $data['prompt'],
+            domain: $data['domain'],
+            authorizationServerId: $data['authorizationServerId']
         );
     }
 

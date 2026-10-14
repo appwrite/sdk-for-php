@@ -48,13 +48,10 @@ readonly class Presence
             '$id' => "",
             '$createdAt' => "",
             '$updatedAt' => "",
+            '$permissions' => [],
             'userId' => "",
             'source' => "",
         ];
-
-        if (!array_key_exists('$permissions', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$permissions" for ' . static::class . '.');
-        }
 
         return new static(
             id: $data['$id'],

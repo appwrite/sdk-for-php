@@ -12,6 +12,6 @@ $client = (new Client())
 $project = new Project($client);
 
 $result = $project->updateLabels(
-    labels: []
+    labels: ["production"]
 );
 ```

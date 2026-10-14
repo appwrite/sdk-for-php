@@ -22,14 +22,14 @@ readonly class OAuth2Github
      * @param bool $enabled oauth2 provider is active and can be used to create sessions.
      * @param string $clientId github oauth2 client id. for github apps, use the "app id" when both an app id and client id are available.
      * @param string $clientSecret github oauth2 client secret.
-     * @param list<OAuth2GithubPrompt>|null $prompt github oauth2 prompt values.
+     * @param list<OAuth2GithubPrompt> $prompt github oauth2 prompt values.
      */
     public function __construct(
         public string $id,
         public bool $enabled,
         public string $clientId,
         public string $clientSecret,
-        public ?array $prompt = null
+        public array $prompt
     ) {
     }
 
@@ -43,6 +43,7 @@ readonly class OAuth2Github
             'enabled' => false,
             'clientId' => "",
             'clientSecret' => "",
+            'prompt' => [],
         ];
 
         return new static(
@@ -50,16 +51,12 @@ readonly class OAuth2Github
             enabled: $data['enabled'],
             clientId: $data['clientId'],
             clientSecret: $data['clientSecret'],
-            prompt: array_key_exists('prompt', $data)
-                ? (
-                    is_array($data['prompt'])
-                        ? array_map(
-                            static fn (mixed $item): mixed => static::hydrateTypedValue(OAuth2GithubPrompt::class, $item),
-                            $data['prompt']
-                        )
-                        : $data['prompt']
+            prompt: is_array($data['prompt'])
+                ? array_map(
+                    static fn (mixed $item): mixed => static::hydrateTypedValue(OAuth2GithubPrompt::class, $item),
+                    $data['prompt']
                 )
-                : null
+                : $data['prompt']
         );
     }
 

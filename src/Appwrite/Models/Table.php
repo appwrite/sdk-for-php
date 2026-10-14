@@ -54,23 +54,16 @@ readonly class Table
             '$id' => "",
             '$createdAt' => "",
             '$updatedAt' => "",
+            '$permissions' => [],
             'databaseId' => "",
             'name' => "",
             'enabled' => true,
             'rowSecurity' => false,
+            'columns' => [],
+            'indexes' => [],
             'bytesMax' => 0,
             'bytesUsed' => 0,
         ];
-
-        if (!array_key_exists('$permissions', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$permissions" for ' . static::class . '.');
-        }
-        if (!array_key_exists('columns', $data)) {
-            throw new \InvalidArgumentException('Missing required field "columns" for ' . static::class . '.');
-        }
-        if (!array_key_exists('indexes', $data)) {
-            throw new \InvalidArgumentException('Missing required field "indexes" for ' . static::class . '.');
-        }
 
         return new static(
             id: $data['$id'],

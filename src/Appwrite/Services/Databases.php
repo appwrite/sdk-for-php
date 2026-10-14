@@ -200,6 +200,10 @@ class Databases extends Service
      */
     public function getTransaction(string $transactionId): \Appwrite\Models\Transaction
     {
+        if ($transactionId === '') {
+            throw new AppwriteException('Missing required parameter: "transactionId"');
+        }
+
         $apiPath = str_replace(
             ['{transactionId}'],
             [$transactionId],
@@ -237,6 +241,10 @@ class Databases extends Service
      */
     public function updateTransaction(string $transactionId, ?bool $commit = null, ?bool $rollback = null): \Appwrite\Models\Transaction
     {
+        if ($transactionId === '') {
+            throw new AppwriteException('Missing required parameter: "transactionId"');
+        }
+
         $apiPath = str_replace(
             ['{transactionId}'],
             [$transactionId],
@@ -283,6 +291,10 @@ class Databases extends Service
      */
     public function deleteTransaction(string $transactionId): string
     {
+        if ($transactionId === '') {
+            throw new AppwriteException('Missing required parameter: "transactionId"');
+        }
+
         $apiPath = str_replace(
             ['{transactionId}'],
             [$transactionId],
@@ -295,6 +307,7 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_DELETE,
@@ -314,6 +327,10 @@ class Databases extends Service
      */
     public function createOperations(string $transactionId, ?array $operations = null): \Appwrite\Models\Transaction
     {
+        if ($transactionId === '') {
+            throw new AppwriteException('Missing required parameter: "transactionId"');
+        }
+
         $apiPath = str_replace(
             ['{transactionId}'],
             [$transactionId],
@@ -357,6 +374,10 @@ class Databases extends Service
      */
     public function get(string $databaseId): \Appwrite\Models\Database
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -394,6 +415,10 @@ class Databases extends Service
      */
     public function update(string $databaseId, ?string $name = null, ?bool $enabled = null): \Appwrite\Models\Database
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -441,6 +466,10 @@ class Databases extends Service
      */
     public function delete(string $databaseId): string
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -453,6 +482,7 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_DELETE,
@@ -473,6 +503,10 @@ class Databases extends Service
      */
     public function listCollections(string $databaseId, ?array $queries = null, ?string $search = null, ?bool $total = null): \Appwrite\Models\CollectionList
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -525,6 +559,10 @@ class Databases extends Service
      */
     public function createCollection(string $databaseId, string $collectionId, string $name, ?array $permissions = null, ?bool $documentSecurity = null, ?bool $enabled = null, ?array $attributes = null, ?array $indexes = null): \Appwrite\Models\Collection
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -583,6 +621,14 @@ class Databases extends Service
      */
     public function getCollection(string $databaseId, string $collectionId): \Appwrite\Models\Collection
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
             [$databaseId, $collectionId],
@@ -621,6 +667,14 @@ class Databases extends Service
      */
     public function updateCollection(string $databaseId, string $collectionId, ?string $name = null, ?array $permissions = null, ?bool $documentSecurity = null, ?bool $enabled = null, ?bool $purge = null): \Appwrite\Models\Collection
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
             [$databaseId, $collectionId],
@@ -678,6 +732,14 @@ class Databases extends Service
      */
     public function deleteCollection(string $databaseId, string $collectionId): string
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
             [$databaseId, $collectionId],
@@ -691,6 +753,7 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_DELETE,
@@ -710,6 +773,14 @@ class Databases extends Service
      */
     public function listAttributes(string $databaseId, string $collectionId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\AttributeList
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
             [$databaseId, $collectionId],
@@ -757,6 +828,14 @@ class Databases extends Service
      */
     public function createBigIntAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?int $min = null, ?int $max = null, ?int $xdefault = null, ?bool $xarray = null): \Appwrite\Models\AttributeBigint
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
             [$databaseId, $collectionId],
@@ -806,6 +885,18 @@ class Databases extends Service
      */
     public function updateBigIntAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?int $xdefault, ?int $min = null, ?int $max = null, ?string $newKey = null): \Appwrite\Models\AttributeBigint
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
+        if ($key === '') {
+            throw new AppwriteException('Missing required parameter: "key"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{key}'],
             [$databaseId, $collectionId, $key],
@@ -851,6 +942,14 @@ class Databases extends Service
      */
     public function createBooleanAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?bool $xdefault = null, ?bool $xarray = null): \Appwrite\Models\AttributeBoolean
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
             [$databaseId, $collectionId],
@@ -898,6 +997,18 @@ class Databases extends Service
      */
     public function updateBooleanAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?bool $xdefault, ?string $newKey = null): \Appwrite\Models\AttributeBoolean
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
+        if ($key === '') {
+            throw new AppwriteException('Missing required parameter: "key"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{key}'],
             [$databaseId, $collectionId, $key],
@@ -941,6 +1052,14 @@ class Databases extends Service
      */
     public function createDatetimeAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): \Appwrite\Models\AttributeDatetime
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
             [$databaseId, $collectionId],
@@ -988,6 +1107,18 @@ class Databases extends Service
      */
     public function updateDatetimeAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\AttributeDatetime
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
+        if ($key === '') {
+            throw new AppwriteException('Missing required parameter: "key"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{key}'],
             [$databaseId, $collectionId, $key],
@@ -1031,6 +1162,14 @@ class Databases extends Service
      */
     public function createEmailAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): \Appwrite\Models\AttributeEmail
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
             [$databaseId, $collectionId],
@@ -1078,6 +1217,18 @@ class Databases extends Service
      */
     public function updateEmailAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\AttributeEmail
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
+        if ($key === '') {
+            throw new AppwriteException('Missing required parameter: "key"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{key}'],
             [$databaseId, $collectionId, $key],
@@ -1122,6 +1273,14 @@ class Databases extends Service
      */
     public function createEnumAttribute(string $databaseId, string $collectionId, string $key, array $elements, bool $required, ?string $xdefault = null, ?bool $xarray = null): \Appwrite\Models\AttributeEnum
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
             [$databaseId, $collectionId],
@@ -1170,6 +1329,18 @@ class Databases extends Service
      */
     public function updateEnumAttribute(string $databaseId, string $collectionId, string $key, array $elements, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\AttributeEnum
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
+        if ($key === '') {
+            throw new AppwriteException('Missing required parameter: "key"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{key}'],
             [$databaseId, $collectionId, $key],
@@ -1215,6 +1386,14 @@ class Databases extends Service
      */
     public function createFloatAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?float $min = null, ?float $max = null, ?float $xdefault = null, ?bool $xarray = null): \Appwrite\Models\AttributeFloat
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
             [$databaseId, $collectionId],
@@ -1264,6 +1443,18 @@ class Databases extends Service
      */
     public function updateFloatAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?float $xdefault, ?float $min = null, ?float $max = null, ?string $newKey = null): \Appwrite\Models\AttributeFloat
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
+        if ($key === '') {
+            throw new AppwriteException('Missing required parameter: "key"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{key}'],
             [$databaseId, $collectionId, $key],
@@ -1310,6 +1501,14 @@ class Databases extends Service
      */
     public function createIntegerAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?int $min = null, ?int $max = null, ?int $xdefault = null, ?bool $xarray = null): \Appwrite\Models\AttributeInteger
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
             [$databaseId, $collectionId],
@@ -1359,6 +1558,18 @@ class Databases extends Service
      */
     public function updateIntegerAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?int $xdefault, ?int $min = null, ?int $max = null, ?string $newKey = null): \Appwrite\Models\AttributeInteger
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
+        if ($key === '') {
+            throw new AppwriteException('Missing required parameter: "key"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{key}'],
             [$databaseId, $collectionId, $key],
@@ -1404,6 +1615,14 @@ class Databases extends Service
      */
     public function createIpAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): \Appwrite\Models\AttributeIp
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
             [$databaseId, $collectionId],
@@ -1451,6 +1670,18 @@ class Databases extends Service
      */
     public function updateIpAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\AttributeIp
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
+        if ($key === '') {
+            throw new AppwriteException('Missing required parameter: "key"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{key}'],
             [$databaseId, $collectionId, $key],
@@ -1494,6 +1725,14 @@ class Databases extends Service
      */
     public function createLineAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?array $xdefault = null): \Appwrite\Models\AttributeLine
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
             [$databaseId, $collectionId],
@@ -1537,6 +1776,18 @@ class Databases extends Service
      */
     public function updateLineAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?array $xdefault = null, ?string $newKey = null): \Appwrite\Models\AttributeLine
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
+        if ($key === '') {
+            throw new AppwriteException('Missing required parameter: "key"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{key}'],
             [$databaseId, $collectionId, $key],
@@ -1580,6 +1831,14 @@ class Databases extends Service
      */
     public function createLongtextAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): \Appwrite\Models\AttributeLongtext
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
             [$databaseId, $collectionId],
@@ -1631,6 +1890,18 @@ class Databases extends Service
      */
     public function updateLongtextAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\AttributeLongtext
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
+        if ($key === '') {
+            throw new AppwriteException('Missing required parameter: "key"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{key}'],
             [$databaseId, $collectionId, $key],
@@ -1674,6 +1945,14 @@ class Databases extends Service
      */
     public function createMediumtextAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): \Appwrite\Models\AttributeMediumtext
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
             [$databaseId, $collectionId],
@@ -1725,6 +2004,18 @@ class Databases extends Service
      */
     public function updateMediumtextAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\AttributeMediumtext
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
+        if ($key === '') {
+            throw new AppwriteException('Missing required parameter: "key"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{key}'],
             [$databaseId, $collectionId, $key],
@@ -1768,6 +2059,14 @@ class Databases extends Service
      */
     public function createPointAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?array $xdefault = null): \Appwrite\Models\AttributePoint
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
             [$databaseId, $collectionId],
@@ -1811,6 +2110,18 @@ class Databases extends Service
      */
     public function updatePointAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?array $xdefault = null, ?string $newKey = null): \Appwrite\Models\AttributePoint
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
+        if ($key === '') {
+            throw new AppwriteException('Missing required parameter: "key"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{key}'],
             [$databaseId, $collectionId, $key],
@@ -1854,6 +2165,14 @@ class Databases extends Service
      */
     public function createPolygonAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?array $xdefault = null): \Appwrite\Models\AttributePolygon
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
             [$databaseId, $collectionId],
@@ -1897,6 +2216,18 @@ class Databases extends Service
      */
     public function updatePolygonAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?array $xdefault = null, ?string $newKey = null): \Appwrite\Models\AttributePolygon
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
+        if ($key === '') {
+            throw new AppwriteException('Missing required parameter: "key"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{key}'],
             [$databaseId, $collectionId, $key],
@@ -1941,6 +2272,14 @@ class Databases extends Service
      */
     public function createRelationshipAttribute(string $databaseId, string $collectionId, string $relatedCollectionId, RelationshipType $type, ?bool $twoWay = null, ?string $key = null, ?string $twoWayKey = null, ?RelationMutate $onDelete = null): \Appwrite\Models\AttributeRelationship
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
             [$databaseId, $collectionId],
@@ -1993,6 +2332,18 @@ class Databases extends Service
      */
     public function updateRelationshipAttribute(string $databaseId, string $collectionId, string $key, ?RelationMutate $onDelete = null, ?string $newKey = null): \Appwrite\Models\AttributeRelationship
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
+        if ($key === '') {
+            throw new AppwriteException('Missing required parameter: "key"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{key}'],
             [$databaseId, $collectionId, $key],
@@ -2038,6 +2389,14 @@ class Databases extends Service
      */
     public function createStringAttribute(string $databaseId, string $collectionId, string $key, int $size, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): \Appwrite\Models\AttributeString
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
             [$databaseId, $collectionId],
@@ -2090,6 +2449,18 @@ class Databases extends Service
      */
     public function updateStringAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?int $size = null, ?string $newKey = null): \Appwrite\Models\AttributeString
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
+        if ($key === '') {
+            throw new AppwriteException('Missing required parameter: "key"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{key}'],
             [$databaseId, $collectionId, $key],
@@ -2134,6 +2505,14 @@ class Databases extends Service
      */
     public function createTextAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): \Appwrite\Models\AttributeText
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
             [$databaseId, $collectionId],
@@ -2185,6 +2564,18 @@ class Databases extends Service
      */
     public function updateTextAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\AttributeText
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
+        if ($key === '') {
+            throw new AppwriteException('Missing required parameter: "key"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{key}'],
             [$databaseId, $collectionId, $key],
@@ -2228,6 +2619,14 @@ class Databases extends Service
      */
     public function createUrlAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): \Appwrite\Models\AttributeUrl
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
             [$databaseId, $collectionId],
@@ -2275,6 +2674,18 @@ class Databases extends Service
      */
     public function updateUrlAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\AttributeUrl
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
+        if ($key === '') {
+            throw new AppwriteException('Missing required parameter: "key"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{key}'],
             [$databaseId, $collectionId, $key],
@@ -2318,6 +2729,14 @@ class Databases extends Service
      */
     public function createVarcharAttribute(string $databaseId, string $collectionId, string $key, int $size, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): \Appwrite\Models\AttributeVarchar
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
             [$databaseId, $collectionId],
@@ -2370,6 +2789,18 @@ class Databases extends Service
      */
     public function updateVarcharAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?int $size = null, ?string $newKey = null): \Appwrite\Models\AttributeVarchar
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
+        if ($key === '') {
+            throw new AppwriteException('Missing required parameter: "key"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{key}'],
             [$databaseId, $collectionId, $key],
@@ -2412,8 +2843,20 @@ class Databases extends Service
      * @deprecated This API has been deprecated since 1.8.0. Please use `getColumn` instead.
      * @see TablesDB::getColumn
      */
-    public function getAttribute(string $databaseId, string $collectionId, string $key): \Appwrite\Models\AttributeBoolean|\Appwrite\Models\AttributeInteger|\Appwrite\Models\AttributeFloat|\Appwrite\Models\AttributeEmail|\Appwrite\Models\AttributeEnum|\Appwrite\Models\AttributeUrl|\Appwrite\Models\AttributeIp|\Appwrite\Models\AttributeDatetime|\Appwrite\Models\AttributeRelationship|\Appwrite\Models\AttributeString
+    public function getAttribute(string $databaseId, string $collectionId, string $key): \Appwrite\Models\AttributeBoolean|\Appwrite\Models\AttributeBigint|\Appwrite\Models\AttributeInteger|\Appwrite\Models\AttributeFloat|\Appwrite\Models\AttributeEmail|\Appwrite\Models\AttributeEnum|\Appwrite\Models\AttributeUrl|\Appwrite\Models\AttributeIp|\Appwrite\Models\AttributeDatetime|\Appwrite\Models\AttributeRelationship|\Appwrite\Models\AttributePoint|\Appwrite\Models\AttributeLine|\Appwrite\Models\AttributePolygon|\Appwrite\Models\AttributeVarchar|\Appwrite\Models\AttributeText|\Appwrite\Models\AttributeMediumtext|\Appwrite\Models\AttributeLongtext|\Appwrite\Models\AttributeString
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
+        if ($key === '') {
+            throw new AppwriteException('Missing required parameter: "key"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{key}'],
             [$databaseId, $collectionId, $key],
@@ -2460,6 +2903,10 @@ class Databases extends Service
             return \Appwrite\Models\AttributeBoolean::from($response);
         }
 
+        if (($response['type'] ?? null) === 'bigint') {
+            return \Appwrite\Models\AttributeBigint::from($response);
+        }
+
         if (($response['type'] ?? null) === 'integer') {
             return \Appwrite\Models\AttributeInteger::from($response);
         }
@@ -2474,6 +2921,34 @@ class Databases extends Service
 
         if (($response['type'] ?? null) === 'relationship') {
             return \Appwrite\Models\AttributeRelationship::from($response);
+        }
+
+        if (($response['type'] ?? null) === 'point') {
+            return \Appwrite\Models\AttributePoint::from($response);
+        }
+
+        if (($response['type'] ?? null) === 'linestring') {
+            return \Appwrite\Models\AttributeLine::from($response);
+        }
+
+        if (($response['type'] ?? null) === 'polygon') {
+            return \Appwrite\Models\AttributePolygon::from($response);
+        }
+
+        if (($response['type'] ?? null) === 'varchar') {
+            return \Appwrite\Models\AttributeVarchar::from($response);
+        }
+
+        if (($response['type'] ?? null) === 'text') {
+            return \Appwrite\Models\AttributeText::from($response);
+        }
+
+        if (($response['type'] ?? null) === 'mediumtext') {
+            return \Appwrite\Models\AttributeMediumtext::from($response);
+        }
+
+        if (($response['type'] ?? null) === 'longtext') {
+            return \Appwrite\Models\AttributeLongtext::from($response);
         }
 
         if (($response['type'] ?? null) === 'string') {
@@ -2493,6 +2968,18 @@ class Databases extends Service
      */
     public function deleteAttribute(string $databaseId, string $collectionId, string $key): string
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
+        if ($key === '') {
+            throw new AppwriteException('Missing required parameter: "key"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{key}'],
             [$databaseId, $collectionId, $key],
@@ -2507,6 +2994,7 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_DELETE,
@@ -2527,6 +3015,14 @@ class Databases extends Service
      */
     public function listDocuments(string $databaseId, string $collectionId, ?array $queries = null, ?string $transactionId = null, ?bool $total = null, ?int $ttl = null): \Appwrite\Models\DocumentList
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
             [$databaseId, $collectionId],
@@ -2584,6 +3080,14 @@ class Databases extends Service
      */
     public function createDocument(string $databaseId, string $collectionId, string $documentId, array $data, ?array $permissions = null, ?string $transactionId = null): \Appwrite\Models\Document
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
             [$databaseId, $collectionId],
@@ -2630,6 +3134,14 @@ class Databases extends Service
      */
     public function createDocuments(string $databaseId, string $collectionId, array $documents, ?string $transactionId = null): \Appwrite\Models\DocumentList
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
             [$databaseId, $collectionId],
@@ -2674,6 +3186,14 @@ class Databases extends Service
      */
     public function upsertDocuments(string $databaseId, string $collectionId, array $documents, ?string $transactionId = null): \Appwrite\Models\DocumentList
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
             [$databaseId, $collectionId],
@@ -2717,6 +3237,14 @@ class Databases extends Service
      */
     public function updateDocuments(string $databaseId, string $collectionId, ?array $data = null, ?array $queries = null, ?string $transactionId = null): \Appwrite\Models\DocumentList
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
             [$databaseId, $collectionId],
@@ -2766,6 +3294,14 @@ class Databases extends Service
      */
     public function deleteDocuments(string $databaseId, string $collectionId, ?array $queries = null, ?string $transactionId = null): \Appwrite\Models\DocumentList
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
             [$databaseId, $collectionId],
@@ -2814,6 +3350,18 @@ class Databases extends Service
      */
     public function getDocument(string $databaseId, string $collectionId, string $documentId, ?array $queries = null, ?string $transactionId = null): \Appwrite\Models\Document
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
+        if ($documentId === '') {
+            throw new AppwriteException('Missing required parameter: "documentId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{documentId}'],
             [$databaseId, $collectionId, $documentId],
@@ -2864,6 +3412,18 @@ class Databases extends Service
      */
     public function upsertDocument(string $databaseId, string $collectionId, string $documentId, ?array $data = null, ?array $permissions = null, ?string $transactionId = null): \Appwrite\Models\Document
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
+        if ($documentId === '') {
+            throw new AppwriteException('Missing required parameter: "documentId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{documentId}'],
             [$databaseId, $collectionId, $documentId],
@@ -2911,6 +3471,18 @@ class Databases extends Service
      */
     public function updateDocument(string $databaseId, string $collectionId, string $documentId, ?array $data = null, ?array $permissions = null, ?string $transactionId = null): \Appwrite\Models\Document
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
+        if ($documentId === '') {
+            throw new AppwriteException('Missing required parameter: "documentId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{documentId}'],
             [$databaseId, $collectionId, $documentId],
@@ -2957,6 +3529,18 @@ class Databases extends Service
      */
     public function deleteDocument(string $databaseId, string $collectionId, string $documentId, ?string $transactionId = null): string
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
+        if ($documentId === '') {
+            throw new AppwriteException('Missing required parameter: "documentId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{documentId}'],
             [$databaseId, $collectionId, $documentId],
@@ -2975,6 +3559,7 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_DELETE,
@@ -2994,6 +3579,22 @@ class Databases extends Service
      */
     public function decrementDocumentAttribute(string $databaseId, string $collectionId, string $documentId, string $attribute, ?float $value = null, ?float $min = null, ?string $transactionId = null): \Appwrite\Models\Document
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
+        if ($documentId === '') {
+            throw new AppwriteException('Missing required parameter: "documentId"');
+        }
+
+        if ($attribute === '') {
+            throw new AppwriteException('Missing required parameter: "attribute"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{documentId}', '{attribute}'],
             [$databaseId, $collectionId, $documentId, $attribute],
@@ -3041,6 +3642,22 @@ class Databases extends Service
      */
     public function incrementDocumentAttribute(string $databaseId, string $collectionId, string $documentId, string $attribute, ?float $value = null, ?float $max = null, ?string $transactionId = null): \Appwrite\Models\Document
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
+        if ($documentId === '') {
+            throw new AppwriteException('Missing required parameter: "documentId"');
+        }
+
+        if ($attribute === '') {
+            throw new AppwriteException('Missing required parameter: "attribute"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{documentId}', '{attribute}'],
             [$databaseId, $collectionId, $documentId, $attribute],
@@ -3088,6 +3705,14 @@ class Databases extends Service
      */
     public function listIndexes(string $databaseId, string $collectionId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\IndexList
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
             [$databaseId, $collectionId],
@@ -3127,7 +3752,9 @@ class Databases extends Service
     /**
      * Creates an index on the attributes listed. Your index should include all
      * the attributes you will query in a single request.
-     * Attributes can be `key`, `fulltext`, and `unique`.
+     * Attributes can be `key`, `fulltext`, `unique`, `spatial`, and `trigram`.
+     * `trigram` is only available on PostgreSQL and lets `contains`,
+     * `startsWith`, and `endsWith` queries on string attributes use an index.
      *
      * @throws AppwriteException
      *
@@ -3136,6 +3763,14 @@ class Databases extends Service
      */
     public function createIndex(string $databaseId, string $collectionId, string $key, DatabasesIndexType $type, array $attributes, ?array $orders = null, ?array $lengths = null): \Appwrite\Models\Index
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
             [$databaseId, $collectionId],
@@ -3186,6 +3821,18 @@ class Databases extends Service
      */
     public function getIndex(string $databaseId, string $collectionId, string $key): \Appwrite\Models\Index
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
+        if ($key === '') {
+            throw new AppwriteException('Missing required parameter: "key"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{key}'],
             [$databaseId, $collectionId, $key],
@@ -3225,6 +3872,18 @@ class Databases extends Service
      */
     public function deleteIndex(string $databaseId, string $collectionId, string $key): string
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
+        if ($key === '') {
+            throw new AppwriteException('Missing required parameter: "key"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{key}'],
             [$databaseId, $collectionId, $key],
@@ -3239,6 +3898,7 @@ class Databases extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_DELETE,

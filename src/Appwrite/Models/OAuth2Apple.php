@@ -22,8 +22,8 @@ readonly class OAuth2Apple
      * @param string $keyId apple oauth2 key id.
      * @param string $teamId apple oauth2 team id.
      * @param string $p8File apple oauth2 .p8 private key file contents. the secret key wrapped by the pem markers is 200 characters long.
-     * @param bool|null $nativeEnabled native sign in with apple is active and can be used to create sessions from an id token. independent of enabled, which only controls the browser-based flow.
-     * @param array|null $nativeClientIds app bundle ids accepted as id token audiences for native sign in with apple, next to the services id.
+     * @param bool $nativeEnabled native sign in with apple is active and can be used to create sessions from an id token. independent of enabled, which only controls the browser-based flow.
+     * @param array $nativeClientIds app bundle ids accepted as id token audiences for native sign in with apple, next to the services id.
      */
     public function __construct(
         public string $id,
@@ -32,8 +32,8 @@ readonly class OAuth2Apple
         public string $keyId,
         public string $teamId,
         public string $p8File,
-        public ?bool $nativeEnabled = null,
-        public ?array $nativeClientIds = null
+        public bool $nativeEnabled,
+        public array $nativeClientIds
     ) {
     }
 
@@ -49,6 +49,8 @@ readonly class OAuth2Apple
             'keyId' => "",
             'teamId' => "",
             'p8File' => "",
+            'nativeEnabled' => false,
+            'nativeClientIds' => [],
         ];
 
         return new static(
@@ -58,8 +60,8 @@ readonly class OAuth2Apple
             keyId: $data['keyId'],
             teamId: $data['teamId'],
             p8File: $data['p8File'],
-            nativeEnabled: $data['nativeEnabled'] ?? null,
-            nativeClientIds: $data['nativeClientIds'] ?? null
+            nativeEnabled: $data['nativeEnabled'],
+            nativeClientIds: $data['nativeClientIds']
         );
     }
 

@@ -48,11 +48,8 @@ readonly class DedicatedDatabaseReplicas
             'syncDegraded' => false,
             'syncAcknowledgements' => 0,
             'syncStandbyCount' => 0,
+            'members' => [],
         ];
-
-        if (!array_key_exists('members', $data)) {
-            throw new \InvalidArgumentException('Missing required field "members" for ' . static::class . '.');
-        }
 
         return new static(
             replicas: $data['replicas'],

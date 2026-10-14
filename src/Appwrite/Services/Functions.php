@@ -268,6 +268,10 @@ class Functions extends Service
      */
     public function get(string $functionId): \Appwrite\Models\FunctionModel
     {
+        if ($functionId === '') {
+            throw new AppwriteException('Missing required parameter: "functionId"');
+        }
+
         $apiPath = str_replace(
             ['{functionId}'],
             [$functionId],
@@ -302,6 +306,10 @@ class Functions extends Service
      */
     public function update(string $functionId, string $name, ?Runtime $runtime = null, ?array $execute = null, ?array $events = null, ?string $schedule = null, ?int $timeout = null, ?bool $enabled = null, ?bool $logging = null, ?string $entrypoint = null, ?string $commands = null, ?array $scopes = null, ?string $installationId = null, ?string $providerRepositoryId = null, ?string $providerBranch = null, ?bool $providerSilentMode = null, ?string $providerRootDirectory = null, ?array $providerBranches = null, ?array $providerPaths = null, ?string $buildSpecification = null, ?string $runtimeSpecification = null, ?int $deploymentRetention = null, ?int $interval = null): \Appwrite\Models\FunctionModel
     {
+        if ($functionId === '') {
+            throw new AppwriteException('Missing required parameter: "functionId"');
+        }
+
         $apiPath = str_replace(
             ['{functionId}'],
             [$functionId],
@@ -404,6 +412,10 @@ class Functions extends Service
      */
     public function delete(string $functionId): string
     {
+        if ($functionId === '') {
+            throw new AppwriteException('Missing required parameter: "functionId"');
+        }
+
         $apiPath = str_replace(
             ['{functionId}'],
             [$functionId],
@@ -416,6 +428,7 @@ class Functions extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_DELETE,
@@ -433,6 +446,10 @@ class Functions extends Service
      */
     public function updateFunctionDeployment(string $functionId, string $deploymentId): \Appwrite\Models\FunctionModel
     {
+        if ($functionId === '') {
+            throw new AppwriteException('Missing required parameter: "functionId"');
+        }
+
         $apiPath = str_replace(
             ['{functionId}'],
             [$functionId],
@@ -470,6 +487,10 @@ class Functions extends Service
      */
     public function listDeployments(string $functionId, ?array $queries = null, ?string $search = null, ?bool $total = null): \Appwrite\Models\DeploymentList
     {
+        if ($functionId === '') {
+            throw new AppwriteException('Missing required parameter: "functionId"');
+        }
+
         $apiPath = str_replace(
             ['{functionId}'],
             [$functionId],
@@ -525,6 +546,10 @@ class Functions extends Service
      */
     public function createDeployment(string $functionId, InputFile $code, bool $activate, ?string $entrypoint = null, ?string $commands = null, ?callable $onProgress = null): \Appwrite\Models\Deployment
     {
+        if ($functionId === '') {
+            throw new AppwriteException('Missing required parameter: "functionId"');
+        }
+
         $apiPath = str_replace(
             ['{functionId}'],
             [$functionId],
@@ -548,9 +573,6 @@ class Functions extends Service
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'multipart/form-data';
         $apiHeaders['accept'] = 'application/json';
-        $size = 0;
-        $mimeType = null;
-        $postedName = null;
         if (empty($code->getPath() ?? null)) {
             $size = strlen($code->getData());
             $mimeType = $code->getMimeType();
@@ -704,6 +726,10 @@ class Functions extends Service
      */
     public function createDuplicateDeployment(string $functionId, string $deploymentId, ?string $buildId = null): \Appwrite\Models\Deployment
     {
+        if ($functionId === '') {
+            throw new AppwriteException('Missing required parameter: "functionId"');
+        }
+
         $apiPath = str_replace(
             ['{functionId}'],
             [$functionId],
@@ -748,6 +774,10 @@ class Functions extends Service
      */
     public function createTemplateDeployment(string $functionId, string $repository, string $owner, string $rootDirectory, TemplateReferenceType $type, string $reference, ?bool $activate = null): \Appwrite\Models\Deployment
     {
+        if ($functionId === '') {
+            throw new AppwriteException('Missing required parameter: "functionId"');
+        }
+
         $apiPath = str_replace(
             ['{functionId}'],
             [$functionId],
@@ -794,6 +824,10 @@ class Functions extends Service
      */
     public function createVcsDeployment(string $functionId, VCSReferenceType $type, string $reference, ?bool $activate = null): \Appwrite\Models\Deployment
     {
+        if ($functionId === '') {
+            throw new AppwriteException('Missing required parameter: "functionId"');
+        }
+
         $apiPath = str_replace(
             ['{functionId}'],
             [$functionId],
@@ -835,6 +869,14 @@ class Functions extends Service
      */
     public function getDeployment(string $functionId, string $deploymentId): \Appwrite\Models\Deployment
     {
+        if ($functionId === '') {
+            throw new AppwriteException('Missing required parameter: "functionId"');
+        }
+
+        if ($deploymentId === '') {
+            throw new AppwriteException('Missing required parameter: "deploymentId"');
+        }
+
         $apiPath = str_replace(
             ['{functionId}', '{deploymentId}'],
             [$functionId, $deploymentId],
@@ -870,6 +912,14 @@ class Functions extends Service
      */
     public function deleteDeployment(string $functionId, string $deploymentId): string
     {
+        if ($functionId === '') {
+            throw new AppwriteException('Missing required parameter: "functionId"');
+        }
+
+        if ($deploymentId === '') {
+            throw new AppwriteException('Missing required parameter: "deploymentId"');
+        }
+
         $apiPath = str_replace(
             ['{functionId}', '{deploymentId}'],
             [$functionId, $deploymentId],
@@ -883,6 +933,7 @@ class Functions extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_DELETE,
@@ -901,6 +952,14 @@ class Functions extends Service
      */
     public function getDeploymentDownload(string $functionId, string $deploymentId, ?DeploymentDownloadType $type = null, ?string $token = null): string
     {
+        if ($functionId === '') {
+            throw new AppwriteException('Missing required parameter: "functionId"');
+        }
+
+        if ($deploymentId === '') {
+            throw new AppwriteException('Missing required parameter: "deploymentId"');
+        }
+
         $apiPath = str_replace(
             ['{functionId}', '{deploymentId}'],
             [$functionId, $deploymentId],
@@ -942,6 +1001,14 @@ class Functions extends Service
      */
     public function updateDeploymentStatus(string $functionId, string $deploymentId): \Appwrite\Models\Deployment
     {
+        if ($functionId === '') {
+            throw new AppwriteException('Missing required parameter: "functionId"');
+        }
+
+        if ($deploymentId === '') {
+            throw new AppwriteException('Missing required parameter: "deploymentId"');
+        }
+
         $apiPath = str_replace(
             ['{functionId}', '{deploymentId}'],
             [$functionId, $deploymentId],
@@ -979,6 +1046,10 @@ class Functions extends Service
      */
     public function listExecutions(string $functionId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\ExecutionList
     {
+        if ($functionId === '') {
+            throw new AppwriteException('Missing required parameter: "functionId"');
+        }
+
         $apiPath = str_replace(
             ['{functionId}'],
             [$functionId],
@@ -1024,6 +1095,10 @@ class Functions extends Service
      */
     public function createExecution(string $functionId, ?string $body = null, ?bool $async = null, ?string $xpath = null, ?ExecutionMethod $method = null, ?array $headers = null, ?string $scheduledAt = null): \Appwrite\Models\Execution
     {
+        if ($functionId === '') {
+            throw new AppwriteException('Missing required parameter: "functionId"');
+        }
+
         $apiPath = str_replace(
             ['{functionId}'],
             [$functionId],
@@ -1080,6 +1155,14 @@ class Functions extends Service
      */
     public function getExecution(string $functionId, string $executionId): \Appwrite\Models\Execution
     {
+        if ($functionId === '') {
+            throw new AppwriteException('Missing required parameter: "functionId"');
+        }
+
+        if ($executionId === '') {
+            throw new AppwriteException('Missing required parameter: "executionId"');
+        }
+
         $apiPath = str_replace(
             ['{functionId}', '{executionId}'],
             [$functionId, $executionId],
@@ -1115,6 +1198,14 @@ class Functions extends Service
      */
     public function deleteExecution(string $functionId, string $executionId): string
     {
+        if ($functionId === '') {
+            throw new AppwriteException('Missing required parameter: "functionId"');
+        }
+
+        if ($executionId === '') {
+            throw new AppwriteException('Missing required parameter: "executionId"');
+        }
+
         $apiPath = str_replace(
             ['{functionId}', '{executionId}'],
             [$functionId, $executionId],
@@ -1128,6 +1219,7 @@ class Functions extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_DELETE,
@@ -1144,6 +1236,10 @@ class Functions extends Service
      */
     public function listVariables(string $functionId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\VariableList
     {
+        if ($functionId === '') {
+            throw new AppwriteException('Missing required parameter: "functionId"');
+        }
+
         $apiPath = str_replace(
             ['{functionId}'],
             [$functionId],
@@ -1187,6 +1283,10 @@ class Functions extends Service
      */
     public function createVariable(string $functionId, string $variableId, string $key, string $value, ?bool $secret = null): \Appwrite\Models\Variable
     {
+        if ($functionId === '') {
+            throw new AppwriteException('Missing required parameter: "functionId"');
+        }
+
         $apiPath = str_replace(
             ['{functionId}'],
             [$functionId],
@@ -1229,6 +1329,14 @@ class Functions extends Service
      */
     public function getVariable(string $functionId, string $variableId): \Appwrite\Models\Variable
     {
+        if ($functionId === '') {
+            throw new AppwriteException('Missing required parameter: "functionId"');
+        }
+
+        if ($variableId === '') {
+            throw new AppwriteException('Missing required parameter: "variableId"');
+        }
+
         $apiPath = str_replace(
             ['{functionId}', '{variableId}'],
             [$functionId, $variableId],
@@ -1264,6 +1372,14 @@ class Functions extends Service
      */
     public function updateVariable(string $functionId, string $variableId, ?string $key = null, ?string $value = null, ?bool $secret = null): \Appwrite\Models\Variable
     {
+        if ($functionId === '') {
+            throw new AppwriteException('Missing required parameter: "functionId"');
+        }
+
+        if ($variableId === '') {
+            throw new AppwriteException('Missing required parameter: "variableId"');
+        }
+
         $apiPath = str_replace(
             ['{functionId}', '{variableId}'],
             [$functionId, $variableId],
@@ -1303,6 +1419,14 @@ class Functions extends Service
      */
     public function deleteVariable(string $functionId, string $variableId): string
     {
+        if ($functionId === '') {
+            throw new AppwriteException('Missing required parameter: "functionId"');
+        }
+
+        if ($variableId === '') {
+            throw new AppwriteException('Missing required parameter: "variableId"');
+        }
+
         $apiPath = str_replace(
             ['{functionId}', '{variableId}'],
             [$functionId, $variableId],
@@ -1316,6 +1440,7 @@ class Functions extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_DELETE,

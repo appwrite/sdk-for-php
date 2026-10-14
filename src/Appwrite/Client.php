@@ -6,6 +6,7 @@ namespace Appwrite;
 
 use Ahc\Jwt\JWT;
 use Psr\Http\Client\ClientExceptionInterface;
+use Psr\Http\Client\ClientInterface;
 use Utopia\Client\Adapter\Curl\Client as CurlAdapter;
 use Utopia\Client\Client as HttpClient;
 use Utopia\Psr7\Request\Factory as RequestFactory;
@@ -43,11 +44,11 @@ class Client
      *
      */
     protected array $headers = [
-        'user-agent' => 'AppwritePHPSDK/30.4.0 ()',
+        'user-agent' => 'AppwritePHPSDK/31.0.0 ()',
         'x-sdk-name' => 'PHP',
         'x-sdk-platform' => 'server',
         'x-sdk-language' => 'php',
-        'x-sdk-version' => '30.4.0',
+        'x-sdk-version' => '31.0.0',
     ];
 
     /**
@@ -105,12 +106,13 @@ class Client
     protected RequestFactory $requestFactory;
 
     /**
-     * Client constructor.
+     * An injected PSR-18 transport owns its timeout, TLS, connection reuse and
+     * redirect configuration. Without one, the SDK configures its cURL client.
      */
-    public function __construct()
+    public function __construct(private readonly ?ClientInterface $transport = null)
     {
         $this->requestFactory = new RequestFactory();
-        $this->headers['X-Appwrite-Response-Format'] = '2.0.0';
+        $this->headers['X-Appwrite-Response-Format'] = '2.5.0';
     }
 
     /**
@@ -229,21 +231,6 @@ class Client
     {
         $this->addHeader('X-Forwarded-User-Agent', $value);
         $this->config['forwardeduseragent'] = $value;
-
-        return $this;
-    }
-
-    /**
-     * Set DevKey
-     *
-     * Your secret dev API key
-     *
-     *
-     */
-    public function setDevKey(string $value): Client
-    {
-        $this->addHeader('X-Appwrite-Dev-Key', $value);
-        $this->config['devkey'] = $value;
 
         return $this;
     }
@@ -578,8 +565,12 @@ class Client
         return $parts;
     }
 
-    protected function getHttpClient(bool $followRedirects): HttpClient
+    protected function getHttpClient(bool $followRedirects): ClientInterface
     {
+        if ($this->transport instanceof ClientInterface) {
+            return $this->transport;
+        }
+
         if ($followRedirects) {
             return $this->httpClient ??= $this->createHttpClient(true);
         }

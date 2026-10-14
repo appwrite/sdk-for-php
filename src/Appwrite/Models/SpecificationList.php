@@ -32,11 +32,8 @@ readonly class SpecificationList
     {
         $data += [
             'total' => 0,
+            'specifications' => [],
         ];
-
-        if (!array_key_exists('specifications', $data)) {
-            throw new \InvalidArgumentException('Missing required field "specifications" for ' . static::class . '.');
-        }
 
         return new static(
             total: $data['total'],

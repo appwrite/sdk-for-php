@@ -32,11 +32,8 @@ readonly class PlatformList
     {
         $data += [
             'total' => 0,
+            'platforms' => [],
         ];
-
-        if (!array_key_exists('platforms', $data)) {
-            throw new \InvalidArgumentException('Missing required field "platforms" for ' . static::class . '.');
-        }
 
         return new static(
             total: $data['total'],

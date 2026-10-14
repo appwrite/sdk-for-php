@@ -32,11 +32,8 @@ readonly class SessionList
     {
         $data += [
             'total' => 0,
+            'sessions' => [],
         ];
-
-        if (!array_key_exists('sessions', $data)) {
-            throw new \InvalidArgumentException('Missing required field "sessions" for ' . static::class . '.');
-        }
 
         return new static(
             total: $data['total'],

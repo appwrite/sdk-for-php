@@ -32,11 +32,8 @@ readonly class ReportList
     {
         $data += [
             'total' => 0,
+            'reports' => [],
         ];
-
-        if (!array_key_exists('reports', $data)) {
-            throw new \InvalidArgumentException('Missing required field "reports" for ' . static::class . '.');
-        }
 
         return new static(
             total: $data['total'],

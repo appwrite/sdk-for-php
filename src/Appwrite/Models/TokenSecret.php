@@ -38,24 +38,14 @@ readonly class TokenSecret
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('$id', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$createdAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$createdAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('userId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "userId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('secret', $data)) {
-            throw new \InvalidArgumentException('Missing required field "secret" for ' . static::class . '.');
-        }
-        if (!array_key_exists('expire', $data)) {
-            throw new \InvalidArgumentException('Missing required field "expire" for ' . static::class . '.');
-        }
-        if (!array_key_exists('phrase', $data)) {
-            throw new \InvalidArgumentException('Missing required field "phrase" for ' . static::class . '.');
-        }
+        $data += [
+            '$id' => "",
+            '$createdAt' => "",
+            'userId' => "",
+            'secret' => "",
+            'expire' => "",
+            'phrase' => "",
+        ];
 
         return new static(
             id: $data['$id'],

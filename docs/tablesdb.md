@@ -39,7 +39,7 @@ POST https://cloud.appwrite.io/v1/tablesdb
 GET https://cloud.appwrite.io/v1/tablesdb/specifications
 ```
 
-** List the dedicated database specifications available on the current plan. Each specification reports its resource limits, pricing, and whether it is enabled for the organization. **
+** List the dedicated database specifications available on the current plan. Each specification reports its resource limits, its own prices and overage rates, and whether it is enabled for the organization. **
 
 
 ```http request
@@ -327,7 +327,7 @@ POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables
 | rowSecurity | boolean | Enables configuring permissions for individual rows. A user needs one of row or table level permissions to access a row. [Learn more about permissions](https://appwrite.io/docs/permissions). |  |
 | enabled | boolean | Is table enabled? When set to 'disabled', users cannot access the table but Server SDKs with and API key can still read and write to the table. No data is lost when this is toggled. | 1 |
 | columns | array | Array of column definitions to create. Each column should contain: key (string), type (string: string, varchar, text, mediumtext, longtext, integer, bigint, double, boolean, datetime, point, linestring, polygon, email, url, ip, enum), size (integer, required for string and varchar types), required (boolean, optional), default (mixed, optional), array (boolean, optional), and type-specific options. | [] |
-| indexes | array | Array of index definitions to create. Each index should contain: key (string), type (string: key, fulltext, unique, spatial), attributes (array of column keys), orders (array of ASC/DESC, optional), and lengths (array of integers, optional). | [] |
+| indexes | array | Array of index definitions to create. Each index should contain: key (string), type (string: key, fulltext, unique, spatial, trigram), attributes (array of column keys), orders (array of ASC/DESC, optional), and lengths (array of integers, optional). | [] |
 
 
 ```http request
@@ -912,6 +912,24 @@ POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/columns
 
 
 ```http request
+PATCH https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/columns/relationship/{key}
+```
+
+** Update relationship column. [Learn more about relationship columns](https://appwrite.io/docs/databases-relationships#relationship-columns).
+ **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| databaseId | string | **Required** Database ID. |  |
+| tableId | string | **Required** Table ID. |  |
+| key | string | **Required** Column Key. |  |
+| onDelete | string | Delete constraint. Possible values are: cascade, restrict, setNull. |  |
+| newKey | string | New Column Key. |  |
+
+
+```http request
 POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/columns/string
 ```
 
@@ -1101,24 +1119,6 @@ DELETE https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/colum
 
 
 ```http request
-PATCH https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/columns/{key}/relationship
-```
-
-** Update relationship column. [Learn more about relationship columns](https://appwrite.io/docs/databases-relationships#relationship-columns).
- **
-
-### Parameters
-
-| Field Name | Type | Description | Default |
-| --- | --- | --- | --- |
-| databaseId | string | **Required** Database ID. |  |
-| tableId | string | **Required** Table ID. |  |
-| key | string | **Required** Column Key. |  |
-| onDelete | string | Delete constraint. Possible values are: cascade, restrict, setNull. |  |
-| newKey | string | New Column Key. |  |
-
-
-```http request
 GET https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/indexes
 ```
 
@@ -1139,7 +1139,7 @@ POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/indexes
 ```
 
 ** Creates an index on the columns listed. Your index should include all the columns you will query in a single request.
-Type can be `key`, `fulltext`, or `unique`. **
+Type can be `key`, `fulltext`, `unique`, `spatial`, or `trigram`. `trigram` is only available on PostgreSQL and lets `contains`, `startsWith`, and `endsWith` queries on string columns use an index. **
 
 ### Parameters
 

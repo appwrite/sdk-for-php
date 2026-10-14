@@ -144,6 +144,10 @@ class Account extends Service
      */
     public function getConsent(string $consentId): \Appwrite\Models\Oauth2Consent
     {
+        if ($consentId === '') {
+            throw new AppwriteException('Missing required parameter: "consentId"');
+        }
+
         $apiPath = str_replace(
             ['{consentId}'],
             [$consentId],
@@ -180,6 +184,10 @@ class Account extends Service
      */
     public function deleteConsent(string $consentId): string
     {
+        if ($consentId === '') {
+            throw new AppwriteException('Missing required parameter: "consentId"');
+        }
+
         $apiPath = str_replace(
             ['{consentId}'],
             [$consentId],
@@ -211,6 +219,10 @@ class Account extends Service
      */
     public function listConsentTokens(string $consentId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\Oauth2ConsentTokenList
     {
+        if ($consentId === '') {
+            throw new AppwriteException('Missing required parameter: "consentId"');
+        }
+
         $apiPath = str_replace(
             ['{consentId}'],
             [$consentId],
@@ -254,6 +266,14 @@ class Account extends Service
      */
     public function getConsentToken(string $consentId, string $tokenId): \Appwrite\Models\Oauth2ConsentToken
     {
+        if ($consentId === '') {
+            throw new AppwriteException('Missing required parameter: "consentId"');
+        }
+
+        if ($tokenId === '') {
+            throw new AppwriteException('Missing required parameter: "tokenId"');
+        }
+
         $apiPath = str_replace(
             ['{consentId}', '{tokenId}'],
             [$consentId, $tokenId],
@@ -291,6 +311,14 @@ class Account extends Service
      */
     public function deleteConsentToken(string $consentId, string $tokenId): string
     {
+        if ($consentId === '') {
+            throw new AppwriteException('Missing required parameter: "consentId"');
+        }
+
+        if ($tokenId === '') {
+            throw new AppwriteException('Missing required parameter: "tokenId"');
+        }
+
         $apiPath = str_replace(
             ['{consentId}', '{tokenId}'],
             [$consentId, $tokenId],
@@ -404,6 +432,10 @@ class Account extends Service
      */
     public function deleteIdentity(string $identityId): string
     {
+        if ($identityId === '') {
+            throw new AppwriteException('Missing required parameter: "identityId"');
+        }
+
         $apiPath = str_replace(
             ['{identityId}'],
             [$identityId],
@@ -416,6 +448,7 @@ class Account extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_DELETE,
@@ -423,48 +456,6 @@ class Account extends Service
             $apiHeaders,
             $apiParams
         );
-    }
-
-    /**
-     * Get the list of latest security activity logs for the currently logged in
-     * user. Each log returns user IP address, location and date and time of log.
-     *
-     * @throws AppwriteException
-     */
-    public function listLogs(?array $queries = null, ?bool $total = null): \Appwrite\Models\LogList
-    {
-        $apiPath = str_replace(
-            [],
-            [],
-            '/account/logs'
-        );
-
-        $apiParams = [];
-
-        if (!is_null($queries)) {
-            $apiParams['queries'] = $queries;
-        }
-
-        if (!is_null($total)) {
-            $apiParams['total'] = $total;
-        }
-
-        $apiHeaders = [];
-        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
-        $apiHeaders['accept'] = 'application/json';
-
-        $response = $this->client->call(
-            Client::METHOD_GET,
-            $apiPath,
-            $apiHeaders,
-            $apiParams
-        );
-
-        if (!is_array($response)) {
-            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
-        }
-
-        return \Appwrite\Models\LogList::from($response);
     }
 
     /**
@@ -597,6 +588,7 @@ class Account extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_DELETE,
@@ -1484,7 +1476,8 @@ class Account extends Service
 
     /**
      * Delete all sessions from the user account and remove any sessions cookies
-     * from the end client.
+     * from the end client. Pass `current` as false to keep the session making the
+     * request and sign out of every other session.
      *
      * @throws AppwriteException
      */
@@ -1505,6 +1498,7 @@ class Account extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_DELETE,
@@ -1557,6 +1551,9 @@ class Account extends Service
     /**
      * Allow the user to login into their account by providing a valid email and
      * password combination. This route will create a new session for the user.
+     * Use the optional `duration` parameter to create a shorter session, for
+     * example when the user doesn't choose "remember me". It must be at least 60
+     * seconds and cannot exceed the project maximum session length.
      *
      * A user is limited to 10 active sessions at a time by default. [Learn more
      * about session
@@ -1816,6 +1813,10 @@ class Account extends Service
      */
     public function getSession(string $sessionId): \Appwrite\Models\Session
     {
+        if ($sessionId === '') {
+            throw new AppwriteException('Missing required parameter: "sessionId"');
+        }
+
         $apiPath = str_replace(
             ['{sessionId}'],
             [$sessionId],
@@ -1852,6 +1853,10 @@ class Account extends Service
      */
     public function updateSession(string $sessionId): \Appwrite\Models\Session
     {
+        if ($sessionId === '') {
+            throw new AppwriteException('Missing required parameter: "sessionId"');
+        }
+
         $apiPath = str_replace(
             ['{sessionId}'],
             [$sessionId],
@@ -1891,6 +1896,10 @@ class Account extends Service
      */
     public function deleteSession(string $sessionId): string
     {
+        if ($sessionId === '') {
+            throw new AppwriteException('Missing required parameter: "sessionId"');
+        }
+
         $apiPath = str_replace(
             ['{sessionId}'],
             [$sessionId],
@@ -1903,6 +1912,7 @@ class Account extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_DELETE,
@@ -2067,6 +2077,10 @@ class Account extends Service
      * create a new session using the [Create
      * session](https://appwrite.io/docs/references/cloud/client-web/account#createSession)
      * endpoint.
+     *
+     * If there is already an active session, the OAuth2 identity is attached to
+     * the logged-in account and that session stays active until the token is
+     * exchanged for a new one.
      *
      * A user is limited to 10 active sessions at a time by default. [Learn more
      * about session

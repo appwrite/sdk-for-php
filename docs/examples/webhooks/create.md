@@ -15,7 +15,7 @@ $result = $webhooks->create(
     webhookId: '<WEBHOOK_ID>',
     url: 'https://example.com/webhook',
     name: '<NAME>',
-    events: [],
+    events: ["users.*.create"],
     enabled: false, // optional
     tls: false, // optional
     authUsername: '<AUTH_USERNAME>', // optional

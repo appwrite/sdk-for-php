@@ -109,6 +109,7 @@ readonly class FunctionModel
             'latestDeploymentCreatedAt' => "",
             'latestDeploymentStatus' => "",
             'scopes' => [],
+            'vars' => [],
             'events' => [],
             'schedule' => "",
             'timeout' => 15,
@@ -125,10 +126,6 @@ readonly class FunctionModel
             'buildSpecification' => "s-1vcpu-512mb",
             'runtimeSpecification' => "s-1vcpu-512mb",
         ];
-
-        if (!array_key_exists('vars', $data)) {
-            throw new \InvalidArgumentException('Missing required field "vars" for ' . static::class . '.');
-        }
 
         return new static(
             id: $data['$id'],

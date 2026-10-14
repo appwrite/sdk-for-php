@@ -32,11 +32,8 @@ readonly class ExecutionList
     {
         $data += [
             'total' => 0,
+            'executions' => [],
         ];
-
-        if (!array_key_exists('executions', $data)) {
-            throw new \InvalidArgumentException('Missing required field "executions" for ' . static::class . '.');
-        }
 
         return new static(
             total: $data['total'],

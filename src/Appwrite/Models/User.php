@@ -94,14 +94,12 @@ readonly class User
             'emailVerification' => false,
             'phoneVerification' => false,
             'mfa' => false,
+            'targets' => [],
             'accessedAt' => "",
         ];
 
         if (!array_key_exists('prefs', $data)) {
             throw new \InvalidArgumentException('Missing required field "prefs" for ' . static::class . '.');
-        }
-        if (!array_key_exists('targets', $data)) {
-            throw new \InvalidArgumentException('Missing required field "targets" for ' . static::class . '.');
         }
 
         return new static(

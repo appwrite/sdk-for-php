@@ -8,7 +8,6 @@ use Appwrite\Client;
 use Mockery;
 use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
-use Appwrite\Enums\OrganizationKeyScopes;
 use Appwrite\Enums\ProjectKeyScopes;
 
 final class OrganizationTest extends TestCase
@@ -47,6 +46,7 @@ final class OrganizationTest extends TestCase
                 "screenshotsGenerated" => 50,
                 "webhooks" => 25,
                 "wafRules" => 2,
+                "environments" => 5,
                 "projects" => 2,
                 "platforms" => 3,
                 "users" => 25,
@@ -71,72 +71,6 @@ final class OrganizationTest extends TestCase
                 "usageLogs" => 30,
                 "projectInactivityDays" => 7,
                 "alertLimit" => 80,
-                "usage" => [
-                    "bandwidth" => [
-                        "name" => "[NAME]",
-                        "unit" => "GB",
-                        "currency" => "USD",
-                        "price" => 5,
-                        "value" => 25,
-                        "invoiceDesc" => "[INVOICEDESC]"
-                    ],
-                    "executions" => [
-                        "name" => "[NAME]",
-                        "unit" => "GB",
-                        "currency" => "USD",
-                        "price" => 5,
-                        "value" => 25,
-                        "invoiceDesc" => "[INVOICEDESC]"
-                    ],
-                    "realtime" => [
-                        "name" => "[NAME]",
-                        "unit" => "GB",
-                        "currency" => "USD",
-                        "price" => 5,
-                        "value" => 25,
-                        "invoiceDesc" => "[INVOICEDESC]"
-                    ],
-                    "realtimeMessages" => [
-                        "name" => "[NAME]",
-                        "unit" => "GB",
-                        "currency" => "USD",
-                        "price" => 5,
-                        "value" => 25,
-                        "invoiceDesc" => "[INVOICEDESC]"
-                    ],
-                    "storage" => [
-                        "name" => "[NAME]",
-                        "unit" => "GB",
-                        "currency" => "USD",
-                        "price" => 5,
-                        "value" => 25,
-                        "invoiceDesc" => "[INVOICEDESC]"
-                    ],
-                    "users" => [
-                        "name" => "[NAME]",
-                        "unit" => "GB",
-                        "currency" => "USD",
-                        "price" => 5,
-                        "value" => 25,
-                        "invoiceDesc" => "[INVOICEDESC]"
-                    ],
-                    "GBHours" => [
-                        "name" => "[NAME]",
-                        "unit" => "GB",
-                        "currency" => "USD",
-                        "price" => 5,
-                        "value" => 25,
-                        "invoiceDesc" => "[INVOICEDESC]"
-                    ],
-                    "imageTransformations" => [
-                        "name" => "[NAME]",
-                        "unit" => "GB",
-                        "currency" => "USD",
-                        "price" => 5,
-                        "value" => 25,
-                        "invoiceDesc" => "[INVOICEDESC]"
-                    ]
-                ],
                 "addons" => [],
                 "budgetCapEnabled" => true,
                 "customSmtp" => true,
@@ -166,17 +100,10 @@ final class OrganizationTest extends TestCase
                 "buildSize" => 2000,
                 "functionsIntervalMinimum" => 60,
                 "databasesAllowEncrypt" => true,
-                "group" => "starter",
+                "group" => "free",
                 "databaseComputeCredit" => 10
             ],
             "billingEmail" => "billing@org.example",
-            "billingStartDate" => "2020-10-15T06:38:00.000+00:00",
-            "billingCurrentInvoiceDate" => "2020-10-15T06:38:00.000+00:00",
-            "billingNextInvoiceDate" => "2020-10-15T06:38:00.000+00:00",
-            "billingTrialDays" => 14,
-            "billingAggregationId" => "adbc3de4rddfsd",
-            "billingInvoiceId" => "adbc3de4rddfsd",
-            "paymentMethodId" => "adbc3de4rddfsd",
             "status" => "active",
             "markedForDeletion" => true,
             "platform" => "imagine",
@@ -219,6 +146,7 @@ final class OrganizationTest extends TestCase
                 "screenshotsGenerated" => 50,
                 "webhooks" => 25,
                 "wafRules" => 2,
+                "environments" => 5,
                 "projects" => 2,
                 "platforms" => 3,
                 "users" => 25,
@@ -243,72 +171,6 @@ final class OrganizationTest extends TestCase
                 "usageLogs" => 30,
                 "projectInactivityDays" => 7,
                 "alertLimit" => 80,
-                "usage" => [
-                    "bandwidth" => [
-                        "name" => "[NAME]",
-                        "unit" => "GB",
-                        "currency" => "USD",
-                        "price" => 5,
-                        "value" => 25,
-                        "invoiceDesc" => "[INVOICEDESC]"
-                    ],
-                    "executions" => [
-                        "name" => "[NAME]",
-                        "unit" => "GB",
-                        "currency" => "USD",
-                        "price" => 5,
-                        "value" => 25,
-                        "invoiceDesc" => "[INVOICEDESC]"
-                    ],
-                    "realtime" => [
-                        "name" => "[NAME]",
-                        "unit" => "GB",
-                        "currency" => "USD",
-                        "price" => 5,
-                        "value" => 25,
-                        "invoiceDesc" => "[INVOICEDESC]"
-                    ],
-                    "realtimeMessages" => [
-                        "name" => "[NAME]",
-                        "unit" => "GB",
-                        "currency" => "USD",
-                        "price" => 5,
-                        "value" => 25,
-                        "invoiceDesc" => "[INVOICEDESC]"
-                    ],
-                    "storage" => [
-                        "name" => "[NAME]",
-                        "unit" => "GB",
-                        "currency" => "USD",
-                        "price" => 5,
-                        "value" => 25,
-                        "invoiceDesc" => "[INVOICEDESC]"
-                    ],
-                    "users" => [
-                        "name" => "[NAME]",
-                        "unit" => "GB",
-                        "currency" => "USD",
-                        "price" => 5,
-                        "value" => 25,
-                        "invoiceDesc" => "[INVOICEDESC]"
-                    ],
-                    "GBHours" => [
-                        "name" => "[NAME]",
-                        "unit" => "GB",
-                        "currency" => "USD",
-                        "price" => 5,
-                        "value" => 25,
-                        "invoiceDesc" => "[INVOICEDESC]"
-                    ],
-                    "imageTransformations" => [
-                        "name" => "[NAME]",
-                        "unit" => "GB",
-                        "currency" => "USD",
-                        "price" => 5,
-                        "value" => 25,
-                        "invoiceDesc" => "[INVOICEDESC]"
-                    ]
-                ],
                 "addons" => [],
                 "budgetCapEnabled" => true,
                 "customSmtp" => true,
@@ -338,17 +200,10 @@ final class OrganizationTest extends TestCase
                 "buildSize" => 2000,
                 "functionsIntervalMinimum" => 60,
                 "databasesAllowEncrypt" => true,
-                "group" => "starter",
+                "group" => "free",
                 "databaseComputeCredit" => 10
             ],
             "billingEmail" => "billing@org.example",
-            "billingStartDate" => "2020-10-15T06:38:00.000+00:00",
-            "billingCurrentInvoiceDate" => "2020-10-15T06:38:00.000+00:00",
-            "billingNextInvoiceDate" => "2020-10-15T06:38:00.000+00:00",
-            "billingTrialDays" => 14,
-            "billingAggregationId" => "adbc3de4rddfsd",
-            "billingInvoiceId" => "adbc3de4rddfsd",
-            "paymentMethodId" => "adbc3de4rddfsd",
             "status" => "active",
             "markedForDeletion" => true,
             "platform" => "imagine",
@@ -507,138 +362,6 @@ final class OrganizationTest extends TestCase
 
         $response = $this->organization->deleteInstallation(
             "<INSTALLATION_ID>"
-        );
-
-        $this->assertSame($data, $response);
-    }
-    public function testMethodListKeys(): void
-    {
-        $data = [
-            "total" => 5,
-            "keys" => [
-                [
-                    "\$id" => "5e5ea5c16897e",
-                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "name" => "My API Key",
-                    "expire" => "2020-10-15T06:38:00.000+00:00",
-                    "scopes" => [],
-                    "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
-                    "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "sdks" => []
-                ]
-            ]
-        ];
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-        $this->client
-            ->allows()->getConfig(Mockery::any())
-            ->andReturn('');
-
-        $response = $this->organization->listKeys();
-
-        $this->assertInstanceOf(\Appwrite\Models\KeyList::class, $response);
-    }
-    public function testMethodCreateKey(): void
-    {
-        $data = [
-            "\$id" => "5e5ea5c16897e",
-            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "name" => "My API Key",
-            "expire" => "2020-10-15T06:38:00.000+00:00",
-            "scopes" => [],
-            "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
-            "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-            "sdks" => []
-        ];
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-        $this->client
-            ->allows()->getConfig(Mockery::any())
-            ->andReturn('');
-
-        $response = $this->organization->createKey(
-            "<KEY_ID>",
-            "<NAME>",
-            [OrganizationKeyScopes::PROJECTSREAD()]
-        );
-
-        $this->assertInstanceOf(\Appwrite\Models\Key::class, $response);
-    }
-    public function testMethodGetKey(): void
-    {
-        $data = [
-            "\$id" => "5e5ea5c16897e",
-            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "name" => "My API Key",
-            "expire" => "2020-10-15T06:38:00.000+00:00",
-            "scopes" => [],
-            "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
-            "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-            "sdks" => []
-        ];
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-        $this->client
-            ->allows()->getConfig(Mockery::any())
-            ->andReturn('');
-
-        $response = $this->organization->getKey(
-            "<KEY_ID>"
-        );
-
-        $this->assertInstanceOf(\Appwrite\Models\Key::class, $response);
-    }
-    public function testMethodUpdateKey(): void
-    {
-        $data = [
-            "\$id" => "5e5ea5c16897e",
-            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "name" => "My API Key",
-            "expire" => "2020-10-15T06:38:00.000+00:00",
-            "scopes" => [],
-            "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
-            "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-            "sdks" => []
-        ];
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-        $this->client
-            ->allows()->getConfig(Mockery::any())
-            ->andReturn('');
-
-        $response = $this->organization->updateKey(
-            "<KEY_ID>",
-            "<NAME>",
-            [OrganizationKeyScopes::PROJECTSREAD()]
-        );
-
-        $this->assertInstanceOf(\Appwrite\Models\Key::class, $response);
-    }
-    public function testMethodDeleteKey(): void
-    {
-        $data = '';
-
-        $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
-            ->andReturn($data);
-        $this->client
-            ->allows()->getConfig(Mockery::any())
-            ->andReturn('');
-
-        $response = $this->organization->deleteKey(
-            "<KEY_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -808,18 +531,6 @@ final class OrganizationTest extends TestCase
                     "name" => "New Project",
                     "teamId" => "1592981250",
                     "region" => "fra",
-                    "devKeys" => [
-                        [
-                            "\$id" => "5e5ea5c16897e",
-                            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-                            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-                            "name" => "Dev API Key",
-                            "expire" => "2020-10-15T06:38:00.000+00:00",
-                            "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
-                            "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-                            "sdks" => []
-                        ]
-                    ],
                     "smtpEnabled" => true,
                     "smtpSenderName" => "John Appwrite",
                     "smtpSenderEmail" => "john@appwrite.io",
@@ -858,12 +569,7 @@ final class OrganizationTest extends TestCase
                             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                             "resourceType" => "project",
                             "resourceId" => "5e5ea5c16897e",
-                            "mode" => "readOnly",
-                            "projectName" => "My Project",
-                            "region" => "fra",
-                            "organizationName" => "Acme Inc.",
-                            "organizationId" => "5e5ea5c16897e",
-                            "billingPlan" => "pro"
+                            "mode" => "readOnly"
                         ]
                     ],
                     "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
@@ -891,18 +597,6 @@ final class OrganizationTest extends TestCase
             "name" => "New Project",
             "teamId" => "1592981250",
             "region" => "fra",
-            "devKeys" => [
-                [
-                    "\$id" => "5e5ea5c16897e",
-                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "name" => "Dev API Key",
-                    "expire" => "2020-10-15T06:38:00.000+00:00",
-                    "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
-                    "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "sdks" => []
-                ]
-            ],
             "smtpEnabled" => true,
             "smtpSenderName" => "John Appwrite",
             "smtpSenderEmail" => "john@appwrite.io",
@@ -941,12 +635,7 @@ final class OrganizationTest extends TestCase
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
-                    "mode" => "readOnly",
-                    "projectName" => "My Project",
-                    "region" => "fra",
-                    "organizationName" => "Acme Inc.",
-                    "organizationId" => "5e5ea5c16897e",
-                    "billingPlan" => "pro"
+                    "mode" => "readOnly"
                 ]
             ],
             "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
@@ -975,18 +664,6 @@ final class OrganizationTest extends TestCase
             "name" => "New Project",
             "teamId" => "1592981250",
             "region" => "fra",
-            "devKeys" => [
-                [
-                    "\$id" => "5e5ea5c16897e",
-                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "name" => "Dev API Key",
-                    "expire" => "2020-10-15T06:38:00.000+00:00",
-                    "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
-                    "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "sdks" => []
-                ]
-            ],
             "smtpEnabled" => true,
             "smtpSenderName" => "John Appwrite",
             "smtpSenderEmail" => "john@appwrite.io",
@@ -1025,12 +702,7 @@ final class OrganizationTest extends TestCase
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
-                    "mode" => "readOnly",
-                    "projectName" => "My Project",
-                    "region" => "fra",
-                    "organizationName" => "Acme Inc.",
-                    "organizationId" => "5e5ea5c16897e",
-                    "billingPlan" => "pro"
+                    "mode" => "readOnly"
                 ]
             ],
             "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
@@ -1058,18 +730,6 @@ final class OrganizationTest extends TestCase
             "name" => "New Project",
             "teamId" => "1592981250",
             "region" => "fra",
-            "devKeys" => [
-                [
-                    "\$id" => "5e5ea5c16897e",
-                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "name" => "Dev API Key",
-                    "expire" => "2020-10-15T06:38:00.000+00:00",
-                    "secret" => "919c2d18fb5d4...a2ae413da83346ad2",
-                    "accessedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "sdks" => []
-                ]
-            ],
             "smtpEnabled" => true,
             "smtpSenderName" => "John Appwrite",
             "smtpSenderEmail" => "john@appwrite.io",
@@ -1108,12 +768,7 @@ final class OrganizationTest extends TestCase
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "resourceType" => "project",
                     "resourceId" => "5e5ea5c16897e",
-                    "mode" => "readOnly",
-                    "projectName" => "My Project",
-                    "region" => "fra",
-                    "organizationName" => "Acme Inc.",
-                    "organizationId" => "5e5ea5c16897e",
-                    "billingPlan" => "pro"
+                    "mode" => "readOnly"
                 ]
             ],
             "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"

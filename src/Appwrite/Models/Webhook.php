@@ -24,7 +24,7 @@ readonly class Webhook
      * @param array $events webhook trigger events.
      * @param bool $tls indicates if ssl / tls certificate verification is enabled.
      * @param string $authUsername http basic authentication username.
-     * @param string $authPassword http basic authentication password.
+     * @param string $authPassword http basic authentication password. write-only: always returned empty.
      * @param string $secret signature key which can be used to validate incoming webhook payloads. only returned on creation and secret rotation.
      * @param bool $enabled indicates if this webhook is enabled.
      * @param string $logs webhook error logs from the most recent failure.

@@ -32,11 +32,8 @@ readonly class Oauth2OrganizationList
     {
         $data += [
             'total' => 0,
+            'organizations' => [],
         ];
-
-        if (!array_key_exists('organizations', $data)) {
-            throw new \InvalidArgumentException('Missing required field "organizations" for ' . static::class . '.');
-        }
 
         return new static(
             total: $data['total'],

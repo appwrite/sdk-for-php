@@ -13,7 +13,7 @@ $client = (new Client())
 $project = new Project($client);
 
 $result = $project->createEphemeralKey(
-    scopes: [ProjectKeyScopes::PROJECTREAD()],
+    scopes: [ProjectKeyScopes::USERSREAD()],
     duration: 600
 );
 ```

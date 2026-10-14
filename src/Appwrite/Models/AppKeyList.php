@@ -32,11 +32,8 @@ readonly class AppKeyList
     {
         $data += [
             'total' => 0,
+            'keys' => [],
         ];
-
-        if (!array_key_exists('keys', $data)) {
-            throw new \InvalidArgumentException('Missing required field "keys" for ' . static::class . '.');
-        }
 
         return new static(
             total: $data['total'],

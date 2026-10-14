@@ -32,11 +32,8 @@ readonly class ContinentList
     {
         $data += [
             'total' => 0,
+            'continents' => [],
         ];
-
-        if (!array_key_exists('continents', $data)) {
-            throw new \InvalidArgumentException('Missing required field "continents" for ' . static::class . '.');
-        }
 
         return new static(
             total: $data['total'],

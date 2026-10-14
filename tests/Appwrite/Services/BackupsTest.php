@@ -31,9 +31,7 @@ final class BackupsTest extends TestCase
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
                     "policyId" => "did8jx6ws45jana098ab7",
-                    "size" => 100000,
                     "status" => "completed",
-                    "startedAt" => "2020-10-15T06:38:00.000+00:00",
                     "migrationId" => "did8jx6ws45jana098ab7",
                     "services" => [],
                     "resources" => []
@@ -59,9 +57,7 @@ final class BackupsTest extends TestCase
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "policyId" => "did8jx6ws45jana098ab7",
-            "size" => 100000,
             "status" => "completed",
-            "startedAt" => "2020-10-15T06:38:00.000+00:00",
             "migrationId" => "did8jx6ws45jana098ab7",
             "services" => [],
             "resources" => []
@@ -87,9 +83,7 @@ final class BackupsTest extends TestCase
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "policyId" => "did8jx6ws45jana098ab7",
-            "size" => 100000,
             "status" => "completed",
-            "startedAt" => "2020-10-15T06:38:00.000+00:00",
             "migrationId" => "did8jx6ws45jana098ab7",
             "services" => [],
             "resources" => []
@@ -182,7 +176,7 @@ final class BackupsTest extends TestCase
             "<POLICY_ID>",
             [BackupServices::DATABASES()],
             1,
-            ""
+            "schedule"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\BackupPolicy::class, $response);
@@ -269,11 +263,10 @@ final class BackupsTest extends TestCase
             "archiveId" => "did8jx6ws45jana098ab7",
             "policyId" => "did8jx6ws45jana098ab7",
             "status" => "completed",
-            "startedAt" => "2020-10-15T06:38:00.000+00:00",
             "migrationId" => "did8jx6ws45jana098ab7",
             "services" => [],
             "resources" => [],
-            "options" => "{databases.database[{oldId, newId, newName}]}"
+            "options" => []
         ];
 
         $this->client
@@ -302,11 +295,10 @@ final class BackupsTest extends TestCase
                     "archiveId" => "did8jx6ws45jana098ab7",
                     "policyId" => "did8jx6ws45jana098ab7",
                     "status" => "completed",
-                    "startedAt" => "2020-10-15T06:38:00.000+00:00",
                     "migrationId" => "did8jx6ws45jana098ab7",
                     "services" => [],
                     "resources" => [],
-                    "options" => "{databases.database[{oldId, newId, newName}]}"
+                    "options" => []
                 ]
             ]
         ];
@@ -331,11 +323,10 @@ final class BackupsTest extends TestCase
             "archiveId" => "did8jx6ws45jana098ab7",
             "policyId" => "did8jx6ws45jana098ab7",
             "status" => "completed",
-            "startedAt" => "2020-10-15T06:38:00.000+00:00",
             "migrationId" => "did8jx6ws45jana098ab7",
             "services" => [],
             "resources" => [],
-            "options" => "{databases.database[{oldId, newId, newName}]}"
+            "options" => []
         ];
 
         $this->client

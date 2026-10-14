@@ -32,11 +32,8 @@ readonly class WebhookList
     {
         $data += [
             'total' => 0,
+            'webhooks' => [],
         ];
-
-        if (!array_key_exists('webhooks', $data)) {
-            throw new \InvalidArgumentException('Missing required field "webhooks" for ' . static::class . '.');
-        }
 
         return new static(
             total: $data['total'],

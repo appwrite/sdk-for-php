@@ -15,7 +15,7 @@ $project = new Project($client);
 $result = $project->updateOAuth2Kakao(
     clientId: '<CLIENT_ID>', // optional
     clientSecret: '<CLIENT_SECRET>', // optional
-    prompt: [ProjectOAuth2KakaoPrompt::NONE()], // optional
-    enabled: false // optional
+    enabled: false, // optional
+    prompt: [ProjectOAuth2KakaoPrompt::NONE()] // optional
 );
 ```

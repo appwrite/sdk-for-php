@@ -25,7 +25,7 @@ readonly class Topic
      * @param int $pushTotal total count of push subscribers subscribed to the topic.
      * @param array $subscribe subscribe permissions.
      * @param int|null $qos mqtt qos for delivery on this topic. null lets the subscriber choose their level.
-     * @param int|null $expiry message retention in seconds for offline delivery.
+     * @param int|null $expiry message retention in seconds for offline delivery. null inherits the lowest expiry of the project's enabled appwrite providers, or the 7-day ledger window if none sets one.
      */
     public function __construct(
         public string $id,

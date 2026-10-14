@@ -22,16 +22,16 @@ readonly class OAuth2Microsoft
      * @param bool $enabled oauth2 provider is active and can be used to create sessions.
      * @param string $applicationId microsoft oauth2 application id.
      * @param string $applicationSecret microsoft oauth2 application secret.
+     * @param list<OAuth2MicrosoftPrompt> $prompt microsoft oauth2 prompt values.
      * @param string $tenant microsoft entra id tenant identifier. use 'common', 'organizations', 'consumers' or a specific tenant id.
-     * @param list<OAuth2MicrosoftPrompt>|null $prompt microsoft oauth2 prompt values.
      */
     public function __construct(
         public string $id,
         public bool $enabled,
         public string $applicationId,
         public string $applicationSecret,
-        public string $tenant,
-        public ?array $prompt = null
+        public array $prompt,
+        public string $tenant
     ) {
     }
 
@@ -45,6 +45,7 @@ readonly class OAuth2Microsoft
             'enabled' => false,
             'applicationId' => "",
             'applicationSecret' => "",
+            'prompt' => [],
             'tenant' => "",
         ];
 
@@ -53,17 +54,13 @@ readonly class OAuth2Microsoft
             enabled: $data['enabled'],
             applicationId: $data['applicationId'],
             applicationSecret: $data['applicationSecret'],
-            tenant: $data['tenant'],
-            prompt: array_key_exists('prompt', $data)
-                ? (
-                    is_array($data['prompt'])
-                        ? array_map(
-                            static fn (mixed $item): mixed => static::hydrateTypedValue(OAuth2MicrosoftPrompt::class, $item),
-                            $data['prompt']
-                        )
-                        : $data['prompt']
+            prompt: is_array($data['prompt'])
+                ? array_map(
+                    static fn (mixed $item): mixed => static::hydrateTypedValue(OAuth2MicrosoftPrompt::class, $item),
+                    $data['prompt']
                 )
-                : null
+                : $data['prompt'],
+            tenant: $data['tenant']
         );
     }
 
