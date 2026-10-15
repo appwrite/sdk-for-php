@@ -15,7 +15,10 @@ $result = $tablesDB->updateEnumColumn(
     databaseId: '<DATABASE_ID>',
     tableId: '<TABLE_ID>',
     key: '<KEY>',
-    elements: ["active", "inactive"],
+    elements: [
+        'active',
+        'inactive'
+    ],
     required: false,
     default: 'active',
     newKey: '<NEW_KEY>' // optional

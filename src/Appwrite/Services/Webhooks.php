@@ -116,6 +116,10 @@ class Webhooks extends Service
      */
     public function get(string $webhookId): \Appwrite\Models\Webhook
     {
+        if ($webhookId === '') {
+            throw new AppwriteException('Missing required parameter: "webhookId"');
+        }
+
         $apiPath = str_replace(
             ['{webhookId}'],
             [$webhookId],
@@ -151,6 +155,10 @@ class Webhooks extends Service
      */
     public function update(string $webhookId, string $name, string $url, array $events, ?bool $enabled = null, ?bool $tls = null, ?string $authUsername = null, ?string $authPassword = null): \Appwrite\Models\Webhook
     {
+        if ($webhookId === '') {
+            throw new AppwriteException('Missing required parameter: "webhookId"');
+        }
+
         $apiPath = str_replace(
             ['{webhookId}'],
             [$webhookId],
@@ -174,10 +182,7 @@ class Webhooks extends Service
         if (!is_null($authUsername)) {
             $apiParams['authUsername'] = $authUsername;
         }
-
-        if (!is_null($authPassword)) {
-            $apiParams['authPassword'] = $authPassword;
-        }
+        $apiParams['authPassword'] = $authPassword;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -206,6 +211,10 @@ class Webhooks extends Service
      */
     public function delete(string $webhookId): string
     {
+        if ($webhookId === '') {
+            throw new AppwriteException('Missing required parameter: "webhookId"');
+        }
+
         $apiPath = str_replace(
             ['{webhookId}'],
             [$webhookId],
@@ -218,6 +227,7 @@ class Webhooks extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_DELETE,
@@ -236,6 +246,10 @@ class Webhooks extends Service
      */
     public function updateSecret(string $webhookId, ?string $secret = null): \Appwrite\Models\Webhook
     {
+        if ($webhookId === '') {
+            throw new AppwriteException('Missing required parameter: "webhookId"');
+        }
+
         $apiPath = str_replace(
             ['{webhookId}'],
             [$webhookId],

@@ -32,11 +32,8 @@ readonly class ActivityEventList
     {
         $data += [
             'total' => 0,
+            'events' => [],
         ];
-
-        if (!array_key_exists('events', $data)) {
-            throw new \InvalidArgumentException('Missing required field "events" for ' . static::class . '.');
-        }
 
         return new static(
             total: $data['total'],

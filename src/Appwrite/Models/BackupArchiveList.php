@@ -32,11 +32,8 @@ readonly class BackupArchiveList
     {
         $data += [
             'total' => 0,
+            'archives' => [],
         ];
-
-        if (!array_key_exists('archives', $data)) {
-            throw new \InvalidArgumentException('Missing required field "archives" for ' . static::class . '.');
-        }
 
         return new static(
             total: $data['total'],

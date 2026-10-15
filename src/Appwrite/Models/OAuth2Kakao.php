@@ -56,7 +56,7 @@ readonly class OAuth2Kakao
                     static fn (mixed $item): mixed => static::hydrateTypedValue(OAuth2KakaoPrompt::class, $item),
                     $data['prompt']
                 )
-                : $data['prompt']
+                : [static::hydrateTypedValue(OAuth2KakaoPrompt::class, $data['prompt'])]
         );
     }
 

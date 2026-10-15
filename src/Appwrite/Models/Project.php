@@ -22,7 +22,6 @@ readonly class Project
      * @param string $name project name.
      * @param string $teamId project team id.
      * @param string $region project region
-     * @param list<DevKey> $devKeys deprecated since 1.9.5: list of dev keys.
      * @param bool $smtpEnabled status for custom smtp
      * @param string $smtpSenderName smtp sender name
      * @param string $smtpSenderEmail smtp sender email
@@ -73,7 +72,6 @@ readonly class Project
         public string $name,
         public string $teamId,
         public string $region,
-        public array $devKeys,
         public bool $smtpEnabled,
         public string $smtpSenderName,
         public string $smtpSenderEmail,
@@ -146,24 +144,12 @@ readonly class Project
             'labels' => [],
             'status' => "active",
             'onboarding' => [],
+            'authMethods' => [],
+            'services' => [],
+            'protocols' => [],
+            'blocks' => [],
             'consoleAccessedAt' => "",
         ];
-
-        if (!array_key_exists('devKeys', $data)) {
-            throw new \InvalidArgumentException('Missing required field "devKeys" for ' . static::class . '.');
-        }
-        if (!array_key_exists('authMethods', $data)) {
-            throw new \InvalidArgumentException('Missing required field "authMethods" for ' . static::class . '.');
-        }
-        if (!array_key_exists('services', $data)) {
-            throw new \InvalidArgumentException('Missing required field "services" for ' . static::class . '.');
-        }
-        if (!array_key_exists('protocols', $data)) {
-            throw new \InvalidArgumentException('Missing required field "protocols" for ' . static::class . '.');
-        }
-        if (!array_key_exists('blocks', $data)) {
-            throw new \InvalidArgumentException('Missing required field "blocks" for ' . static::class . '.');
-        }
 
         return new static(
             id: $data['$id'],
@@ -172,12 +158,6 @@ readonly class Project
             name: $data['name'],
             teamId: $data['teamId'],
             region: $data['region'],
-            devKeys: is_array($data['devKeys'])
-                ? array_map(
-                    static fn (mixed $item): mixed => static::hydrateTypedValue(DevKey::class, $item),
-                    $data['devKeys']
-                )
-                : $data['devKeys'],
             smtpEnabled: $data['smtpEnabled'],
             smtpSenderName: $data['smtpSenderName'],
             smtpSenderEmail: $data['smtpSenderEmail'],
@@ -255,7 +235,6 @@ readonly class Project
             'name' => static::serializeValue($this->name),
             'teamId' => static::serializeValue($this->teamId),
             'region' => static::serializeValue($this->region),
-            'devKeys' => static::serializeValue($this->devKeys),
             'smtpEnabled' => static::serializeValue($this->smtpEnabled),
             'smtpSenderName' => static::serializeValue($this->smtpSenderName),
             'smtpSenderEmail' => static::serializeValue($this->smtpSenderEmail),

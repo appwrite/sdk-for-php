@@ -829,7 +829,7 @@ final class SitesTest extends TestCase
                     ],
                     "logs" => "[LOGS]",
                     "errors" => "[ERRORS]",
-                    "duration" => 0.4
+                    "duration" => 1.23
                 ]
             ]
         ];
@@ -877,7 +877,7 @@ final class SitesTest extends TestCase
             ],
             "logs" => "[LOGS]",
             "errors" => "[ERRORS]",
-            "duration" => 0.4
+            "duration" => 1.23
         ];
 
         $this->client

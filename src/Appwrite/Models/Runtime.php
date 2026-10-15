@@ -50,11 +50,8 @@ readonly class Runtime
             'base' => "",
             'image' => "",
             'logo' => "",
+            'supports' => [],
         ];
-
-        if (!array_key_exists('supports', $data)) {
-            throw new \InvalidArgumentException('Missing required field "supports" for ' . static::class . '.');
-        }
 
         return new static(
             id: $data['$id'],

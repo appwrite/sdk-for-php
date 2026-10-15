@@ -17,7 +17,9 @@ $result = $functions->update(
     functionId: '<FUNCTION_ID>',
     name: '<NAME>',
     runtime: Runtime::NODE145(), // optional
-    execute: ["any"], // optional
+    execute: [
+        'any'
+    ], // optional
     events: [], // optional
     schedule: '0 0 * * *', // optional
     timeout: 1, // optional
@@ -36,6 +38,7 @@ $result = $functions->update(
     buildSpecification: 's-1vcpu-512mb', // optional
     runtimeSpecification: 's-1vcpu-512mb', // optional
     deploymentRetention: 0, // optional
-    interval: 0 // optional
+    interval: 0, // optional
+    emailEnabled: false // optional
 );
 ```

@@ -242,7 +242,7 @@ PUT https://cloud.appwrite.io/v1/apps/{appId}/labels
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | appId | string | **Required** Application unique ID. |  |
-| labels | array | Array of application labels. Replaces the previous labels. Maximum of 1000 labels are allowed, each up to 36 alphanumeric characters long. |  |
+| labels | array | Array of application labels. Replaces the previous labels. Maximum of 1000 labels are allowed, each up to 36 alphanumeric characters long. Reserved labels are rejected. |  |
 
 
 ```http request

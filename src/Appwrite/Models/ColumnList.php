@@ -32,11 +32,8 @@ readonly class ColumnList
     {
         $data += [
             'total' => 0,
+            'columns' => [],
         ];
-
-        if (!array_key_exists('columns', $data)) {
-            throw new \InvalidArgumentException('Missing required field "columns" for ' . static::class . '.');
-        }
 
         return new static(
             total: $data['total'],

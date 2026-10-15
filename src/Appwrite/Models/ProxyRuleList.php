@@ -32,11 +32,8 @@ readonly class ProxyRuleList
     {
         $data += [
             'total' => 0,
+            'rules' => [],
         ];
-
-        if (!array_key_exists('rules', $data)) {
-            throw new \InvalidArgumentException('Missing required field "rules" for ' . static::class . '.');
-        }
 
         return new static(
             total: $data['total'],

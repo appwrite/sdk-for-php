@@ -26,7 +26,7 @@ readonly class Identity
      * @param string $providerAccessToken identity provider access token.
      * @param string $providerAccessTokenExpiry the date of when the access token expires in iso 8601 format.
      * @param string $providerRefreshToken identity provider refresh token.
-     * @param string|null $providerIdToken identity provider id token (jwt) from the most recent native sign-in. empty for identities created through the browser oauth2 flow.
+     * @param string $providerIdToken identity provider id token (jwt) from the most recent native sign-in. empty for identities created through the browser oauth2 flow.
      */
     public function __construct(
         public string $id,
@@ -39,7 +39,7 @@ readonly class Identity
         public string $providerAccessToken,
         public string $providerAccessTokenExpiry,
         public string $providerRefreshToken,
-        public ?string $providerIdToken = null
+        public string $providerIdToken
     ) {
     }
 
@@ -59,6 +59,7 @@ readonly class Identity
             'providerAccessToken' => "",
             'providerAccessTokenExpiry' => "",
             'providerRefreshToken' => "",
+            'providerIdToken' => "",
         ];
 
         return new static(
@@ -72,7 +73,7 @@ readonly class Identity
             providerAccessToken: $data['providerAccessToken'],
             providerAccessTokenExpiry: $data['providerAccessTokenExpiry'],
             providerRefreshToken: $data['providerRefreshToken'],
-            providerIdToken: $data['providerIdToken'] ?? null
+            providerIdToken: $data['providerIdToken']
         );
     }
 

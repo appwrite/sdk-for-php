@@ -124,6 +124,7 @@ PUT https://cloud.appwrite.io/v1/functions/{functionId}
 | runtimeSpecification | string | Runtime specification for the function executions. |  |
 | deploymentRetention | integer | Days to keep non-active deployments before deletion. Value 0 means all deployments will be kept. | 0 |
 | interval | integer | Minutes between scheduled executions. Appwrite picks when within each interval the function runs. Use 0 to disable. Cannot be combined with schedule. When omitted, the current interval is kept unless schedule is set. |  |
+| emailEnabled | boolean | Enable inbound email triggering for this function. When false or omitted on create, SMTP recipients are rejected. Opt-in; default is off. |  |
 
 
 ```http request

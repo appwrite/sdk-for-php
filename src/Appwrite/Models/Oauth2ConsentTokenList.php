@@ -32,11 +32,8 @@ readonly class Oauth2ConsentTokenList
     {
         $data += [
             'total' => 0,
+            'tokens' => [],
         ];
-
-        if (!array_key_exists('tokens', $data)) {
-            throw new \InvalidArgumentException('Missing required field "tokens" for ' . static::class . '.');
-        }
 
         return new static(
             total: $data['total'],

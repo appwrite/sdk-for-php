@@ -60,6 +60,10 @@ class Advisor extends Service
      */
     public function getReport(string $reportId): \Appwrite\Models\Report
     {
+        if ($reportId === '') {
+            throw new AppwriteException('Missing required parameter: "reportId"');
+        }
+
         $apiPath = str_replace(
             ['{reportId}'],
             [$reportId],
@@ -95,6 +99,10 @@ class Advisor extends Service
      */
     public function deleteReport(string $reportId): string
     {
+        if ($reportId === '') {
+            throw new AppwriteException('Missing required parameter: "reportId"');
+        }
+
         $apiPath = str_replace(
             ['{reportId}'],
             [$reportId],
@@ -107,6 +115,7 @@ class Advisor extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_DELETE,
@@ -124,6 +133,10 @@ class Advisor extends Service
      */
     public function listInsights(string $reportId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\InsightList
     {
+        if ($reportId === '') {
+            throw new AppwriteException('Missing required parameter: "reportId"');
+        }
+
         $apiPath = str_replace(
             ['{reportId}'],
             [$reportId],
@@ -166,6 +179,14 @@ class Advisor extends Service
      */
     public function getInsight(string $reportId, string $insightId): \Appwrite\Models\Insight
     {
+        if ($reportId === '') {
+            throw new AppwriteException('Missing required parameter: "reportId"');
+        }
+
+        if ($insightId === '') {
+            throw new AppwriteException('Missing required parameter: "insightId"');
+        }
+
         $apiPath = str_replace(
             ['{reportId}', '{insightId}'],
             [$reportId, $insightId],

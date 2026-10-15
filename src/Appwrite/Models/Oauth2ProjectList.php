@@ -32,11 +32,8 @@ readonly class Oauth2ProjectList
     {
         $data += [
             'total' => 0,
+            'projects' => [],
         ];
-
-        if (!array_key_exists('projects', $data)) {
-            throw new \InvalidArgumentException('Missing required field "projects" for ' . static::class . '.');
-        }
 
         return new static(
             total: $data['total'],

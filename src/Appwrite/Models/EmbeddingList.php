@@ -32,11 +32,8 @@ readonly class EmbeddingList
     {
         $data += [
             'total' => 0,
+            'embeddings' => [],
         ];
-
-        if (!array_key_exists('embeddings', $data)) {
-            throw new \InvalidArgumentException('Missing required field "embeddings" for ' . static::class . '.');
-        }
 
         return new static(
             total: $data['total'],

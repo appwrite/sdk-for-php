@@ -38,7 +38,7 @@ POST https://cloud.appwrite.io/v1/vectorsdb
 GET https://cloud.appwrite.io/v1/vectorsdb/specifications
 ```
 
-** List the dedicated database specifications available on the current plan. Each specification reports its resource limits, pricing, and whether it is enabled for the organization. **
+** List the dedicated database specifications available on the current plan. Each specification reports its resource limits, its own prices and overage rates, and whether it is enabled for the organization. **
 
 
 ```http request

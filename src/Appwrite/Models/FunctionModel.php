@@ -49,6 +49,7 @@ readonly class FunctionModel
      * @param string $buildSpecification machine specification for deployment builds.
      * @param string $runtimeSpecification machine specification for executions.
      * @param int|null $interval minutes between scheduled executions. 0 when the function has no interval.
+     * @param bool|null $emailEnabled whether inbound email (smtp) may trigger this function. opt-in; default is false. when disabled, recipients for this function are rejected.
      */
     public function __construct(
         public string $id,
@@ -83,7 +84,8 @@ readonly class FunctionModel
         public array $providerPaths,
         public string $buildSpecification,
         public string $runtimeSpecification,
-        public ?int $interval = null
+        public ?int $interval = null,
+        public ?bool $emailEnabled = null
     ) {
     }
 
@@ -109,6 +111,7 @@ readonly class FunctionModel
             'latestDeploymentCreatedAt' => "",
             'latestDeploymentStatus' => "",
             'scopes' => [],
+            'vars' => [],
             'events' => [],
             'schedule' => "",
             'timeout' => 15,
@@ -125,10 +128,6 @@ readonly class FunctionModel
             'buildSpecification' => "s-1vcpu-512mb",
             'runtimeSpecification' => "s-1vcpu-512mb",
         ];
-
-        if (!array_key_exists('vars', $data)) {
-            throw new \InvalidArgumentException('Missing required field "vars" for ' . static::class . '.');
-        }
 
         return new static(
             id: $data['$id'],
@@ -168,7 +167,8 @@ readonly class FunctionModel
             providerPaths: $data['providerPaths'],
             buildSpecification: $data['buildSpecification'],
             runtimeSpecification: $data['runtimeSpecification'],
-            interval: $data['interval'] ?? null
+            interval: $data['interval'] ?? null,
+            emailEnabled: $data['emailEnabled'] ?? null
         );
     }
 
@@ -210,7 +210,8 @@ readonly class FunctionModel
             'providerBranches' => static::serializeValue($this->providerBranches),
             'providerPaths' => static::serializeValue($this->providerPaths),
             'buildSpecification' => static::serializeValue($this->buildSpecification),
-            'runtimeSpecification' => static::serializeValue($this->runtimeSpecification)
+            'runtimeSpecification' => static::serializeValue($this->runtimeSpecification),
+            'emailEnabled' => static::serializeValue($this->emailEnabled)
         ];
     }
 }

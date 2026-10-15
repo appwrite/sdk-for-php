@@ -32,11 +32,8 @@ readonly class IndexList
     {
         $data += [
             'total' => 0,
+            'indexes' => [],
         ];
-
-        if (!array_key_exists('indexes', $data)) {
-            throw new \InvalidArgumentException('Missing required field "indexes" for ' . static::class . '.');
-        }
 
         return new static(
             total: $data['total'],

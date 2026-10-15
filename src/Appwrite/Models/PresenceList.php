@@ -32,11 +32,8 @@ readonly class PresenceList
     {
         $data += [
             'total' => 0,
+            'presences' => [],
         ];
-
-        if (!array_key_exists('presences', $data)) {
-            throw new \InvalidArgumentException('Missing required field "presences" for ' . static::class . '.');
-        }
 
         return new static(
             total: $data['total'],

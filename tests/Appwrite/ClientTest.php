@@ -5,9 +5,14 @@ declare(strict_types=1);
 namespace Appwrite;
 
 use PHPUnit\Framework\TestCase;
+use Psr\Http\Client\ClientInterface;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 use ReflectionMethod;
 use ReflectionProperty;
 use Utopia\Client\Client as HttpClient;
+use Utopia\Psr7\Response;
+use Utopia\Psr7\Stream;
 
 final class ClientTest extends TestCase
 {
@@ -59,6 +64,49 @@ final class ClientTest extends TestCase
         $client = new Client();
         $result = $client->addHeader('X-Custom', 'value');
         $this->assertSame($client, $result);
+    }
+
+    public function testFlattenSpreadsWrappedBuilder(): void
+    {
+        $this->assertSame(
+            [Query::limit(1)],
+            array_values((array) Client::flatten([Query::builder()->limit(1)]))
+        );
+    }
+
+    public function testFlattenKeepsNestedNumericArrays(): void
+    {
+        $geometry = [[1, 2], [3, 4]];
+        $this->assertSame($geometry, Client::flatten($geometry));
+    }
+
+    public function testFlattenKeepsQueryStringList(): void
+    {
+        $this->assertSame(
+            [Query::limit(1)],
+            array_values((array) Client::flatten([Query::limit(1)]))
+        );
+    }
+
+    public function testFlattenKeepsNestedStringArrays(): void
+    {
+        $this->assertSame([['a', 'b']], Client::flatten([['a', 'b']]));
+    }
+
+    public function testFlattenBuilderParamBecomesQueryStrings(): void
+    {
+        $this->assertSame(
+            [Query::equal('status', ['active']), Query::limit(1)],
+            Client::flatten(Query::builder()->equal('status', ['active'])->limit(1))
+        );
+    }
+
+    public function testFlattenSplicesBuildersBesideNestedStringArrays(): void
+    {
+        $this->assertSame(
+            [Query::limit(1), Query::offset(2), ['a', 'b']],
+            Client::flatten([Query::builder()->limit(1)->offset(2), ['a', 'b']])
+        );
     }
 
     public function testSetProjectReturnsClient(): void
@@ -114,13 +162,6 @@ final class ClientTest extends TestCase
     {
         $client = new Client();
         $result = $client->setForwardedUserAgent('test-value');
-        $this->assertSame($client, $result);
-    }
-
-    public function testSetDevKeyReturnsClient(): void
-    {
-        $client = new Client();
-        $result = $client->setDevKey('test-value');
         $this->assertSame($client, $result);
     }
 
@@ -185,7 +226,109 @@ final class ClientTest extends TestCase
         $this->assertNotSame($afterSelfSigned, $this->httpClient($client, true));
     }
 
-    private function httpClient(Client $client, bool $followRedirects): HttpClient
+    public function testInjectedTransportReceivesEncodedRequests(): void
+    {
+        $received = [];
+        $transport = $this->createMock(ClientInterface::class);
+        $transport->expects($this->once())->method('sendRequest')
+            ->willReturnCallback(function (RequestInterface $request) use (&$received): ResponseInterface {
+                $received[] = $request;
+
+                return new Response(body: new Stream('{"received":true}'))
+                    ->withHeader('content-type', 'application/json');
+            });
+
+        $client = new Client($transport)
+            ->setEndpoint('https://example.com/v1')
+            ->addHeader('x-test', 'injected');
+
+        $this->assertSame(['received' => true], $client->call(Client::METHOD_POST, '/items', ['content-type' => 'application/json'], ['name' => 'item']));
+        $this->assertCount(1, $received);
+        $this->assertSame('POST', $received[0]->getMethod());
+        $this->assertSame('https://example.com/v1/items', (string) $received[0]->getUri());
+        $this->assertSame(['name' => 'item'], json_decode((string) $received[0]->getBody(), true));
+        $this->assertSame('injected', $received[0]->getHeaderLine('x-test'));
+    }
+
+    public function testInjectedTransportReceivesFlattenedParams(): void
+    {
+        $received = [];
+        $transport = $this->createMock(ClientInterface::class);
+        $transport->expects($this->exactly(2))->method('sendRequest')
+            ->willReturnCallback(function (RequestInterface $request) use (&$received): ResponseInterface {
+                $received[] = $request;
+
+                return new Response(body: new Stream('{}'))
+                    ->withHeader('content-type', 'application/json');
+            });
+
+        $client = new Client($transport)->setEndpoint('https://example.com/v1');
+        $params = [
+            'queries' => Query::builder()->limit(1)->offset(2),
+            'tags' => [['a', 'b']],
+        ];
+
+        $client->call(Client::METHOD_POST, '/items', ['content-type' => 'application/json'], $params);
+        $client->call(Client::METHOD_GET, '/items', [], $params);
+
+        $this->assertCount(2, $received);
+        $this->assertSame(
+            ['queries' => [Query::limit(1), Query::offset(2)], 'tags' => [['a', 'b']]],
+            json_decode((string) $received[0]->getBody(), true)
+        );
+        parse_str($received[1]->getUri()->getQuery(), $query);
+        $this->assertSame(
+            ['queries' => [Query::limit(1), Query::offset(2)], 'tags' => [['a', 'b']]],
+            $query
+        );
+    }
+
+    public function testInjectedTransportSurvivesFailureAndConfigurationChanges(): void
+    {
+        $received = [];
+        $transport = $this->createMock(ClientInterface::class);
+        $transport->expects($this->exactly(2))->method('sendRequest')
+            ->willReturnCallback(function (RequestInterface $request) use (&$received): ResponseInterface {
+                $received[] = (string) $request->getUri();
+
+                return count($received) === 1
+                    ? new Response(503, body: new Stream('{"message":"Unavailable","type":"unavailable"}'))->withHeader('content-type', 'application/json')
+                    : new Response(body: new Stream('null'))->withHeader('content-type', 'application/json');
+            });
+        $client = new Client($transport)->setEndpoint('https://first.example');
+
+        $failure = null;
+        try {
+            $client->call(Client::METHOD_GET, '/fail');
+        } catch (AppwriteException $error) {
+            $failure = $error;
+        }
+
+        $client->setEndpoint('https://second.example')->setTimeout(5)->setConnectTimeout(2)->setSelfSigned(true);
+        $this->assertNull($client->call(Client::METHOD_GET, '/next', params: ['project' => 'project-1']));
+        $this->assertInstanceOf(AppwriteException::class, $failure);
+        $this->assertSame(503, $failure->getCode());
+        $this->assertSame(['https://first.example/fail', 'https://second.example/next?project=project-1'], $received);
+        $this->assertSame($transport, $this->httpClient($client, true));
+        $this->assertSame($transport, $this->httpClient($client, false));
+    }
+
+    public function testLocationResponseUsesInjectedTransport(): void
+    {
+        $transport = $this->createMock(ClientInterface::class);
+        $transport->expects($this->once())->method('sendRequest')
+            ->willReturnCallback(function (RequestInterface $request): ResponseInterface {
+                $this->assertSame('GET', $request->getMethod());
+                $this->assertSame('https://example.com/redirect', (string) $request->getUri());
+
+                return new Response(302)->withHeader('location', 'https://storage.example/file');
+            });
+
+        $client = new Client($transport)->setEndpoint('https://example.com');
+        $this->assertSame('https://storage.example/file', $client->call(Client::METHOD_GET, '/redirect', responseType: 'location'));
+    }
+
+    private function httpClient(Client $client, bool $followRedirects): ClientInterface
     {
         $method = new ReflectionMethod(Client::class, 'getHttpClient');
 

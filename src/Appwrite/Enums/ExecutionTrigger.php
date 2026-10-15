@@ -12,6 +12,7 @@ class ExecutionTrigger implements JsonSerializable, Stringable
     private static ExecutionTrigger $HTTP;
     private static ExecutionTrigger $SCHEDULE;
     private static ExecutionTrigger $EVENT;
+    private static ExecutionTrigger $EMAIL;
 
     private function __construct(private readonly string $value)
     {
@@ -45,6 +46,12 @@ class ExecutionTrigger implements JsonSerializable, Stringable
 
         return self::$EVENT;
     }
+    public static function EMAIL(): ExecutionTrigger
+    {
+        self::$EMAIL ??= new ExecutionTrigger('email');
+
+        return self::$EMAIL;
+    }
 
     public static function from(string $value): self
     {
@@ -52,6 +59,7 @@ class ExecutionTrigger implements JsonSerializable, Stringable
             'http' => self::HTTP(),
             'schedule' => self::SCHEDULE(),
             'event' => self::EVENT(),
+            'email' => self::EMAIL(),
             default => throw new \InvalidArgumentException('Unknown ExecutionTrigger value: ' . $value),
         };
     }

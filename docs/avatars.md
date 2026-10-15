@@ -116,7 +116,7 @@ When one dimension is specified and the other is 0, the image is scaled with pre
 GET https://cloud.appwrite.io/v1/avatars/photo
 ```
 
-** Returns the best available profile photo for a user. The endpoint tries each source in priority order and returns the first successful result: OAuth2 identity photo, Gravatar, Libravatar, Appwrite Initials, built-in static fallback.
+** Returns the best available profile photo for a user. The endpoint tries each source in priority order and returns the first successful result: a custom uploaded photo (see avatars.updatePhoto), OAuth2 identity photo, Gravatar, Libravatar, Appwrite Initials, built-in static fallback.
 
 Passing `userId` — `current()` for the authenticated user — resolves the photo from everything known about that user: identity photos, email, and name. An explicit `emailHash` or `name` then overrides just that value, and the user's remaining sources stay in the chain. Without `userId`, passing `emailHash` and/or `name` resolves the avatar from those values alone: the hash is looked up on Gravatar and Libravatar, the name is rendered as initials, and the session user stays out of the chain so their own photo never shadows the avatar being asked for. When nothing is passed, the photo resolves for the currently authenticated user. Emails are only ever accepted pre-hashed, so no address ends up in a URL. **
 
@@ -186,7 +186,7 @@ When width and height are specified, the image is resized accordingly. If both d
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | url | string | **Required** Website URL which you want to capture. |  |
-| headers | object | HTTP headers to send with the browser request. Defaults to empty. | {} |
+| headers | object | HTTP headers to send with the browser request. Only Accept and Accept-Language are allowed. Defaults to empty. | {} |
 | viewportWidth | integer | Browser viewport width. Pass an integer between 1 to 1920. Defaults to 1280. | 1280 |
 | viewportHeight | integer | Browser viewport height. Pass an integer between 1 to 1080. Defaults to 720. | 720 |
 | scale | number | Browser scale factor. Pass a number between 0.1 to 3. Defaults to 1. | 1 |

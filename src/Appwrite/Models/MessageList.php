@@ -32,11 +32,8 @@ readonly class MessageList
     {
         $data += [
             'total' => 0,
+            'messages' => [],
         ];
-
-        if (!array_key_exists('messages', $data)) {
-            throw new \InvalidArgumentException('Missing required field "messages" for ' . static::class . '.');
-        }
 
         return new static(
             total: $data['total'],
