@@ -20,7 +20,7 @@ $result = $documentsDB->createDocument(
     data: [
         'username' => 'walter.obrien',
         'email' => 'walter.obrien@example.com',
-        'fullName' => 'Walter O'Brien',
+        'fullName' => 'Walter O\'Brien',
         'age' => 30,
         'isAdmin' => false
     ],

@@ -63,6 +63,10 @@ class Presences extends Service
      */
     public function get(string $presenceId): \Appwrite\Models\Presence
     {
+        if ($presenceId === '') {
+            throw new AppwriteException('Missing required parameter: "presenceId"');
+        }
+
         $apiPath = str_replace(
             ['{presenceId}'],
             [$presenceId],
@@ -97,6 +101,10 @@ class Presences extends Service
      */
     public function upsert(string $presenceId, string $userId, string $status, ?array $permissions = null, ?string $expiresAt = null, ?array $metadata = null): \Appwrite\Models\Presence
     {
+        if ($presenceId === '') {
+            throw new AppwriteException('Missing required parameter: "presenceId"');
+        }
+
         $apiPath = str_replace(
             ['{presenceId}'],
             [$presenceId],
@@ -147,6 +155,10 @@ class Presences extends Service
      */
     public function update(string $presenceId, string $userId, ?string $status = null, ?string $expiresAt = null, ?array $metadata = null, ?array $permissions = null, ?bool $purge = null): \Appwrite\Models\Presence
     {
+        if ($presenceId === '') {
+            throw new AppwriteException('Missing required parameter: "presenceId"');
+        }
+
         $apiPath = str_replace(
             ['{presenceId}'],
             [$presenceId],
@@ -203,6 +215,10 @@ class Presences extends Service
      */
     public function delete(string $presenceId): string
     {
+        if ($presenceId === '') {
+            throw new AppwriteException('Missing required parameter: "presenceId"');
+        }
+
         $apiPath = str_replace(
             ['{presenceId}'],
             [$presenceId],
@@ -215,6 +231,7 @@ class Presences extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_DELETE,

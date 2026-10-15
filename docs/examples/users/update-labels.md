@@ -13,6 +13,8 @@ $users = new Users($client);
 
 $result = $users->updateLabels(
     userId: '<USER_ID>',
-    labels: []
+    labels: [
+        'subscriber'
+    ]
 );
 ```

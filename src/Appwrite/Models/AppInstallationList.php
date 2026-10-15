@@ -32,11 +32,8 @@ readonly class AppInstallationList
     {
         $data += [
             'total' => 0,
+            'installations' => [],
         ];
-
-        if (!array_key_exists('installations', $data)) {
-            throw new \InvalidArgumentException('Missing required field "installations" for ' . static::class . '.');
-        }
 
         return new static(
             total: $data['total'],

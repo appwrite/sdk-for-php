@@ -18,7 +18,9 @@ $result = $databases->createIndex(
     collectionId: '<COLLECTION_ID>',
     key: '<KEY>',
     type: DatabasesIndexType::KEY(),
-    attributes: [],
+    attributes: [
+        'username'
+    ],
     orders: [OrderBy::ASC()], // optional
     lengths: [] // optional
 );

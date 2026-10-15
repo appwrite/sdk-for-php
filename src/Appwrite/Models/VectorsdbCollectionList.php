@@ -32,11 +32,8 @@ readonly class VectorsdbCollectionList
     {
         $data += [
             'total' => 0,
+            'collections' => [],
         ];
-
-        if (!array_key_exists('collections', $data)) {
-            throw new \InvalidArgumentException('Missing required field "collections" for ' . static::class . '.');
-        }
 
         return new static(
             total: $data['total'],

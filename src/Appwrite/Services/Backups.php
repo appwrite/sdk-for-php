@@ -90,6 +90,10 @@ class Backups extends Service
      */
     public function getArchive(string $archiveId): \Appwrite\Models\BackupArchive
     {
+        if ($archiveId === '') {
+            throw new AppwriteException('Missing required parameter: "archiveId"');
+        }
+
         $apiPath = str_replace(
             ['{archiveId}'],
             [$archiveId],
@@ -124,6 +128,10 @@ class Backups extends Service
      */
     public function deleteArchive(string $archiveId): string
     {
+        if ($archiveId === '') {
+            throw new AppwriteException('Missing required parameter: "archiveId"');
+        }
+
         $apiPath = str_replace(
             ['{archiveId}'],
             [$archiveId],
@@ -237,6 +245,10 @@ class Backups extends Service
      */
     public function getPolicy(string $policyId): \Appwrite\Models\BackupPolicy
     {
+        if ($policyId === '') {
+            throw new AppwriteException('Missing required parameter: "policyId"');
+        }
+
         $apiPath = str_replace(
             ['{policyId}'],
             [$policyId],
@@ -271,6 +283,10 @@ class Backups extends Service
      */
     public function updatePolicy(string $policyId, ?string $name = null, ?int $retention = null, ?string $schedule = null, ?bool $enabled = null): \Appwrite\Models\BackupPolicy
     {
+        if ($policyId === '') {
+            throw new AppwriteException('Missing required parameter: "policyId"');
+        }
+
         $apiPath = str_replace(
             ['{policyId}'],
             [$policyId],
@@ -313,6 +329,10 @@ class Backups extends Service
      */
     public function deletePolicy(string $policyId): string
     {
+        if ($policyId === '') {
+            throw new AppwriteException('Missing required parameter: "policyId"');
+        }
+
         $apiPath = str_replace(
             ['{policyId}'],
             [$policyId],
@@ -453,6 +473,10 @@ class Backups extends Service
      */
     public function getRestoration(string $restorationId): \Appwrite\Models\BackupRestoration
     {
+        if ($restorationId === '') {
+            throw new AppwriteException('Missing required parameter: "restorationId"');
+        }
+
         $apiPath = str_replace(
             ['{restorationId}'],
             [$restorationId],

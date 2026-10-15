@@ -32,11 +32,8 @@ readonly class DedicatedDatabaseBackupList
     {
         $data += [
             'total' => 0,
+            'backups' => [],
         ];
-
-        if (!array_key_exists('backups', $data)) {
-            throw new \InvalidArgumentException('Missing required field "backups" for ' . static::class . '.');
-        }
 
         return new static(
             total: $data['total'],

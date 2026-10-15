@@ -32,11 +32,8 @@ readonly class VariableList
     {
         $data += [
             'total' => 0,
+            'variables' => [],
         ];
-
-        if (!array_key_exists('variables', $data)) {
-            throw new \InvalidArgumentException('Missing required field "variables" for ' . static::class . '.');
-        }
 
         return new static(
             total: $data['total'],

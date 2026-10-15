@@ -32,11 +32,8 @@ readonly class InsightList
     {
         $data += [
             'total' => 0,
+            'insights' => [],
         ];
-
-        if (!array_key_exists('insights', $data)) {
-            throw new \InvalidArgumentException('Missing required field "insights" for ' . static::class . '.');
-        }
 
         return new static(
             total: $data['total'],

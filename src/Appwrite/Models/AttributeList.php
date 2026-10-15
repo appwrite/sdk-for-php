@@ -32,11 +32,8 @@ readonly class AttributeList
     {
         $data += [
             'total' => 0,
+            'attributes' => [],
         ];
-
-        if (!array_key_exists('attributes', $data)) {
-            throw new \InvalidArgumentException('Missing required field "attributes" for ' . static::class . '.');
-        }
 
         return new static(
             total: $data['total'],

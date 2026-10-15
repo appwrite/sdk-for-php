@@ -32,11 +32,8 @@ readonly class SiteList
     {
         $data += [
             'total' => 0,
+            'sites' => [],
         ];
-
-        if (!array_key_exists('sites', $data)) {
-            throw new \InvalidArgumentException('Missing required field "sites" for ' . static::class . '.');
-        }
 
         return new static(
             total: $data['total'],

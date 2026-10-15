@@ -32,11 +32,8 @@ readonly class TeamList
     {
         $data += [
             'total' => 0,
+            'teams' => [],
         ];
-
-        if (!array_key_exists('teams', $data)) {
-            throw new \InvalidArgumentException('Missing required field "teams" for ' . static::class . '.');
-        }
 
         return new static(
             total: $data['total'],

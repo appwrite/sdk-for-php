@@ -19,31 +19,31 @@ readonly class DedicatedDatabaseSpecification
      * @param string $slug specification slug. use this value when creating a dedicated database.
      * @param string $name human readable specification name.
      * @param float $price monthly price of the specification in usd.
+     * @param float $storageOverageRate price per gb of storage above the included amount, per month, in usd.
+     * @param float $bandwidthOverageRate price per gb of bandwidth above the included amount, per month, in usd.
+     * @param float $replicaRate high availability replica price as a fraction of the specification price.
+     * @param float $pitrRate point-in-time recovery price as a fraction of the specification price.
      * @param int $cpu allocated cpu in millicores.
      * @param int $memory allocated memory in mb.
      * @param int $maxConnections maximum number of concurrent connections.
      * @param int $includedStorage included storage in gb before overage charges apply.
      * @param int $includedBandwidth included bandwidth in gb before overage charges apply.
      * @param bool $enabled whether the specification is available on the current plan.
-     * @param float|null $storageOverageRate price per gb of storage above the included amount, per month, in usd.
-     * @param float|null $bandwidthOverageRate price per gb of bandwidth above the included amount, per month, in usd.
-     * @param float|null $replicaRate high availability replica price as a fraction of the specification price.
-     * @param float|null $pitrRate point-in-time recovery price as a fraction of the specification price.
      */
     public function __construct(
         public string $slug,
         public string $name,
         public float $price,
+        public float $storageOverageRate,
+        public float $bandwidthOverageRate,
+        public float $replicaRate,
+        public float $pitrRate,
         public int $cpu,
         public int $memory,
         public int $maxConnections,
         public int $includedStorage,
         public int $includedBandwidth,
-        public bool $enabled,
-        public ?float $storageOverageRate = null,
-        public ?float $bandwidthOverageRate = null,
-        public ?float $replicaRate = null,
-        public ?float $pitrRate = null
+        public bool $enabled
     ) {
     }
 
@@ -56,6 +56,10 @@ readonly class DedicatedDatabaseSpecification
             'slug' => "",
             'name' => "",
             'price' => 0,
+            'storageOverageRate' => 0,
+            'bandwidthOverageRate' => 0,
+            'replicaRate' => 0,
+            'pitrRate' => 0,
             'cpu' => 0,
             'memory' => 0,
             'maxConnections' => 0,
@@ -68,16 +72,16 @@ readonly class DedicatedDatabaseSpecification
             slug: $data['slug'],
             name: $data['name'],
             price: $data['price'],
+            storageOverageRate: $data['storageOverageRate'],
+            bandwidthOverageRate: $data['bandwidthOverageRate'],
+            replicaRate: $data['replicaRate'],
+            pitrRate: $data['pitrRate'],
             cpu: $data['cpu'],
             memory: $data['memory'],
             maxConnections: $data['maxConnections'],
             includedStorage: $data['includedStorage'],
             includedBandwidth: $data['includedBandwidth'],
-            enabled: $data['enabled'],
-            storageOverageRate: $data['storageOverageRate'] ?? null,
-            bandwidthOverageRate: $data['bandwidthOverageRate'] ?? null,
-            replicaRate: $data['replicaRate'] ?? null,
-            pitrRate: $data['pitrRate'] ?? null
+            enabled: $data['enabled']
         );
     }
 

@@ -32,11 +32,8 @@ readonly class LocaleCodeList
     {
         $data += [
             'total' => 0,
+            'localeCodes' => [],
         ];
-
-        if (!array_key_exists('localeCodes', $data)) {
-            throw new \InvalidArgumentException('Missing required field "localeCodes" for ' . static::class . '.');
-        }
 
         return new static(
             total: $data['total'],

@@ -6,6 +6,7 @@ namespace Appwrite\Models;
 
 use Appwrite\Enums\ProxyRuleDeploymentResourceType;
 use Appwrite\Enums\ProxyRuleStatus;
+use Appwrite\Enums\ProxyRuleProtocol;
 
 /**
  * Rule
@@ -33,7 +34,8 @@ readonly class ProxyRule
      * @param ProxyRuleStatus $status domain verification status. possible values are "unverified", "verifying", "verified"
      * @param string $logs logs from rule verification or certificate generation. certificate generation logs are prioritized if both are available.
      * @param string $renewAt certificate auto-renewal date in iso 8601 format.
-     * @param ProxyRuleDeploymentResourceType|null $deploymentResourceType type of deployment. possible values are "function", "site". used if rule's type is "deployment".
+     * @param ProxyRuleProtocol $protocol ingress protocol for the rule.
+     * @param ProxyRuleDeploymentResourceType|null $deploymentResourceType type of deployment resource: function, site, or dedicateddatabase.
      */
     public function __construct(
         public string $id,
@@ -50,6 +52,7 @@ readonly class ProxyRule
         public ProxyRuleStatus $status,
         public string $logs,
         public string $renewAt,
+        public ProxyRuleProtocol $protocol,
         public ?ProxyRuleDeploymentResourceType $deploymentResourceType = null
     ) {
     }
@@ -73,6 +76,7 @@ readonly class ProxyRule
             'deploymentVcsProviderBranch' => "",
             'status' => "unverified",
             'logs' => "",
+            'protocol' => "http",
         ];
 
         if (!array_key_exists('renewAt', $data)) {
@@ -94,6 +98,7 @@ readonly class ProxyRule
             status: static::hydrateTypedValue(ProxyRuleStatus::class, $data['status']),
             logs: $data['logs'],
             renewAt: $data['renewAt'],
+            protocol: static::hydrateTypedValue(ProxyRuleProtocol::class, $data['protocol']),
             deploymentResourceType: array_key_exists('deploymentResourceType', $data) ? static::hydrateTypedValue(ProxyRuleDeploymentResourceType::class, $data['deploymentResourceType'], true) : null
         );
     }
@@ -118,7 +123,8 @@ readonly class ProxyRule
             'deploymentVcsProviderBranch' => static::serializeValue($this->deploymentVcsProviderBranch),
             'status' => static::serializeValue($this->status),
             'logs' => static::serializeValue($this->logs),
-            'renewAt' => static::serializeValue($this->renewAt)
+            'renewAt' => static::serializeValue($this->renewAt),
+            'protocol' => static::serializeValue($this->protocol)
         ];
     }
 }

@@ -54,23 +54,16 @@ readonly class Collection
             '$id' => "",
             '$createdAt' => "",
             '$updatedAt' => "",
+            '$permissions' => [],
             'databaseId' => "",
             'name' => "",
             'enabled' => true,
             'documentSecurity' => false,
+            'attributes' => [],
+            'indexes' => [],
             'bytesMax' => 0,
             'bytesUsed' => 0,
         ];
-
-        if (!array_key_exists('$permissions', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$permissions" for ' . static::class . '.');
-        }
-        if (!array_key_exists('attributes', $data)) {
-            throw new \InvalidArgumentException('Missing required field "attributes" for ' . static::class . '.');
-        }
-        if (!array_key_exists('indexes', $data)) {
-            throw new \InvalidArgumentException('Missing required field "indexes" for ' . static::class . '.');
-        }
 
         return new static(
             id: $data['$id'],

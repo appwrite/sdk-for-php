@@ -32,11 +32,8 @@ readonly class DeploymentList
     {
         $data += [
             'total' => 0,
+            'deployments' => [],
         ];
-
-        if (!array_key_exists('deployments', $data)) {
-            throw new \InvalidArgumentException('Missing required field "deployments" for ' . static::class . '.');
-        }
 
         return new static(
             total: $data['total'],

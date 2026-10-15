@@ -15,7 +15,10 @@ $result = $databases->createEnumAttribute(
     databaseId: '<DATABASE_ID>',
     collectionId: '<COLLECTION_ID>',
     key: '<KEY>',
-    elements: ["active", "inactive"],
+    elements: [
+        'active',
+        'inactive'
+    ],
     required: false,
     default: 'active', // optional
     array: false // optional

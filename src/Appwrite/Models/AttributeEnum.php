@@ -57,14 +57,12 @@ readonly class AttributeEnum
             'required' => false,
             '$createdAt' => "",
             '$updatedAt' => "",
+            'elements' => [],
             'format' => "enum",
         ];
 
         if (!array_key_exists('status', $data)) {
             throw new \InvalidArgumentException('Missing required field "status" for ' . static::class . '.');
-        }
-        if (!array_key_exists('elements', $data)) {
-            throw new \InvalidArgumentException('Missing required field "elements" for ' . static::class . '.');
         }
 
         return new static(

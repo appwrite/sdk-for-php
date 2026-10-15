@@ -32,11 +32,8 @@ readonly class FileList
     {
         $data += [
             'total' => 0,
+            'files' => [],
         ];
-
-        if (!array_key_exists('files', $data)) {
-            throw new \InvalidArgumentException('Missing required field "files" for ' . static::class . '.');
-        }
 
         return new static(
             total: $data['total'],

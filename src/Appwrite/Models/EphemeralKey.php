@@ -53,11 +53,8 @@ readonly class EphemeralKey
             'scopes' => [],
             'secret' => "",
             'accessedAt' => "",
+            'sdks' => [],
         ];
-
-        if (!array_key_exists('sdks', $data)) {
-            throw new \InvalidArgumentException('Missing required field "sdks" for ' . static::class . '.');
-        }
 
         return new static(
             id: $data['$id'],

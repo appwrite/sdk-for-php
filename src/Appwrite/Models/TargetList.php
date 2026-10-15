@@ -32,11 +32,8 @@ readonly class TargetList
     {
         $data += [
             'total' => 0,
+            'targets' => [],
         ];
-
-        if (!array_key_exists('targets', $data)) {
-            throw new \InvalidArgumentException('Missing required field "targets" for ' . static::class . '.');
-        }
 
         return new static(
             total: $data['total'],

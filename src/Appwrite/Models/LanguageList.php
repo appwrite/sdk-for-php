@@ -32,11 +32,8 @@ readonly class LanguageList
     {
         $data += [
             'total' => 0,
+            'languages' => [],
         ];
-
-        if (!array_key_exists('languages', $data)) {
-            throw new \InvalidArgumentException('Missing required field "languages" for ' . static::class . '.');
-        }
 
         return new static(
             total: $data['total'],

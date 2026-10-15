@@ -114,6 +114,7 @@ readonly class Site
             'latestDeploymentCreatedAt' => "",
             'latestDeploymentStatus' => "",
             'scopes' => [],
+            'vars' => [],
             'timeout' => 15,
             'installCommand' => "",
             'buildCommand' => "",
@@ -131,9 +132,6 @@ readonly class Site
             'buildRuntime' => "",
         ];
 
-        if (!array_key_exists('vars', $data)) {
-            throw new \InvalidArgumentException('Missing required field "vars" for ' . static::class . '.');
-        }
         if (!array_key_exists('adapter', $data)) {
             throw new \InvalidArgumentException('Missing required field "adapter" for ' . static::class . '.');
         }

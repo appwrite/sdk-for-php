@@ -18,7 +18,9 @@ $result = $tablesDB->createIndex(
     tableId: '<TABLE_ID>',
     key: '<KEY>',
     type: TablesDBIndexType::KEY(),
-    columns: [],
+    columns: [
+        'username'
+    ],
     orders: [OrderBy::ASC()], // optional
     lengths: [] // optional
 );

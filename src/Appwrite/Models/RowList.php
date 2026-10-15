@@ -32,11 +32,8 @@ readonly class RowList
     {
         $data += [
             'total' => 0,
+            'rows' => [],
         ];
-
-        if (!array_key_exists('rows', $data)) {
-            throw new \InvalidArgumentException('Missing required field "rows" for ' . static::class . '.');
-        }
 
         return new static(
             total: $data['total'],

@@ -225,6 +225,10 @@ class Apps extends Service
      */
     public function get(string $appId): \Appwrite\Models\App
     {
+        if ($appId === '') {
+            throw new AppwriteException('Missing required parameter: "appId"');
+        }
+
         $apiPath = str_replace(
             ['{appId}'],
             [$appId],
@@ -259,6 +263,10 @@ class Apps extends Service
      */
     public function update(string $appId, string $name, ?string $description = null, ?string $clientUri = null, ?string $logoUri = null, ?string $privacyPolicyUrl = null, ?string $termsUrl = null, ?array $contacts = null, ?string $tagline = null, ?array $tags = null, ?array $images = null, ?string $supportUrl = null, ?string $dataDeletionUrl = null, ?bool $enabled = null, ?array $redirectUris = null, ?array $postLogoutRedirectUris = null, ?string $type = null, ?bool $deviceFlow = null, ?array $installationScopes = null, ?string $installationRedirectUrl = null): \Appwrite\Models\App
     {
+        if ($appId === '') {
+            throw new AppwriteException('Missing required parameter: "appId"');
+        }
+
         $apiPath = str_replace(
             ['{appId}'],
             [$appId],
@@ -367,6 +375,10 @@ class Apps extends Service
      */
     public function delete(string $appId): string
     {
+        if ($appId === '') {
+            throw new AppwriteException('Missing required parameter: "appId"');
+        }
+
         $apiPath = str_replace(
             ['{appId}'],
             [$appId],
@@ -398,6 +410,10 @@ class Apps extends Service
      */
     public function listInstallations(string $appId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\AppInstallationList
     {
+        if ($appId === '') {
+            throw new AppwriteException('Missing required parameter: "appId"');
+        }
+
         $apiPath = str_replace(
             ['{appId}'],
             [$appId],
@@ -442,6 +458,14 @@ class Apps extends Service
      */
     public function getInstallation(string $appId, string $installationId): \Appwrite\Models\AppInstallation
     {
+        if ($appId === '') {
+            throw new AppwriteException('Missing required parameter: "appId"');
+        }
+
+        if ($installationId === '') {
+            throw new AppwriteException('Missing required parameter: "installationId"');
+        }
+
         $apiPath = str_replace(
             ['{appId}', '{installationId}'],
             [$appId, $installationId],
@@ -479,6 +503,14 @@ class Apps extends Service
      */
     public function deleteInstallation(string $appId, string $installationId): string
     {
+        if ($appId === '') {
+            throw new AppwriteException('Missing required parameter: "appId"');
+        }
+
+        if ($installationId === '') {
+            throw new AppwriteException('Missing required parameter: "installationId"');
+        }
+
         $apiPath = str_replace(
             ['{appId}', '{installationId}'],
             [$appId, $installationId],
@@ -516,6 +548,14 @@ class Apps extends Service
      */
     public function createInstallationToken(string $appId, string $installationId): \Appwrite\Models\Oauth2Token
     {
+        if ($appId === '') {
+            throw new AppwriteException('Missing required parameter: "appId"');
+        }
+
+        if ($installationId === '') {
+            throw new AppwriteException('Missing required parameter: "installationId"');
+        }
+
         $apiPath = str_replace(
             ['{appId}', '{installationId}'],
             [$appId, $installationId],
@@ -552,6 +592,10 @@ class Apps extends Service
      */
     public function listKeys(string $appId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\AppKeyList
     {
+        if ($appId === '') {
+            throw new AppwriteException('Missing required parameter: "appId"');
+        }
+
         $apiPath = str_replace(
             ['{appId}'],
             [$appId],
@@ -596,6 +640,10 @@ class Apps extends Service
      */
     public function createKey(string $appId): \Appwrite\Models\AppKey
     {
+        if ($appId === '') {
+            throw new AppwriteException('Missing required parameter: "appId"');
+        }
+
         $apiPath = str_replace(
             ['{appId}'],
             [$appId],
@@ -631,6 +679,14 @@ class Apps extends Service
      */
     public function getKey(string $appId, string $keyId): \Appwrite\Models\AppKey
     {
+        if ($appId === '') {
+            throw new AppwriteException('Missing required parameter: "appId"');
+        }
+
+        if ($keyId === '') {
+            throw new AppwriteException('Missing required parameter: "keyId"');
+        }
+
         $apiPath = str_replace(
             ['{appId}', '{keyId}'],
             [$appId, $keyId],
@@ -666,6 +722,14 @@ class Apps extends Service
      */
     public function deleteKey(string $appId, string $keyId): string
     {
+        if ($appId === '') {
+            throw new AppwriteException('Missing required parameter: "appId"');
+        }
+
+        if ($keyId === '') {
+            throw new AppwriteException('Missing required parameter: "keyId"');
+        }
+
         $apiPath = str_replace(
             ['{appId}', '{keyId}'],
             [$appId, $keyId],
@@ -698,6 +762,10 @@ class Apps extends Service
      */
     public function updateLabels(string $appId, array $labels): \Appwrite\Models\App
     {
+        if ($appId === '') {
+            throw new AppwriteException('Missing required parameter: "appId"');
+        }
+
         $apiPath = str_replace(
             ['{appId}'],
             [$appId],
@@ -734,6 +802,10 @@ class Apps extends Service
      */
     public function listSecrets(string $appId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\AppSecretList
     {
+        if ($appId === '') {
+            throw new AppwriteException('Missing required parameter: "appId"');
+        }
+
         $apiPath = str_replace(
             ['{appId}'],
             [$appId],
@@ -776,6 +848,10 @@ class Apps extends Service
      */
     public function createSecret(string $appId): \Appwrite\Models\AppSecretPlaintext
     {
+        if ($appId === '') {
+            throw new AppwriteException('Missing required parameter: "appId"');
+        }
+
         $apiPath = str_replace(
             ['{appId}'],
             [$appId],
@@ -811,6 +887,14 @@ class Apps extends Service
      */
     public function getSecret(string $appId, string $secretId): \Appwrite\Models\AppSecret
     {
+        if ($appId === '') {
+            throw new AppwriteException('Missing required parameter: "appId"');
+        }
+
+        if ($secretId === '') {
+            throw new AppwriteException('Missing required parameter: "secretId"');
+        }
+
         $apiPath = str_replace(
             ['{appId}', '{secretId}'],
             [$appId, $secretId],
@@ -846,6 +930,14 @@ class Apps extends Service
      */
     public function deleteSecret(string $appId, string $secretId): string
     {
+        if ($appId === '') {
+            throw new AppwriteException('Missing required parameter: "appId"');
+        }
+
+        if ($secretId === '') {
+            throw new AppwriteException('Missing required parameter: "secretId"');
+        }
+
         $apiPath = str_replace(
             ['{appId}', '{secretId}'],
             [$appId, $secretId],
@@ -876,6 +968,10 @@ class Apps extends Service
      */
     public function updateTeam(string $appId, string $teamId): \Appwrite\Models\App
     {
+        if ($appId === '') {
+            throw new AppwriteException('Missing required parameter: "appId"');
+        }
+
         $apiPath = str_replace(
             ['{appId}'],
             [$appId],
@@ -912,6 +1008,10 @@ class Apps extends Service
      */
     public function deleteTokens(string $appId): string
     {
+        if ($appId === '') {
+            throw new AppwriteException('Missing required parameter: "appId"');
+        }
+
         $apiPath = str_replace(
             ['{appId}'],
             [$appId],

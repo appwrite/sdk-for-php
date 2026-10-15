@@ -24,7 +24,7 @@ readonly class PlatformAndroid
      * @param string $name platform name.
      * @param PlatformType $type platform type. possible values are: windows, apple, android, linux, web.
      * @param string $applicationId android application id.
-     * @param array|null $fingerprints sha-256 fingerprints of the certificates the app is signed with. passkeys created in the app are accepted when its signature matches one.
+     * @param array $fingerprints sha-256 fingerprints of the certificates the app is signed with. passkeys created in the app are accepted when its signature matches one.
      */
     public function __construct(
         public string $id,
@@ -33,7 +33,7 @@ readonly class PlatformAndroid
         public string $name,
         public PlatformType $type,
         public string $applicationId,
-        public ?array $fingerprints = null
+        public array $fingerprints
     ) {
     }
 
@@ -48,6 +48,7 @@ readonly class PlatformAndroid
             '$updatedAt' => "",
             'name' => "",
             'applicationId' => "",
+            'fingerprints' => [],
         ];
 
         if (!array_key_exists('type', $data)) {
@@ -61,7 +62,7 @@ readonly class PlatformAndroid
             name: $data['name'],
             type: static::hydrateTypedValue(PlatformType::class, $data['type']),
             applicationId: $data['applicationId'],
-            fingerprints: $data['fingerprints'] ?? null
+            fingerprints: $data['fingerprints']
         );
     }
 

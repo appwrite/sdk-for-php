@@ -35,6 +35,7 @@ class Project extends Service
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = 'application/json';
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -68,6 +69,7 @@ class Project extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_DELETE,
@@ -393,6 +395,10 @@ class Project extends Service
      */
     public function getKey(string $keyId): \Appwrite\Models\Key
     {
+        if ($keyId === '') {
+            throw new AppwriteException('Missing required parameter: "keyId"');
+        }
+
         $apiPath = str_replace(
             ['{keyId}'],
             [$keyId],
@@ -428,6 +434,10 @@ class Project extends Service
      */
     public function updateKey(string $keyId, string $name, array $scopes, ?string $expire = null): \Appwrite\Models\Key
     {
+        if ($keyId === '') {
+            throw new AppwriteException('Missing required parameter: "keyId"');
+        }
+
         $apiPath = str_replace(
             ['{keyId}'],
             [$keyId],
@@ -467,6 +477,10 @@ class Project extends Service
      */
     public function deleteKey(string $keyId): string
     {
+        if ($keyId === '') {
+            throw new AppwriteException('Missing required parameter: "keyId"');
+        }
+
         $apiPath = str_replace(
             ['{keyId}'],
             [$keyId],
@@ -479,6 +493,7 @@ class Project extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_DELETE,
@@ -611,6 +626,10 @@ class Project extends Service
      */
     public function getMockPhone(string $number): \Appwrite\Models\MockNumber
     {
+        if ($number === '') {
+            throw new AppwriteException('Missing required parameter: "number"');
+        }
+
         $apiPath = str_replace(
             ['{number}'],
             [$number],
@@ -646,6 +665,10 @@ class Project extends Service
      */
     public function updateMockPhone(string $number, string $otp): \Appwrite\Models\MockNumber
     {
+        if ($number === '') {
+            throw new AppwriteException('Missing required parameter: "number"');
+        }
+
         $apiPath = str_replace(
             ['{number}'],
             [$number],
@@ -683,6 +706,10 @@ class Project extends Service
      */
     public function deleteMockPhone(string $number): string
     {
+        if ($number === '') {
+            throw new AppwriteException('Missing required parameter: "number"');
+        }
+
         $apiPath = str_replace(
             ['{number}'],
             [$number],
@@ -695,6 +722,7 @@ class Project extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_DELETE,
@@ -1648,7 +1676,7 @@ class Project extends Service
      *
      * @throws AppwriteException
      */
-    public function updateOAuth2Kakao(?string $clientId = null, ?string $clientSecret = null, ?array $prompt = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Kakao
+    public function updateOAuth2Kakao(?string $clientId = null, ?string $clientSecret = null, ?bool $enabled = null, ?array $prompt = null): \Appwrite\Models\OAuth2Kakao
     {
         $apiPath = str_replace(
             [],
@@ -1659,8 +1687,8 @@ class Project extends Service
         $apiParams = [];
         $apiParams['clientId'] = $clientId;
         $apiParams['clientSecret'] = $clientSecret;
-        $apiParams['prompt'] = $prompt;
         $apiParams['enabled'] = $enabled;
+        $apiParams['prompt'] = $prompt;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -2964,12 +2992,16 @@ class Project extends Service
 
     /**
      * Update an Android platform by its unique ID. Use this endpoint to update
-     * the platform's name or application ID.
+     * the platform's name, application ID or signing certificate fingerprints.
      *
      * @throws AppwriteException
      */
     public function updateAndroidPlatform(string $platformId, string $name, string $applicationId, ?array $fingerprints = null): \Appwrite\Models\PlatformAndroid
     {
+        if ($platformId === '') {
+            throw new AppwriteException('Missing required parameter: "platformId"');
+        }
+
         $apiPath = str_replace(
             ['{platformId}'],
             [$platformId],
@@ -3048,6 +3080,10 @@ class Project extends Service
      */
     public function updateApplePlatform(string $platformId, string $name, string $bundleIdentifier): \Appwrite\Models\PlatformApple
     {
+        if ($platformId === '') {
+            throw new AppwriteException('Missing required parameter: "platformId"');
+        }
+
         $apiPath = str_replace(
             ['{platformId}'],
             [$platformId],
@@ -3125,6 +3161,10 @@ class Project extends Service
      */
     public function updateLinuxPlatform(string $platformId, string $name, string $packageName): \Appwrite\Models\PlatformLinux
     {
+        if ($platformId === '') {
+            throw new AppwriteException('Missing required parameter: "platformId"');
+        }
+
         $apiPath = str_replace(
             ['{platformId}'],
             [$platformId],
@@ -3202,6 +3242,10 @@ class Project extends Service
      */
     public function updateWebPlatform(string $platformId, string $name, string $hostname): \Appwrite\Models\PlatformWeb
     {
+        if ($platformId === '') {
+            throw new AppwriteException('Missing required parameter: "platformId"');
+        }
+
         $apiPath = str_replace(
             ['{platformId}'],
             [$platformId],
@@ -3279,6 +3323,10 @@ class Project extends Service
      */
     public function updateWindowsPlatform(string $platformId, string $name, string $packageIdentifierName): \Appwrite\Models\PlatformWindows
     {
+        if ($platformId === '') {
+            throw new AppwriteException('Missing required parameter: "platformId"');
+        }
+
         $apiPath = str_replace(
             ['{platformId}'],
             [$platformId],
@@ -3317,6 +3365,10 @@ class Project extends Service
      */
     public function getPlatform(string $platformId): \Appwrite\Models\PlatformWeb|\Appwrite\Models\PlatformApple|\Appwrite\Models\PlatformAndroid|\Appwrite\Models\PlatformWindows|\Appwrite\Models\PlatformLinux
     {
+        if ($platformId === '') {
+            throw new AppwriteException('Missing required parameter: "platformId"');
+        }
+
         $apiPath = str_replace(
             ['{platformId}'],
             [$platformId],
@@ -3372,6 +3424,10 @@ class Project extends Service
      */
     public function deletePlatform(string $platformId): string
     {
+        if ($platformId === '') {
+            throw new AppwriteException('Missing required parameter: "platformId"');
+        }
+
         $apiPath = str_replace(
             ['{platformId}'],
             [$platformId],
@@ -3384,6 +3440,7 @@ class Project extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_DELETE,
@@ -4432,6 +4489,7 @@ class Project extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_POST,
@@ -4660,6 +4718,10 @@ class Project extends Service
      */
     public function getVariable(string $variableId): \Appwrite\Models\Variable
     {
+        if ($variableId === '') {
+            throw new AppwriteException('Missing required parameter: "variableId"');
+        }
+
         $apiPath = str_replace(
             ['{variableId}'],
             [$variableId],
@@ -4694,6 +4756,10 @@ class Project extends Service
      */
     public function updateVariable(string $variableId, ?string $key = null, ?string $value = null, ?bool $secret = null): \Appwrite\Models\Variable
     {
+        if ($variableId === '') {
+            throw new AppwriteException('Missing required parameter: "variableId"');
+        }
+
         $apiPath = str_replace(
             ['{variableId}'],
             [$variableId],
@@ -4732,6 +4798,10 @@ class Project extends Service
      */
     public function deleteVariable(string $variableId): string
     {
+        if ($variableId === '') {
+            throw new AppwriteException('Missing required parameter: "variableId"');
+        }
+
         $apiPath = str_replace(
             ['{variableId}'],
             [$variableId],
@@ -4744,6 +4814,7 @@ class Project extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_DELETE,

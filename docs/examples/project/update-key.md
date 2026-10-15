@@ -15,7 +15,7 @@ $project = new Project($client);
 $result = $project->updateKey(
     keyId: '<KEY_ID>',
     name: '<NAME>',
-    scopes: [ProjectKeyScopes::PROJECTREAD()],
+    scopes: [ProjectKeyScopes::USERSREAD()],
     expire: '2020-10-15T06:38:00.000+00:00' // optional
 );
 ```

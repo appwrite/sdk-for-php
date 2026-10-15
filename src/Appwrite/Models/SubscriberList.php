@@ -32,11 +32,8 @@ readonly class SubscriberList
     {
         $data += [
             'total' => 0,
+            'subscribers' => [],
         ];
-
-        if (!array_key_exists('subscribers', $data)) {
-            throw new \InvalidArgumentException('Missing required field "subscribers" for ' . static::class . '.');
-        }
 
         return new static(
             total: $data['total'],

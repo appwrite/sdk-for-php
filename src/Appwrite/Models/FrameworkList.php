@@ -32,11 +32,8 @@ readonly class FrameworkList
     {
         $data += [
             'total' => 0,
+            'frameworks' => [],
         ];
-
-        if (!array_key_exists('frameworks', $data)) {
-            throw new \InvalidArgumentException('Missing required field "frameworks" for ' . static::class . '.');
-        }
 
         return new static(
             total: $data['total'],

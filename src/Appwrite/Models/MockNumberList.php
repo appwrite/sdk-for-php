@@ -32,11 +32,8 @@ readonly class MockNumberList
     {
         $data += [
             'total' => 0,
+            'mockNumbers' => [],
         ];
-
-        if (!array_key_exists('mockNumbers', $data)) {
-            throw new \InvalidArgumentException('Missing required field "mockNumbers" for ' . static::class . '.');
-        }
 
         return new static(
             total: $data['total'],

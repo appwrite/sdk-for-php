@@ -1,5 +1,27 @@
 # Change Log
 
+## 31.0.0
+
+* Breaking: requests send `X-Appwrite-Response-Format: 2.5.0`; responses follow the 2.5 shapes
+* Breaking: removed `Account::listLogs`, `Users::listLogs` and the `Log`/`LogList` models
+* Breaking: removed `Organization::createKey`, `getKey`, `listKeys`, `updateKey` and `deleteKey`, and `OrganizationKeyScopes`; use `Organization::listProjectKeys`, `getProjectKey`, `updateProjectKey` and `deleteProjectKey` instead
+* Breaking: removed `Client::setDevKey`, the `DevKey` model and `Project::$devKeys`
+* Breaking: removed `BillingPlanGroup::STARTER()`; use `BillingPlanGroup::FREE()`
+* Breaking: `listSpecifications` returns each specification's prices and overage rates on the row itself. Removed the list-level `$pricing` field and the `DedicatedDatabaseSpecificationPricing` model
+* Breaking: removed `Block` fields `reason`, `projectName`, `region`, `organizationName`, `organizationId` and `billingPlan`
+* Breaking: OAuth2 `resource` params now take `?array`
+* Breaking: `Project::updateOAuth2Kakao` takes `$enabled` before `$prompt`
+* Breaking: `BackupRestoration::$options` is now an array
+* Breaking: some response fields became nullable, such as `BillingPlan::$usage` and `DedicatedDatabase::$engine`
+* Breaking: the protected `Client::flatten` is renamed `flattenForm`; subclasses that override it must rename it
+* Added: `Topic` helper to build MQTT topics for push messages
+* Added: `Mongo`, `Mysql` and `Postgresql` `promoteRestoration`, `$restoreMode`, `$targetName` and `$autoPromote` on `createRestoration`, and `DedicatedDatabaseRestoration::$restoreMode`
+* Added: `Proxy::createSMTPRule`, the `ProxyRuleProtocol` enum and `ProxyRule::$protocol`
+* Added: `$emailEnabled` on `Functions::update` and `FunctionModel`, and `ExecutionTrigger::EMAIL()`
+* Added: `Query` aggregates (`count`, `countDistinct`, `sum`, `avg`, `min`, `max` and more), `groupBy`, `having`, `distinct`, joins, `relationship`, `covers`, `spatialEquals` and `page`
+* Added: `Query::builder()` to chain queries; `build()` returns the query list
+* Fixed: OAuth2 models wrap a single `prompt` value in a list
+
 ## 30.4.0
 
 * Added: `domains` service to manage domains, DNS records, email presets, prices, transfer status and zones

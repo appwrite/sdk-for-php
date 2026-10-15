@@ -99,10 +99,7 @@ class Mysql extends Service
         if (!is_null($storageAutoscalingThresholdPercent)) {
             $apiParams['storageAutoscalingThresholdPercent'] = $storageAutoscalingThresholdPercent;
         }
-
-        if (!is_null($storageAutoscalingMaxGb)) {
-            $apiParams['storageAutoscalingMaxGb'] = $storageAutoscalingMaxGb;
-        }
+        $apiParams['storageAutoscalingMaxGb'] = $storageAutoscalingMaxGb;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -125,8 +122,8 @@ class Mysql extends Service
 
     /**
      * List the dedicated database specifications available on the current plan.
-     * Each specification reports its resource limits, pricing, and whether it is
-     * enabled for the organization.
+     * Each specification reports its resource limits, its own prices and overage
+     * rates, and whether it is enabled for the organization.
      *
      * @throws AppwriteException
      */
@@ -166,6 +163,10 @@ class Mysql extends Service
      */
     public function get(string $databaseId): \Appwrite\Models\DedicatedDatabase
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -203,6 +204,10 @@ class Mysql extends Service
      */
     public function update(string $databaseId, ?string $name = null, ?string $status = null, ?string $specification = null, ?int $replicas = null, ?string $syncMode = null, ?int $networkIdleTimeoutSeconds = null, ?array $networkIPAllowlist = null, ?int $idleTimeoutMinutes = null, ?bool $pitr = null, ?int $pitrRetentionDays = null, ?bool $storageAutoscaling = null, ?int $storageAutoscalingThresholdPercent = null, ?int $storageAutoscalingMaxGb = null, ?float $metricsTraceSampleRate = null, ?int $metricsSlowQueryLogThresholdMs = null, ?bool $sqlApiEnabled = null, ?array $sqlApiAllowedStatements = null, ?int $sqlApiMaxRows = null, ?int $sqlApiMaxBytes = null, ?int $sqlApiTimeoutSeconds = null): \Appwrite\Models\DedicatedDatabase
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -261,6 +266,10 @@ class Mysql extends Service
      */
     public function delete(string $databaseId): string
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -291,6 +300,10 @@ class Mysql extends Service
      */
     public function listBackups(string $databaseId, ?array $queries = null): \Appwrite\Models\DedicatedDatabaseBackupList
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -330,6 +343,10 @@ class Mysql extends Service
      */
     public function createBackup(string $databaseId, ?string $type = null): \Appwrite\Models\DedicatedDatabaseBackup
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -369,6 +386,10 @@ class Mysql extends Service
      */
     public function listBackupPolicies(string $databaseId, ?array $queries = null): \Appwrite\Models\BackupPolicyList
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -407,6 +428,10 @@ class Mysql extends Service
      */
     public function createBackupPolicy(string $databaseId, string $policyId, string $name, string $schedule, int $retention, ?string $type = null, ?bool $enabled = null): \Appwrite\Models\BackupPolicy
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -454,6 +479,14 @@ class Mysql extends Service
      */
     public function getBackupPolicy(string $databaseId, string $policyId): \Appwrite\Models\BackupPolicy
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($policyId === '') {
+            throw new AppwriteException('Missing required parameter: "policyId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{policyId}'],
             [$databaseId, $policyId],
@@ -489,6 +522,14 @@ class Mysql extends Service
      */
     public function updateBackupPolicy(string $databaseId, string $policyId, ?string $name = null, ?string $schedule = null, ?int $retention = null, ?bool $enabled = null): \Appwrite\Models\BackupPolicy
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($policyId === '') {
+            throw new AppwriteException('Missing required parameter: "policyId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{policyId}'],
             [$databaseId, $policyId],
@@ -533,6 +574,14 @@ class Mysql extends Service
      */
     public function deleteBackupPolicy(string $databaseId, string $policyId): string
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($policyId === '') {
+            throw new AppwriteException('Missing required parameter: "policyId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{policyId}'],
             [$databaseId, $policyId],
@@ -565,6 +614,10 @@ class Mysql extends Service
      */
     public function updateBackupStorage(string $databaseId, string $provider, string $bucket, string $accessKey, string $secretKey, ?string $region = null, ?string $prefix = null, ?string $endpoint = null): \Appwrite\Models\DedicatedDatabaseBackupStorage
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -617,6 +670,14 @@ class Mysql extends Service
      */
     public function getBackup(string $databaseId, string $backupId): \Appwrite\Models\DedicatedDatabaseBackup
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($backupId === '') {
+            throw new AppwriteException('Missing required parameter: "backupId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{backupId}'],
             [$databaseId, $backupId],
@@ -653,6 +714,14 @@ class Mysql extends Service
      */
     public function deleteBackup(string $databaseId, string $backupId): string
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($backupId === '') {
+            throw new AppwriteException('Missing required parameter: "backupId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{backupId}'],
             [$databaseId, $backupId],
@@ -684,6 +753,10 @@ class Mysql extends Service
      */
     public function listBranches(string $databaseId): \Appwrite\Models\DedicatedDatabaseBranchList
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -722,6 +795,10 @@ class Mysql extends Service
      */
     public function createBranch(string $databaseId, ?string $branchId = null, ?int $ttl = null): \Appwrite\Models\DedicatedDatabase
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -767,6 +844,14 @@ class Mysql extends Service
      */
     public function deleteBranch(string $databaseId, string $branchId): \Appwrite\Models\DedicatedDatabase
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($branchId === '') {
+            throw new AppwriteException('Missing required parameter: "branchId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{branchId}'],
             [$databaseId, $branchId],
@@ -806,6 +891,10 @@ class Mysql extends Service
      */
     public function updateCredentials(string $databaseId): \Appwrite\Models\DedicatedDatabaseOperation
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -844,11 +933,19 @@ class Mysql extends Service
      * without a per-query cloud round-trip. The statement type must be on the
      * database's configured allow-list. Use bound parameters for any
      * user-supplied values — the API does not interpolate raw strings.
+     * Long-running statements (for example CREATE INDEX) can outlive the HTTP
+     * request: if the request ends before a result is returned, check the
+     * database before retrying, and prefer a direct connection for work that may
+     * take minutes.
      *
      * @throws AppwriteException
      */
     public function createExecution(string $databaseId, string $sql, ?array $bindings = null, ?int $timeoutSeconds = null): \Appwrite\Models\DedicatedDatabaseExecution
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -895,6 +992,10 @@ class Mysql extends Service
      */
     public function createFailover(string $databaseId, ?string $targetReplicaId = null): \Appwrite\Models\DedicatedDatabase
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -933,6 +1034,10 @@ class Mysql extends Service
      */
     public function updateMaintenance(string $databaseId, string $day, int $hourUtc): \Appwrite\Models\DedicatedDatabase
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -973,6 +1078,10 @@ class Mysql extends Service
      */
     public function createMigration(string $databaseId, string $targetType, ?string $specification = null): \Appwrite\Models\DedicatedDatabase
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -1013,6 +1122,10 @@ class Mysql extends Service
      */
     public function listOperations(string $databaseId, ?string $status = null, ?int $limit = null, ?int $offset = null): \Appwrite\Models\DedicatedDatabaseOperationList
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -1060,6 +1173,10 @@ class Mysql extends Service
      */
     public function getPitr(string $databaseId): \Appwrite\Models\DedicatedDatabasePITRWindows
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -1095,6 +1212,10 @@ class Mysql extends Service
      */
     public function getPooler(string $databaseId): \Appwrite\Models\DedicatedDatabasePooler
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -1130,6 +1251,10 @@ class Mysql extends Service
      */
     public function updatePooler(string $databaseId, ?string $mode = null, ?int $maxConnections = null, ?int $defaultPoolSize = null, ?bool $readWriteSplitting = null, ?string $poolerCpuRequest = null, ?string $poolerCpuLimit = null, ?string $poolerMemoryRequest = null, ?string $poolerMemoryLimit = null): \Appwrite\Models\DedicatedDatabasePooler
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -1174,6 +1299,10 @@ class Mysql extends Service
      */
     public function getReplicas(string $databaseId): \Appwrite\Models\DedicatedDatabaseReplicas
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -1209,6 +1338,10 @@ class Mysql extends Service
      */
     public function listRestorations(string $databaseId, ?string $status = null, ?string $type = null, ?int $limit = null, ?int $offset = null): \Appwrite\Models\DedicatedDatabaseRestorationList
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -1258,10 +1391,25 @@ class Mysql extends Service
      * an ISO 8601 datetime. PITR requires the database to have PITR enabled and
      * is only available for enterprise databases.
      *
+     * By default the backup is replayed over the database it was taken from. Pass
+     * `restoreMode` as `clone` to recover it onto a second workload beside this
+     * database instead: this database keeps serving its own data while the clone
+     * is filled, and the switch happens as soon as the clone is ready, on the
+     * endpoint and credentials it already had. Pass `autoPromote` as false to
+     * hold the clone until you promote it yourself. Pass `restoreMode` as `copy`
+     * to recover onto a separate database with its own endpoint, either one you
+     * name with `targetDatabaseId` or one provisioned as a copy of this
+     * database's engine, version, specification and replicas. Neither mode is
+     * available for a point-in-time recovery or an incremental backup.
+     *
      * @throws AppwriteException
      */
-    public function createRestoration(string $databaseId, ?string $type = null, ?string $backupId = null, ?string $targetDatabaseId = null, ?string $targetTime = null): \Appwrite\Models\DedicatedDatabaseRestoration
+    public function createRestoration(string $databaseId, ?string $type = null, ?string $backupId = null, ?string $targetDatabaseId = null, ?string $targetTime = null, ?string $restoreMode = null, ?string $targetName = null, ?bool $autoPromote = null): \Appwrite\Models\DedicatedDatabaseRestoration
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -1277,6 +1425,12 @@ class Mysql extends Service
         $apiParams['backupId'] = $backupId;
         $apiParams['targetDatabaseId'] = $targetDatabaseId;
         $apiParams['targetTime'] = $targetTime;
+        $apiParams['restoreMode'] = $restoreMode;
+        $apiParams['targetName'] = $targetName;
+
+        if (!is_null($autoPromote)) {
+            $apiParams['autoPromote'] = $autoPromote;
+        }
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -1305,6 +1459,14 @@ class Mysql extends Service
      */
     public function getRestoration(string $databaseId, string $restorationId): \Appwrite\Models\DedicatedDatabaseRestoration
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($restorationId === '') {
+            throw new AppwriteException('Missing required parameter: "restorationId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{restorationId}'],
             [$databaseId, $restorationId],
@@ -1334,6 +1496,55 @@ class Mysql extends Service
     }
 
     /**
+     * Switch the database over to the clone a restoration recovered. The database
+     * keeps
+     * its endpoint and credentials; clients reconnect once. Writes made after the
+     * recovery point are discarded, and the side being replaced is retained
+     * briefly so
+     * the switch can be reversed.
+     *
+     * @throws AppwriteException
+     */
+    public function promoteRestoration(string $databaseId, string $restorationId): \Appwrite\Models\DedicatedDatabaseRestoration
+    {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($restorationId === '') {
+            throw new AppwriteException('Missing required parameter: "restorationId"');
+        }
+
+        $apiPath = str_replace(
+            ['{databaseId}', '{restorationId}'],
+            [$databaseId, $restorationId],
+            '/mysql/{databaseId}/restorations/{restorationId}/promotions'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['restorationId'] = $restorationId;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\DedicatedDatabaseRestoration::from($response);
+    }
+
+    /**
      * Get real-time health and status information for a dedicated database.
      * Returns health status, readiness, uptime, connection info, replica status,
      * and volume information.
@@ -1342,6 +1553,10 @@ class Mysql extends Service
      */
     public function getStatus(string $databaseId): \Appwrite\Models\DatabaseStatus
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -1377,6 +1592,10 @@ class Mysql extends Service
      */
     public function createUpgrade(string $databaseId, string $targetVersion): \Appwrite\Models\DedicatedDatabase
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
