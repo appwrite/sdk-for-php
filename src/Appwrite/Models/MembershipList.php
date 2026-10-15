@@ -32,11 +32,8 @@ readonly class MembershipList
     {
         $data += [
             'total' => 0,
+            'memberships' => [],
         ];
-
-        if (!array_key_exists('memberships', $data)) {
-            throw new \InvalidArgumentException('Missing required field "memberships" for ' . static::class . '.');
-        }
 
         return new static(
             total: $data['total'],

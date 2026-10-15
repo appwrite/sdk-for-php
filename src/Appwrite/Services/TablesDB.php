@@ -110,8 +110,8 @@ class TablesDB extends Service
 
     /**
      * List the dedicated database specifications available on the current plan.
-     * Each specification reports its resource limits, pricing, and whether it is
-     * enabled for the organization.
+     * Each specification reports its resource limits, its own prices and overage
+     * rates, and whether it is enabled for the organization.
      *
      * @throws AppwriteException
      */
@@ -229,6 +229,10 @@ class TablesDB extends Service
      */
     public function getTransaction(string $transactionId): \Appwrite\Models\Transaction
     {
+        if ($transactionId === '') {
+            throw new AppwriteException('Missing required parameter: "transactionId"');
+        }
+
         $apiPath = str_replace(
             ['{transactionId}'],
             [$transactionId],
@@ -263,6 +267,10 @@ class TablesDB extends Service
      */
     public function updateTransaction(string $transactionId, ?bool $commit = null, ?bool $rollback = null): \Appwrite\Models\Transaction
     {
+        if ($transactionId === '') {
+            throw new AppwriteException('Missing required parameter: "transactionId"');
+        }
+
         $apiPath = str_replace(
             ['{transactionId}'],
             [$transactionId],
@@ -306,6 +314,10 @@ class TablesDB extends Service
      */
     public function deleteTransaction(string $transactionId): string
     {
+        if ($transactionId === '') {
+            throw new AppwriteException('Missing required parameter: "transactionId"');
+        }
+
         $apiPath = str_replace(
             ['{transactionId}'],
             [$transactionId],
@@ -318,6 +330,7 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_DELETE,
@@ -334,6 +347,10 @@ class TablesDB extends Service
      */
     public function createOperations(string $transactionId, ?array $operations = null): \Appwrite\Models\Transaction
     {
+        if ($transactionId === '') {
+            throw new AppwriteException('Missing required parameter: "transactionId"');
+        }
+
         $apiPath = str_replace(
             ['{transactionId}'],
             [$transactionId],
@@ -374,6 +391,10 @@ class TablesDB extends Service
      */
     public function get(string $databaseId): \Appwrite\Models\Database
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -408,6 +429,10 @@ class TablesDB extends Service
      */
     public function update(string $databaseId, ?string $name = null, ?bool $enabled = null, ?string $specification = null, ?int $replicas = null, ?string $syncMode = null): \Appwrite\Models\Database
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -455,6 +480,10 @@ class TablesDB extends Service
      */
     public function delete(string $databaseId): string
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -467,6 +496,7 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_DELETE,
@@ -491,6 +521,10 @@ class TablesDB extends Service
      */
     public function createFailover(string $databaseId, ?string $targetReplicaId = null): \Appwrite\Models\DedicatedDatabase
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -528,6 +562,10 @@ class TablesDB extends Service
      */
     public function listMigrations(string $databaseId): \Appwrite\Models\DatabaseMigrationList
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -557,13 +595,22 @@ class TablesDB extends Service
 
     /**
      * Start migrating a serverless TablesDB database onto a dedicated MySQL
-     * compute. Data is copied to the target while the source stays live, with a
-     * brief read-only window during cutover.
+     * compute. Data is copied to the target while the source stays live. Reads
+     * continue throughout. Row writes are held for up to a few seconds while
+     * routing switches to the dedicated compute; a write the switch has not
+     * absorbed within that hold is refused with `database_migration_cutover` and
+     * can be retried. Schema changes (tables, columns, indexes) are refused from
+     * creation until the cutover completes, and resume once the migration is
+     * `soaking`.
      *
      * @throws AppwriteException
      */
     public function createMigration(string $databaseId, string $specification, ?bool $autoCutover = null): \Appwrite\Models\DatabaseMigration
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -604,6 +651,14 @@ class TablesDB extends Service
      */
     public function getMigration(string $databaseId, string $migrationId): \Appwrite\Models\DatabaseMigration
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($migrationId === '') {
+            throw new AppwriteException('Missing required parameter: "migrationId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{migrationId}'],
             [$databaseId, $migrationId],
@@ -640,6 +695,14 @@ class TablesDB extends Service
      */
     public function deleteMigration(string $databaseId, string $migrationId): string
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($migrationId === '') {
+            throw new AppwriteException('Missing required parameter: "migrationId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{migrationId}'],
             [$databaseId, $migrationId],
@@ -667,14 +730,25 @@ class TablesDB extends Service
      * Cut a verified TablesDB migration over to its dedicated compute. Only
      * applies to a migration created with `autoCutover` disabled, which waits at
      * `ready_to_cutover` until this is called. The routing flip happens shortly
-     * after this returns, with a brief read-only window. One call buys one
-     * attempt: a cutover that fails a check returns the migration to `verifying`
-     * and parks it again, so call this once more to retry.
+     * after this returns. Reads are unaffected; row writes are held for up to a
+     * few seconds while it lands, and a write the flip has not absorbed within
+     * that hold is refused with `database_migration_cutover` and can be retried.
+     * One call buys one attempt: a cutover that fails a check returns the
+     * migration to `verifying` and parks it again, so call this once more to
+     * retry.
      *
      * @throws AppwriteException
      */
     public function createCutover(string $databaseId, string $migrationId): \Appwrite\Models\DatabaseMigration
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($migrationId === '') {
+            throw new AppwriteException('Missing required parameter: "migrationId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{migrationId}'],
             [$databaseId, $migrationId],
@@ -714,6 +788,10 @@ class TablesDB extends Service
      */
     public function listOperations(string $databaseId, ?string $status = null, ?int $limit = null, ?int $offset = null): \Appwrite\Models\DedicatedDatabaseOperationList
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -761,6 +839,10 @@ class TablesDB extends Service
      */
     public function getReplicas(string $databaseId): \Appwrite\Models\DedicatedDatabaseReplicas
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -797,6 +879,10 @@ class TablesDB extends Service
      */
     public function getStatus(string $databaseId): \Appwrite\Models\DatabaseStatus
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -832,6 +918,10 @@ class TablesDB extends Service
      */
     public function listTables(string $databaseId, ?array $queries = null, ?string $search = null, ?bool $total = null): \Appwrite\Models\TableList
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -881,6 +971,10 @@ class TablesDB extends Service
      */
     public function createTable(string $databaseId, string $tableId, string $name, ?array $permissions = null, ?bool $rowSecurity = null, ?bool $enabled = null, ?array $columns = null, ?array $indexes = null): \Appwrite\Models\Table
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}'],
             [$databaseId],
@@ -936,6 +1030,14 @@ class TablesDB extends Service
      */
     public function getTable(string $databaseId, string $tableId): \Appwrite\Models\Table
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
             [$databaseId, $tableId],
@@ -971,6 +1073,14 @@ class TablesDB extends Service
      */
     public function updateTable(string $databaseId, string $tableId, ?string $name = null, ?array $permissions = null, ?bool $rowSecurity = null, ?bool $enabled = null, ?bool $purge = null): \Appwrite\Models\Table
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
             [$databaseId, $tableId],
@@ -1025,6 +1135,14 @@ class TablesDB extends Service
      */
     public function deleteTable(string $databaseId, string $tableId): string
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
             [$databaseId, $tableId],
@@ -1038,6 +1156,7 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_DELETE,
@@ -1054,6 +1173,14 @@ class TablesDB extends Service
      */
     public function listColumns(string $databaseId, string $tableId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\ColumnList
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
             [$databaseId, $tableId],
@@ -1098,6 +1225,14 @@ class TablesDB extends Service
      */
     public function createBigIntColumn(string $databaseId, string $tableId, string $key, bool $required, ?int $min = null, ?int $max = null, ?int $xdefault = null, ?bool $xarray = null): \Appwrite\Models\ColumnBigint
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
             [$databaseId, $tableId],
@@ -1144,6 +1279,18 @@ class TablesDB extends Service
      */
     public function updateBigIntColumn(string $databaseId, string $tableId, string $key, bool $required, ?int $xdefault, ?int $min = null, ?int $max = null, ?string $newKey = null): \Appwrite\Models\ColumnBigint
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
+        if ($key === '') {
+            throw new AppwriteException('Missing required parameter: "key"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
             [$databaseId, $tableId, $key],
@@ -1186,6 +1333,14 @@ class TablesDB extends Service
      */
     public function createBooleanColumn(string $databaseId, string $tableId, string $key, bool $required, ?bool $xdefault = null, ?bool $xarray = null): \Appwrite\Models\ColumnBoolean
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
             [$databaseId, $tableId],
@@ -1230,6 +1385,18 @@ class TablesDB extends Service
      */
     public function updateBooleanColumn(string $databaseId, string $tableId, string $key, bool $required, ?bool $xdefault, ?string $newKey = null): \Appwrite\Models\ColumnBoolean
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
+        if ($key === '') {
+            throw new AppwriteException('Missing required parameter: "key"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
             [$databaseId, $tableId, $key],
@@ -1270,6 +1437,14 @@ class TablesDB extends Service
      */
     public function createDatetimeColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): \Appwrite\Models\ColumnDatetime
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
             [$databaseId, $tableId],
@@ -1314,6 +1489,18 @@ class TablesDB extends Service
      */
     public function updateDatetimeColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\ColumnDatetime
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
+        if ($key === '') {
+            throw new AppwriteException('Missing required parameter: "key"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
             [$databaseId, $tableId, $key],
@@ -1354,6 +1541,14 @@ class TablesDB extends Service
      */
     public function createEmailColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): \Appwrite\Models\ColumnEmail
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
             [$databaseId, $tableId],
@@ -1398,6 +1593,18 @@ class TablesDB extends Service
      */
     public function updateEmailColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\ColumnEmail
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
+        if ($key === '') {
+            throw new AppwriteException('Missing required parameter: "key"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
             [$databaseId, $tableId, $key],
@@ -1439,6 +1646,14 @@ class TablesDB extends Service
      */
     public function createEnumColumn(string $databaseId, string $tableId, string $key, array $elements, bool $required, ?string $xdefault = null, ?bool $xarray = null): \Appwrite\Models\ColumnEnum
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
             [$databaseId, $tableId],
@@ -1484,6 +1699,18 @@ class TablesDB extends Service
      */
     public function updateEnumColumn(string $databaseId, string $tableId, string $key, array $elements, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\ColumnEnum
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
+        if ($key === '') {
+            throw new AppwriteException('Missing required parameter: "key"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
             [$databaseId, $tableId, $key],
@@ -1526,6 +1753,14 @@ class TablesDB extends Service
      */
     public function createFloatColumn(string $databaseId, string $tableId, string $key, bool $required, ?float $min = null, ?float $max = null, ?float $xdefault = null, ?bool $xarray = null): \Appwrite\Models\ColumnFloat
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
             [$databaseId, $tableId],
@@ -1572,6 +1807,18 @@ class TablesDB extends Service
      */
     public function updateFloatColumn(string $databaseId, string $tableId, string $key, bool $required, ?float $xdefault, ?float $min = null, ?float $max = null, ?string $newKey = null): \Appwrite\Models\ColumnFloat
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
+        if ($key === '') {
+            throw new AppwriteException('Missing required parameter: "key"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
             [$databaseId, $tableId, $key],
@@ -1615,6 +1862,14 @@ class TablesDB extends Service
      */
     public function createIntegerColumn(string $databaseId, string $tableId, string $key, bool $required, ?int $min = null, ?int $max = null, ?int $xdefault = null, ?bool $xarray = null): \Appwrite\Models\ColumnInteger
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
             [$databaseId, $tableId],
@@ -1661,6 +1916,18 @@ class TablesDB extends Service
      */
     public function updateIntegerColumn(string $databaseId, string $tableId, string $key, bool $required, ?int $xdefault, ?int $min = null, ?int $max = null, ?string $newKey = null): \Appwrite\Models\ColumnInteger
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
+        if ($key === '') {
+            throw new AppwriteException('Missing required parameter: "key"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
             [$databaseId, $tableId, $key],
@@ -1703,6 +1970,14 @@ class TablesDB extends Service
      */
     public function createIpColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): \Appwrite\Models\ColumnIp
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
             [$databaseId, $tableId],
@@ -1747,6 +2022,18 @@ class TablesDB extends Service
      */
     public function updateIpColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\ColumnIp
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
+        if ($key === '') {
+            throw new AppwriteException('Missing required parameter: "key"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
             [$databaseId, $tableId, $key],
@@ -1787,6 +2074,14 @@ class TablesDB extends Service
      */
     public function createLineColumn(string $databaseId, string $tableId, string $key, bool $required, ?array $xdefault = null): \Appwrite\Models\ColumnLine
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
             [$databaseId, $tableId],
@@ -1827,6 +2122,18 @@ class TablesDB extends Service
      */
     public function updateLineColumn(string $databaseId, string $tableId, string $key, bool $required, ?array $xdefault = null, ?string $newKey = null): \Appwrite\Models\ColumnLine
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
+        if ($key === '') {
+            throw new AppwriteException('Missing required parameter: "key"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
             [$databaseId, $tableId, $key],
@@ -1867,6 +2174,14 @@ class TablesDB extends Service
      */
     public function createLongtextColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): \Appwrite\Models\ColumnLongtext
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
             [$databaseId, $tableId],
@@ -1915,6 +2230,18 @@ class TablesDB extends Service
      */
     public function updateLongtextColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\ColumnLongtext
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
+        if ($key === '') {
+            throw new AppwriteException('Missing required parameter: "key"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
             [$databaseId, $tableId, $key],
@@ -1955,6 +2282,14 @@ class TablesDB extends Service
      */
     public function createMediumtextColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): \Appwrite\Models\ColumnMediumtext
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
             [$databaseId, $tableId],
@@ -2003,6 +2338,18 @@ class TablesDB extends Service
      */
     public function updateMediumtextColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\ColumnMediumtext
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
+        if ($key === '') {
+            throw new AppwriteException('Missing required parameter: "key"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
             [$databaseId, $tableId, $key],
@@ -2043,6 +2390,14 @@ class TablesDB extends Service
      */
     public function createPointColumn(string $databaseId, string $tableId, string $key, bool $required, ?array $xdefault = null): \Appwrite\Models\ColumnPoint
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
             [$databaseId, $tableId],
@@ -2083,6 +2438,18 @@ class TablesDB extends Service
      */
     public function updatePointColumn(string $databaseId, string $tableId, string $key, bool $required, ?array $xdefault = null, ?string $newKey = null): \Appwrite\Models\ColumnPoint
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
+        if ($key === '') {
+            throw new AppwriteException('Missing required parameter: "key"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
             [$databaseId, $tableId, $key],
@@ -2123,6 +2490,14 @@ class TablesDB extends Service
      */
     public function createPolygonColumn(string $databaseId, string $tableId, string $key, bool $required, ?array $xdefault = null): \Appwrite\Models\ColumnPolygon
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
             [$databaseId, $tableId],
@@ -2163,6 +2538,18 @@ class TablesDB extends Service
      */
     public function updatePolygonColumn(string $databaseId, string $tableId, string $key, bool $required, ?array $xdefault = null, ?string $newKey = null): \Appwrite\Models\ColumnPolygon
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
+        if ($key === '') {
+            throw new AppwriteException('Missing required parameter: "key"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
             [$databaseId, $tableId, $key],
@@ -2204,6 +2591,14 @@ class TablesDB extends Service
      */
     public function createRelationshipColumn(string $databaseId, string $tableId, string $relatedTableId, RelationshipType $type, ?bool $twoWay = null, ?string $key = null, ?string $twoWayKey = null, ?RelationMutate $onDelete = null): \Appwrite\Models\ColumnRelationship
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
             [$databaseId, $tableId],
@@ -2246,6 +2641,58 @@ class TablesDB extends Service
     }
 
     /**
+     * Update relationship column. [Learn more about relationship
+     * columns](https://appwrite.io/docs/databases-relationships#relationship-columns).
+     *
+     * @throws AppwriteException
+     */
+    public function updateRelationshipColumn(string $databaseId, string $tableId, string $key, ?RelationMutate $onDelete = null, ?string $newKey = null): \Appwrite\Models\ColumnRelationship
+    {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
+        if ($key === '') {
+            throw new AppwriteException('Missing required parameter: "key"');
+        }
+
+        $apiPath = str_replace(
+            ['{databaseId}', '{tableId}', '{key}'],
+            [$databaseId, $tableId, $key],
+            '/tablesdb/{databaseId}/tables/{tableId}/columns/relationship/{key}'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['tableId'] = $tableId;
+        $apiParams['key'] = $key;
+        $apiParams['onDelete'] = $onDelete;
+        $apiParams['newKey'] = $newKey;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\ColumnRelationship::from($response);
+    }
+
+    /**
      * Create a string column.
      *
      * @throws AppwriteException
@@ -2255,6 +2702,14 @@ class TablesDB extends Service
      */
     public function createStringColumn(string $databaseId, string $tableId, string $key, int $size, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): \Appwrite\Models\ColumnString
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
             [$databaseId, $tableId],
@@ -2307,6 +2762,18 @@ class TablesDB extends Service
      */
     public function updateStringColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?int $size = null, ?string $newKey = null): \Appwrite\Models\ColumnString
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
+        if ($key === '') {
+            throw new AppwriteException('Missing required parameter: "key"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
             [$databaseId, $tableId, $key],
@@ -2348,6 +2815,14 @@ class TablesDB extends Service
      */
     public function createTextColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): \Appwrite\Models\ColumnText
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
             [$databaseId, $tableId],
@@ -2396,6 +2871,18 @@ class TablesDB extends Service
      */
     public function updateTextColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\ColumnText
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
+        if ($key === '') {
+            throw new AppwriteException('Missing required parameter: "key"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
             [$databaseId, $tableId, $key],
@@ -2436,6 +2923,14 @@ class TablesDB extends Service
      */
     public function createUrlColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): \Appwrite\Models\ColumnUrl
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
             [$databaseId, $tableId],
@@ -2480,6 +2975,18 @@ class TablesDB extends Service
      */
     public function updateUrlColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\ColumnUrl
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
+        if ($key === '') {
+            throw new AppwriteException('Missing required parameter: "key"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
             [$databaseId, $tableId, $key],
@@ -2520,6 +3027,14 @@ class TablesDB extends Service
      */
     public function createVarcharColumn(string $databaseId, string $tableId, string $key, int $size, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): \Appwrite\Models\ColumnVarchar
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
             [$databaseId, $tableId],
@@ -2569,6 +3084,18 @@ class TablesDB extends Service
      */
     public function updateVarcharColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?int $size = null, ?string $newKey = null): \Appwrite\Models\ColumnVarchar
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
+        if ($key === '') {
+            throw new AppwriteException('Missing required parameter: "key"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
             [$databaseId, $tableId, $key],
@@ -2608,8 +3135,20 @@ class TablesDB extends Service
      *
      * @throws AppwriteException
      */
-    public function getColumn(string $databaseId, string $tableId, string $key): \Appwrite\Models\ColumnBoolean|\Appwrite\Models\ColumnInteger|\Appwrite\Models\ColumnFloat|\Appwrite\Models\ColumnEmail|\Appwrite\Models\ColumnEnum|\Appwrite\Models\ColumnUrl|\Appwrite\Models\ColumnIp|\Appwrite\Models\ColumnDatetime|\Appwrite\Models\ColumnRelationship|\Appwrite\Models\ColumnString
+    public function getColumn(string $databaseId, string $tableId, string $key): \Appwrite\Models\ColumnBoolean|\Appwrite\Models\ColumnBigint|\Appwrite\Models\ColumnInteger|\Appwrite\Models\ColumnFloat|\Appwrite\Models\ColumnEmail|\Appwrite\Models\ColumnEnum|\Appwrite\Models\ColumnUrl|\Appwrite\Models\ColumnIp|\Appwrite\Models\ColumnDatetime|\Appwrite\Models\ColumnRelationship|\Appwrite\Models\ColumnPoint|\Appwrite\Models\ColumnLine|\Appwrite\Models\ColumnPolygon|\Appwrite\Models\ColumnVarchar|\Appwrite\Models\ColumnText|\Appwrite\Models\ColumnMediumtext|\Appwrite\Models\ColumnLongtext|\Appwrite\Models\ColumnString
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
+        if ($key === '') {
+            throw new AppwriteException('Missing required parameter: "key"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
             [$databaseId, $tableId, $key],
@@ -2656,6 +3195,10 @@ class TablesDB extends Service
             return \Appwrite\Models\ColumnBoolean::from($response);
         }
 
+        if (($response['type'] ?? null) === 'bigint') {
+            return \Appwrite\Models\ColumnBigint::from($response);
+        }
+
         if (($response['type'] ?? null) === 'integer') {
             return \Appwrite\Models\ColumnInteger::from($response);
         }
@@ -2672,6 +3215,34 @@ class TablesDB extends Service
             return \Appwrite\Models\ColumnRelationship::from($response);
         }
 
+        if (($response['type'] ?? null) === 'point') {
+            return \Appwrite\Models\ColumnPoint::from($response);
+        }
+
+        if (($response['type'] ?? null) === 'linestring') {
+            return \Appwrite\Models\ColumnLine::from($response);
+        }
+
+        if (($response['type'] ?? null) === 'polygon') {
+            return \Appwrite\Models\ColumnPolygon::from($response);
+        }
+
+        if (($response['type'] ?? null) === 'varchar') {
+            return \Appwrite\Models\ColumnVarchar::from($response);
+        }
+
+        if (($response['type'] ?? null) === 'text') {
+            return \Appwrite\Models\ColumnText::from($response);
+        }
+
+        if (($response['type'] ?? null) === 'mediumtext') {
+            return \Appwrite\Models\ColumnMediumtext::from($response);
+        }
+
+        if (($response['type'] ?? null) === 'longtext') {
+            return \Appwrite\Models\ColumnLongtext::from($response);
+        }
+
         if (($response['type'] ?? null) === 'string') {
             return \Appwrite\Models\ColumnString::from($response);
         }
@@ -2686,6 +3257,18 @@ class TablesDB extends Service
      */
     public function deleteColumn(string $databaseId, string $tableId, string $key): string
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
+        if ($key === '') {
+            throw new AppwriteException('Missing required parameter: "key"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
             [$databaseId, $tableId, $key],
@@ -2700,6 +3283,7 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_DELETE,
@@ -2710,52 +3294,20 @@ class TablesDB extends Service
     }
 
     /**
-     * Update relationship column. [Learn more about relationship
-     * columns](https://appwrite.io/docs/databases-relationships#relationship-columns).
-     *
-     * @throws AppwriteException
-     */
-    public function updateRelationshipColumn(string $databaseId, string $tableId, string $key, ?RelationMutate $onDelete = null, ?string $newKey = null): \Appwrite\Models\ColumnRelationship
-    {
-        $apiPath = str_replace(
-            ['{databaseId}', '{tableId}', '{key}'],
-            [$databaseId, $tableId, $key],
-            '/tablesdb/{databaseId}/tables/{tableId}/columns/{key}/relationship'
-        );
-
-        $apiParams = [];
-        $apiParams['databaseId'] = $databaseId;
-        $apiParams['tableId'] = $tableId;
-        $apiParams['key'] = $key;
-        $apiParams['onDelete'] = $onDelete;
-        $apiParams['newKey'] = $newKey;
-
-        $apiHeaders = [];
-        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
-        $apiHeaders['content-type'] = 'application/json';
-        $apiHeaders['accept'] = 'application/json';
-
-        $response = $this->client->call(
-            Client::METHOD_PATCH,
-            $apiPath,
-            $apiHeaders,
-            $apiParams
-        );
-
-        if (!is_array($response)) {
-            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
-        }
-
-        return \Appwrite\Models\ColumnRelationship::from($response);
-    }
-
-    /**
      * List indexes on the table.
      *
      * @throws AppwriteException
      */
     public function listIndexes(string $databaseId, string $tableId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\ColumnIndexList
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
             [$databaseId, $tableId],
@@ -2795,12 +3347,22 @@ class TablesDB extends Service
     /**
      * Creates an index on the columns listed. Your index should include all the
      * columns you will query in a single request.
-     * Type can be `key`, `fulltext`, or `unique`.
+     * Type can be `key`, `fulltext`, `unique`, `spatial`, or `trigram`. `trigram`
+     * is only available on PostgreSQL and lets `contains`, `startsWith`, and
+     * `endsWith` queries on string columns use an index.
      *
      * @throws AppwriteException
      */
     public function createIndex(string $databaseId, string $tableId, string $key, TablesDBIndexType $type, array $columns, ?array $orders = null, ?array $lengths = null): \Appwrite\Models\ColumnIndex
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
             [$databaseId, $tableId],
@@ -2848,6 +3410,18 @@ class TablesDB extends Service
      */
     public function getIndex(string $databaseId, string $tableId, string $key): \Appwrite\Models\ColumnIndex
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
+        if ($key === '') {
+            throw new AppwriteException('Missing required parameter: "key"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
             [$databaseId, $tableId, $key],
@@ -2884,6 +3458,18 @@ class TablesDB extends Service
      */
     public function deleteIndex(string $databaseId, string $tableId, string $key): string
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
+        if ($key === '') {
+            throw new AppwriteException('Missing required parameter: "key"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
             [$databaseId, $tableId, $key],
@@ -2898,6 +3484,7 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_DELETE,
@@ -2915,6 +3502,14 @@ class TablesDB extends Service
      */
     public function listRows(string $databaseId, string $tableId, ?array $queries = null, ?string $transactionId = null, ?bool $total = null, ?int $ttl = null): \Appwrite\Models\RowList
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
             [$databaseId, $tableId],
@@ -2969,6 +3564,14 @@ class TablesDB extends Service
      */
     public function createRow(string $databaseId, string $tableId, string $rowId, array $data, ?array $permissions = null, ?string $transactionId = null): \Appwrite\Models\Row
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
             [$databaseId, $tableId],
@@ -3012,6 +3615,14 @@ class TablesDB extends Service
      */
     public function createRows(string $databaseId, string $tableId, array $rows, ?string $transactionId = null): \Appwrite\Models\RowList
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
             [$databaseId, $tableId],
@@ -3053,6 +3664,14 @@ class TablesDB extends Service
      */
     public function upsertRows(string $databaseId, string $tableId, array $rows, ?string $transactionId = null): \Appwrite\Models\RowList
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
             [$databaseId, $tableId],
@@ -3092,6 +3711,14 @@ class TablesDB extends Service
      */
     public function updateRows(string $databaseId, string $tableId, ?array $data = null, ?array $queries = null, ?string $transactionId = null): \Appwrite\Models\RowList
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
             [$databaseId, $tableId],
@@ -3138,6 +3765,14 @@ class TablesDB extends Service
      */
     public function deleteRows(string $databaseId, string $tableId, ?array $queries = null, ?string $transactionId = null): \Appwrite\Models\RowList
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
             [$databaseId, $tableId],
@@ -3183,6 +3818,18 @@ class TablesDB extends Service
      */
     public function getRow(string $databaseId, string $tableId, string $rowId, ?array $queries = null, ?string $transactionId = null): \Appwrite\Models\Row
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
+        if ($rowId === '') {
+            throw new AppwriteException('Missing required parameter: "rowId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{rowId}'],
             [$databaseId, $tableId, $rowId],
@@ -3230,6 +3877,18 @@ class TablesDB extends Service
      */
     public function upsertRow(string $databaseId, string $tableId, string $rowId, ?array $data = null, ?array $permissions = null, ?string $transactionId = null): \Appwrite\Models\Row
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
+        if ($rowId === '') {
+            throw new AppwriteException('Missing required parameter: "rowId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{rowId}'],
             [$databaseId, $tableId, $rowId],
@@ -3274,6 +3933,18 @@ class TablesDB extends Service
      */
     public function updateRow(string $databaseId, string $tableId, string $rowId, ?array $data = null, ?array $permissions = null, ?string $transactionId = null): \Appwrite\Models\Row
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
+        if ($rowId === '') {
+            throw new AppwriteException('Missing required parameter: "rowId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{rowId}'],
             [$databaseId, $tableId, $rowId],
@@ -3317,6 +3988,18 @@ class TablesDB extends Service
      */
     public function deleteRow(string $databaseId, string $tableId, string $rowId, ?string $transactionId = null): string
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
+        if ($rowId === '') {
+            throw new AppwriteException('Missing required parameter: "rowId"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{rowId}'],
             [$databaseId, $tableId, $rowId],
@@ -3335,6 +4018,7 @@ class TablesDB extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_DELETE,
@@ -3351,6 +4035,22 @@ class TablesDB extends Service
      */
     public function decrementRowColumn(string $databaseId, string $tableId, string $rowId, string $column, ?float $value = null, ?float $min = null, ?string $transactionId = null): \Appwrite\Models\Row
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
+        if ($rowId === '') {
+            throw new AppwriteException('Missing required parameter: "rowId"');
+        }
+
+        if ($column === '') {
+            throw new AppwriteException('Missing required parameter: "column"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{rowId}', '{column}'],
             [$databaseId, $tableId, $rowId, $column],
@@ -3395,6 +4095,22 @@ class TablesDB extends Service
      */
     public function incrementRowColumn(string $databaseId, string $tableId, string $rowId, string $column, ?float $value = null, ?float $max = null, ?string $transactionId = null): \Appwrite\Models\Row
     {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
+        if ($rowId === '') {
+            throw new AppwriteException('Missing required parameter: "rowId"');
+        }
+
+        if ($column === '') {
+            throw new AppwriteException('Missing required parameter: "column"');
+        }
+
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{rowId}', '{column}'],
             [$databaseId, $tableId, $rowId, $column],

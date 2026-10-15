@@ -18,6 +18,14 @@ class Tokens extends Service
      */
     public function list(string $bucketId, string $fileId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\ResourceTokenList
     {
+        if ($bucketId === '') {
+            throw new AppwriteException('Missing required parameter: "bucketId"');
+        }
+
+        if ($fileId === '') {
+            throw new AppwriteException('Missing required parameter: "fileId"');
+        }
+
         $apiPath = str_replace(
             ['{bucketId}', '{fileId}'],
             [$bucketId, $fileId],
@@ -62,6 +70,14 @@ class Tokens extends Service
      */
     public function createFileToken(string $bucketId, string $fileId, ?string $expire = null): \Appwrite\Models\ResourceToken
     {
+        if ($bucketId === '') {
+            throw new AppwriteException('Missing required parameter: "bucketId"');
+        }
+
+        if ($fileId === '') {
+            throw new AppwriteException('Missing required parameter: "fileId"');
+        }
+
         $apiPath = str_replace(
             ['{bucketId}', '{fileId}'],
             [$bucketId, $fileId],
@@ -99,6 +115,10 @@ class Tokens extends Service
      */
     public function get(string $tokenId): \Appwrite\Models\ResourceToken
     {
+        if ($tokenId === '') {
+            throw new AppwriteException('Missing required parameter: "tokenId"');
+        }
+
         $apiPath = str_replace(
             ['{tokenId}'],
             [$tokenId],
@@ -134,6 +154,10 @@ class Tokens extends Service
      */
     public function update(string $tokenId, ?string $expire = null): \Appwrite\Models\ResourceToken
     {
+        if ($tokenId === '') {
+            throw new AppwriteException('Missing required parameter: "tokenId"');
+        }
+
         $apiPath = str_replace(
             ['{tokenId}'],
             [$tokenId],
@@ -170,6 +194,10 @@ class Tokens extends Service
      */
     public function delete(string $tokenId): string
     {
+        if ($tokenId === '') {
+            throw new AppwriteException('Missing required parameter: "tokenId"');
+        }
+
         $apiPath = str_replace(
             ['{tokenId}'],
             [$tokenId],
@@ -182,6 +210,7 @@ class Tokens extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_DELETE,

@@ -268,6 +268,10 @@ class Sites extends Service
      */
     public function get(string $siteId): \Appwrite\Models\Site
     {
+        if ($siteId === '') {
+            throw new AppwriteException('Missing required parameter: "siteId"');
+        }
+
         $apiPath = str_replace(
             ['{siteId}'],
             [$siteId],
@@ -302,6 +306,10 @@ class Sites extends Service
      */
     public function update(string $siteId, string $name, Framework $framework, ?bool $enabled = null, ?bool $logging = null, ?int $timeout = null, ?string $installCommand = null, ?string $buildCommand = null, ?string $startCommand = null, ?string $outputDirectory = null, ?BuildRuntime $buildRuntime = null, ?Adapter $adapter = null, ?string $fallbackFile = null, ?string $installationId = null, ?string $providerRepositoryId = null, ?string $providerBranch = null, ?bool $providerSilentMode = null, ?string $providerRootDirectory = null, ?array $providerBranches = null, ?array $providerPaths = null, ?string $buildSpecification = null, ?string $runtimeSpecification = null, ?int $deploymentRetention = null, ?array $scopes = null): \Appwrite\Models\Site
     {
+        if ($siteId === '') {
+            throw new AppwriteException('Missing required parameter: "siteId"');
+        }
+
         $apiPath = str_replace(
             ['{siteId}'],
             [$siteId],
@@ -356,10 +364,7 @@ class Sites extends Service
         if (!is_null($installationId)) {
             $apiParams['installationId'] = $installationId;
         }
-
-        if (!is_null($providerRepositoryId)) {
-            $apiParams['providerRepositoryId'] = $providerRepositoryId;
-        }
+        $apiParams['providerRepositoryId'] = $providerRepositoryId;
 
         if (!is_null($providerBranch)) {
             $apiParams['providerBranch'] = $providerBranch;
@@ -411,6 +416,10 @@ class Sites extends Service
      */
     public function delete(string $siteId): string
     {
+        if ($siteId === '') {
+            throw new AppwriteException('Missing required parameter: "siteId"');
+        }
+
         $apiPath = str_replace(
             ['{siteId}'],
             [$siteId],
@@ -423,6 +432,7 @@ class Sites extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_DELETE,
@@ -440,6 +450,10 @@ class Sites extends Service
      */
     public function updateSiteDeployment(string $siteId, string $deploymentId): \Appwrite\Models\Site
     {
+        if ($siteId === '') {
+            throw new AppwriteException('Missing required parameter: "siteId"');
+        }
+
         $apiPath = str_replace(
             ['{siteId}'],
             [$siteId],
@@ -477,6 +491,10 @@ class Sites extends Service
      */
     public function listDeployments(string $siteId, ?array $queries = null, ?string $search = null, ?bool $total = null): \Appwrite\Models\DeploymentList
     {
+        if ($siteId === '') {
+            throw new AppwriteException('Missing required parameter: "siteId"');
+        }
+
         $apiPath = str_replace(
             ['{siteId}'],
             [$siteId],
@@ -525,6 +543,10 @@ class Sites extends Service
      */
     public function createDeployment(string $siteId, InputFile $code, ?string $installCommand = null, ?string $buildCommand = null, ?string $outputDirectory = null, ?bool $activate = null, ?callable $onProgress = null): \Appwrite\Models\Deployment
     {
+        if ($siteId === '') {
+            throw new AppwriteException('Missing required parameter: "siteId"');
+        }
+
         $apiPath = str_replace(
             ['{siteId}'],
             [$siteId],
@@ -555,9 +577,6 @@ class Sites extends Service
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'multipart/form-data';
         $apiHeaders['accept'] = 'application/json';
-        $size = 0;
-        $mimeType = null;
-        $postedName = null;
         if (empty($code->getPath() ?? null)) {
             $size = strlen($code->getData());
             $mimeType = $code->getMimeType();
@@ -711,6 +730,10 @@ class Sites extends Service
      */
     public function createDuplicateDeployment(string $siteId, string $deploymentId): \Appwrite\Models\Deployment
     {
+        if ($siteId === '') {
+            throw new AppwriteException('Missing required parameter: "siteId"');
+        }
+
         $apiPath = str_replace(
             ['{siteId}'],
             [$siteId],
@@ -751,6 +774,10 @@ class Sites extends Service
      */
     public function createTemplateDeployment(string $siteId, string $repository, string $owner, string $rootDirectory, TemplateReferenceType $type, string $reference, ?bool $activate = null): \Appwrite\Models\Deployment
     {
+        if ($siteId === '') {
+            throw new AppwriteException('Missing required parameter: "siteId"');
+        }
+
         $apiPath = str_replace(
             ['{siteId}'],
             [$siteId],
@@ -797,6 +824,10 @@ class Sites extends Service
      */
     public function createVcsDeployment(string $siteId, VCSReferenceType $type, string $reference, ?bool $activate = null): \Appwrite\Models\Deployment
     {
+        if ($siteId === '') {
+            throw new AppwriteException('Missing required parameter: "siteId"');
+        }
+
         $apiPath = str_replace(
             ['{siteId}'],
             [$siteId],
@@ -838,6 +869,14 @@ class Sites extends Service
      */
     public function getDeployment(string $siteId, string $deploymentId): \Appwrite\Models\Deployment
     {
+        if ($siteId === '') {
+            throw new AppwriteException('Missing required parameter: "siteId"');
+        }
+
+        if ($deploymentId === '') {
+            throw new AppwriteException('Missing required parameter: "deploymentId"');
+        }
+
         $apiPath = str_replace(
             ['{siteId}', '{deploymentId}'],
             [$siteId, $deploymentId],
@@ -873,6 +912,14 @@ class Sites extends Service
      */
     public function deleteDeployment(string $siteId, string $deploymentId): string
     {
+        if ($siteId === '') {
+            throw new AppwriteException('Missing required parameter: "siteId"');
+        }
+
+        if ($deploymentId === '') {
+            throw new AppwriteException('Missing required parameter: "deploymentId"');
+        }
+
         $apiPath = str_replace(
             ['{siteId}', '{deploymentId}'],
             [$siteId, $deploymentId],
@@ -886,6 +933,7 @@ class Sites extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_DELETE,
@@ -904,6 +952,14 @@ class Sites extends Service
      */
     public function getDeploymentDownload(string $siteId, string $deploymentId, ?DeploymentDownloadType $type = null, ?string $token = null): string
     {
+        if ($siteId === '') {
+            throw new AppwriteException('Missing required parameter: "siteId"');
+        }
+
+        if ($deploymentId === '') {
+            throw new AppwriteException('Missing required parameter: "deploymentId"');
+        }
+
         $apiPath = str_replace(
             ['{siteId}', '{deploymentId}'],
             [$siteId, $deploymentId],
@@ -945,6 +1001,14 @@ class Sites extends Service
      */
     public function updateDeploymentStatus(string $siteId, string $deploymentId): \Appwrite\Models\Deployment
     {
+        if ($siteId === '') {
+            throw new AppwriteException('Missing required parameter: "siteId"');
+        }
+
+        if ($deploymentId === '') {
+            throw new AppwriteException('Missing required parameter: "deploymentId"');
+        }
+
         $apiPath = str_replace(
             ['{siteId}', '{deploymentId}'],
             [$siteId, $deploymentId],
@@ -982,6 +1046,10 @@ class Sites extends Service
      */
     public function listLogs(string $siteId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\ExecutionList
     {
+        if ($siteId === '') {
+            throw new AppwriteException('Missing required parameter: "siteId"');
+        }
+
         $apiPath = str_replace(
             ['{siteId}'],
             [$siteId],
@@ -1024,6 +1092,14 @@ class Sites extends Service
      */
     public function getLog(string $siteId, string $logId): \Appwrite\Models\Execution
     {
+        if ($siteId === '') {
+            throw new AppwriteException('Missing required parameter: "siteId"');
+        }
+
+        if ($logId === '') {
+            throw new AppwriteException('Missing required parameter: "logId"');
+        }
+
         $apiPath = str_replace(
             ['{siteId}', '{logId}'],
             [$siteId, $logId],
@@ -1059,6 +1135,14 @@ class Sites extends Service
      */
     public function deleteLog(string $siteId, string $logId): string
     {
+        if ($siteId === '') {
+            throw new AppwriteException('Missing required parameter: "siteId"');
+        }
+
+        if ($logId === '') {
+            throw new AppwriteException('Missing required parameter: "logId"');
+        }
+
         $apiPath = str_replace(
             ['{siteId}', '{logId}'],
             [$siteId, $logId],
@@ -1089,6 +1173,10 @@ class Sites extends Service
      */
     public function listVariables(string $siteId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\VariableList
     {
+        if ($siteId === '') {
+            throw new AppwriteException('Missing required parameter: "siteId"');
+        }
+
         $apiPath = str_replace(
             ['{siteId}'],
             [$siteId],
@@ -1132,6 +1220,10 @@ class Sites extends Service
      */
     public function createVariable(string $siteId, string $variableId, string $key, string $value, ?bool $secret = null): \Appwrite\Models\Variable
     {
+        if ($siteId === '') {
+            throw new AppwriteException('Missing required parameter: "siteId"');
+        }
+
         $apiPath = str_replace(
             ['{siteId}'],
             [$siteId],
@@ -1174,6 +1266,14 @@ class Sites extends Service
      */
     public function getVariable(string $siteId, string $variableId): \Appwrite\Models\Variable
     {
+        if ($siteId === '') {
+            throw new AppwriteException('Missing required parameter: "siteId"');
+        }
+
+        if ($variableId === '') {
+            throw new AppwriteException('Missing required parameter: "variableId"');
+        }
+
         $apiPath = str_replace(
             ['{siteId}', '{variableId}'],
             [$siteId, $variableId],
@@ -1209,6 +1309,14 @@ class Sites extends Service
      */
     public function updateVariable(string $siteId, string $variableId, ?string $key = null, ?string $value = null, ?bool $secret = null): \Appwrite\Models\Variable
     {
+        if ($siteId === '') {
+            throw new AppwriteException('Missing required parameter: "siteId"');
+        }
+
+        if ($variableId === '') {
+            throw new AppwriteException('Missing required parameter: "variableId"');
+        }
+
         $apiPath = str_replace(
             ['{siteId}', '{variableId}'],
             [$siteId, $variableId],
@@ -1248,6 +1356,14 @@ class Sites extends Service
      */
     public function deleteVariable(string $siteId, string $variableId): string
     {
+        if ($siteId === '') {
+            throw new AppwriteException('Missing required parameter: "siteId"');
+        }
+
+        if ($variableId === '') {
+            throw new AppwriteException('Missing required parameter: "variableId"');
+        }
+
         $apiPath = str_replace(
             ['{siteId}', '{variableId}'],
             [$siteId, $variableId],
@@ -1261,6 +1377,7 @@ class Sites extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_DELETE,

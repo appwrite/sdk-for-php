@@ -14,15 +14,15 @@ $tablesDB = new TablesDB($client);
 $result = $tablesDB->createOperations(
     transactionId: '<TRANSACTION_ID>',
     operations: [
-	    {
-	        "action": "create",
-	        "databaseId": "<DATABASE_ID>",
-	        "tableId": "<TABLE_ID>",
-	        "rowId": "<ROW_ID>",
-	        "data": {
-	            "name": "Walter O'Brien"
-	        }
-	    }
-	] // optional
+        [
+            'action' => 'create',
+            'databaseId' => '<DATABASE_ID>',
+            'tableId' => '<TABLE_ID>',
+            'rowId' => '<ROW_ID>',
+            'data' => [
+                'name' => 'Walter O\'Brien'
+            ]
+        ]
+    ] // optional
 );
 ```

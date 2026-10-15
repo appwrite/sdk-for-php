@@ -65,7 +65,7 @@ class Oauth2 extends Service
      *
      * @throws AppwriteException
      */
-    public function authorize(?string $clientId = null, ?string $redirectUri = null, ?string $responseType = null, ?string $scope = null, ?string $state = null, ?string $nonce = null, ?string $codeChallenge = null, ?string $codeChallengeMethod = null, ?string $prompt = null, ?int $maxAge = null, ?string $authorizationDetails = null, ?string $resource = null, ?string $audience = null, ?string $requestUri = null): \Appwrite\Models\Oauth2Authorize
+    public function authorize(?string $clientId = null, ?string $redirectUri = null, ?string $responseType = null, ?string $scope = null, ?string $state = null, ?string $nonce = null, ?string $codeChallenge = null, ?string $codeChallengeMethod = null, ?string $prompt = null, ?int $maxAge = null, ?string $authorizationDetails = null, ?array $resource = null, ?string $audience = null, ?string $requestUri = null): \Appwrite\Models\Oauth2Authorize
     {
         $apiPath = str_replace(
             ['{project_id}'],
@@ -157,7 +157,7 @@ class Oauth2 extends Service
      *
      * @throws AppwriteException
      */
-    public function authorizePost(?string $clientId = null, ?string $redirectUri = null, ?string $responseType = null, ?string $scope = null, ?string $state = null, ?string $nonce = null, ?string $codeChallenge = null, ?string $codeChallengeMethod = null, ?string $prompt = null, ?int $maxAge = null, ?string $authorizationDetails = null, ?string $resource = null, ?string $audience = null, ?string $requestUri = null): \Appwrite\Models\Oauth2Authorize
+    public function authorizePost(?string $clientId = null, ?string $redirectUri = null, ?string $responseType = null, ?string $scope = null, ?string $state = null, ?string $nonce = null, ?string $codeChallenge = null, ?string $codeChallengeMethod = null, ?string $prompt = null, ?int $maxAge = null, ?string $authorizationDetails = null, ?array $resource = null, ?string $audience = null, ?string $requestUri = null): \Appwrite\Models\Oauth2Authorize
     {
         $apiPath = str_replace(
             ['{project_id}'],
@@ -244,7 +244,7 @@ class Oauth2 extends Service
      *
      * @throws AppwriteException
      */
-    public function createDeviceAuthorization(?string $clientId = null, ?string $scope = null, ?string $authorizationDetails = null, ?string $resource = null, ?string $audience = null): \Appwrite\Models\Oauth2DeviceAuthorization
+    public function createDeviceAuthorization(?string $clientId = null, ?string $scope = null, ?string $authorizationDetails = null, ?array $resource = null, ?string $audience = null): \Appwrite\Models\Oauth2DeviceAuthorization
     {
         $apiPath = str_replace(
             ['{project_id}'],
@@ -338,6 +338,10 @@ class Oauth2 extends Service
      */
     public function getGrant(string $grantId): \Appwrite\Models\Oauth2Grant
     {
+        if ($grantId === '') {
+            throw new AppwriteException('Missing required parameter: "grantId"');
+        }
+
         $apiPath = str_replace(
             ['{project_id}', '{grant_id}'],
             [$this->client->getConfig('project'), $grantId],
@@ -465,7 +469,7 @@ class Oauth2 extends Service
      *
      * @throws AppwriteException
      */
-    public function createPAR(string $clientId, string $redirectUri, string $responseType, ?string $scope = null, ?string $state = null, ?string $nonce = null, ?string $codeChallenge = null, ?string $codeChallengeMethod = null, ?string $prompt = null, ?int $maxAge = null, ?string $authorizationDetails = null, ?string $resource = null, ?string $audience = null): \Appwrite\Models\Oauth2PAR
+    public function createPAR(string $clientId, string $redirectUri, string $responseType, ?string $scope = null, ?string $state = null, ?string $nonce = null, ?string $codeChallenge = null, ?string $codeChallengeMethod = null, ?string $prompt = null, ?int $maxAge = null, ?string $authorizationDetails = null, ?array $resource = null, ?string $audience = null): \Appwrite\Models\Oauth2PAR
     {
         $apiPath = str_replace(
             ['{project_id}'],
@@ -662,7 +666,7 @@ class Oauth2 extends Service
      *
      * @throws AppwriteException
      */
-    public function createToken(string $grantType, ?string $code = null, ?string $refreshToken = null, ?string $deviceCode = null, ?string $clientId = null, ?string $clientSecret = null, ?string $codeVerifier = null, ?string $redirectUri = null, ?string $resource = null, ?string $audience = null): \Appwrite\Models\Oauth2Token
+    public function createToken(string $grantType, ?string $code = null, ?string $refreshToken = null, ?string $deviceCode = null, ?string $clientId = null, ?string $clientSecret = null, ?string $codeVerifier = null, ?string $redirectUri = null, ?array $resource = null, ?string $audience = null): \Appwrite\Models\Oauth2Token
     {
         $apiPath = str_replace(
             ['{project_id}'],

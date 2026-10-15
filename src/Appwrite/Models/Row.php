@@ -49,11 +49,8 @@ readonly class Row
             '$databaseId' => "",
             '$createdAt' => "",
             '$updatedAt' => "",
+            '$permissions' => [],
         ];
-
-        if (!array_key_exists('$permissions', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$permissions" for ' . static::class . '.');
-        }
 
         $additionalProperties = static::extractAdditionalPropertiesFromFields(
             $data,

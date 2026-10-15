@@ -32,11 +32,8 @@ readonly class CountryList
     {
         $data += [
             'total' => 0,
+            'countries' => [],
         ];
-
-        if (!array_key_exists('countries', $data)) {
-            throw new \InvalidArgumentException('Missing required field "countries" for ' . static::class . '.');
-        }
 
         return new static(
             total: $data['total'],

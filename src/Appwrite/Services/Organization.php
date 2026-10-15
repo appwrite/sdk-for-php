@@ -98,6 +98,7 @@ class Organization extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_DELETE,
@@ -198,6 +199,10 @@ class Organization extends Service
      */
     public function getInstallation(string $installationId): \Appwrite\Models\AppInstallation
     {
+        if ($installationId === '') {
+            throw new AppwriteException('Missing required parameter: "installationId"');
+        }
+
         $apiPath = str_replace(
             ['{installationId}'],
             [$installationId],
@@ -235,6 +240,10 @@ class Organization extends Service
      */
     public function updateInstallation(string $installationId, ?string $authorizationDetails = null): \Appwrite\Models\AppInstallation
     {
+        if ($installationId === '') {
+            throw new AppwriteException('Missing required parameter: "installationId"');
+        }
+
         $apiPath = str_replace(
             ['{installationId}'],
             [$installationId],
@@ -273,6 +282,10 @@ class Organization extends Service
      */
     public function deleteInstallation(string $installationId): string
     {
+        if ($installationId === '') {
+            throw new AppwriteException('Missing required parameter: "installationId"');
+        }
+
         $apiPath = str_replace(
             ['{installationId}'],
             [$installationId],
@@ -286,188 +299,6 @@ class Organization extends Service
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
         $apiHeaders['accept'] = 'application/json';
-
-        return $this->client->call(
-            Client::METHOD_DELETE,
-            $apiPath,
-            $apiHeaders,
-            $apiParams
-        );
-    }
-
-    /**
-     * Get a list of all API keys from the current organization.
-     *
-     * @throws AppwriteException
-     */
-    public function listKeys(?array $queries = null, ?bool $total = null): \Appwrite\Models\KeyList
-    {
-        $apiPath = str_replace(
-            [],
-            [],
-            '/organization/keys'
-        );
-
-        $apiParams = [];
-
-        if (!is_null($queries)) {
-            $apiParams['queries'] = $queries;
-        }
-
-        if (!is_null($total)) {
-            $apiParams['total'] = $total;
-        }
-
-        $apiHeaders = [];
-        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
-        $apiHeaders['accept'] = 'application/json';
-
-        $response = $this->client->call(
-            Client::METHOD_GET,
-            $apiPath,
-            $apiHeaders,
-            $apiParams
-        );
-
-        if (!is_array($response)) {
-            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
-        }
-
-        return \Appwrite\Models\KeyList::from($response);
-    }
-
-    /**
-     * Create a new organization API key.
-     *
-     * @throws AppwriteException
-     */
-    public function createKey(string $keyId, string $name, array $scopes, ?string $expire = null): \Appwrite\Models\Key
-    {
-        $apiPath = str_replace(
-            [],
-            [],
-            '/organization/keys'
-        );
-
-        $apiParams = [];
-        $apiParams['keyId'] = $keyId;
-        $apiParams['name'] = $name;
-        $apiParams['scopes'] = $scopes;
-        $apiParams['expire'] = $expire;
-
-        $apiHeaders = [];
-        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
-        $apiHeaders['content-type'] = 'application/json';
-        $apiHeaders['accept'] = 'application/json';
-
-        $response = $this->client->call(
-            Client::METHOD_POST,
-            $apiPath,
-            $apiHeaders,
-            $apiParams
-        );
-
-        if (!is_array($response)) {
-            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
-        }
-
-        return \Appwrite\Models\Key::from($response);
-    }
-
-    /**
-     * Get a key by its unique ID. This endpoint returns details about a specific
-     * API key in your organization including its scopes.
-     *
-     * @throws AppwriteException
-     */
-    public function getKey(string $keyId): \Appwrite\Models\Key
-    {
-        $apiPath = str_replace(
-            ['{keyId}'],
-            [$keyId],
-            '/organization/keys/{keyId}'
-        );
-
-        $apiParams = [];
-        $apiParams['keyId'] = $keyId;
-
-        $apiHeaders = [];
-        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
-        $apiHeaders['accept'] = 'application/json';
-
-        $response = $this->client->call(
-            Client::METHOD_GET,
-            $apiPath,
-            $apiHeaders,
-            $apiParams
-        );
-
-        if (!is_array($response)) {
-            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
-        }
-
-        return \Appwrite\Models\Key::from($response);
-    }
-
-    /**
-     * Update a key by its unique ID. Use this endpoint to update the name,
-     * scopes, or expiration time of an API key.
-     *
-     * @throws AppwriteException
-     */
-    public function updateKey(string $keyId, string $name, array $scopes, ?string $expire = null): \Appwrite\Models\Key
-    {
-        $apiPath = str_replace(
-            ['{keyId}'],
-            [$keyId],
-            '/organization/keys/{keyId}'
-        );
-
-        $apiParams = [];
-        $apiParams['keyId'] = $keyId;
-        $apiParams['name'] = $name;
-        $apiParams['scopes'] = $scopes;
-        $apiParams['expire'] = $expire;
-
-        $apiHeaders = [];
-        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
-        $apiHeaders['content-type'] = 'application/json';
-        $apiHeaders['accept'] = 'application/json';
-
-        $response = $this->client->call(
-            Client::METHOD_PUT,
-            $apiPath,
-            $apiHeaders,
-            $apiParams
-        );
-
-        if (!is_array($response)) {
-            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
-        }
-
-        return \Appwrite\Models\Key::from($response);
-    }
-
-    /**
-     * Delete a key by its unique ID. Once deleted, the key can no longer be used
-     * to authenticate API calls.
-     *
-     * @throws AppwriteException
-     */
-    public function deleteKey(string $keyId): string
-    {
-        $apiPath = str_replace(
-            ['{keyId}'],
-            [$keyId],
-            '/organization/keys/{keyId}'
-        );
-
-        $apiParams = [];
-        $apiParams['keyId'] = $keyId;
-
-        $apiHeaders = [];
-        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
-        $apiHeaders['content-type'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_DELETE,
@@ -586,6 +417,10 @@ class Organization extends Service
      */
     public function getMembership(string $membershipId): \Appwrite\Models\Membership
     {
+        if ($membershipId === '') {
+            throw new AppwriteException('Missing required parameter: "membershipId"');
+        }
+
         $apiPath = str_replace(
             ['{membershipId}'],
             [$membershipId],
@@ -620,6 +455,10 @@ class Organization extends Service
      */
     public function updateMembership(string $membershipId, array $roles): \Appwrite\Models\Membership
     {
+        if ($membershipId === '') {
+            throw new AppwriteException('Missing required parameter: "membershipId"');
+        }
+
         $apiPath = str_replace(
             ['{membershipId}'],
             [$membershipId],
@@ -658,6 +497,10 @@ class Organization extends Service
      */
     public function deleteMembership(string $membershipId): string
     {
+        if ($membershipId === '') {
+            throw new AppwriteException('Missing required parameter: "membershipId"');
+        }
+
         $apiPath = str_replace(
             ['{membershipId}'],
             [$membershipId],
@@ -670,6 +513,7 @@ class Organization extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_DELETE,
@@ -772,6 +616,10 @@ class Organization extends Service
      */
     public function getProject(string $projectId): \Appwrite\Models\Project
     {
+        if ($projectId === '') {
+            throw new AppwriteException('Missing required parameter: "projectId"');
+        }
+
         $apiPath = str_replace(
             ['{projectId}'],
             [$projectId],
@@ -783,6 +631,7 @@ class Organization extends Service
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = 'application/json';
 
         $response = $this->client->call(
             Client::METHOD_GET,
@@ -805,6 +654,10 @@ class Organization extends Service
      */
     public function updateProject(string $projectId, string $name): \Appwrite\Models\Project
     {
+        if ($projectId === '') {
+            throw new AppwriteException('Missing required parameter: "projectId"');
+        }
+
         $apiPath = str_replace(
             ['{projectId}'],
             [$projectId],
@@ -841,6 +694,10 @@ class Organization extends Service
      */
     public function deleteProject(string $projectId): string
     {
+        if ($projectId === '') {
+            throw new AppwriteException('Missing required parameter: "projectId"');
+        }
+
         $apiPath = str_replace(
             ['{projectId}'],
             [$projectId],
@@ -853,6 +710,7 @@ class Organization extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_DELETE,

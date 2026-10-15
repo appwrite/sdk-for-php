@@ -32,11 +32,8 @@ readonly class TableList
     {
         $data += [
             'total' => 0,
+            'tables' => [],
         ];
-
-        if (!array_key_exists('tables', $data)) {
-            throw new \InvalidArgumentException('Missing required field "tables" for ' . static::class . '.');
-        }
 
         return new static(
             total: $data['total'],

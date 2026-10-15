@@ -27,19 +27,19 @@ readonly class Organization
      * @param string $billingPlanId organization's billing plan id.
      * @param BillingPlan $billingPlanDetails organization's billing plan.
      * @param string $billingEmail billing email set for the organization.
-     * @param string $billingStartDate billing cycle start date.
-     * @param string $billingCurrentInvoiceDate current invoice cycle start date.
-     * @param string $billingNextInvoiceDate next invoice cycle start date.
-     * @param int $billingTrialDays number of trial days.
-     * @param string $billingAggregationId current active aggregation id.
-     * @param string $billingInvoiceId current active aggregation id.
-     * @param string $paymentMethodId default payment method.
      * @param string $status team status.
      * @param bool $markedForDeletion marked for deletion
      * @param string $platform product with which the organization is associated (appwrite or imagine)
      * @param array $projects selected projects
      * @param int|null $billingBudget project budget limit. null when no budget is set.
+     * @param string|null $billingStartDate billing cycle start date.
+     * @param string|null $billingCurrentInvoiceDate current invoice cycle start date.
+     * @param string|null $billingNextInvoiceDate next invoice cycle start date.
      * @param string|null $billingTrialStartDate start date of trial.
+     * @param int|null $billingTrialDays number of trial days.
+     * @param string|null $billingAggregationId current active aggregation id.
+     * @param string|null $billingInvoiceId current active aggregation id.
+     * @param string|null $paymentMethodId default payment method.
      * @param string|null $billingAddressId default payment method.
      * @param string|null $backupPaymentMethodId backup payment method.
      * @param string|null $remarks remarks on team status.
@@ -64,19 +64,19 @@ readonly class Organization
         public string $billingPlanId,
         public BillingPlan $billingPlanDetails,
         public string $billingEmail,
-        public string $billingStartDate,
-        public string $billingCurrentInvoiceDate,
-        public string $billingNextInvoiceDate,
-        public int $billingTrialDays,
-        public string $billingAggregationId,
-        public string $billingInvoiceId,
-        public string $paymentMethodId,
         public string $status,
         public bool $markedForDeletion,
         public string $platform,
         public array $projects,
         public ?int $billingBudget = null,
+        public ?string $billingStartDate = null,
+        public ?string $billingCurrentInvoiceDate = null,
+        public ?string $billingNextInvoiceDate = null,
         public ?string $billingTrialStartDate = null,
+        public ?int $billingTrialDays = null,
+        public ?string $billingAggregationId = null,
+        public ?string $billingInvoiceId = null,
+        public ?string $paymentMethodId = null,
         public ?string $billingAddressId = null,
         public ?string $backupPaymentMethodId = null,
         public ?string $remarks = null,
@@ -118,27 +118,6 @@ readonly class Organization
         if (!array_key_exists('billingPlanDetails', $data)) {
             throw new \InvalidArgumentException('Missing required field "billingPlanDetails" for ' . static::class . '.');
         }
-        if (!array_key_exists('billingStartDate', $data)) {
-            throw new \InvalidArgumentException('Missing required field "billingStartDate" for ' . static::class . '.');
-        }
-        if (!array_key_exists('billingCurrentInvoiceDate', $data)) {
-            throw new \InvalidArgumentException('Missing required field "billingCurrentInvoiceDate" for ' . static::class . '.');
-        }
-        if (!array_key_exists('billingNextInvoiceDate', $data)) {
-            throw new \InvalidArgumentException('Missing required field "billingNextInvoiceDate" for ' . static::class . '.');
-        }
-        if (!array_key_exists('billingTrialDays', $data)) {
-            throw new \InvalidArgumentException('Missing required field "billingTrialDays" for ' . static::class . '.');
-        }
-        if (!array_key_exists('billingAggregationId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "billingAggregationId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('billingInvoiceId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "billingInvoiceId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('paymentMethodId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "paymentMethodId" for ' . static::class . '.');
-        }
 
         return new static(
             id: $data['$id'],
@@ -152,19 +131,19 @@ readonly class Organization
             billingPlanId: $data['billingPlanId'],
             billingPlanDetails: static::hydrateTypedValue(BillingPlan::class, $data['billingPlanDetails']),
             billingEmail: $data['billingEmail'],
-            billingStartDate: $data['billingStartDate'],
-            billingCurrentInvoiceDate: $data['billingCurrentInvoiceDate'],
-            billingNextInvoiceDate: $data['billingNextInvoiceDate'],
-            billingTrialDays: $data['billingTrialDays'],
-            billingAggregationId: $data['billingAggregationId'],
-            billingInvoiceId: $data['billingInvoiceId'],
-            paymentMethodId: $data['paymentMethodId'],
             status: $data['status'],
             markedForDeletion: $data['markedForDeletion'],
             platform: $data['platform'],
             projects: $data['projects'],
             billingBudget: $data['billingBudget'] ?? null,
+            billingStartDate: $data['billingStartDate'] ?? null,
+            billingCurrentInvoiceDate: $data['billingCurrentInvoiceDate'] ?? null,
+            billingNextInvoiceDate: $data['billingNextInvoiceDate'] ?? null,
             billingTrialStartDate: $data['billingTrialStartDate'] ?? null,
+            billingTrialDays: $data['billingTrialDays'] ?? null,
+            billingAggregationId: $data['billingAggregationId'] ?? null,
+            billingInvoiceId: $data['billingInvoiceId'] ?? null,
+            paymentMethodId: $data['paymentMethodId'] ?? null,
             billingAddressId: $data['billingAddressId'] ?? null,
             backupPaymentMethodId: $data['backupPaymentMethodId'] ?? null,
             remarks: $data['remarks'] ?? null,

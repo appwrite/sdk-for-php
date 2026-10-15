@@ -32,11 +32,8 @@ readonly class DatabaseList
     {
         $data += [
             'total' => 0,
+            'databases' => [],
         ];
-
-        if (!array_key_exists('databases', $data)) {
-            throw new \InvalidArgumentException('Missing required field "databases" for ' . static::class . '.');
-        }
 
         return new static(
             total: $data['total'],

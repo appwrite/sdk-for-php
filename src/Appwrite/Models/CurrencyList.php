@@ -32,11 +32,8 @@ readonly class CurrencyList
     {
         $data += [
             'total' => 0,
+            'currencies' => [],
         ];
-
-        if (!array_key_exists('currencies', $data)) {
-            throw new \InvalidArgumentException('Missing required field "currencies" for ' . static::class . '.');
-        }
 
         return new static(
             total: $data['total'],

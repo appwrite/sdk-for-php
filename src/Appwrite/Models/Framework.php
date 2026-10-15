@@ -40,14 +40,9 @@ readonly class Framework
             'key' => "",
             'name' => "",
             'buildRuntime' => "",
+            'runtimes' => [],
+            'adapters' => [],
         ];
-
-        if (!array_key_exists('runtimes', $data)) {
-            throw new \InvalidArgumentException('Missing required field "runtimes" for ' . static::class . '.');
-        }
-        if (!array_key_exists('adapters', $data)) {
-            throw new \InvalidArgumentException('Missing required field "adapters" for ' . static::class . '.');
-        }
 
         return new static(
             key: $data['key'],

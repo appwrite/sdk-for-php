@@ -36,21 +36,13 @@ readonly class PasskeyChallenge
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('$id', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
-        }
-        if (!array_key_exists('$createdAt', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$createdAt" for ' . static::class . '.');
-        }
-        if (!array_key_exists('passkeyId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "passkeyId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('expire', $data)) {
-            throw new \InvalidArgumentException('Missing required field "expire" for ' . static::class . '.');
-        }
-        if (!array_key_exists('publicKey', $data)) {
-            throw new \InvalidArgumentException('Missing required field "publicKey" for ' . static::class . '.');
-        }
+        $data += [
+            '$id' => "",
+            '$createdAt' => "",
+            'passkeyId' => "",
+            'expire' => "",
+            'publicKey' => [],
+        ];
 
         return new static(
             id: $data['$id'],

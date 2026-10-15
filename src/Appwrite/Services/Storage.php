@@ -138,6 +138,10 @@ class Storage extends Service
      */
     public function getBucket(string $bucketId): \Appwrite\Models\Bucket
     {
+        if ($bucketId === '') {
+            throw new AppwriteException('Missing required parameter: "bucketId"');
+        }
+
         $apiPath = str_replace(
             ['{bucketId}'],
             [$bucketId],
@@ -172,6 +176,10 @@ class Storage extends Service
      */
     public function updateBucket(string $bucketId, string $name, ?array $permissions = null, ?bool $fileSecurity = null, ?bool $enabled = null, ?int $maximumFileSize = null, ?array $allowedFileExtensions = null, ?Compression $compression = null, ?bool $encryption = null, ?bool $antivirus = null, ?bool $transformations = null): \Appwrite\Models\Bucket
     {
+        if ($bucketId === '') {
+            throw new AppwriteException('Missing required parameter: "bucketId"');
+        }
+
         $apiPath = str_replace(
             ['{bucketId}'],
             [$bucketId],
@@ -190,22 +198,13 @@ class Storage extends Service
         if (!is_null($enabled)) {
             $apiParams['enabled'] = $enabled;
         }
-
-        if (!is_null($maximumFileSize)) {
-            $apiParams['maximumFileSize'] = $maximumFileSize;
-        }
+        $apiParams['maximumFileSize'] = $maximumFileSize;
 
         if (!is_null($allowedFileExtensions)) {
             $apiParams['allowedFileExtensions'] = $allowedFileExtensions;
         }
-
-        if (!is_null($compression)) {
-            $apiParams['compression'] = $compression;
-        }
-
-        if (!is_null($encryption)) {
-            $apiParams['encryption'] = $encryption;
-        }
+        $apiParams['compression'] = $compression;
+        $apiParams['encryption'] = $encryption;
 
         if (!is_null($antivirus)) {
             $apiParams['antivirus'] = $antivirus;
@@ -241,6 +240,10 @@ class Storage extends Service
      */
     public function deleteBucket(string $bucketId): string
     {
+        if ($bucketId === '') {
+            throw new AppwriteException('Missing required parameter: "bucketId"');
+        }
+
         $apiPath = str_replace(
             ['{bucketId}'],
             [$bucketId],
@@ -253,6 +256,7 @@ class Storage extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_DELETE,
@@ -270,6 +274,10 @@ class Storage extends Service
      */
     public function listFiles(string $bucketId, ?array $queries = null, ?string $search = null, ?bool $total = null): \Appwrite\Models\FileList
     {
+        if ($bucketId === '') {
+            throw new AppwriteException('Missing required parameter: "bucketId"');
+        }
+
         $apiPath = str_replace(
             ['{bucketId}'],
             [$bucketId],
@@ -332,6 +340,10 @@ class Storage extends Service
      */
     public function createFile(string $bucketId, string $fileId, InputFile $file, ?array $permissions = null, ?string $folder = null, ?callable $onProgress = null): \Appwrite\Models\File
     {
+        if ($bucketId === '') {
+            throw new AppwriteException('Missing required parameter: "bucketId"');
+        }
+
         $apiPath = str_replace(
             ['{bucketId}'],
             [$bucketId],
@@ -355,9 +367,6 @@ class Storage extends Service
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'multipart/form-data';
         $apiHeaders['accept'] = 'application/json';
-        $size = 0;
-        $mimeType = null;
-        $postedName = null;
         if (empty($file->getPath() ?? null)) {
             $size = strlen($file->getData());
             $mimeType = $file->getMimeType();
@@ -521,6 +530,14 @@ class Storage extends Service
      */
     public function getFile(string $bucketId, string $fileId): \Appwrite\Models\File
     {
+        if ($bucketId === '') {
+            throw new AppwriteException('Missing required parameter: "bucketId"');
+        }
+
+        if ($fileId === '') {
+            throw new AppwriteException('Missing required parameter: "fileId"');
+        }
+
         $apiPath = str_replace(
             ['{bucketId}', '{fileId}'],
             [$bucketId, $fileId],
@@ -557,6 +574,14 @@ class Storage extends Service
      */
     public function updateFile(string $bucketId, string $fileId, ?string $name = null, ?array $permissions = null): \Appwrite\Models\File
     {
+        if ($bucketId === '') {
+            throw new AppwriteException('Missing required parameter: "bucketId"');
+        }
+
+        if ($fileId === '') {
+            throw new AppwriteException('Missing required parameter: "fileId"');
+        }
+
         $apiPath = str_replace(
             ['{bucketId}', '{fileId}'],
             [$bucketId, $fileId],
@@ -599,6 +624,14 @@ class Storage extends Service
      */
     public function deleteFile(string $bucketId, string $fileId): string
     {
+        if ($bucketId === '') {
+            throw new AppwriteException('Missing required parameter: "bucketId"');
+        }
+
+        if ($fileId === '') {
+            throw new AppwriteException('Missing required parameter: "fileId"');
+        }
+
         $apiPath = str_replace(
             ['{bucketId}', '{fileId}'],
             [$bucketId, $fileId],
@@ -612,6 +645,7 @@ class Storage extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_DELETE,
@@ -630,6 +664,14 @@ class Storage extends Service
      */
     public function getFileDownload(string $bucketId, string $fileId, ?string $token = null): string
     {
+        if ($bucketId === '') {
+            throw new AppwriteException('Missing required parameter: "bucketId"');
+        }
+
+        if ($fileId === '') {
+            throw new AppwriteException('Missing required parameter: "fileId"');
+        }
+
         $apiPath = str_replace(
             ['{bucketId}', '{fileId}'],
             [$bucketId, $fileId],
@@ -667,6 +709,14 @@ class Storage extends Service
      */
     public function getFilePreview(string $bucketId, string $fileId, ?int $width = null, ?int $height = null, ?ImageGravity $gravity = null, ?int $quality = null, ?int $borderWidth = null, ?string $borderColor = null, ?int $borderRadius = null, ?float $opacity = null, ?int $rotation = null, ?string $background = null, ?ImageFormat $output = null, ?string $token = null): string
     {
+        if ($bucketId === '') {
+            throw new AppwriteException('Missing required parameter: "bucketId"');
+        }
+
+        if ($fileId === '') {
+            throw new AppwriteException('Missing required parameter: "fileId"');
+        }
+
         $apiPath = str_replace(
             ['{bucketId}', '{fileId}'],
             [$bucketId, $fileId],
@@ -746,6 +796,14 @@ class Storage extends Service
      */
     public function getFileView(string $bucketId, string $fileId, ?string $token = null): string
     {
+        if ($bucketId === '') {
+            throw new AppwriteException('Missing required parameter: "bucketId"');
+        }
+
+        if ($fileId === '') {
+            throw new AppwriteException('Missing required parameter: "fileId"');
+        }
+
         $apiPath = str_replace(
             ['{bucketId}', '{fileId}'],
             [$bucketId, $fileId],

@@ -48,6 +48,7 @@ readonly class FunctionModel
      * @param array $providerPaths list of file path patterns that trigger automatic deployments. supports glob wildcards. empty list deploys on all file changes.
      * @param string $buildSpecification machine specification for deployment builds.
      * @param string $runtimeSpecification machine specification for executions.
+     * @param bool $emailEnabled whether inbound email (smtp) may trigger this function. opt-in; default is false. when disabled, recipients for this function are rejected.
      * @param int|null $interval minutes between scheduled executions. 0 when the function has no interval.
      */
     public function __construct(
@@ -83,6 +84,7 @@ readonly class FunctionModel
         public array $providerPaths,
         public string $buildSpecification,
         public string $runtimeSpecification,
+        public bool $emailEnabled,
         public ?int $interval = null
     ) {
     }
@@ -109,6 +111,7 @@ readonly class FunctionModel
             'latestDeploymentCreatedAt' => "",
             'latestDeploymentStatus' => "",
             'scopes' => [],
+            'vars' => [],
             'events' => [],
             'schedule' => "",
             'timeout' => 15,
@@ -124,11 +127,8 @@ readonly class FunctionModel
             'providerPaths' => [],
             'buildSpecification' => "s-1vcpu-512mb",
             'runtimeSpecification' => "s-1vcpu-512mb",
+            'emailEnabled' => false,
         ];
-
-        if (!array_key_exists('vars', $data)) {
-            throw new \InvalidArgumentException('Missing required field "vars" for ' . static::class . '.');
-        }
 
         return new static(
             id: $data['$id'],
@@ -168,6 +168,7 @@ readonly class FunctionModel
             providerPaths: $data['providerPaths'],
             buildSpecification: $data['buildSpecification'],
             runtimeSpecification: $data['runtimeSpecification'],
+            emailEnabled: $data['emailEnabled'],
             interval: $data['interval'] ?? null
         );
     }
@@ -210,7 +211,8 @@ readonly class FunctionModel
             'providerBranches' => static::serializeValue($this->providerBranches),
             'providerPaths' => static::serializeValue($this->providerPaths),
             'buildSpecification' => static::serializeValue($this->buildSpecification),
-            'runtimeSpecification' => static::serializeValue($this->runtimeSpecification)
+            'runtimeSpecification' => static::serializeValue($this->runtimeSpecification),
+            'emailEnabled' => static::serializeValue($this->emailEnabled)
         ];
     }
 }

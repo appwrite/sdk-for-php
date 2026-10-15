@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace Appwrite;
 
+use Appwrite\Query\Builder as QueryBuilder;
 use Ahc\Jwt\JWT;
 use Psr\Http\Client\ClientExceptionInterface;
+use Psr\Http\Client\ClientInterface;
 use Utopia\Client\Adapter\Curl\Client as CurlAdapter;
 use Utopia\Client\Client as HttpClient;
 use Utopia\Psr7\Request\Factory as RequestFactory;
@@ -43,11 +45,11 @@ class Client
      *
      */
     protected array $headers = [
-        'user-agent' => 'AppwritePHPSDK/30.4.0 ()',
+        'user-agent' => 'AppwritePHPSDK/31.0.0 ()',
         'x-sdk-name' => 'PHP',
         'x-sdk-platform' => 'server',
         'x-sdk-language' => 'php',
-        'x-sdk-version' => '30.4.0',
+        'x-sdk-version' => '31.0.0',
     ];
 
     /**
@@ -105,12 +107,13 @@ class Client
     protected RequestFactory $requestFactory;
 
     /**
-     * Client constructor.
+     * An injected PSR-18 transport owns its timeout, TLS, connection reuse and
+     * redirect configuration. Without one, the SDK configures its cURL client.
      */
-    public function __construct()
+    public function __construct(private readonly ?ClientInterface $transport = null)
     {
         $this->requestFactory = new RequestFactory();
-        $this->headers['X-Appwrite-Response-Format'] = '2.0.0';
+        $this->headers['X-Appwrite-Response-Format'] = '2.5.0';
     }
 
     /**
@@ -229,21 +232,6 @@ class Client
     {
         $this->addHeader('X-Forwarded-User-Agent', $value);
         $this->config['forwardeduseragent'] = $value;
-
-        return $this;
-    }
-
-    /**
-     * Set DevKey
-     *
-     * Your secret dev API key
-     *
-     *
-     */
-    public function setDevKey(string $value): Client
-    {
-        $this->addHeader('X-Appwrite-Dev-Key', $value);
-        $this->config['devkey'] = $value;
 
         return $this;
     }
@@ -433,6 +421,7 @@ class Client
             $this->headers['authorization'] = $this->getAuthorization();
         }
         $headers = array_merge($this->headers, $headers);
+        $params = \array_map(self::flatten(...), $params);
         $contentType = strtolower((string) ($headers['content-type'] ?? ''));
         if ($contentType === '') {
             unset($headers['content-type']);
@@ -505,7 +494,7 @@ class Client
      * Flatten params array to PHP multiple format
      *
      */
-    protected function flatten(array $data, string $prefix = ''): array
+    protected function flattenForm(array $data, string $prefix = ''): array
     {
         $output = [];
 
@@ -513,7 +502,7 @@ class Client
             $finalKey = $prefix ? "{$prefix}[{$key}]" : $key;
 
             if (is_array($value)) {
-                $output = array_merge($output, $this->flatten($value, $finalKey));
+                $output = array_merge($output, $this->flattenForm($value, $finalKey));
             } else {
                 $output[$finalKey] = $value;
             }
@@ -539,6 +528,40 @@ class Client
         return $data;
     }
 
+    public static function flatten(mixed $value): mixed
+    {
+        if ($value instanceof QueryBuilder) {
+            return $value->build();
+        }
+        if ($value instanceof Query) {
+            return $value->__toString();
+        }
+        if (!\is_array($value) || !\array_is_list($value)) {
+            return $value;
+        }
+
+        $out = [];
+        $changed = false;
+        foreach ($value as $item) {
+            $flat = self::flatten($item);
+            if ($item instanceof QueryBuilder || $item instanceof Query) {
+                if (\is_array($flat)) {
+                    array_push($out, ...$flat);
+                } else {
+                    $out[] = $flat;
+                }
+                $changed = true;
+                continue;
+            }
+            if ($flat !== $item) {
+                $changed = true;
+            }
+            $out[] = $flat;
+        }
+
+        return $changed ? $out : $value;
+    }
+
     /**
      * Convert flattened params into Utopia multipart parts.
      *
@@ -549,7 +572,7 @@ class Client
     {
         $parts = [];
 
-        foreach ($this->flatten($data) as $name => $value) {
+        foreach ($this->flattenForm($data) as $name => $value) {
             $name = (string) $name;
 
             if ($value instanceof Part) {
@@ -578,8 +601,12 @@ class Client
         return $parts;
     }
 
-    protected function getHttpClient(bool $followRedirects): HttpClient
+    protected function getHttpClient(bool $followRedirects): ClientInterface
     {
+        if ($this->transport instanceof ClientInterface) {
+            return $this->transport;
+        }
+
         if ($followRedirects) {
             return $this->httpClient ??= $this->createHttpClient(true);
         }

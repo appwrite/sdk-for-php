@@ -39,7 +39,7 @@ GET https://cloud.appwrite.io/v1/oauth2/{project_id}/authorize
 | prompt | string | OIDC prompt parameter for customization of consent screen. Space-separated list of: none, login, consent, select_account. |  |
 | max_age | integer | OIDC max_age paraleter for customization of consent screen. Maximum allowable elapsed time in seconds since the user last authenticated. If exceeded, re-authentication is required. |  |
 | authorization_details | string | Rich authorization request. JSON array of objects, each with a `type` and project-defined fields |  |
-| resource | string | RFC 8707 resource indicator URI or URI list. Each value must be an absolute URI without a fragment. | [] |
+| resource | array | RFC 8707 resource indicator URI or URI list. Each value must be an absolute URI without a fragment. | [] |
 | audience | string | Compatibility alias for a single OAuth2 resource indicator URI. |  |
 | request_uri | string | OAuth2 authorization request handle returned by the pushed authorization request endpoint. |  |
 
@@ -66,7 +66,7 @@ POST https://cloud.appwrite.io/v1/oauth2/{project_id}/authorize
 | prompt | string | OIDC prompt parameter for customization of consent screen. Space-separated list of: none, login, consent, select_account. |  |
 | max_age | integer | OIDC max_age paraleter for customization of consent screen. Maximum allowable elapsed time in seconds since the user last authenticated. If exceeded, re-authentication is required. |  |
 | authorization_details | string | Rich authorization request. JSON array of objects, each with a `type` and project-defined fields |  |
-| resource | string | RFC 8707 resource indicator URI or URI list. Each value must be an absolute URI without a fragment. | [] |
+| resource | array | RFC 8707 resource indicator URI or URI list. Each value must be an absolute URI without a fragment. | [] |
 | audience | string | Compatibility alias for a single OAuth2 resource indicator URI. |  |
 | request_uri | string | OAuth2 authorization request handle returned by the pushed authorization request endpoint. |  |
 
@@ -85,7 +85,7 @@ POST https://cloud.appwrite.io/v1/oauth2/{project_id}/device_authorization
 | client_id | string | OAuth2 client ID. Either a registered app ID or an HTTPS client ID metadata document URL. |  |
 | scope | string | Space-separated OAuth2 scopes. Can include project scopes, and built-in scopes: `openid`, `email`, `profile`. |  |
 | authorization_details | string | Rich authorization request. JSON array of objects, each with a `type` and project-defined fields |  |
-| resource | string | RFC 8707 resource indicator URI or URI list. Each value must be an absolute URI without a fragment. | [] |
+| resource | array | RFC 8707 resource indicator URI or URI list. Each value must be an absolute URI without a fragment. | [] |
 | audience | string | Compatibility alias for a single OAuth2 resource indicator URI. |  |
 
 
@@ -172,7 +172,7 @@ POST https://cloud.appwrite.io/v1/oauth2/{project_id}/par
 | prompt | string | OIDC prompt parameter for customization of consent screen. Space-separated list of: none, login, consent, select_account. |  |
 | max_age | integer | OIDC max_age parameter for customization of consent screen. |  |
 | authorization_details | string | Rich authorization request. JSON array of objects, each with a `type` and project-defined fields |  |
-| resource | string | RFC 8707 resource indicator URI or URI list. Each value must be an absolute URI without a fragment. | [] |
+| resource | array | RFC 8707 resource indicator URI or URI list. Each value must be an absolute URI without a fragment. | [] |
 | audience | string | Compatibility alias for a single OAuth2 resource indicator URI. |  |
 
 
@@ -242,6 +242,6 @@ POST https://cloud.appwrite.io/v1/oauth2/{project_id}/token
 | client_secret | string | OAuth2 client secret. Required for confidential apps. |  |
 | code_verifier | string | PKCE code verifier. Required for public apps. |  |
 | redirect_uri | string | Redirect URI. Required for `authorization_code` grant type. |  |
-| resource | string | RFC 8707 resource indicator URI or URI list. Each value must be an absolute URI without a fragment. | [] |
+| resource | array | RFC 8707 resource indicator URI or URI list. Each value must be an absolute URI without a fragment. | [] |
 | audience | string | Compatibility alias for a single OAuth2 resource indicator URI. |  |
 

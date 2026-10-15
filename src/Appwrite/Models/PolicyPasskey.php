@@ -32,15 +32,11 @@ readonly class PolicyPasskey
      */
     public static function from(array $data): static
     {
-        if (!array_key_exists('$id', $data)) {
-            throw new \InvalidArgumentException('Missing required field "$id" for ' . static::class . '.');
-        }
-        if (!array_key_exists('rpId', $data)) {
-            throw new \InvalidArgumentException('Missing required field "rpId" for ' . static::class . '.');
-        }
-        if (!array_key_exists('origins', $data)) {
-            throw new \InvalidArgumentException('Missing required field "origins" for ' . static::class . '.');
-        }
+        $data += [
+            '$id' => "",
+            'rpId' => "",
+            'origins' => [],
+        ];
 
         return new static(
             id: $data['$id'],

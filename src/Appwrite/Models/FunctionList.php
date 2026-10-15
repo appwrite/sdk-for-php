@@ -32,11 +32,8 @@ readonly class FunctionList
     {
         $data += [
             'total' => 0,
+            'functions' => [],
         ];
-
-        if (!array_key_exists('functions', $data)) {
-            throw new \InvalidArgumentException('Missing required field "functions" for ' . static::class . '.');
-        }
 
         return new static(
             total: $data['total'],

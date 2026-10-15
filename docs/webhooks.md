@@ -31,8 +31,8 @@ POST https://cloud.appwrite.io/v1/webhooks
 | events | array | Events list. Maximum of 100 events are allowed. |  |
 | enabled | boolean | Enable or disable a webhook. | 1 |
 | tls | boolean | Certificate verification, false for disabled or true for enabled. |  |
-| authUsername | string | Webhook HTTP user. Max length: 256 chars. |  |
-| authPassword | string | Webhook HTTP password. Max length: 256 chars. |  |
+| authUsername | string | Webhook HTTP user. Max length: 255 chars. |  |
+| authPassword | string | Webhook HTTP password. Max length: 2048 chars. |  |
 | secret | string | Webhook secret key. If not provided, a new key will be generated automatically. Key must be at least 8 characters long, and at max 256 characters. |  |
 
 
@@ -65,8 +65,8 @@ PUT https://cloud.appwrite.io/v1/webhooks/{webhookId}
 | events | array | Events list. Maximum of 100 events are allowed. |  |
 | enabled | boolean | Enable or disable a webhook. | 1 |
 | tls | boolean | Certificate verification, false for disabled or true for enabled. |  |
-| authUsername | string | Webhook HTTP user. Max length: 256 chars. |  |
-| authPassword | string | Webhook HTTP password. Max length: 256 chars. |  |
+| authUsername | string | Webhook HTTP user. Max length: 255 chars. |  |
+| authPassword | string | Webhook HTTP password. Max length: 2048 chars. Omit to keep the current password; it is cleared when the URL changes or TLS verification is disabled. |  |
 
 
 ```http request

@@ -32,11 +32,8 @@ readonly class TransactionList
     {
         $data += [
             'total' => 0,
+            'transactions' => [],
         ];
-
-        if (!array_key_exists('transactions', $data)) {
-            throw new \InvalidArgumentException('Missing required field "transactions" for ' . static::class . '.');
-        }
 
         return new static(
             total: $data['total'],

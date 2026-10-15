@@ -7,7 +7,9 @@ POST https://cloud.appwrite.io/v1/proxy/invalidations
 
 ** Create a new CDN cache invalidation for a domain. Executes a hard purge of cached content.
 
-Depending on type, the invalidation purges a single cache tag, a single URL path, or all cached content for the domain. **
+Depending on type, the invalidation purges a single cache tag, a single URL path, or all cached content for the domain.
+
+Domains that route to a function do not support cache invalidation. **
 
 ### Parameters
 
@@ -28,7 +30,7 @@ GET https://cloud.appwrite.io/v1/proxy/rules
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/databases#querying-documents). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: domain, type, trigger, deploymentResourceType, deploymentResourceId, deploymentId, deploymentVcsProviderBranch | [] |
+| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/databases#querying-documents). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: domain, type, trigger, deploymentResourceType, deploymentResourceId, deploymentId, deploymentVcsProviderBranch, protocol | [] |
 | total | boolean | When set to false, the total count returned will be 0 and will not be calculated. | 1 |
 
 
@@ -98,6 +100,21 @@ Rule ID is automatically generated as MD5 hash of a rule domain for performance 
 | domain | string | Domain name. |  |
 | siteId | string | ID of site to be executed. |  |
 | branch | string | Name of VCS branch to deploy changes automatically |  |
+
+
+```http request
+POST https://cloud.appwrite.io/v1/proxy/rules/smtp
+```
+
+** Create an SMTP ingress rule that asynchronously executes an Appwrite Function for incoming email. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| domain | string | Domain that receives email. |  |
+| functionId | string | ID of function to execute. |  |
+| branch | string | Name of VCS branch to deploy changes automatically. |  |
 
 
 ```http request

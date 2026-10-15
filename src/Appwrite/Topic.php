@@ -1,0 +1,115 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Appwrite;
+
+/**
+ * Helper to build MQTT topics for `Push`, level by level.
+ *
+ *     Topic::path(['user', $userId, 'notification']); // "user/123/notification"
+ *     Topic::path(['org', $orgId])->path(['logs']); // "org/42/logs"
+ *
+ * The same name starts a topic (`Topic::path()`) and extends one (`$topic->path()`); both are
+ * routed through `__callStatic()` and `__call()` to the protected implementation below.
+ *
+ * @method static Topic path(array<mixed> $levels) Start a topic with the given levels, or append them.
+ */
+final readonly class Topic implements \Stringable
+{
+    /**
+     * @param list<string> $levels
+     */
+    private function __construct(private array $levels)
+    {
+    }
+
+    /**
+     * @param array<mixed> $arguments
+     */
+    public static function __callStatic(string $name, array $arguments): self
+    {
+        return new self([])->dispatch($name, $arguments);
+    }
+
+    /**
+     * @param array<mixed> $arguments
+     */
+    public function __call(string $name, array $arguments): self
+    {
+        return $this->dispatch($name, $arguments);
+    }
+
+    /**
+     * Append the given levels.
+     */
+    protected function appendPath(mixed $levels): self
+    {
+        return new self([...$this->levels, ...$this->levelsOf($levels)]);
+    }
+
+    public function __toString(): string
+    {
+        return \implode('/', $this->levels);
+    }
+
+    /**
+     * @param array<mixed> $arguments
+     */
+    private function dispatch(string $name, array $arguments): self
+    {
+        return match ($name) {
+            'path' => $this->appendPath($arguments[0] ?? null),
+            default => throw new \BadMethodCallException('Call to undefined method ' . self::class . '::' . $name . '()'),
+        };
+    }
+
+    /**
+     * Validate the levels passed to `path()`: a non-empty array of non-empty strings, none holding
+     * the level separator `/` or the MQTT wildcards `+` and `#`.
+     *
+     * @return list<string>
+     */
+    private function levelsOf(mixed $levels): array
+    {
+        if (!\is_array($levels)) {
+            throw new \InvalidArgumentException("path() expects an array, e.g. path(['user'])");
+        }
+
+        if ($levels === []) {
+            throw new \InvalidArgumentException('path() needs at least one level');
+        }
+
+        $result = [];
+        foreach (\array_values($levels) as $index => $level) {
+            if (!\is_string($level)) {
+                $type = $level === null ? 'null' : \get_debug_type($level);
+                throw new \InvalidArgumentException(\sprintf('level at index %d must be a string, got %s', $index, $type));
+            }
+
+            if ($level === '') {
+                throw new \InvalidArgumentException(\sprintf('empty level at index %d', $index));
+            }
+
+            if (\str_contains($level, '/')) {
+                $parts = \implode(', ', \array_map(static fn (string $part): string => "'" . $part . "'", \explode('/', $level)));
+                throw new \InvalidArgumentException(\sprintf('"%s" contains "/", split it: path([%s])', $level, $parts));
+            }
+
+            if (\str_contains($level, '+')) {
+                throw new \InvalidArgumentException(\sprintf('"%s" contains "+", not allowed in a topic', $level));
+            }
+
+            if (\str_contains($level, '#')) {
+                throw new \InvalidArgumentException(\sprintf('"%s" contains "#", not allowed in a topic', $level));
+            }
+            if (\str_contains($level, "\0")) {
+                throw new \InvalidArgumentException(\sprintf('level at index %d contains a NUL character', $index));
+            }
+
+            $result[] = $level;
+        }
+
+        return $result;
+    }
+}

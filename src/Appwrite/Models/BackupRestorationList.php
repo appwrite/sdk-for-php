@@ -32,11 +32,8 @@ readonly class BackupRestorationList
     {
         $data += [
             'total' => 0,
+            'restorations' => [],
         ];
-
-        if (!array_key_exists('restorations', $data)) {
-            throw new \InvalidArgumentException('Missing required field "restorations" for ' . static::class . '.');
-        }
 
         return new static(
             total: $data['total'],

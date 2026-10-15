@@ -25,7 +25,7 @@ PATCH https://cloud.appwrite.io/v1/project/auth-methods/{methodId}
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| methodId | string | **Required** Auth Method ID. Possible values: email-password,magic-url,email-otp,anonymous,invites,jwt,phone |  |
+| methodId | string | **Required** Auth Method ID. Possible values: email-password,magic-url,email-otp,anonymous,invites,jwt,phone,passkey |  |
 | enabled | boolean | Auth method status. |  |
 
 
@@ -648,8 +648,8 @@ PATCH https://cloud.appwrite.io/v1/project/oauth2/kakao
 | --- | --- | --- | --- |
 | clientId | string | 'REST API key' of Kakao OAuth2 app. For example: 839ff5000000000000000000013206de |  |
 | clientSecret | string | 'Client Secret' of Kakao OAuth2 app. For example: jLNVOK00000000000000000000yJebea. Generate it under Kakao Login > Security and set its status to enabled |  |
-| prompt | array | Array of Kakao OAuth2 prompt values. If "none" is included, it must be the only element. "none" means: don't display any authentication or consent screens. "login" means: prompt the user to re-authenticate. "create" means: prompt the user to sign up. "select_account" means: prompt the user to select an account. Pass an empty array to use the Kakao default. |  |
 | enabled | boolean | OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid. |  |
+| prompt | array | Array of Kakao OAuth2 prompt values. If "none" is included, it must be the only element. "none" means: don't display any authentication or consent screens. "login" means: prompt the user to re-authenticate. "create" means: prompt the user to sign up. "select_account" means: prompt the user to select an account. Pass an empty array to use the Kakao default. |  |
 
 
 ```http request
@@ -1104,7 +1104,7 @@ POST https://cloud.appwrite.io/v1/project/platforms/android
 PUT https://cloud.appwrite.io/v1/project/platforms/android/{platformId}
 ```
 
-** Update an Android platform by its unique ID. Use this endpoint to update the platform's name or application ID. **
+** Update an Android platform by its unique ID. Use this endpoint to update the platform's name, application ID or signing certificate fingerprints. **
 
 ### Parameters
 
@@ -1537,7 +1537,7 @@ GET https://cloud.appwrite.io/v1/project/policies/{policyId}
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| policyId | string | **Required** Policy ID. Can be one of: password-dictionary, password-history, password-strength, password-personal-data, session-alert, session-duration, session-invalidation, session-limit, user-limit, membership-privacy, mfa-factors, deny-aliased-email, deny-disposable-email, deny-free-email, deny-corporate-email. |  |
+| policyId | string | **Required** Policy ID. Can be one of: password-dictionary, password-history, password-strength, password-personal-data, password-pwned, password-rotation, session-alert, session-duration, session-invalidation, session-limit, user-limit, membership-privacy, mfa-factors, deny-aliased-email, deny-disposable-email, deny-free-email, deny-corporate-email, passkey. |  |
 
 
 ```http request
@@ -1627,7 +1627,7 @@ PATCH https://cloud.appwrite.io/v1/project/templates/email
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| templateId | string | Custom email template type. Can be one of: verification, magicSession, recovery, invitation, mfaChallenge, sessionAlert, otpSession |  |
+| templateId | string | Custom email template type. Can be one of: verification, magicSession, recovery, invitation, mfaChallenge, sessionAlert, otpSession, otpVerification, otpRecovery |  |
 | locale | string | Custom email template locale. If left empty, the fallback locale (en) will be used. |  |
 | subject | string | Subject of the email template. Can be up to 255 characters. |  |
 | message | string | Plain or HTML body of the email template message. Can be up to 10MB of content. |  |
@@ -1647,7 +1647,7 @@ GET https://cloud.appwrite.io/v1/project/templates/email/{templateId}
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| templateId | string | **Required** Custom email template type. Can be one of: verification, magicSession, recovery, invitation, mfaChallenge, sessionAlert, otpSession |  |
+| templateId | string | **Required** Custom email template type. Can be one of: verification, magicSession, recovery, invitation, mfaChallenge, sessionAlert, otpSession, otpVerification, otpRecovery |  |
 | locale | string | Custom email template locale. If left empty, the fallback locale (en) will be used. |  |
 
 

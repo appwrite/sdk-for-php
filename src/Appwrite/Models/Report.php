@@ -61,11 +61,8 @@ readonly class Report
             'targetType' => "",
             'target' => "",
             'categories' => [],
+            'insights' => [],
         ];
-
-        if (!array_key_exists('insights', $data)) {
-            throw new \InvalidArgumentException('Missing required field "insights" for ' . static::class . '.');
-        }
 
         return new static(
             id: $data['$id'],

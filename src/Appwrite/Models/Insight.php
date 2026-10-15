@@ -74,11 +74,8 @@ readonly class Insight
             'parentResourceId' => "",
             'title' => "",
             'summary' => "",
+            'ctas' => [],
         ];
-
-        if (!array_key_exists('ctas', $data)) {
-            throw new \InvalidArgumentException('Missing required field "ctas" for ' . static::class . '.');
-        }
 
         return new static(
             id: $data['$id'],

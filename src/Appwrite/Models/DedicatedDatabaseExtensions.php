@@ -35,11 +35,8 @@ readonly class DedicatedDatabaseExtensions
         $data += [
             'installed' => [],
             'available' => [],
+            'metadata' => [],
         ];
-
-        if (!array_key_exists('metadata', $data)) {
-            throw new \InvalidArgumentException('Missing required field "metadata" for ' . static::class . '.');
-        }
 
         return new static(
             installed: $data['installed'],

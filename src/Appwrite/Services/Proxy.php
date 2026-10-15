@@ -20,6 +20,8 @@ class Proxy extends Service
      * Depending on type, the invalidation purges a single cache tag, a single URL
      * path, or all cached content for the domain.
      *
+     * Domains that route to a function do not support cache invalidation.
+     *
      * @throws AppwriteException
      */
     public function createInvalidation(string $domain, InvalidationType $type, ?string $reference = null): \Appwrite\Models\ProxyInvalidation
@@ -267,12 +269,57 @@ class Proxy extends Service
     }
 
     /**
+     * Create an SMTP ingress rule that asynchronously executes an Appwrite
+     * Function for incoming email.
+     *
+     * @throws AppwriteException
+     */
+    public function createSMTPRule(string $domain, string $functionId, ?string $branch = null): \Appwrite\Models\ProxyRule
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/proxy/rules/smtp'
+        );
+
+        $apiParams = [];
+        $apiParams['domain'] = $domain;
+        $apiParams['functionId'] = $functionId;
+
+        if (!is_null($branch)) {
+            $apiParams['branch'] = $branch;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\ProxyRule::from($response);
+    }
+
+    /**
      * Get a proxy rule by its unique ID.
      *
      * @throws AppwriteException
      */
     public function getRule(string $ruleId): \Appwrite\Models\ProxyRule
     {
+        if ($ruleId === '') {
+            throw new AppwriteException('Missing required parameter: "ruleId"');
+        }
+
         $apiPath = str_replace(
             ['{ruleId}'],
             [$ruleId],
@@ -307,6 +354,10 @@ class Proxy extends Service
      */
     public function deleteRule(string $ruleId): string
     {
+        if ($ruleId === '') {
+            throw new AppwriteException('Missing required parameter: "ruleId"');
+        }
+
         $apiPath = str_replace(
             ['{ruleId}'],
             [$ruleId],
@@ -319,6 +370,7 @@ class Proxy extends Service
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
 
         return $this->client->call(
             Client::METHOD_DELETE,
@@ -338,6 +390,10 @@ class Proxy extends Service
      */
     public function updateRuleStatus(string $ruleId): \Appwrite\Models\ProxyRule
     {
+        if ($ruleId === '') {
+            throw new AppwriteException('Missing required parameter: "ruleId"');
+        }
+
         $apiPath = str_replace(
             ['{ruleId}'],
             [$ruleId],

@@ -59,20 +59,13 @@ readonly class Message
             '$createdAt' => "",
             '$updatedAt' => "",
             'providerType' => "",
+            'topics' => [],
+            'users' => [],
+            'targets' => [],
             'deliveredTotal' => 0,
             'data' => [],
             'status' => "draft",
         ];
-
-        if (!array_key_exists('topics', $data)) {
-            throw new \InvalidArgumentException('Missing required field "topics" for ' . static::class . '.');
-        }
-        if (!array_key_exists('users', $data)) {
-            throw new \InvalidArgumentException('Missing required field "users" for ' . static::class . '.');
-        }
-        if (!array_key_exists('targets', $data)) {
-            throw new \InvalidArgumentException('Missing required field "targets" for ' . static::class . '.');
-        }
 
         return new static(
             id: $data['$id'],

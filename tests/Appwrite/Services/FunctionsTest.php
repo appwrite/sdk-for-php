@@ -72,7 +72,8 @@ final class FunctionsTest extends TestCase
                     "providerBranches" => [],
                     "providerPaths" => [],
                     "buildSpecification" => "s-1vcpu-512mb",
-                    "runtimeSpecification" => "s-1vcpu-512mb"
+                    "runtimeSpecification" => "s-1vcpu-512mb",
+                    "emailEnabled" => true
                 ]
             ]
         ];
@@ -133,7 +134,8 @@ final class FunctionsTest extends TestCase
             "providerBranches" => [],
             "providerPaths" => [],
             "buildSpecification" => "s-1vcpu-512mb",
-            "runtimeSpecification" => "s-1vcpu-512mb"
+            "runtimeSpecification" => "s-1vcpu-512mb",
+            "emailEnabled" => true
         ];
 
         $this->client
@@ -250,7 +252,8 @@ final class FunctionsTest extends TestCase
             "providerBranches" => [],
             "providerPaths" => [],
             "buildSpecification" => "s-1vcpu-512mb",
-            "runtimeSpecification" => "s-1vcpu-512mb"
+            "runtimeSpecification" => "s-1vcpu-512mb",
+            "emailEnabled" => true
         ];
 
         $this->client
@@ -311,7 +314,8 @@ final class FunctionsTest extends TestCase
             "providerBranches" => [],
             "providerPaths" => [],
             "buildSpecification" => "s-1vcpu-512mb",
-            "runtimeSpecification" => "s-1vcpu-512mb"
+            "runtimeSpecification" => "s-1vcpu-512mb",
+            "emailEnabled" => true
         ];
 
         $this->client
@@ -390,7 +394,8 @@ final class FunctionsTest extends TestCase
             "providerBranches" => [],
             "providerPaths" => [],
             "buildSpecification" => "s-1vcpu-512mb",
-            "runtimeSpecification" => "s-1vcpu-512mb"
+            "runtimeSpecification" => "s-1vcpu-512mb",
+            "emailEnabled" => true
         ];
 
         $this->client
@@ -808,7 +813,7 @@ final class FunctionsTest extends TestCase
                     ],
                     "logs" => "[LOGS]",
                     "errors" => "[ERRORS]",
-                    "duration" => 0.4
+                    "duration" => 1.23
                 ]
             ]
         ];
@@ -856,7 +861,7 @@ final class FunctionsTest extends TestCase
             ],
             "logs" => "[LOGS]",
             "errors" => "[ERRORS]",
-            "duration" => 0.4
+            "duration" => 1.23
         ];
 
         $this->client
@@ -902,7 +907,7 @@ final class FunctionsTest extends TestCase
             ],
             "logs" => "[LOGS]",
             "errors" => "[ERRORS]",
-            "duration" => 0.4
+            "duration" => 1.23
         ];
 
         $this->client

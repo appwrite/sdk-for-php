@@ -41,14 +41,11 @@ readonly class DedicatedDatabaseExecution
         $data += [
             'rows' => [],
             'rowCount' => 0,
+            'columns' => [],
             'durationMs' => 0,
             'truncated' => false,
             'bytes' => 0,
         ];
-
-        if (!array_key_exists('columns', $data)) {
-            throw new \InvalidArgumentException('Missing required field "columns" for ' . static::class . '.');
-        }
 
         return new static(
             rows: $data['rows'],
