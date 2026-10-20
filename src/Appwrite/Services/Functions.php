@@ -71,7 +71,7 @@ class Functions extends Service
      *
      * @throws AppwriteException
      */
-    public function create(string $functionId, string $name, Runtime $runtime, ?array $execute = null, ?array $events = null, ?string $schedule = null, ?int $timeout = null, ?bool $enabled = null, ?bool $logging = null, ?string $entrypoint = null, ?string $commands = null, ?array $scopes = null, ?string $installationId = null, ?string $providerRepositoryId = null, ?string $providerBranch = null, ?bool $providerSilentMode = null, ?string $providerRootDirectory = null, ?array $providerBranches = null, ?array $providerPaths = null, ?string $buildSpecification = null, ?string $runtimeSpecification = null, ?int $deploymentRetention = null, ?int $interval = null): \Appwrite\Models\FunctionModel
+    public function create(string $functionId, string $name, Runtime $runtime, ?array $execute = null, ?array $events = null, ?string $schedule = null, ?int $timeout = null, ?bool $enabled = null, ?bool $logging = null, ?string $entrypoint = null, ?string $commands = null, ?array $scopes = null, ?string $installationId = null, ?string $providerRepositoryId = null, ?string $providerBranch = null, ?bool $providerSilentMode = null, ?string $providerRootDirectory = null, ?array $providerBranches = null, ?array $providerPaths = null, ?string $buildSpecification = null, ?string $runtimeSpecification = null, ?int $deploymentRetention = null, ?int $interval = null, ?string $description = null): \Appwrite\Models\FunctionModel
     {
         $apiPath = str_replace(
             [],
@@ -162,6 +162,10 @@ class Functions extends Service
 
         if (!is_null($interval)) {
             $apiParams['interval'] = $interval;
+        }
+
+        if (!is_null($description)) {
+            $apiParams['description'] = $description;
         }
 
         $apiHeaders = [];
@@ -304,7 +308,7 @@ class Functions extends Service
      *
      * @throws AppwriteException
      */
-    public function update(string $functionId, string $name, ?Runtime $runtime = null, ?array $execute = null, ?array $events = null, ?string $schedule = null, ?int $timeout = null, ?bool $enabled = null, ?bool $logging = null, ?string $entrypoint = null, ?string $commands = null, ?array $scopes = null, ?string $installationId = null, ?string $providerRepositoryId = null, ?string $providerBranch = null, ?bool $providerSilentMode = null, ?string $providerRootDirectory = null, ?array $providerBranches = null, ?array $providerPaths = null, ?string $buildSpecification = null, ?string $runtimeSpecification = null, ?int $deploymentRetention = null, ?int $interval = null, ?bool $emailEnabled = null): \Appwrite\Models\FunctionModel
+    public function update(string $functionId, string $name, ?Runtime $runtime = null, ?array $execute = null, ?array $events = null, ?string $schedule = null, ?int $timeout = null, ?bool $enabled = null, ?bool $logging = null, ?string $entrypoint = null, ?string $commands = null, ?array $scopes = null, ?string $installationId = null, ?string $providerRepositoryId = null, ?string $providerBranch = null, ?bool $providerSilentMode = null, ?string $providerRootDirectory = null, ?array $providerBranches = null, ?array $providerPaths = null, ?string $buildSpecification = null, ?string $runtimeSpecification = null, ?int $deploymentRetention = null, ?int $interval = null, ?string $description = null, ?bool $emailEnabled = null): \Appwrite\Models\FunctionModel
     {
         if ($functionId === '') {
             throw new AppwriteException('Missing required parameter: "functionId"');
@@ -385,6 +389,7 @@ class Functions extends Service
             $apiParams['deploymentRetention'] = $deploymentRetention;
         }
         $apiParams['interval'] = $interval;
+        $apiParams['description'] = $description;
         $apiParams['emailEnabled'] = $emailEnabled;
 
         $apiHeaders = [];
@@ -1282,7 +1287,7 @@ class Functions extends Service
      *
      * @throws AppwriteException
      */
-    public function createVariable(string $functionId, string $variableId, string $key, string $value, ?bool $secret = null): \Appwrite\Models\Variable
+    public function createVariable(string $functionId, string $variableId, string $key, string $value, ?bool $secret = null, ?string $description = null): \Appwrite\Models\Variable
     {
         if ($functionId === '') {
             throw new AppwriteException('Missing required parameter: "functionId"');
@@ -1302,6 +1307,10 @@ class Functions extends Service
 
         if (!is_null($secret)) {
             $apiParams['secret'] = $secret;
+        }
+
+        if (!is_null($description)) {
+            $apiParams['description'] = $description;
         }
 
         $apiHeaders = [];
@@ -1371,7 +1380,7 @@ class Functions extends Service
      *
      * @throws AppwriteException
      */
-    public function updateVariable(string $functionId, string $variableId, ?string $key = null, ?string $value = null, ?bool $secret = null): \Appwrite\Models\Variable
+    public function updateVariable(string $functionId, string $variableId, ?string $key = null, ?string $value = null, ?bool $secret = null, ?string $description = null): \Appwrite\Models\Variable
     {
         if ($functionId === '') {
             throw new AppwriteException('Missing required parameter: "functionId"');
@@ -1393,6 +1402,7 @@ class Functions extends Service
         $apiParams['key'] = $key;
         $apiParams['value'] = $value;
         $apiParams['secret'] = $secret;
+        $apiParams['description'] = $description;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');

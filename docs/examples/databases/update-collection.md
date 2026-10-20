@@ -20,6 +20,7 @@ $result = $databases->updateCollection(
     permissions: [Permission::read(Role::any())], // optional
     documentSecurity: false, // optional
     enabled: false, // optional
-    purge: false // optional
+    purge: false, // optional
+    description: '<DESCRIPTION>' // optional
 );
 ```

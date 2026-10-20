@@ -22,6 +22,7 @@ $result = $vectorsDB->createIndex(
         'embeddings'
     ],
     orders: [OrderBy::ASC()], // optional
-    lengths: [] // optional
+    lengths: [], // optional
+    description: '<DESCRIPTION>' // optional
 );
 ```

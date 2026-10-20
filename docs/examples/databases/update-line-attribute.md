@@ -30,6 +30,7 @@ $result = $databases->updateLineAttribute(
             6
         ]
     ], // optional
-    newKey: '<NEW_KEY>' // optional
+    newKey: '<NEW_KEY>', // optional
+    description: '<DESCRIPTION>' // optional
 );
 ```

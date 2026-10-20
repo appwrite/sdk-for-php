@@ -22,6 +22,7 @@ readonly class Index
      * @param string $createdAt index creation date in iso 8601 format.
      * @param string $updatedAt index update date in iso 8601 format.
      * @param string $key index key.
+     * @param string $description optional description for the index.
      * @param string $type index type.
      * @param IndexStatus $status index status. possible values: `available`, `processing`, `deleting`, `stuck`, or `failed`
      * @param string $error error message. displays error generated on failure of creating or deleting an index.
@@ -34,6 +35,7 @@ readonly class Index
         public string $createdAt,
         public string $updatedAt,
         public string $key,
+        public string $description,
         public string $type,
         public IndexStatus $status,
         public string $error,
@@ -53,6 +55,7 @@ readonly class Index
             '$createdAt' => "",
             '$updatedAt' => "",
             'key' => "",
+            'description' => "",
             'type' => "",
             'error' => "",
             'attributes' => [],
@@ -68,6 +71,7 @@ readonly class Index
             createdAt: $data['$createdAt'],
             updatedAt: $data['$updatedAt'],
             key: $data['key'],
+            description: $data['description'],
             type: $data['type'],
             status: static::hydrateTypedValue(IndexStatus::class, $data['status']),
             error: $data['error'],
@@ -87,6 +91,7 @@ readonly class Index
             '$createdAt' => static::serializeValue($this->createdAt),
             '$updatedAt' => static::serializeValue($this->updatedAt),
             'key' => static::serializeValue($this->key),
+            'description' => static::serializeValue($this->description),
             'type' => static::serializeValue($this->type),
             'status' => static::serializeValue($this->status),
             'error' => static::serializeValue($this->error),

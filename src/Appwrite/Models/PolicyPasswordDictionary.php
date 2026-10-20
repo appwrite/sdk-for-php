@@ -18,10 +18,12 @@ readonly class PolicyPasswordDictionary
      *
      * @param string $id policy id.
      * @param bool $enabled whether password dictionary policy is enabled.
+     * @param array $denyList custom passwords blocked by case-sensitive equality when enabled.
      */
     public function __construct(
         public string $id,
-        public bool $enabled
+        public bool $enabled,
+        public array $denyList
     ) {
     }
 
@@ -33,11 +35,13 @@ readonly class PolicyPasswordDictionary
         $data += [
             '$id' => "",
             'enabled' => false,
+            'denyList' => [],
         ];
 
         return new static(
             id: $data['$id'],
-            enabled: $data['enabled']
+            enabled: $data['enabled'],
+            denyList: $data['denyList']
         );
     }
 
@@ -48,7 +52,8 @@ readonly class PolicyPasswordDictionary
     {
         return [
             '$id' => static::serializeValue($this->id),
-            'enabled' => static::serializeValue($this->enabled)
+            'enabled' => static::serializeValue($this->enabled),
+            'denyList' => static::serializeValue($this->denyList)
         ];
     }
 }

@@ -58,7 +58,7 @@ class DocumentsDB extends Service
      *
      * @throws AppwriteException
      */
-    public function create(string $databaseId, string $name, ?bool $enabled = null, ?string $specification = null, ?int $replicas = null, ?string $syncMode = null): \Appwrite\Models\Database
+    public function create(string $databaseId, string $name, ?bool $enabled = null, ?string $description = null, ?string $specification = null, ?int $replicas = null, ?string $syncMode = null): \Appwrite\Models\Database
     {
         $apiPath = str_replace(
             [],
@@ -72,6 +72,10 @@ class DocumentsDB extends Service
 
         if (!is_null($enabled)) {
             $apiParams['enabled'] = $enabled;
+        }
+
+        if (!is_null($description)) {
+            $apiParams['description'] = $description;
         }
 
         if (!is_null($specification)) {
@@ -421,7 +425,7 @@ class DocumentsDB extends Service
      *
      * @throws AppwriteException
      */
-    public function update(string $databaseId, string $name, ?bool $enabled = null, ?string $specification = null, ?int $replicas = null, ?string $syncMode = null): \Appwrite\Models\Database
+    public function update(string $databaseId, string $name, ?bool $enabled = null, ?string $description = null, ?string $specification = null, ?int $replicas = null, ?string $syncMode = null): \Appwrite\Models\Database
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -440,6 +444,7 @@ class DocumentsDB extends Service
         if (!is_null($enabled)) {
             $apiParams['enabled'] = $enabled;
         }
+        $apiParams['description'] = $description;
         $apiParams['specification'] = $specification;
         $apiParams['replicas'] = $replicas;
         $apiParams['syncMode'] = $syncMode;
@@ -556,7 +561,7 @@ class DocumentsDB extends Service
      *
      * @throws AppwriteException
      */
-    public function createCollection(string $databaseId, string $collectionId, string $name, ?array $permissions = null, ?bool $documentSecurity = null, ?bool $enabled = null, ?array $attributes = null, ?array $indexes = null): \Appwrite\Models\Collection
+    public function createCollection(string $databaseId, string $collectionId, string $name, ?array $permissions = null, ?bool $documentSecurity = null, ?bool $enabled = null, ?array $attributes = null, ?array $indexes = null, ?string $description = null): \Appwrite\Models\Collection
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -588,6 +593,10 @@ class DocumentsDB extends Service
 
         if (!is_null($indexes)) {
             $apiParams['indexes'] = $indexes;
+        }
+
+        if (!is_null($description)) {
+            $apiParams['description'] = $description;
         }
 
         $apiHeaders = [];
@@ -658,7 +667,7 @@ class DocumentsDB extends Service
      *
      * @throws AppwriteException
      */
-    public function updateCollection(string $databaseId, string $collectionId, string $name, ?array $permissions = null, ?bool $documentSecurity = null, ?bool $enabled = null, ?bool $purge = null): \Appwrite\Models\Collection
+    public function updateCollection(string $databaseId, string $collectionId, string $name, ?array $permissions = null, ?bool $documentSecurity = null, ?bool $enabled = null, ?bool $purge = null, ?string $description = null): \Appwrite\Models\Collection
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -694,6 +703,7 @@ class DocumentsDB extends Service
         if (!is_null($purge)) {
             $apiParams['purge'] = $purge;
         }
+        $apiParams['description'] = $description;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -1073,6 +1083,69 @@ class DocumentsDB extends Service
 
         $response = $this->client->call(
             Client::METHOD_DELETE,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\DocumentList::from($response);
+    }
+
+    /**
+     * Get a list of all the user's documents in a given collection using a POST
+     * request. This behaves identically to the list documents endpoint but
+     * accepts the queries in the request body, allowing much larger `queries`
+     * arrays than can fit in a URL query string.
+     *
+     * @throws AppwriteException
+     */
+    public function createQuery(string $databaseId, string $collectionId, ?array $queries = null, ?string $transactionId = null, ?bool $total = null, ?int $ttl = null): \Appwrite\Models\DocumentList
+    {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
+        $apiPath = str_replace(
+            ['{databaseId}', '{collectionId}'],
+            [$databaseId, $collectionId],
+            '/documentsdb/{databaseId}/collections/{collectionId}/documents/query'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['collectionId'] = $collectionId;
+
+        if (!is_null($queries)) {
+            $apiParams['queries'] = $queries;
+        }
+
+        if (!is_null($transactionId)) {
+            $apiParams['transactionId'] = $transactionId;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
+        }
+
+        if (!is_null($ttl)) {
+            $apiParams['ttl'] = $ttl;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
@@ -1505,7 +1578,7 @@ class DocumentsDB extends Service
      *
      * @throws AppwriteException
      */
-    public function createIndex(string $databaseId, string $collectionId, string $key, DocumentsDBIndexType $type, array $attributes, ?array $orders = null, ?array $lengths = null): \Appwrite\Models\Index
+    public function createIndex(string $databaseId, string $collectionId, string $key, DocumentsDBIndexType $type, array $attributes, ?array $orders = null, ?array $lengths = null, ?string $description = null): \Appwrite\Models\Index
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -1534,6 +1607,10 @@ class DocumentsDB extends Service
 
         if (!is_null($lengths)) {
             $apiParams['lengths'] = $lengths;
+        }
+
+        if (!is_null($description)) {
+            $apiParams['description'] = $description;
         }
 
         $apiHeaders = [];

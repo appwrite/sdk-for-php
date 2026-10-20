@@ -12,6 +12,7 @@ $client = (new Client())
 $postgresql = new Postgresql($client);
 
 $result = $postgresql->list(
-    queries: [] // optional
+    queries: [], // optional
+    total: false // optional
 );
 ```

@@ -33,6 +33,7 @@ final class StorageTest extends TestCase
                     "\$permissions" => [],
                     "fileSecurity" => true,
                     "name" => "Documents",
+                    "description" => "Invoices and receipts uploaded by customers.",
                     "enabled" => true,
                     "maximumFileSize" => 100,
                     "allowedFileExtensions" => [],
@@ -40,6 +41,7 @@ final class StorageTest extends TestCase
                     "encryption" => true,
                     "antivirus" => true,
                     "transformations" => true,
+                    "stripMetadata" => true,
                     "totalSize" => 128
                 ]
             ]
@@ -65,6 +67,7 @@ final class StorageTest extends TestCase
             "\$permissions" => [],
             "fileSecurity" => true,
             "name" => "Documents",
+            "description" => "Invoices and receipts uploaded by customers.",
             "enabled" => true,
             "maximumFileSize" => 100,
             "allowedFileExtensions" => [],
@@ -72,6 +75,7 @@ final class StorageTest extends TestCase
             "encryption" => true,
             "antivirus" => true,
             "transformations" => true,
+            "stripMetadata" => true,
             "totalSize" => 128
         ];
 
@@ -98,6 +102,7 @@ final class StorageTest extends TestCase
             "\$permissions" => [],
             "fileSecurity" => true,
             "name" => "Documents",
+            "description" => "Invoices and receipts uploaded by customers.",
             "enabled" => true,
             "maximumFileSize" => 100,
             "allowedFileExtensions" => [],
@@ -105,6 +110,7 @@ final class StorageTest extends TestCase
             "encryption" => true,
             "antivirus" => true,
             "transformations" => true,
+            "stripMetadata" => true,
             "totalSize" => 128
         ];
 
@@ -130,6 +136,7 @@ final class StorageTest extends TestCase
             "\$permissions" => [],
             "fileSecurity" => true,
             "name" => "Documents",
+            "description" => "Invoices and receipts uploaded by customers.",
             "enabled" => true,
             "maximumFileSize" => 100,
             "allowedFileExtensions" => [],
@@ -137,6 +144,7 @@ final class StorageTest extends TestCase
             "encryption" => true,
             "antivirus" => true,
             "transformations" => true,
+            "stripMetadata" => true,
             "totalSize" => 128
         ];
 

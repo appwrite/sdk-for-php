@@ -19,6 +19,7 @@ readonly class AttributeBigint
      * AttributeBigint constructor.
      *
      * @param string $key attribute key.
+     * @param string $description optional description for the attribute.
      * @param string $type attribute type.
      * @param AttributeStatus $status attribute status. possible values: `available`, `processing`, `deleting`, `stuck`, or `failed`
      * @param string $error error message. displays error generated on failure of creating or deleting an attribute.
@@ -32,6 +33,7 @@ readonly class AttributeBigint
      */
     public function __construct(
         public string $key,
+        public string $description,
         public string $type,
         public AttributeStatus $status,
         public string $error,
@@ -52,6 +54,7 @@ readonly class AttributeBigint
     {
         $data += [
             'key' => "",
+            'description' => "",
             'type' => "",
             'error' => "",
             'required' => false,
@@ -65,6 +68,7 @@ readonly class AttributeBigint
 
         return new static(
             key: $data['key'],
+            description: $data['description'],
             type: $data['type'],
             status: static::hydrateTypedValue(AttributeStatus::class, $data['status']),
             error: $data['error'],
@@ -85,6 +89,7 @@ readonly class AttributeBigint
     {
         return [
             'key' => static::serializeValue($this->key),
+            'description' => static::serializeValue($this->description),
             'type' => static::serializeValue($this->type),
             'status' => static::serializeValue($this->status),
             'error' => static::serializeValue($this->error),

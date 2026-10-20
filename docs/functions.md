@@ -49,6 +49,7 @@ POST https://cloud.appwrite.io/v1/functions
 | runtimeSpecification | string | Runtime specification for the function executions. | [] |
 | deploymentRetention | integer | Days to keep non-active deployments before deletion. Value 0 means all deployments will be kept. | 0 |
 | interval | integer | Minutes between scheduled executions. Appwrite picks when within each interval the function runs. Use 0 to disable. Cannot be combined with schedule. | 0 |
+| description | string | Optional description for the function. |  |
 
 
 ```http request
@@ -124,6 +125,7 @@ PUT https://cloud.appwrite.io/v1/functions/{functionId}
 | runtimeSpecification | string | Runtime specification for the function executions. |  |
 | deploymentRetention | integer | Days to keep non-active deployments before deletion. Value 0 means all deployments will be kept. | 0 |
 | interval | integer | Minutes between scheduled executions. Appwrite picks when within each interval the function runs. Use 0 to disable. Cannot be combined with schedule. When omitted, the current interval is kept unless schedule is set. |  |
+| description | string | Optional description for the function. |  |
 | emailEnabled | boolean | Enable inbound email triggering for this function. When false or omitted on create, SMTP recipients are rejected. Opt-in; default is off. |  |
 
 
@@ -395,6 +397,7 @@ POST https://cloud.appwrite.io/v1/functions/{functionId}/variables
 | key | string | Variable key. Letters, digits and underscores only, must not start with a digit. Max length: 255 chars. |  |
 | value | string | Variable value. Max length: 8192 chars. |  |
 | secret | boolean | Secret variables can be updated or deleted, but only functions can read them during build and runtime. | 1 |
+| description | string | Optional description for the variable. |  |
 
 
 ```http request
@@ -426,6 +429,7 @@ PUT https://cloud.appwrite.io/v1/functions/{functionId}/variables/{variableId}
 | key | string | Variable key. Letters, digits and underscores only, must not start with a digit. Max length: 255 chars. |  |
 | value | string | Variable value. Max length: 8192 chars. |  |
 | secret | boolean | Secret variables can be updated or deleted, but only functions can read them during build and runtime. |  |
+| description | string | Optional description for the variable. |  |
 
 
 ```http request

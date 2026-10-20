@@ -11,7 +11,7 @@ GET https://cloud.appwrite.io/v1/storage/buckets
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: enabled, name, fileSecurity, maximumFileSize, encryption, antivirus, transformations | [] |
+| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: enabled, name, fileSecurity, maximumFileSize, encryption, antivirus, transformations, stripMetadata | [] |
 | search | string | Search term to filter your list results. Max length: 256 chars. |  |
 | total | boolean | When set to false, the total count returned will be 0 and will not be calculated. | 1 |
 
@@ -37,6 +37,8 @@ POST https://cloud.appwrite.io/v1/storage/buckets
 | encryption | boolean | Is encryption enabled? For file size above 20MB encryption is skipped even if it's enabled | 1 |
 | antivirus | boolean | Is virus scanning enabled? For file size above 20MB AntiVirus scanning is skipped even if it's enabled | 1 |
 | transformations | boolean | Are image transformations enabled? | 1 |
+| description | string | Optional description for the bucket. |  |
+| stripMetadata | boolean | Remove metadata such as location, device and capture time from uploaded images. The color profile and orientation are kept. For file size above 20MB metadata is not removed even if it's enabled. |  |
 
 
 ```http request
@@ -73,6 +75,8 @@ PUT https://cloud.appwrite.io/v1/storage/buckets/{bucketId}
 | encryption | boolean | Is encryption enabled? For file size above 20MB encryption is skipped even if it's enabled | 1 |
 | antivirus | boolean | Is virus scanning enabled? For file size above 20MB AntiVirus scanning is skipped even if it's enabled | 1 |
 | transformations | boolean | Are image transformations enabled? | 1 |
+| description | string | Optional description for the bucket. |  |
+| stripMetadata | boolean | Remove metadata such as location, device and capture time from uploaded images. The color profile and orientation are kept. For file size above 20MB metadata is not removed even if it's enabled. By default, the current setting is kept. |  |
 
 
 ```http request

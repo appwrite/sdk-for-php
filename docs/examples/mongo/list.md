@@ -12,6 +12,7 @@ $client = (new Client())
 $mongo = new Mongo($client);
 
 $result = $mongo->list(
-    queries: [] // optional
+    queries: [], // optional
+    total: false // optional
 );
 ```

@@ -19,6 +19,7 @@ $result = $tablesDB->createPointColumn(
     default: [
         1,
         2
-    ] // optional
+    ], // optional
+    description: '<DESCRIPTION>' // optional
 );
 ```

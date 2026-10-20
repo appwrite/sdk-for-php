@@ -19,6 +19,7 @@ readonly class ColumnPolygon
      * ColumnPolygon constructor.
      *
      * @param string $key column key.
+     * @param string $description optional description for the column.
      * @param string $type column type.
      * @param ColumnStatus $status column status. possible values: `available`, `processing`, `deleting`, `stuck`, or `failed`
      * @param string $error error message. displays error generated on failure of creating or deleting an column.
@@ -30,6 +31,7 @@ readonly class ColumnPolygon
      */
     public function __construct(
         public string $key,
+        public string $description,
         public string $type,
         public ColumnStatus $status,
         public string $error,
@@ -48,6 +50,7 @@ readonly class ColumnPolygon
     {
         $data += [
             'key' => "",
+            'description' => "",
             'type' => "",
             'error' => "",
             'required' => false,
@@ -61,6 +64,7 @@ readonly class ColumnPolygon
 
         return new static(
             key: $data['key'],
+            description: $data['description'],
             type: $data['type'],
             status: static::hydrateTypedValue(ColumnStatus::class, $data['status']),
             error: $data['error'],
@@ -79,6 +83,7 @@ readonly class ColumnPolygon
     {
         return [
             'key' => static::serializeValue($this->key),
+            'description' => static::serializeValue($this->description),
             'type' => static::serializeValue($this->type),
             'status' => static::serializeValue($this->status),
             'error' => static::serializeValue($this->error),

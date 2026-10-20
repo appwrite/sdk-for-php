@@ -30,6 +30,7 @@ final class DatabasesTest extends TestCase
                 [
                     "\$id" => "5e5ea5c16897e",
                     "name" => "My Database",
+                    "description" => "Customer orders and invoices.",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
                     "enabled" => true,
@@ -54,6 +55,7 @@ final class DatabasesTest extends TestCase
         $data = [
             "\$id" => "5e5ea5c16897e",
             "name" => "My Database",
+            "description" => "Customer orders and invoices.",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "enabled" => true,
@@ -217,6 +219,7 @@ final class DatabasesTest extends TestCase
         $data = [
             "\$id" => "5e5ea5c16897e",
             "name" => "My Database",
+            "description" => "Customer orders and invoices.",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "enabled" => true,
@@ -241,6 +244,7 @@ final class DatabasesTest extends TestCase
         $data = [
             "\$id" => "5e5ea5c16897e",
             "name" => "My Database",
+            "description" => "Customer orders and invoices.",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "enabled" => true,
@@ -289,6 +293,7 @@ final class DatabasesTest extends TestCase
                     "\$permissions" => [],
                     "databaseId" => "5e5ea5c16897e",
                     "name" => "My Collection",
+                    "description" => "Movies available in the catalog.",
                     "enabled" => true,
                     "documentSecurity" => true,
                     "attributes" => [],
@@ -298,6 +303,7 @@ final class DatabasesTest extends TestCase
                             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
                             "key" => "index1",
+                            "description" => "Speeds up lookups by email.",
                             "type" => "primary",
                             "status" => "available",
                             "error" => "string",
@@ -333,6 +339,7 @@ final class DatabasesTest extends TestCase
             "\$permissions" => [],
             "databaseId" => "5e5ea5c16897e",
             "name" => "My Collection",
+            "description" => "Movies available in the catalog.",
             "enabled" => true,
             "documentSecurity" => true,
             "attributes" => [],
@@ -342,6 +349,7 @@ final class DatabasesTest extends TestCase
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
                     "key" => "index1",
+                    "description" => "Speeds up lookups by email.",
                     "type" => "primary",
                     "status" => "available",
                     "error" => "string",
@@ -377,6 +385,7 @@ final class DatabasesTest extends TestCase
             "\$permissions" => [],
             "databaseId" => "5e5ea5c16897e",
             "name" => "My Collection",
+            "description" => "Movies available in the catalog.",
             "enabled" => true,
             "documentSecurity" => true,
             "attributes" => [],
@@ -386,6 +395,7 @@ final class DatabasesTest extends TestCase
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
                     "key" => "index1",
+                    "description" => "Speeds up lookups by email.",
                     "type" => "primary",
                     "status" => "available",
                     "error" => "string",
@@ -420,6 +430,7 @@ final class DatabasesTest extends TestCase
             "\$permissions" => [],
             "databaseId" => "5e5ea5c16897e",
             "name" => "My Collection",
+            "description" => "Movies available in the catalog.",
             "enabled" => true,
             "documentSecurity" => true,
             "attributes" => [],
@@ -429,6 +440,7 @@ final class DatabasesTest extends TestCase
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
                     "key" => "index1",
+                    "description" => "Speeds up lookups by email.",
                     "type" => "primary",
                     "status" => "available",
                     "error" => "string",
@@ -497,6 +509,7 @@ final class DatabasesTest extends TestCase
     {
         $data = [
             "key" => "count",
+            "description" => "Name shown on the public profile.",
             "type" => "bigint",
             "status" => "available",
             "error" => "string",
@@ -525,6 +538,7 @@ final class DatabasesTest extends TestCase
     {
         $data = [
             "key" => "count",
+            "description" => "Name shown on the public profile.",
             "type" => "bigint",
             "status" => "available",
             "error" => "string",
@@ -554,6 +568,7 @@ final class DatabasesTest extends TestCase
     {
         $data = [
             "key" => "isEnabled",
+            "description" => "Name shown on the public profile.",
             "type" => "boolean",
             "status" => "available",
             "error" => "string",
@@ -582,6 +597,7 @@ final class DatabasesTest extends TestCase
     {
         $data = [
             "key" => "isEnabled",
+            "description" => "Name shown on the public profile.",
             "type" => "boolean",
             "status" => "available",
             "error" => "string",
@@ -611,6 +627,7 @@ final class DatabasesTest extends TestCase
     {
         $data = [
             "key" => "birthDay",
+            "description" => "Name shown on the public profile.",
             "type" => "datetime",
             "status" => "available",
             "error" => "string",
@@ -640,6 +657,7 @@ final class DatabasesTest extends TestCase
     {
         $data = [
             "key" => "birthDay",
+            "description" => "Name shown on the public profile.",
             "type" => "datetime",
             "status" => "available",
             "error" => "string",
@@ -670,6 +688,7 @@ final class DatabasesTest extends TestCase
     {
         $data = [
             "key" => "userEmail",
+            "description" => "Name shown on the public profile.",
             "type" => "string",
             "status" => "available",
             "error" => "string",
@@ -699,6 +718,7 @@ final class DatabasesTest extends TestCase
     {
         $data = [
             "key" => "userEmail",
+            "description" => "Name shown on the public profile.",
             "type" => "string",
             "status" => "available",
             "error" => "string",
@@ -729,6 +749,7 @@ final class DatabasesTest extends TestCase
     {
         $data = [
             "key" => "status",
+            "description" => "Name shown on the public profile.",
             "type" => "string",
             "status" => "available",
             "error" => "string",
@@ -760,6 +781,7 @@ final class DatabasesTest extends TestCase
     {
         $data = [
             "key" => "status",
+            "description" => "Name shown on the public profile.",
             "type" => "string",
             "status" => "available",
             "error" => "string",
@@ -792,6 +814,7 @@ final class DatabasesTest extends TestCase
     {
         $data = [
             "key" => "percentageCompleted",
+            "description" => "Name shown on the public profile.",
             "type" => "double",
             "status" => "available",
             "error" => "string",
@@ -820,6 +843,7 @@ final class DatabasesTest extends TestCase
     {
         $data = [
             "key" => "percentageCompleted",
+            "description" => "Name shown on the public profile.",
             "type" => "double",
             "status" => "available",
             "error" => "string",
@@ -849,6 +873,7 @@ final class DatabasesTest extends TestCase
     {
         $data = [
             "key" => "count",
+            "description" => "Name shown on the public profile.",
             "type" => "integer",
             "status" => "available",
             "error" => "string",
@@ -877,6 +902,7 @@ final class DatabasesTest extends TestCase
     {
         $data = [
             "key" => "count",
+            "description" => "Name shown on the public profile.",
             "type" => "integer",
             "status" => "available",
             "error" => "string",
@@ -906,6 +932,7 @@ final class DatabasesTest extends TestCase
     {
         $data = [
             "key" => "ipAddress",
+            "description" => "Name shown on the public profile.",
             "type" => "string",
             "status" => "available",
             "error" => "string",
@@ -935,6 +962,7 @@ final class DatabasesTest extends TestCase
     {
         $data = [
             "key" => "ipAddress",
+            "description" => "Name shown on the public profile.",
             "type" => "string",
             "status" => "available",
             "error" => "string",
@@ -965,6 +993,7 @@ final class DatabasesTest extends TestCase
     {
         $data = [
             "key" => "fullName",
+            "description" => "Name shown on the public profile.",
             "type" => "string",
             "status" => "available",
             "error" => "string",
@@ -993,6 +1022,7 @@ final class DatabasesTest extends TestCase
     {
         $data = [
             "key" => "fullName",
+            "description" => "Name shown on the public profile.",
             "type" => "string",
             "status" => "available",
             "error" => "string",
@@ -1021,6 +1051,7 @@ final class DatabasesTest extends TestCase
     {
         $data = [
             "key" => "fullName",
+            "description" => "Name shown on the public profile.",
             "type" => "string",
             "status" => "available",
             "error" => "string",
@@ -1049,6 +1080,7 @@ final class DatabasesTest extends TestCase
     {
         $data = [
             "key" => "fullName",
+            "description" => "Name shown on the public profile.",
             "type" => "string",
             "status" => "available",
             "error" => "string",
@@ -1078,6 +1110,7 @@ final class DatabasesTest extends TestCase
     {
         $data = [
             "key" => "fullName",
+            "description" => "Name shown on the public profile.",
             "type" => "string",
             "status" => "available",
             "error" => "string",
@@ -1106,6 +1139,7 @@ final class DatabasesTest extends TestCase
     {
         $data = [
             "key" => "fullName",
+            "description" => "Name shown on the public profile.",
             "type" => "string",
             "status" => "available",
             "error" => "string",
@@ -1135,6 +1169,7 @@ final class DatabasesTest extends TestCase
     {
         $data = [
             "key" => "fullName",
+            "description" => "Name shown on the public profile.",
             "type" => "string",
             "status" => "available",
             "error" => "string",
@@ -1163,6 +1198,7 @@ final class DatabasesTest extends TestCase
     {
         $data = [
             "key" => "fullName",
+            "description" => "Name shown on the public profile.",
             "type" => "string",
             "status" => "available",
             "error" => "string",
@@ -1191,6 +1227,7 @@ final class DatabasesTest extends TestCase
     {
         $data = [
             "key" => "fullName",
+            "description" => "Name shown on the public profile.",
             "type" => "string",
             "status" => "available",
             "error" => "string",
@@ -1219,6 +1256,7 @@ final class DatabasesTest extends TestCase
     {
         $data = [
             "key" => "fullName",
+            "description" => "Name shown on the public profile.",
             "type" => "string",
             "status" => "available",
             "error" => "string",
@@ -1247,6 +1285,7 @@ final class DatabasesTest extends TestCase
     {
         $data = [
             "key" => "fullName",
+            "description" => "Name shown on the public profile.",
             "type" => "string",
             "status" => "available",
             "error" => "string",
@@ -1281,6 +1320,7 @@ final class DatabasesTest extends TestCase
     {
         $data = [
             "key" => "fullName",
+            "description" => "Name shown on the public profile.",
             "type" => "string",
             "status" => "available",
             "error" => "string",
@@ -1314,6 +1354,7 @@ final class DatabasesTest extends TestCase
     {
         $data = [
             "key" => "fullName",
+            "description" => "Name shown on the public profile.",
             "type" => "string",
             "status" => "available",
             "error" => "string",
@@ -1344,6 +1385,7 @@ final class DatabasesTest extends TestCase
     {
         $data = [
             "key" => "fullName",
+            "description" => "Name shown on the public profile.",
             "type" => "string",
             "status" => "available",
             "error" => "string",
@@ -1374,6 +1416,7 @@ final class DatabasesTest extends TestCase
     {
         $data = [
             "key" => "fullName",
+            "description" => "Name shown on the public profile.",
             "type" => "string",
             "status" => "available",
             "error" => "string",
@@ -1402,6 +1445,7 @@ final class DatabasesTest extends TestCase
     {
         $data = [
             "key" => "fullName",
+            "description" => "Name shown on the public profile.",
             "type" => "string",
             "status" => "available",
             "error" => "string",
@@ -1431,6 +1475,7 @@ final class DatabasesTest extends TestCase
     {
         $data = [
             "key" => "githubUrl",
+            "description" => "Name shown on the public profile.",
             "type" => "string",
             "status" => "available",
             "error" => "string",
@@ -1460,6 +1505,7 @@ final class DatabasesTest extends TestCase
     {
         $data = [
             "key" => "githubUrl",
+            "description" => "Name shown on the public profile.",
             "type" => "string",
             "status" => "available",
             "error" => "string",
@@ -1490,6 +1536,7 @@ final class DatabasesTest extends TestCase
     {
         $data = [
             "key" => "fullName",
+            "description" => "Name shown on the public profile.",
             "type" => "string",
             "status" => "available",
             "error" => "string",
@@ -1520,6 +1567,7 @@ final class DatabasesTest extends TestCase
     {
         $data = [
             "key" => "fullName",
+            "description" => "Name shown on the public profile.",
             "type" => "string",
             "status" => "available",
             "error" => "string",
@@ -1551,6 +1599,7 @@ final class DatabasesTest extends TestCase
         $data = array_replace(
             [
                 "key" => "fullName",
+                "description" => "Name shown on the public profile.",
                 "type" => "string",
                 "status" => "available",
                 "error" => "string",
@@ -1783,6 +1832,37 @@ final class DatabasesTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\DocumentList::class, $response);
     }
+    public function testMethodCreateQuery(): void
+    {
+        $data = [
+            "total" => 5,
+            "documents" => [
+                [
+                    "\$id" => "5e5ea5c16897e",
+                    "\$sequence" => "1",
+                    "\$collectionId" => "5e5ea5c15117e",
+                    "\$databaseId" => "5e5ea5c15117e",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$permissions" => []
+                ]
+            ]
+        ];
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->databases->createQuery(
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>"
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\DocumentList::class, $response);
+    }
     public function testMethodGetDocument(): void
     {
         $data = [
@@ -1949,6 +2029,7 @@ final class DatabasesTest extends TestCase
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
                     "key" => "index1",
+                    "description" => "Speeds up lookups by email.",
                     "type" => "primary",
                     "status" => "available",
                     "error" => "string",
@@ -1979,6 +2060,7 @@ final class DatabasesTest extends TestCase
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "key" => "index1",
+            "description" => "Speeds up lookups by email.",
             "type" => "primary",
             "status" => "available",
             "error" => "string",
@@ -2010,6 +2092,7 @@ final class DatabasesTest extends TestCase
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "key" => "index1",
+            "description" => "Speeds up lookups by email.",
             "type" => "primary",
             "status" => "available",
             "error" => "string",

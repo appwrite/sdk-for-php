@@ -62,7 +62,7 @@ class Messaging extends Service
      *
      * @throws AppwriteException
      */
-    public function createEmail(string $messageId, string $subject, string $content, ?array $topics = null, ?array $users = null, ?array $targets = null, ?array $cc = null, ?array $bcc = null, ?array $attachments = null, ?bool $draft = null, ?bool $html = null, ?string $scheduledAt = null, ?string $replyToEmail = null, ?string $replyToName = null): \Appwrite\Models\Message
+    public function createEmail(string $messageId, string $subject, string $content, ?array $topics = null, ?array $users = null, ?array $targets = null, ?array $cc = null, ?array $bcc = null, ?array $attachments = null, ?bool $draft = null, ?bool $html = null, ?string $scheduledAt = null, ?string $replyToEmail = null, ?string $replyToName = null, ?array $emails = null): \Appwrite\Models\Message
     {
         $apiPath = str_replace(
             [],
@@ -113,6 +113,10 @@ class Messaging extends Service
             $apiParams['replyToName'] = $replyToName;
         }
 
+        if (!is_null($emails)) {
+            $apiParams['emails'] = $emails;
+        }
+
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
@@ -139,7 +143,7 @@ class Messaging extends Service
      *
      * @throws AppwriteException
      */
-    public function updateEmail(string $messageId, ?array $topics = null, ?array $users = null, ?array $targets = null, ?string $subject = null, ?string $content = null, ?bool $draft = null, ?bool $html = null, ?array $cc = null, ?array $bcc = null, ?string $scheduledAt = null, ?array $attachments = null, ?string $replyToEmail = null, ?string $replyToName = null): \Appwrite\Models\Message
+    public function updateEmail(string $messageId, ?array $topics = null, ?array $users = null, ?array $targets = null, ?string $subject = null, ?string $content = null, ?bool $draft = null, ?bool $html = null, ?array $cc = null, ?array $bcc = null, ?string $scheduledAt = null, ?array $attachments = null, ?string $replyToEmail = null, ?string $replyToName = null, ?array $emails = null): \Appwrite\Models\Message
     {
         if ($messageId === '') {
             throw new AppwriteException('Missing required parameter: "messageId"');
@@ -166,6 +170,7 @@ class Messaging extends Service
         $apiParams['attachments'] = $attachments;
         $apiParams['replyToEmail'] = $replyToEmail;
         $apiParams['replyToName'] = $replyToName;
+        $apiParams['emails'] = $emails;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -2216,7 +2221,7 @@ class Messaging extends Service
      *
      * @throws AppwriteException
      */
-    public function createTopic(string $topicId, string $name, ?array $subscribe = null, ?int $qos = null, ?int $expiry = null): \Appwrite\Models\Topic
+    public function createTopic(string $topicId, string $name, ?array $subscribe = null, ?int $qos = null, ?int $expiry = null, ?string $description = null): \Appwrite\Models\Topic
     {
         $apiPath = str_replace(
             [],
@@ -2233,6 +2238,10 @@ class Messaging extends Service
         }
         $apiParams['qos'] = $qos;
         $apiParams['expiry'] = $expiry;
+
+        if (!is_null($description)) {
+            $apiParams['description'] = $description;
+        }
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -2296,7 +2305,7 @@ class Messaging extends Service
      *
      * @throws AppwriteException
      */
-    public function updateTopic(string $topicId, ?string $name = null, ?array $subscribe = null, ?int $qos = null, ?int $expiry = null): \Appwrite\Models\Topic
+    public function updateTopic(string $topicId, ?string $name = null, ?array $subscribe = null, ?int $qos = null, ?int $expiry = null, ?string $description = null): \Appwrite\Models\Topic
     {
         if ($topicId === '') {
             throw new AppwriteException('Missing required parameter: "topicId"');
@@ -2314,6 +2323,7 @@ class Messaging extends Service
         $apiParams['subscribe'] = $subscribe;
         $apiParams['qos'] = $qos;
         $apiParams['expiry'] = $expiry;
+        $apiParams['description'] = $description;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');

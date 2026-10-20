@@ -13,6 +13,7 @@ $mysql = new Mysql($client);
 
 $result = $mysql->listBackupPolicies(
     databaseId: '<DATABASE_ID>',
-    queries: [] // optional
+    queries: [], // optional
+    total: false // optional
 );
 ```

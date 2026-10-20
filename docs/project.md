@@ -154,6 +154,7 @@ PUT https://cloud.appwrite.io/v1/project/keys/{keyId}
 | name | string | Key name. Max length: 128 chars. |  |
 | scopes | array | Key scopes list. Maximum of 200 scopes are allowed. |  |
 | expire | string | Expiration time in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. Use null for unlimited expiration. |  |
+| description | string | Optional description for the key. |  |
 
 
 ```http request
@@ -1379,13 +1380,16 @@ PATCH https://cloud.appwrite.io/v1/project/policies/passkey
 PATCH https://cloud.appwrite.io/v1/project/policies/password-dictionary
 ```
 
-** Updating this policy allows you to control if new passwords are checked against most common passwords dictionary. When enabled, and user changes their password, password must not be contained in the dictionary. **
+** Updating this policy allows you to control if new passwords are checked against most common passwords dictionary. When enabled, and user changes their password, password must not be contained in the dictionary.
+
+Custom denyList entries use case-sensitive equality and apply only while this policy is enabled. Omit denyList or pass null to preserve it, pass an array to replace it, or pass [] to clear it. Entries are stored without trimming or deduplication. Existing passwords remain valid for sign-in and password confirmation. The combined serialized project authentication configuration must fit within 16,384 characters, even when each list meets its entry limits. **
 
 ### Parameters
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | enabled | boolean | Toggle password dictionary policy. Set to true if you want password change to block passwords in the dictionary, or false to allow them. When changing this policy, existing passwords remain valid. |  |
+| denyList | array | Custom blocked values using case-sensitive equality. Up to 100 entries of 1 to 256 characters. Omit or pass null to preserve, an array to replace, or [] to clear. Combined authentication settings must fit within 16,384 characters. |  |
 
 
 ```http request
@@ -1407,13 +1411,17 @@ Keep in mind, while password history policy is disabled, the history is not bein
 PATCH https://cloud.appwrite.io/v1/project/policies/password-personal-data
 ```
 
-** Updating this policy allows you to control if password strength is checked against personal data. When enabled, and user sets or changes their password, the password must not contain user ID, name, email or phone number. **
+** Updating this policy allows you to control if password strength is checked against personal data. When enabled, and user sets or changes their password, the password must not contain user ID, name, email or phone number.
+
+Custom denyList entries use case-insensitive substring matching and apply only while this policy is enabled. Omit denyList or pass null to preserve it, pass an array to replace it, or pass [] to clear it. Entries are stored without trimming or deduplication. Existing passwords remain valid for sign-in and password confirmation. The combined serialized project authentication configuration must fit within 16,384 characters, even when each list meets its entry limits.
+Password recovery also checks the recovered user profile, closing the previous gap in profile-based personal-data validation. **
 
 ### Parameters
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | enabled | boolean | Toggle password personal data policy. Set to true if you want to block passwords including user's personal data, or false to allow it. When changing this policy, existing passwords remain valid. |  |
+| denyList | array | Custom blocked values using case-insensitive substring matching. Up to 100 entries of 1 to 256 characters. Omit or pass null to preserve, an array to replace, or [] to clear. Combined authentication settings must fit within 16,384 characters. |  |
 
 
 ```http request
@@ -1679,6 +1687,7 @@ POST https://cloud.appwrite.io/v1/project/variables
 | key | string | Variable key. Letters, digits and underscores only, must not start with a digit. Max length: 255 chars. |  |
 | value | string | Variable value. Max length: 8192 chars. |  |
 | secret | boolean | Secret variables can be updated or deleted, but only projects can read them during build and runtime. | 1 |
+| description | string | Optional description for the variable. |  |
 
 
 ```http request
@@ -1708,6 +1717,7 @@ PUT https://cloud.appwrite.io/v1/project/variables/{variableId}
 | key | string | Variable key. Letters, digits and underscores only, must not start with a digit. Max length: 255 chars. |  |
 | value | string | Variable value. Max length: 8192 chars. |  |
 | secret | boolean | Secret variables can be updated or deleted, but only projects can read them during build and runtime. |  |
+| description | string | Optional description for the variable. |  |
 
 
 ```http request

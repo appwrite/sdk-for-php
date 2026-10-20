@@ -12,6 +12,7 @@ $client = (new Client())
 $backups = new Backups($client);
 
 $result = $backups->listArchives(
-    queries: [] // optional
+    queries: [], // optional
+    total: false // optional
 );
 ```

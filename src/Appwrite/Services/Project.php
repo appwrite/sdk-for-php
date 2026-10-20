@@ -432,7 +432,7 @@ class Project extends Service
      *
      * @throws AppwriteException
      */
-    public function updateKey(string $keyId, string $name, array $scopes, ?string $expire = null): \Appwrite\Models\Key
+    public function updateKey(string $keyId, string $name, array $scopes, ?string $expire = null, ?string $description = null): \Appwrite\Models\Key
     {
         if ($keyId === '') {
             throw new AppwriteException('Missing required parameter: "keyId"');
@@ -449,6 +449,7 @@ class Project extends Service
         $apiParams['name'] = $name;
         $apiParams['scopes'] = $scopes;
         $apiParams['expire'] = $expire;
+        $apiParams['description'] = $description;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -3794,9 +3795,17 @@ class Project extends Service
      * against most common passwords dictionary. When enabled, and user changes
      * their password, password must not be contained in the dictionary.
      *
+     * Custom denyList entries use case-sensitive equality and apply only while
+     * this policy is enabled. Omit denyList or pass null to preserve it, pass an
+     * array to replace it, or pass [] to clear it. Entries are stored without
+     * trimming or deduplication. Existing passwords remain valid for sign-in and
+     * password confirmation. The combined serialized project authentication
+     * configuration must fit within 16,384 characters, even when each list meets
+     * its entry limits.
+     *
      * @throws AppwriteException
      */
-    public function updatePasswordDictionaryPolicy(bool $enabled): \Appwrite\Models\Project
+    public function updatePasswordDictionaryPolicy(bool $enabled, ?array $denyList = null): \Appwrite\Models\Project
     {
         $apiPath = str_replace(
             [],
@@ -3806,6 +3815,7 @@ class Project extends Service
 
         $apiParams = [];
         $apiParams['enabled'] = $enabled;
+        $apiParams['denyList'] = $denyList;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -3875,9 +3885,19 @@ class Project extends Service
      * password, the password must not contain user ID, name, email or phone
      * number.
      *
+     * Custom denyList entries use case-insensitive substring matching and apply
+     * only while this policy is enabled. Omit denyList or pass null to preserve
+     * it, pass an array to replace it, or pass [] to clear it. Entries are stored
+     * without trimming or deduplication. Existing passwords remain valid for
+     * sign-in and password confirmation. The combined serialized project
+     * authentication configuration must fit within 16,384 characters, even when
+     * each list meets its entry limits.
+     * Password recovery also checks the recovered user profile, closing the
+     * previous gap in profile-based personal-data validation.
+     *
      * @throws AppwriteException
      */
-    public function updatePasswordPersonalDataPolicy(bool $enabled): \Appwrite\Models\Project
+    public function updatePasswordPersonalDataPolicy(bool $enabled, ?array $denyList = null): \Appwrite\Models\Project
     {
         $apiPath = str_replace(
             [],
@@ -3887,6 +3907,7 @@ class Project extends Service
 
         $apiParams = [];
         $apiParams['enabled'] = $enabled;
+        $apiParams['denyList'] = $denyList;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -4675,7 +4696,7 @@ class Project extends Service
      *
      * @throws AppwriteException
      */
-    public function createVariable(string $variableId, string $key, string $value, ?bool $secret = null): \Appwrite\Models\Variable
+    public function createVariable(string $variableId, string $key, string $value, ?bool $secret = null, ?string $description = null): \Appwrite\Models\Variable
     {
         $apiPath = str_replace(
             [],
@@ -4690,6 +4711,10 @@ class Project extends Service
 
         if (!is_null($secret)) {
             $apiParams['secret'] = $secret;
+        }
+
+        if (!is_null($description)) {
+            $apiParams['description'] = $description;
         }
 
         $apiHeaders = [];
@@ -4754,7 +4779,7 @@ class Project extends Service
      *
      * @throws AppwriteException
      */
-    public function updateVariable(string $variableId, ?string $key = null, ?string $value = null, ?bool $secret = null): \Appwrite\Models\Variable
+    public function updateVariable(string $variableId, ?string $key = null, ?string $value = null, ?bool $secret = null, ?string $description = null): \Appwrite\Models\Variable
     {
         if ($variableId === '') {
             throw new AppwriteException('Missing required parameter: "variableId"');
@@ -4771,6 +4796,7 @@ class Project extends Service
         $apiParams['key'] = $key;
         $apiParams['value'] = $value;
         $apiParams['secret'] = $secret;
+        $apiParams['description'] = $description;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');

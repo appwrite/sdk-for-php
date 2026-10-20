@@ -15,7 +15,7 @@ class Postgresql extends Service
      *
      * @throws AppwriteException
      */
-    public function list(?array $queries = null): \Appwrite\Models\DedicatedDatabaseList
+    public function list(?array $queries = null, ?bool $total = null): \Appwrite\Models\DedicatedDatabaseList
     {
         $apiPath = str_replace(
             [],
@@ -27,6 +27,10 @@ class Postgresql extends Service
 
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
         }
 
         $apiHeaders = [];
@@ -298,7 +302,7 @@ class Postgresql extends Service
      *
      * @throws AppwriteException
      */
-    public function listBackups(string $databaseId, ?array $queries = null): \Appwrite\Models\DedicatedDatabaseBackupList
+    public function listBackups(string $databaseId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\DedicatedDatabaseBackupList
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -315,6 +319,10 @@ class Postgresql extends Service
 
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
         }
 
         $apiHeaders = [];
@@ -384,7 +392,7 @@ class Postgresql extends Service
      *
      * @throws AppwriteException
      */
-    public function listBackupPolicies(string $databaseId, ?array $queries = null): \Appwrite\Models\BackupPolicyList
+    public function listBackupPolicies(string $databaseId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\BackupPolicyList
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -401,6 +409,10 @@ class Postgresql extends Service
 
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
         }
 
         $apiHeaders = [];

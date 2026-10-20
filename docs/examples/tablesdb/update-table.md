@@ -20,6 +20,7 @@ $result = $tablesDB->updateTable(
     permissions: [Permission::read(Role::any())], // optional
     rowSecurity: false, // optional
     enabled: false, // optional
-    purge: false // optional
+    purge: false, // optional
+    description: '<DESCRIPTION>' // optional
 );
 ```
