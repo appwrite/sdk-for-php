@@ -29,6 +29,7 @@ POST https://cloud.appwrite.io/v1/documentsdb
 | databaseId | string | Unique Id. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
 | name | string | Database name. Max length: 128 chars. |  |
 | enabled | boolean | Is the database enabled? When set to 'disabled', users cannot access the database but Server SDKs with an API key can still read and write to the database. No data is lost when this is toggled. | 1 |
+| description | string | Optional description for the database. |  |
 | specification | string | Database specification. Defaults to `serverless`, which creates the database on the shared pool. Any other value provisions a dedicated database on that specification. | serverless |
 | replicas | integer | Number of high availability replicas (0-5) for the dedicated database backing this database. Requires a dedicated `specification`; must be 0 for a serverless database. High availability is enabled when greater than 0. | 0 |
 | syncMode | string | Replication sync mode for the dedicated database backing this database. Requires a dedicated `specification`; the mode is only in force once there is at least one replica. Allowed values: async, sync, quorum. |  |
@@ -149,6 +150,7 @@ PUT https://cloud.appwrite.io/v1/documentsdb/{databaseId}
 | databaseId | string | **Required** Database ID. |  |
 | name | string | Database name. Max length: 128 chars. |  |
 | enabled | boolean | Is database enabled? When set to 'disabled', users cannot access the database but Server SDKs with an API key can still read and write to the database. No data is lost when this is toggled. | 1 |
+| description | string | Optional description for the database. |  |
 | specification | string | Database specification. Resizing between dedicated specifications changes cpu, memory, storage and the connection ceiling via a rolling cutover with zero downtime. Moving a `serverless` database onto a dedicated specification is a data migration, not a resize. |  |
 | replicas | integer | Number of high availability replicas (0-5) for the dedicated database backing this database. Only valid when the database is backed by a dedicated specification. High availability is enabled when greater than 0. |  |
 | syncMode | string | Replication sync mode for the dedicated database backing this database. Only valid when the database is backed by a dedicated specification; the mode is only in force once there is at least one replica. Allowed values: async, sync, quorum. |  |
@@ -201,6 +203,7 @@ POST https://cloud.appwrite.io/v1/documentsdb/{databaseId}/collections
 | enabled | boolean | Is collection enabled? When set to 'disabled', users cannot access the collection but Server SDKs with and API key can still read and write to the collection. No data is lost when this is toggled. | 1 |
 | attributes | array | Array of attribute definitions to create. Each attribute should contain: key (string), type (string: string, varchar, text, mediumtext, longtext, integer, bigint, double, boolean, datetime, point, linestring, polygon, email, url, ip, enum), size (integer, required for string and varchar types), required (boolean, optional), default (mixed, optional), array (boolean, optional), and type-specific options. | [] |
 | indexes | array | Array of index definitions to create. Each index should contain: key (string), type (string: key, fulltext, unique, spatial), attributes (array of attribute keys), orders (array of ASC/DESC, optional), and lengths (array of integers, optional). | [] |
+| description | string | Optional description for the collection. |  |
 
 
 ```http request
@@ -234,6 +237,7 @@ PUT https://cloud.appwrite.io/v1/documentsdb/{databaseId}/collections/{collectio
 | documentSecurity | boolean | Enables configuring permissions for individual documents. A user needs one of document or collection level permissions to access a document. [Learn more about permissions](https://appwrite.io/docs/permissions). |  |
 | enabled | boolean | Is collection enabled? When set to 'disabled', users cannot access the collection but Server SDKs with and API key can still read and write to the collection. No data is lost when this is toggled. | 1 |
 | purge | boolean | When true, purge all cached list responses for this collection as part of the update. Use this to force readers to see fresh data immediately instead of waiting for the cache TTL to expire. |  |
+| description | string | Optional description for the collection. |  |
 
 
 ```http request
@@ -350,6 +354,25 @@ DELETE https://cloud.appwrite.io/v1/documentsdb/{databaseId}/collections/{collec
 | collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. | [] |
 | transactionId | string | Transaction ID for staging the operation. |  |
+
+
+```http request
+POST https://cloud.appwrite.io/v1/documentsdb/{databaseId}/collections/{collectionId}/documents/query
+```
+
+** Get a list of all the user's documents in a given collection using a POST request. This behaves identically to the list documents endpoint but accepts the queries in the request body, allowing much larger `queries` arrays than can fit in a URL query string.
+ **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| databaseId | string | **Required** Database ID. |  |
+| collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
+| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. | [] |
+| transactionId | string | Transaction ID to read uncommitted changes within the transaction. |  |
+| total | boolean | When set to false, the total count returned will be 0 and will not be calculated. | 1 |
+| ttl | integer | TTL (seconds) for cached responses when caching is enabled for select queries. Must be between 0 and 86400 (24 hours). | 0 |
 
 
 ```http request
@@ -493,6 +516,7 @@ Attributes can be `key`, `fulltext`, and `unique`. **
 | attributes | array | Array of attributes to index. Maximum of 100 attributes are allowed, each 32 characters long. |  |
 | orders | array | Array of index orders. Maximum of 100 orders are allowed. | [] |
 | lengths | array | Length of index. Maximum of 100 | [] |
+| description | string | Optional description for the index. |  |
 
 
 ```http request

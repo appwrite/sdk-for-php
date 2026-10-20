@@ -20,6 +20,7 @@ readonly class Topic
      * @param string $createdAt topic creation time in iso 8601 format.
      * @param string $updatedAt topic update date in iso 8601 format.
      * @param string $name the name of the topic.
+     * @param string $description optional description for the topic.
      * @param int $emailTotal total count of email subscribers subscribed to the topic.
      * @param int $smsTotal total count of sms subscribers subscribed to the topic.
      * @param int $pushTotal total count of push subscribers subscribed to the topic.
@@ -32,6 +33,7 @@ readonly class Topic
         public string $createdAt,
         public string $updatedAt,
         public string $name,
+        public string $description,
         public int $emailTotal,
         public int $smsTotal,
         public int $pushTotal,
@@ -51,6 +53,7 @@ readonly class Topic
             '$createdAt' => "",
             '$updatedAt' => "",
             'name' => "",
+            'description' => "",
             'emailTotal' => 0,
             'smsTotal' => 0,
             'pushTotal' => 0,
@@ -62,6 +65,7 @@ readonly class Topic
             createdAt: $data['$createdAt'],
             updatedAt: $data['$updatedAt'],
             name: $data['name'],
+            description: $data['description'],
             emailTotal: $data['emailTotal'],
             smsTotal: $data['smsTotal'],
             pushTotal: $data['pushTotal'],
@@ -81,6 +85,7 @@ readonly class Topic
             '$createdAt' => static::serializeValue($this->createdAt),
             '$updatedAt' => static::serializeValue($this->updatedAt),
             'name' => static::serializeValue($this->name),
+            'description' => static::serializeValue($this->description),
             'emailTotal' => static::serializeValue($this->emailTotal),
             'smsTotal' => static::serializeValue($this->smsTotal),
             'pushTotal' => static::serializeValue($this->pushTotal),

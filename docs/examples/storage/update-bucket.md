@@ -25,6 +25,7 @@ $result = $storage->updateBucket(
     compression: Compression::NONE(), // optional
     encryption: false, // optional
     antivirus: false, // optional
-    transformations: false // optional
+    transformations: false, // optional
+    description: '<DESCRIPTION>' // optional
 );
 ```

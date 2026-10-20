@@ -18,10 +18,12 @@ readonly class PolicyPasswordPersonalData
      *
      * @param string $id policy id.
      * @param bool $enabled whether password personal data policy is enabled.
+     * @param array $denyList custom terms blocked by case-insensitive substring matching when enabled.
      */
     public function __construct(
         public string $id,
-        public bool $enabled
+        public bool $enabled,
+        public array $denyList
     ) {
     }
 
@@ -33,11 +35,13 @@ readonly class PolicyPasswordPersonalData
         $data += [
             '$id' => "",
             'enabled' => false,
+            'denyList' => [],
         ];
 
         return new static(
             id: $data['$id'],
-            enabled: $data['enabled']
+            enabled: $data['enabled'],
+            denyList: $data['denyList']
         );
     }
 
@@ -48,7 +52,8 @@ readonly class PolicyPasswordPersonalData
     {
         return [
             '$id' => static::serializeValue($this->id),
-            'enabled' => static::serializeValue($this->enabled)
+            'enabled' => static::serializeValue($this->enabled),
+            'denyList' => static::serializeValue($this->denyList)
         ];
     }
 }

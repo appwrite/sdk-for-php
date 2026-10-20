@@ -40,6 +40,7 @@ POST https://cloud.appwrite.io/v1/messaging/messages/email
 | scheduledAt | string | Scheduled delivery time for message in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. DateTime value must be in future. |  |
 | replyToEmail | string | Email address to reply to. If not set, defaults to the sender email address. |  |
 | replyToName | string | Name of the reply to recipient. If not set, defaults to the sender name. |  |
+| emails | array | List of email addresses to send the message to. Use this to deliver to recipients that are not backed by an Appwrite user, target, or topic. | [] |
 
 
 ```http request
@@ -67,6 +68,7 @@ PATCH https://cloud.appwrite.io/v1/messaging/messages/email/{messageId}
 | attachments | array | Array of compound ID strings of bucket IDs and file IDs to be attached to the email. They should be formatted as <BUCKET_ID>:<FILE_ID>. |  |
 | replyToEmail | string | Email address to reply to. Pass an empty string to restore the provider or sender default. |  |
 | replyToName | string | Name of the reply to recipient. Pass an empty string to restore the provider or sender default. |  |
+| emails | array | List of email addresses to send the message to. Use this to deliver to recipients that are not backed by an Appwrite user, target, or topic. |  |
 
 
 ```http request
@@ -956,6 +958,7 @@ POST https://cloud.appwrite.io/v1/messaging/topics
 | subscribe | array | An array of role strings with subscribe permission. By default all users are granted with any subscribe permission. [learn more about roles](https://appwrite.io/docs/permissions#permission-roles). Maximum of 100 roles are allowed, each 64 characters long. | [&quot;users&quot;] |
 | qos | integer | MQTT delivery quality of service for this topic. 0 is fire-and-forget (delivered only to clients connected at publish time). 1 persists each message and replays it when a client reconnects without having acknowledged it. Null lets the subscriber choose. |  |
 | expiry | integer | Message retention in seconds for offline delivery. Max 7 days (604800). Null inherits the lowest expiry of the project's enabled Appwrite providers, or the 7-day ledger window if none sets one. |  |
+| description | string | Optional description for the topic. |  |
 
 
 ```http request
@@ -988,6 +991,7 @@ PATCH https://cloud.appwrite.io/v1/messaging/topics/{topicId}
 | subscribe | array | An array of role strings with subscribe permission. By default all users are granted with any subscribe permission. [learn more about roles](https://appwrite.io/docs/permissions#permission-roles). Maximum of 100 roles are allowed, each 64 characters long. |  |
 | qos | integer | MQTT delivery quality of service for this topic. 0 is fire-and-forget (delivered only to clients connected at publish time). 1 persists each message and replays it when a client reconnects without having acknowledged it. Null lets the subscriber choose. |  |
 | expiry | integer | Message retention in seconds for offline delivery. Max 7 days (604800). Null inherits the lowest expiry of the project's enabled Appwrite providers, or the 7-day ledger window if none sets one. |  |
+| description | string | Optional description for the topic. |  |
 
 
 ```http request

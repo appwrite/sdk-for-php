@@ -66,7 +66,7 @@ class Storage extends Service
      *
      * @throws AppwriteException
      */
-    public function createBucket(string $bucketId, string $name, ?array $permissions = null, ?bool $fileSecurity = null, ?bool $enabled = null, ?int $maximumFileSize = null, ?array $allowedFileExtensions = null, ?Compression $compression = null, ?bool $encryption = null, ?bool $antivirus = null, ?bool $transformations = null): \Appwrite\Models\Bucket
+    public function createBucket(string $bucketId, string $name, ?array $permissions = null, ?bool $fileSecurity = null, ?bool $enabled = null, ?int $maximumFileSize = null, ?array $allowedFileExtensions = null, ?Compression $compression = null, ?bool $encryption = null, ?bool $antivirus = null, ?bool $transformations = null, ?string $description = null): \Appwrite\Models\Bucket
     {
         $apiPath = str_replace(
             [],
@@ -109,6 +109,10 @@ class Storage extends Service
 
         if (!is_null($transformations)) {
             $apiParams['transformations'] = $transformations;
+        }
+
+        if (!is_null($description)) {
+            $apiParams['description'] = $description;
         }
 
         $apiHeaders = [];
@@ -174,7 +178,7 @@ class Storage extends Service
      *
      * @throws AppwriteException
      */
-    public function updateBucket(string $bucketId, string $name, ?array $permissions = null, ?bool $fileSecurity = null, ?bool $enabled = null, ?int $maximumFileSize = null, ?array $allowedFileExtensions = null, ?Compression $compression = null, ?bool $encryption = null, ?bool $antivirus = null, ?bool $transformations = null): \Appwrite\Models\Bucket
+    public function updateBucket(string $bucketId, string $name, ?array $permissions = null, ?bool $fileSecurity = null, ?bool $enabled = null, ?int $maximumFileSize = null, ?array $allowedFileExtensions = null, ?Compression $compression = null, ?bool $encryption = null, ?bool $antivirus = null, ?bool $transformations = null, ?string $description = null): \Appwrite\Models\Bucket
     {
         if ($bucketId === '') {
             throw new AppwriteException('Missing required parameter: "bucketId"');
@@ -213,6 +217,7 @@ class Storage extends Service
         if (!is_null($transformations)) {
             $apiParams['transformations'] = $transformations;
         }
+        $apiParams['description'] = $description;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');

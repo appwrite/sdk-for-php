@@ -13,6 +13,7 @@ $mongo = new Mongo($client);
 
 $result = $mongo->listBackupPolicies(
     databaseId: '<DATABASE_ID>',
-    queries: [] // optional
+    queries: [], // optional
+    total: false // optional
 );
 ```

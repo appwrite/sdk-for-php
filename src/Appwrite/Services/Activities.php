@@ -15,7 +15,7 @@ class Activities extends Service
      *
      * @throws AppwriteException
      */
-    public function listEvents(?array $queries = null): \Appwrite\Models\ActivityEventList
+    public function listEvents(?array $queries = null, ?bool $total = null): \Appwrite\Models\ActivityEventList
     {
         $apiPath = str_replace(
             [],
@@ -27,6 +27,10 @@ class Activities extends Service
 
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
         }
 
         $apiHeaders = [];

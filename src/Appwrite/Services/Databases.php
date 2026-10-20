@@ -70,7 +70,7 @@ class Databases extends Service
      * @deprecated This API has been deprecated since 1.8.0. Please use `create` instead.
      * @see TablesDB::create
      */
-    public function create(string $databaseId, string $name, ?bool $enabled = null): \Appwrite\Models\Database
+    public function create(string $databaseId, string $name, ?bool $enabled = null, ?string $description = null): \Appwrite\Models\Database
     {
         $apiPath = str_replace(
             [],
@@ -84,6 +84,10 @@ class Databases extends Service
 
         if (!is_null($enabled)) {
             $apiParams['enabled'] = $enabled;
+        }
+
+        if (!is_null($description)) {
+            $apiParams['description'] = $description;
         }
 
         $apiHeaders = [];
@@ -413,7 +417,7 @@ class Databases extends Service
      * @deprecated This API has been deprecated since 1.8.0. Please use `update` instead.
      * @see TablesDB::update
      */
-    public function update(string $databaseId, ?string $name = null, ?bool $enabled = null): \Appwrite\Models\Database
+    public function update(string $databaseId, ?string $name = null, ?bool $enabled = null, ?string $description = null): \Appwrite\Models\Database
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -435,6 +439,7 @@ class Databases extends Service
         if (!is_null($enabled)) {
             $apiParams['enabled'] = $enabled;
         }
+        $apiParams['description'] = $description;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -557,7 +562,7 @@ class Databases extends Service
      * @deprecated This API has been deprecated since 1.8.0. Please use `createTable` instead.
      * @see TablesDB::createTable
      */
-    public function createCollection(string $databaseId, string $collectionId, string $name, ?array $permissions = null, ?bool $documentSecurity = null, ?bool $enabled = null, ?array $attributes = null, ?array $indexes = null): \Appwrite\Models\Collection
+    public function createCollection(string $databaseId, string $collectionId, string $name, ?array $permissions = null, ?bool $documentSecurity = null, ?bool $enabled = null, ?array $attributes = null, ?array $indexes = null, ?string $description = null): \Appwrite\Models\Collection
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -589,6 +594,10 @@ class Databases extends Service
 
         if (!is_null($indexes)) {
             $apiParams['indexes'] = $indexes;
+        }
+
+        if (!is_null($description)) {
+            $apiParams['description'] = $description;
         }
 
         $apiHeaders = [];
@@ -665,7 +674,7 @@ class Databases extends Service
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateTable` instead.
      * @see TablesDB::updateTable
      */
-    public function updateCollection(string $databaseId, string $collectionId, ?string $name = null, ?array $permissions = null, ?bool $documentSecurity = null, ?bool $enabled = null, ?bool $purge = null): \Appwrite\Models\Collection
+    public function updateCollection(string $databaseId, string $collectionId, ?string $name = null, ?array $permissions = null, ?bool $documentSecurity = null, ?bool $enabled = null, ?bool $purge = null, ?string $description = null): \Appwrite\Models\Collection
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -701,6 +710,7 @@ class Databases extends Service
         if (!is_null($purge)) {
             $apiParams['purge'] = $purge;
         }
+        $apiParams['description'] = $description;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -826,7 +836,7 @@ class Databases extends Service
      * @deprecated This API has been deprecated since 1.8.0. Please use `createBigIntColumn` instead.
      * @see TablesDB::createBigIntColumn
      */
-    public function createBigIntAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?int $min = null, ?int $max = null, ?int $xdefault = null, ?bool $xarray = null): \Appwrite\Models\AttributeBigint
+    public function createBigIntAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?int $min = null, ?int $max = null, ?int $xdefault = null, ?bool $xarray = null, ?string $description = null): \Appwrite\Models\AttributeBigint
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -853,6 +863,10 @@ class Databases extends Service
 
         if (!is_null($xarray)) {
             $apiParams['array'] = $xarray;
+        }
+
+        if (!is_null($description)) {
+            $apiParams['description'] = $description;
         }
 
         $apiHeaders = [];
@@ -883,7 +897,7 @@ class Databases extends Service
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateBigIntColumn` instead.
      * @see TablesDB::updateBigIntColumn
      */
-    public function updateBigIntAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?int $xdefault, ?int $min = null, ?int $max = null, ?string $newKey = null): \Appwrite\Models\AttributeBigint
+    public function updateBigIntAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?int $xdefault, ?int $min = null, ?int $max = null, ?string $newKey = null, ?string $description = null): \Appwrite\Models\AttributeBigint
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -912,6 +926,7 @@ class Databases extends Service
         $apiParams['min'] = $min;
         $apiParams['max'] = $max;
         $apiParams['newKey'] = $newKey;
+        $apiParams['description'] = $description;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -940,7 +955,7 @@ class Databases extends Service
      * @deprecated This API has been deprecated since 1.8.0. Please use `createBooleanColumn` instead.
      * @see TablesDB::createBooleanColumn
      */
-    public function createBooleanAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?bool $xdefault = null, ?bool $xarray = null): \Appwrite\Models\AttributeBoolean
+    public function createBooleanAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?bool $xdefault = null, ?bool $xarray = null, ?string $description = null): \Appwrite\Models\AttributeBoolean
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -965,6 +980,10 @@ class Databases extends Service
 
         if (!is_null($xarray)) {
             $apiParams['array'] = $xarray;
+        }
+
+        if (!is_null($description)) {
+            $apiParams['description'] = $description;
         }
 
         $apiHeaders = [];
@@ -995,7 +1014,7 @@ class Databases extends Service
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateBooleanColumn` instead.
      * @see TablesDB::updateBooleanColumn
      */
-    public function updateBooleanAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?bool $xdefault, ?string $newKey = null): \Appwrite\Models\AttributeBoolean
+    public function updateBooleanAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?bool $xdefault, ?string $newKey = null, ?string $description = null): \Appwrite\Models\AttributeBoolean
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -1022,6 +1041,7 @@ class Databases extends Service
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
         $apiParams['newKey'] = $newKey;
+        $apiParams['description'] = $description;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -1050,7 +1070,7 @@ class Databases extends Service
      * @deprecated This API has been deprecated since 1.8.0. Please use `createDatetimeColumn` instead.
      * @see TablesDB::createDatetimeColumn
      */
-    public function createDatetimeAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): \Appwrite\Models\AttributeDatetime
+    public function createDatetimeAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?string $description = null): \Appwrite\Models\AttributeDatetime
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -1075,6 +1095,10 @@ class Databases extends Service
 
         if (!is_null($xarray)) {
             $apiParams['array'] = $xarray;
+        }
+
+        if (!is_null($description)) {
+            $apiParams['description'] = $description;
         }
 
         $apiHeaders = [];
@@ -1105,7 +1129,7 @@ class Databases extends Service
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateDatetimeColumn` instead.
      * @see TablesDB::updateDatetimeColumn
      */
-    public function updateDatetimeAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\AttributeDatetime
+    public function updateDatetimeAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?string $newKey = null, ?string $description = null): \Appwrite\Models\AttributeDatetime
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -1132,6 +1156,7 @@ class Databases extends Service
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
         $apiParams['newKey'] = $newKey;
+        $apiParams['description'] = $description;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -1160,7 +1185,7 @@ class Databases extends Service
      * @deprecated This API has been deprecated since 1.8.0. Please use `createEmailColumn` instead.
      * @see TablesDB::createEmailColumn
      */
-    public function createEmailAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): \Appwrite\Models\AttributeEmail
+    public function createEmailAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?string $description = null): \Appwrite\Models\AttributeEmail
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -1185,6 +1210,10 @@ class Databases extends Service
 
         if (!is_null($xarray)) {
             $apiParams['array'] = $xarray;
+        }
+
+        if (!is_null($description)) {
+            $apiParams['description'] = $description;
         }
 
         $apiHeaders = [];
@@ -1215,7 +1244,7 @@ class Databases extends Service
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateEmailColumn` instead.
      * @see TablesDB::updateEmailColumn
      */
-    public function updateEmailAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\AttributeEmail
+    public function updateEmailAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?string $newKey = null, ?string $description = null): \Appwrite\Models\AttributeEmail
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -1242,6 +1271,7 @@ class Databases extends Service
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
         $apiParams['newKey'] = $newKey;
+        $apiParams['description'] = $description;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -1271,7 +1301,7 @@ class Databases extends Service
      * @deprecated This API has been deprecated since 1.8.0. Please use `createEnumColumn` instead.
      * @see TablesDB::createEnumColumn
      */
-    public function createEnumAttribute(string $databaseId, string $collectionId, string $key, array $elements, bool $required, ?string $xdefault = null, ?bool $xarray = null): \Appwrite\Models\AttributeEnum
+    public function createEnumAttribute(string $databaseId, string $collectionId, string $key, array $elements, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?string $description = null): \Appwrite\Models\AttributeEnum
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -1297,6 +1327,10 @@ class Databases extends Service
 
         if (!is_null($xarray)) {
             $apiParams['array'] = $xarray;
+        }
+
+        if (!is_null($description)) {
+            $apiParams['description'] = $description;
         }
 
         $apiHeaders = [];
@@ -1327,7 +1361,7 @@ class Databases extends Service
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateEnumColumn` instead.
      * @see TablesDB::updateEnumColumn
      */
-    public function updateEnumAttribute(string $databaseId, string $collectionId, string $key, array $elements, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\AttributeEnum
+    public function updateEnumAttribute(string $databaseId, string $collectionId, string $key, array $elements, bool $required, ?string $xdefault, ?string $newKey = null, ?string $description = null): \Appwrite\Models\AttributeEnum
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -1355,6 +1389,7 @@ class Databases extends Service
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
         $apiParams['newKey'] = $newKey;
+        $apiParams['description'] = $description;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -1384,7 +1419,7 @@ class Databases extends Service
      * @deprecated This API has been deprecated since 1.8.0. Please use `createFloatColumn` instead.
      * @see TablesDB::createFloatColumn
      */
-    public function createFloatAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?float $min = null, ?float $max = null, ?float $xdefault = null, ?bool $xarray = null): \Appwrite\Models\AttributeFloat
+    public function createFloatAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?float $min = null, ?float $max = null, ?float $xdefault = null, ?bool $xarray = null, ?string $description = null): \Appwrite\Models\AttributeFloat
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -1411,6 +1446,10 @@ class Databases extends Service
 
         if (!is_null($xarray)) {
             $apiParams['array'] = $xarray;
+        }
+
+        if (!is_null($description)) {
+            $apiParams['description'] = $description;
         }
 
         $apiHeaders = [];
@@ -1441,7 +1480,7 @@ class Databases extends Service
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateFloatColumn` instead.
      * @see TablesDB::updateFloatColumn
      */
-    public function updateFloatAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?float $xdefault, ?float $min = null, ?float $max = null, ?string $newKey = null): \Appwrite\Models\AttributeFloat
+    public function updateFloatAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?float $xdefault, ?float $min = null, ?float $max = null, ?string $newKey = null, ?string $description = null): \Appwrite\Models\AttributeFloat
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -1470,6 +1509,7 @@ class Databases extends Service
         $apiParams['min'] = $min;
         $apiParams['max'] = $max;
         $apiParams['newKey'] = $newKey;
+        $apiParams['description'] = $description;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -1499,7 +1539,7 @@ class Databases extends Service
      * @deprecated This API has been deprecated since 1.8.0. Please use `createIntegerColumn` instead.
      * @see TablesDB::createIntegerColumn
      */
-    public function createIntegerAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?int $min = null, ?int $max = null, ?int $xdefault = null, ?bool $xarray = null): \Appwrite\Models\AttributeInteger
+    public function createIntegerAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?int $min = null, ?int $max = null, ?int $xdefault = null, ?bool $xarray = null, ?string $description = null): \Appwrite\Models\AttributeInteger
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -1526,6 +1566,10 @@ class Databases extends Service
 
         if (!is_null($xarray)) {
             $apiParams['array'] = $xarray;
+        }
+
+        if (!is_null($description)) {
+            $apiParams['description'] = $description;
         }
 
         $apiHeaders = [];
@@ -1556,7 +1600,7 @@ class Databases extends Service
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateIntegerColumn` instead.
      * @see TablesDB::updateIntegerColumn
      */
-    public function updateIntegerAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?int $xdefault, ?int $min = null, ?int $max = null, ?string $newKey = null): \Appwrite\Models\AttributeInteger
+    public function updateIntegerAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?int $xdefault, ?int $min = null, ?int $max = null, ?string $newKey = null, ?string $description = null): \Appwrite\Models\AttributeInteger
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -1585,6 +1629,7 @@ class Databases extends Service
         $apiParams['min'] = $min;
         $apiParams['max'] = $max;
         $apiParams['newKey'] = $newKey;
+        $apiParams['description'] = $description;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -1613,7 +1658,7 @@ class Databases extends Service
      * @deprecated This API has been deprecated since 1.8.0. Please use `createIpColumn` instead.
      * @see TablesDB::createIpColumn
      */
-    public function createIpAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): \Appwrite\Models\AttributeIp
+    public function createIpAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?string $description = null): \Appwrite\Models\AttributeIp
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -1638,6 +1683,10 @@ class Databases extends Service
 
         if (!is_null($xarray)) {
             $apiParams['array'] = $xarray;
+        }
+
+        if (!is_null($description)) {
+            $apiParams['description'] = $description;
         }
 
         $apiHeaders = [];
@@ -1668,7 +1717,7 @@ class Databases extends Service
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateIpColumn` instead.
      * @see TablesDB::updateIpColumn
      */
-    public function updateIpAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\AttributeIp
+    public function updateIpAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?string $newKey = null, ?string $description = null): \Appwrite\Models\AttributeIp
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -1695,6 +1744,7 @@ class Databases extends Service
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
         $apiParams['newKey'] = $newKey;
+        $apiParams['description'] = $description;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -1723,7 +1773,7 @@ class Databases extends Service
      * @deprecated This API has been deprecated since 1.8.0. Please use `createLineColumn` instead.
      * @see TablesDB::createLineColumn
      */
-    public function createLineAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?array $xdefault = null): \Appwrite\Models\AttributeLine
+    public function createLineAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?array $xdefault = null, ?string $description = null): \Appwrite\Models\AttributeLine
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -1745,6 +1795,10 @@ class Databases extends Service
         $apiParams['key'] = $key;
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
+
+        if (!is_null($description)) {
+            $apiParams['description'] = $description;
+        }
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -1774,7 +1828,7 @@ class Databases extends Service
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateLineColumn` instead.
      * @see TablesDB::updateLineColumn
      */
-    public function updateLineAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?array $xdefault = null, ?string $newKey = null): \Appwrite\Models\AttributeLine
+    public function updateLineAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?array $xdefault = null, ?string $newKey = null, ?string $description = null): \Appwrite\Models\AttributeLine
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -1801,6 +1855,7 @@ class Databases extends Service
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
         $apiParams['newKey'] = $newKey;
+        $apiParams['description'] = $description;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -1829,7 +1884,7 @@ class Databases extends Service
      * @deprecated This API has been deprecated since 1.8.0. Please use `createLongtextColumn` instead.
      * @see TablesDB::createLongtextColumn
      */
-    public function createLongtextAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): \Appwrite\Models\AttributeLongtext
+    public function createLongtextAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null, ?string $description = null): \Appwrite\Models\AttributeLongtext
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -1860,6 +1915,10 @@ class Databases extends Service
             $apiParams['encrypt'] = $encrypt;
         }
 
+        if (!is_null($description)) {
+            $apiParams['description'] = $description;
+        }
+
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
@@ -1888,7 +1947,7 @@ class Databases extends Service
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateLongtextColumn` instead.
      * @see TablesDB::updateLongtextColumn
      */
-    public function updateLongtextAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\AttributeLongtext
+    public function updateLongtextAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?string $newKey = null, ?string $description = null): \Appwrite\Models\AttributeLongtext
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -1915,6 +1974,7 @@ class Databases extends Service
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
         $apiParams['newKey'] = $newKey;
+        $apiParams['description'] = $description;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -1943,7 +2003,7 @@ class Databases extends Service
      * @deprecated This API has been deprecated since 1.8.0. Please use `createMediumtextColumn` instead.
      * @see TablesDB::createMediumtextColumn
      */
-    public function createMediumtextAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): \Appwrite\Models\AttributeMediumtext
+    public function createMediumtextAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null, ?string $description = null): \Appwrite\Models\AttributeMediumtext
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -1974,6 +2034,10 @@ class Databases extends Service
             $apiParams['encrypt'] = $encrypt;
         }
 
+        if (!is_null($description)) {
+            $apiParams['description'] = $description;
+        }
+
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
@@ -2002,7 +2066,7 @@ class Databases extends Service
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateMediumtextColumn` instead.
      * @see TablesDB::updateMediumtextColumn
      */
-    public function updateMediumtextAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\AttributeMediumtext
+    public function updateMediumtextAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?string $newKey = null, ?string $description = null): \Appwrite\Models\AttributeMediumtext
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -2029,6 +2093,7 @@ class Databases extends Service
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
         $apiParams['newKey'] = $newKey;
+        $apiParams['description'] = $description;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -2057,7 +2122,7 @@ class Databases extends Service
      * @deprecated This API has been deprecated since 1.8.0. Please use `createPointColumn` instead.
      * @see TablesDB::createPointColumn
      */
-    public function createPointAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?array $xdefault = null): \Appwrite\Models\AttributePoint
+    public function createPointAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?array $xdefault = null, ?string $description = null): \Appwrite\Models\AttributePoint
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -2079,6 +2144,10 @@ class Databases extends Service
         $apiParams['key'] = $key;
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
+
+        if (!is_null($description)) {
+            $apiParams['description'] = $description;
+        }
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -2108,7 +2177,7 @@ class Databases extends Service
      * @deprecated This API has been deprecated since 1.8.0. Please use `updatePointColumn` instead.
      * @see TablesDB::updatePointColumn
      */
-    public function updatePointAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?array $xdefault = null, ?string $newKey = null): \Appwrite\Models\AttributePoint
+    public function updatePointAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?array $xdefault = null, ?string $newKey = null, ?string $description = null): \Appwrite\Models\AttributePoint
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -2135,6 +2204,7 @@ class Databases extends Service
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
         $apiParams['newKey'] = $newKey;
+        $apiParams['description'] = $description;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -2163,7 +2233,7 @@ class Databases extends Service
      * @deprecated This API has been deprecated since 1.8.0. Please use `createPolygonColumn` instead.
      * @see TablesDB::createPolygonColumn
      */
-    public function createPolygonAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?array $xdefault = null): \Appwrite\Models\AttributePolygon
+    public function createPolygonAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?array $xdefault = null, ?string $description = null): \Appwrite\Models\AttributePolygon
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -2185,6 +2255,10 @@ class Databases extends Service
         $apiParams['key'] = $key;
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
+
+        if (!is_null($description)) {
+            $apiParams['description'] = $description;
+        }
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -2214,7 +2288,7 @@ class Databases extends Service
      * @deprecated This API has been deprecated since 1.8.0. Please use `updatePolygonColumn` instead.
      * @see TablesDB::updatePolygonColumn
      */
-    public function updatePolygonAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?array $xdefault = null, ?string $newKey = null): \Appwrite\Models\AttributePolygon
+    public function updatePolygonAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?array $xdefault = null, ?string $newKey = null, ?string $description = null): \Appwrite\Models\AttributePolygon
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -2241,6 +2315,7 @@ class Databases extends Service
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
         $apiParams['newKey'] = $newKey;
+        $apiParams['description'] = $description;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -2270,7 +2345,7 @@ class Databases extends Service
      * @deprecated This API has been deprecated since 1.8.0. Please use `createRelationshipColumn` instead.
      * @see TablesDB::createRelationshipColumn
      */
-    public function createRelationshipAttribute(string $databaseId, string $collectionId, string $relatedCollectionId, RelationshipType $type, ?bool $twoWay = null, ?string $key = null, ?string $twoWayKey = null, ?RelationMutate $onDelete = null): \Appwrite\Models\AttributeRelationship
+    public function createRelationshipAttribute(string $databaseId, string $collectionId, string $relatedCollectionId, RelationshipType $type, ?bool $twoWay = null, ?string $key = null, ?string $twoWayKey = null, ?RelationMutate $onDelete = null, ?string $description = null): \Appwrite\Models\AttributeRelationship
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -2302,6 +2377,10 @@ class Databases extends Service
             $apiParams['onDelete'] = $onDelete;
         }
 
+        if (!is_null($description)) {
+            $apiParams['description'] = $description;
+        }
+
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
@@ -2330,7 +2409,7 @@ class Databases extends Service
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateRelationshipColumn` instead.
      * @see TablesDB::updateRelationshipColumn
      */
-    public function updateRelationshipAttribute(string $databaseId, string $collectionId, string $key, ?RelationMutate $onDelete = null, ?string $newKey = null): \Appwrite\Models\AttributeRelationship
+    public function updateRelationshipAttribute(string $databaseId, string $collectionId, string $key, ?RelationMutate $onDelete = null, ?string $newKey = null, ?string $description = null): \Appwrite\Models\AttributeRelationship
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -2359,6 +2438,7 @@ class Databases extends Service
             $apiParams['onDelete'] = $onDelete;
         }
         $apiParams['newKey'] = $newKey;
+        $apiParams['description'] = $description;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -2387,7 +2467,7 @@ class Databases extends Service
      * @deprecated This API has been deprecated since 1.8.0. Please use `createStringColumn` instead.
      * @see TablesDB::createStringColumn
      */
-    public function createStringAttribute(string $databaseId, string $collectionId, string $key, int $size, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): \Appwrite\Models\AttributeString
+    public function createStringAttribute(string $databaseId, string $collectionId, string $key, int $size, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null, ?string $description = null): \Appwrite\Models\AttributeString
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -2419,6 +2499,10 @@ class Databases extends Service
             $apiParams['encrypt'] = $encrypt;
         }
 
+        if (!is_null($description)) {
+            $apiParams['description'] = $description;
+        }
+
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
@@ -2447,7 +2531,7 @@ class Databases extends Service
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateStringColumn` instead.
      * @see TablesDB::updateStringColumn
      */
-    public function updateStringAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?int $size = null, ?string $newKey = null): \Appwrite\Models\AttributeString
+    public function updateStringAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?int $size = null, ?string $newKey = null, ?string $description = null): \Appwrite\Models\AttributeString
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -2475,6 +2559,7 @@ class Databases extends Service
         $apiParams['default'] = $xdefault;
         $apiParams['size'] = $size;
         $apiParams['newKey'] = $newKey;
+        $apiParams['description'] = $description;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -2503,7 +2588,7 @@ class Databases extends Service
      * @deprecated This API has been deprecated since 1.8.0. Please use `createTextColumn` instead.
      * @see TablesDB::createTextColumn
      */
-    public function createTextAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): \Appwrite\Models\AttributeText
+    public function createTextAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null, ?string $description = null): \Appwrite\Models\AttributeText
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -2534,6 +2619,10 @@ class Databases extends Service
             $apiParams['encrypt'] = $encrypt;
         }
 
+        if (!is_null($description)) {
+            $apiParams['description'] = $description;
+        }
+
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
@@ -2562,7 +2651,7 @@ class Databases extends Service
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateTextColumn` instead.
      * @see TablesDB::updateTextColumn
      */
-    public function updateTextAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\AttributeText
+    public function updateTextAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?string $newKey = null, ?string $description = null): \Appwrite\Models\AttributeText
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -2589,6 +2678,7 @@ class Databases extends Service
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
         $apiParams['newKey'] = $newKey;
+        $apiParams['description'] = $description;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -2617,7 +2707,7 @@ class Databases extends Service
      * @deprecated This API has been deprecated since 1.8.0. Please use `createUrlColumn` instead.
      * @see TablesDB::createUrlColumn
      */
-    public function createUrlAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): \Appwrite\Models\AttributeUrl
+    public function createUrlAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?string $description = null): \Appwrite\Models\AttributeUrl
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -2642,6 +2732,10 @@ class Databases extends Service
 
         if (!is_null($xarray)) {
             $apiParams['array'] = $xarray;
+        }
+
+        if (!is_null($description)) {
+            $apiParams['description'] = $description;
         }
 
         $apiHeaders = [];
@@ -2672,7 +2766,7 @@ class Databases extends Service
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateUrlColumn` instead.
      * @see TablesDB::updateUrlColumn
      */
-    public function updateUrlAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\AttributeUrl
+    public function updateUrlAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?string $newKey = null, ?string $description = null): \Appwrite\Models\AttributeUrl
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -2699,6 +2793,7 @@ class Databases extends Service
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
         $apiParams['newKey'] = $newKey;
+        $apiParams['description'] = $description;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -2727,7 +2822,7 @@ class Databases extends Service
      * @deprecated This API has been deprecated since 1.8.0. Please use `createVarcharColumn` instead.
      * @see TablesDB::createVarcharColumn
      */
-    public function createVarcharAttribute(string $databaseId, string $collectionId, string $key, int $size, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): \Appwrite\Models\AttributeVarchar
+    public function createVarcharAttribute(string $databaseId, string $collectionId, string $key, int $size, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null, ?string $description = null): \Appwrite\Models\AttributeVarchar
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -2759,6 +2854,10 @@ class Databases extends Service
             $apiParams['encrypt'] = $encrypt;
         }
 
+        if (!is_null($description)) {
+            $apiParams['description'] = $description;
+        }
+
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
@@ -2787,7 +2886,7 @@ class Databases extends Service
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateVarcharColumn` instead.
      * @see TablesDB::updateVarcharColumn
      */
-    public function updateVarcharAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?int $size = null, ?string $newKey = null): \Appwrite\Models\AttributeVarchar
+    public function updateVarcharAttribute(string $databaseId, string $collectionId, string $key, bool $required, ?string $xdefault, ?int $size = null, ?string $newKey = null, ?string $description = null): \Appwrite\Models\AttributeVarchar
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -2815,6 +2914,7 @@ class Databases extends Service
         $apiParams['default'] = $xdefault;
         $apiParams['size'] = $size;
         $apiParams['newKey'] = $newKey;
+        $apiParams['description'] = $description;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -3007,6 +3107,14 @@ class Databases extends Service
     /**
      * Get a list of all the user's documents in a given collection. You can use
      * the query params to filter your results.
+     *
+     * Documents returned by aggregate, groupBy or distinct queries hold only the
+     * attributes they select, group or aggregate, typed as a document types them,
+     * with a joined attribute named by its join alias (`alias.attribute`). They
+     * have no `$id`, `$sequence`, `$createdAt`, `$updatedAt`, `$permissions`,
+     * `$databaseId` or `$collectionId` unless they select or group it, and
+     * neither does a right or full join document that no document of this
+     * collection matched.
      *
      * @throws AppwriteException
      *
@@ -3327,6 +3435,69 @@ class Databases extends Service
 
         $response = $this->client->call(
             Client::METHOD_DELETE,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\DocumentList::from($response);
+    }
+
+    /**
+     * Get a list of all the user's documents in a given collection using a POST
+     * request. This behaves identically to the list documents endpoint but
+     * accepts the queries in the request body, allowing much larger `queries`
+     * arrays than can fit in a URL query string.
+     *
+     * @throws AppwriteException
+     *
+     * @deprecated This API has been deprecated since 1.8.0. Please use `createQuery` instead.
+     * @see TablesDB::createQuery
+     */
+    public function createQuery(string $databaseId, string $collectionId, ?array $queries = null, ?string $transactionId = null, ?bool $total = null, ?int $ttl = null): \Appwrite\Models\DocumentList
+    {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($collectionId === '') {
+            throw new AppwriteException('Missing required parameter: "collectionId"');
+        }
+
+        $apiPath = str_replace(
+            ['{databaseId}', '{collectionId}'],
+            [$databaseId, $collectionId],
+            '/databases/{databaseId}/collections/{collectionId}/documents/query'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['collectionId'] = $collectionId;
+
+        if (!is_null($queries)) {
+            $apiParams['queries'] = $queries;
+        }
+        $apiParams['transactionId'] = $transactionId;
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
+        }
+
+        if (!is_null($ttl)) {
+            $apiParams['ttl'] = $ttl;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams
@@ -3761,7 +3932,7 @@ class Databases extends Service
      * @deprecated This API has been deprecated since 1.8.0. Please use `createIndex` instead.
      * @see TablesDB::createIndex
      */
-    public function createIndex(string $databaseId, string $collectionId, string $key, DatabasesIndexType $type, array $attributes, ?array $orders = null, ?array $lengths = null): \Appwrite\Models\Index
+    public function createIndex(string $databaseId, string $collectionId, string $key, DatabasesIndexType $type, array $attributes, ?array $orders = null, ?array $lengths = null, ?string $description = null): \Appwrite\Models\Index
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -3790,6 +3961,10 @@ class Databases extends Service
 
         if (!is_null($lengths)) {
             $apiParams['lengths'] = $lengths;
+        }
+
+        if (!is_null($description)) {
+            $apiParams['description'] = $description;
         }
 
         $apiHeaders = [];

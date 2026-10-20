@@ -15,7 +15,7 @@ class Backups extends Service
      *
      * @throws AppwriteException
      */
-    public function listArchives(?array $queries = null): \Appwrite\Models\BackupArchiveList
+    public function listArchives(?array $queries = null, ?bool $total = null): \Appwrite\Models\BackupArchiveList
     {
         $apiPath = str_replace(
             [],
@@ -27,6 +27,10 @@ class Backups extends Service
 
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
         }
 
         $apiHeaders = [];
@@ -159,7 +163,7 @@ class Backups extends Service
      *
      * @throws AppwriteException
      */
-    public function listPolicies(?array $queries = null): \Appwrite\Models\BackupPolicyList
+    public function listPolicies(?array $queries = null, ?bool $total = null): \Appwrite\Models\BackupPolicyList
     {
         $apiPath = str_replace(
             [],
@@ -171,6 +175,10 @@ class Backups extends Service
 
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
         }
 
         $apiHeaders = [];
@@ -434,7 +442,7 @@ class Backups extends Service
      *
      * @throws AppwriteException
      */
-    public function listRestorations(?array $queries = null): \Appwrite\Models\BackupRestorationList
+    public function listRestorations(?array $queries = null, ?bool $total = null): \Appwrite\Models\BackupRestorationList
     {
         $apiPath = str_replace(
             [],
@@ -446,6 +454,10 @@ class Backups extends Service
 
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
         }
 
         $apiHeaders = [];

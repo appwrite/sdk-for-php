@@ -21,6 +21,7 @@ $result = $tablesDB->createTable(
     rowSecurity: false, // optional
     enabled: false, // optional
     columns: [], // optional
-    indexes: [] // optional
+    indexes: [], // optional
+    description: '<DESCRIPTION>' // optional
 );
 ```

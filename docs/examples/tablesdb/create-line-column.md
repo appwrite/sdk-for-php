@@ -29,6 +29,7 @@ $result = $tablesDB->createLineColumn(
             5,
             6
         ]
-    ] // optional
+    ], // optional
+    description: '<DESCRIPTION>' // optional
 );
 ```

@@ -22,6 +22,7 @@ $result = $databases->createIndex(
         'username'
     ],
     orders: [OrderBy::ASC()], // optional
-    lengths: [] // optional
+    lengths: [], // optional
+    description: '<DESCRIPTION>' // optional
 );
 ```

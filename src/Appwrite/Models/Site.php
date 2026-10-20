@@ -20,6 +20,7 @@ readonly class Site
      * @param string $createdAt site creation date in iso 8601 format.
      * @param string $updatedAt site update date in iso 8601 format.
      * @param string $name site name.
+     * @param string $description optional description for the site.
      * @param bool $enabled site enabled.
      * @param bool $live is the site deployed with the latest configuration? this is set to false if you've changed an environment variables, entrypoint, commands, or other settings that needs redeploy to be applied. when the value is false, redeploy the site to update it with the latest configuration.
      * @param bool $logging when disabled, request logs will exclude logs and errors, and site responses will be slightly faster.
@@ -57,6 +58,7 @@ readonly class Site
         public string $createdAt,
         public string $updatedAt,
         public string $name,
+        public string $description,
         public bool $enabled,
         public bool $live,
         public bool $logging,
@@ -101,6 +103,7 @@ readonly class Site
             '$createdAt' => "",
             '$updatedAt' => "",
             'name' => "",
+            'description' => "",
             'enabled' => true,
             'live' => true,
             'logging' => true,
@@ -144,6 +147,7 @@ readonly class Site
             createdAt: $data['$createdAt'],
             updatedAt: $data['$updatedAt'],
             name: $data['name'],
+            description: $data['description'],
             enabled: $data['enabled'],
             live: $data['live'],
             logging: $data['logging'],
@@ -193,6 +197,7 @@ readonly class Site
             '$createdAt' => static::serializeValue($this->createdAt),
             '$updatedAt' => static::serializeValue($this->updatedAt),
             'name' => static::serializeValue($this->name),
+            'description' => static::serializeValue($this->description),
             'enabled' => static::serializeValue($this->enabled),
             'live' => static::serializeValue($this->live),
             'logging' => static::serializeValue($this->logging),

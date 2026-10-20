@@ -20,6 +20,7 @@ readonly class Variable
      * @param string $createdAt variable creation date in iso 8601 format.
      * @param string $updatedAt variable creation date in iso 8601 format.
      * @param string $key variable key.
+     * @param string $description optional description for the variable.
      * @param string $value variable value.
      * @param bool $secret variable secret flag. secret variables can only be updated or deleted, but never read.
      * @param string $resourceType service to which the variable belongs. possible values are "project", "function"
@@ -30,6 +31,7 @@ readonly class Variable
         public string $createdAt,
         public string $updatedAt,
         public string $key,
+        public string $description,
         public string $value,
         public bool $secret,
         public string $resourceType,
@@ -47,6 +49,7 @@ readonly class Variable
             '$createdAt' => "",
             '$updatedAt' => "",
             'key' => "",
+            'description' => "",
             'value' => "",
             'secret' => false,
             'resourceType' => "",
@@ -58,6 +61,7 @@ readonly class Variable
             createdAt: $data['$createdAt'],
             updatedAt: $data['$updatedAt'],
             key: $data['key'],
+            description: $data['description'],
             value: $data['value'],
             secret: $data['secret'],
             resourceType: $data['resourceType'],
@@ -75,6 +79,7 @@ readonly class Variable
             '$createdAt' => static::serializeValue($this->createdAt),
             '$updatedAt' => static::serializeValue($this->updatedAt),
             'key' => static::serializeValue($this->key),
+            'description' => static::serializeValue($this->description),
             'value' => static::serializeValue($this->value),
             'secret' => static::serializeValue($this->secret),
             'resourceType' => static::serializeValue($this->resourceType),

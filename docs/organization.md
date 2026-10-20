@@ -300,6 +300,7 @@ PUT https://cloud.appwrite.io/v1/organization/projects/{projectId}/keys/{keyId}
 | name | string | Key name. Max length: 128 chars. |  |
 | scopes | array | Key scopes list. Maximum of 200 scopes are allowed. |  |
 | expire | string | Expiration time in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. Use null for unlimited expiration. |  |
+| description | string | Optional description for the key. |  |
 
 
 ```http request

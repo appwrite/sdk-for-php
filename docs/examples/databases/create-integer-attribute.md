@@ -19,6 +19,7 @@ $result = $databases->createIntegerAttribute(
     min: 0, // optional
     max: 100, // optional
     default: 10, // optional
-    array: false // optional
+    array: false, // optional
+    description: '<DESCRIPTION>' // optional
 );
 ```

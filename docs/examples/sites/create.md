@@ -39,6 +39,7 @@ $result = $sites->create(
     buildSpecification: 's-1vcpu-512mb', // optional
     runtimeSpecification: 's-1vcpu-512mb', // optional
     deploymentRetention: 0, // optional
-    scopes: [ProjectKeyScopes::PROJECTREAD()] // optional
+    scopes: [ProjectKeyScopes::PROJECTREAD()], // optional
+    description: '<DESCRIPTION>' // optional
 );
 ```

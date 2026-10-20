@@ -39,6 +39,7 @@ $result = $functions->update(
     runtimeSpecification: 's-1vcpu-512mb', // optional
     deploymentRetention: 0, // optional
     interval: 0, // optional
+    description: '<DESCRIPTION>', // optional
     emailEnabled: false // optional
 );
 ```

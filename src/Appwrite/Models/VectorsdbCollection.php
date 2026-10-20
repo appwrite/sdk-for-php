@@ -22,6 +22,7 @@ readonly class VectorsdbCollection
      * @param array $permissions collection permissions. [learn more about permissions](https://appwrite.io/docs/permissions).
      * @param string $databaseId database id.
      * @param string $name collection name.
+     * @param string $description optional description for the collection.
      * @param bool $enabled collection enabled. can be 'enabled' or 'disabled'. when disabled, the collection is inaccessible to users, but remains accessible to server sdks using api keys.
      * @param bool $documentSecurity whether document-level permissions are enabled. [learn more about permissions](https://appwrite.io/docs/permissions).
      * @param array $attributes collection attributes.
@@ -37,6 +38,7 @@ readonly class VectorsdbCollection
         public array $permissions,
         public string $databaseId,
         public string $name,
+        public string $description,
         public bool $enabled,
         public bool $documentSecurity,
         public array $attributes,
@@ -59,6 +61,7 @@ readonly class VectorsdbCollection
             '$permissions' => [],
             'databaseId' => "",
             'name' => "",
+            'description' => "",
             'enabled' => true,
             'documentSecurity' => false,
             'attributes' => [],
@@ -75,6 +78,7 @@ readonly class VectorsdbCollection
             permissions: $data['$permissions'],
             databaseId: $data['databaseId'],
             name: $data['name'],
+            description: $data['description'],
             enabled: $data['enabled'],
             documentSecurity: $data['documentSecurity'],
             attributes: $data['attributes'],
@@ -102,6 +106,7 @@ readonly class VectorsdbCollection
             '$permissions' => static::serializeValue($this->permissions),
             'databaseId' => static::serializeValue($this->databaseId),
             'name' => static::serializeValue($this->name),
+            'description' => static::serializeValue($this->description),
             'enabled' => static::serializeValue($this->enabled),
             'documentSecurity' => static::serializeValue($this->documentSecurity),
             'attributes' => static::serializeValue($this->attributes),

@@ -13,6 +13,7 @@ $domains = new Domains($client);
 
 $result = $domains->listRecords(
     domainId: '<DOMAIN_ID>',
-    queries: [] // optional
+    queries: [], // optional
+    total: false // optional
 );
 ```

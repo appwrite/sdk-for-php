@@ -13,6 +13,7 @@ GET https://cloud.appwrite.io/v1/domains
 | --- | --- | --- | --- |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/databases#querying-documents). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on attributes such as domain name, teamInternalId, expiration, etc. | [] |
 | search | string | Search term to filter your list results. Max length: 256 chars. |  |
+| total | boolean | When set to false, the total count returned will be 0 and will not be calculated. | 1 |
 
 
 ```http request
@@ -291,6 +292,7 @@ associated with your domain. **
 | --- | --- | --- | --- |
 | domainId | string | **Required** Domain unique ID. |  |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. You may filter on attributes such as type, name, value, etc. Maximum of 100 queries are allowed, each 4096 characters long. | [] |
+| total | boolean | When set to false, the total count returned will be 0 and will not be calculated. | 1 |
 
 
 ```http request

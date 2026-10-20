@@ -37,6 +37,7 @@ POST https://cloud.appwrite.io/v1/storage/buckets
 | encryption | boolean | Is encryption enabled? For file size above 20MB encryption is skipped even if it's enabled | 1 |
 | antivirus | boolean | Is virus scanning enabled? For file size above 20MB AntiVirus scanning is skipped even if it's enabled | 1 |
 | transformations | boolean | Are image transformations enabled? | 1 |
+| description | string | Optional description for the bucket. |  |
 
 
 ```http request
@@ -73,6 +74,7 @@ PUT https://cloud.appwrite.io/v1/storage/buckets/{bucketId}
 | encryption | boolean | Is encryption enabled? For file size above 20MB encryption is skipped even if it's enabled | 1 |
 | antivirus | boolean | Is virus scanning enabled? For file size above 20MB AntiVirus scanning is skipped even if it's enabled | 1 |
 | transformations | boolean | Are image transformations enabled? | 1 |
+| description | string | Optional description for the bucket. |  |
 
 
 ```http request

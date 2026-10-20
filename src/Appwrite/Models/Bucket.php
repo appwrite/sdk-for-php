@@ -22,6 +22,7 @@ readonly class Bucket
      * @param array $permissions bucket permissions. [learn more about permissions](https://appwrite.io/docs/permissions).
      * @param bool $fileSecurity whether file-level security is enabled. [learn more about permissions](https://appwrite.io/docs/permissions).
      * @param string $name bucket name.
+     * @param string $description optional description for the bucket.
      * @param bool $enabled bucket enabled.
      * @param int $maximumFileSize maximum file size supported.
      * @param array $allowedFileExtensions allowed file extensions.
@@ -38,6 +39,7 @@ readonly class Bucket
         public array $permissions,
         public bool $fileSecurity,
         public string $name,
+        public string $description,
         public bool $enabled,
         public int $maximumFileSize,
         public array $allowedFileExtensions,
@@ -61,6 +63,7 @@ readonly class Bucket
             '$permissions' => [],
             'fileSecurity' => false,
             'name' => "",
+            'description' => "",
             'enabled' => true,
             'maximumFileSize' => 0,
             'allowedFileExtensions' => [],
@@ -78,6 +81,7 @@ readonly class Bucket
             permissions: $data['$permissions'],
             fileSecurity: $data['fileSecurity'],
             name: $data['name'],
+            description: $data['description'],
             enabled: $data['enabled'],
             maximumFileSize: $data['maximumFileSize'],
             allowedFileExtensions: $data['allowedFileExtensions'],
@@ -101,6 +105,7 @@ readonly class Bucket
             '$permissions' => static::serializeValue($this->permissions),
             'fileSecurity' => static::serializeValue($this->fileSecurity),
             'name' => static::serializeValue($this->name),
+            'description' => static::serializeValue($this->description),
             'enabled' => static::serializeValue($this->enabled),
             'maximumFileSize' => static::serializeValue($this->maximumFileSize),
             'allowedFileExtensions' => static::serializeValue($this->allowedFileExtensions),

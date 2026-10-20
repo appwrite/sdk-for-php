@@ -861,7 +861,7 @@ class Organization extends Service
      *
      * @throws AppwriteException
      */
-    public function updateProjectKey(string $projectId, string $keyId, string $name, array $scopes, ?string $expire = null): \Appwrite\Models\Key
+    public function updateProjectKey(string $projectId, string $keyId, string $name, array $scopes, ?string $expire = null, ?string $description = null): \Appwrite\Models\Key
     {
         if ($projectId === '') {
             throw new AppwriteException('Missing required parameter: "projectId"');
@@ -883,6 +883,7 @@ class Organization extends Service
         $apiParams['name'] = $name;
         $apiParams['scopes'] = $scopes;
         $apiParams['expire'] = $expire;
+        $apiParams['description'] = $description;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
