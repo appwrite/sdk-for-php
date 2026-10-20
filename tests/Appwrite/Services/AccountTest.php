@@ -367,6 +367,42 @@ final class AccountTest extends TestCase
 
         $this->assertSame($data, $response);
     }
+    public function testMethodListMemberships(): void
+    {
+        $data = [
+            "total" => 5,
+            "memberships" => [
+                [
+                    "\$id" => "5e5ea5c16897e",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "userId" => "5e5ea5c16897e",
+                    "userName" => "John Doe",
+                    "userEmail" => "john@appwrite.io",
+                    "userPhone" => "+1 555 555 5555",
+                    "teamId" => "5e5ea5c16897e",
+                    "teamName" => "VIP",
+                    "invited" => "2020-10-15T06:38:00.000+00:00",
+                    "joined" => "2020-10-15T06:38:00.000+00:00",
+                    "confirm" => true,
+                    "mfa" => true,
+                    "userAccessedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "roles" => []
+                ]
+            ]
+        ];
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->account->listMemberships();
+
+        $this->assertInstanceOf(\Appwrite\Models\MembershipList::class, $response);
+    }
     public function testMethodUpdateMFA(): void
     {
         $data = [

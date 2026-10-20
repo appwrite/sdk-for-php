@@ -12,6 +12,7 @@ $client = (new Client())
 $project = new Project($client);
 
 $result = $project->updatePasswordPersonalDataPolicy(
-    enabled: false
+    enabled: false,
+    denyList: [] // optional
 );
 ```

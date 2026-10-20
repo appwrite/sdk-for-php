@@ -69,7 +69,7 @@ class Sites extends Service
      *
      * @throws AppwriteException
      */
-    public function create(string $siteId, string $name, Framework $framework, BuildRuntime $buildRuntime, ?bool $enabled = null, ?bool $logging = null, ?int $timeout = null, ?string $installCommand = null, ?string $buildCommand = null, ?string $startCommand = null, ?string $outputDirectory = null, ?Adapter $adapter = null, ?string $installationId = null, ?string $fallbackFile = null, ?string $providerRepositoryId = null, ?string $providerBranch = null, ?bool $providerSilentMode = null, ?string $providerRootDirectory = null, ?array $providerBranches = null, ?array $providerPaths = null, ?string $buildSpecification = null, ?string $runtimeSpecification = null, ?int $deploymentRetention = null, ?array $scopes = null): \Appwrite\Models\Site
+    public function create(string $siteId, string $name, Framework $framework, BuildRuntime $buildRuntime, ?bool $enabled = null, ?bool $logging = null, ?int $timeout = null, ?string $installCommand = null, ?string $buildCommand = null, ?string $startCommand = null, ?string $outputDirectory = null, ?Adapter $adapter = null, ?string $installationId = null, ?string $fallbackFile = null, ?string $providerRepositoryId = null, ?string $providerBranch = null, ?bool $providerSilentMode = null, ?string $providerRootDirectory = null, ?array $providerBranches = null, ?array $providerPaths = null, ?string $buildSpecification = null, ?string $runtimeSpecification = null, ?int $deploymentRetention = null, ?array $scopes = null, ?string $description = null): \Appwrite\Models\Site
     {
         $apiPath = str_replace(
             [],
@@ -161,6 +161,10 @@ class Sites extends Service
 
         if (!is_null($scopes)) {
             $apiParams['scopes'] = $scopes;
+        }
+
+        if (!is_null($description)) {
+            $apiParams['description'] = $description;
         }
 
         $apiHeaders = [];
@@ -304,7 +308,7 @@ class Sites extends Service
      *
      * @throws AppwriteException
      */
-    public function update(string $siteId, string $name, Framework $framework, ?bool $enabled = null, ?bool $logging = null, ?int $timeout = null, ?string $installCommand = null, ?string $buildCommand = null, ?string $startCommand = null, ?string $outputDirectory = null, ?BuildRuntime $buildRuntime = null, ?Adapter $adapter = null, ?string $fallbackFile = null, ?string $installationId = null, ?string $providerRepositoryId = null, ?string $providerBranch = null, ?bool $providerSilentMode = null, ?string $providerRootDirectory = null, ?array $providerBranches = null, ?array $providerPaths = null, ?string $buildSpecification = null, ?string $runtimeSpecification = null, ?int $deploymentRetention = null, ?array $scopes = null): \Appwrite\Models\Site
+    public function update(string $siteId, string $name, Framework $framework, ?bool $enabled = null, ?bool $logging = null, ?int $timeout = null, ?string $installCommand = null, ?string $buildCommand = null, ?string $startCommand = null, ?string $outputDirectory = null, ?BuildRuntime $buildRuntime = null, ?Adapter $adapter = null, ?string $fallbackFile = null, ?string $installationId = null, ?string $providerRepositoryId = null, ?string $providerBranch = null, ?bool $providerSilentMode = null, ?string $providerRootDirectory = null, ?array $providerBranches = null, ?array $providerPaths = null, ?string $buildSpecification = null, ?string $runtimeSpecification = null, ?int $deploymentRetention = null, ?array $scopes = null, ?string $description = null): \Appwrite\Models\Site
     {
         if ($siteId === '') {
             throw new AppwriteException('Missing required parameter: "siteId"');
@@ -389,6 +393,7 @@ class Sites extends Service
             $apiParams['deploymentRetention'] = $deploymentRetention;
         }
         $apiParams['scopes'] = $scopes;
+        $apiParams['description'] = $description;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -1218,7 +1223,7 @@ class Sites extends Service
      *
      * @throws AppwriteException
      */
-    public function createVariable(string $siteId, string $variableId, string $key, string $value, ?bool $secret = null): \Appwrite\Models\Variable
+    public function createVariable(string $siteId, string $variableId, string $key, string $value, ?bool $secret = null, ?string $description = null): \Appwrite\Models\Variable
     {
         if ($siteId === '') {
             throw new AppwriteException('Missing required parameter: "siteId"');
@@ -1238,6 +1243,10 @@ class Sites extends Service
 
         if (!is_null($secret)) {
             $apiParams['secret'] = $secret;
+        }
+
+        if (!is_null($description)) {
+            $apiParams['description'] = $description;
         }
 
         $apiHeaders = [];
@@ -1307,7 +1316,7 @@ class Sites extends Service
      *
      * @throws AppwriteException
      */
-    public function updateVariable(string $siteId, string $variableId, ?string $key = null, ?string $value = null, ?bool $secret = null): \Appwrite\Models\Variable
+    public function updateVariable(string $siteId, string $variableId, ?string $key = null, ?string $value = null, ?bool $secret = null, ?string $description = null): \Appwrite\Models\Variable
     {
         if ($siteId === '') {
             throw new AppwriteException('Missing required parameter: "siteId"');
@@ -1329,6 +1338,7 @@ class Sites extends Service
         $apiParams['key'] = $key;
         $apiParams['value'] = $value;
         $apiParams['secret'] = $secret;
+        $apiParams['description'] = $description;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');

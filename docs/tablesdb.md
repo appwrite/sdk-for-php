@@ -30,6 +30,7 @@ POST https://cloud.appwrite.io/v1/tablesdb
 | databaseId | string | Unique Id. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
 | name | string | Database name. Max length: 128 chars. |  |
 | enabled | boolean | Is the database enabled? When set to 'disabled', users cannot access the database but Server SDKs with an API key can still read and write to the database. No data is lost when this is toggled. | 1 |
+| description | string | Optional description for the database. |  |
 | specification | string | Database specification. Defaults to `serverless`, which creates the database on the shared pool. Any other value provisions a dedicated database on that specification. | serverless |
 | replicas | integer | Number of high availability replicas (0-5) for the dedicated database backing this database. Requires a dedicated `specification`; must be 0 for a serverless database. High availability is enabled when greater than 0. | 0 |
 | syncMode | string | Replication sync mode for the dedicated database backing this database. Requires a dedicated `specification`; the mode is only in force once there is at least one replica. Allowed values: async, sync, quorum. |  |
@@ -150,6 +151,7 @@ PUT https://cloud.appwrite.io/v1/tablesdb/{databaseId}
 | databaseId | string | **Required** Database ID. |  |
 | name | string | Database name. Max length: 128 chars. |  |
 | enabled | boolean | Is database enabled? When set to 'disabled', users cannot access the database but Server SDKs with an API key can still read and write to the database. No data is lost when this is toggled. | 1 |
+| description | string | Optional description for the database. |  |
 | specification | string | Database specification. Resizing between dedicated specifications changes cpu, memory, storage and the connection ceiling via a rolling cutover with zero downtime. Moving a `serverless` database onto a dedicated specification is a data migration, not a resize. |  |
 | replicas | integer | Number of high availability replicas (0-5) for the dedicated database backing this database. Only valid when the database is backed by a dedicated specification. High availability is enabled when greater than 0. |  |
 | syncMode | string | Replication sync mode for the dedicated database backing this database. Only valid when the database is backed by a dedicated specification; the mode is only in force once there is at least one replica. Allowed values: async, sync, quorum. |  |
@@ -328,6 +330,7 @@ POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables
 | enabled | boolean | Is table enabled? When set to 'disabled', users cannot access the table but Server SDKs with and API key can still read and write to the table. No data is lost when this is toggled. | 1 |
 | columns | array | Array of column definitions to create. Each column should contain: key (string), type (string: string, varchar, text, mediumtext, longtext, integer, bigint, double, boolean, datetime, point, linestring, polygon, email, url, ip, enum), size (integer, required for string and varchar types), required (boolean, optional), default (mixed, optional), array (boolean, optional), and type-specific options. | [] |
 | indexes | array | Array of index definitions to create. Each index should contain: key (string), type (string: key, fulltext, unique, spatial, trigram), attributes (array of column keys), orders (array of ASC/DESC, optional), and lengths (array of integers, optional). | [] |
+| description | string | Optional description for the table. |  |
 
 
 ```http request
@@ -361,6 +364,7 @@ PUT https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}
 | rowSecurity | boolean | Enables configuring permissions for individual rows. A user needs one of row or table-level permissions to access a row. [Learn more about permissions](https://appwrite.io/docs/permissions). |  |
 | enabled | boolean | Is table enabled? When set to 'disabled', users cannot access the table but Server SDKs with and API key can still read and write to the table. No data is lost when this is toggled. | 1 |
 | purge | boolean | When true, purge all cached list responses for this table as part of the update. Use this to force readers to see fresh data immediately instead of waiting for the cache TTL to expire. |  |
+| description | string | Optional description for the table. |  |
 
 
 ```http request
@@ -412,6 +416,7 @@ POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/columns
 | max | integer | Maximum value |  |
 | default | integer | Default value. Cannot be set when column is required. |  |
 | array | boolean | Is column an array? |  |
+| description | string | Optional description for the column. |  |
 
 
 ```http request
@@ -433,6 +438,7 @@ PATCH https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/column
 | max | integer | Maximum value |  |
 | default | integer | Default value. Cannot be set when column is required. |  |
 | newKey | string | New Column Key. |  |
+| description | string | Optional description for the column. |  |
 
 
 ```http request
@@ -452,6 +458,7 @@ POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/columns
 | required | boolean | Is column required? |  |
 | default | boolean | Default value for column when not provided. Cannot be set when column is required. |  |
 | array | boolean | Is column an array? |  |
+| description | string | Optional description for the column. |  |
 
 
 ```http request
@@ -470,6 +477,7 @@ PATCH https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/column
 | required | boolean | Is column required? |  |
 | default | boolean | Default value for column when not provided. Cannot be set when column is required. |  |
 | newKey | string | New Column Key. |  |
+| description | string | Optional description for the column. |  |
 
 
 ```http request
@@ -488,6 +496,7 @@ POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/columns
 | required | boolean | Is column required? |  |
 | default | string | Default value for the column in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. Cannot be set when column is required. |  |
 | array | boolean | Is column an array? |  |
+| description | string | Optional description for the column. |  |
 
 
 ```http request
@@ -506,6 +515,7 @@ PATCH https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/column
 | required | boolean | Is column required? |  |
 | default | string | Default value for column when not provided. Cannot be set when column is required. |  |
 | newKey | string | New Column Key. |  |
+| description | string | Optional description for the column. |  |
 
 
 ```http request
@@ -525,6 +535,7 @@ POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/columns
 | required | boolean | Is column required? |  |
 | default | string | Default value for column when not provided. Cannot be set when column is required. |  |
 | array | boolean | Is column an array? |  |
+| description | string | Optional description for the column. |  |
 
 
 ```http request
@@ -544,6 +555,7 @@ PATCH https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/column
 | required | boolean | Is column required? |  |
 | default | string | Default value for column when not provided. Cannot be set when column is required. |  |
 | newKey | string | New Column Key. |  |
+| description | string | Optional description for the column. |  |
 
 
 ```http request
@@ -563,6 +575,7 @@ POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/columns
 | required | boolean | Is column required? |  |
 | default | string | Default value for column when not provided. Cannot be set when column is required. |  |
 | array | boolean | Is column an array? |  |
+| description | string | Optional description for the column. |  |
 
 
 ```http request
@@ -583,6 +596,7 @@ PATCH https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/column
 | required | boolean | Is column required? |  |
 | default | string | Default value for column when not provided. Cannot be set when column is required. |  |
 | newKey | string | New Column Key. |  |
+| description | string | Optional description for the column. |  |
 
 
 ```http request
@@ -604,6 +618,7 @@ POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/columns
 | max | number | Maximum value |  |
 | default | number | Default value. Cannot be set when required. |  |
 | array | boolean | Is column an array? |  |
+| description | string | Optional description for the column. |  |
 
 
 ```http request
@@ -625,6 +640,7 @@ PATCH https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/column
 | max | number | Maximum value |  |
 | default | number | Default value. Cannot be set when required. |  |
 | newKey | string | New Column Key. |  |
+| description | string | Optional description for the column. |  |
 
 
 ```http request
@@ -646,6 +662,7 @@ POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/columns
 | max | integer | Maximum value |  |
 | default | integer | Default value. Cannot be set when column is required. |  |
 | array | boolean | Is column an array? |  |
+| description | string | Optional description for the column. |  |
 
 
 ```http request
@@ -667,6 +684,7 @@ PATCH https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/column
 | max | integer | Maximum value |  |
 | default | integer | Default value. Cannot be set when column is required. |  |
 | newKey | string | New Column Key. |  |
+| description | string | Optional description for the column. |  |
 
 
 ```http request
@@ -686,6 +704,7 @@ POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/columns
 | required | boolean | Is column required? |  |
 | default | string | Default value. Cannot be set when column is required. |  |
 | array | boolean | Is column an array? |  |
+| description | string | Optional description for the column. |  |
 
 
 ```http request
@@ -705,6 +724,7 @@ PATCH https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/column
 | required | boolean | Is column required? |  |
 | default | string | Default value. Cannot be set when column is required. |  |
 | newKey | string | New Column Key. |  |
+| description | string | Optional description for the column. |  |
 
 
 ```http request
@@ -722,6 +742,7 @@ POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/columns
 | key | string | Column Key. |  |
 | required | boolean | Is column required? |  |
 | default | array | Default value for column when not provided, two-dimensional array of coordinate pairs, [[longitude, latitude], [longitude, latitude], …], listing the vertices of the line in order. Cannot be set when column is required. |  |
+| description | string | Optional description for the column. |  |
 
 
 ```http request
@@ -740,6 +761,7 @@ PATCH https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/column
 | required | boolean | Is column required? |  |
 | default | array | Default value for column when not provided, two-dimensional array of coordinate pairs, [[longitude, latitude], [longitude, latitude], …], listing the vertices of the line in order. Cannot be set when column is required. |  |
 | newKey | string | New Column Key. |  |
+| description | string | Optional description for the column. |  |
 
 
 ```http request
@@ -760,6 +782,7 @@ POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/columns
 | default | string | Default value for column when not provided. Cannot be set when column is required. |  |
 | array | boolean | Is column an array? |  |
 | encrypt | boolean | Toggle encryption for the column. Encryption enhances security by not storing any plain text values in the database. However, encrypted columns cannot be queried. |  |
+| description | string | Optional description for the column. |  |
 
 
 ```http request
@@ -779,6 +802,7 @@ PATCH https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/column
 | required | boolean | Is column required? |  |
 | default | string | Default value for column when not provided. Cannot be set when column is required. |  |
 | newKey | string | New Column Key. |  |
+| description | string | Optional description for the column. |  |
 
 
 ```http request
@@ -799,6 +823,7 @@ POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/columns
 | default | string | Default value for column when not provided. Cannot be set when column is required. |  |
 | array | boolean | Is column an array? |  |
 | encrypt | boolean | Toggle encryption for the column. Encryption enhances security by not storing any plain text values in the database. However, encrypted columns cannot be queried. |  |
+| description | string | Optional description for the column. |  |
 
 
 ```http request
@@ -818,6 +843,7 @@ PATCH https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/column
 | required | boolean | Is column required? |  |
 | default | string | Default value for column when not provided. Cannot be set when column is required. |  |
 | newKey | string | New Column Key. |  |
+| description | string | Optional description for the column. |  |
 
 
 ```http request
@@ -835,6 +861,7 @@ POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/columns
 | key | string | Column Key. |  |
 | required | boolean | Is column required? |  |
 | default | array | Default value for column when not provided, array of two numbers [longitude, latitude], representing a single coordinate. Cannot be set when column is required. |  |
+| description | string | Optional description for the column. |  |
 
 
 ```http request
@@ -853,6 +880,7 @@ PATCH https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/column
 | required | boolean | Is column required? |  |
 | default | array | Default value for column when not provided, array of two numbers [longitude, latitude], representing a single coordinate. Cannot be set when column is required. |  |
 | newKey | string | New Column Key. |  |
+| description | string | Optional description for the column. |  |
 
 
 ```http request
@@ -870,6 +898,7 @@ POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/columns
 | key | string | Column Key. |  |
 | required | boolean | Is column required? |  |
 | default | array | Default value for column when not provided, three-dimensional array where the outer array holds one or more linear rings, [[[longitude, latitude], …], …], the first ring is the exterior boundary, any additional rings are interior holes, and each ring must start and end with the same coordinate pair. Cannot be set when column is required. |  |
+| description | string | Optional description for the column. |  |
 
 
 ```http request
@@ -888,6 +917,7 @@ PATCH https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/column
 | required | boolean | Is column required? |  |
 | default | array | Default value for column when not provided, three-dimensional array where the outer array holds one or more linear rings, [[[longitude, latitude], …], …], the first ring is the exterior boundary, any additional rings are interior holes, and each ring must start and end with the same coordinate pair. Cannot be set when column is required. |  |
 | newKey | string | New Column Key. |  |
+| description | string | Optional description for the column. |  |
 
 
 ```http request
@@ -909,6 +939,7 @@ POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/columns
 | key | string | Column Key. |  |
 | twoWayKey | string | Two Way Column Key. |  |
 | onDelete | string | Delete constraint. Possible values are: cascade, restrict, setNull. | restrict |
+| description | string | Optional description for the column. |  |
 
 
 ```http request
@@ -927,6 +958,7 @@ PATCH https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/column
 | key | string | **Required** Column Key. |  |
 | onDelete | string | Delete constraint. Possible values are: cascade, restrict, setNull. |  |
 | newKey | string | New Column Key. |  |
+| description | string | Optional description for the column. |  |
 
 
 ```http request
@@ -948,6 +980,7 @@ POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/columns
 | default | string | Default value for column when not provided. Cannot be set when column is required. |  |
 | array | boolean | Is column an array? |  |
 | encrypt | boolean | Toggle encryption for the column. Encryption enhances security by not storing any plain text values in the database. However, encrypted columns cannot be queried. |  |
+| description | string | Optional description for the column. |  |
 
 
 ```http request
@@ -968,6 +1001,7 @@ PATCH https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/column
 | default | string | Default value for column when not provided. Cannot be set when column is required. |  |
 | size | integer | Maximum size of the string column. |  |
 | newKey | string | New Column Key. |  |
+| description | string | Optional description for the column. |  |
 
 
 ```http request
@@ -988,6 +1022,7 @@ POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/columns
 | default | string | Default value for column when not provided. Cannot be set when column is required. |  |
 | array | boolean | Is column an array? |  |
 | encrypt | boolean | Toggle encryption for the column. Encryption enhances security by not storing any plain text values in the database. However, encrypted columns cannot be queried. |  |
+| description | string | Optional description for the column. |  |
 
 
 ```http request
@@ -1007,6 +1042,7 @@ PATCH https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/column
 | required | boolean | Is column required? |  |
 | default | string | Default value for column when not provided. Cannot be set when column is required. |  |
 | newKey | string | New Column Key. |  |
+| description | string | Optional description for the column. |  |
 
 
 ```http request
@@ -1026,6 +1062,7 @@ POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/columns
 | required | boolean | Is column required? |  |
 | default | string | Default value for column when not provided. Cannot be set when column is required. |  |
 | array | boolean | Is column an array? |  |
+| description | string | Optional description for the column. |  |
 
 
 ```http request
@@ -1045,6 +1082,7 @@ PATCH https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/column
 | required | boolean | Is column required? |  |
 | default | string | Default value for column when not provided. Cannot be set when column is required. |  |
 | newKey | string | New Column Key. |  |
+| description | string | Optional description for the column. |  |
 
 
 ```http request
@@ -1066,6 +1104,7 @@ POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/columns
 | default | string | Default value for column when not provided. Cannot be set when column is required. |  |
 | array | boolean | Is column an array? |  |
 | encrypt | boolean | Toggle encryption for the column. Encryption enhances security by not storing any plain text values in the database. However, encrypted columns cannot be queried. |  |
+| description | string | Optional description for the column. |  |
 
 
 ```http request
@@ -1086,6 +1125,7 @@ PATCH https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/column
 | default | string | Default value for column when not provided. Cannot be set when column is required. |  |
 | size | integer | Maximum size of the varchar column. |  |
 | newKey | string | New Column Key. |  |
+| description | string | Optional description for the column. |  |
 
 
 ```http request
@@ -1152,6 +1192,7 @@ Type can be `key`, `fulltext`, `unique`, `spatial`, or `trigram`. `trigram` is o
 | columns | array | Array of columns to index. Maximum of 100 columns are allowed, each 32 characters long. |  |
 | orders | array | Array of index orders. Maximum of 100 orders are allowed. | [] |
 | lengths | array | Length of index. Maximum of 100 | [] |
+| description | string | Optional description for the index. |  |
 
 
 ```http request
@@ -1188,7 +1229,9 @@ DELETE https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/index
 GET https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/rows
 ```
 
-** Get a list of all the user's rows in a given table. You can use the query params to filter your results. **
+** Get a list of all the user's rows in a given table. You can use the query params to filter your results.
+
+Rows returned by aggregate, groupBy or distinct queries hold only the columns they select, group or aggregate, typed as a row types them, with a joined column named by its join alias (`alias.column`). The response omits their `$id`, `$sequence`, `$createdAt`, `$updatedAt`, `$permissions`, `$databaseId` and `$tableId` unless they select or group it, and those of a right or full join row that no row of this table matched. SDK row models fill omitted system columns with empty values. **
 
 ### Parameters
 
@@ -1199,7 +1242,7 @@ GET https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/rows
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. | [] |
 | transactionId | string | Transaction ID to read uncommitted changes within the transaction. |  |
 | total | boolean | When set to false, the total count returned will be 0 and will not be calculated. | 1 |
-| ttl | integer | TTL (seconds) for caching list responses. Responses are stored in an in-memory key-value cache, keyed per project, table, schema version (columns and indexes), caller authorization roles, and the exact query — so users with different permissions never share cached entries. Schema changes invalidate cached entries automatically; row writes do not, so choose a TTL you are comfortable serving as stale data. Set to 0 to disable caching. Must be between 0 and 86400 (24 hours). | 0 |
+| ttl | integer | TTL (seconds) for caching list responses. Responses are stored in an in-memory key-value cache, keyed per project, table, schema version (columns and indexes), caller authorization roles, and the exact query — so users with different permissions never share cached entries. Schema changes invalidate cached entries automatically; row writes do not, so choose a TTL you are comfortable serving as stale data. Set to 0 to disable caching. Lists with join queries are not cached. Must be between 0 and 86400 (24 hours). | 0 |
 
 
 ```http request
@@ -1284,6 +1327,25 @@ DELETE https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/rows
 | tableId | string | **Required** Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/references/cloud/server-dart/tablesDB#createTable). |  |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. | [] |
 | transactionId | string | Transaction ID for staging the operation. |  |
+
+
+```http request
+POST https://cloud.appwrite.io/v1/tablesdb/{databaseId}/tables/{tableId}/rows/query
+```
+
+** Get a list of all the user's rows in a given table using a POST request. This behaves identically to the list rows endpoint but accepts the queries in the request body, allowing much larger `queries` arrays than can fit in a URL query string.
+ **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| databaseId | string | **Required** Database ID. |  |
+| tableId | string | **Required** Table ID. You can create a new table using the TablesDB service [server integration](https://appwrite.io/docs/products/databases/tables#create-table). |  |
+| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. | [] |
+| transactionId | string | Transaction ID to read uncommitted changes within the transaction. |  |
+| total | boolean | When set to false, the total count returned will be 0 and will not be calculated. | 1 |
+| ttl | integer | TTL (seconds) for caching list responses. Responses are stored in an in-memory key-value cache, keyed per project, table, schema version (columns and indexes), caller authorization roles, and the exact query — so users with different permissions never share cached entries. Schema changes invalidate cached entries automatically; row writes do not, so choose a TTL you are comfortable serving as stale data. Set to 0 to disable caching. Lists with join queries are not cached. Must be between 0 and 86400 (24 hours). | 0 |
 
 
 ```http request

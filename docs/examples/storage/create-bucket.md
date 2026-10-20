@@ -25,6 +25,8 @@ $result = $storage->createBucket(
     compression: Compression::NONE(), // optional
     encryption: false, // optional
     antivirus: false, // optional
-    transformations: false // optional
+    transformations: false, // optional
+    description: '<DESCRIPTION>', // optional
+    stripMetadata: false // optional
 );
 ```

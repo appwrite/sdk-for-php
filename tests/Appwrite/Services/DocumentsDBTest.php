@@ -29,6 +29,7 @@ final class DocumentsDBTest extends TestCase
                 [
                     "\$id" => "5e5ea5c16897e",
                     "name" => "My Database",
+                    "description" => "Customer orders and invoices.",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
                     "enabled" => true,
@@ -53,6 +54,7 @@ final class DocumentsDBTest extends TestCase
         $data = [
             "\$id" => "5e5ea5c16897e",
             "name" => "My Database",
+            "description" => "Customer orders and invoices.",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "enabled" => true,
@@ -250,6 +252,7 @@ final class DocumentsDBTest extends TestCase
         $data = [
             "\$id" => "5e5ea5c16897e",
             "name" => "My Database",
+            "description" => "Customer orders and invoices.",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "enabled" => true,
@@ -274,6 +277,7 @@ final class DocumentsDBTest extends TestCase
         $data = [
             "\$id" => "5e5ea5c16897e",
             "name" => "My Database",
+            "description" => "Customer orders and invoices.",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "enabled" => true,
@@ -323,6 +327,7 @@ final class DocumentsDBTest extends TestCase
                     "\$permissions" => [],
                     "databaseId" => "5e5ea5c16897e",
                     "name" => "My Collection",
+                    "description" => "Movies available in the catalog.",
                     "enabled" => true,
                     "documentSecurity" => true,
                     "attributes" => [],
@@ -332,6 +337,7 @@ final class DocumentsDBTest extends TestCase
                             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
                             "key" => "index1",
+                            "description" => "Speeds up lookups by email.",
                             "type" => "primary",
                             "status" => "available",
                             "error" => "string",
@@ -367,6 +373,7 @@ final class DocumentsDBTest extends TestCase
             "\$permissions" => [],
             "databaseId" => "5e5ea5c16897e",
             "name" => "My Collection",
+            "description" => "Movies available in the catalog.",
             "enabled" => true,
             "documentSecurity" => true,
             "attributes" => [],
@@ -376,6 +383,7 @@ final class DocumentsDBTest extends TestCase
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
                     "key" => "index1",
+                    "description" => "Speeds up lookups by email.",
                     "type" => "primary",
                     "status" => "available",
                     "error" => "string",
@@ -411,6 +419,7 @@ final class DocumentsDBTest extends TestCase
             "\$permissions" => [],
             "databaseId" => "5e5ea5c16897e",
             "name" => "My Collection",
+            "description" => "Movies available in the catalog.",
             "enabled" => true,
             "documentSecurity" => true,
             "attributes" => [],
@@ -420,6 +429,7 @@ final class DocumentsDBTest extends TestCase
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
                     "key" => "index1",
+                    "description" => "Speeds up lookups by email.",
                     "type" => "primary",
                     "status" => "available",
                     "error" => "string",
@@ -454,6 +464,7 @@ final class DocumentsDBTest extends TestCase
             "\$permissions" => [],
             "databaseId" => "5e5ea5c16897e",
             "name" => "My Collection",
+            "description" => "Movies available in the catalog.",
             "enabled" => true,
             "documentSecurity" => true,
             "attributes" => [],
@@ -463,6 +474,7 @@ final class DocumentsDBTest extends TestCase
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
                     "key" => "index1",
+                    "description" => "Speeds up lookups by email.",
                     "type" => "primary",
                     "status" => "available",
                     "error" => "string",
@@ -692,6 +704,37 @@ final class DocumentsDBTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\DocumentList::class, $response);
     }
+    public function testMethodCreateQuery(): void
+    {
+        $data = [
+            "total" => 5,
+            "documents" => [
+                [
+                    "\$id" => "5e5ea5c16897e",
+                    "\$sequence" => "1",
+                    "\$collectionId" => "5e5ea5c15117e",
+                    "\$databaseId" => "5e5ea5c15117e",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$permissions" => []
+                ]
+            ]
+        ];
+
+        $this->client
+            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->documentsDB->createQuery(
+            "<DATABASE_ID>",
+            "<COLLECTION_ID>"
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\DocumentList::class, $response);
+    }
     public function testMethodGetDocument(): void
     {
         $data = [
@@ -858,6 +901,7 @@ final class DocumentsDBTest extends TestCase
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
                     "key" => "index1",
+                    "description" => "Speeds up lookups by email.",
                     "type" => "primary",
                     "status" => "available",
                     "error" => "string",
@@ -888,6 +932,7 @@ final class DocumentsDBTest extends TestCase
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "key" => "index1",
+            "description" => "Speeds up lookups by email.",
             "type" => "primary",
             "status" => "available",
             "error" => "string",
@@ -919,6 +964,7 @@ final class DocumentsDBTest extends TestCase
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "key" => "index1",
+            "description" => "Speeds up lookups by email.",
             "type" => "primary",
             "status" => "available",
             "error" => "string",

@@ -13,6 +13,7 @@ $domains = new Domains($client);
 
 $result = $domains->list(
     queries: [], // optional
-    search: '<SEARCH>' // optional
+    search: '<SEARCH>', // optional
+    total: false // optional
 );
 ```

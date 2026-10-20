@@ -12,6 +12,7 @@ $client = (new Client())
 $activities = new Activities($client);
 
 $result = $activities->listEvents(
-    queries: [] // optional
+    queries: [], // optional
+    total: false // optional
 );
 ```

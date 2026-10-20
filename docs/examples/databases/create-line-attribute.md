@@ -29,6 +29,7 @@ $result = $databases->createLineAttribute(
             5,
             6
         ]
-    ] // optional
+    ], // optional
+    description: '<DESCRIPTION>' // optional
 );
 ```

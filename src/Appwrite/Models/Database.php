@@ -21,6 +21,7 @@ readonly class Database
      *
      * @param string $id database id.
      * @param string $name database name.
+     * @param string $description optional description for the database.
      * @param string $createdAt database creation date in iso 8601 format.
      * @param string $updatedAt database update date in iso 8601 format.
      * @param bool $enabled if database is enabled. can be 'enabled' or 'disabled'. when disabled, the database is inaccessible to users, but remains accessible to server sdks using api keys.
@@ -38,6 +39,7 @@ readonly class Database
     public function __construct(
         public string $id,
         public string $name,
+        public string $description,
         public string $createdAt,
         public string $updatedAt,
         public bool $enabled,
@@ -62,6 +64,7 @@ readonly class Database
         $data += [
             '$id' => "",
             'name' => "",
+            'description' => "",
             '$createdAt' => "",
             '$updatedAt' => "",
             'enabled' => true,
@@ -71,6 +74,7 @@ readonly class Database
         return new static(
             id: $data['$id'],
             name: $data['name'],
+            description: $data['description'],
             createdAt: $data['$createdAt'],
             updatedAt: $data['$updatedAt'],
             enabled: $data['enabled'],
@@ -113,6 +117,7 @@ readonly class Database
         return [
             '$id' => static::serializeValue($this->id),
             'name' => static::serializeValue($this->name),
+            'description' => static::serializeValue($this->description),
             '$createdAt' => static::serializeValue($this->createdAt),
             '$updatedAt' => static::serializeValue($this->updatedAt),
             'enabled' => static::serializeValue($this->enabled),

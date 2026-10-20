@@ -459,6 +459,47 @@ class Account extends Service
     }
 
     /**
+     * Get the team memberships of the currently logged in user.
+     *
+     * @throws AppwriteException
+     */
+    public function listMemberships(?array $queries = null, ?bool $total = null): \Appwrite\Models\MembershipList
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/account/memberships'
+        );
+
+        $apiParams = [];
+
+        if (!is_null($queries)) {
+            $apiParams['queries'] = $queries;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\MembershipList::from($response);
+    }
+
+    /**
      * Enable or disable MFA on an account.
      *
      * @throws AppwriteException
@@ -1309,6 +1350,14 @@ class Account extends Service
      * the only valid redirect URLs are the ones from domains you have set when
      * adding your platforms in the console interface.
      *
+     * The new password must satisfy the project's enabled password policies,
+     * including custom deny lists. Dictionary entries match the entire password
+     * case-sensitively; personal-data terms match substrings case-insensitively.
+     * Personal-data validation runs after token verification against the
+     * recovered user's ID, name, email, and phone, closing the previous recovery
+     * gap for profile-based checks. A rejected password leaves the existing
+     * credentials unchanged and the recovery token usable.
+     *
      * @throws AppwriteException
      */
     public function updateRecovery(string $userId, string $secret, string $password): \Appwrite\Models\Token
@@ -1401,6 +1450,14 @@ class Account extends Service
      * Pass the **userId** of the user along with the **secret** code from the
      * email and the new **password** to set. If confirmed, this route will return
      * a 200 status code, the code is consumed and the user's password is updated.
+     *
+     * The new password must satisfy the project's enabled password policies,
+     * including custom deny lists. Dictionary entries match the entire password
+     * case-sensitively; personal-data terms match substrings case-insensitively.
+     * Personal-data validation runs after token verification against the
+     * recovered user's ID, name, email, and phone, closing the previous recovery
+     * gap for profile-based checks. A rejected password leaves the existing
+     * credentials unchanged and the recovery token usable.
      *
      * @throws AppwriteException
      */

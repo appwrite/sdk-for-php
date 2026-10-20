@@ -1,5 +1,19 @@
 # Change Log
 
+## 32.0.0
+
+* Breaking: `TablesDB`, `DocumentsDB` and `VectorsDB` `create` and `update` take `$description` before `$specification`
+* Breaking: `Functions::update` takes `$description` before `$emailEnabled`
+* Added: `createQuery` on `Databases`, `DocumentsDB` and `TablesDB` to send list queries in the request body
+* Added: `Account::listMemberships`
+* Added: optional `$description` on create and update for databases, collections, tables, attributes, columns, indexes, buckets, functions, sites, variables, topics, webhooks and keys
+* Added: `$description` on the matching models
+* Added: `$total` on list methods in `Activities`, `Backups`, `Domains`, `Mongo`, `Mysql` and `Postgresql`
+* Added: `$emails` on `Messaging::createEmail` and `Messaging::updateEmail`
+* Added: `$denyList` on `Project::updatePasswordDictionaryPolicy`, `updatePasswordPersonalDataPolicy` and their policy models
+* Added: `BillingPlan::$functionsAllowCron`
+* Added: `$stripMetadata` on `Storage::createBucket`, `updateBucket` and the `Bucket` model
+
 ## 31.0.0
 
 * Breaking: requests send `X-Appwrite-Response-Format: 2.5.0`; responses follow the 2.5 shapes

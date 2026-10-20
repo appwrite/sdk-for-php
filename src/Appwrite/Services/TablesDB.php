@@ -64,7 +64,7 @@ class TablesDB extends Service
      *
      * @throws AppwriteException
      */
-    public function create(string $databaseId, string $name, ?bool $enabled = null, ?string $specification = null, ?int $replicas = null, ?string $syncMode = null): \Appwrite\Models\Database
+    public function create(string $databaseId, string $name, ?bool $enabled = null, ?string $description = null, ?string $specification = null, ?int $replicas = null, ?string $syncMode = null): \Appwrite\Models\Database
     {
         $apiPath = str_replace(
             [],
@@ -78,6 +78,10 @@ class TablesDB extends Service
 
         if (!is_null($enabled)) {
             $apiParams['enabled'] = $enabled;
+        }
+
+        if (!is_null($description)) {
+            $apiParams['description'] = $description;
         }
 
         if (!is_null($specification)) {
@@ -427,7 +431,7 @@ class TablesDB extends Service
      *
      * @throws AppwriteException
      */
-    public function update(string $databaseId, ?string $name = null, ?bool $enabled = null, ?string $specification = null, ?int $replicas = null, ?string $syncMode = null): \Appwrite\Models\Database
+    public function update(string $databaseId, ?string $name = null, ?bool $enabled = null, ?string $description = null, ?string $specification = null, ?int $replicas = null, ?string $syncMode = null): \Appwrite\Models\Database
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -449,6 +453,7 @@ class TablesDB extends Service
         if (!is_null($enabled)) {
             $apiParams['enabled'] = $enabled;
         }
+        $apiParams['description'] = $description;
         $apiParams['specification'] = $specification;
         $apiParams['replicas'] = $replicas;
         $apiParams['syncMode'] = $syncMode;
@@ -969,7 +974,7 @@ class TablesDB extends Service
      *
      * @throws AppwriteException
      */
-    public function createTable(string $databaseId, string $tableId, string $name, ?array $permissions = null, ?bool $rowSecurity = null, ?bool $enabled = null, ?array $columns = null, ?array $indexes = null): \Appwrite\Models\Table
+    public function createTable(string $databaseId, string $tableId, string $name, ?array $permissions = null, ?bool $rowSecurity = null, ?bool $enabled = null, ?array $columns = null, ?array $indexes = null, ?string $description = null): \Appwrite\Models\Table
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -1001,6 +1006,10 @@ class TablesDB extends Service
 
         if (!is_null($indexes)) {
             $apiParams['indexes'] = $indexes;
+        }
+
+        if (!is_null($description)) {
+            $apiParams['description'] = $description;
         }
 
         $apiHeaders = [];
@@ -1071,7 +1080,7 @@ class TablesDB extends Service
      *
      * @throws AppwriteException
      */
-    public function updateTable(string $databaseId, string $tableId, ?string $name = null, ?array $permissions = null, ?bool $rowSecurity = null, ?bool $enabled = null, ?bool $purge = null): \Appwrite\Models\Table
+    public function updateTable(string $databaseId, string $tableId, ?string $name = null, ?array $permissions = null, ?bool $rowSecurity = null, ?bool $enabled = null, ?bool $purge = null, ?string $description = null): \Appwrite\Models\Table
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -1107,6 +1116,7 @@ class TablesDB extends Service
         if (!is_null($purge)) {
             $apiParams['purge'] = $purge;
         }
+        $apiParams['description'] = $description;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -1223,7 +1233,7 @@ class TablesDB extends Service
      *
      * @throws AppwriteException
      */
-    public function createBigIntColumn(string $databaseId, string $tableId, string $key, bool $required, ?int $min = null, ?int $max = null, ?int $xdefault = null, ?bool $xarray = null): \Appwrite\Models\ColumnBigint
+    public function createBigIntColumn(string $databaseId, string $tableId, string $key, bool $required, ?int $min = null, ?int $max = null, ?int $xdefault = null, ?bool $xarray = null, ?string $description = null): \Appwrite\Models\ColumnBigint
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -1252,6 +1262,10 @@ class TablesDB extends Service
             $apiParams['array'] = $xarray;
         }
 
+        if (!is_null($description)) {
+            $apiParams['description'] = $description;
+        }
+
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
@@ -1277,7 +1291,7 @@ class TablesDB extends Service
      *
      * @throws AppwriteException
      */
-    public function updateBigIntColumn(string $databaseId, string $tableId, string $key, bool $required, ?int $xdefault, ?int $min = null, ?int $max = null, ?string $newKey = null): \Appwrite\Models\ColumnBigint
+    public function updateBigIntColumn(string $databaseId, string $tableId, string $key, bool $required, ?int $xdefault, ?int $min = null, ?int $max = null, ?string $newKey = null, ?string $description = null): \Appwrite\Models\ColumnBigint
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -1306,6 +1320,7 @@ class TablesDB extends Service
         $apiParams['min'] = $min;
         $apiParams['max'] = $max;
         $apiParams['newKey'] = $newKey;
+        $apiParams['description'] = $description;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -1331,7 +1346,7 @@ class TablesDB extends Service
      *
      * @throws AppwriteException
      */
-    public function createBooleanColumn(string $databaseId, string $tableId, string $key, bool $required, ?bool $xdefault = null, ?bool $xarray = null): \Appwrite\Models\ColumnBoolean
+    public function createBooleanColumn(string $databaseId, string $tableId, string $key, bool $required, ?bool $xdefault = null, ?bool $xarray = null, ?string $description = null): \Appwrite\Models\ColumnBoolean
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -1356,6 +1371,10 @@ class TablesDB extends Service
 
         if (!is_null($xarray)) {
             $apiParams['array'] = $xarray;
+        }
+
+        if (!is_null($description)) {
+            $apiParams['description'] = $description;
         }
 
         $apiHeaders = [];
@@ -1383,7 +1402,7 @@ class TablesDB extends Service
      *
      * @throws AppwriteException
      */
-    public function updateBooleanColumn(string $databaseId, string $tableId, string $key, bool $required, ?bool $xdefault, ?string $newKey = null): \Appwrite\Models\ColumnBoolean
+    public function updateBooleanColumn(string $databaseId, string $tableId, string $key, bool $required, ?bool $xdefault, ?string $newKey = null, ?string $description = null): \Appwrite\Models\ColumnBoolean
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -1410,6 +1429,7 @@ class TablesDB extends Service
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
         $apiParams['newKey'] = $newKey;
+        $apiParams['description'] = $description;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -1435,7 +1455,7 @@ class TablesDB extends Service
      *
      * @throws AppwriteException
      */
-    public function createDatetimeColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): \Appwrite\Models\ColumnDatetime
+    public function createDatetimeColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?string $description = null): \Appwrite\Models\ColumnDatetime
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -1460,6 +1480,10 @@ class TablesDB extends Service
 
         if (!is_null($xarray)) {
             $apiParams['array'] = $xarray;
+        }
+
+        if (!is_null($description)) {
+            $apiParams['description'] = $description;
         }
 
         $apiHeaders = [];
@@ -1487,7 +1511,7 @@ class TablesDB extends Service
      *
      * @throws AppwriteException
      */
-    public function updateDatetimeColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\ColumnDatetime
+    public function updateDatetimeColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?string $newKey = null, ?string $description = null): \Appwrite\Models\ColumnDatetime
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -1514,6 +1538,7 @@ class TablesDB extends Service
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
         $apiParams['newKey'] = $newKey;
+        $apiParams['description'] = $description;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -1539,7 +1564,7 @@ class TablesDB extends Service
      *
      * @throws AppwriteException
      */
-    public function createEmailColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): \Appwrite\Models\ColumnEmail
+    public function createEmailColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?string $description = null): \Appwrite\Models\ColumnEmail
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -1564,6 +1589,10 @@ class TablesDB extends Service
 
         if (!is_null($xarray)) {
             $apiParams['array'] = $xarray;
+        }
+
+        if (!is_null($description)) {
+            $apiParams['description'] = $description;
         }
 
         $apiHeaders = [];
@@ -1591,7 +1620,7 @@ class TablesDB extends Service
      *
      * @throws AppwriteException
      */
-    public function updateEmailColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\ColumnEmail
+    public function updateEmailColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?string $newKey = null, ?string $description = null): \Appwrite\Models\ColumnEmail
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -1618,6 +1647,7 @@ class TablesDB extends Service
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
         $apiParams['newKey'] = $newKey;
+        $apiParams['description'] = $description;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -1644,7 +1674,7 @@ class TablesDB extends Service
      *
      * @throws AppwriteException
      */
-    public function createEnumColumn(string $databaseId, string $tableId, string $key, array $elements, bool $required, ?string $xdefault = null, ?bool $xarray = null): \Appwrite\Models\ColumnEnum
+    public function createEnumColumn(string $databaseId, string $tableId, string $key, array $elements, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?string $description = null): \Appwrite\Models\ColumnEnum
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -1672,6 +1702,10 @@ class TablesDB extends Service
             $apiParams['array'] = $xarray;
         }
 
+        if (!is_null($description)) {
+            $apiParams['description'] = $description;
+        }
+
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
@@ -1697,7 +1731,7 @@ class TablesDB extends Service
      *
      * @throws AppwriteException
      */
-    public function updateEnumColumn(string $databaseId, string $tableId, string $key, array $elements, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\ColumnEnum
+    public function updateEnumColumn(string $databaseId, string $tableId, string $key, array $elements, bool $required, ?string $xdefault, ?string $newKey = null, ?string $description = null): \Appwrite\Models\ColumnEnum
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -1725,6 +1759,7 @@ class TablesDB extends Service
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
         $apiParams['newKey'] = $newKey;
+        $apiParams['description'] = $description;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -1751,7 +1786,7 @@ class TablesDB extends Service
      *
      * @throws AppwriteException
      */
-    public function createFloatColumn(string $databaseId, string $tableId, string $key, bool $required, ?float $min = null, ?float $max = null, ?float $xdefault = null, ?bool $xarray = null): \Appwrite\Models\ColumnFloat
+    public function createFloatColumn(string $databaseId, string $tableId, string $key, bool $required, ?float $min = null, ?float $max = null, ?float $xdefault = null, ?bool $xarray = null, ?string $description = null): \Appwrite\Models\ColumnFloat
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -1780,6 +1815,10 @@ class TablesDB extends Service
             $apiParams['array'] = $xarray;
         }
 
+        if (!is_null($description)) {
+            $apiParams['description'] = $description;
+        }
+
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
@@ -1805,7 +1844,7 @@ class TablesDB extends Service
      *
      * @throws AppwriteException
      */
-    public function updateFloatColumn(string $databaseId, string $tableId, string $key, bool $required, ?float $xdefault, ?float $min = null, ?float $max = null, ?string $newKey = null): \Appwrite\Models\ColumnFloat
+    public function updateFloatColumn(string $databaseId, string $tableId, string $key, bool $required, ?float $xdefault, ?float $min = null, ?float $max = null, ?string $newKey = null, ?string $description = null): \Appwrite\Models\ColumnFloat
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -1834,6 +1873,7 @@ class TablesDB extends Service
         $apiParams['min'] = $min;
         $apiParams['max'] = $max;
         $apiParams['newKey'] = $newKey;
+        $apiParams['description'] = $description;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -1860,7 +1900,7 @@ class TablesDB extends Service
      *
      * @throws AppwriteException
      */
-    public function createIntegerColumn(string $databaseId, string $tableId, string $key, bool $required, ?int $min = null, ?int $max = null, ?int $xdefault = null, ?bool $xarray = null): \Appwrite\Models\ColumnInteger
+    public function createIntegerColumn(string $databaseId, string $tableId, string $key, bool $required, ?int $min = null, ?int $max = null, ?int $xdefault = null, ?bool $xarray = null, ?string $description = null): \Appwrite\Models\ColumnInteger
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -1889,6 +1929,10 @@ class TablesDB extends Service
             $apiParams['array'] = $xarray;
         }
 
+        if (!is_null($description)) {
+            $apiParams['description'] = $description;
+        }
+
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
@@ -1914,7 +1958,7 @@ class TablesDB extends Service
      *
      * @throws AppwriteException
      */
-    public function updateIntegerColumn(string $databaseId, string $tableId, string $key, bool $required, ?int $xdefault, ?int $min = null, ?int $max = null, ?string $newKey = null): \Appwrite\Models\ColumnInteger
+    public function updateIntegerColumn(string $databaseId, string $tableId, string $key, bool $required, ?int $xdefault, ?int $min = null, ?int $max = null, ?string $newKey = null, ?string $description = null): \Appwrite\Models\ColumnInteger
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -1943,6 +1987,7 @@ class TablesDB extends Service
         $apiParams['min'] = $min;
         $apiParams['max'] = $max;
         $apiParams['newKey'] = $newKey;
+        $apiParams['description'] = $description;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -1968,7 +2013,7 @@ class TablesDB extends Service
      *
      * @throws AppwriteException
      */
-    public function createIpColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): \Appwrite\Models\ColumnIp
+    public function createIpColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?string $description = null): \Appwrite\Models\ColumnIp
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -1993,6 +2038,10 @@ class TablesDB extends Service
 
         if (!is_null($xarray)) {
             $apiParams['array'] = $xarray;
+        }
+
+        if (!is_null($description)) {
+            $apiParams['description'] = $description;
         }
 
         $apiHeaders = [];
@@ -2020,7 +2069,7 @@ class TablesDB extends Service
      *
      * @throws AppwriteException
      */
-    public function updateIpColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\ColumnIp
+    public function updateIpColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?string $newKey = null, ?string $description = null): \Appwrite\Models\ColumnIp
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -2047,6 +2096,7 @@ class TablesDB extends Service
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
         $apiParams['newKey'] = $newKey;
+        $apiParams['description'] = $description;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -2072,7 +2122,7 @@ class TablesDB extends Service
      *
      * @throws AppwriteException
      */
-    public function createLineColumn(string $databaseId, string $tableId, string $key, bool $required, ?array $xdefault = null): \Appwrite\Models\ColumnLine
+    public function createLineColumn(string $databaseId, string $tableId, string $key, bool $required, ?array $xdefault = null, ?string $description = null): \Appwrite\Models\ColumnLine
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -2094,6 +2144,10 @@ class TablesDB extends Service
         $apiParams['key'] = $key;
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
+
+        if (!is_null($description)) {
+            $apiParams['description'] = $description;
+        }
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -2120,7 +2174,7 @@ class TablesDB extends Service
      *
      * @throws AppwriteException
      */
-    public function updateLineColumn(string $databaseId, string $tableId, string $key, bool $required, ?array $xdefault = null, ?string $newKey = null): \Appwrite\Models\ColumnLine
+    public function updateLineColumn(string $databaseId, string $tableId, string $key, bool $required, ?array $xdefault = null, ?string $newKey = null, ?string $description = null): \Appwrite\Models\ColumnLine
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -2147,6 +2201,7 @@ class TablesDB extends Service
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
         $apiParams['newKey'] = $newKey;
+        $apiParams['description'] = $description;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -2172,7 +2227,7 @@ class TablesDB extends Service
      *
      * @throws AppwriteException
      */
-    public function createLongtextColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): \Appwrite\Models\ColumnLongtext
+    public function createLongtextColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null, ?string $description = null): \Appwrite\Models\ColumnLongtext
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -2203,6 +2258,10 @@ class TablesDB extends Service
             $apiParams['encrypt'] = $encrypt;
         }
 
+        if (!is_null($description)) {
+            $apiParams['description'] = $description;
+        }
+
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
@@ -2228,7 +2287,7 @@ class TablesDB extends Service
      *
      * @throws AppwriteException
      */
-    public function updateLongtextColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\ColumnLongtext
+    public function updateLongtextColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?string $newKey = null, ?string $description = null): \Appwrite\Models\ColumnLongtext
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -2255,6 +2314,7 @@ class TablesDB extends Service
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
         $apiParams['newKey'] = $newKey;
+        $apiParams['description'] = $description;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -2280,7 +2340,7 @@ class TablesDB extends Service
      *
      * @throws AppwriteException
      */
-    public function createMediumtextColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): \Appwrite\Models\ColumnMediumtext
+    public function createMediumtextColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null, ?string $description = null): \Appwrite\Models\ColumnMediumtext
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -2311,6 +2371,10 @@ class TablesDB extends Service
             $apiParams['encrypt'] = $encrypt;
         }
 
+        if (!is_null($description)) {
+            $apiParams['description'] = $description;
+        }
+
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
@@ -2336,7 +2400,7 @@ class TablesDB extends Service
      *
      * @throws AppwriteException
      */
-    public function updateMediumtextColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\ColumnMediumtext
+    public function updateMediumtextColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?string $newKey = null, ?string $description = null): \Appwrite\Models\ColumnMediumtext
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -2363,6 +2427,7 @@ class TablesDB extends Service
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
         $apiParams['newKey'] = $newKey;
+        $apiParams['description'] = $description;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -2388,7 +2453,7 @@ class TablesDB extends Service
      *
      * @throws AppwriteException
      */
-    public function createPointColumn(string $databaseId, string $tableId, string $key, bool $required, ?array $xdefault = null): \Appwrite\Models\ColumnPoint
+    public function createPointColumn(string $databaseId, string $tableId, string $key, bool $required, ?array $xdefault = null, ?string $description = null): \Appwrite\Models\ColumnPoint
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -2410,6 +2475,10 @@ class TablesDB extends Service
         $apiParams['key'] = $key;
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
+
+        if (!is_null($description)) {
+            $apiParams['description'] = $description;
+        }
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -2436,7 +2505,7 @@ class TablesDB extends Service
      *
      * @throws AppwriteException
      */
-    public function updatePointColumn(string $databaseId, string $tableId, string $key, bool $required, ?array $xdefault = null, ?string $newKey = null): \Appwrite\Models\ColumnPoint
+    public function updatePointColumn(string $databaseId, string $tableId, string $key, bool $required, ?array $xdefault = null, ?string $newKey = null, ?string $description = null): \Appwrite\Models\ColumnPoint
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -2463,6 +2532,7 @@ class TablesDB extends Service
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
         $apiParams['newKey'] = $newKey;
+        $apiParams['description'] = $description;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -2488,7 +2558,7 @@ class TablesDB extends Service
      *
      * @throws AppwriteException
      */
-    public function createPolygonColumn(string $databaseId, string $tableId, string $key, bool $required, ?array $xdefault = null): \Appwrite\Models\ColumnPolygon
+    public function createPolygonColumn(string $databaseId, string $tableId, string $key, bool $required, ?array $xdefault = null, ?string $description = null): \Appwrite\Models\ColumnPolygon
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -2510,6 +2580,10 @@ class TablesDB extends Service
         $apiParams['key'] = $key;
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
+
+        if (!is_null($description)) {
+            $apiParams['description'] = $description;
+        }
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -2536,7 +2610,7 @@ class TablesDB extends Service
      *
      * @throws AppwriteException
      */
-    public function updatePolygonColumn(string $databaseId, string $tableId, string $key, bool $required, ?array $xdefault = null, ?string $newKey = null): \Appwrite\Models\ColumnPolygon
+    public function updatePolygonColumn(string $databaseId, string $tableId, string $key, bool $required, ?array $xdefault = null, ?string $newKey = null, ?string $description = null): \Appwrite\Models\ColumnPolygon
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -2563,6 +2637,7 @@ class TablesDB extends Service
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
         $apiParams['newKey'] = $newKey;
+        $apiParams['description'] = $description;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -2589,7 +2664,7 @@ class TablesDB extends Service
      *
      * @throws AppwriteException
      */
-    public function createRelationshipColumn(string $databaseId, string $tableId, string $relatedTableId, RelationshipType $type, ?bool $twoWay = null, ?string $key = null, ?string $twoWayKey = null, ?RelationMutate $onDelete = null): \Appwrite\Models\ColumnRelationship
+    public function createRelationshipColumn(string $databaseId, string $tableId, string $relatedTableId, RelationshipType $type, ?bool $twoWay = null, ?string $key = null, ?string $twoWayKey = null, ?RelationMutate $onDelete = null, ?string $description = null): \Appwrite\Models\ColumnRelationship
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -2621,6 +2696,10 @@ class TablesDB extends Service
             $apiParams['onDelete'] = $onDelete;
         }
 
+        if (!is_null($description)) {
+            $apiParams['description'] = $description;
+        }
+
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
@@ -2646,7 +2725,7 @@ class TablesDB extends Service
      *
      * @throws AppwriteException
      */
-    public function updateRelationshipColumn(string $databaseId, string $tableId, string $key, ?RelationMutate $onDelete = null, ?string $newKey = null): \Appwrite\Models\ColumnRelationship
+    public function updateRelationshipColumn(string $databaseId, string $tableId, string $key, ?RelationMutate $onDelete = null, ?string $newKey = null, ?string $description = null): \Appwrite\Models\ColumnRelationship
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -2672,6 +2751,7 @@ class TablesDB extends Service
         $apiParams['key'] = $key;
         $apiParams['onDelete'] = $onDelete;
         $apiParams['newKey'] = $newKey;
+        $apiParams['description'] = $description;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -2700,7 +2780,7 @@ class TablesDB extends Service
      * @deprecated This API has been deprecated since 1.9.0. Please use `createTextColumn` instead.
      * @see TablesDB::createTextColumn
      */
-    public function createStringColumn(string $databaseId, string $tableId, string $key, int $size, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): \Appwrite\Models\ColumnString
+    public function createStringColumn(string $databaseId, string $tableId, string $key, int $size, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null, ?string $description = null): \Appwrite\Models\ColumnString
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -2732,6 +2812,10 @@ class TablesDB extends Service
             $apiParams['encrypt'] = $encrypt;
         }
 
+        if (!is_null($description)) {
+            $apiParams['description'] = $description;
+        }
+
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
@@ -2760,7 +2844,7 @@ class TablesDB extends Service
      * @deprecated This API has been deprecated since 1.8.0. Please use `updateTextColumn` instead.
      * @see TablesDB::updateTextColumn
      */
-    public function updateStringColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?int $size = null, ?string $newKey = null): \Appwrite\Models\ColumnString
+    public function updateStringColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?int $size = null, ?string $newKey = null, ?string $description = null): \Appwrite\Models\ColumnString
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -2788,6 +2872,7 @@ class TablesDB extends Service
         $apiParams['default'] = $xdefault;
         $apiParams['size'] = $size;
         $apiParams['newKey'] = $newKey;
+        $apiParams['description'] = $description;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -2813,7 +2898,7 @@ class TablesDB extends Service
      *
      * @throws AppwriteException
      */
-    public function createTextColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): \Appwrite\Models\ColumnText
+    public function createTextColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null, ?string $description = null): \Appwrite\Models\ColumnText
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -2844,6 +2929,10 @@ class TablesDB extends Service
             $apiParams['encrypt'] = $encrypt;
         }
 
+        if (!is_null($description)) {
+            $apiParams['description'] = $description;
+        }
+
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
@@ -2869,7 +2958,7 @@ class TablesDB extends Service
      *
      * @throws AppwriteException
      */
-    public function updateTextColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\ColumnText
+    public function updateTextColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?string $newKey = null, ?string $description = null): \Appwrite\Models\ColumnText
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -2896,6 +2985,7 @@ class TablesDB extends Service
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
         $apiParams['newKey'] = $newKey;
+        $apiParams['description'] = $description;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -2921,7 +3011,7 @@ class TablesDB extends Service
      *
      * @throws AppwriteException
      */
-    public function createUrlColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null): \Appwrite\Models\ColumnUrl
+    public function createUrlColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?string $description = null): \Appwrite\Models\ColumnUrl
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -2946,6 +3036,10 @@ class TablesDB extends Service
 
         if (!is_null($xarray)) {
             $apiParams['array'] = $xarray;
+        }
+
+        if (!is_null($description)) {
+            $apiParams['description'] = $description;
         }
 
         $apiHeaders = [];
@@ -2973,7 +3067,7 @@ class TablesDB extends Service
      *
      * @throws AppwriteException
      */
-    public function updateUrlColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?string $newKey = null): \Appwrite\Models\ColumnUrl
+    public function updateUrlColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?string $newKey = null, ?string $description = null): \Appwrite\Models\ColumnUrl
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -3000,6 +3094,7 @@ class TablesDB extends Service
         $apiParams['required'] = $required;
         $apiParams['default'] = $xdefault;
         $apiParams['newKey'] = $newKey;
+        $apiParams['description'] = $description;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -3025,7 +3120,7 @@ class TablesDB extends Service
      *
      * @throws AppwriteException
      */
-    public function createVarcharColumn(string $databaseId, string $tableId, string $key, int $size, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null): \Appwrite\Models\ColumnVarchar
+    public function createVarcharColumn(string $databaseId, string $tableId, string $key, int $size, bool $required, ?string $xdefault = null, ?bool $xarray = null, ?bool $encrypt = null, ?string $description = null): \Appwrite\Models\ColumnVarchar
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -3057,6 +3152,10 @@ class TablesDB extends Service
             $apiParams['encrypt'] = $encrypt;
         }
 
+        if (!is_null($description)) {
+            $apiParams['description'] = $description;
+        }
+
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
         $apiHeaders['content-type'] = 'application/json';
@@ -3082,7 +3181,7 @@ class TablesDB extends Service
      *
      * @throws AppwriteException
      */
-    public function updateVarcharColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?int $size = null, ?string $newKey = null): \Appwrite\Models\ColumnVarchar
+    public function updateVarcharColumn(string $databaseId, string $tableId, string $key, bool $required, ?string $xdefault, ?int $size = null, ?string $newKey = null, ?string $description = null): \Appwrite\Models\ColumnVarchar
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -3110,6 +3209,7 @@ class TablesDB extends Service
         $apiParams['default'] = $xdefault;
         $apiParams['size'] = $size;
         $apiParams['newKey'] = $newKey;
+        $apiParams['description'] = $description;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -3353,7 +3453,7 @@ class TablesDB extends Service
      *
      * @throws AppwriteException
      */
-    public function createIndex(string $databaseId, string $tableId, string $key, TablesDBIndexType $type, array $columns, ?array $orders = null, ?array $lengths = null): \Appwrite\Models\ColumnIndex
+    public function createIndex(string $databaseId, string $tableId, string $key, TablesDBIndexType $type, array $columns, ?array $orders = null, ?array $lengths = null, ?string $description = null): \Appwrite\Models\ColumnIndex
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -3382,6 +3482,10 @@ class TablesDB extends Service
 
         if (!is_null($lengths)) {
             $apiParams['lengths'] = $lengths;
+        }
+
+        if (!is_null($description)) {
+            $apiParams['description'] = $description;
         }
 
         $apiHeaders = [];
@@ -3497,6 +3601,14 @@ class TablesDB extends Service
     /**
      * Get a list of all the user's rows in a given table. You can use the query
      * params to filter your results.
+     *
+     * Rows returned by aggregate, groupBy or distinct queries hold only the
+     * columns they select, group or aggregate, typed as a row types them, with a
+     * joined column named by its join alias (`alias.column`). The response omits
+     * their `$id`, `$sequence`, `$createdAt`, `$updatedAt`, `$permissions`,
+     * `$databaseId` and `$tableId` unless they select or group it, and those of a
+     * right or full join row that no row of this table matched. SDK row models
+     * fill omitted system columns with empty values.
      *
      * @throws AppwriteException
      */
@@ -3798,6 +3910,66 @@ class TablesDB extends Service
 
         $response = $this->client->call(
             Client::METHOD_DELETE,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\RowList::from($response);
+    }
+
+    /**
+     * Get a list of all the user's rows in a given table using a POST request.
+     * This behaves identically to the list rows endpoint but accepts the queries
+     * in the request body, allowing much larger `queries` arrays than can fit in
+     * a URL query string.
+     *
+     * @throws AppwriteException
+     */
+    public function createQuery(string $databaseId, string $tableId, ?array $queries = null, ?string $transactionId = null, ?bool $total = null, ?int $ttl = null): \Appwrite\Models\RowList
+    {
+        if ($databaseId === '') {
+            throw new AppwriteException('Missing required parameter: "databaseId"');
+        }
+
+        if ($tableId === '') {
+            throw new AppwriteException('Missing required parameter: "tableId"');
+        }
+
+        $apiPath = str_replace(
+            ['{databaseId}', '{tableId}'],
+            [$databaseId, $tableId],
+            '/tablesdb/{databaseId}/tables/{tableId}/rows/query'
+        );
+
+        $apiParams = [];
+        $apiParams['databaseId'] = $databaseId;
+        $apiParams['tableId'] = $tableId;
+
+        if (!is_null($queries)) {
+            $apiParams['queries'] = $queries;
+        }
+        $apiParams['transactionId'] = $transactionId;
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
+        }
+
+        if (!is_null($ttl)) {
+            $apiParams['ttl'] = $ttl;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_POST,
             $apiPath,
             $apiHeaders,
             $apiParams

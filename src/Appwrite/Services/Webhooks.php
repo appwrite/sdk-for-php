@@ -58,7 +58,7 @@ class Webhooks extends Service
      *
      * @throws AppwriteException
      */
-    public function create(string $webhookId, string $url, string $name, array $events, ?bool $enabled = null, ?bool $tls = null, ?string $authUsername = null, ?string $authPassword = null, ?string $secret = null): \Appwrite\Models\Webhook
+    public function create(string $webhookId, string $url, string $name, array $events, ?bool $enabled = null, ?bool $tls = null, ?string $authUsername = null, ?string $authPassword = null, ?string $secret = null, ?string $description = null): \Appwrite\Models\Webhook
     {
         $apiPath = str_replace(
             [],
@@ -88,6 +88,10 @@ class Webhooks extends Service
             $apiParams['authPassword'] = $authPassword;
         }
         $apiParams['secret'] = $secret;
+
+        if (!is_null($description)) {
+            $apiParams['description'] = $description;
+        }
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -153,7 +157,7 @@ class Webhooks extends Service
      *
      * @throws AppwriteException
      */
-    public function update(string $webhookId, string $name, string $url, array $events, ?bool $enabled = null, ?bool $tls = null, ?string $authUsername = null, ?string $authPassword = null): \Appwrite\Models\Webhook
+    public function update(string $webhookId, string $name, string $url, array $events, ?bool $enabled = null, ?bool $tls = null, ?string $authUsername = null, ?string $authPassword = null, ?string $description = null): \Appwrite\Models\Webhook
     {
         if ($webhookId === '') {
             throw new AppwriteException('Missing required parameter: "webhookId"');
@@ -183,6 +187,7 @@ class Webhooks extends Service
             $apiParams['authUsername'] = $authUsername;
         }
         $apiParams['authPassword'] = $authPassword;
+        $apiParams['description'] = $description;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');

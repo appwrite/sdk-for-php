@@ -22,6 +22,7 @@ readonly class Table
      * @param array $permissions table permissions. [learn more about permissions](https://appwrite.io/docs/permissions).
      * @param string $databaseId database id.
      * @param string $name table name.
+     * @param string $description optional description for the table.
      * @param bool $enabled table enabled. can be 'enabled' or 'disabled'. when disabled, the table is inaccessible to users, but remains accessible to server sdks using api keys.
      * @param bool $rowSecurity whether row-level permissions are enabled. [learn more about permissions](https://appwrite.io/docs/permissions).
      * @param array $columns table columns.
@@ -36,6 +37,7 @@ readonly class Table
         public array $permissions,
         public string $databaseId,
         public string $name,
+        public string $description,
         public bool $enabled,
         public bool $rowSecurity,
         public array $columns,
@@ -57,6 +59,7 @@ readonly class Table
             '$permissions' => [],
             'databaseId' => "",
             'name' => "",
+            'description' => "",
             'enabled' => true,
             'rowSecurity' => false,
             'columns' => [],
@@ -72,6 +75,7 @@ readonly class Table
             permissions: $data['$permissions'],
             databaseId: $data['databaseId'],
             name: $data['name'],
+            description: $data['description'],
             enabled: $data['enabled'],
             rowSecurity: $data['rowSecurity'],
             columns: $data['columns'],
@@ -98,6 +102,7 @@ readonly class Table
             '$permissions' => static::serializeValue($this->permissions),
             'databaseId' => static::serializeValue($this->databaseId),
             'name' => static::serializeValue($this->name),
+            'description' => static::serializeValue($this->description),
             'enabled' => static::serializeValue($this->enabled),
             'rowSecurity' => static::serializeValue($this->rowSecurity),
             'columns' => static::serializeValue($this->columns),

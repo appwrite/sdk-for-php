@@ -35,6 +35,7 @@ $result = $databases->createPolygonAttribute(
                 2
             ]
         ]
-    ] // optional
+    ], // optional
+    description: '<DESCRIPTION>' // optional
 );
 ```

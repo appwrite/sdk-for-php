@@ -21,6 +21,7 @@ readonly class FunctionModel
      * @param string $updatedAt function update date in iso 8601 format.
      * @param array $execute execution permissions.
      * @param string $name function name.
+     * @param string $description optional description for the function.
      * @param bool $enabled function enabled.
      * @param bool $live is the function deployed with the latest configuration? this is set to false if you've changed an environment variables, entrypoint, commands, or other settings that needs redeploy to be applied. when the value is false, redeploy the function to update it with the latest configuration.
      * @param bool $logging when disabled, executions will exclude logs and errors, and will be slightly faster.
@@ -57,6 +58,7 @@ readonly class FunctionModel
         public string $updatedAt,
         public array $execute,
         public string $name,
+        public string $description,
         public bool $enabled,
         public bool $live,
         public bool $logging,
@@ -100,6 +102,7 @@ readonly class FunctionModel
             '$updatedAt' => "",
             'execute' => [],
             'name' => "",
+            'description' => "",
             'enabled' => true,
             'live' => true,
             'logging' => true,
@@ -136,6 +139,7 @@ readonly class FunctionModel
             updatedAt: $data['$updatedAt'],
             execute: $data['execute'],
             name: $data['name'],
+            description: $data['description'],
             enabled: $data['enabled'],
             live: $data['live'],
             logging: $data['logging'],
@@ -184,6 +188,7 @@ readonly class FunctionModel
             '$updatedAt' => static::serializeValue($this->updatedAt),
             'execute' => static::serializeValue($this->execute),
             'name' => static::serializeValue($this->name),
+            'description' => static::serializeValue($this->description),
             'enabled' => static::serializeValue($this->enabled),
             'live' => static::serializeValue($this->live),
             'logging' => static::serializeValue($this->logging),

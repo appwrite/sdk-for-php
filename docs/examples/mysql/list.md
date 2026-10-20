@@ -12,6 +12,7 @@ $client = (new Client())
 $mysql = new Mysql($client);
 
 $result = $mysql->list(
-    queries: [] // optional
+    queries: [], // optional
+    total: false // optional
 );
 ```

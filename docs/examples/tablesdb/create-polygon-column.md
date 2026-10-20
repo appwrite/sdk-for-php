@@ -35,6 +35,7 @@ $result = $tablesDB->createPolygonColumn(
                 2
             ]
         ]
-    ] // optional
+    ], // optional
+    description: '<DESCRIPTION>' // optional
 );
 ```

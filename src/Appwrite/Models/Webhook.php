@@ -20,6 +20,7 @@ readonly class Webhook
      * @param string $createdAt webhook creation date in iso 8601 format.
      * @param string $updatedAt webhook update date in iso 8601 format.
      * @param string $name webhook name.
+     * @param string $description optional description for the webhook.
      * @param string $url webhook url endpoint.
      * @param array $events webhook trigger events.
      * @param bool $tls indicates if ssl / tls certificate verification is enabled.
@@ -35,6 +36,7 @@ readonly class Webhook
         public string $createdAt,
         public string $updatedAt,
         public string $name,
+        public string $description,
         public string $url,
         public array $events,
         public bool $tls,
@@ -57,6 +59,7 @@ readonly class Webhook
             '$createdAt' => "",
             '$updatedAt' => "",
             'name' => "",
+            'description' => "",
             'url' => "",
             'events' => [],
             'tls' => true,
@@ -73,6 +76,7 @@ readonly class Webhook
             createdAt: $data['$createdAt'],
             updatedAt: $data['$updatedAt'],
             name: $data['name'],
+            description: $data['description'],
             url: $data['url'],
             events: $data['events'],
             tls: $data['tls'],
@@ -95,6 +99,7 @@ readonly class Webhook
             '$createdAt' => static::serializeValue($this->createdAt),
             '$updatedAt' => static::serializeValue($this->updatedAt),
             'name' => static::serializeValue($this->name),
+            'description' => static::serializeValue($this->description),
             'url' => static::serializeValue($this->url),
             'events' => static::serializeValue($this->events),
             'tls' => static::serializeValue($this->tls),

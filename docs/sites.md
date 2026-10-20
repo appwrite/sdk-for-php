@@ -50,6 +50,7 @@ POST https://cloud.appwrite.io/v1/sites
 | runtimeSpecification | string | Runtime specification for the SSR executions. | [] |
 | deploymentRetention | integer | Days to keep non-active deployments before deletion. Value 0 means all deployments will be kept. | 0 |
 | scopes | array | List of scopes allowed for API key auto-generated for every site build and SSR execution. Maximum of 200 scopes are allowed. | [] |
+| description | string | Optional description for the site. |  |
 
 
 ```http request
@@ -126,6 +127,7 @@ PUT https://cloud.appwrite.io/v1/sites/{siteId}
 | runtimeSpecification | string | Runtime specification for the SSR executions. | [] |
 | deploymentRetention | integer | Days to keep non-active deployments before deletion. Value 0 means all deployments will be kept. | 0 |
 | scopes | array | List of scopes allowed for API key auto-generated for every site build and SSR execution. Maximum of 200 scopes are allowed. |  |
+| description | string | Optional description for the site. |  |
 
 
 ```http request
@@ -373,6 +375,7 @@ POST https://cloud.appwrite.io/v1/sites/{siteId}/variables
 | key | string | Variable key. Letters, digits and underscores only, must not start with a digit. Max length: 255 chars. |  |
 | value | string | Variable value. Max length: 8192 chars. |  |
 | secret | boolean | Secret variables can be updated or deleted, but only sites can read them during build and runtime. | 1 |
+| description | string | Optional description for the variable. |  |
 
 
 ```http request
@@ -404,6 +407,7 @@ PUT https://cloud.appwrite.io/v1/sites/{siteId}/variables/{variableId}
 | key | string | Variable key. Letters, digits and underscores only, must not start with a digit. Max length: 255 chars. |  |
 | value | string | Variable value. Max length: 8192 chars. |  |
 | secret | boolean | Secret variables can be updated or deleted, but only sites can read them during build and runtime. |  |
+| description | string | Optional description for the variable. |  |
 
 
 ```http request

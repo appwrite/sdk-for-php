@@ -20,6 +20,7 @@ readonly class Key
      * @param string $createdAt key creation date in iso 8601 format.
      * @param string $updatedAt key update date in iso 8601 format.
      * @param string $name key name.
+     * @param string $description optional description for the key.
      * @param string $expire key expiration date in iso 8601 format.
      * @param array $scopes allowed permission scopes.
      * @param string $secret secret key.
@@ -31,6 +32,7 @@ readonly class Key
         public string $createdAt,
         public string $updatedAt,
         public string $name,
+        public string $description,
         public string $expire,
         public array $scopes,
         public string $secret,
@@ -49,6 +51,7 @@ readonly class Key
             '$createdAt' => "",
             '$updatedAt' => "",
             'name' => "",
+            'description' => "",
             'expire' => "",
             'scopes' => [],
             'secret' => "",
@@ -61,6 +64,7 @@ readonly class Key
             createdAt: $data['$createdAt'],
             updatedAt: $data['$updatedAt'],
             name: $data['name'],
+            description: $data['description'],
             expire: $data['expire'],
             scopes: $data['scopes'],
             secret: $data['secret'],
@@ -79,6 +83,7 @@ readonly class Key
             '$createdAt' => static::serializeValue($this->createdAt),
             '$updatedAt' => static::serializeValue($this->updatedAt),
             'name' => static::serializeValue($this->name),
+            'description' => static::serializeValue($this->description),
             'expire' => static::serializeValue($this->expire),
             'scopes' => static::serializeValue($this->scopes),
             'secret' => static::serializeValue($this->secret),

@@ -30,6 +30,7 @@ POST https://cloud.appwrite.io/v1/databases
 | databaseId | string | Unique Id. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
 | name | string | Database name. Max length: 128 chars. |  |
 | enabled | boolean | Is the database enabled? When set to 'disabled', users cannot access the database but Server SDKs with an API key can still read and write to the database. No data is lost when this is toggled. | 1 |
+| description | string | Optional description for the database. |  |
 
 
 ```http request
@@ -140,6 +141,7 @@ PUT https://cloud.appwrite.io/v1/databases/{databaseId}
 | databaseId | string | **Required** Database ID. |  |
 | name | string | Database name. Max length: 128 chars. |  |
 | enabled | boolean | Is database enabled? When set to 'disabled', users cannot access the database but Server SDKs with an API key can still read and write to the database. No data is lost when this is toggled. | 1 |
+| description | string | Optional description for the database. |  |
 
 
 ```http request
@@ -189,6 +191,7 @@ POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections
 | enabled | boolean | Is collection enabled? When set to 'disabled', users cannot access the collection but Server SDKs with and API key can still read and write to the collection. No data is lost when this is toggled. | 1 |
 | attributes | array | Array of attribute definitions to create. Each attribute should contain: key (string), type (string: string, varchar, text, mediumtext, longtext, integer, bigint, double, boolean, datetime, point, linestring, polygon, email, url, ip, enum), size (integer, required for string and varchar types), required (boolean, optional), default (mixed, optional), array (boolean, optional), and type-specific options. | [] |
 | indexes | array | Array of index definitions to create. Each index should contain: key (string), type (string: key, fulltext, unique, spatial, trigram), attributes (array of attribute keys), orders (array of ASC/DESC, optional), and lengths (array of integers, optional). | [] |
+| description | string | Optional description for the collection. |  |
 
 
 ```http request
@@ -222,6 +225,7 @@ PUT https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionI
 | documentSecurity | boolean | Enables configuring permissions for individual documents. A user needs one of document or collection level permissions to access a document. [Learn more about permissions](https://appwrite.io/docs/permissions). |  |
 | enabled | boolean | Is collection enabled? When set to 'disabled', users cannot access the collection but Server SDKs with and API key can still read and write to the collection. No data is lost when this is toggled. | 1 |
 | purge | boolean | When true, purge all cached list responses for this collection as part of the update. Use this to force readers to see fresh data immediately instead of waiting for the cache TTL to expire. |  |
+| description | string | Optional description for the collection. |  |
 
 
 ```http request
@@ -273,6 +277,7 @@ POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collection
 | max | integer | Maximum value |  |
 | default | integer | Default value. Cannot be set when attribute is required. |  |
 | array | boolean | Is attribute an array? |  |
+| description | string | Optional description for the attribute. |  |
 
 
 ```http request
@@ -294,6 +299,7 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 | max | integer | Maximum value |  |
 | default | integer | Default value. Cannot be set when attribute is required. |  |
 | newKey | string | New Attribute Key. |  |
+| description | string | Optional description for the attribute. |  |
 
 
 ```http request
@@ -313,6 +319,7 @@ POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collection
 | required | boolean | Is attribute required? |  |
 | default | boolean | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | array | boolean | Is attribute an array? |  |
+| description | string | Optional description for the attribute. |  |
 
 
 ```http request
@@ -331,6 +338,7 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 | required | boolean | Is attribute required? |  |
 | default | boolean | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | newKey | string | New attribute key. |  |
+| description | string | Optional description for the attribute. |  |
 
 
 ```http request
@@ -349,6 +357,7 @@ POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collection
 | required | boolean | Is attribute required? |  |
 | default | string | Default value for the attribute in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. Cannot be set when attribute is required. |  |
 | array | boolean | Is attribute an array? |  |
+| description | string | Optional description for the attribute. |  |
 
 
 ```http request
@@ -367,6 +376,7 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 | required | boolean | Is attribute required? |  |
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | newKey | string | New attribute key. |  |
+| description | string | Optional description for the attribute. |  |
 
 
 ```http request
@@ -386,6 +396,7 @@ POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collection
 | required | boolean | Is attribute required? |  |
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | array | boolean | Is attribute an array? |  |
+| description | string | Optional description for the attribute. |  |
 
 
 ```http request
@@ -405,6 +416,7 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 | required | boolean | Is attribute required? |  |
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | newKey | string | New Attribute Key. |  |
+| description | string | Optional description for the attribute. |  |
 
 
 ```http request
@@ -425,6 +437,7 @@ POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collection
 | required | boolean | Is attribute required? |  |
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | array | boolean | Is attribute an array? |  |
+| description | string | Optional description for the attribute. |  |
 
 
 ```http request
@@ -445,6 +458,7 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 | required | boolean | Is attribute required? |  |
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | newKey | string | New Attribute Key. |  |
+| description | string | Optional description for the attribute. |  |
 
 
 ```http request
@@ -466,6 +480,7 @@ POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collection
 | max | number | Maximum value. |  |
 | default | number | Default value. Cannot be set when required. |  |
 | array | boolean | Is attribute an array? |  |
+| description | string | Optional description for the attribute. |  |
 
 
 ```http request
@@ -487,6 +502,7 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 | max | number | Maximum value. |  |
 | default | number | Default value. Cannot be set when required. |  |
 | newKey | string | New Attribute Key. |  |
+| description | string | Optional description for the attribute. |  |
 
 
 ```http request
@@ -508,6 +524,7 @@ POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collection
 | max | integer | Maximum value |  |
 | default | integer | Default value. Cannot be set when attribute is required. |  |
 | array | boolean | Is attribute an array? |  |
+| description | string | Optional description for the attribute. |  |
 
 
 ```http request
@@ -529,6 +546,7 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 | max | integer | Maximum value |  |
 | default | integer | Default value. Cannot be set when attribute is required. |  |
 | newKey | string | New Attribute Key. |  |
+| description | string | Optional description for the attribute. |  |
 
 
 ```http request
@@ -548,6 +566,7 @@ POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collection
 | required | boolean | Is attribute required? |  |
 | default | string | Default value. Cannot be set when attribute is required. |  |
 | array | boolean | Is attribute an array? |  |
+| description | string | Optional description for the attribute. |  |
 
 
 ```http request
@@ -567,6 +586,7 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 | required | boolean | Is attribute required? |  |
 | default | string | Default value. Cannot be set when attribute is required. |  |
 | newKey | string | New Attribute Key. |  |
+| description | string | Optional description for the attribute. |  |
 
 
 ```http request
@@ -584,6 +604,7 @@ POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collection
 | key | string | Attribute Key. |  |
 | required | boolean | Is attribute required? |  |
 | default | array | Default value for attribute when not provided, two-dimensional array of coordinate pairs, [[longitude, latitude], [longitude, latitude], …], listing the vertices of the line in order. Cannot be set when attribute is required. |  |
+| description | string | Optional description for the attribute. |  |
 
 
 ```http request
@@ -602,6 +623,7 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 | required | boolean | Is attribute required? |  |
 | default | array | Default value for attribute when not provided, two-dimensional array of coordinate pairs, [[longitude, latitude], [longitude, latitude], …], listing the vertices of the line in order. Cannot be set when attribute is required. |  |
 | newKey | string | New attribute key. |  |
+| description | string | Optional description for the attribute. |  |
 
 
 ```http request
@@ -622,6 +644,7 @@ POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collection
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | array | boolean | Is attribute an array? |  |
 | encrypt | boolean | Toggle encryption for the attribute. Encryption enhances security by not storing any plain text values in the database. However, encrypted attributes cannot be queried. |  |
+| description | string | Optional description for the attribute. |  |
 
 
 ```http request
@@ -641,6 +664,7 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 | required | boolean | Is attribute required? |  |
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | newKey | string | New Attribute Key. |  |
+| description | string | Optional description for the attribute. |  |
 
 
 ```http request
@@ -661,6 +685,7 @@ POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collection
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | array | boolean | Is attribute an array? |  |
 | encrypt | boolean | Toggle encryption for the attribute. Encryption enhances security by not storing any plain text values in the database. However, encrypted attributes cannot be queried. |  |
+| description | string | Optional description for the attribute. |  |
 
 
 ```http request
@@ -680,6 +705,7 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 | required | boolean | Is attribute required? |  |
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | newKey | string | New Attribute Key. |  |
+| description | string | Optional description for the attribute. |  |
 
 
 ```http request
@@ -697,6 +723,7 @@ POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collection
 | key | string | Attribute Key. |  |
 | required | boolean | Is attribute required? |  |
 | default | array | Default value for attribute when not provided, array of two numbers [longitude, latitude], representing a single coordinate. Cannot be set when attribute is required. |  |
+| description | string | Optional description for the attribute. |  |
 
 
 ```http request
@@ -715,6 +742,7 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 | required | boolean | Is attribute required? |  |
 | default | array | Default value for attribute when not provided, array of two numbers [longitude, latitude], representing a single coordinate. Cannot be set when attribute is required. |  |
 | newKey | string | New attribute key. |  |
+| description | string | Optional description for the attribute. |  |
 
 
 ```http request
@@ -732,6 +760,7 @@ POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collection
 | key | string | Attribute Key. |  |
 | required | boolean | Is attribute required? |  |
 | default | array | Default value for attribute when not provided, three-dimensional array where the outer array holds one or more linear rings, [[[longitude, latitude], …], …], the first ring is the exterior boundary, any additional rings are interior holes, and each ring must start and end with the same coordinate pair. Cannot be set when attribute is required. |  |
+| description | string | Optional description for the attribute. |  |
 
 
 ```http request
@@ -750,6 +779,7 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 | required | boolean | Is attribute required? |  |
 | default | array | Default value for attribute when not provided, three-dimensional array where the outer array holds one or more linear rings, [[[longitude, latitude], …], …], the first ring is the exterior boundary, any additional rings are interior holes, and each ring must start and end with the same coordinate pair. Cannot be set when attribute is required. |  |
 | newKey | string | New attribute key. |  |
+| description | string | Optional description for the attribute. |  |
 
 
 ```http request
@@ -771,6 +801,7 @@ POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collection
 | key | string | Attribute Key. |  |
 | twoWayKey | string | Two Way Attribute Key. |  |
 | onDelete | string | Delete constraint. Possible values are: cascade, restrict, setNull. | restrict |
+| description | string | Optional description for the attribute. |  |
 
 
 ```http request
@@ -789,6 +820,7 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 | key | string | **Required** Attribute Key. |  |
 | onDelete | string | Delete constraint. Possible values are: cascade, restrict, setNull. |  |
 | newKey | string | New Attribute Key. |  |
+| description | string | Optional description for the attribute. |  |
 
 
 ```http request
@@ -810,6 +842,7 @@ POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collection
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | array | boolean | Is attribute an array? |  |
 | encrypt | boolean | Toggle encryption for the attribute. Encryption enhances security by not storing any plain text values in the database. However, encrypted attributes cannot be queried. |  |
+| description | string | Optional description for the attribute. |  |
 
 
 ```http request
@@ -830,6 +863,7 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | size | integer | Maximum size of the string attribute. |  |
 | newKey | string | New Attribute Key. |  |
+| description | string | Optional description for the attribute. |  |
 
 
 ```http request
@@ -850,6 +884,7 @@ POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collection
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | array | boolean | Is attribute an array? |  |
 | encrypt | boolean | Toggle encryption for the attribute. Encryption enhances security by not storing any plain text values in the database. However, encrypted attributes cannot be queried. |  |
+| description | string | Optional description for the attribute. |  |
 
 
 ```http request
@@ -869,6 +904,7 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 | required | boolean | Is attribute required? |  |
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | newKey | string | New Attribute Key. |  |
+| description | string | Optional description for the attribute. |  |
 
 
 ```http request
@@ -888,6 +924,7 @@ POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collection
 | required | boolean | Is attribute required? |  |
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | array | boolean | Is attribute an array? |  |
+| description | string | Optional description for the attribute. |  |
 
 
 ```http request
@@ -907,6 +944,7 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 | required | boolean | Is attribute required? |  |
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | newKey | string | New Attribute Key. |  |
+| description | string | Optional description for the attribute. |  |
 
 
 ```http request
@@ -928,6 +966,7 @@ POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collection
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | array | boolean | Is attribute an array? |  |
 | encrypt | boolean | Toggle encryption for the attribute. Encryption enhances security by not storing any plain text values in the database. However, encrypted attributes cannot be queried. |  |
+| description | string | Optional description for the attribute. |  |
 
 
 ```http request
@@ -948,6 +987,7 @@ PATCH https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectio
 | default | string | Default value for attribute when not provided. Cannot be set when attribute is required. |  |
 | size | integer | Maximum size of the varchar attribute. |  |
 | newKey | string | New Attribute Key. |  |
+| description | string | Optional description for the attribute. |  |
 
 
 ```http request
@@ -984,7 +1024,9 @@ DELETE https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collecti
 GET https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/documents
 ```
 
-** Get a list of all the user's documents in a given collection. You can use the query params to filter your results. **
+** Get a list of all the user's documents in a given collection. You can use the query params to filter your results.
+
+Documents returned by aggregate, groupBy or distinct queries hold only the attributes they select, group or aggregate, typed as a document types them, with a joined attribute named by its join alias (`alias.attribute`). The response omits their `$id`, `$sequence`, `$createdAt`, `$updatedAt`, `$permissions`, `$databaseId` and `$collectionId` unless they select or group it, and those of a right or full join document that no document of this collection matched. SDK document models fill omitted system attributes with empty values. **
 
 ### Parameters
 
@@ -995,7 +1037,7 @@ GET https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionI
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. | [] |
 | transactionId | string | Transaction ID to read uncommitted changes within the transaction. |  |
 | total | boolean | When set to false, the total count returned will be 0 and will not be calculated. | 1 |
-| ttl | integer | TTL (seconds) for caching list responses. Responses are stored in an in-memory key-value cache, keyed per project, collection, schema version (attributes and indexes), caller authorization roles, and the exact query — so users with different permissions never share cached entries. Schema changes invalidate cached entries automatically; document writes do not, so choose a TTL you are comfortable serving as stale data. Set to 0 to disable caching. Must be between 0 and 86400 (24 hours). | 0 |
+| ttl | integer | TTL (seconds) for caching list responses. Responses are stored in an in-memory key-value cache, keyed per project, collection, schema version (attributes and indexes), caller authorization roles, and the exact query — so users with different permissions never share cached entries. Schema changes invalidate cached entries automatically; document writes do not, so choose a TTL you are comfortable serving as stale data. Set to 0 to disable caching. Lists with join queries are not cached. Must be between 0 and 86400 (24 hours). | 0 |
 
 
 ```http request
@@ -1080,6 +1122,25 @@ DELETE https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collecti
 | collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
 | queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. | [] |
 | transactionId | string | Transaction ID for staging the operation. |  |
+
+
+```http request
+POST https://cloud.appwrite.io/v1/databases/{databaseId}/collections/{collectionId}/documents/query
+```
+
+** Get a list of all the user's documents in a given collection using a POST request. This behaves identically to the list documents endpoint but accepts the queries in the request body, allowing much larger `queries` arrays than can fit in a URL query string.
+ **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| databaseId | string | **Required** Database ID. |  |
+| collectionId | string | **Required** Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). |  |
+| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. | [] |
+| transactionId | string | Transaction ID to read uncommitted changes within the transaction. |  |
+| total | boolean | When set to false, the total count returned will be 0 and will not be calculated. | 1 |
+| ttl | integer | TTL (seconds) for caching list responses. Responses are stored in an in-memory key-value cache, keyed per project, collection, schema version (attributes and indexes), caller authorization roles, and the exact query — so users with different permissions never share cached entries. Schema changes invalidate cached entries automatically; document writes do not, so choose a TTL you are comfortable serving as stale data. Set to 0 to disable caching. Lists with join queries are not cached. Must be between 0 and 86400 (24 hours). | 0 |
 
 
 ```http request
@@ -1223,6 +1284,7 @@ Attributes can be `key`, `fulltext`, `unique`, `spatial`, and `trigram`. `trigra
 | attributes | array | Array of attributes to index. Maximum of 100 attributes are allowed, each 32 characters long. |  |
 | orders | array | Array of index orders. Maximum of 100 orders are allowed. | [] |
 | lengths | array | Length of index. Maximum of 100 | [] |
+| description | string | Optional description for the index. |  |
 
 
 ```http request

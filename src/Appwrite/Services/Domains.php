@@ -17,7 +17,7 @@ class Domains extends Service
      *
      * @throws AppwriteException
      */
-    public function list(?array $queries = null, ?string $search = null): \Appwrite\Models\DomainsList
+    public function list(?array $queries = null, ?string $search = null, ?bool $total = null): \Appwrite\Models\DomainsList
     {
         $apiPath = str_replace(
             [],
@@ -33,6 +33,10 @@ class Domains extends Service
 
         if (!is_null($search)) {
             $apiParams['search'] = $search;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
         }
 
         $apiHeaders = [];
@@ -828,7 +832,7 @@ class Domains extends Service
      *
      * @throws AppwriteException
      */
-    public function listRecords(string $domainId, ?array $queries = null): \Appwrite\Models\DnsRecordsList
+    public function listRecords(string $domainId, ?array $queries = null, ?bool $total = null): \Appwrite\Models\DnsRecordsList
     {
         if ($domainId === '') {
             throw new AppwriteException('Missing required parameter: "domainId"');
@@ -845,6 +849,10 @@ class Domains extends Service
 
         if (!is_null($queries)) {
             $apiParams['queries'] = $queries;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
         }
 
         $apiHeaders = [];

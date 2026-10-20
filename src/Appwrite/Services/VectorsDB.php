@@ -58,7 +58,7 @@ class VectorsDB extends Service
      *
      * @throws AppwriteException
      */
-    public function create(string $databaseId, string $name, ?bool $enabled = null, ?string $specification = null, ?int $replicas = null, ?string $syncMode = null): \Appwrite\Models\Database
+    public function create(string $databaseId, string $name, ?bool $enabled = null, ?string $description = null, ?string $specification = null, ?int $replicas = null, ?string $syncMode = null): \Appwrite\Models\Database
     {
         $apiPath = str_replace(
             [],
@@ -72,6 +72,10 @@ class VectorsDB extends Service
 
         if (!is_null($enabled)) {
             $apiParams['enabled'] = $enabled;
+        }
+
+        if (!is_null($description)) {
+            $apiParams['description'] = $description;
         }
 
         if (!is_null($specification)) {
@@ -421,7 +425,7 @@ class VectorsDB extends Service
      *
      * @throws AppwriteException
      */
-    public function update(string $databaseId, string $name, ?bool $enabled = null, ?string $specification = null, ?int $replicas = null, ?string $syncMode = null): \Appwrite\Models\Database
+    public function update(string $databaseId, string $name, ?bool $enabled = null, ?string $description = null, ?string $specification = null, ?int $replicas = null, ?string $syncMode = null): \Appwrite\Models\Database
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -440,6 +444,7 @@ class VectorsDB extends Service
         if (!is_null($enabled)) {
             $apiParams['enabled'] = $enabled;
         }
+        $apiParams['description'] = $description;
         $apiParams['specification'] = $specification;
         $apiParams['replicas'] = $replicas;
         $apiParams['syncMode'] = $syncMode;
@@ -556,7 +561,7 @@ class VectorsDB extends Service
      *
      * @throws AppwriteException
      */
-    public function createCollection(string $databaseId, string $collectionId, string $name, int $dimension, ?array $permissions = null, ?bool $documentSecurity = null, ?bool $enabled = null): \Appwrite\Models\VectorsdbCollection
+    public function createCollection(string $databaseId, string $collectionId, string $name, int $dimension, ?array $permissions = null, ?bool $documentSecurity = null, ?bool $enabled = null, ?string $description = null): \Appwrite\Models\VectorsdbCollection
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -584,6 +589,10 @@ class VectorsDB extends Service
 
         if (!is_null($enabled)) {
             $apiParams['enabled'] = $enabled;
+        }
+
+        if (!is_null($description)) {
+            $apiParams['description'] = $description;
         }
 
         $apiHeaders = [];
@@ -654,7 +663,7 @@ class VectorsDB extends Service
      *
      * @throws AppwriteException
      */
-    public function updateCollection(string $databaseId, string $collectionId, string $name, ?int $dimension = null, ?array $permissions = null, ?bool $documentSecurity = null, ?bool $enabled = null): \Appwrite\Models\VectorsdbCollection
+    public function updateCollection(string $databaseId, string $collectionId, string $name, ?int $dimension = null, ?array $permissions = null, ?bool $documentSecurity = null, ?bool $enabled = null, ?string $description = null): \Appwrite\Models\VectorsdbCollection
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -687,6 +696,7 @@ class VectorsDB extends Service
             $apiParams['documentSecurity'] = $documentSecurity;
         }
         $apiParams['enabled'] = $enabled;
+        $apiParams['description'] = $description;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -1429,7 +1439,7 @@ class VectorsDB extends Service
      *
      * @throws AppwriteException
      */
-    public function createIndex(string $databaseId, string $collectionId, string $key, VectorsDBIndexType $type, array $attributes, ?array $orders = null, ?array $lengths = null): \Appwrite\Models\Index
+    public function createIndex(string $databaseId, string $collectionId, string $key, VectorsDBIndexType $type, array $attributes, ?array $orders = null, ?array $lengths = null, ?string $description = null): \Appwrite\Models\Index
     {
         if ($databaseId === '') {
             throw new AppwriteException('Missing required parameter: "databaseId"');
@@ -1458,6 +1468,10 @@ class VectorsDB extends Service
 
         if (!is_null($lengths)) {
             $apiParams['lengths'] = $lengths;
+        }
+
+        if (!is_null($description)) {
+            $apiParams['description'] = $description;
         }
 
         $apiHeaders = [];

@@ -13,6 +13,7 @@ $postgresql = new Postgresql($client);
 
 $result = $postgresql->listBackups(
     databaseId: '<DATABASE_ID>',
-    queries: [] // optional
+    queries: [], // optional
+    total: false // optional
 );
 ```

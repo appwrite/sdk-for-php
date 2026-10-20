@@ -79,6 +79,7 @@ readonly class BillingPlan
      * @param int $deploymentSize maximum function and site deployment size in mb
      * @param int $buildSize maximum function and site deployment size in mb
      * @param int $functionsIntervalMinimum shortest function schedule interval allowed, in minutes. 0 allows every interval.
+     * @param bool $functionsAllowCron does the plan allow cron function schedules or only intervals.
      * @param bool $databasesAllowEncrypt does the plan support encrypted string attributes or not.
      * @param BillingPlanGroup $group group of this billing plan for variants
      * @param float $databaseComputeCredit included monthly dedicated-database compute credit in usd. resets each billing cycle with no roll-over.
@@ -156,6 +157,7 @@ readonly class BillingPlan
         public int $deploymentSize,
         public int $buildSize,
         public int $functionsIntervalMinimum,
+        public bool $functionsAllowCron,
         public bool $databasesAllowEncrypt,
         public BillingPlanGroup $group,
         public float $databaseComputeCredit,
@@ -238,6 +240,7 @@ readonly class BillingPlan
             'deploymentSize' => 0,
             'buildSize' => 0,
             'functionsIntervalMinimum' => 0,
+            'functionsAllowCron' => true,
             'databasesAllowEncrypt' => false,
             'databaseComputeCredit' => 0,
         ];
@@ -314,6 +317,7 @@ readonly class BillingPlan
             deploymentSize: $data['deploymentSize'],
             buildSize: $data['buildSize'],
             functionsIntervalMinimum: $data['functionsIntervalMinimum'],
+            functionsAllowCron: $data['functionsAllowCron'],
             databasesAllowEncrypt: $data['databasesAllowEncrypt'],
             group: static::hydrateTypedValue(BillingPlanGroup::class, $data['group']),
             databaseComputeCredit: $data['databaseComputeCredit'],
@@ -406,6 +410,7 @@ readonly class BillingPlan
             'deploymentSize' => static::serializeValue($this->deploymentSize),
             'buildSize' => static::serializeValue($this->buildSize),
             'functionsIntervalMinimum' => static::serializeValue($this->functionsIntervalMinimum),
+            'functionsAllowCron' => static::serializeValue($this->functionsAllowCron),
             'databasesAllowEncrypt' => static::serializeValue($this->databasesAllowEncrypt),
             'limits' => static::serializeValue($this->limits),
             'group' => static::serializeValue($this->group),

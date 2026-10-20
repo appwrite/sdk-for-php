@@ -151,6 +151,20 @@ DELETE https://cloud.appwrite.io/v1/account/identities/{identityId}
 
 
 ```http request
+GET https://cloud.appwrite.io/v1/account/memberships
+```
+
+** Get the team memberships of the currently logged in user. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: userId, teamId, invited, joined, confirm, roles | [] |
+| total | boolean | When set to false, the total count returned will be 0 and will not be calculated. | 1 |
+
+
+```http request
 PATCH https://cloud.appwrite.io/v1/account/mfa
 ```
 
@@ -516,7 +530,10 @@ PUT https://cloud.appwrite.io/v1/account/recovery
 
 ** Use this endpoint to complete the user account password reset. Both the **userId** and **secret** arguments will be passed as query parameters to the redirect URL you have provided when sending your request to the [POST /account/recovery](https://appwrite.io/docs/references/cloud/client-web/account#createRecovery) endpoint.
 
-Please note that in order to avoid a [Redirect Attack](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.md) the only valid redirect URLs are the ones from domains you have set when adding your platforms in the console interface. **
+Please note that in order to avoid a [Redirect Attack](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.md) the only valid redirect URLs are the ones from domains you have set when adding your platforms in the console interface.
+
+The new password must satisfy the project's enabled password policies, including custom deny lists. Dictionary entries match the entire password case-sensitively; personal-data terms match substrings case-insensitively. Personal-data validation runs after token verification against the recovered user's ID, name, email, and phone, closing the previous recovery gap for profile-based checks. A rejected password leaves the existing credentials unchanged and the recovery token usable.
+ **
 
 ### Parameters
 
@@ -549,6 +566,8 @@ PUT https://cloud.appwrite.io/v1/account/recovery/otp
 ```
 
 ** Use this endpoint to complete the user password recovery process using the 6-digit code that was emailed by [createRecoveryOTP](https://appwrite.io/docs/references/cloud/client-web/account#createRecoveryOTP). Pass the **userId** of the user along with the **secret** code from the email and the new **password** to set. If confirmed, this route will return a 200 status code, the code is consumed and the user's password is updated.
+
+The new password must satisfy the project's enabled password policies, including custom deny lists. Dictionary entries match the entire password case-sensitively; personal-data terms match substrings case-insensitively. Personal-data validation runs after token verification against the recovered user's ID, name, email, and phone, closing the previous recovery gap for profile-based checks. A rejected password leaves the existing credentials unchanged and the recovery token usable.
  **
 
 ### Parameters
