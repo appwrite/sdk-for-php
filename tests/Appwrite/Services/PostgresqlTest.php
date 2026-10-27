@@ -6,11 +6,14 @@ namespace Appwrite\Services;
 
 use Appwrite\Client;
 use Mockery;
+use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
 
 final class PostgresqlTest extends TestCase
 {
+    use MockeryPHPUnitIntegration;
+
     private Client&MockInterface $client;
     private Postgresql $postgresql;
 
@@ -76,13 +79,30 @@ final class PostgresqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/postgresql',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['queries', 'total'], array_keys($params));
+                    $expected = [
+                        'queries' => [],
+                        'total' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->postgresql->list();
+        $response = $this->postgresql->list(
+            queries: [],
+            total: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\DedicatedDatabaseList::class, $response);
     }
@@ -137,7 +157,33 @@ final class PostgresqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/postgresql',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'name', 'version', 'specification', 'replicas', 'syncMode', 'networkIdleTimeoutSeconds', 'networkIPAllowlist', 'idleTimeoutMinutes', 'pitr', 'pitrRetentionDays', 'storageAutoscaling', 'storageAutoscalingThresholdPercent', 'storageAutoscalingMaxGb'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'name' => "<NAME>",
+                        'version' => "17",
+                        'specification' => "<SPECIFICATION>",
+                        'replicas' => 1,
+                        'syncMode' => "async",
+                        'networkIdleTimeoutSeconds' => 1,
+                        'networkIPAllowlist' => [],
+                        'idleTimeoutMinutes' => 1,
+                        'pitr' => false,
+                        'pitrRetentionDays' => 1,
+                        'storageAutoscaling' => false,
+                        'storageAutoscalingThresholdPercent' => 1,
+                        'storageAutoscalingMaxGb' => 1,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -145,7 +191,19 @@ final class PostgresqlTest extends TestCase
 
         $response = $this->postgresql->create(
             "<DATABASE_ID>",
-            "<NAME>"
+            "<NAME>",
+            version: "17",
+            specification: "<SPECIFICATION>",
+            replicas: 1,
+            syncMode: "async",
+            networkIdleTimeoutSeconds: 1,
+            networkIPAllowlist: [],
+            idleTimeoutMinutes: 1,
+            pitr: false,
+            pitrRetentionDays: 1,
+            storageAutoscaling: false,
+            storageAutoscalingThresholdPercent: 1,
+            storageAutoscalingMaxGb: 1
         );
 
         $this->assertInstanceOf(\Appwrite\Models\DedicatedDatabase::class, $response);
@@ -174,7 +232,16 @@ final class PostgresqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/postgresql/specifications',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame([], array_keys($params));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -235,7 +302,20 @@ final class PostgresqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/postgresql/%3CDATABASE_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -298,14 +378,67 @@ final class PostgresqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/postgresql/%3CDATABASE_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'name', 'status', 'specification', 'replicas', 'syncMode', 'networkIdleTimeoutSeconds', 'networkIPAllowlist', 'idleTimeoutMinutes', 'pitr', 'pitrRetentionDays', 'storageAutoscaling', 'storageAutoscalingThresholdPercent', 'storageAutoscalingMaxGb', 'metricsTraceSampleRate', 'metricsSlowQueryLogThresholdMs', 'sqlApiEnabled', 'sqlApiAllowedStatements', 'sqlApiMaxRows', 'sqlApiMaxBytes', 'sqlApiTimeoutSeconds'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'name' => "<NAME>",
+                        'status' => "ready",
+                        'specification' => "<SPECIFICATION>",
+                        'replicas' => 1,
+                        'syncMode' => "async",
+                        'networkIdleTimeoutSeconds' => 1,
+                        'networkIPAllowlist' => [],
+                        'idleTimeoutMinutes' => 1,
+                        'pitr' => false,
+                        'pitrRetentionDays' => 1,
+                        'storageAutoscaling' => false,
+                        'storageAutoscalingThresholdPercent' => 1,
+                        'storageAutoscalingMaxGb' => 1,
+                        'metricsTraceSampleRate' => 1.0,
+                        'metricsSlowQueryLogThresholdMs' => 1,
+                        'sqlApiEnabled' => false,
+                        'sqlApiAllowedStatements' => [],
+                        'sqlApiMaxRows' => 1,
+                        'sqlApiMaxBytes' => 1,
+                        'sqlApiTimeoutSeconds' => 1,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->postgresql->update(
-            "<DATABASE_ID>"
+            "<DATABASE_ID>",
+            name: "<NAME>",
+            status: "ready",
+            specification: "<SPECIFICATION>",
+            replicas: 1,
+            syncMode: "async",
+            networkIdleTimeoutSeconds: 1,
+            networkIPAllowlist: [],
+            idleTimeoutMinutes: 1,
+            pitr: false,
+            pitrRetentionDays: 1,
+            storageAutoscaling: false,
+            storageAutoscalingThresholdPercent: 1,
+            storageAutoscalingMaxGb: 1,
+            metricsTraceSampleRate: 1.0,
+            metricsSlowQueryLogThresholdMs: 1,
+            sqlApiEnabled: false,
+            sqlApiAllowedStatements: [],
+            sqlApiMaxRows: 1,
+            sqlApiMaxBytes: 1,
+            sqlApiTimeoutSeconds: 1
         );
 
         $this->assertInstanceOf(\Appwrite\Models\DedicatedDatabase::class, $response);
@@ -315,7 +448,20 @@ final class PostgresqlTest extends TestCase
         $data = '';
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'DELETE',
+                '/postgresql/%3CDATABASE_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -350,14 +496,31 @@ final class PostgresqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/postgresql/%3CDATABASE_ID%3E/backups',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'queries', 'total'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'queries' => [],
+                        'total' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->postgresql->listBackups(
-            "<DATABASE_ID>"
+            "<DATABASE_ID>",
+            queries: [],
+            total: false
         );
 
         $this->assertInstanceOf(\Appwrite\Models\DedicatedDatabaseBackupList::class, $response);
@@ -380,14 +543,29 @@ final class PostgresqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/postgresql/%3CDATABASE_ID%3E/backups',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'type'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'type' => "full",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->postgresql->createBackup(
-            "<DATABASE_ID>"
+            "<DATABASE_ID>",
+            type: "full"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\DedicatedDatabaseBackup::class, $response);
@@ -413,14 +591,31 @@ final class PostgresqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/postgresql/%3CDATABASE_ID%3E/backups/policies',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'queries', 'total'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'queries' => [],
+                        'total' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->postgresql->listBackupPolicies(
-            "<DATABASE_ID>"
+            "<DATABASE_ID>",
+            queries: [],
+            total: false
         );
 
         $this->assertInstanceOf(\Appwrite\Models\BackupPolicyList::class, $response);
@@ -441,7 +636,26 @@ final class PostgresqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/postgresql/%3CDATABASE_ID%3E/backups/policies',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'policyId', 'name', 'schedule', 'retention', 'type', 'enabled'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'policyId' => "<POLICY_ID>",
+                        'name' => "<NAME>",
+                        'schedule' => "schedule",
+                        'retention' => 1,
+                        'type' => "full",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -452,7 +666,9 @@ final class PostgresqlTest extends TestCase
             "<POLICY_ID>",
             "<NAME>",
             "schedule",
-            1
+            1,
+            type: "full",
+            enabled: false
         );
 
         $this->assertInstanceOf(\Appwrite\Models\BackupPolicy::class, $response);
@@ -473,7 +689,21 @@ final class PostgresqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/postgresql/%3CDATABASE_ID%3E/backups/policies/%3CPOLICY_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'policyId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'policyId' => "<POLICY_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -502,7 +732,25 @@ final class PostgresqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/postgresql/%3CDATABASE_ID%3E/backups/policies/%3CPOLICY_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'policyId', 'name', 'schedule', 'retention', 'enabled'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'policyId' => "<POLICY_ID>",
+                        'name' => "<NAME>",
+                        'schedule' => "schedule",
+                        'retention' => 1,
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -510,7 +758,11 @@ final class PostgresqlTest extends TestCase
 
         $response = $this->postgresql->updateBackupPolicy(
             "<DATABASE_ID>",
-            "<POLICY_ID>"
+            "<POLICY_ID>",
+            name: "<NAME>",
+            schedule: "schedule",
+            retention: 1,
+            enabled: false
         );
 
         $this->assertInstanceOf(\Appwrite\Models\BackupPolicy::class, $response);
@@ -520,7 +772,21 @@ final class PostgresqlTest extends TestCase
         $data = '';
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'DELETE',
+                '/postgresql/%3CDATABASE_ID%3E/backups/policies/%3CPOLICY_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'policyId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'policyId' => "<POLICY_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -544,7 +810,27 @@ final class PostgresqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PUT',
+                '/postgresql/%3CDATABASE_ID%3E/backups/storage',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'provider', 'bucket', 'accessKey', 'secretKey', 'region', 'prefix', 'endpoint'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'provider' => "s3",
+                        'bucket' => "<BUCKET>",
+                        'accessKey' => "<ACCESS_KEY>",
+                        'secretKey' => "<SECRET_KEY>",
+                        'region' => "<REGION>",
+                        'prefix' => "<PREFIX>",
+                        'endpoint' => "https://example.com",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -555,7 +841,10 @@ final class PostgresqlTest extends TestCase
             "s3",
             "<BUCKET>",
             "<ACCESS_KEY>",
-            "<SECRET_KEY>"
+            "<SECRET_KEY>",
+            region: "<REGION>",
+            prefix: "<PREFIX>",
+            endpoint: "https://example.com"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\DedicatedDatabaseBackupStorage::class, $response);
@@ -578,7 +867,21 @@ final class PostgresqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/postgresql/%3CDATABASE_ID%3E/backups/%3CBACKUP_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'backupId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'backupId' => "<BACKUP_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -596,7 +899,21 @@ final class PostgresqlTest extends TestCase
         $data = '';
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'DELETE',
+                '/postgresql/%3CDATABASE_ID%3E/backups/%3CBACKUP_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'backupId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'backupId' => "<BACKUP_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -631,7 +948,20 @@ final class PostgresqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/postgresql/%3CDATABASE_ID%3E/branches',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -694,14 +1024,31 @@ final class PostgresqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/postgresql/%3CDATABASE_ID%3E/branches',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'branchId', 'ttl'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'branchId' => "<BRANCH_ID>",
+                        'ttl' => 1,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->postgresql->createBranch(
-            "<DATABASE_ID>"
+            "<DATABASE_ID>",
+            branchId: "<BRANCH_ID>",
+            ttl: 1
         );
 
         $this->assertInstanceOf(\Appwrite\Models\DedicatedDatabase::class, $response);
@@ -757,7 +1104,21 @@ final class PostgresqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'DELETE',
+                '/postgresql/%3CDATABASE_ID%3E/branches/%3CBRANCH_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'branchId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'branchId' => "<BRANCH_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -784,7 +1145,20 @@ final class PostgresqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/postgresql/%3CDATABASE_ID%3E/credentials',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -813,7 +1187,23 @@ final class PostgresqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/postgresql/%3CDATABASE_ID%3E/executions',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'sql', 'bindings', 'timeoutSeconds'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'sql' => "<SQL>",
+                        'bindings' => [],
+                        'timeoutSeconds' => 1,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -821,7 +1211,9 @@ final class PostgresqlTest extends TestCase
 
         $response = $this->postgresql->createExecution(
             "<DATABASE_ID>",
-            "<SQL>"
+            "<SQL>",
+            bindings: [],
+            timeoutSeconds: 1
         );
 
         $this->assertInstanceOf(\Appwrite\Models\DedicatedDatabaseExecution::class, $response);
@@ -842,7 +1234,20 @@ final class PostgresqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/postgresql/%3CDATABASE_ID%3E/extensions',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -905,7 +1310,21 @@ final class PostgresqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/postgresql/%3CDATABASE_ID%3E/extensions',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'name'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'name' => "<NAME>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -969,7 +1388,21 @@ final class PostgresqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'DELETE',
+                '/postgresql/%3CDATABASE_ID%3E/extensions/%3CEXTENSION_NAME%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'extensionName'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'extensionName' => "<EXTENSION_NAME>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1033,14 +1466,29 @@ final class PostgresqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/postgresql/%3CDATABASE_ID%3E/failovers',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'targetReplicaId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'targetReplicaId' => "<TARGET_REPLICA_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->postgresql->createFailover(
-            "<DATABASE_ID>"
+            "<DATABASE_ID>",
+            targetReplicaId: "<TARGET_REPLICA_ID>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\DedicatedDatabase::class, $response);
@@ -1096,7 +1544,22 @@ final class PostgresqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/postgresql/%3CDATABASE_ID%3E/maintenance',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'day', 'hourUtc'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'day' => "sun",
+                        'hourUtc' => 1,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1161,7 +1624,22 @@ final class PostgresqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/postgresql/%3CDATABASE_ID%3E/migrations',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'targetType', 'specification'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'targetType' => "shared",
+                        'specification' => "<SPECIFICATION>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1169,7 +1647,8 @@ final class PostgresqlTest extends TestCase
 
         $response = $this->postgresql->createMigration(
             "<DATABASE_ID>",
-            "shared"
+            "shared",
+            specification: "<SPECIFICATION>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\DedicatedDatabase::class, $response);
@@ -1193,14 +1672,33 @@ final class PostgresqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/postgresql/%3CDATABASE_ID%3E/operations',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'status', 'limit', 'offset'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'status' => "queued",
+                        'limit' => 1,
+                        'offset' => 1,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->postgresql->listOperations(
-            "<DATABASE_ID>"
+            "<DATABASE_ID>",
+            status: "queued",
+            limit: 1,
+            offset: 1
         );
 
         $this->assertInstanceOf(\Appwrite\Models\DedicatedDatabaseOperationList::class, $response);
@@ -1213,7 +1711,20 @@ final class PostgresqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/postgresql/%3CDATABASE_ID%3E/pitr',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1241,7 +1752,20 @@ final class PostgresqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/postgresql/%3CDATABASE_ID%3E/pooler',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1269,14 +1793,43 @@ final class PostgresqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/postgresql/%3CDATABASE_ID%3E/pooler',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'mode', 'maxConnections', 'defaultPoolSize', 'readWriteSplitting', 'poolerCpuRequest', 'poolerCpuLimit', 'poolerMemoryRequest', 'poolerMemoryLimit'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'mode' => "transaction",
+                        'maxConnections' => 1,
+                        'defaultPoolSize' => 1,
+                        'readWriteSplitting' => false,
+                        'poolerCpuRequest' => "<POOLER_CPU_REQUEST>",
+                        'poolerCpuLimit' => "<POOLER_CPU_LIMIT>",
+                        'poolerMemoryRequest' => "<POOLER_MEMORY_REQUEST>",
+                        'poolerMemoryLimit' => "<POOLER_MEMORY_LIMIT>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->postgresql->updatePooler(
-            "<DATABASE_ID>"
+            "<DATABASE_ID>",
+            mode: "transaction",
+            maxConnections: 1,
+            defaultPoolSize: 1,
+            readWriteSplitting: false,
+            poolerCpuRequest: "<POOLER_CPU_REQUEST>",
+            poolerCpuLimit: "<POOLER_CPU_LIMIT>",
+            poolerMemoryRequest: "<POOLER_MEMORY_REQUEST>",
+            poolerMemoryLimit: "<POOLER_MEMORY_LIMIT>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\DedicatedDatabasePooler::class, $response);
@@ -1299,7 +1852,20 @@ final class PostgresqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/postgresql/%3CDATABASE_ID%3E/replicas',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1330,14 +1896,35 @@ final class PostgresqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/postgresql/%3CDATABASE_ID%3E/restorations',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'status', 'type', 'limit', 'offset'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'status' => "pending",
+                        'type' => "backup",
+                        'limit' => 1,
+                        'offset' => 1,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->postgresql->listRestorations(
-            "<DATABASE_ID>"
+            "<DATABASE_ID>",
+            status: "pending",
+            type: "backup",
+            limit: 1,
+            offset: 1
         );
 
         $this->assertInstanceOf(\Appwrite\Models\DedicatedDatabaseRestorationList::class, $response);
@@ -1356,14 +1943,41 @@ final class PostgresqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/postgresql/%3CDATABASE_ID%3E/restorations',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'type', 'backupId', 'targetDatabaseId', 'targetTime', 'restoreMode', 'targetName', 'autoPromote'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'type' => "backup",
+                        'backupId' => "<BACKUP_ID>",
+                        'targetDatabaseId' => "<TARGET_DATABASE_ID>",
+                        'targetTime' => "2020-10-15T06:38:00.000+00:00",
+                        'restoreMode' => "in_place",
+                        'targetName' => "<TARGET_NAME>",
+                        'autoPromote' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->postgresql->createRestoration(
-            "<DATABASE_ID>"
+            "<DATABASE_ID>",
+            type: "backup",
+            backupId: "<BACKUP_ID>",
+            targetDatabaseId: "<TARGET_DATABASE_ID>",
+            targetTime: "2020-10-15T06:38:00.000+00:00",
+            restoreMode: "in_place",
+            targetName: "<TARGET_NAME>",
+            autoPromote: false
         );
 
         $this->assertInstanceOf(\Appwrite\Models\DedicatedDatabaseRestoration::class, $response);
@@ -1382,7 +1996,21 @@ final class PostgresqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/postgresql/%3CDATABASE_ID%3E/restorations/%3CRESTORATION_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'restorationId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'restorationId' => "<RESTORATION_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1409,7 +2037,21 @@ final class PostgresqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/postgresql/%3CDATABASE_ID%3E/restorations/%3CRESTORATION_ID%3E/promotions',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'restorationId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'restorationId' => "<RESTORATION_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1452,7 +2094,20 @@ final class PostgresqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/postgresql/%3CDATABASE_ID%3E/status',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1515,7 +2170,21 @@ final class PostgresqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/postgresql/%3CDATABASE_ID%3E/upgrades',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'targetVersion'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'targetVersion' => "<TARGET_VERSION>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())

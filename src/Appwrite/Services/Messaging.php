@@ -151,7 +151,7 @@ class Messaging extends Service
 
         $apiPath = str_replace(
             ['{messageId}'],
-            [$messageId],
+            [self::encodePath($messageId)],
             '/messaging/messages/email/{messageId}'
         );
 
@@ -311,7 +311,7 @@ class Messaging extends Service
 
         $apiPath = str_replace(
             ['{messageId}'],
-            [$messageId],
+            [self::encodePath($messageId)],
             '/messaging/messages/push/{messageId}'
         );
 
@@ -424,7 +424,7 @@ class Messaging extends Service
 
         $apiPath = str_replace(
             ['{messageId}'],
-            [$messageId],
+            [self::encodePath($messageId)],
             '/messaging/messages/sms/{messageId}'
         );
 
@@ -469,7 +469,7 @@ class Messaging extends Service
 
         $apiPath = str_replace(
             ['{messageId}'],
-            [$messageId],
+            [self::encodePath($messageId)],
             '/messaging/messages/{messageId}'
         );
 
@@ -508,7 +508,7 @@ class Messaging extends Service
 
         $apiPath = str_replace(
             ['{messageId}'],
-            [$messageId],
+            [self::encodePath($messageId)],
             '/messaging/messages/{messageId}'
         );
 
@@ -541,7 +541,7 @@ class Messaging extends Service
 
         $apiPath = str_replace(
             ['{messageId}'],
-            [$messageId],
+            [self::encodePath($messageId)],
             '/messaging/messages/{messageId}/targets'
         );
 
@@ -689,7 +689,7 @@ class Messaging extends Service
 
         $apiPath = str_replace(
             ['{providerId}'],
-            [$providerId],
+            [self::encodePath($providerId)],
             '/messaging/providers/apns/{providerId}'
         );
 
@@ -789,7 +789,7 @@ class Messaging extends Service
 
         $apiPath = str_replace(
             ['{providerId}'],
-            [$providerId],
+            [self::encodePath($providerId)],
             '/messaging/providers/appwrite/{providerId}'
         );
 
@@ -873,7 +873,7 @@ class Messaging extends Service
 
         $apiPath = str_replace(
             ['{providerId}'],
-            [$providerId],
+            [self::encodePath($providerId)],
             '/messaging/providers/fcm/{providerId}'
         );
 
@@ -980,7 +980,7 @@ class Messaging extends Service
 
         $apiPath = str_replace(
             ['{providerId}'],
-            [$providerId],
+            [self::encodePath($providerId)],
             '/messaging/providers/mailgun/{providerId}'
         );
 
@@ -1098,7 +1098,7 @@ class Messaging extends Service
 
         $apiPath = str_replace(
             ['{providerId}'],
-            [$providerId],
+            [self::encodePath($providerId)],
             '/messaging/providers/msg91/{providerId}'
         );
 
@@ -1211,7 +1211,7 @@ class Messaging extends Service
 
         $apiPath = str_replace(
             ['{providerId}'],
-            [$providerId],
+            [self::encodePath($providerId)],
             '/messaging/providers/resend/{providerId}'
         );
 
@@ -1332,7 +1332,7 @@ class Messaging extends Service
 
         $apiPath = str_replace(
             ['{providerId}'],
-            [$providerId],
+            [self::encodePath($providerId)],
             '/messaging/providers/sendgrid/{providerId}'
         );
 
@@ -1461,7 +1461,7 @@ class Messaging extends Service
 
         $apiPath = str_replace(
             ['{providerId}'],
-            [$providerId],
+            [self::encodePath($providerId)],
             '/messaging/providers/ses/{providerId}'
         );
 
@@ -1611,7 +1611,7 @@ class Messaging extends Service
 
         $apiPath = str_replace(
             ['{providerId}'],
-            [$providerId],
+            [self::encodePath($providerId)],
             '/messaging/providers/smtp/{providerId}'
         );
 
@@ -1742,7 +1742,7 @@ class Messaging extends Service
 
         $apiPath = str_replace(
             ['{providerId}'],
-            [$providerId],
+            [self::encodePath($providerId)],
             '/messaging/providers/telesign/{providerId}'
         );
 
@@ -1847,7 +1847,7 @@ class Messaging extends Service
 
         $apiPath = str_replace(
             ['{providerId}'],
-            [$providerId],
+            [self::encodePath($providerId)],
             '/messaging/providers/textmagic/{providerId}'
         );
 
@@ -1952,7 +1952,7 @@ class Messaging extends Service
 
         $apiPath = str_replace(
             ['{providerId}'],
-            [$providerId],
+            [self::encodePath($providerId)],
             '/messaging/providers/twilio/{providerId}'
         );
 
@@ -2057,7 +2057,7 @@ class Messaging extends Service
 
         $apiPath = str_replace(
             ['{providerId}'],
-            [$providerId],
+            [self::encodePath($providerId)],
             '/messaging/providers/vonage/{providerId}'
         );
 
@@ -2113,7 +2113,7 @@ class Messaging extends Service
 
         $apiPath = str_replace(
             ['{providerId}'],
-            [$providerId],
+            [self::encodePath($providerId)],
             '/messaging/providers/{providerId}'
         );
 
@@ -2151,7 +2151,7 @@ class Messaging extends Service
 
         $apiPath = str_replace(
             ['{providerId}'],
-            [$providerId],
+            [self::encodePath($providerId)],
             '/messaging/providers/{providerId}'
         );
 
@@ -2275,7 +2275,7 @@ class Messaging extends Service
 
         $apiPath = str_replace(
             ['{topicId}'],
-            [$topicId],
+            [self::encodePath($topicId)],
             '/messaging/topics/{topicId}'
         );
 
@@ -2313,7 +2313,7 @@ class Messaging extends Service
 
         $apiPath = str_replace(
             ['{topicId}'],
-            [$topicId],
+            [self::encodePath($topicId)],
             '/messaging/topics/{topicId}'
         );
 
@@ -2357,7 +2357,7 @@ class Messaging extends Service
 
         $apiPath = str_replace(
             ['{topicId}'],
-            [$topicId],
+            [self::encodePath($topicId)],
             '/messaging/topics/{topicId}'
         );
 
@@ -2390,7 +2390,7 @@ class Messaging extends Service
 
         $apiPath = str_replace(
             ['{topicId}'],
-            [$topicId],
+            [self::encodePath($topicId)],
             '/messaging/topics/{topicId}/subscribers'
         );
 
@@ -2440,7 +2440,7 @@ class Messaging extends Service
 
         $apiPath = str_replace(
             ['{topicId}'],
-            [$topicId],
+            [self::encodePath($topicId)],
             '/messaging/topics/{topicId}/subscribers'
         );
 
@@ -2485,7 +2485,7 @@ class Messaging extends Service
 
         $apiPath = str_replace(
             ['{topicId}', '{subscriberId}'],
-            [$topicId, $subscriberId],
+            [self::encodePath($topicId), self::encodePath($subscriberId)],
             '/messaging/topics/{topicId}/subscribers/{subscriberId}'
         );
 
@@ -2528,7 +2528,7 @@ class Messaging extends Service
 
         $apiPath = str_replace(
             ['{topicId}', '{subscriberId}'],
-            [$topicId, $subscriberId],
+            [self::encodePath($topicId), self::encodePath($subscriberId)],
             '/messaging/topics/{topicId}/subscribers/{subscriberId}'
         );
 

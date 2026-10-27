@@ -20,7 +20,7 @@ readonly class DnsRecord
      * @param string $createdAt dns record creation time in iso 8601 format.
      * @param string $updatedAt dns record update date in iso 8601 format.
      * @param string $type dns record type (e.g. a, cname, mx).
-     * @param string $name record name or subdomain.
+     * @param string $name record name relative to the domain, or `@` for the domain itself.
      * @param string $value value of the record (ip address, domain, etc.).
      * @param int $ttl time to live (in seconds).
      * @param int $priority record priority (commonly used for mx).

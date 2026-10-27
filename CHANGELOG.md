@@ -1,5 +1,20 @@
 # Change Log
 
+## 32.1.0
+
+* Updated: protected `Client::getHttpClient()` and `createHttpClient()` drop their `bool` argument; `$httpClientNoRedirect` removed
+* Updated: redirects are no longer followed; a 3xx throws `AppwriteException` naming the `Location`
+* Added: `Migrations` service to run Appwrite, Firebase, NHost, Supabase, CSV and JSON migrations, plus reports, retries and listing
+* Added: `Migration`, `MigrationList` and `MigrationReport` models and the `AppwriteMigrationResource`, `FirebaseMigrationResource`, `NHostMigrationResource`, `SupabaseMigrationResource` and `OnDuplicate` enums
+* Added: `Project::updateDenyRealtimeGuestsPolicy`, the `PolicyDenyRealtimeGuests` model and `ProjectPolicyId::DENYREALTIMEGUESTS()`
+* Added: `Project::deleteSessions` to sign out every user in the project
+* Added: `BillingPlan::$deploymentRetention`, `$deploymentRetentionMax` and `$deploymentsRetentionCount`
+* Added: `python-3.15`, `deno-2.9`, `go-1.27` and `rust-1.99` to `Runtime` and `BuildRuntime`
+* Updated: requests send `X-Appwrite-Response-Format: 2.6.2`; README targets Appwrite 2.6.x
+* Fixed: small (≤ 5 MB) uploads send `X-Appwrite-Project` and the other method headers instead of failing with 401
+* Fixed: path parameters are percent-encoded as one segment; `.` and `..` throw `AppwriteException`
+* Fixed: header names or values containing CR, LF or NUL throw `AppwriteException` instead of being sent
+
 ## 32.0.0
 
 * Breaking: `TablesDB`, `DocumentsDB` and `VectorsDB` `create` and `update` take `$description` before `$specification`

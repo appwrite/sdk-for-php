@@ -6,11 +6,14 @@ namespace Appwrite\Services;
 
 use Appwrite\Client;
 use Mockery;
+use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
 
 final class TeamsTest extends TestCase
 {
+    use MockeryPHPUnitIntegration;
+
     private Client&MockInterface $client;
     private Teams $teams;
 
@@ -37,13 +40,32 @@ final class TeamsTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/teams',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['queries', 'search', 'total'], array_keys($params));
+                    $expected = [
+                        'queries' => [],
+                        'search' => "<SEARCH>",
+                        'total' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->teams->list();
+        $response = $this->teams->list(
+            queries: [],
+            search: "<SEARCH>",
+            total: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\TeamList::class, $response);
     }
@@ -59,7 +81,22 @@ final class TeamsTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/teams',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['teamId', 'name', 'roles'], array_keys($params));
+                    $expected = [
+                        'teamId' => "<TEAM_ID>",
+                        'name' => "<NAME>",
+                        'roles' => [],
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -67,7 +104,8 @@ final class TeamsTest extends TestCase
 
         $response = $this->teams->create(
             "<TEAM_ID>",
-            "<NAME>"
+            "<NAME>",
+            roles: []
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Team::class, $response);
@@ -84,7 +122,20 @@ final class TeamsTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/teams/%3CTEAM_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['teamId'], array_keys($params));
+                    $expected = [
+                        'teamId' => "<TEAM_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -108,7 +159,21 @@ final class TeamsTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PUT',
+                '/teams/%3CTEAM_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['teamId', 'name'], array_keys($params));
+                    $expected = [
+                        'teamId' => "<TEAM_ID>",
+                        'name' => "<NAME>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -126,7 +191,20 @@ final class TeamsTest extends TestCase
         $data = '';
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'DELETE',
+                '/teams/%3CTEAM_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['teamId'], array_keys($params));
+                    $expected = [
+                        'teamId' => "<TEAM_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -158,14 +236,31 @@ final class TeamsTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/teams/%3CTEAM_ID%3E/installations',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['teamId', 'queries', 'total'], array_keys($params));
+                    $expected = [
+                        'teamId' => "<TEAM_ID>",
+                        'queries' => [],
+                        'total' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->teams->listInstallations(
-            "<TEAM_ID>"
+            "<TEAM_ID>",
+            queries: [],
+            total: false
         );
 
         $this->assertInstanceOf(\Appwrite\Models\AppInstallationList::class, $response);
@@ -185,7 +280,22 @@ final class TeamsTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/teams/%3CTEAM_ID%3E/installations',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['teamId', 'appId', 'authorizationDetails'], array_keys($params));
+                    $expected = [
+                        'teamId' => "<TEAM_ID>",
+                        'appId' => "<APP_ID>",
+                        'authorizationDetails' => "<AUTHORIZATION_DETAILS>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -193,7 +303,8 @@ final class TeamsTest extends TestCase
 
         $response = $this->teams->createInstallation(
             "<TEAM_ID>",
-            "<APP_ID>"
+            "<APP_ID>",
+            authorizationDetails: "<AUTHORIZATION_DETAILS>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\AppInstallation::class, $response);
@@ -213,7 +324,21 @@ final class TeamsTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/teams/%3CTEAM_ID%3E/installations/%3CINSTALLATION_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['teamId', 'installationId'], array_keys($params));
+                    $expected = [
+                        'teamId' => "<TEAM_ID>",
+                        'installationId' => "<INSTALLATION_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -241,7 +366,22 @@ final class TeamsTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PUT',
+                '/teams/%3CTEAM_ID%3E/installations/%3CINSTALLATION_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['teamId', 'installationId', 'authorizationDetails'], array_keys($params));
+                    $expected = [
+                        'teamId' => "<TEAM_ID>",
+                        'installationId' => "<INSTALLATION_ID>",
+                        'authorizationDetails' => "<AUTHORIZATION_DETAILS>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -249,7 +389,8 @@ final class TeamsTest extends TestCase
 
         $response = $this->teams->updateInstallation(
             "<TEAM_ID>",
-            "<INSTALLATION_ID>"
+            "<INSTALLATION_ID>",
+            authorizationDetails: "<AUTHORIZATION_DETAILS>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\AppInstallation::class, $response);
@@ -259,7 +400,21 @@ final class TeamsTest extends TestCase
         $data = '';
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'DELETE',
+                '/teams/%3CTEAM_ID%3E/installations/%3CINSTALLATION_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['teamId', 'installationId'], array_keys($params));
+                    $expected = [
+                        'teamId' => "<TEAM_ID>",
+                        'installationId' => "<INSTALLATION_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -298,14 +453,33 @@ final class TeamsTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/teams/%3CTEAM_ID%3E/memberships',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['teamId', 'queries', 'search', 'total'], array_keys($params));
+                    $expected = [
+                        'teamId' => "<TEAM_ID>",
+                        'queries' => [],
+                        'search' => "<SEARCH>",
+                        'total' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->teams->listMemberships(
-            "<TEAM_ID>"
+            "<TEAM_ID>",
+            queries: [],
+            search: "<SEARCH>",
+            total: false
         );
 
         $this->assertInstanceOf(\Appwrite\Models\MembershipList::class, $response);
@@ -331,7 +505,27 @@ final class TeamsTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/teams/%3CTEAM_ID%3E/memberships',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['teamId', 'roles', 'email', 'userId', 'phone', 'url', 'name', 'membershipId'], array_keys($params));
+                    $expected = [
+                        'teamId' => "<TEAM_ID>",
+                        'roles' => [],
+                        'email' => "email@example.com",
+                        'userId' => "<USER_ID>",
+                        'phone' => "+12065550100",
+                        'url' => "https://example.com",
+                        'name' => "<NAME>",
+                        'membershipId' => "<MEMBERSHIP_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -339,7 +533,13 @@ final class TeamsTest extends TestCase
 
         $response = $this->teams->createMembership(
             "<TEAM_ID>",
-            []
+            [],
+            email: "email@example.com",
+            userId: "<USER_ID>",
+            phone: "+12065550100",
+            url: "https://example.com",
+            name: "<NAME>",
+            membershipId: "<MEMBERSHIP_ID>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Membership::class, $response);
@@ -365,7 +565,21 @@ final class TeamsTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/teams/%3CTEAM_ID%3E/memberships/%3CMEMBERSHIP_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['teamId', 'membershipId'], array_keys($params));
+                    $expected = [
+                        'teamId' => "<TEAM_ID>",
+                        'membershipId' => "<MEMBERSHIP_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -399,7 +613,22 @@ final class TeamsTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/teams/%3CTEAM_ID%3E/memberships/%3CMEMBERSHIP_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['teamId', 'membershipId', 'roles'], array_keys($params));
+                    $expected = [
+                        'teamId' => "<TEAM_ID>",
+                        'membershipId' => "<MEMBERSHIP_ID>",
+                        'roles' => [],
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -418,7 +647,21 @@ final class TeamsTest extends TestCase
         $data = '';
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'DELETE',
+                '/teams/%3CTEAM_ID%3E/memberships/%3CMEMBERSHIP_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['teamId', 'membershipId'], array_keys($params));
+                    $expected = [
+                        'teamId' => "<TEAM_ID>",
+                        'membershipId' => "<MEMBERSHIP_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -452,7 +695,23 @@ final class TeamsTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/teams/%3CTEAM_ID%3E/memberships/%3CMEMBERSHIP_ID%3E/status',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['teamId', 'membershipId', 'userId', 'secret'], array_keys($params));
+                    $expected = [
+                        'teamId' => "<TEAM_ID>",
+                        'membershipId' => "<MEMBERSHIP_ID>",
+                        'userId' => "<USER_ID>",
+                        'secret' => "<SECRET>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -472,7 +731,20 @@ final class TeamsTest extends TestCase
         $data = [];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/teams/%3CTEAM_ID%3E/prefs',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['teamId'], array_keys($params));
+                    $expected = [
+                        'teamId' => "<TEAM_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -489,7 +761,21 @@ final class TeamsTest extends TestCase
         $data = [];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PUT',
+                '/teams/%3CTEAM_ID%3E/prefs',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['teamId', 'prefs'], array_keys($params));
+                    $expected = [
+                        'teamId' => "<TEAM_ID>",
+                        'prefs' => [],
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())

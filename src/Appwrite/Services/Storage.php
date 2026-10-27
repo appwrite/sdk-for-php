@@ -152,7 +152,7 @@ class Storage extends Service
 
         $apiPath = str_replace(
             ['{bucketId}'],
-            [$bucketId],
+            [self::encodePath($bucketId)],
             '/storage/buckets/{bucketId}'
         );
 
@@ -190,7 +190,7 @@ class Storage extends Service
 
         $apiPath = str_replace(
             ['{bucketId}'],
-            [$bucketId],
+            [self::encodePath($bucketId)],
             '/storage/buckets/{bucketId}'
         );
 
@@ -256,7 +256,7 @@ class Storage extends Service
 
         $apiPath = str_replace(
             ['{bucketId}'],
-            [$bucketId],
+            [self::encodePath($bucketId)],
             '/storage/buckets/{bucketId}'
         );
 
@@ -290,7 +290,7 @@ class Storage extends Service
 
         $apiPath = str_replace(
             ['{bucketId}'],
-            [$bucketId],
+            [self::encodePath($bucketId)],
             '/storage/buckets/{bucketId}/files'
         );
 
@@ -356,7 +356,7 @@ class Storage extends Service
 
         $apiPath = str_replace(
             ['{bucketId}'],
-            [$bucketId],
+            [self::encodePath($bucketId)],
             '/storage/buckets/{bucketId}/files'
         );
 
@@ -383,10 +383,7 @@ class Storage extends Service
             $postedName = $file->getFilename();
             if ($size <= Client::CHUNK_SIZE) {
                 $apiParams['file'] = Part::body('file', $file->getData(), $postedName, $mimeType);
-                $response = $this->client->call(Client::METHOD_POST, $apiPath, [
-                            'content-type' => 'multipart/form-data',
-                        'accept' => 'application/json',
-                        ], $apiParams);
+                $response = $this->client->call(Client::METHOD_POST, $apiPath, $apiHeaders, $apiParams);
                 if (!is_array($response)) {
                     throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
                 }
@@ -400,10 +397,7 @@ class Storage extends Service
             //send single file if size is less than or equal to 5MB
             if ($size <= Client::CHUNK_SIZE) {
                 $apiParams['file'] = Part::file('file', $file->getPath(), $postedName, $mimeType);
-                $response = $this->client->call(Client::METHOD_POST, $apiPath, [
-                            'content-type' => 'multipart/form-data',
-                        'accept' => 'application/json',
-                        ], $apiParams);
+                $response = $this->client->call(Client::METHOD_POST, $apiPath, $apiHeaders, $apiParams);
                 if (!is_array($response)) {
                     throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
                 }
@@ -416,7 +410,7 @@ class Storage extends Service
 
         $response = null;
         try {
-            $response = $this->client->call(Client::METHOD_GET, $apiPath . '/' . $fileId);
+            $response = $this->client->call(Client::METHOD_GET, $apiPath . '/' . self::encodePath($fileId));
             $counter = $response['chunksUploaded'] ?? 0;
         } catch (\Exception) {
         }
@@ -550,7 +544,7 @@ class Storage extends Service
 
         $apiPath = str_replace(
             ['{bucketId}', '{fileId}'],
-            [$bucketId, $fileId],
+            [self::encodePath($bucketId), self::encodePath($fileId)],
             '/storage/buckets/{bucketId}/files/{fileId}'
         );
 
@@ -594,7 +588,7 @@ class Storage extends Service
 
         $apiPath = str_replace(
             ['{bucketId}', '{fileId}'],
-            [$bucketId, $fileId],
+            [self::encodePath($bucketId), self::encodePath($fileId)],
             '/storage/buckets/{bucketId}/files/{fileId}'
         );
 
@@ -644,7 +638,7 @@ class Storage extends Service
 
         $apiPath = str_replace(
             ['{bucketId}', '{fileId}'],
-            [$bucketId, $fileId],
+            [self::encodePath($bucketId), self::encodePath($fileId)],
             '/storage/buckets/{bucketId}/files/{fileId}'
         );
 
@@ -684,7 +678,7 @@ class Storage extends Service
 
         $apiPath = str_replace(
             ['{bucketId}', '{fileId}'],
-            [$bucketId, $fileId],
+            [self::encodePath($bucketId), self::encodePath($fileId)],
             '/storage/buckets/{bucketId}/files/{fileId}/download'
         );
 
@@ -729,7 +723,7 @@ class Storage extends Service
 
         $apiPath = str_replace(
             ['{bucketId}', '{fileId}'],
-            [$bucketId, $fileId],
+            [self::encodePath($bucketId), self::encodePath($fileId)],
             '/storage/buckets/{bucketId}/files/{fileId}/preview'
         );
 
@@ -816,7 +810,7 @@ class Storage extends Service
 
         $apiPath = str_replace(
             ['{bucketId}', '{fileId}'],
-            [$bucketId, $fileId],
+            [self::encodePath($bucketId), self::encodePath($fileId)],
             '/storage/buckets/{bucketId}/files/{fileId}/view'
         );
 

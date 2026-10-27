@@ -278,7 +278,7 @@ class Sites extends Service
 
         $apiPath = str_replace(
             ['{siteId}'],
-            [$siteId],
+            [self::encodePath($siteId)],
             '/sites/{siteId}'
         );
 
@@ -316,7 +316,7 @@ class Sites extends Service
 
         $apiPath = str_replace(
             ['{siteId}'],
-            [$siteId],
+            [self::encodePath($siteId)],
             '/sites/{siteId}'
         );
 
@@ -427,7 +427,7 @@ class Sites extends Service
 
         $apiPath = str_replace(
             ['{siteId}'],
-            [$siteId],
+            [self::encodePath($siteId)],
             '/sites/{siteId}'
         );
 
@@ -461,7 +461,7 @@ class Sites extends Service
 
         $apiPath = str_replace(
             ['{siteId}'],
-            [$siteId],
+            [self::encodePath($siteId)],
             '/sites/{siteId}/deployment'
         );
 
@@ -502,7 +502,7 @@ class Sites extends Service
 
         $apiPath = str_replace(
             ['{siteId}'],
-            [$siteId],
+            [self::encodePath($siteId)],
             '/sites/{siteId}/deployments'
         );
 
@@ -554,7 +554,7 @@ class Sites extends Service
 
         $apiPath = str_replace(
             ['{siteId}'],
-            [$siteId],
+            [self::encodePath($siteId)],
             '/sites/{siteId}/deployments'
         );
 
@@ -588,10 +588,7 @@ class Sites extends Service
             $postedName = $code->getFilename();
             if ($size <= Client::CHUNK_SIZE) {
                 $apiParams['code'] = Part::body('code', $code->getData(), $postedName, $mimeType);
-                $response = $this->client->call(Client::METHOD_POST, $apiPath, [
-                            'content-type' => 'multipart/form-data',
-                        'accept' => 'application/json',
-                        ], $apiParams);
+                $response = $this->client->call(Client::METHOD_POST, $apiPath, $apiHeaders, $apiParams);
                 if (!is_array($response)) {
                     throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
                 }
@@ -605,10 +602,7 @@ class Sites extends Service
             //send single file if size is less than or equal to 5MB
             if ($size <= Client::CHUNK_SIZE) {
                 $apiParams['code'] = Part::file('code', $code->getPath(), $postedName, $mimeType);
-                $response = $this->client->call(Client::METHOD_POST, $apiPath, [
-                            'content-type' => 'multipart/form-data',
-                        'accept' => 'application/json',
-                        ], $apiParams);
+                $response = $this->client->call(Client::METHOD_POST, $apiPath, $apiHeaders, $apiParams);
                 if (!is_array($response)) {
                     throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
                 }
@@ -741,7 +735,7 @@ class Sites extends Service
 
         $apiPath = str_replace(
             ['{siteId}'],
-            [$siteId],
+            [self::encodePath($siteId)],
             '/sites/{siteId}/deployments/duplicate'
         );
 
@@ -785,7 +779,7 @@ class Sites extends Service
 
         $apiPath = str_replace(
             ['{siteId}'],
-            [$siteId],
+            [self::encodePath($siteId)],
             '/sites/{siteId}/deployments/template'
         );
 
@@ -835,7 +829,7 @@ class Sites extends Service
 
         $apiPath = str_replace(
             ['{siteId}'],
-            [$siteId],
+            [self::encodePath($siteId)],
             '/sites/{siteId}/deployments/vcs'
         );
 
@@ -884,7 +878,7 @@ class Sites extends Service
 
         $apiPath = str_replace(
             ['{siteId}', '{deploymentId}'],
-            [$siteId, $deploymentId],
+            [self::encodePath($siteId), self::encodePath($deploymentId)],
             '/sites/{siteId}/deployments/{deploymentId}'
         );
 
@@ -927,7 +921,7 @@ class Sites extends Service
 
         $apiPath = str_replace(
             ['{siteId}', '{deploymentId}'],
-            [$siteId, $deploymentId],
+            [self::encodePath($siteId), self::encodePath($deploymentId)],
             '/sites/{siteId}/deployments/{deploymentId}'
         );
 
@@ -967,7 +961,7 @@ class Sites extends Service
 
         $apiPath = str_replace(
             ['{siteId}', '{deploymentId}'],
-            [$siteId, $deploymentId],
+            [self::encodePath($siteId), self::encodePath($deploymentId)],
             '/sites/{siteId}/deployments/{deploymentId}/download'
         );
 
@@ -1016,7 +1010,7 @@ class Sites extends Service
 
         $apiPath = str_replace(
             ['{siteId}', '{deploymentId}'],
-            [$siteId, $deploymentId],
+            [self::encodePath($siteId), self::encodePath($deploymentId)],
             '/sites/{siteId}/deployments/{deploymentId}/status'
         );
 
@@ -1057,7 +1051,7 @@ class Sites extends Service
 
         $apiPath = str_replace(
             ['{siteId}'],
-            [$siteId],
+            [self::encodePath($siteId)],
             '/sites/{siteId}/logs'
         );
 
@@ -1107,7 +1101,7 @@ class Sites extends Service
 
         $apiPath = str_replace(
             ['{siteId}', '{logId}'],
-            [$siteId, $logId],
+            [self::encodePath($siteId), self::encodePath($logId)],
             '/sites/{siteId}/logs/{logId}'
         );
 
@@ -1150,7 +1144,7 @@ class Sites extends Service
 
         $apiPath = str_replace(
             ['{siteId}', '{logId}'],
-            [$siteId, $logId],
+            [self::encodePath($siteId), self::encodePath($logId)],
             '/sites/{siteId}/logs/{logId}'
         );
 
@@ -1184,7 +1178,7 @@ class Sites extends Service
 
         $apiPath = str_replace(
             ['{siteId}'],
-            [$siteId],
+            [self::encodePath($siteId)],
             '/sites/{siteId}/variables'
         );
 
@@ -1231,7 +1225,7 @@ class Sites extends Service
 
         $apiPath = str_replace(
             ['{siteId}'],
-            [$siteId],
+            [self::encodePath($siteId)],
             '/sites/{siteId}/variables'
         );
 
@@ -1285,7 +1279,7 @@ class Sites extends Service
 
         $apiPath = str_replace(
             ['{siteId}', '{variableId}'],
-            [$siteId, $variableId],
+            [self::encodePath($siteId), self::encodePath($variableId)],
             '/sites/{siteId}/variables/{variableId}'
         );
 
@@ -1328,7 +1322,7 @@ class Sites extends Service
 
         $apiPath = str_replace(
             ['{siteId}', '{variableId}'],
-            [$siteId, $variableId],
+            [self::encodePath($siteId), self::encodePath($variableId)],
             '/sites/{siteId}/variables/{variableId}'
         );
 
@@ -1376,7 +1370,7 @@ class Sites extends Service
 
         $apiPath = str_replace(
             ['{siteId}', '{variableId}'],
-            [$siteId, $variableId],
+            [self::encodePath($siteId), self::encodePath($variableId)],
             '/sites/{siteId}/variables/{variableId}'
         );
 

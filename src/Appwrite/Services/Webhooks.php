@@ -126,7 +126,7 @@ class Webhooks extends Service
 
         $apiPath = str_replace(
             ['{webhookId}'],
-            [$webhookId],
+            [self::encodePath($webhookId)],
             '/webhooks/{webhookId}'
         );
 
@@ -165,7 +165,7 @@ class Webhooks extends Service
 
         $apiPath = str_replace(
             ['{webhookId}'],
-            [$webhookId],
+            [self::encodePath($webhookId)],
             '/webhooks/{webhookId}'
         );
 
@@ -222,7 +222,7 @@ class Webhooks extends Service
 
         $apiPath = str_replace(
             ['{webhookId}'],
-            [$webhookId],
+            [self::encodePath($webhookId)],
             '/webhooks/{webhookId}'
         );
 
@@ -257,7 +257,7 @@ class Webhooks extends Service
 
         $apiPath = str_replace(
             ['{webhookId}'],
-            [$webhookId],
+            [self::encodePath($webhookId)],
             '/webhooks/{webhookId}/secret'
         );
 

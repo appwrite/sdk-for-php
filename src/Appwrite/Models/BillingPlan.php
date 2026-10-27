@@ -84,6 +84,9 @@ readonly class BillingPlan
      * @param BillingPlanGroup $group group of this billing plan for variants
      * @param float $databaseComputeCredit included monthly dedicated-database compute credit in usd. resets each billing cycle with no roll-over.
      * @param int|null $members members
+     * @param int|null $deploymentRetention days non-active deployments are kept when a function or site sets no retention.
+     * @param int|null $deploymentRetentionMax maximum deployment retention in days a function or site can set. 0 means unlimited.
+     * @param int|null $deploymentsRetentionCount non-active deployments kept per function or site. 0 means unlimited.
      * @param int|null $activityLogs activity log days
      * @param array|null $usageLogsIntervals usage log time intervals allowed for this plan (e.g. 15m, 1h, 1d).
      * @param array|null $usageAggregateOnlyMetrics metrics this plan only records as a total. they cannot be broken down by dimension or filtered, because the stored events cover a fraction of the real traffic.
@@ -162,6 +165,9 @@ readonly class BillingPlan
         public BillingPlanGroup $group,
         public float $databaseComputeCredit,
         public ?int $members = null,
+        public ?int $deploymentRetention = null,
+        public ?int $deploymentRetentionMax = null,
+        public ?int $deploymentsRetentionCount = null,
         public ?int $activityLogs = null,
         public ?array $usageLogsIntervals = null,
         public ?array $usageAggregateOnlyMetrics = null,
@@ -322,6 +328,9 @@ readonly class BillingPlan
             group: static::hydrateTypedValue(BillingPlanGroup::class, $data['group']),
             databaseComputeCredit: $data['databaseComputeCredit'],
             members: $data['members'] ?? null,
+            deploymentRetention: $data['deploymentRetention'] ?? null,
+            deploymentRetentionMax: $data['deploymentRetentionMax'] ?? null,
+            deploymentsRetentionCount: $data['deploymentsRetentionCount'] ?? null,
             activityLogs: $data['activityLogs'] ?? null,
             usageLogsIntervals: $data['usageLogsIntervals'] ?? null,
             usageAggregateOnlyMetrics: $data['usageAggregateOnlyMetrics'] ?? null,
@@ -369,6 +378,9 @@ readonly class BillingPlan
             'sites' => static::serializeValue($this->sites),
             'executions' => static::serializeValue($this->executions),
             'executionsRetentionCount' => static::serializeValue($this->executionsRetentionCount),
+            'deploymentRetention' => static::serializeValue($this->deploymentRetention),
+            'deploymentRetentionMax' => static::serializeValue($this->deploymentRetentionMax),
+            'deploymentsRetentionCount' => static::serializeValue($this->deploymentsRetentionCount),
             'GBHours' => static::serializeValue($this->gBHours),
             'realtime' => static::serializeValue($this->realtime),
             'realtimeMessages' => static::serializeValue($this->realtimeMessages),

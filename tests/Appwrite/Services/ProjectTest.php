@@ -6,18 +6,33 @@ namespace Appwrite\Services;
 
 use Appwrite\Client;
 use Mockery;
+use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
 use Appwrite\Enums\ProjectAuthMethodId;
 use Appwrite\Enums\ProjectKeyScopes;
+use Appwrite\Enums\ProjectOAuth2Auth0Prompt;
+use Appwrite\Enums\ProjectOAuth2DiscordPrompt;
+use Appwrite\Enums\ProjectOAuth2GitHubPrompt;
+use Appwrite\Enums\ProjectOAuth2GooglePrompt;
+use Appwrite\Enums\ProjectOAuth2KakaoPrompt;
+use Appwrite\Enums\ProjectOAuth2MicrosoftPrompt;
+use Appwrite\Enums\ProjectOAuth2OidcPrompt;
+use Appwrite\Enums\ProjectOAuth2OktaPrompt;
+use Appwrite\Enums\ProjectOAuth2SalesforcePrompt;
+use Appwrite\Enums\ProjectOAuth2ZohoPrompt;
 use Appwrite\Enums\ProjectOAuthProviderId;
 use Appwrite\Enums\ProjectPolicyId;
 use Appwrite\Enums\ProjectProtocolId;
 use Appwrite\Enums\ProjectServiceId;
+use Appwrite\Enums\ProjectSMTPSecure;
 use Appwrite\Enums\ProjectEmailTemplateId;
+use Appwrite\Enums\ProjectEmailTemplateLocale;
 
 final class ProjectTest extends TestCase
 {
+    use MockeryPHPUnitIntegration;
+
     private Client&MockInterface $client;
     private Project $project;
 
@@ -81,7 +96,16 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/project',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame([], array_keys($params));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -96,7 +120,16 @@ final class ProjectTest extends TestCase
         $data = '';
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'DELETE',
+                '/project',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame([], array_keys($params));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -160,7 +193,21 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/auth-methods/email-password',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['methodId', 'enabled'], array_keys($params));
+                    $expected = [
+                        'methodId' => ProjectAuthMethodId::EMAILPASSWORD(),
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -168,7 +215,7 @@ final class ProjectTest extends TestCase
 
         $response = $this->project->updateAuthMethod(
             ProjectAuthMethodId::EMAILPASSWORD(),
-            true
+            false
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
@@ -232,13 +279,30 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/project/environments',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['queries', 'total'], array_keys($params));
+                    $expected = [
+                        'queries' => [],
+                        'total' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->listEnvironments();
+        $response = $this->project->listEnvironments(
+            queries: [],
+            total: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\ProjectList::class, $response);
     }
@@ -296,7 +360,21 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/project/environments',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['environmentId', 'name'], array_keys($params));
+                    $expected = [
+                        'environmentId' => "<ENVIRONMENT_ID>",
+                        'name' => "<NAME>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -363,7 +441,20 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/project/environments/%3CENVIRONMENT_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['environmentId'], array_keys($params));
+                    $expected = [
+                        'environmentId' => "<ENVIRONMENT_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -429,7 +520,21 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/environments/%3CENVIRONMENT_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['environmentId', 'name'], array_keys($params));
+                    $expected = [
+                        'environmentId' => "<ENVIRONMENT_ID>",
+                        'name' => "<NAME>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -447,7 +552,20 @@ final class ProjectTest extends TestCase
         $data = '';
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'DELETE',
+                '/project/environments/%3CENVIRONMENT_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['environmentId'], array_keys($params));
+                    $expected = [
+                        'environmentId' => "<ENVIRONMENT_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -480,13 +598,30 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/project/keys',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['queries', 'total'], array_keys($params));
+                    $expected = [
+                        'queries' => [],
+                        'total' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->listKeys();
+        $response = $this->project->listKeys(
+            queries: [],
+            total: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\KeyList::class, $response);
     }
@@ -506,7 +641,21 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/project/keys/ephemeral',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['scopes', 'duration'], array_keys($params));
+                    $expected = [
+                        'scopes' => [ProjectKeyScopes::PROJECTREAD()],
+                        'duration' => 1,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -535,7 +684,20 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/project/keys/%3CKEY_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['keyId'], array_keys($params));
+                    $expected = [
+                        'keyId' => "<KEY_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -563,7 +725,24 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PUT',
+                '/project/keys/%3CKEY_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['keyId', 'name', 'scopes', 'expire', 'description'], array_keys($params));
+                    $expected = [
+                        'keyId' => "<KEY_ID>",
+                        'name' => "<NAME>",
+                        'scopes' => [ProjectKeyScopes::PROJECTREAD()],
+                        'expire' => "2020-10-15T06:38:00.000+00:00",
+                        'description' => "<DESCRIPTION>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -572,7 +751,9 @@ final class ProjectTest extends TestCase
         $response = $this->project->updateKey(
             "<KEY_ID>",
             "<NAME>",
-            [ProjectKeyScopes::PROJECTREAD()]
+            [ProjectKeyScopes::PROJECTREAD()],
+            expire: "2020-10-15T06:38:00.000+00:00",
+            description: "<DESCRIPTION>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Key::class, $response);
@@ -582,7 +763,20 @@ final class ProjectTest extends TestCase
         $data = '';
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'DELETE',
+                '/project/keys/%3CKEY_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['keyId'], array_keys($params));
+                    $expected = [
+                        'keyId' => "<KEY_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -648,7 +842,20 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PUT',
+                '/project/labels',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['labels'], array_keys($params));
+                    $expected = [
+                        'labels' => [],
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -675,13 +882,30 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/project/mock-phones',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['queries', 'total'], array_keys($params));
+                    $expected = [
+                        'queries' => [],
+                        'total' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->listMockPhones();
+        $response = $this->project->listMockPhones(
+            queries: [],
+            total: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\MockNumberList::class, $response);
     }
@@ -695,7 +919,21 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/project/mock-phones',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['number', 'otp'], array_keys($params));
+                    $expected = [
+                        'number' => "+12065550100",
+                        'otp' => "<OTP>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -718,7 +956,20 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/project/mock-phones/%2B12065550100',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['number'], array_keys($params));
+                    $expected = [
+                        'number' => "+12065550100",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -740,7 +991,21 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PUT',
+                '/project/mock-phones/%2B12065550100',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['number', 'otp'], array_keys($params));
+                    $expected = [
+                        'number' => "+12065550100",
+                        'otp' => "<OTP>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -758,7 +1023,20 @@ final class ProjectTest extends TestCase
         $data = '';
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'DELETE',
+                '/project/mock-phones/%2B12065550100',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['number'], array_keys($params));
+                    $expected = [
+                        'number' => "+12065550100",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -778,13 +1056,30 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/project/oauth2',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['queries', 'total'], array_keys($params));
+                    $expected = [
+                        'queries' => [],
+                        'total' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->listOAuth2Providers();
+        $response = $this->project->listOAuth2Providers(
+            queries: [],
+            total: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2ProviderList::class, $response);
     }
@@ -842,15 +1137,57 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PUT',
+                '/project/oauth2-server',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['enabled', 'authorizationUrl', 'scopes', 'authorizationDetailsTypes', 'accessTokenDuration', 'refreshTokenDuration', 'publicAccessTokenDuration', 'publicRefreshTokenDuration', 'installationAccessTokenDuration', 'confidentialPkce', 'verificationUrl', 'userCodeLength', 'userCodeFormat', 'deviceCodeDuration', 'defaultScopes', 'installationScopes'], array_keys($params));
+                    $expected = [
+                        'enabled' => false,
+                        'authorizationUrl' => "https://example.com",
+                        'scopes' => [],
+                        'authorizationDetailsTypes' => [],
+                        'accessTokenDuration' => 1,
+                        'refreshTokenDuration' => 1,
+                        'publicAccessTokenDuration' => 1,
+                        'publicRefreshTokenDuration' => 1,
+                        'installationAccessTokenDuration' => 1,
+                        'confidentialPkce' => false,
+                        'verificationUrl' => "https://example.com",
+                        'userCodeLength' => 1,
+                        'userCodeFormat' => "numeric",
+                        'deviceCodeDuration' => 1,
+                        'defaultScopes' => [],
+                        'installationScopes' => [],
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->project->updateOAuth2Server(
-            true,
-            "https://example.com"
+            false,
+            "https://example.com",
+            scopes: [],
+            authorizationDetailsTypes: [],
+            accessTokenDuration: 1,
+            refreshTokenDuration: 1,
+            publicAccessTokenDuration: 1,
+            publicRefreshTokenDuration: 1,
+            installationAccessTokenDuration: 1,
+            confidentialPkce: false,
+            verificationUrl: "https://example.com",
+            userCodeLength: 1,
+            userCodeFormat: "numeric",
+            deviceCodeDuration: 1,
+            defaultScopes: [],
+            installationScopes: []
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
@@ -865,13 +1202,32 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/amazon',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['clientId', 'clientSecret', 'enabled'], array_keys($params));
+                    $expected = [
+                        'clientId' => "<CLIENT_ID>",
+                        'clientSecret' => "<CLIENT_SECRET>",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->updateOAuth2Amazon();
+        $response = $this->project->updateOAuth2Amazon(
+            clientId: "<CLIENT_ID>",
+            clientSecret: "<CLIENT_SECRET>",
+            enabled: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Amazon::class, $response);
     }
@@ -889,13 +1245,40 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/apple',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['serviceId', 'keyId', 'teamId', 'p8File', 'enabled', 'nativeClientIds', 'nativeEnabled'], array_keys($params));
+                    $expected = [
+                        'serviceId' => "<SERVICE_ID>",
+                        'keyId' => "<KEY_ID>",
+                        'teamId' => "<TEAM_ID>",
+                        'p8File' => "<P8_FILE>",
+                        'enabled' => false,
+                        'nativeClientIds' => [],
+                        'nativeEnabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->updateOAuth2Apple();
+        $response = $this->project->updateOAuth2Apple(
+            serviceId: "<SERVICE_ID>",
+            keyId: "<KEY_ID>",
+            teamId: "<TEAM_ID>",
+            p8File: "<P8_FILE>",
+            enabled: false,
+            nativeClientIds: [],
+            nativeEnabled: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Apple::class, $response);
     }
@@ -909,13 +1292,32 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/appwrite',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['clientId', 'clientSecret', 'enabled'], array_keys($params));
+                    $expected = [
+                        'clientId' => "<CLIENT_ID>",
+                        'clientSecret' => "<CLIENT_SECRET>",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->updateOAuth2Appwrite();
+        $response = $this->project->updateOAuth2Appwrite(
+            clientId: "<CLIENT_ID>",
+            clientSecret: "<CLIENT_SECRET>",
+            enabled: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Appwrite::class, $response);
     }
@@ -931,13 +1333,36 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/auth0',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['clientId', 'clientSecret', 'endpoint', 'enabled', 'prompt'], array_keys($params));
+                    $expected = [
+                        'clientId' => "<CLIENT_ID>",
+                        'clientSecret' => "<CLIENT_SECRET>",
+                        'endpoint' => "<ENDPOINT>",
+                        'enabled' => false,
+                        'prompt' => [ProjectOAuth2Auth0Prompt::NONE()],
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->updateOAuth2Auth0();
+        $response = $this->project->updateOAuth2Auth0(
+            clientId: "<CLIENT_ID>",
+            clientSecret: "<CLIENT_SECRET>",
+            endpoint: "<ENDPOINT>",
+            enabled: false,
+            prompt: [ProjectOAuth2Auth0Prompt::NONE()]
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Auth0::class, $response);
     }
@@ -952,13 +1377,34 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/authentik',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['clientId', 'clientSecret', 'endpoint', 'enabled'], array_keys($params));
+                    $expected = [
+                        'clientId' => "<CLIENT_ID>",
+                        'clientSecret' => "<CLIENT_SECRET>",
+                        'endpoint' => "<ENDPOINT>",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->updateOAuth2Authentik();
+        $response = $this->project->updateOAuth2Authentik(
+            clientId: "<CLIENT_ID>",
+            clientSecret: "<CLIENT_SECRET>",
+            endpoint: "<ENDPOINT>",
+            enabled: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Authentik::class, $response);
     }
@@ -972,13 +1418,32 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/autodesk',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['clientId', 'clientSecret', 'enabled'], array_keys($params));
+                    $expected = [
+                        'clientId' => "<CLIENT_ID>",
+                        'clientSecret' => "<CLIENT_SECRET>",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->updateOAuth2Autodesk();
+        $response = $this->project->updateOAuth2Autodesk(
+            clientId: "<CLIENT_ID>",
+            clientSecret: "<CLIENT_SECRET>",
+            enabled: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Autodesk::class, $response);
     }
@@ -992,13 +1457,32 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/bitbucket',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['key', 'secret', 'enabled'], array_keys($params));
+                    $expected = [
+                        'key' => "<KEY>",
+                        'secret' => "<SECRET>",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->updateOAuth2Bitbucket();
+        $response = $this->project->updateOAuth2Bitbucket(
+            key: "<KEY>",
+            secret: "<SECRET>",
+            enabled: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Bitbucket::class, $response);
     }
@@ -1012,13 +1496,32 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/bitly',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['clientId', 'clientSecret', 'enabled'], array_keys($params));
+                    $expected = [
+                        'clientId' => "<CLIENT_ID>",
+                        'clientSecret' => "<CLIENT_SECRET>",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->updateOAuth2Bitly();
+        $response = $this->project->updateOAuth2Bitly(
+            clientId: "<CLIENT_ID>",
+            clientSecret: "<CLIENT_SECRET>",
+            enabled: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Bitly::class, $response);
     }
@@ -1032,13 +1535,32 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/box',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['clientId', 'clientSecret', 'enabled'], array_keys($params));
+                    $expected = [
+                        'clientId' => "<CLIENT_ID>",
+                        'clientSecret' => "<CLIENT_SECRET>",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->updateOAuth2Box();
+        $response = $this->project->updateOAuth2Box(
+            clientId: "<CLIENT_ID>",
+            clientSecret: "<CLIENT_SECRET>",
+            enabled: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Box::class, $response);
     }
@@ -1052,13 +1574,32 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/cloudflare',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['clientId', 'clientSecret', 'enabled'], array_keys($params));
+                    $expected = [
+                        'clientId' => "<CLIENT_ID>",
+                        'clientSecret' => "<CLIENT_SECRET>",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->updateOAuth2Cloudflare();
+        $response = $this->project->updateOAuth2Cloudflare(
+            clientId: "<CLIENT_ID>",
+            clientSecret: "<CLIENT_SECRET>",
+            enabled: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Cloudflare::class, $response);
     }
@@ -1072,13 +1613,32 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/dailymotion',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['apiKey', 'apiSecret', 'enabled'], array_keys($params));
+                    $expected = [
+                        'apiKey' => "<API_KEY>",
+                        'apiSecret' => "<API_SECRET>",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->updateOAuth2Dailymotion();
+        $response = $this->project->updateOAuth2Dailymotion(
+            apiKey: "<API_KEY>",
+            apiSecret: "<API_SECRET>",
+            enabled: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Dailymotion::class, $response);
     }
@@ -1093,13 +1653,34 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/discord',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['clientId', 'clientSecret', 'enabled', 'prompt'], array_keys($params));
+                    $expected = [
+                        'clientId' => "<CLIENT_ID>",
+                        'clientSecret' => "<CLIENT_SECRET>",
+                        'enabled' => false,
+                        'prompt' => [ProjectOAuth2DiscordPrompt::NONE()],
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->updateOAuth2Discord();
+        $response = $this->project->updateOAuth2Discord(
+            clientId: "<CLIENT_ID>",
+            clientSecret: "<CLIENT_SECRET>",
+            enabled: false,
+            prompt: [ProjectOAuth2DiscordPrompt::NONE()]
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Discord::class, $response);
     }
@@ -1113,13 +1694,32 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/disqus',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['publicKey', 'secretKey', 'enabled'], array_keys($params));
+                    $expected = [
+                        'publicKey' => "<PUBLIC_KEY>",
+                        'secretKey' => "<SECRET_KEY>",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->updateOAuth2Disqus();
+        $response = $this->project->updateOAuth2Disqus(
+            publicKey: "<PUBLIC_KEY>",
+            secretKey: "<SECRET_KEY>",
+            enabled: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Disqus::class, $response);
     }
@@ -1133,13 +1733,32 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/dropbox',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['appKey', 'appSecret', 'enabled'], array_keys($params));
+                    $expected = [
+                        'appKey' => "<APP_KEY>",
+                        'appSecret' => "<APP_SECRET>",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->updateOAuth2Dropbox();
+        $response = $this->project->updateOAuth2Dropbox(
+            appKey: "<APP_KEY>",
+            appSecret: "<APP_SECRET>",
+            enabled: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Dropbox::class, $response);
     }
@@ -1153,13 +1772,32 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/etsy',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['keyString', 'sharedSecret', 'enabled'], array_keys($params));
+                    $expected = [
+                        'keyString' => "<KEY_STRING>",
+                        'sharedSecret' => "<SHARED_SECRET>",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->updateOAuth2Etsy();
+        $response = $this->project->updateOAuth2Etsy(
+            keyString: "<KEY_STRING>",
+            sharedSecret: "<SHARED_SECRET>",
+            enabled: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Etsy::class, $response);
     }
@@ -1173,13 +1811,32 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/facebook',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['appId', 'appSecret', 'enabled'], array_keys($params));
+                    $expected = [
+                        'appId' => "<APP_ID>",
+                        'appSecret' => "<APP_SECRET>",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->updateOAuth2Facebook();
+        $response = $this->project->updateOAuth2Facebook(
+            appId: "<APP_ID>",
+            appSecret: "<APP_SECRET>",
+            enabled: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Facebook::class, $response);
     }
@@ -1193,13 +1850,32 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/figma',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['clientId', 'clientSecret', 'enabled'], array_keys($params));
+                    $expected = [
+                        'clientId' => "<CLIENT_ID>",
+                        'clientSecret' => "<CLIENT_SECRET>",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->updateOAuth2Figma();
+        $response = $this->project->updateOAuth2Figma(
+            clientId: "<CLIENT_ID>",
+            clientSecret: "<CLIENT_SECRET>",
+            enabled: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Figma::class, $response);
     }
@@ -1214,13 +1890,34 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/fusionauth',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['clientId', 'clientSecret', 'endpoint', 'enabled'], array_keys($params));
+                    $expected = [
+                        'clientId' => "<CLIENT_ID>",
+                        'clientSecret' => "<CLIENT_SECRET>",
+                        'endpoint' => "<ENDPOINT>",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->updateOAuth2FusionAuth();
+        $response = $this->project->updateOAuth2FusionAuth(
+            clientId: "<CLIENT_ID>",
+            clientSecret: "<CLIENT_SECRET>",
+            endpoint: "<ENDPOINT>",
+            enabled: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2FusionAuth::class, $response);
     }
@@ -1235,13 +1932,34 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/github',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['clientId', 'clientSecret', 'enabled', 'prompt'], array_keys($params));
+                    $expected = [
+                        'clientId' => "<CLIENT_ID>",
+                        'clientSecret' => "<CLIENT_SECRET>",
+                        'enabled' => false,
+                        'prompt' => [ProjectOAuth2GitHubPrompt::SELECTACCOUNT()],
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->updateOAuth2GitHub();
+        $response = $this->project->updateOAuth2GitHub(
+            clientId: "<CLIENT_ID>",
+            clientSecret: "<CLIENT_SECRET>",
+            enabled: false,
+            prompt: [ProjectOAuth2GitHubPrompt::SELECTACCOUNT()]
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Github::class, $response);
     }
@@ -1256,13 +1974,34 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/gitlab',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['applicationId', 'secret', 'endpoint', 'enabled'], array_keys($params));
+                    $expected = [
+                        'applicationId' => "<APPLICATION_ID>",
+                        'secret' => "<SECRET>",
+                        'endpoint' => "https://example.com",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->updateOAuth2Gitlab();
+        $response = $this->project->updateOAuth2Gitlab(
+            applicationId: "<APPLICATION_ID>",
+            secret: "<SECRET>",
+            endpoint: "https://example.com",
+            enabled: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Gitlab::class, $response);
     }
@@ -1279,13 +2018,38 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/google',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['clientId', 'clientSecret', 'prompt', 'enabled', 'nativeClientIds', 'nativeEnabled'], array_keys($params));
+                    $expected = [
+                        'clientId' => "<CLIENT_ID>",
+                        'clientSecret' => "<CLIENT_SECRET>",
+                        'prompt' => [ProjectOAuth2GooglePrompt::NONE()],
+                        'enabled' => false,
+                        'nativeClientIds' => [],
+                        'nativeEnabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->updateOAuth2Google();
+        $response = $this->project->updateOAuth2Google(
+            clientId: "<CLIENT_ID>",
+            clientSecret: "<CLIENT_SECRET>",
+            prompt: [ProjectOAuth2GooglePrompt::NONE()],
+            enabled: false,
+            nativeClientIds: [],
+            nativeEnabled: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Google::class, $response);
     }
@@ -1299,13 +2063,32 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/huggingface',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['clientId', 'clientSecret', 'enabled'], array_keys($params));
+                    $expected = [
+                        'clientId' => "<CLIENT_ID>",
+                        'clientSecret' => "<CLIENT_SECRET>",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->updateOAuth2HuggingFace();
+        $response = $this->project->updateOAuth2HuggingFace(
+            clientId: "<CLIENT_ID>",
+            clientSecret: "<CLIENT_SECRET>",
+            enabled: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2HuggingFace::class, $response);
     }
@@ -1320,13 +2103,34 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/kakao',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['clientId', 'clientSecret', 'enabled', 'prompt'], array_keys($params));
+                    $expected = [
+                        'clientId' => "<CLIENT_ID>",
+                        'clientSecret' => "<CLIENT_SECRET>",
+                        'enabled' => false,
+                        'prompt' => [ProjectOAuth2KakaoPrompt::NONE()],
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->updateOAuth2Kakao();
+        $response = $this->project->updateOAuth2Kakao(
+            clientId: "<CLIENT_ID>",
+            clientSecret: "<CLIENT_SECRET>",
+            enabled: false,
+            prompt: [ProjectOAuth2KakaoPrompt::NONE()]
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Kakao::class, $response);
     }
@@ -1342,13 +2146,36 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/keycloak',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['clientId', 'clientSecret', 'endpoint', 'realmName', 'enabled'], array_keys($params));
+                    $expected = [
+                        'clientId' => "<CLIENT_ID>",
+                        'clientSecret' => "<CLIENT_SECRET>",
+                        'endpoint' => "<ENDPOINT>",
+                        'realmName' => "<REALM_NAME>",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->updateOAuth2Keycloak();
+        $response = $this->project->updateOAuth2Keycloak(
+            clientId: "<CLIENT_ID>",
+            clientSecret: "<CLIENT_SECRET>",
+            endpoint: "<ENDPOINT>",
+            realmName: "<REALM_NAME>",
+            enabled: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Keycloak::class, $response);
     }
@@ -1362,13 +2189,32 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/kick',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['clientId', 'clientSecret', 'enabled'], array_keys($params));
+                    $expected = [
+                        'clientId' => "<CLIENT_ID>",
+                        'clientSecret' => "<CLIENT_SECRET>",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->updateOAuth2Kick();
+        $response = $this->project->updateOAuth2Kick(
+            clientId: "<CLIENT_ID>",
+            clientSecret: "<CLIENT_SECRET>",
+            enabled: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Kick::class, $response);
     }
@@ -1382,13 +2228,32 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/linkedin',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['clientId', 'primaryClientSecret', 'enabled'], array_keys($params));
+                    $expected = [
+                        'clientId' => "<CLIENT_ID>",
+                        'primaryClientSecret' => "<PRIMARY_CLIENT_SECRET>",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->updateOAuth2Linkedin();
+        $response = $this->project->updateOAuth2Linkedin(
+            clientId: "<CLIENT_ID>",
+            primaryClientSecret: "<PRIMARY_CLIENT_SECRET>",
+            enabled: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Linkedin::class, $response);
     }
@@ -1404,13 +2269,36 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/microsoft',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['applicationId', 'applicationSecret', 'tenant', 'enabled', 'prompt'], array_keys($params));
+                    $expected = [
+                        'applicationId' => "<APPLICATION_ID>",
+                        'applicationSecret' => "<APPLICATION_SECRET>",
+                        'tenant' => "<TENANT>",
+                        'enabled' => false,
+                        'prompt' => [ProjectOAuth2MicrosoftPrompt::NONE()],
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->updateOAuth2Microsoft();
+        $response = $this->project->updateOAuth2Microsoft(
+            applicationId: "<APPLICATION_ID>",
+            applicationSecret: "<APPLICATION_SECRET>",
+            tenant: "<TENANT>",
+            enabled: false,
+            prompt: [ProjectOAuth2MicrosoftPrompt::NONE()]
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Microsoft::class, $response);
     }
@@ -1424,13 +2312,32 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/notion',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['oauthClientId', 'oauthClientSecret', 'enabled'], array_keys($params));
+                    $expected = [
+                        'oauthClientId' => "<OAUTH_CLIENT_ID>",
+                        'oauthClientSecret' => "<OAUTH_CLIENT_SECRET>",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->updateOAuth2Notion();
+        $response = $this->project->updateOAuth2Notion(
+            oauthClientId: "<OAUTH_CLIENT_ID>",
+            oauthClientSecret: "<OAUTH_CLIENT_SECRET>",
+            enabled: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Notion::class, $response);
     }
@@ -1449,13 +2356,44 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/oidc',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['clientId', 'clientSecret', 'wellKnownURL', 'authorizationURL', 'tokenURL', 'userInfoURL', 'prompt', 'maxAge', 'enabled'], array_keys($params));
+                    $expected = [
+                        'clientId' => "<CLIENT_ID>",
+                        'clientSecret' => "<CLIENT_SECRET>",
+                        'wellKnownURL' => "https://example.com",
+                        'authorizationURL' => "https://example.com",
+                        'tokenURL' => "https://example.com",
+                        'userInfoURL' => "https://example.com",
+                        'prompt' => [ProjectOAuth2OidcPrompt::NONE()],
+                        'maxAge' => 1,
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->updateOAuth2Oidc();
+        $response = $this->project->updateOAuth2Oidc(
+            clientId: "<CLIENT_ID>",
+            clientSecret: "<CLIENT_SECRET>",
+            wellKnownURL: "https://example.com",
+            authorizationURL: "https://example.com",
+            tokenURL: "https://example.com",
+            userInfoURL: "https://example.com",
+            prompt: [ProjectOAuth2OidcPrompt::NONE()],
+            maxAge: 1,
+            enabled: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Oidc::class, $response);
     }
@@ -1472,13 +2410,38 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/okta',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['clientId', 'clientSecret', 'domain', 'authorizationServerId', 'enabled', 'prompt'], array_keys($params));
+                    $expected = [
+                        'clientId' => "<CLIENT_ID>",
+                        'clientSecret' => "<CLIENT_SECRET>",
+                        'domain' => "example.com",
+                        'authorizationServerId' => "<AUTHORIZATION_SERVER_ID>",
+                        'enabled' => false,
+                        'prompt' => [ProjectOAuth2OktaPrompt::NONE()],
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->updateOAuth2Okta();
+        $response = $this->project->updateOAuth2Okta(
+            clientId: "<CLIENT_ID>",
+            clientSecret: "<CLIENT_SECRET>",
+            domain: "example.com",
+            authorizationServerId: "<AUTHORIZATION_SERVER_ID>",
+            enabled: false,
+            prompt: [ProjectOAuth2OktaPrompt::NONE()]
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Okta::class, $response);
     }
@@ -1492,13 +2455,32 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/paypal',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['clientId', 'secretKey', 'enabled'], array_keys($params));
+                    $expected = [
+                        'clientId' => "<CLIENT_ID>",
+                        'secretKey' => "<SECRET_KEY>",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->updateOAuth2Paypal();
+        $response = $this->project->updateOAuth2Paypal(
+            clientId: "<CLIENT_ID>",
+            secretKey: "<SECRET_KEY>",
+            enabled: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Paypal::class, $response);
     }
@@ -1512,13 +2494,32 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/paypalSandbox',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['clientId', 'secretKey', 'enabled'], array_keys($params));
+                    $expected = [
+                        'clientId' => "<CLIENT_ID>",
+                        'secretKey' => "<SECRET_KEY>",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->updateOAuth2PaypalSandbox();
+        $response = $this->project->updateOAuth2PaypalSandbox(
+            clientId: "<CLIENT_ID>",
+            secretKey: "<SECRET_KEY>",
+            enabled: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Paypal::class, $response);
     }
@@ -1532,13 +2533,32 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/podio',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['clientId', 'clientSecret', 'enabled'], array_keys($params));
+                    $expected = [
+                        'clientId' => "<CLIENT_ID>",
+                        'clientSecret' => "<CLIENT_SECRET>",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->updateOAuth2Podio();
+        $response = $this->project->updateOAuth2Podio(
+            clientId: "<CLIENT_ID>",
+            clientSecret: "<CLIENT_SECRET>",
+            enabled: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Podio::class, $response);
     }
@@ -1552,13 +2572,32 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/resend',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['clientId', 'clientSecret', 'enabled'], array_keys($params));
+                    $expected = [
+                        'clientId' => "<CLIENT_ID>",
+                        'clientSecret' => "<CLIENT_SECRET>",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->updateOAuth2Resend();
+        $response = $this->project->updateOAuth2Resend(
+            clientId: "<CLIENT_ID>",
+            clientSecret: "<CLIENT_SECRET>",
+            enabled: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Resend::class, $response);
     }
@@ -1573,13 +2612,34 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/salesforce',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['customerKey', 'customerSecret', 'enabled', 'prompt'], array_keys($params));
+                    $expected = [
+                        'customerKey' => "<CUSTOMER_KEY>",
+                        'customerSecret' => "<CUSTOMER_SECRET>",
+                        'enabled' => false,
+                        'prompt' => [ProjectOAuth2SalesforcePrompt::LOGIN()],
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->updateOAuth2Salesforce();
+        $response = $this->project->updateOAuth2Salesforce(
+            customerKey: "<CUSTOMER_KEY>",
+            customerSecret: "<CUSTOMER_SECRET>",
+            enabled: false,
+            prompt: [ProjectOAuth2SalesforcePrompt::LOGIN()]
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Salesforce::class, $response);
     }
@@ -1593,13 +2653,32 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/slack',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['clientId', 'clientSecret', 'enabled'], array_keys($params));
+                    $expected = [
+                        'clientId' => "<CLIENT_ID>",
+                        'clientSecret' => "<CLIENT_SECRET>",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->updateOAuth2Slack();
+        $response = $this->project->updateOAuth2Slack(
+            clientId: "<CLIENT_ID>",
+            clientSecret: "<CLIENT_SECRET>",
+            enabled: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Slack::class, $response);
     }
@@ -1613,13 +2692,32 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/spotify',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['clientId', 'clientSecret', 'enabled'], array_keys($params));
+                    $expected = [
+                        'clientId' => "<CLIENT_ID>",
+                        'clientSecret' => "<CLIENT_SECRET>",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->updateOAuth2Spotify();
+        $response = $this->project->updateOAuth2Spotify(
+            clientId: "<CLIENT_ID>",
+            clientSecret: "<CLIENT_SECRET>",
+            enabled: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Spotify::class, $response);
     }
@@ -1633,13 +2731,32 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/stripe',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['clientId', 'apiSecretKey', 'enabled'], array_keys($params));
+                    $expected = [
+                        'clientId' => "<CLIENT_ID>",
+                        'apiSecretKey' => "<API_SECRET_KEY>",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->updateOAuth2Stripe();
+        $response = $this->project->updateOAuth2Stripe(
+            clientId: "<CLIENT_ID>",
+            apiSecretKey: "<API_SECRET_KEY>",
+            enabled: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Stripe::class, $response);
     }
@@ -1653,13 +2770,32 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/tiktok',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['clientId', 'clientSecret', 'enabled'], array_keys($params));
+                    $expected = [
+                        'clientId' => "<CLIENT_ID>",
+                        'clientSecret' => "<CLIENT_SECRET>",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->updateOAuth2TikTok();
+        $response = $this->project->updateOAuth2TikTok(
+            clientId: "<CLIENT_ID>",
+            clientSecret: "<CLIENT_SECRET>",
+            enabled: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2TikTok::class, $response);
     }
@@ -1673,13 +2809,32 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/tradeshift',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['oauth2ClientId', 'oauth2ClientSecret', 'enabled'], array_keys($params));
+                    $expected = [
+                        'oauth2ClientId' => "<OAUTH2_CLIENT_ID>",
+                        'oauth2ClientSecret' => "<OAUTH2_CLIENT_SECRET>",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->updateOAuth2Tradeshift();
+        $response = $this->project->updateOAuth2Tradeshift(
+            oauth2ClientId: "<OAUTH2_CLIENT_ID>",
+            oauth2ClientSecret: "<OAUTH2_CLIENT_SECRET>",
+            enabled: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Tradeshift::class, $response);
     }
@@ -1693,13 +2848,32 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/tradeshiftBox',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['oauth2ClientId', 'oauth2ClientSecret', 'enabled'], array_keys($params));
+                    $expected = [
+                        'oauth2ClientId' => "<OAUTH2_CLIENT_ID>",
+                        'oauth2ClientSecret' => "<OAUTH2_CLIENT_SECRET>",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->updateOAuth2TradeshiftSandbox();
+        $response = $this->project->updateOAuth2TradeshiftSandbox(
+            oauth2ClientId: "<OAUTH2_CLIENT_ID>",
+            oauth2ClientSecret: "<OAUTH2_CLIENT_SECRET>",
+            enabled: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Tradeshift::class, $response);
     }
@@ -1713,13 +2887,32 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/twitch',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['clientId', 'clientSecret', 'enabled'], array_keys($params));
+                    $expected = [
+                        'clientId' => "<CLIENT_ID>",
+                        'clientSecret' => "<CLIENT_SECRET>",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->updateOAuth2Twitch();
+        $response = $this->project->updateOAuth2Twitch(
+            clientId: "<CLIENT_ID>",
+            clientSecret: "<CLIENT_SECRET>",
+            enabled: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Twitch::class, $response);
     }
@@ -1733,13 +2926,32 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/webflow',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['clientId', 'clientSecret', 'enabled'], array_keys($params));
+                    $expected = [
+                        'clientId' => "<CLIENT_ID>",
+                        'clientSecret' => "<CLIENT_SECRET>",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->updateOAuth2Webflow();
+        $response = $this->project->updateOAuth2Webflow(
+            clientId: "<CLIENT_ID>",
+            clientSecret: "<CLIENT_SECRET>",
+            enabled: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Webflow::class, $response);
     }
@@ -1753,13 +2965,32 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/wordpress',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['clientId', 'clientSecret', 'enabled'], array_keys($params));
+                    $expected = [
+                        'clientId' => "<CLIENT_ID>",
+                        'clientSecret' => "<CLIENT_SECRET>",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->updateOAuth2WordPress();
+        $response = $this->project->updateOAuth2WordPress(
+            clientId: "<CLIENT_ID>",
+            clientSecret: "<CLIENT_SECRET>",
+            enabled: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2WordPress::class, $response);
     }
@@ -1773,13 +3004,32 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/x',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['customerKey', 'secretKey', 'enabled'], array_keys($params));
+                    $expected = [
+                        'customerKey' => "<CUSTOMER_KEY>",
+                        'secretKey' => "<SECRET_KEY>",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->updateOAuth2X();
+        $response = $this->project->updateOAuth2X(
+            customerKey: "<CUSTOMER_KEY>",
+            secretKey: "<SECRET_KEY>",
+            enabled: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2X::class, $response);
     }
@@ -1793,13 +3043,32 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/yahoo',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['clientId', 'clientSecret', 'enabled'], array_keys($params));
+                    $expected = [
+                        'clientId' => "<CLIENT_ID>",
+                        'clientSecret' => "<CLIENT_SECRET>",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->updateOAuth2Yahoo();
+        $response = $this->project->updateOAuth2Yahoo(
+            clientId: "<CLIENT_ID>",
+            clientSecret: "<CLIENT_SECRET>",
+            enabled: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Yahoo::class, $response);
     }
@@ -1813,13 +3082,32 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/yandex',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['clientId', 'clientSecret', 'enabled'], array_keys($params));
+                    $expected = [
+                        'clientId' => "<CLIENT_ID>",
+                        'clientSecret' => "<CLIENT_SECRET>",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->updateOAuth2Yandex();
+        $response = $this->project->updateOAuth2Yandex(
+            clientId: "<CLIENT_ID>",
+            clientSecret: "<CLIENT_SECRET>",
+            enabled: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Yandex::class, $response);
     }
@@ -1834,13 +3122,34 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/zoho',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['clientId', 'clientSecret', 'enabled', 'prompt'], array_keys($params));
+                    $expected = [
+                        'clientId' => "<CLIENT_ID>",
+                        'clientSecret' => "<CLIENT_SECRET>",
+                        'enabled' => false,
+                        'prompt' => [ProjectOAuth2ZohoPrompt::CONSENT()],
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->updateOAuth2Zoho();
+        $response = $this->project->updateOAuth2Zoho(
+            clientId: "<CLIENT_ID>",
+            clientSecret: "<CLIENT_SECRET>",
+            enabled: false,
+            prompt: [ProjectOAuth2ZohoPrompt::CONSENT()]
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Zoho::class, $response);
     }
@@ -1854,13 +3163,32 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/zoom',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['clientId', 'clientSecret', 'enabled'], array_keys($params));
+                    $expected = [
+                        'clientId' => "<CLIENT_ID>",
+                        'clientSecret' => "<CLIENT_SECRET>",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->updateOAuth2Zoom();
+        $response = $this->project->updateOAuth2Zoom(
+            clientId: "<CLIENT_ID>",
+            clientSecret: "<CLIENT_SECRET>",
+            enabled: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Zoom::class, $response);
     }
@@ -1880,7 +3208,20 @@ final class ProjectTest extends TestCase
         );
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/project/oauth2/amazon',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['providerId'], array_keys($params));
+                    $expected = [
+                        'providerId' => ProjectOAuthProviderId::AMAZON(),
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1900,13 +3241,30 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/project/platforms',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['queries', 'total'], array_keys($params));
+                    $expected = [
+                        'queries' => [],
+                        'total' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->listPlatforms();
+        $response = $this->project->listPlatforms(
+            queries: [],
+            total: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\PlatformList::class, $response);
     }
@@ -1923,7 +3281,23 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/project/platforms/android',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['platformId', 'name', 'applicationId', 'fingerprints'], array_keys($params));
+                    $expected = [
+                        'platformId' => "<PLATFORM_ID>",
+                        'name' => "<NAME>",
+                        'applicationId' => "<APPLICATION_ID>",
+                        'fingerprints' => [],
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1932,7 +3306,8 @@ final class ProjectTest extends TestCase
         $response = $this->project->createAndroidPlatform(
             "<PLATFORM_ID>",
             "<NAME>",
-            "<APPLICATION_ID>"
+            "<APPLICATION_ID>",
+            fingerprints: []
         );
 
         $this->assertInstanceOf(\Appwrite\Models\PlatformAndroid::class, $response);
@@ -1950,7 +3325,23 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PUT',
+                '/project/platforms/android/%3CPLATFORM_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['platformId', 'name', 'applicationId', 'fingerprints'], array_keys($params));
+                    $expected = [
+                        'platformId' => "<PLATFORM_ID>",
+                        'name' => "<NAME>",
+                        'applicationId' => "<APPLICATION_ID>",
+                        'fingerprints' => [],
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1959,7 +3350,8 @@ final class ProjectTest extends TestCase
         $response = $this->project->updateAndroidPlatform(
             "<PLATFORM_ID>",
             "<NAME>",
-            "<APPLICATION_ID>"
+            "<APPLICATION_ID>",
+            fingerprints: []
         );
 
         $this->assertInstanceOf(\Appwrite\Models\PlatformAndroid::class, $response);
@@ -1976,7 +3368,22 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/project/platforms/apple',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['platformId', 'name', 'bundleIdentifier'], array_keys($params));
+                    $expected = [
+                        'platformId' => "<PLATFORM_ID>",
+                        'name' => "<NAME>",
+                        'bundleIdentifier' => "<BUNDLE_IDENTIFIER>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -2002,7 +3409,22 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PUT',
+                '/project/platforms/apple/%3CPLATFORM_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['platformId', 'name', 'bundleIdentifier'], array_keys($params));
+                    $expected = [
+                        'platformId' => "<PLATFORM_ID>",
+                        'name' => "<NAME>",
+                        'bundleIdentifier' => "<BUNDLE_IDENTIFIER>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -2028,7 +3450,22 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/project/platforms/linux',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['platformId', 'name', 'packageName'], array_keys($params));
+                    $expected = [
+                        'platformId' => "<PLATFORM_ID>",
+                        'name' => "<NAME>",
+                        'packageName' => "<PACKAGE_NAME>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -2054,7 +3491,22 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PUT',
+                '/project/platforms/linux/%3CPLATFORM_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['platformId', 'name', 'packageName'], array_keys($params));
+                    $expected = [
+                        'platformId' => "<PLATFORM_ID>",
+                        'name' => "<NAME>",
+                        'packageName' => "<PACKAGE_NAME>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -2080,7 +3532,22 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/project/platforms/web',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['platformId', 'name', 'hostname'], array_keys($params));
+                    $expected = [
+                        'platformId' => "<PLATFORM_ID>",
+                        'name' => "<NAME>",
+                        'hostname' => "app.example.com",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -2106,7 +3573,22 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PUT',
+                '/project/platforms/web/%3CPLATFORM_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['platformId', 'name', 'hostname'], array_keys($params));
+                    $expected = [
+                        'platformId' => "<PLATFORM_ID>",
+                        'name' => "<NAME>",
+                        'hostname' => "app.example.com",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -2132,7 +3614,22 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/project/platforms/windows',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['platformId', 'name', 'packageIdentifierName'], array_keys($params));
+                    $expected = [
+                        'platformId' => "<PLATFORM_ID>",
+                        'name' => "<NAME>",
+                        'packageIdentifierName' => "<PACKAGE_IDENTIFIER_NAME>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -2158,7 +3655,22 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PUT',
+                '/project/platforms/windows/%3CPLATFORM_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['platformId', 'name', 'packageIdentifierName'], array_keys($params));
+                    $expected = [
+                        'platformId' => "<PLATFORM_ID>",
+                        'name' => "<NAME>",
+                        'packageIdentifierName' => "<PACKAGE_IDENTIFIER_NAME>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -2189,7 +3701,20 @@ final class ProjectTest extends TestCase
         );
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/project/platforms/%3CPLATFORM_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['platformId'], array_keys($params));
+                    $expected = [
+                        'platformId' => "<PLATFORM_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -2206,7 +3731,20 @@ final class ProjectTest extends TestCase
         $data = '';
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'DELETE',
+                '/project/platforms/%3CPLATFORM_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['platformId'], array_keys($params));
+                    $expected = [
+                        'platformId' => "<PLATFORM_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -2226,13 +3764,30 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/project/policies',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['queries', 'total'], array_keys($params));
+                    $expected = [
+                        'queries' => [],
+                        'total' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->listPolicies();
+        $response = $this->project->listPolicies(
+            queries: [],
+            total: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\PolicyList::class, $response);
     }
@@ -2290,14 +3845,27 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/policies/deny-aliased-email',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['enabled'], array_keys($params));
+                    $expected = [
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->project->updateDenyAliasedEmailPolicy(
-            true
+            false
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
@@ -2356,14 +3924,27 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/policies/deny-corporate-email',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['enabled'], array_keys($params));
+                    $expected = [
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->project->updateDenyCorporateEmailPolicy(
-            true
+            false
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
@@ -2422,14 +4003,27 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/policies/deny-disposable-email',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['enabled'], array_keys($params));
+                    $expected = [
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->project->updateDenyDisposableEmailPolicy(
-            true
+            false
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
@@ -2488,14 +4082,106 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/policies/deny-free-email',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['enabled'], array_keys($params));
+                    $expected = [
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->project->updateDenyFreeEmailPolicy(
-            true
+            false
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
+    }
+    public function testMethodUpdateDenyRealtimeGuestsPolicy(): void
+    {
+        $data = [
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "name" => "New Project",
+            "teamId" => "1592981250",
+            "region" => "fra",
+            "smtpEnabled" => true,
+            "smtpSenderName" => "John Appwrite",
+            "smtpSenderEmail" => "john@appwrite.io",
+            "smtpReplyToName" => "Support Team",
+            "smtpReplyToEmail" => "support@appwrite.io",
+            "smtpHost" => "mail.appwrite.io",
+            "smtpPort" => 25,
+            "smtpUsername" => "emailuser",
+            "smtpPassword" => "smtp-password",
+            "smtpSecure" => "tls",
+            "pingCount" => 1,
+            "pingedAt" => "2020-10-15T06:38:00.000+00:00",
+            "labels" => [],
+            "status" => "active",
+            "onboarding" => [],
+            "authMethods" => [
+                [
+                    "\$id" => "email-password",
+                    "enabled" => true
+                ]
+            ],
+            "services" => [
+                [
+                    "\$id" => "account",
+                    "enabled" => true
+                ]
+            ],
+            "protocols" => [
+                [
+                    "\$id" => "rest",
+                    "enabled" => true
+                ]
+            ],
+            "blocks" => [
+                [
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "resourceType" => "project",
+                    "resourceId" => "5e5ea5c16897e",
+                    "mode" => "readOnly"
+                ]
+            ],
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
+        ];
+
+        $this->client
+            ->expects()->call(
+                'PATCH',
+                '/project/policies/deny-realtime-guests',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['enabled'], array_keys($params));
+                    $expected = [
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->project->updateDenyRealtimeGuestsPolicy(
+            false
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
@@ -2554,13 +4240,38 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/policies/membership-privacy',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['userId', 'userEmail', 'userPhone', 'userName', 'userMFA', 'userAccessedAt'], array_keys($params));
+                    $expected = [
+                        'userId' => false,
+                        'userEmail' => false,
+                        'userPhone' => false,
+                        'userName' => false,
+                        'userMFA' => false,
+                        'userAccessedAt' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->updateMembershipPrivacyPolicy();
+        $response = $this->project->updateMembershipPrivacyPolicy(
+            userId: false,
+            userEmail: false,
+            userPhone: false,
+            userName: false,
+            userMFA: false,
+            userAccessedAt: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
     }
@@ -2618,13 +4329,34 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/policies/mfa-factors',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['totp', 'email', 'phone', 'custom'], array_keys($params));
+                    $expected = [
+                        'totp' => false,
+                        'email' => false,
+                        'phone' => false,
+                        'custom' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->updateMFAFactorsPolicy();
+        $response = $this->project->updateMFAFactorsPolicy(
+            totp: false,
+            email: false,
+            phone: false,
+            custom: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
     }
@@ -2682,7 +4414,20 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/policies/passkey',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['rpId'], array_keys($params));
+                    $expected = [
+                        'rpId' => "<RP_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -2748,14 +4493,29 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/policies/password-dictionary',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['enabled', 'denyList'], array_keys($params));
+                    $expected = [
+                        'enabled' => false,
+                        'denyList' => [],
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->project->updatePasswordDictionaryPolicy(
-            true
+            false,
+            denyList: []
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
@@ -2814,7 +4574,20 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/policies/password-history',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['total'], array_keys($params));
+                    $expected = [
+                        'total' => 1,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -2880,14 +4653,29 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/policies/password-personal-data',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['enabled', 'denyList'], array_keys($params));
+                    $expected = [
+                        'enabled' => false,
+                        'denyList' => [],
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->project->updatePasswordPersonalDataPolicy(
-            true
+            false,
+            denyList: []
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
@@ -2946,13 +4734,32 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/policies/password-pwned',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['enabled', 'sessions', 'users'], array_keys($params));
+                    $expected = [
+                        'enabled' => false,
+                        'sessions' => false,
+                        'users' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->updatePasswordPwnedPolicy();
+        $response = $this->project->updatePasswordPwnedPolicy(
+            enabled: false,
+            sessions: false,
+            users: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
     }
@@ -3010,13 +4817,30 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/policies/password-rotation',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['enabled', 'maxAge'], array_keys($params));
+                    $expected = [
+                        'enabled' => false,
+                        'maxAge' => 1,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->updatePasswordRotationPolicy();
+        $response = $this->project->updatePasswordRotationPolicy(
+            enabled: false,
+            maxAge: 1
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
     }
@@ -3032,13 +4856,36 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/policies/password-strength',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['min', 'uppercase', 'lowercase', 'number', 'symbols'], array_keys($params));
+                    $expected = [
+                        'min' => 1,
+                        'uppercase' => false,
+                        'lowercase' => false,
+                        'number' => false,
+                        'symbols' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->updatePasswordStrengthPolicy();
+        $response = $this->project->updatePasswordStrengthPolicy(
+            min: 1,
+            uppercase: false,
+            lowercase: false,
+            number: false,
+            symbols: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\PolicyPasswordStrength::class, $response);
     }
@@ -3096,14 +4943,27 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/policies/session-alert',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['enabled'], array_keys($params));
+                    $expected = [
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->project->updateSessionAlertPolicy(
-            true
+            false
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
@@ -3162,7 +5022,20 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/policies/session-duration',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['duration'], array_keys($params));
+                    $expected = [
+                        'duration' => 1,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -3228,14 +5101,27 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/policies/session-invalidation',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['enabled'], array_keys($params));
+                    $expected = [
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->project->updateSessionInvalidationPolicy(
-            true
+            false
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
@@ -3294,7 +5180,20 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/policies/session-limit',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['total'], array_keys($params));
+                    $expected = [
+                        'total' => 1,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -3360,7 +5259,20 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/policies/user-limit',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['total'], array_keys($params));
+                    $expected = [
+                        'total' => 1,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -3386,7 +5298,20 @@ final class ProjectTest extends TestCase
         );
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/project/policies/password-dictionary',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['policyId'], array_keys($params));
+                    $expected = [
+                        'policyId' => ProjectPolicyId::PASSWORDDICTIONARY(),
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -3452,7 +5377,21 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/protocols/rest',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['protocolId', 'enabled'], array_keys($params));
+                    $expected = [
+                        'protocolId' => ProjectProtocolId::REST(),
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -3460,7 +5399,7 @@ final class ProjectTest extends TestCase
 
         $response = $this->project->updateProtocol(
             ProjectProtocolId::REST(),
-            true
+            false
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
@@ -3519,7 +5458,21 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/services/account',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['serviceId', 'enabled'], array_keys($params));
+                    $expected = [
+                        'serviceId' => ProjectServiceId::ACCOUNT(),
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -3527,10 +5480,34 @@ final class ProjectTest extends TestCase
 
         $response = $this->project->updateService(
             ProjectServiceId::ACCOUNT(),
-            true
+            false
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
+    }
+    public function testMethodDeleteSessions(): void
+    {
+        $data = '';
+
+        $this->client
+            ->expects()->call(
+                'DELETE',
+                '/project/sessions',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame([], array_keys($params));
+
+                    return true;
+                })
+            )
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->project->deleteSessions();
+
+        $this->assertSame($data, $response);
     }
     public function testMethodUpdateSMTP(): void
     {
@@ -3586,13 +5563,46 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/smtp',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['host', 'port', 'username', 'password', 'senderEmail', 'senderName', 'replyToEmail', 'replyToName', 'secure', 'enabled'], array_keys($params));
+                    $expected = [
+                        'host' => "example.com",
+                        'port' => 1,
+                        'username' => "<USERNAME>",
+                        'password' => "password",
+                        'senderEmail' => "email@example.com",
+                        'senderName' => "<SENDER_NAME>",
+                        'replyToEmail' => "email@example.com",
+                        'replyToName' => "<REPLY_TO_NAME>",
+                        'secure' => ProjectSMTPSecure::TLS(),
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->updateSMTP();
+        $response = $this->project->updateSMTP(
+            host: "example.com",
+            port: 1,
+            username: "<USERNAME>",
+            password: "password",
+            senderEmail: "email@example.com",
+            senderName: "<SENDER_NAME>",
+            replyToEmail: "email@example.com",
+            replyToName: "<REPLY_TO_NAME>",
+            secure: ProjectSMTPSecure::TLS(),
+            enabled: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
     }
@@ -3601,7 +5611,20 @@ final class ProjectTest extends TestCase
         $data = '';
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/project/smtp/tests',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['emails'], array_keys($params));
+                    $expected = [
+                        'emails' => [],
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -3632,13 +5655,30 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/project/templates/email',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['queries', 'total'], array_keys($params));
+                    $expected = [
+                        'queries' => [],
+                        'total' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->listEmailTemplates();
+        $response = $this->project->listEmailTemplates(
+            queries: [],
+            total: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\EmailTemplateList::class, $response);
     }
@@ -3656,14 +5696,41 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/project/templates/email',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['templateId', 'locale', 'subject', 'message', 'senderName', 'senderEmail', 'replyToEmail', 'replyToName'], array_keys($params));
+                    $expected = [
+                        'templateId' => ProjectEmailTemplateId::VERIFICATION(),
+                        'locale' => ProjectEmailTemplateLocale::AF(),
+                        'subject' => "<SUBJECT>",
+                        'message' => "<MESSAGE>",
+                        'senderName' => "<SENDER_NAME>",
+                        'senderEmail' => "email@example.com",
+                        'replyToEmail' => "email@example.com",
+                        'replyToName' => "<REPLY_TO_NAME>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->project->updateEmailTemplate(
-            ProjectEmailTemplateId::VERIFICATION()
+            ProjectEmailTemplateId::VERIFICATION(),
+            locale: ProjectEmailTemplateLocale::AF(),
+            subject: "<SUBJECT>",
+            message: "<MESSAGE>",
+            senderName: "<SENDER_NAME>",
+            senderEmail: "email@example.com",
+            replyToEmail: "email@example.com",
+            replyToName: "<REPLY_TO_NAME>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\EmailTemplate::class, $response);
@@ -3682,14 +5749,29 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/project/templates/email/verification',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['templateId', 'locale'], array_keys($params));
+                    $expected = [
+                        'templateId' => ProjectEmailTemplateId::VERIFICATION(),
+                        'locale' => ProjectEmailTemplateLocale::AF(),
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->project->getEmailTemplate(
-            ProjectEmailTemplateId::VERIFICATION()
+            ProjectEmailTemplateId::VERIFICATION(),
+            locale: ProjectEmailTemplateLocale::AF()
         );
 
         $this->assertInstanceOf(\Appwrite\Models\EmailTemplate::class, $response);
@@ -3714,13 +5796,30 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/project/variables',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['queries', 'total'], array_keys($params));
+                    $expected = [
+                        'queries' => [],
+                        'total' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->project->listVariables();
+        $response = $this->project->listVariables(
+            queries: [],
+            total: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\VariableList::class, $response);
     }
@@ -3739,7 +5838,24 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/project/variables',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['variableId', 'key', 'value', 'secret', 'description'], array_keys($params));
+                    $expected = [
+                        'variableId' => "<VARIABLE_ID>",
+                        'key' => "<KEY>",
+                        'value' => "<VALUE>",
+                        'secret' => false,
+                        'description' => "<DESCRIPTION>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -3748,7 +5864,9 @@ final class ProjectTest extends TestCase
         $response = $this->project->createVariable(
             "<VARIABLE_ID>",
             "<KEY>",
-            "<VALUE>"
+            "<VALUE>",
+            secret: false,
+            description: "<DESCRIPTION>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Variable::class, $response);
@@ -3768,7 +5886,20 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/project/variables/%3CVARIABLE_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['variableId'], array_keys($params));
+                    $expected = [
+                        'variableId' => "<VARIABLE_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -3795,14 +5926,35 @@ final class ProjectTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PUT',
+                '/project/variables/%3CVARIABLE_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['variableId', 'key', 'value', 'secret', 'description'], array_keys($params));
+                    $expected = [
+                        'variableId' => "<VARIABLE_ID>",
+                        'key' => "<KEY>",
+                        'value' => "<VALUE>",
+                        'secret' => false,
+                        'description' => "<DESCRIPTION>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->project->updateVariable(
-            "<VARIABLE_ID>"
+            "<VARIABLE_ID>",
+            key: "<KEY>",
+            value: "<VALUE>",
+            secret: false,
+            description: "<DESCRIPTION>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Variable::class, $response);
@@ -3812,7 +5964,20 @@ final class ProjectTest extends TestCase
         $data = '';
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'DELETE',
+                '/project/variables/%3CVARIABLE_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['variableId'], array_keys($params));
+                    $expected = [
+                        'variableId' => "<VARIABLE_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())

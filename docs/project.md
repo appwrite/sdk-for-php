@@ -1330,6 +1330,19 @@ PATCH https://cloud.appwrite.io/v1/project/policies/deny-free-email
 
 
 ```http request
+PATCH https://cloud.appwrite.io/v1/project/policies/deny-realtime-guests
+```
+
+** Configures if guests, connections without a signed-in user, may subscribe to realtime channels. When enabled, a guest can still connect and sign in over the connection, but cannot subscribe until it does. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| enabled | boolean | Set whether or not to stop guests from subscribing to realtime channels. |  |
+
+
+```http request
 PATCH https://cloud.appwrite.io/v1/project/policies/membership-privacy
 ```
 
@@ -1545,7 +1558,7 @@ GET https://cloud.appwrite.io/v1/project/policies/{policyId}
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| policyId | string | **Required** Policy ID. Can be one of: password-dictionary, password-history, password-strength, password-personal-data, password-pwned, password-rotation, session-alert, session-duration, session-invalidation, session-limit, user-limit, membership-privacy, mfa-factors, deny-aliased-email, deny-disposable-email, deny-free-email, deny-corporate-email, passkey. |  |
+| policyId | string | **Required** Policy ID. Can be one of: password-dictionary, password-history, password-strength, password-personal-data, password-pwned, password-rotation, session-alert, session-duration, session-invalidation, session-limit, user-limit, membership-privacy, mfa-factors, deny-aliased-email, deny-disposable-email, deny-free-email, deny-corporate-email, deny-realtime-guests, passkey. |  |
 
 
 ```http request
@@ -1574,6 +1587,13 @@ PATCH https://cloud.appwrite.io/v1/project/services/{serviceId}
 | --- | --- | --- | --- |
 | serviceId | string | **Required** Service name. Can be one of: account, avatars, databases, tablesdb, locale, health, project, storage, teams, users, vcs, sites, functions, proxy, graphql, migrations, messaging, advisor, oauth2 |  |
 | enabled | boolean | Service status. |  |
+
+
+```http request
+DELETE https://cloud.appwrite.io/v1/project/sessions
+```
+
+** Delete all sessions in the project. Any session created before this request will be invalidated immediately: users will be signed out of every active client (web, mobile, server SDKs, JWTs), and will be able to sign in again afterwards. API keys are not affected by this action. **
 
 
 ```http request

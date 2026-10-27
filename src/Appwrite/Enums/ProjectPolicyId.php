@@ -26,6 +26,7 @@ class ProjectPolicyId implements JsonSerializable, Stringable
     private static ProjectPolicyId $DENYDISPOSABLEEMAIL;
     private static ProjectPolicyId $DENYFREEEMAIL;
     private static ProjectPolicyId $DENYCORPORATEEMAIL;
+    private static ProjectPolicyId $DENYREALTIMEGUESTS;
     private static ProjectPolicyId $PASSKEY;
 
     private function __construct(private readonly string $value)
@@ -144,6 +145,12 @@ class ProjectPolicyId implements JsonSerializable, Stringable
 
         return self::$DENYCORPORATEEMAIL;
     }
+    public static function DENYREALTIMEGUESTS(): ProjectPolicyId
+    {
+        self::$DENYREALTIMEGUESTS ??= new ProjectPolicyId('deny-realtime-guests');
+
+        return self::$DENYREALTIMEGUESTS;
+    }
     public static function PASSKEY(): ProjectPolicyId
     {
         self::$PASSKEY ??= new ProjectPolicyId('passkey');
@@ -171,6 +178,7 @@ class ProjectPolicyId implements JsonSerializable, Stringable
             'deny-disposable-email' => self::DENYDISPOSABLEEMAIL(),
             'deny-free-email' => self::DENYFREEEMAIL(),
             'deny-corporate-email' => self::DENYCORPORATEEMAIL(),
+            'deny-realtime-guests' => self::DENYREALTIMEGUESTS(),
             'passkey' => self::PASSKEY(),
             default => throw new \InvalidArgumentException('Unknown ProjectPolicyId value: ' . $value),
         };

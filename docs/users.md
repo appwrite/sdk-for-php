@@ -139,10 +139,10 @@ POST https://cloud.appwrite.io/v1/users/scrypt
 | email | string | User email. |  |
 | password | string | User password hashed using Scrypt. |  |
 | passwordSalt | string | Optional salt used to hash password. |  |
-| passwordCpu | integer | Optional CPU cost used to hash password. |  |
-| passwordMemory | integer | Optional memory cost used to hash password. |  |
-| passwordParallel | integer | Optional parallelization cost used to hash password. |  |
-| passwordLength | integer | Optional hash length used to hash password. |  |
+| passwordCpu | integer | Optional CPU cost used to hash password. Must be a power of two, at most 65536. |  |
+| passwordMemory | integer | Optional memory cost used to hash password. Maximum is 16. |  |
+| passwordParallel | integer | Optional parallelization cost used to hash password. Maximum is 4. |  |
+| passwordLength | integer | Optional hash length used to hash password. Must be between 16 and 128. |  |
 | name | string | User name. Max length: 128 chars. |  |
 
 

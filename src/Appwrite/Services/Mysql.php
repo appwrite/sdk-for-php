@@ -173,7 +173,7 @@ class Mysql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/mysql/{databaseId}'
         );
 
@@ -214,7 +214,7 @@ class Mysql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/mysql/{databaseId}'
         );
 
@@ -276,7 +276,7 @@ class Mysql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/mysql/{databaseId}'
         );
 
@@ -310,7 +310,7 @@ class Mysql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/mysql/{databaseId}/backups'
         );
 
@@ -357,7 +357,7 @@ class Mysql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/mysql/{databaseId}/backups'
         );
 
@@ -400,7 +400,7 @@ class Mysql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/mysql/{databaseId}/backups/policies'
         );
 
@@ -446,7 +446,7 @@ class Mysql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/mysql/{databaseId}/backups/policies'
         );
 
@@ -501,7 +501,7 @@ class Mysql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{policyId}'],
-            [$databaseId, $policyId],
+            [self::encodePath($databaseId), self::encodePath($policyId)],
             '/mysql/{databaseId}/backups/policies/{policyId}'
         );
 
@@ -544,7 +544,7 @@ class Mysql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{policyId}'],
-            [$databaseId, $policyId],
+            [self::encodePath($databaseId), self::encodePath($policyId)],
             '/mysql/{databaseId}/backups/policies/{policyId}'
         );
 
@@ -596,7 +596,7 @@ class Mysql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{policyId}'],
-            [$databaseId, $policyId],
+            [self::encodePath($databaseId), self::encodePath($policyId)],
             '/mysql/{databaseId}/backups/policies/{policyId}'
         );
 
@@ -632,7 +632,7 @@ class Mysql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/mysql/{databaseId}/backups/storage'
         );
 
@@ -692,7 +692,7 @@ class Mysql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{backupId}'],
-            [$databaseId, $backupId],
+            [self::encodePath($databaseId), self::encodePath($backupId)],
             '/mysql/{databaseId}/backups/{backupId}'
         );
 
@@ -736,7 +736,7 @@ class Mysql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{backupId}'],
-            [$databaseId, $backupId],
+            [self::encodePath($databaseId), self::encodePath($backupId)],
             '/mysql/{databaseId}/backups/{backupId}'
         );
 
@@ -771,7 +771,7 @@ class Mysql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/mysql/{databaseId}/branches'
         );
 
@@ -813,7 +813,7 @@ class Mysql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/mysql/{databaseId}/branches'
         );
 
@@ -866,7 +866,7 @@ class Mysql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{branchId}'],
-            [$databaseId, $branchId],
+            [self::encodePath($databaseId), self::encodePath($branchId)],
             '/mysql/{databaseId}/branches/{branchId}'
         );
 
@@ -909,7 +909,7 @@ class Mysql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/mysql/{databaseId}/credentials'
         );
 
@@ -960,7 +960,7 @@ class Mysql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/mysql/{databaseId}/executions'
         );
 
@@ -1010,7 +1010,7 @@ class Mysql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/mysql/{databaseId}/failovers'
         );
 
@@ -1052,7 +1052,7 @@ class Mysql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/mysql/{databaseId}/maintenance'
         );
 
@@ -1096,7 +1096,7 @@ class Mysql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/mysql/{databaseId}/migrations'
         );
 
@@ -1140,7 +1140,7 @@ class Mysql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/mysql/{databaseId}/operations'
         );
 
@@ -1191,7 +1191,7 @@ class Mysql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/mysql/{databaseId}/pitr'
         );
 
@@ -1230,7 +1230,7 @@ class Mysql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/mysql/{databaseId}/pooler'
         );
 
@@ -1269,7 +1269,7 @@ class Mysql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/mysql/{databaseId}/pooler'
         );
 
@@ -1317,7 +1317,7 @@ class Mysql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/mysql/{databaseId}/replicas'
         );
 
@@ -1356,7 +1356,7 @@ class Mysql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/mysql/{databaseId}/restorations'
         );
 
@@ -1424,7 +1424,7 @@ class Mysql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/mysql/{databaseId}/restorations'
         );
 
@@ -1481,7 +1481,7 @@ class Mysql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{restorationId}'],
-            [$databaseId, $restorationId],
+            [self::encodePath($databaseId), self::encodePath($restorationId)],
             '/mysql/{databaseId}/restorations/{restorationId}'
         );
 
@@ -1529,7 +1529,7 @@ class Mysql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{restorationId}'],
-            [$databaseId, $restorationId],
+            [self::encodePath($databaseId), self::encodePath($restorationId)],
             '/mysql/{databaseId}/restorations/{restorationId}/promotions'
         );
 
@@ -1571,7 +1571,7 @@ class Mysql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/mysql/{databaseId}/status'
         );
 
@@ -1610,7 +1610,7 @@ class Mysql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/mysql/{databaseId}/upgrades'
         );
 

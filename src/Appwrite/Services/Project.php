@@ -89,7 +89,7 @@ class Project extends Service
     {
         $apiPath = str_replace(
             ['{methodId}'],
-            [(string) $methodId],
+            [self::encodePath((string) $methodId)],
             '/project/auth-methods/{methodId}'
         );
 
@@ -209,7 +209,7 @@ class Project extends Service
 
         $apiPath = str_replace(
             ['{environmentId}'],
-            [$environmentId],
+            [self::encodePath($environmentId)],
             '/project/environments/{environmentId}'
         );
 
@@ -247,7 +247,7 @@ class Project extends Service
 
         $apiPath = str_replace(
             ['{environmentId}'],
-            [$environmentId],
+            [self::encodePath($environmentId)],
             '/project/environments/{environmentId}'
         );
 
@@ -287,7 +287,7 @@ class Project extends Service
 
         $apiPath = str_replace(
             ['{environmentId}'],
-            [$environmentId],
+            [self::encodePath($environmentId)],
             '/project/environments/{environmentId}'
         );
 
@@ -401,7 +401,7 @@ class Project extends Service
 
         $apiPath = str_replace(
             ['{keyId}'],
-            [$keyId],
+            [self::encodePath($keyId)],
             '/project/keys/{keyId}'
         );
 
@@ -440,7 +440,7 @@ class Project extends Service
 
         $apiPath = str_replace(
             ['{keyId}'],
-            [$keyId],
+            [self::encodePath($keyId)],
             '/project/keys/{keyId}'
         );
 
@@ -484,7 +484,7 @@ class Project extends Service
 
         $apiPath = str_replace(
             ['{keyId}'],
-            [$keyId],
+            [self::encodePath($keyId)],
             '/project/keys/{keyId}'
         );
 
@@ -633,7 +633,7 @@ class Project extends Service
 
         $apiPath = str_replace(
             ['{number}'],
-            [$number],
+            [self::encodePath($number)],
             '/project/mock-phones/{number}'
         );
 
@@ -672,7 +672,7 @@ class Project extends Service
 
         $apiPath = str_replace(
             ['{number}'],
-            [$number],
+            [self::encodePath($number)],
             '/project/mock-phones/{number}'
         );
 
@@ -713,7 +713,7 @@ class Project extends Service
 
         $apiPath = str_replace(
             ['{number}'],
-            [$number],
+            [self::encodePath($number)],
             '/project/mock-phones/{number}'
         );
 
@@ -2697,7 +2697,7 @@ class Project extends Service
     {
         $apiPath = str_replace(
             ['{providerId}'],
-            [(string) $providerId],
+            [self::encodePath((string) $providerId)],
             '/project/oauth2/{providerId}'
         );
 
@@ -3005,7 +3005,7 @@ class Project extends Service
 
         $apiPath = str_replace(
             ['{platformId}'],
-            [$platformId],
+            [self::encodePath($platformId)],
             '/project/platforms/android/{platformId}'
         );
 
@@ -3087,7 +3087,7 @@ class Project extends Service
 
         $apiPath = str_replace(
             ['{platformId}'],
-            [$platformId],
+            [self::encodePath($platformId)],
             '/project/platforms/apple/{platformId}'
         );
 
@@ -3168,7 +3168,7 @@ class Project extends Service
 
         $apiPath = str_replace(
             ['{platformId}'],
-            [$platformId],
+            [self::encodePath($platformId)],
             '/project/platforms/linux/{platformId}'
         );
 
@@ -3249,7 +3249,7 @@ class Project extends Service
 
         $apiPath = str_replace(
             ['{platformId}'],
-            [$platformId],
+            [self::encodePath($platformId)],
             '/project/platforms/web/{platformId}'
         );
 
@@ -3330,7 +3330,7 @@ class Project extends Service
 
         $apiPath = str_replace(
             ['{platformId}'],
-            [$platformId],
+            [self::encodePath($platformId)],
             '/project/platforms/windows/{platformId}'
         );
 
@@ -3372,7 +3372,7 @@ class Project extends Service
 
         $apiPath = str_replace(
             ['{platformId}'],
-            [$platformId],
+            [self::encodePath($platformId)],
             '/project/platforms/{platformId}'
         );
 
@@ -3431,7 +3431,7 @@ class Project extends Service
 
         $apiPath = str_replace(
             ['{platformId}'],
-            [$platformId],
+            [self::encodePath($platformId)],
             '/project/platforms/{platformId}'
         );
 
@@ -3612,6 +3612,43 @@ class Project extends Service
             [],
             [],
             '/project/policies/deny-free-email'
+        );
+
+        $apiParams = [];
+        $apiParams['enabled'] = $enabled;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Project::from($response);
+    }
+
+    /**
+     * Configures if guests, connections without a signed-in user, may subscribe
+     * to realtime channels. When enabled, a guest can still connect and sign in
+     * over the connection, but cannot subscribe until it does.
+     *
+     * @throws AppwriteException
+     */
+    public function updateDenyRealtimeGuestsPolicy(bool $enabled): \Appwrite\Models\Project
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/project/policies/deny-realtime-guests'
         );
 
         $apiParams = [];
@@ -4270,11 +4307,11 @@ class Project extends Service
      *
      * @throws AppwriteException
      */
-    public function getPolicy(ProjectPolicyId $policyId): \Appwrite\Models\PolicyPasswordDictionary|\Appwrite\Models\PolicyPasswordHistory|\Appwrite\Models\PolicyPasswordStrength|\Appwrite\Models\PolicyPasswordPersonalData|\Appwrite\Models\PolicyPasswordPwned|\Appwrite\Models\PolicyPasswordRotation|\Appwrite\Models\PolicySessionAlert|\Appwrite\Models\PolicySessionDuration|\Appwrite\Models\PolicySessionInvalidation|\Appwrite\Models\PolicySessionLimit|\Appwrite\Models\PolicyUserLimit|\Appwrite\Models\PolicyMembershipPrivacy|\Appwrite\Models\PolicyMfaFactors|\Appwrite\Models\PolicyDenyAliasedEmail|\Appwrite\Models\PolicyDenyDisposableEmail|\Appwrite\Models\PolicyDenyFreeEmail|\Appwrite\Models\PolicyDenyCorporateEmail|\Appwrite\Models\PolicyPasskey
+    public function getPolicy(ProjectPolicyId $policyId): \Appwrite\Models\PolicyPasswordDictionary|\Appwrite\Models\PolicyPasswordHistory|\Appwrite\Models\PolicyPasswordStrength|\Appwrite\Models\PolicyPasswordPersonalData|\Appwrite\Models\PolicyPasswordPwned|\Appwrite\Models\PolicyPasswordRotation|\Appwrite\Models\PolicySessionAlert|\Appwrite\Models\PolicySessionDuration|\Appwrite\Models\PolicySessionInvalidation|\Appwrite\Models\PolicySessionLimit|\Appwrite\Models\PolicyUserLimit|\Appwrite\Models\PolicyMembershipPrivacy|\Appwrite\Models\PolicyMfaFactors|\Appwrite\Models\PolicyDenyAliasedEmail|\Appwrite\Models\PolicyDenyDisposableEmail|\Appwrite\Models\PolicyDenyFreeEmail|\Appwrite\Models\PolicyDenyCorporateEmail|\Appwrite\Models\PolicyDenyRealtimeGuests|\Appwrite\Models\PolicyPasskey
     {
         $apiPath = str_replace(
             ['{policyId}'],
-            [(string) $policyId],
+            [self::encodePath((string) $policyId)],
             '/project/policies/{policyId}'
         );
 
@@ -4364,6 +4401,10 @@ class Project extends Service
             return \Appwrite\Models\PolicyDenyCorporateEmail::from($response);
         }
 
+        if (($response['$id'] ?? null) === 'deny-realtime-guests') {
+            return \Appwrite\Models\PolicyDenyRealtimeGuests::from($response);
+        }
+
         if (($response['$id'] ?? null) === 'passkey') {
             return \Appwrite\Models\PolicyPasskey::from($response);
         }
@@ -4381,7 +4422,7 @@ class Project extends Service
     {
         $apiPath = str_replace(
             ['{protocolId}'],
-            [(string) $protocolId],
+            [self::encodePath((string) $protocolId)],
             '/project/protocols/{protocolId}'
         );
 
@@ -4418,7 +4459,7 @@ class Project extends Service
     {
         $apiPath = str_replace(
             ['{serviceId}'],
-            [(string) $serviceId],
+            [self::encodePath((string) $serviceId)],
             '/project/services/{serviceId}'
         );
 
@@ -4443,6 +4484,37 @@ class Project extends Service
         }
 
         return \Appwrite\Models\Project::from($response);
+    }
+
+    /**
+     * Delete all sessions in the project. Any session created before this request
+     * will be invalidated immediately: users will be signed out of every active
+     * client (web, mobile, server SDKs, JWTs), and will be able to sign in again
+     * afterwards. API keys are not affected by this action.
+     *
+     * @throws AppwriteException
+     */
+    public function deleteSessions(): string
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/project/sessions'
+        );
+
+        $apiParams = [];
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_DELETE,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
     }
 
     /**
@@ -4620,7 +4692,7 @@ class Project extends Service
     {
         $apiPath = str_replace(
             ['{templateId}'],
-            [(string) $templateId],
+            [self::encodePath((string) $templateId)],
             '/project/templates/email/{templateId}'
         );
 
@@ -4749,7 +4821,7 @@ class Project extends Service
 
         $apiPath = str_replace(
             ['{variableId}'],
-            [$variableId],
+            [self::encodePath($variableId)],
             '/project/variables/{variableId}'
         );
 
@@ -4787,7 +4859,7 @@ class Project extends Service
 
         $apiPath = str_replace(
             ['{variableId}'],
-            [$variableId],
+            [self::encodePath($variableId)],
             '/project/variables/{variableId}'
         );
 
@@ -4830,7 +4902,7 @@ class Project extends Service
 
         $apiPath = str_replace(
             ['{variableId}'],
-            [$variableId],
+            [self::encodePath($variableId)],
             '/project/variables/{variableId}'
         );
 

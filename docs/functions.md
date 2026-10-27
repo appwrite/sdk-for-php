@@ -47,7 +47,7 @@ POST https://cloud.appwrite.io/v1/functions
 | providerPaths | array | List of file path patterns to trigger automatic deployments. Supports wildcards. Leave empty to deploy on all file changes. | [] |
 | buildSpecification | string | Build specification for the function deployments. | [] |
 | runtimeSpecification | string | Runtime specification for the function executions. | [] |
-| deploymentRetention | integer | Days to keep non-active deployments before deletion. Value 0 means all deployments will be kept. | 0 |
+| deploymentRetention | integer | Days to keep non-active deployments before deletion. Value 0 keeps all deployments unless the server applies a default retention. | 0 |
 | interval | integer | Minutes between scheduled executions. Appwrite picks when within each interval the function runs. Use 0 to disable. Cannot be combined with schedule. | 0 |
 | description | string | Optional description for the function. |  |
 
@@ -123,7 +123,7 @@ PUT https://cloud.appwrite.io/v1/functions/{functionId}
 | providerPaths | array | List of file path patterns to trigger automatic deployments. Supports wildcards. Leave empty to deploy on all file changes. |  |
 | buildSpecification | string | Build specification for the function deployments. |  |
 | runtimeSpecification | string | Runtime specification for the function executions. |  |
-| deploymentRetention | integer | Days to keep non-active deployments before deletion. Value 0 means all deployments will be kept. | 0 |
+| deploymentRetention | integer | Days to keep non-active deployments before deletion. Value 0 keeps all deployments unless the server applies a default retention. | 0 |
 | interval | integer | Minutes between scheduled executions. Appwrite picks when within each interval the function runs. Use 0 to disable. Cannot be combined with schedule. When omitted, the current interval is kept unless schedule is set. |  |
 | description | string | Optional description for the function. |  |
 | emailEnabled | boolean | Enable inbound email triggering for this function. When false or omitted on create, SMTP recipients are rejected. Opt-in; default is off. |  |

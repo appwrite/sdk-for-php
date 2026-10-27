@@ -233,7 +233,7 @@ class DocumentsDB extends Service
 
         $apiPath = str_replace(
             ['{transactionId}'],
-            [$transactionId],
+            [self::encodePath($transactionId)],
             '/documentsdb/transactions/{transactionId}'
         );
 
@@ -271,7 +271,7 @@ class DocumentsDB extends Service
 
         $apiPath = str_replace(
             ['{transactionId}'],
-            [$transactionId],
+            [self::encodePath($transactionId)],
             '/documentsdb/transactions/{transactionId}'
         );
 
@@ -318,7 +318,7 @@ class DocumentsDB extends Service
 
         $apiPath = str_replace(
             ['{transactionId}'],
-            [$transactionId],
+            [self::encodePath($transactionId)],
             '/documentsdb/transactions/{transactionId}'
         );
 
@@ -351,7 +351,7 @@ class DocumentsDB extends Service
 
         $apiPath = str_replace(
             ['{transactionId}'],
-            [$transactionId],
+            [self::encodePath($transactionId)],
             '/documentsdb/transactions/{transactionId}/operations'
         );
 
@@ -395,7 +395,7 @@ class DocumentsDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/documentsdb/{databaseId}'
         );
 
@@ -433,7 +433,7 @@ class DocumentsDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/documentsdb/{databaseId}'
         );
 
@@ -482,7 +482,7 @@ class DocumentsDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/documentsdb/{databaseId}'
         );
 
@@ -516,7 +516,7 @@ class DocumentsDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/documentsdb/{databaseId}/collections'
         );
 
@@ -569,7 +569,7 @@ class DocumentsDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/documentsdb/{databaseId}/collections'
         );
 
@@ -636,7 +636,7 @@ class DocumentsDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
-            [$databaseId, $collectionId],
+            [self::encodePath($databaseId), self::encodePath($collectionId)],
             '/documentsdb/{databaseId}/collections/{collectionId}'
         );
 
@@ -679,7 +679,7 @@ class DocumentsDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
-            [$databaseId, $collectionId],
+            [self::encodePath($databaseId), self::encodePath($collectionId)],
             '/documentsdb/{databaseId}/collections/{collectionId}'
         );
 
@@ -742,7 +742,7 @@ class DocumentsDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
-            [$databaseId, $collectionId],
+            [self::encodePath($databaseId), self::encodePath($collectionId)],
             '/documentsdb/{databaseId}/collections/{collectionId}'
         );
 
@@ -781,7 +781,7 @@ class DocumentsDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
-            [$databaseId, $collectionId],
+            [self::encodePath($databaseId), self::encodePath($collectionId)],
             '/documentsdb/{databaseId}/collections/{collectionId}/documents'
         );
 
@@ -843,7 +843,7 @@ class DocumentsDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
-            [$databaseId, $collectionId],
+            [self::encodePath($databaseId), self::encodePath($collectionId)],
             '/documentsdb/{databaseId}/collections/{collectionId}/documents'
         );
 
@@ -900,7 +900,7 @@ class DocumentsDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
-            [$databaseId, $collectionId],
+            [self::encodePath($databaseId), self::encodePath($collectionId)],
             '/documentsdb/{databaseId}/collections/{collectionId}/documents'
         );
 
@@ -952,7 +952,7 @@ class DocumentsDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
-            [$databaseId, $collectionId],
+            [self::encodePath($databaseId), self::encodePath($collectionId)],
             '/documentsdb/{databaseId}/collections/{collectionId}/documents'
         );
 
@@ -1003,7 +1003,7 @@ class DocumentsDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
-            [$databaseId, $collectionId],
+            [self::encodePath($databaseId), self::encodePath($collectionId)],
             '/documentsdb/{databaseId}/collections/{collectionId}/documents'
         );
 
@@ -1060,7 +1060,7 @@ class DocumentsDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
-            [$databaseId, $collectionId],
+            [self::encodePath($databaseId), self::encodePath($collectionId)],
             '/documentsdb/{databaseId}/collections/{collectionId}/documents'
         );
 
@@ -1115,7 +1115,7 @@ class DocumentsDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
-            [$databaseId, $collectionId],
+            [self::encodePath($databaseId), self::encodePath($collectionId)],
             '/documentsdb/{databaseId}/collections/{collectionId}/documents/query'
         );
 
@@ -1180,7 +1180,7 @@ class DocumentsDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{documentId}'],
-            [$databaseId, $collectionId, $documentId],
+            [self::encodePath($databaseId), self::encodePath($collectionId), self::encodePath($documentId)],
             '/documentsdb/{databaseId}/collections/{collectionId}/documents/{documentId}'
         );
 
@@ -1239,7 +1239,7 @@ class DocumentsDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{documentId}'],
-            [$databaseId, $collectionId, $documentId],
+            [self::encodePath($databaseId), self::encodePath($collectionId), self::encodePath($documentId)],
             '/documentsdb/{databaseId}/collections/{collectionId}/documents/{documentId}'
         );
 
@@ -1301,7 +1301,7 @@ class DocumentsDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{documentId}'],
-            [$databaseId, $collectionId, $documentId],
+            [self::encodePath($databaseId), self::encodePath($collectionId), self::encodePath($documentId)],
             '/documentsdb/{databaseId}/collections/{collectionId}/documents/{documentId}'
         );
 
@@ -1362,7 +1362,7 @@ class DocumentsDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{documentId}'],
-            [$databaseId, $collectionId, $documentId],
+            [self::encodePath($databaseId), self::encodePath($collectionId), self::encodePath($documentId)],
             '/documentsdb/{databaseId}/collections/{collectionId}/documents/{documentId}'
         );
 
@@ -1413,7 +1413,7 @@ class DocumentsDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{documentId}', '{attribute}'],
-            [$databaseId, $collectionId, $documentId, $attribute],
+            [self::encodePath($databaseId), self::encodePath($collectionId), self::encodePath($documentId), self::encodePath($attribute)],
             '/documentsdb/{databaseId}/collections/{collectionId}/documents/{documentId}/{attribute}/decrement'
         );
 
@@ -1479,7 +1479,7 @@ class DocumentsDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{documentId}', '{attribute}'],
-            [$databaseId, $collectionId, $documentId, $attribute],
+            [self::encodePath($databaseId), self::encodePath($collectionId), self::encodePath($documentId), self::encodePath($attribute)],
             '/documentsdb/{databaseId}/collections/{collectionId}/documents/{documentId}/{attribute}/increment'
         );
 
@@ -1537,7 +1537,7 @@ class DocumentsDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
-            [$databaseId, $collectionId],
+            [self::encodePath($databaseId), self::encodePath($collectionId)],
             '/documentsdb/{databaseId}/collections/{collectionId}/indexes'
         );
 
@@ -1590,7 +1590,7 @@ class DocumentsDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
-            [$databaseId, $collectionId],
+            [self::encodePath($databaseId), self::encodePath($collectionId)],
             '/documentsdb/{databaseId}/collections/{collectionId}/indexes'
         );
 
@@ -1653,7 +1653,7 @@ class DocumentsDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{key}'],
-            [$databaseId, $collectionId, $key],
+            [self::encodePath($databaseId), self::encodePath($collectionId), self::encodePath($key)],
             '/documentsdb/{databaseId}/collections/{collectionId}/indexes/{key}'
         );
 
@@ -1701,7 +1701,7 @@ class DocumentsDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{key}'],
-            [$databaseId, $collectionId, $key],
+            [self::encodePath($databaseId), self::encodePath($collectionId), self::encodePath($key)],
             '/documentsdb/{databaseId}/collections/{collectionId}/indexes/{key}'
         );
 
@@ -1744,7 +1744,7 @@ class DocumentsDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/documentsdb/{databaseId}/failovers'
         );
 
@@ -1787,7 +1787,7 @@ class DocumentsDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/documentsdb/{databaseId}/operations'
         );
 
@@ -1838,7 +1838,7 @@ class DocumentsDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/documentsdb/{databaseId}/replicas'
         );
 
@@ -1878,7 +1878,7 @@ class DocumentsDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/documentsdb/{databaseId}/status'
         );
 

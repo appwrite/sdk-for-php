@@ -6,16 +6,22 @@ namespace Appwrite\Services;
 
 use Appwrite\Client;
 use Mockery;
+use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
 use Appwrite\Enums\Framework;
 use Appwrite\Enums\BuildRuntime;
+use Appwrite\Enums\Adapter;
+use Appwrite\Enums\ProjectKeyScopes;
 use Appwrite\InputFile;
 use Appwrite\Enums\TemplateReferenceType;
 use Appwrite\Enums\VCSReferenceType;
+use Appwrite\Enums\DeploymentDownloadType;
 
 final class SitesTest extends TestCase
 {
+    use MockeryPHPUnitIntegration;
+
     private Client&MockInterface $client;
     private Sites $sites;
 
@@ -84,13 +90,32 @@ final class SitesTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/sites',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['queries', 'search', 'total'], array_keys($params));
+                    $expected = [
+                        'queries' => [],
+                        'search' => "<SEARCH>",
+                        'total' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->sites->list();
+        $response = $this->sites->list(
+            queries: [],
+            search: "<SEARCH>",
+            total: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\SiteList::class, $response);
     }
@@ -148,7 +173,44 @@ final class SitesTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/sites',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['siteId', 'name', 'framework', 'buildRuntime', 'enabled', 'logging', 'timeout', 'installCommand', 'buildCommand', 'startCommand', 'outputDirectory', 'adapter', 'installationId', 'fallbackFile', 'providerRepositoryId', 'providerBranch', 'providerSilentMode', 'providerRootDirectory', 'providerBranches', 'providerPaths', 'buildSpecification', 'runtimeSpecification', 'deploymentRetention', 'scopes', 'description'], array_keys($params));
+                    $expected = [
+                        'siteId' => "<SITE_ID>",
+                        'name' => "<NAME>",
+                        'framework' => Framework::ANALOG(),
+                        'buildRuntime' => BuildRuntime::NODE145(),
+                        'enabled' => false,
+                        'logging' => false,
+                        'timeout' => 1,
+                        'installCommand' => "<INSTALL_COMMAND>",
+                        'buildCommand' => "<BUILD_COMMAND>",
+                        'startCommand' => "<START_COMMAND>",
+                        'outputDirectory' => "<OUTPUT_DIRECTORY>",
+                        'adapter' => Adapter::STATIC(),
+                        'installationId' => "<INSTALLATION_ID>",
+                        'fallbackFile' => "<FALLBACK_FILE>",
+                        'providerRepositoryId' => "<PROVIDER_REPOSITORY_ID>",
+                        'providerBranch' => "<PROVIDER_BRANCH>",
+                        'providerSilentMode' => false,
+                        'providerRootDirectory' => "<PROVIDER_ROOT_DIRECTORY>",
+                        'providerBranches' => [],
+                        'providerPaths' => [],
+                        'buildSpecification' => "s-1vcpu-512mb",
+                        'runtimeSpecification' => "s-1vcpu-512mb",
+                        'deploymentRetention' => 1,
+                        'scopes' => [ProjectKeyScopes::PROJECTREAD()],
+                        'description' => "<DESCRIPTION>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -158,7 +220,28 @@ final class SitesTest extends TestCase
             "<SITE_ID>",
             "<NAME>",
             Framework::ANALOG(),
-            BuildRuntime::NODE145()
+            BuildRuntime::NODE145(),
+            enabled: false,
+            logging: false,
+            timeout: 1,
+            installCommand: "<INSTALL_COMMAND>",
+            buildCommand: "<BUILD_COMMAND>",
+            startCommand: "<START_COMMAND>",
+            outputDirectory: "<OUTPUT_DIRECTORY>",
+            adapter: Adapter::STATIC(),
+            installationId: "<INSTALLATION_ID>",
+            fallbackFile: "<FALLBACK_FILE>",
+            providerRepositoryId: "<PROVIDER_REPOSITORY_ID>",
+            providerBranch: "<PROVIDER_BRANCH>",
+            providerSilentMode: false,
+            providerRootDirectory: "<PROVIDER_ROOT_DIRECTORY>",
+            providerBranches: [],
+            providerPaths: [],
+            buildSpecification: "s-1vcpu-512mb",
+            runtimeSpecification: "s-1vcpu-512mb",
+            deploymentRetention: 1,
+            scopes: [ProjectKeyScopes::PROJECTREAD()],
+            description: "<DESCRIPTION>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Site::class, $response);
@@ -186,13 +269,28 @@ final class SitesTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/sites/frameworks',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['total'], array_keys($params));
+                    $expected = [
+                        'total' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->sites->listFrameworks();
+        $response = $this->sites->listFrameworks(
+            total: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\FrameworkList::class, $response);
     }
@@ -211,13 +309,30 @@ final class SitesTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/sites/specifications',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['type', 'total'], array_keys($params));
+                    $expected = [
+                        'type' => "runtimes",
+                        'total' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->sites->listSpecifications();
+        $response = $this->sites->listSpecifications(
+            type: "runtimes",
+            total: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\SpecificationList::class, $response);
     }
@@ -275,7 +390,20 @@ final class SitesTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/sites/%3CSITE_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['siteId'], array_keys($params));
+                    $expected = [
+                        'siteId' => "<SITE_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -341,7 +469,44 @@ final class SitesTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PUT',
+                '/sites/%3CSITE_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['siteId', 'name', 'framework', 'enabled', 'logging', 'timeout', 'installCommand', 'buildCommand', 'startCommand', 'outputDirectory', 'buildRuntime', 'adapter', 'fallbackFile', 'installationId', 'providerRepositoryId', 'providerBranch', 'providerSilentMode', 'providerRootDirectory', 'providerBranches', 'providerPaths', 'buildSpecification', 'runtimeSpecification', 'deploymentRetention', 'scopes', 'description'], array_keys($params));
+                    $expected = [
+                        'siteId' => "<SITE_ID>",
+                        'name' => "<NAME>",
+                        'framework' => Framework::ANALOG(),
+                        'enabled' => false,
+                        'logging' => false,
+                        'timeout' => 1,
+                        'installCommand' => "<INSTALL_COMMAND>",
+                        'buildCommand' => "<BUILD_COMMAND>",
+                        'startCommand' => "<START_COMMAND>",
+                        'outputDirectory' => "<OUTPUT_DIRECTORY>",
+                        'buildRuntime' => BuildRuntime::NODE145(),
+                        'adapter' => Adapter::STATIC(),
+                        'fallbackFile' => "<FALLBACK_FILE>",
+                        'installationId' => "<INSTALLATION_ID>",
+                        'providerRepositoryId' => "<PROVIDER_REPOSITORY_ID>",
+                        'providerBranch' => "<PROVIDER_BRANCH>",
+                        'providerSilentMode' => false,
+                        'providerRootDirectory' => "<PROVIDER_ROOT_DIRECTORY>",
+                        'providerBranches' => [],
+                        'providerPaths' => [],
+                        'buildSpecification' => "s-1vcpu-512mb",
+                        'runtimeSpecification' => "s-1vcpu-512mb",
+                        'deploymentRetention' => 1,
+                        'scopes' => [ProjectKeyScopes::PROJECTREAD()],
+                        'description' => "<DESCRIPTION>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -350,7 +515,29 @@ final class SitesTest extends TestCase
         $response = $this->sites->update(
             "<SITE_ID>",
             "<NAME>",
-            Framework::ANALOG()
+            Framework::ANALOG(),
+            enabled: false,
+            logging: false,
+            timeout: 1,
+            installCommand: "<INSTALL_COMMAND>",
+            buildCommand: "<BUILD_COMMAND>",
+            startCommand: "<START_COMMAND>",
+            outputDirectory: "<OUTPUT_DIRECTORY>",
+            buildRuntime: BuildRuntime::NODE145(),
+            adapter: Adapter::STATIC(),
+            fallbackFile: "<FALLBACK_FILE>",
+            installationId: "<INSTALLATION_ID>",
+            providerRepositoryId: "<PROVIDER_REPOSITORY_ID>",
+            providerBranch: "<PROVIDER_BRANCH>",
+            providerSilentMode: false,
+            providerRootDirectory: "<PROVIDER_ROOT_DIRECTORY>",
+            providerBranches: [],
+            providerPaths: [],
+            buildSpecification: "s-1vcpu-512mb",
+            runtimeSpecification: "s-1vcpu-512mb",
+            deploymentRetention: 1,
+            scopes: [ProjectKeyScopes::PROJECTREAD()],
+            description: "<DESCRIPTION>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Site::class, $response);
@@ -360,7 +547,20 @@ final class SitesTest extends TestCase
         $data = '';
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'DELETE',
+                '/sites/%3CSITE_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['siteId'], array_keys($params));
+                    $expected = [
+                        'siteId' => "<SITE_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -426,7 +626,21 @@ final class SitesTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/sites/%3CSITE_ID%3E/deployment',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['siteId', 'deploymentId'], array_keys($params));
+                    $expected = [
+                        'siteId' => "<SITE_ID>",
+                        'deploymentId' => "<DEPLOYMENT_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -477,14 +691,33 @@ final class SitesTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/sites/%3CSITE_ID%3E/deployments',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['siteId', 'queries', 'search', 'total'], array_keys($params));
+                    $expected = [
+                        'siteId' => "<SITE_ID>",
+                        'queries' => [],
+                        'search' => "<SEARCH>",
+                        'total' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->sites->listDeployments(
-            "<SITE_ID>"
+            "<SITE_ID>",
+            queries: [],
+            search: "<SEARCH>",
+            total: false
         );
 
         $this->assertInstanceOf(\Appwrite\Models\DeploymentList::class, $response);
@@ -522,7 +755,24 @@ final class SitesTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/sites/%3CSITE_ID%3E/deployments',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['siteId', 'code', 'installCommand', 'buildCommand', 'outputDirectory', 'activate'], array_keys($params));
+                    $expected = [
+                        'siteId' => "<SITE_ID>",
+                        'installCommand' => "<INSTALL_COMMAND>",
+                        'buildCommand' => "<BUILD_COMMAND>",
+                        'outputDirectory' => "<OUTPUT_DIRECTORY>",
+                        'activate' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -530,7 +780,11 @@ final class SitesTest extends TestCase
 
         $response = $this->sites->createDeployment(
             "<SITE_ID>",
-            InputFile::withData('', 'image/png')
+            InputFile::withData('', 'image/png'),
+            installCommand: "<INSTALL_COMMAND>",
+            buildCommand: "<BUILD_COMMAND>",
+            outputDirectory: "<OUTPUT_DIRECTORY>",
+            activate: false
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Deployment::class, $response);
@@ -568,7 +822,21 @@ final class SitesTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/sites/%3CSITE_ID%3E/deployments/duplicate',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['siteId', 'deploymentId'], array_keys($params));
+                    $expected = [
+                        'siteId' => "<SITE_ID>",
+                        'deploymentId' => "<DEPLOYMENT_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -614,7 +882,26 @@ final class SitesTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/sites/%3CSITE_ID%3E/deployments/template',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['siteId', 'repository', 'owner', 'rootDirectory', 'type', 'reference', 'activate'], array_keys($params));
+                    $expected = [
+                        'siteId' => "<SITE_ID>",
+                        'repository' => "<REPOSITORY>",
+                        'owner' => "<OWNER>",
+                        'rootDirectory' => "<ROOT_DIRECTORY>",
+                        'type' => TemplateReferenceType::BRANCH(),
+                        'reference' => "<REFERENCE>",
+                        'activate' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -626,7 +913,8 @@ final class SitesTest extends TestCase
             "<OWNER>",
             "<ROOT_DIRECTORY>",
             TemplateReferenceType::BRANCH(),
-            "<REFERENCE>"
+            "<REFERENCE>",
+            activate: false
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Deployment::class, $response);
@@ -664,7 +952,23 @@ final class SitesTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/sites/%3CSITE_ID%3E/deployments/vcs',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['siteId', 'type', 'reference', 'activate'], array_keys($params));
+                    $expected = [
+                        'siteId' => "<SITE_ID>",
+                        'type' => VCSReferenceType::BRANCH(),
+                        'reference' => "<REFERENCE>",
+                        'activate' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -673,7 +977,8 @@ final class SitesTest extends TestCase
         $response = $this->sites->createVcsDeployment(
             "<SITE_ID>",
             VCSReferenceType::BRANCH(),
-            "<REFERENCE>"
+            "<REFERENCE>",
+            activate: false
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Deployment::class, $response);
@@ -711,7 +1016,21 @@ final class SitesTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/sites/%3CSITE_ID%3E/deployments/%3CDEPLOYMENT_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['siteId', 'deploymentId'], array_keys($params));
+                    $expected = [
+                        'siteId' => "<SITE_ID>",
+                        'deploymentId' => "<DEPLOYMENT_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -729,7 +1048,21 @@ final class SitesTest extends TestCase
         $data = '';
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'DELETE',
+                '/sites/%3CSITE_ID%3E/deployments/%3CDEPLOYMENT_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['siteId', 'deploymentId'], array_keys($params));
+                    $expected = [
+                        'siteId' => "<SITE_ID>",
+                        'deploymentId' => "<DEPLOYMENT_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -747,7 +1080,23 @@ final class SitesTest extends TestCase
         $data = '';
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/sites/%3CSITE_ID%3E/deployments/%3CDEPLOYMENT_ID%3E/download',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['siteId', 'deploymentId', 'type', 'token'], array_keys($params));
+                    $expected = [
+                        'siteId' => "<SITE_ID>",
+                        'deploymentId' => "<DEPLOYMENT_ID>",
+                        'type' => DeploymentDownloadType::SOURCE(),
+                        'token' => "<TOKEN>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -755,7 +1104,9 @@ final class SitesTest extends TestCase
 
         $response = $this->sites->getDeploymentDownload(
             "<SITE_ID>",
-            "<DEPLOYMENT_ID>"
+            "<DEPLOYMENT_ID>",
+            type: DeploymentDownloadType::SOURCE(),
+            token: "<TOKEN>"
         );
 
         $this->assertSame($data, $response);
@@ -793,7 +1144,21 @@ final class SitesTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/sites/%3CSITE_ID%3E/deployments/%3CDEPLOYMENT_ID%3E/status',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['siteId', 'deploymentId'], array_keys($params));
+                    $expected = [
+                        'siteId' => "<SITE_ID>",
+                        'deploymentId' => "<DEPLOYMENT_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -845,14 +1210,31 @@ final class SitesTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/sites/%3CSITE_ID%3E/logs',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['siteId', 'queries', 'total'], array_keys($params));
+                    $expected = [
+                        'siteId' => "<SITE_ID>",
+                        'queries' => [],
+                        'total' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->sites->listLogs(
-            "<SITE_ID>"
+            "<SITE_ID>",
+            queries: [],
+            total: false
         );
 
         $this->assertInstanceOf(\Appwrite\Models\ExecutionList::class, $response);
@@ -891,7 +1273,21 @@ final class SitesTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/sites/%3CSITE_ID%3E/logs/%3CLOG_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['siteId', 'logId'], array_keys($params));
+                    $expected = [
+                        'siteId' => "<SITE_ID>",
+                        'logId' => "<LOG_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -909,7 +1305,21 @@ final class SitesTest extends TestCase
         $data = '';
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'DELETE',
+                '/sites/%3CSITE_ID%3E/logs/%3CLOG_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['siteId', 'logId'], array_keys($params));
+                    $expected = [
+                        'siteId' => "<SITE_ID>",
+                        'logId' => "<LOG_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -942,14 +1352,31 @@ final class SitesTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/sites/%3CSITE_ID%3E/variables',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['siteId', 'queries', 'total'], array_keys($params));
+                    $expected = [
+                        'siteId' => "<SITE_ID>",
+                        'queries' => [],
+                        'total' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->sites->listVariables(
-            "<SITE_ID>"
+            "<SITE_ID>",
+            queries: [],
+            total: false
         );
 
         $this->assertInstanceOf(\Appwrite\Models\VariableList::class, $response);
@@ -969,7 +1396,25 @@ final class SitesTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/sites/%3CSITE_ID%3E/variables',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['siteId', 'variableId', 'key', 'value', 'secret', 'description'], array_keys($params));
+                    $expected = [
+                        'siteId' => "<SITE_ID>",
+                        'variableId' => "<VARIABLE_ID>",
+                        'key' => "<KEY>",
+                        'value' => "<VALUE>",
+                        'secret' => false,
+                        'description' => "<DESCRIPTION>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -979,7 +1424,9 @@ final class SitesTest extends TestCase
             "<SITE_ID>",
             "<VARIABLE_ID>",
             "<KEY>",
-            "<VALUE>"
+            "<VALUE>",
+            secret: false,
+            description: "<DESCRIPTION>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Variable::class, $response);
@@ -999,7 +1446,21 @@ final class SitesTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/sites/%3CSITE_ID%3E/variables/%3CVARIABLE_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['siteId', 'variableId'], array_keys($params));
+                    $expected = [
+                        'siteId' => "<SITE_ID>",
+                        'variableId' => "<VARIABLE_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1027,7 +1488,25 @@ final class SitesTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PUT',
+                '/sites/%3CSITE_ID%3E/variables/%3CVARIABLE_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['siteId', 'variableId', 'key', 'value', 'secret', 'description'], array_keys($params));
+                    $expected = [
+                        'siteId' => "<SITE_ID>",
+                        'variableId' => "<VARIABLE_ID>",
+                        'key' => "<KEY>",
+                        'value' => "<VALUE>",
+                        'secret' => false,
+                        'description' => "<DESCRIPTION>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1035,7 +1514,11 @@ final class SitesTest extends TestCase
 
         $response = $this->sites->updateVariable(
             "<SITE_ID>",
-            "<VARIABLE_ID>"
+            "<VARIABLE_ID>",
+            key: "<KEY>",
+            value: "<VALUE>",
+            secret: false,
+            description: "<DESCRIPTION>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Variable::class, $response);
@@ -1045,7 +1528,21 @@ final class SitesTest extends TestCase
         $data = '';
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'DELETE',
+                '/sites/%3CSITE_ID%3E/variables/%3CVARIABLE_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['siteId', 'variableId'], array_keys($params));
+                    $expected = [
+                        'siteId' => "<SITE_ID>",
+                        'variableId' => "<VARIABLE_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())

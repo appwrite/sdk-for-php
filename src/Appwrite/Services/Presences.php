@@ -69,7 +69,7 @@ class Presences extends Service
 
         $apiPath = str_replace(
             ['{presenceId}'],
-            [$presenceId],
+            [self::encodePath($presenceId)],
             '/presences/{presenceId}'
         );
 
@@ -107,7 +107,7 @@ class Presences extends Service
 
         $apiPath = str_replace(
             ['{presenceId}'],
-            [$presenceId],
+            [self::encodePath($presenceId)],
             '/presences/{presenceId}'
         );
 
@@ -161,7 +161,7 @@ class Presences extends Service
 
         $apiPath = str_replace(
             ['{presenceId}'],
-            [$presenceId],
+            [self::encodePath($presenceId)],
             '/presences/{presenceId}'
         );
 
@@ -221,7 +221,7 @@ class Presences extends Service
 
         $apiPath = str_replace(
             ['{presenceId}'],
-            [$presenceId],
+            [self::encodePath($presenceId)],
             '/presences/{presenceId}'
         );
 

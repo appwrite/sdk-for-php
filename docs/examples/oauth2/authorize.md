@@ -14,7 +14,7 @@ $oauth2 = new Oauth2($client);
 $result = $oauth2->authorize(
     clientId: '<CLIENT_ID>', // optional
     redirectUri: 'https://example.com', // optional
-    responseType: '', // optional
+    responseType: null, // optional
     scope: '<SCOPE>', // optional
     state: '<STATE>', // optional
     nonce: '<NONCE>', // optional

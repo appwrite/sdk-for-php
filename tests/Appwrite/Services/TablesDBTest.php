@@ -6,13 +6,18 @@ namespace Appwrite\Services;
 
 use Appwrite\Client;
 use Mockery;
+use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
 use Appwrite\Enums\RelationshipType;
+use Appwrite\Enums\RelationMutate;
 use Appwrite\Enums\TablesDBIndexType;
+use Appwrite\Enums\OrderBy;
 
 final class TablesDBTest extends TestCase
 {
+    use MockeryPHPUnitIntegration;
+
     private Client&MockInterface $client;
     private TablesDB $tablesDB;
 
@@ -40,13 +45,32 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/tablesdb',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['queries', 'search', 'total'], array_keys($params));
+                    $expected = [
+                        'queries' => [],
+                        'search' => "<SEARCH>",
+                        'total' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->tablesDB->list();
+        $response = $this->tablesDB->list(
+            queries: [],
+            search: "<SEARCH>",
+            total: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\DatabaseList::class, $response);
     }
@@ -63,7 +87,26 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/tablesdb',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'name', 'enabled', 'description', 'specification', 'replicas', 'syncMode'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'name' => "<NAME>",
+                        'enabled' => false,
+                        'description' => "<DESCRIPTION>",
+                        'specification' => "serverless",
+                        'replicas' => 1,
+                        'syncMode' => "async",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -71,7 +114,12 @@ final class TablesDBTest extends TestCase
 
         $response = $this->tablesDB->create(
             "<DATABASE_ID>",
-            "<NAME>"
+            "<NAME>",
+            enabled: false,
+            description: "<DESCRIPTION>",
+            specification: "serverless",
+            replicas: 1,
+            syncMode: "async"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Database::class, $response);
@@ -100,7 +148,16 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/tablesdb/specifications',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame([], array_keys($params));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -127,13 +184,30 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/tablesdb/transactions',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['queries', 'total'], array_keys($params));
+                    $expected = [
+                        'queries' => [],
+                        'total' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->tablesDB->listTransactions();
+        $response = $this->tablesDB->listTransactions(
+            queries: [],
+            total: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\TransactionList::class, $response);
     }
@@ -149,13 +223,28 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/tablesdb/transactions',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['ttl'], array_keys($params));
+                    $expected = [
+                        'ttl' => 1,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->tablesDB->createTransaction();
+        $response = $this->tablesDB->createTransaction(
+            ttl: 1
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\Transaction::class, $response);
     }
@@ -171,7 +260,20 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/tablesdb/transactions/%3CTRANSACTION_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['transactionId'], array_keys($params));
+                    $expected = [
+                        'transactionId' => "<TRANSACTION_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -195,14 +297,31 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/tablesdb/transactions/%3CTRANSACTION_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['transactionId', 'commit', 'rollback'], array_keys($params));
+                    $expected = [
+                        'transactionId' => "<TRANSACTION_ID>",
+                        'commit' => false,
+                        'rollback' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->tablesDB->updateTransaction(
-            "<TRANSACTION_ID>"
+            "<TRANSACTION_ID>",
+            commit: false,
+            rollback: false
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Transaction::class, $response);
@@ -212,7 +331,20 @@ final class TablesDBTest extends TestCase
         $data = '';
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'DELETE',
+                '/tablesdb/transactions/%3CTRANSACTION_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['transactionId'], array_keys($params));
+                    $expected = [
+                        'transactionId' => "<TRANSACTION_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -236,14 +368,29 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/tablesdb/transactions/%3CTRANSACTION_ID%3E/operations',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['transactionId', 'operations'], array_keys($params));
+                    $expected = [
+                        'transactionId' => "<TRANSACTION_ID>",
+                        'operations' => [],
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->tablesDB->createOperations(
-            "<TRANSACTION_ID>"
+            "<TRANSACTION_ID>",
+            operations: []
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Transaction::class, $response);
@@ -261,7 +408,20 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/tablesdb/%3CDATABASE_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -286,14 +446,39 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PUT',
+                '/tablesdb/%3CDATABASE_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'name', 'enabled', 'description', 'specification', 'replicas', 'syncMode'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'name' => "<NAME>",
+                        'enabled' => false,
+                        'description' => "<DESCRIPTION>",
+                        'specification' => "serverless",
+                        'replicas' => 1,
+                        'syncMode' => "async",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->tablesDB->update(
-            "<DATABASE_ID>"
+            "<DATABASE_ID>",
+            name: "<NAME>",
+            enabled: false,
+            description: "<DESCRIPTION>",
+            specification: "serverless",
+            replicas: 1,
+            syncMode: "async"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Database::class, $response);
@@ -303,7 +488,20 @@ final class TablesDBTest extends TestCase
         $data = '';
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'DELETE',
+                '/tablesdb/%3CDATABASE_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -366,14 +564,29 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/tablesdb/%3CDATABASE_ID%3E/failovers',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'targetReplicaId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'targetReplicaId' => "<TARGET_REPLICA_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->tablesDB->createFailover(
-            "<DATABASE_ID>"
+            "<DATABASE_ID>",
+            targetReplicaId: "<TARGET_REPLICA_ID>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\DedicatedDatabase::class, $response);
@@ -406,7 +619,20 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/tablesdb/%3CDATABASE_ID%3E/migrations',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -441,7 +667,22 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/tablesdb/%3CDATABASE_ID%3E/migrations',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'specification', 'autoCutover'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'specification' => "s-1vcpu-1gb",
+                        'autoCutover' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -449,7 +690,8 @@ final class TablesDBTest extends TestCase
 
         $response = $this->tablesDB->createMigration(
             "<DATABASE_ID>",
-            "s-1vcpu-1gb"
+            "s-1vcpu-1gb",
+            autoCutover: false
         );
 
         $this->assertInstanceOf(\Appwrite\Models\DatabaseMigration::class, $response);
@@ -477,7 +719,21 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/tablesdb/%3CDATABASE_ID%3E/migrations/%3CMIGRATION_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'migrationId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'migrationId' => "<MIGRATION_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -495,7 +751,21 @@ final class TablesDBTest extends TestCase
         $data = '';
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'DELETE',
+                '/tablesdb/%3CDATABASE_ID%3E/migrations/%3CMIGRATION_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'migrationId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'migrationId' => "<MIGRATION_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -531,7 +801,21 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/tablesdb/%3CDATABASE_ID%3E/migrations/%3CMIGRATION_ID%3E/cutovers',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'migrationId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'migrationId' => "<MIGRATION_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -563,14 +847,33 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/tablesdb/%3CDATABASE_ID%3E/operations',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'status', 'limit', 'offset'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'status' => "queued",
+                        'limit' => 1,
+                        'offset' => 1,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->tablesDB->listOperations(
-            "<DATABASE_ID>"
+            "<DATABASE_ID>",
+            status: "queued",
+            limit: 1,
+            offset: 1
         );
 
         $this->assertInstanceOf(\Appwrite\Models\DedicatedDatabaseOperationList::class, $response);
@@ -593,7 +896,20 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/tablesdb/%3CDATABASE_ID%3E/replicas',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -635,7 +951,20 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/tablesdb/%3CDATABASE_ID%3E/status',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -684,14 +1013,33 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/tablesdb/%3CDATABASE_ID%3E/tables',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'queries', 'search', 'total'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'queries' => [],
+                        'search' => "<SEARCH>",
+                        'total' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->tablesDB->listTables(
-            "<DATABASE_ID>"
+            "<DATABASE_ID>",
+            queries: [],
+            search: "<SEARCH>",
+            total: false
         );
 
         $this->assertInstanceOf(\Appwrite\Models\TableList::class, $response);
@@ -728,7 +1076,28 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/tablesdb/%3CDATABASE_ID%3E/tables',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId', 'name', 'permissions', 'rowSecurity', 'enabled', 'columns', 'indexes', 'description'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                        'name' => "<NAME>",
+                        'permissions' => [],
+                        'rowSecurity' => false,
+                        'enabled' => false,
+                        'columns' => [],
+                        'indexes' => [],
+                        'description' => "<DESCRIPTION>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -737,7 +1106,13 @@ final class TablesDBTest extends TestCase
         $response = $this->tablesDB->createTable(
             "<DATABASE_ID>",
             "<TABLE_ID>",
-            "<NAME>"
+            "<NAME>",
+            permissions: [],
+            rowSecurity: false,
+            enabled: false,
+            columns: [],
+            indexes: [],
+            description: "<DESCRIPTION>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Table::class, $response);
@@ -774,7 +1149,21 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -819,7 +1208,27 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PUT',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId', 'name', 'permissions', 'rowSecurity', 'enabled', 'purge', 'description'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                        'name' => "<NAME>",
+                        'permissions' => [],
+                        'rowSecurity' => false,
+                        'enabled' => false,
+                        'purge' => false,
+                        'description' => "<DESCRIPTION>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -827,7 +1236,13 @@ final class TablesDBTest extends TestCase
 
         $response = $this->tablesDB->updateTable(
             "<DATABASE_ID>",
-            "<TABLE_ID>"
+            "<TABLE_ID>",
+            name: "<NAME>",
+            permissions: [],
+            rowSecurity: false,
+            enabled: false,
+            purge: false,
+            description: "<DESCRIPTION>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Table::class, $response);
@@ -837,7 +1252,21 @@ final class TablesDBTest extends TestCase
         $data = '';
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'DELETE',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -858,7 +1287,23 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId', 'queries', 'total'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                        'queries' => [],
+                        'total' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -866,7 +1311,9 @@ final class TablesDBTest extends TestCase
 
         $response = $this->tablesDB->listColumns(
             "<DATABASE_ID>",
-            "<TABLE_ID>"
+            "<TABLE_ID>",
+            queries: [],
+            total: false
         );
 
         $this->assertInstanceOf(\Appwrite\Models\ColumnList::class, $response);
@@ -885,7 +1332,28 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/bigint',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId', 'key', 'required', 'min', 'max', 'default', 'array', 'description'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                        'key' => "<KEY>",
+                        'required' => false,
+                        'min' => 1,
+                        'max' => 1,
+                        'default' => 1,
+                        'array' => false,
+                        'description' => "<DESCRIPTION>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -895,7 +1363,12 @@ final class TablesDBTest extends TestCase
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "<KEY>",
-            true
+            false,
+            min: 1,
+            max: 1,
+            xdefault: 1,
+            xarray: false,
+            description: "<DESCRIPTION>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\ColumnBigint::class, $response);
@@ -914,7 +1387,28 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/bigint/%3CKEY%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId', 'key', 'required', 'default', 'min', 'max', 'newKey', 'description'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                        'key' => "<KEY>",
+                        'required' => false,
+                        'default' => 1,
+                        'min' => 1,
+                        'max' => 1,
+                        'newKey' => "<NEW_KEY>",
+                        'description' => "<DESCRIPTION>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -924,8 +1418,12 @@ final class TablesDBTest extends TestCase
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "<KEY>",
-            true,
-            1
+            false,
+            1,
+            min: 1,
+            max: 1,
+            newKey: "<NEW_KEY>",
+            description: "<DESCRIPTION>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\ColumnBigint::class, $response);
@@ -944,7 +1442,26 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/boolean',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId', 'key', 'required', 'default', 'array', 'description'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                        'key' => "<KEY>",
+                        'required' => false,
+                        'default' => false,
+                        'array' => false,
+                        'description' => "<DESCRIPTION>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -954,7 +1471,10 @@ final class TablesDBTest extends TestCase
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "<KEY>",
-            true
+            false,
+            xdefault: false,
+            xarray: false,
+            description: "<DESCRIPTION>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\ColumnBoolean::class, $response);
@@ -973,7 +1493,26 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/boolean/%3CKEY%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId', 'key', 'required', 'default', 'newKey', 'description'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                        'key' => "<KEY>",
+                        'required' => false,
+                        'default' => false,
+                        'newKey' => "<NEW_KEY>",
+                        'description' => "<DESCRIPTION>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -983,8 +1522,10 @@ final class TablesDBTest extends TestCase
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "<KEY>",
-            true,
-            true
+            false,
+            false,
+            newKey: "<NEW_KEY>",
+            description: "<DESCRIPTION>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\ColumnBoolean::class, $response);
@@ -1004,7 +1545,26 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/datetime',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId', 'key', 'required', 'default', 'array', 'description'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                        'key' => "<KEY>",
+                        'required' => false,
+                        'default' => "2020-10-15T06:38:00.000+00:00",
+                        'array' => false,
+                        'description' => "<DESCRIPTION>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1014,7 +1574,10 @@ final class TablesDBTest extends TestCase
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "<KEY>",
-            true
+            false,
+            xdefault: "2020-10-15T06:38:00.000+00:00",
+            xarray: false,
+            description: "<DESCRIPTION>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\ColumnDatetime::class, $response);
@@ -1034,7 +1597,26 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/datetime/%3CKEY%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId', 'key', 'required', 'default', 'newKey', 'description'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                        'key' => "<KEY>",
+                        'required' => false,
+                        'default' => "2020-10-15T06:38:00.000+00:00",
+                        'newKey' => "<NEW_KEY>",
+                        'description' => "<DESCRIPTION>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1044,8 +1626,10 @@ final class TablesDBTest extends TestCase
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "<KEY>",
-            true,
-            "2020-10-15T06:38:00.000+00:00"
+            false,
+            "2020-10-15T06:38:00.000+00:00",
+            newKey: "<NEW_KEY>",
+            description: "<DESCRIPTION>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\ColumnDatetime::class, $response);
@@ -1065,7 +1649,26 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/email',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId', 'key', 'required', 'default', 'array', 'description'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                        'key' => "<KEY>",
+                        'required' => false,
+                        'default' => "email@example.com",
+                        'array' => false,
+                        'description' => "<DESCRIPTION>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1075,7 +1678,10 @@ final class TablesDBTest extends TestCase
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "<KEY>",
-            true
+            false,
+            xdefault: "email@example.com",
+            xarray: false,
+            description: "<DESCRIPTION>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\ColumnEmail::class, $response);
@@ -1095,7 +1701,26 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/email/%3CKEY%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId', 'key', 'required', 'default', 'newKey', 'description'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                        'key' => "<KEY>",
+                        'required' => false,
+                        'default' => "email@example.com",
+                        'newKey' => "<NEW_KEY>",
+                        'description' => "<DESCRIPTION>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1105,8 +1730,10 @@ final class TablesDBTest extends TestCase
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "<KEY>",
-            true,
-            "email@example.com"
+            false,
+            "email@example.com",
+            newKey: "<NEW_KEY>",
+            description: "<DESCRIPTION>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\ColumnEmail::class, $response);
@@ -1127,7 +1754,27 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/enum',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId', 'key', 'elements', 'required', 'default', 'array', 'description'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                        'key' => "<KEY>",
+                        'elements' => [],
+                        'required' => false,
+                        'default' => "active",
+                        'array' => false,
+                        'description' => "<DESCRIPTION>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1138,7 +1785,10 @@ final class TablesDBTest extends TestCase
             "<TABLE_ID>",
             "<KEY>",
             [],
-            true
+            false,
+            xdefault: "active",
+            xarray: false,
+            description: "<DESCRIPTION>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\ColumnEnum::class, $response);
@@ -1159,7 +1809,27 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/enum/%3CKEY%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId', 'key', 'elements', 'required', 'default', 'newKey', 'description'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                        'key' => "<KEY>",
+                        'elements' => [],
+                        'required' => false,
+                        'default' => "active",
+                        'newKey' => "<NEW_KEY>",
+                        'description' => "<DESCRIPTION>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1170,8 +1840,10 @@ final class TablesDBTest extends TestCase
             "<TABLE_ID>",
             "<KEY>",
             [],
-            true,
-            "active"
+            false,
+            "active",
+            newKey: "<NEW_KEY>",
+            description: "<DESCRIPTION>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\ColumnEnum::class, $response);
@@ -1190,7 +1862,28 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/float',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId', 'key', 'required', 'min', 'max', 'default', 'array', 'description'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                        'key' => "<KEY>",
+                        'required' => false,
+                        'min' => 1.0,
+                        'max' => 1.0,
+                        'default' => 1.0,
+                        'array' => false,
+                        'description' => "<DESCRIPTION>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1200,7 +1893,12 @@ final class TablesDBTest extends TestCase
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "<KEY>",
-            true
+            false,
+            min: 1.0,
+            max: 1.0,
+            xdefault: 1.0,
+            xarray: false,
+            description: "<DESCRIPTION>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\ColumnFloat::class, $response);
@@ -1219,7 +1917,28 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/float/%3CKEY%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId', 'key', 'required', 'default', 'min', 'max', 'newKey', 'description'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                        'key' => "<KEY>",
+                        'required' => false,
+                        'default' => 1.0,
+                        'min' => 1.0,
+                        'max' => 1.0,
+                        'newKey' => "<NEW_KEY>",
+                        'description' => "<DESCRIPTION>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1229,8 +1948,12 @@ final class TablesDBTest extends TestCase
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "<KEY>",
-            true,
-            1.0
+            false,
+            1.0,
+            min: 1.0,
+            max: 1.0,
+            newKey: "<NEW_KEY>",
+            description: "<DESCRIPTION>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\ColumnFloat::class, $response);
@@ -1249,7 +1972,28 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/integer',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId', 'key', 'required', 'min', 'max', 'default', 'array', 'description'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                        'key' => "<KEY>",
+                        'required' => false,
+                        'min' => 1,
+                        'max' => 1,
+                        'default' => 1,
+                        'array' => false,
+                        'description' => "<DESCRIPTION>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1259,7 +2003,12 @@ final class TablesDBTest extends TestCase
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "<KEY>",
-            true
+            false,
+            min: 1,
+            max: 1,
+            xdefault: 1,
+            xarray: false,
+            description: "<DESCRIPTION>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\ColumnInteger::class, $response);
@@ -1278,7 +2027,28 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/integer/%3CKEY%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId', 'key', 'required', 'default', 'min', 'max', 'newKey', 'description'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                        'key' => "<KEY>",
+                        'required' => false,
+                        'default' => 1,
+                        'min' => 1,
+                        'max' => 1,
+                        'newKey' => "<NEW_KEY>",
+                        'description' => "<DESCRIPTION>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1288,8 +2058,12 @@ final class TablesDBTest extends TestCase
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "<KEY>",
-            true,
-            1
+            false,
+            1,
+            min: 1,
+            max: 1,
+            newKey: "<NEW_KEY>",
+            description: "<DESCRIPTION>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\ColumnInteger::class, $response);
@@ -1309,7 +2083,26 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/ip',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId', 'key', 'required', 'default', 'array', 'description'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                        'key' => "<KEY>",
+                        'required' => false,
+                        'default' => "192.0.2.0",
+                        'array' => false,
+                        'description' => "<DESCRIPTION>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1319,7 +2112,10 @@ final class TablesDBTest extends TestCase
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "<KEY>",
-            true
+            false,
+            xdefault: "192.0.2.0",
+            xarray: false,
+            description: "<DESCRIPTION>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\ColumnIp::class, $response);
@@ -1339,7 +2135,26 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/ip/%3CKEY%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId', 'key', 'required', 'default', 'newKey', 'description'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                        'key' => "<KEY>",
+                        'required' => false,
+                        'default' => "192.0.2.0",
+                        'newKey' => "<NEW_KEY>",
+                        'description' => "<DESCRIPTION>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1349,8 +2164,10 @@ final class TablesDBTest extends TestCase
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "<KEY>",
-            true,
-            "192.0.2.0"
+            false,
+            "192.0.2.0",
+            newKey: "<NEW_KEY>",
+            description: "<DESCRIPTION>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\ColumnIp::class, $response);
@@ -1369,7 +2186,25 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/line',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId', 'key', 'required', 'default', 'description'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                        'key' => "<KEY>",
+                        'required' => false,
+                        'default' => [],
+                        'description' => "<DESCRIPTION>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1379,7 +2214,9 @@ final class TablesDBTest extends TestCase
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "<KEY>",
-            true
+            false,
+            xdefault: [],
+            description: "<DESCRIPTION>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\ColumnLine::class, $response);
@@ -1398,7 +2235,26 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/line/%3CKEY%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId', 'key', 'required', 'default', 'newKey', 'description'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                        'key' => "<KEY>",
+                        'required' => false,
+                        'default' => [],
+                        'newKey' => "<NEW_KEY>",
+                        'description' => "<DESCRIPTION>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1408,7 +2264,10 @@ final class TablesDBTest extends TestCase
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "<KEY>",
-            true
+            false,
+            xdefault: [],
+            newKey: "<NEW_KEY>",
+            description: "<DESCRIPTION>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\ColumnLine::class, $response);
@@ -1427,7 +2286,27 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/longtext',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId', 'key', 'required', 'default', 'array', 'encrypt', 'description'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                        'key' => "<KEY>",
+                        'required' => false,
+                        'default' => "Hello World",
+                        'array' => false,
+                        'encrypt' => false,
+                        'description' => "<DESCRIPTION>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1437,7 +2316,11 @@ final class TablesDBTest extends TestCase
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "<KEY>",
-            true
+            false,
+            xdefault: "Hello World",
+            xarray: false,
+            encrypt: false,
+            description: "<DESCRIPTION>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\ColumnLongtext::class, $response);
@@ -1456,7 +2339,26 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/longtext/%3CKEY%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId', 'key', 'required', 'default', 'newKey', 'description'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                        'key' => "<KEY>",
+                        'required' => false,
+                        'default' => "Hello World",
+                        'newKey' => "<NEW_KEY>",
+                        'description' => "<DESCRIPTION>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1466,8 +2368,10 @@ final class TablesDBTest extends TestCase
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "<KEY>",
-            true,
-            "Hello World"
+            false,
+            "Hello World",
+            newKey: "<NEW_KEY>",
+            description: "<DESCRIPTION>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\ColumnLongtext::class, $response);
@@ -1486,7 +2390,27 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/mediumtext',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId', 'key', 'required', 'default', 'array', 'encrypt', 'description'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                        'key' => "<KEY>",
+                        'required' => false,
+                        'default' => "Hello World",
+                        'array' => false,
+                        'encrypt' => false,
+                        'description' => "<DESCRIPTION>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1496,7 +2420,11 @@ final class TablesDBTest extends TestCase
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "<KEY>",
-            true
+            false,
+            xdefault: "Hello World",
+            xarray: false,
+            encrypt: false,
+            description: "<DESCRIPTION>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\ColumnMediumtext::class, $response);
@@ -1515,7 +2443,26 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/mediumtext/%3CKEY%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId', 'key', 'required', 'default', 'newKey', 'description'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                        'key' => "<KEY>",
+                        'required' => false,
+                        'default' => "Hello World",
+                        'newKey' => "<NEW_KEY>",
+                        'description' => "<DESCRIPTION>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1525,8 +2472,10 @@ final class TablesDBTest extends TestCase
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "<KEY>",
-            true,
-            "Hello World"
+            false,
+            "Hello World",
+            newKey: "<NEW_KEY>",
+            description: "<DESCRIPTION>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\ColumnMediumtext::class, $response);
@@ -1545,7 +2494,25 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/point',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId', 'key', 'required', 'default', 'description'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                        'key' => "<KEY>",
+                        'required' => false,
+                        'default' => [],
+                        'description' => "<DESCRIPTION>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1555,7 +2522,9 @@ final class TablesDBTest extends TestCase
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "<KEY>",
-            true
+            false,
+            xdefault: [],
+            description: "<DESCRIPTION>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\ColumnPoint::class, $response);
@@ -1574,7 +2543,26 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/point/%3CKEY%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId', 'key', 'required', 'default', 'newKey', 'description'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                        'key' => "<KEY>",
+                        'required' => false,
+                        'default' => [],
+                        'newKey' => "<NEW_KEY>",
+                        'description' => "<DESCRIPTION>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1584,7 +2572,10 @@ final class TablesDBTest extends TestCase
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "<KEY>",
-            true
+            false,
+            xdefault: [],
+            newKey: "<NEW_KEY>",
+            description: "<DESCRIPTION>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\ColumnPoint::class, $response);
@@ -1603,7 +2594,25 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/polygon',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId', 'key', 'required', 'default', 'description'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                        'key' => "<KEY>",
+                        'required' => false,
+                        'default' => [],
+                        'description' => "<DESCRIPTION>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1613,7 +2622,9 @@ final class TablesDBTest extends TestCase
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "<KEY>",
-            true
+            false,
+            xdefault: [],
+            description: "<DESCRIPTION>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\ColumnPolygon::class, $response);
@@ -1632,7 +2643,26 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/polygon/%3CKEY%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId', 'key', 'required', 'default', 'newKey', 'description'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                        'key' => "<KEY>",
+                        'required' => false,
+                        'default' => [],
+                        'newKey' => "<NEW_KEY>",
+                        'description' => "<DESCRIPTION>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1642,7 +2672,10 @@ final class TablesDBTest extends TestCase
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "<KEY>",
-            true
+            false,
+            xdefault: [],
+            newKey: "<NEW_KEY>",
+            description: "<DESCRIPTION>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\ColumnPolygon::class, $response);
@@ -1667,7 +2700,28 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/relationship',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId', 'relatedTableId', 'type', 'twoWay', 'key', 'twoWayKey', 'onDelete', 'description'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                        'relatedTableId' => "<RELATED_TABLE_ID>",
+                        'type' => RelationshipType::ONETOONE(),
+                        'twoWay' => false,
+                        'key' => "<KEY>",
+                        'twoWayKey' => "<TWO_WAY_KEY>",
+                        'onDelete' => RelationMutate::CASCADE(),
+                        'description' => "<DESCRIPTION>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1677,7 +2731,12 @@ final class TablesDBTest extends TestCase
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "<RELATED_TABLE_ID>",
-            RelationshipType::ONETOONE()
+            RelationshipType::ONETOONE(),
+            twoWay: false,
+            key: "<KEY>",
+            twoWayKey: "<TWO_WAY_KEY>",
+            onDelete: RelationMutate::CASCADE(),
+            description: "<DESCRIPTION>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\ColumnRelationship::class, $response);
@@ -1702,7 +2761,25 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/relationship/%3CKEY%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId', 'key', 'onDelete', 'newKey', 'description'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                        'key' => "<KEY>",
+                        'onDelete' => RelationMutate::CASCADE(),
+                        'newKey' => "<NEW_KEY>",
+                        'description' => "<DESCRIPTION>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1711,7 +2788,10 @@ final class TablesDBTest extends TestCase
         $response = $this->tablesDB->updateRelationshipColumn(
             "<DATABASE_ID>",
             "<TABLE_ID>",
-            "<KEY>"
+            "<KEY>",
+            onDelete: RelationMutate::CASCADE(),
+            newKey: "<NEW_KEY>",
+            description: "<DESCRIPTION>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\ColumnRelationship::class, $response);
@@ -1731,7 +2811,28 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/string',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId', 'key', 'size', 'required', 'default', 'array', 'encrypt', 'description'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                        'key' => "<KEY>",
+                        'size' => 1,
+                        'required' => false,
+                        'default' => "Hello World",
+                        'array' => false,
+                        'encrypt' => false,
+                        'description' => "<DESCRIPTION>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1742,7 +2843,11 @@ final class TablesDBTest extends TestCase
             "<TABLE_ID>",
             "<KEY>",
             1,
-            true
+            false,
+            xdefault: "Hello World",
+            xarray: false,
+            encrypt: false,
+            description: "<DESCRIPTION>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\ColumnString::class, $response);
@@ -1762,7 +2867,27 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/string/%3CKEY%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId', 'key', 'required', 'default', 'size', 'newKey', 'description'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                        'key' => "<KEY>",
+                        'required' => false,
+                        'default' => "Hello World",
+                        'size' => 1,
+                        'newKey' => "<NEW_KEY>",
+                        'description' => "<DESCRIPTION>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1772,8 +2897,11 @@ final class TablesDBTest extends TestCase
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "<KEY>",
-            true,
-            "Hello World"
+            false,
+            "Hello World",
+            size: 1,
+            newKey: "<NEW_KEY>",
+            description: "<DESCRIPTION>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\ColumnString::class, $response);
@@ -1792,7 +2920,27 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/text',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId', 'key', 'required', 'default', 'array', 'encrypt', 'description'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                        'key' => "<KEY>",
+                        'required' => false,
+                        'default' => "Hello World",
+                        'array' => false,
+                        'encrypt' => false,
+                        'description' => "<DESCRIPTION>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1802,7 +2950,11 @@ final class TablesDBTest extends TestCase
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "<KEY>",
-            true
+            false,
+            xdefault: "Hello World",
+            xarray: false,
+            encrypt: false,
+            description: "<DESCRIPTION>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\ColumnText::class, $response);
@@ -1821,7 +2973,26 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/text/%3CKEY%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId', 'key', 'required', 'default', 'newKey', 'description'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                        'key' => "<KEY>",
+                        'required' => false,
+                        'default' => "Hello World",
+                        'newKey' => "<NEW_KEY>",
+                        'description' => "<DESCRIPTION>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1831,8 +3002,10 @@ final class TablesDBTest extends TestCase
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "<KEY>",
-            true,
-            "Hello World"
+            false,
+            "Hello World",
+            newKey: "<NEW_KEY>",
+            description: "<DESCRIPTION>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\ColumnText::class, $response);
@@ -1852,7 +3025,26 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/url',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId', 'key', 'required', 'default', 'array', 'description'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                        'key' => "<KEY>",
+                        'required' => false,
+                        'default' => "https://example.com",
+                        'array' => false,
+                        'description' => "<DESCRIPTION>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1862,7 +3054,10 @@ final class TablesDBTest extends TestCase
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "<KEY>",
-            true
+            false,
+            xdefault: "https://example.com",
+            xarray: false,
+            description: "<DESCRIPTION>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\ColumnUrl::class, $response);
@@ -1882,7 +3077,26 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/url/%3CKEY%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId', 'key', 'required', 'default', 'newKey', 'description'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                        'key' => "<KEY>",
+                        'required' => false,
+                        'default' => "https://example.com",
+                        'newKey' => "<NEW_KEY>",
+                        'description' => "<DESCRIPTION>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1892,8 +3106,10 @@ final class TablesDBTest extends TestCase
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "<KEY>",
-            true,
-            "https://example.com"
+            false,
+            "https://example.com",
+            newKey: "<NEW_KEY>",
+            description: "<DESCRIPTION>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\ColumnUrl::class, $response);
@@ -1913,7 +3129,28 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/varchar',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId', 'key', 'size', 'required', 'default', 'array', 'encrypt', 'description'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                        'key' => "<KEY>",
+                        'size' => 1,
+                        'required' => false,
+                        'default' => "Hello World",
+                        'array' => false,
+                        'encrypt' => false,
+                        'description' => "<DESCRIPTION>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1924,7 +3161,11 @@ final class TablesDBTest extends TestCase
             "<TABLE_ID>",
             "<KEY>",
             1,
-            true
+            false,
+            xdefault: "Hello World",
+            xarray: false,
+            encrypt: false,
+            description: "<DESCRIPTION>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\ColumnVarchar::class, $response);
@@ -1944,7 +3185,27 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/varchar/%3CKEY%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId', 'key', 'required', 'default', 'size', 'newKey', 'description'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                        'key' => "<KEY>",
+                        'required' => false,
+                        'default' => "Hello World",
+                        'size' => 1,
+                        'newKey' => "<NEW_KEY>",
+                        'description' => "<DESCRIPTION>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1954,8 +3215,11 @@ final class TablesDBTest extends TestCase
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "<KEY>",
-            true,
-            "Hello World"
+            false,
+            "Hello World",
+            size: 1,
+            newKey: "<NEW_KEY>",
+            description: "<DESCRIPTION>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\ColumnVarchar::class, $response);
@@ -1980,7 +3244,22 @@ final class TablesDBTest extends TestCase
         );
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/%3CKEY%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId', 'key'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                        'key' => "<KEY>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1999,7 +3278,22 @@ final class TablesDBTest extends TestCase
         $data = '';
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'DELETE',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/%3CKEY%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId', 'key'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                        'key' => "<KEY>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -2034,7 +3328,23 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/indexes',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId', 'queries', 'total'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                        'queries' => [],
+                        'total' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -2042,7 +3352,9 @@ final class TablesDBTest extends TestCase
 
         $response = $this->tablesDB->listIndexes(
             "<DATABASE_ID>",
-            "<TABLE_ID>"
+            "<TABLE_ID>",
+            queries: [],
+            total: false
         );
 
         $this->assertInstanceOf(\Appwrite\Models\ColumnIndexList::class, $response);
@@ -2063,7 +3375,27 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/indexes',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId', 'key', 'type', 'columns', 'orders', 'lengths', 'description'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                        'key' => "<KEY>",
+                        'type' => TablesDBIndexType::KEY(),
+                        'columns' => [],
+                        'orders' => [OrderBy::ASC()],
+                        'lengths' => [],
+                        'description' => "<DESCRIPTION>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -2074,7 +3406,10 @@ final class TablesDBTest extends TestCase
             "<TABLE_ID>",
             "<KEY>",
             TablesDBIndexType::KEY(),
-            []
+            [],
+            orders: [OrderBy::ASC()],
+            lengths: [],
+            description: "<DESCRIPTION>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\ColumnIndex::class, $response);
@@ -2095,7 +3430,22 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/indexes/%3CKEY%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId', 'key'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                        'key' => "<KEY>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -2114,7 +3464,22 @@ final class TablesDBTest extends TestCase
         $data = '';
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'DELETE',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/indexes/%3CKEY%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId', 'key'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                        'key' => "<KEY>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -2146,7 +3511,25 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/rows',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId', 'queries', 'transactionId', 'total', 'ttl'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                        'queries' => [],
+                        'transactionId' => "<TRANSACTION_ID>",
+                        'total' => false,
+                        'ttl' => 1,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -2154,7 +3537,11 @@ final class TablesDBTest extends TestCase
 
         $response = $this->tablesDB->listRows(
             "<DATABASE_ID>",
-            "<TABLE_ID>"
+            "<TABLE_ID>",
+            queries: [],
+            transactionId: "<TRANSACTION_ID>",
+            total: false,
+            ttl: 1
         );
 
         $this->assertInstanceOf(\Appwrite\Models\RowList::class, $response);
@@ -2172,7 +3559,25 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/rows',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId', 'rowId', 'data', 'permissions', 'transactionId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                        'rowId' => "<ROW_ID>",
+                        'data' => [],
+                        'permissions' => [],
+                        'transactionId' => "<TRANSACTION_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -2182,7 +3587,9 @@ final class TablesDBTest extends TestCase
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "<ROW_ID>",
-            []
+            [],
+            permissions: [],
+            transactionId: "<TRANSACTION_ID>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Row::class, $response);
@@ -2205,7 +3612,23 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/rows',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId', 'rows', 'transactionId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                        'rows' => [],
+                        'transactionId' => "<TRANSACTION_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -2214,7 +3637,8 @@ final class TablesDBTest extends TestCase
         $response = $this->tablesDB->createRows(
             "<DATABASE_ID>",
             "<TABLE_ID>",
-            []
+            [],
+            transactionId: "<TRANSACTION_ID>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\RowList::class, $response);
@@ -2237,7 +3661,23 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PUT',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/rows',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId', 'rows', 'transactionId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                        'rows' => [],
+                        'transactionId' => "<TRANSACTION_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -2246,7 +3686,8 @@ final class TablesDBTest extends TestCase
         $response = $this->tablesDB->upsertRows(
             "<DATABASE_ID>",
             "<TABLE_ID>",
-            []
+            [],
+            transactionId: "<TRANSACTION_ID>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\RowList::class, $response);
@@ -2269,7 +3710,24 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/rows',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId', 'data', 'queries', 'transactionId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                        'data' => [],
+                        'queries' => [],
+                        'transactionId' => "<TRANSACTION_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -2277,7 +3735,10 @@ final class TablesDBTest extends TestCase
 
         $response = $this->tablesDB->updateRows(
             "<DATABASE_ID>",
-            "<TABLE_ID>"
+            "<TABLE_ID>",
+            data: [],
+            queries: [],
+            transactionId: "<TRANSACTION_ID>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\RowList::class, $response);
@@ -2300,7 +3761,23 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'DELETE',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/rows',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId', 'queries', 'transactionId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                        'queries' => [],
+                        'transactionId' => "<TRANSACTION_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -2308,7 +3785,9 @@ final class TablesDBTest extends TestCase
 
         $response = $this->tablesDB->deleteRows(
             "<DATABASE_ID>",
-            "<TABLE_ID>"
+            "<TABLE_ID>",
+            queries: [],
+            transactionId: "<TRANSACTION_ID>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\RowList::class, $response);
@@ -2331,7 +3810,25 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/rows/query',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId', 'queries', 'transactionId', 'total', 'ttl'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                        'queries' => [],
+                        'transactionId' => "<TRANSACTION_ID>",
+                        'total' => false,
+                        'ttl' => 1,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -2339,7 +3836,11 @@ final class TablesDBTest extends TestCase
 
         $response = $this->tablesDB->createQuery(
             "<DATABASE_ID>",
-            "<TABLE_ID>"
+            "<TABLE_ID>",
+            queries: [],
+            transactionId: "<TRANSACTION_ID>",
+            total: false,
+            ttl: 1
         );
 
         $this->assertInstanceOf(\Appwrite\Models\RowList::class, $response);
@@ -2357,7 +3858,24 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/rows/%3CROW_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId', 'rowId', 'queries', 'transactionId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                        'rowId' => "<ROW_ID>",
+                        'queries' => [],
+                        'transactionId' => "<TRANSACTION_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -2366,7 +3884,9 @@ final class TablesDBTest extends TestCase
         $response = $this->tablesDB->getRow(
             "<DATABASE_ID>",
             "<TABLE_ID>",
-            "<ROW_ID>"
+            "<ROW_ID>",
+            queries: [],
+            transactionId: "<TRANSACTION_ID>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Row::class, $response);
@@ -2384,7 +3904,25 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PUT',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/rows/%3CROW_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId', 'rowId', 'data', 'permissions', 'transactionId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                        'rowId' => "<ROW_ID>",
+                        'data' => [],
+                        'permissions' => [],
+                        'transactionId' => "<TRANSACTION_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -2393,7 +3931,10 @@ final class TablesDBTest extends TestCase
         $response = $this->tablesDB->upsertRow(
             "<DATABASE_ID>",
             "<TABLE_ID>",
-            "<ROW_ID>"
+            "<ROW_ID>",
+            data: [],
+            permissions: [],
+            transactionId: "<TRANSACTION_ID>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Row::class, $response);
@@ -2411,7 +3952,25 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/rows/%3CROW_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId', 'rowId', 'data', 'permissions', 'transactionId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                        'rowId' => "<ROW_ID>",
+                        'data' => [],
+                        'permissions' => [],
+                        'transactionId' => "<TRANSACTION_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -2420,7 +3979,10 @@ final class TablesDBTest extends TestCase
         $response = $this->tablesDB->updateRow(
             "<DATABASE_ID>",
             "<TABLE_ID>",
-            "<ROW_ID>"
+            "<ROW_ID>",
+            data: [],
+            permissions: [],
+            transactionId: "<TRANSACTION_ID>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Row::class, $response);
@@ -2430,7 +3992,23 @@ final class TablesDBTest extends TestCase
         $data = '';
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'DELETE',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/rows/%3CROW_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId', 'rowId', 'transactionId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                        'rowId' => "<ROW_ID>",
+                        'transactionId' => "<TRANSACTION_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -2439,7 +4017,8 @@ final class TablesDBTest extends TestCase
         $response = $this->tablesDB->deleteRow(
             "<DATABASE_ID>",
             "<TABLE_ID>",
-            "<ROW_ID>"
+            "<ROW_ID>",
+            transactionId: "<TRANSACTION_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -2457,7 +4036,26 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/rows/%3CROW_ID%3E/%3CCOLUMN%3E/decrement',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId', 'rowId', 'column', 'value', 'min', 'transactionId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                        'rowId' => "<ROW_ID>",
+                        'column' => "<COLUMN>",
+                        'value' => 1.0,
+                        'min' => 1.0,
+                        'transactionId' => "<TRANSACTION_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -2467,7 +4065,10 @@ final class TablesDBTest extends TestCase
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "<ROW_ID>",
-            "<COLUMN>"
+            "<COLUMN>",
+            value: 1.0,
+            min: 1.0,
+            transactionId: "<TRANSACTION_ID>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Row::class, $response);
@@ -2485,7 +4086,26 @@ final class TablesDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/rows/%3CROW_ID%3E/%3CCOLUMN%3E/increment',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'tableId', 'rowId', 'column', 'value', 'max', 'transactionId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'tableId' => "<TABLE_ID>",
+                        'rowId' => "<ROW_ID>",
+                        'column' => "<COLUMN>",
+                        'value' => 1.0,
+                        'max' => 1.0,
+                        'transactionId' => "<TRANSACTION_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -2495,7 +4115,10 @@ final class TablesDBTest extends TestCase
             "<DATABASE_ID>",
             "<TABLE_ID>",
             "<ROW_ID>",
-            "<COLUMN>"
+            "<COLUMN>",
+            value: 1.0,
+            max: 1.0,
+            transactionId: "<TRANSACTION_ID>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Row::class, $response);

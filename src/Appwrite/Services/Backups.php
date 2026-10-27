@@ -100,7 +100,7 @@ class Backups extends Service
 
         $apiPath = str_replace(
             ['{archiveId}'],
-            [$archiveId],
+            [self::encodePath($archiveId)],
             '/backups/archives/{archiveId}'
         );
 
@@ -138,7 +138,7 @@ class Backups extends Service
 
         $apiPath = str_replace(
             ['{archiveId}'],
-            [$archiveId],
+            [self::encodePath($archiveId)],
             '/backups/archives/{archiveId}'
         );
 
@@ -259,7 +259,7 @@ class Backups extends Service
 
         $apiPath = str_replace(
             ['{policyId}'],
-            [$policyId],
+            [self::encodePath($policyId)],
             '/backups/policies/{policyId}'
         );
 
@@ -297,7 +297,7 @@ class Backups extends Service
 
         $apiPath = str_replace(
             ['{policyId}'],
-            [$policyId],
+            [self::encodePath($policyId)],
             '/backups/policies/{policyId}'
         );
 
@@ -343,7 +343,7 @@ class Backups extends Service
 
         $apiPath = str_replace(
             ['{policyId}'],
-            [$policyId],
+            [self::encodePath($policyId)],
             '/backups/policies/{policyId}'
         );
 
@@ -491,7 +491,7 @@ class Backups extends Service
 
         $apiPath = str_replace(
             ['{restorationId}'],
-            [$restorationId],
+            [self::encodePath($restorationId)],
             '/backups/restorations/{restorationId}'
         );
 
