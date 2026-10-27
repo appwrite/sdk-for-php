@@ -322,7 +322,7 @@ class Proxy extends Service
 
         $apiPath = str_replace(
             ['{ruleId}'],
-            [$ruleId],
+            [self::encodePath($ruleId)],
             '/proxy/rules/{ruleId}'
         );
 
@@ -360,7 +360,7 @@ class Proxy extends Service
 
         $apiPath = str_replace(
             ['{ruleId}'],
-            [$ruleId],
+            [self::encodePath($ruleId)],
             '/proxy/rules/{ruleId}'
         );
 
@@ -396,7 +396,7 @@ class Proxy extends Service
 
         $apiPath = str_replace(
             ['{ruleId}'],
-            [$ruleId],
+            [self::encodePath($ruleId)],
             '/proxy/rules/{ruleId}/status'
         );
 

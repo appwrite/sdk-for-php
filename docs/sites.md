@@ -48,7 +48,7 @@ POST https://cloud.appwrite.io/v1/sites
 | providerPaths | array | List of file path patterns to trigger automatic deployments. Supports wildcards. Leave empty to deploy on all file changes. | [] |
 | buildSpecification | string | Build specification for the site deployments. | [] |
 | runtimeSpecification | string | Runtime specification for the SSR executions. | [] |
-| deploymentRetention | integer | Days to keep non-active deployments before deletion. Value 0 means all deployments will be kept. | 0 |
+| deploymentRetention | integer | Days to keep non-active deployments before deletion. Value 0 keeps all deployments unless the server applies a default retention. | 0 |
 | scopes | array | List of scopes allowed for API key auto-generated for every site build and SSR execution. Maximum of 200 scopes are allowed. | [] |
 | description | string | Optional description for the site. |  |
 
@@ -125,7 +125,7 @@ PUT https://cloud.appwrite.io/v1/sites/{siteId}
 | providerPaths | array | List of file path patterns to trigger automatic deployments. Supports wildcards. Leave empty to deploy on all file changes. |  |
 | buildSpecification | string | Build specification for the site deployments. |  |
 | runtimeSpecification | string | Runtime specification for the SSR executions. | [] |
-| deploymentRetention | integer | Days to keep non-active deployments before deletion. Value 0 means all deployments will be kept. | 0 |
+| deploymentRetention | integer | Days to keep non-active deployments before deletion. Value 0 keeps all deployments unless the server applies a default retention. | 0 |
 | scopes | array | List of scopes allowed for API key auto-generated for every site build and SSR execution. Maximum of 200 scopes are allowed. |  |
 | description | string | Optional description for the site. |  |
 

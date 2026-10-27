@@ -6,11 +6,14 @@ namespace Appwrite\Services;
 
 use Appwrite\Client;
 use Mockery;
+use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
 
 final class WafTest extends TestCase
 {
+    use MockeryPHPUnitIntegration;
+
     private Client&MockInterface $client;
     private Waf $waf;
 
@@ -28,13 +31,32 @@ final class WafTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/waf/rules',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['queries', 'search', 'total'], array_keys($params));
+                    $expected = [
+                        'queries' => [],
+                        'search' => "<SEARCH>",
+                        'total' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->waf->listRules();
+        $response = $this->waf->listRules(
+            queries: [],
+            search: "<SEARCH>",
+            total: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\WafRuleList::class, $response);
     }
@@ -58,7 +80,27 @@ final class WafTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/waf/rules/bypass',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['ruleId', 'resourceType', 'name', 'resourceId', 'description', 'priority', 'enabled', 'conditions'], array_keys($params));
+                    $expected = [
+                        'ruleId' => "<RULE_ID>",
+                        'resourceType' => "api",
+                        'name' => "<NAME>",
+                        'resourceId' => "<RESOURCE_ID>",
+                        'description' => "<DESCRIPTION>",
+                        'priority' => 1,
+                        'enabled' => false,
+                        'conditions' => [],
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -67,7 +109,12 @@ final class WafTest extends TestCase
         $response = $this->waf->createBypassRule(
             "<RULE_ID>",
             "api",
-            "<NAME>"
+            "<NAME>",
+            resourceId: "<RESOURCE_ID>",
+            description: "<DESCRIPTION>",
+            priority: 1,
+            enabled: false,
+            conditions: []
         );
 
         $this->assertInstanceOf(\Appwrite\Models\WafRuleBypass::class, $response);
@@ -92,14 +139,41 @@ final class WafTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/waf/rules/bypass/%3CRULE_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['ruleId', 'resourceType', 'resourceId', 'name', 'description', 'priority', 'enabled', 'conditions'], array_keys($params));
+                    $expected = [
+                        'ruleId' => "<RULE_ID>",
+                        'resourceType' => "api",
+                        'resourceId' => "<RESOURCE_ID>",
+                        'name' => "<NAME>",
+                        'description' => "<DESCRIPTION>",
+                        'priority' => 1,
+                        'enabled' => false,
+                        'conditions' => [],
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->waf->updateBypassRule(
-            "<RULE_ID>"
+            "<RULE_ID>",
+            resourceType: "api",
+            resourceId: "<RESOURCE_ID>",
+            name: "<NAME>",
+            description: "<DESCRIPTION>",
+            priority: 1,
+            enabled: false,
+            conditions: []
         );
 
         $this->assertInstanceOf(\Appwrite\Models\WafRuleBypass::class, $response);
@@ -127,7 +201,30 @@ final class WafTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/waf/rules/challenge',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['ruleId', 'resourceType', 'name', 'resourceId', 'description', 'challengeType', 'priority', 'enabled', 'conditions', 'difficulty', 'ttl'], array_keys($params));
+                    $expected = [
+                        'ruleId' => "<RULE_ID>",
+                        'resourceType' => "api",
+                        'name' => "<NAME>",
+                        'resourceId' => "<RESOURCE_ID>",
+                        'description' => "<DESCRIPTION>",
+                        'challengeType' => "compute",
+                        'priority' => 1,
+                        'enabled' => false,
+                        'conditions' => [],
+                        'difficulty' => 1,
+                        'ttl' => 1,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -136,7 +233,15 @@ final class WafTest extends TestCase
         $response = $this->waf->createChallengeRule(
             "<RULE_ID>",
             "api",
-            "<NAME>"
+            "<NAME>",
+            resourceId: "<RESOURCE_ID>",
+            description: "<DESCRIPTION>",
+            challengeType: "compute",
+            priority: 1,
+            enabled: false,
+            conditions: [],
+            difficulty: 1,
+            ttl: 1
         );
 
         $this->assertInstanceOf(\Appwrite\Models\WafRuleChallenge::class, $response);
@@ -164,14 +269,47 @@ final class WafTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/waf/rules/challenge/%3CRULE_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['ruleId', 'resourceType', 'resourceId', 'name', 'description', 'challengeType', 'priority', 'enabled', 'conditions', 'difficulty', 'ttl'], array_keys($params));
+                    $expected = [
+                        'ruleId' => "<RULE_ID>",
+                        'resourceType' => "api",
+                        'resourceId' => "<RESOURCE_ID>",
+                        'name' => "<NAME>",
+                        'description' => "<DESCRIPTION>",
+                        'challengeType' => "compute",
+                        'priority' => 1,
+                        'enabled' => false,
+                        'conditions' => [],
+                        'difficulty' => 1,
+                        'ttl' => 1,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->waf->updateChallengeRule(
-            "<RULE_ID>"
+            "<RULE_ID>",
+            resourceType: "api",
+            resourceId: "<RESOURCE_ID>",
+            name: "<NAME>",
+            description: "<DESCRIPTION>",
+            challengeType: "compute",
+            priority: 1,
+            enabled: false,
+            conditions: [],
+            difficulty: 1,
+            ttl: 1
         );
 
         $this->assertInstanceOf(\Appwrite\Models\WafRuleChallenge::class, $response);
@@ -196,7 +334,27 @@ final class WafTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/waf/rules/deny',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['ruleId', 'resourceType', 'name', 'resourceId', 'description', 'priority', 'enabled', 'conditions'], array_keys($params));
+                    $expected = [
+                        'ruleId' => "<RULE_ID>",
+                        'resourceType' => "api",
+                        'name' => "<NAME>",
+                        'resourceId' => "<RESOURCE_ID>",
+                        'description' => "<DESCRIPTION>",
+                        'priority' => 1,
+                        'enabled' => false,
+                        'conditions' => [],
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -205,7 +363,12 @@ final class WafTest extends TestCase
         $response = $this->waf->createDenyRule(
             "<RULE_ID>",
             "api",
-            "<NAME>"
+            "<NAME>",
+            resourceId: "<RESOURCE_ID>",
+            description: "<DESCRIPTION>",
+            priority: 1,
+            enabled: false,
+            conditions: []
         );
 
         $this->assertInstanceOf(\Appwrite\Models\WafRuleDeny::class, $response);
@@ -230,14 +393,41 @@ final class WafTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/waf/rules/deny/%3CRULE_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['ruleId', 'resourceType', 'resourceId', 'name', 'description', 'priority', 'enabled', 'conditions'], array_keys($params));
+                    $expected = [
+                        'ruleId' => "<RULE_ID>",
+                        'resourceType' => "api",
+                        'resourceId' => "<RESOURCE_ID>",
+                        'name' => "<NAME>",
+                        'description' => "<DESCRIPTION>",
+                        'priority' => 1,
+                        'enabled' => false,
+                        'conditions' => [],
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->waf->updateDenyRule(
-            "<RULE_ID>"
+            "<RULE_ID>",
+            resourceType: "api",
+            resourceId: "<RESOURCE_ID>",
+            name: "<NAME>",
+            description: "<DESCRIPTION>",
+            priority: 1,
+            enabled: false,
+            conditions: []
         );
 
         $this->assertInstanceOf(\Appwrite\Models\WafRuleDeny::class, $response);
@@ -267,7 +457,32 @@ final class WafTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/waf/rules/rate-limit',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['ruleId', 'resourceType', 'name', 'limit', 'interval', 'resourceId', 'description', 'key', 'strategy', 'maxBucketSize', 'priority', 'enabled', 'conditions'], array_keys($params));
+                    $expected = [
+                        'ruleId' => "<RULE_ID>",
+                        'resourceType' => "api",
+                        'name' => "<NAME>",
+                        'limit' => 1,
+                        'interval' => 1,
+                        'resourceId' => "<RESOURCE_ID>",
+                        'description' => "<DESCRIPTION>",
+                        'key' => "ip",
+                        'strategy' => "fixedWindow",
+                        'maxBucketSize' => 1,
+                        'priority' => 1,
+                        'enabled' => false,
+                        'conditions' => [],
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -278,7 +493,15 @@ final class WafTest extends TestCase
             "api",
             "<NAME>",
             1,
-            1
+            1,
+            resourceId: "<RESOURCE_ID>",
+            description: "<DESCRIPTION>",
+            key: "ip",
+            strategy: "fixedWindow",
+            maxBucketSize: 1,
+            priority: 1,
+            enabled: false,
+            conditions: []
         );
 
         $this->assertInstanceOf(\Appwrite\Models\WafRuleRateLimit::class, $response);
@@ -308,14 +531,49 @@ final class WafTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/waf/rules/rate-limit/%3CRULE_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['ruleId', 'resourceType', 'resourceId', 'name', 'description', 'limit', 'interval', 'key', 'maxBucketSize', 'priority', 'enabled', 'conditions'], array_keys($params));
+                    $expected = [
+                        'ruleId' => "<RULE_ID>",
+                        'resourceType' => "api",
+                        'resourceId' => "<RESOURCE_ID>",
+                        'name' => "<NAME>",
+                        'description' => "<DESCRIPTION>",
+                        'limit' => 1,
+                        'interval' => 1,
+                        'key' => "ip",
+                        'maxBucketSize' => 1,
+                        'priority' => 1,
+                        'enabled' => false,
+                        'conditions' => [],
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->waf->updateRateLimitRule(
-            "<RULE_ID>"
+            "<RULE_ID>",
+            resourceType: "api",
+            resourceId: "<RESOURCE_ID>",
+            name: "<NAME>",
+            description: "<DESCRIPTION>",
+            limit: 1,
+            interval: 1,
+            key: "ip",
+            maxBucketSize: 1,
+            priority: 1,
+            enabled: false,
+            conditions: []
         );
 
         $this->assertInstanceOf(\Appwrite\Models\WafRuleRateLimit::class, $response);
@@ -342,7 +600,29 @@ final class WafTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/waf/rules/redirect',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['ruleId', 'resourceType', 'name', 'location', 'statusCode', 'resourceId', 'description', 'priority', 'enabled', 'conditions'], array_keys($params));
+                    $expected = [
+                        'ruleId' => "<RULE_ID>",
+                        'resourceType' => "api",
+                        'name' => "<NAME>",
+                        'location' => "<LOCATION>",
+                        'statusCode' => 1,
+                        'resourceId' => "<RESOURCE_ID>",
+                        'description' => "<DESCRIPTION>",
+                        'priority' => 1,
+                        'enabled' => false,
+                        'conditions' => [],
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -353,7 +633,12 @@ final class WafTest extends TestCase
             "api",
             "<NAME>",
             "<LOCATION>",
-            1
+            1,
+            resourceId: "<RESOURCE_ID>",
+            description: "<DESCRIPTION>",
+            priority: 1,
+            enabled: false,
+            conditions: []
         );
 
         $this->assertInstanceOf(\Appwrite\Models\WafRuleRedirect::class, $response);
@@ -380,14 +665,45 @@ final class WafTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/waf/rules/redirect/%3CRULE_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['ruleId', 'resourceType', 'resourceId', 'name', 'description', 'location', 'statusCode', 'priority', 'enabled', 'conditions'], array_keys($params));
+                    $expected = [
+                        'ruleId' => "<RULE_ID>",
+                        'resourceType' => "api",
+                        'resourceId' => "<RESOURCE_ID>",
+                        'name' => "<NAME>",
+                        'description' => "<DESCRIPTION>",
+                        'location' => "<LOCATION>",
+                        'statusCode' => 1,
+                        'priority' => 1,
+                        'enabled' => false,
+                        'conditions' => [],
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->waf->updateRedirectRule(
-            "<RULE_ID>"
+            "<RULE_ID>",
+            resourceType: "api",
+            resourceId: "<RESOURCE_ID>",
+            name: "<NAME>",
+            description: "<DESCRIPTION>",
+            location: "<LOCATION>",
+            statusCode: 1,
+            priority: 1,
+            enabled: false,
+            conditions: []
         );
 
         $this->assertInstanceOf(\Appwrite\Models\WafRuleRedirect::class, $response);
@@ -419,7 +735,20 @@ final class WafTest extends TestCase
         );
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/waf/rules/%3CRULE_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['ruleId'], array_keys($params));
+                    $expected = [
+                        'ruleId' => "<RULE_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -436,7 +765,20 @@ final class WafTest extends TestCase
         $data = '';
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'DELETE',
+                '/waf/rules/%3CRULE_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['ruleId'], array_keys($params));
+                    $expected = [
+                        'ruleId' => "<RULE_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())

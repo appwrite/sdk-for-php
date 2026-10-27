@@ -3,6 +3,7 @@
 
 use Appwrite\Client;
 use Appwrite\Services\Project;
+use Appwrite\Enums\EnvironmentResource;
 
 $client = (new Client())
     ->setEndpoint('https://<REGION>.cloud.appwrite.io/v1') // Your API Endpoint
@@ -13,6 +14,7 @@ $project = new Project($client);
 
 $result = $project->createEnvironment(
     environmentId: '<ENVIRONMENT_ID>',
-    name: '<NAME>'
+    name: '<NAME>',
+    resources: [EnvironmentResource::DATABASE(), EnvironmentResource::TABLE(), EnvironmentResource::COLUMN(), EnvironmentResource::INDEX(), EnvironmentResource::BUCKET(), EnvironmentResource::TEAM(), EnvironmentResource::FUNCTION(), EnvironmentResource::ENVIRONMENTVARIABLE()] // optional
 );
 ```

@@ -23,7 +23,7 @@ class Oauth2 extends Service
     {
         $apiPath = str_replace(
             ['{project_id}'],
-            [$this->client->getConfig('project')],
+            [self::encodePath($this->client->getConfig('project'))],
             '/oauth2/{project_id}/approve'
         );
 
@@ -69,7 +69,7 @@ class Oauth2 extends Service
     {
         $apiPath = str_replace(
             ['{project_id}'],
-            [$this->client->getConfig('project')],
+            [self::encodePath($this->client->getConfig('project'))],
             '/oauth2/{project_id}/authorize'
         );
 
@@ -161,7 +161,7 @@ class Oauth2 extends Service
     {
         $apiPath = str_replace(
             ['{project_id}'],
-            [$this->client->getConfig('project')],
+            [self::encodePath($this->client->getConfig('project'))],
             '/oauth2/{project_id}/authorize'
         );
 
@@ -248,7 +248,7 @@ class Oauth2 extends Service
     {
         $apiPath = str_replace(
             ['{project_id}'],
-            [$this->client->getConfig('project')],
+            [self::encodePath($this->client->getConfig('project'))],
             '/oauth2/{project_id}/device_authorization'
         );
 
@@ -304,7 +304,7 @@ class Oauth2 extends Service
     {
         $apiPath = str_replace(
             ['{project_id}'],
-            [$this->client->getConfig('project')],
+            [self::encodePath($this->client->getConfig('project'))],
             '/oauth2/{project_id}/grants'
         );
 
@@ -344,7 +344,7 @@ class Oauth2 extends Service
 
         $apiPath = str_replace(
             ['{project_id}', '{grant_id}'],
-            [$this->client->getConfig('project'), $grantId],
+            [self::encodePath($this->client->getConfig('project')), self::encodePath($grantId)],
             '/oauth2/{project_id}/grants/{grant_id}'
         );
 
@@ -380,7 +380,7 @@ class Oauth2 extends Service
     {
         $apiPath = str_replace(
             ['{project_id}'],
-            [$this->client->getConfig('project')],
+            [self::encodePath($this->client->getConfig('project'))],
             '/oauth2/{project_id}/introspect'
         );
 
@@ -428,7 +428,7 @@ class Oauth2 extends Service
     {
         $apiPath = str_replace(
             ['{project_id}'],
-            [$this->client->getConfig('project')],
+            [self::encodePath($this->client->getConfig('project'))],
             '/oauth2/{project_id}/organizations'
         );
 
@@ -473,7 +473,7 @@ class Oauth2 extends Service
     {
         $apiPath = str_replace(
             ['{project_id}'],
-            [$this->client->getConfig('project')],
+            [self::encodePath($this->client->getConfig('project'))],
             '/oauth2/{project_id}/par'
         );
 
@@ -548,7 +548,7 @@ class Oauth2 extends Service
     {
         $apiPath = str_replace(
             ['{project_id}'],
-            [$this->client->getConfig('project')],
+            [self::encodePath($this->client->getConfig('project'))],
             '/oauth2/{project_id}/projects'
         );
 
@@ -595,7 +595,7 @@ class Oauth2 extends Service
     {
         $apiPath = str_replace(
             ['{project_id}'],
-            [$this->client->getConfig('project')],
+            [self::encodePath($this->client->getConfig('project'))],
             '/oauth2/{project_id}/reject'
         );
 
@@ -629,7 +629,7 @@ class Oauth2 extends Service
     {
         $apiPath = str_replace(
             ['{project_id}'],
-            [$this->client->getConfig('project')],
+            [self::encodePath($this->client->getConfig('project'))],
             '/oauth2/{project_id}/revoke'
         );
 
@@ -670,7 +670,7 @@ class Oauth2 extends Service
     {
         $apiPath = str_replace(
             ['{project_id}'],
-            [$this->client->getConfig('project')],
+            [self::encodePath($this->client->getConfig('project'))],
             '/oauth2/{project_id}/token'
         );
 

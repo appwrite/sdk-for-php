@@ -6,11 +6,14 @@ namespace Appwrite\Services;
 
 use Appwrite\Client;
 use Mockery;
+use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
 
 final class GraphqlTest extends TestCase
 {
+    use MockeryPHPUnitIntegration;
+
     private Client&MockInterface $client;
     private Graphql $graphql;
 
@@ -25,7 +28,20 @@ final class GraphqlTest extends TestCase
         $data = [];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/graphql',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['query'], array_keys($params));
+                    $expected = [
+                        'query' => [],
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -42,7 +58,20 @@ final class GraphqlTest extends TestCase
         $data = [];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/graphql/mutation',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['query'], array_keys($params));
+                    $expected = [
+                        'query' => [],
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())

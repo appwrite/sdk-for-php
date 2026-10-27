@@ -6,11 +6,14 @@ namespace Appwrite\Services;
 
 use Appwrite\Client;
 use Mockery;
+use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
 
 final class LocaleTest extends TestCase
 {
+    use MockeryPHPUnitIntegration;
+
     private Client&MockInterface $client;
     private Locale $locale;
 
@@ -33,7 +36,16 @@ final class LocaleTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/locale',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame([], array_keys($params));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -56,13 +68,28 @@ final class LocaleTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/locale/codes',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['total'], array_keys($params));
+                    $expected = [
+                        'total' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->locale->listCodes();
+        $response = $this->locale->listCodes(
+            total: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\LocaleCodeList::class, $response);
     }
@@ -79,13 +106,28 @@ final class LocaleTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/locale/continents',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['total'], array_keys($params));
+                    $expected = [
+                        'total' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->locale->listContinents();
+        $response = $this->locale->listContinents(
+            total: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\ContinentList::class, $response);
     }
@@ -102,13 +144,28 @@ final class LocaleTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/locale/countries',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['total'], array_keys($params));
+                    $expected = [
+                        'total' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->locale->listCountries();
+        $response = $this->locale->listCountries(
+            total: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\CountryList::class, $response);
     }
@@ -125,13 +182,28 @@ final class LocaleTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/locale/countries/eu',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['total'], array_keys($params));
+                    $expected = [
+                        'total' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->locale->listCountriesEU();
+        $response = $this->locale->listCountriesEU(
+            total: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\CountryList::class, $response);
     }
@@ -149,13 +221,28 @@ final class LocaleTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/locale/countries/phones',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['total'], array_keys($params));
+                    $expected = [
+                        'total' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->locale->listCountriesPhones();
+        $response = $this->locale->listCountriesPhones(
+            total: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\PhoneList::class, $response);
     }
@@ -177,13 +264,28 @@ final class LocaleTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/locale/currencies',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['total'], array_keys($params));
+                    $expected = [
+                        'total' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->locale->listCurrencies();
+        $response = $this->locale->listCurrencies(
+            total: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\CurrencyList::class, $response);
     }
@@ -201,13 +303,28 @@ final class LocaleTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/locale/languages',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['total'], array_keys($params));
+                    $expected = [
+                        'total' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->locale->listLanguages();
+        $response = $this->locale->listLanguages(
+            total: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\LanguageList::class, $response);
     }

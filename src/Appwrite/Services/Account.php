@@ -150,7 +150,7 @@ class Account extends Service
 
         $apiPath = str_replace(
             ['{consentId}'],
-            [$consentId],
+            [self::encodePath($consentId)],
             '/account/consents/{consentId}'
         );
 
@@ -190,7 +190,7 @@ class Account extends Service
 
         $apiPath = str_replace(
             ['{consentId}'],
-            [$consentId],
+            [self::encodePath($consentId)],
             '/account/consents/{consentId}'
         );
 
@@ -225,7 +225,7 @@ class Account extends Service
 
         $apiPath = str_replace(
             ['{consentId}'],
-            [$consentId],
+            [self::encodePath($consentId)],
             '/account/consents/{consentId}/tokens'
         );
 
@@ -276,7 +276,7 @@ class Account extends Service
 
         $apiPath = str_replace(
             ['{consentId}', '{tokenId}'],
-            [$consentId, $tokenId],
+            [self::encodePath($consentId), self::encodePath($tokenId)],
             '/account/consents/{consentId}/tokens/{tokenId}'
         );
 
@@ -321,7 +321,7 @@ class Account extends Service
 
         $apiPath = str_replace(
             ['{consentId}', '{tokenId}'],
-            [$consentId, $tokenId],
+            [self::encodePath($consentId), self::encodePath($tokenId)],
             '/account/consents/{consentId}/tokens/{tokenId}'
         );
 
@@ -438,7 +438,7 @@ class Account extends Service
 
         $apiPath = str_replace(
             ['{identityId}'],
-            [$identityId],
+            [self::encodePath($identityId)],
             '/account/identities/{identityId}'
         );
 
@@ -546,7 +546,7 @@ class Account extends Service
     {
         $apiPath = str_replace(
             ['{type}'],
-            [(string) $type],
+            [self::encodePath((string) $type)],
             '/account/mfa/authenticators/{type}'
         );
 
@@ -583,7 +583,7 @@ class Account extends Service
     {
         $apiPath = str_replace(
             ['{type}'],
-            [(string) $type],
+            [self::encodePath((string) $type)],
             '/account/mfa/authenticators/{type}'
         );
 
@@ -619,7 +619,7 @@ class Account extends Service
     {
         $apiPath = str_replace(
             ['{type}'],
-            [(string) $type],
+            [self::encodePath((string) $type)],
             '/account/mfa/authenticators/{type}'
         );
 
@@ -999,7 +999,7 @@ class Account extends Service
 
         $apiPath = str_replace(
             ['{passkeyId}'],
-            [$passkeyId],
+            [self::encodePath($passkeyId)],
             '/account/passkeys/{passkeyId}'
         );
 
@@ -1037,7 +1037,7 @@ class Account extends Service
 
         $apiPath = str_replace(
             ['{passkeyId}'],
-            [$passkeyId],
+            [self::encodePath($passkeyId)],
             '/account/passkeys/{passkeyId}'
         );
 
@@ -1080,7 +1080,7 @@ class Account extends Service
 
         $apiPath = str_replace(
             ['{passkeyId}'],
-            [$passkeyId],
+            [self::encodePath($passkeyId)],
             '/account/passkeys/{passkeyId}'
         );
 
@@ -1117,7 +1117,7 @@ class Account extends Service
 
         $apiPath = str_replace(
             ['{passkeyId}'],
-            [$passkeyId],
+            [self::encodePath($passkeyId)],
             '/account/passkeys/{passkeyId}/verification'
         );
 
@@ -1876,7 +1876,7 @@ class Account extends Service
 
         $apiPath = str_replace(
             ['{sessionId}'],
-            [$sessionId],
+            [self::encodePath($sessionId)],
             '/account/sessions/{sessionId}'
         );
 
@@ -1916,7 +1916,7 @@ class Account extends Service
 
         $apiPath = str_replace(
             ['{sessionId}'],
-            [$sessionId],
+            [self::encodePath($sessionId)],
             '/account/sessions/{sessionId}'
         );
 
@@ -1959,7 +1959,7 @@ class Account extends Service
 
         $apiPath = str_replace(
             ['{sessionId}'],
-            [$sessionId],
+            [self::encodePath($sessionId)],
             '/account/sessions/{sessionId}'
         );
 
@@ -2149,7 +2149,7 @@ class Account extends Service
     {
         $apiPath = str_replace(
             ['{provider}'],
-            [(string) $provider],
+            [self::encodePath((string) $provider)],
             '/account/tokens/oauth2/{provider}'
         );
 

@@ -307,7 +307,7 @@ to an IPv4 address. The record value should be a valid IPv4 address. **
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | domainId | string | **Required** Domain unique ID. |  |
-| name | string | Record name (subdomain). |  |
+| name | string | Record name relative to the domain, such as `www`, or `@` for the domain itself. A full name ending in the domain is also accepted and stored relative to it. |  |
 | value | string | IPv4 address for this A record. |  |
 | ttl | integer | Time to live, in seconds. Must be between 1 and 2147483647. |  |
 | comment | string | A comment explaining what this record is for. |  |
@@ -327,7 +327,7 @@ and optional comment. **
 | --- | --- | --- | --- |
 | domainId | string | **Required** Domain unique ID. |  |
 | recordId | string | **Required** DNS record unique ID. |  |
-| name | string | Record name (subdomain). |  |
+| name | string | Record name relative to the domain, such as `www`, or `@` for the domain itself. A full name ending in the domain is also accepted and stored relative to it. |  |
 | value | string | IPv4 address for this A record. |  |
 | ttl | integer | Time to live, in seconds. Must be between 1 and 2147483647. |  |
 | comment | string | A comment explaining what this record is for. |  |
@@ -345,7 +345,7 @@ to your domain. The record will be used to point a hostname to an IPv6 address. 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | domainId | string | **Required** Domain unique ID. |  |
-| name | string | Record name (subdomain). |  |
+| name | string | Record name relative to the domain, such as `www`, or `@` for the domain itself. A full name ending in the domain is also accepted and stored relative to it. |  |
 | value | string | IPv6 address for this AAAA record. |  |
 | ttl | integer | Time to live, in seconds. Must be between 1 and 2147483647. |  |
 | comment | string | A comment explaining what this record is for. |  |
@@ -365,7 +365,7 @@ TTL, and optional comment. **
 | --- | --- | --- | --- |
 | domainId | string | **Required** Domain unique ID. |  |
 | recordId | string | **Required** DNS record unique ID. |  |
-| name | string | Record name (subdomain). |  |
+| name | string | Record name relative to the domain, such as `www`, or `@` for the domain itself. A full name ending in the domain is also accepted and stored relative to it. |  |
 | value | string | IPv6 address for this AAAA record. |  |
 | ttl | integer | Time to live, in seconds. Must be between 1 and 2147483647. |  |
 | comment | string | A comment for this record. |  |
@@ -384,7 +384,7 @@ map your domain to a target domain that may change its IP address. **
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | domainId | string | **Required** Domain unique ID. |  |
-| name | string | Record name. |  |
+| name | string | Record name relative to the domain, such as `www`, or `@` for the domain itself. A full name ending in the domain is also accepted and stored relative to it. |  |
 | value | string | Target domain for this ALIAS record. |  |
 | ttl | integer | Time to live, in seconds. Must be between 1 and 2147483647. |  |
 | comment | string | A comment for this record. |  |
@@ -406,7 +406,7 @@ It provides a way to map one domain name to another. **
 | --- | --- | --- | --- |
 | domainId | string | **Required** Domain unique ID. |  |
 | recordId | string | **Required** DNS record unique ID. |  |
-| name | string | Record name. |  |
+| name | string | Record name relative to the domain, such as `www`, or `@` for the domain itself. A full name ending in the domain is also accepted and stored relative to it. |  |
 | value | string | Target domain for this ALIAS record. |  |
 | ttl | integer | Time to live, in seconds. Must be between 1 and 2147483647. |  |
 | comment | string | A comment for this record. |  |
@@ -424,7 +424,7 @@ Certificate Authorities (CAs) are allowed to issue SSL/TLS certificates for your
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | domainId | string | **Required** Domain unique ID. |  |
-| name | string | Record name. |  |
+| name | string | Record name relative to the domain, such as `www`, or `@` for the domain itself. A full name ending in the domain is also accepted and stored relative to it. |  |
 | value | string | CAA value (e.g. issuer domain). |  |
 | ttl | integer | Time to live, in seconds. Must be between 1 and 2147483647. |  |
 | comment | string | A comment for this record. |  |
@@ -444,7 +444,7 @@ for a domain. **
 | --- | --- | --- | --- |
 | domainId | string | **Required** Domain unique ID. |  |
 | recordId | string | **Required** DNS record unique ID. |  |
-| name | string | Record name. |  |
+| name | string | Record name relative to the domain, such as `www`, or `@` for the domain itself. A full name ending in the domain is also accepted and stored relative to it. |  |
 | value | string | CAA value (e.g. issuer domain). |  |
 | ttl | integer | Time to live, in seconds. Must be between 1 and 2147483647. |  |
 | comment | string | A comment for this record. |  |
@@ -465,7 +465,7 @@ to 'example.wordpress.com'. **
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | domainId | string | **Required** Domain unique ID. |  |
-| name | string | Record name (subdomain). |  |
+| name | string | Record name relative to the domain, such as `www`, or `@` for the domain itself. A full name ending in the domain is also accepted and stored relative to it. |  |
 | value | string | Canonical target for this CNAME record. |  |
 | ttl | integer | Time to live, in seconds. Must be between 1 and 2147483647. |  |
 | comment | string | A comment for this record. |  |
@@ -483,7 +483,7 @@ PUT https://cloud.appwrite.io/v1/domains/{domainId}/records/cname/{recordId}
 | --- | --- | --- | --- |
 | domainId | string | **Required** Domain unique ID. |  |
 | recordId | string | **Required** DNS record unique ID. |  |
-| name | string | Record name (subdomain). |  |
+| name | string | Record name relative to the domain, such as `www`, or `@` for the domain itself. A full name ending in the domain is also accepted and stored relative to it. |  |
 | value | string | Canonical target for this CNAME record. |  |
 | ttl | integer | Time to live, in seconds. Must be between 1 and 2147483647. |  |
 | comment | string | A comment for this record. |  |
@@ -501,7 +501,7 @@ settings for your domain, enabling secure communication over SSL/TLS. **
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | domainId | string | **Required** Domain unique ID. |  |
-| name | string | Record name (subdomain). |  |
+| name | string | Record name relative to the domain, such as `www`, or `@` for the domain itself. A full name ending in the domain is also accepted and stored relative to it. |  |
 | value | string | Target for the HTTPS record. |  |
 | ttl | integer | Time to live, in seconds. Must be between 1 and 2147483647. |  |
 | comment | string | A comment for this record. |  |
@@ -521,7 +521,7 @@ target value, TTL, and optional comment. **
 | --- | --- | --- | --- |
 | domainId | string | **Required** Domain unique ID. |  |
 | recordId | string | **Required** DNS record unique ID. |  |
-| name | string | Record name (subdomain). |  |
+| name | string | Record name relative to the domain, such as `www`, or `@` for the domain itself. A full name ending in the domain is also accepted and stored relative to it. |  |
 | value | string | Target for the HTTPS record. |  |
 | ttl | integer | Time to live, in seconds. Must be between 1 and 2147483647. |  |
 | comment | string | A comment for this record. |  |
@@ -541,7 +541,7 @@ higher priority. **
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | domainId | string | **Required** Domain unique ID. |  |
-| name | string | Record name (subdomain). |  |
+| name | string | Record name relative to the domain, such as `www`, or `@` for the domain itself. A full name ending in the domain is also accepted and stored relative to it. |  |
 | value | string | Mail server domain for this MX record. |  |
 | ttl | integer | Time to live, in seconds. Must be between 1 and 2147483647. |  |
 | priority | integer | MX priority. Lower values are tried first. |  |
@@ -560,7 +560,7 @@ PUT https://cloud.appwrite.io/v1/domains/{domainId}/records/mx/{recordId}
 | --- | --- | --- | --- |
 | domainId | string | **Required** Domain unique ID. |  |
 | recordId | string | **Required** DNS record unique ID. |  |
-| name | string | Record name (subdomain). |  |
+| name | string | Record name relative to the domain, such as `www`, or `@` for the domain itself. A full name ending in the domain is also accepted and stored relative to it. |  |
 | value | string | Mail server domain for this MX record. |  |
 | ttl | integer | Time to live, in seconds. Must be between 1 and 2147483647. |  |
 | priority | integer | MX priority. Lower values are tried first. |  |
@@ -579,7 +579,7 @@ to resolve the domain name to IP addresses. Each domain can have multiple NS rec
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | domainId | string | **Required** Domain unique ID. |  |
-| name | string | Record name (subdomain). |  |
+| name | string | Record name relative to the domain, such as `www`, or `@` for the domain itself. A full name ending in the domain is also accepted and stored relative to it. |  |
 | value | string | Nameserver target for this NS record. |  |
 | ttl | integer | Time to live, in seconds. Must be between 1 and 2147483647. |  |
 | comment | string | A comment for this record. |  |
@@ -600,7 +600,7 @@ for better record management. **
 | --- | --- | --- | --- |
 | domainId | string | **Required** Domain unique ID. |  |
 | recordId | string | **Required** DNS record unique ID. |  |
-| name | string | Record name (subdomain). |  |
+| name | string | Record name relative to the domain, such as `www`, or `@` for the domain itself. A full name ending in the domain is also accepted and stored relative to it. |  |
 | value | string | Nameserver target for this NS record. |  |
 | ttl | integer | Time to live, in seconds. Must be between 1 and 2147483647. |  |
 | comment | string | A comment for this record. |  |
@@ -619,7 +619,7 @@ handles a specific service like SIP or XMPP for the domain. **
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | domainId | string | **Required** Domain unique ID. |  |
-| name | string | Record name (service name). |  |
+| name | string | Record name relative to the domain: the service and protocol, such as `_sip._tcp`. A full name ending in the domain is also accepted and stored relative to it. |  |
 | value | string | Target hostname for this SRV record. |  |
 | ttl | integer | Time to live, in seconds. Must be between 1 and 2147483647. |  |
 | priority | integer | Record priority. Lower values are tried first. |  |
@@ -653,7 +653,7 @@ Optional parameters:
 | --- | --- | --- | --- |
 | domainId | string | **Required** Domain unique ID. |  |
 | recordId | string | **Required** DNS record unique ID. |  |
-| name | string | Record name (service name). |  |
+| name | string | Record name relative to the domain: the service and protocol, such as `_sip._tcp`. A full name ending in the domain is also accepted and stored relative to it. |  |
 | value | string | Target hostname for this SRV record. |  |
 | ttl | integer | Time to live, in seconds. Must be between 1 and 2147483647. |  |
 | priority | integer | Record priority. Lower values are tried first. |  |
@@ -675,7 +675,7 @@ verification records, SPF records, or DKIM records. **
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | domainId | string | **Required** Domain unique ID. |  |
-| name | string | Record name (subdomain) for the TXT record. |  |
+| name | string | Record name relative to the domain, such as `www`, or `@` for the domain itself. A full name ending in the domain is also accepted and stored relative to it. |  |
 | value | string | TXT record value. |  |
 | ttl | integer | Time to live, in seconds. Must be between 1 and 2147483647. |  |
 | comment | string | A comment for this record. |  |
@@ -696,7 +696,7 @@ record ID, and the new record configuration including name, value, TTL, and an o
 | --- | --- | --- | --- |
 | domainId | string | **Required** Domain unique ID. |  |
 | recordId | string | **Required** DNS record unique ID. |  |
-| name | string | Record name (subdomain) for the TXT record. |  |
+| name | string | Record name relative to the domain, such as `www`, or `@` for the domain itself. A full name ending in the domain is also accepted and stored relative to it. |  |
 | value | string | TXT record value. |  |
 | ttl | integer | Time to live, in seconds. Must be between 1 and 2147483647. |  |
 | comment | string | A comment for this record. |  |
@@ -785,7 +785,7 @@ PUT https://cloud.appwrite.io/v1/domains/{domainId}/zone
 ```
 
 ** Update the DNS zone for the given domain using the provided zone file content.
-All parsed records are imported and then the main domain document is returned. **
+All parsed records the domain does not already have are imported and then the main domain document is returned. **
 
 ### Parameters
 

@@ -247,7 +247,7 @@ class Users extends Service
 
         $apiPath = str_replace(
             ['{identityId}'],
-            [$identityId],
+            [self::encodePath($identityId)],
             '/users/identities/{identityId}'
         );
 
@@ -513,7 +513,7 @@ class Users extends Service
 
         $apiPath = str_replace(
             ['{userId}'],
-            [$userId],
+            [self::encodePath($userId)],
             '/users/{userId}'
         );
 
@@ -556,7 +556,7 @@ class Users extends Service
 
         $apiPath = str_replace(
             ['{userId}'],
-            [$userId],
+            [self::encodePath($userId)],
             '/users/{userId}'
         );
 
@@ -589,7 +589,7 @@ class Users extends Service
 
         $apiPath = str_replace(
             ['{userId}'],
-            [$userId],
+            [self::encodePath($userId)],
             '/users/{userId}/email'
         );
 
@@ -636,7 +636,7 @@ class Users extends Service
 
         $apiPath = str_replace(
             ['{userId}'],
-            [$userId],
+            [self::encodePath($userId)],
             '/users/{userId}/impersonator'
         );
 
@@ -678,7 +678,7 @@ class Users extends Service
 
         $apiPath = str_replace(
             ['{userId}'],
-            [$userId],
+            [self::encodePath($userId)],
             '/users/{userId}/jwts'
         );
 
@@ -730,7 +730,7 @@ class Users extends Service
 
         $apiPath = str_replace(
             ['{userId}'],
-            [$userId],
+            [self::encodePath($userId)],
             '/users/{userId}/labels'
         );
 
@@ -770,7 +770,7 @@ class Users extends Service
 
         $apiPath = str_replace(
             ['{userId}'],
-            [$userId],
+            [self::encodePath($userId)],
             '/users/{userId}/memberships'
         );
 
@@ -820,7 +820,7 @@ class Users extends Service
 
         $apiPath = str_replace(
             ['{userId}'],
-            [$userId],
+            [self::encodePath($userId)],
             '/users/{userId}/mfa'
         );
 
@@ -860,7 +860,7 @@ class Users extends Service
 
         $apiPath = str_replace(
             ['{userId}', '{type}'],
-            [$userId, (string) $type],
+            [self::encodePath($userId), self::encodePath((string) $type)],
             '/users/{userId}/mfa/authenticators/{type}'
         );
 
@@ -899,7 +899,7 @@ class Users extends Service
 
         $apiPath = str_replace(
             ['{userId}', '{challengeId}'],
-            [$userId, $challengeId],
+            [self::encodePath($userId), self::encodePath($challengeId)],
             '/users/{userId}/mfa/challenges/{challengeId}'
         );
 
@@ -938,7 +938,7 @@ class Users extends Service
 
         $apiPath = str_replace(
             ['{userId}'],
-            [$userId],
+            [self::encodePath($userId)],
             '/users/{userId}/mfa/factors'
         );
 
@@ -979,7 +979,7 @@ class Users extends Service
 
         $apiPath = str_replace(
             ['{userId}'],
-            [$userId],
+            [self::encodePath($userId)],
             '/users/{userId}/mfa/recovery-codes'
         );
 
@@ -1020,7 +1020,7 @@ class Users extends Service
 
         $apiPath = str_replace(
             ['{userId}'],
-            [$userId],
+            [self::encodePath($userId)],
             '/users/{userId}/mfa/recovery-codes'
         );
 
@@ -1062,7 +1062,7 @@ class Users extends Service
 
         $apiPath = str_replace(
             ['{userId}'],
-            [$userId],
+            [self::encodePath($userId)],
             '/users/{userId}/mfa/recovery-codes'
         );
 
@@ -1101,7 +1101,7 @@ class Users extends Service
 
         $apiPath = str_replace(
             ['{userId}'],
-            [$userId],
+            [self::encodePath($userId)],
             '/users/{userId}/name'
         );
 
@@ -1141,7 +1141,7 @@ class Users extends Service
 
         $apiPath = str_replace(
             ['{userId}'],
-            [$userId],
+            [self::encodePath($userId)],
             '/users/{userId}/passkeys'
         );
 
@@ -1191,7 +1191,7 @@ class Users extends Service
 
         $apiPath = str_replace(
             ['{userId}', '{passkeyId}'],
-            [$userId, $passkeyId],
+            [self::encodePath($userId), self::encodePath($passkeyId)],
             '/users/{userId}/passkeys/{passkeyId}'
         );
 
@@ -1234,7 +1234,7 @@ class Users extends Service
 
         $apiPath = str_replace(
             ['{userId}', '{passkeyId}'],
-            [$userId, $passkeyId],
+            [self::encodePath($userId), self::encodePath($passkeyId)],
             '/users/{userId}/passkeys/{passkeyId}'
         );
 
@@ -1280,7 +1280,7 @@ class Users extends Service
 
         $apiPath = str_replace(
             ['{userId}', '{passkeyId}'],
-            [$userId, $passkeyId],
+            [self::encodePath($userId), self::encodePath($passkeyId)],
             '/users/{userId}/passkeys/{passkeyId}'
         );
 
@@ -1314,7 +1314,7 @@ class Users extends Service
 
         $apiPath = str_replace(
             ['{userId}'],
-            [$userId],
+            [self::encodePath($userId)],
             '/users/{userId}/password'
         );
 
@@ -1354,7 +1354,7 @@ class Users extends Service
 
         $apiPath = str_replace(
             ['{userId}'],
-            [$userId],
+            [self::encodePath($userId)],
             '/users/{userId}/phone'
         );
 
@@ -1394,7 +1394,7 @@ class Users extends Service
 
         $apiPath = str_replace(
             ['{userId}'],
-            [$userId],
+            [self::encodePath($userId)],
             '/users/{userId}/prefs'
         );
 
@@ -1434,7 +1434,7 @@ class Users extends Service
 
         $apiPath = str_replace(
             ['{userId}'],
-            [$userId],
+            [self::encodePath($userId)],
             '/users/{userId}/prefs'
         );
 
@@ -1474,7 +1474,7 @@ class Users extends Service
 
         $apiPath = str_replace(
             ['{userId}'],
-            [$userId],
+            [self::encodePath($userId)],
             '/users/{userId}/sessions'
         );
 
@@ -1521,7 +1521,7 @@ class Users extends Service
 
         $apiPath = str_replace(
             ['{userId}'],
-            [$userId],
+            [self::encodePath($userId)],
             '/users/{userId}/sessions'
         );
 
@@ -1560,7 +1560,7 @@ class Users extends Service
 
         $apiPath = str_replace(
             ['{userId}'],
-            [$userId],
+            [self::encodePath($userId)],
             '/users/{userId}/sessions'
         );
 
@@ -1597,7 +1597,7 @@ class Users extends Service
 
         $apiPath = str_replace(
             ['{userId}', '{sessionId}'],
-            [$userId, $sessionId],
+            [self::encodePath($userId), self::encodePath($sessionId)],
             '/users/{userId}/sessions/{sessionId}'
         );
 
@@ -1632,7 +1632,7 @@ class Users extends Service
 
         $apiPath = str_replace(
             ['{userId}'],
-            [$userId],
+            [self::encodePath($userId)],
             '/users/{userId}/status'
         );
 
@@ -1672,7 +1672,7 @@ class Users extends Service
 
         $apiPath = str_replace(
             ['{userId}'],
-            [$userId],
+            [self::encodePath($userId)],
             '/users/{userId}/targets'
         );
 
@@ -1718,7 +1718,7 @@ class Users extends Service
 
         $apiPath = str_replace(
             ['{userId}'],
-            [$userId],
+            [self::encodePath($userId)],
             '/users/{userId}/targets'
         );
 
@@ -1772,7 +1772,7 @@ class Users extends Service
 
         $apiPath = str_replace(
             ['{userId}', '{targetId}'],
-            [$userId, $targetId],
+            [self::encodePath($userId), self::encodePath($targetId)],
             '/users/{userId}/targets/{targetId}'
         );
 
@@ -1815,7 +1815,7 @@ class Users extends Service
 
         $apiPath = str_replace(
             ['{userId}', '{targetId}'],
-            [$userId, $targetId],
+            [self::encodePath($userId), self::encodePath($targetId)],
             '/users/{userId}/targets/{targetId}'
         );
 
@@ -1871,7 +1871,7 @@ class Users extends Service
 
         $apiPath = str_replace(
             ['{userId}', '{targetId}'],
-            [$userId, $targetId],
+            [self::encodePath($userId), self::encodePath($targetId)],
             '/users/{userId}/targets/{targetId}'
         );
 
@@ -1908,7 +1908,7 @@ class Users extends Service
 
         $apiPath = str_replace(
             ['{userId}'],
-            [$userId],
+            [self::encodePath($userId)],
             '/users/{userId}/tokens'
         );
 
@@ -1955,7 +1955,7 @@ class Users extends Service
 
         $apiPath = str_replace(
             ['{userId}'],
-            [$userId],
+            [self::encodePath($userId)],
             '/users/{userId}/verification'
         );
 
@@ -1995,7 +1995,7 @@ class Users extends Service
 
         $apiPath = str_replace(
             ['{userId}'],
-            [$userId],
+            [self::encodePath($userId)],
             '/users/{userId}/verification/phone'
         );
 

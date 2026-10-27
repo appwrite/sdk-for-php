@@ -6,12 +6,15 @@ namespace Appwrite\Services;
 
 use Appwrite\Client;
 use Mockery;
+use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
 use Appwrite\Enums\BackupServices;
 
 final class BackupsTest extends TestCase
 {
+    use MockeryPHPUnitIntegration;
+
     private Client&MockInterface $client;
     private Backups $backups;
 
@@ -40,13 +43,30 @@ final class BackupsTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/backups/archives',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['queries', 'total'], array_keys($params));
+                    $expected = [
+                        'queries' => [],
+                        'total' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->backups->listArchives();
+        $response = $this->backups->listArchives(
+            queries: [],
+            total: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\BackupArchiveList::class, $response);
     }
@@ -64,14 +84,29 @@ final class BackupsTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/backups/archives',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['services', 'resourceId'], array_keys($params));
+                    $expected = [
+                        'services' => [BackupServices::DATABASES()],
+                        'resourceId' => "<RESOURCE_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->backups->createArchive(
-            [BackupServices::DATABASES()]
+            [BackupServices::DATABASES()],
+            resourceId: "<RESOURCE_ID>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\BackupArchive::class, $response);
@@ -90,7 +125,20 @@ final class BackupsTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/backups/archives/%3CARCHIVE_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['archiveId'], array_keys($params));
+                    $expected = [
+                        'archiveId' => "<ARCHIVE_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -107,7 +155,20 @@ final class BackupsTest extends TestCase
         $data = '';
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'DELETE',
+                '/backups/archives/%3CARCHIVE_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['archiveId'], array_keys($params));
+                    $expected = [
+                        'archiveId' => "<ARCHIVE_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -140,13 +201,30 @@ final class BackupsTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/backups/policies',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['queries', 'total'], array_keys($params));
+                    $expected = [
+                        'queries' => [],
+                        'total' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->backups->listPolicies();
+        $response = $this->backups->listPolicies(
+            queries: [],
+            total: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\BackupPolicyList::class, $response);
     }
@@ -166,7 +244,26 @@ final class BackupsTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/backups/policies',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['policyId', 'services', 'retention', 'schedule', 'name', 'resourceId', 'enabled'], array_keys($params));
+                    $expected = [
+                        'policyId' => "<POLICY_ID>",
+                        'services' => [BackupServices::DATABASES()],
+                        'retention' => 1,
+                        'schedule' => "schedule",
+                        'name' => "<NAME>",
+                        'resourceId' => "<RESOURCE_ID>",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -176,7 +273,10 @@ final class BackupsTest extends TestCase
             "<POLICY_ID>",
             [BackupServices::DATABASES()],
             1,
-            "schedule"
+            "schedule",
+            name: "<NAME>",
+            resourceId: "<RESOURCE_ID>",
+            enabled: false
         );
 
         $this->assertInstanceOf(\Appwrite\Models\BackupPolicy::class, $response);
@@ -197,7 +297,20 @@ final class BackupsTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/backups/policies/%3CPOLICY_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['policyId'], array_keys($params));
+                    $expected = [
+                        'policyId' => "<POLICY_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -225,14 +338,35 @@ final class BackupsTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/backups/policies/%3CPOLICY_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['policyId', 'name', 'retention', 'schedule', 'enabled'], array_keys($params));
+                    $expected = [
+                        'policyId' => "<POLICY_ID>",
+                        'name' => "<NAME>",
+                        'retention' => 1,
+                        'schedule' => "schedule",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->backups->updatePolicy(
-            "<POLICY_ID>"
+            "<POLICY_ID>",
+            name: "<NAME>",
+            retention: 1,
+            schedule: "schedule",
+            enabled: false
         );
 
         $this->assertInstanceOf(\Appwrite\Models\BackupPolicy::class, $response);
@@ -242,7 +376,20 @@ final class BackupsTest extends TestCase
         $data = '';
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'DELETE',
+                '/backups/policies/%3CPOLICY_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['policyId'], array_keys($params));
+                    $expected = [
+                        'policyId' => "<POLICY_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -270,7 +417,23 @@ final class BackupsTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/backups/restoration',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['archiveId', 'services', 'newResourceId', 'newResourceName'], array_keys($params));
+                    $expected = [
+                        'archiveId' => "<ARCHIVE_ID>",
+                        'services' => [BackupServices::DATABASES()],
+                        'newResourceId' => "<NEW_RESOURCE_ID>",
+                        'newResourceName' => "<NEW_RESOURCE_NAME>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -278,7 +441,9 @@ final class BackupsTest extends TestCase
 
         $response = $this->backups->createRestoration(
             "<ARCHIVE_ID>",
-            [BackupServices::DATABASES()]
+            [BackupServices::DATABASES()],
+            newResourceId: "<NEW_RESOURCE_ID>",
+            newResourceName: "<NEW_RESOURCE_NAME>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\BackupRestoration::class, $response);
@@ -304,13 +469,30 @@ final class BackupsTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/backups/restorations',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['queries', 'total'], array_keys($params));
+                    $expected = [
+                        'queries' => [],
+                        'total' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->backups->listRestorations();
+        $response = $this->backups->listRestorations(
+            queries: [],
+            total: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\BackupRestorationList::class, $response);
     }
@@ -330,7 +512,20 @@ final class BackupsTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/backups/restorations/%3CRESTORATION_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['restorationId'], array_keys($params));
+                    $expected = [
+                        'restorationId' => "<RESTORATION_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())

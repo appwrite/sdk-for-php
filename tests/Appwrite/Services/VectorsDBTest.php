@@ -6,12 +6,16 @@ namespace Appwrite\Services;
 
 use Appwrite\Client;
 use Mockery;
+use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
 use Appwrite\Enums\VectorsDBIndexType;
+use Appwrite\Enums\OrderBy;
 
 final class VectorsDBTest extends TestCase
 {
+    use MockeryPHPUnitIntegration;
+
     private Client&MockInterface $client;
     private VectorsDB $vectorsDB;
 
@@ -39,13 +43,30 @@ final class VectorsDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/vectorsdb',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['queries', 'total'], array_keys($params));
+                    $expected = [
+                        'queries' => [],
+                        'total' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->vectorsDB->list();
+        $response = $this->vectorsDB->list(
+            queries: [],
+            total: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\DatabaseList::class, $response);
     }
@@ -62,7 +83,26 @@ final class VectorsDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/vectorsdb',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'name', 'enabled', 'description', 'specification', 'replicas', 'syncMode'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'name' => "<NAME>",
+                        'enabled' => false,
+                        'description' => "<DESCRIPTION>",
+                        'specification' => "serverless",
+                        'replicas' => 1,
+                        'syncMode' => "async",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -70,7 +110,12 @@ final class VectorsDBTest extends TestCase
 
         $response = $this->vectorsDB->create(
             "<DATABASE_ID>",
-            "<NAME>"
+            "<NAME>",
+            enabled: false,
+            description: "<DESCRIPTION>",
+            specification: "serverless",
+            replicas: 1,
+            syncMode: "async"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Database::class, $response);
@@ -99,7 +144,16 @@ final class VectorsDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/vectorsdb/specifications',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame([], array_keys($params));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -126,13 +180,30 @@ final class VectorsDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/vectorsdb/transactions',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['queries', 'total'], array_keys($params));
+                    $expected = [
+                        'queries' => [],
+                        'total' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->vectorsDB->listTransactions();
+        $response = $this->vectorsDB->listTransactions(
+            queries: [],
+            total: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\TransactionList::class, $response);
     }
@@ -148,13 +219,28 @@ final class VectorsDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/vectorsdb/transactions',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['ttl'], array_keys($params));
+                    $expected = [
+                        'ttl' => 1,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->vectorsDB->createTransaction();
+        $response = $this->vectorsDB->createTransaction(
+            ttl: 1
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\Transaction::class, $response);
     }
@@ -170,7 +256,20 @@ final class VectorsDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/vectorsdb/transactions/%3CTRANSACTION_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['transactionId'], array_keys($params));
+                    $expected = [
+                        'transactionId' => "<TRANSACTION_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -194,14 +293,31 @@ final class VectorsDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/vectorsdb/transactions/%3CTRANSACTION_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['transactionId', 'commit', 'rollback'], array_keys($params));
+                    $expected = [
+                        'transactionId' => "<TRANSACTION_ID>",
+                        'commit' => false,
+                        'rollback' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->vectorsDB->updateTransaction(
-            "<TRANSACTION_ID>"
+            "<TRANSACTION_ID>",
+            commit: false,
+            rollback: false
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Transaction::class, $response);
@@ -211,7 +327,20 @@ final class VectorsDBTest extends TestCase
         $data = '';
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'DELETE',
+                '/vectorsdb/transactions/%3CTRANSACTION_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['transactionId'], array_keys($params));
+                    $expected = [
+                        'transactionId' => "<TRANSACTION_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -235,14 +364,29 @@ final class VectorsDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/vectorsdb/transactions/%3CTRANSACTION_ID%3E/operations',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['transactionId', 'operations'], array_keys($params));
+                    $expected = [
+                        'transactionId' => "<TRANSACTION_ID>",
+                        'operations' => [],
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->vectorsDB->createOperations(
-            "<TRANSACTION_ID>"
+            "<TRANSACTION_ID>",
+            operations: []
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Transaction::class, $response);
@@ -260,7 +404,20 @@ final class VectorsDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/vectorsdb/%3CDATABASE_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -285,7 +442,26 @@ final class VectorsDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PUT',
+                '/vectorsdb/%3CDATABASE_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'name', 'enabled', 'description', 'specification', 'replicas', 'syncMode'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'name' => "<NAME>",
+                        'enabled' => false,
+                        'description' => "<DESCRIPTION>",
+                        'specification' => "serverless",
+                        'replicas' => 1,
+                        'syncMode' => "async",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -293,7 +469,12 @@ final class VectorsDBTest extends TestCase
 
         $response = $this->vectorsDB->update(
             "<DATABASE_ID>",
-            "<NAME>"
+            "<NAME>",
+            enabled: false,
+            description: "<DESCRIPTION>",
+            specification: "serverless",
+            replicas: 1,
+            syncMode: "async"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Database::class, $response);
@@ -303,7 +484,20 @@ final class VectorsDBTest extends TestCase
         $data = '';
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'DELETE',
+                '/vectorsdb/%3CDATABASE_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -353,14 +547,33 @@ final class VectorsDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/vectorsdb/%3CDATABASE_ID%3E/collections',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'queries', 'search', 'total'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'queries' => [],
+                        'search' => "<SEARCH>",
+                        'total' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->vectorsDB->listCollections(
-            "<DATABASE_ID>"
+            "<DATABASE_ID>",
+            queries: [],
+            search: "<SEARCH>",
+            total: false
         );
 
         $this->assertInstanceOf(\Appwrite\Models\VectorsdbCollectionList::class, $response);
@@ -398,7 +611,27 @@ final class VectorsDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/vectorsdb/%3CDATABASE_ID%3E/collections',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'collectionId', 'name', 'dimension', 'permissions', 'documentSecurity', 'enabled', 'description'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'collectionId' => "<COLLECTION_ID>",
+                        'name' => "<NAME>",
+                        'dimension' => 1,
+                        'permissions' => [],
+                        'documentSecurity' => false,
+                        'enabled' => false,
+                        'description' => "<DESCRIPTION>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -408,7 +641,11 @@ final class VectorsDBTest extends TestCase
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
             "<NAME>",
-            1
+            1,
+            permissions: [],
+            documentSecurity: false,
+            enabled: false,
+            description: "<DESCRIPTION>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\VectorsdbCollection::class, $response);
@@ -446,7 +683,21 @@ final class VectorsDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/vectorsdb/%3CDATABASE_ID%3E/collections/%3CCOLLECTION_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'collectionId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'collectionId' => "<COLLECTION_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -492,7 +743,27 @@ final class VectorsDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PUT',
+                '/vectorsdb/%3CDATABASE_ID%3E/collections/%3CCOLLECTION_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'collectionId', 'name', 'dimension', 'permissions', 'documentSecurity', 'enabled', 'description'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'collectionId' => "<COLLECTION_ID>",
+                        'name' => "<NAME>",
+                        'dimension' => 1,
+                        'permissions' => [],
+                        'documentSecurity' => false,
+                        'enabled' => false,
+                        'description' => "<DESCRIPTION>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -501,7 +772,12 @@ final class VectorsDBTest extends TestCase
         $response = $this->vectorsDB->updateCollection(
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
-            "<NAME>"
+            "<NAME>",
+            dimension: 1,
+            permissions: [],
+            documentSecurity: false,
+            enabled: false,
+            description: "<DESCRIPTION>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\VectorsdbCollection::class, $response);
@@ -511,7 +787,21 @@ final class VectorsDBTest extends TestCase
         $data = '';
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'DELETE',
+                '/vectorsdb/%3CDATABASE_ID%3E/collections/%3CCOLLECTION_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'collectionId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'collectionId' => "<COLLECTION_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -542,7 +832,25 @@ final class VectorsDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/vectorsdb/%3CDATABASE_ID%3E/collections/%3CCOLLECTION_ID%3E/documents',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'collectionId', 'queries', 'transactionId', 'total', 'ttl'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'collectionId' => "<COLLECTION_ID>",
+                        'queries' => [],
+                        'transactionId' => "<TRANSACTION_ID>",
+                        'total' => false,
+                        'ttl' => 1,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -550,7 +858,11 @@ final class VectorsDBTest extends TestCase
 
         $response = $this->vectorsDB->listDocuments(
             "<DATABASE_ID>",
-            "<COLLECTION_ID>"
+            "<COLLECTION_ID>",
+            queries: [],
+            transactionId: "<TRANSACTION_ID>",
+            total: false,
+            ttl: 1
         );
 
         $this->assertInstanceOf(\Appwrite\Models\DocumentList::class, $response);
@@ -568,7 +880,25 @@ final class VectorsDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/vectorsdb/%3CDATABASE_ID%3E/collections/%3CCOLLECTION_ID%3E/documents',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'collectionId', 'documentId', 'data', 'permissions', 'transactionId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'collectionId' => "<COLLECTION_ID>",
+                        'documentId' => "<DOCUMENT_ID>",
+                        'data' => [],
+                        'permissions' => [],
+                        'transactionId' => "<TRANSACTION_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -578,7 +908,9 @@ final class VectorsDBTest extends TestCase
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
             "<DOCUMENT_ID>",
-            []
+            [],
+            permissions: [],
+            transactionId: "<TRANSACTION_ID>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Document::class, $response);
@@ -601,7 +933,23 @@ final class VectorsDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/vectorsdb/%3CDATABASE_ID%3E/collections/%3CCOLLECTION_ID%3E/documents',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'collectionId', 'documents', 'transactionId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'collectionId' => "<COLLECTION_ID>",
+                        'documents' => [],
+                        'transactionId' => "<TRANSACTION_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -610,7 +958,8 @@ final class VectorsDBTest extends TestCase
         $response = $this->vectorsDB->createDocuments(
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
-            []
+            [],
+            transactionId: "<TRANSACTION_ID>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\DocumentList::class, $response);
@@ -633,7 +982,23 @@ final class VectorsDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PUT',
+                '/vectorsdb/%3CDATABASE_ID%3E/collections/%3CCOLLECTION_ID%3E/documents',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'collectionId', 'documents', 'transactionId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'collectionId' => "<COLLECTION_ID>",
+                        'documents' => [],
+                        'transactionId' => "<TRANSACTION_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -642,7 +1007,8 @@ final class VectorsDBTest extends TestCase
         $response = $this->vectorsDB->upsertDocuments(
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
-            []
+            [],
+            transactionId: "<TRANSACTION_ID>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\DocumentList::class, $response);
@@ -665,7 +1031,24 @@ final class VectorsDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/vectorsdb/%3CDATABASE_ID%3E/collections/%3CCOLLECTION_ID%3E/documents',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'collectionId', 'data', 'queries', 'transactionId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'collectionId' => "<COLLECTION_ID>",
+                        'data' => [],
+                        'queries' => [],
+                        'transactionId' => "<TRANSACTION_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -673,7 +1056,10 @@ final class VectorsDBTest extends TestCase
 
         $response = $this->vectorsDB->updateDocuments(
             "<DATABASE_ID>",
-            "<COLLECTION_ID>"
+            "<COLLECTION_ID>",
+            data: [],
+            queries: [],
+            transactionId: "<TRANSACTION_ID>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\DocumentList::class, $response);
@@ -696,7 +1082,23 @@ final class VectorsDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'DELETE',
+                '/vectorsdb/%3CDATABASE_ID%3E/collections/%3CCOLLECTION_ID%3E/documents',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'collectionId', 'queries', 'transactionId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'collectionId' => "<COLLECTION_ID>",
+                        'queries' => [],
+                        'transactionId' => "<TRANSACTION_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -704,7 +1106,9 @@ final class VectorsDBTest extends TestCase
 
         $response = $this->vectorsDB->deleteDocuments(
             "<DATABASE_ID>",
-            "<COLLECTION_ID>"
+            "<COLLECTION_ID>",
+            queries: [],
+            transactionId: "<TRANSACTION_ID>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\DocumentList::class, $response);
@@ -727,7 +1131,25 @@ final class VectorsDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/vectorsdb/%3CDATABASE_ID%3E/collections/%3CCOLLECTION_ID%3E/documents/query',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'collectionId', 'queries', 'transactionId', 'total', 'ttl'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'collectionId' => "<COLLECTION_ID>",
+                        'queries' => [],
+                        'transactionId' => "<TRANSACTION_ID>",
+                        'total' => false,
+                        'ttl' => 1,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -735,7 +1157,11 @@ final class VectorsDBTest extends TestCase
 
         $response = $this->vectorsDB->createQuery(
             "<DATABASE_ID>",
-            "<COLLECTION_ID>"
+            "<COLLECTION_ID>",
+            queries: [],
+            transactionId: "<TRANSACTION_ID>",
+            total: false,
+            ttl: 1
         );
 
         $this->assertInstanceOf(\Appwrite\Models\DocumentList::class, $response);
@@ -753,7 +1179,24 @@ final class VectorsDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/vectorsdb/%3CDATABASE_ID%3E/collections/%3CCOLLECTION_ID%3E/documents/%3CDOCUMENT_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'collectionId', 'documentId', 'queries', 'transactionId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'collectionId' => "<COLLECTION_ID>",
+                        'documentId' => "<DOCUMENT_ID>",
+                        'queries' => [],
+                        'transactionId' => "<TRANSACTION_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -762,7 +1205,9 @@ final class VectorsDBTest extends TestCase
         $response = $this->vectorsDB->getDocument(
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
-            "<DOCUMENT_ID>"
+            "<DOCUMENT_ID>",
+            queries: [],
+            transactionId: "<TRANSACTION_ID>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Document::class, $response);
@@ -780,7 +1225,25 @@ final class VectorsDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PUT',
+                '/vectorsdb/%3CDATABASE_ID%3E/collections/%3CCOLLECTION_ID%3E/documents/%3CDOCUMENT_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'collectionId', 'documentId', 'data', 'permissions', 'transactionId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'collectionId' => "<COLLECTION_ID>",
+                        'documentId' => "<DOCUMENT_ID>",
+                        'data' => [],
+                        'permissions' => [],
+                        'transactionId' => "<TRANSACTION_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -789,7 +1252,10 @@ final class VectorsDBTest extends TestCase
         $response = $this->vectorsDB->upsertDocument(
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
-            "<DOCUMENT_ID>"
+            "<DOCUMENT_ID>",
+            data: [],
+            permissions: [],
+            transactionId: "<TRANSACTION_ID>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Document::class, $response);
@@ -807,7 +1273,25 @@ final class VectorsDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/vectorsdb/%3CDATABASE_ID%3E/collections/%3CCOLLECTION_ID%3E/documents/%3CDOCUMENT_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'collectionId', 'documentId', 'data', 'permissions', 'transactionId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'collectionId' => "<COLLECTION_ID>",
+                        'documentId' => "<DOCUMENT_ID>",
+                        'data' => [],
+                        'permissions' => [],
+                        'transactionId' => "<TRANSACTION_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -816,7 +1300,10 @@ final class VectorsDBTest extends TestCase
         $response = $this->vectorsDB->updateDocument(
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
-            "<DOCUMENT_ID>"
+            "<DOCUMENT_ID>",
+            data: [],
+            permissions: [],
+            transactionId: "<TRANSACTION_ID>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Document::class, $response);
@@ -826,7 +1313,23 @@ final class VectorsDBTest extends TestCase
         $data = '';
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'DELETE',
+                '/vectorsdb/%3CDATABASE_ID%3E/collections/%3CCOLLECTION_ID%3E/documents/%3CDOCUMENT_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'collectionId', 'documentId', 'transactionId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'collectionId' => "<COLLECTION_ID>",
+                        'documentId' => "<DOCUMENT_ID>",
+                        'transactionId' => "<TRANSACTION_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -835,7 +1338,8 @@ final class VectorsDBTest extends TestCase
         $response = $this->vectorsDB->deleteDocument(
             "<DATABASE_ID>",
             "<COLLECTION_ID>",
-            "<DOCUMENT_ID>"
+            "<DOCUMENT_ID>",
+            transactionId: "<TRANSACTION_ID>"
         );
 
         $this->assertSame($data, $response);
@@ -861,7 +1365,23 @@ final class VectorsDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/vectorsdb/%3CDATABASE_ID%3E/collections/%3CCOLLECTION_ID%3E/indexes',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'collectionId', 'queries', 'total'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'collectionId' => "<COLLECTION_ID>",
+                        'queries' => [],
+                        'total' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -869,7 +1389,9 @@ final class VectorsDBTest extends TestCase
 
         $response = $this->vectorsDB->listIndexes(
             "<DATABASE_ID>",
-            "<COLLECTION_ID>"
+            "<COLLECTION_ID>",
+            queries: [],
+            total: false
         );
 
         $this->assertInstanceOf(\Appwrite\Models\IndexList::class, $response);
@@ -890,7 +1412,27 @@ final class VectorsDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/vectorsdb/%3CDATABASE_ID%3E/collections/%3CCOLLECTION_ID%3E/indexes',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'collectionId', 'key', 'type', 'attributes', 'orders', 'lengths', 'description'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'collectionId' => "<COLLECTION_ID>",
+                        'key' => "<KEY>",
+                        'type' => VectorsDBIndexType::HNSWEUCLIDEAN(),
+                        'attributes' => [],
+                        'orders' => [OrderBy::ASC()],
+                        'lengths' => [],
+                        'description' => "<DESCRIPTION>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -901,7 +1443,10 @@ final class VectorsDBTest extends TestCase
             "<COLLECTION_ID>",
             "<KEY>",
             VectorsDBIndexType::HNSWEUCLIDEAN(),
-            []
+            [],
+            orders: [OrderBy::ASC()],
+            lengths: [],
+            description: "<DESCRIPTION>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Index::class, $response);
@@ -922,7 +1467,22 @@ final class VectorsDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/vectorsdb/%3CDATABASE_ID%3E/collections/%3CCOLLECTION_ID%3E/indexes/%3CKEY%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'collectionId', 'key'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'collectionId' => "<COLLECTION_ID>",
+                        'key' => "<KEY>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -941,7 +1501,22 @@ final class VectorsDBTest extends TestCase
         $data = '';
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'DELETE',
+                '/vectorsdb/%3CDATABASE_ID%3E/collections/%3CCOLLECTION_ID%3E/indexes/%3CKEY%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'collectionId', 'key'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'collectionId' => "<COLLECTION_ID>",
+                        'key' => "<KEY>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1006,14 +1581,29 @@ final class VectorsDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/vectorsdb/%3CDATABASE_ID%3E/failovers',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'targetReplicaId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'targetReplicaId' => "<TARGET_REPLICA_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->vectorsDB->createFailover(
-            "<DATABASE_ID>"
+            "<DATABASE_ID>",
+            targetReplicaId: "<TARGET_REPLICA_ID>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\DedicatedDatabase::class, $response);
@@ -1037,14 +1627,33 @@ final class VectorsDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/vectorsdb/%3CDATABASE_ID%3E/operations',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'status', 'limit', 'offset'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'status' => "queued",
+                        'limit' => 1,
+                        'offset' => 1,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->vectorsDB->listOperations(
-            "<DATABASE_ID>"
+            "<DATABASE_ID>",
+            status: "queued",
+            limit: 1,
+            offset: 1
         );
 
         $this->assertInstanceOf(\Appwrite\Models\DedicatedDatabaseOperationList::class, $response);
@@ -1067,7 +1676,20 @@ final class VectorsDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/vectorsdb/%3CDATABASE_ID%3E/replicas',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1109,7 +1731,20 @@ final class VectorsDBTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/vectorsdb/%3CDATABASE_ID%3E/status',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())

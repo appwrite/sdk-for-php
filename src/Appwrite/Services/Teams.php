@@ -111,7 +111,7 @@ class Teams extends Service
 
         $apiPath = str_replace(
             ['{teamId}'],
-            [$teamId],
+            [self::encodePath($teamId)],
             '/teams/{teamId}'
         );
 
@@ -149,7 +149,7 @@ class Teams extends Service
 
         $apiPath = str_replace(
             ['{teamId}'],
-            [$teamId],
+            [self::encodePath($teamId)],
             '/teams/{teamId}'
         );
 
@@ -190,7 +190,7 @@ class Teams extends Service
 
         $apiPath = str_replace(
             ['{teamId}'],
-            [$teamId],
+            [self::encodePath($teamId)],
             '/teams/{teamId}'
         );
 
@@ -223,7 +223,7 @@ class Teams extends Service
 
         $apiPath = str_replace(
             ['{teamId}'],
-            [$teamId],
+            [self::encodePath($teamId)],
             '/teams/{teamId}/installations'
         );
 
@@ -272,7 +272,7 @@ class Teams extends Service
 
         $apiPath = str_replace(
             ['{teamId}'],
-            [$teamId],
+            [self::encodePath($teamId)],
             '/teams/{teamId}/installations'
         );
 
@@ -321,7 +321,7 @@ class Teams extends Service
 
         $apiPath = str_replace(
             ['{teamId}', '{installationId}'],
-            [$teamId, $installationId],
+            [self::encodePath($teamId), self::encodePath($installationId)],
             '/teams/{teamId}/installations/{installationId}'
         );
 
@@ -367,7 +367,7 @@ class Teams extends Service
 
         $apiPath = str_replace(
             ['{teamId}', '{installationId}'],
-            [$teamId, $installationId],
+            [self::encodePath($teamId), self::encodePath($installationId)],
             '/teams/{teamId}/installations/{installationId}'
         );
 
@@ -414,7 +414,7 @@ class Teams extends Service
 
         $apiPath = str_replace(
             ['{teamId}', '{installationId}'],
-            [$teamId, $installationId],
+            [self::encodePath($teamId), self::encodePath($installationId)],
             '/teams/{teamId}/installations/{installationId}'
         );
 
@@ -450,7 +450,7 @@ class Teams extends Service
 
         $apiPath = str_replace(
             ['{teamId}'],
-            [$teamId],
+            [self::encodePath($teamId)],
             '/teams/{teamId}/memberships'
         );
 
@@ -519,7 +519,7 @@ class Teams extends Service
 
         $apiPath = str_replace(
             ['{teamId}'],
-            [$teamId],
+            [self::encodePath($teamId)],
             '/teams/{teamId}/memberships'
         );
 
@@ -589,7 +589,7 @@ class Teams extends Service
 
         $apiPath = str_replace(
             ['{teamId}', '{membershipId}'],
-            [$teamId, $membershipId],
+            [self::encodePath($teamId), self::encodePath($membershipId)],
             '/teams/{teamId}/memberships/{membershipId}'
         );
 
@@ -634,7 +634,7 @@ class Teams extends Service
 
         $apiPath = str_replace(
             ['{teamId}', '{membershipId}'],
-            [$teamId, $membershipId],
+            [self::encodePath($teamId), self::encodePath($membershipId)],
             '/teams/{teamId}/memberships/{membershipId}'
         );
 
@@ -681,7 +681,7 @@ class Teams extends Service
 
         $apiPath = str_replace(
             ['{teamId}', '{membershipId}'],
-            [$teamId, $membershipId],
+            [self::encodePath($teamId), self::encodePath($membershipId)],
             '/teams/{teamId}/memberships/{membershipId}'
         );
 
@@ -724,7 +724,7 @@ class Teams extends Service
 
         $apiPath = str_replace(
             ['{teamId}', '{membershipId}'],
-            [$teamId, $membershipId],
+            [self::encodePath($teamId), self::encodePath($membershipId)],
             '/teams/{teamId}/memberships/{membershipId}/status'
         );
 
@@ -768,7 +768,7 @@ class Teams extends Service
 
         $apiPath = str_replace(
             ['{teamId}'],
-            [$teamId],
+            [self::encodePath($teamId)],
             '/teams/{teamId}/prefs'
         );
 
@@ -808,7 +808,7 @@ class Teams extends Service
 
         $apiPath = str_replace(
             ['{teamId}'],
-            [$teamId],
+            [self::encodePath($teamId)],
             '/teams/{teamId}/prefs'
         );
 

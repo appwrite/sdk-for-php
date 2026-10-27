@@ -6,6 +6,7 @@ namespace Appwrite\Services;
 
 use Appwrite\Client;
 use Mockery;
+use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
 use Appwrite\Enums\AuthenticatorType;
@@ -15,6 +16,8 @@ use Appwrite\Enums\OAuthProvider;
 
 final class AccountTest extends TestCase
 {
+    use MockeryPHPUnitIntegration;
+
     private Client&MockInterface $client;
     private Account $account;
 
@@ -57,7 +60,16 @@ final class AccountTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/account',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame([], array_keys($params));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -100,7 +112,23 @@ final class AccountTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/account',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['userId', 'email', 'password', 'name'], array_keys($params));
+                    $expected = [
+                        'userId' => "<USER_ID>",
+                        'email' => "email@example.com",
+                        'password' => "password",
+                        'name' => "<NAME>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -109,7 +137,8 @@ final class AccountTest extends TestCase
         $response = $this->account->create(
             "<USER_ID>",
             "email@example.com",
-            "password"
+            "password",
+            name: "<NAME>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\User::class, $response);
@@ -135,13 +164,30 @@ final class AccountTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/account/consents',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['queries', 'total'], array_keys($params));
+                    $expected = [
+                        'queries' => [],
+                        'total' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->account->listConsents();
+        $response = $this->account->listConsents(
+            queries: [],
+            total: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\Oauth2ConsentList::class, $response);
     }
@@ -161,7 +207,20 @@ final class AccountTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/account/consents/%3CCONSENT_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['consentId'], array_keys($params));
+                    $expected = [
+                        'consentId' => "<CONSENT_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -178,7 +237,20 @@ final class AccountTest extends TestCase
         $data = '';
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'DELETE',
+                '/account/consents/%3CCONSENT_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['consentId'], array_keys($params));
+                    $expected = [
+                        'consentId' => "<CONSENT_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -212,14 +284,31 @@ final class AccountTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/account/consents/%3CCONSENT_ID%3E/tokens',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['consentId', 'queries', 'total'], array_keys($params));
+                    $expected = [
+                        'consentId' => "<CONSENT_ID>",
+                        'queries' => [],
+                        'total' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->account->listConsentTokens(
-            "<CONSENT_ID>"
+            "<CONSENT_ID>",
+            queries: [],
+            total: false
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Oauth2ConsentTokenList::class, $response);
@@ -241,7 +330,21 @@ final class AccountTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/account/consents/%3CCONSENT_ID%3E/tokens/%3CTOKEN_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['consentId', 'tokenId'], array_keys($params));
+                    $expected = [
+                        'consentId' => "<CONSENT_ID>",
+                        'tokenId' => "<TOKEN_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -259,7 +362,21 @@ final class AccountTest extends TestCase
         $data = '';
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'DELETE',
+                '/account/consents/%3CCONSENT_ID%3E/tokens/%3CTOKEN_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['consentId', 'tokenId'], array_keys($params));
+                    $expected = [
+                        'consentId' => "<CONSENT_ID>",
+                        'tokenId' => "<TOKEN_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -305,7 +422,21 @@ final class AccountTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/account/email',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['email', 'password'], array_keys($params));
+                    $expected = [
+                        'email' => "email@example.com",
+                        'password' => "password",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -340,13 +471,30 @@ final class AccountTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/account/identities',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['queries', 'total'], array_keys($params));
+                    $expected = [
+                        'queries' => [],
+                        'total' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->account->listIdentities();
+        $response = $this->account->listIdentities(
+            queries: [],
+            total: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\IdentityList::class, $response);
     }
@@ -355,7 +503,20 @@ final class AccountTest extends TestCase
         $data = '';
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'DELETE',
+                '/account/identities/%3CIDENTITY_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['identityId'], array_keys($params));
+                    $expected = [
+                        'identityId' => "<IDENTITY_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -393,13 +554,30 @@ final class AccountTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/account/memberships',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['queries', 'total'], array_keys($params));
+                    $expected = [
+                        'queries' => [],
+                        'total' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->account->listMemberships();
+        $response = $this->account->listMemberships(
+            queries: [],
+            total: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\MembershipList::class, $response);
     }
@@ -436,14 +614,27 @@ final class AccountTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/account/mfa',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['mfa'], array_keys($params));
+                    $expected = [
+                        'mfa' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->account->updateMFA(
-            true
+            false
         );
 
         $this->assertInstanceOf(\Appwrite\Models\User::class, $response);
@@ -456,7 +647,20 @@ final class AccountTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/account/mfa/authenticators/totp',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['type'], array_keys($params));
+                    $expected = [
+                        'type' => AuthenticatorType::TOTP(),
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -501,7 +705,21 @@ final class AccountTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PUT',
+                '/account/mfa/authenticators/totp',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['type', 'otp'], array_keys($params));
+                    $expected = [
+                        'type' => AuthenticatorType::TOTP(),
+                        'otp' => "<OTP>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -519,7 +737,20 @@ final class AccountTest extends TestCase
         $data = '';
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'DELETE',
+                '/account/mfa/authenticators/totp',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['type'], array_keys($params));
+                    $expected = [
+                        'type' => AuthenticatorType::TOTP(),
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -541,7 +772,20 @@ final class AccountTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/account/mfa/challenges',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['factor'], array_keys($params));
+                    $expected = [
+                        'factor' => AuthenticationFactor::EMAIL(),
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -588,7 +832,21 @@ final class AccountTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PUT',
+                '/account/mfa/challenges',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['challengeId', 'otp'], array_keys($params));
+                    $expected = [
+                        'challengeId' => "<CHALLENGE_ID>",
+                        'otp' => "<OTP>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -612,7 +870,16 @@ final class AccountTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/account/mfa/factors',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame([], array_keys($params));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -629,7 +896,16 @@ final class AccountTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/account/mfa/recovery-codes',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame([], array_keys($params));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -646,7 +922,16 @@ final class AccountTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/account/mfa/recovery-codes',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame([], array_keys($params));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -663,7 +948,16 @@ final class AccountTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/account/mfa/recovery-codes',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame([], array_keys($params));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -706,7 +1000,20 @@ final class AccountTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/account/name',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['name'], array_keys($params));
+                    $expected = [
+                        'name' => "<NAME>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -734,13 +1041,30 @@ final class AccountTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/account/passkeys',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['queries', 'total'], array_keys($params));
+                    $expected = [
+                        'queries' => [],
+                        'total' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->account->listPasskeys();
+        $response = $this->account->listPasskeys(
+            queries: [],
+            total: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\PasskeyList::class, $response);
     }
@@ -755,13 +1079,30 @@ final class AccountTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/account/passkeys',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['passkeyId', 'name'], array_keys($params));
+                    $expected = [
+                        'passkeyId' => "<PASSKEY_ID>",
+                        'name' => "<NAME>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->account->createPasskey();
+        $response = $this->account->createPasskey(
+            passkeyId: "<PASSKEY_ID>",
+            name: "<NAME>"
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\PasskeyChallenge::class, $response);
     }
@@ -776,7 +1117,20 @@ final class AccountTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/account/passkeys/%3CPASSKEY_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['passkeyId'], array_keys($params));
+                    $expected = [
+                        'passkeyId' => "<PASSKEY_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -799,7 +1153,21 @@ final class AccountTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/account/passkeys/%3CPASSKEY_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['passkeyId', 'name'], array_keys($params));
+                    $expected = [
+                        'passkeyId' => "<PASSKEY_ID>",
+                        'name' => "<NAME>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -817,7 +1185,20 @@ final class AccountTest extends TestCase
         $data = '';
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'DELETE',
+                '/account/passkeys/%3CPASSKEY_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['passkeyId'], array_keys($params));
+                    $expected = [
+                        'passkeyId' => "<PASSKEY_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -840,7 +1221,21 @@ final class AccountTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PUT',
+                '/account/passkeys/%3CPASSKEY_ID%3E/verification',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['passkeyId', 'credential'], array_keys($params));
+                    $expected = [
+                        'passkeyId' => "<PASSKEY_ID>",
+                        'credential' => [],
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -886,14 +1281,29 @@ final class AccountTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/account/password',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['password', 'oldPassword'], array_keys($params));
+                    $expected = [
+                        'password' => "password",
+                        'oldPassword' => "password",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->account->updatePassword(
-            "password"
+            "password",
+            oldPassword: "password"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\User::class, $response);
@@ -931,7 +1341,21 @@ final class AccountTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/account/phone',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['phone', 'password'], array_keys($params));
+                    $expected = [
+                        'phone' => "+12065550100",
+                        'password' => "password",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -949,7 +1373,16 @@ final class AccountTest extends TestCase
         $data = [];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/account/prefs',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame([], array_keys($params));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -992,7 +1425,20 @@ final class AccountTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/account/prefs',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['prefs'], array_keys($params));
+                    $expected = [
+                        'prefs' => [],
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1016,7 +1462,21 @@ final class AccountTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/account/recovery',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['email', 'url'], array_keys($params));
+                    $expected = [
+                        'email' => "email@example.com",
+                        'url' => "https://example.com",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1041,7 +1501,22 @@ final class AccountTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PUT',
+                '/account/recovery',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['userId', 'secret', 'password'], array_keys($params));
+                    $expected = [
+                        'userId' => "<USER_ID>",
+                        'secret' => "<SECRET>",
+                        'password' => "password",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1067,14 +1542,29 @@ final class AccountTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/account/recovery/otp',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['email', 'phrase'], array_keys($params));
+                    $expected = [
+                        'email' => "email@example.com",
+                        'phrase' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->account->createRecoveryOTP(
-            "email@example.com"
+            "email@example.com",
+            phrase: false
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Token::class, $response);
@@ -1091,7 +1581,22 @@ final class AccountTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PUT',
+                '/account/recovery/otp',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['userId', 'secret', 'password'], array_keys($params));
+                    $expected = [
+                        'userId' => "<USER_ID>",
+                        'secret' => "<SECRET>",
+                        'password' => "password",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1145,13 +1650,28 @@ final class AccountTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/account/sessions',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['total'], array_keys($params));
+                    $expected = [
+                        'total' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->account->listSessions();
+        $response = $this->account->listSessions(
+            total: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\SessionList::class, $response);
     }
@@ -1160,13 +1680,28 @@ final class AccountTest extends TestCase
         $data = '';
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'DELETE',
+                '/account/sessions',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['current'], array_keys($params));
+                    $expected = [
+                        'current' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->account->deleteSessions();
+        $response = $this->account->deleteSessions(
+            current: false
+        );
 
         $this->assertSame($data, $response);
     }
@@ -1205,7 +1740,16 @@ final class AccountTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/account/sessions/anonymous',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame([], array_keys($params));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1250,7 +1794,22 @@ final class AccountTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/account/sessions/email',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['email', 'password', 'duration'], array_keys($params));
+                    $expected = [
+                        'email' => "email@example.com",
+                        'password' => "password",
+                        'duration' => 1,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1258,7 +1817,8 @@ final class AccountTest extends TestCase
 
         $response = $this->account->createEmailPasswordSession(
             "email@example.com",
-            "password"
+            "password",
+            duration: 1
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Session::class, $response);
@@ -1298,7 +1858,25 @@ final class AccountTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/account/sessions/id-token',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['provider', 'idToken', 'nonce', 'accessToken', 'accessTokenExpiry', 'name'], array_keys($params));
+                    $expected = [
+                        'provider' => IdTokenProvider::APPLE(),
+                        'idToken' => "<ID_TOKEN>",
+                        'nonce' => "<NONCE>",
+                        'accessToken' => "<ACCESS_TOKEN>",
+                        'accessTokenExpiry' => 1,
+                        'name' => "<NAME>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1306,7 +1884,11 @@ final class AccountTest extends TestCase
 
         $response = $this->account->createIdTokenSession(
             IdTokenProvider::APPLE(),
-            "<ID_TOKEN>"
+            "<ID_TOKEN>",
+            nonce: "<NONCE>",
+            accessToken: "<ACCESS_TOKEN>",
+            accessTokenExpiry: 1,
+            name: "<NAME>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Session::class, $response);
@@ -1346,7 +1928,21 @@ final class AccountTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PUT',
+                '/account/sessions/magic-url',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['userId', 'secret'], array_keys($params));
+                    $expected = [
+                        'userId' => "<USER_ID>",
+                        'secret' => "<SECRET>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1394,7 +1990,21 @@ final class AccountTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PUT',
+                '/account/sessions/phone',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['userId', 'secret'], array_keys($params));
+                    $expected = [
+                        'userId' => "<USER_ID>",
+                        'secret' => "<SECRET>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1442,7 +2052,21 @@ final class AccountTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/account/sessions/token',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['userId', 'secret'], array_keys($params));
+                    $expected = [
+                        'userId' => "<USER_ID>",
+                        'secret' => "<SECRET>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1490,7 +2114,20 @@ final class AccountTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/account/sessions/%3CSESSION_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['sessionId'], array_keys($params));
+                    $expected = [
+                        'sessionId' => "<SESSION_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1537,7 +2174,20 @@ final class AccountTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/account/sessions/%3CSESSION_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['sessionId'], array_keys($params));
+                    $expected = [
+                        'sessionId' => "<SESSION_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1554,7 +2204,20 @@ final class AccountTest extends TestCase
         $data = '';
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'DELETE',
+                '/account/sessions/%3CSESSION_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['sessionId'], array_keys($params));
+                    $expected = [
+                        'sessionId' => "<SESSION_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1599,7 +2262,16 @@ final class AccountTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/account/status',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame([], array_keys($params));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1621,7 +2293,22 @@ final class AccountTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/account/tokens/email',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['userId', 'email', 'phrase'], array_keys($params));
+                    $expected = [
+                        'userId' => "<USER_ID>",
+                        'email' => "email@example.com",
+                        'phrase' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1629,7 +2316,8 @@ final class AccountTest extends TestCase
 
         $response = $this->account->createEmailToken(
             "<USER_ID>",
-            "email@example.com"
+            "email@example.com",
+            phrase: false
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Token::class, $response);
@@ -1646,7 +2334,23 @@ final class AccountTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/account/tokens/magic-url',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['userId', 'email', 'url', 'phrase'], array_keys($params));
+                    $expected = [
+                        'userId' => "<USER_ID>",
+                        'email' => "email@example.com",
+                        'url' => "https://example.com",
+                        'phrase' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1654,7 +2358,9 @@ final class AccountTest extends TestCase
 
         $response = $this->account->createMagicURLToken(
             "<USER_ID>",
-            "email@example.com"
+            "email@example.com",
+            url: "https://example.com",
+            phrase: false
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Token::class, $response);
@@ -1664,14 +2370,36 @@ final class AccountTest extends TestCase
         $data = '';
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/account/tokens/oauth2/amazon',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['provider', 'success', 'failure', 'scopes', 'state'], array_keys($params));
+                    $expected = [
+                        'provider' => OAuthProvider::AMAZON(),
+                        'success' => "https://example.com",
+                        'failure' => "https://example.com",
+                        'scopes' => [],
+                        'state' => "<STATE>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                }),
+                'location'
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->account->createOAuth2Token(
-            OAuthProvider::AMAZON()
+            OAuthProvider::AMAZON(),
+            success: "https://example.com",
+            failure: "https://example.com",
+            scopes: [],
+            state: "<STATE>"
         );
 
         $this->assertSame($data, $response);
@@ -1687,7 +2415,16 @@ final class AccountTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/account/tokens/passkey',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame([], array_keys($params));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1709,7 +2446,21 @@ final class AccountTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PUT',
+                '/account/tokens/passkey',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['challengeId', 'credential'], array_keys($params));
+                    $expected = [
+                        'challengeId' => "<CHALLENGE_ID>",
+                        'credential' => [],
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1734,7 +2485,21 @@ final class AccountTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/account/tokens/phone',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['userId', 'phone'], array_keys($params));
+                    $expected = [
+                        'userId' => "<USER_ID>",
+                        'phone' => "+12065550100",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1759,7 +2524,20 @@ final class AccountTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/account/verifications/email',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['url'], array_keys($params));
+                    $expected = [
+                        'url' => "https://example.com",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1783,7 +2561,20 @@ final class AccountTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/account/verifications/email',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['url'], array_keys($params));
+                    $expected = [
+                        'url' => "https://example.com",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1807,7 +2598,21 @@ final class AccountTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PUT',
+                '/account/verifications/email',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['userId', 'secret'], array_keys($params));
+                    $expected = [
+                        'userId' => "<USER_ID>",
+                        'secret' => "<SECRET>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1832,7 +2637,21 @@ final class AccountTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PUT',
+                '/account/verifications/email',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['userId', 'secret'], array_keys($params));
+                    $expected = [
+                        'userId' => "<USER_ID>",
+                        'secret' => "<SECRET>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1857,13 +2676,28 @@ final class AccountTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/account/verifications/email/otp',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['phrase'], array_keys($params));
+                    $expected = [
+                        'phrase' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->account->createEmailVerificationOTP();
+        $response = $this->account->createEmailVerificationOTP(
+            phrase: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\Token::class, $response);
     }
@@ -1879,7 +2713,21 @@ final class AccountTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PUT',
+                '/account/verifications/email/otp',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['userId', 'secret'], array_keys($params));
+                    $expected = [
+                        'userId' => "<USER_ID>",
+                        'secret' => "<SECRET>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1904,7 +2752,16 @@ final class AccountTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/account/verifications/phone',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame([], array_keys($params));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1926,7 +2783,21 @@ final class AccountTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PUT',
+                '/account/verifications/phone',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['userId', 'secret'], array_keys($params));
+                    $expected = [
+                        'userId' => "<USER_ID>",
+                        'secret' => "<SECRET>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())

@@ -173,7 +173,7 @@ class Mongo extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/mongo/{databaseId}'
         );
 
@@ -214,7 +214,7 @@ class Mongo extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/mongo/{databaseId}'
         );
 
@@ -276,7 +276,7 @@ class Mongo extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/mongo/{databaseId}'
         );
 
@@ -310,7 +310,7 @@ class Mongo extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/mongo/{databaseId}/backups'
         );
 
@@ -357,7 +357,7 @@ class Mongo extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/mongo/{databaseId}/backups'
         );
 
@@ -400,7 +400,7 @@ class Mongo extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/mongo/{databaseId}/backups/policies'
         );
 
@@ -446,7 +446,7 @@ class Mongo extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/mongo/{databaseId}/backups/policies'
         );
 
@@ -501,7 +501,7 @@ class Mongo extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{policyId}'],
-            [$databaseId, $policyId],
+            [self::encodePath($databaseId), self::encodePath($policyId)],
             '/mongo/{databaseId}/backups/policies/{policyId}'
         );
 
@@ -544,7 +544,7 @@ class Mongo extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{policyId}'],
-            [$databaseId, $policyId],
+            [self::encodePath($databaseId), self::encodePath($policyId)],
             '/mongo/{databaseId}/backups/policies/{policyId}'
         );
 
@@ -596,7 +596,7 @@ class Mongo extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{policyId}'],
-            [$databaseId, $policyId],
+            [self::encodePath($databaseId), self::encodePath($policyId)],
             '/mongo/{databaseId}/backups/policies/{policyId}'
         );
 
@@ -632,7 +632,7 @@ class Mongo extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/mongo/{databaseId}/backups/storage'
         );
 
@@ -692,7 +692,7 @@ class Mongo extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{backupId}'],
-            [$databaseId, $backupId],
+            [self::encodePath($databaseId), self::encodePath($backupId)],
             '/mongo/{databaseId}/backups/{backupId}'
         );
 
@@ -736,7 +736,7 @@ class Mongo extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{backupId}'],
-            [$databaseId, $backupId],
+            [self::encodePath($databaseId), self::encodePath($backupId)],
             '/mongo/{databaseId}/backups/{backupId}'
         );
 
@@ -771,7 +771,7 @@ class Mongo extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/mongo/{databaseId}/branches'
         );
 
@@ -813,7 +813,7 @@ class Mongo extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/mongo/{databaseId}/branches'
         );
 
@@ -866,7 +866,7 @@ class Mongo extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{branchId}'],
-            [$databaseId, $branchId],
+            [self::encodePath($databaseId), self::encodePath($branchId)],
             '/mongo/{databaseId}/branches/{branchId}'
         );
 
@@ -909,7 +909,7 @@ class Mongo extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/mongo/{databaseId}/credentials'
         );
 
@@ -956,7 +956,7 @@ class Mongo extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/mongo/{databaseId}/failovers'
         );
 
@@ -998,7 +998,7 @@ class Mongo extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/mongo/{databaseId}/maintenance'
         );
 
@@ -1042,7 +1042,7 @@ class Mongo extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/mongo/{databaseId}/migrations'
         );
 
@@ -1086,7 +1086,7 @@ class Mongo extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/mongo/{databaseId}/operations'
         );
 
@@ -1137,7 +1137,7 @@ class Mongo extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/mongo/{databaseId}/pitr'
         );
 
@@ -1176,7 +1176,7 @@ class Mongo extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/mongo/{databaseId}/replicas'
         );
 
@@ -1215,7 +1215,7 @@ class Mongo extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/mongo/{databaseId}/restorations'
         );
 
@@ -1283,7 +1283,7 @@ class Mongo extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/mongo/{databaseId}/restorations'
         );
 
@@ -1340,7 +1340,7 @@ class Mongo extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{restorationId}'],
-            [$databaseId, $restorationId],
+            [self::encodePath($databaseId), self::encodePath($restorationId)],
             '/mongo/{databaseId}/restorations/{restorationId}'
         );
 
@@ -1388,7 +1388,7 @@ class Mongo extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{restorationId}'],
-            [$databaseId, $restorationId],
+            [self::encodePath($databaseId), self::encodePath($restorationId)],
             '/mongo/{databaseId}/restorations/{restorationId}/promotions'
         );
 
@@ -1430,7 +1430,7 @@ class Mongo extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/mongo/{databaseId}/status'
         );
 
@@ -1469,7 +1469,7 @@ class Mongo extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/mongo/{databaseId}/upgrades'
         );
 
