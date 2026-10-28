@@ -38,6 +38,7 @@ class BuildRuntime implements JsonSerializable, Stringable
     private static BuildRuntime $PYTHON312;
     private static BuildRuntime $PYTHON313;
     private static BuildRuntime $PYTHON314;
+    private static BuildRuntime $PYTHON315;
     private static BuildRuntime $PYTHONML311;
     private static BuildRuntime $PYTHONML312;
     private static BuildRuntime $PYTHONML313;
@@ -46,6 +47,7 @@ class BuildRuntime implements JsonSerializable, Stringable
     private static BuildRuntime $DENO20;
     private static BuildRuntime $DENO25;
     private static BuildRuntime $DENO26;
+    private static BuildRuntime $DENO29;
     private static BuildRuntime $DART215;
     private static BuildRuntime $DART216;
     private static BuildRuntime $DART217;
@@ -93,7 +95,9 @@ class BuildRuntime implements JsonSerializable, Stringable
     private static BuildRuntime $GO124;
     private static BuildRuntime $GO125;
     private static BuildRuntime $GO126;
+    private static BuildRuntime $GO127;
     private static BuildRuntime $RUST183;
+    private static BuildRuntime $RUST199;
     private static BuildRuntime $STATIC1;
     private static BuildRuntime $FLUTTER324;
     private static BuildRuntime $FLUTTER327;
@@ -293,6 +297,12 @@ class BuildRuntime implements JsonSerializable, Stringable
 
         return self::$PYTHON314;
     }
+    public static function PYTHON315(): BuildRuntime
+    {
+        self::$PYTHON315 ??= new BuildRuntime('python-3.15');
+
+        return self::$PYTHON315;
+    }
     public static function PYTHONML311(): BuildRuntime
     {
         self::$PYTHONML311 ??= new BuildRuntime('python-ml-3.11');
@@ -340,6 +350,12 @@ class BuildRuntime implements JsonSerializable, Stringable
         self::$DENO26 ??= new BuildRuntime('deno-2.6');
 
         return self::$DENO26;
+    }
+    public static function DENO29(): BuildRuntime
+    {
+        self::$DENO29 ??= new BuildRuntime('deno-2.9');
+
+        return self::$DENO29;
     }
     public static function DART215(): BuildRuntime
     {
@@ -623,11 +639,23 @@ class BuildRuntime implements JsonSerializable, Stringable
 
         return self::$GO126;
     }
+    public static function GO127(): BuildRuntime
+    {
+        self::$GO127 ??= new BuildRuntime('go-1.27');
+
+        return self::$GO127;
+    }
     public static function RUST183(): BuildRuntime
     {
         self::$RUST183 ??= new BuildRuntime('rust-1.83');
 
         return self::$RUST183;
+    }
+    public static function RUST199(): BuildRuntime
+    {
+        self::$RUST199 ??= new BuildRuntime('rust-1.99');
+
+        return self::$RUST199;
     }
     public static function STATIC1(): BuildRuntime
     {
@@ -722,6 +750,7 @@ class BuildRuntime implements JsonSerializable, Stringable
             'python-3.12' => self::PYTHON312(),
             'python-3.13' => self::PYTHON313(),
             'python-3.14' => self::PYTHON314(),
+            'python-3.15' => self::PYTHON315(),
             'python-ml-3.11' => self::PYTHONML311(),
             'python-ml-3.12' => self::PYTHONML312(),
             'python-ml-3.13' => self::PYTHONML313(),
@@ -730,6 +759,7 @@ class BuildRuntime implements JsonSerializable, Stringable
             'deno-2.0' => self::DENO20(),
             'deno-2.5' => self::DENO25(),
             'deno-2.6' => self::DENO26(),
+            'deno-2.9' => self::DENO29(),
             'dart-2.15' => self::DART215(),
             'dart-2.16' => self::DART216(),
             'dart-2.17' => self::DART217(),
@@ -777,7 +807,9 @@ class BuildRuntime implements JsonSerializable, Stringable
             'go-1.24' => self::GO124(),
             'go-1.25' => self::GO125(),
             'go-1.26' => self::GO126(),
+            'go-1.27' => self::GO127(),
             'rust-1.83' => self::RUST183(),
+            'rust-1.99' => self::RUST199(),
             'static-1' => self::STATIC1(),
             'flutter-3.24' => self::FLUTTER324(),
             'flutter-3.27' => self::FLUTTER327(),

@@ -28,7 +28,7 @@ class Tokens extends Service
 
         $apiPath = str_replace(
             ['{bucketId}', '{fileId}'],
-            [$bucketId, $fileId],
+            [self::encodePath($bucketId), self::encodePath($fileId)],
             '/tokens/buckets/{bucketId}/files/{fileId}'
         );
 
@@ -80,7 +80,7 @@ class Tokens extends Service
 
         $apiPath = str_replace(
             ['{bucketId}', '{fileId}'],
-            [$bucketId, $fileId],
+            [self::encodePath($bucketId), self::encodePath($fileId)],
             '/tokens/buckets/{bucketId}/files/{fileId}'
         );
 
@@ -121,7 +121,7 @@ class Tokens extends Service
 
         $apiPath = str_replace(
             ['{tokenId}'],
-            [$tokenId],
+            [self::encodePath($tokenId)],
             '/tokens/{tokenId}'
         );
 
@@ -160,7 +160,7 @@ class Tokens extends Service
 
         $apiPath = str_replace(
             ['{tokenId}'],
-            [$tokenId],
+            [self::encodePath($tokenId)],
             '/tokens/{tokenId}'
         );
 
@@ -200,7 +200,7 @@ class Tokens extends Service
 
         $apiPath = str_replace(
             ['{tokenId}'],
-            [$tokenId],
+            [self::encodePath($tokenId)],
             '/tokens/{tokenId}'
         );
 

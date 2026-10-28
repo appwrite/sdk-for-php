@@ -66,7 +66,7 @@ class Advisor extends Service
 
         $apiPath = str_replace(
             ['{reportId}'],
-            [$reportId],
+            [self::encodePath($reportId)],
             '/reports/{reportId}'
         );
 
@@ -105,7 +105,7 @@ class Advisor extends Service
 
         $apiPath = str_replace(
             ['{reportId}'],
-            [$reportId],
+            [self::encodePath($reportId)],
             '/reports/{reportId}'
         );
 
@@ -139,7 +139,7 @@ class Advisor extends Service
 
         $apiPath = str_replace(
             ['{reportId}'],
-            [$reportId],
+            [self::encodePath($reportId)],
             '/reports/{reportId}/insights'
         );
 
@@ -189,7 +189,7 @@ class Advisor extends Service
 
         $apiPath = str_replace(
             ['{reportId}', '{insightId}'],
-            [$reportId, $insightId],
+            [self::encodePath($reportId), self::encodePath($insightId)],
             '/reports/{reportId}/insights/{insightId}'
         );
 

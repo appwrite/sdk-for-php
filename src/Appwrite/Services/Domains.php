@@ -202,7 +202,7 @@ class Domains extends Service
 
         $apiPath = str_replace(
             ['{domainId}'],
-            [$domainId],
+            [self::encodePath($domainId)],
             '/domains/{domainId}'
         );
 
@@ -243,7 +243,7 @@ class Domains extends Service
 
         $apiPath = str_replace(
             ['{domainId}'],
-            [$domainId],
+            [self::encodePath($domainId)],
             '/domains/{domainId}'
         );
 
@@ -278,7 +278,7 @@ class Domains extends Service
 
         $apiPath = str_replace(
             ['{domainId}'],
-            [$domainId],
+            [self::encodePath($domainId)],
             '/domains/{domainId}/nameservers'
         );
 
@@ -325,7 +325,7 @@ class Domains extends Service
 
         $apiPath = str_replace(
             ['{domainId}'],
-            [$domainId],
+            [self::encodePath($domainId)],
             '/domains/{domainId}/nameservers/verification'
         );
 
@@ -364,7 +364,7 @@ class Domains extends Service
 
         $apiPath = str_replace(
             ['{domainId}'],
-            [$domainId],
+            [self::encodePath($domainId)],
             '/domains/{domainId}/presets/google-workspace'
         );
 
@@ -404,7 +404,7 @@ class Domains extends Service
 
         $apiPath = str_replace(
             ['{domainId}'],
-            [$domainId],
+            [self::encodePath($domainId)],
             '/domains/{domainId}/presets/google-workspace'
         );
 
@@ -443,7 +443,7 @@ class Domains extends Service
 
         $apiPath = str_replace(
             ['{domainId}'],
-            [$domainId],
+            [self::encodePath($domainId)],
             '/domains/{domainId}/presets/icloud'
         );
 
@@ -483,7 +483,7 @@ class Domains extends Service
 
         $apiPath = str_replace(
             ['{domainId}'],
-            [$domainId],
+            [self::encodePath($domainId)],
             '/domains/{domainId}/presets/icloud'
         );
 
@@ -522,7 +522,7 @@ class Domains extends Service
 
         $apiPath = str_replace(
             ['{domainId}'],
-            [$domainId],
+            [self::encodePath($domainId)],
             '/domains/{domainId}/presets/mailgun'
         );
 
@@ -562,7 +562,7 @@ class Domains extends Service
 
         $apiPath = str_replace(
             ['{domainId}'],
-            [$domainId],
+            [self::encodePath($domainId)],
             '/domains/{domainId}/presets/mailgun'
         );
 
@@ -601,7 +601,7 @@ class Domains extends Service
 
         $apiPath = str_replace(
             ['{domainId}'],
-            [$domainId],
+            [self::encodePath($domainId)],
             '/domains/{domainId}/presets/outlook'
         );
 
@@ -641,7 +641,7 @@ class Domains extends Service
 
         $apiPath = str_replace(
             ['{domainId}'],
-            [$domainId],
+            [self::encodePath($domainId)],
             '/domains/{domainId}/presets/outlook'
         );
 
@@ -680,7 +680,7 @@ class Domains extends Service
 
         $apiPath = str_replace(
             ['{domainId}'],
-            [$domainId],
+            [self::encodePath($domainId)],
             '/domains/{domainId}/presets/proton-mail'
         );
 
@@ -720,7 +720,7 @@ class Domains extends Service
 
         $apiPath = str_replace(
             ['{domainId}'],
-            [$domainId],
+            [self::encodePath($domainId)],
             '/domains/{domainId}/presets/proton-mail'
         );
 
@@ -759,7 +759,7 @@ class Domains extends Service
 
         $apiPath = str_replace(
             ['{domainId}'],
-            [$domainId],
+            [self::encodePath($domainId)],
             '/domains/{domainId}/presets/zoho'
         );
 
@@ -799,7 +799,7 @@ class Domains extends Service
 
         $apiPath = str_replace(
             ['{domainId}'],
-            [$domainId],
+            [self::encodePath($domainId)],
             '/domains/{domainId}/presets/zoho'
         );
 
@@ -840,7 +840,7 @@ class Domains extends Service
 
         $apiPath = str_replace(
             ['{domainId}'],
-            [$domainId],
+            [self::encodePath($domainId)],
             '/domains/{domainId}/records'
         );
 
@@ -888,7 +888,7 @@ class Domains extends Service
 
         $apiPath = str_replace(
             ['{domainId}'],
-            [$domainId],
+            [self::encodePath($domainId)],
             '/domains/{domainId}/records/a'
         );
 
@@ -942,7 +942,7 @@ class Domains extends Service
 
         $apiPath = str_replace(
             ['{domainId}', '{recordId}'],
-            [$domainId, $recordId],
+            [self::encodePath($domainId), self::encodePath($recordId)],
             '/domains/{domainId}/records/a/{recordId}'
         );
 
@@ -992,7 +992,7 @@ class Domains extends Service
 
         $apiPath = str_replace(
             ['{domainId}'],
-            [$domainId],
+            [self::encodePath($domainId)],
             '/domains/{domainId}/records/aaaa'
         );
 
@@ -1046,7 +1046,7 @@ class Domains extends Service
 
         $apiPath = str_replace(
             ['{domainId}', '{recordId}'],
-            [$domainId, $recordId],
+            [self::encodePath($domainId), self::encodePath($recordId)],
             '/domains/{domainId}/records/aaaa/{recordId}'
         );
 
@@ -1097,7 +1097,7 @@ class Domains extends Service
 
         $apiPath = str_replace(
             ['{domainId}'],
-            [$domainId],
+            [self::encodePath($domainId)],
             '/domains/{domainId}/records/alias'
         );
 
@@ -1154,7 +1154,7 @@ class Domains extends Service
 
         $apiPath = str_replace(
             ['{domainId}', '{recordId}'],
-            [$domainId, $recordId],
+            [self::encodePath($domainId), self::encodePath($recordId)],
             '/domains/{domainId}/records/alias/{recordId}'
         );
 
@@ -1204,7 +1204,7 @@ class Domains extends Service
 
         $apiPath = str_replace(
             ['{domainId}'],
-            [$domainId],
+            [self::encodePath($domainId)],
             '/domains/{domainId}/records/caa'
         );
 
@@ -1258,7 +1258,7 @@ class Domains extends Service
 
         $apiPath = str_replace(
             ['{domainId}', '{recordId}'],
-            [$domainId, $recordId],
+            [self::encodePath($domainId), self::encodePath($recordId)],
             '/domains/{domainId}/records/caa/{recordId}'
         );
 
@@ -1311,7 +1311,7 @@ class Domains extends Service
 
         $apiPath = str_replace(
             ['{domainId}'],
-            [$domainId],
+            [self::encodePath($domainId)],
             '/domains/{domainId}/records/cname'
         );
 
@@ -1361,7 +1361,7 @@ class Domains extends Service
 
         $apiPath = str_replace(
             ['{domainId}', '{recordId}'],
-            [$domainId, $recordId],
+            [self::encodePath($domainId), self::encodePath($recordId)],
             '/domains/{domainId}/records/cname/{recordId}'
         );
 
@@ -1410,7 +1410,7 @@ class Domains extends Service
 
         $apiPath = str_replace(
             ['{domainId}'],
-            [$domainId],
+            [self::encodePath($domainId)],
             '/domains/{domainId}/records/https'
         );
 
@@ -1464,7 +1464,7 @@ class Domains extends Service
 
         $apiPath = str_replace(
             ['{domainId}', '{recordId}'],
-            [$domainId, $recordId],
+            [self::encodePath($domainId), self::encodePath($recordId)],
             '/domains/{domainId}/records/https/{recordId}'
         );
 
@@ -1517,7 +1517,7 @@ class Domains extends Service
 
         $apiPath = str_replace(
             ['{domainId}'],
-            [$domainId],
+            [self::encodePath($domainId)],
             '/domains/{domainId}/records/mx'
         );
 
@@ -1568,7 +1568,7 @@ class Domains extends Service
 
         $apiPath = str_replace(
             ['{domainId}', '{recordId}'],
-            [$domainId, $recordId],
+            [self::encodePath($domainId), self::encodePath($recordId)],
             '/domains/{domainId}/records/mx/{recordId}'
         );
 
@@ -1619,7 +1619,7 @@ class Domains extends Service
 
         $apiPath = str_replace(
             ['{domainId}'],
-            [$domainId],
+            [self::encodePath($domainId)],
             '/domains/{domainId}/records/ns'
         );
 
@@ -1675,7 +1675,7 @@ class Domains extends Service
 
         $apiPath = str_replace(
             ['{domainId}', '{recordId}'],
-            [$domainId, $recordId],
+            [self::encodePath($domainId), self::encodePath($recordId)],
             '/domains/{domainId}/records/ns/{recordId}'
         );
 
@@ -1726,7 +1726,7 @@ class Domains extends Service
 
         $apiPath = str_replace(
             ['{domainId}'],
-            [$domainId],
+            [self::encodePath($domainId)],
             '/domains/{domainId}/records/srv'
         );
 
@@ -1792,7 +1792,7 @@ class Domains extends Service
 
         $apiPath = str_replace(
             ['{domainId}', '{recordId}'],
-            [$domainId, $recordId],
+            [self::encodePath($domainId), self::encodePath($recordId)],
             '/domains/{domainId}/records/srv/{recordId}'
         );
 
@@ -1844,7 +1844,7 @@ class Domains extends Service
 
         $apiPath = str_replace(
             ['{domainId}'],
-            [$domainId],
+            [self::encodePath($domainId)],
             '/domains/{domainId}/records/txt'
         );
 
@@ -1902,7 +1902,7 @@ class Domains extends Service
 
         $apiPath = str_replace(
             ['{domainId}', '{recordId}'],
-            [$domainId, $recordId],
+            [self::encodePath($domainId), self::encodePath($recordId)],
             '/domains/{domainId}/records/txt/{recordId}'
         );
 
@@ -1959,7 +1959,7 @@ class Domains extends Service
 
         $apiPath = str_replace(
             ['{domainId}', '{recordId}'],
-            [$domainId, $recordId],
+            [self::encodePath($domainId), self::encodePath($recordId)],
             '/domains/{domainId}/records/{recordId}'
         );
 
@@ -2004,7 +2004,7 @@ class Domains extends Service
 
         $apiPath = str_replace(
             ['{domainId}', '{recordId}'],
-            [$domainId, $recordId],
+            [self::encodePath($domainId), self::encodePath($recordId)],
             '/domains/{domainId}/records/{recordId}'
         );
 
@@ -2044,7 +2044,7 @@ class Domains extends Service
 
         $apiPath = str_replace(
             ['{domainId}'],
-            [$domainId],
+            [self::encodePath($domainId)],
             '/domains/{domainId}/team'
         );
 
@@ -2085,7 +2085,7 @@ class Domains extends Service
 
         $apiPath = str_replace(
             ['{domainId}'],
-            [$domainId],
+            [self::encodePath($domainId)],
             '/domains/{domainId}/transfers/status'
         );
 
@@ -2126,7 +2126,7 @@ class Domains extends Service
 
         $apiPath = str_replace(
             ['{domainId}'],
-            [$domainId],
+            [self::encodePath($domainId)],
             '/domains/{domainId}/zone'
         );
 
@@ -2148,8 +2148,8 @@ class Domains extends Service
     /**
      * Update the DNS zone for the given domain using the provided zone file
      * content.
-     * All parsed records are imported and then the main domain document is
-     * returned.
+     * All parsed records the domain does not already have are imported and then
+     * the main domain document is returned.
      *
      * @throws AppwriteException
      */
@@ -2161,7 +2161,7 @@ class Domains extends Service
 
         $apiPath = str_replace(
             ['{domainId}'],
-            [$domainId],
+            [self::encodePath($domainId)],
             '/domains/{domainId}/zone'
         );
 

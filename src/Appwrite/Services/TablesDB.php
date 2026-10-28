@@ -239,7 +239,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{transactionId}'],
-            [$transactionId],
+            [self::encodePath($transactionId)],
             '/tablesdb/transactions/{transactionId}'
         );
 
@@ -277,7 +277,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{transactionId}'],
-            [$transactionId],
+            [self::encodePath($transactionId)],
             '/tablesdb/transactions/{transactionId}'
         );
 
@@ -324,7 +324,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{transactionId}'],
-            [$transactionId],
+            [self::encodePath($transactionId)],
             '/tablesdb/transactions/{transactionId}'
         );
 
@@ -357,7 +357,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{transactionId}'],
-            [$transactionId],
+            [self::encodePath($transactionId)],
             '/tablesdb/transactions/{transactionId}/operations'
         );
 
@@ -401,7 +401,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/tablesdb/{databaseId}'
         );
 
@@ -439,7 +439,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/tablesdb/{databaseId}'
         );
 
@@ -491,7 +491,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/tablesdb/{databaseId}'
         );
 
@@ -532,7 +532,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/tablesdb/{databaseId}/failovers'
         );
 
@@ -573,7 +573,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/tablesdb/{databaseId}/migrations'
         );
 
@@ -618,7 +618,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/tablesdb/{databaseId}/migrations'
         );
 
@@ -666,7 +666,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{migrationId}'],
-            [$databaseId, $migrationId],
+            [self::encodePath($databaseId), self::encodePath($migrationId)],
             '/tablesdb/{databaseId}/migrations/{migrationId}'
         );
 
@@ -710,7 +710,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{migrationId}'],
-            [$databaseId, $migrationId],
+            [self::encodePath($databaseId), self::encodePath($migrationId)],
             '/tablesdb/{databaseId}/migrations/{migrationId}'
         );
 
@@ -756,7 +756,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{migrationId}'],
-            [$databaseId, $migrationId],
+            [self::encodePath($databaseId), self::encodePath($migrationId)],
             '/tablesdb/{databaseId}/migrations/{migrationId}/cutovers'
         );
 
@@ -799,7 +799,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/tablesdb/{databaseId}/operations'
         );
 
@@ -850,7 +850,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/tablesdb/{databaseId}/replicas'
         );
 
@@ -890,7 +890,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/tablesdb/{databaseId}/status'
         );
 
@@ -929,7 +929,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/tablesdb/{databaseId}/tables'
         );
 
@@ -982,7 +982,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/tablesdb/{databaseId}/tables'
         );
 
@@ -1049,7 +1049,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
-            [$databaseId, $tableId],
+            [self::encodePath($databaseId), self::encodePath($tableId)],
             '/tablesdb/{databaseId}/tables/{tableId}'
         );
 
@@ -1092,7 +1092,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
-            [$databaseId, $tableId],
+            [self::encodePath($databaseId), self::encodePath($tableId)],
             '/tablesdb/{databaseId}/tables/{tableId}'
         );
 
@@ -1155,7 +1155,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
-            [$databaseId, $tableId],
+            [self::encodePath($databaseId), self::encodePath($tableId)],
             '/tablesdb/{databaseId}/tables/{tableId}'
         );
 
@@ -1193,7 +1193,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
-            [$databaseId, $tableId],
+            [self::encodePath($databaseId), self::encodePath($tableId)],
             '/tablesdb/{databaseId}/tables/{tableId}/columns'
         );
 
@@ -1245,7 +1245,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
-            [$databaseId, $tableId],
+            [self::encodePath($databaseId), self::encodePath($tableId)],
             '/tablesdb/{databaseId}/tables/{tableId}/columns/bigint'
         );
 
@@ -1307,7 +1307,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
-            [$databaseId, $tableId, $key],
+            [self::encodePath($databaseId), self::encodePath($tableId), self::encodePath($key)],
             '/tablesdb/{databaseId}/tables/{tableId}/columns/bigint/{key}'
         );
 
@@ -1358,7 +1358,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
-            [$databaseId, $tableId],
+            [self::encodePath($databaseId), self::encodePath($tableId)],
             '/tablesdb/{databaseId}/tables/{tableId}/columns/boolean'
         );
 
@@ -1418,7 +1418,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
-            [$databaseId, $tableId, $key],
+            [self::encodePath($databaseId), self::encodePath($tableId), self::encodePath($key)],
             '/tablesdb/{databaseId}/tables/{tableId}/columns/boolean/{key}'
         );
 
@@ -1467,7 +1467,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
-            [$databaseId, $tableId],
+            [self::encodePath($databaseId), self::encodePath($tableId)],
             '/tablesdb/{databaseId}/tables/{tableId}/columns/datetime'
         );
 
@@ -1527,7 +1527,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
-            [$databaseId, $tableId, $key],
+            [self::encodePath($databaseId), self::encodePath($tableId), self::encodePath($key)],
             '/tablesdb/{databaseId}/tables/{tableId}/columns/datetime/{key}'
         );
 
@@ -1576,7 +1576,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
-            [$databaseId, $tableId],
+            [self::encodePath($databaseId), self::encodePath($tableId)],
             '/tablesdb/{databaseId}/tables/{tableId}/columns/email'
         );
 
@@ -1636,7 +1636,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
-            [$databaseId, $tableId, $key],
+            [self::encodePath($databaseId), self::encodePath($tableId), self::encodePath($key)],
             '/tablesdb/{databaseId}/tables/{tableId}/columns/email/{key}'
         );
 
@@ -1686,7 +1686,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
-            [$databaseId, $tableId],
+            [self::encodePath($databaseId), self::encodePath($tableId)],
             '/tablesdb/{databaseId}/tables/{tableId}/columns/enum'
         );
 
@@ -1747,7 +1747,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
-            [$databaseId, $tableId, $key],
+            [self::encodePath($databaseId), self::encodePath($tableId), self::encodePath($key)],
             '/tablesdb/{databaseId}/tables/{tableId}/columns/enum/{key}'
         );
 
@@ -1798,7 +1798,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
-            [$databaseId, $tableId],
+            [self::encodePath($databaseId), self::encodePath($tableId)],
             '/tablesdb/{databaseId}/tables/{tableId}/columns/float'
         );
 
@@ -1860,7 +1860,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
-            [$databaseId, $tableId, $key],
+            [self::encodePath($databaseId), self::encodePath($tableId), self::encodePath($key)],
             '/tablesdb/{databaseId}/tables/{tableId}/columns/float/{key}'
         );
 
@@ -1912,7 +1912,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
-            [$databaseId, $tableId],
+            [self::encodePath($databaseId), self::encodePath($tableId)],
             '/tablesdb/{databaseId}/tables/{tableId}/columns/integer'
         );
 
@@ -1974,7 +1974,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
-            [$databaseId, $tableId, $key],
+            [self::encodePath($databaseId), self::encodePath($tableId), self::encodePath($key)],
             '/tablesdb/{databaseId}/tables/{tableId}/columns/integer/{key}'
         );
 
@@ -2025,7 +2025,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
-            [$databaseId, $tableId],
+            [self::encodePath($databaseId), self::encodePath($tableId)],
             '/tablesdb/{databaseId}/tables/{tableId}/columns/ip'
         );
 
@@ -2085,7 +2085,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
-            [$databaseId, $tableId, $key],
+            [self::encodePath($databaseId), self::encodePath($tableId), self::encodePath($key)],
             '/tablesdb/{databaseId}/tables/{tableId}/columns/ip/{key}'
         );
 
@@ -2134,7 +2134,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
-            [$databaseId, $tableId],
+            [self::encodePath($databaseId), self::encodePath($tableId)],
             '/tablesdb/{databaseId}/tables/{tableId}/columns/line'
         );
 
@@ -2190,7 +2190,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
-            [$databaseId, $tableId, $key],
+            [self::encodePath($databaseId), self::encodePath($tableId), self::encodePath($key)],
             '/tablesdb/{databaseId}/tables/{tableId}/columns/line/{key}'
         );
 
@@ -2239,7 +2239,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
-            [$databaseId, $tableId],
+            [self::encodePath($databaseId), self::encodePath($tableId)],
             '/tablesdb/{databaseId}/tables/{tableId}/columns/longtext'
         );
 
@@ -2303,7 +2303,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
-            [$databaseId, $tableId, $key],
+            [self::encodePath($databaseId), self::encodePath($tableId), self::encodePath($key)],
             '/tablesdb/{databaseId}/tables/{tableId}/columns/longtext/{key}'
         );
 
@@ -2352,7 +2352,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
-            [$databaseId, $tableId],
+            [self::encodePath($databaseId), self::encodePath($tableId)],
             '/tablesdb/{databaseId}/tables/{tableId}/columns/mediumtext'
         );
 
@@ -2416,7 +2416,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
-            [$databaseId, $tableId, $key],
+            [self::encodePath($databaseId), self::encodePath($tableId), self::encodePath($key)],
             '/tablesdb/{databaseId}/tables/{tableId}/columns/mediumtext/{key}'
         );
 
@@ -2465,7 +2465,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
-            [$databaseId, $tableId],
+            [self::encodePath($databaseId), self::encodePath($tableId)],
             '/tablesdb/{databaseId}/tables/{tableId}/columns/point'
         );
 
@@ -2521,7 +2521,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
-            [$databaseId, $tableId, $key],
+            [self::encodePath($databaseId), self::encodePath($tableId), self::encodePath($key)],
             '/tablesdb/{databaseId}/tables/{tableId}/columns/point/{key}'
         );
 
@@ -2570,7 +2570,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
-            [$databaseId, $tableId],
+            [self::encodePath($databaseId), self::encodePath($tableId)],
             '/tablesdb/{databaseId}/tables/{tableId}/columns/polygon'
         );
 
@@ -2626,7 +2626,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
-            [$databaseId, $tableId, $key],
+            [self::encodePath($databaseId), self::encodePath($tableId), self::encodePath($key)],
             '/tablesdb/{databaseId}/tables/{tableId}/columns/polygon/{key}'
         );
 
@@ -2676,7 +2676,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
-            [$databaseId, $tableId],
+            [self::encodePath($databaseId), self::encodePath($tableId)],
             '/tablesdb/{databaseId}/tables/{tableId}/columns/relationship'
         );
 
@@ -2741,7 +2741,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
-            [$databaseId, $tableId, $key],
+            [self::encodePath($databaseId), self::encodePath($tableId), self::encodePath($key)],
             '/tablesdb/{databaseId}/tables/{tableId}/columns/relationship/{key}'
         );
 
@@ -2792,7 +2792,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
-            [$databaseId, $tableId],
+            [self::encodePath($databaseId), self::encodePath($tableId)],
             '/tablesdb/{databaseId}/tables/{tableId}/columns/string'
         );
 
@@ -2860,7 +2860,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
-            [$databaseId, $tableId, $key],
+            [self::encodePath($databaseId), self::encodePath($tableId), self::encodePath($key)],
             '/tablesdb/{databaseId}/tables/{tableId}/columns/string/{key}'
         );
 
@@ -2910,7 +2910,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
-            [$databaseId, $tableId],
+            [self::encodePath($databaseId), self::encodePath($tableId)],
             '/tablesdb/{databaseId}/tables/{tableId}/columns/text'
         );
 
@@ -2974,7 +2974,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
-            [$databaseId, $tableId, $key],
+            [self::encodePath($databaseId), self::encodePath($tableId), self::encodePath($key)],
             '/tablesdb/{databaseId}/tables/{tableId}/columns/text/{key}'
         );
 
@@ -3023,7 +3023,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
-            [$databaseId, $tableId],
+            [self::encodePath($databaseId), self::encodePath($tableId)],
             '/tablesdb/{databaseId}/tables/{tableId}/columns/url'
         );
 
@@ -3083,7 +3083,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
-            [$databaseId, $tableId, $key],
+            [self::encodePath($databaseId), self::encodePath($tableId), self::encodePath($key)],
             '/tablesdb/{databaseId}/tables/{tableId}/columns/url/{key}'
         );
 
@@ -3132,7 +3132,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
-            [$databaseId, $tableId],
+            [self::encodePath($databaseId), self::encodePath($tableId)],
             '/tablesdb/{databaseId}/tables/{tableId}/columns/varchar'
         );
 
@@ -3197,7 +3197,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
-            [$databaseId, $tableId, $key],
+            [self::encodePath($databaseId), self::encodePath($tableId), self::encodePath($key)],
             '/tablesdb/{databaseId}/tables/{tableId}/columns/varchar/{key}'
         );
 
@@ -3251,7 +3251,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
-            [$databaseId, $tableId, $key],
+            [self::encodePath($databaseId), self::encodePath($tableId), self::encodePath($key)],
             '/tablesdb/{databaseId}/tables/{tableId}/columns/{key}'
         );
 
@@ -3371,7 +3371,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
-            [$databaseId, $tableId, $key],
+            [self::encodePath($databaseId), self::encodePath($tableId), self::encodePath($key)],
             '/tablesdb/{databaseId}/tables/{tableId}/columns/{key}'
         );
 
@@ -3410,7 +3410,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
-            [$databaseId, $tableId],
+            [self::encodePath($databaseId), self::encodePath($tableId)],
             '/tablesdb/{databaseId}/tables/{tableId}/indexes'
         );
 
@@ -3465,7 +3465,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
-            [$databaseId, $tableId],
+            [self::encodePath($databaseId), self::encodePath($tableId)],
             '/tablesdb/{databaseId}/tables/{tableId}/indexes'
         );
 
@@ -3528,7 +3528,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
-            [$databaseId, $tableId, $key],
+            [self::encodePath($databaseId), self::encodePath($tableId), self::encodePath($key)],
             '/tablesdb/{databaseId}/tables/{tableId}/indexes/{key}'
         );
 
@@ -3576,7 +3576,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{key}'],
-            [$databaseId, $tableId, $key],
+            [self::encodePath($databaseId), self::encodePath($tableId), self::encodePath($key)],
             '/tablesdb/{databaseId}/tables/{tableId}/indexes/{key}'
         );
 
@@ -3624,7 +3624,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
-            [$databaseId, $tableId],
+            [self::encodePath($databaseId), self::encodePath($tableId)],
             '/tablesdb/{databaseId}/tables/{tableId}/rows'
         );
 
@@ -3686,7 +3686,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
-            [$databaseId, $tableId],
+            [self::encodePath($databaseId), self::encodePath($tableId)],
             '/tablesdb/{databaseId}/tables/{tableId}/rows'
         );
 
@@ -3737,7 +3737,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
-            [$databaseId, $tableId],
+            [self::encodePath($databaseId), self::encodePath($tableId)],
             '/tablesdb/{databaseId}/tables/{tableId}/rows'
         );
 
@@ -3786,7 +3786,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
-            [$databaseId, $tableId],
+            [self::encodePath($databaseId), self::encodePath($tableId)],
             '/tablesdb/{databaseId}/tables/{tableId}/rows'
         );
 
@@ -3833,7 +3833,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
-            [$databaseId, $tableId],
+            [self::encodePath($databaseId), self::encodePath($tableId)],
             '/tablesdb/{databaseId}/tables/{tableId}/rows'
         );
 
@@ -3887,7 +3887,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
-            [$databaseId, $tableId],
+            [self::encodePath($databaseId), self::encodePath($tableId)],
             '/tablesdb/{databaseId}/tables/{tableId}/rows'
         );
 
@@ -3942,7 +3942,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}'],
-            [$databaseId, $tableId],
+            [self::encodePath($databaseId), self::encodePath($tableId)],
             '/tablesdb/{databaseId}/tables/{tableId}/rows/query'
         );
 
@@ -4004,7 +4004,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{rowId}'],
-            [$databaseId, $tableId, $rowId],
+            [self::encodePath($databaseId), self::encodePath($tableId), self::encodePath($rowId)],
             '/tablesdb/{databaseId}/tables/{tableId}/rows/{rowId}'
         );
 
@@ -4063,7 +4063,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{rowId}'],
-            [$databaseId, $tableId, $rowId],
+            [self::encodePath($databaseId), self::encodePath($tableId), self::encodePath($rowId)],
             '/tablesdb/{databaseId}/tables/{tableId}/rows/{rowId}'
         );
 
@@ -4119,7 +4119,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{rowId}'],
-            [$databaseId, $tableId, $rowId],
+            [self::encodePath($databaseId), self::encodePath($tableId), self::encodePath($rowId)],
             '/tablesdb/{databaseId}/tables/{tableId}/rows/{rowId}'
         );
 
@@ -4174,7 +4174,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{rowId}'],
-            [$databaseId, $tableId, $rowId],
+            [self::encodePath($databaseId), self::encodePath($tableId), self::encodePath($rowId)],
             '/tablesdb/{databaseId}/tables/{tableId}/rows/{rowId}'
         );
 
@@ -4225,7 +4225,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{rowId}', '{column}'],
-            [$databaseId, $tableId, $rowId, $column],
+            [self::encodePath($databaseId), self::encodePath($tableId), self::encodePath($rowId), self::encodePath($column)],
             '/tablesdb/{databaseId}/tables/{tableId}/rows/{rowId}/{column}/decrement'
         );
 
@@ -4285,7 +4285,7 @@ class TablesDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{tableId}', '{rowId}', '{column}'],
-            [$databaseId, $tableId, $rowId, $column],
+            [self::encodePath($databaseId), self::encodePath($tableId), self::encodePath($rowId), self::encodePath($column)],
             '/tablesdb/{databaseId}/tables/{tableId}/rows/{rowId}/{column}/increment'
         );
 

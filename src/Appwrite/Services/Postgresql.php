@@ -173,7 +173,7 @@ class Postgresql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/postgresql/{databaseId}'
         );
 
@@ -214,7 +214,7 @@ class Postgresql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/postgresql/{databaseId}'
         );
 
@@ -276,7 +276,7 @@ class Postgresql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/postgresql/{databaseId}'
         );
 
@@ -310,7 +310,7 @@ class Postgresql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/postgresql/{databaseId}/backups'
         );
 
@@ -357,7 +357,7 @@ class Postgresql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/postgresql/{databaseId}/backups'
         );
 
@@ -400,7 +400,7 @@ class Postgresql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/postgresql/{databaseId}/backups/policies'
         );
 
@@ -446,7 +446,7 @@ class Postgresql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/postgresql/{databaseId}/backups/policies'
         );
 
@@ -501,7 +501,7 @@ class Postgresql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{policyId}'],
-            [$databaseId, $policyId],
+            [self::encodePath($databaseId), self::encodePath($policyId)],
             '/postgresql/{databaseId}/backups/policies/{policyId}'
         );
 
@@ -544,7 +544,7 @@ class Postgresql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{policyId}'],
-            [$databaseId, $policyId],
+            [self::encodePath($databaseId), self::encodePath($policyId)],
             '/postgresql/{databaseId}/backups/policies/{policyId}'
         );
 
@@ -596,7 +596,7 @@ class Postgresql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{policyId}'],
-            [$databaseId, $policyId],
+            [self::encodePath($databaseId), self::encodePath($policyId)],
             '/postgresql/{databaseId}/backups/policies/{policyId}'
         );
 
@@ -632,7 +632,7 @@ class Postgresql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/postgresql/{databaseId}/backups/storage'
         );
 
@@ -692,7 +692,7 @@ class Postgresql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{backupId}'],
-            [$databaseId, $backupId],
+            [self::encodePath($databaseId), self::encodePath($backupId)],
             '/postgresql/{databaseId}/backups/{backupId}'
         );
 
@@ -736,7 +736,7 @@ class Postgresql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{backupId}'],
-            [$databaseId, $backupId],
+            [self::encodePath($databaseId), self::encodePath($backupId)],
             '/postgresql/{databaseId}/backups/{backupId}'
         );
 
@@ -771,7 +771,7 @@ class Postgresql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/postgresql/{databaseId}/branches'
         );
 
@@ -813,7 +813,7 @@ class Postgresql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/postgresql/{databaseId}/branches'
         );
 
@@ -866,7 +866,7 @@ class Postgresql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{branchId}'],
-            [$databaseId, $branchId],
+            [self::encodePath($databaseId), self::encodePath($branchId)],
             '/postgresql/{databaseId}/branches/{branchId}'
         );
 
@@ -909,7 +909,7 @@ class Postgresql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/postgresql/{databaseId}/credentials'
         );
 
@@ -960,7 +960,7 @@ class Postgresql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/postgresql/{databaseId}/executions'
         );
 
@@ -1002,7 +1002,7 @@ class Postgresql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/postgresql/{databaseId}/extensions'
         );
 
@@ -1041,7 +1041,7 @@ class Postgresql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/postgresql/{databaseId}/extensions'
         );
 
@@ -1086,7 +1086,7 @@ class Postgresql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{extensionName}'],
-            [$databaseId, $extensionName],
+            [self::encodePath($databaseId), self::encodePath($extensionName)],
             '/postgresql/{databaseId}/extensions/{extensionName}'
         );
 
@@ -1134,7 +1134,7 @@ class Postgresql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/postgresql/{databaseId}/failovers'
         );
 
@@ -1176,7 +1176,7 @@ class Postgresql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/postgresql/{databaseId}/maintenance'
         );
 
@@ -1220,7 +1220,7 @@ class Postgresql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/postgresql/{databaseId}/migrations'
         );
 
@@ -1264,7 +1264,7 @@ class Postgresql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/postgresql/{databaseId}/operations'
         );
 
@@ -1315,7 +1315,7 @@ class Postgresql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/postgresql/{databaseId}/pitr'
         );
 
@@ -1354,7 +1354,7 @@ class Postgresql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/postgresql/{databaseId}/pooler'
         );
 
@@ -1393,7 +1393,7 @@ class Postgresql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/postgresql/{databaseId}/pooler'
         );
 
@@ -1441,7 +1441,7 @@ class Postgresql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/postgresql/{databaseId}/replicas'
         );
 
@@ -1480,7 +1480,7 @@ class Postgresql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/postgresql/{databaseId}/restorations'
         );
 
@@ -1548,7 +1548,7 @@ class Postgresql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/postgresql/{databaseId}/restorations'
         );
 
@@ -1605,7 +1605,7 @@ class Postgresql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{restorationId}'],
-            [$databaseId, $restorationId],
+            [self::encodePath($databaseId), self::encodePath($restorationId)],
             '/postgresql/{databaseId}/restorations/{restorationId}'
         );
 
@@ -1653,7 +1653,7 @@ class Postgresql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{restorationId}'],
-            [$databaseId, $restorationId],
+            [self::encodePath($databaseId), self::encodePath($restorationId)],
             '/postgresql/{databaseId}/restorations/{restorationId}/promotions'
         );
 
@@ -1695,7 +1695,7 @@ class Postgresql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/postgresql/{databaseId}/status'
         );
 
@@ -1734,7 +1734,7 @@ class Postgresql extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/postgresql/{databaseId}/upgrades'
         );
 

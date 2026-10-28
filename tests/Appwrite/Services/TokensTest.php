@@ -6,11 +6,14 @@ namespace Appwrite\Services;
 
 use Appwrite\Client;
 use Mockery;
+use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
 
 final class TokensTest extends TestCase
 {
+    use MockeryPHPUnitIntegration;
+
     private Client&MockInterface $client;
     private Tokens $tokens;
 
@@ -38,7 +41,23 @@ final class TokensTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/tokens/buckets/%3CBUCKET_ID%3E/files/%3CFILE_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['bucketId', 'fileId', 'queries', 'total'], array_keys($params));
+                    $expected = [
+                        'bucketId' => "<BUCKET_ID>",
+                        'fileId' => "<FILE_ID>",
+                        'queries' => [],
+                        'total' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -46,7 +65,9 @@ final class TokensTest extends TestCase
 
         $response = $this->tokens->list(
             "<BUCKET_ID>",
-            "<FILE_ID>"
+            "<FILE_ID>",
+            queries: [],
+            total: false
         );
 
         $this->assertInstanceOf(\Appwrite\Models\ResourceTokenList::class, $response);
@@ -64,7 +85,22 @@ final class TokensTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/tokens/buckets/%3CBUCKET_ID%3E/files/%3CFILE_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['bucketId', 'fileId', 'expire'], array_keys($params));
+                    $expected = [
+                        'bucketId' => "<BUCKET_ID>",
+                        'fileId' => "<FILE_ID>",
+                        'expire' => "2020-10-15T06:38:00.000+00:00",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -72,7 +108,8 @@ final class TokensTest extends TestCase
 
         $response = $this->tokens->createFileToken(
             "<BUCKET_ID>",
-            "<FILE_ID>"
+            "<FILE_ID>",
+            expire: "2020-10-15T06:38:00.000+00:00"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\ResourceToken::class, $response);
@@ -90,7 +127,20 @@ final class TokensTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/tokens/%3CTOKEN_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['tokenId'], array_keys($params));
+                    $expected = [
+                        'tokenId' => "<TOKEN_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -115,14 +165,29 @@ final class TokensTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/tokens/%3CTOKEN_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['tokenId', 'expire'], array_keys($params));
+                    $expected = [
+                        'tokenId' => "<TOKEN_ID>",
+                        'expire' => "2020-10-15T06:38:00.000+00:00",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->tokens->update(
-            "<TOKEN_ID>"
+            "<TOKEN_ID>",
+            expire: "2020-10-15T06:38:00.000+00:00"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\ResourceToken::class, $response);
@@ -132,7 +197,20 @@ final class TokensTest extends TestCase
         $data = '';
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'DELETE',
+                '/tokens/%3CTOKEN_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['tokenId'], array_keys($params));
+                    $expected = [
+                        'tokenId' => "<TOKEN_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())

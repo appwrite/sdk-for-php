@@ -231,7 +231,7 @@ class Apps extends Service
 
         $apiPath = str_replace(
             ['{appId}'],
-            [$appId],
+            [self::encodePath($appId)],
             '/apps/{appId}'
         );
 
@@ -269,7 +269,7 @@ class Apps extends Service
 
         $apiPath = str_replace(
             ['{appId}'],
-            [$appId],
+            [self::encodePath($appId)],
             '/apps/{appId}'
         );
 
@@ -381,7 +381,7 @@ class Apps extends Service
 
         $apiPath = str_replace(
             ['{appId}'],
-            [$appId],
+            [self::encodePath($appId)],
             '/apps/{appId}'
         );
 
@@ -416,7 +416,7 @@ class Apps extends Service
 
         $apiPath = str_replace(
             ['{appId}'],
-            [$appId],
+            [self::encodePath($appId)],
             '/apps/{appId}/installations'
         );
 
@@ -468,7 +468,7 @@ class Apps extends Service
 
         $apiPath = str_replace(
             ['{appId}', '{installationId}'],
-            [$appId, $installationId],
+            [self::encodePath($appId), self::encodePath($installationId)],
             '/apps/{appId}/installations/{installationId}'
         );
 
@@ -513,7 +513,7 @@ class Apps extends Service
 
         $apiPath = str_replace(
             ['{appId}', '{installationId}'],
-            [$appId, $installationId],
+            [self::encodePath($appId), self::encodePath($installationId)],
             '/apps/{appId}/installations/{installationId}'
         );
 
@@ -558,7 +558,7 @@ class Apps extends Service
 
         $apiPath = str_replace(
             ['{appId}', '{installationId}'],
-            [$appId, $installationId],
+            [self::encodePath($appId), self::encodePath($installationId)],
             '/apps/{appId}/installations/{installationId}/tokens'
         );
 
@@ -598,7 +598,7 @@ class Apps extends Service
 
         $apiPath = str_replace(
             ['{appId}'],
-            [$appId],
+            [self::encodePath($appId)],
             '/apps/{appId}/keys'
         );
 
@@ -646,7 +646,7 @@ class Apps extends Service
 
         $apiPath = str_replace(
             ['{appId}'],
-            [$appId],
+            [self::encodePath($appId)],
             '/apps/{appId}/keys'
         );
 
@@ -689,7 +689,7 @@ class Apps extends Service
 
         $apiPath = str_replace(
             ['{appId}', '{keyId}'],
-            [$appId, $keyId],
+            [self::encodePath($appId), self::encodePath($keyId)],
             '/apps/{appId}/keys/{keyId}'
         );
 
@@ -732,7 +732,7 @@ class Apps extends Service
 
         $apiPath = str_replace(
             ['{appId}', '{keyId}'],
-            [$appId, $keyId],
+            [self::encodePath($appId), self::encodePath($keyId)],
             '/apps/{appId}/keys/{keyId}'
         );
 
@@ -768,7 +768,7 @@ class Apps extends Service
 
         $apiPath = str_replace(
             ['{appId}'],
-            [$appId],
+            [self::encodePath($appId)],
             '/apps/{appId}/labels'
         );
 
@@ -808,7 +808,7 @@ class Apps extends Service
 
         $apiPath = str_replace(
             ['{appId}'],
-            [$appId],
+            [self::encodePath($appId)],
             '/apps/{appId}/secrets'
         );
 
@@ -854,7 +854,7 @@ class Apps extends Service
 
         $apiPath = str_replace(
             ['{appId}'],
-            [$appId],
+            [self::encodePath($appId)],
             '/apps/{appId}/secrets'
         );
 
@@ -897,7 +897,7 @@ class Apps extends Service
 
         $apiPath = str_replace(
             ['{appId}', '{secretId}'],
-            [$appId, $secretId],
+            [self::encodePath($appId), self::encodePath($secretId)],
             '/apps/{appId}/secrets/{secretId}'
         );
 
@@ -940,7 +940,7 @@ class Apps extends Service
 
         $apiPath = str_replace(
             ['{appId}', '{secretId}'],
-            [$appId, $secretId],
+            [self::encodePath($appId), self::encodePath($secretId)],
             '/apps/{appId}/secrets/{secretId}'
         );
 
@@ -974,7 +974,7 @@ class Apps extends Service
 
         $apiPath = str_replace(
             ['{appId}'],
-            [$appId],
+            [self::encodePath($appId)],
             '/apps/{appId}/team'
         );
 
@@ -1014,7 +1014,7 @@ class Apps extends Service
 
         $apiPath = str_replace(
             ['{appId}'],
-            [$appId],
+            [self::encodePath($appId)],
             '/apps/{appId}/tokens'
         );
 

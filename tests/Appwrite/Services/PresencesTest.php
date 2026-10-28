@@ -6,11 +6,14 @@ namespace Appwrite\Services;
 
 use Appwrite\Client;
 use Mockery;
+use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
 
 final class PresencesTest extends TestCase
 {
+    use MockeryPHPUnitIntegration;
+
     private Client&MockInterface $client;
     private Presences $presences;
 
@@ -37,13 +40,32 @@ final class PresencesTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/presences',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['queries', 'total', 'ttl'], array_keys($params));
+                    $expected = [
+                        'queries' => [],
+                        'total' => false,
+                        'ttl' => 1,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->presences->list();
+        $response = $this->presences->list(
+            queries: [],
+            total: false,
+            ttl: 1
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\PresenceList::class, $response);
     }
@@ -59,7 +81,20 @@ final class PresencesTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/presences/%3CPRESENCE_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['presenceId'], array_keys($params));
+                    $expected = [
+                        'presenceId' => "<PRESENCE_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -83,7 +118,25 @@ final class PresencesTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PUT',
+                '/presences/%3CPRESENCE_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['presenceId', 'userId', 'status', 'permissions', 'expiresAt', 'metadata'], array_keys($params));
+                    $expected = [
+                        'presenceId' => "<PRESENCE_ID>",
+                        'userId' => "<USER_ID>",
+                        'status' => "<STATUS>",
+                        'permissions' => [],
+                        'expiresAt' => "2020-10-15T06:38:00.000+00:00",
+                        'metadata' => [],
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -92,7 +145,10 @@ final class PresencesTest extends TestCase
         $response = $this->presences->upsert(
             "<PRESENCE_ID>",
             "<USER_ID>",
-            "<STATUS>"
+            "<STATUS>",
+            permissions: [],
+            expiresAt: "2020-10-15T06:38:00.000+00:00",
+            metadata: []
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Presence::class, $response);
@@ -109,7 +165,26 @@ final class PresencesTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/presences/%3CPRESENCE_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['presenceId', 'userId', 'status', 'expiresAt', 'metadata', 'permissions', 'purge'], array_keys($params));
+                    $expected = [
+                        'presenceId' => "<PRESENCE_ID>",
+                        'userId' => "<USER_ID>",
+                        'status' => "<STATUS>",
+                        'expiresAt' => "2020-10-15T06:38:00.000+00:00",
+                        'metadata' => [],
+                        'permissions' => [],
+                        'purge' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -117,7 +192,12 @@ final class PresencesTest extends TestCase
 
         $response = $this->presences->update(
             "<PRESENCE_ID>",
-            "<USER_ID>"
+            "<USER_ID>",
+            status: "<STATUS>",
+            expiresAt: "2020-10-15T06:38:00.000+00:00",
+            metadata: [],
+            permissions: [],
+            purge: false
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Presence::class, $response);
@@ -127,7 +207,20 @@ final class PresencesTest extends TestCase
         $data = '';
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'DELETE',
+                '/presences/%3CPRESENCE_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['presenceId'], array_keys($params));
+                    $expected = [
+                        'presenceId' => "<PRESENCE_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())

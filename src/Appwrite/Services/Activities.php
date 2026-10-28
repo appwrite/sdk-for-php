@@ -64,7 +64,7 @@ class Activities extends Service
 
         $apiPath = str_replace(
             ['{eventId}'],
-            [$eventId],
+            [self::encodePath($eventId)],
             '/activities/events/{eventId}'
         );
 

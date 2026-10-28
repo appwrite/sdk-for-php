@@ -6,11 +6,14 @@ namespace Appwrite\Services;
 
 use Appwrite\Client;
 use Mockery;
+use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
 
 final class AppsTest extends TestCase
 {
+    use MockeryPHPUnitIntegration;
+
     private Client&MockInterface $client;
     private Apps $apps;
 
@@ -68,13 +71,30 @@ final class AppsTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/apps',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['queries', 'total'], array_keys($params));
+                    $expected = [
+                        'queries' => [],
+                        'total' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->apps->list();
+        $response = $this->apps->list(
+            queries: [],
+            total: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\AppsList::class, $response);
     }
@@ -121,7 +141,38 @@ final class AppsTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/apps',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['appId', 'name', 'redirectUris', 'description', 'clientUri', 'logoUri', 'privacyPolicyUrl', 'termsUrl', 'contacts', 'tagline', 'tags', 'images', 'supportUrl', 'dataDeletionUrl', 'postLogoutRedirectUris', 'enabled', 'type', 'deviceFlow', 'teamId'], array_keys($params));
+                    $expected = [
+                        'appId' => "<APP_ID>",
+                        'name' => "<NAME>",
+                        'redirectUris' => [],
+                        'description' => "<DESCRIPTION>",
+                        'clientUri' => "https://example.com",
+                        'logoUri' => "https://example.com",
+                        'privacyPolicyUrl' => "https://example.com",
+                        'termsUrl' => "https://example.com",
+                        'contacts' => [],
+                        'tagline' => "<TAGLINE>",
+                        'tags' => [],
+                        'images' => [],
+                        'supportUrl' => "https://example.com",
+                        'dataDeletionUrl' => "https://example.com",
+                        'postLogoutRedirectUris' => [],
+                        'enabled' => false,
+                        'type' => "public",
+                        'deviceFlow' => false,
+                        'teamId' => "<TEAM_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -130,7 +181,23 @@ final class AppsTest extends TestCase
         $response = $this->apps->create(
             "<APP_ID>",
             "<NAME>",
-            []
+            [],
+            description: "<DESCRIPTION>",
+            clientUri: "https://example.com",
+            logoUri: "https://example.com",
+            privacyPolicyUrl: "https://example.com",
+            termsUrl: "https://example.com",
+            contacts: [],
+            tagline: "<TAGLINE>",
+            tags: [],
+            images: [],
+            supportUrl: "https://example.com",
+            dataDeletionUrl: "https://example.com",
+            postLogoutRedirectUris: [],
+            enabled: false,
+            type: "public",
+            deviceFlow: false,
+            teamId: "<TEAM_ID>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\App::class, $response);
@@ -151,7 +218,16 @@ final class AppsTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/apps/scopes/installations',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame([], array_keys($params));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -177,7 +253,16 @@ final class AppsTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/apps/scopes/oauth2',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame([], array_keys($params));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -230,7 +315,20 @@ final class AppsTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/apps/%3CAPP_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['appId'], array_keys($params));
+                    $expected = [
+                        'appId' => "<APP_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -285,7 +383,39 @@ final class AppsTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PUT',
+                '/apps/%3CAPP_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['appId', 'name', 'description', 'clientUri', 'logoUri', 'privacyPolicyUrl', 'termsUrl', 'contacts', 'tagline', 'tags', 'images', 'supportUrl', 'dataDeletionUrl', 'enabled', 'redirectUris', 'postLogoutRedirectUris', 'type', 'deviceFlow', 'installationScopes', 'installationRedirectUrl'], array_keys($params));
+                    $expected = [
+                        'appId' => "<APP_ID>",
+                        'name' => "<NAME>",
+                        'description' => "<DESCRIPTION>",
+                        'clientUri' => "https://example.com",
+                        'logoUri' => "https://example.com",
+                        'privacyPolicyUrl' => "https://example.com",
+                        'termsUrl' => "https://example.com",
+                        'contacts' => [],
+                        'tagline' => "<TAGLINE>",
+                        'tags' => [],
+                        'images' => [],
+                        'supportUrl' => "https://example.com",
+                        'dataDeletionUrl' => "https://example.com",
+                        'enabled' => false,
+                        'redirectUris' => [],
+                        'postLogoutRedirectUris' => [],
+                        'type' => "public",
+                        'deviceFlow' => false,
+                        'installationScopes' => [],
+                        'installationRedirectUrl' => "https://example.com",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -293,7 +423,25 @@ final class AppsTest extends TestCase
 
         $response = $this->apps->update(
             "<APP_ID>",
-            "<NAME>"
+            "<NAME>",
+            description: "<DESCRIPTION>",
+            clientUri: "https://example.com",
+            logoUri: "https://example.com",
+            privacyPolicyUrl: "https://example.com",
+            termsUrl: "https://example.com",
+            contacts: [],
+            tagline: "<TAGLINE>",
+            tags: [],
+            images: [],
+            supportUrl: "https://example.com",
+            dataDeletionUrl: "https://example.com",
+            enabled: false,
+            redirectUris: [],
+            postLogoutRedirectUris: [],
+            type: "public",
+            deviceFlow: false,
+            installationScopes: [],
+            installationRedirectUrl: "https://example.com"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\App::class, $response);
@@ -303,7 +451,20 @@ final class AppsTest extends TestCase
         $data = '';
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'DELETE',
+                '/apps/%3CAPP_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['appId'], array_keys($params));
+                    $expected = [
+                        'appId' => "<APP_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -335,14 +496,31 @@ final class AppsTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/apps/%3CAPP_ID%3E/installations',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['appId', 'queries', 'total'], array_keys($params));
+                    $expected = [
+                        'appId' => "<APP_ID>",
+                        'queries' => [],
+                        'total' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->apps->listInstallations(
-            "<APP_ID>"
+            "<APP_ID>",
+            queries: [],
+            total: false
         );
 
         $this->assertInstanceOf(\Appwrite\Models\AppInstallationList::class, $response);
@@ -362,7 +540,21 @@ final class AppsTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/apps/%3CAPP_ID%3E/installations/%3CINSTALLATION_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['appId', 'installationId'], array_keys($params));
+                    $expected = [
+                        'appId' => "<APP_ID>",
+                        'installationId' => "<INSTALLATION_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -380,7 +572,21 @@ final class AppsTest extends TestCase
         $data = '';
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'DELETE',
+                '/apps/%3CAPP_ID%3E/installations/%3CINSTALLATION_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['appId', 'installationId'], array_keys($params));
+                    $expected = [
+                        'appId' => "<APP_ID>",
+                        'installationId' => "<INSTALLATION_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -404,7 +610,21 @@ final class AppsTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/apps/%3CAPP_ID%3E/installations/%3CINSTALLATION_ID%3E/tokens',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['appId', 'installationId'], array_keys($params));
+                    $expected = [
+                        'appId' => "<APP_ID>",
+                        'installationId' => "<INSTALLATION_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -436,14 +656,31 @@ final class AppsTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/apps/%3CAPP_ID%3E/keys',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['appId', 'queries', 'total'], array_keys($params));
+                    $expected = [
+                        'appId' => "<APP_ID>",
+                        'queries' => [],
+                        'total' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->apps->listKeys(
-            "<APP_ID>"
+            "<APP_ID>",
+            queries: [],
+            total: false
         );
 
         $this->assertInstanceOf(\Appwrite\Models\AppKeyList::class, $response);
@@ -462,7 +699,20 @@ final class AppsTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/apps/%3CAPP_ID%3E/keys',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['appId'], array_keys($params));
+                    $expected = [
+                        'appId' => "<APP_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -488,7 +738,21 @@ final class AppsTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/apps/%3CAPP_ID%3E/keys/%3CKEY_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['appId', 'keyId'], array_keys($params));
+                    $expected = [
+                        'appId' => "<APP_ID>",
+                        'keyId' => "<KEY_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -506,7 +770,21 @@ final class AppsTest extends TestCase
         $data = '';
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'DELETE',
+                '/apps/%3CAPP_ID%3E/keys/%3CKEY_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['appId', 'keyId'], array_keys($params));
+                    $expected = [
+                        'appId' => "<APP_ID>",
+                        'keyId' => "<KEY_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -562,7 +840,21 @@ final class AppsTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PUT',
+                '/apps/%3CAPP_ID%3E/labels',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['appId', 'labels'], array_keys($params));
+                    $expected = [
+                        'appId' => "<APP_ID>",
+                        'labels' => [],
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -594,14 +886,31 @@ final class AppsTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/apps/%3CAPP_ID%3E/secrets',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['appId', 'queries', 'total'], array_keys($params));
+                    $expected = [
+                        'appId' => "<APP_ID>",
+                        'queries' => [],
+                        'total' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->apps->listSecrets(
-            "<APP_ID>"
+            "<APP_ID>",
+            queries: [],
+            total: false
         );
 
         $this->assertInstanceOf(\Appwrite\Models\AppSecretList::class, $response);
@@ -620,7 +929,20 @@ final class AppsTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/apps/%3CAPP_ID%3E/secrets',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['appId'], array_keys($params));
+                    $expected = [
+                        'appId' => "<APP_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -646,7 +968,21 @@ final class AppsTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/apps/%3CAPP_ID%3E/secrets/%3CSECRET_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['appId', 'secretId'], array_keys($params));
+                    $expected = [
+                        'appId' => "<APP_ID>",
+                        'secretId' => "<SECRET_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -664,7 +1000,21 @@ final class AppsTest extends TestCase
         $data = '';
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'DELETE',
+                '/apps/%3CAPP_ID%3E/secrets/%3CSECRET_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['appId', 'secretId'], array_keys($params));
+                    $expected = [
+                        'appId' => "<APP_ID>",
+                        'secretId' => "<SECRET_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -720,7 +1070,21 @@ final class AppsTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/apps/%3CAPP_ID%3E/team',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['appId', 'teamId'], array_keys($params));
+                    $expected = [
+                        'appId' => "<APP_ID>",
+                        'teamId' => "<TEAM_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -738,7 +1102,20 @@ final class AppsTest extends TestCase
         $data = '';
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'DELETE',
+                '/apps/%3CAPP_ID%3E/tokens',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['appId'], array_keys($params));
+                    $expected = [
+                        'appId' => "<APP_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())

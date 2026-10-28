@@ -23,7 +23,7 @@ readonly class Provider
      * @param string $provider the name of the provider service.
      * @param bool $enabled is provider enabled?
      * @param string $type type of provider.
-     * @param array $credentials provider credentials.
+     * @param array $credentials provider credentials. secret values are write-only and never returned.
      * @param array|null $options provider options.
      */
     public function __construct(

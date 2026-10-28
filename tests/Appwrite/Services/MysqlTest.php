@@ -6,11 +6,14 @@ namespace Appwrite\Services;
 
 use Appwrite\Client;
 use Mockery;
+use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
 
 final class MysqlTest extends TestCase
 {
+    use MockeryPHPUnitIntegration;
+
     private Client&MockInterface $client;
     private Mysql $mysql;
 
@@ -76,13 +79,30 @@ final class MysqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/mysql',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['queries', 'total'], array_keys($params));
+                    $expected = [
+                        'queries' => [],
+                        'total' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->mysql->list();
+        $response = $this->mysql->list(
+            queries: [],
+            total: false
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\DedicatedDatabaseList::class, $response);
     }
@@ -137,7 +157,33 @@ final class MysqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/mysql',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'name', 'version', 'specification', 'replicas', 'syncMode', 'networkIdleTimeoutSeconds', 'networkIPAllowlist', 'idleTimeoutMinutes', 'pitr', 'pitrRetentionDays', 'storageAutoscaling', 'storageAutoscalingThresholdPercent', 'storageAutoscalingMaxGb'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'name' => "<NAME>",
+                        'version' => "17",
+                        'specification' => "<SPECIFICATION>",
+                        'replicas' => 1,
+                        'syncMode' => "async",
+                        'networkIdleTimeoutSeconds' => 1,
+                        'networkIPAllowlist' => [],
+                        'idleTimeoutMinutes' => 1,
+                        'pitr' => false,
+                        'pitrRetentionDays' => 1,
+                        'storageAutoscaling' => false,
+                        'storageAutoscalingThresholdPercent' => 1,
+                        'storageAutoscalingMaxGb' => 1,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -145,7 +191,19 @@ final class MysqlTest extends TestCase
 
         $response = $this->mysql->create(
             "<DATABASE_ID>",
-            "<NAME>"
+            "<NAME>",
+            version: "17",
+            specification: "<SPECIFICATION>",
+            replicas: 1,
+            syncMode: "async",
+            networkIdleTimeoutSeconds: 1,
+            networkIPAllowlist: [],
+            idleTimeoutMinutes: 1,
+            pitr: false,
+            pitrRetentionDays: 1,
+            storageAutoscaling: false,
+            storageAutoscalingThresholdPercent: 1,
+            storageAutoscalingMaxGb: 1
         );
 
         $this->assertInstanceOf(\Appwrite\Models\DedicatedDatabase::class, $response);
@@ -174,7 +232,16 @@ final class MysqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/mysql/specifications',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame([], array_keys($params));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -235,7 +302,20 @@ final class MysqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/mysql/%3CDATABASE_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -298,14 +378,67 @@ final class MysqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/mysql/%3CDATABASE_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'name', 'status', 'specification', 'replicas', 'syncMode', 'networkIdleTimeoutSeconds', 'networkIPAllowlist', 'idleTimeoutMinutes', 'pitr', 'pitrRetentionDays', 'storageAutoscaling', 'storageAutoscalingThresholdPercent', 'storageAutoscalingMaxGb', 'metricsTraceSampleRate', 'metricsSlowQueryLogThresholdMs', 'sqlApiEnabled', 'sqlApiAllowedStatements', 'sqlApiMaxRows', 'sqlApiMaxBytes', 'sqlApiTimeoutSeconds'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'name' => "<NAME>",
+                        'status' => "ready",
+                        'specification' => "<SPECIFICATION>",
+                        'replicas' => 1,
+                        'syncMode' => "async",
+                        'networkIdleTimeoutSeconds' => 1,
+                        'networkIPAllowlist' => [],
+                        'idleTimeoutMinutes' => 1,
+                        'pitr' => false,
+                        'pitrRetentionDays' => 1,
+                        'storageAutoscaling' => false,
+                        'storageAutoscalingThresholdPercent' => 1,
+                        'storageAutoscalingMaxGb' => 1,
+                        'metricsTraceSampleRate' => 1.0,
+                        'metricsSlowQueryLogThresholdMs' => 1,
+                        'sqlApiEnabled' => false,
+                        'sqlApiAllowedStatements' => [],
+                        'sqlApiMaxRows' => 1,
+                        'sqlApiMaxBytes' => 1,
+                        'sqlApiTimeoutSeconds' => 1,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->mysql->update(
-            "<DATABASE_ID>"
+            "<DATABASE_ID>",
+            name: "<NAME>",
+            status: "ready",
+            specification: "<SPECIFICATION>",
+            replicas: 1,
+            syncMode: "async",
+            networkIdleTimeoutSeconds: 1,
+            networkIPAllowlist: [],
+            idleTimeoutMinutes: 1,
+            pitr: false,
+            pitrRetentionDays: 1,
+            storageAutoscaling: false,
+            storageAutoscalingThresholdPercent: 1,
+            storageAutoscalingMaxGb: 1,
+            metricsTraceSampleRate: 1.0,
+            metricsSlowQueryLogThresholdMs: 1,
+            sqlApiEnabled: false,
+            sqlApiAllowedStatements: [],
+            sqlApiMaxRows: 1,
+            sqlApiMaxBytes: 1,
+            sqlApiTimeoutSeconds: 1
         );
 
         $this->assertInstanceOf(\Appwrite\Models\DedicatedDatabase::class, $response);
@@ -315,7 +448,20 @@ final class MysqlTest extends TestCase
         $data = '';
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'DELETE',
+                '/mysql/%3CDATABASE_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -350,14 +496,31 @@ final class MysqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/mysql/%3CDATABASE_ID%3E/backups',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'queries', 'total'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'queries' => [],
+                        'total' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->mysql->listBackups(
-            "<DATABASE_ID>"
+            "<DATABASE_ID>",
+            queries: [],
+            total: false
         );
 
         $this->assertInstanceOf(\Appwrite\Models\DedicatedDatabaseBackupList::class, $response);
@@ -380,14 +543,29 @@ final class MysqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/mysql/%3CDATABASE_ID%3E/backups',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'type'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'type' => "full",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->mysql->createBackup(
-            "<DATABASE_ID>"
+            "<DATABASE_ID>",
+            type: "full"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\DedicatedDatabaseBackup::class, $response);
@@ -413,14 +591,31 @@ final class MysqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/mysql/%3CDATABASE_ID%3E/backups/policies',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'queries', 'total'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'queries' => [],
+                        'total' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->mysql->listBackupPolicies(
-            "<DATABASE_ID>"
+            "<DATABASE_ID>",
+            queries: [],
+            total: false
         );
 
         $this->assertInstanceOf(\Appwrite\Models\BackupPolicyList::class, $response);
@@ -441,7 +636,26 @@ final class MysqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/mysql/%3CDATABASE_ID%3E/backups/policies',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'policyId', 'name', 'schedule', 'retention', 'type', 'enabled'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'policyId' => "<POLICY_ID>",
+                        'name' => "<NAME>",
+                        'schedule' => "schedule",
+                        'retention' => 1,
+                        'type' => "full",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -452,7 +666,9 @@ final class MysqlTest extends TestCase
             "<POLICY_ID>",
             "<NAME>",
             "schedule",
-            1
+            1,
+            type: "full",
+            enabled: false
         );
 
         $this->assertInstanceOf(\Appwrite\Models\BackupPolicy::class, $response);
@@ -473,7 +689,21 @@ final class MysqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/mysql/%3CDATABASE_ID%3E/backups/policies/%3CPOLICY_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'policyId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'policyId' => "<POLICY_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -502,7 +732,25 @@ final class MysqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/mysql/%3CDATABASE_ID%3E/backups/policies/%3CPOLICY_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'policyId', 'name', 'schedule', 'retention', 'enabled'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'policyId' => "<POLICY_ID>",
+                        'name' => "<NAME>",
+                        'schedule' => "schedule",
+                        'retention' => 1,
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -510,7 +758,11 @@ final class MysqlTest extends TestCase
 
         $response = $this->mysql->updateBackupPolicy(
             "<DATABASE_ID>",
-            "<POLICY_ID>"
+            "<POLICY_ID>",
+            name: "<NAME>",
+            schedule: "schedule",
+            retention: 1,
+            enabled: false
         );
 
         $this->assertInstanceOf(\Appwrite\Models\BackupPolicy::class, $response);
@@ -520,7 +772,21 @@ final class MysqlTest extends TestCase
         $data = '';
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'DELETE',
+                '/mysql/%3CDATABASE_ID%3E/backups/policies/%3CPOLICY_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'policyId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'policyId' => "<POLICY_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -544,7 +810,27 @@ final class MysqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PUT',
+                '/mysql/%3CDATABASE_ID%3E/backups/storage',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'provider', 'bucket', 'accessKey', 'secretKey', 'region', 'prefix', 'endpoint'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'provider' => "s3",
+                        'bucket' => "<BUCKET>",
+                        'accessKey' => "<ACCESS_KEY>",
+                        'secretKey' => "<SECRET_KEY>",
+                        'region' => "<REGION>",
+                        'prefix' => "<PREFIX>",
+                        'endpoint' => "https://example.com",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -555,7 +841,10 @@ final class MysqlTest extends TestCase
             "s3",
             "<BUCKET>",
             "<ACCESS_KEY>",
-            "<SECRET_KEY>"
+            "<SECRET_KEY>",
+            region: "<REGION>",
+            prefix: "<PREFIX>",
+            endpoint: "https://example.com"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\DedicatedDatabaseBackupStorage::class, $response);
@@ -578,7 +867,21 @@ final class MysqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/mysql/%3CDATABASE_ID%3E/backups/%3CBACKUP_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'backupId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'backupId' => "<BACKUP_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -596,7 +899,21 @@ final class MysqlTest extends TestCase
         $data = '';
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'DELETE',
+                '/mysql/%3CDATABASE_ID%3E/backups/%3CBACKUP_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'backupId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'backupId' => "<BACKUP_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -631,7 +948,20 @@ final class MysqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/mysql/%3CDATABASE_ID%3E/branches',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -694,14 +1024,31 @@ final class MysqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/mysql/%3CDATABASE_ID%3E/branches',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'branchId', 'ttl'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'branchId' => "<BRANCH_ID>",
+                        'ttl' => 1,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->mysql->createBranch(
-            "<DATABASE_ID>"
+            "<DATABASE_ID>",
+            branchId: "<BRANCH_ID>",
+            ttl: 1
         );
 
         $this->assertInstanceOf(\Appwrite\Models\DedicatedDatabase::class, $response);
@@ -757,7 +1104,21 @@ final class MysqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'DELETE',
+                '/mysql/%3CDATABASE_ID%3E/branches/%3CBRANCH_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'branchId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'branchId' => "<BRANCH_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -784,7 +1145,20 @@ final class MysqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/mysql/%3CDATABASE_ID%3E/credentials',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -813,7 +1187,23 @@ final class MysqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/mysql/%3CDATABASE_ID%3E/executions',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'sql', 'bindings', 'timeoutSeconds'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'sql' => "<SQL>",
+                        'bindings' => [],
+                        'timeoutSeconds' => 1,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -821,7 +1211,9 @@ final class MysqlTest extends TestCase
 
         $response = $this->mysql->createExecution(
             "<DATABASE_ID>",
-            "<SQL>"
+            "<SQL>",
+            bindings: [],
+            timeoutSeconds: 1
         );
 
         $this->assertInstanceOf(\Appwrite\Models\DedicatedDatabaseExecution::class, $response);
@@ -877,14 +1269,29 @@ final class MysqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/mysql/%3CDATABASE_ID%3E/failovers',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'targetReplicaId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'targetReplicaId' => "<TARGET_REPLICA_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->mysql->createFailover(
-            "<DATABASE_ID>"
+            "<DATABASE_ID>",
+            targetReplicaId: "<TARGET_REPLICA_ID>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\DedicatedDatabase::class, $response);
@@ -940,7 +1347,22 @@ final class MysqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/mysql/%3CDATABASE_ID%3E/maintenance',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'day', 'hourUtc'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'day' => "sun",
+                        'hourUtc' => 1,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1005,7 +1427,22 @@ final class MysqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/mysql/%3CDATABASE_ID%3E/migrations',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'targetType', 'specification'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'targetType' => "shared",
+                        'specification' => "<SPECIFICATION>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1013,7 +1450,8 @@ final class MysqlTest extends TestCase
 
         $response = $this->mysql->createMigration(
             "<DATABASE_ID>",
-            "shared"
+            "shared",
+            specification: "<SPECIFICATION>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\DedicatedDatabase::class, $response);
@@ -1037,14 +1475,33 @@ final class MysqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/mysql/%3CDATABASE_ID%3E/operations',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'status', 'limit', 'offset'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'status' => "queued",
+                        'limit' => 1,
+                        'offset' => 1,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->mysql->listOperations(
-            "<DATABASE_ID>"
+            "<DATABASE_ID>",
+            status: "queued",
+            limit: 1,
+            offset: 1
         );
 
         $this->assertInstanceOf(\Appwrite\Models\DedicatedDatabaseOperationList::class, $response);
@@ -1057,7 +1514,20 @@ final class MysqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/mysql/%3CDATABASE_ID%3E/pitr',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1085,7 +1555,20 @@ final class MysqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/mysql/%3CDATABASE_ID%3E/pooler',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1113,14 +1596,43 @@ final class MysqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'PATCH',
+                '/mysql/%3CDATABASE_ID%3E/pooler',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'mode', 'maxConnections', 'defaultPoolSize', 'readWriteSplitting', 'poolerCpuRequest', 'poolerCpuLimit', 'poolerMemoryRequest', 'poolerMemoryLimit'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'mode' => "transaction",
+                        'maxConnections' => 1,
+                        'defaultPoolSize' => 1,
+                        'readWriteSplitting' => false,
+                        'poolerCpuRequest' => "<POOLER_CPU_REQUEST>",
+                        'poolerCpuLimit' => "<POOLER_CPU_LIMIT>",
+                        'poolerMemoryRequest' => "<POOLER_MEMORY_REQUEST>",
+                        'poolerMemoryLimit' => "<POOLER_MEMORY_LIMIT>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->mysql->updatePooler(
-            "<DATABASE_ID>"
+            "<DATABASE_ID>",
+            mode: "transaction",
+            maxConnections: 1,
+            defaultPoolSize: 1,
+            readWriteSplitting: false,
+            poolerCpuRequest: "<POOLER_CPU_REQUEST>",
+            poolerCpuLimit: "<POOLER_CPU_LIMIT>",
+            poolerMemoryRequest: "<POOLER_MEMORY_REQUEST>",
+            poolerMemoryLimit: "<POOLER_MEMORY_LIMIT>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\DedicatedDatabasePooler::class, $response);
@@ -1143,7 +1655,20 @@ final class MysqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/mysql/%3CDATABASE_ID%3E/replicas',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1174,14 +1699,35 @@ final class MysqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/mysql/%3CDATABASE_ID%3E/restorations',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'status', 'type', 'limit', 'offset'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'status' => "pending",
+                        'type' => "backup",
+                        'limit' => 1,
+                        'offset' => 1,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->mysql->listRestorations(
-            "<DATABASE_ID>"
+            "<DATABASE_ID>",
+            status: "pending",
+            type: "backup",
+            limit: 1,
+            offset: 1
         );
 
         $this->assertInstanceOf(\Appwrite\Models\DedicatedDatabaseRestorationList::class, $response);
@@ -1200,14 +1746,41 @@ final class MysqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/mysql/%3CDATABASE_ID%3E/restorations',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'type', 'backupId', 'targetDatabaseId', 'targetTime', 'restoreMode', 'targetName', 'autoPromote'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'type' => "backup",
+                        'backupId' => "<BACKUP_ID>",
+                        'targetDatabaseId' => "<TARGET_DATABASE_ID>",
+                        'targetTime' => "2020-10-15T06:38:00.000+00:00",
+                        'restoreMode' => "in_place",
+                        'targetName' => "<TARGET_NAME>",
+                        'autoPromote' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->mysql->createRestoration(
-            "<DATABASE_ID>"
+            "<DATABASE_ID>",
+            type: "backup",
+            backupId: "<BACKUP_ID>",
+            targetDatabaseId: "<TARGET_DATABASE_ID>",
+            targetTime: "2020-10-15T06:38:00.000+00:00",
+            restoreMode: "in_place",
+            targetName: "<TARGET_NAME>",
+            autoPromote: false
         );
 
         $this->assertInstanceOf(\Appwrite\Models\DedicatedDatabaseRestoration::class, $response);
@@ -1226,7 +1799,21 @@ final class MysqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/mysql/%3CDATABASE_ID%3E/restorations/%3CRESTORATION_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'restorationId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'restorationId' => "<RESTORATION_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1253,7 +1840,21 @@ final class MysqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/mysql/%3CDATABASE_ID%3E/restorations/%3CRESTORATION_ID%3E/promotions',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'restorationId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'restorationId' => "<RESTORATION_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1296,7 +1897,20 @@ final class MysqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/mysql/%3CDATABASE_ID%3E/status',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -1359,7 +1973,21 @@ final class MysqlTest extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/mysql/%3CDATABASE_ID%3E/upgrades',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['databaseId', 'targetVersion'], array_keys($params));
+                    $expected = [
+                        'databaseId' => "<DATABASE_ID>",
+                        'targetVersion' => "<TARGET_VERSION>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())

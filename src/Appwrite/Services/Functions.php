@@ -278,7 +278,7 @@ class Functions extends Service
 
         $apiPath = str_replace(
             ['{functionId}'],
-            [$functionId],
+            [self::encodePath($functionId)],
             '/functions/{functionId}'
         );
 
@@ -316,7 +316,7 @@ class Functions extends Service
 
         $apiPath = str_replace(
             ['{functionId}'],
-            [$functionId],
+            [self::encodePath($functionId)],
             '/functions/{functionId}'
         );
 
@@ -424,7 +424,7 @@ class Functions extends Service
 
         $apiPath = str_replace(
             ['{functionId}'],
-            [$functionId],
+            [self::encodePath($functionId)],
             '/functions/{functionId}'
         );
 
@@ -458,7 +458,7 @@ class Functions extends Service
 
         $apiPath = str_replace(
             ['{functionId}'],
-            [$functionId],
+            [self::encodePath($functionId)],
             '/functions/{functionId}/deployment'
         );
 
@@ -499,7 +499,7 @@ class Functions extends Service
 
         $apiPath = str_replace(
             ['{functionId}'],
-            [$functionId],
+            [self::encodePath($functionId)],
             '/functions/{functionId}/deployments'
         );
 
@@ -558,7 +558,7 @@ class Functions extends Service
 
         $apiPath = str_replace(
             ['{functionId}'],
-            [$functionId],
+            [self::encodePath($functionId)],
             '/functions/{functionId}/deployments'
         );
 
@@ -585,10 +585,7 @@ class Functions extends Service
             $postedName = $code->getFilename();
             if ($size <= Client::CHUNK_SIZE) {
                 $apiParams['code'] = Part::body('code', $code->getData(), $postedName, $mimeType);
-                $response = $this->client->call(Client::METHOD_POST, $apiPath, [
-                            'content-type' => 'multipart/form-data',
-                        'accept' => 'application/json',
-                        ], $apiParams);
+                $response = $this->client->call(Client::METHOD_POST, $apiPath, $apiHeaders, $apiParams);
                 if (!is_array($response)) {
                     throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
                 }
@@ -602,10 +599,7 @@ class Functions extends Service
             //send single file if size is less than or equal to 5MB
             if ($size <= Client::CHUNK_SIZE) {
                 $apiParams['code'] = Part::file('code', $code->getPath(), $postedName, $mimeType);
-                $response = $this->client->call(Client::METHOD_POST, $apiPath, [
-                            'content-type' => 'multipart/form-data',
-                        'accept' => 'application/json',
-                        ], $apiParams);
+                $response = $this->client->call(Client::METHOD_POST, $apiPath, $apiHeaders, $apiParams);
                 if (!is_array($response)) {
                     throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
                 }
@@ -738,7 +732,7 @@ class Functions extends Service
 
         $apiPath = str_replace(
             ['{functionId}'],
-            [$functionId],
+            [self::encodePath($functionId)],
             '/functions/{functionId}/deployments/duplicate'
         );
 
@@ -786,7 +780,7 @@ class Functions extends Service
 
         $apiPath = str_replace(
             ['{functionId}'],
-            [$functionId],
+            [self::encodePath($functionId)],
             '/functions/{functionId}/deployments/template'
         );
 
@@ -836,7 +830,7 @@ class Functions extends Service
 
         $apiPath = str_replace(
             ['{functionId}'],
-            [$functionId],
+            [self::encodePath($functionId)],
             '/functions/{functionId}/deployments/vcs'
         );
 
@@ -885,7 +879,7 @@ class Functions extends Service
 
         $apiPath = str_replace(
             ['{functionId}', '{deploymentId}'],
-            [$functionId, $deploymentId],
+            [self::encodePath($functionId), self::encodePath($deploymentId)],
             '/functions/{functionId}/deployments/{deploymentId}'
         );
 
@@ -928,7 +922,7 @@ class Functions extends Service
 
         $apiPath = str_replace(
             ['{functionId}', '{deploymentId}'],
-            [$functionId, $deploymentId],
+            [self::encodePath($functionId), self::encodePath($deploymentId)],
             '/functions/{functionId}/deployments/{deploymentId}'
         );
 
@@ -968,7 +962,7 @@ class Functions extends Service
 
         $apiPath = str_replace(
             ['{functionId}', '{deploymentId}'],
-            [$functionId, $deploymentId],
+            [self::encodePath($functionId), self::encodePath($deploymentId)],
             '/functions/{functionId}/deployments/{deploymentId}/download'
         );
 
@@ -1017,7 +1011,7 @@ class Functions extends Service
 
         $apiPath = str_replace(
             ['{functionId}', '{deploymentId}'],
-            [$functionId, $deploymentId],
+            [self::encodePath($functionId), self::encodePath($deploymentId)],
             '/functions/{functionId}/deployments/{deploymentId}/status'
         );
 
@@ -1058,7 +1052,7 @@ class Functions extends Service
 
         $apiPath = str_replace(
             ['{functionId}'],
-            [$functionId],
+            [self::encodePath($functionId)],
             '/functions/{functionId}/executions'
         );
 
@@ -1107,7 +1101,7 @@ class Functions extends Service
 
         $apiPath = str_replace(
             ['{functionId}'],
-            [$functionId],
+            [self::encodePath($functionId)],
             '/functions/{functionId}/executions'
         );
 
@@ -1171,7 +1165,7 @@ class Functions extends Service
 
         $apiPath = str_replace(
             ['{functionId}', '{executionId}'],
-            [$functionId, $executionId],
+            [self::encodePath($functionId), self::encodePath($executionId)],
             '/functions/{functionId}/executions/{executionId}'
         );
 
@@ -1214,7 +1208,7 @@ class Functions extends Service
 
         $apiPath = str_replace(
             ['{functionId}', '{executionId}'],
-            [$functionId, $executionId],
+            [self::encodePath($functionId), self::encodePath($executionId)],
             '/functions/{functionId}/executions/{executionId}'
         );
 
@@ -1248,7 +1242,7 @@ class Functions extends Service
 
         $apiPath = str_replace(
             ['{functionId}'],
-            [$functionId],
+            [self::encodePath($functionId)],
             '/functions/{functionId}/variables'
         );
 
@@ -1295,7 +1289,7 @@ class Functions extends Service
 
         $apiPath = str_replace(
             ['{functionId}'],
-            [$functionId],
+            [self::encodePath($functionId)],
             '/functions/{functionId}/variables'
         );
 
@@ -1349,7 +1343,7 @@ class Functions extends Service
 
         $apiPath = str_replace(
             ['{functionId}', '{variableId}'],
-            [$functionId, $variableId],
+            [self::encodePath($functionId), self::encodePath($variableId)],
             '/functions/{functionId}/variables/{variableId}'
         );
 
@@ -1392,7 +1386,7 @@ class Functions extends Service
 
         $apiPath = str_replace(
             ['{functionId}', '{variableId}'],
-            [$functionId, $variableId],
+            [self::encodePath($functionId), self::encodePath($variableId)],
             '/functions/{functionId}/variables/{variableId}'
         );
 
@@ -1440,7 +1434,7 @@ class Functions extends Service
 
         $apiPath = str_replace(
             ['{functionId}', '{variableId}'],
-            [$functionId, $variableId],
+            [self::encodePath($functionId), self::encodePath($variableId)],
             '/functions/{functionId}/variables/{variableId}'
         );
 

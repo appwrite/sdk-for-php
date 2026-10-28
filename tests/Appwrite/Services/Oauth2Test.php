@@ -6,11 +6,14 @@ namespace Appwrite\Services;
 
 use Appwrite\Client;
 use Mockery;
+use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
 
 final class Oauth2Test extends TestCase
 {
+    use MockeryPHPUnitIntegration;
+
     private Client&MockInterface $client;
     private Oauth2 $oauth2;
 
@@ -27,14 +30,31 @@ final class Oauth2Test extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/oauth2//approve',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['grant_id', 'authorization_details', 'scope'], array_keys($params));
+                    $expected = [
+                        'grant_id' => "<GRANT_ID>",
+                        'authorization_details' => "<AUTHORIZATION_DETAILS>",
+                        'scope' => "<SCOPE>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->oauth2->approve(
-            "<GRANT_ID>"
+            "<GRANT_ID>",
+            authorizationDetails: "<AUTHORIZATION_DETAILS>",
+            scope: "<SCOPE>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Oauth2Approve::class, $response);
@@ -47,13 +67,54 @@ final class Oauth2Test extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/oauth2//authorize',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['client_id', 'redirect_uri', 'response_type', 'scope', 'state', 'nonce', 'code_challenge', 'code_challenge_method', 'prompt', 'max_age', 'authorization_details', 'resource', 'audience', 'request_uri'], array_keys($params));
+                    $expected = [
+                        'client_id' => "<CLIENT_ID>",
+                        'redirect_uri' => "https://example.com",
+                        'response_type' => "response_type",
+                        'scope' => "<SCOPE>",
+                        'state' => "<STATE>",
+                        'nonce' => "<NONCE>",
+                        'code_challenge' => "<CODE_CHALLENGE>",
+                        'code_challenge_method' => "s256",
+                        'prompt' => "<PROMPT>",
+                        'max_age' => 1,
+                        'authorization_details' => "<AUTHORIZATION_DETAILS>",
+                        'resource' => [],
+                        'audience' => "<AUDIENCE>",
+                        'request_uri' => "<REQUEST_URI>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->oauth2->authorize();
+        $response = $this->oauth2->authorize(
+            clientId: "<CLIENT_ID>",
+            redirectUri: "https://example.com",
+            responseType: "response_type",
+            scope: "<SCOPE>",
+            state: "<STATE>",
+            nonce: "<NONCE>",
+            codeChallenge: "<CODE_CHALLENGE>",
+            codeChallengeMethod: "s256",
+            prompt: "<PROMPT>",
+            maxAge: 1,
+            authorizationDetails: "<AUTHORIZATION_DETAILS>",
+            resource: [],
+            audience: "<AUDIENCE>",
+            requestUri: "<REQUEST_URI>"
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\Oauth2Authorize::class, $response);
     }
@@ -65,13 +126,54 @@ final class Oauth2Test extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/oauth2//authorize',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['client_id', 'redirect_uri', 'response_type', 'scope', 'state', 'nonce', 'code_challenge', 'code_challenge_method', 'prompt', 'max_age', 'authorization_details', 'resource', 'audience', 'request_uri'], array_keys($params));
+                    $expected = [
+                        'client_id' => "<CLIENT_ID>",
+                        'redirect_uri' => "https://example.com",
+                        'response_type' => "response_type",
+                        'scope' => "<SCOPE>",
+                        'state' => "<STATE>",
+                        'nonce' => "<NONCE>",
+                        'code_challenge' => "<CODE_CHALLENGE>",
+                        'code_challenge_method' => "s256",
+                        'prompt' => "<PROMPT>",
+                        'max_age' => 1,
+                        'authorization_details' => "<AUTHORIZATION_DETAILS>",
+                        'resource' => [],
+                        'audience' => "<AUDIENCE>",
+                        'request_uri' => "<REQUEST_URI>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->oauth2->authorizePost();
+        $response = $this->oauth2->authorizePost(
+            clientId: "<CLIENT_ID>",
+            redirectUri: "https://example.com",
+            responseType: "response_type",
+            scope: "<SCOPE>",
+            state: "<STATE>",
+            nonce: "<NONCE>",
+            codeChallenge: "<CODE_CHALLENGE>",
+            codeChallengeMethod: "s256",
+            prompt: "<PROMPT>",
+            maxAge: 1,
+            authorizationDetails: "<AUTHORIZATION_DETAILS>",
+            resource: [],
+            audience: "<AUDIENCE>",
+            requestUri: "<REQUEST_URI>"
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\Oauth2Authorize::class, $response);
     }
@@ -87,13 +189,36 @@ final class Oauth2Test extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/oauth2//device_authorization',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['client_id', 'scope', 'authorization_details', 'resource', 'audience'], array_keys($params));
+                    $expected = [
+                        'client_id' => "<CLIENT_ID>",
+                        'scope' => "<SCOPE>",
+                        'authorization_details' => "<AUTHORIZATION_DETAILS>",
+                        'resource' => [],
+                        'audience' => "<AUDIENCE>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->oauth2->createDeviceAuthorization();
+        $response = $this->oauth2->createDeviceAuthorization(
+            clientId: "<CLIENT_ID>",
+            scope: "<SCOPE>",
+            authorizationDetails: "<AUTHORIZATION_DETAILS>",
+            resource: [],
+            audience: "<AUDIENCE>"
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\Oauth2DeviceAuthorization::class, $response);
     }
@@ -115,7 +240,20 @@ final class Oauth2Test extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/oauth2//grants',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['user_code'], array_keys($params));
+                    $expected = [
+                        'user_code' => "<USER_CODE>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -145,7 +283,20 @@ final class Oauth2Test extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/oauth2//grants/%3CGRANT_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['grant_id'], array_keys($params));
+                    $expected = [
+                        'grant_id' => "<GRANT_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -164,14 +315,33 @@ final class Oauth2Test extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/oauth2//introspect',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['token', 'token_type_hint', 'client_id', 'client_secret'], array_keys($params));
+                    $expected = [
+                        'token' => "<TOKEN>",
+                        'token_type_hint' => "access_token",
+                        'client_id' => "<CLIENT_ID>",
+                        'client_secret' => "<CLIENT_SECRET>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->oauth2->introspect(
-            "<TOKEN>"
+            "<TOKEN>",
+            tokenTypeHint: "access_token",
+            clientId: "<CLIENT_ID>",
+            clientSecret: "<CLIENT_SECRET>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Oauth2Introspection::class, $response);
@@ -188,13 +358,32 @@ final class Oauth2Test extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/oauth2//organizations',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['limit', 'offset', 'search'], array_keys($params));
+                    $expected = [
+                        'limit' => 1,
+                        'offset' => 1,
+                        'search' => "<SEARCH>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->oauth2->listOrganizations();
+        $response = $this->oauth2->listOrganizations(
+            limit: 1,
+            offset: 1,
+            search: "<SEARCH>"
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\Oauth2OrganizationList::class, $response);
     }
@@ -206,7 +395,32 @@ final class Oauth2Test extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/oauth2//par',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['client_id', 'redirect_uri', 'response_type', 'scope', 'state', 'nonce', 'code_challenge', 'code_challenge_method', 'prompt', 'max_age', 'authorization_details', 'resource', 'audience'], array_keys($params));
+                    $expected = [
+                        'client_id' => "<CLIENT_ID>",
+                        'redirect_uri' => "https://example.com",
+                        'response_type' => "code",
+                        'scope' => "<SCOPE>",
+                        'state' => "<STATE>",
+                        'nonce' => "<NONCE>",
+                        'code_challenge' => "<CODE_CHALLENGE>",
+                        'code_challenge_method' => "s256",
+                        'prompt' => "<PROMPT>",
+                        'max_age' => 1,
+                        'authorization_details' => "<AUTHORIZATION_DETAILS>",
+                        'resource' => [],
+                        'audience' => "<AUDIENCE>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -215,7 +429,17 @@ final class Oauth2Test extends TestCase
         $response = $this->oauth2->createPAR(
             "<CLIENT_ID>",
             "https://example.com",
-            "code"
+            "code",
+            scope: "<SCOPE>",
+            state: "<STATE>",
+            nonce: "<NONCE>",
+            codeChallenge: "<CODE_CHALLENGE>",
+            codeChallengeMethod: "s256",
+            prompt: "<PROMPT>",
+            maxAge: 1,
+            authorizationDetails: "<AUTHORIZATION_DETAILS>",
+            resource: [],
+            audience: "<AUDIENCE>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Oauth2PAR::class, $response);
@@ -234,13 +458,32 @@ final class Oauth2Test extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'GET',
+                '/oauth2//projects',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['limit', 'offset', 'search'], array_keys($params));
+                    $expected = [
+                        'limit' => 1,
+                        'offset' => 1,
+                        'search' => "<SEARCH>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
-        $response = $this->oauth2->listProjects();
+        $response = $this->oauth2->listProjects(
+            limit: 1,
+            offset: 1,
+            search: "<SEARCH>"
+        );
 
         $this->assertInstanceOf(\Appwrite\Models\Oauth2ProjectList::class, $response);
     }
@@ -251,7 +494,20 @@ final class Oauth2Test extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/oauth2//reject',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['grant_id'], array_keys($params));
+                    $expected = [
+                        'grant_id' => "<GRANT_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
@@ -268,14 +524,33 @@ final class Oauth2Test extends TestCase
         $data = [];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/oauth2//revoke',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['token', 'token_type_hint', 'client_id', 'client_secret'], array_keys($params));
+                    $expected = [
+                        'token' => "<TOKEN>",
+                        'token_type_hint' => "access_token",
+                        'client_id' => "<CLIENT_ID>",
+                        'client_secret' => "<CLIENT_SECRET>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->oauth2->revoke(
-            "<TOKEN>"
+            "<TOKEN>",
+            tokenTypeHint: "access_token",
+            clientId: "<CLIENT_ID>",
+            clientSecret: "<CLIENT_SECRET>"
         );
 
         $this->assertSame($data, $response);
@@ -291,14 +566,45 @@ final class Oauth2Test extends TestCase
         ];
 
         $this->client
-            ->allows()->call(Mockery::any(), Mockery::any(), Mockery::any(), Mockery::any())
+            ->expects()->call(
+                'POST',
+                '/oauth2//token',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['grant_type', 'code', 'refresh_token', 'device_code', 'client_id', 'client_secret', 'code_verifier', 'redirect_uri', 'resource', 'audience'], array_keys($params));
+                    $expected = [
+                        'grant_type' => "<GRANT_TYPE>",
+                        'code' => "<CODE>",
+                        'refresh_token' => "<REFRESH_TOKEN>",
+                        'device_code' => "<DEVICE_CODE>",
+                        'client_id' => "<CLIENT_ID>",
+                        'client_secret' => "<CLIENT_SECRET>",
+                        'code_verifier' => "<CODE_VERIFIER>",
+                        'redirect_uri' => "https://example.com",
+                        'resource' => [],
+                        'audience' => "<AUDIENCE>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
             ->andReturn($data);
         $this->client
             ->allows()->getConfig(Mockery::any())
             ->andReturn('');
 
         $response = $this->oauth2->createToken(
-            "<GRANT_TYPE>"
+            "<GRANT_TYPE>",
+            code: "<CODE>",
+            refreshToken: "<REFRESH_TOKEN>",
+            deviceCode: "<DEVICE_CODE>",
+            clientId: "<CLIENT_ID>",
+            clientSecret: "<CLIENT_SECRET>",
+            codeVerifier: "<CODE_VERIFIER>",
+            redirectUri: "https://example.com",
+            resource: [],
+            audience: "<AUDIENCE>"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Oauth2Token::class, $response);

@@ -36,7 +36,7 @@ class Avatars extends Service
     {
         $apiPath = str_replace(
             ['{code}'],
-            [(string) $code],
+            [self::encodePath((string) $code)],
             '/avatars/browsers/{code}'
         );
 
@@ -83,7 +83,7 @@ class Avatars extends Service
     {
         $apiPath = str_replace(
             ['{code}'],
-            [(string) $code],
+            [self::encodePath((string) $code)],
             '/avatars/credit-cards/{code}'
         );
 
@@ -162,7 +162,7 @@ class Avatars extends Service
     {
         $apiPath = str_replace(
             ['{code}'],
-            [(string) $code],
+            [self::encodePath((string) $code)],
             '/avatars/flags/{code}'
         );
 
@@ -399,10 +399,7 @@ class Avatars extends Service
             $postedName = $file->getFilename();
             if ($size <= Client::CHUNK_SIZE) {
                 $apiParams['file'] = Part::body('file', $file->getData(), $postedName, $mimeType);
-                $response = $this->client->call(Client::METHOD_PUT, $apiPath, [
-                            'content-type' => 'multipart/form-data',
-                        'accept' => 'application/json',
-                        ], $apiParams);
+                $response = $this->client->call(Client::METHOD_PUT, $apiPath, $apiHeaders, $apiParams);
                 if (!is_array($response)) {
                     throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
                 }
@@ -416,10 +413,7 @@ class Avatars extends Service
             //send single file if size is less than or equal to 5MB
             if ($size <= Client::CHUNK_SIZE) {
                 $apiParams['file'] = Part::file('file', $file->getPath(), $postedName, $mimeType);
-                $response = $this->client->call(Client::METHOD_PUT, $apiPath, [
-                            'content-type' => 'multipart/form-data',
-                        'accept' => 'application/json',
-                        ], $apiParams);
+                $response = $this->client->call(Client::METHOD_PUT, $apiPath, $apiHeaders, $apiParams);
                 if (!is_array($response)) {
                     throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
                 }

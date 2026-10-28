@@ -205,7 +205,7 @@ class Organization extends Service
 
         $apiPath = str_replace(
             ['{installationId}'],
-            [$installationId],
+            [self::encodePath($installationId)],
             '/organization/installations/{installationId}'
         );
 
@@ -246,7 +246,7 @@ class Organization extends Service
 
         $apiPath = str_replace(
             ['{installationId}'],
-            [$installationId],
+            [self::encodePath($installationId)],
             '/organization/installations/{installationId}'
         );
 
@@ -288,7 +288,7 @@ class Organization extends Service
 
         $apiPath = str_replace(
             ['{installationId}'],
-            [$installationId],
+            [self::encodePath($installationId)],
             '/organization/installations/{installationId}'
         );
 
@@ -423,7 +423,7 @@ class Organization extends Service
 
         $apiPath = str_replace(
             ['{membershipId}'],
-            [$membershipId],
+            [self::encodePath($membershipId)],
             '/organization/memberships/{membershipId}'
         );
 
@@ -461,7 +461,7 @@ class Organization extends Service
 
         $apiPath = str_replace(
             ['{membershipId}'],
-            [$membershipId],
+            [self::encodePath($membershipId)],
             '/organization/memberships/{membershipId}'
         );
 
@@ -503,7 +503,7 @@ class Organization extends Service
 
         $apiPath = str_replace(
             ['{membershipId}'],
-            [$membershipId],
+            [self::encodePath($membershipId)],
             '/organization/memberships/{membershipId}'
         );
 
@@ -622,7 +622,7 @@ class Organization extends Service
 
         $apiPath = str_replace(
             ['{projectId}'],
-            [$projectId],
+            [self::encodePath($projectId)],
             '/organization/projects/{projectId}'
         );
 
@@ -660,7 +660,7 @@ class Organization extends Service
 
         $apiPath = str_replace(
             ['{projectId}'],
-            [$projectId],
+            [self::encodePath($projectId)],
             '/organization/projects/{projectId}'
         );
 
@@ -700,7 +700,7 @@ class Organization extends Service
 
         $apiPath = str_replace(
             ['{projectId}'],
-            [$projectId],
+            [self::encodePath($projectId)],
             '/organization/projects/{projectId}'
         );
 
@@ -733,7 +733,7 @@ class Organization extends Service
 
         $apiPath = str_replace(
             ['{projectId}'],
-            [$projectId],
+            [self::encodePath($projectId)],
             '/organization/projects/{projectId}/keys'
         );
 
@@ -784,7 +784,7 @@ class Organization extends Service
 
         $apiPath = str_replace(
             ['{projectId}'],
-            [$projectId],
+            [self::encodePath($projectId)],
             '/organization/projects/{projectId}/keys/ephemeral'
         );
 
@@ -829,7 +829,7 @@ class Organization extends Service
 
         $apiPath = str_replace(
             ['{projectId}', '{keyId}'],
-            [$projectId, $keyId],
+            [self::encodePath($projectId), self::encodePath($keyId)],
             '/organization/projects/{projectId}/keys/{keyId}'
         );
 
@@ -873,7 +873,7 @@ class Organization extends Service
 
         $apiPath = str_replace(
             ['{projectId}', '{keyId}'],
-            [$projectId, $keyId],
+            [self::encodePath($projectId), self::encodePath($keyId)],
             '/organization/projects/{projectId}/keys/{keyId}'
         );
 
@@ -922,7 +922,7 @@ class Organization extends Service
 
         $apiPath = str_replace(
             ['{projectId}', '{keyId}'],
-            [$projectId, $keyId],
+            [self::encodePath($projectId), self::encodePath($keyId)],
             '/organization/projects/{projectId}/keys/{keyId}'
         );
 

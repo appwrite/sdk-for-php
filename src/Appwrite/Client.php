@@ -45,11 +45,11 @@ class Client
      *
      */
     protected array $headers = [
-        'user-agent' => 'AppwritePHPSDK/32.0.0 ()',
+        'user-agent' => 'AppwritePHPSDK/32.1.0 ()',
         'x-sdk-name' => 'PHP',
         'x-sdk-platform' => 'server',
         'x-sdk-language' => 'php',
-        'x-sdk-version' => '32.0.0',
+        'x-sdk-version' => '32.1.0',
     ];
 
     /**
@@ -89,16 +89,11 @@ class Client
     protected ?int $connectTimeout = null;
 
     /**
-     * Reused Utopia HTTP client (follows redirects).
+     * Reused Utopia HTTP client. It does not follow redirects: one would carry
+     * the API key to wherever it points, possibly another host.
      *
      */
     protected ?HttpClient $httpClient = null;
-
-    /**
-     * Reused Utopia HTTP client that does not follow redirects.
-     *
-     */
-    protected ?HttpClient $httpClientNoRedirect = null;
 
     /**
      * PSR-7 request factory.
@@ -113,7 +108,7 @@ class Client
     public function __construct(private readonly ?ClientInterface $transport = null)
     {
         $this->requestFactory = new RequestFactory();
-        $this->headers['X-Appwrite-Response-Format'] = '2.5.0';
+        $this->headers['X-Appwrite-Response-Format'] = '2.6.2';
     }
 
     /**
@@ -421,6 +416,12 @@ class Client
             $this->headers['authorization'] = $this->getAuthorization();
         }
         $headers = array_merge($this->headers, $headers);
+        foreach ($headers as $name => $value) {
+            // A line break ends the header and starts one of the caller's choosing.
+            if (\strpbrk($name . ':' . \implode(',', (array) $value), "\r\n\0") !== false) {
+                throw new AppwriteException('Header contains a line break: ' . \strtr($name, "\r\n\0", '   '));
+            }
+        }
         $params = \array_map(self::flatten(...), $params);
         $contentType = strtolower((string) ($headers['content-type'] ?? ''));
         if ($contentType === '') {
@@ -456,7 +457,7 @@ class Client
                 ),
             };
 
-            $response = $this->getHttpClient($responseType !== 'location')->sendRequest($request);
+            $response = $this->getHttpClient()->sendRequest($request);
         } catch (ClientExceptionInterface|\JsonException $e) {
             throw new AppwriteException($e->getMessage(), (int) $e->getCode());
         }
@@ -464,6 +465,11 @@ class Client
         $responseStatus = $response->getStatusCode();
         $responseContentType = $response->getHeaderLine('content-type');
         $responseBody = (string) $response->getBody();
+
+        if ($responseType !== 'location' && $responseStatus >= 300 && $responseStatus < 400) {
+            $location = $response->getHeaderLine('location');
+            throw new AppwriteException('Redirect to ' . $location . ' not followed', $responseStatus, '', $responseBody);
+        }
 
         $warnings = $response->getHeaderLine('x-appwrite-warning');
         if ($warnings) {
@@ -536,6 +542,9 @@ class Client
         if ($value instanceof Query) {
             return $value->__toString();
         }
+        if ($value instanceof \JsonSerializable) {
+            return $value->jsonSerialize();
+        }
         if (!\is_array($value) || !\array_is_list($value)) {
             return $value;
         }
@@ -601,33 +610,28 @@ class Client
         return $parts;
     }
 
-    protected function getHttpClient(bool $followRedirects): ClientInterface
+    protected function getHttpClient(): ClientInterface
     {
         if ($this->transport instanceof ClientInterface) {
             return $this->transport;
         }
 
-        if ($followRedirects) {
-            return $this->httpClient ??= $this->createHttpClient(true);
-        }
-
-        return $this->httpClientNoRedirect ??= $this->createHttpClient(false);
+        return $this->httpClient ??= $this->createHttpClient();
     }
 
     protected function resetHttpClient(): void
     {
         $this->httpClient = null;
-        $this->httpClientNoRedirect = null;
     }
 
-    protected function createHttpClient(bool $followRedirects): HttpClient
+    protected function createHttpClient(): HttpClient
     {
         $adapter = new CurlAdapter(options: [
             CURLOPT_TIMEOUT_MS => 0,
             CURLOPT_USERAGENT => php_uname('s') . '-' . php_uname('r') . ':php-' . phpversion(),
         ])->withConnectionReuse();
 
-        $client = new HttpClient($adapter)->withFollowRedirects($followRedirects);
+        $client = new HttpClient($adapter)->withFollowRedirects(false);
 
         if ($this->selfSigned) {
             $client = $client->withSslVerification(false);

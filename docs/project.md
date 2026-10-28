@@ -47,7 +47,9 @@ GET https://cloud.appwrite.io/v1/project/environments
 POST https://cloud.appwrite.io/v1/project/environments
 ```
 
-** Create a new environment of the project. An environment is a separate project in the same organization and region, with its own resources and users. Its usage is billed under the project it belongs to. **
+** Create a new environment of the project. An environment is a separate project in the same organization and region, with its own resources and users. Its usage is billed under the project it belongs to.
+
+Pass `resources` to copy the project into the environment. The environment is returned at once and the copy runs as a migration of the environment, listed by its migrations routes and announced on its `migrations.*` realtime events; a resource whose ID can be chosen keeps it. Users are copied newest first and at most 90 of them, so the environment keeps room under its limit of 100 users for test accounts, and the memberships of users left behind are not copied. **
 
 ### Parameters
 
@@ -55,6 +57,7 @@ POST https://cloud.appwrite.io/v1/project/environments
 | --- | --- | --- | --- |
 | environmentId | string | Unique Id. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, and hyphen. Can't start with a special char. Max length is 36 chars. |  |
 | name | string | Environment name. Max length: 128 chars. |  |
+| resources | array | Resources to copy from the project into the environment, by type. A structural type such as `database`, `table`, `column`, `index`, `bucket`, `team`, `function` or `site` copies the structure and its settings; `row`, `file`, `user`, `membership`, `deployment` and `site-deployment` copy what it holds. A function or site is copied with its active deployment; add `deployment` or `site-deployment` to copy every deployment. Users are copied newest first and at most 90 of them, leaving room under the limit of 100 users of an environment for test accounts; the memberships of users left behind are not copied. Leave empty for an empty environment. Maximum of 100 types. | [] |
 
 
 ```http request
@@ -1330,6 +1333,19 @@ PATCH https://cloud.appwrite.io/v1/project/policies/deny-free-email
 
 
 ```http request
+PATCH https://cloud.appwrite.io/v1/project/policies/deny-realtime-guests
+```
+
+** Configures if guests, connections without a signed-in user, may subscribe to realtime channels. When enabled, a guest can still connect and sign in over the connection, but cannot subscribe until it does. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| enabled | boolean | Set whether or not to stop guests from subscribing to realtime channels. |  |
+
+
+```http request
 PATCH https://cloud.appwrite.io/v1/project/policies/membership-privacy
 ```
 
@@ -1545,7 +1561,7 @@ GET https://cloud.appwrite.io/v1/project/policies/{policyId}
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| policyId | string | **Required** Policy ID. Can be one of: password-dictionary, password-history, password-strength, password-personal-data, password-pwned, password-rotation, session-alert, session-duration, session-invalidation, session-limit, user-limit, membership-privacy, mfa-factors, deny-aliased-email, deny-disposable-email, deny-free-email, deny-corporate-email, passkey. |  |
+| policyId | string | **Required** Policy ID. Can be one of: password-dictionary, password-history, password-strength, password-personal-data, password-pwned, password-rotation, session-alert, session-duration, session-invalidation, session-limit, user-limit, membership-privacy, mfa-factors, deny-aliased-email, deny-disposable-email, deny-free-email, deny-corporate-email, deny-realtime-guests, passkey. |  |
 
 
 ```http request
@@ -1574,6 +1590,13 @@ PATCH https://cloud.appwrite.io/v1/project/services/{serviceId}
 | --- | --- | --- | --- |
 | serviceId | string | **Required** Service name. Can be one of: account, avatars, databases, tablesdb, locale, health, project, storage, teams, users, vcs, sites, functions, proxy, graphql, migrations, messaging, advisor, oauth2 |  |
 | enabled | boolean | Service status. |  |
+
+
+```http request
+DELETE https://cloud.appwrite.io/v1/project/sessions
+```
+
+** Delete all sessions in the project. Any session created before this request will be invalidated immediately: users will be signed out of every active client (web, mobile, server SDKs, JWTs), and will be able to sign in again afterwards. API keys are not affected by this action. **
 
 
 ```http request

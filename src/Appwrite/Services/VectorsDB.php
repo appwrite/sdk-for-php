@@ -233,7 +233,7 @@ class VectorsDB extends Service
 
         $apiPath = str_replace(
             ['{transactionId}'],
-            [$transactionId],
+            [self::encodePath($transactionId)],
             '/vectorsdb/transactions/{transactionId}'
         );
 
@@ -271,7 +271,7 @@ class VectorsDB extends Service
 
         $apiPath = str_replace(
             ['{transactionId}'],
-            [$transactionId],
+            [self::encodePath($transactionId)],
             '/vectorsdb/transactions/{transactionId}'
         );
 
@@ -318,7 +318,7 @@ class VectorsDB extends Service
 
         $apiPath = str_replace(
             ['{transactionId}'],
-            [$transactionId],
+            [self::encodePath($transactionId)],
             '/vectorsdb/transactions/{transactionId}'
         );
 
@@ -351,7 +351,7 @@ class VectorsDB extends Service
 
         $apiPath = str_replace(
             ['{transactionId}'],
-            [$transactionId],
+            [self::encodePath($transactionId)],
             '/vectorsdb/transactions/{transactionId}/operations'
         );
 
@@ -395,7 +395,7 @@ class VectorsDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/vectorsdb/{databaseId}'
         );
 
@@ -433,7 +433,7 @@ class VectorsDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/vectorsdb/{databaseId}'
         );
 
@@ -482,7 +482,7 @@ class VectorsDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/vectorsdb/{databaseId}'
         );
 
@@ -516,7 +516,7 @@ class VectorsDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/vectorsdb/{databaseId}/collections'
         );
 
@@ -569,7 +569,7 @@ class VectorsDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/vectorsdb/{databaseId}/collections'
         );
 
@@ -632,7 +632,7 @@ class VectorsDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
-            [$databaseId, $collectionId],
+            [self::encodePath($databaseId), self::encodePath($collectionId)],
             '/vectorsdb/{databaseId}/collections/{collectionId}'
         );
 
@@ -675,7 +675,7 @@ class VectorsDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
-            [$databaseId, $collectionId],
+            [self::encodePath($databaseId), self::encodePath($collectionId)],
             '/vectorsdb/{databaseId}/collections/{collectionId}'
         );
 
@@ -735,7 +735,7 @@ class VectorsDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
-            [$databaseId, $collectionId],
+            [self::encodePath($databaseId), self::encodePath($collectionId)],
             '/vectorsdb/{databaseId}/collections/{collectionId}'
         );
 
@@ -774,7 +774,7 @@ class VectorsDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
-            [$databaseId, $collectionId],
+            [self::encodePath($databaseId), self::encodePath($collectionId)],
             '/vectorsdb/{databaseId}/collections/{collectionId}/documents'
         );
 
@@ -836,7 +836,7 @@ class VectorsDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
-            [$databaseId, $collectionId],
+            [self::encodePath($databaseId), self::encodePath($collectionId)],
             '/vectorsdb/{databaseId}/collections/{collectionId}/documents'
         );
 
@@ -893,7 +893,7 @@ class VectorsDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
-            [$databaseId, $collectionId],
+            [self::encodePath($databaseId), self::encodePath($collectionId)],
             '/vectorsdb/{databaseId}/collections/{collectionId}/documents'
         );
 
@@ -945,7 +945,7 @@ class VectorsDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
-            [$databaseId, $collectionId],
+            [self::encodePath($databaseId), self::encodePath($collectionId)],
             '/vectorsdb/{databaseId}/collections/{collectionId}/documents'
         );
 
@@ -996,7 +996,7 @@ class VectorsDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
-            [$databaseId, $collectionId],
+            [self::encodePath($databaseId), self::encodePath($collectionId)],
             '/vectorsdb/{databaseId}/collections/{collectionId}/documents'
         );
 
@@ -1053,7 +1053,7 @@ class VectorsDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
-            [$databaseId, $collectionId],
+            [self::encodePath($databaseId), self::encodePath($collectionId)],
             '/vectorsdb/{databaseId}/collections/{collectionId}/documents'
         );
 
@@ -1108,7 +1108,7 @@ class VectorsDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
-            [$databaseId, $collectionId],
+            [self::encodePath($databaseId), self::encodePath($collectionId)],
             '/vectorsdb/{databaseId}/collections/{collectionId}/documents/query'
         );
 
@@ -1173,7 +1173,7 @@ class VectorsDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{documentId}'],
-            [$databaseId, $collectionId, $documentId],
+            [self::encodePath($databaseId), self::encodePath($collectionId), self::encodePath($documentId)],
             '/vectorsdb/{databaseId}/collections/{collectionId}/documents/{documentId}'
         );
 
@@ -1232,7 +1232,7 @@ class VectorsDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{documentId}'],
-            [$databaseId, $collectionId, $documentId],
+            [self::encodePath($databaseId), self::encodePath($collectionId), self::encodePath($documentId)],
             '/vectorsdb/{databaseId}/collections/{collectionId}/documents/{documentId}'
         );
 
@@ -1294,7 +1294,7 @@ class VectorsDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{documentId}'],
-            [$databaseId, $collectionId, $documentId],
+            [self::encodePath($databaseId), self::encodePath($collectionId), self::encodePath($documentId)],
             '/vectorsdb/{databaseId}/collections/{collectionId}/documents/{documentId}'
         );
 
@@ -1355,7 +1355,7 @@ class VectorsDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{documentId}'],
-            [$databaseId, $collectionId, $documentId],
+            [self::encodePath($databaseId), self::encodePath($collectionId), self::encodePath($documentId)],
             '/vectorsdb/{databaseId}/collections/{collectionId}/documents/{documentId}'
         );
 
@@ -1398,7 +1398,7 @@ class VectorsDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
-            [$databaseId, $collectionId],
+            [self::encodePath($databaseId), self::encodePath($collectionId)],
             '/vectorsdb/{databaseId}/collections/{collectionId}/indexes'
         );
 
@@ -1451,7 +1451,7 @@ class VectorsDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}'],
-            [$databaseId, $collectionId],
+            [self::encodePath($databaseId), self::encodePath($collectionId)],
             '/vectorsdb/{databaseId}/collections/{collectionId}/indexes'
         );
 
@@ -1514,7 +1514,7 @@ class VectorsDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{key}'],
-            [$databaseId, $collectionId, $key],
+            [self::encodePath($databaseId), self::encodePath($collectionId), self::encodePath($key)],
             '/vectorsdb/{databaseId}/collections/{collectionId}/indexes/{key}'
         );
 
@@ -1562,7 +1562,7 @@ class VectorsDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}', '{collectionId}', '{key}'],
-            [$databaseId, $collectionId, $key],
+            [self::encodePath($databaseId), self::encodePath($collectionId), self::encodePath($key)],
             '/vectorsdb/{databaseId}/collections/{collectionId}/indexes/{key}'
         );
 
@@ -1605,7 +1605,7 @@ class VectorsDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/vectorsdb/{databaseId}/failovers'
         );
 
@@ -1648,7 +1648,7 @@ class VectorsDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/vectorsdb/{databaseId}/operations'
         );
 
@@ -1699,7 +1699,7 @@ class VectorsDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/vectorsdb/{databaseId}/replicas'
         );
 
@@ -1739,7 +1739,7 @@ class VectorsDB extends Service
 
         $apiPath = str_replace(
             ['{databaseId}'],
-            [$databaseId],
+            [self::encodePath($databaseId)],
             '/vectorsdb/{databaseId}/status'
         );
 
