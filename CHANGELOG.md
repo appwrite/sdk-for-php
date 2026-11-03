@@ -1,5 +1,14 @@
 # Change Log
 
+## 32.2.0
+
+* Added: `Project::getPrefs` and `Project::updatePrefs` for project preferences, and `Project::$prefs`
+* Added: `AppwriteMigrationResource::PROJECTPREFERENCES()` to migrate project preferences
+* Added: `Client::setEnvironment` to act in a project environment
+* Added: `monitors.read`, `monitors.write`, `alerts.read`, `reviews.read` and `reviews.write` to `ProjectKeyScopes`
+* Added: `Organization::$budgetNotify` and `Organization::$educationExpiresAt`
+* Updated: requests send `X-Appwrite-Response-Format: 2.7.0`; README targets Appwrite 2.7.x
+
 ## 32.1.0
 
 * Updated: protected `Client::getHttpClient()` and `createHttpClient()` drop their `bool` argument; `$httpClientNoRedirect` removed
