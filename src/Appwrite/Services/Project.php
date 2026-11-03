@@ -4425,6 +4425,77 @@ class Project extends Service
     }
 
     /**
+     * Get the project preferences. Preferences are a key-value object stored on
+     * the project for anyone working on it.
+     *
+     * @throws AppwriteException
+     */
+    public function getPrefs(): \Appwrite\Models\Preferences
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/project/prefs'
+        );
+
+        $apiParams = [];
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Preferences::from($response);
+    }
+
+    /**
+     * Update the project preferences. The object you pass is stored as is and
+     * replaces any previous value. The maximum allowed prefs size is 64kB and
+     * throws an error if exceeded.
+     *
+     * @throws AppwriteException
+     */
+    public function updatePrefs(array $prefs): \Appwrite\Models\Preferences
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/project/prefs'
+        );
+
+        $apiParams = [];
+        $apiParams['prefs'] = $prefs;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PUT,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Preferences::from($response);
+    }
+
+    /**
      * Update properties of a specific protocol. Use this endpoint to enable or
      * disable a protocol in your project.
      *

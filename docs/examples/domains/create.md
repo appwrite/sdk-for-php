@@ -13,6 +13,6 @@ $domains = new Domains($client);
 
 $result = $domains->create(
     teamId: '<TEAM_ID>',
-    domain: 'example.com'
+    domain: ''
 );
 ```

@@ -45,6 +45,7 @@ class AppwriteMigrationResource implements JsonSerializable, Stringable
     private static AppwriteMigrationResource $PROJECTVARIABLE;
     private static AppwriteMigrationResource $PROJECTPROTOCOLS;
     private static AppwriteMigrationResource $PROJECTLABELS;
+    private static AppwriteMigrationResource $PROJECTPREFERENCES;
     private static AppwriteMigrationResource $PROJECTSERVICES;
     private static AppwriteMigrationResource $PROJECTEMAILTEMPLATE;
     private static AppwriteMigrationResource $PROJECTENVIRONMENT;
@@ -280,6 +281,12 @@ class AppwriteMigrationResource implements JsonSerializable, Stringable
 
         return self::$PROJECTLABELS;
     }
+    public static function PROJECTPREFERENCES(): AppwriteMigrationResource
+    {
+        self::$PROJECTPREFERENCES ??= new AppwriteMigrationResource('project-preferences');
+
+        return self::$PROJECTPREFERENCES;
+    }
     public static function PROJECTSERVICES(): AppwriteMigrationResource
     {
         self::$PROJECTSERVICES ??= new AppwriteMigrationResource('project-services');
@@ -344,6 +351,7 @@ class AppwriteMigrationResource implements JsonSerializable, Stringable
             'project-variable' => self::PROJECTVARIABLE(),
             'project-protocols' => self::PROJECTPROTOCOLS(),
             'project-labels' => self::PROJECTLABELS(),
+            'project-preferences' => self::PROJECTPREFERENCES(),
             'project-services' => self::PROJECTSERVICES(),
             'project-email-template' => self::PROJECTEMAILTEMPLATE(),
             'project-environment' => self::PROJECTENVIRONMENT(),

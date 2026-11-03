@@ -132,7 +132,7 @@ final class DomainsTest extends TestCase
                     $this->assertSame(['teamId', 'domain'], array_keys($params));
                     $expected = [
                         'teamId' => "<TEAM_ID>",
-                        'domain' => "example.com",
+                        'domain' => "domain",
                     ];
                     $this->assertSame($expected, array_intersect_key($params, $expected));
 
@@ -146,7 +146,7 @@ final class DomainsTest extends TestCase
 
         $response = $this->domains->create(
             "<TEAM_ID>",
-            "example.com"
+            "domain"
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Domain::class, $response);

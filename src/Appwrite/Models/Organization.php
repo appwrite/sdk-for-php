@@ -23,6 +23,7 @@ readonly class Organization
      * @param int $total total number of team members.
      * @param Preferences $prefs team preferences as a key-value object
      * @param array $budgetAlerts project budget limit
+     * @param array $budgetNotify organization roles whose confirmed members are emailed when a budget alert fires.
      * @param string $billingPlan organization's billing plan id.
      * @param string $billingPlanId organization's billing plan id.
      * @param BillingPlan $billingPlanDetails organization's billing plan.
@@ -48,6 +49,7 @@ readonly class Organization
      * @param string|null $programManagerCalendar program manager's calendar link.
      * @param string|null $programDiscordChannelName program's discord channel name.
      * @param string|null $programDiscordChannelUrl program's discord channel url.
+     * @param string|null $educationExpiresAt when the education plan ends, for an organization on it.
      * @param BillingLimits|null $billingLimits billing limits reached
      * @param string|null $billingPlanDowngrade billing plan selected for downgrade.
      * @param string|null $billingTaxId tax id
@@ -60,6 +62,7 @@ readonly class Organization
         public int $total,
         public Preferences $prefs,
         public array $budgetAlerts,
+        public array $budgetNotify,
         public string $billingPlan,
         public string $billingPlanId,
         public BillingPlan $billingPlanDetails,
@@ -85,6 +88,7 @@ readonly class Organization
         public ?string $programManagerCalendar = null,
         public ?string $programDiscordChannelName = null,
         public ?string $programDiscordChannelUrl = null,
+        public ?string $educationExpiresAt = null,
         public ?BillingLimits $billingLimits = null,
         public ?string $billingPlanDowngrade = null,
         public ?string $billingTaxId = null
@@ -103,6 +107,7 @@ readonly class Organization
             'name' => "",
             'total' => 0,
             'budgetAlerts' => [75],
+            'budgetNotify' => ["owner", "billing"],
             'billingPlan' => "tier-0",
             'billingPlanId' => "tier-0",
             'billingEmail' => "",
@@ -127,6 +132,7 @@ readonly class Organization
             total: $data['total'],
             prefs: static::hydrateTypedValue(Preferences::class, $data['prefs']),
             budgetAlerts: $data['budgetAlerts'],
+            budgetNotify: $data['budgetNotify'],
             billingPlan: $data['billingPlan'],
             billingPlanId: $data['billingPlanId'],
             billingPlanDetails: static::hydrateTypedValue(BillingPlan::class, $data['billingPlanDetails']),
@@ -152,6 +158,7 @@ readonly class Organization
             programManagerCalendar: $data['programManagerCalendar'] ?? null,
             programDiscordChannelName: $data['programDiscordChannelName'] ?? null,
             programDiscordChannelUrl: $data['programDiscordChannelUrl'] ?? null,
+            educationExpiresAt: $data['educationExpiresAt'] ?? null,
             billingLimits: array_key_exists('billingLimits', $data) ? static::hydrateTypedValue(BillingLimits::class, $data['billingLimits'], true) : null,
             billingPlanDowngrade: $data['billingPlanDowngrade'] ?? null,
             billingTaxId: $data['billingTaxId'] ?? null
@@ -172,6 +179,7 @@ readonly class Organization
             'prefs' => static::serializeValue($this->prefs),
             'billingBudget' => static::serializeValue($this->billingBudget),
             'budgetAlerts' => static::serializeValue($this->budgetAlerts),
+            'budgetNotify' => static::serializeValue($this->budgetNotify),
             'billingPlan' => static::serializeValue($this->billingPlan),
             'billingPlanId' => static::serializeValue($this->billingPlanId),
             'billingPlanDetails' => static::serializeValue($this->billingPlanDetails),
@@ -193,6 +201,7 @@ readonly class Organization
             'programManagerCalendar' => static::serializeValue($this->programManagerCalendar),
             'programDiscordChannelName' => static::serializeValue($this->programDiscordChannelName),
             'programDiscordChannelUrl' => static::serializeValue($this->programDiscordChannelUrl),
+            'educationExpiresAt' => static::serializeValue($this->educationExpiresAt),
             'billingLimits' => static::serializeValue($this->billingLimits),
             'billingPlanDowngrade' => static::serializeValue($this->billingPlanDowngrade),
             'billingTaxId' => static::serializeValue($this->billingTaxId),

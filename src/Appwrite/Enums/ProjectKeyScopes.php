@@ -97,6 +97,9 @@ class ProjectKeyScopes implements JsonSerializable, Stringable
     private static ProjectKeyScopes $RULESWRITE;
     private static ProjectKeyScopes $WEBHOOKSREAD;
     private static ProjectKeyScopes $WEBHOOKSWRITE;
+    private static ProjectKeyScopes $MONITORSREAD;
+    private static ProjectKeyScopes $MONITORSWRITE;
+    private static ProjectKeyScopes $ALERTSREAD;
     private static ProjectKeyScopes $LOCALEREAD;
     private static ProjectKeyScopes $AVATARSREAD;
     private static ProjectKeyScopes $AVATARSWRITE;
@@ -112,6 +115,8 @@ class ProjectKeyScopes implements JsonSerializable, Stringable
     private static ProjectKeyScopes $INSIGHTSWRITE;
     private static ProjectKeyScopes $REPORTSREAD;
     private static ProjectKeyScopes $REPORTSWRITE;
+    private static ProjectKeyScopes $REVIEWSREAD;
+    private static ProjectKeyScopes $REVIEWSWRITE;
     private static ProjectKeyScopes $PRESENCESREAD;
     private static ProjectKeyScopes $PRESENCESWRITE;
     private static ProjectKeyScopes $DEDICATEDDATABASESEXECUTE;
@@ -677,6 +682,24 @@ class ProjectKeyScopes implements JsonSerializable, Stringable
 
         return self::$WEBHOOKSWRITE;
     }
+    public static function MONITORSREAD(): ProjectKeyScopes
+    {
+        self::$MONITORSREAD ??= new ProjectKeyScopes('monitors.read');
+
+        return self::$MONITORSREAD;
+    }
+    public static function MONITORSWRITE(): ProjectKeyScopes
+    {
+        self::$MONITORSWRITE ??= new ProjectKeyScopes('monitors.write');
+
+        return self::$MONITORSWRITE;
+    }
+    public static function ALERTSREAD(): ProjectKeyScopes
+    {
+        self::$ALERTSREAD ??= new ProjectKeyScopes('alerts.read');
+
+        return self::$ALERTSREAD;
+    }
     public static function LOCALEREAD(): ProjectKeyScopes
     {
         self::$LOCALEREAD ??= new ProjectKeyScopes('locale.read');
@@ -766,6 +789,18 @@ class ProjectKeyScopes implements JsonSerializable, Stringable
         self::$REPORTSWRITE ??= new ProjectKeyScopes('reports.write');
 
         return self::$REPORTSWRITE;
+    }
+    public static function REVIEWSREAD(): ProjectKeyScopes
+    {
+        self::$REVIEWSREAD ??= new ProjectKeyScopes('reviews.read');
+
+        return self::$REVIEWSREAD;
+    }
+    public static function REVIEWSWRITE(): ProjectKeyScopes
+    {
+        self::$REVIEWSWRITE ??= new ProjectKeyScopes('reviews.write');
+
+        return self::$REVIEWSWRITE;
     }
     public static function PRESENCESREAD(): ProjectKeyScopes
     {
@@ -991,6 +1026,9 @@ class ProjectKeyScopes implements JsonSerializable, Stringable
             'rules.write' => self::RULESWRITE(),
             'webhooks.read' => self::WEBHOOKSREAD(),
             'webhooks.write' => self::WEBHOOKSWRITE(),
+            'monitors.read' => self::MONITORSREAD(),
+            'monitors.write' => self::MONITORSWRITE(),
+            'alerts.read' => self::ALERTSREAD(),
             'locale.read' => self::LOCALEREAD(),
             'avatars.read' => self::AVATARSREAD(),
             'avatars.write' => self::AVATARSWRITE(),
@@ -1006,6 +1044,8 @@ class ProjectKeyScopes implements JsonSerializable, Stringable
             'insights.write' => self::INSIGHTSWRITE(),
             'reports.read' => self::REPORTSREAD(),
             'reports.write' => self::REPORTSWRITE(),
+            'reviews.read' => self::REVIEWSREAD(),
+            'reviews.write' => self::REVIEWSWRITE(),
             'presences.read' => self::PRESENCESREAD(),
             'presences.write' => self::PRESENCESWRITE(),
             'dedicatedDatabases.execute' => self::DEDICATEDDATABASESEXECUTE(),
