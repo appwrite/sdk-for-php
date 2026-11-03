@@ -45,11 +45,11 @@ class Client
      *
      */
     protected array $headers = [
-        'user-agent' => 'AppwritePHPSDK/32.1.0 ()',
+        'user-agent' => 'AppwritePHPSDK/32.2.0 ()',
         'x-sdk-name' => 'PHP',
         'x-sdk-platform' => 'server',
         'x-sdk-language' => 'php',
-        'x-sdk-version' => '32.1.0',
+        'x-sdk-version' => '32.2.0',
     ];
 
     /**
@@ -108,7 +108,7 @@ class Client
     public function __construct(private readonly ?ClientInterface $transport = null)
     {
         $this->requestFactory = new RequestFactory();
-        $this->headers['X-Appwrite-Response-Format'] = '2.6.2';
+        $this->headers['X-Appwrite-Response-Format'] = '2.7.0';
     }
 
     /**
@@ -197,6 +197,21 @@ class Client
     {
         $this->addHeader('X-Appwrite-Locale', $value);
         $this->config['locale'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Set Environment
+     *
+     * The ID of the project environment to act in, alongside the project ID. Used with Appwrite Cloud projects that have environments.
+     *
+     *
+     */
+    public function setEnvironment(string $value): Client
+    {
+        $this->addHeader('X-Appwrite-Environment', $value);
+        $this->config['environment'] = $value;
 
         return $this;
     }

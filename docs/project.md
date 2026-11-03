@@ -1565,6 +1565,26 @@ GET https://cloud.appwrite.io/v1/project/policies/{policyId}
 
 
 ```http request
+GET https://cloud.appwrite.io/v1/project/prefs
+```
+
+** Get the project preferences. Preferences are a key-value object stored on the project for anyone working on it. **
+
+
+```http request
+PUT https://cloud.appwrite.io/v1/project/prefs
+```
+
+** Update the project preferences. The object you pass is stored as is and replaces any previous value. The maximum allowed prefs size is 64kB and throws an error if exceeded. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| prefs | object | Prefs key-value JSON object. | {} |
+
+
+```http request
 PATCH https://cloud.appwrite.io/v1/project/protocols/{protocolId}
 ```
 

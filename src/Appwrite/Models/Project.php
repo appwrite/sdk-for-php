@@ -42,6 +42,7 @@ readonly class Project
      * @param list<ProjectProtocol> $protocols list of protocols.
      * @param list<Block> $blocks project blocks information
      * @param string $consoleAccessedAt last time the project was accessed via console. used with plan's projectinactivitydays to determine if project is paused.
+     * @param Preferences|null $prefs project preferences as a key-value object
      * @param bool|null $wafEnabled whether waf enforcement is enabled for the project.
      * @param string|null $parentId id of the project this environment belongs to. null when the project is not an environment.
      * @param BillingLimits|null $billingLimits billing limits reached
@@ -92,6 +93,7 @@ readonly class Project
         public array $protocols,
         public array $blocks,
         public string $consoleAccessedAt,
+        public ?Preferences $prefs = null,
         public ?bool $wafEnabled = null,
         public ?string $parentId = null,
         public ?BillingLimits $billingLimits = null,
@@ -198,6 +200,7 @@ readonly class Project
                 )
                 : $data['blocks'],
             consoleAccessedAt: $data['consoleAccessedAt'],
+            prefs: array_key_exists('prefs', $data) ? static::hydrateTypedValue(Preferences::class, $data['prefs'], true) : null,
             wafEnabled: $data['wafEnabled'] ?? null,
             parentId: $data['parentId'] ?? null,
             billingLimits: array_key_exists('billingLimits', $data) ? static::hydrateTypedValue(BillingLimits::class, $data['billingLimits'], true) : null,
@@ -248,6 +251,7 @@ readonly class Project
             'pingCount' => static::serializeValue($this->pingCount),
             'pingedAt' => static::serializeValue($this->pingedAt),
             'labels' => static::serializeValue($this->labels),
+            'prefs' => static::serializeValue($this->prefs),
             'status' => static::serializeValue($this->status),
             'onboarding' => static::serializeValue($this->onboarding),
             'authMethods' => static::serializeValue($this->authMethods),

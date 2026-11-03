@@ -5326,6 +5326,60 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\PolicyPasskey::class, $response);
     }
+    public function testMethodGetPrefs(): void
+    {
+        $data = [];
+
+        $this->client
+            ->expects()->call(
+                'GET',
+                '/project/prefs',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame([], array_keys($params));
+
+                    return true;
+                })
+            )
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->project->getPrefs();
+
+        $this->assertInstanceOf(\Appwrite\Models\Preferences::class, $response);
+    }
+    public function testMethodUpdatePrefs(): void
+    {
+        $data = [];
+
+        $this->client
+            ->expects()->call(
+                'PUT',
+                '/project/prefs',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['prefs'], array_keys($params));
+                    $expected = [
+                        'prefs' => [],
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->project->updatePrefs(
+            []
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\Preferences::class, $response);
+    }
     public function testMethodUpdateProtocol(): void
     {
         $data = [

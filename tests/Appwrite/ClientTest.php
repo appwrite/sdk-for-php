@@ -164,6 +164,13 @@ final class ClientTest extends TestCase
         $this->assertSame($client, $result);
     }
 
+    public function testSetEnvironmentReturnsClient(): void
+    {
+        $client = new Client();
+        $result = $client->setEnvironment('test-value');
+        $this->assertSame($client, $result);
+    }
+
     public function testSetSessionReturnsClient(): void
     {
         $client = new Client();
