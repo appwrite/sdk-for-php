@@ -118,11 +118,12 @@ class Project extends Service
 
     /**
      * Get a list of all environments of the project. You can use the query params
-     * to filter your results.
+     * to filter your results. An environment is listed by its ID, the one passed
+     * in the `X-Appwrite-Environment` header to act in it.
      *
      * @throws AppwriteException
      */
-    public function listEnvironments(?array $queries = null, ?bool $total = null): \Appwrite\Models\ProjectList
+    public function listEnvironments(?array $queries = null, ?bool $total = null): \Appwrite\Models\EnvironmentList
     {
         $apiPath = str_replace(
             [],
@@ -155,13 +156,17 @@ class Project extends Service
             throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
         }
 
-        return \Appwrite\Models\ProjectList::from($response);
+        return \Appwrite\Models\EnvironmentList::from($response);
     }
 
     /**
      * Create a new environment of the project. An environment is a separate
      * project in the same organization and region, with its own resources and
-     * users. Its usage is billed under the project it belongs to.
+     * users. Its usage is billed under the project it belongs to. Requests act in
+     * the environment when they carry the project's ID in the
+     * `X-Appwrite-Project` header and the environment's ID in the
+     * `X-Appwrite-Environment` header; the environment has no project ID of its
+     * own to pass.
      *
      * Pass `resources` to copy the project into the environment. The environment
      * is returned at once and the copy runs as a migration of the environment,
@@ -173,7 +178,7 @@ class Project extends Service
      *
      * @throws AppwriteException
      */
-    public function createEnvironment(string $environmentId, string $name, ?array $resources = null): \Appwrite\Models\Project
+    public function createEnvironment(string $environmentId, string $name, ?array $resources = null): \Appwrite\Models\Environment
     {
         $apiPath = str_replace(
             [],
@@ -205,15 +210,16 @@ class Project extends Service
             throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
         }
 
-        return \Appwrite\Models\Project::from($response);
+        return \Appwrite\Models\Environment::from($response);
     }
 
     /**
-     * Get an environment of the project by its unique ID.
+     * Get an environment of the project by its ID, the one passed in the
+     * `X-Appwrite-Environment` header to act in it.
      *
      * @throws AppwriteException
      */
-    public function getEnvironment(string $environmentId): \Appwrite\Models\Project
+    public function getEnvironment(string $environmentId): \Appwrite\Models\Environment
     {
         if ($environmentId === '') {
             throw new AppwriteException('Missing required parameter: "environmentId"');
@@ -243,15 +249,16 @@ class Project extends Service
             throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
         }
 
-        return \Appwrite\Models\Project::from($response);
+        return \Appwrite\Models\Environment::from($response);
     }
 
     /**
-     * Update the name of an environment of the project.
+     * Update the name of an environment of the project. The environment ID cannot
+     * be changed.
      *
      * @throws AppwriteException
      */
-    public function updateEnvironment(string $environmentId, string $name): \Appwrite\Models\Project
+    public function updateEnvironment(string $environmentId, string $name): \Appwrite\Models\Environment
     {
         if ($environmentId === '') {
             throw new AppwriteException('Missing required parameter: "environmentId"');
@@ -283,7 +290,7 @@ class Project extends Service
             throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
         }
 
-        return \Appwrite\Models\Project::from($response);
+        return \Appwrite\Models\Environment::from($response);
     }
 
     /**
@@ -2440,6 +2447,80 @@ class Project extends Service
     }
 
     /**
+     * Update the project OAuth2 Vipps MobilePay configuration.
+     *
+     * @throws AppwriteException
+     */
+    public function updateOAuth2Vipps(?string $clientId = null, ?string $clientSecret = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Vipps
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/project/oauth2/vipps'
+        );
+
+        $apiParams = [];
+        $apiParams['clientId'] = $clientId;
+        $apiParams['clientSecret'] = $clientSecret;
+        $apiParams['enabled'] = $enabled;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\OAuth2Vipps::from($response);
+    }
+
+    /**
+     * Update the project OAuth2 Vipps MobilePay Sandbox configuration.
+     *
+     * @throws AppwriteException
+     */
+    public function updateOAuth2VippsSandbox(?string $clientId = null, ?string $clientSecret = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Vipps
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/project/oauth2/vippsSandbox'
+        );
+
+        $apiParams = [];
+        $apiParams['clientId'] = $clientId;
+        $apiParams['clientSecret'] = $clientSecret;
+        $apiParams['enabled'] = $enabled;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\OAuth2Vipps::from($response);
+    }
+
+    /**
      * Update the project OAuth2 Webflow configuration.
      *
      * @throws AppwriteException
@@ -2705,7 +2786,7 @@ class Project extends Service
      *
      * @throws AppwriteException
      */
-    public function getOAuth2Provider(ProjectOAuthProviderId $providerId): \Appwrite\Models\OAuth2Github|\Appwrite\Models\OAuth2Discord|\Appwrite\Models\OAuth2Figma|\Appwrite\Models\OAuth2Dropbox|\Appwrite\Models\OAuth2Dailymotion|\Appwrite\Models\OAuth2Bitbucket|\Appwrite\Models\OAuth2Bitly|\Appwrite\Models\OAuth2Box|\Appwrite\Models\OAuth2Autodesk|\Appwrite\Models\OAuth2Google|\Appwrite\Models\OAuth2Zoom|\Appwrite\Models\OAuth2Zoho|\Appwrite\Models\OAuth2Yandex|\Appwrite\Models\OAuth2X|\Appwrite\Models\OAuth2WordPress|\Appwrite\Models\OAuth2Webflow|\Appwrite\Models\OAuth2Twitch|\Appwrite\Models\OAuth2Stripe|\Appwrite\Models\OAuth2Spotify|\Appwrite\Models\OAuth2Slack|\Appwrite\Models\OAuth2Podio|\Appwrite\Models\OAuth2Notion|\Appwrite\Models\OAuth2Salesforce|\Appwrite\Models\OAuth2Yahoo|\Appwrite\Models\OAuth2HuggingFace|\Appwrite\Models\OAuth2Resend|\Appwrite\Models\OAuth2Cloudflare|\Appwrite\Models\OAuth2Linkedin|\Appwrite\Models\OAuth2Disqus|\Appwrite\Models\OAuth2Amazon|\Appwrite\Models\OAuth2Etsy|\Appwrite\Models\OAuth2Facebook|\Appwrite\Models\OAuth2Tradeshift|\Appwrite\Models\OAuth2Paypal|\Appwrite\Models\OAuth2Gitlab|\Appwrite\Models\OAuth2Authentik|\Appwrite\Models\OAuth2Auth0|\Appwrite\Models\OAuth2FusionAuth|\Appwrite\Models\OAuth2Keycloak|\Appwrite\Models\OAuth2Oidc|\Appwrite\Models\OAuth2Apple|\Appwrite\Models\OAuth2Okta|\Appwrite\Models\OAuth2Kick|\Appwrite\Models\OAuth2Microsoft|\Appwrite\Models\OAuth2TikTok|\Appwrite\Models\OAuth2Kakao
+    public function getOAuth2Provider(ProjectOAuthProviderId $providerId): \Appwrite\Models\OAuth2Github|\Appwrite\Models\OAuth2Discord|\Appwrite\Models\OAuth2Figma|\Appwrite\Models\OAuth2Dropbox|\Appwrite\Models\OAuth2Dailymotion|\Appwrite\Models\OAuth2Bitbucket|\Appwrite\Models\OAuth2Bitly|\Appwrite\Models\OAuth2Box|\Appwrite\Models\OAuth2Autodesk|\Appwrite\Models\OAuth2Google|\Appwrite\Models\OAuth2Zoom|\Appwrite\Models\OAuth2Zoho|\Appwrite\Models\OAuth2Yandex|\Appwrite\Models\OAuth2X|\Appwrite\Models\OAuth2WordPress|\Appwrite\Models\OAuth2Webflow|\Appwrite\Models\OAuth2Twitch|\Appwrite\Models\OAuth2Stripe|\Appwrite\Models\OAuth2Spotify|\Appwrite\Models\OAuth2Slack|\Appwrite\Models\OAuth2Podio|\Appwrite\Models\OAuth2Notion|\Appwrite\Models\OAuth2Salesforce|\Appwrite\Models\OAuth2Yahoo|\Appwrite\Models\OAuth2HuggingFace|\Appwrite\Models\OAuth2Resend|\Appwrite\Models\OAuth2Cloudflare|\Appwrite\Models\OAuth2Linkedin|\Appwrite\Models\OAuth2Disqus|\Appwrite\Models\OAuth2Amazon|\Appwrite\Models\OAuth2Etsy|\Appwrite\Models\OAuth2Facebook|\Appwrite\Models\OAuth2Tradeshift|\Appwrite\Models\OAuth2Paypal|\Appwrite\Models\OAuth2Gitlab|\Appwrite\Models\OAuth2Authentik|\Appwrite\Models\OAuth2Auth0|\Appwrite\Models\OAuth2FusionAuth|\Appwrite\Models\OAuth2Keycloak|\Appwrite\Models\OAuth2Oidc|\Appwrite\Models\OAuth2Apple|\Appwrite\Models\OAuth2Okta|\Appwrite\Models\OAuth2Kick|\Appwrite\Models\OAuth2Microsoft|\Appwrite\Models\OAuth2TikTok|\Appwrite\Models\OAuth2Kakao|\Appwrite\Models\OAuth2Vipps
     {
         $apiPath = str_replace(
             ['{providerId}'],
@@ -2859,8 +2940,16 @@ class Project extends Service
             return \Appwrite\Models\OAuth2Facebook::from($response);
         }
 
+        if (($response['$id'] ?? null) === 'tradeshift') {
+            return \Appwrite\Models\OAuth2Tradeshift::from($response);
+        }
+
         if (($response['$id'] ?? null) === 'tradeshiftBox') {
             return \Appwrite\Models\OAuth2Tradeshift::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'paypal') {
+            return \Appwrite\Models\OAuth2Paypal::from($response);
         }
 
         if (($response['$id'] ?? null) === 'paypalSandbox') {
@@ -2913,6 +3002,14 @@ class Project extends Service
 
         if (($response['$id'] ?? null) === 'kakao') {
             return \Appwrite\Models\OAuth2Kakao::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'vipps') {
+            return \Appwrite\Models\OAuth2Vipps::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'vippsSandbox') {
+            return \Appwrite\Models\OAuth2Vipps::from($response);
         }
 
         throw new \UnexpectedValueException('Unable to match response to any expected response model.');
@@ -3502,6 +3599,44 @@ class Project extends Service
         }
 
         return \Appwrite\Models\PolicyList::from($response);
+    }
+
+    /**
+     * Update whether account devices are enabled for the project. When enabled, a
+     * browser can create an account device that holds multiple sessions and
+     * switch between them. When disabled, account devices can no longer be
+     * created, so each browser is limited to a single active session.
+     *
+     * @throws AppwriteException
+     */
+    public function updateAccountDevicesPolicy(bool $enabled): \Appwrite\Models\Project
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/project/policies/account-devices'
+        );
+
+        $apiParams = [];
+        $apiParams['enabled'] = $enabled;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Project::from($response);
     }
 
     /**
@@ -4319,7 +4454,7 @@ class Project extends Service
      *
      * @throws AppwriteException
      */
-    public function getPolicy(ProjectPolicyId $policyId): \Appwrite\Models\PolicyPasswordDictionary|\Appwrite\Models\PolicyPasswordHistory|\Appwrite\Models\PolicyPasswordStrength|\Appwrite\Models\PolicyPasswordPersonalData|\Appwrite\Models\PolicyPasswordPwned|\Appwrite\Models\PolicyPasswordRotation|\Appwrite\Models\PolicySessionAlert|\Appwrite\Models\PolicySessionDuration|\Appwrite\Models\PolicySessionInvalidation|\Appwrite\Models\PolicySessionLimit|\Appwrite\Models\PolicyUserLimit|\Appwrite\Models\PolicyMembershipPrivacy|\Appwrite\Models\PolicyMfaFactors|\Appwrite\Models\PolicyDenyAliasedEmail|\Appwrite\Models\PolicyDenyDisposableEmail|\Appwrite\Models\PolicyDenyFreeEmail|\Appwrite\Models\PolicyDenyCorporateEmail|\Appwrite\Models\PolicyDenyRealtimeGuests|\Appwrite\Models\PolicyPasskey
+    public function getPolicy(ProjectPolicyId $policyId): \Appwrite\Models\PolicyPasswordDictionary|\Appwrite\Models\PolicyPasswordHistory|\Appwrite\Models\PolicyPasswordStrength|\Appwrite\Models\PolicyPasswordPersonalData|\Appwrite\Models\PolicyPasswordPwned|\Appwrite\Models\PolicyPasswordRotation|\Appwrite\Models\PolicySessionAlert|\Appwrite\Models\PolicySessionDuration|\Appwrite\Models\PolicySessionInvalidation|\Appwrite\Models\PolicySessionLimit|\Appwrite\Models\PolicyUserLimit|\Appwrite\Models\PolicyMembershipPrivacy|\Appwrite\Models\PolicyMfaFactors|\Appwrite\Models\PolicyDenyAliasedEmail|\Appwrite\Models\PolicyDenyDisposableEmail|\Appwrite\Models\PolicyDenyFreeEmail|\Appwrite\Models\PolicyDenyCorporateEmail|\Appwrite\Models\PolicyDenyRealtimeGuests|\Appwrite\Models\PolicyPasskey|\Appwrite\Models\PolicyAccountDevices
     {
         $apiPath = str_replace(
             ['{policyId}'],
@@ -4419,6 +4554,10 @@ class Project extends Service
 
         if (($response['$id'] ?? null) === 'passkey') {
             return \Appwrite\Models\PolicyPasskey::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'account-devices') {
+            return \Appwrite\Models\PolicyAccountDevices::from($response);
         }
 
         throw new \UnexpectedValueException('Unable to match response to any expected response model.');

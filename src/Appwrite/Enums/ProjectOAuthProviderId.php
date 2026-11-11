@@ -51,6 +51,8 @@ class ProjectOAuthProviderId implements JsonSerializable, Stringable
     private static ProjectOAuthProviderId $TRADESHIFT;
     private static ProjectOAuthProviderId $TRADESHIFTBOX;
     private static ProjectOAuthProviderId $TWITCH;
+    private static ProjectOAuthProviderId $VIPPS;
+    private static ProjectOAuthProviderId $VIPPSSANDBOX;
     private static ProjectOAuthProviderId $WEBFLOW;
     private static ProjectOAuthProviderId $WORDPRESS;
     private static ProjectOAuthProviderId $X;
@@ -326,6 +328,18 @@ class ProjectOAuthProviderId implements JsonSerializable, Stringable
 
         return self::$TWITCH;
     }
+    public static function VIPPS(): ProjectOAuthProviderId
+    {
+        self::$VIPPS ??= new ProjectOAuthProviderId('vipps');
+
+        return self::$VIPPS;
+    }
+    public static function VIPPSSANDBOX(): ProjectOAuthProviderId
+    {
+        self::$VIPPSSANDBOX ??= new ProjectOAuthProviderId('vippsSandbox');
+
+        return self::$VIPPSSANDBOX;
+    }
     public static function WEBFLOW(): ProjectOAuthProviderId
     {
         self::$WEBFLOW ??= new ProjectOAuthProviderId('webflow');
@@ -420,6 +434,8 @@ class ProjectOAuthProviderId implements JsonSerializable, Stringable
             'tradeshift' => self::TRADESHIFT(),
             'tradeshiftBox' => self::TRADESHIFTBOX(),
             'twitch' => self::TWITCH(),
+            'vipps' => self::VIPPS(),
+            'vippsSandbox' => self::VIPPSSANDBOX(),
             'webflow' => self::WEBFLOW(),
             'wordpress' => self::WORDPRESS(),
             'x' => self::X(),

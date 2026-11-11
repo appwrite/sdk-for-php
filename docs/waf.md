@@ -36,6 +36,7 @@ POST https://cloud.appwrite.io/v1/waf/rules/bypass
 | priority | integer | Evaluation priority. Lower numbers run earlier. | 0 |
 | enabled | boolean | Set to false to create the rule in a disabled state. | 1 |
 | conditions | array | Array of condition strings generated using the WAF Condition builder. Maximum of 100 conditions are allowed, each 4096 characters long. | [] |
+| schedule | object | When the rule is active: mode, days, interval, anchor, startTime and endTime (HH:MM), and an optional IANA timezone (UTC by default). Leave out for always on; on update, leave out to keep the current schedule and pass an empty object to remove it. | {} |
 
 
 ```http request
@@ -57,6 +58,7 @@ PATCH https://cloud.appwrite.io/v1/waf/rules/bypass/{ruleId}
 | priority | integer | Evaluation priority. Lower numbers run earlier. |  |
 | enabled | boolean | Set to false to disable the rule. |  |
 | conditions | array | Array of condition strings generated using the WAF Condition builder. Maximum of 100 conditions are allowed, each 4096 characters long. |  |
+| schedule | object | When the rule is active: mode, days, interval, anchor, startTime and endTime (HH:MM), and an optional IANA timezone (UTC by default). Leave out for always on; on update, leave out to keep the current schedule and pass an empty object to remove it. | {} |
 
 
 ```http request
@@ -81,6 +83,7 @@ POST https://cloud.appwrite.io/v1/waf/rules/challenge
 | conditions | array | Array of condition strings generated using the WAF Condition builder. Maximum of 100 conditions are allowed, each 4096 characters long. | [] |
 | difficulty | integer | Challenge difficulty from 1 (easiest) to 5 (hardest). Higher values demand more client-side proof-of-work. | 3 |
 | ttl | integer | How long, in seconds, a visitor stays cleared after passing the challenge before being challenged again. | 1800 |
+| schedule | object | When the rule is active: mode, days, interval, anchor, startTime and endTime (HH:MM), and an optional IANA timezone (UTC by default). Leave out for always on; on update, leave out to keep the current schedule and pass an empty object to remove it. | {} |
 
 
 ```http request
@@ -105,6 +108,7 @@ PATCH https://cloud.appwrite.io/v1/waf/rules/challenge/{ruleId}
 | conditions | array | Array of condition strings generated using the WAF Condition builder. Maximum of 100 conditions are allowed, each 4096 characters long. |  |
 | difficulty | integer | Challenge difficulty from 1 (easiest) to 5 (hardest). Higher values demand more client-side proof-of-work. |  |
 | ttl | integer | How long, in seconds, a visitor stays cleared after passing the challenge before being challenged again. |  |
+| schedule | object | When the rule is active: mode, days, interval, anchor, startTime and endTime (HH:MM), and an optional IANA timezone (UTC by default). Leave out for always on; on update, leave out to keep the current schedule and pass an empty object to remove it. | {} |
 
 
 ```http request
@@ -126,6 +130,7 @@ POST https://cloud.appwrite.io/v1/waf/rules/deny
 | priority | integer | Evaluation priority. Lower numbers run earlier. | 0 |
 | enabled | boolean | Set to false to create the rule in a disabled state. | 1 |
 | conditions | array | Array of condition strings generated using the WAF Condition builder. Maximum of 100 conditions are allowed, each 4096 characters long. | [] |
+| schedule | object | When the rule is active: mode, days, interval, anchor, startTime and endTime (HH:MM), and an optional IANA timezone (UTC by default). Leave out for always on; on update, leave out to keep the current schedule and pass an empty object to remove it. | {} |
 
 
 ```http request
@@ -147,6 +152,7 @@ PATCH https://cloud.appwrite.io/v1/waf/rules/deny/{ruleId}
 | priority | integer | Evaluation priority. Lower numbers run earlier. |  |
 | enabled | boolean | Set to false to disable the rule. |  |
 | conditions | array | Array of condition strings generated using the WAF Condition builder. Maximum of 100 conditions are allowed, each 4096 characters long. |  |
+| schedule | object | When the rule is active: mode, days, interval, anchor, startTime and endTime (HH:MM), and an optional IANA timezone (UTC by default). Leave out for always on; on update, leave out to keep the current schedule and pass an empty object to remove it. | {} |
 
 
 ```http request
@@ -173,6 +179,7 @@ POST https://cloud.appwrite.io/v1/waf/rules/rate-limit
 | priority | integer | Evaluation priority. Lower numbers run earlier. | 0 |
 | enabled | boolean | Set to false to create the rule in a disabled state. | 1 |
 | conditions | array | Array of condition strings generated using the WAF Condition builder. Maximum of 100 conditions are allowed, each 4096 characters long. | [] |
+| schedule | object | When the rule is active: mode, days, interval, anchor, startTime and endTime (HH:MM), and an optional IANA timezone (UTC by default). Leave out for always on; on update, leave out to keep the current schedule and pass an empty object to remove it. | {} |
 
 
 ```http request
@@ -198,6 +205,7 @@ PATCH https://cloud.appwrite.io/v1/waf/rules/rate-limit/{ruleId}
 | priority | integer | Evaluation priority. Lower numbers run earlier. |  |
 | enabled | boolean | Set to false to disable the rule. |  |
 | conditions | array | Array of condition strings generated using the WAF Condition builder. Maximum of 100 conditions are allowed, each 4096 characters long. |  |
+| schedule | object | When the rule is active: mode, days, interval, anchor, startTime and endTime (HH:MM), and an optional IANA timezone (UTC by default). Leave out for always on; on update, leave out to keep the current schedule and pass an empty object to remove it. | {} |
 
 
 ```http request
@@ -221,6 +229,7 @@ POST https://cloud.appwrite.io/v1/waf/rules/redirect
 | priority | integer | Evaluation priority. Lower numbers run earlier. | 0 |
 | enabled | boolean | Set to false to create the rule in a disabled state. | 1 |
 | conditions | array | Array of condition strings generated using the WAF Condition builder. Maximum of 100 conditions are allowed, each 4096 characters long. | [] |
+| schedule | object | When the rule is active: mode, days, interval, anchor, startTime and endTime (HH:MM), and an optional IANA timezone (UTC by default). Leave out for always on; on update, leave out to keep the current schedule and pass an empty object to remove it. | {} |
 
 
 ```http request
@@ -244,6 +253,7 @@ PATCH https://cloud.appwrite.io/v1/waf/rules/redirect/{ruleId}
 | priority | integer | Evaluation priority. Lower numbers run earlier. |  |
 | enabled | boolean | Set to false to disable the rule. |  |
 | conditions | array | Array of condition strings generated using the WAF Condition builder. Maximum of 100 conditions are allowed, each 4096 characters long. |  |
+| schedule | object | When the rule is active: mode, days, interval, anchor, startTime and endTime (HH:MM), and an optional IANA timezone (UTC by default). Leave out for always on; on update, leave out to keep the current schedule and pass an empty object to remove it. | {} |
 
 
 ```http request

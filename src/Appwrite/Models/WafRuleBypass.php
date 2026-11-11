@@ -32,6 +32,7 @@ readonly class WafRuleBypass
      * @param bool $enabled whether the rule is active.
      * @param array $conditions list of conditions evaluated for this rule.
      * @param array $config action specific configuration.
+     * @param array|null $schedule when the rule is active: mode, days, interval, anchor, starttime, endtime and timezone. null when the rule is always active.
      */
     public function __construct(
         public string $id,
@@ -47,7 +48,8 @@ readonly class WafRuleBypass
         public int $priority,
         public bool $enabled,
         public array $conditions,
-        public array $config
+        public array $config,
+        public ?array $schedule = null
     ) {
     }
 
@@ -90,7 +92,8 @@ readonly class WafRuleBypass
             priority: $data['priority'],
             enabled: $data['enabled'],
             conditions: $data['conditions'],
-            config: $data['config']
+            config: $data['config'],
+            schedule: $data['schedule'] ?? null
         );
     }
 
@@ -113,7 +116,8 @@ readonly class WafRuleBypass
             'priority' => static::serializeValue($this->priority),
             'enabled' => static::serializeValue($this->enabled),
             'conditions' => static::serializeValue($this->conditions),
-            'config' => static::serializeValue($this->config)
+            'config' => static::serializeValue($this->config),
+            'schedule' => static::serializeValue($this->schedule)
         ];
     }
 }

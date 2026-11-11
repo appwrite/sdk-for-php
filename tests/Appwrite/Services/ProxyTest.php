@@ -85,6 +85,8 @@ final class ProxyTest extends TestCase
                     "status" => "unverified",
                     "logs" => "Verification of DNS records failed with DNS resolver 8.8.8.8. Domain stage.myapp.com does not have DNS record.",
                     "renewAt" => "datetime",
+                    "expireAt" => "2020-10-15T06:38:00.000+00:00",
+                    "certificateStatus" => "issued",
                     "protocol" => "http"
                 ]
             ]
@@ -135,6 +137,8 @@ final class ProxyTest extends TestCase
             "status" => "unverified",
             "logs" => "Verification of DNS records failed with DNS resolver 8.8.8.8. Domain stage.myapp.com does not have DNS record.",
             "renewAt" => "datetime",
+            "expireAt" => "2020-10-15T06:38:00.000+00:00",
+            "certificateStatus" => "issued",
             "protocol" => "http"
         ];
 
@@ -181,6 +185,8 @@ final class ProxyTest extends TestCase
             "status" => "unverified",
             "logs" => "Verification of DNS records failed with DNS resolver 8.8.8.8. Domain stage.myapp.com does not have DNS record.",
             "renewAt" => "datetime",
+            "expireAt" => "2020-10-15T06:38:00.000+00:00",
+            "certificateStatus" => "issued",
             "protocol" => "http"
         ];
 
@@ -231,6 +237,8 @@ final class ProxyTest extends TestCase
             "status" => "unverified",
             "logs" => "Verification of DNS records failed with DNS resolver 8.8.8.8. Domain stage.myapp.com does not have DNS record.",
             "renewAt" => "datetime",
+            "expireAt" => "2020-10-15T06:38:00.000+00:00",
+            "certificateStatus" => "issued",
             "protocol" => "http"
         ];
 
@@ -285,6 +293,8 @@ final class ProxyTest extends TestCase
             "status" => "unverified",
             "logs" => "Verification of DNS records failed with DNS resolver 8.8.8.8. Domain stage.myapp.com does not have DNS record.",
             "renewAt" => "datetime",
+            "expireAt" => "2020-10-15T06:38:00.000+00:00",
+            "certificateStatus" => "issued",
             "protocol" => "http"
         ];
 
@@ -335,6 +345,8 @@ final class ProxyTest extends TestCase
             "status" => "unverified",
             "logs" => "Verification of DNS records failed with DNS resolver 8.8.8.8. Domain stage.myapp.com does not have DNS record.",
             "renewAt" => "datetime",
+            "expireAt" => "2020-10-15T06:38:00.000+00:00",
+            "certificateStatus" => "issued",
             "protocol" => "http"
         ];
 
@@ -385,6 +397,8 @@ final class ProxyTest extends TestCase
             "status" => "unverified",
             "logs" => "Verification of DNS records failed with DNS resolver 8.8.8.8. Domain stage.myapp.com does not have DNS record.",
             "renewAt" => "datetime",
+            "expireAt" => "2020-10-15T06:38:00.000+00:00",
+            "certificateStatus" => "issued",
             "protocol" => "http"
         ];
 
@@ -444,6 +458,166 @@ final class ProxyTest extends TestCase
 
         $this->assertSame($data, $response);
     }
+    public function testMethodUpdateFunctionRule(): void
+    {
+        $data = [
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "domain" => "appwrite.company.com",
+            "type" => "deployment",
+            "trigger" => "manual",
+            "redirectUrl" => "https://appwrite.io/docs",
+            "redirectStatusCode" => 301,
+            "deploymentId" => "n3u9feiwmf",
+            "deploymentResourceId" => "n3u9feiwmf",
+            "deploymentVcsProviderBranch" => "main",
+            "status" => "unverified",
+            "logs" => "Verification of DNS records failed with DNS resolver 8.8.8.8. Domain stage.myapp.com does not have DNS record.",
+            "renewAt" => "datetime",
+            "expireAt" => "2020-10-15T06:38:00.000+00:00",
+            "certificateStatus" => "issued",
+            "protocol" => "http"
+        ];
+
+        $this->client
+            ->expects()->call(
+                'PATCH',
+                '/proxy/rules/%3CRULE_ID%3E/function',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['ruleId', 'functionId', 'branch'], array_keys($params));
+                    $expected = [
+                        'ruleId' => "<RULE_ID>",
+                        'functionId' => "<FUNCTION_ID>",
+                        'branch' => "<BRANCH>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->proxy->updateFunctionRule(
+            "<RULE_ID>",
+            "<FUNCTION_ID>",
+            branch: "<BRANCH>"
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\ProxyRule::class, $response);
+    }
+    public function testMethodUpdateRedirectRule(): void
+    {
+        $data = [
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "domain" => "appwrite.company.com",
+            "type" => "deployment",
+            "trigger" => "manual",
+            "redirectUrl" => "https://appwrite.io/docs",
+            "redirectStatusCode" => 301,
+            "deploymentId" => "n3u9feiwmf",
+            "deploymentResourceId" => "n3u9feiwmf",
+            "deploymentVcsProviderBranch" => "main",
+            "status" => "unverified",
+            "logs" => "Verification of DNS records failed with DNS resolver 8.8.8.8. Domain stage.myapp.com does not have DNS record.",
+            "renewAt" => "datetime",
+            "expireAt" => "2020-10-15T06:38:00.000+00:00",
+            "certificateStatus" => "issued",
+            "protocol" => "http"
+        ];
+
+        $this->client
+            ->expects()->call(
+                'PATCH',
+                '/proxy/rules/%3CRULE_ID%3E/redirect',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['ruleId', 'url', 'statusCode', 'resourceId', 'resourceType'], array_keys($params));
+                    $expected = [
+                        'ruleId' => "<RULE_ID>",
+                        'url' => "https://example.com",
+                        'statusCode' => StatusCode::MOVEDPERMANENTLY(),
+                        'resourceId' => "<RESOURCE_ID>",
+                        'resourceType' => ProxyResourceType::SITE(),
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->proxy->updateRedirectRule(
+            "<RULE_ID>",
+            "https://example.com",
+            StatusCode::MOVEDPERMANENTLY(),
+            "<RESOURCE_ID>",
+            ProxyResourceType::SITE()
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\ProxyRule::class, $response);
+    }
+    public function testMethodUpdateSiteRule(): void
+    {
+        $data = [
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "domain" => "appwrite.company.com",
+            "type" => "deployment",
+            "trigger" => "manual",
+            "redirectUrl" => "https://appwrite.io/docs",
+            "redirectStatusCode" => 301,
+            "deploymentId" => "n3u9feiwmf",
+            "deploymentResourceId" => "n3u9feiwmf",
+            "deploymentVcsProviderBranch" => "main",
+            "status" => "unverified",
+            "logs" => "Verification of DNS records failed with DNS resolver 8.8.8.8. Domain stage.myapp.com does not have DNS record.",
+            "renewAt" => "datetime",
+            "expireAt" => "2020-10-15T06:38:00.000+00:00",
+            "certificateStatus" => "issued",
+            "protocol" => "http"
+        ];
+
+        $this->client
+            ->expects()->call(
+                'PATCH',
+                '/proxy/rules/%3CRULE_ID%3E/site',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['ruleId', 'siteId', 'branch'], array_keys($params));
+                    $expected = [
+                        'ruleId' => "<RULE_ID>",
+                        'siteId' => "<SITE_ID>",
+                        'branch' => "<BRANCH>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->proxy->updateSiteRule(
+            "<RULE_ID>",
+            "<SITE_ID>",
+            branch: "<BRANCH>"
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\ProxyRule::class, $response);
+    }
     public function testMethodUpdateRuleStatus(): void
     {
         $data = [
@@ -461,6 +635,8 @@ final class ProxyTest extends TestCase
             "status" => "unverified",
             "logs" => "Verification of DNS records failed with DNS resolver 8.8.8.8. Domain stage.myapp.com does not have DNS record.",
             "renewAt" => "datetime",
+            "expireAt" => "2020-10-15T06:38:00.000+00:00",
+            "certificateStatus" => "issued",
             "protocol" => "http"
         ];
 

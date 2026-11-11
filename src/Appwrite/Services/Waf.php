@@ -65,7 +65,7 @@ class Waf extends Service
      *
      * @throws AppwriteException
      */
-    public function createBypassRule(string $ruleId, string $resourceType, string $name, ?string $resourceId = null, ?string $description = null, ?int $priority = null, ?bool $enabled = null, ?array $conditions = null): \Appwrite\Models\WafRuleBypass
+    public function createBypassRule(string $ruleId, string $resourceType, string $name, ?string $resourceId = null, ?string $description = null, ?int $priority = null, ?bool $enabled = null, ?array $conditions = null, ?array $schedule = null): \Appwrite\Models\WafRuleBypass
     {
         $apiPath = str_replace(
             [],
@@ -94,6 +94,7 @@ class Waf extends Service
         if (!is_null($conditions)) {
             $apiParams['conditions'] = $conditions;
         }
+        $apiParams['schedule'] = $schedule;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -124,7 +125,7 @@ class Waf extends Service
      *
      * @throws AppwriteException
      */
-    public function updateBypassRule(string $ruleId, ?string $resourceType = null, ?string $resourceId = null, ?string $name = null, ?string $description = null, ?int $priority = null, ?bool $enabled = null, ?array $conditions = null): \Appwrite\Models\WafRuleBypass
+    public function updateBypassRule(string $ruleId, ?string $resourceType = null, ?string $resourceId = null, ?string $name = null, ?string $description = null, ?int $priority = null, ?bool $enabled = null, ?array $conditions = null, ?array $schedule = null): \Appwrite\Models\WafRuleBypass
     {
         if ($ruleId === '') {
             throw new AppwriteException('Missing required parameter: "ruleId"');
@@ -145,6 +146,7 @@ class Waf extends Service
         $apiParams['priority'] = $priority;
         $apiParams['enabled'] = $enabled;
         $apiParams['conditions'] = $conditions;
+        $apiParams['schedule'] = $schedule;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -178,7 +180,7 @@ class Waf extends Service
      *
      * @throws AppwriteException
      */
-    public function createChallengeRule(string $ruleId, string $resourceType, string $name, ?string $resourceId = null, ?string $description = null, ?string $challengeType = null, ?int $priority = null, ?bool $enabled = null, ?array $conditions = null, ?int $difficulty = null, ?int $ttl = null): \Appwrite\Models\WafRuleChallenge
+    public function createChallengeRule(string $ruleId, string $resourceType, string $name, ?string $resourceId = null, ?string $description = null, ?string $challengeType = null, ?int $priority = null, ?bool $enabled = null, ?array $conditions = null, ?int $difficulty = null, ?int $ttl = null, ?array $schedule = null): \Appwrite\Models\WafRuleChallenge
     {
         $apiPath = str_replace(
             [],
@@ -219,6 +221,7 @@ class Waf extends Service
         if (!is_null($ttl)) {
             $apiParams['ttl'] = $ttl;
         }
+        $apiParams['schedule'] = $schedule;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -252,7 +255,7 @@ class Waf extends Service
      *
      * @throws AppwriteException
      */
-    public function updateChallengeRule(string $ruleId, ?string $resourceType = null, ?string $resourceId = null, ?string $name = null, ?string $description = null, ?string $challengeType = null, ?int $priority = null, ?bool $enabled = null, ?array $conditions = null, ?int $difficulty = null, ?int $ttl = null): \Appwrite\Models\WafRuleChallenge
+    public function updateChallengeRule(string $ruleId, ?string $resourceType = null, ?string $resourceId = null, ?string $name = null, ?string $description = null, ?string $challengeType = null, ?int $priority = null, ?bool $enabled = null, ?array $conditions = null, ?int $difficulty = null, ?int $ttl = null, ?array $schedule = null): \Appwrite\Models\WafRuleChallenge
     {
         if ($ruleId === '') {
             throw new AppwriteException('Missing required parameter: "ruleId"');
@@ -276,6 +279,7 @@ class Waf extends Service
         $apiParams['conditions'] = $conditions;
         $apiParams['difficulty'] = $difficulty;
         $apiParams['ttl'] = $ttl;
+        $apiParams['schedule'] = $schedule;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -316,7 +320,7 @@ class Waf extends Service
      *
      * @throws AppwriteException
      */
-    public function createDenyRule(string $ruleId, string $resourceType, string $name, ?string $resourceId = null, ?string $description = null, ?int $priority = null, ?bool $enabled = null, ?array $conditions = null): \Appwrite\Models\WafRuleDeny
+    public function createDenyRule(string $ruleId, string $resourceType, string $name, ?string $resourceId = null, ?string $description = null, ?int $priority = null, ?bool $enabled = null, ?array $conditions = null, ?array $schedule = null): \Appwrite\Models\WafRuleDeny
     {
         $apiPath = str_replace(
             [],
@@ -345,6 +349,7 @@ class Waf extends Service
         if (!is_null($conditions)) {
             $apiParams['conditions'] = $conditions;
         }
+        $apiParams['schedule'] = $schedule;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -385,7 +390,7 @@ class Waf extends Service
      *
      * @throws AppwriteException
      */
-    public function updateDenyRule(string $ruleId, ?string $resourceType = null, ?string $resourceId = null, ?string $name = null, ?string $description = null, ?int $priority = null, ?bool $enabled = null, ?array $conditions = null): \Appwrite\Models\WafRuleDeny
+    public function updateDenyRule(string $ruleId, ?string $resourceType = null, ?string $resourceId = null, ?string $name = null, ?string $description = null, ?int $priority = null, ?bool $enabled = null, ?array $conditions = null, ?array $schedule = null): \Appwrite\Models\WafRuleDeny
     {
         if ($ruleId === '') {
             throw new AppwriteException('Missing required parameter: "ruleId"');
@@ -406,6 +411,7 @@ class Waf extends Service
         $apiParams['priority'] = $priority;
         $apiParams['enabled'] = $enabled;
         $apiParams['conditions'] = $conditions;
+        $apiParams['schedule'] = $schedule;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -438,7 +444,7 @@ class Waf extends Service
      *
      * @throws AppwriteException
      */
-    public function createRateLimitRule(string $ruleId, string $resourceType, string $name, int $limit, int $interval, ?string $resourceId = null, ?string $description = null, ?string $key = null, ?string $strategy = null, ?int $maxBucketSize = null, ?int $priority = null, ?bool $enabled = null, ?array $conditions = null): \Appwrite\Models\WafRuleRateLimit
+    public function createRateLimitRule(string $ruleId, string $resourceType, string $name, int $limit, int $interval, ?string $resourceId = null, ?string $description = null, ?string $key = null, ?string $strategy = null, ?int $maxBucketSize = null, ?int $priority = null, ?bool $enabled = null, ?array $conditions = null, ?array $schedule = null): \Appwrite\Models\WafRuleRateLimit
     {
         $apiPath = str_replace(
             [],
@@ -478,6 +484,7 @@ class Waf extends Service
         if (!is_null($conditions)) {
             $apiParams['conditions'] = $conditions;
         }
+        $apiParams['schedule'] = $schedule;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -510,7 +517,7 @@ class Waf extends Service
      *
      * @throws AppwriteException
      */
-    public function updateRateLimitRule(string $ruleId, ?string $resourceType = null, ?string $resourceId = null, ?string $name = null, ?string $description = null, ?int $limit = null, ?int $interval = null, ?string $key = null, ?int $maxBucketSize = null, ?int $priority = null, ?bool $enabled = null, ?array $conditions = null): \Appwrite\Models\WafRuleRateLimit
+    public function updateRateLimitRule(string $ruleId, ?string $resourceType = null, ?string $resourceId = null, ?string $name = null, ?string $description = null, ?int $limit = null, ?int $interval = null, ?string $key = null, ?int $maxBucketSize = null, ?int $priority = null, ?bool $enabled = null, ?array $conditions = null, ?array $schedule = null): \Appwrite\Models\WafRuleRateLimit
     {
         if ($ruleId === '') {
             throw new AppwriteException('Missing required parameter: "ruleId"');
@@ -535,6 +542,7 @@ class Waf extends Service
         $apiParams['priority'] = $priority;
         $apiParams['enabled'] = $enabled;
         $apiParams['conditions'] = $conditions;
+        $apiParams['schedule'] = $schedule;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -565,7 +573,7 @@ class Waf extends Service
      *
      * @throws AppwriteException
      */
-    public function createRedirectRule(string $ruleId, string $resourceType, string $name, string $location, int $statusCode, ?string $resourceId = null, ?string $description = null, ?int $priority = null, ?bool $enabled = null, ?array $conditions = null): \Appwrite\Models\WafRuleRedirect
+    public function createRedirectRule(string $ruleId, string $resourceType, string $name, string $location, int $statusCode, ?string $resourceId = null, ?string $description = null, ?int $priority = null, ?bool $enabled = null, ?array $conditions = null, ?array $schedule = null): \Appwrite\Models\WafRuleRedirect
     {
         $apiPath = str_replace(
             [],
@@ -596,6 +604,7 @@ class Waf extends Service
         if (!is_null($conditions)) {
             $apiParams['conditions'] = $conditions;
         }
+        $apiParams['schedule'] = $schedule;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
@@ -626,7 +635,7 @@ class Waf extends Service
      *
      * @throws AppwriteException
      */
-    public function updateRedirectRule(string $ruleId, ?string $resourceType = null, ?string $resourceId = null, ?string $name = null, ?string $description = null, ?string $location = null, ?int $statusCode = null, ?int $priority = null, ?bool $enabled = null, ?array $conditions = null): \Appwrite\Models\WafRuleRedirect
+    public function updateRedirectRule(string $ruleId, ?string $resourceType = null, ?string $resourceId = null, ?string $name = null, ?string $description = null, ?string $location = null, ?int $statusCode = null, ?int $priority = null, ?bool $enabled = null, ?array $conditions = null, ?array $schedule = null): \Appwrite\Models\WafRuleRedirect
     {
         if ($ruleId === '') {
             throw new AppwriteException('Missing required parameter: "ruleId"');
@@ -649,6 +658,7 @@ class Waf extends Service
         $apiParams['priority'] = $priority;
         $apiParams['enabled'] = $enabled;
         $apiParams['conditions'] = $conditions;
+        $apiParams['schedule'] = $schedule;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');

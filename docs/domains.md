@@ -465,7 +465,7 @@ to 'example.wordpress.com'. **
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | domainId | string | **Required** Domain unique ID. |  |
-| name | string | Record name relative to the domain, such as `www`, or `@` for the domain itself. A full name ending in the domain is also accepted and stored relative to it. |  |
+| name | string | Record name relative to the domain, such as `www`. A CNAME cannot be at the domain itself; use an ALIAS record there. A full name ending in the domain is also accepted and stored relative to it. |  |
 | value | string | Canonical target for this CNAME record. |  |
 | ttl | integer | Time to live, in seconds. Must be between 1 and 2147483647. |  |
 | comment | string | A comment for this record. |  |
@@ -483,7 +483,7 @@ PUT https://cloud.appwrite.io/v1/domains/{domainId}/records/cname/{recordId}
 | --- | --- | --- | --- |
 | domainId | string | **Required** Domain unique ID. |  |
 | recordId | string | **Required** DNS record unique ID. |  |
-| name | string | Record name relative to the domain, such as `www`, or `@` for the domain itself. A full name ending in the domain is also accepted and stored relative to it. |  |
+| name | string | Record name relative to the domain, such as `www`. A CNAME cannot be at the domain itself; use an ALIAS record there. A full name ending in the domain is also accepted and stored relative to it. |  |
 | value | string | Canonical target for this CNAME record. |  |
 | ttl | integer | Time to live, in seconds. Must be between 1 and 2147483647. |  |
 | comment | string | A comment for this record. |  |

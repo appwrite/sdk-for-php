@@ -85,7 +85,7 @@ final class WafTest extends TestCase
                 '/waf/rules/bypass',
                 Mockery::any(),
                 Mockery::on(function (array $params): bool {
-                    $this->assertSame(['ruleId', 'resourceType', 'name', 'resourceId', 'description', 'priority', 'enabled', 'conditions'], array_keys($params));
+                    $this->assertSame(['ruleId', 'resourceType', 'name', 'resourceId', 'description', 'priority', 'enabled', 'conditions', 'schedule'], array_keys($params));
                     $expected = [
                         'ruleId' => "<RULE_ID>",
                         'resourceType' => "api",
@@ -95,6 +95,7 @@ final class WafTest extends TestCase
                         'priority' => 1,
                         'enabled' => false,
                         'conditions' => [],
+                        'schedule' => [],
                     ];
                     $this->assertSame($expected, array_intersect_key($params, $expected));
 
@@ -114,7 +115,8 @@ final class WafTest extends TestCase
             description: "<DESCRIPTION>",
             priority: 1,
             enabled: false,
-            conditions: []
+            conditions: [],
+            schedule: []
         );
 
         $this->assertInstanceOf(\Appwrite\Models\WafRuleBypass::class, $response);
@@ -144,7 +146,7 @@ final class WafTest extends TestCase
                 '/waf/rules/bypass/%3CRULE_ID%3E',
                 Mockery::any(),
                 Mockery::on(function (array $params): bool {
-                    $this->assertSame(['ruleId', 'resourceType', 'resourceId', 'name', 'description', 'priority', 'enabled', 'conditions'], array_keys($params));
+                    $this->assertSame(['ruleId', 'resourceType', 'resourceId', 'name', 'description', 'priority', 'enabled', 'conditions', 'schedule'], array_keys($params));
                     $expected = [
                         'ruleId' => "<RULE_ID>",
                         'resourceType' => "api",
@@ -154,6 +156,7 @@ final class WafTest extends TestCase
                         'priority' => 1,
                         'enabled' => false,
                         'conditions' => [],
+                        'schedule' => [],
                     ];
                     $this->assertSame($expected, array_intersect_key($params, $expected));
 
@@ -173,7 +176,8 @@ final class WafTest extends TestCase
             description: "<DESCRIPTION>",
             priority: 1,
             enabled: false,
-            conditions: []
+            conditions: [],
+            schedule: []
         );
 
         $this->assertInstanceOf(\Appwrite\Models\WafRuleBypass::class, $response);
@@ -206,7 +210,7 @@ final class WafTest extends TestCase
                 '/waf/rules/challenge',
                 Mockery::any(),
                 Mockery::on(function (array $params): bool {
-                    $this->assertSame(['ruleId', 'resourceType', 'name', 'resourceId', 'description', 'challengeType', 'priority', 'enabled', 'conditions', 'difficulty', 'ttl'], array_keys($params));
+                    $this->assertSame(['ruleId', 'resourceType', 'name', 'resourceId', 'description', 'challengeType', 'priority', 'enabled', 'conditions', 'difficulty', 'ttl', 'schedule'], array_keys($params));
                     $expected = [
                         'ruleId' => "<RULE_ID>",
                         'resourceType' => "api",
@@ -219,6 +223,7 @@ final class WafTest extends TestCase
                         'conditions' => [],
                         'difficulty' => 1,
                         'ttl' => 1,
+                        'schedule' => [],
                     ];
                     $this->assertSame($expected, array_intersect_key($params, $expected));
 
@@ -241,7 +246,8 @@ final class WafTest extends TestCase
             enabled: false,
             conditions: [],
             difficulty: 1,
-            ttl: 1
+            ttl: 1,
+            schedule: []
         );
 
         $this->assertInstanceOf(\Appwrite\Models\WafRuleChallenge::class, $response);
@@ -274,7 +280,7 @@ final class WafTest extends TestCase
                 '/waf/rules/challenge/%3CRULE_ID%3E',
                 Mockery::any(),
                 Mockery::on(function (array $params): bool {
-                    $this->assertSame(['ruleId', 'resourceType', 'resourceId', 'name', 'description', 'challengeType', 'priority', 'enabled', 'conditions', 'difficulty', 'ttl'], array_keys($params));
+                    $this->assertSame(['ruleId', 'resourceType', 'resourceId', 'name', 'description', 'challengeType', 'priority', 'enabled', 'conditions', 'difficulty', 'ttl', 'schedule'], array_keys($params));
                     $expected = [
                         'ruleId' => "<RULE_ID>",
                         'resourceType' => "api",
@@ -287,6 +293,7 @@ final class WafTest extends TestCase
                         'conditions' => [],
                         'difficulty' => 1,
                         'ttl' => 1,
+                        'schedule' => [],
                     ];
                     $this->assertSame($expected, array_intersect_key($params, $expected));
 
@@ -309,7 +316,8 @@ final class WafTest extends TestCase
             enabled: false,
             conditions: [],
             difficulty: 1,
-            ttl: 1
+            ttl: 1,
+            schedule: []
         );
 
         $this->assertInstanceOf(\Appwrite\Models\WafRuleChallenge::class, $response);
@@ -339,7 +347,7 @@ final class WafTest extends TestCase
                 '/waf/rules/deny',
                 Mockery::any(),
                 Mockery::on(function (array $params): bool {
-                    $this->assertSame(['ruleId', 'resourceType', 'name', 'resourceId', 'description', 'priority', 'enabled', 'conditions'], array_keys($params));
+                    $this->assertSame(['ruleId', 'resourceType', 'name', 'resourceId', 'description', 'priority', 'enabled', 'conditions', 'schedule'], array_keys($params));
                     $expected = [
                         'ruleId' => "<RULE_ID>",
                         'resourceType' => "api",
@@ -349,6 +357,7 @@ final class WafTest extends TestCase
                         'priority' => 1,
                         'enabled' => false,
                         'conditions' => [],
+                        'schedule' => [],
                     ];
                     $this->assertSame($expected, array_intersect_key($params, $expected));
 
@@ -368,7 +377,8 @@ final class WafTest extends TestCase
             description: "<DESCRIPTION>",
             priority: 1,
             enabled: false,
-            conditions: []
+            conditions: [],
+            schedule: []
         );
 
         $this->assertInstanceOf(\Appwrite\Models\WafRuleDeny::class, $response);
@@ -398,7 +408,7 @@ final class WafTest extends TestCase
                 '/waf/rules/deny/%3CRULE_ID%3E',
                 Mockery::any(),
                 Mockery::on(function (array $params): bool {
-                    $this->assertSame(['ruleId', 'resourceType', 'resourceId', 'name', 'description', 'priority', 'enabled', 'conditions'], array_keys($params));
+                    $this->assertSame(['ruleId', 'resourceType', 'resourceId', 'name', 'description', 'priority', 'enabled', 'conditions', 'schedule'], array_keys($params));
                     $expected = [
                         'ruleId' => "<RULE_ID>",
                         'resourceType' => "api",
@@ -408,6 +418,7 @@ final class WafTest extends TestCase
                         'priority' => 1,
                         'enabled' => false,
                         'conditions' => [],
+                        'schedule' => [],
                     ];
                     $this->assertSame($expected, array_intersect_key($params, $expected));
 
@@ -427,7 +438,8 @@ final class WafTest extends TestCase
             description: "<DESCRIPTION>",
             priority: 1,
             enabled: false,
-            conditions: []
+            conditions: [],
+            schedule: []
         );
 
         $this->assertInstanceOf(\Appwrite\Models\WafRuleDeny::class, $response);
@@ -462,7 +474,7 @@ final class WafTest extends TestCase
                 '/waf/rules/rate-limit',
                 Mockery::any(),
                 Mockery::on(function (array $params): bool {
-                    $this->assertSame(['ruleId', 'resourceType', 'name', 'limit', 'interval', 'resourceId', 'description', 'key', 'strategy', 'maxBucketSize', 'priority', 'enabled', 'conditions'], array_keys($params));
+                    $this->assertSame(['ruleId', 'resourceType', 'name', 'limit', 'interval', 'resourceId', 'description', 'key', 'strategy', 'maxBucketSize', 'priority', 'enabled', 'conditions', 'schedule'], array_keys($params));
                     $expected = [
                         'ruleId' => "<RULE_ID>",
                         'resourceType' => "api",
@@ -477,6 +489,7 @@ final class WafTest extends TestCase
                         'priority' => 1,
                         'enabled' => false,
                         'conditions' => [],
+                        'schedule' => [],
                     ];
                     $this->assertSame($expected, array_intersect_key($params, $expected));
 
@@ -501,7 +514,8 @@ final class WafTest extends TestCase
             maxBucketSize: 1,
             priority: 1,
             enabled: false,
-            conditions: []
+            conditions: [],
+            schedule: []
         );
 
         $this->assertInstanceOf(\Appwrite\Models\WafRuleRateLimit::class, $response);
@@ -536,7 +550,7 @@ final class WafTest extends TestCase
                 '/waf/rules/rate-limit/%3CRULE_ID%3E',
                 Mockery::any(),
                 Mockery::on(function (array $params): bool {
-                    $this->assertSame(['ruleId', 'resourceType', 'resourceId', 'name', 'description', 'limit', 'interval', 'key', 'maxBucketSize', 'priority', 'enabled', 'conditions'], array_keys($params));
+                    $this->assertSame(['ruleId', 'resourceType', 'resourceId', 'name', 'description', 'limit', 'interval', 'key', 'maxBucketSize', 'priority', 'enabled', 'conditions', 'schedule'], array_keys($params));
                     $expected = [
                         'ruleId' => "<RULE_ID>",
                         'resourceType' => "api",
@@ -550,6 +564,7 @@ final class WafTest extends TestCase
                         'priority' => 1,
                         'enabled' => false,
                         'conditions' => [],
+                        'schedule' => [],
                     ];
                     $this->assertSame($expected, array_intersect_key($params, $expected));
 
@@ -573,7 +588,8 @@ final class WafTest extends TestCase
             maxBucketSize: 1,
             priority: 1,
             enabled: false,
-            conditions: []
+            conditions: [],
+            schedule: []
         );
 
         $this->assertInstanceOf(\Appwrite\Models\WafRuleRateLimit::class, $response);
@@ -605,7 +621,7 @@ final class WafTest extends TestCase
                 '/waf/rules/redirect',
                 Mockery::any(),
                 Mockery::on(function (array $params): bool {
-                    $this->assertSame(['ruleId', 'resourceType', 'name', 'location', 'statusCode', 'resourceId', 'description', 'priority', 'enabled', 'conditions'], array_keys($params));
+                    $this->assertSame(['ruleId', 'resourceType', 'name', 'location', 'statusCode', 'resourceId', 'description', 'priority', 'enabled', 'conditions', 'schedule'], array_keys($params));
                     $expected = [
                         'ruleId' => "<RULE_ID>",
                         'resourceType' => "api",
@@ -617,6 +633,7 @@ final class WafTest extends TestCase
                         'priority' => 1,
                         'enabled' => false,
                         'conditions' => [],
+                        'schedule' => [],
                     ];
                     $this->assertSame($expected, array_intersect_key($params, $expected));
 
@@ -638,7 +655,8 @@ final class WafTest extends TestCase
             description: "<DESCRIPTION>",
             priority: 1,
             enabled: false,
-            conditions: []
+            conditions: [],
+            schedule: []
         );
 
         $this->assertInstanceOf(\Appwrite\Models\WafRuleRedirect::class, $response);
@@ -670,7 +688,7 @@ final class WafTest extends TestCase
                 '/waf/rules/redirect/%3CRULE_ID%3E',
                 Mockery::any(),
                 Mockery::on(function (array $params): bool {
-                    $this->assertSame(['ruleId', 'resourceType', 'resourceId', 'name', 'description', 'location', 'statusCode', 'priority', 'enabled', 'conditions'], array_keys($params));
+                    $this->assertSame(['ruleId', 'resourceType', 'resourceId', 'name', 'description', 'location', 'statusCode', 'priority', 'enabled', 'conditions', 'schedule'], array_keys($params));
                     $expected = [
                         'ruleId' => "<RULE_ID>",
                         'resourceType' => "api",
@@ -682,6 +700,7 @@ final class WafTest extends TestCase
                         'priority' => 1,
                         'enabled' => false,
                         'conditions' => [],
+                        'schedule' => [],
                     ];
                     $this->assertSame($expected, array_intersect_key($params, $expected));
 
@@ -703,7 +722,8 @@ final class WafTest extends TestCase
             statusCode: 1,
             priority: 1,
             enabled: false,
-            conditions: []
+            conditions: [],
+            schedule: []
         );
 
         $this->assertInstanceOf(\Appwrite\Models\WafRuleRedirect::class, $response);

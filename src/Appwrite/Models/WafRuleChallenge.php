@@ -35,6 +35,7 @@ readonly class WafRuleChallenge
      * @param string $challengeType challenge type enforced when the rule matches.
      * @param int $difficulty challenge difficulty from 1 (easiest) to 5 (hardest) enforced when the rule matches.
      * @param int $ttl seconds a visitor stays cleared after passing the challenge before being challenged again.
+     * @param array|null $schedule when the rule is active: mode, days, interval, anchor, starttime, endtime and timezone. null when the rule is always active.
      */
     public function __construct(
         public string $id,
@@ -53,7 +54,8 @@ readonly class WafRuleChallenge
         public array $config,
         public string $challengeType,
         public int $difficulty,
-        public int $ttl
+        public int $ttl,
+        public ?array $schedule = null
     ) {
     }
 
@@ -102,7 +104,8 @@ readonly class WafRuleChallenge
             config: $data['config'],
             challengeType: $data['challengeType'],
             difficulty: $data['difficulty'],
-            ttl: $data['ttl']
+            ttl: $data['ttl'],
+            schedule: $data['schedule'] ?? null
         );
     }
 
@@ -126,6 +129,7 @@ readonly class WafRuleChallenge
             'enabled' => static::serializeValue($this->enabled),
             'conditions' => static::serializeValue($this->conditions),
             'config' => static::serializeValue($this->config),
+            'schedule' => static::serializeValue($this->schedule),
             'challengeType' => static::serializeValue($this->challengeType),
             'difficulty' => static::serializeValue($this->difficulty),
             'ttl' => static::serializeValue($this->ttl)

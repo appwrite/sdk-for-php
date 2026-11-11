@@ -45,11 +45,11 @@ class Client
      *
      */
     protected array $headers = [
-        'user-agent' => 'AppwritePHPSDK/32.2.0 ()',
+        'user-agent' => 'AppwritePHPSDK/32.3.0 ()',
         'x-sdk-name' => 'PHP',
         'x-sdk-platform' => 'server',
         'x-sdk-language' => 'php',
-        'x-sdk-version' => '32.2.0',
+        'x-sdk-version' => '32.3.0',
     ];
 
     /**
@@ -108,7 +108,7 @@ class Client
     public function __construct(private readonly ?ClientInterface $transport = null)
     {
         $this->requestFactory = new RequestFactory();
-        $this->headers['X-Appwrite-Response-Format'] = '2.7.0';
+        $this->headers['X-Appwrite-Response-Format'] = '2.7.1';
     }
 
     /**
