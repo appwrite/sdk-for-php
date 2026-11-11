@@ -24,6 +24,7 @@ readonly class Organization
      * @param Preferences $prefs team preferences as a key-value object
      * @param array $budgetAlerts project budget limit
      * @param array $budgetNotify organization roles whose confirmed members are emailed when a budget alert fires.
+     * @param array $budgetCritical budget alert percentages whose push notifications are critical.
      * @param string $billingPlan organization's billing plan id.
      * @param string $billingPlanId organization's billing plan id.
      * @param BillingPlan $billingPlanDetails organization's billing plan.
@@ -63,6 +64,7 @@ readonly class Organization
         public Preferences $prefs,
         public array $budgetAlerts,
         public array $budgetNotify,
+        public array $budgetCritical,
         public string $billingPlan,
         public string $billingPlanId,
         public BillingPlan $billingPlanDetails,
@@ -108,6 +110,7 @@ readonly class Organization
             'total' => 0,
             'budgetAlerts' => [75],
             'budgetNotify' => ["owner", "billing"],
+            'budgetCritical' => [],
             'billingPlan' => "tier-0",
             'billingPlanId' => "tier-0",
             'billingEmail' => "",
@@ -133,6 +136,7 @@ readonly class Organization
             prefs: static::hydrateTypedValue(Preferences::class, $data['prefs']),
             budgetAlerts: $data['budgetAlerts'],
             budgetNotify: $data['budgetNotify'],
+            budgetCritical: $data['budgetCritical'],
             billingPlan: $data['billingPlan'],
             billingPlanId: $data['billingPlanId'],
             billingPlanDetails: static::hydrateTypedValue(BillingPlan::class, $data['billingPlanDetails']),
@@ -180,6 +184,7 @@ readonly class Organization
             'billingBudget' => static::serializeValue($this->billingBudget),
             'budgetAlerts' => static::serializeValue($this->budgetAlerts),
             'budgetNotify' => static::serializeValue($this->budgetNotify),
+            'budgetCritical' => static::serializeValue($this->budgetCritical),
             'billingPlan' => static::serializeValue($this->billingPlan),
             'billingPlanId' => static::serializeValue($this->billingPlanId),
             'billingPlanDetails' => static::serializeValue($this->billingPlanDetails),

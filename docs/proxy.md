@@ -144,10 +144,57 @@ DELETE https://cloud.appwrite.io/v1/proxy/rules/{ruleId}
 
 
 ```http request
+PATCH https://cloud.appwrite.io/v1/proxy/rules/{ruleId}/function
+```
+
+** Update the function and VCS branch a function proxy rule executes. The rule domain cannot be changed. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| ruleId | string | **Required** Rule ID. |  |
+| functionId | string | ID of function to be executed. |  |
+| branch | string | Name of VCS branch to deploy changes automatically |  |
+
+
+```http request
+PATCH https://cloud.appwrite.io/v1/proxy/rules/{ruleId}/redirect
+```
+
+** Update the target URL, status code and parent resource of a redirect proxy rule. The rule domain cannot be changed. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| ruleId | string | **Required** Rule ID. |  |
+| url | string | Target URL of redirection |  |
+| statusCode | string | Status code of redirection |  |
+| resourceId | string | ID of parent resource. |  |
+| resourceType | string | Type of parent resource. |  |
+
+
+```http request
+PATCH https://cloud.appwrite.io/v1/proxy/rules/{ruleId}/site
+```
+
+** Update the site and VCS branch a site proxy rule serves. The rule domain cannot be changed. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| ruleId | string | **Required** Rule ID. |  |
+| siteId | string | ID of site to be executed. |  |
+| branch | string | Name of VCS branch to deploy changes automatically |  |
+
+
+```http request
 PATCH https://cloud.appwrite.io/v1/proxy/rules/{ruleId}/status
 ```
 
-** If not succeeded yet, retry verification process of a proxy rule domain. This endpoint triggers domain verification by checking DNS records. If verification is successful, a TLS certificate will be automatically provisioned for the domain asynchronously in the background. **
+** If not succeeded yet, retry verification process of a proxy rule domain. This endpoint triggers domain verification by checking DNS records. If verification is successful, a TLS certificate will be automatically provisioned for the domain asynchronously in the background. A verified rule whose certificate renewal failed or is blocked, or whose certificate expired, is checked the same way, and its certificate renewed in the background. **
 
 ### Parameters
 

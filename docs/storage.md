@@ -34,7 +34,7 @@ POST https://cloud.appwrite.io/v1/storage/buckets
 | maximumFileSize | integer | Maximum file size allowed in bytes. Maximum allowed value is 5GB. | [] |
 | allowedFileExtensions | array | Allowed file extensions. Maximum of 100 extensions are allowed, each 64 characters long. | [] |
 | compression | string | Compression algorithm chosen for compression. Can be one of none,  [gzip](https://en.wikipedia.org/wiki/Gzip), or [zstd](https://en.wikipedia.org/wiki/Zstd), For file size above 20MB compression is skipped even if it's enabled | none |
-| encryption | boolean | Is encryption enabled? For file size above 20MB encryption is skipped even if it's enabled | 1 |
+| encryption | boolean | Is encryption enabled? Files of any size are encrypted. | 1 |
 | antivirus | boolean | Is virus scanning enabled? For file size above 20MB AntiVirus scanning is skipped even if it's enabled | 1 |
 | transformations | boolean | Are image transformations enabled? | 1 |
 | description | string | Optional description for the bucket. |  |
@@ -72,7 +72,7 @@ PUT https://cloud.appwrite.io/v1/storage/buckets/{bucketId}
 | maximumFileSize | integer | Maximum file size allowed in bytes. Maximum allowed value is 5GB. | [] |
 | allowedFileExtensions | array | Allowed file extensions. Maximum of 100 extensions are allowed, each 64 characters long. | [] |
 | compression | string | Compression algorithm chosen for compression. Can be one of none, [gzip](https://en.wikipedia.org/wiki/Gzip), or [zstd](https://en.wikipedia.org/wiki/Zstd), For file size above 20MB compression is skipped even if it's enabled | none |
-| encryption | boolean | Is encryption enabled? For file size above 20MB encryption is skipped even if it's enabled | 1 |
+| encryption | boolean | Is encryption enabled? Files of any size are encrypted. | 1 |
 | antivirus | boolean | Is virus scanning enabled? For file size above 20MB AntiVirus scanning is skipped even if it's enabled | 1 |
 | transformations | boolean | Are image transformations enabled? | 1 |
 | description | string | Optional description for the bucket. |  |

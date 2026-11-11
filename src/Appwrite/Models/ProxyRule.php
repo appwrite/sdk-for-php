@@ -34,6 +34,8 @@ readonly class ProxyRule
      * @param ProxyRuleStatus $status domain verification status. possible values are "unverified", "verifying", "verified"
      * @param string $logs logs from rule verification or certificate generation. certificate generation logs are prioritized if both are available.
      * @param string $renewAt certificate auto-renewal date in iso 8601 format.
+     * @param string $expireAt certificate expiry date in iso 8601 format. empty when unknown or not checked yet.
+     * @param string $certificateStatus certificate status, as last reported by the certificate provider. possible values are "pending", "processing", "issued", "renewing", "expiring", "blocked", "failed", or "unknown". "expiring" means the certificate expires soon, or has already expired, and the provider has not renewed it yet, "blocked" means the provider waits on a dns record from the domain owner, and "failed" means the provider stopped trying or the last issuance or renewal attempt failed. empty until the certificate is next checked.
      * @param ProxyRuleProtocol $protocol ingress protocol for the rule.
      * @param ProxyRuleDeploymentResourceType|null $deploymentResourceType type of deployment resource: function, site, or dedicateddatabase.
      */
@@ -52,6 +54,8 @@ readonly class ProxyRule
         public ProxyRuleStatus $status,
         public string $logs,
         public string $renewAt,
+        public string $expireAt,
+        public string $certificateStatus,
         public ProxyRuleProtocol $protocol,
         public ?ProxyRuleDeploymentResourceType $deploymentResourceType = null
     ) {
@@ -76,6 +80,8 @@ readonly class ProxyRule
             'deploymentVcsProviderBranch' => "",
             'status' => "unverified",
             'logs' => "",
+            'expireAt' => "",
+            'certificateStatus' => "",
             'protocol' => "http",
         ];
 
@@ -98,6 +104,8 @@ readonly class ProxyRule
             status: static::hydrateTypedValue(ProxyRuleStatus::class, $data['status']),
             logs: $data['logs'],
             renewAt: $data['renewAt'],
+            expireAt: $data['expireAt'],
+            certificateStatus: $data['certificateStatus'],
             protocol: static::hydrateTypedValue(ProxyRuleProtocol::class, $data['protocol']),
             deploymentResourceType: array_key_exists('deploymentResourceType', $data) ? static::hydrateTypedValue(ProxyRuleDeploymentResourceType::class, $data['deploymentResourceType'], true) : null
         );
@@ -124,6 +132,8 @@ readonly class ProxyRule
             'status' => static::serializeValue($this->status),
             'logs' => static::serializeValue($this->logs),
             'renewAt' => static::serializeValue($this->renewAt),
+            'expireAt' => static::serializeValue($this->expireAt),
+            'certificateStatus' => static::serializeValue($this->certificateStatus),
             'protocol' => static::serializeValue($this->protocol)
         ];
     }

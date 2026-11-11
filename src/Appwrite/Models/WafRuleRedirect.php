@@ -34,6 +34,7 @@ readonly class WafRuleRedirect
      * @param array $config action specific configuration.
      * @param string $location target location for the redirect.
      * @param int $statusCode http status code used for the redirect.
+     * @param array|null $schedule when the rule is active: mode, days, interval, anchor, starttime, endtime and timezone. null when the rule is always active.
      */
     public function __construct(
         public string $id,
@@ -51,7 +52,8 @@ readonly class WafRuleRedirect
         public array $conditions,
         public array $config,
         public string $location,
-        public int $statusCode
+        public int $statusCode,
+        public ?array $schedule = null
     ) {
     }
 
@@ -98,7 +100,8 @@ readonly class WafRuleRedirect
             conditions: $data['conditions'],
             config: $data['config'],
             location: $data['location'],
-            statusCode: $data['statusCode']
+            statusCode: $data['statusCode'],
+            schedule: $data['schedule'] ?? null
         );
     }
 
@@ -122,6 +125,7 @@ readonly class WafRuleRedirect
             'enabled' => static::serializeValue($this->enabled),
             'conditions' => static::serializeValue($this->conditions),
             'config' => static::serializeValue($this->config),
+            'schedule' => static::serializeValue($this->schedule),
             'location' => static::serializeValue($this->location),
             'statusCode' => static::serializeValue($this->statusCode)
         ];

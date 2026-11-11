@@ -225,56 +225,13 @@ final class ProjectTest extends TestCase
     {
         $data = [
             "total" => 5,
-            "projects" => [
+            "environments" => [
                 [
-                    "\$id" => "5e5ea5c16897e",
+                    "\$id" => "staging",
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "name" => "New Project",
-                    "teamId" => "1592981250",
-                    "region" => "fra",
-                    "smtpEnabled" => true,
-                    "smtpSenderName" => "John Appwrite",
-                    "smtpSenderEmail" => "john@appwrite.io",
-                    "smtpReplyToName" => "Support Team",
-                    "smtpReplyToEmail" => "support@appwrite.io",
-                    "smtpHost" => "mail.appwrite.io",
-                    "smtpPort" => 25,
-                    "smtpUsername" => "emailuser",
-                    "smtpPassword" => "smtp-password",
-                    "smtpSecure" => "tls",
-                    "pingCount" => 1,
-                    "pingedAt" => "2020-10-15T06:38:00.000+00:00",
-                    "labels" => [],
-                    "status" => "active",
-                    "onboarding" => [],
-                    "authMethods" => [
-                        [
-                            "\$id" => "email-password",
-                            "enabled" => true
-                        ]
-                    ],
-                    "services" => [
-                        [
-                            "\$id" => "account",
-                            "enabled" => true
-                        ]
-                    ],
-                    "protocols" => [
-                        [
-                            "\$id" => "rest",
-                            "enabled" => true
-                        ]
-                    ],
-                    "blocks" => [
-                        [
-                            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-                            "resourceType" => "project",
-                            "resourceId" => "5e5ea5c16897e",
-                            "mode" => "readOnly"
-                        ]
-                    ],
-                    "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
+                    "projectId" => "5e5ea5c16897e",
+                    "name" => "Staging"
                 ]
             ]
         ];
@@ -305,59 +262,16 @@ final class ProjectTest extends TestCase
             total: false
         );
 
-        $this->assertInstanceOf(\Appwrite\Models\ProjectList::class, $response);
+        $this->assertInstanceOf(\Appwrite\Models\EnvironmentList::class, $response);
     }
     public function testMethodCreateEnvironment(): void
     {
         $data = [
-            "\$id" => "5e5ea5c16897e",
+            "\$id" => "staging",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "name" => "New Project",
-            "teamId" => "1592981250",
-            "region" => "fra",
-            "smtpEnabled" => true,
-            "smtpSenderName" => "John Appwrite",
-            "smtpSenderEmail" => "john@appwrite.io",
-            "smtpReplyToName" => "Support Team",
-            "smtpReplyToEmail" => "support@appwrite.io",
-            "smtpHost" => "mail.appwrite.io",
-            "smtpPort" => 25,
-            "smtpUsername" => "emailuser",
-            "smtpPassword" => "smtp-password",
-            "smtpSecure" => "tls",
-            "pingCount" => 1,
-            "pingedAt" => "2020-10-15T06:38:00.000+00:00",
-            "labels" => [],
-            "status" => "active",
-            "onboarding" => [],
-            "authMethods" => [
-                [
-                    "\$id" => "email-password",
-                    "enabled" => true
-                ]
-            ],
-            "services" => [
-                [
-                    "\$id" => "account",
-                    "enabled" => true
-                ]
-            ],
-            "protocols" => [
-                [
-                    "\$id" => "rest",
-                    "enabled" => true
-                ]
-            ],
-            "blocks" => [
-                [
-                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-                    "resourceType" => "project",
-                    "resourceId" => "5e5ea5c16897e",
-                    "mode" => "readOnly"
-                ]
-            ],
-            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
+            "projectId" => "5e5ea5c16897e",
+            "name" => "Staging"
         ];
 
         $this->client
@@ -388,59 +302,16 @@ final class ProjectTest extends TestCase
             resources: [EnvironmentResource::USER()]
         );
 
-        $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
+        $this->assertInstanceOf(\Appwrite\Models\Environment::class, $response);
     }
     public function testMethodGetEnvironment(): void
     {
         $data = [
-            "\$id" => "5e5ea5c16897e",
+            "\$id" => "staging",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "name" => "New Project",
-            "teamId" => "1592981250",
-            "region" => "fra",
-            "smtpEnabled" => true,
-            "smtpSenderName" => "John Appwrite",
-            "smtpSenderEmail" => "john@appwrite.io",
-            "smtpReplyToName" => "Support Team",
-            "smtpReplyToEmail" => "support@appwrite.io",
-            "smtpHost" => "mail.appwrite.io",
-            "smtpPort" => 25,
-            "smtpUsername" => "emailuser",
-            "smtpPassword" => "smtp-password",
-            "smtpSecure" => "tls",
-            "pingCount" => 1,
-            "pingedAt" => "2020-10-15T06:38:00.000+00:00",
-            "labels" => [],
-            "status" => "active",
-            "onboarding" => [],
-            "authMethods" => [
-                [
-                    "\$id" => "email-password",
-                    "enabled" => true
-                ]
-            ],
-            "services" => [
-                [
-                    "\$id" => "account",
-                    "enabled" => true
-                ]
-            ],
-            "protocols" => [
-                [
-                    "\$id" => "rest",
-                    "enabled" => true
-                ]
-            ],
-            "blocks" => [
-                [
-                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-                    "resourceType" => "project",
-                    "resourceId" => "5e5ea5c16897e",
-                    "mode" => "readOnly"
-                ]
-            ],
-            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
+            "projectId" => "5e5ea5c16897e",
+            "name" => "Staging"
         ];
 
         $this->client
@@ -467,59 +338,16 @@ final class ProjectTest extends TestCase
             "<ENVIRONMENT_ID>"
         );
 
-        $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
+        $this->assertInstanceOf(\Appwrite\Models\Environment::class, $response);
     }
     public function testMethodUpdateEnvironment(): void
     {
         $data = [
-            "\$id" => "5e5ea5c16897e",
+            "\$id" => "staging",
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
-            "name" => "New Project",
-            "teamId" => "1592981250",
-            "region" => "fra",
-            "smtpEnabled" => true,
-            "smtpSenderName" => "John Appwrite",
-            "smtpSenderEmail" => "john@appwrite.io",
-            "smtpReplyToName" => "Support Team",
-            "smtpReplyToEmail" => "support@appwrite.io",
-            "smtpHost" => "mail.appwrite.io",
-            "smtpPort" => 25,
-            "smtpUsername" => "emailuser",
-            "smtpPassword" => "smtp-password",
-            "smtpSecure" => "tls",
-            "pingCount" => 1,
-            "pingedAt" => "2020-10-15T06:38:00.000+00:00",
-            "labels" => [],
-            "status" => "active",
-            "onboarding" => [],
-            "authMethods" => [
-                [
-                    "\$id" => "email-password",
-                    "enabled" => true
-                ]
-            ],
-            "services" => [
-                [
-                    "\$id" => "account",
-                    "enabled" => true
-                ]
-            ],
-            "protocols" => [
-                [
-                    "\$id" => "rest",
-                    "enabled" => true
-                ]
-            ],
-            "blocks" => [
-                [
-                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
-                    "resourceType" => "project",
-                    "resourceId" => "5e5ea5c16897e",
-                    "mode" => "readOnly"
-                ]
-            ],
-            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
+            "projectId" => "5e5ea5c16897e",
+            "name" => "Staging"
         ];
 
         $this->client
@@ -548,7 +376,7 @@ final class ProjectTest extends TestCase
             "<NAME>"
         );
 
-        $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
+        $this->assertInstanceOf(\Appwrite\Models\Environment::class, $response);
     }
     public function testMethodDeleteEnvironment(): void
     {
@@ -2919,6 +2747,84 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Twitch::class, $response);
     }
+    public function testMethodUpdateOAuth2Vipps(): void
+    {
+        $data = [
+            "\$id" => "github",
+            "enabled" => true,
+            "clientId" => "9a3a4b3e-0000-0000-0000-0f1a6d1c3b2e",
+            "clientSecret" => "Ay1jb000000000000000000000000000000Vx3k"
+        ];
+
+        $this->client
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/vipps',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['clientId', 'clientSecret', 'enabled'], array_keys($params));
+                    $expected = [
+                        'clientId' => "<CLIENT_ID>",
+                        'clientSecret' => "<CLIENT_SECRET>",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->project->updateOAuth2Vipps(
+            clientId: "<CLIENT_ID>",
+            clientSecret: "<CLIENT_SECRET>",
+            enabled: false
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\OAuth2Vipps::class, $response);
+    }
+    public function testMethodUpdateOAuth2VippsSandbox(): void
+    {
+        $data = [
+            "\$id" => "github",
+            "enabled" => true,
+            "clientId" => "9a3a4b3e-0000-0000-0000-0f1a6d1c3b2e",
+            "clientSecret" => "Ay1jb000000000000000000000000000000Vx3k"
+        ];
+
+        $this->client
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/vippsSandbox',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['clientId', 'clientSecret', 'enabled'], array_keys($params));
+                    $expected = [
+                        'clientId' => "<CLIENT_ID>",
+                        'clientSecret' => "<CLIENT_SECRET>",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->project->updateOAuth2VippsSandbox(
+            clientId: "<CLIENT_ID>",
+            clientSecret: "<CLIENT_SECRET>",
+            enabled: false
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\OAuth2Vipps::class, $response);
+    }
     public function testMethodUpdateOAuth2Webflow(): void
     {
         $data = [
@@ -3201,12 +3107,11 @@ final class ProjectTest extends TestCase
             [
                 "\$id" => "github",
                 "enabled" => true,
-                "clientId" => "839ff5000000000000000000013206de",
-                "clientSecret" => "jLNVOK00000000000000000000yJebea",
-                "prompt" => ["none"]
+                "clientId" => "9a3a4b3e-0000-0000-0000-0f1a6d1c3b2e",
+                "clientSecret" => "Ay1jb000000000000000000000000000000Vx3k"
             ],
             [
-                "\$id" => "kakao"
+                "\$id" => "vippsSandbox"
             ]
         );
 
@@ -3234,7 +3139,7 @@ final class ProjectTest extends TestCase
             ProjectOAuthProviderId::AMAZON()
         );
 
-        $this->assertInstanceOf(\Appwrite\Models\OAuth2Kakao::class, $response);
+        $this->assertInstanceOf(\Appwrite\Models\OAuth2Vipps::class, $response);
     }
     public function testMethodListPlatforms(): void
     {
@@ -3793,6 +3698,85 @@ final class ProjectTest extends TestCase
         );
 
         $this->assertInstanceOf(\Appwrite\Models\PolicyList::class, $response);
+    }
+    public function testMethodUpdateAccountDevicesPolicy(): void
+    {
+        $data = [
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "name" => "New Project",
+            "teamId" => "1592981250",
+            "region" => "fra",
+            "smtpEnabled" => true,
+            "smtpSenderName" => "John Appwrite",
+            "smtpSenderEmail" => "john@appwrite.io",
+            "smtpReplyToName" => "Support Team",
+            "smtpReplyToEmail" => "support@appwrite.io",
+            "smtpHost" => "mail.appwrite.io",
+            "smtpPort" => 25,
+            "smtpUsername" => "emailuser",
+            "smtpPassword" => "smtp-password",
+            "smtpSecure" => "tls",
+            "pingCount" => 1,
+            "pingedAt" => "2020-10-15T06:38:00.000+00:00",
+            "labels" => [],
+            "status" => "active",
+            "onboarding" => [],
+            "authMethods" => [
+                [
+                    "\$id" => "email-password",
+                    "enabled" => true
+                ]
+            ],
+            "services" => [
+                [
+                    "\$id" => "account",
+                    "enabled" => true
+                ]
+            ],
+            "protocols" => [
+                [
+                    "\$id" => "rest",
+                    "enabled" => true
+                ]
+            ],
+            "blocks" => [
+                [
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "resourceType" => "project",
+                    "resourceId" => "5e5ea5c16897e",
+                    "mode" => "readOnly"
+                ]
+            ],
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
+        ];
+
+        $this->client
+            ->expects()->call(
+                'PATCH',
+                '/project/policies/account-devices',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['enabled'], array_keys($params));
+                    $expected = [
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->project->updateAccountDevicesPolicy(
+            false
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
     }
     public function testMethodUpdateDenyAliasedEmailPolicy(): void
     {
@@ -5292,11 +5276,10 @@ final class ProjectTest extends TestCase
         $data = array_replace(
             [
                 "\$id" => "password-dictionary",
-                "rpId" => "example.com",
-                "origins" => []
+                "enabled" => true
             ],
             [
-                "\$id" => "passkey"
+                "\$id" => "account-devices"
             ]
         );
 
@@ -5324,7 +5307,7 @@ final class ProjectTest extends TestCase
             ProjectPolicyId::PASSWORDDICTIONARY()
         );
 
-        $this->assertInstanceOf(\Appwrite\Models\PolicyPasskey::class, $response);
+        $this->assertInstanceOf(\Appwrite\Models\PolicyAccountDevices::class, $response);
     }
     public function testMethodGetPrefs(): void
     {

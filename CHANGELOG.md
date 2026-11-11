@@ -1,5 +1,20 @@
 # Change Log
 
+## 32.3.0
+
+* Updated: `Project::listEnvironments`, `Project::createEnvironment`, `Project::getEnvironment`, `Project::updateEnvironment` return `Environment` models instead of `Project`
+* Added: `Account::createDevice`, `Account::getDevice`, `Account::deleteDevice` and `Account::updateDeviceSession`, and the `Device` model
+* Added: `Project::updateAccountDevicesPolicy`, `ProjectPolicyId::ACCOUNTDEVICES()` and the `PolicyAccountDevices` model
+* Added: `Project::updateOAuth2Vipps`, `Project::updateOAuth2VippsSandbox` and the `OAuth2Vipps` model
+* Added: `OAuthProvider::VIPPS()` and `OAuthProvider::VIPPSSANDBOX()`
+* Added: `Proxy::updateFunctionRule`, `Proxy::updateRedirectRule` and `Proxy::updateSiteRule`
+* Added: optional `schedule` on `waf` rule create and update methods and on `WafRule*` models
+* Added: `ProjectKeyScopes::ALERTSWRITE()`
+* Added: `Organization::$budgetCritical`
+* Added: `Project::$environmentId`, `Session::$userName` and `ActivityEvent::$reason`
+* Added: `ProxyRule::$expireAt` and `certificateStatus`
+* Updated: requests send response format `2.7.1`
+
 ## 32.2.0
 
 * Added: `Project::getPrefs` and `Project::updatePrefs` for project preferences, and `Project::$prefs`

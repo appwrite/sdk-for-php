@@ -381,10 +381,147 @@ class Proxy extends Service
     }
 
     /**
+     * Update the function and VCS branch a function proxy rule executes. The rule
+     * domain cannot be changed.
+     *
+     * @throws AppwriteException
+     */
+    public function updateFunctionRule(string $ruleId, string $functionId, ?string $branch = null): \Appwrite\Models\ProxyRule
+    {
+        if ($ruleId === '') {
+            throw new AppwriteException('Missing required parameter: "ruleId"');
+        }
+
+        $apiPath = str_replace(
+            ['{ruleId}'],
+            [self::encodePath($ruleId)],
+            '/proxy/rules/{ruleId}/function'
+        );
+
+        $apiParams = [];
+        $apiParams['ruleId'] = $ruleId;
+        $apiParams['functionId'] = $functionId;
+
+        if (!is_null($branch)) {
+            $apiParams['branch'] = $branch;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\ProxyRule::from($response);
+    }
+
+    /**
+     * Update the target URL, status code and parent resource of a redirect proxy
+     * rule. The rule domain cannot be changed.
+     *
+     * @throws AppwriteException
+     */
+    public function updateRedirectRule(string $ruleId, string $url, StatusCode $statusCode, string $resourceId, ProxyResourceType $resourceType): \Appwrite\Models\ProxyRule
+    {
+        if ($ruleId === '') {
+            throw new AppwriteException('Missing required parameter: "ruleId"');
+        }
+
+        $apiPath = str_replace(
+            ['{ruleId}'],
+            [self::encodePath($ruleId)],
+            '/proxy/rules/{ruleId}/redirect'
+        );
+
+        $apiParams = [];
+        $apiParams['ruleId'] = $ruleId;
+        $apiParams['url'] = $url;
+        $apiParams['statusCode'] = $statusCode;
+        $apiParams['resourceId'] = $resourceId;
+        $apiParams['resourceType'] = $resourceType;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\ProxyRule::from($response);
+    }
+
+    /**
+     * Update the site and VCS branch a site proxy rule serves. The rule domain
+     * cannot be changed.
+     *
+     * @throws AppwriteException
+     */
+    public function updateSiteRule(string $ruleId, string $siteId, ?string $branch = null): \Appwrite\Models\ProxyRule
+    {
+        if ($ruleId === '') {
+            throw new AppwriteException('Missing required parameter: "ruleId"');
+        }
+
+        $apiPath = str_replace(
+            ['{ruleId}'],
+            [self::encodePath($ruleId)],
+            '/proxy/rules/{ruleId}/site'
+        );
+
+        $apiParams = [];
+        $apiParams['ruleId'] = $ruleId;
+        $apiParams['siteId'] = $siteId;
+
+        if (!is_null($branch)) {
+            $apiParams['branch'] = $branch;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\ProxyRule::from($response);
+    }
+
+    /**
      * If not succeeded yet, retry verification process of a proxy rule domain.
      * This endpoint triggers domain verification by checking DNS records. If
      * verification is successful, a TLS certificate will be automatically
-     * provisioned for the domain asynchronously in the background.
+     * provisioned for the domain asynchronously in the background. A verified
+     * rule whose certificate renewal failed or is blocked, or whose certificate
+     * expired, is checked the same way, and its certificate renewed in the
+     * background.
      *
      * @throws AppwriteException
      */

@@ -20,6 +20,7 @@ readonly class Session
      * @param string $createdAt session creation date in iso 8601 format.
      * @param string $updatedAt session update date in iso 8601 format.
      * @param string $userId user id.
+     * @param string $userName name of the user the session belongs to. lets a client label the account, for example in an account switcher.
      * @param string $expire session expiration date in iso 8601 format.
      * @param string $provider session provider.
      * @param string $providerUid session provider user id.
@@ -51,6 +52,7 @@ readonly class Session
         public string $createdAt,
         public string $updatedAt,
         public string $userId,
+        public string $userName,
         public string $expire,
         public string $provider,
         public string $providerUid,
@@ -89,6 +91,7 @@ readonly class Session
             '$createdAt' => "",
             '$updatedAt' => "",
             'userId' => "",
+            'userName' => "",
             'expire' => "",
             'provider' => "",
             'providerUid' => "",
@@ -121,6 +124,7 @@ readonly class Session
             createdAt: $data['$createdAt'],
             updatedAt: $data['$updatedAt'],
             userId: $data['userId'],
+            userName: $data['userName'],
             expire: $data['expire'],
             provider: $data['provider'],
             providerUid: $data['providerUid'],
@@ -159,6 +163,7 @@ readonly class Session
             '$createdAt' => static::serializeValue($this->createdAt),
             '$updatedAt' => static::serializeValue($this->updatedAt),
             'userId' => static::serializeValue($this->userId),
+            'userName' => static::serializeValue($this->userName),
             'expire' => static::serializeValue($this->expire),
             'provider' => static::serializeValue($this->provider),
             'providerUid' => static::serializeValue($this->providerUid),

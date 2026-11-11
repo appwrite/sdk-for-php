@@ -389,6 +389,235 @@ final class AccountTest extends TestCase
 
         $this->assertSame($data, $response);
     }
+    public function testMethodCreateDevice(): void
+    {
+        $data = [
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "expire" => "2020-10-15T06:38:00.000+00:00",
+            "activeSessionId" => "5e5bb8c16897e",
+            "sessions" => [
+                [
+                    "\$id" => "5e5ea5c16897e",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "userId" => "5e5bb8c16897e",
+                    "userName" => "John Doe",
+                    "expire" => "2020-10-15T06:38:00.000+00:00",
+                    "provider" => "email",
+                    "providerUid" => "user@example.com",
+                    "providerAccessToken" => "MTQ0NjJkZmQ5OTM2NDE1ZTZjNGZmZjI3",
+                    "providerAccessTokenExpiry" => "2020-10-15T06:38:00.000+00:00",
+                    "providerRefreshToken" => "MTQ0NjJkZmQ5OTM2NDE1ZTZjNGZmZjI3",
+                    "ip" => "127.0.0.1",
+                    "osCode" => "Mac",
+                    "osName" => "Mac",
+                    "osVersion" => "Mac",
+                    "clientType" => "browser",
+                    "clientCode" => "CM",
+                    "clientName" => "Chrome Mobile iOS",
+                    "clientVersion" => "84.0",
+                    "clientEngine" => "WebKit",
+                    "clientEngineVersion" => "605.1.15",
+                    "deviceName" => "smartphone",
+                    "deviceBrand" => "Google",
+                    "deviceModel" => "Nexus 5",
+                    "countryCode" => "US",
+                    "countryName" => "United States",
+                    "current" => true,
+                    "factors" => [],
+                    "secret" => "5e5bb8c16897e",
+                    "mfaUpdatedAt" => "2020-10-15T06:38:00.000+00:00"
+                ]
+            ],
+            "secret" => "5e5bb8c16897e"
+        ];
+
+        $this->client
+            ->expects()->call(
+                'POST',
+                '/account/devices',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame([], array_keys($params));
+
+                    return true;
+                })
+            )
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->account->createDevice();
+
+        $this->assertInstanceOf(\Appwrite\Models\Device::class, $response);
+    }
+    public function testMethodGetDevice(): void
+    {
+        $data = [
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "expire" => "2020-10-15T06:38:00.000+00:00",
+            "activeSessionId" => "5e5bb8c16897e",
+            "sessions" => [
+                [
+                    "\$id" => "5e5ea5c16897e",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "userId" => "5e5bb8c16897e",
+                    "userName" => "John Doe",
+                    "expire" => "2020-10-15T06:38:00.000+00:00",
+                    "provider" => "email",
+                    "providerUid" => "user@example.com",
+                    "providerAccessToken" => "MTQ0NjJkZmQ5OTM2NDE1ZTZjNGZmZjI3",
+                    "providerAccessTokenExpiry" => "2020-10-15T06:38:00.000+00:00",
+                    "providerRefreshToken" => "MTQ0NjJkZmQ5OTM2NDE1ZTZjNGZmZjI3",
+                    "ip" => "127.0.0.1",
+                    "osCode" => "Mac",
+                    "osName" => "Mac",
+                    "osVersion" => "Mac",
+                    "clientType" => "browser",
+                    "clientCode" => "CM",
+                    "clientName" => "Chrome Mobile iOS",
+                    "clientVersion" => "84.0",
+                    "clientEngine" => "WebKit",
+                    "clientEngineVersion" => "605.1.15",
+                    "deviceName" => "smartphone",
+                    "deviceBrand" => "Google",
+                    "deviceModel" => "Nexus 5",
+                    "countryCode" => "US",
+                    "countryName" => "United States",
+                    "current" => true,
+                    "factors" => [],
+                    "secret" => "5e5bb8c16897e",
+                    "mfaUpdatedAt" => "2020-10-15T06:38:00.000+00:00"
+                ]
+            ],
+            "secret" => "5e5bb8c16897e"
+        ];
+
+        $this->client
+            ->expects()->call(
+                'GET',
+                '/account/devices/%3CDEVICE_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['deviceId'], array_keys($params));
+                    $expected = [
+                        'deviceId' => "<DEVICE_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->account->getDevice(
+            "<DEVICE_ID>"
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\Device::class, $response);
+    }
+    public function testMethodDeleteDevice(): void
+    {
+        $data = '';
+
+        $this->client
+            ->expects()->call(
+                'DELETE',
+                '/account/devices/%3CDEVICE_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['deviceId'], array_keys($params));
+                    $expected = [
+                        'deviceId' => "<DEVICE_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->account->deleteDevice(
+            "<DEVICE_ID>"
+        );
+
+        $this->assertSame($data, $response);
+    }
+    public function testMethodUpdateDeviceSession(): void
+    {
+        $data = [
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "userId" => "5e5bb8c16897e",
+            "userName" => "John Doe",
+            "expire" => "2020-10-15T06:38:00.000+00:00",
+            "provider" => "email",
+            "providerUid" => "user@example.com",
+            "providerAccessToken" => "MTQ0NjJkZmQ5OTM2NDE1ZTZjNGZmZjI3",
+            "providerAccessTokenExpiry" => "2020-10-15T06:38:00.000+00:00",
+            "providerRefreshToken" => "MTQ0NjJkZmQ5OTM2NDE1ZTZjNGZmZjI3",
+            "ip" => "127.0.0.1",
+            "osCode" => "Mac",
+            "osName" => "Mac",
+            "osVersion" => "Mac",
+            "clientType" => "browser",
+            "clientCode" => "CM",
+            "clientName" => "Chrome Mobile iOS",
+            "clientVersion" => "84.0",
+            "clientEngine" => "WebKit",
+            "clientEngineVersion" => "605.1.15",
+            "deviceName" => "smartphone",
+            "deviceBrand" => "Google",
+            "deviceModel" => "Nexus 5",
+            "countryCode" => "US",
+            "countryName" => "United States",
+            "current" => true,
+            "factors" => [],
+            "secret" => "5e5bb8c16897e",
+            "mfaUpdatedAt" => "2020-10-15T06:38:00.000+00:00"
+        ];
+
+        $this->client
+            ->expects()->call(
+                'PATCH',
+                '/account/devices/%3CDEVICE_ID%3E/session',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['deviceId', 'sessionId'], array_keys($params));
+                    $expected = [
+                        'deviceId' => "<DEVICE_ID>",
+                        'sessionId' => "<SESSION_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->account->updateDeviceSession(
+            "<DEVICE_ID>",
+            "<SESSION_ID>"
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\Session::class, $response);
+    }
     public function testMethodUpdateEmail(): void
     {
         $data = [
@@ -804,6 +1033,7 @@ final class AccountTest extends TestCase
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "userId" => "5e5bb8c16897e",
+            "userName" => "John Doe",
             "expire" => "2020-10-15T06:38:00.000+00:00",
             "provider" => "email",
             "providerUid" => "user@example.com",
@@ -1620,6 +1850,7 @@ final class AccountTest extends TestCase
                     "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
                     "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
                     "userId" => "5e5bb8c16897e",
+                    "userName" => "John Doe",
                     "expire" => "2020-10-15T06:38:00.000+00:00",
                     "provider" => "email",
                     "providerUid" => "user@example.com",
@@ -1712,6 +1943,7 @@ final class AccountTest extends TestCase
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "userId" => "5e5bb8c16897e",
+            "userName" => "John Doe",
             "expire" => "2020-10-15T06:38:00.000+00:00",
             "provider" => "email",
             "providerUid" => "user@example.com",
@@ -1766,6 +1998,7 @@ final class AccountTest extends TestCase
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "userId" => "5e5bb8c16897e",
+            "userName" => "John Doe",
             "expire" => "2020-10-15T06:38:00.000+00:00",
             "provider" => "email",
             "providerUid" => "user@example.com",
@@ -1830,6 +2063,7 @@ final class AccountTest extends TestCase
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "userId" => "5e5bb8c16897e",
+            "userName" => "John Doe",
             "expire" => "2020-10-15T06:38:00.000+00:00",
             "provider" => "email",
             "providerUid" => "user@example.com",
@@ -1900,6 +2134,7 @@ final class AccountTest extends TestCase
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "userId" => "5e5bb8c16897e",
+            "userName" => "John Doe",
             "expire" => "2020-10-15T06:38:00.000+00:00",
             "provider" => "email",
             "providerUid" => "user@example.com",
@@ -1962,6 +2197,7 @@ final class AccountTest extends TestCase
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "userId" => "5e5bb8c16897e",
+            "userName" => "John Doe",
             "expire" => "2020-10-15T06:38:00.000+00:00",
             "provider" => "email",
             "providerUid" => "user@example.com",
@@ -2024,6 +2260,7 @@ final class AccountTest extends TestCase
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "userId" => "5e5bb8c16897e",
+            "userName" => "John Doe",
             "expire" => "2020-10-15T06:38:00.000+00:00",
             "provider" => "email",
             "providerUid" => "user@example.com",
@@ -2086,6 +2323,7 @@ final class AccountTest extends TestCase
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "userId" => "5e5bb8c16897e",
+            "userName" => "John Doe",
             "expire" => "2020-10-15T06:38:00.000+00:00",
             "provider" => "email",
             "providerUid" => "user@example.com",
@@ -2146,6 +2384,7 @@ final class AccountTest extends TestCase
             "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
             "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
             "userId" => "5e5bb8c16897e",
+            "userName" => "John Doe",
             "expire" => "2020-10-15T06:38:00.000+00:00",
             "provider" => "email",
             "providerUid" => "user@example.com",

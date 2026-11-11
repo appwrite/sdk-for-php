@@ -51,6 +51,8 @@ class OAuthProvider implements JsonSerializable, Stringable
     private static OAuthProvider $TRADESHIFT;
     private static OAuthProvider $TRADESHIFTBOX;
     private static OAuthProvider $TWITCH;
+    private static OAuthProvider $VIPPS;
+    private static OAuthProvider $VIPPSSANDBOX;
     private static OAuthProvider $WEBFLOW;
     private static OAuthProvider $WORDPRESS;
     private static OAuthProvider $X;
@@ -326,6 +328,18 @@ class OAuthProvider implements JsonSerializable, Stringable
 
         return self::$TWITCH;
     }
+    public static function VIPPS(): OAuthProvider
+    {
+        self::$VIPPS ??= new OAuthProvider('vipps');
+
+        return self::$VIPPS;
+    }
+    public static function VIPPSSANDBOX(): OAuthProvider
+    {
+        self::$VIPPSSANDBOX ??= new OAuthProvider('vippsSandbox');
+
+        return self::$VIPPSSANDBOX;
+    }
     public static function WEBFLOW(): OAuthProvider
     {
         self::$WEBFLOW ??= new OAuthProvider('webflow');
@@ -420,6 +434,8 @@ class OAuthProvider implements JsonSerializable, Stringable
             'tradeshift' => self::TRADESHIFT(),
             'tradeshiftBox' => self::TRADESHIFTBOX(),
             'twitch' => self::TWITCH(),
+            'vipps' => self::VIPPS(),
+            'vippsSandbox' => self::VIPPSSANDBOX(),
             'webflow' => self::WEBFLOW(),
             'wordpress' => self::WORDPRESS(),
             'x' => self::X(),

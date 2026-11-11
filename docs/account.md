@@ -108,6 +108,59 @@ DELETE https://cloud.appwrite.io/v1/account/consents/{consentId}/tokens/{tokenId
 
 
 ```http request
+POST https://cloud.appwrite.io/v1/account/devices
+```
+
+** Create an account switching device. A device is a container, scoped to one browser or app install, that holds multiple sessions and tracks which one is active. Once a device exists, session creation endpoints attach the new session to it automatically, so a single browser can stay signed in to several accounts and switch between them. A device holds at most one session per user: signing in again as a user it already holds replaces that user's session. The device lives as long as its newest session.
+
+The device secret is returned in a cookie. Run this on app start: if the browser already has a valid device, the existing one is returned with the same status code instead of an error, so it is always safe to call.
+
+Every session that joins the device rotates the device secret and re-issues the cookie, so an earlier copy of the secret stops working. A client that keeps the secret itself, rather than relying on the cookie, must replace it from each session response. **
+
+
+```http request
+GET https://cloud.appwrite.io/v1/account/devices/{deviceId}
+```
+
+** Get the account switching device for the current browser, including every session it holds, the name of the user each session belongs to, and the ID of the active session. Use the string 'current' to reference the current browser's device. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| deviceId | string | **Required** Device ID. Use the string 'current' to reference the device of the current browser. | current |
+
+
+```http request
+DELETE https://cloud.appwrite.io/v1/account/devices/{deviceId}
+```
+
+** Delete the account switching device for the current browser. Every session the device holds is signed out, each firing its own session delete event, the device is removed, and both the device and session cookies are cleared. Use the string 'current' to reference the current browser's device. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| deviceId | string | **Required** Device ID. Use the string 'current' to reference the device of the current browser. | current |
+
+
+```http request
+PATCH https://cloud.appwrite.io/v1/account/devices/{deviceId}/session
+```
+
+** Switch the active account on an account switching device to one of the sessions it holds. The chosen session becomes active and its secret is written to the browser's session cookie, so subsequent requests authenticate as that account. Use the string 'current' to reference the current browser's device.
+
+Switching rotates the chosen session's secret. Any other holder of that session, such as a copy kept elsewhere, stops working, so a session should not be shared across devices. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| deviceId | string | **Required** Device ID. Use the string 'current' to reference the device of the current browser. | current |
+| sessionId | string | ID of the session, held by the device, to make active. |  |
+
+
+```http request
 PATCH https://cloud.appwrite.io/v1/account/email
 ```
 
@@ -799,7 +852,7 @@ A user is limited to 10 active sessions at a time by default. [Learn more about 
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| provider | string | **Required** OAuth2 Provider. Currently, supported providers are: amazon, apple, appwrite, auth0, authentik, autodesk, bitbucket, bitly, box, cloudflare, dailymotion, discord, disqus, dropbox, etsy, facebook, figma, fusionauth, github, gitlab, google, huggingface, kakao, keycloak, kick, linkedin, microsoft, notion, oidc, okta, paypal, paypalSandbox, podio, resend, salesforce, slack, spotify, stripe, tiktok, tradeshift, tradeshiftBox, twitch, webflow, wordpress, x, yahoo, yammer, yandex, zoho, zoom. |  |
+| provider | string | **Required** OAuth2 Provider. Currently, supported providers are: amazon, apple, appwrite, auth0, authentik, autodesk, bitbucket, bitly, box, cloudflare, dailymotion, discord, disqus, dropbox, etsy, facebook, figma, fusionauth, github, gitlab, google, huggingface, kakao, keycloak, kick, linkedin, microsoft, notion, oidc, okta, paypal, paypalSandbox, podio, resend, salesforce, slack, spotify, stripe, tiktok, tradeshift, tradeshiftBox, twitch, vipps, vippsSandbox, webflow, wordpress, x, yahoo, yammer, yandex, zoho, zoom. |  |
 | success | string | URL to redirect back to your app after a successful login attempt.  Only URLs from hostnames in your project's platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API. |  |
 | failure | string | URL to redirect back to your app after a failed login attempt.  Only URLs from hostnames in your project's platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API. |  |
 | scopes | array | A list of custom OAuth2 scopes. Check each provider internal docs for a list of supported scopes. Maximum of 100 scopes are allowed, each 4096 characters long. | [] |

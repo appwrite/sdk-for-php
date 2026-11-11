@@ -343,6 +343,180 @@ class Account extends Service
     }
 
     /**
+     * Create an account switching device. A device is a container, scoped to one
+     * browser or app install, that holds multiple sessions and tracks which one
+     * is active. Once a device exists, session creation endpoints attach the new
+     * session to it automatically, so a single browser can stay signed in to
+     * several accounts and switch between them. A device holds at most one
+     * session per user: signing in again as a user it already holds replaces that
+     * user's session. The device lives as long as its newest session.
+     *
+     * The device secret is returned in a cookie. Run this on app start: if the
+     * browser already has a valid device, the existing one is returned with the
+     * same status code instead of an error, so it is always safe to call.
+     *
+     * Every session that joins the device rotates the device secret and re-issues
+     * the cookie, so an earlier copy of the secret stops working. A client that
+     * keeps the secret itself, rather than relying on the cookie, must replace it
+     * from each session response.
+     *
+     * @throws AppwriteException
+     */
+    public function createDevice(): \Appwrite\Models\Device
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/account/devices'
+        );
+
+        $apiParams = [];
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Device::from($response);
+    }
+
+    /**
+     * Get the account switching device for the current browser, including every
+     * session it holds, the name of the user each session belongs to, and the ID
+     * of the active session. Use the string 'current' to reference the current
+     * browser's device.
+     *
+     * @throws AppwriteException
+     */
+    public function getDevice(string $deviceId): \Appwrite\Models\Device
+    {
+        if ($deviceId === '') {
+            throw new AppwriteException('Missing required parameter: "deviceId"');
+        }
+
+        $apiPath = str_replace(
+            ['{deviceId}'],
+            [self::encodePath($deviceId)],
+            '/account/devices/{deviceId}'
+        );
+
+        $apiParams = [];
+        $apiParams['deviceId'] = $deviceId;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Device::from($response);
+    }
+
+    /**
+     * Delete the account switching device for the current browser. Every session
+     * the device holds is signed out, each firing its own session delete event,
+     * the device is removed, and both the device and session cookies are cleared.
+     * Use the string 'current' to reference the current browser's device.
+     *
+     * @throws AppwriteException
+     */
+    public function deleteDevice(string $deviceId): string
+    {
+        if ($deviceId === '') {
+            throw new AppwriteException('Missing required parameter: "deviceId"');
+        }
+
+        $apiPath = str_replace(
+            ['{deviceId}'],
+            [self::encodePath($deviceId)],
+            '/account/devices/{deviceId}'
+        );
+
+        $apiParams = [];
+        $apiParams['deviceId'] = $deviceId;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_DELETE,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Switch the active account on an account switching device to one of the
+     * sessions it holds. The chosen session becomes active and its secret is
+     * written to the browser's session cookie, so subsequent requests
+     * authenticate as that account. Use the string 'current' to reference the
+     * current browser's device.
+     *
+     * Switching rotates the chosen session's secret. Any other holder of that
+     * session, such as a copy kept elsewhere, stops working, so a session should
+     * not be shared across devices.
+     *
+     * @throws AppwriteException
+     */
+    public function updateDeviceSession(string $deviceId, string $sessionId): \Appwrite\Models\Session
+    {
+        if ($deviceId === '') {
+            throw new AppwriteException('Missing required parameter: "deviceId"');
+        }
+
+        $apiPath = str_replace(
+            ['{deviceId}'],
+            [self::encodePath($deviceId)],
+            '/account/devices/{deviceId}/session'
+        );
+
+        $apiParams = [];
+        $apiParams['deviceId'] = $deviceId;
+        $apiParams['sessionId'] = $sessionId;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Session::from($response);
+    }
+
+    /**
      * Update currently logged in user account email address. After changing user
      * address, the user confirmation status will get reset. A new confirmation
      * email is not sent automatically however you can use the send confirmation
