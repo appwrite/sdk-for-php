@@ -36,6 +36,7 @@ final class OrganizationTest extends TestCase
             "prefs" => [],
             "budgetAlerts" => [],
             "budgetNotify" => [],
+            "budgetCritical" => [],
             "billingPlan" => "tier-1",
             "billingPlanId" => "tier-1",
             "billingPlanDetails" => [
@@ -147,6 +148,7 @@ final class OrganizationTest extends TestCase
             "prefs" => [],
             "budgetAlerts" => [],
             "budgetNotify" => [],
+            "budgetCritical" => [],
             "billingPlan" => "tier-1",
             "billingPlanId" => "tier-1",
             "billingPlanDetails" => [

@@ -45,6 +45,7 @@ readonly class ActivityEvent
      * @param string $hostname hostname.
      * @param string $sdk name of the sdk that triggered the event.
      * @param string $sdkVersion version of the sdk that triggered the event.
+     * @param string $reason why the actor made the request, as sent in the `x-appwrite-reason` header. empty when no reason was given.
      */
     public function __construct(
         public string $id,
@@ -75,7 +76,8 @@ readonly class ActivityEvent
         public string $teamId,
         public string $hostname,
         public string $sdk,
-        public string $sdkVersion
+        public string $sdkVersion,
+        public string $reason
     ) {
     }
 
@@ -114,6 +116,7 @@ readonly class ActivityEvent
             'hostname' => "",
             'sdk' => "",
             'sdkVersion' => "",
+            'reason' => "",
         ];
 
         return new static(
@@ -145,7 +148,8 @@ readonly class ActivityEvent
             teamId: $data['teamId'],
             hostname: $data['hostname'],
             sdk: $data['sdk'],
-            sdkVersion: $data['sdkVersion']
+            sdkVersion: $data['sdkVersion'],
+            reason: $data['reason']
         );
     }
 
@@ -183,7 +187,8 @@ readonly class ActivityEvent
             'teamId' => static::serializeValue($this->teamId),
             'hostname' => static::serializeValue($this->hostname),
             'sdk' => static::serializeValue($this->sdk),
-            'sdkVersion' => static::serializeValue($this->sdkVersion)
+            'sdkVersion' => static::serializeValue($this->sdkVersion),
+            'reason' => static::serializeValue($this->reason)
         ];
     }
 }

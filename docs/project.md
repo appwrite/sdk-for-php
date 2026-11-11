@@ -33,13 +33,13 @@ PATCH https://cloud.appwrite.io/v1/project/auth-methods/{methodId}
 GET https://cloud.appwrite.io/v1/project/environments
 ```
 
-** Get a list of all environments of the project. You can use the query params to filter your results. **
+** Get a list of all environments of the project. You can use the query params to filter your results. An environment is listed by its ID, the one passed in the `X-Appwrite-Environment` header to act in it. **
 
 ### Parameters
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, teamId, labels, search, accessedAt, status, parentId | [] |
+| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: $id, name, search | [] |
 | total | boolean | When set to false, the total count returned will be 0 and will not be calculated. | 1 |
 
 
@@ -47,7 +47,7 @@ GET https://cloud.appwrite.io/v1/project/environments
 POST https://cloud.appwrite.io/v1/project/environments
 ```
 
-** Create a new environment of the project. An environment is a separate project in the same organization and region, with its own resources and users. Its usage is billed under the project it belongs to.
+** Create a new environment of the project. An environment is a separate project in the same organization and region, with its own resources and users. Its usage is billed under the project it belongs to. Requests act in the environment when they carry the project's ID in the `X-Appwrite-Project` header and the environment's ID in the `X-Appwrite-Environment` header; the environment has no project ID of its own to pass.
 
 Pass `resources` to copy the project into the environment. The environment is returned at once and the copy runs as a migration of the environment, listed by its migrations routes and announced on its `migrations.*` realtime events; a resource whose ID can be chosen keeps it. Users are copied newest first and at most 90 of them, so the environment keeps room under its limit of 100 users for test accounts, and the memberships of users left behind are not copied. **
 
@@ -55,7 +55,7 @@ Pass `resources` to copy the project into the environment. The environment is re
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| environmentId | string | Unique Id. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, and hyphen. Can't start with a special char. Max length is 36 chars. |  |
+| environmentId | string | Environment ID, unique within the project and passed in the `X-Appwrite-Environment` header to act in the environment. Choose a custom ID such as `staging`, or generate a random ID with `ID.unique()`. Valid chars are a-z, 0-9, and hyphen. Can't start with a special char. Max length is 36 chars. |  |
 | name | string | Environment name. Max length: 128 chars. |  |
 | resources | array | Resources to copy from the project into the environment, by type. A structural type such as `database`, `table`, `column`, `index`, `bucket`, `team`, `function` or `site` copies the structure and its settings; `row`, `file`, `user`, `membership`, `deployment` and `site-deployment` copy what it holds. A function or site is copied with its active deployment; add `deployment` or `site-deployment` to copy every deployment. Users are copied newest first and at most 90 of them, leaving room under the limit of 100 users of an environment for test accounts; the memberships of users left behind are not copied. Leave empty for an empty environment. Maximum of 100 types. | [] |
 
@@ -64,26 +64,26 @@ Pass `resources` to copy the project into the environment. The environment is re
 GET https://cloud.appwrite.io/v1/project/environments/{environmentId}
 ```
 
-** Get an environment of the project by its unique ID. **
+** Get an environment of the project by its ID, the one passed in the `X-Appwrite-Environment` header to act in it. **
 
 ### Parameters
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| environmentId | string | **Required** Environment unique ID. |  |
+| environmentId | string | **Required** Environment ID. |  |
 
 
 ```http request
 PATCH https://cloud.appwrite.io/v1/project/environments/{environmentId}
 ```
 
-** Update the name of an environment of the project. **
+** Update the name of an environment of the project. The environment ID cannot be changed. **
 
 ### Parameters
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| environmentId | string | **Required** Environment unique ID. |  |
+| environmentId | string | **Required** Environment ID. |  |
 | name | string | Environment name. Max length: 128 chars. |  |
 
 
@@ -97,7 +97,7 @@ DELETE https://cloud.appwrite.io/v1/project/environments/{environmentId}
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| environmentId | string | **Required** Environment unique ID. |  |
+| environmentId | string | **Required** Environment ID. |  |
 
 
 ```http request
@@ -956,6 +956,36 @@ PATCH https://cloud.appwrite.io/v1/project/oauth2/twitch
 
 
 ```http request
+PATCH https://cloud.appwrite.io/v1/project/oauth2/vipps
+```
+
+** Update the project OAuth2 Vipps MobilePay configuration. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| clientId | string | 'Client ID' of Vipps MobilePay OAuth2 app. For example: 9a3a4b3e-0000-0000-0000-0f1a6d1c3b2e |  |
+| clientSecret | string | 'Client Secret' of Vipps MobilePay OAuth2 app. For example: Ay1jb000000000000000000000000000000Vx3k |  |
+| enabled | boolean | OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid. |  |
+
+
+```http request
+PATCH https://cloud.appwrite.io/v1/project/oauth2/vippsSandbox
+```
+
+** Update the project OAuth2 Vipps MobilePay Sandbox configuration. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| clientId | string | 'Client ID' of Vipps MobilePay Sandbox OAuth2 app. For example: 9a3a4b3e-0000-0000-0000-0f1a6d1c3b2e |  |
+| clientSecret | string | 'Client Secret' of Vipps MobilePay Sandbox OAuth2 app. For example: Ay1jb000000000000000000000000000000Vx3k |  |
+| enabled | boolean | OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid. |  |
+
+
+```http request
 PATCH https://cloud.appwrite.io/v1/project/oauth2/webflow
 ```
 
@@ -1281,6 +1311,19 @@ GET https://cloud.appwrite.io/v1/project/policies
 
 
 ```http request
+PATCH https://cloud.appwrite.io/v1/project/policies/account-devices
+```
+
+** Update whether account devices are enabled for the project. When enabled, a browser can create an account device that holds multiple sessions and switch between them. When disabled, account devices can no longer be created, so each browser is limited to a single active session. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| enabled | boolean | Set to true to allow account devices, or false to disable them for this project. |  |
+
+
+```http request
 PATCH https://cloud.appwrite.io/v1/project/policies/deny-aliased-email
 ```
 
@@ -1561,7 +1604,7 @@ GET https://cloud.appwrite.io/v1/project/policies/{policyId}
 
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
-| policyId | string | **Required** Policy ID. Can be one of: password-dictionary, password-history, password-strength, password-personal-data, password-pwned, password-rotation, session-alert, session-duration, session-invalidation, session-limit, user-limit, membership-privacy, mfa-factors, deny-aliased-email, deny-disposable-email, deny-free-email, deny-corporate-email, deny-realtime-guests, passkey. |  |
+| policyId | string | **Required** Policy ID. Can be one of: password-dictionary, password-history, password-strength, password-personal-data, password-pwned, password-rotation, session-alert, session-duration, session-invalidation, session-limit, user-limit, membership-privacy, mfa-factors, deny-aliased-email, deny-disposable-email, deny-free-email, deny-corporate-email, deny-realtime-guests, passkey, account-devices. |  |
 
 
 ```http request

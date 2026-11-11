@@ -100,6 +100,7 @@ class ProjectKeyScopes implements JsonSerializable, Stringable
     private static ProjectKeyScopes $MONITORSREAD;
     private static ProjectKeyScopes $MONITORSWRITE;
     private static ProjectKeyScopes $ALERTSREAD;
+    private static ProjectKeyScopes $ALERTSWRITE;
     private static ProjectKeyScopes $LOCALEREAD;
     private static ProjectKeyScopes $AVATARSREAD;
     private static ProjectKeyScopes $AVATARSWRITE;
@@ -700,6 +701,12 @@ class ProjectKeyScopes implements JsonSerializable, Stringable
 
         return self::$ALERTSREAD;
     }
+    public static function ALERTSWRITE(): ProjectKeyScopes
+    {
+        self::$ALERTSWRITE ??= new ProjectKeyScopes('alerts.write');
+
+        return self::$ALERTSWRITE;
+    }
     public static function LOCALEREAD(): ProjectKeyScopes
     {
         self::$LOCALEREAD ??= new ProjectKeyScopes('locale.read');
@@ -1029,6 +1036,7 @@ class ProjectKeyScopes implements JsonSerializable, Stringable
             'monitors.read' => self::MONITORSREAD(),
             'monitors.write' => self::MONITORSWRITE(),
             'alerts.read' => self::ALERTSREAD(),
+            'alerts.write' => self::ALERTSWRITE(),
             'locale.read' => self::LOCALEREAD(),
             'avatars.read' => self::AVATARSREAD(),
             'avatars.write' => self::AVATARSWRITE(),

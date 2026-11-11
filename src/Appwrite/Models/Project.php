@@ -45,6 +45,7 @@ readonly class Project
      * @param Preferences|null $prefs project preferences as a key-value object
      * @param bool|null $wafEnabled whether waf enforcement is enabled for the project.
      * @param string|null $parentId id of the project this environment belongs to. null when the project is not an environment.
+     * @param string|null $environmentId id of the environment, as passed in the x-appwrite-environment header, when the project is accessed as one. null when the project is not an environment.
      * @param BillingLimits|null $billingLimits billing limits reached
      * @param string|null $firstAccessedAt first time the project received a non-console api request. empty until the project is used.
      * @param string|null $mcpAccessedAt last time the project was accessed through the mcp server. empty if it was never accessed via mcp.
@@ -96,6 +97,7 @@ readonly class Project
         public ?Preferences $prefs = null,
         public ?bool $wafEnabled = null,
         public ?string $parentId = null,
+        public ?string $environmentId = null,
         public ?BillingLimits $billingLimits = null,
         public ?string $firstAccessedAt = null,
         public ?string $mcpAccessedAt = null,
@@ -203,6 +205,7 @@ readonly class Project
             prefs: array_key_exists('prefs', $data) ? static::hydrateTypedValue(Preferences::class, $data['prefs'], true) : null,
             wafEnabled: $data['wafEnabled'] ?? null,
             parentId: $data['parentId'] ?? null,
+            environmentId: $data['environmentId'] ?? null,
             billingLimits: array_key_exists('billingLimits', $data) ? static::hydrateTypedValue(BillingLimits::class, $data['billingLimits'], true) : null,
             firstAccessedAt: $data['firstAccessedAt'] ?? null,
             mcpAccessedAt: $data['mcpAccessedAt'] ?? null,
@@ -261,6 +264,7 @@ readonly class Project
             'consoleAccessedAt' => static::serializeValue($this->consoleAccessedAt),
             'wafEnabled' => static::serializeValue($this->wafEnabled),
             'parentId' => static::serializeValue($this->parentId),
+            'environmentId' => static::serializeValue($this->environmentId),
             'billingLimits' => static::serializeValue($this->billingLimits),
             'firstAccessedAt' => static::serializeValue($this->firstAccessedAt),
             'mcpAccessedAt' => static::serializeValue($this->mcpAccessedAt),

@@ -37,6 +37,7 @@ readonly class WafRuleRateLimit
      * @param string $key rate limit key: `ip` limits per client ip, `userid` limits per authenticated user.
      * @param string $strategy rate limit strategy: `fixedwindow`, `slidingwindow`, or `tokenbucket`.
      * @param int $maxBucketSize maximum burst capacity in tokens, applied by the `tokenbucket` strategy. the sustained refill rate is `limit / interval`. defaults to `limit`.
+     * @param array|null $schedule when the rule is active: mode, days, interval, anchor, starttime, endtime and timezone. null when the rule is always active.
      */
     public function __construct(
         public string $id,
@@ -57,7 +58,8 @@ readonly class WafRuleRateLimit
         public int $interval,
         public string $key,
         public string $strategy,
-        public int $maxBucketSize
+        public int $maxBucketSize,
+        public ?array $schedule = null
     ) {
     }
 
@@ -110,7 +112,8 @@ readonly class WafRuleRateLimit
             interval: $data['interval'],
             key: $data['key'],
             strategy: $data['strategy'],
-            maxBucketSize: $data['maxBucketSize']
+            maxBucketSize: $data['maxBucketSize'],
+            schedule: $data['schedule'] ?? null
         );
     }
 
@@ -134,6 +137,7 @@ readonly class WafRuleRateLimit
             'enabled' => static::serializeValue($this->enabled),
             'conditions' => static::serializeValue($this->conditions),
             'config' => static::serializeValue($this->config),
+            'schedule' => static::serializeValue($this->schedule),
             'limit' => static::serializeValue($this->limit),
             'interval' => static::serializeValue($this->interval),
             'key' => static::serializeValue($this->key),
