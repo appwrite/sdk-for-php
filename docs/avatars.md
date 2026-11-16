@@ -179,7 +179,9 @@ GET https://cloud.appwrite.io/v1/avatars/screenshots
 
 You can configure the browser viewport size, theme, user agent, geolocation, permissions, and more. Capture either just the viewport or the full page scroll.
 
-When width and height are specified, the image is resized accordingly. If both dimensions are 0, the API provides an image at original size. If dimensions are not specified, the default viewport size is 1280x720px. **
+When width and height are specified, the image is resized accordingly. If both dimensions are 0, the API provides an image at original size. If dimensions are not specified, the default viewport size is 1280x720px.
+
+Set `output` to `auto` to receive avif or webp when the `Accept` header of your request supports it, falling back to png. **
 
 ### Parameters
 
@@ -204,5 +206,5 @@ When width and height are specified, the image is resized accordingly. If both d
 | width | integer | Output image width. Pass 0 to use original width, or an integer between 1 to 2000. Defaults to 0 (original width). | 0 |
 | height | integer | Output image height. Pass 0 to use original height, or an integer between 1 to 2000. Defaults to 0 (original height). | 0 |
 | quality | integer | Screenshot quality. Pass an integer between 0 to 100. Defaults to keep existing image quality. | -1 |
-| output | string | Output format type (jpeg, jpg, png, gif and webp). |  |
+| output | string | Output format type (jpeg, jpg, png, gif, webp, heic and avif). Pass auto to serve avif or webp when the Accept header of your request supports it, falling back to png. |  |
 

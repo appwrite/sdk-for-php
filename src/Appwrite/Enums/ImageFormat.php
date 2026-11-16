@@ -16,6 +16,7 @@ class ImageFormat implements JsonSerializable, Stringable
     private static ImageFormat $HEIC;
     private static ImageFormat $AVIF;
     private static ImageFormat $GIF;
+    private static ImageFormat $AUTO;
 
     private function __construct(private readonly string $value)
     {
@@ -73,6 +74,12 @@ class ImageFormat implements JsonSerializable, Stringable
 
         return self::$GIF;
     }
+    public static function AUTO(): ImageFormat
+    {
+        self::$AUTO ??= new ImageFormat('auto');
+
+        return self::$AUTO;
+    }
 
     public static function from(string $value): self
     {
@@ -84,6 +91,7 @@ class ImageFormat implements JsonSerializable, Stringable
             'heic' => self::HEIC(),
             'avif' => self::AVIF(),
             'gif' => self::GIF(),
+            'auto' => self::AUTO(),
             default => throw new \InvalidArgumentException('Unknown ImageFormat value: ' . $value),
         };
     }

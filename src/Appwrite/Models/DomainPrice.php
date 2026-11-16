@@ -24,6 +24,7 @@ readonly class DomainPrice
      * @param int $renewalPeriodYears renewal price period in years.
      * @param float|null $price domain registration price. null when the price could not be resolved, for example for an unsupported tld.
      * @param float|null $renewalPrice domain renewal price for the same period. null when the domain was not priced or the registrar has no renewal price for it.
+     * @param string|null $reason why the domain was not priced for the requested registration type, for example a transfer of an unregistered domain. empty otherwise.
      */
     public function __construct(
         public string $domain,
@@ -33,7 +34,8 @@ readonly class DomainPrice
         public bool $premium,
         public int $renewalPeriodYears,
         public ?float $price = null,
-        public ?float $renewalPrice = null
+        public ?float $renewalPrice = null,
+        public ?string $reason = null
     ) {
     }
 
@@ -59,7 +61,8 @@ readonly class DomainPrice
             premium: $data['premium'],
             renewalPeriodYears: $data['renewalPeriodYears'],
             price: $data['price'] ?? null,
-            renewalPrice: $data['renewalPrice'] ?? null
+            renewalPrice: $data['renewalPrice'] ?? null,
+            reason: $data['reason'] ?? null
         );
     }
 
@@ -76,7 +79,8 @@ readonly class DomainPrice
             'periodYears' => static::serializeValue($this->periodYears),
             'premium' => static::serializeValue($this->premium),
             'renewalPrice' => static::serializeValue($this->renewalPrice),
-            'renewalPeriodYears' => static::serializeValue($this->renewalPeriodYears)
+            'renewalPeriodYears' => static::serializeValue($this->renewalPeriodYears),
+            'reason' => static::serializeValue($this->reason)
         ];
     }
 }

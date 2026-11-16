@@ -195,7 +195,8 @@ GET https://cloud.appwrite.io/v1/storage/buckets/{bucketId}/files/{fileId}/downl
 GET https://cloud.appwrite.io/v1/storage/buckets/{bucketId}/files/{fileId}/preview
 ```
 
-** Get a file preview image. Currently, this method supports preview for image files (jpg, png, and gif), other supported formats, like pdf, docs, slides, and spreadsheets, will return the file icon image. You can also pass query string arguments for cutting and resizing your preview image. Preview is supported only for image files smaller than 10MB. **
+** Get a file preview image. Currently, this method supports preview for image files (jpg, png, and gif), other supported formats, like pdf, docs, slides, and spreadsheets, will return the file icon image. You can also pass query string arguments for cutting and resizing your preview image. Set `output` to `auto` to receive avif or webp when the client's `Accept` header supports it, falling back to the original image format. Preview is supported only for image files smaller than 10MB.
+ **
 
 ### Parameters
 
@@ -213,7 +214,7 @@ GET https://cloud.appwrite.io/v1/storage/buckets/{bucketId}/files/{fileId}/previ
 | opacity | number | Preview image opacity. Only works with images having an alpha channel (like png). Pass a number between 0 to 1. | 1 |
 | rotation | integer | Preview image rotation in degrees. Pass an integer between -360 and 360. | 0 |
 | background | string | Preview image background color. Only works with transparent images (png). Use a valid HEX color, no # is needed for prefix. |  |
-| output | string | Output format type (jpeg, jpg, png, gif and webp). |  |
+| output | string | Output format type (jpeg, jpg, png, gif, webp, heic and avif). Pass auto to serve avif or webp when the client's Accept header supports it, falling back to the original format. |  |
 | token | string | File token for accessing this file. |  |
 
 

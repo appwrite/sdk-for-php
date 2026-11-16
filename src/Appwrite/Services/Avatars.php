@@ -614,6 +614,9 @@ class Avatars extends Service
      * both dimensions are 0, the API provides an image at original size. If
      * dimensions are not specified, the default viewport size is 1280x720px.
      *
+     * Set `output` to `auto` to receive avif or webp when the `Accept` header of
+     * your request supports it, falling back to png.
+     *
      * @throws AppwriteException
      */
     public function getScreenshot(string $url, ?array $headers = null, ?int $viewportWidth = null, ?int $viewportHeight = null, ?float $scale = null, ?BrowserTheme $theme = null, ?string $userAgent = null, ?bool $fullpage = null, ?string $locale = null, ?Timezone $timezone = null, ?float $latitude = null, ?float $longitude = null, ?float $accuracy = null, ?bool $touch = null, ?array $permissions = null, ?int $sleep = null, ?int $width = null, ?int $height = null, ?int $quality = null, ?ImageFormat $output = null): string
@@ -705,7 +708,7 @@ class Avatars extends Service
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
-        $apiHeaders['accept'] = 'image/png';
+        $apiHeaders['accept'] = 'image/*';
 
         return $this->client->call(
             Client::METHOD_GET,

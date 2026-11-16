@@ -8,6 +8,7 @@ use Appwrite\AppwriteException;
 use Appwrite\Client;
 use Appwrite\Service;
 use Appwrite\Enums\ProjectAuthMethodId;
+use Appwrite\Enums\ProjectLDAPEncryption;
 use Appwrite\Enums\ProjectOAuthProviderId;
 use Appwrite\Enums\ProjectPolicyId;
 use Appwrite\Enums\ProjectProtocolId;
@@ -557,6 +558,101 @@ class Project extends Service
         }
 
         return \Appwrite\Models\Project::from($response);
+    }
+
+    /**
+     * Update the LDAP configuration for your project. Use this endpoint to
+     * connect your project to an LDAP directory, such as OpenLDAP or Active
+     * Directory, so users can sign in with their directory credentials. Omitted
+     * parameters keep their stored value. Enabling LDAP connects to the directory
+     * and binds as the service account, so a project cannot be left enabled with
+     * a configuration that cannot sign anyone in.
+     *
+     * @throws AppwriteException
+     */
+    public function updateLDAP(?bool $enabled = null, ?array $hosts = null, ?int $port = null, ?ProjectLDAPEncryption $encryption = null, ?bool $verification = null, ?string $certificate = null, ?int $timeout = null, ?string $baseDn = null, ?string $bindDn = null, ?string $bindPassword = null, ?string $userFilter = null, ?string $requiredGroupDn = null, ?string $idAttribute = null, ?string $emailAttribute = null, ?string $nameAttribute = null, ?string $phoneAttribute = null): \Appwrite\Models\Project
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/project/ldap'
+        );
+
+        $apiParams = [];
+        $apiParams['enabled'] = $enabled;
+        $apiParams['hosts'] = $hosts;
+        $apiParams['port'] = $port;
+        $apiParams['encryption'] = $encryption;
+        $apiParams['verification'] = $verification;
+        $apiParams['certificate'] = $certificate;
+        $apiParams['timeout'] = $timeout;
+        $apiParams['baseDn'] = $baseDn;
+        $apiParams['bindDn'] = $bindDn;
+        $apiParams['bindPassword'] = $bindPassword;
+        $apiParams['userFilter'] = $userFilter;
+        $apiParams['requiredGroupDn'] = $requiredGroupDn;
+        $apiParams['idAttribute'] = $idAttribute;
+        $apiParams['emailAttribute'] = $emailAttribute;
+        $apiParams['nameAttribute'] = $nameAttribute;
+        $apiParams['phoneAttribute'] = $phoneAttribute;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Project::from($response);
+    }
+
+    /**
+     * Test the stored LDAP configuration against the directory without signing
+     * anyone in. Connects to the directory, binds as the service account and
+     * reads the base DN. Pass a username to also look the user up and check the
+     * required group, and a password to also verify it. The error names the step
+     * that failed.
+     *
+     * @throws AppwriteException
+     */
+    public function createLDAPTest(?string $username = null, ?string $password = null): string
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/project/ldap/tests'
+        );
+
+        $apiParams = [];
+
+        if (!is_null($username)) {
+            $apiParams['username'] = $username;
+        }
+
+        if (!is_null($password)) {
+            $apiParams['password'] = $password;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
     }
 
     /**
@@ -1882,6 +1978,43 @@ class Project extends Service
     }
 
     /**
+     * Update the project OAuth2 Naver configuration.
+     *
+     * @throws AppwriteException
+     */
+    public function updateOAuth2Naver(?string $clientId = null, ?string $clientSecret = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Naver
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/project/oauth2/naver'
+        );
+
+        $apiParams = [];
+        $apiParams['clientId'] = $clientId;
+        $apiParams['clientSecret'] = $clientSecret;
+        $apiParams['enabled'] = $enabled;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\OAuth2Naver::from($response);
+    }
+
+    /**
      * Update the project OAuth2 Notion configuration.
      *
      * @throws AppwriteException
@@ -2786,7 +2919,7 @@ class Project extends Service
      *
      * @throws AppwriteException
      */
-    public function getOAuth2Provider(ProjectOAuthProviderId $providerId): \Appwrite\Models\OAuth2Github|\Appwrite\Models\OAuth2Discord|\Appwrite\Models\OAuth2Figma|\Appwrite\Models\OAuth2Dropbox|\Appwrite\Models\OAuth2Dailymotion|\Appwrite\Models\OAuth2Bitbucket|\Appwrite\Models\OAuth2Bitly|\Appwrite\Models\OAuth2Box|\Appwrite\Models\OAuth2Autodesk|\Appwrite\Models\OAuth2Google|\Appwrite\Models\OAuth2Zoom|\Appwrite\Models\OAuth2Zoho|\Appwrite\Models\OAuth2Yandex|\Appwrite\Models\OAuth2X|\Appwrite\Models\OAuth2WordPress|\Appwrite\Models\OAuth2Webflow|\Appwrite\Models\OAuth2Twitch|\Appwrite\Models\OAuth2Stripe|\Appwrite\Models\OAuth2Spotify|\Appwrite\Models\OAuth2Slack|\Appwrite\Models\OAuth2Podio|\Appwrite\Models\OAuth2Notion|\Appwrite\Models\OAuth2Salesforce|\Appwrite\Models\OAuth2Yahoo|\Appwrite\Models\OAuth2HuggingFace|\Appwrite\Models\OAuth2Resend|\Appwrite\Models\OAuth2Cloudflare|\Appwrite\Models\OAuth2Linkedin|\Appwrite\Models\OAuth2Disqus|\Appwrite\Models\OAuth2Amazon|\Appwrite\Models\OAuth2Etsy|\Appwrite\Models\OAuth2Facebook|\Appwrite\Models\OAuth2Tradeshift|\Appwrite\Models\OAuth2Paypal|\Appwrite\Models\OAuth2Gitlab|\Appwrite\Models\OAuth2Authentik|\Appwrite\Models\OAuth2Auth0|\Appwrite\Models\OAuth2FusionAuth|\Appwrite\Models\OAuth2Keycloak|\Appwrite\Models\OAuth2Oidc|\Appwrite\Models\OAuth2Apple|\Appwrite\Models\OAuth2Okta|\Appwrite\Models\OAuth2Kick|\Appwrite\Models\OAuth2Microsoft|\Appwrite\Models\OAuth2TikTok|\Appwrite\Models\OAuth2Kakao|\Appwrite\Models\OAuth2Vipps
+    public function getOAuth2Provider(ProjectOAuthProviderId $providerId): \Appwrite\Models\OAuth2Github|\Appwrite\Models\OAuth2Discord|\Appwrite\Models\OAuth2Figma|\Appwrite\Models\OAuth2Dropbox|\Appwrite\Models\OAuth2Dailymotion|\Appwrite\Models\OAuth2Bitbucket|\Appwrite\Models\OAuth2Bitly|\Appwrite\Models\OAuth2Box|\Appwrite\Models\OAuth2Autodesk|\Appwrite\Models\OAuth2Google|\Appwrite\Models\OAuth2Zoom|\Appwrite\Models\OAuth2Zoho|\Appwrite\Models\OAuth2Yandex|\Appwrite\Models\OAuth2X|\Appwrite\Models\OAuth2WordPress|\Appwrite\Models\OAuth2Webflow|\Appwrite\Models\OAuth2Twitch|\Appwrite\Models\OAuth2Stripe|\Appwrite\Models\OAuth2Spotify|\Appwrite\Models\OAuth2Slack|\Appwrite\Models\OAuth2Podio|\Appwrite\Models\OAuth2Notion|\Appwrite\Models\OAuth2Salesforce|\Appwrite\Models\OAuth2Yahoo|\Appwrite\Models\OAuth2HuggingFace|\Appwrite\Models\OAuth2Resend|\Appwrite\Models\OAuth2Cloudflare|\Appwrite\Models\OAuth2Linkedin|\Appwrite\Models\OAuth2Disqus|\Appwrite\Models\OAuth2Amazon|\Appwrite\Models\OAuth2Etsy|\Appwrite\Models\OAuth2Facebook|\Appwrite\Models\OAuth2Tradeshift|\Appwrite\Models\OAuth2Paypal|\Appwrite\Models\OAuth2Gitlab|\Appwrite\Models\OAuth2Authentik|\Appwrite\Models\OAuth2Auth0|\Appwrite\Models\OAuth2FusionAuth|\Appwrite\Models\OAuth2Keycloak|\Appwrite\Models\OAuth2Oidc|\Appwrite\Models\OAuth2Apple|\Appwrite\Models\OAuth2Okta|\Appwrite\Models\OAuth2Kick|\Appwrite\Models\OAuth2Microsoft|\Appwrite\Models\OAuth2TikTok|\Appwrite\Models\OAuth2Kakao|\Appwrite\Models\OAuth2Naver|\Appwrite\Models\OAuth2Vipps
     {
         $apiPath = str_replace(
             ['{providerId}'],
@@ -3004,6 +3137,10 @@ class Project extends Service
             return \Appwrite\Models\OAuth2Kakao::from($response);
         }
 
+        if (($response['$id'] ?? null) === 'naver') {
+            return \Appwrite\Models\OAuth2Naver::from($response);
+        }
+
         if (($response['$id'] ?? null) === 'vipps') {
             return \Appwrite\Models\OAuth2Vipps::from($response);
         }
@@ -3013,6 +3150,41 @@ class Project extends Service
         }
 
         throw new \UnexpectedValueException('Unable to match response to any expected response model.');
+    }
+
+    /**
+     * Delete all passwords in the project, forcing every user to reset their
+     * password. Any password set before this request stops working for email and
+     * password sign-in immediately: signing in returns a
+     * `user_password_reset_required` error until the user sets a new password
+     * through password recovery, or until a new password is set for them with the
+     * Users API. Existing sessions are not affected; call the delete sessions
+     * endpoint to sign users out as well. Users without a password and API keys
+     * are not affected by this action.
+     *
+     * @throws AppwriteException
+     */
+    public function deletePasswords(): string
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/project/passwords'
+        );
+
+        $apiParams = [];
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_DELETE,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
     }
 
     /**

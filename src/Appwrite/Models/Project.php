@@ -32,6 +32,22 @@ readonly class Project
      * @param string $smtpUsername smtp server username
      * @param string $smtpPassword smtp server password. this property is write-only and always returned empty.
      * @param string $smtpSecure smtp server secure protocol
+     * @param bool $ldapEnabled status for ldap sign-in
+     * @param array $ldapHosts ldap directory hosts, tried in order.
+     * @param int $ldapPort ldap directory port.
+     * @param string $ldapEncryption ldap transport encryption: none, ldaps or starttls.
+     * @param bool $ldapVerification whether the ldap directory certificate is verified.
+     * @param string $ldapCertificate certificate in pem format of the authority that signed the ldap directory certificate, or the directory certificate itself when it is self-signed. empty for the system trust store.
+     * @param int $ldapTimeout seconds to wait for the ldap directory to connect and answer.
+     * @param string $ldapBaseDn ldap subtree the user search starts from.
+     * @param string $ldapBindDn ldap service account used to search for users, empty for anonymous search.
+     * @param string $ldapBindPassword ldap service account password. this property is write-only and always returned empty.
+     * @param string $ldapUserFilter ldap filter that finds the user signing in, with {username} where the username they enter goes.
+     * @param string $ldapRequiredGroupDn ldap group a user must belong to in order to sign in, empty to allow every user.
+     * @param string $ldapIdAttribute ldap attribute holding the identifier that stays the same when an entry is renamed or moved.
+     * @param string $ldapEmailAttribute ldap attribute holding the email address.
+     * @param string $ldapNameAttribute ldap attribute holding the display name.
+     * @param string $ldapPhoneAttribute ldap attribute holding the phone number, empty when unmapped.
      * @param int $pingCount number of times the ping was received for this project.
      * @param string $pingedAt last ping datetime in iso 8601 format.
      * @param array $labels labels for the project.
@@ -84,6 +100,22 @@ readonly class Project
         public string $smtpUsername,
         public string $smtpPassword,
         public string $smtpSecure,
+        public bool $ldapEnabled,
+        public array $ldapHosts,
+        public int $ldapPort,
+        public string $ldapEncryption,
+        public bool $ldapVerification,
+        public string $ldapCertificate,
+        public int $ldapTimeout,
+        public string $ldapBaseDn,
+        public string $ldapBindDn,
+        public string $ldapBindPassword,
+        public string $ldapUserFilter,
+        public string $ldapRequiredGroupDn,
+        public string $ldapIdAttribute,
+        public string $ldapEmailAttribute,
+        public string $ldapNameAttribute,
+        public string $ldapPhoneAttribute,
         public int $pingCount,
         public string $pingedAt,
         public array $labels,
@@ -143,6 +175,22 @@ readonly class Project
             'smtpUsername' => "",
             'smtpPassword' => "",
             'smtpSecure' => "",
+            'ldapEnabled' => false,
+            'ldapHosts' => [],
+            'ldapPort' => 636,
+            'ldapEncryption' => "ldaps",
+            'ldapVerification' => true,
+            'ldapCertificate' => "",
+            'ldapTimeout' => 10,
+            'ldapBaseDn' => "",
+            'ldapBindDn' => "",
+            'ldapBindPassword' => "",
+            'ldapUserFilter' => "(uid={username})",
+            'ldapRequiredGroupDn' => "",
+            'ldapIdAttribute' => "entryUUID",
+            'ldapEmailAttribute' => "mail",
+            'ldapNameAttribute' => "cn",
+            'ldapPhoneAttribute' => "",
             'pingCount' => 0,
             'pingedAt' => "",
             'labels' => [],
@@ -172,6 +220,22 @@ readonly class Project
             smtpUsername: $data['smtpUsername'],
             smtpPassword: $data['smtpPassword'],
             smtpSecure: $data['smtpSecure'],
+            ldapEnabled: $data['ldapEnabled'],
+            ldapHosts: $data['ldapHosts'],
+            ldapPort: $data['ldapPort'],
+            ldapEncryption: $data['ldapEncryption'],
+            ldapVerification: $data['ldapVerification'],
+            ldapCertificate: $data['ldapCertificate'],
+            ldapTimeout: $data['ldapTimeout'],
+            ldapBaseDn: $data['ldapBaseDn'],
+            ldapBindDn: $data['ldapBindDn'],
+            ldapBindPassword: $data['ldapBindPassword'],
+            ldapUserFilter: $data['ldapUserFilter'],
+            ldapRequiredGroupDn: $data['ldapRequiredGroupDn'],
+            ldapIdAttribute: $data['ldapIdAttribute'],
+            ldapEmailAttribute: $data['ldapEmailAttribute'],
+            ldapNameAttribute: $data['ldapNameAttribute'],
+            ldapPhoneAttribute: $data['ldapPhoneAttribute'],
             pingCount: $data['pingCount'],
             pingedAt: $data['pingedAt'],
             labels: $data['labels'],
@@ -251,6 +315,22 @@ readonly class Project
             'smtpUsername' => static::serializeValue($this->smtpUsername),
             'smtpPassword' => static::serializeValue($this->smtpPassword),
             'smtpSecure' => static::serializeValue($this->smtpSecure),
+            'ldapEnabled' => static::serializeValue($this->ldapEnabled),
+            'ldapHosts' => static::serializeValue($this->ldapHosts),
+            'ldapPort' => static::serializeValue($this->ldapPort),
+            'ldapEncryption' => static::serializeValue($this->ldapEncryption),
+            'ldapVerification' => static::serializeValue($this->ldapVerification),
+            'ldapCertificate' => static::serializeValue($this->ldapCertificate),
+            'ldapTimeout' => static::serializeValue($this->ldapTimeout),
+            'ldapBaseDn' => static::serializeValue($this->ldapBaseDn),
+            'ldapBindDn' => static::serializeValue($this->ldapBindDn),
+            'ldapBindPassword' => static::serializeValue($this->ldapBindPassword),
+            'ldapUserFilter' => static::serializeValue($this->ldapUserFilter),
+            'ldapRequiredGroupDn' => static::serializeValue($this->ldapRequiredGroupDn),
+            'ldapIdAttribute' => static::serializeValue($this->ldapIdAttribute),
+            'ldapEmailAttribute' => static::serializeValue($this->ldapEmailAttribute),
+            'ldapNameAttribute' => static::serializeValue($this->ldapNameAttribute),
+            'ldapPhoneAttribute' => static::serializeValue($this->ldapPhoneAttribute),
             'pingCount' => static::serializeValue($this->pingCount),
             'pingedAt' => static::serializeValue($this->pingedAt),
             'labels' => static::serializeValue($this->labels),

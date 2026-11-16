@@ -327,42 +327,15 @@ class Functions extends Service
         if (!is_null($runtime)) {
             $apiParams['runtime'] = $runtime;
         }
-
-        if (!is_null($execute)) {
-            $apiParams['execute'] = $execute;
-        }
-
-        if (!is_null($events)) {
-            $apiParams['events'] = $events;
-        }
-
-        if (!is_null($schedule)) {
-            $apiParams['schedule'] = $schedule;
-        }
-
-        if (!is_null($timeout)) {
-            $apiParams['timeout'] = $timeout;
-        }
-
-        if (!is_null($enabled)) {
-            $apiParams['enabled'] = $enabled;
-        }
-
-        if (!is_null($logging)) {
-            $apiParams['logging'] = $logging;
-        }
-
-        if (!is_null($entrypoint)) {
-            $apiParams['entrypoint'] = $entrypoint;
-        }
-
-        if (!is_null($commands)) {
-            $apiParams['commands'] = $commands;
-        }
-
-        if (!is_null($scopes)) {
-            $apiParams['scopes'] = $scopes;
-        }
+        $apiParams['execute'] = $execute;
+        $apiParams['events'] = $events;
+        $apiParams['schedule'] = $schedule;
+        $apiParams['timeout'] = $timeout;
+        $apiParams['enabled'] = $enabled;
+        $apiParams['logging'] = $logging;
+        $apiParams['entrypoint'] = $entrypoint;
+        $apiParams['commands'] = $commands;
+        $apiParams['scopes'] = $scopes;
 
         if (!is_null($installationId)) {
             $apiParams['installationId'] = $installationId;
@@ -372,10 +345,7 @@ class Functions extends Service
         if (!is_null($providerBranch)) {
             $apiParams['providerBranch'] = $providerBranch;
         }
-
-        if (!is_null($providerSilentMode)) {
-            $apiParams['providerSilentMode'] = $providerSilentMode;
-        }
+        $apiParams['providerSilentMode'] = $providerSilentMode;
 
         if (!is_null($providerRootDirectory)) {
             $apiParams['providerRootDirectory'] = $providerRootDirectory;
@@ -384,10 +354,7 @@ class Functions extends Service
         $apiParams['providerPaths'] = $providerPaths;
         $apiParams['buildSpecification'] = $buildSpecification;
         $apiParams['runtimeSpecification'] = $runtimeSpecification;
-
-        if (!is_null($deploymentRetention)) {
-            $apiParams['deploymentRetention'] = $deploymentRetention;
-        }
+        $apiParams['deploymentRetention'] = $deploymentRetention;
         $apiParams['interval'] = $interval;
         $apiParams['description'] = $description;
         $apiParams['emailEnabled'] = $emailEnabled;

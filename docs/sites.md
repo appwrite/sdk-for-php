@@ -106,9 +106,9 @@ PUT https://cloud.appwrite.io/v1/sites/{siteId}
 | siteId | string | **Required** Site ID. |  |
 | name | string | Site name. Max length: 128 chars. |  |
 | framework | string | Sites framework. |  |
-| enabled | boolean | Is site enabled? When set to 'disabled', users cannot access the site but Server SDKs with and API key can still access the site. No data is lost when this is toggled. | 1 |
-| logging | boolean | When disabled, request logs will exclude logs and errors, and site responses will be slightly faster. | 1 |
-| timeout | integer | Maximum request time in seconds. | 30 |
+| enabled | boolean | Is site enabled? When set to 'disabled', users cannot access the site but Server SDKs with and API key can still access the site. No data is lost when this is toggled. |  |
+| logging | boolean | When disabled, request logs will exclude logs and errors, and site responses will be slightly faster. |  |
+| timeout | integer | Maximum request time in seconds. |  |
 | installCommand | string | Install Command. |  |
 | buildCommand | string | Build Command. |  |
 | startCommand | string | Custom start command. Leave empty to use default. |  |
@@ -124,8 +124,8 @@ PUT https://cloud.appwrite.io/v1/sites/{siteId}
 | providerBranches | array | List of branch name patterns to trigger automatic deployments. Supports wildcards. Leave empty to deploy on all branches. |  |
 | providerPaths | array | List of file path patterns to trigger automatic deployments. Supports wildcards. Leave empty to deploy on all file changes. |  |
 | buildSpecification | string | Build specification for the site deployments. |  |
-| runtimeSpecification | string | Runtime specification for the SSR executions. | [] |
-| deploymentRetention | integer | Days to keep non-active deployments before deletion. Value 0 keeps all deployments unless the server applies a default retention. | 0 |
+| runtimeSpecification | string | Runtime specification for the SSR executions. |  |
+| deploymentRetention | integer | Days to keep non-active deployments before deletion. Value 0 keeps all deployments unless the server applies a default retention. |  |
 | scopes | array | List of scopes allowed for API key auto-generated for every site build and SSR execution. Maximum of 200 scopes are allowed. |  |
 | description | string | Optional description for the site. |  |
 
@@ -141,6 +141,20 @@ DELETE https://cloud.appwrite.io/v1/sites/{siteId}
 | Field Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | siteId | string | **Required** Site ID. |  |
+
+
+```http request
+PATCH https://cloud.appwrite.io/v1/sites/{siteId}/analytics
+```
+
+** Turn analytics on or off for a site. Turning it on links an analytics property named after the site, creating one on first use, and injects the tracker into pages served on the site's production domains. Turning it on also needs the `analytics.write` scope. Turning it off stops the injection and keeps the property and its data. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| siteId | string | **Required** Site ID. |  |
+| enabled | boolean | Inject the analytics tracker into the site's production domains. Injected pageviews and events are billed as analytics usage. |  |
 
 
 ```http request

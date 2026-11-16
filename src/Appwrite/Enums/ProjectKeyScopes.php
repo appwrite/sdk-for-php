@@ -22,8 +22,11 @@ class ProjectKeyScopes implements JsonSerializable, Stringable
     private static ProjectKeyScopes $POLICIESWRITE;
     private static ProjectKeyScopes $PROJECTPOLICIESREAD;
     private static ProjectKeyScopes $PROJECTPOLICIESWRITE;
+    private static ProjectKeyScopes $PROJECTVIDEOSPROFILESREAD;
+    private static ProjectKeyScopes $PROJECTVIDEOSPROFILESWRITE;
     private static ProjectKeyScopes $PROJECTOAUTH2READ;
     private static ProjectKeyScopes $PROJECTOAUTH2WRITE;
+    private static ProjectKeyScopes $PROJECTLDAPWRITE;
     private static ProjectKeyScopes $TEMPLATESREAD;
     private static ProjectKeyScopes $TEMPLATESWRITE;
     private static ProjectKeyScopes $STAGESREAD;
@@ -120,6 +123,9 @@ class ProjectKeyScopes implements JsonSerializable, Stringable
     private static ProjectKeyScopes $REVIEWSWRITE;
     private static ProjectKeyScopes $PRESENCESREAD;
     private static ProjectKeyScopes $PRESENCESWRITE;
+    private static ProjectKeyScopes $VIDEOSPLAY;
+    private static ProjectKeyScopes $VIDEOSREAD;
+    private static ProjectKeyScopes $VIDEOSWRITE;
     private static ProjectKeyScopes $DEDICATEDDATABASESEXECUTE;
     private static ProjectKeyScopes $BACKUPSPOLICIESREAD;
     private static ProjectKeyScopes $BACKUPSPOLICIESWRITE;
@@ -233,6 +239,18 @@ class ProjectKeyScopes implements JsonSerializable, Stringable
 
         return self::$PROJECTPOLICIESWRITE;
     }
+    public static function PROJECTVIDEOSPROFILESREAD(): ProjectKeyScopes
+    {
+        self::$PROJECTVIDEOSPROFILESREAD ??= new ProjectKeyScopes('project.videos.profiles.read');
+
+        return self::$PROJECTVIDEOSPROFILESREAD;
+    }
+    public static function PROJECTVIDEOSPROFILESWRITE(): ProjectKeyScopes
+    {
+        self::$PROJECTVIDEOSPROFILESWRITE ??= new ProjectKeyScopes('project.videos.profiles.write');
+
+        return self::$PROJECTVIDEOSPROFILESWRITE;
+    }
     public static function PROJECTOAUTH2READ(): ProjectKeyScopes
     {
         self::$PROJECTOAUTH2READ ??= new ProjectKeyScopes('project.oauth2.read');
@@ -244,6 +262,12 @@ class ProjectKeyScopes implements JsonSerializable, Stringable
         self::$PROJECTOAUTH2WRITE ??= new ProjectKeyScopes('project.oauth2.write');
 
         return self::$PROJECTOAUTH2WRITE;
+    }
+    public static function PROJECTLDAPWRITE(): ProjectKeyScopes
+    {
+        self::$PROJECTLDAPWRITE ??= new ProjectKeyScopes('project.ldap.write');
+
+        return self::$PROJECTLDAPWRITE;
     }
     public static function TEMPLATESREAD(): ProjectKeyScopes
     {
@@ -821,6 +845,24 @@ class ProjectKeyScopes implements JsonSerializable, Stringable
 
         return self::$PRESENCESWRITE;
     }
+    public static function VIDEOSPLAY(): ProjectKeyScopes
+    {
+        self::$VIDEOSPLAY ??= new ProjectKeyScopes('videos.play');
+
+        return self::$VIDEOSPLAY;
+    }
+    public static function VIDEOSREAD(): ProjectKeyScopes
+    {
+        self::$VIDEOSREAD ??= new ProjectKeyScopes('videos.read');
+
+        return self::$VIDEOSREAD;
+    }
+    public static function VIDEOSWRITE(): ProjectKeyScopes
+    {
+        self::$VIDEOSWRITE ??= new ProjectKeyScopes('videos.write');
+
+        return self::$VIDEOSWRITE;
+    }
     public static function DEDICATEDDATABASESEXECUTE(): ProjectKeyScopes
     {
         self::$DEDICATEDDATABASESEXECUTE ??= new ProjectKeyScopes('dedicatedDatabases.execute');
@@ -958,8 +1000,11 @@ class ProjectKeyScopes implements JsonSerializable, Stringable
             'policies.write' => self::POLICIESWRITE(),
             'project.policies.read' => self::PROJECTPOLICIESREAD(),
             'project.policies.write' => self::PROJECTPOLICIESWRITE(),
+            'project.videos.profiles.read' => self::PROJECTVIDEOSPROFILESREAD(),
+            'project.videos.profiles.write' => self::PROJECTVIDEOSPROFILESWRITE(),
             'project.oauth2.read' => self::PROJECTOAUTH2READ(),
             'project.oauth2.write' => self::PROJECTOAUTH2WRITE(),
+            'project.ldap.write' => self::PROJECTLDAPWRITE(),
             'templates.read' => self::TEMPLATESREAD(),
             'templates.write' => self::TEMPLATESWRITE(),
             'stages.read' => self::STAGESREAD(),
@@ -1056,6 +1101,9 @@ class ProjectKeyScopes implements JsonSerializable, Stringable
             'reviews.write' => self::REVIEWSWRITE(),
             'presences.read' => self::PRESENCESREAD(),
             'presences.write' => self::PRESENCESWRITE(),
+            'videos.play' => self::VIDEOSPLAY(),
+            'videos.read' => self::VIDEOSREAD(),
+            'videos.write' => self::VIDEOSWRITE(),
             'dedicatedDatabases.execute' => self::DEDICATEDDATABASESEXECUTE(),
             'backups.policies.read' => self::BACKUPSPOLICIESREAD(),
             'backups.policies.write' => self::BACKUPSPOLICIESWRITE(),

@@ -1917,6 +1917,50 @@ class Account extends Service
     }
 
     /**
+     * Allow the user to login into their account by providing the username and
+     * password they use in the project's LDAP directory. The directory verifies
+     * the password; on the first sign-in an account is created from the directory
+     * entry, and on later sign-ins the name, email and phone follow the
+     * directory. This endpoint requires LDAP to be configured and enabled for the
+     * project. A user is limited to 10 active sessions at a time by default.
+     * [Learn more about session
+     * limits](https://appwrite.io/docs/authentication-security#limits).
+     *
+     * @throws AppwriteException
+     */
+    public function createLDAPSession(string $username, string $password, ?int $duration = null): \Appwrite\Models\Session
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/account/sessions/ldap'
+        );
+
+        $apiParams = [];
+        $apiParams['username'] = $username;
+        $apiParams['password'] = $password;
+        $apiParams['duration'] = $duration;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Session::from($response);
+    }
+
+    /**
      * Use this endpoint to create a session from token. Provide the **userId**
      * and **secret** parameters from the successful response of authentication
      * flows initiated by token creation. For example, magic URL and phone login.

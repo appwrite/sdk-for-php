@@ -84,7 +84,9 @@ final class SitesTest extends TestCase
                     "runtimeSpecification" => "s-1vcpu-512mb",
                     "buildRuntime" => "node-22",
                     "adapter" => "static",
-                    "fallbackFile" => "index.html"
+                    "fallbackFile" => "index.html",
+                    "analyticsEnabled" => true,
+                    "analyticsPropertyId" => "5e5ea5c16897e"
                 ]
             ]
         ];
@@ -169,7 +171,9 @@ final class SitesTest extends TestCase
             "runtimeSpecification" => "s-1vcpu-512mb",
             "buildRuntime" => "node-22",
             "adapter" => "static",
-            "fallbackFile" => "index.html"
+            "fallbackFile" => "index.html",
+            "analyticsEnabled" => true,
+            "analyticsPropertyId" => "5e5ea5c16897e"
         ];
 
         $this->client
@@ -386,7 +390,9 @@ final class SitesTest extends TestCase
             "runtimeSpecification" => "s-1vcpu-512mb",
             "buildRuntime" => "node-22",
             "adapter" => "static",
-            "fallbackFile" => "index.html"
+            "fallbackFile" => "index.html",
+            "analyticsEnabled" => true,
+            "analyticsPropertyId" => "5e5ea5c16897e"
         ];
 
         $this->client
@@ -465,7 +471,9 @@ final class SitesTest extends TestCase
             "runtimeSpecification" => "s-1vcpu-512mb",
             "buildRuntime" => "node-22",
             "adapter" => "static",
-            "fallbackFile" => "index.html"
+            "fallbackFile" => "index.html",
+            "analyticsEnabled" => true,
+            "analyticsPropertyId" => "5e5ea5c16897e"
         ];
 
         $this->client
@@ -572,6 +580,89 @@ final class SitesTest extends TestCase
 
         $this->assertSame($data, $response);
     }
+    public function testMethodUpdateAnalytics(): void
+    {
+        $data = [
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "name" => "My Site",
+            "description" => "Marketing site for the spring launch.",
+            "enabled" => true,
+            "live" => true,
+            "logging" => true,
+            "framework" => "react",
+            "deploymentRetention" => 7,
+            "deploymentId" => "5e5ea5c16897e",
+            "deploymentCreatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "deploymentScreenshotLight" => "5e5ea5c16897e",
+            "deploymentScreenshotDark" => "5e5ea5c16897e",
+            "latestDeploymentId" => "5e5ea5c16897e",
+            "latestDeploymentCreatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "latestDeploymentStatus" => "ready",
+            "scopes" => [],
+            "vars" => [
+                [
+                    "\$id" => "5e5ea5c16897e",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "key" => "API_KEY",
+                    "description" => "Stripe secret key used at checkout.",
+                    "value" => "myPa\$\$word1",
+                    "secret" => true,
+                    "resourceType" => "function",
+                    "resourceId" => "myAwesomeFunction"
+                ]
+            ],
+            "timeout" => 300,
+            "installCommand" => "npm install",
+            "buildCommand" => "npm run build",
+            "startCommand" => "node custom-server.mjs",
+            "outputDirectory" => "build",
+            "installationId" => "6m40at4ejk5h2u9s1hboo",
+            "providerRepositoryId" => "appwrite",
+            "providerBranch" => "main",
+            "providerRootDirectory" => "sites/helloWorld",
+            "providerSilentMode" => true,
+            "providerBranches" => [],
+            "providerPaths" => [],
+            "buildSpecification" => "s-1vcpu-512mb",
+            "runtimeSpecification" => "s-1vcpu-512mb",
+            "buildRuntime" => "node-22",
+            "adapter" => "static",
+            "fallbackFile" => "index.html",
+            "analyticsEnabled" => true,
+            "analyticsPropertyId" => "5e5ea5c16897e"
+        ];
+
+        $this->client
+            ->expects()->call(
+                'PATCH',
+                '/sites/%3CSITE_ID%3E/analytics',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['siteId', 'enabled'], array_keys($params));
+                    $expected = [
+                        'siteId' => "<SITE_ID>",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->sites->updateAnalytics(
+            "<SITE_ID>",
+            false
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\Site::class, $response);
+    }
     public function testMethodUpdateSiteDeployment(): void
     {
         $data = [
@@ -622,7 +713,9 @@ final class SitesTest extends TestCase
             "runtimeSpecification" => "s-1vcpu-512mb",
             "buildRuntime" => "node-22",
             "adapter" => "static",
-            "fallbackFile" => "index.html"
+            "fallbackFile" => "index.html",
+            "analyticsEnabled" => true,
+            "analyticsPropertyId" => "5e5ea5c16897e"
         ];
 
         $this->client
