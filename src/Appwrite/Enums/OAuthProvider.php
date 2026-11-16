@@ -36,6 +36,7 @@ class OAuthProvider implements JsonSerializable, Stringable
     private static OAuthProvider $KICK;
     private static OAuthProvider $LINKEDIN;
     private static OAuthProvider $MICROSOFT;
+    private static OAuthProvider $NAVER;
     private static OAuthProvider $NOTION;
     private static OAuthProvider $OIDC;
     private static OAuthProvider $OKTA;
@@ -238,6 +239,12 @@ class OAuthProvider implements JsonSerializable, Stringable
 
         return self::$MICROSOFT;
     }
+    public static function NAVER(): OAuthProvider
+    {
+        self::$NAVER ??= new OAuthProvider('naver');
+
+        return self::$NAVER;
+    }
     public static function NOTION(): OAuthProvider
     {
         self::$NOTION ??= new OAuthProvider('notion');
@@ -419,6 +426,7 @@ class OAuthProvider implements JsonSerializable, Stringable
             'kick' => self::KICK(),
             'linkedin' => self::LINKEDIN(),
             'microsoft' => self::MICROSOFT(),
+            'naver' => self::NAVER(),
             'notion' => self::NOTION(),
             'oidc' => self::OIDC(),
             'okta' => self::OKTA(),

@@ -324,46 +324,19 @@ class Sites extends Service
         $apiParams['siteId'] = $siteId;
         $apiParams['name'] = $name;
         $apiParams['framework'] = $framework;
-
-        if (!is_null($enabled)) {
-            $apiParams['enabled'] = $enabled;
-        }
-
-        if (!is_null($logging)) {
-            $apiParams['logging'] = $logging;
-        }
-
-        if (!is_null($timeout)) {
-            $apiParams['timeout'] = $timeout;
-        }
-
-        if (!is_null($installCommand)) {
-            $apiParams['installCommand'] = $installCommand;
-        }
-
-        if (!is_null($buildCommand)) {
-            $apiParams['buildCommand'] = $buildCommand;
-        }
-
-        if (!is_null($startCommand)) {
-            $apiParams['startCommand'] = $startCommand;
-        }
-
-        if (!is_null($outputDirectory)) {
-            $apiParams['outputDirectory'] = $outputDirectory;
-        }
+        $apiParams['enabled'] = $enabled;
+        $apiParams['logging'] = $logging;
+        $apiParams['timeout'] = $timeout;
+        $apiParams['installCommand'] = $installCommand;
+        $apiParams['buildCommand'] = $buildCommand;
+        $apiParams['startCommand'] = $startCommand;
+        $apiParams['outputDirectory'] = $outputDirectory;
 
         if (!is_null($buildRuntime)) {
             $apiParams['buildRuntime'] = $buildRuntime;
         }
-
-        if (!is_null($adapter)) {
-            $apiParams['adapter'] = $adapter;
-        }
-
-        if (!is_null($fallbackFile)) {
-            $apiParams['fallbackFile'] = $fallbackFile;
-        }
+        $apiParams['adapter'] = $adapter;
+        $apiParams['fallbackFile'] = $fallbackFile;
 
         if (!is_null($installationId)) {
             $apiParams['installationId'] = $installationId;
@@ -373,10 +346,7 @@ class Sites extends Service
         if (!is_null($providerBranch)) {
             $apiParams['providerBranch'] = $providerBranch;
         }
-
-        if (!is_null($providerSilentMode)) {
-            $apiParams['providerSilentMode'] = $providerSilentMode;
-        }
+        $apiParams['providerSilentMode'] = $providerSilentMode;
 
         if (!is_null($providerRootDirectory)) {
             $apiParams['providerRootDirectory'] = $providerRootDirectory;
@@ -384,14 +354,8 @@ class Sites extends Service
         $apiParams['providerBranches'] = $providerBranches;
         $apiParams['providerPaths'] = $providerPaths;
         $apiParams['buildSpecification'] = $buildSpecification;
-
-        if (!is_null($runtimeSpecification)) {
-            $apiParams['runtimeSpecification'] = $runtimeSpecification;
-        }
-
-        if (!is_null($deploymentRetention)) {
-            $apiParams['deploymentRetention'] = $deploymentRetention;
-        }
+        $apiParams['runtimeSpecification'] = $runtimeSpecification;
+        $apiParams['deploymentRetention'] = $deploymentRetention;
         $apiParams['scopes'] = $scopes;
         $apiParams['description'] = $description;
 
@@ -445,6 +409,50 @@ class Sites extends Service
             $apiHeaders,
             $apiParams
         );
+    }
+
+    /**
+     * Turn analytics on or off for a site. Turning it on links an analytics
+     * property named after the site, creating one on first use, and injects the
+     * tracker into pages served on the site's production domains. Turning it on
+     * also needs the `analytics.write` scope. Turning it off stops the injection
+     * and keeps the property and its data.
+     *
+     * @throws AppwriteException
+     */
+    public function updateAnalytics(string $siteId, bool $enabled): \Appwrite\Models\Site
+    {
+        if ($siteId === '') {
+            throw new AppwriteException('Missing required parameter: "siteId"');
+        }
+
+        $apiPath = str_replace(
+            ['{siteId}'],
+            [self::encodePath($siteId)],
+            '/sites/{siteId}/analytics'
+        );
+
+        $apiParams = [];
+        $apiParams['siteId'] = $siteId;
+        $apiParams['enabled'] = $enabled;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Site::from($response);
     }
 
     /**

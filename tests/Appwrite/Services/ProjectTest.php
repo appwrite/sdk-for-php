@@ -12,6 +12,7 @@ use PHPUnit\Framework\TestCase;
 use Appwrite\Enums\ProjectAuthMethodId;
 use Appwrite\Enums\EnvironmentResource;
 use Appwrite\Enums\ProjectKeyScopes;
+use Appwrite\Enums\ProjectLDAPEncryption;
 use Appwrite\Enums\ProjectOAuth2Auth0Prompt;
 use Appwrite\Enums\ProjectOAuth2DiscordPrompt;
 use Appwrite\Enums\ProjectOAuth2GitHubPrompt;
@@ -62,6 +63,22 @@ final class ProjectTest extends TestCase
             "smtpUsername" => "emailuser",
             "smtpPassword" => "smtp-password",
             "smtpSecure" => "tls",
+            "ldapEnabled" => true,
+            "ldapHosts" => [],
+            "ldapPort" => 636,
+            "ldapEncryption" => "ldaps",
+            "ldapVerification" => true,
+            "ldapCertificate" => "[LDAPCERTIFICATE]",
+            "ldapTimeout" => 10,
+            "ldapBaseDn" => "ou=people,dc=example,dc=com",
+            "ldapBindDn" => "cn=appwrite,ou=services,dc=example,dc=com",
+            "ldapBindPassword" => "ldap-password",
+            "ldapUserFilter" => "(uid={username})",
+            "ldapRequiredGroupDn" => "cn=staff,ou=groups,dc=example,dc=com",
+            "ldapIdAttribute" => "entryUUID",
+            "ldapEmailAttribute" => "mail",
+            "ldapNameAttribute" => "cn",
+            "ldapPhoneAttribute" => "mobile",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
             "labels" => [],
@@ -159,6 +176,22 @@ final class ProjectTest extends TestCase
             "smtpUsername" => "emailuser",
             "smtpPassword" => "smtp-password",
             "smtpSecure" => "tls",
+            "ldapEnabled" => true,
+            "ldapHosts" => [],
+            "ldapPort" => 636,
+            "ldapEncryption" => "ldaps",
+            "ldapVerification" => true,
+            "ldapCertificate" => "[LDAPCERTIFICATE]",
+            "ldapTimeout" => 10,
+            "ldapBaseDn" => "ou=people,dc=example,dc=com",
+            "ldapBindDn" => "cn=appwrite,ou=services,dc=example,dc=com",
+            "ldapBindPassword" => "ldap-password",
+            "ldapUserFilter" => "(uid={username})",
+            "ldapRequiredGroupDn" => "cn=staff,ou=groups,dc=example,dc=com",
+            "ldapIdAttribute" => "entryUUID",
+            "ldapEmailAttribute" => "mail",
+            "ldapNameAttribute" => "cn",
+            "ldapPhoneAttribute" => "mobile",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
             "labels" => [],
@@ -638,6 +671,22 @@ final class ProjectTest extends TestCase
             "smtpUsername" => "emailuser",
             "smtpPassword" => "smtp-password",
             "smtpSecure" => "tls",
+            "ldapEnabled" => true,
+            "ldapHosts" => [],
+            "ldapPort" => 636,
+            "ldapEncryption" => "ldaps",
+            "ldapVerification" => true,
+            "ldapCertificate" => "[LDAPCERTIFICATE]",
+            "ldapTimeout" => 10,
+            "ldapBaseDn" => "ou=people,dc=example,dc=com",
+            "ldapBindDn" => "cn=appwrite,ou=services,dc=example,dc=com",
+            "ldapBindPassword" => "ldap-password",
+            "ldapUserFilter" => "(uid={username})",
+            "ldapRequiredGroupDn" => "cn=staff,ou=groups,dc=example,dc=com",
+            "ldapIdAttribute" => "entryUUID",
+            "ldapEmailAttribute" => "mail",
+            "ldapNameAttribute" => "cn",
+            "ldapPhoneAttribute" => "mobile",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
             "labels" => [],
@@ -697,6 +746,163 @@ final class ProjectTest extends TestCase
         );
 
         $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
+    }
+    public function testMethodUpdateLDAP(): void
+    {
+        $data = [
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "name" => "New Project",
+            "teamId" => "1592981250",
+            "region" => "fra",
+            "smtpEnabled" => true,
+            "smtpSenderName" => "John Appwrite",
+            "smtpSenderEmail" => "john@appwrite.io",
+            "smtpReplyToName" => "Support Team",
+            "smtpReplyToEmail" => "support@appwrite.io",
+            "smtpHost" => "mail.appwrite.io",
+            "smtpPort" => 25,
+            "smtpUsername" => "emailuser",
+            "smtpPassword" => "smtp-password",
+            "smtpSecure" => "tls",
+            "ldapEnabled" => true,
+            "ldapHosts" => [],
+            "ldapPort" => 636,
+            "ldapEncryption" => "ldaps",
+            "ldapVerification" => true,
+            "ldapCertificate" => "[LDAPCERTIFICATE]",
+            "ldapTimeout" => 10,
+            "ldapBaseDn" => "ou=people,dc=example,dc=com",
+            "ldapBindDn" => "cn=appwrite,ou=services,dc=example,dc=com",
+            "ldapBindPassword" => "ldap-password",
+            "ldapUserFilter" => "(uid={username})",
+            "ldapRequiredGroupDn" => "cn=staff,ou=groups,dc=example,dc=com",
+            "ldapIdAttribute" => "entryUUID",
+            "ldapEmailAttribute" => "mail",
+            "ldapNameAttribute" => "cn",
+            "ldapPhoneAttribute" => "mobile",
+            "pingCount" => 1,
+            "pingedAt" => "2020-10-15T06:38:00.000+00:00",
+            "labels" => [],
+            "status" => "active",
+            "onboarding" => [],
+            "authMethods" => [
+                [
+                    "\$id" => "email-password",
+                    "enabled" => true
+                ]
+            ],
+            "services" => [
+                [
+                    "\$id" => "account",
+                    "enabled" => true
+                ]
+            ],
+            "protocols" => [
+                [
+                    "\$id" => "rest",
+                    "enabled" => true
+                ]
+            ],
+            "blocks" => [
+                [
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "resourceType" => "project",
+                    "resourceId" => "5e5ea5c16897e",
+                    "mode" => "readOnly"
+                ]
+            ],
+            "consoleAccessedAt" => "2020-10-15T06:38:00.000+00:00"
+        ];
+
+        $this->client
+            ->expects()->call(
+                'PATCH',
+                '/project/ldap',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['enabled', 'hosts', 'port', 'encryption', 'verification', 'certificate', 'timeout', 'baseDn', 'bindDn', 'bindPassword', 'userFilter', 'requiredGroupDn', 'idAttribute', 'emailAttribute', 'nameAttribute', 'phoneAttribute'], array_keys($params));
+                    $expected = [
+                        'enabled' => false,
+                        'hosts' => [],
+                        'port' => 1,
+                        'encryption' => ProjectLDAPEncryption::NONE(),
+                        'verification' => false,
+                        'certificate' => "<CERTIFICATE>",
+                        'timeout' => 1,
+                        'baseDn' => "ou=people,dc=example,dc=com",
+                        'bindDn' => "cn=appwrite,ou=services,dc=example,dc=com",
+                        'bindPassword' => "password",
+                        'userFilter' => "(uid={username})",
+                        'requiredGroupDn' => "cn=staff,ou=groups,dc=example,dc=com",
+                        'idAttribute' => "entryUUID",
+                        'emailAttribute' => "mail",
+                        'nameAttribute' => "cn",
+                        'phoneAttribute' => "mobile",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->project->updateLDAP(
+            enabled: false,
+            hosts: [],
+            port: 1,
+            encryption: ProjectLDAPEncryption::NONE(),
+            verification: false,
+            certificate: "<CERTIFICATE>",
+            timeout: 1,
+            baseDn: "ou=people,dc=example,dc=com",
+            bindDn: "cn=appwrite,ou=services,dc=example,dc=com",
+            bindPassword: "password",
+            userFilter: "(uid={username})",
+            requiredGroupDn: "cn=staff,ou=groups,dc=example,dc=com",
+            idAttribute: "entryUUID",
+            emailAttribute: "mail",
+            nameAttribute: "cn",
+            phoneAttribute: "mobile"
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\Project::class, $response);
+    }
+    public function testMethodCreateLDAPTest(): void
+    {
+        $data = '';
+
+        $this->client
+            ->expects()->call(
+                'POST',
+                '/project/ldap/tests',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['username', 'password'], array_keys($params));
+                    $expected = [
+                        'username' => "<USERNAME>",
+                        'password' => "password",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->project->createLDAPTest(
+            username: "<USERNAME>",
+            password: "password"
+        );
+
+        $this->assertSame($data, $response);
     }
     public function testMethodListMockPhones(): void
     {
@@ -933,6 +1139,22 @@ final class ProjectTest extends TestCase
             "smtpUsername" => "emailuser",
             "smtpPassword" => "smtp-password",
             "smtpSecure" => "tls",
+            "ldapEnabled" => true,
+            "ldapHosts" => [],
+            "ldapPort" => 636,
+            "ldapEncryption" => "ldaps",
+            "ldapVerification" => true,
+            "ldapCertificate" => "[LDAPCERTIFICATE]",
+            "ldapTimeout" => 10,
+            "ldapBaseDn" => "ou=people,dc=example,dc=com",
+            "ldapBindDn" => "cn=appwrite,ou=services,dc=example,dc=com",
+            "ldapBindPassword" => "ldap-password",
+            "ldapUserFilter" => "(uid={username})",
+            "ldapRequiredGroupDn" => "cn=staff,ou=groups,dc=example,dc=com",
+            "ldapIdAttribute" => "entryUUID",
+            "ldapEmailAttribute" => "mail",
+            "ldapNameAttribute" => "cn",
+            "ldapPhoneAttribute" => "mobile",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
             "labels" => [],
@@ -2133,6 +2355,45 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Microsoft::class, $response);
     }
+    public function testMethodUpdateOAuth2Naver(): void
+    {
+        $data = [
+            "\$id" => "github",
+            "enabled" => true,
+            "clientId" => "jK8pQ0000000000000Zv",
+            "clientSecret" => "9f42A0000000000c1dEb"
+        ];
+
+        $this->client
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/naver',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['clientId', 'clientSecret', 'enabled'], array_keys($params));
+                    $expected = [
+                        'clientId' => "<CLIENT_ID>",
+                        'clientSecret' => "<CLIENT_SECRET>",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->project->updateOAuth2Naver(
+            clientId: "<CLIENT_ID>",
+            clientSecret: "<CLIENT_SECRET>",
+            enabled: false
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\OAuth2Naver::class, $response);
+    }
     public function testMethodUpdateOAuth2Notion(): void
     {
         $data = [
@@ -3141,6 +3402,30 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Vipps::class, $response);
     }
+    public function testMethodDeletePasswords(): void
+    {
+        $data = '';
+
+        $this->client
+            ->expects()->call(
+                'DELETE',
+                '/project/passwords',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame([], array_keys($params));
+
+                    return true;
+                })
+            )
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->project->deletePasswords();
+
+        $this->assertSame($data, $response);
+    }
     public function testMethodListPlatforms(): void
     {
         $data = [
@@ -3718,6 +4003,22 @@ final class ProjectTest extends TestCase
             "smtpUsername" => "emailuser",
             "smtpPassword" => "smtp-password",
             "smtpSecure" => "tls",
+            "ldapEnabled" => true,
+            "ldapHosts" => [],
+            "ldapPort" => 636,
+            "ldapEncryption" => "ldaps",
+            "ldapVerification" => true,
+            "ldapCertificate" => "[LDAPCERTIFICATE]",
+            "ldapTimeout" => 10,
+            "ldapBaseDn" => "ou=people,dc=example,dc=com",
+            "ldapBindDn" => "cn=appwrite,ou=services,dc=example,dc=com",
+            "ldapBindPassword" => "ldap-password",
+            "ldapUserFilter" => "(uid={username})",
+            "ldapRequiredGroupDn" => "cn=staff,ou=groups,dc=example,dc=com",
+            "ldapIdAttribute" => "entryUUID",
+            "ldapEmailAttribute" => "mail",
+            "ldapNameAttribute" => "cn",
+            "ldapPhoneAttribute" => "mobile",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
             "labels" => [],
@@ -3797,6 +4098,22 @@ final class ProjectTest extends TestCase
             "smtpUsername" => "emailuser",
             "smtpPassword" => "smtp-password",
             "smtpSecure" => "tls",
+            "ldapEnabled" => true,
+            "ldapHosts" => [],
+            "ldapPort" => 636,
+            "ldapEncryption" => "ldaps",
+            "ldapVerification" => true,
+            "ldapCertificate" => "[LDAPCERTIFICATE]",
+            "ldapTimeout" => 10,
+            "ldapBaseDn" => "ou=people,dc=example,dc=com",
+            "ldapBindDn" => "cn=appwrite,ou=services,dc=example,dc=com",
+            "ldapBindPassword" => "ldap-password",
+            "ldapUserFilter" => "(uid={username})",
+            "ldapRequiredGroupDn" => "cn=staff,ou=groups,dc=example,dc=com",
+            "ldapIdAttribute" => "entryUUID",
+            "ldapEmailAttribute" => "mail",
+            "ldapNameAttribute" => "cn",
+            "ldapPhoneAttribute" => "mobile",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
             "labels" => [],
@@ -3876,6 +4193,22 @@ final class ProjectTest extends TestCase
             "smtpUsername" => "emailuser",
             "smtpPassword" => "smtp-password",
             "smtpSecure" => "tls",
+            "ldapEnabled" => true,
+            "ldapHosts" => [],
+            "ldapPort" => 636,
+            "ldapEncryption" => "ldaps",
+            "ldapVerification" => true,
+            "ldapCertificate" => "[LDAPCERTIFICATE]",
+            "ldapTimeout" => 10,
+            "ldapBaseDn" => "ou=people,dc=example,dc=com",
+            "ldapBindDn" => "cn=appwrite,ou=services,dc=example,dc=com",
+            "ldapBindPassword" => "ldap-password",
+            "ldapUserFilter" => "(uid={username})",
+            "ldapRequiredGroupDn" => "cn=staff,ou=groups,dc=example,dc=com",
+            "ldapIdAttribute" => "entryUUID",
+            "ldapEmailAttribute" => "mail",
+            "ldapNameAttribute" => "cn",
+            "ldapPhoneAttribute" => "mobile",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
             "labels" => [],
@@ -3955,6 +4288,22 @@ final class ProjectTest extends TestCase
             "smtpUsername" => "emailuser",
             "smtpPassword" => "smtp-password",
             "smtpSecure" => "tls",
+            "ldapEnabled" => true,
+            "ldapHosts" => [],
+            "ldapPort" => 636,
+            "ldapEncryption" => "ldaps",
+            "ldapVerification" => true,
+            "ldapCertificate" => "[LDAPCERTIFICATE]",
+            "ldapTimeout" => 10,
+            "ldapBaseDn" => "ou=people,dc=example,dc=com",
+            "ldapBindDn" => "cn=appwrite,ou=services,dc=example,dc=com",
+            "ldapBindPassword" => "ldap-password",
+            "ldapUserFilter" => "(uid={username})",
+            "ldapRequiredGroupDn" => "cn=staff,ou=groups,dc=example,dc=com",
+            "ldapIdAttribute" => "entryUUID",
+            "ldapEmailAttribute" => "mail",
+            "ldapNameAttribute" => "cn",
+            "ldapPhoneAttribute" => "mobile",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
             "labels" => [],
@@ -4034,6 +4383,22 @@ final class ProjectTest extends TestCase
             "smtpUsername" => "emailuser",
             "smtpPassword" => "smtp-password",
             "smtpSecure" => "tls",
+            "ldapEnabled" => true,
+            "ldapHosts" => [],
+            "ldapPort" => 636,
+            "ldapEncryption" => "ldaps",
+            "ldapVerification" => true,
+            "ldapCertificate" => "[LDAPCERTIFICATE]",
+            "ldapTimeout" => 10,
+            "ldapBaseDn" => "ou=people,dc=example,dc=com",
+            "ldapBindDn" => "cn=appwrite,ou=services,dc=example,dc=com",
+            "ldapBindPassword" => "ldap-password",
+            "ldapUserFilter" => "(uid={username})",
+            "ldapRequiredGroupDn" => "cn=staff,ou=groups,dc=example,dc=com",
+            "ldapIdAttribute" => "entryUUID",
+            "ldapEmailAttribute" => "mail",
+            "ldapNameAttribute" => "cn",
+            "ldapPhoneAttribute" => "mobile",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
             "labels" => [],
@@ -4113,6 +4478,22 @@ final class ProjectTest extends TestCase
             "smtpUsername" => "emailuser",
             "smtpPassword" => "smtp-password",
             "smtpSecure" => "tls",
+            "ldapEnabled" => true,
+            "ldapHosts" => [],
+            "ldapPort" => 636,
+            "ldapEncryption" => "ldaps",
+            "ldapVerification" => true,
+            "ldapCertificate" => "[LDAPCERTIFICATE]",
+            "ldapTimeout" => 10,
+            "ldapBaseDn" => "ou=people,dc=example,dc=com",
+            "ldapBindDn" => "cn=appwrite,ou=services,dc=example,dc=com",
+            "ldapBindPassword" => "ldap-password",
+            "ldapUserFilter" => "(uid={username})",
+            "ldapRequiredGroupDn" => "cn=staff,ou=groups,dc=example,dc=com",
+            "ldapIdAttribute" => "entryUUID",
+            "ldapEmailAttribute" => "mail",
+            "ldapNameAttribute" => "cn",
+            "ldapPhoneAttribute" => "mobile",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
             "labels" => [],
@@ -4192,6 +4573,22 @@ final class ProjectTest extends TestCase
             "smtpUsername" => "emailuser",
             "smtpPassword" => "smtp-password",
             "smtpSecure" => "tls",
+            "ldapEnabled" => true,
+            "ldapHosts" => [],
+            "ldapPort" => 636,
+            "ldapEncryption" => "ldaps",
+            "ldapVerification" => true,
+            "ldapCertificate" => "[LDAPCERTIFICATE]",
+            "ldapTimeout" => 10,
+            "ldapBaseDn" => "ou=people,dc=example,dc=com",
+            "ldapBindDn" => "cn=appwrite,ou=services,dc=example,dc=com",
+            "ldapBindPassword" => "ldap-password",
+            "ldapUserFilter" => "(uid={username})",
+            "ldapRequiredGroupDn" => "cn=staff,ou=groups,dc=example,dc=com",
+            "ldapIdAttribute" => "entryUUID",
+            "ldapEmailAttribute" => "mail",
+            "ldapNameAttribute" => "cn",
+            "ldapPhoneAttribute" => "mobile",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
             "labels" => [],
@@ -4281,6 +4678,22 @@ final class ProjectTest extends TestCase
             "smtpUsername" => "emailuser",
             "smtpPassword" => "smtp-password",
             "smtpSecure" => "tls",
+            "ldapEnabled" => true,
+            "ldapHosts" => [],
+            "ldapPort" => 636,
+            "ldapEncryption" => "ldaps",
+            "ldapVerification" => true,
+            "ldapCertificate" => "[LDAPCERTIFICATE]",
+            "ldapTimeout" => 10,
+            "ldapBaseDn" => "ou=people,dc=example,dc=com",
+            "ldapBindDn" => "cn=appwrite,ou=services,dc=example,dc=com",
+            "ldapBindPassword" => "ldap-password",
+            "ldapUserFilter" => "(uid={username})",
+            "ldapRequiredGroupDn" => "cn=staff,ou=groups,dc=example,dc=com",
+            "ldapIdAttribute" => "entryUUID",
+            "ldapEmailAttribute" => "mail",
+            "ldapNameAttribute" => "cn",
+            "ldapPhoneAttribute" => "mobile",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
             "labels" => [],
@@ -4366,6 +4779,22 @@ final class ProjectTest extends TestCase
             "smtpUsername" => "emailuser",
             "smtpPassword" => "smtp-password",
             "smtpSecure" => "tls",
+            "ldapEnabled" => true,
+            "ldapHosts" => [],
+            "ldapPort" => 636,
+            "ldapEncryption" => "ldaps",
+            "ldapVerification" => true,
+            "ldapCertificate" => "[LDAPCERTIFICATE]",
+            "ldapTimeout" => 10,
+            "ldapBaseDn" => "ou=people,dc=example,dc=com",
+            "ldapBindDn" => "cn=appwrite,ou=services,dc=example,dc=com",
+            "ldapBindPassword" => "ldap-password",
+            "ldapUserFilter" => "(uid={username})",
+            "ldapRequiredGroupDn" => "cn=staff,ou=groups,dc=example,dc=com",
+            "ldapIdAttribute" => "entryUUID",
+            "ldapEmailAttribute" => "mail",
+            "ldapNameAttribute" => "cn",
+            "ldapPhoneAttribute" => "mobile",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
             "labels" => [],
@@ -4445,6 +4874,22 @@ final class ProjectTest extends TestCase
             "smtpUsername" => "emailuser",
             "smtpPassword" => "smtp-password",
             "smtpSecure" => "tls",
+            "ldapEnabled" => true,
+            "ldapHosts" => [],
+            "ldapPort" => 636,
+            "ldapEncryption" => "ldaps",
+            "ldapVerification" => true,
+            "ldapCertificate" => "[LDAPCERTIFICATE]",
+            "ldapTimeout" => 10,
+            "ldapBaseDn" => "ou=people,dc=example,dc=com",
+            "ldapBindDn" => "cn=appwrite,ou=services,dc=example,dc=com",
+            "ldapBindPassword" => "ldap-password",
+            "ldapUserFilter" => "(uid={username})",
+            "ldapRequiredGroupDn" => "cn=staff,ou=groups,dc=example,dc=com",
+            "ldapIdAttribute" => "entryUUID",
+            "ldapEmailAttribute" => "mail",
+            "ldapNameAttribute" => "cn",
+            "ldapPhoneAttribute" => "mobile",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
             "labels" => [],
@@ -4526,6 +4971,22 @@ final class ProjectTest extends TestCase
             "smtpUsername" => "emailuser",
             "smtpPassword" => "smtp-password",
             "smtpSecure" => "tls",
+            "ldapEnabled" => true,
+            "ldapHosts" => [],
+            "ldapPort" => 636,
+            "ldapEncryption" => "ldaps",
+            "ldapVerification" => true,
+            "ldapCertificate" => "[LDAPCERTIFICATE]",
+            "ldapTimeout" => 10,
+            "ldapBaseDn" => "ou=people,dc=example,dc=com",
+            "ldapBindDn" => "cn=appwrite,ou=services,dc=example,dc=com",
+            "ldapBindPassword" => "ldap-password",
+            "ldapUserFilter" => "(uid={username})",
+            "ldapRequiredGroupDn" => "cn=staff,ou=groups,dc=example,dc=com",
+            "ldapIdAttribute" => "entryUUID",
+            "ldapEmailAttribute" => "mail",
+            "ldapNameAttribute" => "cn",
+            "ldapPhoneAttribute" => "mobile",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
             "labels" => [],
@@ -4605,6 +5066,22 @@ final class ProjectTest extends TestCase
             "smtpUsername" => "emailuser",
             "smtpPassword" => "smtp-password",
             "smtpSecure" => "tls",
+            "ldapEnabled" => true,
+            "ldapHosts" => [],
+            "ldapPort" => 636,
+            "ldapEncryption" => "ldaps",
+            "ldapVerification" => true,
+            "ldapCertificate" => "[LDAPCERTIFICATE]",
+            "ldapTimeout" => 10,
+            "ldapBaseDn" => "ou=people,dc=example,dc=com",
+            "ldapBindDn" => "cn=appwrite,ou=services,dc=example,dc=com",
+            "ldapBindPassword" => "ldap-password",
+            "ldapUserFilter" => "(uid={username})",
+            "ldapRequiredGroupDn" => "cn=staff,ou=groups,dc=example,dc=com",
+            "ldapIdAttribute" => "entryUUID",
+            "ldapEmailAttribute" => "mail",
+            "ldapNameAttribute" => "cn",
+            "ldapPhoneAttribute" => "mobile",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
             "labels" => [],
@@ -4686,6 +5163,22 @@ final class ProjectTest extends TestCase
             "smtpUsername" => "emailuser",
             "smtpPassword" => "smtp-password",
             "smtpSecure" => "tls",
+            "ldapEnabled" => true,
+            "ldapHosts" => [],
+            "ldapPort" => 636,
+            "ldapEncryption" => "ldaps",
+            "ldapVerification" => true,
+            "ldapCertificate" => "[LDAPCERTIFICATE]",
+            "ldapTimeout" => 10,
+            "ldapBaseDn" => "ou=people,dc=example,dc=com",
+            "ldapBindDn" => "cn=appwrite,ou=services,dc=example,dc=com",
+            "ldapBindPassword" => "ldap-password",
+            "ldapUserFilter" => "(uid={username})",
+            "ldapRequiredGroupDn" => "cn=staff,ou=groups,dc=example,dc=com",
+            "ldapIdAttribute" => "entryUUID",
+            "ldapEmailAttribute" => "mail",
+            "ldapNameAttribute" => "cn",
+            "ldapPhoneAttribute" => "mobile",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
             "labels" => [],
@@ -4769,6 +5262,22 @@ final class ProjectTest extends TestCase
             "smtpUsername" => "emailuser",
             "smtpPassword" => "smtp-password",
             "smtpSecure" => "tls",
+            "ldapEnabled" => true,
+            "ldapHosts" => [],
+            "ldapPort" => 636,
+            "ldapEncryption" => "ldaps",
+            "ldapVerification" => true,
+            "ldapCertificate" => "[LDAPCERTIFICATE]",
+            "ldapTimeout" => 10,
+            "ldapBaseDn" => "ou=people,dc=example,dc=com",
+            "ldapBindDn" => "cn=appwrite,ou=services,dc=example,dc=com",
+            "ldapBindPassword" => "ldap-password",
+            "ldapUserFilter" => "(uid={username})",
+            "ldapRequiredGroupDn" => "cn=staff,ou=groups,dc=example,dc=com",
+            "ldapIdAttribute" => "entryUUID",
+            "ldapEmailAttribute" => "mail",
+            "ldapNameAttribute" => "cn",
+            "ldapPhoneAttribute" => "mobile",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
             "labels" => [],
@@ -4895,6 +5404,22 @@ final class ProjectTest extends TestCase
             "smtpUsername" => "emailuser",
             "smtpPassword" => "smtp-password",
             "smtpSecure" => "tls",
+            "ldapEnabled" => true,
+            "ldapHosts" => [],
+            "ldapPort" => 636,
+            "ldapEncryption" => "ldaps",
+            "ldapVerification" => true,
+            "ldapCertificate" => "[LDAPCERTIFICATE]",
+            "ldapTimeout" => 10,
+            "ldapBaseDn" => "ou=people,dc=example,dc=com",
+            "ldapBindDn" => "cn=appwrite,ou=services,dc=example,dc=com",
+            "ldapBindPassword" => "ldap-password",
+            "ldapUserFilter" => "(uid={username})",
+            "ldapRequiredGroupDn" => "cn=staff,ou=groups,dc=example,dc=com",
+            "ldapIdAttribute" => "entryUUID",
+            "ldapEmailAttribute" => "mail",
+            "ldapNameAttribute" => "cn",
+            "ldapPhoneAttribute" => "mobile",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
             "labels" => [],
@@ -4974,6 +5499,22 @@ final class ProjectTest extends TestCase
             "smtpUsername" => "emailuser",
             "smtpPassword" => "smtp-password",
             "smtpSecure" => "tls",
+            "ldapEnabled" => true,
+            "ldapHosts" => [],
+            "ldapPort" => 636,
+            "ldapEncryption" => "ldaps",
+            "ldapVerification" => true,
+            "ldapCertificate" => "[LDAPCERTIFICATE]",
+            "ldapTimeout" => 10,
+            "ldapBaseDn" => "ou=people,dc=example,dc=com",
+            "ldapBindDn" => "cn=appwrite,ou=services,dc=example,dc=com",
+            "ldapBindPassword" => "ldap-password",
+            "ldapUserFilter" => "(uid={username})",
+            "ldapRequiredGroupDn" => "cn=staff,ou=groups,dc=example,dc=com",
+            "ldapIdAttribute" => "entryUUID",
+            "ldapEmailAttribute" => "mail",
+            "ldapNameAttribute" => "cn",
+            "ldapPhoneAttribute" => "mobile",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
             "labels" => [],
@@ -5053,6 +5594,22 @@ final class ProjectTest extends TestCase
             "smtpUsername" => "emailuser",
             "smtpPassword" => "smtp-password",
             "smtpSecure" => "tls",
+            "ldapEnabled" => true,
+            "ldapHosts" => [],
+            "ldapPort" => 636,
+            "ldapEncryption" => "ldaps",
+            "ldapVerification" => true,
+            "ldapCertificate" => "[LDAPCERTIFICATE]",
+            "ldapTimeout" => 10,
+            "ldapBaseDn" => "ou=people,dc=example,dc=com",
+            "ldapBindDn" => "cn=appwrite,ou=services,dc=example,dc=com",
+            "ldapBindPassword" => "ldap-password",
+            "ldapUserFilter" => "(uid={username})",
+            "ldapRequiredGroupDn" => "cn=staff,ou=groups,dc=example,dc=com",
+            "ldapIdAttribute" => "entryUUID",
+            "ldapEmailAttribute" => "mail",
+            "ldapNameAttribute" => "cn",
+            "ldapPhoneAttribute" => "mobile",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
             "labels" => [],
@@ -5132,6 +5689,22 @@ final class ProjectTest extends TestCase
             "smtpUsername" => "emailuser",
             "smtpPassword" => "smtp-password",
             "smtpSecure" => "tls",
+            "ldapEnabled" => true,
+            "ldapHosts" => [],
+            "ldapPort" => 636,
+            "ldapEncryption" => "ldaps",
+            "ldapVerification" => true,
+            "ldapCertificate" => "[LDAPCERTIFICATE]",
+            "ldapTimeout" => 10,
+            "ldapBaseDn" => "ou=people,dc=example,dc=com",
+            "ldapBindDn" => "cn=appwrite,ou=services,dc=example,dc=com",
+            "ldapBindPassword" => "ldap-password",
+            "ldapUserFilter" => "(uid={username})",
+            "ldapRequiredGroupDn" => "cn=staff,ou=groups,dc=example,dc=com",
+            "ldapIdAttribute" => "entryUUID",
+            "ldapEmailAttribute" => "mail",
+            "ldapNameAttribute" => "cn",
+            "ldapPhoneAttribute" => "mobile",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
             "labels" => [],
@@ -5211,6 +5784,22 @@ final class ProjectTest extends TestCase
             "smtpUsername" => "emailuser",
             "smtpPassword" => "smtp-password",
             "smtpSecure" => "tls",
+            "ldapEnabled" => true,
+            "ldapHosts" => [],
+            "ldapPort" => 636,
+            "ldapEncryption" => "ldaps",
+            "ldapVerification" => true,
+            "ldapCertificate" => "[LDAPCERTIFICATE]",
+            "ldapTimeout" => 10,
+            "ldapBaseDn" => "ou=people,dc=example,dc=com",
+            "ldapBindDn" => "cn=appwrite,ou=services,dc=example,dc=com",
+            "ldapBindPassword" => "ldap-password",
+            "ldapUserFilter" => "(uid={username})",
+            "ldapRequiredGroupDn" => "cn=staff,ou=groups,dc=example,dc=com",
+            "ldapIdAttribute" => "entryUUID",
+            "ldapEmailAttribute" => "mail",
+            "ldapNameAttribute" => "cn",
+            "ldapPhoneAttribute" => "mobile",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
             "labels" => [],
@@ -5382,6 +5971,22 @@ final class ProjectTest extends TestCase
             "smtpUsername" => "emailuser",
             "smtpPassword" => "smtp-password",
             "smtpSecure" => "tls",
+            "ldapEnabled" => true,
+            "ldapHosts" => [],
+            "ldapPort" => 636,
+            "ldapEncryption" => "ldaps",
+            "ldapVerification" => true,
+            "ldapCertificate" => "[LDAPCERTIFICATE]",
+            "ldapTimeout" => 10,
+            "ldapBaseDn" => "ou=people,dc=example,dc=com",
+            "ldapBindDn" => "cn=appwrite,ou=services,dc=example,dc=com",
+            "ldapBindPassword" => "ldap-password",
+            "ldapUserFilter" => "(uid={username})",
+            "ldapRequiredGroupDn" => "cn=staff,ou=groups,dc=example,dc=com",
+            "ldapIdAttribute" => "entryUUID",
+            "ldapEmailAttribute" => "mail",
+            "ldapNameAttribute" => "cn",
+            "ldapPhoneAttribute" => "mobile",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
             "labels" => [],
@@ -5463,6 +6068,22 @@ final class ProjectTest extends TestCase
             "smtpUsername" => "emailuser",
             "smtpPassword" => "smtp-password",
             "smtpSecure" => "tls",
+            "ldapEnabled" => true,
+            "ldapHosts" => [],
+            "ldapPort" => 636,
+            "ldapEncryption" => "ldaps",
+            "ldapVerification" => true,
+            "ldapCertificate" => "[LDAPCERTIFICATE]",
+            "ldapTimeout" => 10,
+            "ldapBaseDn" => "ou=people,dc=example,dc=com",
+            "ldapBindDn" => "cn=appwrite,ou=services,dc=example,dc=com",
+            "ldapBindPassword" => "ldap-password",
+            "ldapUserFilter" => "(uid={username})",
+            "ldapRequiredGroupDn" => "cn=staff,ou=groups,dc=example,dc=com",
+            "ldapIdAttribute" => "entryUUID",
+            "ldapEmailAttribute" => "mail",
+            "ldapNameAttribute" => "cn",
+            "ldapPhoneAttribute" => "mobile",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
             "labels" => [],
@@ -5568,6 +6189,22 @@ final class ProjectTest extends TestCase
             "smtpUsername" => "emailuser",
             "smtpPassword" => "smtp-password",
             "smtpSecure" => "tls",
+            "ldapEnabled" => true,
+            "ldapHosts" => [],
+            "ldapPort" => 636,
+            "ldapEncryption" => "ldaps",
+            "ldapVerification" => true,
+            "ldapCertificate" => "[LDAPCERTIFICATE]",
+            "ldapTimeout" => 10,
+            "ldapBaseDn" => "ou=people,dc=example,dc=com",
+            "ldapBindDn" => "cn=appwrite,ou=services,dc=example,dc=com",
+            "ldapBindPassword" => "ldap-password",
+            "ldapUserFilter" => "(uid={username})",
+            "ldapRequiredGroupDn" => "cn=staff,ou=groups,dc=example,dc=com",
+            "ldapIdAttribute" => "entryUUID",
+            "ldapEmailAttribute" => "mail",
+            "ldapNameAttribute" => "cn",
+            "ldapPhoneAttribute" => "mobile",
             "pingCount" => 1,
             "pingedAt" => "2020-10-15T06:38:00.000+00:00",
             "labels" => [],

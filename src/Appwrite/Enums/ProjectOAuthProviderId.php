@@ -36,6 +36,7 @@ class ProjectOAuthProviderId implements JsonSerializable, Stringable
     private static ProjectOAuthProviderId $KICK;
     private static ProjectOAuthProviderId $LINKEDIN;
     private static ProjectOAuthProviderId $MICROSOFT;
+    private static ProjectOAuthProviderId $NAVER;
     private static ProjectOAuthProviderId $NOTION;
     private static ProjectOAuthProviderId $OIDC;
     private static ProjectOAuthProviderId $OKTA;
@@ -238,6 +239,12 @@ class ProjectOAuthProviderId implements JsonSerializable, Stringable
 
         return self::$MICROSOFT;
     }
+    public static function NAVER(): ProjectOAuthProviderId
+    {
+        self::$NAVER ??= new ProjectOAuthProviderId('naver');
+
+        return self::$NAVER;
+    }
     public static function NOTION(): ProjectOAuthProviderId
     {
         self::$NOTION ??= new ProjectOAuthProviderId('notion');
@@ -419,6 +426,7 @@ class ProjectOAuthProviderId implements JsonSerializable, Stringable
             'kick' => self::KICK(),
             'linkedin' => self::LINKEDIN(),
             'microsoft' => self::MICROSOFT(),
+            'naver' => self::NAVER(),
             'notion' => self::NOTION(),
             'oidc' => self::OIDC(),
             'okta' => self::OKTA(),

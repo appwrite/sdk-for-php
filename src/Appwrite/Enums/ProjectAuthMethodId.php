@@ -17,6 +17,7 @@ class ProjectAuthMethodId implements JsonSerializable, Stringable
     private static ProjectAuthMethodId $JWT;
     private static ProjectAuthMethodId $PHONE;
     private static ProjectAuthMethodId $PASSKEY;
+    private static ProjectAuthMethodId $LDAP;
 
     private function __construct(private readonly string $value)
     {
@@ -80,6 +81,12 @@ class ProjectAuthMethodId implements JsonSerializable, Stringable
 
         return self::$PASSKEY;
     }
+    public static function LDAP(): ProjectAuthMethodId
+    {
+        self::$LDAP ??= new ProjectAuthMethodId('ldap');
+
+        return self::$LDAP;
+    }
 
     public static function from(string $value): self
     {
@@ -92,6 +99,7 @@ class ProjectAuthMethodId implements JsonSerializable, Stringable
             'jwt' => self::JWT(),
             'phone' => self::PHONE(),
             'passkey' => self::PASSKEY(),
+            'ldap' => self::LDAP(),
             default => throw new \InvalidArgumentException('Unknown ProjectAuthMethodId value: ' . $value),
         };
     }

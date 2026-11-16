@@ -52,6 +52,8 @@ readonly class Site
      * @param string $buildRuntime site build runtime.
      * @param string $adapter site framework adapter.
      * @param string $fallbackFile name of fallback file to use instead of 404 page. if null, appwrite 404 page will be displayed.
+     * @param bool $analyticsEnabled whether the analytics tracker is injected into pages served on the site's production domains.
+     * @param string $analyticsPropertyId id of the analytics property the site reports to. kept when analytics is turned off, so turning it back on resumes the same property.
      */
     public function __construct(
         public string $id,
@@ -89,7 +91,9 @@ readonly class Site
         public string $runtimeSpecification,
         public string $buildRuntime,
         public string $adapter,
-        public string $fallbackFile
+        public string $fallbackFile,
+        public bool $analyticsEnabled,
+        public string $analyticsPropertyId
     ) {
     }
 
@@ -133,6 +137,8 @@ readonly class Site
             'buildSpecification' => "s-1vcpu-512mb",
             'runtimeSpecification' => "s-1vcpu-512mb",
             'buildRuntime' => "",
+            'analyticsEnabled' => false,
+            'analyticsPropertyId' => "",
         ];
 
         if (!array_key_exists('adapter', $data)) {
@@ -183,7 +189,9 @@ readonly class Site
             runtimeSpecification: $data['runtimeSpecification'],
             buildRuntime: $data['buildRuntime'],
             adapter: $data['adapter'],
-            fallbackFile: $data['fallbackFile']
+            fallbackFile: $data['fallbackFile'],
+            analyticsEnabled: $data['analyticsEnabled'],
+            analyticsPropertyId: $data['analyticsPropertyId']
         );
     }
 
@@ -228,7 +236,9 @@ readonly class Site
             'runtimeSpecification' => static::serializeValue($this->runtimeSpecification),
             'buildRuntime' => static::serializeValue($this->buildRuntime),
             'adapter' => static::serializeValue($this->adapter),
-            'fallbackFile' => static::serializeValue($this->fallbackFile)
+            'fallbackFile' => static::serializeValue($this->fallbackFile),
+            'analyticsEnabled' => static::serializeValue($this->analyticsEnabled),
+            'analyticsPropertyId' => static::serializeValue($this->analyticsPropertyId)
         ];
     }
 }

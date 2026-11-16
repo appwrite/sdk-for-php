@@ -105,15 +105,15 @@ PUT https://cloud.appwrite.io/v1/functions/{functionId}
 | functionId | string | **Required** Function ID. |  |
 | name | string | Function name. Max length: 128 chars. |  |
 | runtime | string | Execution runtime. |  |
-| execute | array | An array of role strings with execution permissions. By default no user is granted with any execute permissions. [learn more about roles](https://appwrite.io/docs/permissions#permission-roles). Maximum of 100 roles are allowed, each 64 characters long. | [] |
-| events | array | Events list. Maximum of 100 events are allowed. | [] |
+| execute | array | An array of role strings with execution permissions. By default no user is granted with any execute permissions. [learn more about roles](https://appwrite.io/docs/permissions#permission-roles). Maximum of 100 roles are allowed, each 64 characters long. |  |
+| events | array | Events list. Maximum of 100 events are allowed. |  |
 | schedule | string | Schedule CRON syntax. Cannot be combined with interval. |  |
-| timeout | integer | Maximum execution time in seconds. | 15 |
-| enabled | boolean | Is function enabled? When set to 'disabled', users cannot access the function but Server SDKs with and API key can still access the function. No data is lost when this is toggled. | 1 |
-| logging | boolean | When disabled, executions will exclude logs and errors, and will be slightly faster. | 1 |
+| timeout | integer | Maximum execution time in seconds. |  |
+| enabled | boolean | Is function enabled? When set to 'disabled', users cannot access the function but Server SDKs with and API key can still access the function. No data is lost when this is toggled. |  |
+| logging | boolean | When disabled, executions will exclude logs and errors, and will be slightly faster. |  |
 | entrypoint | string | Entrypoint File. This path is relative to the "providerRootDirectory". |  |
 | commands | string | Build Commands. |  |
-| scopes | array | List of scopes allowed for API Key auto-generated for every execution. Maximum of 200 scopes are allowed. | [] |
+| scopes | array | List of scopes allowed for API Key auto-generated for every execution. Maximum of 200 scopes are allowed. |  |
 | installationId | string | Appwrite Installation ID for VCS (Version Controle System) deployment. |  |
 | providerRepositoryId | string | Repository ID of the repo linked to the function |  |
 | providerBranch | string | Production branch for the repo linked to the function |  |
@@ -123,7 +123,7 @@ PUT https://cloud.appwrite.io/v1/functions/{functionId}
 | providerPaths | array | List of file path patterns to trigger automatic deployments. Supports wildcards. Leave empty to deploy on all file changes. |  |
 | buildSpecification | string | Build specification for the function deployments. |  |
 | runtimeSpecification | string | Runtime specification for the function executions. |  |
-| deploymentRetention | integer | Days to keep non-active deployments before deletion. Value 0 keeps all deployments unless the server applies a default retention. | 0 |
+| deploymentRetention | integer | Days to keep non-active deployments before deletion. Value 0 keeps all deployments unless the server applies a default retention. |  |
 | interval | integer | Minutes between scheduled executions. Appwrite picks when within each interval the function runs. Use 0 to disable. Cannot be combined with schedule. When omitted, the current interval is kept unless schedule is set. |  |
 | description | string | Optional description for the function. |  |
 | emailEnabled | boolean | Enable inbound email triggering for this function. When false or omitted on create, SMTP recipients are rejected. Opt-in; default is off. |  |
