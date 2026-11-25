@@ -1075,6 +1075,43 @@ class Project extends Service
     }
 
     /**
+     * Update the project OAuth2 Atlassian configuration.
+     *
+     * @throws AppwriteException
+     */
+    public function updateOAuth2Atlassian(?string $clientId = null, ?string $clientSecret = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Atlassian
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/project/oauth2/atlassian'
+        );
+
+        $apiParams = [];
+        $apiParams['clientId'] = $clientId;
+        $apiParams['clientSecret'] = $clientSecret;
+        $apiParams['enabled'] = $enabled;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\OAuth2Atlassian::from($response);
+    }
+
+    /**
      * Update the project OAuth2 Auth0 configuration.
      *
      * @throws AppwriteException
@@ -1788,6 +1825,43 @@ class Project extends Service
     }
 
     /**
+     * Update the project OAuth2 Instagram configuration.
+     *
+     * @throws AppwriteException
+     */
+    public function updateOAuth2Instagram(?string $clientId = null, ?string $clientSecret = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Instagram
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/project/oauth2/instagram'
+        );
+
+        $apiParams = [];
+        $apiParams['clientId'] = $clientId;
+        $apiParams['clientSecret'] = $clientSecret;
+        $apiParams['enabled'] = $enabled;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\OAuth2Instagram::from($response);
+    }
+
+    /**
      * Update the project OAuth2 Kakao configuration.
      *
      * @throws AppwriteException
@@ -1902,6 +1976,80 @@ class Project extends Service
     }
 
     /**
+     * Update the project OAuth2 LINE configuration.
+     *
+     * @throws AppwriteException
+     */
+    public function updateOAuth2Line(?string $clientId = null, ?string $clientSecret = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Line
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/project/oauth2/line'
+        );
+
+        $apiParams = [];
+        $apiParams['clientId'] = $clientId;
+        $apiParams['clientSecret'] = $clientSecret;
+        $apiParams['enabled'] = $enabled;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\OAuth2Line::from($response);
+    }
+
+    /**
+     * Update the project OAuth2 Linear configuration.
+     *
+     * @throws AppwriteException
+     */
+    public function updateOAuth2Linear(?string $clientId = null, ?string $clientSecret = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Linear
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/project/oauth2/linear'
+        );
+
+        $apiParams = [];
+        $apiParams['clientId'] = $clientId;
+        $apiParams['clientSecret'] = $clientSecret;
+        $apiParams['enabled'] = $enabled;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\OAuth2Linear::from($response);
+    }
+
+    /**
      * Update the project OAuth2 Linkedin configuration.
      *
      * @throws AppwriteException
@@ -2012,6 +2160,43 @@ class Project extends Service
         }
 
         return \Appwrite\Models\OAuth2Naver::from($response);
+    }
+
+    /**
+     * Update the project OAuth2 Netlify configuration.
+     *
+     * @throws AppwriteException
+     */
+    public function updateOAuth2Netlify(?string $clientId = null, ?string $clientSecret = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Netlify
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/project/oauth2/netlify'
+        );
+
+        $apiParams = [];
+        $apiParams['clientId'] = $clientId;
+        $apiParams['clientSecret'] = $clientSecret;
+        $apiParams['enabled'] = $enabled;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\OAuth2Netlify::from($response);
     }
 
     /**
@@ -2135,6 +2320,43 @@ class Project extends Service
     }
 
     /**
+     * Update the project OAuth2 Patreon configuration.
+     *
+     * @throws AppwriteException
+     */
+    public function updateOAuth2Patreon(?string $clientId = null, ?string $clientSecret = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Patreon
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/project/oauth2/patreon'
+        );
+
+        $apiParams = [];
+        $apiParams['clientId'] = $clientId;
+        $apiParams['clientSecret'] = $clientSecret;
+        $apiParams['enabled'] = $enabled;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\OAuth2Patreon::from($response);
+    }
+
+    /**
      * Update the project OAuth2 Paypal configuration.
      *
      * @throws AppwriteException
@@ -2246,6 +2468,80 @@ class Project extends Service
     }
 
     /**
+     * Update the project OAuth2 Railway configuration.
+     *
+     * @throws AppwriteException
+     */
+    public function updateOAuth2Railway(?string $clientId = null, ?string $clientSecret = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Railway
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/project/oauth2/railway'
+        );
+
+        $apiParams = [];
+        $apiParams['clientId'] = $clientId;
+        $apiParams['clientSecret'] = $clientSecret;
+        $apiParams['enabled'] = $enabled;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\OAuth2Railway::from($response);
+    }
+
+    /**
+     * Update the project OAuth2 Reddit configuration.
+     *
+     * @throws AppwriteException
+     */
+    public function updateOAuth2Reddit(?string $clientId = null, ?string $clientSecret = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Reddit
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/project/oauth2/reddit'
+        );
+
+        $apiParams = [];
+        $apiParams['clientId'] = $clientId;
+        $apiParams['clientSecret'] = $clientSecret;
+        $apiParams['enabled'] = $enabled;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\OAuth2Reddit::from($response);
+    }
+
+    /**
      * Update the project OAuth2 Resend configuration.
      *
      * @throws AppwriteException
@@ -2280,6 +2576,43 @@ class Project extends Service
         }
 
         return \Appwrite\Models\OAuth2Resend::from($response);
+    }
+
+    /**
+     * Update the project OAuth2 Roblox configuration.
+     *
+     * @throws AppwriteException
+     */
+    public function updateOAuth2Roblox(?string $clientId = null, ?string $clientSecret = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Roblox
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/project/oauth2/roblox'
+        );
+
+        $apiParams = [];
+        $apiParams['clientId'] = $clientId;
+        $apiParams['clientSecret'] = $clientSecret;
+        $apiParams['enabled'] = $enabled;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\OAuth2Roblox::from($response);
     }
 
     /**
@@ -2392,6 +2725,43 @@ class Project extends Service
         }
 
         return \Appwrite\Models\OAuth2Spotify::from($response);
+    }
+
+    /**
+     * Update the project OAuth2 Strava configuration.
+     *
+     * @throws AppwriteException
+     */
+    public function updateOAuth2Strava(?string $clientId = null, ?string $clientSecret = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Strava
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/project/oauth2/strava'
+        );
+
+        $apiParams = [];
+        $apiParams['clientId'] = $clientId;
+        $apiParams['clientSecret'] = $clientSecret;
+        $apiParams['enabled'] = $enabled;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\OAuth2Strava::from($response);
     }
 
     /**
@@ -2580,6 +2950,43 @@ class Project extends Service
     }
 
     /**
+     * Update the project OAuth2 Vercel configuration.
+     *
+     * @throws AppwriteException
+     */
+    public function updateOAuth2Vercel(?string $clientId = null, ?string $clientSecret = null, ?bool $enabled = null): \Appwrite\Models\OAuth2Vercel
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/project/oauth2/vercel'
+        );
+
+        $apiParams = [];
+        $apiParams['clientId'] = $clientId;
+        $apiParams['clientSecret'] = $clientSecret;
+        $apiParams['enabled'] = $enabled;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\OAuth2Vercel::from($response);
+    }
+
+    /**
      * Update the project OAuth2 Vipps MobilePay configuration.
      *
      * @throws AppwriteException
@@ -2654,6 +3061,43 @@ class Project extends Service
     }
 
     /**
+     * Update the project OAuth2 VK configuration.
+     *
+     * @throws AppwriteException
+     */
+    public function updateOAuth2VK(?string $clientId = null, ?string $clientSecret = null, ?bool $enabled = null): \Appwrite\Models\OAuth2VK
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/project/oauth2/vk'
+        );
+
+        $apiParams = [];
+        $apiParams['clientId'] = $clientId;
+        $apiParams['clientSecret'] = $clientSecret;
+        $apiParams['enabled'] = $enabled;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\OAuth2VK::from($response);
+    }
+
+    /**
      * Update the project OAuth2 Webflow configuration.
      *
      * @throws AppwriteException
@@ -2725,6 +3169,43 @@ class Project extends Service
         }
 
         return \Appwrite\Models\OAuth2WordPress::from($response);
+    }
+
+    /**
+     * Update the project OAuth2 WorkOS configuration.
+     *
+     * @throws AppwriteException
+     */
+    public function updateOAuth2WorkOS(?string $clientId = null, ?string $clientSecret = null, ?bool $enabled = null): \Appwrite\Models\OAuth2WorkOS
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/project/oauth2/workos'
+        );
+
+        $apiParams = [];
+        $apiParams['clientId'] = $clientId;
+        $apiParams['clientSecret'] = $clientSecret;
+        $apiParams['enabled'] = $enabled;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\OAuth2WorkOS::from($response);
     }
 
     /**
@@ -2919,7 +3400,7 @@ class Project extends Service
      *
      * @throws AppwriteException
      */
-    public function getOAuth2Provider(ProjectOAuthProviderId $providerId): \Appwrite\Models\OAuth2Github|\Appwrite\Models\OAuth2Discord|\Appwrite\Models\OAuth2Figma|\Appwrite\Models\OAuth2Dropbox|\Appwrite\Models\OAuth2Dailymotion|\Appwrite\Models\OAuth2Bitbucket|\Appwrite\Models\OAuth2Bitly|\Appwrite\Models\OAuth2Box|\Appwrite\Models\OAuth2Autodesk|\Appwrite\Models\OAuth2Google|\Appwrite\Models\OAuth2Zoom|\Appwrite\Models\OAuth2Zoho|\Appwrite\Models\OAuth2Yandex|\Appwrite\Models\OAuth2X|\Appwrite\Models\OAuth2WordPress|\Appwrite\Models\OAuth2Webflow|\Appwrite\Models\OAuth2Twitch|\Appwrite\Models\OAuth2Stripe|\Appwrite\Models\OAuth2Spotify|\Appwrite\Models\OAuth2Slack|\Appwrite\Models\OAuth2Podio|\Appwrite\Models\OAuth2Notion|\Appwrite\Models\OAuth2Salesforce|\Appwrite\Models\OAuth2Yahoo|\Appwrite\Models\OAuth2HuggingFace|\Appwrite\Models\OAuth2Resend|\Appwrite\Models\OAuth2Cloudflare|\Appwrite\Models\OAuth2Linkedin|\Appwrite\Models\OAuth2Disqus|\Appwrite\Models\OAuth2Amazon|\Appwrite\Models\OAuth2Etsy|\Appwrite\Models\OAuth2Facebook|\Appwrite\Models\OAuth2Tradeshift|\Appwrite\Models\OAuth2Paypal|\Appwrite\Models\OAuth2Gitlab|\Appwrite\Models\OAuth2Authentik|\Appwrite\Models\OAuth2Auth0|\Appwrite\Models\OAuth2FusionAuth|\Appwrite\Models\OAuth2Keycloak|\Appwrite\Models\OAuth2Oidc|\Appwrite\Models\OAuth2Apple|\Appwrite\Models\OAuth2Okta|\Appwrite\Models\OAuth2Kick|\Appwrite\Models\OAuth2Microsoft|\Appwrite\Models\OAuth2TikTok|\Appwrite\Models\OAuth2Kakao|\Appwrite\Models\OAuth2Naver|\Appwrite\Models\OAuth2Vipps
+    public function getOAuth2Provider(ProjectOAuthProviderId $providerId): \Appwrite\Models\OAuth2Github|\Appwrite\Models\OAuth2Discord|\Appwrite\Models\OAuth2Figma|\Appwrite\Models\OAuth2Dropbox|\Appwrite\Models\OAuth2Dailymotion|\Appwrite\Models\OAuth2Bitbucket|\Appwrite\Models\OAuth2Bitly|\Appwrite\Models\OAuth2Box|\Appwrite\Models\OAuth2Autodesk|\Appwrite\Models\OAuth2Google|\Appwrite\Models\OAuth2Zoom|\Appwrite\Models\OAuth2Zoho|\Appwrite\Models\OAuth2Yandex|\Appwrite\Models\OAuth2X|\Appwrite\Models\OAuth2WordPress|\Appwrite\Models\OAuth2Webflow|\Appwrite\Models\OAuth2Twitch|\Appwrite\Models\OAuth2Stripe|\Appwrite\Models\OAuth2Spotify|\Appwrite\Models\OAuth2Slack|\Appwrite\Models\OAuth2Podio|\Appwrite\Models\OAuth2Notion|\Appwrite\Models\OAuth2Salesforce|\Appwrite\Models\OAuth2Yahoo|\Appwrite\Models\OAuth2HuggingFace|\Appwrite\Models\OAuth2Instagram|\Appwrite\Models\OAuth2Patreon|\Appwrite\Models\OAuth2Strava|\Appwrite\Models\OAuth2VK|\Appwrite\Models\OAuth2Netlify|\Appwrite\Models\OAuth2Railway|\Appwrite\Models\OAuth2Reddit|\Appwrite\Models\OAuth2Vercel|\Appwrite\Models\OAuth2Atlassian|\Appwrite\Models\OAuth2Line|\Appwrite\Models\OAuth2Linear|\Appwrite\Models\OAuth2Roblox|\Appwrite\Models\OAuth2WorkOS|\Appwrite\Models\OAuth2Resend|\Appwrite\Models\OAuth2Cloudflare|\Appwrite\Models\OAuth2Linkedin|\Appwrite\Models\OAuth2Disqus|\Appwrite\Models\OAuth2Amazon|\Appwrite\Models\OAuth2Etsy|\Appwrite\Models\OAuth2Facebook|\Appwrite\Models\OAuth2Tradeshift|\Appwrite\Models\OAuth2Paypal|\Appwrite\Models\OAuth2Gitlab|\Appwrite\Models\OAuth2Authentik|\Appwrite\Models\OAuth2Auth0|\Appwrite\Models\OAuth2FusionAuth|\Appwrite\Models\OAuth2Keycloak|\Appwrite\Models\OAuth2Oidc|\Appwrite\Models\OAuth2Apple|\Appwrite\Models\OAuth2Okta|\Appwrite\Models\OAuth2Kick|\Appwrite\Models\OAuth2Microsoft|\Appwrite\Models\OAuth2TikTok|\Appwrite\Models\OAuth2Kakao|\Appwrite\Models\OAuth2Naver|\Appwrite\Models\OAuth2Vipps
     {
         $apiPath = str_replace(
             ['{providerId}'],
@@ -3043,6 +3524,58 @@ class Project extends Service
 
         if (($response['$id'] ?? null) === 'huggingface') {
             return \Appwrite\Models\OAuth2HuggingFace::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'instagram') {
+            return \Appwrite\Models\OAuth2Instagram::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'patreon') {
+            return \Appwrite\Models\OAuth2Patreon::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'strava') {
+            return \Appwrite\Models\OAuth2Strava::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'vk') {
+            return \Appwrite\Models\OAuth2VK::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'netlify') {
+            return \Appwrite\Models\OAuth2Netlify::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'railway') {
+            return \Appwrite\Models\OAuth2Railway::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'reddit') {
+            return \Appwrite\Models\OAuth2Reddit::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'vercel') {
+            return \Appwrite\Models\OAuth2Vercel::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'atlassian') {
+            return \Appwrite\Models\OAuth2Atlassian::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'line') {
+            return \Appwrite\Models\OAuth2Line::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'linear') {
+            return \Appwrite\Models\OAuth2Linear::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'roblox') {
+            return \Appwrite\Models\OAuth2Roblox::from($response);
+        }
+
+        if (($response['$id'] ?? null) === 'workos') {
+            return \Appwrite\Models\OAuth2WorkOS::from($response);
         }
 
         if (($response['$id'] ?? null) === 'resend') {

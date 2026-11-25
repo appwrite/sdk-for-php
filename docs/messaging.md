@@ -386,6 +386,80 @@ PATCH https://cloud.appwrite.io/v1/messaging/providers/appwrite/{providerId}
 
 
 ```http request
+POST https://cloud.appwrite.io/v1/messaging/providers/bird-email
+```
+
+** Create a new Bird email provider. It sends email through Bird's email API with a workspace API key that holds the `emails:write` scope. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| providerId | string | Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
+| name | string | Provider name. |  |
+| apiKey | string | Bird workspace API key. |  |
+| fromName | string | Sender Name. |  |
+| fromEmail | string | Sender email address. Its domain must be verified in the Bird workspace. |  |
+| replyToName | string | Name set in the reply to field for the mail. Default value is sender name. |  |
+| replyToEmail | string | Email set in the reply to field for the mail. Default value is sender email. |  |
+| enabled | boolean | Set as enabled. |  |
+
+
+```http request
+PATCH https://cloud.appwrite.io/v1/messaging/providers/bird-email/{providerId}
+```
+
+** Update a Bird email provider by its unique ID. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| providerId | string | **Required** Provider ID. |  |
+| name | string | Provider name. |  |
+| enabled | boolean | Set as enabled. |  |
+| apiKey | string | Bird workspace API key. |  |
+| fromName | string | Sender Name. |  |
+| fromEmail | string | Sender email address. Its domain must be verified in the Bird workspace. |  |
+| replyToName | string | Name set in the Reply To field for the mail. Default value is Sender Name. |  |
+| replyToEmail | string | Email set in the Reply To field for the mail. Default value is Sender Email. |  |
+
+
+```http request
+POST https://cloud.appwrite.io/v1/messaging/providers/bird-sms
+```
+
+** Create a new Bird SMS provider. It sends SMS through Bird with a workspace API key that holds the `sms:write` scope. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| providerId | string | Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
+| name | string | Provider name. |  |
+| from | string | Sender phone number or alphanumeric sender ID. Format phone numbers with a leading '+' and a country code, e.g., +16175551212. |  |
+| apiKey | string | Bird workspace API key. |  |
+| enabled | boolean | Set as enabled. |  |
+
+
+```http request
+PATCH https://cloud.appwrite.io/v1/messaging/providers/bird-sms/{providerId}
+```
+
+** Update a Bird SMS provider by its unique ID. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| providerId | string | **Required** Provider ID. |  |
+| name | string | Provider name. |  |
+| enabled | boolean | Set as enabled. |  |
+| apiKey | string | Bird workspace API key. |  |
+| from | string | Sender phone number or alphanumeric sender ID. Format phone numbers with a leading '+' and a country code, e.g., +16175551212. |  |
+
+
+```http request
 POST https://cloud.appwrite.io/v1/messaging/providers/fcm
 ```
 

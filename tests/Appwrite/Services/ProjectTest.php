@@ -1374,6 +1374,45 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Appwrite::class, $response);
     }
+    public function testMethodUpdateOAuth2Atlassian(): void
+    {
+        $data = [
+            "\$id" => "github",
+            "enabled" => true,
+            "clientId" => "uQ7mZ3s0000000000000000000000000",
+            "clientSecret" => "ATOA0000000000000000000000000000000000000000000000000000000000000000000000"
+        ];
+
+        $this->client
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/atlassian',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['clientId', 'clientSecret', 'enabled'], array_keys($params));
+                    $expected = [
+                        'clientId' => "<CLIENT_ID>",
+                        'clientSecret' => "<CLIENT_SECRET>",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->project->updateOAuth2Atlassian(
+            clientId: "<CLIENT_ID>",
+            clientSecret: "<CLIENT_SECRET>",
+            enabled: false
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\OAuth2Atlassian::class, $response);
+    }
     public function testMethodUpdateOAuth2Auth0(): void
     {
         $data = [
@@ -2145,6 +2184,45 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2HuggingFace::class, $response);
     }
+    public function testMethodUpdateOAuth2Instagram(): void
+    {
+        $data = [
+            "\$id" => "github",
+            "enabled" => true,
+            "clientId" => "00000000000000000000000000000000",
+            "clientSecret" => "00000000000000000000000000000000"
+        ];
+
+        $this->client
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/instagram',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['clientId', 'clientSecret', 'enabled'], array_keys($params));
+                    $expected = [
+                        'clientId' => "<CLIENT_ID>",
+                        'clientSecret' => "<CLIENT_SECRET>",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->project->updateOAuth2Instagram(
+            clientId: "<CLIENT_ID>",
+            clientSecret: "<CLIENT_SECRET>",
+            enabled: false
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\OAuth2Instagram::class, $response);
+    }
     public function testMethodUpdateOAuth2Kakao(): void
     {
         $data = [
@@ -2271,6 +2349,84 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Kick::class, $response);
     }
+    public function testMethodUpdateOAuth2Line(): void
+    {
+        $data = [
+            "\$id" => "github",
+            "enabled" => true,
+            "clientId" => "1650000000",
+            "clientSecret" => "a1b2c3d4e5f600000000000000000000"
+        ];
+
+        $this->client
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/line',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['clientId', 'clientSecret', 'enabled'], array_keys($params));
+                    $expected = [
+                        'clientId' => "<CLIENT_ID>",
+                        'clientSecret' => "<CLIENT_SECRET>",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->project->updateOAuth2Line(
+            clientId: "<CLIENT_ID>",
+            clientSecret: "<CLIENT_SECRET>",
+            enabled: false
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\OAuth2Line::class, $response);
+    }
+    public function testMethodUpdateOAuth2Linear(): void
+    {
+        $data = [
+            "\$id" => "github",
+            "enabled" => true,
+            "clientId" => "5e1c0000000000000000000000000000",
+            "clientSecret" => "9f8e7d6c5b4a00000000000000000000"
+        ];
+
+        $this->client
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/linear',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['clientId', 'clientSecret', 'enabled'], array_keys($params));
+                    $expected = [
+                        'clientId' => "<CLIENT_ID>",
+                        'clientSecret' => "<CLIENT_SECRET>",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->project->updateOAuth2Linear(
+            clientId: "<CLIENT_ID>",
+            clientSecret: "<CLIENT_SECRET>",
+            enabled: false
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\OAuth2Linear::class, $response);
+    }
     public function testMethodUpdateOAuth2Linkedin(): void
     {
         $data = [
@@ -2393,6 +2549,45 @@ final class ProjectTest extends TestCase
         );
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Naver::class, $response);
+    }
+    public function testMethodUpdateOAuth2Netlify(): void
+    {
+        $data = [
+            "\$id" => "github",
+            "enabled" => true,
+            "clientId" => "00000000000000000000000000000000",
+            "clientSecret" => "00000000000000000000000000000000"
+        ];
+
+        $this->client
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/netlify',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['clientId', 'clientSecret', 'enabled'], array_keys($params));
+                    $expected = [
+                        'clientId' => "<CLIENT_ID>",
+                        'clientSecret' => "<CLIENT_SECRET>",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->project->updateOAuth2Netlify(
+            clientId: "<CLIENT_ID>",
+            clientSecret: "<CLIENT_SECRET>",
+            enabled: false
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\OAuth2Netlify::class, $response);
     }
     public function testMethodUpdateOAuth2Notion(): void
     {
@@ -2537,6 +2732,45 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Okta::class, $response);
     }
+    public function testMethodUpdateOAuth2Patreon(): void
+    {
+        $data = [
+            "\$id" => "github",
+            "enabled" => true,
+            "clientId" => "00000000000000000000000000000000",
+            "clientSecret" => "00000000000000000000000000000000"
+        ];
+
+        $this->client
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/patreon',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['clientId', 'clientSecret', 'enabled'], array_keys($params));
+                    $expected = [
+                        'clientId' => "<CLIENT_ID>",
+                        'clientSecret' => "<CLIENT_SECRET>",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->project->updateOAuth2Patreon(
+            clientId: "<CLIENT_ID>",
+            clientSecret: "<CLIENT_SECRET>",
+            enabled: false
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\OAuth2Patreon::class, $response);
+    }
     public function testMethodUpdateOAuth2Paypal(): void
     {
         $data = [
@@ -2654,6 +2888,84 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Podio::class, $response);
     }
+    public function testMethodUpdateOAuth2Railway(): void
+    {
+        $data = [
+            "\$id" => "github",
+            "enabled" => true,
+            "clientId" => "00000000000000000000000000000000",
+            "clientSecret" => "00000000000000000000000000000000"
+        ];
+
+        $this->client
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/railway',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['clientId', 'clientSecret', 'enabled'], array_keys($params));
+                    $expected = [
+                        'clientId' => "<CLIENT_ID>",
+                        'clientSecret' => "<CLIENT_SECRET>",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->project->updateOAuth2Railway(
+            clientId: "<CLIENT_ID>",
+            clientSecret: "<CLIENT_SECRET>",
+            enabled: false
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\OAuth2Railway::class, $response);
+    }
+    public function testMethodUpdateOAuth2Reddit(): void
+    {
+        $data = [
+            "\$id" => "github",
+            "enabled" => true,
+            "clientId" => "aBcD0000000000000000aB",
+            "clientSecret" => "xYz00000000000000000000000000a"
+        ];
+
+        $this->client
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/reddit',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['clientId', 'clientSecret', 'enabled'], array_keys($params));
+                    $expected = [
+                        'clientId' => "<CLIENT_ID>",
+                        'clientSecret' => "<CLIENT_SECRET>",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->project->updateOAuth2Reddit(
+            clientId: "<CLIENT_ID>",
+            clientSecret: "<CLIENT_SECRET>",
+            enabled: false
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\OAuth2Reddit::class, $response);
+    }
     public function testMethodUpdateOAuth2Resend(): void
     {
         $data = [
@@ -2692,6 +3004,45 @@ final class ProjectTest extends TestCase
         );
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Resend::class, $response);
+    }
+    public function testMethodUpdateOAuth2Roblox(): void
+    {
+        $data = [
+            "\$id" => "github",
+            "enabled" => true,
+            "clientId" => "1234567890123456789",
+            "clientSecret" => "RBX-0000000000000000000000000000000000000000000000000000000000000000000000"
+        ];
+
+        $this->client
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/roblox',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['clientId', 'clientSecret', 'enabled'], array_keys($params));
+                    $expected = [
+                        'clientId' => "<CLIENT_ID>",
+                        'clientSecret' => "<CLIENT_SECRET>",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->project->updateOAuth2Roblox(
+            clientId: "<CLIENT_ID>",
+            clientSecret: "<CLIENT_SECRET>",
+            enabled: false
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\OAuth2Roblox::class, $response);
     }
     public function testMethodUpdateOAuth2Salesforce(): void
     {
@@ -2812,6 +3163,45 @@ final class ProjectTest extends TestCase
         );
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Spotify::class, $response);
+    }
+    public function testMethodUpdateOAuth2Strava(): void
+    {
+        $data = [
+            "\$id" => "github",
+            "enabled" => true,
+            "clientId" => "00000000000000000000000000000000",
+            "clientSecret" => "00000000000000000000000000000000"
+        ];
+
+        $this->client
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/strava',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['clientId', 'clientSecret', 'enabled'], array_keys($params));
+                    $expected = [
+                        'clientId' => "<CLIENT_ID>",
+                        'clientSecret' => "<CLIENT_SECRET>",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->project->updateOAuth2Strava(
+            clientId: "<CLIENT_ID>",
+            clientSecret: "<CLIENT_SECRET>",
+            enabled: false
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\OAuth2Strava::class, $response);
     }
     public function testMethodUpdateOAuth2Stripe(): void
     {
@@ -3008,6 +3398,45 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Twitch::class, $response);
     }
+    public function testMethodUpdateOAuth2Vercel(): void
+    {
+        $data = [
+            "\$id" => "github",
+            "enabled" => true,
+            "clientId" => "cl_0000000000000000000000000000000",
+            "clientSecret" => "vc_0000000000000000000000000000000000000000000000"
+        ];
+
+        $this->client
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/vercel',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['clientId', 'clientSecret', 'enabled'], array_keys($params));
+                    $expected = [
+                        'clientId' => "<CLIENT_ID>",
+                        'clientSecret' => "<CLIENT_SECRET>",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->project->updateOAuth2Vercel(
+            clientId: "<CLIENT_ID>",
+            clientSecret: "<CLIENT_SECRET>",
+            enabled: false
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\OAuth2Vercel::class, $response);
+    }
     public function testMethodUpdateOAuth2Vipps(): void
     {
         $data = [
@@ -3086,6 +3515,45 @@ final class ProjectTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2Vipps::class, $response);
     }
+    public function testMethodUpdateOAuth2VK(): void
+    {
+        $data = [
+            "\$id" => "github",
+            "enabled" => true,
+            "clientId" => "00000000000000000000000000000000",
+            "clientSecret" => "00000000000000000000000000000000"
+        ];
+
+        $this->client
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/vk',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['clientId', 'clientSecret', 'enabled'], array_keys($params));
+                    $expected = [
+                        'clientId' => "<CLIENT_ID>",
+                        'clientSecret' => "<CLIENT_SECRET>",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->project->updateOAuth2VK(
+            clientId: "<CLIENT_ID>",
+            clientSecret: "<CLIENT_SECRET>",
+            enabled: false
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\OAuth2VK::class, $response);
+    }
     public function testMethodUpdateOAuth2Webflow(): void
     {
         $data = [
@@ -3163,6 +3631,45 @@ final class ProjectTest extends TestCase
         );
 
         $this->assertInstanceOf(\Appwrite\Models\OAuth2WordPress::class, $response);
+    }
+    public function testMethodUpdateOAuth2WorkOS(): void
+    {
+        $data = [
+            "\$id" => "github",
+            "enabled" => true,
+            "clientId" => "client_01H0000000000000000000000",
+            "clientSecret" => "wos0000000000000000000000000000000000000000000000000000000000000"
+        ];
+
+        $this->client
+            ->expects()->call(
+                'PATCH',
+                '/project/oauth2/workos',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['clientId', 'clientSecret', 'enabled'], array_keys($params));
+                    $expected = [
+                        'clientId' => "<CLIENT_ID>",
+                        'clientSecret' => "<CLIENT_SECRET>",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->project->updateOAuth2WorkOS(
+            clientId: "<CLIENT_ID>",
+            clientSecret: "<CLIENT_SECRET>",
+            enabled: false
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\OAuth2WorkOS::class, $response);
     }
     public function testMethodUpdateOAuth2X(): void
     {
