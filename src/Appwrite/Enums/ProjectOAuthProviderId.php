@@ -12,6 +12,7 @@ class ProjectOAuthProviderId implements JsonSerializable, Stringable
     private static ProjectOAuthProviderId $AMAZON;
     private static ProjectOAuthProviderId $APPLE;
     private static ProjectOAuthProviderId $APPWRITE;
+    private static ProjectOAuthProviderId $ATLASSIAN;
     private static ProjectOAuthProviderId $AUTH0;
     private static ProjectOAuthProviderId $AUTHENTIK;
     private static ProjectOAuthProviderId $AUTODESK;
@@ -31,31 +32,43 @@ class ProjectOAuthProviderId implements JsonSerializable, Stringable
     private static ProjectOAuthProviderId $GITLAB;
     private static ProjectOAuthProviderId $GOOGLE;
     private static ProjectOAuthProviderId $HUGGINGFACE;
+    private static ProjectOAuthProviderId $INSTAGRAM;
     private static ProjectOAuthProviderId $KAKAO;
     private static ProjectOAuthProviderId $KEYCLOAK;
     private static ProjectOAuthProviderId $KICK;
+    private static ProjectOAuthProviderId $LINE;
+    private static ProjectOAuthProviderId $LINEAR;
     private static ProjectOAuthProviderId $LINKEDIN;
     private static ProjectOAuthProviderId $MICROSOFT;
     private static ProjectOAuthProviderId $NAVER;
+    private static ProjectOAuthProviderId $NETLIFY;
     private static ProjectOAuthProviderId $NOTION;
     private static ProjectOAuthProviderId $OIDC;
     private static ProjectOAuthProviderId $OKTA;
+    private static ProjectOAuthProviderId $PATREON;
     private static ProjectOAuthProviderId $PAYPAL;
     private static ProjectOAuthProviderId $PAYPALSANDBOX;
     private static ProjectOAuthProviderId $PODIO;
+    private static ProjectOAuthProviderId $RAILWAY;
+    private static ProjectOAuthProviderId $REDDIT;
     private static ProjectOAuthProviderId $RESEND;
+    private static ProjectOAuthProviderId $ROBLOX;
     private static ProjectOAuthProviderId $SALESFORCE;
     private static ProjectOAuthProviderId $SLACK;
     private static ProjectOAuthProviderId $SPOTIFY;
+    private static ProjectOAuthProviderId $STRAVA;
     private static ProjectOAuthProviderId $STRIPE;
     private static ProjectOAuthProviderId $TIKTOK;
     private static ProjectOAuthProviderId $TRADESHIFT;
     private static ProjectOAuthProviderId $TRADESHIFTBOX;
     private static ProjectOAuthProviderId $TWITCH;
+    private static ProjectOAuthProviderId $VERCEL;
     private static ProjectOAuthProviderId $VIPPS;
     private static ProjectOAuthProviderId $VIPPSSANDBOX;
+    private static ProjectOAuthProviderId $VK;
     private static ProjectOAuthProviderId $WEBFLOW;
     private static ProjectOAuthProviderId $WORDPRESS;
+    private static ProjectOAuthProviderId $WORKOS;
     private static ProjectOAuthProviderId $X;
     private static ProjectOAuthProviderId $YAHOO;
     private static ProjectOAuthProviderId $YAMMER;
@@ -94,6 +107,12 @@ class ProjectOAuthProviderId implements JsonSerializable, Stringable
         self::$APPWRITE ??= new ProjectOAuthProviderId('appwrite');
 
         return self::$APPWRITE;
+    }
+    public static function ATLASSIAN(): ProjectOAuthProviderId
+    {
+        self::$ATLASSIAN ??= new ProjectOAuthProviderId('atlassian');
+
+        return self::$ATLASSIAN;
     }
     public static function AUTH0(): ProjectOAuthProviderId
     {
@@ -209,6 +228,12 @@ class ProjectOAuthProviderId implements JsonSerializable, Stringable
 
         return self::$HUGGINGFACE;
     }
+    public static function INSTAGRAM(): ProjectOAuthProviderId
+    {
+        self::$INSTAGRAM ??= new ProjectOAuthProviderId('instagram');
+
+        return self::$INSTAGRAM;
+    }
     public static function KAKAO(): ProjectOAuthProviderId
     {
         self::$KAKAO ??= new ProjectOAuthProviderId('kakao');
@@ -226,6 +251,18 @@ class ProjectOAuthProviderId implements JsonSerializable, Stringable
         self::$KICK ??= new ProjectOAuthProviderId('kick');
 
         return self::$KICK;
+    }
+    public static function LINE(): ProjectOAuthProviderId
+    {
+        self::$LINE ??= new ProjectOAuthProviderId('line');
+
+        return self::$LINE;
+    }
+    public static function LINEAR(): ProjectOAuthProviderId
+    {
+        self::$LINEAR ??= new ProjectOAuthProviderId('linear');
+
+        return self::$LINEAR;
     }
     public static function LINKEDIN(): ProjectOAuthProviderId
     {
@@ -245,6 +282,12 @@ class ProjectOAuthProviderId implements JsonSerializable, Stringable
 
         return self::$NAVER;
     }
+    public static function NETLIFY(): ProjectOAuthProviderId
+    {
+        self::$NETLIFY ??= new ProjectOAuthProviderId('netlify');
+
+        return self::$NETLIFY;
+    }
     public static function NOTION(): ProjectOAuthProviderId
     {
         self::$NOTION ??= new ProjectOAuthProviderId('notion');
@@ -262,6 +305,12 @@ class ProjectOAuthProviderId implements JsonSerializable, Stringable
         self::$OKTA ??= new ProjectOAuthProviderId('okta');
 
         return self::$OKTA;
+    }
+    public static function PATREON(): ProjectOAuthProviderId
+    {
+        self::$PATREON ??= new ProjectOAuthProviderId('patreon');
+
+        return self::$PATREON;
     }
     public static function PAYPAL(): ProjectOAuthProviderId
     {
@@ -281,11 +330,29 @@ class ProjectOAuthProviderId implements JsonSerializable, Stringable
 
         return self::$PODIO;
     }
+    public static function RAILWAY(): ProjectOAuthProviderId
+    {
+        self::$RAILWAY ??= new ProjectOAuthProviderId('railway');
+
+        return self::$RAILWAY;
+    }
+    public static function REDDIT(): ProjectOAuthProviderId
+    {
+        self::$REDDIT ??= new ProjectOAuthProviderId('reddit');
+
+        return self::$REDDIT;
+    }
     public static function RESEND(): ProjectOAuthProviderId
     {
         self::$RESEND ??= new ProjectOAuthProviderId('resend');
 
         return self::$RESEND;
+    }
+    public static function ROBLOX(): ProjectOAuthProviderId
+    {
+        self::$ROBLOX ??= new ProjectOAuthProviderId('roblox');
+
+        return self::$ROBLOX;
     }
     public static function SALESFORCE(): ProjectOAuthProviderId
     {
@@ -304,6 +371,12 @@ class ProjectOAuthProviderId implements JsonSerializable, Stringable
         self::$SPOTIFY ??= new ProjectOAuthProviderId('spotify');
 
         return self::$SPOTIFY;
+    }
+    public static function STRAVA(): ProjectOAuthProviderId
+    {
+        self::$STRAVA ??= new ProjectOAuthProviderId('strava');
+
+        return self::$STRAVA;
     }
     public static function STRIPE(): ProjectOAuthProviderId
     {
@@ -335,6 +408,12 @@ class ProjectOAuthProviderId implements JsonSerializable, Stringable
 
         return self::$TWITCH;
     }
+    public static function VERCEL(): ProjectOAuthProviderId
+    {
+        self::$VERCEL ??= new ProjectOAuthProviderId('vercel');
+
+        return self::$VERCEL;
+    }
     public static function VIPPS(): ProjectOAuthProviderId
     {
         self::$VIPPS ??= new ProjectOAuthProviderId('vipps');
@@ -347,6 +426,12 @@ class ProjectOAuthProviderId implements JsonSerializable, Stringable
 
         return self::$VIPPSSANDBOX;
     }
+    public static function VK(): ProjectOAuthProviderId
+    {
+        self::$VK ??= new ProjectOAuthProviderId('vk');
+
+        return self::$VK;
+    }
     public static function WEBFLOW(): ProjectOAuthProviderId
     {
         self::$WEBFLOW ??= new ProjectOAuthProviderId('webflow');
@@ -358,6 +443,12 @@ class ProjectOAuthProviderId implements JsonSerializable, Stringable
         self::$WORDPRESS ??= new ProjectOAuthProviderId('wordpress');
 
         return self::$WORDPRESS;
+    }
+    public static function WORKOS(): ProjectOAuthProviderId
+    {
+        self::$WORKOS ??= new ProjectOAuthProviderId('workos');
+
+        return self::$WORKOS;
     }
     public static function X(): ProjectOAuthProviderId
     {
@@ -402,6 +493,7 @@ class ProjectOAuthProviderId implements JsonSerializable, Stringable
             'amazon' => self::AMAZON(),
             'apple' => self::APPLE(),
             'appwrite' => self::APPWRITE(),
+            'atlassian' => self::ATLASSIAN(),
             'auth0' => self::AUTH0(),
             'authentik' => self::AUTHENTIK(),
             'autodesk' => self::AUTODESK(),
@@ -421,31 +513,43 @@ class ProjectOAuthProviderId implements JsonSerializable, Stringable
             'gitlab' => self::GITLAB(),
             'google' => self::GOOGLE(),
             'huggingface' => self::HUGGINGFACE(),
+            'instagram' => self::INSTAGRAM(),
             'kakao' => self::KAKAO(),
             'keycloak' => self::KEYCLOAK(),
             'kick' => self::KICK(),
+            'line' => self::LINE(),
+            'linear' => self::LINEAR(),
             'linkedin' => self::LINKEDIN(),
             'microsoft' => self::MICROSOFT(),
             'naver' => self::NAVER(),
+            'netlify' => self::NETLIFY(),
             'notion' => self::NOTION(),
             'oidc' => self::OIDC(),
             'okta' => self::OKTA(),
+            'patreon' => self::PATREON(),
             'paypal' => self::PAYPAL(),
             'paypalSandbox' => self::PAYPALSANDBOX(),
             'podio' => self::PODIO(),
+            'railway' => self::RAILWAY(),
+            'reddit' => self::REDDIT(),
             'resend' => self::RESEND(),
+            'roblox' => self::ROBLOX(),
             'salesforce' => self::SALESFORCE(),
             'slack' => self::SLACK(),
             'spotify' => self::SPOTIFY(),
+            'strava' => self::STRAVA(),
             'stripe' => self::STRIPE(),
             'tiktok' => self::TIKTOK(),
             'tradeshift' => self::TRADESHIFT(),
             'tradeshiftBox' => self::TRADESHIFTBOX(),
             'twitch' => self::TWITCH(),
+            'vercel' => self::VERCEL(),
             'vipps' => self::VIPPS(),
             'vippsSandbox' => self::VIPPSSANDBOX(),
+            'vk' => self::VK(),
             'webflow' => self::WEBFLOW(),
             'wordpress' => self::WORDPRESS(),
+            'workos' => self::WORKOS(),
             'x' => self::X(),
             'yahoo' => self::YAHOO(),
             'yammer' => self::YAMMER(),

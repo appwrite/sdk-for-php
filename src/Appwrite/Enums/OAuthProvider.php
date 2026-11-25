@@ -12,6 +12,7 @@ class OAuthProvider implements JsonSerializable, Stringable
     private static OAuthProvider $AMAZON;
     private static OAuthProvider $APPLE;
     private static OAuthProvider $APPWRITE;
+    private static OAuthProvider $ATLASSIAN;
     private static OAuthProvider $AUTH0;
     private static OAuthProvider $AUTHENTIK;
     private static OAuthProvider $AUTODESK;
@@ -31,31 +32,43 @@ class OAuthProvider implements JsonSerializable, Stringable
     private static OAuthProvider $GITLAB;
     private static OAuthProvider $GOOGLE;
     private static OAuthProvider $HUGGINGFACE;
+    private static OAuthProvider $INSTAGRAM;
     private static OAuthProvider $KAKAO;
     private static OAuthProvider $KEYCLOAK;
     private static OAuthProvider $KICK;
+    private static OAuthProvider $LINE;
+    private static OAuthProvider $LINEAR;
     private static OAuthProvider $LINKEDIN;
     private static OAuthProvider $MICROSOFT;
     private static OAuthProvider $NAVER;
+    private static OAuthProvider $NETLIFY;
     private static OAuthProvider $NOTION;
     private static OAuthProvider $OIDC;
     private static OAuthProvider $OKTA;
+    private static OAuthProvider $PATREON;
     private static OAuthProvider $PAYPAL;
     private static OAuthProvider $PAYPALSANDBOX;
     private static OAuthProvider $PODIO;
+    private static OAuthProvider $RAILWAY;
+    private static OAuthProvider $REDDIT;
     private static OAuthProvider $RESEND;
+    private static OAuthProvider $ROBLOX;
     private static OAuthProvider $SALESFORCE;
     private static OAuthProvider $SLACK;
     private static OAuthProvider $SPOTIFY;
+    private static OAuthProvider $STRAVA;
     private static OAuthProvider $STRIPE;
     private static OAuthProvider $TIKTOK;
     private static OAuthProvider $TRADESHIFT;
     private static OAuthProvider $TRADESHIFTBOX;
     private static OAuthProvider $TWITCH;
+    private static OAuthProvider $VERCEL;
     private static OAuthProvider $VIPPS;
     private static OAuthProvider $VIPPSSANDBOX;
+    private static OAuthProvider $VK;
     private static OAuthProvider $WEBFLOW;
     private static OAuthProvider $WORDPRESS;
+    private static OAuthProvider $WORKOS;
     private static OAuthProvider $X;
     private static OAuthProvider $YAHOO;
     private static OAuthProvider $YAMMER;
@@ -94,6 +107,12 @@ class OAuthProvider implements JsonSerializable, Stringable
         self::$APPWRITE ??= new OAuthProvider('appwrite');
 
         return self::$APPWRITE;
+    }
+    public static function ATLASSIAN(): OAuthProvider
+    {
+        self::$ATLASSIAN ??= new OAuthProvider('atlassian');
+
+        return self::$ATLASSIAN;
     }
     public static function AUTH0(): OAuthProvider
     {
@@ -209,6 +228,12 @@ class OAuthProvider implements JsonSerializable, Stringable
 
         return self::$HUGGINGFACE;
     }
+    public static function INSTAGRAM(): OAuthProvider
+    {
+        self::$INSTAGRAM ??= new OAuthProvider('instagram');
+
+        return self::$INSTAGRAM;
+    }
     public static function KAKAO(): OAuthProvider
     {
         self::$KAKAO ??= new OAuthProvider('kakao');
@@ -226,6 +251,18 @@ class OAuthProvider implements JsonSerializable, Stringable
         self::$KICK ??= new OAuthProvider('kick');
 
         return self::$KICK;
+    }
+    public static function LINE(): OAuthProvider
+    {
+        self::$LINE ??= new OAuthProvider('line');
+
+        return self::$LINE;
+    }
+    public static function LINEAR(): OAuthProvider
+    {
+        self::$LINEAR ??= new OAuthProvider('linear');
+
+        return self::$LINEAR;
     }
     public static function LINKEDIN(): OAuthProvider
     {
@@ -245,6 +282,12 @@ class OAuthProvider implements JsonSerializable, Stringable
 
         return self::$NAVER;
     }
+    public static function NETLIFY(): OAuthProvider
+    {
+        self::$NETLIFY ??= new OAuthProvider('netlify');
+
+        return self::$NETLIFY;
+    }
     public static function NOTION(): OAuthProvider
     {
         self::$NOTION ??= new OAuthProvider('notion');
@@ -262,6 +305,12 @@ class OAuthProvider implements JsonSerializable, Stringable
         self::$OKTA ??= new OAuthProvider('okta');
 
         return self::$OKTA;
+    }
+    public static function PATREON(): OAuthProvider
+    {
+        self::$PATREON ??= new OAuthProvider('patreon');
+
+        return self::$PATREON;
     }
     public static function PAYPAL(): OAuthProvider
     {
@@ -281,11 +330,29 @@ class OAuthProvider implements JsonSerializable, Stringable
 
         return self::$PODIO;
     }
+    public static function RAILWAY(): OAuthProvider
+    {
+        self::$RAILWAY ??= new OAuthProvider('railway');
+
+        return self::$RAILWAY;
+    }
+    public static function REDDIT(): OAuthProvider
+    {
+        self::$REDDIT ??= new OAuthProvider('reddit');
+
+        return self::$REDDIT;
+    }
     public static function RESEND(): OAuthProvider
     {
         self::$RESEND ??= new OAuthProvider('resend');
 
         return self::$RESEND;
+    }
+    public static function ROBLOX(): OAuthProvider
+    {
+        self::$ROBLOX ??= new OAuthProvider('roblox');
+
+        return self::$ROBLOX;
     }
     public static function SALESFORCE(): OAuthProvider
     {
@@ -304,6 +371,12 @@ class OAuthProvider implements JsonSerializable, Stringable
         self::$SPOTIFY ??= new OAuthProvider('spotify');
 
         return self::$SPOTIFY;
+    }
+    public static function STRAVA(): OAuthProvider
+    {
+        self::$STRAVA ??= new OAuthProvider('strava');
+
+        return self::$STRAVA;
     }
     public static function STRIPE(): OAuthProvider
     {
@@ -335,6 +408,12 @@ class OAuthProvider implements JsonSerializable, Stringable
 
         return self::$TWITCH;
     }
+    public static function VERCEL(): OAuthProvider
+    {
+        self::$VERCEL ??= new OAuthProvider('vercel');
+
+        return self::$VERCEL;
+    }
     public static function VIPPS(): OAuthProvider
     {
         self::$VIPPS ??= new OAuthProvider('vipps');
@@ -347,6 +426,12 @@ class OAuthProvider implements JsonSerializable, Stringable
 
         return self::$VIPPSSANDBOX;
     }
+    public static function VK(): OAuthProvider
+    {
+        self::$VK ??= new OAuthProvider('vk');
+
+        return self::$VK;
+    }
     public static function WEBFLOW(): OAuthProvider
     {
         self::$WEBFLOW ??= new OAuthProvider('webflow');
@@ -358,6 +443,12 @@ class OAuthProvider implements JsonSerializable, Stringable
         self::$WORDPRESS ??= new OAuthProvider('wordpress');
 
         return self::$WORDPRESS;
+    }
+    public static function WORKOS(): OAuthProvider
+    {
+        self::$WORKOS ??= new OAuthProvider('workos');
+
+        return self::$WORKOS;
     }
     public static function X(): OAuthProvider
     {
@@ -402,6 +493,7 @@ class OAuthProvider implements JsonSerializable, Stringable
             'amazon' => self::AMAZON(),
             'apple' => self::APPLE(),
             'appwrite' => self::APPWRITE(),
+            'atlassian' => self::ATLASSIAN(),
             'auth0' => self::AUTH0(),
             'authentik' => self::AUTHENTIK(),
             'autodesk' => self::AUTODESK(),
@@ -421,31 +513,43 @@ class OAuthProvider implements JsonSerializable, Stringable
             'gitlab' => self::GITLAB(),
             'google' => self::GOOGLE(),
             'huggingface' => self::HUGGINGFACE(),
+            'instagram' => self::INSTAGRAM(),
             'kakao' => self::KAKAO(),
             'keycloak' => self::KEYCLOAK(),
             'kick' => self::KICK(),
+            'line' => self::LINE(),
+            'linear' => self::LINEAR(),
             'linkedin' => self::LINKEDIN(),
             'microsoft' => self::MICROSOFT(),
             'naver' => self::NAVER(),
+            'netlify' => self::NETLIFY(),
             'notion' => self::NOTION(),
             'oidc' => self::OIDC(),
             'okta' => self::OKTA(),
+            'patreon' => self::PATREON(),
             'paypal' => self::PAYPAL(),
             'paypalSandbox' => self::PAYPALSANDBOX(),
             'podio' => self::PODIO(),
+            'railway' => self::RAILWAY(),
+            'reddit' => self::REDDIT(),
             'resend' => self::RESEND(),
+            'roblox' => self::ROBLOX(),
             'salesforce' => self::SALESFORCE(),
             'slack' => self::SLACK(),
             'spotify' => self::SPOTIFY(),
+            'strava' => self::STRAVA(),
             'stripe' => self::STRIPE(),
             'tiktok' => self::TIKTOK(),
             'tradeshift' => self::TRADESHIFT(),
             'tradeshiftBox' => self::TRADESHIFTBOX(),
             'twitch' => self::TWITCH(),
+            'vercel' => self::VERCEL(),
             'vipps' => self::VIPPS(),
             'vippsSandbox' => self::VIPPSSANDBOX(),
+            'vk' => self::VK(),
             'webflow' => self::WEBFLOW(),
             'wordpress' => self::WORDPRESS(),
+            'workos' => self::WORKOS(),
             'x' => self::X(),
             'yahoo' => self::YAHOO(),
             'yammer' => self::YAMMER(),

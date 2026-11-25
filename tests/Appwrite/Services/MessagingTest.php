@@ -844,6 +844,206 @@ final class MessagingTest extends TestCase
 
         $this->assertInstanceOf(\Appwrite\Models\Provider::class, $response);
     }
+    public function testMethodCreateBirdEmailProvider(): void
+    {
+        $data = [
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "name" => "Mailgun",
+            "provider" => "mailgun",
+            "enabled" => true,
+            "type" => "sms",
+            "credentials" => []
+        ];
+
+        $this->client
+            ->expects()->call(
+                'POST',
+                '/messaging/providers/bird-email',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['providerId', 'name', 'apiKey', 'fromName', 'fromEmail', 'replyToName', 'replyToEmail', 'enabled'], array_keys($params));
+                    $expected = [
+                        'providerId' => "<PROVIDER_ID>",
+                        'name' => "<NAME>",
+                        'apiKey' => "<API_KEY>",
+                        'fromName' => "<FROM_NAME>",
+                        'fromEmail' => "email@example.com",
+                        'replyToName' => "<REPLY_TO_NAME>",
+                        'replyToEmail' => "email@example.com",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->messaging->createBirdEmailProvider(
+            "<PROVIDER_ID>",
+            "<NAME>",
+            apiKey: "<API_KEY>",
+            fromName: "<FROM_NAME>",
+            fromEmail: "email@example.com",
+            replyToName: "<REPLY_TO_NAME>",
+            replyToEmail: "email@example.com",
+            enabled: false
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\Provider::class, $response);
+    }
+    public function testMethodUpdateBirdEmailProvider(): void
+    {
+        $data = [
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "name" => "Mailgun",
+            "provider" => "mailgun",
+            "enabled" => true,
+            "type" => "sms",
+            "credentials" => []
+        ];
+
+        $this->client
+            ->expects()->call(
+                'PATCH',
+                '/messaging/providers/bird-email/%3CPROVIDER_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['providerId', 'name', 'enabled', 'apiKey', 'fromName', 'fromEmail', 'replyToName', 'replyToEmail'], array_keys($params));
+                    $expected = [
+                        'providerId' => "<PROVIDER_ID>",
+                        'name' => "<NAME>",
+                        'enabled' => false,
+                        'apiKey' => "<API_KEY>",
+                        'fromName' => "<FROM_NAME>",
+                        'fromEmail' => "email@example.com",
+                        'replyToName' => "<REPLY_TO_NAME>",
+                        'replyToEmail' => "email@example.com",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->messaging->updateBirdEmailProvider(
+            "<PROVIDER_ID>",
+            name: "<NAME>",
+            enabled: false,
+            apiKey: "<API_KEY>",
+            fromName: "<FROM_NAME>",
+            fromEmail: "email@example.com",
+            replyToName: "<REPLY_TO_NAME>",
+            replyToEmail: "email@example.com"
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\Provider::class, $response);
+    }
+    public function testMethodCreateBirdSMSProvider(): void
+    {
+        $data = [
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "name" => "Mailgun",
+            "provider" => "mailgun",
+            "enabled" => true,
+            "type" => "sms",
+            "credentials" => []
+        ];
+
+        $this->client
+            ->expects()->call(
+                'POST',
+                '/messaging/providers/bird-sms',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['providerId', 'name', 'from', 'apiKey', 'enabled'], array_keys($params));
+                    $expected = [
+                        'providerId' => "<PROVIDER_ID>",
+                        'name' => "<NAME>",
+                        'from' => "<FROM>",
+                        'apiKey' => "<API_KEY>",
+                        'enabled' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->messaging->createBirdSMSProvider(
+            "<PROVIDER_ID>",
+            "<NAME>",
+            from: "<FROM>",
+            apiKey: "<API_KEY>",
+            enabled: false
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\Provider::class, $response);
+    }
+    public function testMethodUpdateBirdSMSProvider(): void
+    {
+        $data = [
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "name" => "Mailgun",
+            "provider" => "mailgun",
+            "enabled" => true,
+            "type" => "sms",
+            "credentials" => []
+        ];
+
+        $this->client
+            ->expects()->call(
+                'PATCH',
+                '/messaging/providers/bird-sms/%3CPROVIDER_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['providerId', 'name', 'enabled', 'apiKey', 'from'], array_keys($params));
+                    $expected = [
+                        'providerId' => "<PROVIDER_ID>",
+                        'name' => "<NAME>",
+                        'enabled' => false,
+                        'apiKey' => "<API_KEY>",
+                        'from' => "<FROM>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->messaging->updateBirdSMSProvider(
+            "<PROVIDER_ID>",
+            name: "<NAME>",
+            enabled: false,
+            apiKey: "<API_KEY>",
+            from: "<FROM>"
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\Provider::class, $response);
+    }
     public function testMethodCreateFCMProvider(): void
     {
         $data = [

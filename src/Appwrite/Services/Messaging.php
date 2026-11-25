@@ -823,6 +823,226 @@ class Messaging extends Service
     }
 
     /**
+     * Create a new Bird email provider. It sends email through Bird's email API
+     * with a workspace API key that holds the `emails:write` scope.
+     *
+     * @throws AppwriteException
+     */
+    public function createBirdEmailProvider(string $providerId, string $name, ?string $apiKey = null, ?string $fromName = null, ?string $fromEmail = null, ?string $replyToName = null, ?string $replyToEmail = null, ?bool $enabled = null): \Appwrite\Models\Provider
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/messaging/providers/bird-email'
+        );
+
+        $apiParams = [];
+        $apiParams['providerId'] = $providerId;
+        $apiParams['name'] = $name;
+
+        if (!is_null($apiKey)) {
+            $apiParams['apiKey'] = $apiKey;
+        }
+
+        if (!is_null($fromName)) {
+            $apiParams['fromName'] = $fromName;
+        }
+
+        if (!is_null($fromEmail)) {
+            $apiParams['fromEmail'] = $fromEmail;
+        }
+
+        if (!is_null($replyToName)) {
+            $apiParams['replyToName'] = $replyToName;
+        }
+
+        if (!is_null($replyToEmail)) {
+            $apiParams['replyToEmail'] = $replyToEmail;
+        }
+        $apiParams['enabled'] = $enabled;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Provider::from($response);
+    }
+
+    /**
+     * Update a Bird email provider by its unique ID.
+     *
+     * @throws AppwriteException
+     */
+    public function updateBirdEmailProvider(string $providerId, ?string $name = null, ?bool $enabled = null, ?string $apiKey = null, ?string $fromName = null, ?string $fromEmail = null, ?string $replyToName = null, ?string $replyToEmail = null): \Appwrite\Models\Provider
+    {
+        if ($providerId === '') {
+            throw new AppwriteException('Missing required parameter: "providerId"');
+        }
+
+        $apiPath = str_replace(
+            ['{providerId}'],
+            [self::encodePath($providerId)],
+            '/messaging/providers/bird-email/{providerId}'
+        );
+
+        $apiParams = [];
+        $apiParams['providerId'] = $providerId;
+
+        if (!is_null($name)) {
+            $apiParams['name'] = $name;
+        }
+        $apiParams['enabled'] = $enabled;
+
+        if (!is_null($apiKey)) {
+            $apiParams['apiKey'] = $apiKey;
+        }
+
+        if (!is_null($fromName)) {
+            $apiParams['fromName'] = $fromName;
+        }
+
+        if (!is_null($fromEmail)) {
+            $apiParams['fromEmail'] = $fromEmail;
+        }
+
+        if (!is_null($replyToName)) {
+            $apiParams['replyToName'] = $replyToName;
+        }
+
+        if (!is_null($replyToEmail)) {
+            $apiParams['replyToEmail'] = $replyToEmail;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Provider::from($response);
+    }
+
+    /**
+     * Create a new Bird SMS provider. It sends SMS through Bird with a workspace
+     * API key that holds the `sms:write` scope.
+     *
+     * @throws AppwriteException
+     */
+    public function createBirdSMSProvider(string $providerId, string $name, ?string $from = null, ?string $apiKey = null, ?bool $enabled = null): \Appwrite\Models\Provider
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/messaging/providers/bird-sms'
+        );
+
+        $apiParams = [];
+        $apiParams['providerId'] = $providerId;
+        $apiParams['name'] = $name;
+
+        if (!is_null($from)) {
+            $apiParams['from'] = $from;
+        }
+
+        if (!is_null($apiKey)) {
+            $apiParams['apiKey'] = $apiKey;
+        }
+        $apiParams['enabled'] = $enabled;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Provider::from($response);
+    }
+
+    /**
+     * Update a Bird SMS provider by its unique ID.
+     *
+     * @throws AppwriteException
+     */
+    public function updateBirdSMSProvider(string $providerId, ?string $name = null, ?bool $enabled = null, ?string $apiKey = null, ?string $from = null): \Appwrite\Models\Provider
+    {
+        if ($providerId === '') {
+            throw new AppwriteException('Missing required parameter: "providerId"');
+        }
+
+        $apiPath = str_replace(
+            ['{providerId}'],
+            [self::encodePath($providerId)],
+            '/messaging/providers/bird-sms/{providerId}'
+        );
+
+        $apiParams = [];
+        $apiParams['providerId'] = $providerId;
+
+        if (!is_null($name)) {
+            $apiParams['name'] = $name;
+        }
+        $apiParams['enabled'] = $enabled;
+
+        if (!is_null($apiKey)) {
+            $apiParams['apiKey'] = $apiKey;
+        }
+
+        if (!is_null($from)) {
+            $apiParams['from'] = $from;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Provider::from($response);
+    }
+
+    /**
      * Create a new Firebase Cloud Messaging provider.
      *
      * @throws AppwriteException

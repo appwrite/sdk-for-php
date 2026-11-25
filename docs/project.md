@@ -388,6 +388,21 @@ PATCH https://cloud.appwrite.io/v1/project/oauth2/appwrite
 
 
 ```http request
+PATCH https://cloud.appwrite.io/v1/project/oauth2/atlassian
+```
+
+** Update the project OAuth2 Atlassian configuration. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| clientId | string | 'Client ID' of Atlassian OAuth2 app. For example: uQ7mZ3s0000000000000000000000000 |  |
+| clientSecret | string | 'Client Secret' of Atlassian OAuth2 app. For example: ATOA0000000000000000000000000000000000000000000000000000000000000000000000 |  |
+| enabled | boolean | OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid. |  |
+
+
+```http request
 PATCH https://cloud.appwrite.io/v1/project/oauth2/auth0
 ```
 
@@ -683,6 +698,21 @@ PATCH https://cloud.appwrite.io/v1/project/oauth2/huggingface
 
 
 ```http request
+PATCH https://cloud.appwrite.io/v1/project/oauth2/instagram
+```
+
+** Update the project OAuth2 Instagram configuration. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| clientId | string | 'Client ID' of Instagram OAuth2 app. For example: 00000000000000000000000000000000 |  |
+| clientSecret | string | 'Client Secret' of Instagram OAuth2 app. For example: 00000000000000000000000000000000 |  |
+| enabled | boolean | OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid. |  |
+
+
+```http request
 PATCH https://cloud.appwrite.io/v1/project/oauth2/kakao
 ```
 
@@ -731,6 +761,36 @@ PATCH https://cloud.appwrite.io/v1/project/oauth2/kick
 
 
 ```http request
+PATCH https://cloud.appwrite.io/v1/project/oauth2/line
+```
+
+** Update the project OAuth2 LINE configuration. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| clientId | string | 'Client ID' of LINE OAuth2 app. For example: 1650000000 |  |
+| clientSecret | string | 'Client Secret' of LINE OAuth2 app. For example: a1b2c3d4e5f600000000000000000000 |  |
+| enabled | boolean | OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid. |  |
+
+
+```http request
+PATCH https://cloud.appwrite.io/v1/project/oauth2/linear
+```
+
+** Update the project OAuth2 Linear configuration. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| clientId | string | 'Client ID' of Linear OAuth2 app. For example: 5e1c0000000000000000000000000000 |  |
+| clientSecret | string | 'Client Secret' of Linear OAuth2 app. For example: 9f8e7d6c5b4a00000000000000000000 |  |
+| enabled | boolean | OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid. |  |
+
+
+```http request
 PATCH https://cloud.appwrite.io/v1/project/oauth2/linkedin
 ```
 
@@ -774,6 +834,21 @@ PATCH https://cloud.appwrite.io/v1/project/oauth2/naver
 | --- | --- | --- | --- |
 | clientId | string | 'Client ID' of Naver OAuth2 app. For example: jK8pQ0000000000000Zv |  |
 | clientSecret | string | 'Client Secret' of Naver OAuth2 app. For example: 9f42A0000000000c1dEb. Find it under Application > My Applications, on the overview of your app |  |
+| enabled | boolean | OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid. |  |
+
+
+```http request
+PATCH https://cloud.appwrite.io/v1/project/oauth2/netlify
+```
+
+** Update the project OAuth2 Netlify configuration. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| clientId | string | 'Client ID' of Netlify OAuth2 app. For example: 00000000000000000000000000000000 |  |
+| clientSecret | string | 'Client Secret' of Netlify OAuth2 app. For example: 00000000000000000000000000000000 |  |
 | enabled | boolean | OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid. |  |
 
 
@@ -832,6 +907,21 @@ PATCH https://cloud.appwrite.io/v1/project/oauth2/okta
 
 
 ```http request
+PATCH https://cloud.appwrite.io/v1/project/oauth2/patreon
+```
+
+** Update the project OAuth2 Patreon configuration. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| clientId | string | 'Client ID' of Patreon OAuth2 app. For example: 00000000000000000000000000000000 |  |
+| clientSecret | string | 'Client Secret' of Patreon OAuth2 app. For example: 00000000000000000000000000000000 |  |
+| enabled | boolean | OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid. |  |
+
+
+```http request
 PATCH https://cloud.appwrite.io/v1/project/oauth2/paypal
 ```
 
@@ -877,6 +967,36 @@ PATCH https://cloud.appwrite.io/v1/project/oauth2/podio
 
 
 ```http request
+PATCH https://cloud.appwrite.io/v1/project/oauth2/railway
+```
+
+** Update the project OAuth2 Railway configuration. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| clientId | string | 'Client ID' of Railway OAuth2 app. For example: 00000000000000000000000000000000 |  |
+| clientSecret | string | 'Client Secret' of Railway OAuth2 app. For example: 00000000000000000000000000000000 |  |
+| enabled | boolean | OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid. |  |
+
+
+```http request
+PATCH https://cloud.appwrite.io/v1/project/oauth2/reddit
+```
+
+** Update the project OAuth2 Reddit configuration. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| clientId | string | 'Client ID' of Reddit OAuth2 app. For example: aBcD0000000000000000aB |  |
+| clientSecret | string | 'Client Secret' of Reddit OAuth2 app. For example: xYz00000000000000000000000000a |  |
+| enabled | boolean | OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid. |  |
+
+
+```http request
 PATCH https://cloud.appwrite.io/v1/project/oauth2/resend
 ```
 
@@ -888,6 +1008,21 @@ PATCH https://cloud.appwrite.io/v1/project/oauth2/resend
 | --- | --- | --- | --- |
 | clientId | string | 'Client ID' of Resend OAuth2 app. For example: f47ac10b-58cc-4372-a567-0e02b2c3d479 |  |
 | clientSecret | string | 'Client Secret' of Resend OAuth2 app. For example: 9c1e4b00000000000000000000000000000000000000000000000000a72d5f4 |  |
+| enabled | boolean | OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid. |  |
+
+
+```http request
+PATCH https://cloud.appwrite.io/v1/project/oauth2/roblox
+```
+
+** Update the project OAuth2 Roblox configuration. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| clientId | string | 'Client ID' of Roblox OAuth2 app. For example: 1234567890123456789 |  |
+| clientSecret | string | 'Client Secret' of Roblox OAuth2 app. For example: RBX-0000000000000000000000000000000000000000000000000000000000000000000000 |  |
 | enabled | boolean | OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid. |  |
 
 
@@ -934,6 +1069,21 @@ PATCH https://cloud.appwrite.io/v1/project/oauth2/spotify
 | --- | --- | --- | --- |
 | clientId | string | 'Client ID' of Spotify OAuth2 app. For example: 6ec271000000000000000000009beace |  |
 | clientSecret | string | 'Client Secret' of Spotify OAuth2 app. For example: db068a000000000000000000008b5b9f |  |
+| enabled | boolean | OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid. |  |
+
+
+```http request
+PATCH https://cloud.appwrite.io/v1/project/oauth2/strava
+```
+
+** Update the project OAuth2 Strava configuration. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| clientId | string | 'Client ID' of Strava OAuth2 app. For example: 00000000000000000000000000000000 |  |
+| clientSecret | string | 'Client Secret' of Strava OAuth2 app. For example: 00000000000000000000000000000000 |  |
 | enabled | boolean | OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid. |  |
 
 
@@ -1013,6 +1163,21 @@ PATCH https://cloud.appwrite.io/v1/project/oauth2/twitch
 
 
 ```http request
+PATCH https://cloud.appwrite.io/v1/project/oauth2/vercel
+```
+
+** Update the project OAuth2 Vercel configuration. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| clientId | string | 'Client ID' of Vercel OAuth2 app. For example: cl_0000000000000000000000000000000 |  |
+| clientSecret | string | 'Client Secret' of Vercel OAuth2 app. For example: vc_0000000000000000000000000000000000000000000000 |  |
+| enabled | boolean | OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid. |  |
+
+
+```http request
 PATCH https://cloud.appwrite.io/v1/project/oauth2/vipps
 ```
 
@@ -1043,6 +1208,21 @@ PATCH https://cloud.appwrite.io/v1/project/oauth2/vippsSandbox
 
 
 ```http request
+PATCH https://cloud.appwrite.io/v1/project/oauth2/vk
+```
+
+** Update the project OAuth2 VK configuration. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| clientId | string | 'Client ID' of VK OAuth2 app. For example: 00000000000000000000000000000000 |  |
+| clientSecret | string | 'Client Secret' of VK OAuth2 app. For example: 00000000000000000000000000000000 |  |
+| enabled | boolean | OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid. |  |
+
+
+```http request
 PATCH https://cloud.appwrite.io/v1/project/oauth2/webflow
 ```
 
@@ -1069,6 +1249,21 @@ PATCH https://cloud.appwrite.io/v1/project/oauth2/wordpress
 | --- | --- | --- | --- |
 | clientId | string | 'Client ID' of WordPress OAuth2 app. For example: 130005 |  |
 | clientSecret | string | 'Client Secret' of WordPress OAuth2 app. For example: PlBfJS0000000000000000000000000000000000000000000000000000EdUZJk |  |
+| enabled | boolean | OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid. |  |
+
+
+```http request
+PATCH https://cloud.appwrite.io/v1/project/oauth2/workos
+```
+
+** Update the project OAuth2 WorkOS configuration. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| clientId | string | 'Client ID' of WorkOS OAuth2 app. For example: client_01H0000000000000000000000 |  |
+| clientSecret | string | 'Client Secret' of WorkOS OAuth2 app. For example: wos0000000000000000000000000000000000000000000000000000000000000 |  |
 | enabled | boolean | OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid. |  |
 
 
