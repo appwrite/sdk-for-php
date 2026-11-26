@@ -109,6 +109,213 @@ class Organization extends Service
     }
 
     /**
+     * Get a list of your organization's escalations. Use `Query.search('search',
+     * term)` to search escalation IDs and names.
+     *
+     * @throws AppwriteException
+     */
+    public function listEscalations(?array $queries = null, ?bool $total = null): \Appwrite\Models\EscalationList
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/organization/escalations'
+        );
+
+        $apiParams = [];
+
+        if (!is_null($queries)) {
+            $apiParams['queries'] = $queries;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\EscalationList::from($response);
+    }
+
+    /**
+     * Create an escalation for your organization. A monitor using it notifies the
+     * escalation's steps one after another while its alert fires, each by email,
+     * push and in the console, until a member acknowledges the alert or it
+     * resolves. Each step waits its `delay` in seconds, after the alert fires for
+     * the first step and after the previous step for the others, then notifies
+     * the members holding its `roles` and those named in `userIds`. With
+     * `repeat`, the steps run again from the first, a monitor's cooldown after
+     * the last step.
+     *
+     * @throws AppwriteException
+     */
+    public function createEscalation(string $escalationId, string $name, array $steps, ?int $repeat = null): \Appwrite\Models\Escalation
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/organization/escalations'
+        );
+
+        $apiParams = [];
+        $apiParams['escalationId'] = $escalationId;
+        $apiParams['name'] = $name;
+        $apiParams['steps'] = $steps;
+
+        if (!is_null($repeat)) {
+            $apiParams['repeat'] = $repeat;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Escalation::from($response);
+    }
+
+    /**
+     * Get one of your organization's escalations by its ID.
+     *
+     * @throws AppwriteException
+     */
+    public function getEscalation(string $escalationId): \Appwrite\Models\Escalation
+    {
+        if ($escalationId === '') {
+            throw new AppwriteException('Missing required parameter: "escalationId"');
+        }
+
+        $apiPath = str_replace(
+            ['{escalationId}'],
+            [self::encodePath($escalationId)],
+            '/organization/escalations/{escalationId}'
+        );
+
+        $apiParams = [];
+        $apiParams['escalationId'] = $escalationId;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Escalation::from($response);
+    }
+
+    /**
+     * Update an escalation's name, steps or repeats; what you leave out stays as
+     * it is. Alerts already escalating keep the steps they started with; the next
+     * alert uses the new ones.
+     *
+     * @throws AppwriteException
+     */
+    public function updateEscalation(string $escalationId, ?string $name = null, ?array $steps = null, ?int $repeat = null): \Appwrite\Models\Escalation
+    {
+        if ($escalationId === '') {
+            throw new AppwriteException('Missing required parameter: "escalationId"');
+        }
+
+        $apiPath = str_replace(
+            ['{escalationId}'],
+            [self::encodePath($escalationId)],
+            '/organization/escalations/{escalationId}'
+        );
+
+        $apiParams = [];
+        $apiParams['escalationId'] = $escalationId;
+        $apiParams['name'] = $name;
+        $apiParams['steps'] = $steps;
+        $apiParams['repeat'] = $repeat;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\Escalation::from($response);
+    }
+
+    /**
+     * Delete an escalation. An escalation that a monitor uses cannot be deleted:
+     * move the monitor to another escalation or to `notify` roles first. Open
+     * alerts keep the steps they started with.
+     *
+     * @throws AppwriteException
+     */
+    public function deleteEscalation(string $escalationId): string
+    {
+        if ($escalationId === '') {
+            throw new AppwriteException('Missing required parameter: "escalationId"');
+        }
+
+        $apiPath = str_replace(
+            ['{escalationId}'],
+            [self::encodePath($escalationId)],
+            '/organization/escalations/{escalationId}'
+        );
+
+        $apiParams = [];
+        $apiParams['escalationId'] = $escalationId;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_DELETE,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
      * List app installations on the organization. Any organization member can
      * read installations.
      *

@@ -279,6 +279,227 @@ final class OrganizationTest extends TestCase
 
         $this->assertSame($data, $response);
     }
+    public function testMethodListEscalations(): void
+    {
+        $data = [
+            "total" => 5,
+            "escalations" => [
+                [
+                    "\$id" => "5e5ea5c16897e",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "name" => "Platform",
+                    "steps" => [
+                        [
+                            "delay" => 600,
+                            "roles" => [],
+                            "userIds" => []
+                        ]
+                    ],
+                    "repeat" => 2
+                ]
+            ]
+        ];
+
+        $this->client
+            ->expects()->call(
+                'GET',
+                '/organization/escalations',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['queries', 'total'], array_keys($params));
+                    $expected = [
+                        'queries' => [],
+                        'total' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->organization->listEscalations(
+            queries: [],
+            total: false
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\EscalationList::class, $response);
+    }
+    public function testMethodCreateEscalation(): void
+    {
+        $data = [
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "name" => "Platform",
+            "steps" => [
+                [
+                    "delay" => 600,
+                    "roles" => [],
+                    "userIds" => []
+                ]
+            ],
+            "repeat" => 2
+        ];
+
+        $this->client
+            ->expects()->call(
+                'POST',
+                '/organization/escalations',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['escalationId', 'name', 'steps', 'repeat'], array_keys($params));
+                    $expected = [
+                        'escalationId' => "<ESCALATION_ID>",
+                        'name' => "<NAME>",
+                        'steps' => [],
+                        'repeat' => 1,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->organization->createEscalation(
+            "<ESCALATION_ID>",
+            "<NAME>",
+            [],
+            repeat: 1
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\Escalation::class, $response);
+    }
+    public function testMethodGetEscalation(): void
+    {
+        $data = [
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "name" => "Platform",
+            "steps" => [
+                [
+                    "delay" => 600,
+                    "roles" => [],
+                    "userIds" => []
+                ]
+            ],
+            "repeat" => 2
+        ];
+
+        $this->client
+            ->expects()->call(
+                'GET',
+                '/organization/escalations/%3CESCALATION_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['escalationId'], array_keys($params));
+                    $expected = [
+                        'escalationId' => "<ESCALATION_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->organization->getEscalation(
+            "<ESCALATION_ID>"
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\Escalation::class, $response);
+    }
+    public function testMethodUpdateEscalation(): void
+    {
+        $data = [
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "name" => "Platform",
+            "steps" => [
+                [
+                    "delay" => 600,
+                    "roles" => [],
+                    "userIds" => []
+                ]
+            ],
+            "repeat" => 2
+        ];
+
+        $this->client
+            ->expects()->call(
+                'PATCH',
+                '/organization/escalations/%3CESCALATION_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['escalationId', 'name', 'steps', 'repeat'], array_keys($params));
+                    $expected = [
+                        'escalationId' => "<ESCALATION_ID>",
+                        'name' => "<NAME>",
+                        'steps' => [],
+                        'repeat' => 1,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->organization->updateEscalation(
+            "<ESCALATION_ID>",
+            name: "<NAME>",
+            steps: [],
+            repeat: 1
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\Escalation::class, $response);
+    }
+    public function testMethodDeleteEscalation(): void
+    {
+        $data = '';
+
+        $this->client
+            ->expects()->call(
+                'DELETE',
+                '/organization/escalations/%3CESCALATION_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['escalationId'], array_keys($params));
+                    $expected = [
+                        'escalationId' => "<ESCALATION_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->organization->deleteEscalation(
+            "<ESCALATION_ID>"
+        );
+
+        $this->assertSame($data, $response);
+    }
     public function testMethodListInstallations(): void
     {
         $data = [
