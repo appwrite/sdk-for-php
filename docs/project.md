@@ -2077,3 +2077,85 @@ DELETE https://cloud.appwrite.io/v1/project/variables/{variableId}
 | --- | --- | --- | --- |
 | variableId | string | **Required** Variable unique ID. |  |
 
+
+```http request
+GET https://cloud.appwrite.io/v1/project/videos/profiles
+```
+
+** Get a list of video profiles in the current project (`GET /v1/project/videos/profiles`). Every profile is returned regardless of codec. Filter with `queries`, for example `Query.equal('codec', ['h264'])` for one encode ladder, or on `name`, `width`, `height`, `videoBitRate` and `audioBitRate`. Search with `Query.search()` on the `search` attribute.
+ **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, codec, width, height, videoBitRate, audioBitRate, search | [] |
+| total | boolean | When set to false, the total count returned will be 0 and will not be calculated. | 1 |
+
+
+```http request
+POST https://cloud.appwrite.io/v1/project/videos/profiles
+```
+
+** Create a video profile (`POST /v1/project/videos/profiles`) describing an encoding target: output dimensions, video/audio bitrates, and encode codec. Only codecs enabled on this instance are accepted; the default is `h264`. A disabled codec is rejected. Creating a profile with the same width, height, bitrates, and codec fails with `video_profile_already_exists`. Bitrates are in bits per second and must be multiples of 1000. Renditions are encoded against a profile.
+ **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| profileId | string | Video profile ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
+| name | string | Video profile name. |  |
+| videoBitRate | integer | Target video bitrate in bits per second. Must be a multiple of 1000. |  |
+| audioBitRate | integer | Target audio bitrate in bits per second. Must be a multiple of 1000. |  |
+| width | integer | Target video width in pixels. Must be an even number. |  |
+| height | integer | Target video height in pixels. Must be an even number. |  |
+| codec | string | Video encode codec. Codecs not enabled on this instance are rejected. Defaults to `h264`. | h264 |
+
+
+```http request
+GET https://cloud.appwrite.io/v1/project/videos/profiles/{profileId}
+```
+
+** Get a video profile by its unique ID (`GET /v1/project/videos/profiles/:profileId`).
+ **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| profileId | string | **Required** Video profile unique ID. |  |
+
+
+```http request
+PATCH https://cloud.appwrite.io/v1/project/videos/profiles/{profileId}
+```
+
+** Update a video profile by its unique ID (`PATCH /v1/project/videos/profiles/:profileId`). Existing renditions are not re-encoded. Changing the profile onto the same width, height, bitrates, and codec as another profile fails with `video_profile_already_exists`.
+ **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| profileId | string | **Required** Video profile unique ID. |  |
+| name | string | Video profile name. |  |
+| videoBitRate | integer | Target video bitrate in bits per second. Must be a multiple of 1000. |  |
+| audioBitRate | integer | Target audio bitrate in bits per second. Must be a multiple of 1000. |  |
+| width | integer | Target video width in pixels. Must be an even number. |  |
+| height | integer | Target video height in pixels. Must be an even number. |  |
+
+
+```http request
+DELETE https://cloud.appwrite.io/v1/project/videos/profiles/{profileId}
+```
+
+** Delete a video profile by its unique ID (`DELETE /v1/project/videos/profiles/:profileId`). Renditions already encoded against it are left in place.
+ **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| profileId | string | **Required** Video profile unique ID. |  |
+
