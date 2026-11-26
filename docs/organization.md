@@ -29,6 +29,78 @@ DELETE https://cloud.appwrite.io/v1/organization
 
 
 ```http request
+GET https://cloud.appwrite.io/v1/organization/escalations
+```
+
+** Get a list of your organization's escalations. Use `Query.search('search', term)` to search escalation IDs and names. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| queries | array | Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, repeat, search | [] |
+| total | boolean | When set to false, the total count returned will be 0 and will not be calculated. | 1 |
+
+
+```http request
+POST https://cloud.appwrite.io/v1/organization/escalations
+```
+
+** Create an escalation for your organization. A monitor using it notifies the escalation's steps one after another while its alert fires, each by email, push and in the console, until a member acknowledges the alert or it resolves. Each step waits its `delay` in seconds, after the alert fires for the first step and after the previous step for the others, then notifies the members holding its `roles` and those named in `userIds`. With `repeat`, the steps run again from the first, a monitor's cooldown after the last step. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| escalationId | string | Escalation ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars. |  |
+| name | string | Escalation name. Max length: 128 chars. |  |
+| steps | array | Steps notified in order while nobody acknowledges the alert. Each step is an object with `delay` (seconds to wait before the step, 0 to 2592000, default 0), `roles` (organization roles such as `owner` or `developer`) and `userIds` (organization members who accepted their invitation). A step names each role and member at most once and needs at least one of `roles` or `userIds`. Maximum of 100 steps. |  |
+| repeat | integer | How many more times the steps run from the first while nobody acknowledges the alert, between 0 and 9. Each round starts a monitor's cooldown after the last step. | 0 |
+
+
+```http request
+GET https://cloud.appwrite.io/v1/organization/escalations/{escalationId}
+```
+
+** Get one of your organization's escalations by its ID. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| escalationId | string | **Required** Escalation ID. |  |
+
+
+```http request
+PATCH https://cloud.appwrite.io/v1/organization/escalations/{escalationId}
+```
+
+** Update an escalation's name, steps or repeats; what you leave out stays as it is. Alerts already escalating keep the steps they started with; the next alert uses the new ones. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| escalationId | string | **Required** Escalation ID. |  |
+| name | string | Escalation name. Max length: 128 chars. |  |
+| steps | array | Steps notified in order while nobody acknowledges the alert. Each step is an object with `delay` (seconds to wait before the step, 0 to 2592000, default 0), `roles` (organization roles such as `owner` or `developer`) and `userIds` (organization members who accepted their invitation). A step names each role and member at most once and needs at least one of `roles` or `userIds`. Maximum of 100 steps. |  |
+| repeat | integer | How many more times the steps run from the first while nobody acknowledges the alert, between 0 and 9. Each round starts a monitor's cooldown after the last step. |  |
+
+
+```http request
+DELETE https://cloud.appwrite.io/v1/organization/escalations/{escalationId}
+```
+
+** Delete an escalation. An escalation that a monitor uses cannot be deleted: move the monitor to another escalation or to `notify` roles first. Open alerts keep the steps they started with. **
+
+### Parameters
+
+| Field Name | Type | Description | Default |
+| --- | --- | --- | --- |
+| escalationId | string | **Required** Escalation ID. |  |
+
+
+```http request
 GET https://cloud.appwrite.io/v1/organization/installations
 ```
 
