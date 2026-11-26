@@ -16,6 +16,7 @@ use Appwrite\Enums\ProjectServiceId;
 use Appwrite\Enums\ProjectSMTPSecure;
 use Appwrite\Enums\ProjectEmailTemplateId;
 use Appwrite\Enums\ProjectEmailTemplateLocale;
+use Appwrite\Enums\VideoCodecId;
 
 class Project extends Service
 {
@@ -5835,6 +5836,222 @@ class Project extends Service
 
         $apiParams = [];
         $apiParams['variableId'] = $variableId;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        return $this->client->call(
+            Client::METHOD_DELETE,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+    }
+
+    /**
+     * Get a list of video profiles in the current project (`GET
+     * /v1/project/videos/profiles`). Every profile is returned regardless of
+     * codec. Filter with `queries`, for example `Query.equal('codec', ['h264'])`
+     * for one encode ladder, or on `name`, `width`, `height`, `videoBitRate` and
+     * `audioBitRate`. Search with `Query.search()` on the `search` attribute.
+     *
+     * @throws AppwriteException
+     */
+    public function listVideoProfiles(?array $queries = null, ?bool $total = null): \Appwrite\Models\VideoProfileList
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/project/videos/profiles'
+        );
+
+        $apiParams = [];
+
+        if (!is_null($queries)) {
+            $apiParams['queries'] = $queries;
+        }
+
+        if (!is_null($total)) {
+            $apiParams['total'] = $total;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\VideoProfileList::from($response);
+    }
+
+    /**
+     * Create a video profile (`POST /v1/project/videos/profiles`) describing an
+     * encoding target: output dimensions, video/audio bitrates, and encode codec.
+     * Only codecs enabled on this instance are accepted; the default is `h264`. A
+     * disabled codec is rejected. Creating a profile with the same width, height,
+     * bitrates, and codec fails with `video_profile_already_exists`. Bitrates are
+     * in bits per second and must be multiples of 1000. Renditions are encoded
+     * against a profile.
+     *
+     * @throws AppwriteException
+     */
+    public function createVideoProfile(string $profileId, string $name, int $videoBitRate, int $audioBitRate, int $width, int $height, ?VideoCodecId $codec = null): \Appwrite\Models\VideoProfile
+    {
+        $apiPath = str_replace(
+            [],
+            [],
+            '/project/videos/profiles'
+        );
+
+        $apiParams = [];
+        $apiParams['profileId'] = $profileId;
+        $apiParams['name'] = $name;
+        $apiParams['videoBitRate'] = $videoBitRate;
+        $apiParams['audioBitRate'] = $audioBitRate;
+        $apiParams['width'] = $width;
+        $apiParams['height'] = $height;
+
+        if (!is_null($codec)) {
+            $apiParams['codec'] = $codec;
+        }
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_POST,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\VideoProfile::from($response);
+    }
+
+    /**
+     * Get a video profile by its unique ID (`GET
+     * /v1/project/videos/profiles/:profileId`).
+     *
+     * @throws AppwriteException
+     */
+    public function getVideoProfile(string $profileId): \Appwrite\Models\VideoProfile
+    {
+        if ($profileId === '') {
+            throw new AppwriteException('Missing required parameter: "profileId"');
+        }
+
+        $apiPath = str_replace(
+            ['{profileId}'],
+            [self::encodePath($profileId)],
+            '/project/videos/profiles/{profileId}'
+        );
+
+        $apiParams = [];
+        $apiParams['profileId'] = $profileId;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_GET,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\VideoProfile::from($response);
+    }
+
+    /**
+     * Update a video profile by its unique ID (`PATCH
+     * /v1/project/videos/profiles/:profileId`). Existing renditions are not
+     * re-encoded. Changing the profile onto the same width, height, bitrates, and
+     * codec as another profile fails with `video_profile_already_exists`.
+     *
+     * @throws AppwriteException
+     */
+    public function updateVideoProfile(string $profileId, ?string $name = null, ?int $videoBitRate = null, ?int $audioBitRate = null, ?int $width = null, ?int $height = null): \Appwrite\Models\VideoProfile
+    {
+        if ($profileId === '') {
+            throw new AppwriteException('Missing required parameter: "profileId"');
+        }
+
+        $apiPath = str_replace(
+            ['{profileId}'],
+            [self::encodePath($profileId)],
+            '/project/videos/profiles/{profileId}'
+        );
+
+        $apiParams = [];
+        $apiParams['profileId'] = $profileId;
+        $apiParams['name'] = $name;
+        $apiParams['videoBitRate'] = $videoBitRate;
+        $apiParams['audioBitRate'] = $audioBitRate;
+        $apiParams['width'] = $width;
+        $apiParams['height'] = $height;
+
+        $apiHeaders = [];
+        $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');
+        $apiHeaders['content-type'] = 'application/json';
+        $apiHeaders['accept'] = 'application/json';
+
+        $response = $this->client->call(
+            Client::METHOD_PATCH,
+            $apiPath,
+            $apiHeaders,
+            $apiParams
+        );
+
+        if (!is_array($response)) {
+            throw new \UnexpectedValueException('Expected array response when hydrating a response model.');
+        }
+
+        return \Appwrite\Models\VideoProfile::from($response);
+    }
+
+    /**
+     * Delete a video profile by its unique ID (`DELETE
+     * /v1/project/videos/profiles/:profileId`). Renditions already encoded
+     * against it are left in place.
+     *
+     * @throws AppwriteException
+     */
+    public function deleteVideoProfile(string $profileId): string
+    {
+        if ($profileId === '') {
+            throw new AppwriteException('Missing required parameter: "profileId"');
+        }
+
+        $apiPath = str_replace(
+            ['{profileId}'],
+            [self::encodePath($profileId)],
+            '/project/videos/profiles/{profileId}'
+        );
+
+        $apiParams = [];
+        $apiParams['profileId'] = $profileId;
 
         $apiHeaders = [];
         $apiHeaders['X-Appwrite-Project'] = $this->client->getConfig('project');

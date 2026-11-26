@@ -30,6 +30,7 @@ use Appwrite\Enums\ProjectServiceId;
 use Appwrite\Enums\ProjectSMTPSecure;
 use Appwrite\Enums\ProjectEmailTemplateId;
 use Appwrite\Enums\ProjectEmailTemplateLocale;
+use Appwrite\Enums\VideoCodecId;
 
 final class ProjectTest extends TestCase
 {
@@ -7169,6 +7170,225 @@ final class ProjectTest extends TestCase
 
         $response = $this->project->deleteVariable(
             "<VARIABLE_ID>"
+        );
+
+        $this->assertSame($data, $response);
+    }
+    public function testMethodListVideoProfiles(): void
+    {
+        $data = [
+            "total" => 5,
+            "profiles" => [
+                [
+                    "\$id" => "5e5ea5c16897e",
+                    "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+                    "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+                    "name" => "360p",
+                    "codec" => "h264",
+                    "videoBitRate" => 890000,
+                    "audioBitRate" => 64000,
+                    "width" => 640,
+                    "height" => 360
+                ]
+            ]
+        ];
+
+        $this->client
+            ->expects()->call(
+                'GET',
+                '/project/videos/profiles',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['queries', 'total'], array_keys($params));
+                    $expected = [
+                        'queries' => [],
+                        'total' => false,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->project->listVideoProfiles(
+            queries: [],
+            total: false
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\VideoProfileList::class, $response);
+    }
+    public function testMethodCreateVideoProfile(): void
+    {
+        $data = [
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "name" => "360p",
+            "codec" => "h264",
+            "videoBitRate" => 890000,
+            "audioBitRate" => 64000,
+            "width" => 640,
+            "height" => 360
+        ];
+
+        $this->client
+            ->expects()->call(
+                'POST',
+                '/project/videos/profiles',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['profileId', 'name', 'videoBitRate', 'audioBitRate', 'width', 'height', 'codec'], array_keys($params));
+                    $expected = [
+                        'profileId' => "<PROFILE_ID>",
+                        'name' => "<NAME>",
+                        'videoBitRate' => 1,
+                        'audioBitRate' => 1,
+                        'width' => 1,
+                        'height' => 1,
+                        'codec' => VideoCodecId::H264(),
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->project->createVideoProfile(
+            "<PROFILE_ID>",
+            "<NAME>",
+            1,
+            1,
+            1,
+            1,
+            codec: VideoCodecId::H264()
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\VideoProfile::class, $response);
+    }
+    public function testMethodGetVideoProfile(): void
+    {
+        $data = [
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "name" => "360p",
+            "codec" => "h264",
+            "videoBitRate" => 890000,
+            "audioBitRate" => 64000,
+            "width" => 640,
+            "height" => 360
+        ];
+
+        $this->client
+            ->expects()->call(
+                'GET',
+                '/project/videos/profiles/%3CPROFILE_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['profileId'], array_keys($params));
+                    $expected = [
+                        'profileId' => "<PROFILE_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->project->getVideoProfile(
+            "<PROFILE_ID>"
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\VideoProfile::class, $response);
+    }
+    public function testMethodUpdateVideoProfile(): void
+    {
+        $data = [
+            "\$id" => "5e5ea5c16897e",
+            "\$createdAt" => "2020-10-15T06:38:00.000+00:00",
+            "\$updatedAt" => "2020-10-15T06:38:00.000+00:00",
+            "name" => "360p",
+            "codec" => "h264",
+            "videoBitRate" => 890000,
+            "audioBitRate" => 64000,
+            "width" => 640,
+            "height" => 360
+        ];
+
+        $this->client
+            ->expects()->call(
+                'PATCH',
+                '/project/videos/profiles/%3CPROFILE_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['profileId', 'name', 'videoBitRate', 'audioBitRate', 'width', 'height'], array_keys($params));
+                    $expected = [
+                        'profileId' => "<PROFILE_ID>",
+                        'name' => "<NAME>",
+                        'videoBitRate' => 1,
+                        'audioBitRate' => 1,
+                        'width' => 1,
+                        'height' => 1,
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->project->updateVideoProfile(
+            "<PROFILE_ID>",
+            name: "<NAME>",
+            videoBitRate: 1,
+            audioBitRate: 1,
+            width: 1,
+            height: 1
+        );
+
+        $this->assertInstanceOf(\Appwrite\Models\VideoProfile::class, $response);
+    }
+    public function testMethodDeleteVideoProfile(): void
+    {
+        $data = '';
+
+        $this->client
+            ->expects()->call(
+                'DELETE',
+                '/project/videos/profiles/%3CPROFILE_ID%3E',
+                Mockery::any(),
+                Mockery::on(function (array $params): bool {
+                    $this->assertSame(['profileId'], array_keys($params));
+                    $expected = [
+                        'profileId' => "<PROFILE_ID>",
+                    ];
+                    $this->assertSame($expected, array_intersect_key($params, $expected));
+
+                    return true;
+                })
+            )
+            ->andReturn($data);
+        $this->client
+            ->allows()->getConfig(Mockery::any())
+            ->andReturn('');
+
+        $response = $this->project->deleteVideoProfile(
+            "<PROFILE_ID>"
         );
 
         $this->assertSame($data, $response);
