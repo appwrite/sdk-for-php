@@ -16,7 +16,7 @@ $result = $tablesDB->updateBigIntColumn(
     tableId: '<TABLE_ID>',
     key: '<KEY>',
     required: false,
-    default: 0,
+    xdefault: 0,
     min: 0, // optional
     max: 1000000, // optional
     newKey: '<NEW_KEY>', // optional

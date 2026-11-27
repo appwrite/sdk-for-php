@@ -16,7 +16,7 @@ $result = $databases->updateMediumtextAttribute(
     collectionId: '<COLLECTION_ID>',
     key: '<KEY>',
     required: false,
-    default: 'Hello World',
+    xdefault: 'Hello World',
     newKey: '<NEW_KEY>', // optional
     description: '<DESCRIPTION>' // optional
 );

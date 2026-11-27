@@ -18,6 +18,6 @@ $result = $videos->updateCaption(
     fileId: '<FILE_ID>', // optional
     name: '<NAME>', // optional
     language: 'aar', // optional
-    default: false // optional
+    xdefault: false // optional
 );
 ```

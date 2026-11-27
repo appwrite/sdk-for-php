@@ -16,7 +16,7 @@ $result = $tablesDB->updateUrlColumn(
     tableId: '<TABLE_ID>',
     key: '<KEY>',
     required: false,
-    default: 'https://example.com',
+    xdefault: 'https://example.com',
     newKey: '<NEW_KEY>', // optional
     description: '<DESCRIPTION>' // optional
 );

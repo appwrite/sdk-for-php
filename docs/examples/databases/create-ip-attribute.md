@@ -16,8 +16,8 @@ $result = $databases->createIpAttribute(
     collectionId: '<COLLECTION_ID>',
     key: '<KEY>',
     required: false,
-    default: '192.0.2.0', // optional
-    array: false, // optional
+    xdefault: '192.0.2.0', // optional
+    xarray: false, // optional
     description: '<DESCRIPTION>' // optional
 );
 ```

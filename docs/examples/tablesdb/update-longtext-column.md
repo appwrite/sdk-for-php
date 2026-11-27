@@ -16,7 +16,7 @@ $result = $tablesDB->updateLongtextColumn(
     tableId: '<TABLE_ID>',
     key: '<KEY>',
     required: false,
-    default: 'Hello World',
+    xdefault: 'Hello World',
     newKey: '<NEW_KEY>', // optional
     description: '<DESCRIPTION>' // optional
 );

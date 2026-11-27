@@ -20,7 +20,7 @@ $result = $databases->updateEnumAttribute(
         'inactive'
     ],
     required: false,
-    default: 'active',
+    xdefault: 'active',
     newKey: '<NEW_KEY>', // optional
     description: '<DESCRIPTION>' // optional
 );

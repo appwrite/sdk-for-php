@@ -16,7 +16,7 @@ $result = $databases->createPolygonAttribute(
     collectionId: '<COLLECTION_ID>',
     key: '<KEY>',
     required: false,
-    default: [
+    xdefault: [
         [
             [
                 1,

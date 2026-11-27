@@ -17,8 +17,8 @@ $result = $databases->createStringAttribute(
     key: '<KEY>',
     size: 1,
     required: false,
-    default: 'Hello World', // optional
-    array: false, // optional
+    xdefault: 'Hello World', // optional
+    xarray: false, // optional
     encrypt: false, // optional
     description: '<DESCRIPTION>' // optional
 );

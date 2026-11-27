@@ -16,7 +16,7 @@ $result = $databases->updateIpAttribute(
     collectionId: '<COLLECTION_ID>',
     key: '<KEY>',
     required: false,
-    default: '192.0.2.0',
+    xdefault: '192.0.2.0',
     newKey: '<NEW_KEY>', // optional
     description: '<DESCRIPTION>' // optional
 );

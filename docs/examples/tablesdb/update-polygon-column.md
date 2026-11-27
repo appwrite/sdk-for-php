@@ -16,7 +16,7 @@ $result = $tablesDB->updatePolygonColumn(
     tableId: '<TABLE_ID>',
     key: '<KEY>',
     required: false,
-    default: [
+    xdefault: [
         [
             [
                 1,

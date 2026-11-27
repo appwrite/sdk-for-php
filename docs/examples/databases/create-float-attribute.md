@@ -18,8 +18,8 @@ $result = $databases->createFloatAttribute(
     required: false,
     min: 0, // optional
     max: 100, // optional
-    default: 10.5, // optional
-    array: false, // optional
+    xdefault: 10.5, // optional
+    xarray: false, // optional
     description: '<DESCRIPTION>' // optional
 );
 ```
