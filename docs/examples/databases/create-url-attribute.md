@@ -16,8 +16,8 @@ $result = $databases->createUrlAttribute(
     collectionId: '<COLLECTION_ID>',
     key: '<KEY>',
     required: false,
-    default: 'https://example.com', // optional
-    array: false, // optional
+    xdefault: 'https://example.com', // optional
+    xarray: false, // optional
     description: '<DESCRIPTION>' // optional
 );
 ```

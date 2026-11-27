@@ -16,8 +16,8 @@ $result = $tablesDB->createBooleanColumn(
     tableId: '<TABLE_ID>',
     key: '<KEY>',
     required: false,
-    default: false, // optional
-    array: false, // optional
+    xdefault: false, // optional
+    xarray: false, // optional
     description: '<DESCRIPTION>' // optional
 );
 ```

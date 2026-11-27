@@ -16,7 +16,7 @@ $result = $tablesDB->updateStringColumn(
     tableId: '<TABLE_ID>',
     key: '<KEY>',
     required: false,
-    default: 'Hello World',
+    xdefault: 'Hello World',
     size: 1, // optional
     newKey: '<NEW_KEY>', // optional
     description: '<DESCRIPTION>' // optional

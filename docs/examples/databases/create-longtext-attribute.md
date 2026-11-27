@@ -16,8 +16,8 @@ $result = $databases->createLongtextAttribute(
     collectionId: '<COLLECTION_ID>',
     key: '<KEY>',
     required: false,
-    default: 'Hello World', // optional
-    array: false, // optional
+    xdefault: 'Hello World', // optional
+    xarray: false, // optional
     encrypt: false, // optional
     description: '<DESCRIPTION>' // optional
 );

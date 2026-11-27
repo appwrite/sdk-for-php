@@ -16,7 +16,7 @@ $result = $tablesDB->updateLineColumn(
     tableId: '<TABLE_ID>',
     key: '<KEY>',
     required: false,
-    default: [
+    xdefault: [
         [
             1,
             2

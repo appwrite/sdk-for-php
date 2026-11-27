@@ -17,6 +17,6 @@ $result = $videos->createCaption(
     fileId: '<FILE_ID>',
     name: '<NAME>',
     language: 'aar',
-    default: false // optional
+    xdefault: false // optional
 );
 ```

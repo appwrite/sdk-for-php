@@ -18,8 +18,8 @@ $result = $tablesDB->createBigIntColumn(
     required: false,
     min: 0, // optional
     max: 1000000, // optional
-    default: 0, // optional
-    array: false, // optional
+    xdefault: 0, // optional
+    xarray: false, // optional
     description: '<DESCRIPTION>' // optional
 );
 ```

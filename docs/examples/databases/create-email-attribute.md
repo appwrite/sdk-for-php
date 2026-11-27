@@ -16,8 +16,8 @@ $result = $databases->createEmailAttribute(
     collectionId: '<COLLECTION_ID>',
     key: '<KEY>',
     required: false,
-    default: 'email@example.com', // optional
-    array: false, // optional
+    xdefault: 'email@example.com', // optional
+    xarray: false, // optional
     description: '<DESCRIPTION>' // optional
 );
 ```

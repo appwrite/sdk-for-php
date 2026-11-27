@@ -20,8 +20,8 @@ $result = $tablesDB->createEnumColumn(
         'inactive'
     ],
     required: false,
-    default: 'active', // optional
-    array: false, // optional
+    xdefault: 'active', // optional
+    xarray: false, // optional
     description: '<DESCRIPTION>' // optional
 );
 ```

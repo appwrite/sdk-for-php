@@ -16,7 +16,7 @@ $result = $tablesDB->updateBooleanColumn(
     tableId: '<TABLE_ID>',
     key: '<KEY>',
     required: false,
-    default: false,
+    xdefault: false,
     newKey: '<NEW_KEY>', // optional
     description: '<DESCRIPTION>' // optional
 );

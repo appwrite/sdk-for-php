@@ -16,7 +16,7 @@ $result = $tablesDB->updateIntegerColumn(
     tableId: '<TABLE_ID>',
     key: '<KEY>',
     required: false,
-    default: 10,
+    xdefault: 10,
     min: 0, // optional
     max: 100, // optional
     newKey: '<NEW_KEY>', // optional

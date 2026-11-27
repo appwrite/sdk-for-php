@@ -18,8 +18,8 @@ $result = $databases->createIntegerAttribute(
     required: false,
     min: 0, // optional
     max: 100, // optional
-    default: 10, // optional
-    array: false, // optional
+    xdefault: 10, // optional
+    xarray: false, // optional
     description: '<DESCRIPTION>' // optional
 );
 ```

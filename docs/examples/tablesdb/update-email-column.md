@@ -16,7 +16,7 @@ $result = $tablesDB->updateEmailColumn(
     tableId: '<TABLE_ID>',
     key: '<KEY>',
     required: false,
-    default: 'email@example.com',
+    xdefault: 'email@example.com',
     newKey: '<NEW_KEY>', // optional
     description: '<DESCRIPTION>' // optional
 );
